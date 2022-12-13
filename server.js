@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 
 app.use("/", express.static(__dirname + "/src"));
-app.use("/", express.static(__dirname + "/node_modules/@printf83/bsts"));
+app.use("/", express.static(__dirname + "/dist"));
 
 //start server
 const envPORT = process.env.PORT || 3000;
