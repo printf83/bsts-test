@@ -1,3 +1,3 @@
-import { msg, msg2, UUID } from "@printf83/bsts";
-msg(UUID());
-msg2(UUID());
+import { msg, msg2, core } from "@printf83/bsts";
+msg(core.UUID());
+msg2(core.UUID());
