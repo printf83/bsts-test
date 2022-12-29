@@ -10,6 +10,7 @@ const fn = (name, input, output, mode) => {
 			filename: name + ".bundle.js",
 		},
 		cache: false,
+		devtool: "source-map",
 		module: {
 			rules: [
 				{
