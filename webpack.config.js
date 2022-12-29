@@ -20,7 +20,7 @@ const fn = (name, input, output, mode) => {
 		},
 		resolve: {
 			modules: [path.resolve(__dirname, "./node_modules")],
-			extensions: [".ts", ".css", ".js"],
+			extensions: [".ts", ".css", ".js",".map"],
 		},
 	};
 };
