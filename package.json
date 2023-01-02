@@ -18,13 +18,12 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts.git"
 	},
-	"main": "server.js",
+	"main": "index.html",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "webpack && node server.js --enable-source-maps"
+		"start": "webpack"
 	},
 	"dependencies": {
-		"express": "^4.18.2",
 		"remove-files-webpack-plugin": "^1.5.0",
 		"style-loader": "^3.3.1",
 		"terser-webpack-plugin": "^5.3.6",

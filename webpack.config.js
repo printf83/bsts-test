@@ -26,4 +26,17 @@ const fn = (name, input, output, mode) => {
 	};
 };
 
-module.exports = [fn("index", "./src/index.js", "./dist", "development")];
+const fn2 = (name, input, output, mode) => {
+	return {
+		mode: "development",
+		devtool: "source-map",
+		entry: path.resolve(__dirname, input),
+		output: {
+			path: path.resolve(__dirname, output),
+			chunkFilename: name + ".[name].bundle.js",
+			filename: name + ".bundle.js",
+		},
+	};
+};
+
+module.exports = [fn2("index", "./index.js", "./dist", "development")];
