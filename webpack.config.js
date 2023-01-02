@@ -21,7 +21,7 @@ const fn = (name, input, output, mode) => {
 		},
 		resolve: {
 			modules: [path.resolve(__dirname, "./node_modules")],
-			extensions: [".ts", ".css", ".js",".map"],
+			extensions: [".ts", ".css", ".js", ".map"],
 		},
 	};
 };
@@ -33,8 +33,12 @@ const fn2 = (name, input, output, mode) => {
 		entry: path.resolve(__dirname, input),
 		output: {
 			path: path.resolve(__dirname, output),
-			chunkFilename: name + ".[name].bundle.js",
 			filename: name + ".bundle.js",
+			devtoolModuleFilenameTemplate: "file:///[absolute-resource-path]",
+		},
+		resolve: {
+			modules: [path.resolve(__dirname, "./node_modules")],
+			extensions: [".ts", ".css", ".js", ".map"],
 		},
 	};
 };
