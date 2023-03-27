@@ -1,10 +1,3 @@
-// import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
-// import { IAttr, IElem, tag } from "@printf83/bsts/lib/core/tag";
-// import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
-// import { UUID } from "@printf83/bsts/lib/core/uuid";
-// import { h } from "@printf83/bsts/lib/index";
-// import { h as Th } from "@printf83/bsts/lib/html/h";
-
 import { core, h } from "@printf83/bsts";
 import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
 import { IAttr, tag, IElem } from "@printf83/bsts/lib/cjs/types/core/tag.js";

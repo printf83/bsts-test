@@ -1,7 +1,3 @@
-// import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
-// import { IElem } from "@printf83/bsts/lib/core/tag";
-// import { IAttrTagP, p } from "@printf83/bsts/lib/html/p";
-
 import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
 import { IElem } from "@printf83/bsts/lib/cjs/types/core/tag.js";
 import { IAttrTagP, p } from "@printf83/bsts/lib/cjs/types/html/p.js";

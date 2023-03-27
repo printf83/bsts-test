@@ -1,7 +1,7 @@
 import { b, h } from "@printf83/bsts";
-import { bootstrapType } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { example as e } from "../ctl/example/_index.js";
-import { IAttrContent } from "../ctl/main/container.js";
+import { bootstrapType } from "@printf83/bsts/lib/cjs/types/core/bootstrap";
+import { example as e } from "../ctl/example/_index";
+import { IAttrContent } from "../ctl/main/container";
 
 export const doc_component_card: IAttrContent = {
 	title: "Cards",

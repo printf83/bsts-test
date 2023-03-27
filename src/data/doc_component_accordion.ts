@@ -1,4 +1,3 @@
-// import { b, core } from "@printf83/bsts/lib/index";
 import { b, core } from "@printf83/bsts";
 import { example as e } from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";

@@ -44,11 +44,9 @@
 		"prepack": "npm run build"
 	},
 	"devDependencies": {
+		"@printf83/bsts": "^0.1.14",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
 		"typescript": "^5.0.1-rc"
-	},
-	"dependencies": {
-		"@printf83/bsts": "^0.1.14"
 	}
 }

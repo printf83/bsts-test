@@ -1,17 +1,17 @@
-import { IAttrContent } from "../ctl/main/container.js";
-import { doc_component_alert } from "./doc_component_alert.js";
-import { doc_component_accordion } from "./doc_component_accordion.js";
-import { doc_gettingstarted_introduction } from "./doc_gettingstarted_introduction.js";
-import { doc_component_badge } from "./doc_component_badge.js";
-import { doc_component_breadcrumb } from "./doc_component_breadcrumb.js";
-import { doc_component_button } from "./doc_component_button.js";
-import { doc_component_btngroup } from "./doc_component_btngroup.js";
-import { doc_component_card } from "./doc_component_card.js";
-import { doc_component_carousel } from "./doc_component_carousel.js";
-import { doc_component_btnclose } from "./doc_component_btnclose.js";
-import { doc_component_collapse } from "./doc_component_collapse.js";
-import { doc_component_dropdown } from "./doc_component_dropdown.js";
-import { doc_component_list } from "./doc_component_list.js";
+import { IAttrContent } from "../ctl/main/container";
+import { doc_component_alert } from "./doc_component_alert";
+import { doc_component_accordion } from "./doc_component_accordion";
+import { doc_gettingstarted_introduction } from "./doc_gettingstarted_introduction";
+import { doc_component_badge } from "./doc_component_badge";
+import { doc_component_breadcrumb } from "./doc_component_breadcrumb";
+import { doc_component_button } from "./doc_component_button";
+import { doc_component_btngroup } from "./doc_component_btngroup";
+import { doc_component_card } from "./doc_component_card";
+import { doc_component_carousel } from "./doc_component_carousel";
+import { doc_component_btnclose } from "./doc_component_btnclose";
+import { doc_component_collapse } from "./doc_component_collapse";
+import { doc_component_dropdown } from "./doc_component_dropdown";
+import { doc_component_list } from "./doc_component_list";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {

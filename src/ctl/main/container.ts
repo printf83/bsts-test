@@ -1,12 +1,12 @@
 import { b, core, h } from "@printf83/bsts";
-import { IAttrBSIcon } from "@printf83/bsts/lib/cjs/types/bootstrap/icon.js";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { IElem, tag, isTag, IAttr } from "@printf83/bsts/lib/cjs/types/core/tag.js";
-import { bootstrapType } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
-import { subtitle } from "../example/subtitle.js";
-import { title } from "../example/title.js";
-import { example } from "../example/_index.js";
+import { IAttrBSIcon } from "@printf83/bsts/lib/cjs/types/bootstrap/icon";
+import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap";
+import { IElem, tag, isTag, IAttr } from "@printf83/bsts/lib/cjs/types/core/tag";
+import { bootstrapType } from "@printf83/bsts/lib/cjs/types/core/bootstrap";
+import { div } from "@printf83/bsts/lib/cjs/types/html/div";
+import { subtitle } from "../example/subtitle";
+import { title } from "../example/title";
+import { example } from "../example/_index";
 
 const changeTheme = (value: string, icon: IAttrBSIcon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
