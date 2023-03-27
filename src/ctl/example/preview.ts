@@ -1,7 +1,7 @@
 import { core, h } from "@printf83/bsts";
-import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { IAttr, IElem } from "@printf83/bsts/lib/cjs/types/core/tag.js";
-import { pre } from "@printf83/bsts/lib/cjs/types/html/pre.js";
+import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { IAttr, IElem } from "@printf83/bsts/lib/types/core/tag.js";
+import { pre } from "@printf83/bsts/lib/types/html/pre.js";
 
 type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
 

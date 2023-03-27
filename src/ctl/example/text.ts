@@ -1,6 +1,6 @@
-import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { IElem } from "@printf83/bsts/lib/cjs/types/core/tag.js";
-import { IAttrTagP, p } from "@printf83/bsts/lib/cjs/types/html/p.js";
+import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { IElem } from "@printf83/bsts/lib/types/core/tag.js";
+import { IAttrTagP, p } from "@printf83/bsts/lib/types/html/p.js";
 
 const convert = (attr: IAttrTagP) => {
 	return attr;

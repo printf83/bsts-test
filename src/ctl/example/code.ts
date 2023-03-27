@@ -1,8 +1,8 @@
 import { b, core, h } from "@printf83/bsts";
-import { item } from "@printf83/bsts/lib/cjs/types/bootstrap/list/item.js";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { IAttr, tag } from "@printf83/bsts/lib/cjs/types/core/tag.js";
-import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
+import { item } from "@printf83/bsts/lib/types/bootstrap/list/item.js";
+import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { IAttr, tag } from "@printf83/bsts/lib/types/core/tag.js";
+import { div } from "@printf83/bsts/lib/types/html/div.js";
 import { preview } from "./preview.js";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";

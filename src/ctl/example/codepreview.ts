@@ -1,7 +1,7 @@
 import { b, h } from "@printf83/bsts";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { IAttr } from "@printf83/bsts/lib/cjs/types/core/tag.js";
-import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
+import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { IAttr } from "@printf83/bsts/lib/types/core/tag.js";
+import { div } from "@printf83/bsts/lib/types/html/div.js";
 import { preview } from "./preview.js";
 
 function itemCodeCopy(e: Event) {

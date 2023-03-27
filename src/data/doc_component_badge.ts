@@ -1,6 +1,6 @@
 import { h, b } from "@printf83/bsts";
-import { bootstrapType } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { HLevel } from "@printf83/bsts/lib/cjs/types/html/h.js";
+import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { HLevel } from "@printf83/bsts/lib/types/html/h.js";
 import { example as e } from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 

@@ -1,9 +1,9 @@
 import { b, core, h } from "@printf83/bsts";
-import { IAttrBSIcon } from "@printf83/bsts/lib/cjs/types/bootstrap/icon.js";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { IElem, tag, isTag, IAttr } from "@printf83/bsts/lib/cjs/types/core/tag.js";
-import { bootstrapType } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
+import { IAttrBSIcon } from "@printf83/bsts/lib/types/bootstrap/icon.js";
+import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { IElem, tag, isTag, IAttr } from "@printf83/bsts/lib/types/core/tag.js";
+import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { div } from "@printf83/bsts/lib/types/html/div.js";
 import { subtitle } from "../example/subtitle.js";
 import { title } from "../example/title.js";
 import { example } from "../example/_index.js";

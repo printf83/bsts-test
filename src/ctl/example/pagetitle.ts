@@ -1,7 +1,7 @@
 import { core, h, b } from "@printf83/bsts";
-import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
-import { IAttr, IElem, tag } from "@printf83/bsts/lib/cjs/types/core/tag.js";
-import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
+import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import { IAttr, IElem, tag } from "@printf83/bsts/lib/types/core/tag.js";
+import { div } from "@printf83/bsts/lib/types/html/div.js";
 
 export interface IAttrBSExamplePagetitle extends IAttr {
 	sourceUrl?: string;
