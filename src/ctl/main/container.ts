@@ -1,9 +1,3 @@
-// import { IAttrBSIcon } from "@printf83/bsts/lib/bootstrap/icon";
-// import { bootstrapType, bsConsNoElemArg } from "@printf83/bsts/lib/core/bootstrap";
-// import { IAttr, IElem, isTag, tag } from "@printf83/bsts/lib/core/tag";
-// import { mergeClass } from "@printf83/bsts/lib/core/mergeClass";
-// import { div } from "@printf83/bsts/lib/html/div";
-// import { core, h, b } from "@printf83/bsts/lib/index";
 import { b, core, h } from "@printf83/bsts";
 import { IAttrBSIcon } from "@printf83/bsts/lib/cjs/types/bootstrap/icon.js";
 import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
