@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts-test",
-	"version": "0.1.13",
+	"version": "0.1.17",
 	"description": "Bootstrap TS builder - Documentation",
 	"keywords": [
 		"documentation",
@@ -31,11 +31,11 @@
 		"prepack": "npm run build"
 	},
 	"devDependencies": {
-		"@types/bootstrap": "^5.2.6",
-		"@types/js-beautify": "^1.13.3",
 		"typescript": "^5.0.1-rc"
 	},
 	"dependencies": {
+		"@types/bootstrap": "^5.2.6",
+		"@types/js-beautify": "^1.13.3",
 		"@printf83/bsts": "^0.1.14"
 	}
 }

@@ -9,7 +9,7 @@
     "declaration": true,
     "declarationMap": true,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["../node_modules/@printf83/bsts/lib/esm/types","../node_modules/@types/bootstrap","../node_modules/@types/js-beautify"],
+    "typeRoots": ["../node_modules/@printf83/bsts/lib/types","../node_modules/@types/bootstrap","../node_modules/@types/js-beautify"],
     "types": ["@printf83/bsts","js-beautify"],
   },
 
