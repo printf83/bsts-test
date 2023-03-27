@@ -19,20 +19,8 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
 	},
-	"exports": {
-		".": {
-			"import": {
-				"types": "./lib/esm/types/index.d.ts",
-				"default": "./lib/esm/index.mjs"
-			},
-			"require": {
-				"types": "./lib/cjs/types/index.d.ts",
-				"default": "./lib/cjs/index.js"
-			}
-		}
-	},
-	"main": "./lib/cjs/index.js",
-	"types": "./lib/cjs/types/index.d.ts",
+	"main": "./lib/index.js",
+	"types": "./lib/types/index.d.ts",
 	"files": [
 		"lib/**/*"
 	],
@@ -45,7 +33,9 @@
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
-		"typescript": "^5.0.1-rc"
+		"typescript": "^5.0.1-rc",
+		"webpack": "^5.76.3",
+		"webpack-cli": "^5.0.1"
 	},
 	"dependencies": {
 		"@printf83/bsts": "^0.1.14"
