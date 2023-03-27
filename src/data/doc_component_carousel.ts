@@ -1,6 +1,6 @@
 import { h, b } from "@printf83/bsts";
-import { example as e } from "../ctl/example/_index";
-import { IAttrContent } from "../ctl/main/container";
+import { example as e } from "../ctl/example/_index.js";
+import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_carousel: IAttrContent = {
 	title: "Carousel",
