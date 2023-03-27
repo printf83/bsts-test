@@ -8,7 +8,9 @@
     "allowJs": true,
     "declaration": true,
     "declarationMap": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["../node_modules/@printf83/bsts/lib/esm/types","../node_modules/@types/bootstrap","../node_modules/@types/js-beautify"],
+    "types": ["@printf83/bsts","js-beautify"],
   },
 
   "files": ["../src/index.ts"]
