@@ -1,8 +1,8 @@
-import { IAttr } from "@printf83/bsts/lib/core/tag";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/core/bootstrap";
+import { b, h } from "@printf83/bsts";
+import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
+import { IAttr } from "@printf83/bsts/lib/cjs/types/core/tag.js";
+import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
 import { preview } from "./preview.js";
-import { b, h } from "@printf83/bsts/lib/index";
-import { div } from "@printf83/bsts/lib/html/div";
 
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();

@@ -1,8 +1,7 @@
-import { IAttr, IElem } from "@printf83/bsts/lib/core/tag";
-import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
-import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
-import { h } from "@printf83/bsts/lib/index";
-import { pre } from "@printf83/bsts/lib/html/pre";
+import { core, h } from "@printf83/bsts";
+import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
+import { IAttr, IElem } from "@printf83/bsts/lib/cjs/types/core/tag.js";
+import { pre } from "@printf83/bsts/lib/cjs/types/html/pre.js";
 
 type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
 
@@ -57,7 +56,7 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 };
 
 const convert = (attr: IAttrBSExampleCode) => {
-	attr = mergeObject(
+	attr = core.mergeObject(
 		{
 			// style: { maxHeight: "300px" },
 			display: "block",

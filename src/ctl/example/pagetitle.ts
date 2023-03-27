@@ -1,8 +1,13 @@
-import { IAttr, IElem, tag } from "@printf83/bsts/lib/core/tag";
-import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
-import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
-import { b, h } from "@printf83/bsts/lib/index";
-import { div } from "@printf83/bsts/lib/html/div";
+// import { IAttr, IElem, tag } from "@printf83/bsts/lib/core/tag";
+// import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
+// import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
+// import { b, h } from "@printf83/bsts/lib/index";
+// import { div } from "@printf83/bsts/lib/html/div";
+
+import { core, h, b } from "@printf83/bsts";
+import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
+import { IAttr, IElem, tag } from "@printf83/bsts/lib/cjs/types/core/tag.js";
+import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
 
 export interface IAttrBSExamplePagetitle extends IAttr {
 	sourceUrl?: string;
@@ -11,7 +16,7 @@ export interface IAttrBSExamplePagetitle extends IAttr {
 }
 
 const convert = (attr: IAttrBSExamplePagetitle) => {
-	attr = mergeObject(
+	attr = core.mergeObject(
 		{
 			class: "example-pagetitle",
 

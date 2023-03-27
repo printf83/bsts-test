@@ -34,22 +34,21 @@
 	"main": "./lib/cjs/index.js",
 	"types": "./lib/cjs/types/index.d.ts",
 	"files": [
-			"lib/**/*"
-		],
+		"lib/**/*"
+	],
 	"scripts": {
 		"clean": "rm -rf ./lib",
 		"build": "npm run clean && npm run build:esm && npm run build:cjs",
-    	"build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
-    	"build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
-    	"prepack": "npm run build"
+		"build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+		"build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+		"prepack": "npm run build"
 	},
 	"devDependencies": {
-		
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
 		"typescript": "^5.0.1-rc"
 	},
 	"dependencies": {
-		"@printf83/bsts": "^0.1.13"
+		"@printf83/bsts": "^0.1.14"
 	}
 }

@@ -1,4 +1,4 @@
-import { core } from "@printf83/bsts/lib/index";
+import { core } from "@printf83/bsts";
 import { genMainContent, IAttrItemMenu } from "./ctl/main/container.js";
 import { main } from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";

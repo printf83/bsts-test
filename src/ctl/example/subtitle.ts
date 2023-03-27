@@ -1,16 +1,21 @@
-import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
-import { IAttr, IElem, tag } from "@printf83/bsts/lib/core/tag";
-import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
-import { UUID } from "@printf83/bsts/lib/core/uuid";
-import { h } from "@printf83/bsts/lib/index";
-import { h as Th } from "@printf83/bsts/lib/html/h";
+// import { bsConstArg } from "@printf83/bsts/lib/core/bootstrap";
+// import { IAttr, IElem, tag } from "@printf83/bsts/lib/core/tag";
+// import { mergeObject } from "@printf83/bsts/lib/core/mergeObject";
+// import { UUID } from "@printf83/bsts/lib/core/uuid";
+// import { h } from "@printf83/bsts/lib/index";
+// import { h as Th } from "@printf83/bsts/lib/html/h";
+
+import { core, h } from "@printf83/bsts";
+import { bsConstArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
+import { IAttr, tag, IElem } from "@printf83/bsts/lib/cjs/types/core/tag.js";
+import { h as Th } from "@printf83/bsts/lib/cjs/types/html/h.js";
 
 const genIDFromElem = (attr: IAttr) => {
 	if (!attr.id) {
 		if (typeof attr.elem === "string") {
 			attr.id = (attr.elem as string).toLowerCase().replace(/[\W_]+/g, "_");
 		} else {
-			attr.id = UUID();
+			attr.id = core.UUID();
 		}
 	}
 
@@ -19,7 +24,7 @@ const genIDFromElem = (attr: IAttr) => {
 
 const convert = (attr: IAttr) => {
 	attr.id = genIDFromElem(attr);
-	attr = mergeObject({ class: "example-subtitle", marginTop: 5 }, attr);
+	attr = core.mergeObject({ class: "example-subtitle", marginTop: 5 }, attr);
 
 	if (attr.elem) {
 		let strElem: string = "";
@@ -49,7 +54,7 @@ const convert = (attr: IAttr) => {
 
 		attr.elem = tElem;
 
-		attr = mergeObject(
+		attr = core.mergeObject(
 			{
 				data: { text: strElem },
 			},

@@ -1,5 +1,6 @@
+// import { b, core } from "@printf83/bsts/lib/index";
+import { b, core } from "@printf83/bsts";
 import { example as e } from "../ctl/example/_index.js";
-import { b, core } from "@printf83/bsts/lib/index";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_accordion: IAttrContent = {

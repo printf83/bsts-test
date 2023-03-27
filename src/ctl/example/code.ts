@@ -1,11 +1,16 @@
-import { IAttr, tag } from "@printf83/bsts/lib/core/tag";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/core/bootstrap";
-import { UUID } from "@printf83/bsts/lib/core/uuid";
-import { replaceChild } from "@printf83/bsts/lib/core/builder";
-import { item } from "@printf83/bsts/lib/bootstrap/list/item";
-import { mergeAttr } from "@printf83/bsts/lib/core/mergeAttr";
-import { b, h } from "@printf83/bsts/lib/index";
-import { div } from "@printf83/bsts/lib/html/div";
+// import { IAttr, tag } from "@printf83/bsts/lib/core/tag";
+// import { bsConsNoElemArg } from "@printf83/bsts/lib/core/bootstrap";
+// import { UUID } from "@printf83/bsts/lib/core/uuid";
+// import { replaceChild } from "@printf83/bsts/lib/core/builder";
+// import { item } from "@printf83/bsts/lib/bootstrap/list/item";
+// import { mergeAttr } from "@printf83/bsts/lib/core/mergeAttr";
+// import { b, h } from "@printf83/bsts/lib/index";
+// import { div } from "@printf83/bsts/lib/html/div";
+import { b, core, h } from "@printf83/bsts";
+import { item } from "@printf83/bsts/lib/cjs/types/bootstrap/list/item.js";
+import { bsConsNoElemArg } from "@printf83/bsts/lib/cjs/types/core/bootstrap.js";
+import { IAttr, tag } from "@printf83/bsts/lib/cjs/types/core/tag.js";
+import { div } from "@printf83/bsts/lib/cjs/types/html/div.js";
 import { preview } from "./preview.js";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
@@ -40,7 +45,7 @@ declare var PR: {
 
 const getOutputHTML = (target: HTMLElement): void => {
 	let html = target.closest(".example")?.getElementsByClassName("example-output")[0].innerHTML;
-	replaceChild(target, new preview({ type: "html" }, html ? html : ""));
+	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
 	PR.prettyPrint();
 };
 
@@ -58,7 +63,7 @@ const itemCode = (
 	elem: string | tag | (string | tag)[],
 	onshow?: (target: HTMLElement) => void
 ): item[] => {
-	let id = UUID();
+	let id = core.UUID();
 
 	let res: item[] = [];
 
@@ -154,14 +159,17 @@ const itemOutput = (
 	str: string
 ) => {
 	if (manager) {
-		return new b.list.item(mergeAttr({ class: `example-output`, padding: 4, overflow: "auto" }, previewAttr), str);
+		return new b.list.item(
+			core.mergeAttr({ class: `example-output`, padding: 4, overflow: "auto" }, previewAttr),
+			str
+		);
 	} else {
 		switch (previewTemplate) {
 			case "none":
-				return new b.list.item(mergeAttr({ class: `example-output` }, previewAttr), str);
+				return new b.list.item(core.mergeAttr({ class: `example-output` }, previewAttr), str);
 			case "col":
 				return new b.list.item(
-					mergeAttr(
+					core.mergeAttr(
 						{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
 						previewAttr
 					),
@@ -170,7 +178,7 @@ const itemOutput = (
 
 			case "grid":
 				return new b.list.item(
-					mergeAttr(
+					core.mergeAttr(
 						{ class: `example-output`, padding: 4, overflow: "auto", display: "grid", gap: 2 },
 						previewAttr
 					),
@@ -178,7 +186,7 @@ const itemOutput = (
 				);
 			default:
 				return new b.list.item(
-					mergeAttr({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, previewAttr),
+					core.mergeAttr({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, previewAttr),
 					str
 				);
 		}
@@ -186,7 +194,7 @@ const itemOutput = (
 };
 
 const convert = (attr: IAttrBSExampleContainer) => {
-	let id = UUID();
+	let id = core.UUID();
 
 	attr.showOutput = attr.showOutput === undefined ? true : attr.showOutput;
 	attr.showScript = attr.showScript === undefined ? true : attr.showScript;
