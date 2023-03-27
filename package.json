@@ -1,8 +1,9 @@
 {
-	"name": "bsts-test",
-	"version": "1.0.0",
-	"description": "Test Bootstrap TS builder",
+	"name": "@printf83/bsts-test",
+	"version": "0.1.13",
+	"description": "Bootstrap TS builder - Documentation",
 	"keywords": [
+		"documentation",
 		"bootstrap 5",
 		"api",
 		"sdk",
@@ -16,18 +17,39 @@
 	"homepage": "https://github.com/printf83/bsts-test#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/printf83/bsts.git"
+		"url": "git+https://github.com/printf83/bsts-test.git"
 	},
-	"main": "index.html",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./lib/esm/types/index.d.ts",
+				"default": "./lib/esm/index.mjs"
+			},
+			"require": {
+				"types": "./lib/cjs/types/index.d.ts",
+				"default": "./lib/cjs/index.js"
+			}
+		}
+	},
+	"main": "./lib/cjs/index.js",
+	"types": "./lib/cjs/types/index.d.ts",
+	"files": [
+			"lib/**/*"
+		],
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "webpack"
+		"clean": "rm -rf ./lib",
+		"build": "npm run clean && npm run build:esm && npm run build:cjs",
+    	"build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    	"build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    	"prepack": "npm run build"
+	},
+	"devDependencies": {
+		
+		"@types/bootstrap": "^5.2.6",
+		"@types/js-beautify": "^1.13.3",
+		"typescript": "^5.0.1-rc"
 	},
 	"dependencies": {
-		"remove-files-webpack-plugin": "^1.5.0",
-		"style-loader": "^3.3.1",
-		"terser-webpack-plugin": "^5.3.6",
-		"webpack": "^5.75.0",
-		"webpack-cli": "^4.10.0"
+		"@printf83/bsts": "^0.1.13"
 	}
 }
