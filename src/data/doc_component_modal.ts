@@ -1,4 +1,5 @@
 import { core, h, b } from "@printf83/bsts";
+import { toggle } from "@printf83/bsts/lib/types/bootstrap/navbar/_index.js";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
@@ -289,6 +290,7 @@ export const doc_component_modal: IAttrContent = {
 								),
 								" triggers a popover on click.",
 							]),
+							new h.hr(),
 							new h.h(2, { fontSize: 5 }, "Tooltips in a modal"),
 							new h.p([
 								new b.tooltip(
@@ -298,6 +300,7 @@ export const doc_component_modal: IAttrContent = {
 									new h.a({ href: "#" }, "This link")
 								),
 								" and ",
+
 								new b.tooltip(
 									{
 										content: "Tooltip",
@@ -474,6 +477,7 @@ export const doc_component_modal: IAttrContent = {
 						{
 							id: id,
 							labelledby: `${id}Label`,
+							centered: true,
 						},
 						[
 							new b.modal.header({ close: true }, new b.modal.title({ id: `${id}Label` }, title)),
@@ -517,7 +521,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Change animation"),
+		new e.subtitle("Change animation"),
 		new e.text(
 			"The {{$modal-fade-transform}} variable determines the transform state of {{.modal-dialog}} before the modal fade-in animation, the {{$modal-show-transform}} variable determines the transform of {{.modal-dialog}} at the end of the modal fade-in animation."
 		),
@@ -525,7 +529,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Remove animation"),
+		new e.subtitle("Remove animation"),
 		new e.text(
 			"For modals that simply appear rather than fade in to view, remove the {{.fade}} class from your modal markup."
 		),
@@ -557,20 +561,145 @@ export const doc_component_modal: IAttrContent = {
 				];
 			},
 		}),
+
 		//-----------------------
 
-		new e.title("Pill badges"),
+		new e.subtitle("Dynamic heights"),
 		new e.text(
-			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
+			"If the height of a modal changes while it is open, you should call {{myModal.handleUpdate()}} to readjust the modal’s position in case a scrollbar appears."
 		),
+
+		//-----------------------
+
+		new e.subtitle("Accessibility"),
+		new e.text(
+			"Be sure to add {{aria-labelledby='...'}}, referencing the modal title, to {{.modal}}. Additionally, you may give a description of your modal dialog with {{aria-describedby}} on {{.modal}}. Note that you don’t need to add {{role='dialog'}} since we already add it via JavaScript."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Embedding YouTube videos"),
+		new e.text(
+			"Embedding YouTube videos in modals requires additional JavaScript not in Bootstrap to automatically stop playback and more. {{https://stackoverflow.com/questions/18622508/bootstrap-3-and-youtube-in-modal::See this helpful Stack Overflow post}} for more information."
+		),
+
+		//-----------------------
+
+		new e.title("Optional sizes"),
+		new e.text(
+			"Modals have three optional sizes, available via modifier classes to be placed on a {{.modal-dialog}}. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports."
+		),
+		new e.table({
+			item: [
+				["Size", "Class", "Modal max-width"],
+				["Small", "{{.modal-sm}}", "{{300px}}"],
+				["Default", "None", "{{500px}}"],
+				["Large", "{{.modal-lg}}", "{{800px}}"],
+				["Extra large", "{{.modal-xl}}", "{{1140px}}"],
+			],
+		}),
+		new e.text("Our default modal without modifier class constitutes the “medium” size modal."),
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number], rounded: "pill" },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				const d = [
+					{ weight: "xl", label: "Extra large modal" },
+					{ weight: "lg", label: "Large modal" },
+					{ weight: "sm", label: "Small modal" },
+				];
+
+				return [
+					...d.map((i) => {
+						return new b.button(
+							{
+								color: "primary",
+								toggle: "modal",
+								target: `#${i.weight}SizeModal`,
+							},
+							i.label
+						);
+					}),
+					...d.map((i) => {
+						return new b.modal.container(
+							{
+								id: `${i.weight}SizeModal`,
+								labelledby: `#${i.weight}SizeModalLabel`,
+								weight: i.weight as b.modal.IAttrBSModalContainer["weight"],
+							},
+							[
+								new b.modal.header(
+									{ close: true },
+									new b.modal.title({ id: `${i.weight}SizeModalLabel` }, `${i.label}`)
+								),
+								new b.modal.body("..."),
+							]
+						);
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Fullscreen Modal"),
+		new e.text(
+			"Another override is the option to pop up a modal that covers the user viewport, available via modifier classes that are placed on a {{.modal-dialog}}."
+		),
+		new e.table({
+			item: [
+				["Class", "Availability"],
+				["{{.modal-fullscreen}}", "Always"],
+				["{{.modal-fullscreen-sm-down}}", "{{576px}}"],
+				["{{.modal-fullscreen-md-down}}", "{{768px}}"],
+				["{{.modal-fullscreen-lg-down}}", "{{992px}}"],
+				["{{.modal-fullscreen-xl-down}}", "{{1200px}}"],
+				["{{.modal-fullscreen-xxl-down}}", "{{1400px}}"],
+			],
+		}),
+		new e.code({
+			output: () => {
+				const d = [
+					{ fullscreen: undefined, label: "Full screen" },
+					{ fullscreen: "sm", label: "Full screen below sm" },
+					{ fullscreen: "md", label: "Full screen below md" },
+					{ fullscreen: "lg", label: "Full screen below lg" },
+					{ fullscreen: "xl", label: "Full screen below xl" },
+					{ fullscreen: "xxl", label: "Full screen below xxl" },
+				];
+
+				return [
+					...d.map((i) => {
+						return new b.button(
+							{
+								color: "primary",
+								toggle: "modal",
+								target: `#${i.fullscreen ? i.fullscreen : "xs"}FSModal`,
+							},
+							i.label
+						);
+					}),
+					...d.map((i) => {
+						return new b.modal.container(
+							{
+								id: `${i.fullscreen ? i.fullscreen : "xs"}FSModal`,
+								labelledby: `#${i.fullscreen ? i.fullscreen : "xs"}FSModalLabel`,
+								fullscreen: i.fullscreen
+									? (i.fullscreen as b.modal.IAttrBSModalContainer["fullscreen"])
+									: undefined,
+							},
+							[
+								new b.modal.header(
+									{ close: true },
+									new b.modal.title(
+										{ id: `${i.fullscreen ? i.fullscreen : "xs"}FSModalLabel` },
+										`${i.label}`
+									)
+								),
+								new b.modal.body("..."),
+								new b.modal.footer(new b.button({ dismiss: "modal", color: "secondary" }, "Close")),
+							]
+						);
+					}),
+				];
 			},
 		}),
 
@@ -579,33 +708,141 @@ export const doc_component_modal: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, modals now use local CSS variables on {{.modal}} and {{.modal-backdrop}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-				--#{$prefix}badge-padding-y: #{$badge-padding-y};
-				@include rfs($badge-font-size, --#{$prefix}badge-font-size);
-				--#{$prefix}badge-font-weight: #{$badge-font-weight};
-				--#{$prefix}badge-color: #{$badge-color};
-				--#{$prefix}badge-border-radius: #{$badge-border-radius};
+				--#{$prefix}modal-zindex: #{$zindex-modal};
+				--#{$prefix}modal-width: #{$modal-md};
+				--#{$prefix}modal-padding: #{$modal-inner-padding};
+				--#{$prefix}modal-margin: #{$modal-dialog-margin};
+				--#{$prefix}modal-color: #{$modal-content-color};
+				--#{$prefix}modal-bg: #{$modal-content-bg};
+				--#{$prefix}modal-border-color: #{$modal-content-border-color};
+				--#{$prefix}modal-border-width: #{$modal-content-border-width};
+				--#{$prefix}modal-border-radius: #{$modal-content-border-radius};
+				--#{$prefix}modal-box-shadow: #{$modal-content-box-shadow-xs};
+				--#{$prefix}modal-inner-border-radius: #{$modal-content-inner-border-radius};
+				--#{$prefix}modal-header-padding-x: #{$modal-header-padding-x};
+				--#{$prefix}modal-header-padding-y: #{$modal-header-padding-y};
+				--#{$prefix}modal-header-padding: #{$modal-header-padding}; // Todo in v6: Split this padding into x and y
+				--#{$prefix}modal-header-border-color: #{$modal-header-border-color};
+				--#{$prefix}modal-header-border-width: #{$modal-header-border-width};
+				--#{$prefix}modal-title-line-height: #{$modal-title-line-height};
+				--#{$prefix}modal-footer-gap: #{$modal-footer-margin-between};
+				--#{$prefix}modal-footer-bg: #{$modal-footer-bg};
+				--#{$prefix}modal-footer-border-color: #{$modal-footer-border-color};
+				--#{$prefix}modal-footer-border-width: #{$modal-footer-border-width};
 			`,
 		}),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				--#{$prefix}backdrop-zindex: #{$zindex-modal-backdrop};
+				--#{$prefix}backdrop-bg: #{$modal-backdrop-bg};
+				--#{$prefix}backdrop-opacity: #{$modal-backdrop-opacity};
+			`,
+		}),
+
+		//-----------------------
 
 		new e.subtitle("Sass variables"),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-				$badge-font-size:                   .75em;
-				$badge-font-weight:                 $font-weight-bold;
-				$badge-color:                       $white;
-				$badge-padding-y:                   .35em;
-				$badge-padding-x:                   .65em;
-				$badge-border-radius:               $border-radius;
+				$modal-inner-padding:               $spacer;
+
+				$modal-footer-margin-between:       .5rem;
+
+				$modal-dialog-margin:               .5rem;
+				$modal-dialog-margin-y-sm-up:       1.75rem;
+
+				$modal-title-line-height:           $line-height-base;
+
+				$modal-content-color:               null;
+				$modal-content-bg:                  var(--#{$prefix}body-bg);
+				$modal-content-border-color:        var(--#{$prefix}border-color-translucent);
+				$modal-content-border-width:        var(--#{$prefix}border-width);
+				$modal-content-border-radius:       var(--#{$prefix}border-radius-lg);
+				$modal-content-inner-border-radius: subtract($modal-content-border-radius, $modal-content-border-width);
+				$modal-content-box-shadow-xs:       $box-shadow-sm;
+				$modal-content-box-shadow-sm-up:    $box-shadow;
+
+				$modal-backdrop-bg:                 $black;
+				$modal-backdrop-opacity:            .5;
+
+				$modal-header-border-color:         var(--#{$prefix}border-color);
+				$modal-header-border-width:         $modal-content-border-width;
+				$modal-header-padding-y:            $modal-inner-padding;
+				$modal-header-padding-x:            $modal-inner-padding;
+				$modal-header-padding:              $modal-header-padding-y $modal-header-padding-x; // Keep this for backwards compatibility
+
+				$modal-footer-bg:                   null;
+				$modal-footer-border-color:         $modal-header-border-color;
+				$modal-footer-border-width:         $modal-header-border-width;
+
+				$modal-sm:                          300px;
+				$modal-md:                          500px;
+				$modal-lg:                          800px;
+				$modal-xl:                          1140px;
+
+				$modal-fade-transform:              translate(0, -50px);
+				$modal-show-transform:              none;
+				$modal-transition:                  transform .3s ease-out;
+				$modal-scale-transform:             scale(1.02);
 			`,
 		}),
+
+		//-----------------------
+
+		new e.subtitle("Sass loop"),
+		new e.text(
+			"{{https://getbootstrap.com/docs/5.3/components/modal/#fullscreen-modal::Responsive fullscreen modals}} are generated via the {{$breakpoints}} map and a loop in {{scss/_modal.scss}}."
+		),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				@each $breakpoint in map-keys($grid-breakpoints) {
+				$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+				$postfix: if($infix != "", $infix + "-down", "");
+
+				@include media-breakpoint-down($breakpoint) {
+					.modal-fullscreen#{$postfix} {
+					width: 100vw;
+					max-width: none;
+					height: 100%;
+					margin: 0;
+
+					.modal-content {
+						height: 100%;
+						border: 0;
+						@include border-radius(0);
+					}
+
+					.modal-header,
+					.modal-footer {
+						@include border-radius(0);
+					}
+
+					.modal-body {
+						overflow-y: auto;
+					}
+					}
+				}
+				}
+			`,
+		}),
+
+		//-----------------------
+
+		new e.title("Usage"),
+		new e.text(
+			"The modal plugin toggles your hidden content on demand, via data attributes or JavaScript. It also overrides default scrolling behavior and generates a {{.modal-backdrop}} to provide a click area for dismissing shown modals when clicking outside the modal."
+		),
 	],
 };

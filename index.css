@@ -11,7 +11,7 @@ a:hover *,
 /* example */
 
 /* gap on example code output */
-.example-output > * {
+.example-output > *:not(.modal) {
     margin: 0.5rem 0.25rem;
 }
 
