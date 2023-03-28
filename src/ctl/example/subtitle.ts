@@ -1,4 +1,4 @@
-import { core, h, t } from "@printf83/bsts";
+import { core, h as html, t } from "@printf83/bsts";
 
 const genIDFromElem = (attr: core.IAttr) => {
 	if (!attr.id) {
@@ -32,7 +32,7 @@ const convert = (attr: core.IAttr) => {
 		}
 
 		tElem.push(
-			new h.a(
+			new html.a(
 				{
 					class: "anchor-link",
 					href: `#${attr.id}`,
@@ -55,7 +55,7 @@ const convert = (attr: core.IAttr) => {
 	return attr;
 };
 
-export class subtitle extends h.h {
+export class subtitle extends html.h {
 	constructor(); //#1
 	constructor(attr: core.IAttr); //#2
 	constructor(elem: core.IElem); //#3
