@@ -6,6 +6,10 @@ import { pagetitle } from "./pagetitle.js";
 import { subtitle } from "./subtitle.js";
 import { text } from "./text.js";
 import { title } from "./title.js";
+import { table } from "./table.js";
+import { ol } from "./ol.js";
+import { ul } from "./ul.js";
+import { alert } from "./alert.js";
 
 export {
 	code,
@@ -16,6 +20,10 @@ export {
 	item,
 	subtitle,
 	text,
+	table,
+	ol,
+	ul,
+	alert,
 	IAttrBSExampleCodepreview,
 	IAttrBSExampleContainer,
 	IAttrBSExampleExt,

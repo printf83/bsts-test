@@ -10,11 +10,9 @@ export const doc_component_accordion: IAttrContent = {
 		new e.text(
 			"The accordion uses {{?q=doc_component_collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{.open}} class on the {{.accordion}}."
 		),
-		new e.text(
-			new b.alert.container(
-				{ color: "info", callout: true },
-				"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{?q=doc_gettingstarted_accessibility#reduce_motion::reduced motion section of our accessibility documentation}}. "
-			)
+		new e.alert(
+			{ color: "info", callout: true },
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{?q=doc_gettingstarted_accessibility#reduce_motion::reduced motion section of our accessibility documentation}}. "
 		),
 
 		//-----------------------
