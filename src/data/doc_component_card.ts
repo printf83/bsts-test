@@ -88,7 +88,7 @@ export const doc_component_card: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Images"),
+		new e.subtitle({ id: "contenttype_images" }, "Images"),
 		new e.text(
 			"{{.card-img-top}} places an image to the top of the card. With {{.card-text}}, text can be added to the card. Text within {{.card-text}} can also be styled with the standard HTML tags."
 		),

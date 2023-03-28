@@ -1,6 +1,17 @@
 import { core, b, h, t } from "@printf83/bsts";
 import * as e from "../example/_index.js";
 
+const dispatchCustomEvent = (root: Element | null, eventName: string, value: string) => {
+	if (root) {
+		setTimeout(
+			(value: string) => {
+				root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
+			},
+			0,
+			value
+		);
+	}
+};
 const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
 	let bsThemeMenu = bsTheme.nextSibling as HTMLElement;
@@ -21,7 +32,7 @@ const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
 	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
 
 	let root = bsTheme.closest(".bs-main-root");
-	root?.dispatchEvent(new CustomEvent("bs-theme-change", { detail: value }));
+	dispatchCustomEvent(root, "bs-theme-change", value);
 };
 
 const changeVersion = (value: string) => {
@@ -44,7 +55,7 @@ const changeVersion = (value: string) => {
 	core.replaceWith(bsVersionLabel, new h.span({ id: "bs-version-label" }, `v${value}`));
 
 	let root = bsVersion.closest(".bs-main-root");
-	root?.dispatchEvent(new CustomEvent("bs-version-change", { detail: value }));
+	dispatchCustomEvent(root, "bs-version-change", value);
 };
 
 const changeInsideLink = (value: string) => {
@@ -61,7 +72,7 @@ const changeInsideLink = (value: string) => {
 	}
 
 	let root = bsInsideLink.closest(".bs-main-root");
-	root?.dispatchEvent(new CustomEvent("bs-inside-link-change", { detail: value }));
+	dispatchCustomEvent(root, "bs-inside-link-change", value);
 };
 
 const changeMenu = (value: string) => {
@@ -80,7 +91,7 @@ const changeMenu = (value: string) => {
 	}
 
 	let root = bsMenu.closest(".bs-main-root");
-	root?.dispatchEvent(new CustomEvent("bs-menu-change", { detail: value }));
+	dispatchCustomEvent(root, "bs-menu-change", value);
 };
 
 export type availabelTheme = "dark" | "light" | "auto";
