@@ -8,6 +8,19 @@ a:hover *,
     font-weight: 600;
 }
 
+/* example */
+/* use by doc_component_modal#grid_in_modal*/
+.bs-highlight-col div[class^="col"]{
+    padding-top:0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: rgba(var(--bs-primary-rgb), 0.15);
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.bs-highlight-col div.row{
+    margin-bottom: 0.75rem;
+}
+
 /* animate icon */
 .animate-icon:hover{
     transition: transform 0.2s ease-in-out;

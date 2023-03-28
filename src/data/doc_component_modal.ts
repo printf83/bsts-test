@@ -75,11 +75,13 @@ export const doc_component_modal: IAttrContent = {
 			"Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
+			previewTemplate: "row",
 			output: () => {
 				return [
+					// Button trigger modal
 					new b.button({ color: "primary", toggle: "modal", target: "#exampleModal" }, "Launch demo modal"),
+
+					// Modal
 					new b.modal.container({ id: "exampleModal", labelledby: "exampleModalLabel" }, [
 						new b.modal.header(
 							{ close: true },
@@ -94,12 +96,275 @@ export const doc_component_modal: IAttrContent = {
 				];
 			},
 		}),
+
+		//-----------------------
+
+		new e.subtitle("Static backdrop"),
 		new e.text(
-			"Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button."
+			"When backdrop is set to static, the modal will not close when clicking outside of it. Click the button below to try it."
 		),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return [
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#staticBackdrop" },
+						"Launch static backdrop modal"
+					),
+
+					new b.modal.container({ id: "staticBackdrop", labelledby: "staticBackdropLabel", static: true }, [
+						new b.modal.header(
+							{ close: true },
+							new b.modal.title({ id: "staticBackdropLabel" }, "Modal title")
+						),
+						new b.modal.body(
+							new h.p("I will not close if you click outside of me. Don't even try to press escape key.")
+						),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					]),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Scrolling long content"),
 		new e.text(
-			"Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional text."
+			"When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what we mean."
 		),
+		new e.code({
+			previewTemplate: "row",
+			showScript: false,
+			showHTML: false,
+			output: () => {
+				return [
+					new b.button({ color: "primary", toggle: "modal", target: "#scrollingModal" }, "Launch demo modal"),
+
+					new b.modal.container({ id: "scrollingModal", labelledby: "scrollingModalLabel" }, [
+						new b.modal.header(
+							{ close: true },
+							new b.modal.title({ id: "scrollingModalLabel" }, "Modal title")
+						),
+						new b.modal.body(
+							new h.p(
+								{ style: { height: "100vh" } },
+								"This is some placeholder content to show the scrolling behavior for modals. Instead of repeating the text the modal, we use an inline style set a minimum height, thereby extending the length of the overall modal and demonstrating the overflow scrolling. When content becomes longer than the height of the viewport, scrolling will move the modal as needed."
+							)
+						),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					]),
+				];
+			},
+		}),
+
+		new e.text(
+			"You can also create a scrollable modal that allows scroll the modal body by adding {{.modal-dialog-scrollable}} to {{.modal-dialog}}."
+		),
+
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return [
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#scrollableModal" },
+						"Launch demo modal"
+					),
+
+					new b.modal.container(
+						{ id: "scrollableModal", labelledby: "scrollableModalLabel", scrollable: true },
+						[
+							new b.modal.header(
+								{ close: true },
+								new b.modal.title({ id: "scrollableModalLabel" }, "Modal title")
+							),
+							new b.modal.body([
+								new h.p(
+									{ style: { height: "100vh" } },
+									"This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+								),
+								new h.p("This content should appear at the bottom after you scroll."),
+							]),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Save changes"),
+							]),
+						]
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Vertically centered"),
+		new e.text("Add {{.modal-dialog-centered}} to {{.modal-dialog}} to vertically center the modal."),
+		new e.code({
+			previewTemplate: "col",
+			showScript: false,
+			showHTML: false,
+			output: () => {
+				let modalContent = (id: string, elem: core.IElem) => {
+					return [
+						new b.modal.header({ close: true }, new b.modal.title({ id: `${id}Label` }, "Modal title")),
+						new b.modal.body(elem),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					];
+				};
+
+				return [
+					// Button trigger modal
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#verticalCenterModal" },
+						"Vertically centered modal"
+					),
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#verticalCenterScrollableModal" },
+						"Vertically centered scrollable modal"
+					),
+
+					// Vertically centered modal
+					new b.modal.container(
+						{ id: "verticalCenterModal", labelledby: "verticalCenterModalLabel", centered: true },
+						modalContent("verticalCenterModal", new h.p("This is a vertically centered modal."))
+					),
+
+					// Vertically centered modal
+					new b.modal.container(
+						{
+							id: "verticalCenterScrollableModal",
+							labelledby: "verticalCenterScrollableModalLabel",
+							centered: true,
+						},
+						modalContent("verticalCenterScrollableModal", [
+							new h.p(
+								{ style: { height: "50vh" } },
+								"This is some placeholder content to show a vertically centered modal. We've added some extra copy here to show how vertically centering the modal works when combined with scrollable modals. We also use some repeated line breaks to quickly extend the height of the content, thereby triggering the scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+							),
+							new h.p("Just like that."),
+						])
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Tooltips and popovers"),
+		new e.text(
+			"{{https://getbootstrap.com/docs/5.3/components/tooltips/::Tooltips}} and {{https://getbootstrap.com/docs/5.3/components/popovers/::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."
+		),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return [
+					// Button trigger modal
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#tooltipPopoverModal" },
+						"Launch demo modal"
+					),
+
+					// Modal
+					new b.modal.container({ id: "tooltipPopoverModal", labelledby: "tooltipPopoverModalLabel" }, [
+						new b.modal.header(
+							{ close: true },
+							new b.modal.title({ id: "tooltipPopoverModalLabel" }, "Modal title")
+						),
+						new b.modal.body([
+							new h.h(2, { fontSize: 5 }, "Popover in a modal"),
+							new h.p([
+								"This ",
+								new b.popover(
+									{
+										title: "Popover title",
+										content: "Popover body content is set in this attribute",
+									},
+									new b.button({ color: "secondary" }, "button")
+								),
+								" triggers a popover on click.",
+							]),
+							new h.h(2, { fontSize: 5 }, "Tooltips in a modal"),
+							new h.p([
+								new b.tooltip(
+									{
+										content: "Tooltip",
+									},
+									new h.a({ href: "#" }, "This link")
+								),
+								" and ",
+								new b.tooltip(
+									{
+										content: "Tooltip",
+									},
+									new h.a({ href: "#" }, "that link")
+								),
+								" have tooltips on hover.",
+							]),
+						]),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					]),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Using the grid"),
+		new e.text(
+			"Utilize the Bootstrap grid system within a modal by nesting {{.container-fluid}} within the {{.modal-body}}. Then, use the normal grid system classes as you would anywhere else."
+		),
+		new e.code({
+			previewTemplate: "row",
+			output: () => {
+				return [
+					// Button trigger modal
+					new b.button({ color: "primary", toggle: "modal", target: "#gridModal" }, "Launch demo modal"),
+
+					// Modal
+					new b.modal.container({ id: "gridModal", labelledby: "gridModalLabel" }, [
+						new b.modal.header({ close: true }, new b.modal.title({ id: "gridModalLabel" }, "Modal title")),
+						new b.modal.body(
+							{ class: "bs-highlight-col" },
+							new h.div({ container: "fluid" }, [
+								new b.row([
+									new b.col({ col: "md-4" }, ".col-md-4"),
+									new b.col({ col: "md-4", marginStart: "auto" }, ".col-md-4 .ms-auto"),
+								]),
+								new b.row([
+									new b.col({ col: "md-3", marginStart: "auto" }, ".col-md-3 .ms-auto"),
+									new b.col({ col: "md-2", marginStart: "auto" }, ".col-md-2 .ms-auto"),
+								]),
+								new b.row([new b.col({ col: "md-6", marginStart: "auto" }, ".col-md-6 .ms-auto")]),
+								new b.row(
+									new b.col({ col: "sm-9" }, [
+										"Level 1: .col-sm-9",
+										new b.row([
+											new b.col({ col: [8, "sm-6"] }, "Level 2: .col-8 .col-sm-6"),
+											new b.col({ col: [4, "sm-6"] }, "Level 2: .col-4 .col-sm-6"),
+										]),
+									])
+								),
+							])
+						),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					]),
+				];
+			},
+		}),
 
 		//-----------------------
 
