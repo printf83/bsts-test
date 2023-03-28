@@ -1,5 +1,4 @@
 import { core, h, b } from "@printf83/bsts";
-// import { IAttrBSDropdownContainerDrop } from "@printf83/bsts/lib/types/bootstrap/dropdown/container.js";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 

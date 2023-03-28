@@ -1,6 +1,5 @@
 import { core } from "@printf83/bsts";
-import { genMainContent, IAttrItemMenu } from "./ctl/main/container.js";
-import { main } from "./ctl/main/_index.js";
+import * as main from "./ctl/main/_index.js";
 import { data } from "./data/_index.js";
 
 let CURRENT_PAGE = "doc_component_list";
@@ -34,7 +33,7 @@ let m = {
 				{ label: "List group", value: "doc_component_list" },
 			],
 		},
-	] as IAttrItemMenu[],
+	] as main.IAttrItemMenu[],
 };
 
 const getData = (value: string) => {
@@ -47,7 +46,7 @@ const getData = (value: string) => {
 
 const onmenuchange = (value: string) => {
 	let contentbody = document.getElementById("bs-main") as HTMLElement;
-	core.replaceChild(contentbody, genMainContent(getData(value)));
+	core.replaceChild(contentbody, main.genMainContent(getData(value)));
 	core.init(contentbody);
 	PR.prettyPrint();
 };
