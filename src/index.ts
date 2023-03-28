@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_component_list";
+let CURRENT_PAGE = "doc_component_modal";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -31,6 +31,7 @@ let m = {
 				{ label: "Collapse", value: "doc_component_collapse" },
 				{ label: "Dropdowns", value: "doc_component_dropdown" },
 				{ label: "List group", value: "doc_component_list" },
+				{ label: "Modal", value: "doc_component_modal" },
 			],
 		},
 	] as main.IAttrItemMenu[],
@@ -89,10 +90,10 @@ core.documentReady(() => {
 				{ value: "dark", icon: { icon: "moon", type: "fas" }, label: "Dark" },
 				{ value: "auto", icon: { icon: "circle-half-stroke", type: "fas" }, label: "Auto" },
 			],
-			currentTheme: "auto",
+			currentTheme: "dark",
 
-			itemVersion: [{ value: "0.1.8", label: "Latest (0.1.8)" }],
-			currentVersion: "0.1.8",
+			itemVersion: [{ value: "0.1.28", label: "Latest (0.1.28)" }],
+			currentVersion: "0.1.28",
 
 			itemFooter: [
 				{

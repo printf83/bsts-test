@@ -12,6 +12,7 @@ import { doc_component_btnclose } from "./doc_component_btnclose.js";
 import { doc_component_collapse } from "./doc_component_collapse.js";
 import { doc_component_dropdown } from "./doc_component_dropdown.js";
 import { doc_component_list } from "./doc_component_list.js";
+import { doc_component_modal } from "./doc_component_modal.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -39,6 +40,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_dropdown;
 		case "doc_component_list":
 			return doc_component_list;
+		case "doc_component_modal":
+			return doc_component_modal;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;
