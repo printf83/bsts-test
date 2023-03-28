@@ -1,7 +1,3 @@
-// import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-// import { IAttr, IElem } from "@printf83/bsts/lib/types/core/tag.js";
-// import { div } from "@printf83/bsts/lib/types/html/div.js";
-
 import { core, h } from "@printf83/bsts";
 
 const convert = (attr: core.IAttr) => {

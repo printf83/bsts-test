@@ -1,7 +1,4 @@
 import { core, h } from "@printf83/bsts";
-// import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-// import { IElem } from "@printf83/bsts/lib/types/core/tag.js";
-// import { IAttrTagP, p } from "@printf83/bsts/lib/types/html/p.js";
 
 const convert = (attr: h.IAttrTagP) => {
 	attr = core.mergeObject({ class: "example-description", lead: true }, attr);

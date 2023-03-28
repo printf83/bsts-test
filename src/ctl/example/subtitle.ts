@@ -1,7 +1,4 @@
 import { core, h, t } from "@printf83/bsts";
-// import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-// import { IAttr, tag, IElem } from "@printf83/bsts/lib/types/core/tag.js";
-// import { h as Th } from "@printf83/bsts/lib/types/html/h.js";
 
 const genIDFromElem = (attr: core.IAttr) => {
 	if (!attr.id) {

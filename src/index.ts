@@ -1,6 +1,6 @@
 import { core } from "@printf83/bsts";
-import { data } from "./data/_index.js";
-import * as main from "./ctl/main/_index.js";
+import { data } from "./data/_index";
+import * as main from "./ctl/main/_index";
 
 let CURRENT_PAGE = "doc_component_list";
 

@@ -1,11 +1,4 @@
 import { core, b, h, t } from "@printf83/bsts";
-// import { IAttrBSIcon } from "@printf83/bsts/lib/types/bootstrap/icon.js";
-// import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-// import { IElem, tag, isTag, IAttr } from "@printf83/bsts/lib/types/core/tag.js";
-// import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-// import { div } from "@printf83/bsts/lib/types/html/div.js";
-// import { subtitle } from "../example/subtitle.js";
-// import { title } from "../example/title.js";
 import * as e from "../example/_index.js";
 
 const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
@@ -158,64 +151,74 @@ const genTheme = (
 	currentTheme?: string
 ) => {
 	if (navbarItemTheme) {
-		let getCurrentIconIndex = navbarItemTheme.find((j) => j.value === currentTheme);
-		let currentIcon = getCurrentIconIndex?.icon;
+		let indexIcon = -1;
+		navbarItemTheme.forEach((i, ix) => {
+			if (i.value === currentTheme) {
+				indexIcon = ix;
+			}
+		});
+		if (indexIcon > -1) {
+			let getCurrentIconIndex = navbarItemTheme[indexIcon];
+			let currentIcon = getCurrentIconIndex.icon;
 
-		return [
-			new b.navbar.item(
-				{
-					paddingY: [2, "lg-1"],
-					col: [12, "lg-auto"],
-				},
-				[
-					new b.verticalrule({
-						display: ["none", "lg-flex"],
-						height: 100,
-						marginX: "lg-2",
-						textColor: textColor,
-					}),
-					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
-				]
-			),
-			new b.navbar.item({ dropdown: true }, [
-				new b.dropdown.toggle(
+			return [
+				new b.navbar.item(
 					{
-						id: "bs-theme",
-						color: "link",
-						class: "nav-link",
-						paddingY: 2,
-						paddingX: [0, "lg-2"],
-						display: "flex",
-						alignItem: "center",
-						textColor: textColor,
+						paddingY: [2, "lg-1"],
+						col: [12, "lg-auto"],
 					},
-					new b.label(
+					[
+						new b.verticalrule({
+							display: ["none", "lg-flex"],
+							height: 100,
+							marginX: "lg-2",
+							textColor: textColor,
+						}),
+						new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+					]
+				),
+				new b.navbar.item({ dropdown: true }, [
+					new b.dropdown.toggle(
 						{
-							icon: currentIcon,
-							labelDisplay: "lg-none",
+							id: "bs-theme",
+							color: "link",
+							class: "nav-link",
+							paddingY: 2,
+							paddingX: [0, "lg-2"],
+							display: "flex",
+							alignItem: "center",
+							textColor: textColor,
 						},
-						"Toggle theme"
-					)
-				),
-				new b.dropdown.menu(
-					{ positionView: "end" },
-					navbarItemTheme.map((i) => {
-						return new b.dropdown.item(
+						new b.label(
 							{
-								on: {
-									click: (_e) => {
-										changeTheme(i.value, i.icon);
-									},
-								},
-								active: i.value === currentTheme,
-								data: { value: i.value },
+								icon: currentIcon,
+								labelDisplay: "lg-none",
 							},
-							new b.label({ icon: i.icon }, i.label)
-						);
-					})
-				),
-			]),
-		];
+							"Toggle theme"
+						)
+					),
+					new b.dropdown.menu(
+						{ positionView: "end" },
+						navbarItemTheme.map((i) => {
+							return new b.dropdown.item(
+								{
+									on: {
+										click: (_e) => {
+											changeTheme(i.value, i.icon);
+										},
+									},
+									active: i.value === currentTheme,
+									data: { value: i.value },
+								},
+								new b.label({ icon: i.icon }, i.label)
+							);
+						})
+					),
+				]),
+			];
+		} else {
+			return [];
+		}
 	} else {
 		return [];
 	}
@@ -306,9 +309,9 @@ const genOutsideLink = (
 							),
 						]);
 				  })
-				: ""),
-			...(itemVersion ? itemVersion : ""),
-			...(itemTheme ? itemTheme : ""),
+				: []),
+			...(itemVersion ? itemVersion : []),
+			...(itemTheme ? itemTheme : []),
 		]),
 	];
 };

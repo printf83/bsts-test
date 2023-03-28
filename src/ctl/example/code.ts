@@ -1,5 +1,5 @@
 import { b, h, t, core } from "@printf83/bsts";
-import { preview } from "./preview.js";
+import { preview } from "./preview";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
 

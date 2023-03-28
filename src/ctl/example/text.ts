@@ -1,7 +1,3 @@
-// import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-// import { IElem } from "@printf83/bsts/lib/types/core/tag.js";
-// import { IAttrTagP, p } from "@printf83/bsts/lib/types/html/p.js";
-
 import { core, h } from "@printf83/bsts";
 
 const convert = (attr: h.IAttrTagP) => {
