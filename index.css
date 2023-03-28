@@ -9,6 +9,17 @@ a:hover *,
 }
 
 /* example */
+
+/* gap on example code output */
+.example-output > * {
+    margin: 0.5rem 0.25rem;
+}
+
+.example-output {
+    margin: -0.5rem -0.25rem;
+}
+
+
 /* use by doc_component_modal#grid_in_modal*/
 .bs-highlight-col div[class^="col"]{
     padding-top:0.75rem;

@@ -49,7 +49,6 @@ export const doc_component_modal: IAttrContent = {
 			"Below is a static modal example (meaning its {{position}} and {{display}} have been overridden). Included are the modal header, modal body (required for {{padding}}), and modal footer (optional). We ask that you include modal headers with dismiss actions whenever possible, or provide another explicit dismiss action."
 		),
 		new e.code({
-			previewTemplate: "none",
 			previewAttr: { bgColor: "body-tertiary" },
 			output: () => {
 				return new b.modal.container({ debug: true }, [
@@ -375,7 +374,6 @@ export const doc_component_modal: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "flex",
 			output: () => {
 				interface EventWithRelatedTarget extends Event {
 					relatedTarget: HTMLElement;

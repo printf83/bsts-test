@@ -22,7 +22,6 @@ export const doc_component_card: IAttrContent = {
 			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various {{https://getbootstrap.com/docs/5.3/components/card/#sizing::sizing options}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
@@ -52,7 +51,6 @@ export const doc_component_card: IAttrContent = {
 			"The building block of a card is the {{.card-body}}. Use it whenever you need a padded section within a card."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container(new b.card.body("This is some text within a card body."));
 			},
@@ -69,7 +67,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container(
 					{ style: { width: "18rem" } },
@@ -93,7 +90,6 @@ export const doc_component_card: IAttrContent = {
 			"{{.card-img-top}} places an image to the top of the card. With {{.card-text}}, text can be added to the card. Text within {{.card-text}} can also be styled with the standard HTML tags."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
@@ -115,7 +111,6 @@ export const doc_component_card: IAttrContent = {
 		new e.subtitle("List groups"),
 		new e.text("Create lists of content in a card with a flush list group."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.list.container({ flush: true }, [
@@ -128,7 +123,6 @@ export const doc_component_card: IAttrContent = {
 		}),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.header("Featured"),
@@ -142,7 +136,6 @@ export const doc_component_card: IAttrContent = {
 		}),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.list.container({ flush: true }, [
@@ -162,7 +155,6 @@ export const doc_component_card: IAttrContent = {
 			"Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
@@ -193,7 +185,6 @@ export const doc_component_card: IAttrContent = {
 		new e.subtitle("Header and footer"),
 		new e.text("Add an optional header and/or footer within a card."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container([
 					new b.card.header("Featured"),
@@ -208,7 +199,6 @@ export const doc_component_card: IAttrContent = {
 
 		new e.text("Card headers can be styled by adding {{.card-header}} to {{<h*>}} elements."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container([
 					new h.h(5, { class: "card-header" }, "Featured"),
@@ -221,7 +211,6 @@ export const doc_component_card: IAttrContent = {
 			},
 		}),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container([
 					new h.div({ class: "card-header" }, "Quote"),
@@ -238,7 +227,6 @@ export const doc_component_card: IAttrContent = {
 			},
 		}),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ textAlign: "center" }, [
 					new b.card.header("Featured"),
@@ -300,7 +288,6 @@ export const doc_component_card: IAttrContent = {
 			"Use our handful of {{https://getbootstrap.com/docs/5.3/utilities/sizing/::available sizing utilities}} to quickly set a card’s width."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					new b.card.container(
@@ -328,7 +315,6 @@ export const doc_component_card: IAttrContent = {
 		new e.subtitle("Using custom CSS"),
 		new e.text("Use custom CSS in your stylesheets or as inline styles to set a width."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.body([
@@ -347,7 +333,6 @@ export const doc_component_card: IAttrContent = {
 			"You can quickly change the text alignment of any card—in its entirety or specific parts—with our {{https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment::text align classes}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [undefined, "center", "end"].map((i) => {
 					return new b.card.container(
@@ -377,7 +362,6 @@ export const doc_component_card: IAttrContent = {
 			"Add some navigation to a card’s header (or block) with Bootstrap’s {{https://getbootstrap.com/docs/5.3/components/navs-tabs/::nav components}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ textAlign: "center" }, [
 					new b.card.header(
@@ -396,7 +380,6 @@ export const doc_component_card: IAttrContent = {
 			},
 		}),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ textAlign: "center" }, [
 					new b.card.header(
@@ -428,7 +411,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					new b.card.container({ marginBottom: 3 }, [
@@ -471,7 +453,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ textBgColor: "dark" }, [
 					new b.card.img({
@@ -502,7 +483,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container({ style: { maxWidth: "540px" } }, [
 					new h.div({ row: true, gutter: 0 }, [
@@ -543,7 +523,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 					(i, ix) => {
@@ -583,7 +562,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 					(i, ix) => {
@@ -616,7 +594,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.container(
 					{
@@ -650,7 +627,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.group(
 					[
@@ -680,7 +656,6 @@ export const doc_component_card: IAttrContent = {
 		new e.text("When using card groups with footers, their content will automatically line up."),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.card.group(
 					[
@@ -710,7 +685,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new h.div(
 					{
@@ -743,7 +717,6 @@ export const doc_component_card: IAttrContent = {
 		new e.text("Change it to {{.row-cols-3}} and you’ll see the fourth card wrap."),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new h.div(
 					{
@@ -778,7 +751,6 @@ export const doc_component_card: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new h.div(
 					{
@@ -811,7 +783,6 @@ export const doc_component_card: IAttrContent = {
 		new e.text("Just like with card groups, card footers will automatically line up."),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new h.div(
 					{

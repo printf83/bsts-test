@@ -11,7 +11,6 @@ export const doc_component_btnclose: IAttrContent = {
 			"Provide an option to dismiss or close a component with {{.btn-close}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as we’ve done with {{aria-label}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.btnclose();
 			},
@@ -24,7 +23,6 @@ export const doc_component_btnclose: IAttrContent = {
 			"Disabled close buttons change their {{opacity}}. We’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.btnclose({ disabled: true });
 			},
@@ -37,7 +35,6 @@ export const doc_component_btnclose: IAttrContent = {
 			"Add {{data-bs-theme='dark'}} to the {{.btn-close}}, or to its parent element, to invert the close button. This uses the {{filter}} property to invert the {{background-image}} without overriding its value."
 		),
 		new e.code({
-			previewTemplate: "row",
 			previewAttr: { bgColor: "dark" },
 			output: () => {
 				return new h.div({ theme: "dark" }, [new b.btnclose(), new b.btnclose({ disabled: true })]);

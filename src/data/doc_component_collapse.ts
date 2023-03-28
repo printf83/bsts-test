@@ -32,7 +32,6 @@ export const doc_component_collapse: IAttrContent = {
 			"Generally, we recommend using a {{<button>}} with the {{data-bs-target}} attribute. While not recommended from a semantic point of view, you can also use an {{<a>}} link with the {{href}} attribute (and a {{role='button'}}). In both cases, the {{data-bs-toggle='collapse'}} is required."
 		),
 		new e.code({
-			previewTemplate: "grid",
 			output: () => {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
@@ -70,7 +69,6 @@ export const doc_component_collapse: IAttrContent = {
 			)
 		),
 		new e.code({
-			previewTemplate: "grid",
 			output: () => {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
@@ -102,26 +100,23 @@ export const doc_component_collapse: IAttrContent = {
 			"A {{<button>}} or {{<a>}} element can show and hide multiple elements by referencing them with a selector in its {{data-bs-target}} or {{href}} attribute. Conversely, multiple {{<button>}} or {{<a>}} elements can show and hide the same element if they each reference it with their {{data-bs-target}} or {{href}} attribute."
 		),
 		new e.code({
-			previewTemplate: "grid",
 			output: () => {
 				return [
-					new h.div({ display: "flex", gap: 2 }, [
-						new b.collapse.toggle(
-							{ href: "#multiCollapseExample1", control: "multiCollapseExample1" },
-							"Toggle first element"
-						),
-						new b.collapse.toggle(
-							{ target: "#multiCollapseExample2", control: "multiCollapseExample2" },
-							"Toggle second element"
-						),
-						new b.collapse.toggle(
-							{ target: ".multi-collapse", control: "multiCollapseExample1 multiCollapseExample2" },
-							"Toggle both element"
-						),
-					]),
+					new b.collapse.toggle(
+						{ href: "#multiCollapseExample1", control: "multiCollapseExample1" },
+						"Toggle first element"
+					),
+					new b.collapse.toggle(
+						{ target: "#multiCollapseExample2", control: "multiCollapseExample2" },
+						"Toggle second element"
+					),
+					new b.collapse.toggle(
+						{ target: ".multi-collapse", control: "multiCollapseExample1 multiCollapseExample2" },
+						"Toggle both element"
+					),
 					new h.div({ row: true }, [
 						new h.div(
-							{ col: true },
+							{ col: 6 },
 							new b.collapse.container(
 								{ id: "multiCollapseExample1", class: "multi-collapse" },
 								new b.card.container(
@@ -132,7 +127,7 @@ export const doc_component_collapse: IAttrContent = {
 							)
 						),
 						new h.div(
-							{ col: true },
+							{ col: 6 },
 							new b.collapse.container(
 								{ id: "multiCollapseExample2", class: "multi-collapse" },
 								new b.card.container(

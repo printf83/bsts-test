@@ -132,7 +132,6 @@ export const doc_component_btngroup: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					new b.btngroup({ label: "Toolbar with button groups", role: "toolbar", marginBottom: 3 }, [
@@ -179,7 +178,6 @@ export const doc_component_btngroup: IAttrContent = {
 			"Instead of applying button sizing classes to every button in a group, just add {{.btn-group-*}} to each {{.btn-group}}, including each one when nesting multiple groups."
 		),
 		new e.code({
-			previewTemplate: "grid",
 			output: () => {
 				return [
 					new b.btngroup(
@@ -205,8 +203,6 @@ export const doc_component_btngroup: IAttrContent = {
 			"Place a {{.btn-group}} within another {{.btn-group}} when you want dropdown menus mixed with a series of buttons."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.btngroup({ label: "Button group with nested dropdown" }, [
 					new b.button("1"),
@@ -238,8 +234,6 @@ export const doc_component_btngroup: IAttrContent = {
 			},
 		}),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.btngroup({ label: "Vertical button group", vertical: true }, [
 					new b.button("Button"),

@@ -177,7 +177,6 @@ export const doc_component_button: IAttrContent = {
 			"Create responsive stacks of full-width, “block buttons” like those in Bootstrap 4 with a mix of our display and gap utilities. By using utilities instead of button specific classes, we have much greater control over spacing, alignment, and responsive behaviors."
 		),
 		new e.code({
-			previewTemplate: "none",
 			output: () => {
 				return new h.div({ display: "grid", gap: 2 }, [new b.button("Button"), new b.button("Button")]);
 			},
@@ -186,7 +185,6 @@ export const doc_component_button: IAttrContent = {
 			"Here we create a responsive variation, starting with vertically stacked buttons until the {{md}} breakpoint, where {{.d-md-block}} replaces the {{.d-grid}} class, thus nullifying the {{gap-2}} utility. Resize your browser to see them change."
 		),
 		new e.code({
-			previewTemplate: "none",
 			output: () => {
 				return new h.div({ display: ["grid", "md-block"], gap: 2 }, [
 					new b.button("Button"),
@@ -198,7 +196,6 @@ export const doc_component_button: IAttrContent = {
 			"You can adjust the width of your block buttons with grid column width classes. For example, for a half-width “block button”, use {{.col-6}}. Center it horizontally with {{.mx-auto}}, too."
 		),
 		new e.code({
-			previewTemplate: "none",
 			output: () => {
 				return new h.div({ display: "grid", gap: 2, col: 6, marginX: "auto" }, [
 					new b.button("Button"),
@@ -210,7 +207,6 @@ export const doc_component_button: IAttrContent = {
 			"Additional utilities can be used to adjust the alignment of buttons when horizontal. Here we’ve taken our previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."
 		),
 		new e.code({
-			previewTemplate: "none",
 			output: () => {
 				return new h.div({ display: ["grid", "md-flex"], gap: 2, justifyContent: "md-end" }, [
 					new b.button("Button"),

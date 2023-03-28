@@ -1,5 +1,4 @@
 import { core, h, b } from "@printf83/bsts";
-import { tr } from "@printf83/bsts/lib/types/html/tr.js";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
@@ -43,8 +42,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"Any single {{.btn}} can be turned into a dropdown toggle with some markup changes. Here’s how you can put them to work with {{<button>}} elements:"
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new h.div({ class: "dropdown" }, [
 					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
@@ -60,8 +57,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"While {{<button>}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{<a>}} element. If you do, we recommend adding a {{role='button'}} attribute to appropriately convey control’s purpose to assistive technologies such as screen readers."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new h.div({ class: "dropdown" }, [
 					new b.dropdown.toggle({ color: "secondary", href: "#" }, "Dropdown link"),
@@ -76,8 +71,6 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.text("The best part is you can do this with any button variant, too:"),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4, paddingBottom: 3 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container({ marginEnd: 2, marginBottom: 2 }, [
@@ -107,8 +100,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"We use this extra class to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4, paddingBottom: 3 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container({ marginEnd: 2, marginBottom: 2 }, [
@@ -134,8 +125,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.title("Sizing"),
 		new e.text("Button dropdowns work with buttons of all sizes, including default and split dropdown buttons."),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -160,8 +149,6 @@ export const doc_component_dropdown: IAttrContent = {
 		}),
 
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -196,8 +183,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.dropdown-menu-dark}}, set {{data-bs-theme='dark'}} on the root element, a parent wrapper, or the component itself."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new h.div({ class: "dropdown" }, [
 					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
@@ -215,8 +200,7 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.text("And putting it to use in a navbar:"),
 
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4, bgColor: "dark" },
+			previewAttr: { bgColor: "dark" },
 			output: () => {
 				return new b.navbar.container(
 					{ expand: "lg", theme: "dark", bgColor: "dark" },
@@ -260,8 +244,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.text("Make the dropdown menu centered below the toggle with {{.dropdown-center}} on the parent element."),
 
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.dropdown.container({ drop: "down-center" }, [
 					new b.dropdown.toggle({ color: "secondary" }, "Centered dropdown"),
@@ -279,8 +261,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.subtitle("Dropup"),
 		new e.text("Trigger dropdown menus above elements by adding {{.dropup}} to the parent element."),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -310,8 +290,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.text("Make the dropup menu centered above the toggle with {{.dropup-center}} on the parent element."),
 
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.dropdown.container({ drop: "up-center" }, [
 					new b.dropdown.toggle({ color: "secondary" }, "Centered dropup"),
@@ -329,8 +307,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.subtitle("Dropend"),
 		new e.text("Trigger dropdown menus at the right of the elements by adding {{.dropend}} to the parent element."),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -361,8 +337,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"Trigger dropdown menus at the left of the elements by adding {{.dropstart}} to the parent element."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -392,8 +366,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.title("Menu items"),
 		new e.text("You can use {{<a>}} or {{<button>}} elements as dropdown items."),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new h.div({ class: "dropdown" }, [
 					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
@@ -414,7 +386,6 @@ export const doc_component_dropdown: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.text("Dropdown item text"),
@@ -432,7 +403,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"Add {{.active}} to items in the dropdown to {{b::style them as active}}. To convey the active state to assistive technologies, use the {{aria-current}} attribute — using the {{page}} value for the current page, or {{true}} for the current item in a set."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.item({ href: "#" }, "Regular link"),
@@ -447,7 +417,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.subtitle("Disabled"),
 		new e.text("Add {{.disabled}} to items in the dropdown to {{b::style them as disabled}}."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.item({ href: "#" }, "Regular link"),
@@ -471,8 +440,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"{{b::Heads up!}} Dropdowns are positioned thanks to Popper except when they are contained in a navbar."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Right-aligned menu example"),
@@ -495,8 +462,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"To align {{b::right}} the dropdown menu with the given breakpoint or larger, add {{.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-end}}."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Left-aligned but right aligned when large screen"),
@@ -512,8 +477,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"To align {{b::left}} the dropdown menu with the given breakpoint or larger, add {{.dropdown-menu-end}} and {{.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-start}}."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Right-aligned but left aligned when large screen"),
@@ -536,8 +499,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"Taking most of the options shown above, here’s a small kitchen sink demo of various dropdown alignment options in one place."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4, paddingBottom: 3 },
 			output: () => {
 				return [
 					{ label: "Dropdown" },
@@ -576,7 +537,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.subtitle("Headers"),
 		new e.text("Add a header to label sections of actions in any dropdown menu."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.header("Dropdown header"),
@@ -591,7 +551,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.subtitle("Dividers"),
 		new e.text("Separate groups of related menu items with a divider."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -610,7 +569,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"Place any freeform text within a dropdown menu with text and use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.dropdown.menu(
 					{
@@ -634,7 +592,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"Put a form within a dropdown menu, or make it into a dropdown menu, and use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::margin or padding utilities}} to give it the negative space you require."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.dropdown.menu(
 					{
@@ -684,8 +641,6 @@ export const doc_component_dropdown: IAttrContent = {
 		}),
 
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4 },
 			output: () => {
 				return new h.div({ class: "dropdown" }, [
 					new b.dropdown.toggle({ menuAutoClose: "outside" }, "Dropdown form"),
@@ -734,8 +689,6 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.title("Dropdown options"),
 		new e.text("Use {{data-bs-offset}} or {{data-bs-reference}} to change the location of the dropdown."),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4, hstack: true, gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -766,8 +719,6 @@ export const doc_component_dropdown: IAttrContent = {
 			"By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{autoClose}} option to change this behavior of the dropdown."
 		),
 		new e.code({
-			previewTemplate: "none",
-			previewAttr: { padding: 4, hstack: true, gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),

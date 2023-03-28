@@ -1,4 +1,4 @@
-import { code, IAttrBSExampleContainer, IAttrBSExampleExt, IAttrPreviewTemplate } from "./code.js";
+import { code, IAttrBSExampleContainer, IAttrBSExampleExt } from "./code.js";
 import { codepreview, IAttrBSExampleCodepreview } from "./codepreview.js";
 import { description } from "./description.js";
 import { item } from "./item.js";
@@ -27,5 +27,4 @@ export {
 	IAttrBSExampleCodepreview,
 	IAttrBSExampleContainer,
 	IAttrBSExampleExt,
-	IAttrPreviewTemplate,
 };

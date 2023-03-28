@@ -15,7 +15,6 @@ export const doc_component_badge: IAttrContent = {
 
 		new e.subtitle("Headings"),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [1, 2, 3, 4, 5, 6].map((i) => {
 					return new h.h(i as h.HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);

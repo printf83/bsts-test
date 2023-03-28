@@ -16,7 +16,6 @@ export const doc_component_alert: IAttrContent = {
 			"{{b::Heads up!}} As of v5.3.0, the {{alert-variant()}} Sass mixin is deprecated. Alert variants now have their CSS variables overridden in the {{?q=doc_component_alert_#sass-loop::Sass loop}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.alert.container(
@@ -39,7 +38,6 @@ export const doc_component_alert: IAttrContent = {
 		new e.subtitle("Callout"),
 		new e.text("Just set {{callout:true}} to change the {{alert}} to {{callout}}"),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.alert.container(
@@ -57,7 +55,6 @@ export const doc_component_alert: IAttrContent = {
 			"Click the button below to show an alert (hidden with inline styles to start), then dismiss (and destroy) it with the built-in close button."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					new h.div({ id: "liveAlertPlaceholder" }),
@@ -90,7 +87,6 @@ export const doc_component_alert: IAttrContent = {
 		new e.subtitle("Link color"),
 		new e.text("Use the {{.alert-link}} utility class to quickly provide matching colored links within any alert."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.alert.container({ color: i as core.bootstrapType.color[number] }, [
@@ -107,7 +103,6 @@ export const doc_component_alert: IAttrContent = {
 		new e.subtitle("Additional content"),
 		new e.text("Alerts can also contain additional HTML elements like headings, paragraphs and dividers."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container({ color: "success" }, [
 					new b.alert.header(4, "Well done!"),
@@ -130,7 +125,6 @@ export const doc_component_alert: IAttrContent = {
 			"Similarly, you can use {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}} and {{https://icons.getbootstrap.com/::Bootstrap Icons}} to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container(
 					{ color: "info" },
@@ -145,7 +139,6 @@ export const doc_component_alert: IAttrContent = {
 			"Need more than one icon for your alerts? Consider using more Bootstrap Icons and making a local SVG sprite like so to easily reference the same icons repeatedly."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					{ color: "info", icon: b.icon.solid("circle-info") },
@@ -175,7 +168,6 @@ export const doc_component_alert: IAttrContent = {
 		new e.text("You can see this in action with a live demo:"),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container(
 					{ color: "warning", dismissible: true },
@@ -381,7 +373,6 @@ export const doc_component_alert: IAttrContent = {
 		}),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.alert.container(
 					{

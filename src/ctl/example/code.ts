@@ -1,8 +1,6 @@
 import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
 
-export type IAttrPreviewTemplate = "none" | "row" | "row-center" | "col" | "col-center" | "grid" | "flex" | "test";
-
 export interface IAttrBSExampleExt {
 	name?: string;
 	output?: Function;
@@ -24,7 +22,6 @@ export interface IAttrBSExampleContainer extends core.IAttr {
 	showManager?: boolean;
 	showHTML?: boolean;
 
-	previewTemplate?: IAttrPreviewTemplate;
 	previewAttr?: core.IAttr;
 }
 
@@ -63,6 +60,7 @@ const itemCode = (
 					display: "flex",
 					verticalAlign: "middle",
 					justifyContent: "between",
+					paddingX: 4,
 					bgColor: "body-tertiary",
 					control: collapseable ? id : undefined,
 					data: {
@@ -119,6 +117,7 @@ const itemCode = (
 		new b.list.item(
 			{
 				bgColor: "body-tertiary",
+				paddingX: 4,
 				class: [collapseable ? "collapse" : undefined],
 				id: collapseable ? id : undefined,
 				data: { loaded: onshow ? "false" : undefined },
@@ -141,85 +140,16 @@ const itemCode = (
 	return res;
 };
 
-const itemOutput = (
-	manager: boolean,
-	previewTemplate: IAttrPreviewTemplate | undefined,
-	previewAttr: core.IAttr | undefined,
-	str: string
-) => {
-	if (manager) {
+const itemOutput = (previewAttr: core.IAttr | undefined, str: string) => {
+	if (previewAttr) {
 		return new b.list.item(
-			core.mergeAttr({ class: `example-output`, padding: 4, overflow: "auto" }, previewAttr),
-			str
+			core.mergeObject({ padding: 4 }, previewAttr),
+			new h.div({ class: `example-output` }, str)
 		);
 	} else {
-		switch (previewTemplate) {
-			case "none":
-				return new b.list.item(core.mergeAttr({ class: `example-output` }, previewAttr), str);
-			case "row":
-				return new b.list.item(
-					core.mergeAttr(
-						{ class: `example-output`, padding: 4, overflow: "auto", vstack: true, gap: 2 },
-						previewAttr
-					),
-					str
-				);
-			case "col-center":
-				return new b.list.item(
-					core.mergeAttr(
-						{
-							class: `example-output`,
-							padding: 4,
-							overflow: "auto",
-							hstack: true,
-							marginX: "auto",
-							gap: 2,
-						},
-						previewAttr
-					),
-					str
-				);
-			case "row-center":
-				return new b.list.item(
-					core.mergeAttr(
-						{
-							class: `example-output`,
-							padding: 4,
-							overflow: "auto",
-							vstack: true,
-							marginX: "auto",
-							gap: 2,
-						},
-						previewAttr
-					),
-					str
-				);
-			case "grid":
-				return new b.list.item(
-					core.mergeAttr(
-						{ class: `example-output`, padding: 4, overflow: "auto", display: "grid", gap: 2 },
-						previewAttr
-					),
-					str
-				);
-			case "flex":
-				return new b.list.item(
-					core.mergeAttr(
-						{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
-						previewAttr
-					),
-					str
-				);
-			default:
-				return new b.list.item(
-					core.mergeAttr(
-						{ class: `example-output`, padding: 4, overflow: "auto", hstack: true, gap: 2 },
-						previewAttr
-					),
-					str
-				);
-		}
+		return new b.list.item({ padding: 4 }, new h.div({ class: `example-output` }, str));
 	}
+
 };
 
 const convert = (attr: IAttrBSExampleContainer) => {
@@ -237,9 +167,9 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 	if (attr.output && attr.showOutput) {
 		if (attr.manager) {
-			e.push(itemOutput(true, attr.previewTemplate, attr.previewAttr, attr.manager(attr.output())));
+			e.push(itemOutput(attr.previewAttr, attr.manager(attr.output())));
 		} else {
-			e.push(itemOutput(false, attr.previewTemplate, attr.previewAttr, attr.output()));
+			e.push(itemOutput(attr.previewAttr, attr.output()));
 		}
 	}
 
@@ -334,7 +264,6 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	delete attr.showOutput;
 	delete attr.showManager;
 
-	delete attr.previewTemplate;
 	delete attr.previewAttr;
 
 	return attr;

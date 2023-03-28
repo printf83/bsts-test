@@ -27,7 +27,6 @@ export const doc_component_carousel: IAttrContent = {
 			"Here is a basic example of a carousel with three slides. Note the previous/next controls. We recommend using {{<button>}} elements, but you can also use {{<a>}} elements with {{role='button'}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({ id: "carouselExample" }, [
 					new b.carousel.indicators.container(
@@ -67,7 +66,6 @@ export const doc_component_carousel: IAttrContent = {
 
 		new e.subtitle("Using item"),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					itemControl: true,
@@ -92,7 +90,6 @@ export const doc_component_carousel: IAttrContent = {
 			"You can add indicators to the carousel, alongside the previous/next controls. The indicators let users jump directly to a particular slide."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					itemControl: true,
@@ -113,7 +110,6 @@ export const doc_component_carousel: IAttrContent = {
 			"You can add captions to your slides with the {{.carousel-caption}} element within any {{.carousel-item}}. They can be easily hidden on smaller viewports, as shown below, with optional {{https://getbootstrap.com/docs/5.3/utilities/display/::display utilities}}. We hide them initially with {{.d-none}} and bring them back on medium-sized devices with {{.d-md-block}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					itemControl: true,
@@ -138,7 +134,6 @@ export const doc_component_carousel: IAttrContent = {
 			"Add {{.carousel-fade}} to your carousel to animate slides with a fade transition instead of a slide. Depending on your carousel content (e.g., text only slides), you may want to add {{.bg-body}} or some custom CSS to the {{.carousel-items}} for proper crossfading."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					fade: true,
@@ -167,7 +162,6 @@ export const doc_component_carousel: IAttrContent = {
 			),
 		]),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					autoPlay: true,
@@ -186,7 +180,6 @@ export const doc_component_carousel: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					autoPlay: false,
@@ -207,7 +200,6 @@ export const doc_component_carousel: IAttrContent = {
 			"Add {{data-bs-interval=''}} to a {{.carousel-item}} to change the amount of time to delay between automatically cycling to the next item."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					autoPlay: false,
@@ -229,7 +221,6 @@ export const doc_component_carousel: IAttrContent = {
 			"Here’s a carousel with slides only. Note the presence of the .d-block and .w-100 on carousel images to prevent browser default image alignment."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					autoPlay: true,
@@ -249,7 +240,6 @@ export const doc_component_carousel: IAttrContent = {
 			"Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} option to {{false}}."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					disableTouch: true,
@@ -275,7 +265,6 @@ export const doc_component_carousel: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.carousel.container({
 					theme: "dark",
