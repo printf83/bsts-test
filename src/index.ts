@@ -38,8 +38,7 @@ let m = {
 
 const getData = (value: string) => {
 	let c = data(value);
-
-	c.sourceUrl = `https://github.com/printf83/bsts/tree/master/doc/data/${value}.ts`;
+	c.sourceUrl = `https://github.com/printf83/bsts-test/tree/master/src/data/${value}.ts`;
 	c.sourceWeb = "Github";
 	return c;
 };
@@ -48,6 +47,7 @@ const onmenuchange = (value: string) => {
 	let contentbody = document.getElementById("bs-main") as HTMLElement;
 	core.replaceChild(contentbody, main.genMainContent(getData(value)));
 	core.init(contentbody);
+	window.scrollTo(0, 0);
 	PR.prettyPrint();
 };
 
