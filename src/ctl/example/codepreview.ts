@@ -1,7 +1,7 @@
-import { b, h } from "@printf83/bsts";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { IAttr } from "@printf83/bsts/lib/types/core/tag.js";
-import { div } from "@printf83/bsts/lib/types/html/div.js";
+import { core, b, h } from "@printf83/bsts";
+// import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+// import { IAttr } from "@printf83/bsts/lib/types/core/tag.js";
+// import { div } from "@printf83/bsts/lib/types/html/div.js";
 import { preview } from "./preview.js";
 
 function itemCodeCopy(e: Event) {
@@ -11,12 +11,12 @@ function itemCodeCopy(e: Event) {
 	return false;
 }
 
-export interface IAttrBSExampleCodepreview extends IAttr {
+export interface IAttrBSExampleCodepreview extends core.IAttr {
 	code?: string;
 	type?: "js" | "ts" | "css" | "html";
 }
 
-const convert = (attr: IAttrBSExampleCodepreview): IAttr => {
+const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 	if (attr.code) {
 		attr.elem = [
 			new b.card.container({ class: "example", marginY: 3, bgColor: "body-tertiary", border: false }, [
@@ -43,10 +43,10 @@ const convert = (attr: IAttrBSExampleCodepreview): IAttr => {
 	return attr;
 };
 
-export class codepreview extends div {
+export class codepreview extends h.div {
 	constructor();
 	constructor(attr: IAttrBSExampleCodepreview);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg<IAttrBSExampleCodepreview>(convert, arg));
+		super(core.bsConsNoElemArg<IAttrBSExampleCodepreview>(convert, arg));
 	}
 }

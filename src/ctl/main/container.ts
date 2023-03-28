@@ -1,14 +1,14 @@
-import { b, core, h } from "@printf83/bsts";
-import { IAttrBSIcon } from "@printf83/bsts/lib/types/bootstrap/icon.js";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { IElem, tag, isTag, IAttr } from "@printf83/bsts/lib/types/core/tag.js";
-import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { div } from "@printf83/bsts/lib/types/html/div.js";
-import { subtitle } from "../example/subtitle.js";
-import { title } from "../example/title.js";
-import { example } from "../example/_index.js";
+import { core, b, h, t } from "@printf83/bsts";
+// import { IAttrBSIcon } from "@printf83/bsts/lib/types/bootstrap/icon.js";
+// import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+// import { IElem, tag, isTag, IAttr } from "@printf83/bsts/lib/types/core/tag.js";
+// import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
+// import { div } from "@printf83/bsts/lib/types/html/div.js";
+// import { subtitle } from "../example/subtitle.js";
+// import { title } from "../example/title.js";
+import * as e from "../example/_index.js";
 
-const changeTheme = (value: string, icon: IAttrBSIcon) => {
+const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
 	let bsThemeMenu = bsTheme.nextSibling as HTMLElement;
 
@@ -100,12 +100,12 @@ export interface IAttrItemInsideLink {
 export interface IAttrItemOutsideLink {
 	href: string;
 	label: string;
-	icon: IAttrBSIcon;
+	icon: b.IAttrBSIcon;
 }
 
 export interface IAttrItemTheme {
 	value: string;
-	icon: IAttrBSIcon;
+	icon: b.IAttrBSIcon;
 	label: string;
 }
 
@@ -116,7 +116,7 @@ export interface IAttrItemVersion {
 
 export interface IAttrItemMenu {
 	label: string;
-	icon: IAttrBSIcon;
+	icon: b.IAttrBSIcon;
 	item: IAttrItemSubMenu[];
 }
 
@@ -139,7 +139,7 @@ export interface IAttrContent {
 
 	description?: string;
 
-	item?: IElem;
+	item?: core.IElem;
 }
 
 export interface IAttrFooterItem {
@@ -153,7 +153,7 @@ export interface IAttrFooter {
 }
 
 const genTheme = (
-	textColor: bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor[number],
 	navbarItemTheme?: IAttrItemTheme[],
 	currentTheme?: string
 ) => {
@@ -222,7 +222,7 @@ const genTheme = (
 };
 
 const genVersion = (
-	textColor: bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor[number],
 	name: string,
 	navbarItemVersion?: IAttrItemVersion[],
 	currentVersion?: string
@@ -284,10 +284,10 @@ const genVersion = (
 };
 
 const genOutsideLink = (
-	textColor: bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor[number],
 	itemOutsideLink?: IAttrItemOutsideLink[],
-	itemVersion?: tag[],
-	itemTheme?: tag[]
+	itemVersion?: t[],
+	itemTheme?: t[]
 ) => {
 	return [
 		new h.hr({ display: "lg-none", textColor: "light" }),
@@ -314,7 +314,7 @@ const genOutsideLink = (
 };
 
 const genInsideLink = (
-	textColor: bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor[number],
 	itemInsideLink?: IAttrItemInsideLink[],
 	currentInsideLink?: string
 ) => {
@@ -405,7 +405,7 @@ const genIntro = (content?: IAttrContent) => {
 	if (content) {
 		return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
 			content.title
-				? new example.pagetitle(
+				? new e.pagetitle(
 						{
 							sourceWeb: content.sourceWeb,
 							sourceUrl: content.sourceUrl,
@@ -414,7 +414,7 @@ const genIntro = (content?: IAttrContent) => {
 						content.title ? content.title : ""
 				  )
 				: "",
-			content.description ? new example.description(content.description) : "",
+			content.description ? new e.description(content.description) : "",
 		]);
 	} else {
 		return "";
@@ -426,12 +426,12 @@ const genToc = (content?: IAttrContent) => {
 		let t: IAttrTocItem[] = [];
 
 		content.item.forEach((i) => {
-			if (isTag<title>(i) && i.tag === "h2") {
+			if (core.isTag<e.title>(i) && i.tag === "h2") {
 				if (i.attr?.id && i.attr?.data?.text) {
 					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 					t.push(item);
 				}
-			} else if (isTag<subtitle>(i) && i.tag === "h3") {
+			} else if (core.isTag<e.subtitle>(i) && i.tag === "h3") {
 				if (i.attr?.id && i.attr?.data?.text) {
 					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
@@ -553,12 +553,12 @@ export const genMainContent = (content?: IAttrContent) => {
 	return [genIntro(content), genToc(content), genContent(content)];
 };
 
-export interface IAttrBSMainContainer extends IAttr {
-	icon?: IAttrBSIcon;
+export interface IAttrBSMainContainer extends core.IAttr {
+	icon?: b.IAttrBSIcon;
 	name?: string;
 
-	textColor?: bootstrapType.textColor[number];
-	bgColor?: bootstrapType.bgColor[number];
+	textColor?: core.bootstrapType.textColor[number];
+	bgColor?: core.bootstrapType.bgColor[number];
 
 	itemOutsideLink?: IAttrItemOutsideLink[];
 
@@ -798,10 +798,10 @@ const convert = (attr: IAttrBSMainContainer) => {
 	return attr;
 };
 
-export class container extends div {
+export class container extends h.div {
 	constructor();
 	constructor(attr: IAttrBSMainContainer);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg<IAttrBSMainContainer>(convert, arg));
+		super(core.bsConsNoElemArg<IAttrBSMainContainer>(convert, arg));
 	}
 }

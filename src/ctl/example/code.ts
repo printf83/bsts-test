@@ -1,8 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
-import { item } from "@printf83/bsts/lib/types/bootstrap/list/item.js";
-import { bsConsNoElemArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { IAttr, tag } from "@printf83/bsts/lib/types/core/tag.js";
-import { div } from "@printf83/bsts/lib/types/html/div.js";
+import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
@@ -13,7 +9,7 @@ export interface IAttrBSExampleExt {
 	strOutput?: string;
 }
 
-export interface IAttrBSExampleContainer extends IAttr {
+export interface IAttrBSExampleContainer extends core.IAttr {
 	lib?: string | string[];
 	css?: string;
 	extention?: IAttrBSExampleExt | IAttrBSExampleExt[];
@@ -28,7 +24,7 @@ export interface IAttrBSExampleContainer extends IAttr {
 	showHTML?: boolean;
 
 	previewTemplate?: IAttrPreviewTemplate;
-	previewAttr?: IAttr;
+	previewAttr?: core.IAttr;
 }
 
 declare var PR: {
@@ -52,12 +48,12 @@ const itemCode = (
 	header: boolean,
 	collapseable: boolean,
 	title: string,
-	elem: string | tag | (string | tag)[],
+	elem: string | t | (string | t)[],
 	onshow?: (target: HTMLElement) => void
-): item[] => {
+): b.list.item[] => {
 	let id = core.UUID();
 
-	let res: item[] = [];
+	let res: b.list.item[] = [];
 
 	if (header) {
 		res.push(
@@ -147,7 +143,7 @@ const itemCode = (
 const itemOutput = (
 	manager: boolean,
 	previewTemplate: IAttrPreviewTemplate | undefined,
-	previewAttr: IAttr | undefined,
+	previewAttr: core.IAttr | undefined,
 	str: string
 ) => {
 	if (manager) {
@@ -193,7 +189,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
 	attr.showManager = attr.showManager === undefined ? true : attr.showManager;
 
-	let e: tag[] = [];
+	let e: t[] = [];
 
 	if (attr.output && attr.showOutput) {
 		if (attr.manager) {
@@ -280,10 +276,10 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	return attr;
 };
 
-export class code extends div {
+export class code extends h.div {
 	constructor();
 	constructor(attr: IAttrBSExampleContainer);
 	constructor(...arg: any[]) {
-		super(bsConsNoElemArg<IAttrBSExampleContainer>(convert, arg));
+		super(core.bsConsNoElemArg<IAttrBSExampleContainer>(convert, arg));
 	}
 }

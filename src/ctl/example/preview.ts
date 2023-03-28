@@ -1,11 +1,11 @@
 import { core, h } from "@printf83/bsts";
-import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { IAttr, IElem } from "@printf83/bsts/lib/types/core/tag.js";
-import { pre } from "@printf83/bsts/lib/types/html/pre.js";
+// import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+// import { IAttr, IElem } from "@printf83/bsts/lib/types/core/tag.js";
+// import { pre } from "@printf83/bsts/lib/types/html/pre.js";
 
-type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
+export type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
 
-export interface IAttrBSExampleCode extends IAttr {
+export interface IAttrBSExampleCode extends core.IAttr {
 	type?: IAttrBSExampleCodeType;
 }
 
@@ -77,12 +77,12 @@ const convert = (attr: IAttrBSExampleCode) => {
 	return attr;
 };
 
-export class preview extends pre {
+export class preview extends h.pre {
 	constructor(); //#1
 	constructor(attr: IAttrBSExampleCode); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSExampleCode, elem: IElem); //#4
+	constructor(elem: core.IElem); //#3
+	constructor(attr: IAttrBSExampleCode, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSExampleCode>("elem", convert, arg));
+		super(core.bsConstArg<IAttrBSExampleCode>("elem", convert, arg));
 	}
 }

@@ -26,14 +26,16 @@
 	],
 	"scripts": {
 		"clean": "rm -rf ./lib",
+		"clean:win":"rmdir /s lib",
 		"build": "npm run clean && npm run build:esm",
+		"build:win": "npm run clean:win && npm run build:esm",
 		"build:esm": "tsc -p ./configs/tsconfig.esm.json",
-		"prepack": "npm run build"
+		"prepack": "npm run build:win"
 	},
 	"devDependencies": {
 		"typescript": "^5.0.1-rc",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
-		"@printf83/bsts": "^0.1.14"
+		"@printf83/bsts": "^0.1.23"
 	}	
 }

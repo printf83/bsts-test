@@ -1,9 +1,9 @@
-import { core, h } from "@printf83/bsts";
-import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { IAttr, tag, IElem } from "@printf83/bsts/lib/types/core/tag.js";
-import { h as Th } from "@printf83/bsts/lib/types/html/h.js";
+import { core, h, t } from "@printf83/bsts";
+// import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+// import { IAttr, tag, IElem } from "@printf83/bsts/lib/types/core/tag.js";
+// import { h as Th } from "@printf83/bsts/lib/types/html/h.js";
 
-const genIDFromElem = (attr: IAttr) => {
+const genIDFromElem = (attr: core.IAttr) => {
 	if (!attr.id) {
 		if (typeof attr.elem === "string") {
 			attr.id = (attr.elem as string).toLowerCase().replace(/[\W_]+/g, "_");
@@ -15,7 +15,7 @@ const genIDFromElem = (attr: IAttr) => {
 	return attr.id;
 };
 
-const convert = (attr: IAttr) => {
+const convert = (attr: core.IAttr) => {
 	attr.id = genIDFromElem(attr);
 	attr = core.mergeObject({ class: "example-title", marginTop: 5 }, attr);
 
@@ -27,7 +27,7 @@ const convert = (attr: IAttr) => {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: (string | tag)[] = [];
+		let tElem: (string | t)[] = [];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {
@@ -58,12 +58,12 @@ const convert = (attr: IAttr) => {
 	return attr;
 };
 
-export class title extends Th {
+export class title extends h.h {
 	constructor(); //#1
-	constructor(attr: IAttr); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IAttr, elem: IElem); //#4
+	constructor(attr: core.IAttr); //#2
+	constructor(elem: core.IElem); //#3
+	constructor(attr: core.IAttr, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(2, bsConstArg("elem", convert, arg));
+		super(2, core.bsConstArg("elem", convert, arg));
 	}
 }

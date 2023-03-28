@@ -1,7 +1,7 @@
-import { h, b } from "@printf83/bsts";
-import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { HLevel } from "@printf83/bsts/lib/types/html/h.js";
-import { example as e } from "../ctl/example/_index.js";
+import { core, h, b } from "@printf83/bsts";
+// import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
+// import { HLevel } from "@printf83/bsts/lib/types/html/h.js";
+import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_badge: IAttrContent = {
@@ -20,7 +20,7 @@ export const doc_component_badge: IAttrContent = {
 			previewTemplate: "row",
 			output: () => {
 				return [1, 2, 3, 4, 5, 6].map((i) => {
-					return new h.h(i as HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
+					return new h.h(i as h.HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
 				});
 			},
 		}),
@@ -102,7 +102,7 @@ export const doc_component_badge: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(
-						{ textBgColor: i as bootstrapType.textBgColor[number] },
+						{ textBgColor: i as core.bootstrapType.textBgColor[number] },
 						i.charAt(0).toUpperCase() + i.slice(1)
 					);
 				});
@@ -128,7 +128,7 @@ export const doc_component_badge: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(
-						{ textBgColor: i as bootstrapType.textBgColor[number], rounded: "pill" },
+						{ textBgColor: i as core.bootstrapType.textBgColor[number], rounded: "pill" },
 						i.charAt(0).toUpperCase() + i.slice(1)
 					);
 				});

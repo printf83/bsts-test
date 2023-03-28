@@ -1,9 +1,9 @@
-import { core, h, b } from "@printf83/bsts";
-import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { IAttr, IElem, tag } from "@printf83/bsts/lib/types/core/tag.js";
-import { div } from "@printf83/bsts/lib/types/html/div.js";
+import { core, h, b, t } from "@printf83/bsts";
+// import { bsConstArg } from "@printf83/bsts/lib/types/core/bootstrap.js";
+// import { IAttr, IElem, tag } from "@printf83/bsts/lib/types/core/tag.js";
+// import { div } from "@printf83/bsts/lib/types/html/div.js";
 
-export interface IAttrBSExamplePagetitle extends IAttr {
+export interface IAttrBSExamplePagetitle extends core.IAttr {
 	sourceUrl?: string;
 	sourceWeb?: string;
 	addedVersion?: string;
@@ -22,7 +22,7 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 		attr
 	);
 
-	let tElem: tag[] = [];
+	let tElem: t[] = [];
 	if (attr.sourceUrl || attr.addedVersion) {
 		tElem.push(
 			new h.div({ marginBottom: [3, "md-0"], display: "flex" }, [
@@ -78,12 +78,12 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 	return attr;
 };
 
-export class pagetitle extends div {
+export class pagetitle extends h.div {
 	constructor(); //#1
 	constructor(attr: IAttrBSExamplePagetitle); //#2
-	constructor(elem: IElem); //#3
-	constructor(attr: IAttrBSExamplePagetitle, elem: IElem); //#4
+	constructor(elem: core.IElem); //#3
+	constructor(attr: IAttrBSExamplePagetitle, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(bsConstArg<IAttrBSExamplePagetitle>("elem", convert, arg));
+		super(core.bsConstArg<IAttrBSExamplePagetitle>("elem", convert, arg));
 	}
 }

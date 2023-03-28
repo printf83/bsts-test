@@ -1,6 +1,5 @@
 import { b, h, core } from "@printf83/bsts";
-import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { example as e } from "../ctl/example/_index.js";
+import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_alert: IAttrContent = {
@@ -23,7 +22,7 @@ export const doc_component_alert: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.alert.container(
-						{ color: i as bootstrapType.color[number] },
+						{ color: i as core.bootstrapType.color[number] },
 						`A simple ${i} alert—check it out!`
 					);
 				});
@@ -48,7 +47,7 @@ export const doc_component_alert: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.alert.container(
-						{ color: i as bootstrapType.color[number], callout: true },
+						{ color: i as core.bootstrapType.color[number], callout: true },
 						`A simple ${i} callout—check it out!`
 					);
 				});
@@ -96,7 +95,7 @@ export const doc_component_alert: IAttrContent = {
 			previewTemplate: "row",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.alert.container({ color: i as bootstrapType.color[number] }, [
+					return new b.alert.container({ color: i as core.bootstrapType.color[number] }, [
 						`A simple ${i} alert with `,
 						new b.alert.link({ href: "#" }, "an example link"),
 						".",
@@ -156,7 +155,7 @@ export const doc_component_alert: IAttrContent = {
 					{ color: "warning", icon: b.icon.solid("triangle-exclamation") },
 					{ color: "danger", icon: b.icon.reg("circle-xmark") },
 				].map((i) => {
-					return new b.alert.container({ color: i.color as bootstrapType.color[number] }, [
+					return new b.alert.container({ color: i.color as core.bootstrapType.color[number] }, [
 						new b.label({ icon: i.icon }, `An example ${i.color} alert with an icon`),
 					]);
 				});

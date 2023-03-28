@@ -1,3 +1,29 @@
-import { container } from "./container.js";
+import {
+	container,
+	IAttrBSMainContainer,
+	IAttrContent,
+	IAttrFooter,
+	IAttrFooterItem,
+	IAttrItemInsideLink,
+	IAttrItemMenu,
+	IAttrItemOutsideLink,
+	IAttrItemSubMenu,
+	IAttrItemTheme,
+	IAttrItemVersion,
+	IAttrTocItem,
+} from "./container.js";
 
-export const main = { container };
+export {
+	container,
+	IAttrBSMainContainer,
+	IAttrContent,
+	IAttrFooter,
+	IAttrFooterItem,
+	IAttrItemInsideLink,
+	IAttrItemMenu,
+	IAttrItemOutsideLink,
+	IAttrItemSubMenu,
+	IAttrItemTheme,
+	IAttrItemVersion,
+	IAttrTocItem,
+};
