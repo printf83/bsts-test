@@ -12,7 +12,6 @@ export const doc_component_button: IAttrContent = {
 			"Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
@@ -48,7 +47,6 @@ export const doc_component_button: IAttrContent = {
 			"When using button classes on {{<a>}} elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a {{role='button'}} to appropriately convey their purpose to assistive technologies such as screen readers."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				let id = core.UUID();
 
@@ -71,7 +69,6 @@ export const doc_component_button: IAttrContent = {
 			"In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the {{.btn-outline-*}} ones to remove all background images and colors on any button."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
@@ -93,7 +90,6 @@ export const doc_component_button: IAttrContent = {
 		new e.title("Sizes"),
 		new e.text("Fancy larger or smaller buttons? Add {{.btn-lg}} or {{.btn-sm}} for additional sizes."),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return [
 					new b.button({ weight: "lg", color: "primary" }, "Large button"),
@@ -102,7 +98,6 @@ export const doc_component_button: IAttrContent = {
 			},
 		}),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return [
 					new b.button({ weight: "sm", color: "primary" }, "Small button"),
@@ -112,7 +107,6 @@ export const doc_component_button: IAttrContent = {
 		}),
 		new e.text("You can even roll your own custom sizing with CSS variables:"),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.button(
 					{
@@ -135,7 +129,6 @@ export const doc_component_button: IAttrContent = {
 			"Make buttons look inactive by adding the {{disabled}} boolean attribute to any {{<button>}} element. Disabled buttons have {{pointer-events: none}} applied to, preventing hover and active states from triggering."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return [
 					new b.button({ color: "primary", disabled: true }, "Primary button"),
@@ -155,7 +148,6 @@ export const doc_component_button: IAttrContent = {
 			],
 		}),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return [
 					new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"),
@@ -170,7 +162,6 @@ export const doc_component_button: IAttrContent = {
 			"To cover cases where you have to keep the {{href}} attribute on a disabled link, the {{.disabled}} class uses {{pointer-events: none}} to try to disable the link functionality of {{<a>}}s. Note that this CSS property is not yet standardized for HTML, but all modern browsers support it. In addition, even in browsers that do support {{pointer-events: none}}, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, in addition to {{aria-disabled='true'}}, also include a {{tabindex='-1'}} attribute on these links to prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return [
 					new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"),
@@ -243,7 +234,6 @@ export const doc_component_button: IAttrContent = {
 			"Add {{data-bs-toggle='button'}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{.active}} class and {{aria-pressed='true'}} to ensure that it is conveyed appropriately to assistive technologies."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return [
 					new b.button({ toggle: true }, "Toggle button"),
@@ -254,7 +244,6 @@ export const doc_component_button: IAttrContent = {
 		}),
 
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return [
 					new b.button({ href: "#", toggle: true }, "Toggle button"),
@@ -336,7 +325,6 @@ export const doc_component_button: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.button(
 					{

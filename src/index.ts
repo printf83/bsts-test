@@ -48,8 +48,11 @@ const onmenuchange = (value: string) => {
 	let contentbody = document.getElementById("bs-main") as HTMLElement;
 	core.replaceChild(contentbody, main.genMainContent(getData(value)));
 	window.scrollTo(0, 0);
-	PR.prettyPrint();
 	core.init(contentbody);
+
+	setTimeout(() => {
+		PR.prettyPrint();
+	}, 10);
 };
 
 const maincontainer = new main.container({

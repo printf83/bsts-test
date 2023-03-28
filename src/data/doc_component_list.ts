@@ -167,6 +167,7 @@ export const doc_component_list: IAttrContent = {
 		),
 		new e.code({
 			previewTemplate: "row",
+			// previewAttr: { padding: 4 },
 			output: () => {
 				let items = [
 					new b.list.item("An item"),

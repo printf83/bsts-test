@@ -61,23 +61,25 @@ export const doc_component_alert: IAttrContent = {
 			output: () => {
 				return [
 					new h.div({ id: "liveAlertPlaceholder" }),
-					new b.button(
-						{
-							color: "primary",
-							on: {
-								click: (_e) => {
-									let container = document.getElementById("liveAlertPlaceholder") as HTMLElement;
-									core.appendChild(
-										container,
-										new b.alert.container(
-											{ color: "success", dismissible: true },
-											"Nice, you triggered this alert message!"
-										)
-									);
+					new h.div(
+						new b.button(
+							{
+								color: "primary",
+								on: {
+									click: (_e) => {
+										let container = document.getElementById("liveAlertPlaceholder") as HTMLElement;
+										core.appendChild(
+											container,
+											new b.alert.container(
+												{ color: "success", dismissible: true },
+												"Nice, you triggered this alert message!"
+											)
+										);
+									},
 								},
 							},
-						},
-						"Show live alert"
+							"Show live alert"
+						)
 					),
 				];
 			},

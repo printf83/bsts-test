@@ -263,7 +263,6 @@ export const doc_component_card: IAttrContent = {
 		new e.text("Using the grid, wrap cards in columns and rows as needed."),
 
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new h.div({ row: true }, [
 					new h.div(

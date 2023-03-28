@@ -75,7 +75,6 @@ export const doc_component_modal: IAttrContent = {
 			"Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					// Button trigger modal
@@ -104,7 +103,6 @@ export const doc_component_modal: IAttrContent = {
 			"When backdrop is set to static, the modal will not close when clicking outside of it. Click the button below to try it."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					new b.button(
@@ -136,7 +134,6 @@ export const doc_component_modal: IAttrContent = {
 			"When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what we mean."
 		),
 		new e.code({
-			previewTemplate: "row",
 			showScript: false,
 			showHTML: false,
 			output: () => {
@@ -168,7 +165,6 @@ export const doc_component_modal: IAttrContent = {
 		),
 
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					new b.button(
@@ -205,7 +201,6 @@ export const doc_component_modal: IAttrContent = {
 		new e.subtitle("Vertically centered"),
 		new e.text("Add {{.modal-dialog-centered}} to {{.modal-dialog}} to vertically center the modal."),
 		new e.code({
-			previewTemplate: "col",
 			showScript: false,
 			showHTML: false,
 			output: () => {
@@ -223,11 +218,16 @@ export const doc_component_modal: IAttrContent = {
 				return [
 					// Button trigger modal
 					new b.button(
-						{ color: "primary", toggle: "modal", target: "#verticalCenterModal" },
+						{ color: "primary", toggle: "modal", target: "#verticalCenterModal", textWrap: false },
 						"Vertically centered modal"
 					),
 					new b.button(
-						{ color: "primary", toggle: "modal", target: "#verticalCenterScrollableModal" },
+						{
+							color: "primary",
+							toggle: "modal",
+							target: "#verticalCenterScrollableModal",
+							textWrap: false,
+						},
 						"Vertically centered scrollable modal"
 					),
 
@@ -263,7 +263,6 @@ export const doc_component_modal: IAttrContent = {
 			"{{https://getbootstrap.com/docs/5.3/components/tooltips/::Tooltips}} and {{https://getbootstrap.com/docs/5.3/components/popovers/::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					// Button trigger modal
@@ -325,7 +324,6 @@ export const doc_component_modal: IAttrContent = {
 			"Utilize the Bootstrap grid system within a modal by nesting {{.container-fluid}} within the {{.modal-body}}. Then, use the normal grid system classes as you would anywhere else."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return [
 					// Button trigger modal
@@ -368,10 +366,69 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
+		new e.subtitle("Vertically centered"),
+		new e.text("Add {{.modal-dialog-centered}} to {{.modal-dialog}} to vertically center the modal."),
+		new e.code({
+			showScript: false,
+			showHTML: false,
+			output: () => {
+				let modalContent = (id: string, elem: core.IElem) => {
+					return [
+						new b.modal.header({ close: true }, new b.modal.title({ id: `${id}Label` }, "Modal title")),
+						new b.modal.body(elem),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					];
+				};
+
+				return [
+					// Button trigger modal
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#verticalCenterModal", textWrap: false },
+						"Vertically centered modal"
+					),
+					new b.button(
+						{
+							color: "primary",
+							toggle: "modal",
+							target: "#verticalCenterScrollableModal",
+							textWrap: false,
+						},
+						"Vertically centered scrollable modal"
+					),
+
+					// Vertically centered modal
+					new b.modal.container(
+						{ id: "verticalCenterModal", labelledby: "verticalCenterModalLabel", centered: true },
+						modalContent("verticalCenterModal", new h.p("This is a vertically centered modal."))
+					),
+
+					// Vertically centered modal
+					new b.modal.container(
+						{
+							id: "verticalCenterScrollableModal",
+							labelledby: "verticalCenterScrollableModalLabel",
+							centered: true,
+						},
+						modalContent("verticalCenterScrollableModal", [
+							new h.p(
+								{ style: { height: "50vh" } },
+								"This is some placeholder content to show a vertically centered modal. We've added some extra copy here to show how vertically centering the modal works when combined with scrollable modals. We also use some repeated line breaks to quickly extend the height of the content, thereby triggering the scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+							),
+							new h.p("Just like that."),
+						])
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
 		new e.subtitle("Positioned"),
 		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.button({ position: "relative" }, [
 					"Inbox ",
@@ -393,7 +450,6 @@ export const doc_component_modal: IAttrContent = {
 			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.button({ position: "relative" }, [
 					"Profile ",
@@ -422,7 +478,6 @@ export const doc_component_modal: IAttrContent = {
 			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(
@@ -446,7 +501,6 @@ export const doc_component_modal: IAttrContent = {
 			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(

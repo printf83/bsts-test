@@ -10,7 +10,6 @@ export const doc_component_btngroup: IAttrContent = {
 		new e.title("Basic example"),
 		new e.text("Wrap a series of buttons with {{.btn}} in {{.btn-group}}."),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Basic example", role: "group" }, [
 					new b.button("Left"),
@@ -33,7 +32,6 @@ export const doc_component_btngroup: IAttrContent = {
 			"These classes can also be added to groups of links, as an alternative to the {{https://getbootstrap.com/docs/5.3/components/navs-tabs/::.nav navigation components}}."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup([
 					new b.button({ href: "#", active: true }, "Left"),
@@ -47,7 +45,6 @@ export const doc_component_btngroup: IAttrContent = {
 
 		new e.title("Mixed styles"),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Basic mixed styles example", role: "group" }, [
 					new b.button({ color: "danger" }, "Left"),
@@ -61,7 +58,6 @@ export const doc_component_btngroup: IAttrContent = {
 
 		new e.title("Outlined styles"),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Basic outlined example", role: "group" }, [
 					new b.button({ outline: true }, "Left"),
@@ -78,7 +74,6 @@ export const doc_component_btngroup: IAttrContent = {
 			"Combine button-like checkbox and radio {{https://getbootstrap.com/docs/5.3/forms/checks-radios/::toggle buttons}} into a seamless looking button group."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
 					new b.input({ type: "checkbox", toggle: true, id: "btncheck1" }),
@@ -93,7 +88,6 @@ export const doc_component_btngroup: IAttrContent = {
 			},
 		}),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
 					new b.input({ type: "radio", toggle: true, id: "btnradio1", name: "btnradio", checked: true }),
@@ -115,7 +109,6 @@ export const doc_component_btngroup: IAttrContent = {
 			"Combine sets of button groups into button toolbars for more complex components. Use utility classes as needed to space out groups, buttons, and more."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Toolbar with button groups", role: "toolbar" }, [
 					new b.btngroup(
@@ -237,7 +230,6 @@ export const doc_component_btngroup: IAttrContent = {
 			"Make a set of buttons appear vertically stacked rather than horizontally. {{b::Split button dropdowns are not supported here.}}"
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup(
 					{ label: "Vertical button group", vertical: true },
@@ -286,7 +278,6 @@ export const doc_component_btngroup: IAttrContent = {
 			},
 		}),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return new b.btngroup({ label: "Vertical radio toggle button group", vertical: true }, [
 					new b.input({ type: "radio", toggle: true, id: "vbtnradio1", name: "vbtnradio", checked: true }),

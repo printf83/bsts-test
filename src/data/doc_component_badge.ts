@@ -28,7 +28,6 @@ export const doc_component_badge: IAttrContent = {
 		new e.subtitle("Buttons"),
 		new e.text("Badges can be used as part of links or buttons to provide a counter."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.button(["Notification ", new b.badge({ bgColor: "secondary" }, "4")]);
 			},
@@ -45,7 +44,6 @@ export const doc_component_badge: IAttrContent = {
 		new e.subtitle("Positioned"),
 		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.button({ position: "relative" }, [
 					"Inbox ",
@@ -67,7 +65,6 @@ export const doc_component_badge: IAttrContent = {
 			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.button({ position: "relative" }, [
 					"Profile ",
@@ -96,7 +93,6 @@ export const doc_component_badge: IAttrContent = {
 			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(
@@ -120,7 +116,6 @@ export const doc_component_badge: IAttrContent = {
 			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
 		),
 		new e.code({
-			previewTemplate: "col",
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(

@@ -7,7 +7,7 @@ const dispatchCustomEvent = (root: Element | null, eventName: string, value: str
 			(value: string) => {
 				root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
 			},
-			0,
+			10,
 			value
 		);
 	}

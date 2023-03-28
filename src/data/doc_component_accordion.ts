@@ -20,7 +20,6 @@ export const doc_component_accordion: IAttrContent = {
 		new e.title("Example"),
 		new e.text("Click the accordions below to expand/collapse the accordion content."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				let mainID = core.UUID();
 
@@ -68,7 +67,6 @@ export const doc_component_accordion: IAttrContent = {
 		new e.subtitle("Using item"),
 		new e.text("Same as above but more easy."),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.accordion.container({
 					item: [
@@ -128,7 +126,6 @@ export const doc_component_accordion: IAttrContent = {
 			"Omit the {{data-bs-parent}} attribute on each {{.accordion-collapse}} to make accordion items stay open when another item is opened."
 		),
 		new e.code({
-			previewTemplate: "row",
 			output: () => {
 				return new b.accordion.container({
 					alwaysOpen: true,

@@ -1,7 +1,7 @@
 import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
 
-export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
+export type IAttrPreviewTemplate = "none" | "row" | "row-center" | "col" | "col-center" | "grid" | "flex" | "test";
 
 export interface IAttrBSExampleExt {
 	name?: string;
@@ -156,15 +156,44 @@ const itemOutput = (
 		switch (previewTemplate) {
 			case "none":
 				return new b.list.item(core.mergeAttr({ class: `example-output` }, previewAttr), str);
-			case "col":
+			case "row":
 				return new b.list.item(
 					core.mergeAttr(
-						{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
+						{ class: `example-output`, padding: 4, overflow: "auto", vstack: true, gap: 2 },
 						previewAttr
 					),
 					str
 				);
-
+			case "col-center":
+				return new b.list.item(
+					core.mergeAttr(
+						{
+							class: `example-output`,
+							padding: 4,
+							overflow: "auto",
+							hstack: true,
+							marginX: "auto",
+							gap: 2,
+						},
+						previewAttr
+					),
+					str
+				);
+			case "row-center":
+				return new b.list.item(
+					core.mergeAttr(
+						{
+							class: `example-output`,
+							padding: 4,
+							overflow: "auto",
+							vstack: true,
+							marginX: "auto",
+							gap: 2,
+						},
+						previewAttr
+					),
+					str
+				);
 			case "grid":
 				return new b.list.item(
 					core.mergeAttr(
@@ -173,9 +202,20 @@ const itemOutput = (
 					),
 					str
 				);
+			case "flex":
+				return new b.list.item(
+					core.mergeAttr(
+						{ class: `example-output`, padding: 4, overflow: "auto", display: "flex", gap: 2 },
+						previewAttr
+					),
+					str
+				);
 			default:
 				return new b.list.item(
-					core.mergeAttr({ class: `example-output`, padding: 4, overflow: "auto", gap: 2 }, previewAttr),
+					core.mergeAttr(
+						{ class: `example-output`, padding: 4, overflow: "auto", hstack: true, gap: 2 },
+						previewAttr
+					),
 					str
 				);
 		}

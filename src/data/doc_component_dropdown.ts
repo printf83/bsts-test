@@ -1,4 +1,5 @@
 import { core, h, b } from "@printf83/bsts";
+import { tr } from "@printf83/bsts/lib/types/html/tr.js";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
@@ -734,7 +735,7 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.text("Use {{data-bs-offset}} or {{data-bs-reference}} to change the location of the dropdown."),
 		new e.code({
 			previewTemplate: "none",
-			previewAttr: { padding: 4 },
+			previewAttr: { padding: 4, hstack: true, gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -766,7 +767,7 @@ export const doc_component_dropdown: IAttrContent = {
 		),
 		new e.code({
 			previewTemplate: "none",
-			previewAttr: { padding: 4, display: "flex", gap: 2 },
+			previewAttr: { padding: 4, hstack: true, gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
