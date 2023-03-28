@@ -463,74 +463,100 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Positioned"),
-		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
-		new e.code({
-			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Inbox ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "pill",
-						},
-						["99+", new b.visuallyhidden("unread messages")]
-					),
-				]);
-			},
-		}),
+		new e.subtitle("Toggle between modals"),
 		new e.text(
-			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
+			"Toggle between multiple modals with some clever placement of the {{data-bs-target}} and {{data-bs-toggle}} attributes. For example, you could toggle a password reset modal from within an already open sign in modal. {{b::Please note multiple modals cannot be open at the same time}}—this method simply toggles between two separate modals."
 		),
 		new e.code({
 			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Profile ",
-					new b.badge(
+				const mdl = (id: string, title: string, content: string, target: string, targetName: string) => {
+					return new b.modal.container(
 						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "circle",
-							border: true,
-							borderColor: "light",
-							padding: 2,
+							id: id,
+							labelledby: `${id}Label`,
 						},
-						new b.visuallyhidden("New alerts")
+						[
+							new b.modal.header({ close: true }, new b.modal.title({ id: `${id}Label` }, title)),
+							new b.modal.body(new h.p(content)),
+							new b.modal.footer([
+								new b.button(
+									{ toggle: "modal", color: "primary", target: target },
+									`Open ${targetName}`
+								),
+							]),
+						]
+					);
+				};
+
+				return [
+					new b.button(
+						{
+							color: "primary",
+							toggle: "modal",
+							target: "#exampleModalToggle",
+						},
+						"Open first modal"
 					),
-				]);
+					mdl(
+						"exampleModalToggle",
+						"Modal 1",
+						"Show a second modal and hide this one with the button below.",
+						"#exampleModalToggle2",
+						"second modal"
+					),
+					mdl(
+						"exampleModalToggle2",
+						"Modal 2",
+						"Hide this modal and show the first with the button below.",
+						"#exampleModalToggle",
+						"first modal"
+					),
+				];
 			},
 		}),
 
 		//-----------------------
 
-		new e.title("Background colors"),
+		new e.title("Change animation"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"The {{$modal-fade-transform}} variable determines the transform state of {{.modal-dialog}} before the modal fade-in animation, the {{$modal-show-transform}} variable determines the transform of {{.modal-dialog}} at the end of the modal fade-in animation."
 		),
+		new e.text("If you want for example a zoom-in animation, you can set {{$modal-fade-transform: scale(.8)}}."),
+
+		//-----------------------
+
+		new e.title("Remove animation"),
+		new e.text(
+			"For modals that simply appear rather than fade in to view, remove the {{.fade}} class from your modal markup."
+		),
+
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number] },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return [
+					// Button trigger modal
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#noAnimationModal" },
+						"Launch no animation modal"
+					),
+
+					// Modal
+					new b.modal.container(
+						{ id: "noAnimationModal", labelledby: "noAnimationModalLabel", animation: false },
+						[
+							new b.modal.header(
+								{ close: true },
+								new b.modal.title({ id: "noAnimationModalLabel" }, "Modal title")
+							),
+							new b.modal.body(new h.p("This modal has no animation.")),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Save changes"),
+							]),
+						]
+					),
+				];
 			},
 		}),
-		new e.alert({ color: "info", callout: true }, [
-			new h.h(5, "Conveying meaning to assistive technologies"),
-			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-			),
-		]),
-
 		//-----------------------
 
 		new e.title("Pill badges"),
