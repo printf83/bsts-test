@@ -7,7 +7,7 @@
     "module": "ESNext",
     "moduleResolution": "NodeNext",
     "outDir": "../lib",
-    "declarationDir": "../lib/types"
+    // "declarationDir": "../lib/types"
   }
 
 }
