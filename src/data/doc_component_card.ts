@@ -1,6 +1,5 @@
-import { b, h } from "@printf83/bsts";
-import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { example as e } from "../ctl/example/_index.js";
+import { b, core, h } from "@printf83/bsts";
+import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_card: IAttrContent = {
@@ -356,7 +355,7 @@ export const doc_component_card: IAttrContent = {
 						{
 							style: { width: "18rem" },
 							marginTop: i ? 3 : undefined,
-							textAlign: i as bootstrapType.textAlign[number],
+							textAlign: i as core.bootstrapType.textAlign[number],
 						},
 						[
 							new b.card.body([
@@ -553,7 +552,7 @@ export const doc_component_card: IAttrContent = {
 					(i, ix) => {
 						return new b.card.container(
 							{
-								textBgColor: i as bootstrapType.textBgColor[number],
+								textBgColor: i as core.bootstrapType.textBgColor[number],
 								marginTop: ix !== 0 ? 3 : undefined,
 								style: { width: "18rem" },
 							},
@@ -595,13 +594,13 @@ export const doc_component_card: IAttrContent = {
 					(i, ix) => {
 						return new b.card.container(
 							{
-								borderColor: i as bootstrapType.borderColor[number],
+								borderColor: i as core.bootstrapType.borderColor[number],
 								marginTop: ix !== 0 ? 3 : undefined,
 								style: { width: "18rem" },
 							},
 							[
 								new b.card.header("Header"),
-								new b.card.body({ textColor: i as bootstrapType.textColor[number] }, [
+								new b.card.body({ textColor: i as core.bootstrapType.textColor[number] }, [
 									new b.card.title(`${i.charAt(0).toUpperCase() + i.slice(1)} card title`),
 									new b.card.text(
 										"Some quick example text to build on the card title and make up the bulk of the card's content."

@@ -1,7 +1,6 @@
-import { h, b } from "@printf83/bsts";
-import { IAttrBSDropdownContainerDrop } from "@printf83/bsts/lib/types/bootstrap/dropdown/container.js";
-import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { example as e } from "../ctl/example/_index.js";
+import { core, h, b } from "@printf83/bsts";
+// import { IAttrBSDropdownContainerDrop } from "@printf83/bsts/lib/types/bootstrap/dropdown/container.js";
+import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_dropdown: IAttrContent = {
@@ -83,7 +82,7 @@ export const doc_component_dropdown: IAttrContent = {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container({ marginEnd: 2, marginBottom: 2 }, [
 						new b.dropdown.toggle(
-							{ color: i as bootstrapType.color[number] },
+							{ color: i as core.bootstrapType.color[number] },
 							i.charAt(0).toUpperCase() + i.slice(1)
 						),
 						new b.dropdown.menu([
@@ -114,10 +113,10 @@ export const doc_component_dropdown: IAttrContent = {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container({ marginEnd: 2, marginBottom: 2 }, [
 						new b.button(
-							{ color: i as bootstrapType.color[number] },
+							{ color: i as core.bootstrapType.color[number] },
 							i.charAt(0).toUpperCase() + i.slice(1)
 						),
-						new b.dropdown.toggle({ color: i as bootstrapType.color[number], split: true }),
+						new b.dropdown.toggle({ color: i as core.bootstrapType.color[number], split: true }),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -558,14 +557,14 @@ export const doc_component_dropdown: IAttrContent = {
 					{ label: "Dropup", drop: "up" },
 				].map((i) => {
 					return new b.dropdown.container(
-						{ marginEnd: 2, marginBottom: 2, drop: i.drop as IAttrBSDropdownContainerDrop },
+						{ marginEnd: 2, marginBottom: 2, drop: i.drop as b.dropdown.IAttrBSDropdownContainerDrop },
 						[
 							new b.dropdown.toggle({ color: "secondary" }, i.label),
 							new b.dropdown.menu(
 								{
 									positionView: i.positionView as
-										| bootstrapType.positionView[number]
-										| bootstrapType.positionView[number][],
+										| core.bootstrapType.positionView[number]
+										| core.bootstrapType.positionView[number][],
 								},
 								[
 									new b.dropdown.item("Action"),

@@ -1,6 +1,6 @@
-import { b, h } from "@printf83/bsts";
-import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { example as e } from "../ctl/example/_index.js";
+import { core, b, h } from "@printf83/bsts";
+// import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
+import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_list: IAttrContent = {
@@ -205,7 +205,7 @@ export const doc_component_list: IAttrContent = {
 					[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 						(i) => {
 							return new b.list.item(
-								{ color: i as bootstrapType.color[number] },
+								{ color: i as core.bootstrapType.color[number] },
 								`A simple ${i ? i : "default"} list group item`
 							);
 						}
@@ -227,7 +227,7 @@ export const doc_component_list: IAttrContent = {
 					[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 						(i) => {
 							return new b.listDiv.item(
-								{ href: "#", action: true, color: i as bootstrapType.color[number] },
+								{ href: "#", action: true, color: i as core.bootstrapType.color[number] },
 								`A simple ${i ? i : "default"} list group item`
 							);
 						}

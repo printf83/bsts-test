@@ -1,6 +1,5 @@
 import { b, h, core } from "@printf83/bsts";
-import { bootstrapType } from "@printf83/bsts/lib/types/core/bootstrap.js";
-import { example as e } from "../ctl/example/_index.js";
+import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc_component_button: IAttrContent = {
@@ -18,7 +17,7 @@ export const doc_component_button: IAttrContent = {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
 						return new b.button(
-							{ color: i as bootstrapType.color[number] },
+							{ color: i as b.IAttrBSButton["color"] },
 							i.charAt(0).toUpperCase() + i.slice(1)
 						);
 					}
@@ -79,7 +78,7 @@ export const doc_component_button: IAttrContent = {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
 						return new b.button(
-							{ color: i as bootstrapType.color[number], outline: true },
+							{ color: i as b.IAttrBSButton["color"], outline: true },
 							i.charAt(0).toUpperCase() + i.slice(1)
 						);
 					}
