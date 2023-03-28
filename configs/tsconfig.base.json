@@ -6,11 +6,10 @@
     "skipLibCheck": true,
     "checkJs": true,
     "allowJs": true,
-    // "declaration": true,
-    // "declarationMap": true,
+    "declaration": true,
+    "declarationMap": true,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["../node_modules/@printf83/bsts/lib/types","../node_modules/@types/bootstrap","../node_modules/@types/js-beautify"],
-    "types": ["@printf83/bsts","js-beautify"],
+    "sourceMap": true
   },
 
   "files": ["../src/index.ts"]

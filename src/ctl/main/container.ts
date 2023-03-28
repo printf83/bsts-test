@@ -1,5 +1,5 @@
 import { core, b, h, t } from "@printf83/bsts";
-import * as e from "../example/_index";
+import * as e from "../example/_index.js";
 
 const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;

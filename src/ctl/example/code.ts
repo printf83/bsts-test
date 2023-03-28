@@ -1,5 +1,5 @@
 import { b, h, t, core } from "@printf83/bsts";
-import { preview } from "./preview";
+import { preview } from "./preview.js";
 
 export type IAttrPreviewTemplate = "none" | "row" | "col" | "grid" | "test";
 
@@ -17,6 +17,7 @@ export interface IAttrBSExampleContainer extends core.IAttr {
 	manager?: Function;
 	strOutput?: string;
 	strManager?: string;
+	scriptConverter?: Function;
 
 	showOutput?: boolean;
 	showScript?: boolean;
@@ -188,6 +189,9 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	attr.showScript = attr.showScript === undefined ? true : attr.showScript;
 	attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
 	attr.showManager = attr.showManager === undefined ? true : attr.showManager;
+	attr.scriptConverter ??= (str: string) => {
+		return str.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_0__\./gm, "");
+	};
 
 	let e: t[] = [];
 
@@ -217,7 +221,18 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 		f.forEach((i) => {
 			if (i && i.name && (i.output || i.strOutput)) {
-				e.push(...itemCode(e.length > 0, true, i.name, i.strOutput ? i.strOutput : i.output!.toString()));
+				e.push(
+					...itemCode(
+						e.length > 0,
+						true,
+						i.name,
+						i.strOutput
+							? i.strOutput
+							: attr.scriptConverter
+							? attr.scriptConverter(i.output!.toString())
+							: i.output!.toString()
+					)
+				);
 			}
 		});
 	}
@@ -230,7 +245,11 @@ const convert = (attr: IAttrBSExampleContainer) => {
 				"Manager",
 				new preview(
 					{ type: attr.strManager ? "ts" : "js" },
-					attr.strManager ? attr.strManager : attr.manager!.toString()
+					attr.strManager
+						? attr.strManager
+						: attr.scriptConverter
+						? attr.scriptConverter(attr.manager!.toString())
+						: attr.manager!.toString()
 				)
 			)
 		);
@@ -244,7 +263,11 @@ const convert = (attr: IAttrBSExampleContainer) => {
 				"Source",
 				new preview(
 					{ type: attr.strOutput ? "ts" : "js" },
-					attr.strOutput ? attr.strOutput : attr.output!.toString()
+					attr.strOutput
+						? attr.strOutput
+						: attr.scriptConverter
+						? attr.scriptConverter(attr.output!.toString())
+						: attr.output!.toString()
 				)
 			)
 		);
@@ -263,6 +286,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	delete attr.manager;
 	delete attr.strManager;
 	delete attr.output;
+	delete attr.scriptConverter;
 	delete attr.strOutput;
 
 	delete attr.showHTML;

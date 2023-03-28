@@ -2,12 +2,19 @@ const path = require("path");
 
 module.exports = {
 	mode: "development",
-	entry: "./src/index.ts",
+	entry: "./lib/index.js",
 	module: {
 		rules: [
 			{
 				test: /\.ts?$/,
-				use: "ts-loader",
+				use: [
+					{
+						loader: "ts-loader",
+						options: {
+							transpileOnly: true,
+						},
+					},
+				],
 				exclude: /node_modules/,
 			},
 		],
@@ -16,12 +23,7 @@ module.exports = {
 		extensions: [".ts", ".js"],
 	},
 	output: {
-		filename: "bundle.js",
+		filename: "index.bundle.js",
 		path: path.resolve(__dirname, "dist"),
 	},
-	// devServer: {
-	// 	static: path.join(__dirname, "dist"),
-	// 	compress: true,
-	// 	port: 4000,
-	// },
 };

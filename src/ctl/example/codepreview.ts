@@ -1,5 +1,5 @@
 import { core, b, h } from "@printf83/bsts";
-import { preview } from "./preview";
+import { preview } from "./preview.js";
 
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();

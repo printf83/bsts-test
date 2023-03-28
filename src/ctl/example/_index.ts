@@ -1,11 +1,11 @@
-import { code, IAttrBSExampleContainer, IAttrBSExampleExt, IAttrPreviewTemplate } from "./code";
-import { codepreview, IAttrBSExampleCodepreview } from "./codepreview";
-import { description } from "./description";
-import { item } from "./item";
-import { pagetitle } from "./pagetitle";
-import { subtitle } from "./subtitle";
-import { text } from "./text";
-import { title } from "./title";
+import { code, IAttrBSExampleContainer, IAttrBSExampleExt, IAttrPreviewTemplate } from "./code.js";
+import { codepreview, IAttrBSExampleCodepreview } from "./codepreview.js";
+import { description } from "./description.js";
+import { item } from "./item.js";
+import { pagetitle } from "./pagetitle.js";
+import { subtitle } from "./subtitle.js";
+import { text } from "./text.js";
+import { title } from "./title.js";
 
 export {
 	code,

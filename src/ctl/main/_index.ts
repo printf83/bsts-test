@@ -12,7 +12,7 @@ import {
 	IAttrItemTheme,
 	IAttrItemVersion,
 	IAttrTocItem,
-} from "./container";
+} from "./container.js";
 
 export {
 	container,
