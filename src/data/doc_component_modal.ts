@@ -79,9 +79,8 @@ export const doc_component_modal: IAttrContent = {
 			previewAttr: { padding: 4 },
 			output: () => {
 				return [
-					new b.button({ color: "primary", toggle: "modal", target: "#exmodal" }, "Launch demo modal"),
-					new h.div(""),
-					new b.modal.container({ id: "exmodal", labelledby: "exampleModalLabel" }, [
+					new b.button({ color: "primary", toggle: "modal", target: "#exampleModal" }, "Launch demo modal"),
+					new b.modal.container({ id: "exampleModal", labelledby: "exampleModalLabel" }, [
 						new b.modal.header(
 							{ close: true },
 							new b.modal.title({ id: "exampleModalLabel" }, "Modal title")
