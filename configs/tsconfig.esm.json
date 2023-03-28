@@ -5,7 +5,7 @@
     "lib": ["ES2022", "DOM"],
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "outDir": "../lib",
     "declarationDir": "../lib/types"
   }
