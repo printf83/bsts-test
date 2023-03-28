@@ -366,62 +366,101 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Vertically centered"),
-		new e.text("Add {{.modal-dialog-centered}} to {{.modal-dialog}} to vertically center the modal."),
+		new e.subtitle("Varying modal content"),
+		new e.text(
+			"Have a bunch of buttons that all trigger the same modal with slightly different contents? Use {{event.relatedTarget}} and {{https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes::HTML data-bs-* attributes}} to vary the contents of the modal depending on which button was clicked."
+		),
+		new e.text(
+			"Below is a live demo followed by example HTML and JavaScript. For more information, {{https://getbootstrap.com/docs/5.3/components/modal/#events::read the modal events docs}} for details on {{relatedTarget}}."
+		),
+
 		new e.code({
-			showScript: false,
-			showHTML: false,
+			previewTemplate: "flex",
 			output: () => {
-				let modalContent = (id: string, elem: core.IElem) => {
-					return [
-						new b.modal.header({ close: true }, new b.modal.title({ id: `${id}Label` }, "Modal title")),
-						new b.modal.body(elem),
-						new b.modal.footer([
-							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
-							new b.button({ color: "primary" }, "Save changes"),
-						]),
-					];
-				};
+				interface EventWithRelatedTarget extends Event {
+					relatedTarget: HTMLElement;
+				}
 
 				return [
 					// Button trigger modal
-					new b.button(
-						{ color: "primary", toggle: "modal", target: "#verticalCenterModal", textWrap: false },
-						"Vertically centered modal"
-					),
-					new b.button(
-						{
-							color: "primary",
-							toggle: "modal",
-							target: "#verticalCenterScrollableModal",
-							textWrap: false,
-						},
-						"Vertically centered scrollable modal"
-					),
+					...["@mdo", "@fat", "@printf83"].map((i) => {
+						return new b.button(
+							{
+								color: "primary",
+								toggle: "modal",
+								target: "#varyingContentModal",
+								data: { "bs-whatever": i },
+							},
+							`Open modal for ${i}`
+						);
+					}),
 
-					// Vertically centered modal
-					new b.modal.container(
-						{ id: "verticalCenterModal", labelledby: "verticalCenterModalLabel", centered: true },
-						modalContent("verticalCenterModal", new h.p("This is a vertically centered modal."))
-					),
-
-					// Vertically centered modal
+					// Modal
 					new b.modal.container(
 						{
-							id: "verticalCenterScrollableModal",
-							labelledby: "verticalCenterScrollableModalLabel",
-							centered: true,
+							id: "varyingContentModal",
+							labelledby: "varyingContentModalLabel",
+							on: {
+								"show.bs.modal": (e) => {
+									//Get data from relatedTarget
+									const btn = (e as EventWithRelatedTarget).relatedTarget;
+									const recipient = btn.getAttribute("data-bs-whatever");
+									const mdl = document.getElementById("varyingContentModal");
+									const mdlTitle = mdl?.querySelector(".modal-title") as HTMLElement;
+									const mdlName = mdl?.querySelector("#recipient-name") as HTMLInputElement;
+
+									mdlTitle.textContent = `New message to ${recipient}`;
+									mdlName.value = recipient!;
+								},
+							},
 						},
-						modalContent("verticalCenterScrollableModal", [
-							new h.p(
-								{ style: { height: "50vh" } },
-								"This is some placeholder content to show a vertically centered modal. We've added some extra copy here to show how vertically centering the modal works when combined with scrollable modals. We also use some repeated line breaks to quickly extend the height of the content, thereby triggering the scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+						[
+							new b.modal.header(
+								{ close: true },
+								new b.modal.title({ id: "varyingContentModalLabel" }, "Modal title")
 							),
-							new h.p("Just like that."),
-						])
+							new b.modal.body(
+								new h.form([
+									new h.div({ marginBottom: 3 }, [
+										new b.label({ for: "recipient-name" }, "Recipient:"),
+										new b.input({ id: "recipient-name", type: "text" }),
+									]),
+									new h.div({ marginBottom: 3 }, [
+										new b.label({ for: "message-text" }, "Message:"),
+										new b.textarea({ id: "message-text" }),
+									]),
+								])
+							),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Save changes"),
+							]),
+						]
 					),
 				];
 			},
+		}),
+
+		new e.codepreview({
+			type: "js",
+			code: `
+			const exampleModal = document.getElementById('exampleModal')
+			exampleModal.addEventListener('show.bs.modal', event => {
+			// Button that triggered the modal
+			const button = event.relatedTarget
+			// Extract info from data-bs-* attributes
+			const recipient = button.getAttribute('data-bs-whatever')
+			// If necessary, you could initiate an Ajax request here
+			// and then do the updating in a callback.
+			//
+			// Update the modal's content.
+			const modalTitle = exampleModal.querySelector('.modal-title')
+			const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+			modalTitle.textContent = "New message to " + recipient
+			modalBodyInput.value = recipient
+			})
+			`,
 		}),
 
 		//-----------------------
