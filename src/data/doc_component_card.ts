@@ -490,11 +490,9 @@ export const doc_component_card: IAttrContent = {
 			},
 		}),
 
-		new e.item(
-			new b.alert.container(
-				{ color: "info", callout: true },
-				"Note that content should not be larger than the height of the image. If content is larger than the image the content will be displayed outside the image."
-			)
+		new e.alert(
+			{ color: "info", callout: true },
+			"Note that content should not be larger than the height of the image. If content is larger than the image the content will be displayed outside the image."
 		),
 
 		//-----------------------
@@ -571,14 +569,12 @@ export const doc_component_card: IAttrContent = {
 			},
 		}),
 
-		new e.item(
-			new b.alert.container({ color: "info", callout: true }, [
-				new h.h(5, "Conveying meaning to assistive technologies"),
-				new h.p(
-					"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-				),
-			])
-		),
+		new e.alert({ color: "info", callout: true }, [
+			new h.h(5, "Conveying meaning to assistive technologies"),
+			new h.p(
+				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+			),
+		]),
 
 		//-----------------------
 

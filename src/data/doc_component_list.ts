@@ -190,11 +190,9 @@ export const doc_component_list: IAttrContent = {
 
 		new e.title("Variants"),
 
-		new e.item(
-			new b.alert.container(
-				{ color: "info", callout: true },
-				"{{b::Heads up!}} As of v5.3.0, the {{list-group-item-variant()}} Sass mixin is deprecated. List group item variants now have their CSS variables overridden in {{https://getbootstrap.com/docs/5.3/components/list-group/#sass-loop::the Sass loop}}."
-			)
+		new e.alert(
+			{ color: "info", callout: true },
+			"{{b::Heads up!}} As of v5.3.0, the {{list-group-item-variant()}} Sass mixin is deprecated. List group item variants now have their CSS variables overridden in {{https://getbootstrap.com/docs/5.3/components/list-group/#sass-loop::the Sass loop}}."
 		),
 		new e.text("Use contextual classes to style list items with a stateful background and color."),
 		new e.code({
@@ -235,11 +233,9 @@ export const doc_component_list: IAttrContent = {
 			},
 		}),
 
-		new e.item(
-			new b.alert.container(
-				{ color: "info", callout: true },
-				"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-			)
+		new e.alert(
+			{ color: "info", callout: true },
+			"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
 		),
 
 		//-----------------------
@@ -619,11 +615,9 @@ export const doc_component_list: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Methods"),
-		new e.item(
-			new b.alert.container(
-				{ color: "danger", callout: true },
-				"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
-			)
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
 		),
 		new e.text("Activates your content as a tab element."),
 		new e.text("You can create a tab instance with the constructor, for example:"),
@@ -635,75 +629,63 @@ export const doc_component_list: IAttrContent = {
 			`,
 		}),
 
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Method", "Description"],
-					["{{dispose}}", "Destroys an element’s tab."],
-					[
-						"{{getInstance}}",
-						"Static method which allows you to get the tab instance associated with a DOM element, you can use it like this: {{bootstrap.Tab.getInstance(element)}}.",
-					],
-					[
-						"{{getOrCreateInstance}}",
-						"Static method which returns a tab instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Tab.getOrCreateInstance(element)}}.",
-					],
-					[
-						"{{show}}",
-						"Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. {{b::Returns to the caller before the tab pane has actually been shown}} (i.e. before the {{shown.bs.tab}} event occurs).",
-					],
+		new e.table({
+			item: [
+				["Method", "Description"],
+				["{{dispose}}", "Destroys an element’s tab."],
+				[
+					"{{getInstance}}",
+					"Static method which allows you to get the tab instance associated with a DOM element, you can use it like this: {{bootstrap.Tab.getInstance(element)}}.",
 				],
-			})
-		),
+				[
+					"{{getOrCreateInstance}}",
+					"Static method which returns a tab instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Tab.getOrCreateInstance(element)}}.",
+				],
+				[
+					"{{show}}",
+					"Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. {{b::Returns to the caller before the tab pane has actually been shown}} (i.e. before the {{shown.bs.tab}} event occurs).",
+				],
+			],
+		}),
 
 		//-----------------------
 
 		new e.subtitle("Events"),
 		new e.text("When showing a new tab, the events fire in the following order:"),
-		new e.item(
-			new h.ol([
-				new h.li("{{hide.bs.tab}} (on the current active tab)"),
-				new h.li("{{show.bs.tab}} (on the to-be-shown tab)"),
-				new h.li(
-					"{{hidden.bs.tab}} (on the previous active tab, the same one as for the {{hide.bs.tab}} event)"
-				),
-				new h.li(
-					"{{shown.bs.tab}} (on the newly-active just-shown tab, the same one as for the {{show.bs.tab}} event)"
-				),
-			])
-		),
+		new e.ol({
+			item: [
+				"{{hide.bs.tab}} (on the current active tab)",
+				"{{show.bs.tab}} (on the to-be-shown tab)",
+				"{{hidden.bs.tab}} (on the previous active tab, the same one as for the {{hide.bs.tab}} event)",
+				"{{shown.bs.tab}} (on the newly-active just-shown tab, the same one as for the {{show.bs.tab}} event)",
+			],
+		}),
 
 		new e.text(
 			"If no tab was already active, then the {{hide.bs.tab}} and {{hidden.bs.tab}} events will not be fired."
 		),
 
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Event type", "Description"],
-					[
-						"{{hide.bs.tab}}",
-						"This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use {{event.target}} and {{event.relatedTarget}} to target the current active tab and the new soon-to-be-active tab, respectively.",
-					],
-					[
-						"{{hidden.bs.tab}}",
-						"This event fires after a new tab is shown (and thus the previous active tab is hidden). Use {{event.target}} and {{event.relatedTarget}} to target the previous active tab and the new active tab, respectively.",
-					],
-					[
-						"{{show.bs.tab}}",
-						"This event fires on tab show, but before the new tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
-					],
-					[
-						"{{shown.bs.tab}}",
-						"This event fires on tab show after a tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
-					],
+		new e.table({
+			item: [
+				["Event type", "Description"],
+				[
+					"{{hide.bs.tab}}",
+					"This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use {{event.target}} and {{event.relatedTarget}} to target the current active tab and the new soon-to-be-active tab, respectively.",
 				],
-			})
-		),
+				[
+					"{{hidden.bs.tab}}",
+					"This event fires after a new tab is shown (and thus the previous active tab is hidden). Use {{event.target}} and {{event.relatedTarget}} to target the previous active tab and the new active tab, respectively.",
+				],
+				[
+					"{{show.bs.tab}}",
+					"This event fires on tab show, but before the new tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
+				],
+				[
+					"{{shown.bs.tab}}",
+					"This event fires on tab show after a tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
+				],
+			],
+		}),
 
 		new e.codepreview({
 			type: "js",

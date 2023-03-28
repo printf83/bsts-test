@@ -1,6 +1,6 @@
 import { h, b } from "@printf83/bsts";
-import * as e from "../ctl/example/_index.js";
-import { IAttrContent } from "../ctl/main/container.js";
+import * as e from "../ctl/example/_index";
+import { IAttrContent } from "../ctl/main/container";
 
 export const doc_gettingstarted_introduction: IAttrContent = {
 	title: "Get started with Bootstrap",
@@ -69,17 +69,13 @@ export const doc_gettingstarted_introduction: IAttrContent = {
 		),
 		new e.title("CDN links"),
 		new e.text("As reference, here are our primary CDN links."),
-		new e.item([
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Description", "URLs"],
-					["CSS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css}}"],
-					["JS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js}}"],
-				],
-			}),
-		]),
+		new e.table({
+			item: [
+				["Description", "URLs"],
+				["CSS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css}}"],
+				["JS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js}}"],
+			],
+		}),
 		new e.text(
 			"You can also use the CDN to fetch any of our {{?q=doc_gettingstarted_content::additional builds listed in the Contents page}}."
 		),

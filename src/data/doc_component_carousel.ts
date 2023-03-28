@@ -7,33 +7,17 @@ export const doc_component_carousel: IAttrContent = {
 	description: "A slideshow component for cycling through elements—images or slides of text—like a carousel.",
 	item: [
 		new e.title("How it works"),
-		new e.item(
-			new h.ul([
-				new h.li(
-					new h.p(
-						"The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators."
-					)
-				),
-				new h.li([
-					new h.p(
-						"For performance reasons, {{b::carousels must be manually initialized}} using the {{https://getbootstrap.com/docs/5.3/components/carousel/#methods::carousel constructor method}}. Without initialization, some of the event listeners (specifically, the events needed touch/swipe support) will not be registered until a user has explicitly activated a control or indicator."
-					),
-					new h.p(
-						"The only exception are {{https://getbootstrap.com/docs/5.3/components/carousel/#autoplaying-carousels::autoplaying carousels}} with the {{data-bs-ride='carousel'}} attribute as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, {{b::don’t explicitly initialize the same carousels with the constructor method}}."
-					),
-				]),
-				new h.li(
-					new h.p(
-						"Nested carousels are not supported. You should also be aware that carousels in general can often cause usability and accessibility challenges."
-					)
-				),
-			])
-		),
-		new e.item(
-			new b.alert.container(
-				{ color: "info", callout: true },
-				"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
-			)
+		new e.ul({
+			item: [
+				"The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.",
+				"For performance reasons, {{b::carousels must be manually initialized}} using the {{https://getbootstrap.com/docs/5.3/components/carousel/#methods::carousel constructor method}}. Without initialization, some of the event listeners (specifically, the events needed touch/swipe support) will not be registered until a user has explicitly activated a control or indicator.",
+				"The only exception are {{https://getbootstrap.com/docs/5.3/components/carousel/#autoplaying-carousels::autoplaying carousels}} with the {{data-bs-ride='carousel'}} attribute as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, {{b::don’t explicitly initialize the same carousels with the constructor method}}.",
+				"Nested carousels are not supported. You should also be aware that carousels in general can often cause usability and accessibility challenges.",
+			],
+		}),
+		new e.alert(
+			{ color: "info", callout: true },
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
 		),
 
 		//-----------------------
@@ -174,16 +158,14 @@ export const doc_component_carousel: IAttrContent = {
 		new e.text(
 			"You can make your carousels autoplay on page load by setting the {{ride}} option to {{carousel}}. Autoplaying carousels automatically pause while hovered with the mouse. This behavior can be controlled with the {{pause}} option. In browsers that support the {{https://www.w3.org/TR/page-visibility/::Page Visibility API}}, the carousel will stop cycling when the webpage is not visible to the user (such as when the browser tab is inactive, or when the browser window is minimized)."
 		),
-		new e.item(
-			new b.alert.container({ color: "info", callout: true }, [
-				new h.p(
-					"For accessibility reasons, we recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, we recommend providing an additional button or control to explicitly pause/stop the carousel."
-				),
-				new h.p(
-					"See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."
-				),
-			])
-		),
+		new e.alert({ color: "info", callout: true }, [
+			new h.p(
+				"For accessibility reasons, we recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, we recommend providing an additional button or control to explicitly pause/stop the carousel."
+			),
+			new h.p(
+				"See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."
+			),
+		]),
 		new e.code({
 			previewTemplate: "row",
 			output: () => {
@@ -287,11 +269,9 @@ export const doc_component_carousel: IAttrContent = {
 		new e.text(
 			"Add {{.carousel-dark}} to the {{.carousel}} for darker controls, indicators, and captions. Controls are inverted compared to their default white fill with the {{filter}} CSS property. Captions and controls have additional Sass variables that customize the {{color}} and {{background-color}}."
 		),
-		new e.item(
-			new b.alert.container(
-				{ color: "warning", callout: true },
-				"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.carousel-dark}}, set {{data-bs-theme='dark'}} on the root element, a parent wrapper, or the component itself."
-			)
+		new e.alert(
+			{ color: "warning", callout: true },
+			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.carousel-dark}}, set {{data-bs-theme='dark'}} on the root element, a parent wrapper, or the component itself."
 		),
 
 		new e.code({
@@ -386,55 +366,49 @@ export const doc_component_carousel: IAttrContent = {
 		new e.text(
 			"As of Bootstrap 5.2.0, all components support an experimental reserved data attribute {{data-bs-config}} that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{'delay':0, 'title':123}'}} and {{data-bs-title='456'}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{'show':0,'hide':150}'}}."
 		),
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Name", "Type", "Default", "Description"],
-					[
-						"{{interval}}",
-						"number",
-						"{{5000}}",
-						"The amount of time to delay between automatically cycling an item.",
-					],
-					["{{keyboard}}", "boolean", "{{true}}", "Whether the carousel should react to keyboard events."],
-					[
-						"{{pause}}",
-						"string, boolean",
-						"{{'hover'}}",
-						"If set to {{'hover'}}, pauses the cycling of the carousel on {{mouseenter}} and resumes the cycling of the carousel on {{mouseleave}}. If set to {{false}}, hovering over the carousel won’t pause it. On touch-enabled devices, when set to {{'hover'}}, cycling will pause on {{touchend}} (once the user finished interacting with the carousel) for two intervals, before automatically resuming. This is in addition to the mouse behavior.",
-					],
-					[
-						"{{ride}}",
-						"string, boolean",
-						"{{false}}",
-						"If set to {{true}}, autoplays the carousel after the user manually cycles the first item. If set to {{'carousel'}}, autoplays the carousel on load.",
-					],
-					[
-						"{{touch}}",
-						"boolean",
-						"{{true}}",
-						"Whether the carousel should support left/right swipe interactions on touchscreen devices.",
-					],
-					[
-						"{{wrap}}",
-						"boolean",
-						"{{true}}",
-						"Whether the carousel should cycle continuously or have hard stops.",
-					],
+		new e.table({
+			item: [
+				["Name", "Type", "Default", "Description"],
+				[
+					"{{interval}}",
+					"number",
+					"{{5000}}",
+					"The amount of time to delay between automatically cycling an item.",
 				],
-			})
-		),
+				["{{keyboard}}", "boolean", "{{true}}", "Whether the carousel should react to keyboard events."],
+				[
+					"{{pause}}",
+					"string, boolean",
+					"{{'hover'}}",
+					"If set to {{'hover'}}, pauses the cycling of the carousel on {{mouseenter}} and resumes the cycling of the carousel on {{mouseleave}}. If set to {{false}}, hovering over the carousel won’t pause it. On touch-enabled devices, when set to {{'hover'}}, cycling will pause on {{touchend}} (once the user finished interacting with the carousel) for two intervals, before automatically resuming. This is in addition to the mouse behavior.",
+				],
+				[
+					"{{ride}}",
+					"string, boolean",
+					"{{false}}",
+					"If set to {{true}}, autoplays the carousel after the user manually cycles the first item. If set to {{'carousel'}}, autoplays the carousel on load.",
+				],
+				[
+					"{{touch}}",
+					"boolean",
+					"{{true}}",
+					"Whether the carousel should support left/right swipe interactions on touchscreen devices.",
+				],
+				[
+					"{{wrap}}",
+					"boolean",
+					"{{true}}",
+					"Whether the carousel should cycle continuously or have hard stops.",
+				],
+			],
+		}),
 
 		//-----------------------
 
 		new e.subtitle("Methods"),
-		new e.item(
-			new b.alert.container(
-				{ color: "danger", callout: true },
-				"{{b::All API methods are asynchronous and start a transition.}} They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
-			)
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::All API methods are asynchronous and start a transition.}} They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
 		),
 		new e.text(
 			"You can create a carousel instance with the carousel constructor, and pass on any additional options. For example, to manually initialize an autoplaying carousel (assuming you’re not using the {{data-bs-ride='carousel'}} attribute in the markup itself) with a specific interval and with touch support disabled, you can use:"
@@ -451,42 +425,38 @@ export const doc_component_carousel: IAttrContent = {
 				`,
 		}),
 
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Method", "Description"],
-					["{{cycle}}", "Starts cycling through the carousel items from left to right."],
-					["{{dispose}}", "Destroys an element’s carousel. (Removes stored data on the DOM element)"],
-					[
-						"{{getInstance}}",
-						"Static method which allows you to get the carousel instance associated to a DOM element. You can use it like this: {{bootstrap.Carousel.getInstance(element)}}.",
-					],
-					[
-						"{{getOrCreateInstance}}",
-						"Static method which returns a carousel instance associated to a DOM element, or creates a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Carousel.getOrCreateInstance(element)}}.",
-					],
-					[
-						"{{next}}",
-						"Cycles to the next item. {{b::Returns to the caller before the next item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
-					],
-					[
-						"{{nextWhenVisible}}",
-						"Don’t cycle carousel to next when the page, the carousel, or the carousel’s parent aren’t visible. {{b::Returns to the caller before the target item has been shown}}.",
-					],
-					["{{pause}}", "Stops the carousel from cycling through items."],
-					[
-						"{{prev}}",
-						"Cycles to the previous item. {{b::Returns to the caller before the previous item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
-					],
-					[
-						"{{to}}",
-						"Cycles the carousel to a particular frame (0 based, similar to an array). {{b::Returns to the caller before the target item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
-					],
+		new e.table({
+			item: [
+				["Method", "Description"],
+				["{{cycle}}", "Starts cycling through the carousel items from left to right."],
+				["{{dispose}}", "Destroys an element’s carousel. (Removes stored data on the DOM element)"],
+				[
+					"{{getInstance}}",
+					"Static method which allows you to get the carousel instance associated to a DOM element. You can use it like this: {{bootstrap.Carousel.getInstance(element)}}.",
 				],
-			})
-		),
+				[
+					"{{getOrCreateInstance}}",
+					"Static method which returns a carousel instance associated to a DOM element, or creates a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Carousel.getOrCreateInstance(element)}}.",
+				],
+				[
+					"{{next}}",
+					"Cycles to the next item. {{b::Returns to the caller before the next item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
+				],
+				[
+					"{{nextWhenVisible}}",
+					"Don’t cycle carousel to next when the page, the carousel, or the carousel’s parent aren’t visible. {{b::Returns to the caller before the target item has been shown}}.",
+				],
+				["{{pause}}", "Stops the carousel from cycling through items."],
+				[
+					"{{prev}}",
+					"Cycles to the previous item. {{b::Returns to the caller before the previous item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
+				],
+				[
+					"{{to}}",
+					"Cycles the carousel to a particular frame (0 based, similar to an array). {{b::Returns to the caller before the target item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
+				],
+			],
+		}),
 
 		//-----------------------
 
@@ -494,26 +464,22 @@ export const doc_component_carousel: IAttrContent = {
 		new e.text(
 			"Bootstrap’s carousel class exposes two events for hooking into carousel functionality. Both events have the following additional properties:"
 		),
-		new e.item(
-			new h.ul([
-				new h.li("{{direction}} : The direction in which the carousel is sliding (either 'left' or 'right')."),
-				new h.li("{{relatedTarget}} : The DOM element that is being slid into place as the active item."),
-				new h.li("{{from}} : The index of the current item"),
-				new h.li("{{to}} : The index of the next item"),
-			])
-		),
+		new e.ul({
+			item: [
+				"{{direction}} : The direction in which the carousel is sliding (either 'left' or 'right').",
+				"{{relatedTarget}} : The DOM element that is being slid into place as the active item.",
+				"{{from}} : The index of the current item",
+				"{{to}} : The index of the next item",
+			],
+		}),
 		new e.text("All carousel events are fired at the carousel itself (i.e. at the {{<div class='carousel'>}})."),
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Event type", "Description"],
-					["{{slid.bs.carousel}}", "Fired when the carousel has completed its slide transition."],
-					["{{slide.bs.carousel}}", "Fires immediately when the slide instance method is invoked."],
-				],
-			})
-		),
+		new e.table({
+			item: [
+				["Event type", "Description"],
+				["{{slid.bs.carousel}}", "Fired when the carousel has completed its slide transition."],
+				["{{slide.bs.carousel}}", "Fires immediately when the slide instance method is invoked."],
+			],
+		}),
 
 		new e.codepreview({
 			type: "js",

@@ -21,13 +21,13 @@ export const doc_component_collapse: IAttrContent = {
 
 		new e.title("Example"),
 		new e.text("Click the buttons below to show and hide another element via class changes:"),
-		new e.item(
-			new h.ul([
-				new h.li("{{.collapse}} hides content"),
-				new h.li("{{.collapsing}} is applied during transitions"),
-				new h.li("{{.collapse.show}} shows content"),
-			])
-		),
+		new e.ul({
+			item: [
+				"{{.collapse}} hides content",
+				"{{.collapsing}} is applied during transitions",
+				"{{.collapse.show}} shows content",
+			],
+		}),
 		new e.text(
 			"Generally, we recommend using a {{<button>}} with the {{data-bs-target}} attribute. While not recommended from a semantic point of view, you can also use an {{<a>}} link with the {{href}} attribute (and a {{role='button'}}). In both cases, the {{data-bs-toggle='collapse'}} is required."
 		),
@@ -203,13 +203,13 @@ export const doc_component_collapse: IAttrContent = {
 
 		new e.title("Usage"),
 		new e.text("The collapse plugin utilizes a few classes to handle the heavy lifting:"),
-		new e.item(
-			new h.ul([
-				new h.li("{{.collapse}} hides the content"),
-				new h.li("{{.collapse.show}} shows the content"),
-				new h.li("{{.collapsing}} is added when the transition starts, and removed when it finishes"),
-			])
-		),
+		new e.ul({
+			item: [
+				"{{.collapse}} hides the content",
+				"{{.collapse.show}} shows the content",
+				"{{.collapsing}} is added when the transition starts, and removed when it finishes",
+			],
+		}),
 		new e.text("These classes can be found in {{_transitions.scss}}."),
 
 		//-----------------------
@@ -243,22 +243,18 @@ export const doc_component_collapse: IAttrContent = {
 		new e.text(
 			"As of Bootstrap 5.2.0, all components support an experimental reserved data attribute {{data-bs-config}} that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{'delay':0, 'title':123}'}} and {{data-bs-title='456'}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{'show':0,'hide':150}'}}."
 		),
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Name", "Type", "Default", "Description"],
-					[
-						"{{parent}}",
-						"selector, DOM element",
-						"{{null}}",
-						"If parent is provided, then all collapsible elements under the specified parent will be closed when this collapsible item is shown. (similar to traditional accordion behavior - this is dependent on the {{card}} class). The attribute has to be set on the target collapsible area.",
-					],
-					["{{toggle}}", "boolean", "{{true}}", "Toggles the collapsible element on invocation."],
+		new e.table({
+			item: [
+				["Name", "Type", "Default", "Description"],
+				[
+					"{{parent}}",
+					"selector, DOM element",
+					"{{null}}",
+					"If parent is provided, then all collapsible elements under the specified parent will be closed when this collapsible item is shown. (similar to traditional accordion behavior - this is dependent on the {{card}} class). The attribute has to be set on the target collapsible area.",
 				],
-			})
-		),
+				["{{toggle}}", "boolean", "{{true}}", "Toggles the collapsible element on invocation."],
+			],
+		}),
 
 		//-----------------------
 
@@ -279,66 +275,52 @@ export const doc_component_collapse: IAttrContent = {
 				})
 			`,
 		}),
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Method", "Description"],
-					["{{dispose}}", "Destroys an element’s collapse. (Removes stored data on the DOM element)"],
-					[
-						"{{getInstance}}",
-						"Static method which allows you to get the collapse instance associated to a DOM element, you can use it like this: {{bootstrap.Collapse.getInstance(element)}}.",
-					],
-					[
-						"{{getOrCreateInstance}}",
-						"Static method which returns a collapse instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Collapse.getOrCreateInstance(element)}}.",
-					],
-					[
-						"{{hide}}",
-						"Hides a collapsible element. {{b::Returns to the caller before the collapsible element has actually been hidden}} (e.g., before the {{hidden.bs.collapse}} event occurs).",
-					],
-					[
-						"{{show}}",
-						"Shows a collapsible element. {{b::Returns to the caller before the collapsible element has actually been shown}} (e.g., before the {{shown.bs.collapse}} event occurs).",
-					],
-					[
-						"{{toggle}}",
-						"Toggles a collapsible element to shown or hidden. {{b::Returns to the caller before the collapsible element has actually been shown or hidden}} (i.e. before the {{shown.bs.collapse}} or {{hidden.bs.collapse}} event occurs).",
-					],
+		new e.table({
+			item: [
+				["Method", "Description"],
+				["{{dispose}}", "Destroys an element’s collapse. (Removes stored data on the DOM element)"],
+				[
+					"{{getInstance}}",
+					"Static method which allows you to get the collapse instance associated to a DOM element, you can use it like this: {{bootstrap.Collapse.getInstance(element)}}.",
 				],
-			})
-		),
+				[
+					"{{getOrCreateInstance}}",
+					"Static method which returns a collapse instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Collapse.getOrCreateInstance(element)}}.",
+				],
+				[
+					"{{hide}}",
+					"Hides a collapsible element. {{b::Returns to the caller before the collapsible element has actually been hidden}} (e.g., before the {{hidden.bs.collapse}} event occurs).",
+				],
+				[
+					"{{show}}",
+					"Shows a collapsible element. {{b::Returns to the caller before the collapsible element has actually been shown}} (e.g., before the {{shown.bs.collapse}} event occurs).",
+				],
+				[
+					"{{toggle}}",
+					"Toggles a collapsible element to shown or hidden. {{b::Returns to the caller before the collapsible element has actually been shown or hidden}} (i.e. before the {{shown.bs.collapse}} or {{hidden.bs.collapse}} event occurs).",
+				],
+			],
+		}),
 
 		//-----------------------
 
 		new e.subtitle("Events"),
 		new e.text("Bootstrap’s collapse class exposes a few events for hooking into collapse functionality."),
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Event type", "Description"],
-					[
-						"{{hide.bs.collapse}}",
-						"This event is fired immediately when the {{hide}} method has been called.",
-					],
-					[
-						"{{hidden.bs.collapse}}",
-						"This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).",
-					],
-					[
-						"{{show.bs.collapse}}",
-						"This event fires immediately when the {{show}} instance method is called.",
-					],
-					[
-						"{{shown.bs.collapse}}",
-						"This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).",
-					],
+		new e.table({
+			item: [
+				["Event type", "Description"],
+				["{{hide.bs.collapse}}", "This event is fired immediately when the {{hide}} method has been called."],
+				[
+					"{{hidden.bs.collapse}}",
+					"This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).",
 				],
-			})
-		),
+				["{{show.bs.collapse}}", "This event fires immediately when the {{show}} instance method is called."],
+				[
+					"{{shown.bs.collapse}}",
+					"This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).",
+				],
+			],
+		}),
 		new e.codepreview({
 			type: "js",
 			code: `

@@ -24,14 +24,12 @@ export const doc_component_button: IAttrContent = {
 				);
 			},
 		}),
-		new e.item(
-			new b.alert.container({ color: "info", callout: true }, [
-				new h.h(5, "Conveying meaning to assistive technologies"),
-				new h.p(
-					"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-				),
-			])
-		),
+		new e.alert({ color: "info", callout: true }, [
+			new h.h(5, "Conveying meaning to assistive technologies"),
+			new h.p(
+				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+			),
+		]),
 
 		//-----------------------
 
@@ -85,11 +83,9 @@ export const doc_component_button: IAttrContent = {
 				);
 			},
 		}),
-		new e.item(
-			new b.alert.container(
-				{ color: "info", callout: true },
-				" Some of the button styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast."
-			)
+		new e.alert(
+			{ color: "info", callout: true },
+			" Some of the button styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast."
 		),
 
 		//-----------------------
@@ -150,18 +146,14 @@ export const doc_component_button: IAttrContent = {
 			},
 		}),
 		new e.text("Disabled buttons using the {{<a>}} element behave a bit different:"),
-		new e.item(
-			new h.ul(
-				[
-					"{{<a>}}s don’t support the disabled attribute, so you must add the {{.disabled}} class to make it visually appear disabled.",
-					"Some future-friendly styles are included to disable all {{pointer-events}} on anchor buttons.",
-					"Disabled buttons using {{<a>}} should include the {{aria-disabled='true'}} attribute to indicate the state of the element to assistive technologies.",
-					"Disabled buttons using {{<a>}} should not include the {{href}} attribute.",
-				].map((i) => {
-					return new h.li(i);
-				})
-			)
-		),
+		new e.ul({
+			item: [
+				"{{<a>}}s don’t support the disabled attribute, so you must add the {{.disabled}} class to make it visually appear disabled.",
+				"Some future-friendly styles are included to disable all {{pointer-events}} on anchor buttons.",
+				"Disabled buttons using {{<a>}} should include the {{aria-disabled='true'}} attribute to indicate the state of the element to assistive technologies.",
+				"Disabled buttons using {{<a>}} should not include the {{href}} attribute.",
+			],
+		}),
 		new e.code({
 			previewTemplate: "col",
 			output: () => {
@@ -239,11 +231,9 @@ export const doc_component_button: IAttrContent = {
 
 		new e.title("Button plugin"),
 		new e.text("The button plugin allows you to create simple on/off toggle buttons."),
-		new e.item(
-			new b.alert.container(
-				{ color: "info", callout: true },
-				" Visually, these toggle buttons are identical to the {{https://getbootstrap.com/docs/5.3/forms/checks-radios/#checkbox-toggle-buttons::checkbox toggle buttons}}. However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as “checked”/“not checked” (since, despite their appearance, they are fundamentally still checkboxes), whereas these toggle buttons will be announced as “button”/“button pressed”. The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button."
-			)
+		new e.alert(
+			{ color: "info", callout: true },
+			" Visually, these toggle buttons are identical to the {{https://getbootstrap.com/docs/5.3/forms/checks-radios/#checkbox-toggle-buttons::checkbox toggle buttons}}. However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as “checked”/“not checked” (since, despite their appearance, they are fundamentally still checkboxes), whereas these toggle buttons will be announced as “button”/“button pressed”. The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button."
 		),
 
 		//-----------------------
@@ -284,25 +274,21 @@ export const doc_component_button: IAttrContent = {
 			    const bsButton = new bootstrap.Button('#myButton')
 			`,
 		}),
-		new e.item(
-			new b.table.container({
-				class: "small",
-				small: true,
-				item: [
-					["Method", "Description"],
-					["{{dispose}}", "Destroys an element’s button. (Removes stored data on the DOM element)"],
-					[
-						"{{getInstance}}",
-						"Static method which allows you to get the button instance associated to a DOM element, you can use it like this: {{bootstrap.Button.getInstance(element)}}.",
-					],
-					[
-						"{{getOrCreateInstance}}",
-						"Static method which returns a button instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Button.getOrCreateInstance(element)}}.",
-					],
-					["{{toggle}}", "Toggles push state. Gives the button the appearance that it has been activated."],
+		new e.table({
+			item: [
+				["Method", "Description"],
+				["{{dispose}}", "Destroys an element’s button. (Removes stored data on the DOM element)"],
+				[
+					"{{getInstance}}",
+					"Static method which allows you to get the button instance associated to a DOM element, you can use it like this: {{bootstrap.Button.getInstance(element)}}.",
 				],
-			})
-		),
+				[
+					"{{getOrCreateInstance}}",
+					"Static method which returns a button instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Button.getOrCreateInstance(element)}}.",
+				],
+				["{{toggle}}", "Toggles push state. Gives the button the appearance that it has been activated."],
+			],
+		}),
 		new e.text("For example, to toggle all buttons"),
 		new e.codepreview({
 			type: "js",

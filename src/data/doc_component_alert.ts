@@ -162,18 +162,14 @@ export const doc_component_alert: IAttrContent = {
 
 		new e.subtitle("Dismissing"),
 		new e.text("Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:"),
-		new e.item(
-			new h.ul([
-				new h.li("Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript."),
-				new h.li(
-					"Add a {{https://getbootstrap.com/docs/5.3/components/close-button/::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button."
-				),
-				new h.li(
-					"On the close button, add the {{data-bs-dismiss='alert'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices."
-				),
-				new h.li("To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes."),
-			])
-		),
+		new e.ul({
+			item: [
+				"Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.",
+				"Add a {{https://getbootstrap.com/docs/5.3/components/close-button/::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
+				"On the close button, add the {{data-bs-dismiss='alert'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices.",
+				"To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes.",
+			],
+		}),
 		new e.text("You can see this in action with a live demo:"),
 
 		new e.code({
