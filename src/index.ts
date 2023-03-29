@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_component_navbar";
+let CURRENT_PAGE = "doc_component_nav";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -33,6 +33,7 @@ let m = {
 				{ label: "List group", value: "doc_component_list" },
 				{ label: "Modal", value: "doc_component_modal" },
 				{ label: "Navbar", value: "doc_component_navbar" },
+				{ label: "Navs & tabs", value: "doc_component_nav" },
 			],
 		},
 	] as main.IAttrItemMenu[],

@@ -4,6 +4,7 @@ import { description } from "./description.js";
 import { item } from "./item.js";
 import { pagetitle } from "./pagetitle.js";
 import { subtitle } from "./subtitle.js";
+import { xsubtitle } from "./xsubtitle.js";
 import { text } from "./text.js";
 import { title } from "./title.js";
 import { table } from "./table.js";
@@ -19,6 +20,7 @@ export {
 	description,
 	item,
 	subtitle,
+	xsubtitle,
 	text,
 	table,
 	ol,

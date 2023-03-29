@@ -435,34 +435,73 @@ const genIntro = (content?: IAttrContent) => {
 	}
 };
 
+interface IAttrTocTemp {
+	deep: number;
+	item: IAttrTocItem;
+}
+
 const genToc = (content?: IAttrContent) => {
 	if (content && content.item && Array.isArray(content.item)) {
-		let t: IAttrTocItem[] = [];
+		let t: IAttrTocTemp[] = [];
 
+		//get title
 		content.item.forEach((i) => {
 			if (core.isTag<e.title>(i) && i.tag === "h2") {
 				if (i.attr?.id && i.attr?.data?.text) {
 					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-					t.push(item);
+					t.push({
+						deep: 0,
+						item: item,
+					});
 				}
 			} else if (core.isTag<e.subtitle>(i) && i.tag === "h3") {
 				if (i.attr?.id && i.attr?.data?.text) {
 					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
-					if (t.length === 0) {
-						t.push(item);
-					} else {
-						if (!t[t.length - 1].item) {
-							t[t.length - 1].item = [];
-						}
+					t.push({
+						deep: 1,
+						item: item,
+					});
+				}
+			} else if (core.isTag<e.subtitle>(i) && i.tag === "h4") {
+				if (i.attr?.id && i.attr?.data?.text) {
+					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
-						t[t.length - 1].item?.push(item);
-					}
+					t.push({
+						deep: 2,
+						item: item,
+					});
 				}
 			}
 		});
 
-		if (t.length > 0) {
+		//arrange title
+		let u: IAttrTocItem[] = [];
+		if (t && t.length > 0) {
+			t.forEach((i) => {
+				if (i.deep === 0) {
+					u.push(i.item);
+				} else if (i.deep === 1) {
+					if (!u[u.length - 1].item) {
+						u[u.length - 1].item = [];
+					}
+
+					u[u.length - 1].item!.push(i.item);
+				} else if (i.deep === 2) {
+					let y = u.length - 1;
+					let x = u[y].item!.length - 1;
+
+					if (!u[y].item![x].item) {
+						u[y].item![x].item = [];
+					}
+
+					u[y].item![x].item!.push(i.item);
+				}
+			});
+		}
+
+		//process toc
+		if (u.length > 0) {
 			return new h.div(
 				{
 					class: "bs-toc",
@@ -504,13 +543,24 @@ const genToc = (content?: IAttrContent) => {
 						new h.nav(
 							{ id: "TableOfContents" },
 							new h.ul(
-								t.map((i) => {
+								u.map((i) => {
 									return new h.li([
 										new h.a({ href: i.href }, i.label),
 										i.item
 											? new h.ul(
 													i.item.map((j) => {
-														return new h.li(new h.a({ href: j.href }, j.label));
+														return new h.li([
+															new h.a({ href: j.href }, j.label),
+															j.item
+																? new h.ul(
+																		j.item.map((k) => {
+																			return new h.li(
+																				new h.a({ href: k.href }, k.label)
+																			);
+																		})
+																  )
+																: "",
+														]);
 													})
 											  )
 											: "",

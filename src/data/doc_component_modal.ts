@@ -846,8 +846,8 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Via data attributes"),
-		new e.subtitle("Toggle"),
+		new e.subtitle("Via data attributes"),
+		new e.xsubtitle("Toggle"),
 		new e.text(
 			"Activate a modal without writing JavaScript. Set {{data-bs-toggle='modal'}} on a controller element, like a button, along with a {{data-bs-target='#foo'}} or {{href='#foo'}} to target a specific modal to toggle."
 		),
@@ -861,7 +861,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Dismiss"),
+		new e.xsubtitle("Dismiss"),
 		new e.text(
 			"Dismissal can be achieved with the {{data-bs-dismiss}} attribute on a button {{b::within the modal}} as demonstrated below:"
 		),
@@ -891,7 +891,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Via JavaScript"),
+		new e.subtitle("Via JavaScript"),
 		new e.text("Create a modal with a single line of JavaScript:"),
 
 		new e.codepreview({
@@ -905,7 +905,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Options"),
+		new e.subtitle("Options"),
 		new e.text(
 			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation="{value}"}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data-bs-custom-class="beautifier"}} instead of {{data-bs-customClass="beautifier"}}.`
 		),
@@ -928,7 +928,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Methods"),
+		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
 			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
@@ -936,7 +936,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Passing options"),
+		new e.xsubtitle("Passing options"),
 		new e.text("Activates your content as a modal. Accepts an optional options {{object}}."),
 		new e.codepreview({
 			type: "js",
@@ -979,7 +979,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Events"),
+		new e.subtitle("Events"),
 		new e.text(
 			"Bootstrap’s modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the {{<div class='modal'>}})."
 		),

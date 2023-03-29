@@ -1084,7 +1084,7 @@ export const doc_component_dropdown: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Using function with {{popperConfig}} "),
+		new e.xsubtitle("Using function with {{popperConfig}} "),
 		new e.codepreview({
 			type: "js",
 			code: `

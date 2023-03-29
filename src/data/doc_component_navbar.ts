@@ -97,7 +97,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Text"),
+		new e.xsubtitle("Text"),
 		new e.text("Add your text within an element with the {{.navbar-brand}} class."),
 		new e.code({
 			output: () => {
@@ -119,7 +119,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Image"),
+		new e.xsubtitle("Image"),
 		new e.text("You can replace the text within the {{.navbar-brand}} with an {{<img>}}."),
 		new e.code({
 			output: () => {
@@ -135,7 +135,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Image and text"),
+		new e.xsubtitle("Image and text"),
 		new e.text(
 			"You can also make use of some additional utilities to add an image and text at the same time. Note the addition of {{.d-inline-block}} and {{.align-text-top}} on the {{<img>}}."
 		),
@@ -331,7 +331,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Text"),
+		new e.subtitle("Text"),
 		new e.text(
 			"Navbars may contain bits of text with the help of {{.navbar-text}}. This class adjusts vertical alignment and horizontal spacing for strings of text."
 		),
@@ -564,7 +564,17 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Toggler"),
+		new e.title("Responsive behaviors"),
+		new e.text(
+			"Navbars can use {{.navbar-toggler}}, {{.navbar-collapse}}, and {{.navbar-expand{-sm|-md|-lg|-xl|-xxl}}} classes to determine when their content collapses behind a button. In combination with other utilities, you can easily choose when to show or hide particular elements."
+		),
+		new e.text(
+			"For navbars that never collapse, add the {{.navbar-expand}} class on the navbar. For navbars that always collapse, don’t add any {{.navbar-expand}} class."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Toggler"),
 		new e.text(
 			"Navbar togglers are left-aligned by default, but should they follow a sibling element like a {{.navbar-brand}}, they’ll automatically be aligned to the far right. Reversing your markup will reverse the placement of the toggler. Below are examples of different toggle styles."
 		),
@@ -667,7 +677,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("External content"),
+		new e.subtitle("External content"),
 		new e.text(
 			"Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits outside of the {{.navbar}} . Because our plugin works on the {{id}} and {{data-bs-target}} matching, that’s easily done!"
 		),
@@ -733,7 +743,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Offcanvas"),
+		new e.subtitle("Offcanvas"),
 		new e.text(
 			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{https://getbootstrap.com/docs/5.3/components/offcanvas/::offcanvas component}}. We extend both the offcanvas default styles and use our {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
 		),
@@ -1052,7 +1062,7 @@ export const doc_component_navbar: IAttrContent = {
 				$navbar-dark-brand-hover-color:     $navbar-dark-active-color;
 			`,
 		}),
-		new e.title("Sass loop"),
+		new e.subtitle("Sass loop"),
 		new e.text(
 			"{{https://getbootstrap.com/docs/5.3/components/navbar/#responsive-behaviors::Responsive navbar expand/collapse classes}} (e.g., {{.navbar-expand-lg}}) are combined with the {{$breakpoints}} map and generated through a loop in {{scss/_navbar.scss}}."
 		),

@@ -14,6 +14,7 @@ import { doc_component_dropdown } from "./doc_component_dropdown.js";
 import { doc_component_list } from "./doc_component_list.js";
 import { doc_component_modal } from "./doc_component_modal.js";
 import { doc_component_navbar } from "./doc_component_navbar.js";
+import { doc_component_nav } from "./doc_component_nav.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -45,6 +46,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_modal;
 		case "doc_component_navbar":
 			return doc_component_navbar;
+		case "doc_component_nav":
+			return doc_component_nav;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;

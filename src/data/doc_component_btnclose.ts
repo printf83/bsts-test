@@ -18,7 +18,7 @@ export const doc_component_btnclose: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Disabled state"),
+		new e.title("Disabled state"),
 		new e.text(
 			"Disabled close buttons change their {{opacity}}. We’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
 		),
@@ -30,7 +30,7 @@ export const doc_component_btnclose: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Dark variant"),
+		new e.title("Dark variant"),
 		new e.text(
 			"Add {{data-bs-theme='dark'}} to the {{.btn-close}}, or to its parent element, to invert the close button. This uses the {{filter}} property to invert the {{background-image}} without overriding its value."
 		),
