@@ -3,6 +3,7 @@ import { core, h } from "@printf83/bsts";
 const convert = (attr: h.IAttrTagOl) => {
 	let tAttr: core.IAttr = {};
 
+	tAttr.class = "example-ol";
 	tAttr.marginBottom ??= 3;
 	tAttr.elem = new h.ol(attr);
 

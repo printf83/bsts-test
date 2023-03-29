@@ -3,8 +3,12 @@ import { core, h, b } from "@printf83/bsts";
 const convert = (attr: b.table.IAttrBSTableContainer) => {
 	let tAttr: core.IAttr = {};
 
+	tAttr.class = "example-table";
 	tAttr.marginBottom ??= 3;
 	tAttr.overflow = "auto";
+
+	attr = core.mergeObject({ small: true, class: "small" }, attr);
+
 	tAttr.elem = new b.table.container(attr);
 
 	return tAttr;

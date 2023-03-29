@@ -30,7 +30,7 @@ declare var PR: {
 };
 
 const getOutputHTML = (target: HTMLElement): void => {
-	let html = target.closest(".example")?.getElementsByClassName("example-output")[0].innerHTML;
+	let html = target.closest(".example-code")?.getElementsByClassName("example-output")[0].innerHTML;
 	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
 	PR.prettyPrint();
 };
@@ -149,7 +149,6 @@ const itemOutput = (previewAttr: core.IAttr | undefined, str: string) => {
 	} else {
 		return new b.list.item({ padding: 4 }, new h.div({ class: `example-output` }, str));
 	}
-
 };
 
 const convert = (attr: IAttrBSExampleContainer) => {
@@ -245,7 +244,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 	attr.elem = [
 		new b.card.container(
-			{ id: id, class: "example", marginY: 3 },
+			{ id: id, class: "example-code", marginY: 3 },
 			new b.card.body({ padding: 0 }, [new b.list.container({ flush: true, rounded: 2 }, e)])
 		),
 	];

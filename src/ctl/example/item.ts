@@ -1,6 +1,7 @@
 import { core, h } from "@printf83/bsts";
 
 const convert = (attr: core.IAttr) => {
+	attr.class = core.mergeClass(attr.class, "example-item");
 	attr.marginBottom ??= 3;
 	return attr;
 };

@@ -55,7 +55,7 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 const convert = (attr: IAttrBSExampleCode) => {
 	attr = core.mergeObject(
 		{
-			// style: { maxHeight: "300px" },
+			class: "example-preview",
 			display: "block",
 			overflow: "auto",
 			marginX: 0,

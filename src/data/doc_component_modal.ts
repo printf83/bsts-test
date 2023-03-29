@@ -1,5 +1,4 @@
 import { core, h, b } from "@printf83/bsts";
-import { toggle } from "@printf83/bsts/lib/types/bootstrap/navbar/_index.js";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
@@ -658,7 +657,7 @@ export const doc_component_modal: IAttrContent = {
 		new e.code({
 			output: () => {
 				const d = [
-					{ fullscreen: undefined, label: "Full screen" },
+					{ fullscreen: true, label: "Full screen" },
 					{ fullscreen: "sm", label: "Full screen below sm" },
 					{ fullscreen: "md", label: "Full screen below md" },
 					{ fullscreen: "lg", label: "Full screen below lg" },
@@ -672,7 +671,7 @@ export const doc_component_modal: IAttrContent = {
 							{
 								color: "primary",
 								toggle: "modal",
-								target: `#${i.fullscreen ? i.fullscreen : "xs"}FSModal`,
+								target: `#${i.fullscreen !== true ? i.fullscreen : "xs"}FSModal`,
 							},
 							i.label
 						);
@@ -680,8 +679,8 @@ export const doc_component_modal: IAttrContent = {
 					...d.map((i) => {
 						return new b.modal.container(
 							{
-								id: `${i.fullscreen ? i.fullscreen : "xs"}FSModal`,
-								labelledby: `#${i.fullscreen ? i.fullscreen : "xs"}FSModalLabel`,
+								id: `${i.fullscreen !== true ? i.fullscreen : "xs"}FSModal`,
+								labelledby: `#${i.fullscreen !== true ? i.fullscreen : "xs"}FSModalLabel`,
 								fullscreen: i.fullscreen
 									? (i.fullscreen as b.modal.IAttrBSModalContainer["fullscreen"])
 									: undefined,
@@ -690,7 +689,7 @@ export const doc_component_modal: IAttrContent = {
 								new b.modal.header(
 									{ close: true },
 									new b.modal.title(
-										{ id: `${i.fullscreen ? i.fullscreen : "xs"}FSModalLabel` },
+										{ id: `${i.fullscreen !== true ? i.fullscreen : "xs"}FSModalLabel` },
 										`${i.label}`
 									)
 								),
@@ -844,5 +843,138 @@ export const doc_component_modal: IAttrContent = {
 		new e.text(
 			"The modal plugin toggles your hidden content on demand, via data attributes or JavaScript. It also overrides default scrolling behavior and generates a {{.modal-backdrop}} to provide a click area for dismissing shown modals when clicking outside the modal."
 		),
+
+		//-----------------------
+
+		new e.title("Via data attributes"),
+		new e.subtitle("Toggle"),
+		new e.text(
+			"Activate a modal without writing JavaScript. Set {{data-bs-toggle='modal'}} on a controller element, like a button, along with a {{data-bs-target='#foo'}} or {{href='#foo'}} to target a specific modal to toggle."
+		),
+
+		new e.codepreview({
+			type: "html",
+			code: `
+				<button type="button" data-bs-toggle="modal" data-bs-target="#myModal">Launch modal</button>
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Dismiss"),
+		new e.text(
+			"Dismissal can be achieved with the {{data-bs-dismiss}} attribute on a button {{b::within the modal}} as demonstrated below:"
+		),
+
+		new e.codepreview({
+			type: "html",
+			code: `
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			`,
+		}),
+
+		new e.text(
+			"or on a button {{b::outside the modal}} using the additional {{data-bs-target}} as demonstrated below:"
+		),
+
+		new e.codepreview({
+			type: "html",
+			code: `
+				<button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal" aria-label="Close"></button>
+			`,
+		}),
+
+		new e.alert(
+			{ color: "warning", callout: true },
+			"While both ways to dismiss a modal are supported, keep in mind that dismissing from outside a modal does not match the {{https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/::ARIA Authoring Practices Guide dialog (modal) pattern}}. Do this at your own risk."
+		),
+
+		//-----------------------
+
+		new e.title("Via JavaScript"),
+		new e.text("Create a modal with a single line of JavaScript:"),
+
+		new e.codepreview({
+			type: "html",
+			code: `
+				const myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+				// or
+				const myModalAlternative = new bootstrap.Modal('#myModal', options)
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Options"),
+		new e.text(
+			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation="{value}"}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data-bs-custom-class="beautifier"}} instead of {{data-bs-customClass="beautifier"}}.`
+		),
+		new e.text(
+			`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{"delay":0, "title":123}'}} and {{data-bs-title="456"}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{"show":0,"hide":150}'}}.`
+		),
+		new e.table({
+			item: [
+				["Name", "Type", "Default", "Description"],
+				[
+					"{{backdrop}}",
+					"boolean, {{'static'}}",
+					"{{true}}",
+					"Includes a modal-backdrop element. Alternatively, specify {{static}} for a backdrop which doesn’t close the modal when clicked.",
+				],
+				["{{focus}}", "boolean", "{{true}}", "Puts the focus on the modal when initialized."],
+				["{{keyboard}}", "boolean", "{{true}}", "Closes the modal when escape key is pressed."],
+			],
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Methods"),
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Passing options"),
+		new e.text("Activates your content as a modal. Accepts an optional options {{object}}."),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const myModal = new bootstrap.Modal('#myModal', {
+				keyboard: false
+				})
+			`,
+		}),
+		new e.table({
+			item: [
+				["Method", "Description"],
+				["{{dispose}}", "Destroys an element’s modal. (Removes stored data on the DOM element)"],
+				[
+					"{{getInstance}}",
+					"Static method which allows you to get the modal instance associated with a DOM element.",
+				],
+				[
+					"{{getOrCreateInstance	}}",
+					"Static method which allows you to get the modal instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
+				],
+				[
+					"{{handleUpdate}}",
+					"Manually readjust the modal’s position if the height of a modal changes while it is open (i.e. in case a scrollbar appears).",
+				],
+				[
+					"{{hide}}",
+					"Manually hides a modal. {{b::Returns to the caller before the modal has actually been hidden}} (i.e. before the hidden.bs.modal event occurs).",
+				],
+				[
+					"{{show}}",
+					"Manually opens a modal. {{b::Returns to the caller before the modal has actually been shown}} (i.e. before the {{shown.bs.modal}} event occurs). Also, you can pass a DOM element as an argument that can be received in the modal events (as the {{relatedTarget}} property). (i.e. {{const modalToggle = document.getElementById('toggleMyModal'); myModal.show(modalToggle)}}.",
+				],
+				[
+					"{{toggle}}",
+					"Manually toggles a modal. {{b::Returns to the caller before the modal has actually been shown or hidden}} (i.e. before the {{shown.bs.modal}} or {{hidden.bs.modal}} event occurs).",
+				],
+			],
+		}),
 	],
 };

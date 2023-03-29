@@ -3,6 +3,7 @@ import { core, h, b } from "@printf83/bsts";
 const convert = (attr: b.alert.IAttrBSAlertContainer) => {
 	let tAttr: core.IAttr = {};
 
+	tAttr.class = "example-alert";
 	tAttr.marginBottom ??= 3;
 	tAttr.elem = new b.alert.container(attr);
 

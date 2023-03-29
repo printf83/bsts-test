@@ -10,13 +10,28 @@ a:hover *,
 
 /* example */
 
+.example-title,.example-subtitle,
+.example-table table b, .example-table table thead th {
+    color:var(--bs-emphasis-color);
+}
+
+.example-ul li,.example-ol li{
+    padding-top:0.25rem;
+    padding-bottom:0.25rem;
+}
+
+
 /* gap on example code output */
 .example-output > *:not(.modal) {
-    margin: 0.5rem 0.25rem;
+    margin: 0.25rem;
+}
+
+.example-output > .alert {
+    margin: 0.5rem;
 }
 
 .example-output {
-    margin: -0.5rem -0.25rem;
+    margin: -0.25rem;
 }
 
 

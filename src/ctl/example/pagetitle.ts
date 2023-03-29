@@ -10,7 +10,6 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 	attr = core.mergeObject(
 		{
 			class: "example-pagetitle",
-
 			display: "md-flex",
 			flex: "md-row-reverse",
 			alignItem: "center",
