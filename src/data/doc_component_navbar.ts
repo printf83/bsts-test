@@ -423,18 +423,529 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Pill badges"),
+		new e.title("Containers"),
 		new e.text(
-			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
+			"Although it’s not required, you can wrap a navbar in a {{.container}} to center it on a page–though note that an inner container is still required. Or you can add a container inside the {{.navbar}} to only center the contents of a {{https://getbootstrap.com/docs/5.3/components/navbar/#placement::fixed or static top navbar}}."
 		),
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number], rounded: "pill" },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return new h.div(
+					{ container: true },
+					new b.navbar.container(
+						{ bgColor: "body-tertiary", expand: "lg" },
+						new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Navbar"))
+					)
+				);
+			},
+		}),
+
+		new e.text("Use any of the responsive containers to change how wide the content in your navbar is presented."),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", expand: "lg" },
+					new b.navbar.innercontainer({ container: "md" }, new b.navbar.brand({ href: "#" }, "Navbar"))
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Placement"),
+		new e.text(
+			"Use our {{https://getbootstrap.com/docs/5.3/utilities/position/::position utilities}} to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the bottom (scrolls with the page until it reaches the bottom, then stays there)."
+		),
+		new e.text(
+			"Fixed navbars use {{position: fixed}}, meaning they’re pulled from the normal flow of the DOM and may require custom CSS (e.g., {{padding-top}} on the {{<body>}}) to prevent overlap with other elements."
+		),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary" },
+					new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Default"))
+				);
+			},
+		}),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", fixed: "top" },
+					new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Fixed top"))
+				);
+			},
+		}),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", fixed: "bottom" },
+					new b.navbar.innercontainer(
+						{ container: "fluid" },
+						new b.navbar.brand({ href: "#" }, "Fixed bottom")
+					)
+				);
+			},
+		}),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", sticky: "top" },
+					new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Sticky top"))
+				);
+			},
+		}),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", sticky: "bottom" },
+					new b.navbar.innercontainer(
+						{ container: "fluid" },
+						new b.navbar.brand({ href: "#" }, "Sticky bottom")
+					)
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Scrolling"),
+		new e.text(
+			"Add {{.navbar-nav-scroll}} to a {{.navbar-nav}} (or other navbar sub-component) to enable vertical scrolling within the toggleable contents of a collapsed navbar. By default, scrolling kicks in at {{75vh}} (or 75% of the viewport height), but you can override that with the local CSS custom property {{--bs-navbar-height}} or custom styles. At larger viewports when the navbar is expanded, content will appear as it does in a default navbar."
+		),
+		new e.text(
+			"Please note that this behavior comes with a potential drawback {{of overflow}}—when setting {{overflow-y: auto}} (required to scroll the content here), {{overflow-x}} is the equivalent of {{auto}}, which will crop some horizontal content."
+		),
+		new e.text(
+			"Here’s an example navbar using {{.navbar-nav-scroll}} with {{style='--bs-scroll-height: 100px;'}}, with some extra margin utilities for optimum spacing."
+		),
+
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", expand: "lg" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand({ href: "#" }, "Navbar scroll"),
+						new b.navbar.toggle.collapse({
+							target: "#navbarScroll",
+							control: "navbarScroll",
+							label: "Toggle navigation",
+						}),
+						new b.navbar.collapse({ id: "navbarScroll" }, [
+							new b.navbar.itemcontainer(
+								{ marginEnd: "auto", marginBottom: [2, "lg-0"], scroll: true, scrollHeight: "100px" },
+								[
+									new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+									new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+									new b.navbar.item({ dropdown: true }, [
+										new b.dropdown.toggle({ navItem: true }, "Link"),
+										new b.dropdown.menu([
+											new b.dropdown.item({ href: "#" }, "Action"),
+											new b.dropdown.item({ href: "#" }, "Another action"),
+											new b.dropdown.divider(),
+											new b.dropdown.item({ href: "#" }, "Something else here"),
+										]),
+									]),
+									new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Link")),
+								]
+							),
+							new h.form({ display: "flex", role: "search" }, [
+								new b.input({
+									type: "search",
+									marginEnd: 2,
+									placeholderText: "Search",
+									label: "Search",
+								}),
+								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+							]),
+						]),
+					])
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Toggler"),
+		new e.text(
+			"Navbar togglers are left-aligned by default, but should they follow a sibling element like a {{.navbar-brand}}, they’ll automatically be aligned to the far right. Reversing your markup will reverse the placement of the toggler. Below are examples of different toggle styles."
+		),
+		new e.text("With no {{.navbar-brand}} shown at the smallest breakpoint:"),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", expand: "lg" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.toggle.collapse({
+							target: "#navbarTogglerDemo01",
+							control: "navbarTogglerDemo01",
+							label: "Toggle navigation",
+						}),
+						new b.navbar.collapse({ id: "navbarTogglerDemo01" }, [
+							new b.navbar.brand({ href: "#" }, "Hidden brand"),
+							new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+								new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+								new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+							]),
+							new h.form({ display: "flex", role: "search" }, [
+								new b.input({
+									type: "search",
+									marginEnd: 2,
+									placeholderText: "Search",
+									label: "Search",
+								}),
+								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+							]),
+						]),
+					])
+				);
+			},
+		}),
+		new e.text("With a brand name shown on the left and toggler on the right:"),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", expand: "lg" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand({ href: "#" }, "Navbar"),
+						new b.navbar.toggle.collapse({
+							target: "#navbarTogglerDemo02",
+							control: "navbarTogglerDemo02",
+							label: "Toggle navigation",
+						}),
+						new b.navbar.collapse({ id: "navbarTogglerDemo02" }, [
+							new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+								new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+								new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+							]),
+							new h.form({ display: "flex", role: "search" }, [
+								new b.input({
+									type: "search",
+									marginEnd: 2,
+									placeholderText: "Search",
+									label: "Search",
+								}),
+								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+							]),
+						]),
+					])
+				);
+			},
+		}),
+		new e.text("With a toggler on the left and brand name on the right:"),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", expand: "lg" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.toggle.collapse({
+							target: "#navbarTogglerDemo03",
+							control: "navbarTogglerDemo03",
+							label: "Toggle navigation",
+						}),
+						new b.navbar.brand({ href: "#" }, "Navbar"),
+						new b.navbar.collapse({ id: "navbarTogglerDemo03" }, [
+							new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+								new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+								new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+							]),
+							new h.form({ display: "flex", role: "search" }, [
+								new b.input({
+									type: "search",
+									marginEnd: 2,
+									placeholderText: "Search",
+									label: "Search",
+								}),
+								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+							]),
+						]),
+					])
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("External content"),
+		new e.text(
+			"Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits outside of the {{.navbar}} . Because our plugin works on the {{id}} and {{data-bs-target}} matching, that’s easily done!"
+		),
+		new e.code({
+			output: () => {
+				return new h.div([
+					new b.collapse.container(
+						{ id: "navbarToggleExternalContent" },
+						new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [
+							new h.h(5, { textColor: "body-emphasis", class: "h4" }, "Collapsed content"),
+							new h.span({ textColor: "body-secondary" }, "Toggleable via the navbar brand."),
+						])
+					),
+					new b.navbar.container(
+						{ theme: "dark", bgColor: "body-tertiary", expand: "lg" },
+						new b.navbar.innercontainer({ container: "fluid" }, [
+							new b.navbar.toggle.collapse({
+								target: "#navbarToggleExternalContent",
+								control: "navbarToggleExternalContent",
+								label: "Toggle navigation",
+							}),
+						])
+					),
+				]);
+			},
+		}),
+		new e.text(
+			"When you do this, we recommend including additional JavaScript to move the focus programmatically to the container when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes before the toggler in the document’s structure. We also recommend making sure that the toggler has the {{aria-controls}} attribute, pointing to the {{id}} of the content container. In theory, this allows assistive technology users to jump directly from the toggler to the container it controls–but support for this is currently quite patchy."
+		),
+
+		// new e.text("This is how you do it in {{bsts}}"),
+		// new e.code({
+		// 	output: () => {
+		// 		return new h.div([
+		// 			new b.collapse.container(
+		// 				{
+		// 					id: "navbarToggleExternalContent",
+		// 					tabindex: "-1",
+		// 					on: {
+		// 						"shown.bs.collapse": (_e) => {
+		// 							document.getElementById("navbarToggleExternalContent")?.focus();
+		// 						},
+		// 					},
+		// 				},
+		// 				new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [
+		// 					new h.h(5, { textColor: "body-emphasis", class: "h4" }, "Collapsed content"),
+		// 					new h.span({ textColor: "body-secondary" }, "Toggleable via the navbar brand."),
+		// 				])
+		// 			),
+		// 			new b.navbar.container(
+		// 				{ theme: "dark", bgColor: "body-tertiary", expand: "lg" },
+		// 				new b.navbar.innercontainer({ container: "fluid" }, [
+		// 					new b.navbar.toggle.collapse({
+		// 						target: "#navbarToggleExternalContent",
+		// 						control: "navbarToggleExternalContent",
+		// 						label: "Toggle navigation",
+		// 					}),
+		// 				])
+		// 			),
+		// 		]);
+		// 	},
+		// }),
+
+		//-----------------------
+
+		new e.title("Offcanvas"),
+		new e.text(
+			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{https://getbootstrap.com/docs/5.3/components/offcanvas/::offcanvas component}}. We extend both the offcanvas default styles and use our {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
+		),
+		new e.text(
+			"In the example below, to create an offcanvas navbar that is always collapsed across all breakpoints, omit the {{.navbar-expand-*}} class entirely."
+		),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", fixed: "top" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand({ href: "#" }, "Offcanvas navbar"),
+						new b.navbar.toggle.offcanvas({
+							target: "#offcanvasNavbar",
+							control: "offcanvasNavbar",
+							label: "Toggle navigation",
+						}),
+						new b.offcanvas.container(
+							{
+								id: "offcanvasNavbar",
+								placement: "end",
+								labelledby: "offcanvasNavbarLabel",
+							},
+							[
+								new b.offcanvas.header([
+									new b.offcanvas.title({ id: "offcanvasNavbarLabel" }, "Offcanvas"),
+									new b.offcanvas.btnclose(),
+								]),
+								new b.offcanvas.body([
+									new b.navbar.itemcontainer(
+										{
+											justifyContent: "end",
+											flex: "grow-1",
+											paddingEnd: 3,
+										},
+										[
+											new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+											new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+											new b.navbar.item({ dropdown: true }, [
+												new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+												new b.dropdown.menu([
+													new b.dropdown.item({ href: "#" }, "Action"),
+													new b.dropdown.item({ href: "#" }, "Another action"),
+													new b.dropdown.divider(),
+													new b.dropdown.item({ href: "#" }, "Something else here"),
+												]),
+											]),
+										]
+									),
+									new h.form({ display: "flex", role: "search", marginTop: 3 }, [
+										new b.input({
+											type: "search",
+											marginEnd: 2,
+											placeholderText: "Search",
+											label: "Search",
+										}),
+										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+									]),
+								]),
+							]
+						),
+					])
+				);
+			},
+		}),
+
+		new e.text(
+			"To create an offcanvas navbar that expands into a normal navbar at a specific breakpoint like {{lg}}, use {{.navbar-expand-lg}}."
+		),
+
+		new e.codepreview({
+			type: "html",
+			code: `
+				<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+				<a class="navbar-brand" href="#">Offcanvas navbar</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
+					...
+				</div>
+				</nav>
+			`,
+		}),
+
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", expand: "lg", fixed: "top" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand({ href: "#" }, "Offcanvas lg navbar"),
+						new b.navbar.toggle.offcanvas({
+							target: "#offcanvasLgNavbar",
+							control: "offcanvasLgNavbar",
+							label: "Toggle navigation",
+						}),
+						new b.offcanvas.container(
+							{
+								id: "offcanvasLgNavbar",
+								placement: "end",
+								labelledby: "offcanvasLgNavbarLabel",
+							},
+							[
+								new b.offcanvas.header([
+									new b.offcanvas.title({ id: "offcanvasLgNavbarLabel" }, "Offcanvas"),
+									new b.offcanvas.btnclose(),
+								]),
+								new b.offcanvas.body([
+									new b.navbar.itemcontainer(
+										{
+											justifyContent: "end",
+											flex: "grow-1",
+											paddingEnd: 3,
+										},
+										[
+											new b.navbar.item(
+												{ paddingTop: "lg-1" },
+												new b.navbar.link({ href: "#", active: true }, "Home")
+											),
+											new b.navbar.item(
+												{ paddingTop: "lg-1" },
+												new b.navbar.link({ href: "#" }, "Link")
+											),
+											new b.navbar.item({ dropdown: true, paddingTop: "lg-1" }, [
+												new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+												new b.dropdown.menu([
+													new b.dropdown.item({ href: "#" }, "Action"),
+													new b.dropdown.item({ href: "#" }, "Another action"),
+													new b.dropdown.divider(),
+													new b.dropdown.item({ href: "#" }, "Something else here"),
+												]),
+											]),
+										]
+									),
+									new h.form({ hstack: true, role: "search", marginTop: [3, "lg-0"] }, [
+										new b.input({
+											type: "search",
+											marginEnd: 2,
+											placeholderText: "Search",
+											label: "Search",
+										}),
+										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+									]),
+								]),
+							]
+						),
+					])
+				);
+			},
+		}),
+
+		new e.text(
+			"When using offcanvas in a dark navbar, be aware that you may need to have a dark background on the offcanvas content to avoid the text becoming illegible. In the example below, we add {{.navbar-dark}} and {{.bg-dark}} to the {{.navbar}}, {{.text-bg-dark}} to the {{.offcanvas}}, {{.dropdown-menu-dark}} to {{.dropdown-menu}}, and {{.btn-close-white}} to {{.btn-close}} for proper styling with a dark offcanvas."
+		),
+
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ theme: "dark", bgColor: "body-tertiary", fixed: "top" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand({ href: "#" }, "Offcanvas dark navbar"),
+						new b.navbar.toggle.offcanvas({
+							target: "#offcanvasDarkNavbar",
+							control: "offcanvasDarkNavbar",
+							label: "Toggle navigation",
+						}),
+						new b.offcanvas.container(
+							{
+								id: "offcanvasDarkNavbar",
+								placement: "end",
+								labelledby: "offcanvasDarkNavbarLabel",
+							},
+							[
+								new b.offcanvas.header([
+									new b.offcanvas.title({ id: "offcanvasDarkNavbarLabel" }, "Dark offcanvas"),
+									new b.offcanvas.btnclose(),
+								]),
+								new b.offcanvas.body([
+									new b.navbar.itemcontainer(
+										{
+											justifyContent: "end",
+											flex: "grow-1",
+											paddingEnd: 3,
+										},
+										[
+											new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+											new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+											new b.navbar.item({ dropdown: true }, [
+												new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+												new b.dropdown.menu([
+													new b.dropdown.item({ href: "#" }, "Action"),
+													new b.dropdown.item({ href: "#" }, "Another action"),
+													new b.dropdown.divider(),
+													new b.dropdown.item({ href: "#" }, "Something else here"),
+												]),
+											]),
+										]
+									),
+									new h.form({ display: "flex", role: "search", marginTop: 3 }, [
+										new b.input({
+											type: "search",
+											marginEnd: 2,
+											placeholderText: "Search",
+											label: "Search",
+										}),
+										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+									]),
+								]),
+							]
+						),
+					])
+				);
 			},
 		}),
 
@@ -443,32 +954,180 @@ export const doc_component_navbar: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, navbars now use local CSS variables on {{.navbar}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-				--#{$prefix}badge-padding-y: #{$badge-padding-y};
-				@include rfs($badge-font-size, --#{$prefix}badge-font-size);
-				--#{$prefix}badge-font-weight: #{$badge-font-weight};
-				--#{$prefix}badge-color: #{$badge-color};
-				--#{$prefix}badge-border-radius: #{$badge-border-radius};
+				--#{$prefix}navbar-padding-x: #{if($navbar-padding-x == null, 0, $navbar-padding-x)};
+				--#{$prefix}navbar-padding-y: #{$navbar-padding-y};
+				--#{$prefix}navbar-color: #{$navbar-light-color};
+				--#{$prefix}navbar-hover-color: #{$navbar-light-hover-color};
+				--#{$prefix}navbar-disabled-color: #{$navbar-light-disabled-color};
+				--#{$prefix}navbar-active-color: #{$navbar-light-active-color};
+				--#{$prefix}navbar-brand-padding-y: #{$navbar-brand-padding-y};
+				--#{$prefix}navbar-brand-margin-end: #{$navbar-brand-margin-end};
+				--#{$prefix}navbar-brand-font-size: #{$navbar-brand-font-size};
+				--#{$prefix}navbar-brand-color: #{$navbar-light-brand-color};
+				--#{$prefix}navbar-brand-hover-color: #{$navbar-light-brand-hover-color};
+				--#{$prefix}navbar-nav-link-padding-x: #{$navbar-nav-link-padding-x};
+				--#{$prefix}navbar-toggler-padding-y: #{$navbar-toggler-padding-y};
+				--#{$prefix}navbar-toggler-padding-x: #{$navbar-toggler-padding-x};
+				--#{$prefix}navbar-toggler-font-size: #{$navbar-toggler-font-size};
+				--#{$prefix}navbar-toggler-icon-bg: #{escape-svg($navbar-light-toggler-icon-bg)};
+				--#{$prefix}navbar-toggler-border-color: #{$navbar-light-toggler-border-color};
+				--#{$prefix}navbar-toggler-border-radius: #{$navbar-toggler-border-radius};
+				--#{$prefix}navbar-toggler-focus-width: #{$navbar-toggler-focus-width};
+				--#{$prefix}navbar-toggler-transition: #{$navbar-toggler-transition};
 			`,
 		}),
 
-		new e.subtitle("Sass variables"),
+		new e.text("Some additional CSS variables are also present on {{.navbar-nav}}:"),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-				$badge-font-size:                   .75em;
-				$badge-font-weight:                 $font-weight-bold;
-				$badge-color:                       $white;
-				$badge-padding-y:                   .35em;
-				$badge-padding-x:                   .65em;
-				$badge-border-radius:               $border-radius;
+				--#{$prefix}navbar-color: #{$navbar-dark-color};
+				--#{$prefix}navbar-hover-color: #{$navbar-dark-hover-color};
+				--#{$prefix}navbar-disabled-color: #{$navbar-dark-disabled-color};
+				--#{$prefix}navbar-active-color: #{$navbar-dark-active-color};
+				--#{$prefix}navbar-brand-color: #{$navbar-dark-brand-color};
+				--#{$prefix}navbar-brand-hover-color: #{$navbar-dark-brand-hover-color};
+				--#{$prefix}navbar-toggler-border-color: #{$navbar-dark-toggler-border-color};
+				--#{$prefix}navbar-toggler-icon-bg: #{escape-svg($navbar-dark-toggler-icon-bg)};
+			`,
+		}),
+
+		new e.subtitle("Sass variables"),
+		new e.text("Variables for all navbars:"),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$navbar-padding-y:                  $spacer * .5;
+				$navbar-padding-x:                  null;
+
+				$navbar-nav-link-padding-x:         .5rem;
+
+				$navbar-brand-font-size:            $font-size-lg;
+				// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
+				$nav-link-height:                   $font-size-base * $line-height-base + $nav-link-padding-y * 2;
+				$navbar-brand-height:               $navbar-brand-font-size * $line-height-base;
+				$navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) * .5;
+				$navbar-brand-margin-end:           1rem;
+
+				$navbar-toggler-padding-y:          .25rem;
+				$navbar-toggler-padding-x:          .75rem;
+				$navbar-toggler-font-size:          $font-size-lg;
+				$navbar-toggler-border-radius:      $btn-border-radius;
+				$navbar-toggler-focus-width:        $btn-focus-width;
+				$navbar-toggler-transition:         box-shadow .15s ease-in-out;
+
+				$navbar-light-color:                rgba(var(--#{$prefix}emphasis-color-rgb), .65);
+				$navbar-light-hover-color:          rgba(var(--#{$prefix}emphasis-color-rgb), .8);
+				$navbar-light-active-color:         rgba(var(--#{$prefix}emphasis-color-rgb), 1);
+				$navbar-light-disabled-color:       rgba(var(--#{$prefix}emphasis-color-rgb), .3);
+				$navbar-light-icon-color:           rgba($body-color, .75);
+				$navbar-light-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-icon-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+				$navbar-light-toggler-border-color: rgba(var(--#{$prefix}emphasis-color-rgb), .15);
+				$navbar-light-brand-color:          $navbar-light-active-color;
+				$navbar-light-brand-hover-color:    $navbar-light-active-color;
+
+			`,
+		}),
+
+		new e.text(
+			"Variables for the {{https://getbootstrap.com/docs/5.3/components/navbar/#color-schemes::dark navbar}}:"
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$navbar-dark-color:                 rgba($white, .55);
+				$navbar-dark-hover-color:           rgba($white, .75);
+				$navbar-dark-active-color:          $white;
+				$navbar-dark-disabled-color:        rgba($white, .25);
+				$navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+				$navbar-dark-toggler-border-color:  rgba($white, .1);
+				$navbar-dark-brand-color:           $navbar-dark-active-color;
+				$navbar-dark-brand-hover-color:     $navbar-dark-active-color;
+			`,
+		}),
+		new e.title("Sass loop"),
+		new e.text(
+			"{{https://getbootstrap.com/docs/5.3/components/navbar/#responsive-behaviors::Responsive navbar expand/collapse classes}} (e.g., {{.navbar-expand-lg}}) are combined with the {{$breakpoints}} map and generated through a loop in {{scss/_navbar.scss}}."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+			// Generate series of '.navbar-expand-*' responsive classes for configuring
+			// where your navbar collapses.
+			.navbar-expand {
+			@each $breakpoint in map-keys($grid-breakpoints) {
+				$next: breakpoint-next($breakpoint, $grid-breakpoints);
+				$infix: breakpoint-infix($next, $grid-breakpoints);
+
+				// stylelint-disable-next-line scss/selector-no-union-class-name
+				&#{$infix} {
+				@include media-breakpoint-up($next) {
+					flex-wrap: nowrap;
+					justify-content: flex-start;
+
+					.navbar-nav {
+					flex-direction: row;
+
+					.dropdown-menu {
+						position: absolute;
+					}
+
+					.nav-link {
+						padding-right: var(--#{$prefix}navbar-nav-link-padding-x);
+						padding-left: var(--#{$prefix}navbar-nav-link-padding-x);
+					}
+					}
+
+					.navbar-nav-scroll {
+					overflow: visible;
+					}
+
+					.navbar-collapse {
+					display: flex !important; // stylelint-disable-line declaration-no-important
+					flex-basis: auto;
+					}
+
+					.navbar-toggler {
+					display: none;
+					}
+
+					.offcanvas {
+					// stylelint-disable declaration-no-important
+					position: static;
+					z-index: auto;
+					flex-grow: 1;
+					width: auto !important;
+					height: auto !important;
+					visibility: visible !important;
+					background-color: transparent !important;
+					border: 0 !important;
+					transform: none !important;
+					@include box-shadow(none);
+					@include transition(none);
+					// stylelint-enable declaration-no-important
+
+					.offcanvas-header {
+						display: none;
+					}
+
+					.offcanvas-body {
+						display: flex;
+						flex-grow: 0;
+						padding: 0;
+						overflow-y: visible;
+					}
+					}
+				}
+				}
+			}
+			}
 			`,
 		}),
 	],
