@@ -47,67 +47,168 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Buttons"),
-		new e.text("Badges can be used as part of links or buttons to provide a counter."),
-		new e.code({
-			output: () => {
-				return new b.button(["Notification ", new b.badge({ bgColor: "secondary" }, "4")]);
-			},
-		}),
+		new e.title("Available styles"),
 		new e.text(
-			"Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button."
-		),
-		new e.text(
-			"Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional text."
+			"Change the style of {{.nav}}s component with modifiers and utilities. Mix and match as needed, or build your own."
 		),
 
 		//-----------------------
 
-		new e.subtitle("Positioned"),
-		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
+		new e.subtitle("Horizontal alignment"),
+		new e.text(
+			"Change the horizontal alignment of your nav with {{https://getbootstrap.com/docs/5.3/layout/grid/#horizontal-alignment::flexbox utilities}}. By default, navs are left-aligned, but you can easily change them to center or right aligned."
+		),
+		new e.text("Centered with {{.justify-content-center}}:"),
 		new e.code({
 			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Inbox ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "pill",
-						},
-						["99+", new b.visuallyhidden("unread messages")]
-					),
+				return new b.nav.header.container({ justifyContent: "center" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
 				]);
 			},
 		}),
-		new e.text(
-			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
-		),
+		new e.text("Right-aligned with {{.justify-content-end}}:"),
 		new e.code({
 			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Profile ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "circle",
-							border: true,
-							borderColor: "light",
-							padding: 2,
-						},
-						new b.visuallyhidden("New alerts")
-					),
+				return new b.nav.header.container({ justifyContent: "end" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
 				]);
 			},
 		}),
 
+		//-----------------------
+
+		new e.subtitle("Vertical"),
+		new e.text(
+			"Stack your navigation by changing the flex item direction with the {{.flex-column}} utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., {{.flex-sm-column}})."
+		),
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({ flex: "column" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+				]);
+			},
+		}),
+		new e.text("As always, vertical navigation is possible without {{<ul>}}s, too."),
+		new e.code({
+			output: () => {
+				return new b.nav.header.containerNav({ flex: "column" }, [
+					new b.nav.header.link({ active: true, href: "#" }, "Active"),
+					new b.nav.header.link({ href: "#" }, "Link"),
+					new b.nav.header.link({ href: "#" }, "Link"),
+					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Tabs"),
+		new e.text(
+			"Takes the basic nav from above and adds the {{.nav-tabs}} class to generate a tabbed interface. Use them to create tabbable regions with our {{https://getbootstrap.com/docs/5.3/components/navs-tabs/#javascript-behavior::tab JavaScript plugin}}."
+		),
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({ type: "tab" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Pills"),
+		new e.text("Take that same HTML, but use {{.nav-pills}} instead:"),
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({ type: "pill" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Underline"),
+		new e.text("Take that same HTML, but use {{.nav-underline}} instead:"),
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({ type: "underline" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Fill and justify"),
+		new e.text(
+			"Force your {{.nav}}’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your {{.nav-items}}, use {{.nav-fill}}. Notice that all horizontal space is occupied, but not every nav item has the same width."
+		),
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({ type: "pill", itemWidth: "fill" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Much longer nav link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+				]);
+			},
+		}),
+		new e.text(
+			"When using a {{<nav>}}-based navigation, you can safely omit {{.nav-item}} as only {{.nav-link}} is required for styling {{<a>}} elements."
+		),
+		new e.code({
+			output: () => {
+				return new b.nav.header.containerNav({ type: "pill", itemWidth: "fill" }, [
+					new b.nav.header.link({ active: true, href: "#" }, "Active"),
+					new b.nav.header.link({ href: "#" }, "Much longer nav link"),
+					new b.nav.header.link({ href: "#" }, "Link"),
+					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
+				]);
+			},
+		}),
+		new e.text(
+			"For equal-width elements, use {{.nav-justified}}. All horizontal space will be occupied by nav links, but unlike the {{.nav-fill}} above, every nav item will be the same width."
+		),
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({ type: "pill", itemWidth: "justified" }, [
+					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Much longer nav link")),
+					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+				]);
+			},
+		}),
+		new e.text("Similar to the {{.nav-fill}} example using a {{<nav>}}-based navigation."),
+		new e.code({
+			output: () => {
+				return new b.nav.header.containerNav({ type: "pill", itemWidth: "justified" }, [
+					new b.nav.header.link({ active: true, href: "#" }, "Active"),
+					new b.nav.header.link({ href: "#" }, "Much longer nav link"),
+					new b.nav.header.link({ href: "#" }, "Link"),
+					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
+				]);
+			},
+		}),
 		//-----------------------
 
 		new e.title("Background colors"),
