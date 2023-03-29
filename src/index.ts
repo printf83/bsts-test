@@ -89,7 +89,7 @@ const maincontainer = new main.container({
 		{ value: "dark", icon: { icon: "moon", type: "fas" }, label: "Dark" },
 		{ value: "auto", icon: { icon: "circle-half-stroke", type: "fas" }, label: "Auto" },
 	],
-	currentTheme: "dark",
+	currentTheme: "auto",
 
 	itemVersion: [{ value: "0.1.28", label: "Latest (0.1.28)" }],
 	currentVersion: "0.1.28",

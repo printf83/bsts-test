@@ -14,7 +14,7 @@ const genIDFromElem = (attr: core.IAttr) => {
 
 const convert = (attr: core.IAttr) => {
 	attr.id = genIDFromElem(attr);
-	attr = core.mergeObject({ class: "example-subtitle", marginTop: 5 }, attr);
+	attr = core.mergeObject({ class: "example-subtitle", marginTop: 5, marginBottom: 3 }, attr);
 
 	if (attr.elem) {
 		let strElem: string = "";

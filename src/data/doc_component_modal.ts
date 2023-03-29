@@ -895,7 +895,7 @@ export const doc_component_modal: IAttrContent = {
 		new e.text("Create a modal with a single line of JavaScript:"),
 
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
 				const myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
 				// or
@@ -905,7 +905,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Options"),
+		new e.title("Options"),
 		new e.text(
 			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation="{value}"}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data-bs-custom-class="beautifier"}} instead of {{data-bs-customClass="beautifier"}}.`
 		),
@@ -928,7 +928,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Methods"),
+		new e.title("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
 			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
@@ -975,6 +975,48 @@ export const doc_component_modal: IAttrContent = {
 					"Manually toggles a modal. {{b::Returns to the caller before the modal has actually been shown or hidden}} (i.e. before the {{shown.bs.modal}} or {{hidden.bs.modal}} event occurs).",
 				],
 			],
+		}),
+
+		//-----------------------
+
+		new e.title("Events"),
+		new e.text(
+			"Bootstrap’s modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the {{<div class='modal'>}})."
+		),
+		new e.table({
+			item: [
+				["Event", "Description"],
+				[
+					"{{hide.bs.modal}}",
+					"This event is fired immediately when the {{hide}} instance method has been called.",
+				],
+				[
+					"{{hidden.bs.modal}}",
+					"This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete).",
+				],
+				[
+					"{{hidePrevented.bs.modal}}",
+					"This event is fired when the modal is shown, its backdrop is {{static}} and a click outside of the modal is performed. The event is also fired when the escape key is pressed and the {{keyboard}} option is set to {{false}}.",
+				],
+				[
+					"{{show.bs.modal}}",
+					"This event fires immediately when the {{show}} instance method is called. If caused by a click, the clicked element is available as the {{relatedTarget}} property of the event.",
+				],
+				[
+					"{{shown.bs.modal}}",
+					"This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete). If caused by a click, the clicked element is available as the {{relatedTarget}} property of the event.",
+				],
+			],
+		}),
+
+		new e.codepreview({
+			type: "js",
+			code: `
+				const myModalEl = document.getElementById('myModal')
+				myModalEl.addEventListener('hidden.bs.modal', event => {
+				// do something...
+				})
+			`,
 		}),
 	],
 };
