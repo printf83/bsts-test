@@ -7,7 +7,7 @@ const convert = (attr: b.table.IAttrBSTableContainer) => {
 	tAttr.marginBottom ??= 3;
 	tAttr.overflow = "auto";
 
-	attr = core.mergeObject({ small: true, class: "small" }, attr);
+	attr.class = core.mergeClass(attr.class, "small");
 
 	tAttr.elem = new b.table.container(attr);
 
