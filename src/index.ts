@@ -40,7 +40,7 @@ let m = {
 
 const getData = (value: string) => {
 	let c = data(value);
-	c.sourceUrl = `https://github.com/printf83/bsts-test/tree/main/src/data/${value}.ts`;
+	c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/data/${value}.ts`;
 	c.sourceWeb = "Github";
 	return c;
 };
