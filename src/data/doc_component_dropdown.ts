@@ -214,7 +214,7 @@ export const doc_component_dropdown: IAttrContent = {
 							{ id: "navbarNavDarkDropdown" },
 							new b.navbar.itemcontainer([
 								new b.navbar.item({ dropdown: true }, [
-									new b.dropdown.toggle({ color: "dark" }, "Dropdown"),
+									new b.dropdown.toggle({ navItem: true }, "Dropdown"),
 									new b.dropdown.menu([
 										new b.dropdown.item({ href: "#" }, "Action"),
 										new b.dropdown.item({ href: "#" }, "Another action"),
