@@ -30,7 +30,7 @@
 		"build": "npm run clean && npm run build:esm",
 		"build:win": "npm run clean:win && npm run build:esm",
 		"build:esm": "tsc -p ./configs/tsconfig.esm.json",
-		"debug":"tsc -p ./configs/tsconfig.esm.json --watch",
+		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"prepack": "npm run build"
 	},
 	"devDependencies": {

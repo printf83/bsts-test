@@ -209,20 +209,21 @@ export const doc_component_nav: IAttrContent = {
 				]);
 			},
 		}),
+
 		//-----------------------
 
-		new e.title("Background colors"),
+		new e.title("Working with flex utilities"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"If you need responsive nav variations, consider using a series of {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, our nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint."
 		),
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number] },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return new b.nav.header.containerNav({ type: "pill", flex: ["column", "sm-row"] }, [
+					new b.nav.header.link({ active: true, href: "#" }, "Active"),
+					new b.nav.header.link({ href: "#" }, "Much longer nav link"),
+					new b.nav.header.link({ href: "#" }, "Link"),
+					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
+				]);
 			},
 		}),
 		new e.alert({ color: "info", callout: true }, [
