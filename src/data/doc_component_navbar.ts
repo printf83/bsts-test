@@ -244,75 +244,182 @@ export const doc_component_navbar: IAttrContent = {
 				);
 			},
 		}),
-		//-----------------------
-
-		new e.subtitle("Positioned"),
-		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
-		new e.code({
-			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Inbox ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "pill",
-						},
-						["99+", new b.visuallyhidden("unread messages")]
-					),
-				]);
-			},
-		}),
-		new e.text(
-			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
-		),
-		new e.code({
-			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Profile ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "circle",
-							border: true,
-							borderColor: "light",
-							padding: 2,
-						},
-						new b.visuallyhidden("New alerts")
-					),
-				]);
-			},
-		}),
 
 		//-----------------------
 
-		new e.title("Background colors"),
+		new e.subtitle("Forms"),
+		new e.text("Place various form controls and components within a navbar:"),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary" },
+					new b.navbar.innercontainer(
+						{ container: "fluid" },
+						new h.form({ display: "flex", role: "search" }, [
+							new b.input({
+								type: "search",
+								marginEnd: 2,
+								placeholderText: "Search",
+								label: "Search",
+							}),
+							new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+						])
+					)
+				);
+			},
+		}),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"Immediate child elements of {{.navbar}} use flex layout and will default to {{justify-content: space-between}}. Use additional {{https://getbootstrap.com/docs/5.3/utilities/flex/::flex utilities}} as needed to adjust this behavior."
 		),
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number] },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand("Navbar"),
+						new h.form({ display: "flex", role: "search" }, [
+							new b.input({
+								type: "search",
+								marginEnd: 2,
+								placeholderText: "Search",
+								label: "Search",
+							}),
+							new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+						]),
+					])
+				);
 			},
 		}),
-		new e.alert({ color: "info", callout: true }, [
-			new h.h(5, "Conveying meaning to assistive technologies"),
-			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-			),
+
+		new e.text(
+			"Input groups work, too. If your navbar is an entire form, or mostly a form, you can use the {{<form>}} element as the container and save some HTML."
+		),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary" },
+					new b.navbar.innercontainer(
+						{ container: "fluid" },
+						new b.inputgroup.container([
+							new b.inputgroup.text({ id: "basic-addon1" }, "@"),
+							new b.input({
+								type: "text",
+								describedby: "basic-addon1",
+								label: "Username",
+								placeholderText: "Username",
+							}),
+						])
+					)
+				);
+			},
+		}),
+
+		new e.text(
+			"Various buttons are supported as part of these navbar forms, too. This is also a great reminder that vertical alignment utilities can be used to align different sized elements."
+		),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary" },
+					new h.form({ container: "fluid", justifyContent: "start" }, [
+						new b.button({ color: "success", outline: true, marginEnd: 2 }, "Main button"),
+						new b.button({ color: "secondary", outline: true, weight: "sm" }, "Smaller button"),
+					])
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Text"),
+		new e.text(
+			"Navbars may contain bits of text with the help of {{.navbar-text}}. This class adjusts vertical alignment and horizontal spacing for strings of text."
+		),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary" },
+					new b.navbar.innercontainer(
+						{ container: "fluid" },
+						new b.navbar.text("Navbar text with an inline element")
+					)
+				);
+			},
+		}),
+		new e.text("Mix and match with other components and utilities as needed."),
+		new e.code({
+			output: () => {
+				return new b.navbar.container(
+					{ bgColor: "body-tertiary", expand: "lg" },
+					new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand({ href: "#" }, "Navbar w/ text"),
+						new b.navbar.toggle.collapse({
+							target: "#navbarText",
+							control: "navbarText",
+							label: "Toggle navigation",
+						}),
+						new b.navbar.collapse({ id: "navbarText" }, [
+							new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+								new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
+							]),
+							new b.navbar.text("Navbar text with an inline element"),
+						]),
+					])
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Color schemes"),
+		new e.alert({ color: "warning", callout: true }, [
+			"{{b::New dark navbars in v5.3.0 —}} We’ve deprecated {{.navbar-dark}} in favor of the new {{data-bs-theme='dark'}}. Add {{data-bs-theme='dark'}} to the {{.navbar}} to enable a component-specific color mode. {{https://getbootstrap.com/docs/5.3/customize/color-modes/::Learn more about our color modes}}.",
+			new h.hr(),
+			"{{b::New in v5.2.0 —}} Navbar theming is now powered by CSS variables and {{.navbar-light}} has been deprecated. CSS variables are applied to {{.navbar}}, defaulting to the “light” appearance, and can be overridden with {{.navbar-dark}}.",
 		]),
+		new e.text(
+			"Navbar themes are easier than ever thanks to Bootstrap’s combination of Sass and CSS variables. The default is our “light navbar” for use with light background colors, but you can also apply {{data-bs-theme='dark'}} to the {{.navbar}} parent for dark background colors. Then, customize with {{.bg-*}} utilities."
+		),
+		new e.code({
+			output: () => {
+				const navbarItem = (btnColor: b.IAttrBSButton["color"]) => {
+					let id = core.UUID();
+					return new b.navbar.innercontainer({ container: "fluid" }, [
+						new b.navbar.brand({ href: "#" }, "Navbar"),
+						new b.navbar.toggle.collapse({
+							target: `#${id}`,
+							control: id,
+							label: "Toggle navigation",
+						}),
+						new b.navbar.collapse({ id: id }, [
+							new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+								new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
+								new b.navbar.item(new b.navbar.link({ href: "#" }, "About")),
+							]),
+							new h.form({ display: "flex", role: "search" }, [
+								new b.input({
+									type: "search",
+									marginEnd: 2,
+									placeholderText: "Search",
+									label: "Search",
+								}),
+								new b.button({ type: "submit", color: btnColor, outline: true }, "Search"),
+							]),
+						]),
+					]);
+				};
+
+				return [
+					new b.navbar.container({ bgColor: "dark", theme: "dark" }, navbarItem("light")),
+					new b.navbar.container({ bgColor: "primary", theme: "dark" }, navbarItem("light")),
+					new b.navbar.container({ style: { backgroundColor: "#e3f2fd" } }, navbarItem("primary")),
+				];
+			},
+		}),
 
 		//-----------------------
 
