@@ -32,7 +32,10 @@ declare var PR: {
 const getOutputHTML = (target: HTMLElement): void => {
 	let html = target.closest(".example-code")?.getElementsByClassName("example-output")[0].innerHTML;
 	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
-	PR.prettyPrint();
+
+	setTimeout(() => {
+		PR.prettyPrint();
+	}, 10);
 };
 
 function itemCodeCopy(e: Event) {
@@ -125,7 +128,7 @@ const itemCode = (
 					"show.bs.collapse": onshow
 						? (e) => {
 								let target = e.target as HTMLElement;
-								if (target.getAttribute("data-loaded") === "false") {
+								if (target.getAttribute("data-loaded") !== "true") {
 									target.setAttribute("data-loaded", "true");
 									onshow(target);
 								}
