@@ -97,7 +97,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		//-----------------------
 
-		new e.xsubtitle("Text"),
+		new e.xsubtitle({ id: "brand_text" }, "Text"),
 		new e.text("Add your text within an element with the {{.navbar-brand}} class."),
 		new e.code({
 			output: () => {
