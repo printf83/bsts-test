@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_component_nav";
+let CURRENT_PAGE = "doc_component_offcanvas";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -34,6 +34,7 @@ let m = {
 				{ label: "Modal", value: "doc_component_modal" },
 				{ label: "Navbar", value: "doc_component_navbar" },
 				{ label: "Navs & tabs", value: "doc_component_nav" },
+				{ label: "Offcanvas", value: "doc_component_offcanvas" },
 			],
 		},
 	] as main.IAttrItemMenu[],
@@ -54,7 +55,7 @@ const onmenuchange = (value: string) => {
 
 	setTimeout(() => {
 		PR.prettyPrint();
-	}, 10);
+	}, 300);
 };
 
 const maincontainer = new main.container({
