@@ -111,7 +111,7 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Tabs"),
+		new e.subtitle("Tabs"),
 		new e.text(
 			"Takes the basic nav from above and adds the {{.nav-tabs}} class to generate a tabbed interface. Use them to create tabbable regions with our {{https://getbootstrap.com/docs/5.3/components/navs-tabs/#javascript-behavior::tab JavaScript plugin}}."
 		),
@@ -128,7 +128,7 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Pills"),
+		new e.subtitle("Pills"),
 		new e.text("Take that same HTML, but use {{.nav-pills}} instead:"),
 		new e.code({
 			output: () => {
@@ -143,7 +143,7 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Underline"),
+		new e.subtitle("Underline"),
 		new e.text("Take that same HTML, but use {{.nav-underline}} instead:"),
 		new e.code({
 			output: () => {
@@ -158,7 +158,7 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Fill and justify"),
+		new e.subtitle("Fill and justify"),
 		new e.text(
 			"Force your {{.nav}}’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your {{.nav-items}}, use {{.nav-fill}}. Notice that all horizontal space is occupied, but not every nav item has the same width."
 		),
@@ -246,7 +246,7 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Tabs with dropdowns"),
+		new e.subtitle("Tabs with dropdowns"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ type: "tab" }, [
@@ -269,7 +269,7 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Pills with dropdowns"),
+		new e.subtitle("Pills with dropdowns"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ type: "pill" }, [
@@ -577,7 +577,7 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Accessibility"),
+		new e.subtitle("Accessibility"),
 		new e.text(
 			"Dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}, require {{role='tablist'}}, {{role='tab'}}, {{role='tabpanel'}}, and additional {{aria-}} attributes in order to convey their structure, functionality, and current state to users of assistive technologies (such as screen readers). As a best practice, we recommend using {{<button>}} elements for the tabs, as these are controls that trigger a dynamic change, rather than links that navigate to a new page or location."
 		),
@@ -595,9 +595,166 @@ export const doc_component_nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Using data attributes"),
+		new e.subtitle("Using data attributes"),
 		new e.text(
 			"You can activate a tab or pill navigation without writing any JavaScript by simply specifying {{data-bs-toggle='tab'}} or {{data-bs-toggle='pill'}} on an element. Use these data attributes on {{.nav-tabs}} or {{.nav-pills}}."
 		),
+		new e.codepreview({
+			type: "html",
+			code: `
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Messages</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
+				</li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+				<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
+				<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+				<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab" tabindex="0">...</div>
+				<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
+				</div>
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Via JavaScript"),
+		new e.text("Enable tabbable tabs via JavaScript (each tab needs to be activated individually):"),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const triggerTabList = document.querySelectorAll('#myTab button')
+				triggerTabList.forEach(triggerEl => {
+				const tabTrigger = new bootstrap.Tab(triggerEl)
+
+				triggerEl.addEventListener('click', event => {
+					event.preventDefault()
+					tabTrigger.show()
+				})
+				})
+			`,
+		}),
+		new e.text("You can activate individual tabs in several ways:"),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const triggerEl = document.querySelector('#myTab button[data-bs-target="#profile"]')
+				bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+
+				const triggerFirstTabEl = document.querySelector('#myTab li:first-child button')
+				bootstrap.Tab.getInstance(triggerFirstTabEl).show() // Select first tab
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Fade effect"),
+		new e.text(
+			"To make tabs fade in, add {{.fade}} to each {{.tab-pane}}. The first tab pane must also have {{.show}} to make the initial content visible."
+		),
+		new e.codepreview({
+			type: "html",
+			code: `
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
+					<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+					<div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab" tabindex="0">...</div>
+					<div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
+				</div>
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Methods"),
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+		),
+		new e.text("Activates your content as a tab element."),
+		new e.text("You can create a tab instance with the constructor, for example:"),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const bsTab = new bootstrap.Tab('#myTab')
+			`,
+		}),
+		new e.table({
+			item: [
+				["Method", "Description"],
+				["{{dispose}}", "Destroys an element’s tab."],
+				[
+					"{{getInstance}}",
+					"Static method which allows you to get the tab instance associated with a DOM element, you can use it like this: {{bootstrap.Tab.getInstance(element)}}.",
+				],
+				[
+					"{{getOrCreateInstance}}",
+					"Static method which returns a tab instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Tab.getOrCreateInstance(element)}}.",
+				],
+				[
+					"{{show}}",
+					"Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. {{b::Returns to the caller before the tab pane has actually been shown}} (i.e. before the {{shown.bs.tab}} event occurs).",
+				],
+			],
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Events"),
+		new e.text("When showing a new tab, the events fire in the following order:"),
+		new e.ol({
+			item: [
+				"{{hide.bs.tab}} (on the current active tab)",
+				"{{show.bs.tab}} (on the to-be-shown tab)",
+				"{{hidden.bs.tab}} (on the previous active tab, the same one as for the {{hide.bs.tab}} event)",
+				"{{shown.bs.tab}} (on the newly-active just-shown tab, the same one as for the {{show.bs.tab}} event)",
+			],
+		}),
+		new e.text(
+			"If no tab was already active, then the {{hide.bs.tab}} and {{hidden.bs.tab}} events will not be fired."
+		),
+		new e.table({
+			item: [
+				["Event type", "Description"],
+				[
+					"{{hide.bs.tab}}",
+					"This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use {{event.target}} and {{event.relatedTarget}} to target the current active tab and the new soon-to-be-active tab, respectively.",
+				],
+				[
+					"{{hidden.bs.tab}}",
+					"This event fires after a new tab is shown (and thus the previous active tab is hidden). Use {{event.target}} and {{event.relatedTarget}} to target the previous active tab and the new active tab, respectively.",
+				],
+				[
+					"{{show.bs.tab}}",
+					"This event fires on tab show, but before the new tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
+				],
+				[
+					"{{shown.bs.tab}}",
+					"This event fires on tab show after a tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
+				],
+			],
+		}),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const tabEl = document.querySelector('button[data-bs-toggle="tab"]')
+				tabEl.addEventListener('shown.bs.tab', event => {
+				event.target // newly activated tab
+				event.relatedTarget // previous active tab
+				})
+			`,
+		}),
 	],
 };
