@@ -1,4 +1,4 @@
-import { core, h, b } from "@printf83/bsts";
+import { h, b } from "@printf83/bsts";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
@@ -35,11 +35,11 @@ export const doc_component_offcanvas: IAttrContent = {
 			"Below is an offcanvas example that is shown by default (via {{.show}} on {{.offcanvas}}). Offcanvas includes support for a header with a close button and an optional body class for some initial {{padding}}. We suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action."
 		),
 		new e.code({
+			previewAttr: { bgColor: "body-tertiary", padding: 0 },
 			output: () => {
 				return new b.offcanvas.container(
 					{
 						debug: true,
-						placement: "start",
 						labelledby: "offcanvasLabel",
 					},
 					[
@@ -48,7 +48,7 @@ export const doc_component_offcanvas: IAttrContent = {
 							new b.offcanvas.btnclose(),
 						]),
 						new b.offcanvas.body(
-							" Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here."
+							"Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here."
 						),
 					]
 				);
@@ -75,132 +75,331 @@ export const doc_component_offcanvas: IAttrContent = {
 						{ target: "#offcanvasExample", control: "offcanvasExample" },
 						"Button with data-bs-target"
 					),
+					new b.offcanvas.container({ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" }, [
+						new b.offcanvas.header([
+							new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"),
+							new b.offcanvas.btnclose(),
+						]),
+						new b.offcanvas.body([
+							new h.div(
+								"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+							),
+							new b.dropdown.container({ marginTop: 3 }, [
+								new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Action"),
+									new b.dropdown.item({ href: "#" }, "Another action"),
+									new b.dropdown.item({ href: "#" }, "Something else here"),
+								]),
+							]),
+						]),
+					]),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Body scrolling"),
+		new e.text(
+			"Scrolling the {{<body>}} element is disabled when an offcanvas and its backdrop are visible. Use the {{data-bs-scroll}} attribute to enable {{<body>}} scrolling."
+		),
+		new e.code({
+			output: () => {
+				return [
+					new b.offcanvas.toggle(
+						{ target: "#offcanvasScrolling", control: "offcanvasScrolling" },
+						"Enable body scrolling"
+					),
 					new b.offcanvas.container(
-						{ id: "offcanvasExample", placement: "start", labelledby: "offcanvasExampleLabel" },
+						{
+							id: "offcanvasScrolling",
+							scroll: true,
+							backdrop: false,
+							labelledby: "offcanvasScrollingLabel",
+						},
 						[
 							new b.offcanvas.header([
-								new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"),
+								new b.offcanvas.title(
+									{ id: "offcanvasScrollingLabel" },
+									"Offcanvas with body scrolling"
+								),
 								new b.offcanvas.btnclose(),
 							]),
 							new b.offcanvas.body(
-								" Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here."
+								new h.p("Try scrolling the rest of the page to see this option in action.")
 							),
 						]
 					),
 				];
 			},
 		}),
-		new e.text(
-			"Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button."
-		),
-		new e.text(
-			"Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional text."
-		),
 
 		//-----------------------
 
-		new e.subtitle("Positioned"),
-		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
+		new e.subtitle("Body scrolling and backdrop"),
+		new e.text("You can also enable {{<body>}} scrolling with a visible backdrop."),
 		new e.code({
 			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Inbox ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "pill",
-						},
-						["99+", new b.visuallyhidden("unread messages")]
+				return [
+					new b.offcanvas.toggle(
+						{ target: "#offcanvasWithBothOptions", control: "offcanvasWithBothOptions" },
+						"Enable both scrolling & backdrop"
 					),
-				]);
-			},
-		}),
-		new e.text(
-			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
-		),
-		new e.code({
-			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Profile ",
-					new b.badge(
+					new b.offcanvas.container(
 						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "circle",
-							border: true,
-							borderColor: "light",
-							padding: 2,
+							id: "offcanvasWithBothOptions",
+							scroll: true,
+							backdrop: true,
+							labelledby: "offcanvasWithBothOptionsLabel",
 						},
-						new b.visuallyhidden("New alerts")
+						[
+							new b.offcanvas.header([
+								new b.offcanvas.title(
+									{ id: "offcanvasWithBothOptionsLabel" },
+									"Backdrop with scrolling"
+								),
+								new b.offcanvas.btnclose(),
+							]),
+							new b.offcanvas.body(
+								new h.p("Try scrolling the rest of the page to see this option in action.")
+							),
+						]
 					),
-				]);
+				];
 			},
 		}),
 
 		//-----------------------
 
-		new e.title("Background colors"),
-		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
-		),
+		new e.subtitle("Static backdrop"),
+		new e.text("When backdrop is set to static, the offcanvas will not close when clicking outside of it."),
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number] },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return [
+					new b.offcanvas.toggle(
+						{ target: "#staticBackdrop", control: "staticBackdrop" },
+						"Toggle static offcanvas"
+					),
+					new b.offcanvas.container(
+						{
+							id: "staticBackdrop",
+							backdrop: "static",
+							labelledby: "staticBackdropLabel",
+						},
+						[
+							new b.offcanvas.header([
+								new b.offcanvas.title({ id: "staticBackdropLabel" }, "Offcanvas"),
+								new b.offcanvas.btnclose(),
+							]),
+							new b.offcanvas.body(new h.div("I will not close if you click outside of me.")),
+						]
+					),
+				];
 			},
 		}),
-		new e.alert({ color: "info", callout: true }, [
-			new h.h(5, "Conveying meaning to assistive technologies"),
-			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-			),
-		]),
 
 		//-----------------------
 
-		new e.title("Pill badges"),
+		new e.title("Dark offcanvas"),
 		new e.text(
-			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
+			"Change the appearance of offcanvases with utilities to better match them to different contexts like dark navbars. Here we add {{.text-bg-dark}} to the {{.offcanvas}} and {{.btn-close-white}} to {{.btn-close}} for proper styling with a dark offcanvas. If you have dropdowns within, consider also adding {{.dropdown-menu-dark}} to {{.dropdown-menu}}."
+		),
+		new e.alert(
+			{ color: "warning", callout: true },
+			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of manually adding classes mentioned above, set {{data-bs-theme='dark'}} on the root element, a parent wrapper, or the component itself."
+		),
+		new e.code({
+			previewAttr: { bgColor: "body-tertiary", padding: 0 },
+			output: () => {
+				return new b.offcanvas.container(
+					{
+						debug: true,
+						theme: "dark",
+						labelledby: "offcanvasDarkLabel",
+					},
+					[
+						new b.offcanvas.header([
+							new b.offcanvas.title({ id: "offcanvasDarkLabel" }, "Offcanvas"),
+							new b.offcanvas.btnclose(),
+						]),
+						new b.offcanvas.body("Place offcanvas content here."),
+					]
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Responsive"),
+		new e.text(
+			"Responsive offcanvas classes hide content outside the viewport from a specified breakpoint and down. Above that breakpoint, the contents within will behave as usual. For example, {{.offcanvas-lg}} hides content in an offcanvas below the {{lg}} breakpoint, but shows the content above the {{lg}} breakpoint."
 		),
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number], rounded: "pill" },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
+				return [
+					new b.offcanvas.toggle(
+						{
+							target: "#offcanvasResponsive",
+							control: "offcanvasResponsive",
+							display: "lg-none",
+						},
+						"Toggle offcanvas"
+					),
+					new b.alert.container(
+						{ color: "info", display: ["none", "lg-block"] },
+						"Resize your browser to show the responsive offcanvas toggle."
+					),
+					new b.offcanvas.container(
+						{
+							id: "offcanvasResponsive",
+							placement: "end",
+							hide: "lg",
+							labelledby: "offcanvasResponsiveLabel",
+						},
+						[
+							new b.offcanvas.header([
+								new b.offcanvas.title({ id: "offcanvasResponsiveLabel" }, "Responsive offcanvas"),
+								new b.offcanvas.btnclose({ target: "#offcanvasResponsive" }),
+							]),
+							new b.offcanvas.body(
+								new h.p({ marginBottom: 0 }, "This is content within an {{.offcanvas-lg}}.")
+							),
+						]
+					),
+				];
 			},
 		}),
+		new e.text("Responsive offcanvas classes are available across for each breakpoint."),
+		new e.ul({
+			item: [
+				"{{.offcanvas}}",
+				"{{.offcanvas-sm}}",
+				"{{.offcanvas-md}}",
+				"{{.offcanvas-lg}}",
+				"{{.offcanvas-xl}}",
+				"{{.offcanvas-xxl}}",
+			],
+		}),
+
+		//-----------------------
+
+		new e.title("Placement"),
+		new e.text(
+			"There’s no default placement for offcanvas components, so you must add one of the modifier classes below."
+		),
+		new e.ul({
+			item: [
+				"{{.offcanvas-start}} places offcanvas on the left of the viewport (shown above)",
+				"{{.offcanvas-end}} places offcanvas on the right of the viewport",
+				"{{.offcanvas-top}} places offcanvas on the top of the viewport",
+				"{{.offcanvas-bottom}} places offcanvas on the bottom of the viewport",
+			],
+		}),
+		new e.text("Try the top, right, and bottom examples out below."),
+		new e.code({
+			output: () => {
+				return [
+					new b.offcanvas.toggle(
+						{ target: "#offcanvasTop", control: "offcanvasTop" },
+						"Toggle top offcanvas"
+					),
+					new b.offcanvas.container(
+						{
+							id: "offcanvasTop",
+							placement: "top",
+							labelledby: "offcanvasTopLabel",
+						},
+						[
+							new b.offcanvas.header([
+								new b.offcanvas.title({ id: "offcanvasTopLabel" }, "Offcanvas top"),
+								new b.offcanvas.btnclose(),
+							]),
+							new b.offcanvas.body("..."),
+						]
+					),
+				];
+			},
+		}),
+		new e.code({
+			output: () => {
+				return [
+					new b.offcanvas.toggle(
+						{ target: "#offcanvasEnd", control: "offcanvasEnd" },
+						"Toggle end offcanvas"
+					),
+					new b.offcanvas.container(
+						{
+							id: "offcanvasEnd",
+							placement: "end",
+							labelledby: "offcanvasEndLabel",
+						},
+						[
+							new b.offcanvas.header([
+								new b.offcanvas.title({ id: "offcanvasEndLabel" }, "Offcanvas end"),
+								new b.offcanvas.btnclose(),
+							]),
+							new b.offcanvas.body("..."),
+						]
+					),
+				];
+			},
+		}),
+		new e.code({
+			output: () => {
+				return [
+					new b.offcanvas.toggle(
+						{ target: "#offcanvasBottom", control: "offcanvasBottom" },
+						"Toggle bottom offcanvas"
+					),
+					new b.offcanvas.container(
+						{
+							id: "offcanvasBottom",
+							placement: "bottom",
+							labelledby: "offcanvasBottomLabel",
+						},
+						[
+							new b.offcanvas.header([
+								new b.offcanvas.title({ id: "offcanvasBottomLabel" }, "Offcanvas bottom"),
+								new b.offcanvas.btnclose(),
+							]),
+							new b.offcanvas.body("..."),
+						]
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Accessibility"),
+		new e.text(
+			"Since the offcanvas panel is conceptually a modal dialog, be sure to add {{aria-labelledby='...'}}—referencing the offcanvas title—to {{.offcanvas}}. Note that you don’t need to add {{role='dialog'}} since we already add it via JavaScript."
+		),
 
 		//-----------------------
 
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.offcanvas}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-				--#{$prefix}badge-padding-y: #{$badge-padding-y};
-				@include rfs($badge-font-size, --#{$prefix}badge-font-size);
-				--#{$prefix}badge-font-weight: #{$badge-font-weight};
-				--#{$prefix}badge-color: #{$badge-color};
-				--#{$prefix}badge-border-radius: #{$badge-border-radius};
+				--#{$prefix}offcanvas-zindex: #{$zindex-offcanvas};
+				--#{$prefix}offcanvas-width: #{$offcanvas-horizontal-width};
+				--#{$prefix}offcanvas-height: #{$offcanvas-vertical-height};
+				--#{$prefix}offcanvas-padding-x: #{$offcanvas-padding-x};
+				--#{$prefix}offcanvas-padding-y: #{$offcanvas-padding-y};
+				--#{$prefix}offcanvas-color: #{$offcanvas-color};
+				--#{$prefix}offcanvas-bg: #{$offcanvas-bg-color};
+				--#{$prefix}offcanvas-border-width: #{$offcanvas-border-width};
+				--#{$prefix}offcanvas-border-color: #{$offcanvas-border-color};
+				--#{$prefix}offcanvas-box-shadow: #{$offcanvas-box-shadow};
+				--#{$prefix}offcanvas-transition: #{transform $offcanvas-transition-duration ease-in-out};
+				--#{$prefix}offcanvas-title-line-height: #{$offcanvas-title-line-height};
 			`,
 		}),
 
@@ -209,13 +408,83 @@ export const doc_component_offcanvas: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			code: `
-				$badge-font-size:                   .75em;
-				$badge-font-weight:                 $font-weight-bold;
-				$badge-color:                       $white;
-				$badge-padding-y:                   .35em;
-				$badge-padding-x:                   .65em;
-				$badge-border-radius:               $border-radius;
+				$offcanvas-padding-y:               $modal-inner-padding;
+				$offcanvas-padding-x:               $modal-inner-padding;
+				$offcanvas-horizontal-width:        400px;
+				$offcanvas-vertical-height:         30vh;
+				$offcanvas-transition-duration:     .3s;
+				$offcanvas-border-color:            $modal-content-border-color;
+				$offcanvas-border-width:            $modal-content-border-width;
+				$offcanvas-title-line-height:       $modal-title-line-height;
+				$offcanvas-bg-color:                var(--#{$prefix}body-bg);
+				$offcanvas-color:                   var(--#{$prefix}body-color);
+				$offcanvas-box-shadow:              $modal-content-box-shadow-xs;
+				$offcanvas-backdrop-bg:             $modal-backdrop-bg;
+				$offcanvas-backdrop-opacity:        $modal-backdrop-opacity;
 			`,
 		}),
+
+		//-----------------------
+
+		new e.title("Usage"),
+		new e.text("The offcanvas plugin utilizes a few classes and attributes to handle the heavy lifting:"),
+		new e.ul({
+			item: [
+				"{{.offcanvas}} hides the content",
+				"{{.offcanvas.show}} shows the content",
+				"{{.offcanvas-start}} hides the offcanvas on the left",
+				"{{.offcanvas-end}} hides the offcanvas on the right",
+				"{{.offcanvas-top}} hides the offcanvas on the top",
+				"{{.offcanvas-bottom}} hides the offcanvas on the bottom",
+			],
+		}),
+		new e.text(
+			"Add a dismiss button with the {{data-bs-dismiss='offcanvas'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Via data attributes"),
+		new e.xsubtitle("Toggle"),
+		new e.text(
+			"Add {{data-bs-toggle='offcanvas'}} and a {{data-bs-target}} or {{href}} to the element to automatically assign control of one offcanvas element. The {{data-bs-target}} attribute accepts a CSS selector to apply the offcanvas to. Be sure to add the class {{offcanvas}} to the offcanvas element. If you’d like it to default open, add the additional class {{show}}."
+		),
+		new e.xsubtitle("Dismiss"),
+		new e.text(
+			"Dismissal can be achieved with the {{data-bs-dismiss}} attribute on a button {{b::within the offcanvas}} as demonstrated below:"
+		),
+		new e.codepreview({
+			type: "html",
+			code: `
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			`,
+		}),
+		new e.text(
+			"or on a button {{outside the offcanvas}} using the additional {{data-bs-target}} as demonstrated below:"
+		),
+		new e.codepreview({
+			type: "html",
+			code: `
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#my-offcanvas" aria-label="Close"></button>
+			`,
+		}),
+		new e.alert(
+			{ color: "warning", callout: true },
+			" While both ways to dismiss an offcanvas are supported, keep in mind that dismissing from outside an offcanvas does not match the {{https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/::ARIA Authoring Practices Guide dialog (modal) pattern}}. Do this at your own risk."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Via JavaScript"),
+		new e.text("Enable manually with:"),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const offcanvasElementList = document.querySelectorAll('.offcanvas')
+				const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap.Offcanvas(offcanvasEl))
+			`,
+		}),
+
+		new e.subtitle("Options"),
 	],
 };

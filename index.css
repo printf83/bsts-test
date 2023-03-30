@@ -8,6 +8,11 @@ a:hover *,
     font-weight: 600;
 }
 
+/* toggler on main container */
+.bs-noshadow:focus{
+    box-shadow: none;
+}
+
 /* example */
 
 .example-title,.example-subtitle,
@@ -22,7 +27,7 @@ a:hover *,
 
 
 /* gap on example code output */
-.example-output > *:not(.modal):not(.offcanvas) {
+.example-output > *:not(.modal):not(.offcanvas.show):not(.offcanvas.showing):not(.offcanvas.hiding):not(.offcanvas-backdrop):not(.offcanvas-lg) {
     margin: 0.25rem;
 }
 
@@ -60,24 +65,26 @@ a:hover *,
     transform: none;
     transition: none;
     visibility: visible;
+    height: 200px;
 }
 
-.example-output .offcanvas-top:not(.show):not(.showing) {
+
+.example-output .offcanvas-start:not(.show):not(.showing):not(.hiding):not(.offcanvas-lg) {
+    margin: calc(1.5rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
+    border-top-left-radius: var(--bs-border-radius);
+}
+
+.example-output .offcanvas-top:not(.show):not(.showing):not(.hiding):not(.offcanvas-lg) {
     margin: calc(1.5rem * -1) calc(1.25rem * -1) 1.25rem;
     border-top-left-radius: var(--bs-border-radius);
     border-top-right-radius: var(--bs-border-radius);
 }
 
-.example-output .offcanvas-bottom:not(.show):not(.showing) {
-    margin: 1.25rem calc(1.25rem * -1) calc(1.5rem * -1);
+.example-output .offcanvas-bottom:not(.show):not(.showing):not(.hiding):not(.offcanvas-lg) {
+    margin: 1.5rem calc(1.5rem * -1) calc(1.5rem * -1);
 }
 
-.example-output .offcanvas-start:not(.show):not(.showing) {
-    margin: calc(1.5rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
-    border-top-left-radius: var(--bs-border-radius) ;
-}
-
-.example-output .offcanvas-end:not(.show):not(.showing) {
+.example-output .offcanvas-end:not(.show):not(.showing):not(.offcanvas-lg) {
     margin: calc(1.25rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
     border-top-right-radius: var(--bs-border-radius);
 }

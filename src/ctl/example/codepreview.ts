@@ -28,7 +28,7 @@ const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 							)
 						)
 					),
-					new preview({ type: attr.type ? attr.type : "js" }, attr.code),
+					new preview({ type: attr.type ? attr.type : "js", marginEnd: 4 }, attr.code),
 				]),
 			]),
 		];

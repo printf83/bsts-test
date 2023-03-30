@@ -396,7 +396,9 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 									rounded: true,
 									href: "#",
 									aria: { current: active ? "page" : undefined },
-									data: { value: j.value },
+									data: {
+										value: j.value,
+									},
 									on: {
 										click: (_e) => {
 											changeMenu(j.value);
@@ -664,6 +666,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 						new h.div({ class: "bs-navbar-toggle" }, [
 							new b.navbar.toggle.offcanvas(
 								{
+									class: "bs-noshadow",
 									padding: 2,
 									target: "#bsSidebar",
 									control: "bsSidebar",
@@ -688,6 +691,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 						new h.div({ display: "flex" }, [
 							new b.navbar.toggle.offcanvas(
 								{
+									class: "bs-noshadow",
 									display: ["flex", "lg-none"],
 									order: 3,
 									padding: 2,
@@ -767,6 +771,10 @@ const convert = (attr: IAttrBSMainContainer) => {
 										marginBottom: 0,
 										paddingBottom: [3, "md-2"],
 										paddingEnd: "lg-2",
+										data: {
+											"bs-dismiss": "offcanvas",
+											"bs-target": "#bsSidebar",
+										},
 									},
 
 									genMenu(attr.itemMenu, attr.currentMenu)
