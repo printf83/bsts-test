@@ -5,135 +5,188 @@ import { IAttrContent } from "../ctl/main/container.js";
 export const doc_component_popover: IAttrContent = {
 	title: "Popovers",
 	description:
-		"Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages.",
+		"Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.",
 	item: [
 		new e.title("Overview"),
-		new e.text(
-			"We use a large block of connected links for our pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping {{<nav>}} element to identify it as a navigation section to screen readers and other assistive technologies."
+		new e.text("Things to know when using the popover plugin:"),
+		new e.ul({
+			item: [
+				"Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
+				"Popovers require the {{https://getbootstrap.com/docs/5.3/components/popovers/::popover plugin}} as a dependency.",
+				"Popovers are opt-in for performance reasons, so you must initialize them yourself.",
+				"Zero-length {{title}} and {{content}} values will never show a popover.",
+				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like our input groups, button groups, etc).",
+				"Triggering popovers on hidden elements will not work.",
+				"Popovers for {{.disabled}} or {{disabled}} elements must be triggered on a wrapper element.",
+				"When triggered from anchors that wrap across multiple lines, popovers will be centered between the anchors’ overall width. Use {{.text-nowrap}} on your {{<a>}}s to avoid this behavior.",
+				"Popovers must be hidden before their corresponding elements have been removed from the DOM.",
+				"Popovers can be triggered thanks to an element inside a shadow DOM.",
+			],
+		}),
+		new e.alert(
+			{ color: "info", callout: true },
+			"By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::sanitizer section in our JavaScript documentation}} for more details."
 		),
+		new e.alert(
+			{ color: "info", callout: true },
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+		),
+		new e.text("Keep reading to see how popovers work with some examples."),
+
+		//-----------------------
+
+		new e.title("Examples"),
+		new e.subtitle("Enable popovers"),
 		new e.text(
-			"In addition, as pages likely have more than one such navigation section, it’s advisable to provide a descriptive {{aria-label}} for the {{<nav>}} to reflect its purpose. For example, if the pagination component is used to navigate between a set of search results, an appropriate label could be {{aria-label='Search results pages'}}."
+			"As mentioned above, you must initialize popovers before they can be used. One way to initialize all popovers on a page would be to select them by their {{data-bs-toggle}} attribute, like so:"
+		),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+				const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Live demo"),
+		new e.text(
+			"We use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{data-bs-title}} and body content is set via {{data-bs-content}}."
+		),
+		new e.alert(
+			{ color: "warning", callout: true },
+			"Feel free to use either {{title}} or {{data-bs-title}} in your HTML. When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} when the element is rendered."
 		),
 		new e.code({
 			output: () => {
-				return new b.pagination.container({ label: "Page navigation example" }, [
-					new b.pagination.item({ href: "#" }, "Previous"),
-					new b.pagination.item({ href: "#" }, "1"),
-					new b.pagination.item({ href: "#" }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-					new b.pagination.item({ href: "#" }, "Next"),
-				]);
+				return new b.popover(
+					{ title: "Popover title", content: "And here's some amazing content. It's very engaging. Right?" },
+					new b.button({ weight: "lg", color: "danger" }, "Click to toggle popover")
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle("Working with icons"),
+		new e.subtitle("Four directions"),
 		new e.text(
-			"Looking to use an icon or symbol in place of text for some pagination links? Be sure to provide proper screen reader support with {{aria}} attributes."
+			"Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{data-bs-placement}} to change the direction."
 		),
 		new e.code({
 			output: () => {
-				return new b.pagination.container({ label: "Page navigation example" }, [
-					new b.pagination.item(
-						{ href: "#", label: "Previous" },
-						new h.span({ aria: { hidden: true } }, "«")
-					),
-					new b.pagination.item({ href: "#" }, "1"),
-					new b.pagination.item({ href: "#" }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-					new b.pagination.item({ href: "#", label: "Next" }, new h.span({ aria: { hidden: true } }, "»")),
-				]);
+				return ["top", "right", "bottom", "left"].map((i) => {
+					return new b.popover(
+						{
+							placement: i as b.IAttrBSPopover["placement"],
+							content: `${i.charAt(0).toUpperCase() + i.slice(1)} popover`,
+						},
+						new b.button({ color: "secondary" }, `Popover on ${i}`)
+					);
+				});
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle("Disabled and active states"),
+		new e.subtitle("Custom {{container}}"),
 		new e.text(
-			"Pagination links are customizable for different circumstances. Use {{.disabled}} for links that appear un-clickable and {{.active}} to indicate the current page."
+			"When you have some styles on a parent element that interfere with a popover, you’ll want to specify a custom {{container}} so that the popover’s HTML appears within that element instead. This is common in responsive tables, input groups, and the like."
 		),
-		new e.text(
-			"While the {{.disabled}} class uses {{pointer-events: none}} to {{i::try}} to disable the link functionality of {{<a>}}s, that CSS property is not yet standardized and doesn’t account for keyboard navigation. As such, you should always add {{tabindex='-1'}} on disabled links and use custom JavaScript to fully disable their functionality."
-		),
-		new e.code({
-			output: () => {
-				return new b.pagination.container({ label: "..." }, [
-					new b.pagination.item({ disabled: true }, "Previous"),
-					new b.pagination.item({ href: "#" }, "1"),
-					new b.pagination.item({ href: "#", active: true }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-					new b.pagination.item({ href: "#" }, "Next"),
-				]);
-			},
+		new e.codepreview({
+			type: "js",
+			code: `
+				const popover = new bootstrap.Popover('.example-popover', {
+				container: 'body'
+				})
+			`,
 		}),
 		new e.text(
-			"You can optionally swap out active or disabled anchors for {{<span>}}, or omit the anchor in the case of the prev/next arrows, to remove click functionality and prevent keyboard focus while retaining intended styles."
+			"Another situation where you’ll want to set an explicit custom {{container}} are popovers inside a {{https://getbootstrap.com/docs/5.3/components/modal/::modal dialog}}, to make sure that the popover itself is appended to the modal. This is particularly important for popovers that contain interactive elements – modal dialogs will trap focus, so unless the popover is a child element of the modal, users won’t be able to focus or activate these interactive elements."
 		),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const popover = new bootstrap.Popover('.example-popover', {
+				container: '.modal-body'
+				})
+			`,
+		}),
+
+		//-----------------------
+
+		new e.title("Custom popovers"),
+		new e.text(
+			"You can customize the appearance of popovers using {{https://getbootstrap.com/docs/5.3/components/popovers/#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope our custom appearance and use it to override some of the local CSS variables."
+		),
+
+		new e.codepreview({
+			type: "css",
+			code: `
+				.custom-popover {
+				--bs-popover-max-width: 200px;
+				--bs-popover-border-color: var(--bs-primary);
+				--bs-popover-header-bg: var(--bs-primary);
+				--bs-popover-header-color: var(--bs-white);
+				--bs-popover-body-padding-x: 1rem;
+				--bs-popover-body-padding-y: .5rem;
+				}
+			`,
+		}),
 		new e.code({
 			output: () => {
-				return new b.pagination.container({ label: "..." }, [
-					new b.pagination.item({ disabled: true }, "Previous"),
-					new b.pagination.item({ href: "#" }, "1"),
-					new b.pagination.item({ active: true }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-					new b.pagination.item({ href: "#" }, "Next"),
-				]);
+				return new b.popover(
+					{
+						title: "Custom popover",
+						content: "This popover is themed via CSS variables.",
+						customClass: "custom-popover",
+					},
+					new b.button({ color: "secondary" }, "Custom popover")
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle("Sizing"),
+		new e.subtitle("Dismiss on next click"),
 		new e.text(
-			"Fancy larger or smaller pagination? Add {{.pagination-lg}} or {{.pagination-sm}} for additional sizes."
+			"Use the {{focus}} trigger to dismiss popovers on the user’s next click of an element other than the toggle element."
+		),
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::Dismissing on next click requires specific HTML for proper cross-browser and cross-platform behavior}}. You can only use {{<a>}} elements, not {{<button>}}s, and you must include a {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex::tabindex}}."
 		),
 		new e.code({
 			output: () => {
-				return new b.pagination.container({ label: "...", weight: "lg" }, [
-					new b.pagination.item({ active: true }, "1"),
-					new b.pagination.item({ href: "#" }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-				]);
-			},
-		}),
-		new e.code({
-			output: () => {
-				return new b.pagination.container({ label: "...", weight: "sm" }, [
-					new b.pagination.item({ active: true }, "1"),
-					new b.pagination.item({ href: "#" }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-				]);
+				return new b.popover(
+					{
+						title: "Dismissible popover",
+						content: "And here's some amazing content. It's very engaging. Right?",
+						trigger: "focus",
+					},
+					new b.button({ weight: "lg", color: "danger" }, "Dismissible popover")
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle("Alignment"),
+		new e.subtitle("Disabled elements"),
 		new e.text(
-			"Change the alignment of pagination components with {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}. For example, with {{.justify-content-center}}:"
+			"Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a popover (or tooltip). As a workaround, you’ll want to trigger the popover from a wrapper {{<div>}} or {{<span>}}, ideally made keyboard-focusable using {{tabindex='0'}}."
+		),
+		new e.text(
+			"For disabled popover triggers, you may also prefer {{data-bs-trigger='hover focus'}} so that the popover appears as immediate visual feedback to your users as they may not expect to click on a disabled element."
 		),
 		new e.code({
 			output: () => {
-				return new b.pagination.container({ label: "Page navigation example", justifyContent: "center" }, [
-					new b.pagination.item({ disabled: true }, "Previous"),
-					new b.pagination.item({ href: "#" }, "1"),
-					new b.pagination.item({ href: "#" }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-					new b.pagination.item({ href: "#" }, "Next"),
-				]);
-			},
-		}),
-		new e.text("Or with {{.justify-content-end}}:"),
-		new e.code({
-			output: () => {
-				return new b.pagination.container({ label: "Page navigation example", justifyContent: "end" }, [
-					new b.pagination.item({ disabled: true }, "Previous"),
-					new b.pagination.item({ href: "#" }, "1"),
-					new b.pagination.item({ href: "#" }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
-					new b.pagination.item({ href: "#" }, "Next"),
-				]);
+				return new b.popover(
+					{
+						content: "Disabled popover",
+						trigger: ["hover", "focus"],
+					},
+					new b.button({ color: "primary", disabled: true }, "Disabled button")
+				);
 			},
 		}),
 
@@ -142,32 +195,32 @@ export const doc_component_popover: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.pagination}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.popover}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-				--#{$prefix}pagination-padding-x: #{$pagination-padding-x};
-				--#{$prefix}pagination-padding-y: #{$pagination-padding-y};
-				@include rfs($pagination-font-size, --#{$prefix}pagination-font-size);
-				--#{$prefix}pagination-color: #{$pagination-color};
-				--#{$prefix}pagination-bg: #{$pagination-bg};
-				--#{$prefix}pagination-border-width: #{$pagination-border-width};
-				--#{$prefix}pagination-border-color: #{$pagination-border-color};
-				--#{$prefix}pagination-border-radius: #{$pagination-border-radius};
-				--#{$prefix}pagination-hover-color: #{$pagination-hover-color};
-				--#{$prefix}pagination-hover-bg: #{$pagination-hover-bg};
-				--#{$prefix}pagination-hover-border-color: #{$pagination-hover-border-color};
-				--#{$prefix}pagination-focus-color: #{$pagination-focus-color};
-				--#{$prefix}pagination-focus-bg: #{$pagination-focus-bg};
-				--#{$prefix}pagination-focus-box-shadow: #{$pagination-focus-box-shadow};
-				--#{$prefix}pagination-active-color: #{$pagination-active-color};
-				--#{$prefix}pagination-active-bg: #{$pagination-active-bg};
-				--#{$prefix}pagination-active-border-color: #{$pagination-active-border-color};
-				--#{$prefix}pagination-disabled-color: #{$pagination-disabled-color};
-				--#{$prefix}pagination-disabled-bg: #{$pagination-disabled-bg};
-				--#{$prefix}pagination-disabled-border-color: #{$pagination-disabled-border-color};
+				--#{$prefix}popover-zindex: #{$zindex-popover};
+				--#{$prefix}popover-max-width: #{$popover-max-width};
+				@include rfs($popover-font-size, --#{$prefix}popover-font-size);
+				--#{$prefix}popover-bg: #{$popover-bg};
+				--#{$prefix}popover-border-width: #{$popover-border-width};
+				--#{$prefix}popover-border-color: #{$popover-border-color};
+				--#{$prefix}popover-border-radius: #{$popover-border-radius};
+				--#{$prefix}popover-inner-border-radius: #{$popover-inner-border-radius};
+				--#{$prefix}popover-box-shadow: #{$popover-box-shadow};
+				--#{$prefix}popover-header-padding-x: #{$popover-header-padding-x};
+				--#{$prefix}popover-header-padding-y: #{$popover-header-padding-y};
+				@include rfs($popover-header-font-size, --#{$prefix}popover-header-font-size);
+				--#{$prefix}popover-header-color: #{$popover-header-color};
+				--#{$prefix}popover-header-bg: #{$popover-header-bg};
+				--#{$prefix}popover-body-padding-x: #{$popover-body-padding-x};
+				--#{$prefix}popover-body-padding-y: #{$popover-body-padding-y};
+				--#{$prefix}popover-body-color: #{$popover-body-color};
+				--#{$prefix}popover-arrow-width: #{$popover-arrow-width};
+				--#{$prefix}popover-arrow-height: #{$popover-arrow-height};
+				--#{$prefix}popover-arrow-border: var(--#{$prefix}popover-border-color);
 			`,
 		}),
 
@@ -176,59 +229,96 @@ export const doc_component_popover: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			code: `
-				$pagination-padding-y:              .375rem;
-				$pagination-padding-x:              .75rem;
-				$pagination-padding-y-sm:           .25rem;
-				$pagination-padding-x-sm:           .5rem;
-				$pagination-padding-y-lg:           .75rem;
-				$pagination-padding-x-lg:           1.5rem;
+				$popover-font-size:                 $font-size-sm;
+				$popover-bg:                        var(--#{$prefix}body-bg);
+				$popover-max-width:                 276px;
+				$popover-border-width:              var(--#{$prefix}border-width);
+				$popover-border-color:              var(--#{$prefix}border-color-translucent);
+				$popover-border-radius:             var(--#{$prefix}border-radius-lg);
+				$popover-inner-border-radius:       calc($popover-border-radius - $popover-border-width); // stylelint-disable-line function-disallowed-list
+				$popover-box-shadow:                $box-shadow;
 
-				$pagination-font-size:              $font-size-base;
+				$popover-header-font-size:          $font-size-base;
+				$popover-header-bg:                 var(--#{$prefix}secondary-bg);
+				$popover-header-color:              $headings-color;
+				$popover-header-padding-y:          .5rem;
+				$popover-header-padding-x:          $spacer;
 
-				$pagination-color:                  var(--#{$prefix}link-color);
-				$pagination-bg:                     var(--#{$prefix}body-bg);
-				$pagination-border-radius:          var(--#{$prefix}border-radius);
-				$pagination-border-width:           var(--#{$prefix}border-width);
-				$pagination-margin-start:           calc($pagination-border-width * -1); // stylelint-disable-line function-disallowed-list
-				$pagination-border-color:           var(--#{$prefix}border-color);
+				$popover-body-color:                var(--#{$prefix}body-color);
+				$popover-body-padding-y:            $spacer;
+				$popover-body-padding-x:            $spacer;
 
-				$pagination-focus-color:            var(--#{$prefix}link-hover-color);
-				$pagination-focus-bg:               var(--#{$prefix}secondary-bg);
-				$pagination-focus-box-shadow:       $focus-ring-box-shadow;
-				$pagination-focus-outline:          0;
-
-				$pagination-hover-color:            var(--#{$prefix}link-hover-color);
-				$pagination-hover-bg:               var(--#{$prefix}tertiary-bg);
-				$pagination-hover-border-color:     var(--#{$prefix}border-color); // Todo in v6: remove this?
-
-				$pagination-active-color:           $component-active-color;
-				$pagination-active-bg:              $component-active-bg;
-				$pagination-active-border-color:    $component-active-bg;
-
-				$pagination-disabled-color:         var(--#{$prefix}secondary-color);
-				$pagination-disabled-bg:            var(--#{$prefix}secondary-bg);
-				$pagination-disabled-border-color:  var(--#{$prefix}border-color);
-
-				$pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-
-				$pagination-border-radius-sm:       $border-radius-sm;
-				$pagination-border-radius-lg:       $border-radius-lg;
-
+				$popover-arrow-width:               1rem;
+				$popover-arrow-height:              .5rem;
 			`,
 		}),
 
-		new e.subtitle("Sass mixins"),
+		//-----------------------
 
+		new e.subtitle("Usage"),
+		new e.text("Enable popovers via JavaScript:"),
 		new e.codepreview({
 			type: "css",
 			code: `
-				@mixin pagination-size($padding-y, $padding-x, $font-size, $border-radius) {
-				--#{$prefix}pagination-padding-x: #{$padding-x};
-				--#{$prefix}pagination-padding-y: #{$padding-y};
-				@include rfs($font-size, --#{$prefix}pagination-font-size);
-				--#{$prefix}pagination-border-radius: #{$border-radius};
-				}
+				const exampleEl = document.getElementById('example');
+				const popover = new bootstrap.Popover(exampleEl, options);
 			`,
+		}),
+		new e.alert({ color: "warning", callout: true }, [
+			new h.p(
+				"{{b::Keep popovers accessible to keyboard and assistive technology users}} by only adding them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). While other HTML elements can be made focusable by adding {{tabindex='0'}}, this can create annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce popovers in this situation. Additionally, do not rely solely on {{hover}} as the trigger for your popovers as this will make them impossible to trigger for keyboard users."
+			),
+			new h.p(
+				"Avoid adding an excessive amount of content in popovers with the {{html}} option. Once popovers are displayed, their content is tied to the trigger element with the {{aria-describedby}} attribute, causing all of the popover’s content to be announced to assistive technology users as one long, uninterrupted stream."
+			),
+			new h.p(
+				"Popovers do not manage keyboard focus order, and their placement can be random in the DOM, so be careful when adding interactive elements (like forms or links), as it may lead to an illogical focus order or make the popover content itself completely unreachable for keyboard users. In cases where you must use these elements, consider using a modal dialog instead."
+			),
+		]),
+
+		//-----------------------
+
+		new e.subtitle("Options"),
+		new e.text(
+			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation="{value}"}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data-bs-custom-class="beautifier"}} instead of {{data-bs-customClass="beautifier"}}.`
+		),
+		new e.text(
+			`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{"delay":0, "title":123}'}} and {{data-bs-title="456"}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{"show":0,"hide":150}'}}.`
+		),
+		new e.alert(
+			{ color: "warning", callout: true },
+			"Note that for security reasons the {{sanitize}}, {{sanitizeFn}}, and {{allowList}} options cannot be supplied using data attributes."
+		),
+		new e.table({
+			item: [
+				["Name", "Type", "Default", "Description"],
+				[
+					"{{allowList}}",
+					"object",
+					"{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}",
+					"Object which contains allowed attributes and tags.",
+				],
+				["{{animation}}", "boolean", "{{true}}", "Apply a CSS fade transition to the popover."],
+				[
+					"{{boundary}}",
+					"string, element",
+					"{{'clippingParents'}}",
+					"Overflow constraint boundary of the popover (applies only to Popper’s preventOverflow modifier). By default, it’s {{'clippingParents'}} and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
+				],
+				[
+					"{{container}}",
+					"string, element, false",
+					"{{false}}",
+					"Appends the popover to a specific element. Example: {{container: 'body'}}. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element - which will prevent the popover from floating away from the triggering element during a window resize.",
+				],
+				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+			],
 		}),
 	],
 };

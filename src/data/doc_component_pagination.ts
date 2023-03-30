@@ -28,7 +28,7 @@ export const doc_component_pagination: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Working with icons"),
+		new e.title("Working with icons"),
 		new e.text(
 			"Looking to use an icon or symbol in place of text for some pagination links? Be sure to provide proper screen reader support with {{aria}} attributes."
 		),
@@ -49,7 +49,7 @@ export const doc_component_pagination: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Disabled and active states"),
+		new e.title("Disabled and active states"),
 		new e.text(
 			"Pagination links are customizable for different circumstances. Use {{.disabled}} for links that appear un-clickable and {{.active}} to indicate the current page."
 		),
@@ -84,7 +84,7 @@ export const doc_component_pagination: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Sizing"),
+		new e.title("Sizing"),
 		new e.text(
 			"Fancy larger or smaller pagination? Add {{.pagination-lg}} or {{.pagination-sm}} for additional sizes."
 		),
@@ -109,7 +109,7 @@ export const doc_component_pagination: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Alignment"),
+		new e.title("Alignment"),
 		new e.text(
 			"Change the alignment of pagination components with {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}. For example, with {{.justify-content-center}}:"
 		),
