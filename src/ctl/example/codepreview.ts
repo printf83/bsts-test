@@ -16,7 +16,7 @@ export interface IAttrBSExampleCodepreview extends core.IAttr {
 const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 	if (attr.code) {
 		attr.elem = [
-			new b.card.container({ class: "example-preview", marginY: 3, bgColor: "body-tertiary", border: false }, [
+			new b.card.container({ class: "example-preview", marginY: 3, bgColor: "body-tertiary" }, [
 				new b.card.body({ padding: 4 }, [
 					new h.span(
 						{ position: "absolute", end: 0, marginEnd: 3 },

@@ -120,6 +120,7 @@ const itemCode = (
 		new b.list.item(
 			{
 				bgColor: "body-tertiary",
+				borderColor: "secondary",
 				paddingX: 4,
 				class: [collapseable ? "collapse" : undefined],
 				id: collapseable ? id : undefined,

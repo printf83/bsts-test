@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_component_offcanvas";
+let CURRENT_PAGE = "doc_component_popover";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -35,6 +35,8 @@ let m = {
 				{ label: "Navbar", value: "doc_component_navbar" },
 				{ label: "Navs & tabs", value: "doc_component_nav" },
 				{ label: "Offcanvas", value: "doc_component_offcanvas" },
+				{ label: "Pagination", value: "doc_component_pagination" },
+				{ label: "Popovers", value: "doc_component_popover" },
 			],
 		},
 	] as main.IAttrItemMenu[],

@@ -679,7 +679,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 
 						new b.navbar.brand(
 							{
-								href: "#",
+								href: "/",
 								label: attr.name || "Bootstrap",
 								marginEnd: ["lg-2", 0],
 								fontSize: 6,
@@ -803,7 +803,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 								marginBottom: 2,
 								textColor: "body-secondary",
 								textDecoration: "none",
-								href: "#",
+								href: "/",
 								label: attr.name || "Bootstrap",
 							},
 							[
