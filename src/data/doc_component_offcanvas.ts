@@ -485,6 +485,105 @@ export const doc_component_offcanvas: IAttrContent = {
 			`,
 		}),
 
+		//-----------------------
+
 		new e.subtitle("Options"),
+		new e.text(
+			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation="{value}"}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data-bs-custom-class="beautifier"}} instead of {{data-bs-customClass="beautifier"}}.`
+		),
+		new e.text(
+			`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{"delay":0, "title":123}'}} and {{data-bs-title="456"}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{"show":0,"hide":150}'}}.`
+		),
+		new e.table({
+			item: [
+				["Name", "Type", "Default", "Description"],
+				[
+					"{{backdrop}}",
+					"boolean or the string {{static}}",
+					"{{true}}",
+					"Apply a backdrop on body while offcanvas is open. Alternatively, specify {{static}} for a backdrop which doesn’t close the offcanvas when clicked.",
+				],
+				["{{keyboard}}", "boolean", "{{true}}", "Closes the offcanvas when escape key is pressed."],
+				["{{scroll}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+			],
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Methods"),
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+		),
+		new e.text("Activates your content as an offcanvas element. Accepts an optional options {{object}}."),
+		new e.text("You can create an offcanvas instance with the constructor, for example:"),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const bsOffcanvas = new bootstrap.Offcanvas('#myOffcanvas')
+			`,
+		}),
+		new e.table({
+			item: [
+				["Method", "Description"],
+				[
+					"{{getInstance}}",
+					"{{i::Static}} method which allows you to get the offcanvas instance associated with a DOM element.",
+				],
+				[
+					"{{getOrCreateInstance	}}",
+					"{{i::Static}} method which allows you to get the offcanvas instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
+				],
+				[
+					"{{hide}}",
+					"Hides an offcanvas element. {{b::Returns to the caller before the offcanvas element has actually been hidden}} (i.e. before the {{hidden.bs.offcanvas}} event occurs).",
+				],
+				[
+					"{{show}}",
+					"Shows an offcanvas element. {{b::Returns to the caller before the offcanvas element has actually been shown}} (i.e. before the {{shown.bs.offcanvas}} event occurs).",
+				],
+				[
+					"{{toggle}}",
+					"Toggles an offcanvas element to shown or hidden. {{b::Returns to the caller before the offcanvas element has actually been shown or hidden}} (i.e. before the {{shown.bs.offcanvas}} or {{hidden.bs.offcanvas}} event occurs).",
+				],
+			],
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Events"),
+		new e.text("Bootstrap’s offcanvas class exposes a few events for hooking into offcanvas functionality."),
+		new e.table({
+			item: [
+				["Event type", "Description"],
+				[
+					"{{hide.bs.offcanvas}}",
+					"This event is fired immediately when the {{hide}} instance method has been called.",
+				],
+				[
+					"{{hidden.bs.offcanvas}}",
+					"This event is fired when an offcanvas has finished being hidden from the user (will wait for CSS transitions to complete).",
+				],
+				[
+					"{{hidePrevented.bs.offcanvas}}",
+					"This event is fired when an offcanvas is shown, its backdrop is {{static}} and a click outside of the offcanvas is performed. The event is also fired when the escape key is pressed and the {{keyboard}} option is set to {{false}}.",
+				],
+				["{{show.bs.offcanvas}}", "This event fires immediately when the {{show}} instance method is called."],
+				[
+					"{{shown.bs.offcanvas}}",
+					"This event is fired when an offcanvas element has been made visible to the user (will wait for CSS transitions to complete).",
+				],
+			],
+		}),
+
+		new e.codepreview({
+			type: "js",
+			code: `
+				const myOffcanvas = document.getElementById('myOffcanvas')
+				myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
+				// do something...
+				})
+			`,
+		}),
 	],
 };

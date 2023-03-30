@@ -952,11 +952,11 @@ export const doc_component_modal: IAttrContent = {
 				["{{dispose}}", "Destroys an element’s modal. (Removes stored data on the DOM element)"],
 				[
 					"{{getInstance}}",
-					"Static method which allows you to get the modal instance associated with a DOM element.",
+					"{{i::Static}} method which allows you to get the modal instance associated with a DOM element.",
 				],
 				[
 					"{{getOrCreateInstance	}}",
-					"Static method which allows you to get the modal instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
+					"{{i::Static}} method which allows you to get the modal instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
 				],
 				[
 					"{{handleUpdate}}",
