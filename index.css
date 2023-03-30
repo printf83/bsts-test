@@ -34,11 +34,15 @@ a:hover *,
     margin: -0.25rem;
 }
 
+/*example-output debug*/
+.example-output .debug{
+    position: static !important;
+    display: block !important;
+}
 
 /* example-output fixed and sticky fix*/
 .example-output .fixed-top,
-.example-output .sticky-top,
-.example-output .offcanvas-top {
+.example-output .sticky-top {
     position: static;
     margin: calc(1.5rem * -1) calc(1.25rem * -1) 1.25rem;
     border-top-left-radius: var(--bs-border-radius);
@@ -46,25 +50,36 @@ a:hover *,
 }
 
 .example-output .fixed-bottom,
-.example-output .sticky-bottom,
-.example-output .offcanvas-bottom {
+.example-output .sticky-bottom {
     position: static;
     margin: 1.25rem calc(1.25rem * -1) calc(1.5rem * -1);
 }
 
 /*offcanvas*/
-.example-output .offcanvas.show{
+.example-output .offcanvas.debug{
     transform: none;
     transition: none;
-}
-.example-output .offcanvas-start {
-    position: static;
-    margin: calc(1.25rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
+    visibility: visible;
 }
 
-.example-output .offcanvas-end {
-    position: static;
-    margin: calc(1.5rem * -1) calc(1.25rem * -1) calc(1.25rem * -1);
+.example-output .offcanvas-top:not(.show):not(.showing) {
+    margin: calc(1.5rem * -1) calc(1.25rem * -1) 1.25rem;
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
+}
+
+.example-output .offcanvas-bottom:not(.show):not(.showing) {
+    margin: 1.25rem calc(1.25rem * -1) calc(1.5rem * -1);
+}
+
+.example-output .offcanvas-start:not(.show):not(.showing) {
+    margin: calc(1.5rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
+    border-top-left-radius: var(--bs-border-radius) ;
+}
+
+.example-output .offcanvas-end:not(.show):not(.showing) {
+    margin: calc(1.25rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
+    border-top-right-radius: var(--bs-border-radius);
 }
 
 
