@@ -128,7 +128,7 @@ export const doc_component_alert: IAttrContent = {
 			output: () => {
 				return new b.alert.container(
 					{ color: "info" },
-					new b.label({ icon: b.icon.solid("circle-info") }, " An example alert with an icon")
+					new b.label({ icon: b.icon.bi("info-circle") }, " An example alert with an icon")
 				);
 			},
 		}),
@@ -141,10 +141,10 @@ export const doc_component_alert: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					{ color: "info", icon: b.icon.solid("circle-info") },
-					{ color: "success", icon: b.icon.reg("circle-check") },
-					{ color: "warning", icon: b.icon.solid("triangle-exclamation") },
-					{ color: "danger", icon: b.icon.reg("circle-xmark") },
+					{ color: "info", icon: b.icon.bi("info-circle") },
+					{ color: "success", icon: b.icon.bi("check-circle") },
+					{ color: "warning", icon: b.icon.bi("exclamation-triangle") },
+					{ color: "danger", icon: b.icon.bi("x-circle") },
 				].map((i) => {
 					return new b.alert.container({ color: i.color as core.bootstrapType.color[number] }, [
 						new b.label({ icon: i.icon }, `An example ${i.color} alert with an icon`),

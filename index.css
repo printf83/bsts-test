@@ -8,6 +8,11 @@ a:hover *,
     font-weight: 600;
 }
 
+/*clipboard icon hover*/
+.primary-on-hover:hover{
+    color:var(--bs-primary);
+}
+
 /* custom popover */
 .custom-popover {
     --bs-popover-max-width: 200px;

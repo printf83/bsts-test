@@ -311,14 +311,120 @@ export const doc_component_popover: IAttrContent = {
 					"{{false}}",
 					"Appends the popover to a specific element. Example: {{container: 'body'}}. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element - which will prevent the popover from floating away from the triggering element during a window resize.",
 				],
-				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
-				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
-				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
-				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
-				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
-				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
-				["{{boundary}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+				[
+					"{{content}}",
+					"string, element, function",
+					"{{''}}",
+					"Default content value if {{data-bs-content}} attribute isn’t present. If a function is given, it will be called with its {{this}} reference set to the element that the popover is attached to.",
+				],
+				[
+					"{{customClass}}",
+					"string, function",
+					"{{''}}",
+					"Add classes to the popover when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: {{'class-1 class-2'}}. You can also pass a function that should return a single string containing additional class names.",
+				],
+				[
+					"{{delay}}",
+					"number, object",
+					"{{0}}",
+					`Delay showing and hiding the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide/show. Object structure is: {{delay: { "show": 500, "hide": 100 }}}.`,
+				],
+				[
+					"{{fallbackPlacements}}",
+					"string, array",
+					"{{['top', 'right', 'bottom', 'left']}}",
+					"Define fallback placements by providing a list of placements in array (in order of preference). For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements::behavior docs}}.",
+				],
+				[
+					"{{html}}",
+					"boolean",
+					"{{false}}",
+					"Allow HTML in the popover. If true, HTML tags in the popover’s {{title}} will be rendered in the popover. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks.",
+				],
+				[
+					"{{offset}}",
+					"number, string, function",
+					"{{[0, 0]}}",
+					"Offset of the popover relative to its target. You can pass a string in data attributes with comma separated values like: {{data-bs-offset='10,20'}}. When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: {{https://popper.js.org/docs/v2/modifiers/offset/#skidding-1::skidding}}, {{https://popper.js.org/docs/v2/modifiers/offset/#distance-1::distance}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/offset/#options::offset docs}}.",
+				],
+				[
+					"{{placement}}",
+					"string, function",
+					"{{'top'}}",
+					"How to position the popover: auto, top, bottom, left, right. When {{auto}} is specified, it will dynamically reorient the popover. When a function is used to determine the placement, it is called with the popover DOM node as its first argument and the triggering element DOM node as its second. The {{this}} context is set to the popover instance.",
+				],
+				[
+					"{{popperConfig}}",
+					"null, object, function",
+					"{{null}}",
+					"To change Bootstrap’s default Popper config, see {{https://popper.js.org/docs/v2/constructors/#options::Popper’s configuration}}. When a function is used to create the Popper configuration, it’s called with an object that contains the Bootstrap’s default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper.",
+				],
+				[
+					"{{sanitize}}",
+					"boolean",
+					"{{true}}",
+					"Enable or disable the sanitization. If activated {{'template'}}, {{'content'}} and {{'title'}} options will be sanitized.",
+				],
+				[
+					"{{sanitizeFn}}",
+					"null, function",
+					"{{null}}",
+					"Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization.",
+				],
+				[
+					"{{selector}}",
+					"string, false",
+					"{{false}}",
+					"If a selector is provided, popover objects will be delegated to the specified targets. In practice, this is used to also apply popovers to dynamically added DOM elements (jQuery.on support). See {{https://github.com/twbs/bootstrap/issues/4215::this issue}} and {{https://codepen.io/Johann-S/pen/djJYPb::an informative example}}. {{b::Note}}: {{title}} attribute must not be used as a selector.",
+				],
+				[
+					"{{template}}",
+					"string",
+					`{{'<div class="popover" role="popover"><div class="popover-arrow"></div><div class="popover-inner"></div></div>'}}`,
+					`Base HTML to use when creating the popover. The popover’s {{title}} will be injected into the {{.popover-inner}}. {{.popover-arrow}} will become the popover’s arrow. The outermost wrapper element should have the {{.popover}} class and {{role="popover"}}.`,
+				],
+				[
+					"{{title}}",
+					"string, element, function",
+					"{{''}}",
+					"Default title value if {{title}} attribute isn’t present. If a function is given, it will be called with its {{this}} reference set to the element that the popover is attached to.",
+				],
+				[
+					"{{trigger}}",
+					"string",
+					"{{'hover focus'}}",
+					"How popover is triggered: click, hover, focus, manual. You may pass multiple triggers; separate them with a space. {{'manual'}} indicates that the popover will be triggered programmatically via the {{.popover('show')}}, {{.popover('hide')}} and {{.popover('toggle')}} methods; this value cannot be combined with any other trigger. {{'hover'}} on its own will result in popovers that cannot be triggered via the keyboard, and should only be used if alternative methods for conveying the same information for keyboard users is present.",
+				],
 			],
 		}),
+		new e.alert({ color: "info", callout: true }, [
+			new b.alert.header(4, "Data attributes for individual popovers"),
+			"Options for individual popovers can alternatively be specified through the use of data attributes, as explained above.",
+		]),
+
+		//-----------------------
+
+		new e.xsubtitle("Using function with {{popperConfig}}"),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const popover = new bootstrap.Popover(element, {
+				popperConfig(defaultBsPopperConfig) {
+					// const newPopperConfig = {...}
+					// use defaultBsPopperConfig if needed...
+					// return newPopperConfig
+				}
+				})
+
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Methods"),
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+		),
 	],
 };
