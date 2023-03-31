@@ -528,7 +528,7 @@ const genToc = (content?: IAttrContent) => {
 						[
 							"On this page",
 							new b.icon({
-								icon: "sort",
+								icon: "chevron-expand",
 								display: "md-none",
 								marginStart: 2,
 								aria: { hidden: "true" },
@@ -673,7 +673,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									label: "Toggle docs navigation",
 									textColor: attr.textColor || "light",
 								},
-								b.icon.solid("bars")
+								b.icon.bi("list")
 							),
 						]),
 
@@ -700,7 +700,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									label: "Toggle navigation",
 									textColor: attr.textColor || "light",
 								},
-								b.icon.solid("ellipsis")
+								b.icon.bi("three-dots")
 							),
 						]),
 						new b.offcanvas.container(

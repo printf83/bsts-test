@@ -91,7 +91,7 @@ const itemCode = (
 								{ content: "Copy to clipboard" },
 								new h.a(
 									{ href: "#", color: "secondary", on: { click: itemCodeCopy } },
-									b.icon.reg("clipboard")
+									b.icon.bi("clipboard")
 								)
 						  )
 						: "",
@@ -109,7 +109,7 @@ const itemCode = (
 					{ position: "absolute", end: 0, marginEnd: 3 },
 					new b.tooltip(
 						{ content: "Copy to clipboard" },
-						new h.a({ href: "#", color: "secondary", on: { click: itemCodeCopy } }, b.icon.reg("clipboard"))
+						new h.a({ href: "#", color: "secondary", on: { click: itemCodeCopy } }, b.icon.bi("clipboard"))
 					)
 				)
 			);

@@ -12,12 +12,12 @@ let m = {
 	doc: [
 		{
 			label: "Getting started",
-			icon: { icon: "book-open", color: "primary" },
+			icon: { icon: "book-half", color: "primary" },
 			item: [{ label: "Introduction", value: "doc_gettingstarted_introduction" }],
 		},
 		{
 			label: "Component",
-			icon: { icon: "hard-drive", color: "info" },
+			icon: { icon: "menu-button-wide-fill", color: "info" },
 			item: [
 				{ label: "Accordion", value: "doc_component_accordion" },
 				{ label: "Alert", value: "doc_component_alert" },
@@ -90,9 +90,9 @@ const maincontainer = new main.container({
 	],
 
 	itemTheme: [
-		{ value: "light", icon: { icon: "sun", type: "fas" }, label: "Light" },
-		{ value: "dark", icon: { icon: "moon", type: "fas" }, label: "Dark" },
-		{ value: "auto", icon: { icon: "circle-half-stroke", type: "fas" }, label: "Auto" },
+		{ value: "light", icon: { icon: "sun-fill" }, label: "Light" },
+		{ value: "dark", icon: { icon: "moon-stars-fill" }, label: "Dark" },
+		{ value: "auto", icon: { icon: "circle-half" }, label: "Auto" },
 	],
 	currentTheme: "auto",
 

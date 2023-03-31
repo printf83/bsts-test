@@ -24,7 +24,7 @@ const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 							{ content: "Copy to clipboard" },
 							new h.a(
 								{ href: "#", color: "secondary", on: { click: itemCodeCopy } },
-								b.icon.reg("clipboard")
+								b.icon.bi("clipboard")
 							)
 						)
 					),
