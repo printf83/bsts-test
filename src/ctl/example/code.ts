@@ -38,9 +38,69 @@ const getOutputHTML = (target: HTMLElement): void => {
 	}, 10);
 };
 
+function successCopyCode(iconElem?: HTMLElement) {
+	if (iconElem) {
+		iconElem.classList.remove("bi-clipboard");
+		iconElem.classList.add("bi-check2");
+		iconElem.classList.add("text-success");
+
+		setTimeout(
+			(iconElem) => {
+				iconElem.classList.remove("text-success");
+				iconElem.classList.remove("bi-check2");
+				iconElem.classList.add("bi-clipboard");
+			},
+			1000,
+			iconElem
+		);
+	}
+}
+
+function failCopyCode(iconElem?: HTMLElement) {
+	if (iconElem) {
+		iconElem.classList.remove("bi-clipboard");
+		iconElem.classList.add("bi-exclamation-triangle");
+		iconElem.classList.add("text-danger");
+
+		setTimeout(
+			(iconElem) => {
+				iconElem.classList.remove("text-danger");
+				iconElem.classList.remove("bi-exclamation-triangle");
+				iconElem.classList.add("bi-clipboard");
+			},
+			1000,
+			iconElem
+		);
+	}
+}
+
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();
 	e.preventDefault();
+
+	const target = e.target as HTMLElement;
+	const iconElem = target.closest(".bi") as HTMLElement;
+	const listGroupItem = target.closest(".list-group-item");
+
+	if (listGroupItem) {
+		const nextListGroupItem = listGroupItem.nextElementSibling;
+		if (nextListGroupItem) {
+			const text = nextListGroupItem.getElementsByTagName("pre")[0].innerText;
+
+			navigator.clipboard.writeText(text).then(
+				() => {
+					successCopyCode(iconElem);
+				},
+				() => {
+					failCopyCode(iconElem);
+				}
+			);
+		} else {
+			failCopyCode(iconElem);
+		}
+	} else {
+		failCopyCode(iconElem);
+	}
 
 	return false;
 }

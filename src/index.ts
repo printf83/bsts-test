@@ -12,12 +12,12 @@ let m = {
 	doc: [
 		{
 			label: "Getting started",
-			icon: { icon: "book-half", color: "primary" },
+			icon: { id: "book-half", color: "primary" },
 			item: [{ label: "Introduction", value: "doc_gettingstarted_introduction" }],
 		},
 		{
 			label: "Component",
-			icon: { icon: "menu-button-wide-fill", color: "info" },
+			icon: { id: "menu-button-wide-fill", color: "info" },
 			item: [
 				{ label: "Accordion", value: "doc_component_accordion" },
 				{ label: "Alert", value: "doc_component_alert" },
@@ -64,7 +64,7 @@ const maincontainer = new main.container({
 	name: "BSTS",
 	bgColor: "primary",
 	textColor: "light",
-	icon: { class: "animate-icon", weight: "2xl", icon: "node-js", type: "fab" },
+	icon: { class: "animate-icon", weight: "2xl", id: "node-js", type: "brand" },
 
 	on: {
 		"bs-menu-change": (e) => {
@@ -84,15 +84,15 @@ const maincontainer = new main.container({
 	currentInsideLink: "doc",
 
 	itemOutsideLink: [
-		{ href: "#", icon: { icon: "github", type: "fab" }, label: "Github" },
-		{ href: "#", icon: { icon: "twitter", type: "fab" }, label: "Twitter" },
-		{ href: "#", icon: { icon: "bootstrap", type: "fab" }, label: "Bootstrap" },
+		{ href: "#", icon: { type: "brand", id: "github" }, label: "Github" },
+		{ href: "#", icon: { type: "brand", id: "twitter" }, label: "Twitter" },
+		{ href: "#", icon: { type: "brand", id: "bootstrap" }, label: "Bootstrap" },
 	],
 
 	itemTheme: [
-		{ value: "light", icon: { icon: "sun-fill" }, label: "Light" },
-		{ value: "dark", icon: { icon: "moon-stars-fill" }, label: "Dark" },
-		{ value: "auto", icon: { icon: "circle-half" }, label: "Auto" },
+		{ value: "light", icon: { id: "sun-fill" }, label: "Light" },
+		{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
+		{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 	],
 	currentTheme: "auto",
 

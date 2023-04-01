@@ -528,7 +528,7 @@ const genToc = (content?: IAttrContent) => {
 						[
 							"On this page",
 							new b.icon({
-								icon: "chevron-expand",
+								id: "chevron-expand",
 								display: "md-none",
 								marginStart: 2,
 								aria: { hidden: "true" },
