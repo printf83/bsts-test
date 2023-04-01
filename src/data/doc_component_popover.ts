@@ -426,5 +426,87 @@ export const doc_component_popover: IAttrContent = {
 			{ color: "danger", callout: true },
 			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
 		),
+		new e.table({
+			item: [
+				["Method", "Description"],
+				[
+					"{{disable}}",
+					"Removes the ability for an element’s popover to be shown. The popover will only be able to be shown if it is re-enabled.",
+				],
+				[
+					"{{dispose}}",
+					"Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{https://getbootstrap.com/docs/5.3/components/popovers/#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
+				],
+				[
+					"{{enable}}",
+					"Gives an element’s popover the ability to be shown. {{b::Popovers are enabled by default}}.",
+				],
+				["{{getInstance}}", "Description"],
+				[
+					"{{Method}}",
+					"{{i::Static}} method which allows you to get the popover instance associated with a DOM element.",
+				],
+				[
+					"{{getOrCreateInstance}}",
+					"{{i::Static}} method which allows you to get the popover instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
+				],
+				[
+					"{{hide}}",
+					"Hides an element’s popover. {{b::Returns to the caller before the popover has actually been hidden}} (i.e. before the {{hidden.bs.popover}} event occurs). This is considered a “manual” triggering of the popover.",
+				],
+				["{{setContent}}", "Gives a way to change the popover’s content after its initialization."],
+				[
+					"{{show}}",
+					"Reveals an element’s popover. {{b::Returns to the caller before the popover has actually been shown}} (i.e. before the {{shown.bs.popover}} event occurs). This is considered a “manual” triggering of the popover. Popovers whose title and content are both zero-length are never displayed.",
+				],
+				[
+					"{{toggle}}",
+					"Toggles an element’s popover. {{b::Returns to the caller before the popover has actually been shown or hidden}} (i.e. before the {{shown.bs.popover}} or {{hidden.bs.popover}} event occurs). This is considered a “manual” triggering of the popover.",
+				],
+				["{{toggleEnabled}}", "Toggles the ability for an element’s popover to be shown or hidden."],
+				["{{update}}", "Updates the position of an element’s popover."],
+			],
+		}),
+
+		new e.alert(
+			{ color: "info", callout: true },
+			" The {{setContent}} method accepts an {{object}} argument, where each property-key is a valid {{string}} selector within the popover template, and each related property-value can be {{string}} | {{element}} | {{function}} | {{null}}"
+		),
+
+		//-----------------------
+
+		new e.subtitle("Events"),
+		new e.table({
+			item: [
+				["Event", "Description"],
+				[
+					"{{hide.bs.popover}}",
+					"This event is fired immediately when the {{hide}} instance method has been called.",
+				],
+				[
+					"{{hidden.bs.popover}}",
+					"This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete).",
+				],
+				[
+					"{{inserted.bs.popover}}",
+					"This event is fired after the {{show.bs.popover }}event when the popover template has been added to the DOM.",
+				],
+				["{{show.bs.popover}}", "This event fires immediately when the {{show}} instance method is called."],
+				[
+					"{{shown.bs.popover}}",
+					"This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete).",
+				],
+			],
+		}),
+
+		new e.codepreview({
+			type: "js",
+			code: `
+				const myPopoverTrigger = document.getElementById('myPopover')
+				myPopoverTrigger.addEventListener('hidden.bs.popover', () => {
+				// do something...
+				})
+			`,
+		}),
 	],
 };
