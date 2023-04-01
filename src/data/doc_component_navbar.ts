@@ -74,7 +74,7 @@ export const doc_component_navbar: IAttrContent = {
 								new b.input({
 									type: "search",
 									marginEnd: 2,
-									placeholderText: "Search",
+									placeholder: "Search",
 									label: "Search",
 								}),
 								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -259,7 +259,7 @@ export const doc_component_navbar: IAttrContent = {
 							new b.input({
 								type: "search",
 								marginEnd: 2,
-								placeholderText: "Search",
+								placeholder: "Search",
 								label: "Search",
 							}),
 							new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -281,7 +281,7 @@ export const doc_component_navbar: IAttrContent = {
 							new b.input({
 								type: "search",
 								marginEnd: 2,
-								placeholderText: "Search",
+								placeholder: "Search",
 								label: "Search",
 							}),
 							new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -306,7 +306,7 @@ export const doc_component_navbar: IAttrContent = {
 								type: "text",
 								describedby: "basic-addon1",
 								label: "Username",
-								placeholderText: "Username",
+								placeholder: "Username",
 							}),
 						])
 					)
@@ -404,7 +404,7 @@ export const doc_component_navbar: IAttrContent = {
 								new b.input({
 									type: "search",
 									marginEnd: 2,
-									placeholderText: "Search",
+									placeholder: "Search",
 									label: "Search",
 								}),
 								new b.button({ type: "submit", color: btnColor, outline: true }, "Search"),
@@ -551,7 +551,7 @@ export const doc_component_navbar: IAttrContent = {
 								new b.input({
 									type: "search",
 									marginEnd: 2,
-									placeholderText: "Search",
+									placeholder: "Search",
 									label: "Search",
 								}),
 								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -600,7 +600,7 @@ export const doc_component_navbar: IAttrContent = {
 								new b.input({
 									type: "search",
 									marginEnd: 2,
-									placeholderText: "Search",
+									placeholder: "Search",
 									label: "Search",
 								}),
 								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -632,7 +632,7 @@ export const doc_component_navbar: IAttrContent = {
 								new b.input({
 									type: "search",
 									marginEnd: 2,
-									placeholderText: "Search",
+									placeholder: "Search",
 									label: "Search",
 								}),
 								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -664,7 +664,7 @@ export const doc_component_navbar: IAttrContent = {
 								new b.input({
 									type: "search",
 									marginEnd: 2,
-									placeholderText: "Search",
+									placeholder: "Search",
 									label: "Search",
 								}),
 								new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -797,7 +797,7 @@ export const doc_component_navbar: IAttrContent = {
 										new b.input({
 											type: "search",
 											marginEnd: 2,
-											placeholderText: "Search",
+											placeholder: "Search",
 											label: "Search",
 										}),
 										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -882,7 +882,7 @@ export const doc_component_navbar: IAttrContent = {
 										new b.input({
 											type: "search",
 											marginEnd: 2,
-											placeholderText: "Search",
+											placeholder: "Search",
 											label: "Search",
 										}),
 										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
@@ -946,7 +946,7 @@ export const doc_component_navbar: IAttrContent = {
 										new b.input({
 											type: "search",
 											marginEnd: 2,
-											placeholderText: "Search",
+											placeholder: "Search",
 											label: "Search",
 										}),
 										new b.button({ type: "submit", color: "success", outline: true }, "Search"),

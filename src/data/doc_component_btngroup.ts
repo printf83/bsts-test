@@ -143,7 +143,7 @@ export const doc_component_btngroup: IAttrContent = {
 							new b.inputgroup.text({ id: "btnGroupAddon" }, "@"),
 							new b.input({
 								type: "text",
-								placeholderText: "Input group example",
+								placeholder: "Input group example",
 								label: "Input group example",
 								describedby: "btnGroupAddon",
 							}),
@@ -160,7 +160,7 @@ export const doc_component_btngroup: IAttrContent = {
 								new b.inputgroup.text({ id: "btnGroupAddon2" }, "@"),
 								new b.input({
 									type: "text",
-									placeholderText: "Input group example",
+									placeholder: "Input group example",
 									label: "Input group example",
 									describedby: "btnGroupAddon2",
 								}),

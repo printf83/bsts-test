@@ -608,7 +608,7 @@ export const doc_component_dropdown: IAttrContent = {
 									new b.input({
 										type: "email",
 										id: "exampleDropdownFormEmail1",
-										placeholderText: "email@example.com",
+										placeholder: "email@example.com",
 									}),
 								]),
 								new h.div({ marginBottom: 3 }, [
@@ -616,7 +616,7 @@ export const doc_component_dropdown: IAttrContent = {
 									new b.input({
 										type: "email",
 										id: "exampleDropdownFormPassword1",
-										placeholderText: "email@example.com",
+										placeholder: "email@example.com",
 									}),
 								]),
 								new h.div({ marginBottom: 3 }, [
@@ -624,7 +624,7 @@ export const doc_component_dropdown: IAttrContent = {
 										new b.input({
 											type: "checkbox",
 											id: "dropdownCheck",
-											placeholderText: "email@example.com",
+											placeholder: "email@example.com",
 										}),
 										new b.label({ for: "dropdownCheck" }, "Remember me"),
 									]),
@@ -655,7 +655,7 @@ export const doc_component_dropdown: IAttrContent = {
 									new b.input({
 										type: "email",
 										id: "exampleDropdownFormEmail2",
-										placeholderText: "email@example.com",
+										placeholder: "email@example.com",
 									}),
 								]),
 								new h.div({ marginBottom: 3 }, [
@@ -663,7 +663,7 @@ export const doc_component_dropdown: IAttrContent = {
 									new b.input({
 										type: "email",
 										id: "exampleDropdownFormPassword2",
-										placeholderText: "email@example.com",
+										placeholder: "email@example.com",
 									}),
 								]),
 								new h.div({ marginBottom: 3 }, [
@@ -671,7 +671,7 @@ export const doc_component_dropdown: IAttrContent = {
 										new b.input({
 											type: "checkbox",
 											id: "dropdownCheck2",
-											placeholderText: "email@example.com",
+											placeholder: "email@example.com",
 										}),
 										new b.label({ for: "dropdownCheck2" }, "Remember me"),
 									]),

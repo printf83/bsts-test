@@ -84,9 +84,9 @@ const maincontainer = new main.container({
 	currentInsideLink: "doc",
 
 	itemOutsideLink: [
-		{ href: "#", icon: { type: "brand", id: "github" }, label: "Github" },
-		{ href: "#", icon: { type: "brand", id: "twitter" }, label: "Twitter" },
-		{ href: "#", icon: { type: "brand", id: "bootstrap" }, label: "Bootstrap" },
+		{ href: "#", icon: { id: "github" }, label: "Github" },
+		{ href: "#", icon: { id: "twitter" }, label: "Twitter" },
+		{ href: "#", icon: { id: "bootstrap" }, label: "Bootstrap" },
 	],
 
 	itemTheme: [
