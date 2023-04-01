@@ -48,8 +48,9 @@ a:hover *,
     margin: 0.25rem;
 }
 
-.example-output > .alert {
-    margin: 0.5rem;
+.example-output > .alert, 
+.example-output > .progress {
+    margin: 0.75rem 0.25rem !important;
 }
 
 .example-output {

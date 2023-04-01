@@ -19,6 +19,7 @@ import { doc_component_offcanvas } from "./doc_component_offcanvas.js";
 import { doc_component_pagination } from "./doc_component_pagination.js";
 import { doc_component_placeholder } from "./doc_component_placeholder.js";
 import { doc_component_popover } from "./doc_component_popover.js";
+import { doc_component_progress } from "./doc_component_progress.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -60,6 +61,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_popover;
 		case "doc_component_placeholder":
 			return doc_component_placeholder;
+		case "doc_component_progress":
+			return doc_component_progress;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;

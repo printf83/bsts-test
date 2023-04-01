@@ -23,7 +23,7 @@ export const doc_component_placeholder: IAttrContent = {
 				return new h.div(
 					{ row: true },
 					item.map((i) => {
-						return new h.div({ col: [12, "md-6"] }, i);
+						return new h.div({ col: [12, "md-6"], paddingY: 3 }, i);
 					})
 				);
 			},
