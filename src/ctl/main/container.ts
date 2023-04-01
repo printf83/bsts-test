@@ -509,6 +509,7 @@ const genToc = (content?: IAttrContent) => {
 					class: "bs-toc",
 					marginTop: 3,
 					marginBottom: [5, "lg-5"],
+					marginStart: [0, "md-3", "lg-0"],
 					marginY: "lg-0",
 					paddingStart: "xl-3",
 					textColor: "body-secondary",
@@ -519,6 +520,7 @@ const genToc = (content?: IAttrContent) => {
 							color: "link",
 							padding: "md-0",
 							marginBottom: [2, "md-0"],
+
 							textDecoration: "none",
 							class: "bs-toc-toggle",
 							display: "md-none",
@@ -545,6 +547,9 @@ const genToc = (content?: IAttrContent) => {
 						new h.nav(
 							{ id: "TableOfContents" },
 							new h.ul(
+								{
+									marginStart: [3, "md-0"],
+								},
 								u.map((i) => {
 									return new h.li([
 										new h.a({ href: i.href }, i.label),

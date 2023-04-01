@@ -115,7 +115,7 @@ export const doc_component_popover: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Custom popovers"),
+		new e.subtitle("Custom popovers"),
 		new e.text(
 			"You can customize the appearance of popovers using {{https://getbootstrap.com/docs/5.3/components/popovers/#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope our custom appearance and use it to override some of the local CSS variables."
 		),
@@ -255,7 +255,7 @@ export const doc_component_popover: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Usage"),
+		new e.title("Usage"),
 		new e.text("Enable popovers via JavaScript:"),
 		new e.codepreview({
 			type: "css",
