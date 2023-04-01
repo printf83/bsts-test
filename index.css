@@ -11,6 +11,8 @@ a:hover *,
 /*clipboard icon hover*/
 .primary-on-hover:hover{
     color:var(--bs-primary);
+    border-color: var(--bs-primary);
+    background-color: transparent;
 }
 
 /* custom popover */

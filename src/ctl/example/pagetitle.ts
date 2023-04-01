@@ -45,6 +45,7 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 				attr.sourceUrl
 					? new b.button(
 							{
+								class: "primary-on-hover",
 								href: attr.sourceUrl,
 								weight: "sm",
 								color: "secondary",
