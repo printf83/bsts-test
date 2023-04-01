@@ -104,6 +104,9 @@ export const doc_component_placeholder: IAttrContent = {
 			"By default, the {{placeholder}} uses {{currentColor}}. This can be overridden with a custom color or utility class."
 		),
 		new e.code({
+			manager: (item: core.tag[]) => {
+				return new h.div({ row: true, gap: 2 }, item);
+			},
 			output: () => {
 				return [undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 					(i) => {
@@ -123,6 +126,9 @@ export const doc_component_placeholder: IAttrContent = {
 			"The size of {{.placeholders}} are based on the typographic style of the parent element. Customize them with sizing modifiers: {{.placeholder-lg}}, {{.placeholder-sm}}, or {{.placeholder-xs}}."
 		),
 		new e.code({
+			manager: (item: core.tag[]) => {
+				return new h.div({ row: true, gap: 2 }, item);
+			},
 			output: () => {
 				return ["lg", undefined, "sm", "xs"].map((i) => {
 					return new h.span(
