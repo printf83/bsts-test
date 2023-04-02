@@ -21,7 +21,7 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Border spinner"),
+		new e.title("Border spinner"),
 		new e.text("Use the border spinners for a lightweight loading indicator."),
 		new e.code({
 			output: () => {
@@ -49,7 +49,7 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Growing spinner"),
+		new e.title("Growing spinner"),
 		new e.text(
 			"If you don’t fancy a border spinner, switch to the grow spinner. While it doesn’t technically spin, it does repeatedly grow!"
 		),
@@ -76,7 +76,7 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Margin"),
+		new e.subtitle("Margin"),
 		new e.text(
 			"Spinners in Bootstrap are built with {{rems}}, {{currentColor}}, and {{display: inline-flex}}. This means they can easily be resized, recolored, and quickly aligned."
 		),
@@ -94,14 +94,14 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Placement"),
+		new e.subtitle("Placement"),
 		new e.text(
 			"Use {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}, {{https://getbootstrap.com/docs/5.3/utilities/float/::float utilities}}, or {{https://getbootstrap.com/docs/5.3/utilities/text/::text alignment}} utilities to place spinners exactly where you need them in any situation."
 		),
 
 		//-----------------------
 
-		new e.title("Flex"),
+		new e.xsubtitle("Flex"),
 		new e.code({
 			output: () => {
 				return new b.spinner({ type: "border", display: "flex", justifyContent: "center" });
@@ -118,7 +118,7 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Floats"),
+		new e.xsubtitle("Floats"),
 		new e.code({
 			output: () => {
 				return new h.div({ clearfix: true }, new b.spinner({ type: "border", float: "end" }));
@@ -127,7 +127,7 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Text align"),
+		new e.xsubtitle("Text align"),
 		new e.code({
 			output: () => {
 				return new h.div({ textAlign: "center" }, new b.spinner({ type: "border" }));
