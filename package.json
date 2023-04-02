@@ -36,12 +36,12 @@
 		"prepack": "npm run build"
 	},
 	"devDependencies": {
-		"@printf83/bsts": "^0.1.49",
+		"@printf83/bsts": "^0.1.56",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
 		"ts-loader": "^9.4.2",
-		"typescript": "^5.0.1-rc",
-		"webpack": "^5.76.3",
+		"typescript": "^5.0.3",
+		"webpack": "^5.77.0",
 		"webpack-cli": "^5.0.1"
 	}
 }

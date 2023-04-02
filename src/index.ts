@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_component_scrollspy";
+let CURRENT_PAGE = "doc_component_spinner";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -40,6 +40,7 @@ let m = {
 				{ label: "Popovers", value: "doc_component_popover" },
 				{ label: "Progress", value: "doc_component_progress" },
 				{ label: "Scrollspy", value: "doc_component_scrollspy" },
+				{ label: "Spinners", value: "doc_component_spinner" },
 			],
 		},
 	] as main.IAttrItemMenu[],
