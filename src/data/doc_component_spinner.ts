@@ -189,6 +189,47 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
+		new e.subtitle("Buttons with label"),
+		new e.text(
+			"Use spinners within buttons to indicate an action is currently processing or taking place. You may also swap the text out of the spinner element and utilize button text as needed."
+		),
+		new e.code({
+			output: () => {
+				return [
+					new b.button(
+						{ disabled: true },
+						new b.label({ icon: new b.spinner({ type: "border", small: true }, "") }, "Loading...")
+					),
+					new b.button(
+						{ disabled: true },
+						new b.label(
+							{ iconPosition: "end", icon: new b.spinner({ type: "border", small: true }, "") },
+							"Loading..."
+						)
+					),
+				];
+			},
+		}),
+		new e.code({
+			output: () => {
+				return [
+					new b.button(
+						{ disabled: true },
+						new b.label({ icon: new b.spinner({ type: "grow", small: true }, "") }, "Loading...")
+					),
+					new b.button(
+						{ disabled: true },
+						new b.label(
+							{ iconPosition: "end", icon: new b.spinner({ type: "grow", small: true }, "") },
+							"Loading..."
+						)
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
