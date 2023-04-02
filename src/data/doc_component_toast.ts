@@ -1,19 +1,27 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
-export const doc_component_spinner: IAttrContent = {
-	title: "Spinner",
+export const doc_component_toast: IAttrContent = {
+	title: "Toasts",
 	description:
-		"Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript.",
+		"Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.",
 	item: [
-		new e.title("About"),
 		new e.text(
-			"Bootstrap “spinners” can be used to show the loading state in your projects. They’re built only with HTML and CSS, meaning you don’t need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, alignment, and sizing can be easily customized with our amazing utility classes."
+			"Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems. They’re built with flexbox, so they’re easy to align and position."
 		),
-		new e.text(
-			"For accessibility purposes, each loader here includes {{role='status'}} and a nested {{<span class='visually-hidden'>Loading...</span>}}."
-		),
+
+		//-----------------------
+
+		new e.title("Overview"),
+
+		new e.text("Things to know when using the toast plugin:"),
+		new e.ul({
+			item: [
+				"Toasts are opt-in for performance reasons, so {{b:you must initialize them yourself}}.",
+				"Toasts will automatically hide if you do not specify {{autohide: false}}.",
+			],
+		}),
 		new e.alert(
 			{ color: "info", callout: true },
 			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
@@ -21,25 +29,78 @@ export const doc_component_spinner: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Border spinner"),
-		new e.text("Use the border spinners for a lightweight loading indicator."),
-		new e.code({
-			output: () => {
-				return new b.spinner({ type: "border" });
-			},
-		}),
-
-		//-----------------------
-
-		new e.subtitle("Colors"),
+		new e.title("Examples"),
 		new e.text(
-			"The border spinner uses {{currentColor}} for its {{border-color}}, meaning you can customize the color with text color utilities. You can use any of our {{https://getbootstrap.com/docs/5.3/utilities/colors/::text color utilities}} on the standard spinner."
+			"To encourage extensible and predictable toasts, we recommend a header and body. Toast headers use {{display: flex}}, allowing easy alignment of content thanks to our margin and flexbox utilities."
+		),
+		new e.text(
+			"Toasts are as flexible as you need and have very little required markup. At a minimum, we require a single element to contain your “toasted” content and strongly encourage a dismiss button."
 		),
 		new e.code({
 			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.spinner({ type: "border", color: i as b.IAttrBSSpinner["color"] });
-				});
+				return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+					new b.toast.header([
+						new h.div({
+							bgColor: "primary",
+							rounded: true,
+							marginEnd: 2,
+							style: { width: "22px", height: "22px" },
+						}),
+						new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+						new h.small("11 mins ago"),
+						new b.toast.btnclose(),
+					]),
+					new b.toast.body("Hello, world! This is a toast message."),
+				]);
+			},
+		}),
+		new e.alert(
+			{ color: "warning", callout: true },
+			"Previously, our scripts dynamically added the {{.hide}} class to completely hide a toast (with {{display:none}}, rather than just with {{opacity:0}}). This is now not necessary anymore. However, for backwards compatibility, our script will continue to toggle the class (even though there is no practical need for it) until the next major version."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Live example"),
+		new e.text(
+			"Click the button below to show a toast (positioned with our utilities in the lower right corner) that has been hidden by default."
+		),
+		new e.code({
+			output: () => {
+				return [
+					new b.button(
+						{
+							id: "liveToastBtn",
+							on: {
+								click: (_e) => {
+									const toastLiveExample = document.getElementById("liveToast");
+									const toastBootstrap = window.bootstrap.Toast.getOrCreateInstance(
+										toastLiveExample as Element
+									);
+									toastBootstrap.show();
+								},
+							},
+						},
+						"Show live toast"
+					),
+					new b.toast.container(
+						{ bottom: 0, end: 0, padding: 3, position: "fixed" },
+						new b.toast.item({ id: "liveToast", live: "assertive", atomic: true }, [
+							new b.toast.header([
+								new h.div({
+									bgColor: "primary",
+									rounded: true,
+									marginEnd: 2,
+									style: { width: "22px", height: "22px" },
+								}),
+								new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+								new h.small("11 mins ago"),
+								new b.toast.btnclose(),
+							]),
+							new b.toast.body("Hello, world! This is a toast message."),
+						])
+					),
+				];
 			},
 		}),
 		new e.alert(

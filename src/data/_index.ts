@@ -22,6 +22,7 @@ import { doc_component_popover } from "./doc_component_popover.js";
 import { doc_component_progress } from "./doc_component_progress.js";
 import { doc_component_scrollspy } from "./doc_component_scrollspy.js";
 import { doc_component_spinner } from "./doc_component_spinner.js";
+import { doc_component_toast } from "./doc_component_toast.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -69,6 +70,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_component_scrollspy;
 		case "doc_component_spinner":
 			return doc_component_spinner;
+		case "doc_component_toast":
+			return doc_component_toast;
 
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;
