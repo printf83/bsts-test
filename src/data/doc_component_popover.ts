@@ -120,20 +120,30 @@ export const doc_component_popover: IAttrContent = {
 			"You can customize the appearance of popovers using {{https://getbootstrap.com/docs/5.3/components/popovers/#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope our custom appearance and use it to override some of the local CSS variables."
 		),
 
-		new e.codepreview({
-			type: "css",
-			code: `
-				.custom-popover {
+		// new e.codepreview({
+		// 	type: "css",
+		// 	code: `
+		// 		.custom-popover {
+		// 		--bs-popover-max-width: 200px;
+		// 		--bs-popover-border-color: var(--bs-primary);
+		// 		--bs-popover-header-bg: var(--bs-primary);
+		// 		--bs-popover-header-color: var(--bs-white);
+		// 		--bs-popover-body-padding-x: 1rem;
+		// 		--bs-popover-body-padding-y: .5rem;
+		// 		}
+		// 	`,
+		// }),
+		new e.code({
+			css: `
+			.custom-popover {
 				--bs-popover-max-width: 200px;
 				--bs-popover-border-color: var(--bs-primary);
 				--bs-popover-header-bg: var(--bs-primary);
 				--bs-popover-header-color: var(--bs-white);
 				--bs-popover-body-padding-x: 1rem;
 				--bs-popover-body-padding-y: .5rem;
-				}
+			}
 			`,
-		}),
-		new e.code({
 			output: () => {
 				return new b.popover(
 					{

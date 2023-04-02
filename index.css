@@ -15,6 +15,11 @@ a:hover *,
     background-color: transparent;
 }
 
+/* simple-list-example */
+#simple-list-example a.active{
+    background-color: var(--bs-secondary-bg);
+}
+
 /* custom popover */
 .custom-popover {
     --bs-popover-max-width: 200px;

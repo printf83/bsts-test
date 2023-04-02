@@ -819,7 +819,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 						new h.ul({ unstyle: true, class: "small" }, [
 							new h.li(
 								{ marginBottom: 2 },
-								"Designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of our contributors."
+								"Designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::our contributors}}."
 							),
 							new h.li(
 								{ marginBottom: 2 },
