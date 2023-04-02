@@ -7,13 +7,6 @@ export const doc_component_scrollspy: IAttrContent = {
 	description:
 		"Automatically update Bootstrap navigation or list group components based on scroll position to indicate which link is currently active in the viewport.",
 	item: [
-		new e.title("About"),
-		new e.text(
-			"Placeholders can be used to enhance the experience of your application. They’re built only with HTML and CSS, meaning you don’t need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, color, and sizing can be easily customized with our utility classes."
-		),
-
-		//-----------------------
-
 		new e.title("How it works"),
 		new e.text(
 			"Scrollspy toggles the {{.active}} class on anchor ({{<a>}}) elements when the element with the {{id}} referenced by the anchor’s {{href}} is scrolled into view. Scrollspy is best used in conjunction with a Bootstrap {{https://getbootstrap.com/docs/5.3/components/navs-tabs/::nav component}} or {{https://getbootstrap.com/docs/5.3/components/list-group/::list group}}, but it will also work with any anchor elements in the current page. Here’s how it works."
@@ -287,7 +280,7 @@ export const doc_component_scrollspy: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Non-visible elements"),
+		new e.title("Non-visible elements"),
 		new e.text(
 			"Target elements that aren’t visible will be ignored and their corresponding nav items won’t receive an {{.active}} class. Scrollspy instances initialized in a non-visible wrapper will ignore all target elements. Use the {{refresh}} method to check for observable elements once the wrapper becomes visible."
 		),
@@ -379,7 +372,7 @@ export const doc_component_scrollspy: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Methods"),
+		new e.subtitle("Methods"),
 		new e.table({
 			item: [
 				["Method", "Description"],
@@ -408,7 +401,7 @@ export const doc_component_scrollspy: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Events"),
+		new e.subtitle("Events"),
 		new e.table({
 			item: [
 				["Event", "Description"],
