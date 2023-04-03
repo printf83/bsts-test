@@ -142,7 +142,7 @@ export const doc_component_pagination: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.pagination}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, pagination now use local CSS variables on {{.pagination}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({

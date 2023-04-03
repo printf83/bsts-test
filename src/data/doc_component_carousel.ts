@@ -294,7 +294,7 @@ export const doc_component_carousel: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Sass variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, carousel now use local CSS variables on {{.carousel}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({

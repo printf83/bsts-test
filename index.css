@@ -30,6 +30,11 @@ a:hover *,
     --bs-popover-body-padding-y: .5rem;
 }
 
+/* custom tooltip */
+.custom-tooltip {
+    --bs-tooltip-bg: var(--bs-primary);
+}
+
 /* toggler on main container */
 .bs-noshadow:focus{
     box-shadow: none;
@@ -43,7 +48,6 @@ a:hover *,
 }
 
 .example-ul li,.example-ol li{
-    padding-top:0.25rem;
     padding-bottom:0.25rem;
 }
 

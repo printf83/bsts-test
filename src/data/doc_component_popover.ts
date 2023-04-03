@@ -13,7 +13,7 @@ export const doc_component_popover: IAttrContent = {
 			item: [
 				"Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
 				"Popovers require the {{https://getbootstrap.com/docs/5.3/components/popovers/::popover plugin}} as a dependency.",
-				"Popovers are opt-in for performance reasons, so you must initialize them yourself.",
+				"Popovers are opt-in for performance reasons, so {{b::you must initialize them yourself}}.",
 				"Zero-length {{title}} and {{content}} values will never show a popover.",
 				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like our input groups, button groups, etc).",
 				"Triggering popovers on hidden elements will not work.",
@@ -205,7 +205,7 @@ export const doc_component_popover: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.popover}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"As part of Bootstrap’s evolving CSS variables approach, popover now use local CSS variables on {{.popover}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 
 		new e.codepreview({
@@ -451,9 +451,8 @@ export const doc_component_popover: IAttrContent = {
 					"{{enable}}",
 					"Gives an element’s popover the ability to be shown. {{b::Popovers are enabled by default}}.",
 				],
-				["{{getInstance}}", "Description"],
 				[
-					"{{Method}}",
+					"{{getInstance}}",
 					"{{i::Static}} method which allows you to get the popover instance associated with a DOM element.",
 				],
 				[
