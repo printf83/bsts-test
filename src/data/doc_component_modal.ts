@@ -97,6 +97,42 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
+		new e.subtitle("Live demo with {{.show}}"),
+		new e.text(
+			"You also can use our {{b.modal.container.show}} {{i::static}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
+		),
+		new e.code({
+			output: () => {
+				return [
+					// Button trigger modal
+					new b.button(
+						{
+							color: "primary",
+							on: {
+								click: (_e) => {
+									const mdl = new b.modal.container({ labelledby: "exampleShowModalLabel" }, [
+										new b.modal.header(
+											{ close: true },
+											new b.modal.title({ id: "exampleShowModalLabel" }, "Modal title")
+										),
+										new b.modal.body(new h.p("Woo-hoo, you're reading this text in a modal!")),
+										new b.modal.footer([
+											new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+											new b.button({ color: "primary" }, "Save changes"),
+										]),
+									]);
+									b.modal.container.show(mdl);
+								},
+							},
+						},
+						"Launch demo modal"
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
 		new e.subtitle("Static backdrop"),
 		new e.text(
 			"When backdrop is set to static, the modal will not close when clicking outside of it. Click the button below to try it."

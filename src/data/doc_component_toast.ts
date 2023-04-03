@@ -84,7 +84,7 @@ export const doc_component_toast: IAttrContent = {
 						"Show live toast"
 					),
 					new b.toast.container(
-						{ bottom: 0, end: 0, padding: 3, position: "fixed" },
+						{ placement: "bottom-end" },
 						new b.toast.item({ id: "liveToast", live: "assertive", atomic: true }, [
 							new b.toast.header([
 								new h.div({
@@ -103,10 +103,44 @@ export const doc_component_toast: IAttrContent = {
 				];
 			},
 		}),
-		new e.alert(
-			{ color: "info", callout: true },
-			"{{b::Why not use }}{{cb::border-color}}{{b:: utilities?}} Each border spinner specifies a {{transparent}} border for at least one side, so {{.border-{color}}} utilities would override that."
+
+		//-----------------------
+
+		new e.subtitle("Live example with {{.show}}"),
+		new e.text(
+			"You also can use our {{b.toast.container.show}} {{i::static}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."
 		),
+		new e.code({
+			output: () => {
+				return [
+					new b.button(
+						{
+							on: {
+								click: (_e) => {
+									const tItem = new b.toast.item({ live: "assertive", atomic: true }, [
+										new b.toast.header([
+											new h.div({
+												bgColor: "primary",
+												rounded: true,
+												marginEnd: 2,
+												style: { width: "22px", height: "22px" },
+											}),
+											new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+											new h.small("11 mins ago"),
+											new b.toast.btnclose(),
+										]),
+										new b.toast.body("Hello, world! This is a toast message."),
+									]);
+
+									b.toast.container.show("top-end", tItem);
+								},
+							},
+						},
+						"Show live toast"
+					),
+				];
+			},
+		}),
 
 		//-----------------------
 
