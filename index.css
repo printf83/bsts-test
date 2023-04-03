@@ -63,9 +63,19 @@ a:hover *,
 }
 
 /*example-output debug*/
-.example-output .debug{
+.example-output .debug:not(.toast-container){
     position: static !important;
     display: block !important;
+}
+
+.example-output .debug.toast-container {
+    position: static !important;
+    display: block !important;
+}
+
+.example-output #toastPlacement.debug {
+    display: block !important;
+    position: unset !important;
 }
 
 /* example-output fixed and sticky fix*/

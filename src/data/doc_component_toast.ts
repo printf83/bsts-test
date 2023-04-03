@@ -44,7 +44,7 @@ export const doc_component_toast: IAttrContent = {
 							bgColor: "primary",
 							rounded: true,
 							marginEnd: 2,
-							style: { width: "22px", height: "22px" },
+							style: { width: "20px", height: "20px" },
 						}),
 						new h.strong({ marginEnd: "auto" }, "Bootstrap"),
 						new h.small("11 mins ago"),
@@ -73,6 +73,7 @@ export const doc_component_toast: IAttrContent = {
 							id: "liveToastBtn",
 							on: {
 								click: (_e) => {
+									//trigger live toast demo
 									const toastLiveExample = document.getElementById("liveToast");
 									const toastBootstrap = window.bootstrap.Toast.getOrCreateInstance(
 										toastLiveExample as Element
@@ -91,10 +92,10 @@ export const doc_component_toast: IAttrContent = {
 									bgColor: "primary",
 									rounded: true,
 									marginEnd: 2,
-									style: { width: "22px", height: "22px" },
+									style: { width: "20px", height: "20px" },
 								}),
 								new h.strong({ marginEnd: "auto" }, "Bootstrap"),
-								new h.small("11 mins ago"),
+								new b.toast.time(),
 								new b.toast.btnclose(),
 							]),
 							new b.toast.body("Hello, world! This is a toast message."),
@@ -123,10 +124,10 @@ export const doc_component_toast: IAttrContent = {
 												bgColor: "primary",
 												rounded: true,
 												marginEnd: 2,
-												style: { width: "22px", height: "22px" },
+												style: { width: "20px", height: "20px" },
 											}),
 											new h.strong({ marginEnd: "auto" }, "Bootstrap"),
-											new h.small("11 mins ago"),
+											new b.toast.time(),
 											new b.toast.btnclose(),
 										]),
 										new b.toast.body("Hello, world! This is a toast message."),
@@ -144,184 +145,336 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Growing spinner"),
-		new e.text(
-			"If you don’t fancy a border spinner, switch to the grow spinner. While it doesn’t technically spin, it does repeatedly grow!"
-		),
+		new e.title("Translucent"),
+		new e.text("Toasts are slightly translucent to blend in with what’s below them."),
 		new e.code({
+			previewAttr: { bgColor: "dark" },
 			output: () => {
-				return new b.spinner({ type: "grow" });
-			},
-		}),
-		new e.text(
-			"Once again, this spinner is built with {{currentColor}}, so you can easily change its appearance with {{https://getbootstrap.com/docs/5.3/utilities/colors/::text color utilities}}. Here it is in blue, along with the supported variants."
-		),
-		new e.code({
-			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.spinner({ type: "grow", color: i as b.IAttrBSSpinner["color"] });
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Alignment"),
-		new e.text("Use margin utilities like {{.m-5}} for easy spacing."),
-
-		//-----------------------
-
-		new e.subtitle("Margin"),
-		new e.text(
-			"Spinners in Bootstrap are built with {{rems}}, {{currentColor}}, and {{display: inline-flex}}. This means they can easily be resized, recolored, and quickly aligned."
-		),
-		new e.code({
-			output: () => {
-				return new b.spinner({ type: "border", margin: 5 });
-			},
-		}),
-		new e.alert({ color: "info", callout: true }, [
-			new h.h(5, "Conveying meaning to assistive technologies"),
-			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-			),
-		]),
-
-		//-----------------------
-
-		new e.subtitle("Placement"),
-		new e.text(
-			"Use {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}, {{https://getbootstrap.com/docs/5.3/utilities/float/::float utilities}}, or {{https://getbootstrap.com/docs/5.3/utilities/text/::text alignment}} utilities to place spinners exactly where you need them in any situation."
-		),
-
-		//-----------------------
-
-		new e.xsubtitle("Flex"),
-		new e.code({
-			output: () => {
-				return new b.spinner({ type: "border", display: "flex", justifyContent: "center" });
-			},
-		}),
-		new e.code({
-			output: () => {
-				return new h.div({ display: "flex", alignItem: "center" }, [
-					new h.strong("Loading..."),
-					new b.spinner({ type: "border", marginStart: "auto" }, ""),
+				return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+					new b.toast.header([
+						new h.div({
+							bgColor: "primary",
+							rounded: true,
+							marginEnd: 2,
+							style: { width: "20px", height: "20px" },
+						}),
+						new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+						new h.small("11 mins ago"),
+						new b.toast.btnclose(),
+					]),
+					new b.toast.body("Hello, world! This is a toast message."),
 				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.xsubtitle("Floats"),
-		new e.code({
-			output: () => {
-				return new h.div({ clearfix: true }, new b.spinner({ type: "border", float: "end" }));
-			},
-		}),
-
-		//-----------------------
-
-		new e.xsubtitle("Text align"),
-		new e.code({
-			output: () => {
-				return new h.div({ textAlign: "center" }, new b.spinner({ type: "border" }));
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Size"),
+		new e.title("Stacking"),
 		new e.text(
-			"Add {{.spinner-border-sm}} and {{.spinner-grow-sm}} to make a smaller spinner that can quickly be used within other components."
+			"You can stack toasts by wrapping them in a toast container, which will vertically add some spacing."
 		),
 		new e.code({
 			output: () => {
-				return [new b.spinner({ type: "border", small: true }), new b.spinner({ type: "grow", small: true })];
-			},
-		}),
-		new e.text("Or, use custom CSS or inline styles to change the dimensions as needed."),
-		new e.code({
-			output: () => {
-				return [
-					new b.spinner({ style: { width: "3rem", height: "3rem" }, type: "border" }),
-					new b.spinner({ style: { width: "3rem", height: "3rem" }, type: "grow" }),
-				];
+				const item = (msg: string, timer: string) => {
+					return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+						new b.toast.header([
+							new h.div({
+								bgColor: "primary",
+								rounded: true,
+								marginEnd: 2,
+								style: { width: "20px", height: "20px" },
+							}),
+							new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+							new h.small(timer),
+							new b.toast.btnclose(),
+						]),
+						new b.toast.body(msg),
+					]);
+				};
+
+				return new b.toast.container({ debug: true }, [
+					item("See? just like this", "Just now"),
+					item("Heads up, toasts will stack automatically", "2 second ago"),
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.title("Buttons"),
+		new e.title("Custom content"),
 		new e.text(
-			"Use spinners within buttons to indicate an action is currently processing or taking place. You may also swap the text out of the spinner element and utilize button text as needed."
+			"Customize your toasts by removing sub-components, tweaking them with {{https://getbootstrap.com/docs/5.3/utilities/api/::utilities}}, or by adding your own markup. Here we’ve created a simpler toast by removing the default {{.toast-header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}} to adjust the layout."
 		),
 		new e.code({
 			output: () => {
-				return [
-					new b.button({ disabled: true }, [
-						new b.spinner({ type: "border", small: true }, ""),
-						new b.visuallyhidden("Loading..."),
-					]),
-					new b.button({ disabled: true }, [
-						new b.spinner({ type: "border", small: true }, ""),
-						" Loading...",
-					]),
-				];
+				return new b.toast.item(
+					{ debug: true, alignItem: "center", live: "assertive", atomic: true },
+					new h.div({ display: "flex" }, [
+						new b.toast.body("Hello, world! This is a toast message."),
+						new b.toast.btnclose({ marginEnd: 2, margin: "auto" }),
+					])
+				);
 			},
 		}),
+		new e.text("Alternatively, you can also add additional controls and components to toasts."),
 		new e.code({
 			output: () => {
-				return [
-					new b.button({ disabled: true }, [
-						new b.spinner({ type: "grow", small: true }, ""),
-						new b.visuallyhidden("Loading..."),
+				return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, [
+					new b.toast.body([
+						"Hello, world! This is a toast message.",
+						new h.div({ marginTop: 2, paddingTop: 2, border: "top", display: "flex", gap: 1 }, [
+							new b.button({ weight: "sm" }, "Take action"),
+							new b.button({ weight: "sm", color: "secondary", dismiss: "toast" }, "Close"),
+						]),
 					]),
-					new b.button({ disabled: true }, [new b.spinner({ type: "grow", small: true }, ""), " Loading..."]),
-				];
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle("Buttons with label"),
+		new e.title("Color schemes"),
 		new e.text(
-			"Use spinners within buttons to indicate an action is currently processing or taking place. You may also swap the text out of the spinner element and utilize button text as needed."
+			"Building on the above example, you can create different toast color schemes with our {{https://getbootstrap.com/docs/5.3/utilities/colors/::color}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::background}} utilities. Here we’ve added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to our close button. For a crisp edge, we remove the default border with {{.border-0}}."
 		),
 		new e.code({
 			output: () => {
+				return new b.toast.item(
+					{
+						debug: true,
+						alignItem: "center",
+						textBgColor: "primary",
+						border: false,
+						live: "assertive",
+						atomic: true,
+					},
+					new h.div({ display: "flex" }, [
+						new b.toast.body("Hello, world! This is a toast message."),
+						new b.toast.btnclose({ white: true, marginEnd: 2, margin: "auto" }),
+					])
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Placement"),
+		new e.text(
+			"Place toasts with custom CSS as you need them. The top right is often used for notifications, as is the top middle. If you’re only ever going to show one toast at a time, put the positioning styles right on the .toast."
+		),
+		new e.code({
+			output: () => {
+				const container = (placement: b.toast.IAttrBSToastContainer["placement"]) => {
+					return new b.toast.container(
+						{
+							class: "debug",
+							padding: 3,
+							id: "toastPlacement",
+							placement: placement,
+							position: undefined,
+						},
+						new b.toast.item({ debug: true }, [
+							new b.toast.header([
+								new h.div({
+									bgColor: "primary",
+									rounded: true,
+									marginEnd: 2,
+									style: { width: "20px", height: "20px" },
+								}),
+								new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+								new h.small("11 mins ago"),
+								new b.toast.btnclose(),
+							]),
+							new b.toast.body("Hello, world! This is a toast message."),
+						])
+					);
+				};
+
 				return [
-					new b.button(
-						{ disabled: true },
-						new b.label(
-							{ iconPosition: "end", icon: new b.spinner({ type: "border", small: true }, "") },
-							"Loading"
-						)
-					),
-					new b.button(
-						{ disabled: true },
-						new b.label({ icon: new b.spinner({ type: "border", small: true }, "") }, "Loading")
+					new h.form([
+						new h.label({ for: "selectToastPlacement" }, "Toast placement"),
+						new b.select({
+							marginTop: 2,
+							id: "selectToastPlacement",
+							item: [
+								{ value: "", selected: true, elem: "Select a position..." },
+								{ value: "top-start", elem: "Top start" },
+								{ value: "top-end", elem: "Top end" },
+								{ value: "top-center", elem: "Top center" },
+								{ value: "middle-start", elem: "Middle start" },
+								{ value: "middle-end", elem: "Middle end" },
+								{ value: "middle-center", elem: "Middle center" },
+								{ value: "bottom-start", elem: "Bottom start" },
+								{ value: "bottom-end", elem: "Bottom end" },
+								{ value: "bottom-center", elem: "Bottom center" },
+							],
+							on: {
+								change: (e) => {
+									const target = e.target as HTMLSelectElement;
+									const value = target.value;
+									core.replaceWith(
+										document.getElementById("toastPlacement") as HTMLElement,
+										container(value as b.toast.IAttrBSToastContainer["placement"])
+									);
+								},
+							},
+						}),
+					]),
+					new h.div(
+						{
+							position: "relative",
+							rounded: 3,
+							bgColor: "body-secondary",
+							marginTop: 3,
+							style: { minHeight: "240px" },
+							aria: { live: "polite", atomic: "true" },
+						},
+						container("top-start")
 					),
 				];
 			},
+		}),
+		new e.text(
+			"For systems that generate more notifications, consider using a wrapping element so they can easily stack."
+		),
+		new e.code({
+			output: () => {
+				const item = (msg: string, timer: string) => {
+					return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+						new b.toast.header([
+							new h.div({
+								bgColor: "primary",
+								rounded: true,
+								marginEnd: 2,
+								style: { width: "20px", height: "20px" },
+							}),
+							new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+							new h.small(timer),
+							new b.toast.btnclose(),
+						]),
+						new b.toast.body(msg),
+					]);
+				};
+
+				return new h.div(
+					{ aria: { live: "polite", atomic: "true" }, position: "relative" },
+					new b.toast.container({ debug: true, placement: "top-end" }, [
+						item("See? just like this", "Just now"),
+						item("Heads up, toasts will stack automatically", "2 second ago"),
+					])
+				);
+			},
+		}),
+		new e.text("You can also get fancy with flexbox utilities to align toasts horizontally and/or vertically."),
+		new e.code({
+			output: () => {
+				const item = (msg: string, timer: string) => {
+					return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+						new b.toast.header([
+							new h.div({
+								bgColor: "primary",
+								rounded: true,
+								marginEnd: 2,
+								style: { width: "20px", height: "20px" },
+							}),
+							new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+							new h.small(timer),
+							new b.toast.btnclose(),
+						]),
+						new b.toast.body(msg),
+					]);
+				};
+
+				return new h.div(
+					{
+						aria: { live: "polite", atomic: "true" },
+						display: "flex",
+						justifyContent: "center",
+						alignItem: "center",
+						width: 100,
+						style: { minHeight: "200px" },
+					},
+					item("Hello, world! This is a toast message.", "11 mins ago")
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Accessibility"),
+		new e.text(
+			"Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an {{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions::aria-live region}}. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include {{aria-atomic='true'}} to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the {{https://getbootstrap.com/docs/5.3/components/alerts/::alert component}} instead of toast."
+		),
+		new e.text(
+			"Note that the live region needs to be present in the markup {{i::before}} the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies."
+		),
+		new e.text(
+			"You also need to adapt the {{role}} and {{aria-live}} level depending on the content. If it’s an important message like an error, use {{role='alert'}} {{aria-live='assertive'}}, otherwise use {{role='status'}} {{aria-live='polite'}} attributes."
+		),
+		new e.text(
+			"As the content you’re displaying changes, be sure to update the {{https://getbootstrap.com/docs/5.3/components/toasts/#options::delay timeout}} so that users have enough time to read the toast."
+		),
+		new e.codepreview({
+			type: "html",
+			code: `
+				<div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-bs-delay="10000">
+				<div role="alert" aria-live="assertive" aria-atomic="true">...</div>
+				</div>
+			`,
 		}),
 		new e.code({
 			output: () => {
 				return [
 					new b.button(
-						{ disabled: true },
-						new b.label(
-							{ iconPosition: "end", icon: new b.spinner({ type: "grow", small: true }, "") },
-							"Loading"
-						)
-					),
-					new b.button(
-						{ disabled: true },
-						new b.label({ icon: new b.spinner({ type: "grow", small: true }, "") }, "Loading")
+						{
+							on: {
+								click: (_e) => {
+									const tItem = new b.toast.item({ live: "assertive", atomic: true, delay: 10000 }, [
+										new b.toast.header([
+											new h.div({
+												bgColor: "primary",
+												rounded: true,
+												marginEnd: 2,
+												style: { width: "20px", height: "20px" },
+											}),
+											new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+											new b.toast.time(),
+											new b.toast.btnclose(),
+										]),
+										new b.toast.body("This toast auto close {{delay}} set to 10 second"),
+									]);
+
+									b.toast.container.show("top-end", tItem);
+								},
+							},
+						},
+						"Show delay timeout toast"
 					),
 				];
 			},
 		}),
+		new e.text("When using {{autohide: false}}, you must add a close button to allow users to dismiss the toast."),
+		new e.code({
+			output: () => {
+				return new b.toast.item({ debug: true, live: "assertive", atomic: true, autohide: false }, [
+					new b.toast.header([
+						new h.div({
+							bgColor: "primary",
+							rounded: true,
+							marginEnd: 2,
+							style: { width: "20px", height: "20px" },
+						}),
+						new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+						new b.toast.time(),
+						new b.toast.btnclose(),
+					]),
+					new b.toast.body("Hello, world! This is a toast message."),
+				]);
+			},
+		}),
+		new e.text(
+			"While technically it’s possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long {{https://getbootstrap.com/docs/5.3/components/toasts/#options::delay timeout}}, keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don’t receive focus when they are displayed). If you absolutely must have further controls, we recommend using a toast with {{autohide: false}}."
+		),
 
 		//-----------------------
 
