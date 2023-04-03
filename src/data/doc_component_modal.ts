@@ -353,6 +353,70 @@ export const doc_component_modal: IAttrContent = {
 				];
 			},
 		}),
+		new e.text("Test {{b.modal.container.show}} {{i::static}} function for {{auto init}} popover and tooltips."),
+		new e.code({
+			output: () => {
+				return [
+					// Button trigger modal
+					new b.button(
+						{
+							color: "primary",
+							toggle: "modal",
+							on: {
+								click: () => {
+									const mdl = new b.modal.container({ labelledby: "tooltipPopoverLiveModalLabel" }, [
+										new b.modal.header(
+											{ close: true },
+											new b.modal.title({ id: "tooltipPopoverLiveModalLabel" }, "Modal title")
+										),
+										new b.modal.body([
+											new h.h(2, { fontSize: 5 }, "Popover in a modal"),
+											new h.p([
+												"This ",
+												new b.popover(
+													{
+														title: "Popover title",
+														content: "Popover body content is set in this attribute",
+													},
+													new b.button({ color: "secondary" }, "button")
+												),
+												" triggers a popover on click.",
+											]),
+											new h.hr(),
+											new h.h(2, { fontSize: 5 }, "Tooltips in a modal"),
+											new h.p([
+												new b.tooltip(
+													{
+														content: "Tooltip",
+													},
+													new h.a({ href: "#" }, "This link")
+												),
+												" and ",
+
+												new b.tooltip(
+													{
+														content: "Tooltip",
+													},
+													new h.a({ href: "#" }, "that link")
+												),
+												" have tooltips on hover.",
+											]),
+										]),
+										new b.modal.footer([
+											new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+											new b.button({ color: "primary" }, "Save changes"),
+										]),
+									]);
+
+									b.modal.container.show(mdl);
+								},
+							},
+						},
+						"Launch demo modal"
+					),
+				];
+			},
+		}),
 
 		//-----------------------
 
