@@ -30,6 +30,8 @@ export const doc_component_toast: IAttrContent = {
 		//-----------------------
 
 		new e.title("Examples"),
+		new e.subtitle("Basic"),
+
 		new e.text(
 			"To encourage extensible and predictable toasts, we recommend a header and body. Toast headers use {{display: flex}}, allowing easy alignment of content thanks to our margin and flexbox utilities."
 		),
@@ -95,7 +97,7 @@ export const doc_component_toast: IAttrContent = {
 									style: { width: "20px", height: "20px" },
 								}),
 								new h.strong({ marginEnd: "auto" }, "Bootstrap"),
-								new b.toast.time(),
+								new h.small("11 mins ago"),
 								new b.toast.btnclose(),
 							]),
 							new b.toast.body("Hello, world! This is a toast message."),
@@ -145,7 +147,7 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Translucent"),
+		new e.subtitle("Translucent"),
 		new e.text("Toasts are slightly translucent to blend in with what’s below them."),
 		new e.code({
 			previewAttr: { bgColor: "dark" },
@@ -169,7 +171,7 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Stacking"),
+		new e.subtitle("Stacking"),
 		new e.text(
 			"You can stack toasts by wrapping them in a toast container, which will vertically add some spacing."
 		),
@@ -201,7 +203,7 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Custom content"),
+		new e.subtitle("Custom content"),
 		new e.text(
 			"Customize your toasts by removing sub-components, tweaking them with {{https://getbootstrap.com/docs/5.3/utilities/api/::utilities}}, or by adding your own markup. Here we’ve created a simpler toast by removing the default {{.toast-header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}} to adjust the layout."
 		),
@@ -233,7 +235,7 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Color schemes"),
+		new e.subtitle("Color schemes"),
 		new e.text(
 			"Building on the above example, you can create different toast color schemes with our {{https://getbootstrap.com/docs/5.3/utilities/colors/::color}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::background}} utilities. Here we’ve added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to our close button. For a crisp edge, we remove the default border with {{.border-0}}."
 		),
@@ -258,7 +260,7 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Placement"),
+		new e.title("Placement"),
 		new e.text(
 			"Place toasts with custom CSS as you need them. The top right is often used for notifications, as is the top middle. If you’re only ever going to show one toast at a time, put the positioning styles right on the .toast."
 		),
@@ -401,7 +403,7 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Accessibility"),
+		new e.title("Accessibility"),
 		new e.text(
 			"Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an {{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions::aria-live region}}. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include {{aria-atomic='true'}} to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the {{https://getbootstrap.com/docs/5.3/components/alerts/::alert component}} instead of toast."
 		),
@@ -481,40 +483,26 @@ export const doc_component_toast: IAttrContent = {
 		new e.title("CSS"),
 		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, spinners now use local CSS variables on {{.spinner-border}} and {{.spinner-grow}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-		),
-		new e.text("Border spinner variables:"),
-		new e.codepreview({
-			type: "css",
-			code: `
-				--#{$prefix}spinner-width: #{$spinner-width};
-				--#{$prefix}spinner-height: #{$spinner-height};
-				--#{$prefix}spinner-vertical-align: #{$spinner-vertical-align};
-				--#{$prefix}spinner-border-width: #{$spinner-border-width};
-				--#{$prefix}spinner-animation-speed: #{$spinner-animation-speed};
-				--#{$prefix}spinner-animation-name: spinner-border;
-			`,
-		}),
-		new e.text("Growing spinner variables:"),
-		new e.codepreview({
-			type: "css",
-			code: `
-				--#{$prefix}spinner-width: #{$spinner-width};
-				--#{$prefix}spinner-height: #{$spinner-height};
-				--#{$prefix}spinner-vertical-align: #{$spinner-vertical-align};
-				--#{$prefix}spinner-animation-speed: #{$spinner-animation-speed};
-				--#{$prefix}spinner-animation-name: spinner-grow;
-			`,
-		}),
-		new e.text(
-			"For both spinners, small spinner modifier classes are used to update the values of these CSS variables as needed. For example, the {{.spinner-border-sm}} class does the following:"
+			"As part of Bootstrap’s evolving CSS variables approach, toasts now use local CSS variables on {{.toast}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
 		),
 		new e.codepreview({
 			type: "css",
 			code: `
-				--#{$prefix}spinner-width: #{$spinner-width-sm};
-				--#{$prefix}spinner-height: #{$spinner-height-sm};
-				--#{$prefix}spinner-border-width: #{$spinner-border-width-sm};
+				--#{$prefix}toast-zindex: #{$zindex-toast};
+				--#{$prefix}toast-padding-x: #{$toast-padding-x};
+				--#{$prefix}toast-padding-y: #{$toast-padding-y};
+				--#{$prefix}toast-spacing: #{$toast-spacing};
+				--#{$prefix}toast-max-width: #{$toast-max-width};
+				@include rfs($toast-font-size, --#{$prefix}toast-font-size);
+				--#{$prefix}toast-color: #{$toast-color};
+				--#{$prefix}toast-bg: #{$toast-background-color};
+				--#{$prefix}toast-border-width: #{$toast-border-width};
+				--#{$prefix}toast-border-color: #{$toast-border-color};
+				--#{$prefix}toast-border-radius: #{$toast-border-radius};
+				--#{$prefix}toast-box-shadow: #{$toast-box-shadow};
+				--#{$prefix}toast-header-color: #{$toast-header-color};
+				--#{$prefix}toast-header-bg: #{$toast-header-background-color};
+				--#{$prefix}toast-header-border-color: #{$toast-header-border-color};
 			`,
 		}),
 
@@ -523,41 +511,131 @@ export const doc_component_toast: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			code: `
-				$spinner-width:           2rem;
-				$spinner-height:          $spinner-width;
-				$spinner-vertical-align:  -.125em;
-				$spinner-border-width:    .25em;
-				$spinner-animation-speed: .75s;
+				$toast-max-width:                   350px;
+				$toast-padding-x:                   .75rem;
+				$toast-padding-y:                   .5rem;
+				$toast-font-size:                   .875rem;
+				$toast-color:                       null;
+				$toast-background-color:            rgba(var(--#{$prefix}body-bg-rgb), .85);
+				$toast-border-width:                var(--#{$prefix}border-width);
+				$toast-border-color:                var(--#{$prefix}border-color-translucent);
+				$toast-border-radius:               var(--#{$prefix}border-radius);
+				$toast-box-shadow:                  var(--#{$prefix}box-shadow);
+				$toast-spacing:                     $container-padding-x;
 
-				$spinner-width-sm:        1rem;
-				$spinner-height-sm:       $spinner-width-sm;
-				$spinner-border-width-sm: .2em;
+				$toast-header-color:                var(--#{$prefix}secondary-color);
+				$toast-header-background-color:     rgba(var(--#{$prefix}body-bg-rgb), .85);
+				$toast-header-border-color:         $toast-border-color;
 			`,
 		}),
 
-		new e.subtitle("Keyframes"),
-		new e.text("Used for creating the CSS animations for our spinners. Included in {{scss/_spinners.scss}}."),
+		//-----------------------
+
+		new e.title("Usage"),
+		new e.text("Initialize toasts via JavaScript:"),
 
 		new e.codepreview({
-			type: "css",
+			type: "js",
 			code: `
-				@keyframes spinner-border {
-				to { transform: rotate(360deg) #{"/* rtl:ignore */"}; }
-				}
+				const toastElList = document.querySelectorAll('.toast')
+				const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl, option))
 			`,
 		}),
+
+		//-----------------------
+
+		new e.subtitle("Triggers"),
+		new e.text(
+			"Dismissal can be achieved with the {{data-bs-dismiss}} attribute on a button {{b::within the toast}} as demonstrated below:"
+		),
 		new e.codepreview({
-			type: "css",
+			type: "html",
 			code: `
-				@keyframes spinner-grow {
-					0% {
-						transform: scale(0);
-					}
-					50% {
-						opacity: 1;
-						transform: none;
-					}
-				}
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			`,
+		}),
+		new e.text(
+			"or on a button {{b::outside the toast}} using the additional {{data-bs-target}} as demonstrated below:"
+		),
+		new e.codepreview({
+			type: "html",
+			code: `
+				<button type="button" class="btn-close" data-bs-dismiss="toast" data-bs-target="#my-toast" aria-label="Close"></button>
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Options"),
+		new e.text(
+			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation="{value}"}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data-bs-custom-class="beautifier"}} instead of {{data-bs-customClass="beautifier"}}.`
+		),
+		new e.text(
+			`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{"delay":0, "title":123}'}} and {{data-bs-title="456"}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{"show":0,"hide":150}'}}.`
+		),
+		new e.table({
+			item: [
+				["Name", "Type", "Default", "Description"],
+				["{{animation}}", "boolean", "{{true}}", "Apply a CSS fade transition to the toast."],
+				["{{autohide}}", "boolean", "{{true}}", "Automatically hide the toast after the delay."],
+				["{{delay}}", "number", "{{5000}}", "Delay in milliseconds before hiding the toast."],
+			],
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Methods"),
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+		),
+
+		new e.table({
+			item: [
+				["Method", "Description"],
+				["{{dispose}}", "Hides an element’s toast. Your toast will remain on the DOM but won’t show anymore."],
+				[
+					"{{getInstance}}",
+					"{{i::Static}} method which allows you to get the toast instance associated with a DOM element. For example: {{const myToastEl = document.getElementById('myToastEl') const myToast = bootstrap.Toast.getInstance(myToastEl)}} Returns a Bootstrap toast instance.",
+				],
+				[
+					"{{getOrCreateInstance}}",
+					"{{i::Static}} method which allows you to get the toast instance associated with a DOM element, or create a new one, in case it wasn’t initialized. {{const myToastEl = document.getElementById('myToastEl') const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl)}} Returns a Bootstrap toast instance.",
+				],
+				[
+					"{{hide}}",
+					"Hides an element’s toast. {{b::Returns to the caller before the toast has actually been hidden}} (i.e. before the {{hidden.bs.toast}} event occurs). You have to manually call this method if you made {{autohide}} to {{false}}.",
+				],
+				["{{isShown}}", "Returns a boolean according to toast’s visibility state."],
+				[
+					"{{show}}",
+					"Reveals an element’s toast. {{b::Returns to the caller before the toast has actually been shown}} (i.e. before the {{shown.bs.toast}} event occurs). You have to manually call this method, instead your toast won’t show.",
+				],
+			],
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Events"),
+		new e.table({
+			item: [
+				["Event", "Description"],
+				[
+					"{{hide.bs.toast}}",
+					"This event is fired immediately when the {{hide}} instance method has been called.",
+				],
+				["{{hidden.bs.toast}}", "This event is fired when the toast has finished being hidden from the user."],
+				["{{show.bs.toast}}", "This event fires immediately when the {{show}} instance method is called."],
+				["{{shown.bs.toast}}", "This event is fired when the toast has been made visible to the user."],
+			],
+		}),
+		new e.codepreview({
+			type: "js",
+			code: `
+				const myToastEl = document.getElementById('myToast')
+				myToastEl.addEventListener('hidden.bs.toast', () => {
+				// do something...
+				})
 			`,
 		}),
 	],
