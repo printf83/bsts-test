@@ -151,122 +151,103 @@ export const doc_component_toast: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return [
-					new b.button(
+				const fnToast = (color: b.toast.IAttrBSToastTemplate["color"], elem: core.IElem, icon?: string) => {
+					let tElem;
+					switch (color) {
+						case "danger":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "x-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						case "dark":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "info-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						case "info":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "info-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						case "light":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "info-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						case "primary":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "info-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						case "secondary":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "info-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						case "success":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "check-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						case "warning":
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "exclamation-triangle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+							break;
+						default:
+							tElem = new b.label({
+								icon: b.icon.bi(icon || "info-circle-fill", {
+									fontSize: 5,
+								}),
+								elem: elem,
+							});
+					}
+					b.toast.show(
+						"top-end",
+						b.toast.simple({
+							color: color,
+							elem: tElem,
+						})
+					);
+				};
+
+				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+					return new b.button(
 						{
-							color: "primary",
+							color: i as b.IAttrBSButton["color"],
 							on: {
-								click: (_e) => {
-									b.toast.show(
-										"top-end",
-										b.toast.primary(
-											new b.label(
-												{ icon: b.icon.bi("bell-fill", { fontSize: 5 }) },
-												"This is primary toast"
-											)
-										)
-									);
+								click: (e) => {
+									fnToast(i as b.toast.IAttrBSToastTemplate["color"], `This is {{b::${i}}} toast.`);
 								},
 							},
 						},
-						"Show primary toast"
-					),
-					new b.button(
-						{
-							color: "secondary",
-							on: {
-								click: (_e) => {
-									b.toast.show(
-										"top-end",
-										b.toast.secondary(
-											new b.label(
-												{ icon: b.icon.bi("chat-left-dots-fill", { fontSize: 5 }) },
-												"This is secondary toast"
-											)
-										)
-									);
-								},
-							},
-						},
-						"Show secondary toast"
-					),
-					new b.button(
-						{
-							color: "info",
-							on: {
-								click: (_e) => {
-									b.toast.show(
-										"top-end",
-										b.toast.info(
-											new b.label(
-												{ icon: b.icon.bi("info-circle-fill", { fontSize: 5 }) },
-												"This is info toast"
-											)
-										)
-									);
-								},
-							},
-						},
-						"Show info toast"
-					),
-					new b.button(
-						{
-							color: "success",
-							on: {
-								click: (_e) => {
-									b.toast.show(
-										"top-end",
-										b.toast.success(
-											new b.label(
-												{ icon: b.icon.bi("check-circle-fill", { fontSize: 5 }) },
-												"This is success toast"
-											)
-										)
-									);
-								},
-							},
-						},
-						"Show success toast"
-					),
-					new b.button(
-						{
-							color: "warning",
-							on: {
-								click: (_e) => {
-									b.toast.show(
-										"top-end",
-										b.toast.warning(
-											new b.label(
-												{ icon: b.icon.bi("exclamation-triangle-fill", { fontSize: 5 }) },
-												"This is warning toast"
-											)
-										)
-									);
-								},
-							},
-						},
-						"Show warning toast"
-					),
-					new b.button(
-						{
-							color: "danger",
-							on: {
-								click: (_e) => {
-									b.toast.show(
-										"top-end",
-										b.toast.danger(
-											new b.label(
-												{ icon: b.icon.bi("x-circle-fill", { fontSize: 5 }) },
-												"This is danger toast"
-											)
-										)
-									);
-								},
-							},
-						},
-						"Show danger toast"
-					),
-				];
+						`Show ${i} toast`
+					);
+				});
 			},
 		}),
 

@@ -28,13 +28,15 @@ export const toast = (color: b.toast.IAttrBSToastTemplate["color"], elem: core.I
 		case "warning":
 			tElem = new b.label({ icon: b.icon.bi(icon || "exclamation-triangle-fill", { fontSize: 5 }), elem: elem });
 			break;
+		default:
+			tElem = new b.label({ icon: b.icon.bi(icon || "info-circle-fill", { fontSize: 5 }), elem: elem });
 	}
 
 	b.toast.show(
 		"top-end",
 		b.toast.simple({
 			color: color,
-			elem: elem,
+			elem: tElem,
 		})
 	);
 };

@@ -376,6 +376,7 @@ export const doc_component_alert: IAttrContent = {
 		}),
 
 		new e.code({
+			extention: [{ name: "e.toast", output: e.toast }],
 			output: () => {
 				return new b.alert.container(
 					{

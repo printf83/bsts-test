@@ -35,7 +35,7 @@ const getOutputHTML = (target: HTMLElement): void => {
 
 	setTimeout(() => {
 		PR.prettyPrint();
-	}, 10);
+	}, 300);
 };
 
 function successCopyCode(iconElem?: HTMLElement) {
@@ -102,12 +102,13 @@ function itemCodeCopy(e: Event) {
 		failCopyCode(iconElem);
 	}
 
-	return false;
+	return;
 }
 
 const itemCode = (
 	header: boolean,
 	collapseable: boolean,
+	allowcopy: boolean,
 	title: string,
 	elem: string | t | (string | t)[],
 	onshow?: (target: HTMLElement) => void
@@ -139,24 +140,35 @@ const itemCode = (
 						new h.small(
 							{
 								monospace: true,
-								textTransform: "uppercase",
+								// textTransform: "uppercase",
 								textColor: "body-secondary",
 							},
 							title
 						)
 					),
 
-					!collapseable
-						? new b.tooltip(
-								{ content: "Copy to clipboard" },
-								new h.a(
-									{
-										href: "#",
-										color: "secondary",
-										class: "primary-on-hover",
-										on: { click: itemCodeCopy },
+					allowcopy
+						? new h.div(
+								{
+									on: {
+										click: (e) => {
+											e.preventDefault();
+											e.stopPropagation();
+											return false;
+										},
 									},
-									b.icon.bi("clipboard")
+								},
+								new b.tooltip(
+									{ content: "Copy to clipboard" },
+									new h.a(
+										{
+											href: "#",
+											color: "secondary",
+											class: "primary-on-hover",
+											on: { click: itemCodeCopy },
+										},
+										b.icon.bi("clipboard")
+									)
 								)
 						  )
 						: "",
@@ -164,7 +176,7 @@ const itemCode = (
 			)
 		);
 	} else {
-		if (!collapseable) {
+		if (allowcopy) {
 			if (!Array.isArray(elem)) {
 				elem = [elem];
 			}
@@ -230,7 +242,9 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
 	attr.showManager = attr.showManager === undefined ? true : attr.showManager;
 	attr.scriptConverter ??= (str: string) => {
-		return str.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_0__\./gm, "");
+		return str
+			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_0__\./gm, "")
+			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__\./gm, "e.");
 	};
 
 	let e: t[] = [];
@@ -244,11 +258,11 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	}
 
 	if (attr.output && attr.showOutput && attr.showHTML) {
-		e.push(...itemCode(e.length > 0, true, "HTML", "Loading...", getOutputHTML));
+		e.push(...itemCode(e.length > 0, true, false, "HTML", "Loading...", getOutputHTML));
 	}
 
 	if (attr.css) {
-		e.push(...itemCode(e.length > 0, true, "CSS", new preview({ type: "css" }, attr.css)));
+		e.push(...itemCode(e.length > 0, true, true, "CSS", new preview({ type: "css" }, attr.css)));
 	}
 
 	if (attr.extention) {
@@ -265,12 +279,16 @@ const convert = (attr: IAttrBSExampleContainer) => {
 					...itemCode(
 						e.length > 0,
 						true,
+						true,
 						i.name,
-						i.strOutput
-							? i.strOutput
-							: attr.scriptConverter
-							? attr.scriptConverter(i.output!.toString())
-							: i.output!.toString()
+						new preview(
+							{ type: i.strOutput ? "ts" : "js" },
+							i.strOutput
+								? i.strOutput
+								: attr.scriptConverter
+								? attr.scriptConverter(i.output!.toString())
+								: i.output!.toString()
+						)
 					)
 				);
 			}
@@ -282,7 +300,8 @@ const convert = (attr: IAttrBSExampleContainer) => {
 			...itemCode(
 				e.length > 0,
 				true,
-				"Manager",
+				true,
+				"MANAGER",
 				new preview(
 					{ type: attr.strManager ? "ts" : "js" },
 					attr.strManager
@@ -300,7 +319,8 @@ const convert = (attr: IAttrBSExampleContainer) => {
 			...itemCode(
 				e.length > 0,
 				false,
-				"Source",
+				true,
+				"SOURCE",
 				new preview(
 					{ type: attr.strOutput ? "ts" : "js" },
 					attr.strOutput

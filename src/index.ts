@@ -56,14 +56,20 @@ const getData = (value: string) => {
 };
 
 const onmenuchange = (value: string) => {
-	let contentbody = document.getElementById("bs-main") as HTMLElement;
-	core.replaceChild(contentbody, main.genMainContent(getData(value)));
 	window.scrollTo(0, 0);
-	core.init(contentbody);
+	setTimeout(
+		(value) => {
+			let contentbody = document.getElementById("bs-main") as HTMLElement;
+			core.replaceChild(contentbody, main.genMainContent(getData(value)));
+			core.init(contentbody);
 
-	setTimeout(() => {
-		PR.prettyPrint();
-	}, 300);
+			setTimeout(() => {
+				PR.prettyPrint();
+			}, 300);
+		},
+		100,
+		value
+	);
 };
 
 const maincontainer = new main.container({
