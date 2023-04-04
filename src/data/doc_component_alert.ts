@@ -380,14 +380,14 @@ export const doc_component_alert: IAttrContent = {
 						dismissible: true,
 						on: {
 							"close.bs.alert": (_e) => {
-								console.log("close.bs.alert trigged");
+								b.toast.show("top-end", b.toast.primary("{{b::close.bs.alert}} trigged", "Alert"));
 							},
 							"closed.bs.alert": (_e) => {
-								console.log("closed.bs.alert trigged");
+								b.toast.show("top-end", b.toast.primary("{{b::closed.bs.alert}} trigged", "Alert"));
 							},
 						},
 					},
-					"Check console to check event trigged"
+					"Click close to see event trigged."
 				);
 			},
 		}),
