@@ -7,6 +7,8 @@ export const doc_component_tooltip: IAttrContent = {
 	description:
 		"Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-bs-attributes for local title storage.",
 	item: [
+		
+
 		new e.title("Overview"),
 		new e.text("Things to know when using the tooltip plugin:"),
 		new e.ul({

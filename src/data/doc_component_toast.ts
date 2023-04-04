@@ -145,14 +145,45 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Toast template"),
-		new e.text(
-			"You can use our template to show the simple toast using {{b.toast.<template>}}. You can choose template {{primary}}, {{secondary}}, {{info}}, {{success}}, {{warning}} and {{danger}}. You can use {{b.label}} to add icon on your toast message."
-		),
+		new e.subtitle("Simple toast"),
+		new e.text("You can use our simple toast by calling function {{b.toast.simple()}}."),
+		new e.table({
+			item: [
+				["Option", "Type", "Default", "Description"],
+				["{{elem}}", "{{IElem}}", "*required", "Toast main element / message"],
+				[
+					"{{title}}",
+					"{{IElem}}",
+					"{{undefined}}",
+					"Set toast title. If set, btnclosewhite value is not effected the close button.",
+				],
+				["{{atomic}}", "{{boolean}}", "{{true}}", "Set {{aria-atomic}} value"],
+				["{{live}}", "{{assertive}} | {{polite}}", "{{assertive}}", "Set {{aria-live}} value"],
+				[
+					"{{color}}",
+					"{{primary}} | {{secondary}} | {{success}} | {{info}} | {{warning}} | {{danger}} | {{dark}} | {{light}} | {{undefined}}",
+					"{{undefined}}",
+					"Toast main element / message",
+				],
+				[
+					"{{btnclosewhite}}",
+					"{{boolean}} | {{undefined}}",
+					"{{undefined}}",
+					"Manually set close button white. If not, automaticly set base on {{color}}",
+				],
+				[
+					"{{delay}}",
+					"{{number}} | {{undefined}}",
+					"{{5000}}, {{10000}} for warning toast, {{15000}} for danger toast",
+					"Set toast timeout delay in milisecond",
+				],
+			],
+		}),
 		new e.code({
 			output: () => {
 				const fnToast = (color: b.toast.IAttrBSToastTemplate["color"], elem: core.IElem, icon?: string) => {
 					let tElem;
+
 					switch (color) {
 						case "danger":
 							tElem = new b.label({
@@ -231,6 +262,8 @@ export const doc_component_toast: IAttrContent = {
 						b.toast.simple({
 							color: color,
 							elem: tElem,
+
+							title: document.title,
 						})
 					);
 				};

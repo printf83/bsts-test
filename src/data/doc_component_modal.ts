@@ -97,7 +97,7 @@ export const doc_component_modal: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Live demo with {{.show}}"),
+		new e.subtitle("Modal show"),
 		new e.text(
 			"You also can use our {{b.modal.show}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
 		),
@@ -128,6 +128,51 @@ export const doc_component_modal: IAttrContent = {
 						"Launch demo modal"
 					),
 				];
+			},
+		}),
+
+		//-----------------------
+		new e.subtitle("Simple modal"),
+		new e.text("You can use our simple modal by calling function {{b.modal.simple()}}."),
+
+		new e.code({
+			output: () => {
+				return new b.button(
+					{
+						on: {
+							click: () => {
+								const mdl = b.modal.simple({
+									elem: [
+										new b.input({ type: "checkbox", name: "testcheckbox", id: "testcheckbox" }),
+										new b.label(
+											{ for: "testcheckbox", formCheck: true },
+											"Tick this before press ok"
+										),
+									],
+									btn: ["ok", "cancel"],
+									cb: [
+										(event) => {
+											const target = event.target as HTMLElement;
+											const container = target.closest(".modal") as HTMLElement;
+											const ischecked = (
+												container?.querySelectorAll("#testcheckbox")[0] as HTMLInputElement
+											)?.checked;
+
+											if (ischecked) {
+												e.toast("success", "Thank you");
+												b.modal.hide(container);
+											} else {
+												e.toast("danger", "Please tick the checkbox before press okay");
+											}
+										},
+									],
+								});
+								b.modal.show(mdl);
+							},
+						},
+					},
+					"Test b.modal.simple"
+				);
 			},
 		}),
 
