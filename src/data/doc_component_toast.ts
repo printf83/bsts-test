@@ -109,44 +109,63 @@ export const doc_component_toast: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Live example with {{.show}}"),
+		new e.subtitle("Toast show"),
 		new e.text(
 			"You also can use our {{b.toast.show}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."
+		),
+		new e.code({
+			output: () => {
+				return new b.button(
+					{
+						on: {
+							click: (_e) => {
+								const tItem = new b.toast.item({ live: "assertive", atomic: true }, [
+									new b.toast.header([
+										new h.div({
+											bgColor: "primary",
+											rounded: true,
+											marginEnd: 2,
+											style: { width: "20px", height: "20px" },
+										}),
+										new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+										new b.toast.time(),
+										new b.toast.btnclose(),
+									]),
+									new b.toast.body("Hello, world! This is a toast message."),
+								]);
+
+								b.toast.show("top-end", tItem);
+							},
+						},
+					},
+					"Show live toast"
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Toast template"),
+		new e.text(
+			"You can use our template to show the simple toast using {{b.toast.<template>}}. You can choose template {{primary}}, {{secondary}}, {{info}}, {{success}}, {{warning}} and {{danger}}. You can use {{b.label}} to add icon on your toast message."
 		),
 		new e.code({
 			output: () => {
 				return [
 					new b.button(
 						{
-							on: {
-								click: (_e) => {
-									const tItem = new b.toast.item({ live: "assertive", atomic: true }, [
-										new b.toast.header([
-											new h.div({
-												bgColor: "primary",
-												rounded: true,
-												marginEnd: 2,
-												style: { width: "20px", height: "20px" },
-											}),
-											new h.strong({ marginEnd: "auto" }, "Bootstrap"),
-											new b.toast.time(),
-											new b.toast.btnclose(),
-										]),
-										new b.toast.body("Hello, world! This is a toast message."),
-									]);
-
-									b.toast.show("top-end", tItem);
-								},
-							},
-						},
-						"Show live toast"
-					),
-					new b.button(
-						{
 							color: "primary",
 							on: {
 								click: (_e) => {
-									b.toast.show("top-end", b.toast.primary("This is primary toast"));
+									b.toast.show(
+										"top-end",
+										b.toast.primary(
+											new b.label(
+												{ icon: b.icon.bi("bell-fill", { fontSize: 5 }) },
+												"This is primary toast"
+											)
+										)
+									);
 								},
 							},
 						},
@@ -157,7 +176,15 @@ export const doc_component_toast: IAttrContent = {
 							color: "secondary",
 							on: {
 								click: (_e) => {
-									b.toast.show("top-end", b.toast.secondary("This is secondary toast"));
+									b.toast.show(
+										"top-end",
+										b.toast.secondary(
+											new b.label(
+												{ icon: b.icon.bi("chat-left-dots-fill", { fontSize: 5 }) },
+												"This is secondary toast"
+											)
+										)
+									);
 								},
 							},
 						},
@@ -168,7 +195,15 @@ export const doc_component_toast: IAttrContent = {
 							color: "info",
 							on: {
 								click: (_e) => {
-									b.toast.show("top-end", b.toast.info("This is info toast"));
+									b.toast.show(
+										"top-end",
+										b.toast.info(
+											new b.label(
+												{ icon: b.icon.bi("info-circle-fill", { fontSize: 5 }) },
+												"This is info toast"
+											)
+										)
+									);
 								},
 							},
 						},
@@ -179,7 +214,15 @@ export const doc_component_toast: IAttrContent = {
 							color: "success",
 							on: {
 								click: (_e) => {
-									b.toast.show("top-end", b.toast.success("This is success toast"));
+									b.toast.show(
+										"top-end",
+										b.toast.success(
+											new b.label(
+												{ icon: b.icon.bi("check-circle-fill", { fontSize: 5 }) },
+												"This is success toast"
+											)
+										)
+									);
 								},
 							},
 						},
@@ -190,7 +233,15 @@ export const doc_component_toast: IAttrContent = {
 							color: "warning",
 							on: {
 								click: (_e) => {
-									b.toast.show("top-end", b.toast.warning("This is warning toast"));
+									b.toast.show(
+										"top-end",
+										b.toast.warning(
+											new b.label(
+												{ icon: b.icon.bi("exclamation-triangle-fill", { fontSize: 5 }) },
+												"This is warning toast"
+											)
+										)
+									);
 								},
 							},
 						},
@@ -201,7 +252,15 @@ export const doc_component_toast: IAttrContent = {
 							color: "danger",
 							on: {
 								click: (_e) => {
-									b.toast.show("top-end", b.toast.danger("This is danger toast"));
+									b.toast.show(
+										"top-end",
+										b.toast.danger(
+											new b.label(
+												{ icon: b.icon.bi("x-circle-fill", { fontSize: 5 }) },
+												"This is danger toast"
+											)
+										)
+									);
 								},
 							},
 						},

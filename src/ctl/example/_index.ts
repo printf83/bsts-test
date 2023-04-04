@@ -11,6 +11,7 @@ import { table } from "./table.js";
 import { ol } from "./ol.js";
 import { ul } from "./ul.js";
 import { alert } from "./alert.js";
+import { toast } from "./_fn.js";
 
 export {
 	code,
@@ -26,6 +27,7 @@ export {
 	ol,
 	ul,
 	alert,
+	toast,
 	IAttrBSExampleCodepreview,
 	IAttrBSExampleContainer,
 	IAttrBSExampleExt,

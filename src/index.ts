@@ -102,8 +102,8 @@ const maincontainer = new main.container({
 	],
 	currentTheme: "auto",
 
-	itemVersion: [{ value: "0.1.28", label: "Latest (0.1.28)" }],
-	currentVersion: "0.1.28",
+	itemVersion: [{ value: "0.1.71", label: "Latest (0.1.71)" }],
+	currentVersion: "0.1.71",
 
 	itemFooter: [
 		{
