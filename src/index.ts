@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_component_tooltip";
+let CURRENT_PAGE = "doc_component_modal";
 
 declare var PR: {
 	prettyPrint: () => void;

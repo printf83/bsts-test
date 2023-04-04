@@ -136,43 +136,99 @@ export const doc_component_modal: IAttrContent = {
 		new e.text("You can use our simple modal by calling function {{b.modal.simple()}}."),
 
 		new e.code({
+			extention: [
+				{
+					name: "e.toast",
+					output: e.toast,
+				},
+			],
 			output: () => {
-				return new b.button(
-					{
-						on: {
-							click: () => {
-								const mdl = b.modal.simple({
-									elem: [
-										new b.input({ type: "checkbox", name: "testcheckbox", id: "testcheckbox" }),
-										new b.label(
-											{ for: "testcheckbox", formCheck: true },
-											"Tick this before press ok"
-										),
-									],
-									btn: ["ok", "cancel"],
-									cb: [
-										(event) => {
-											const target = event.target as HTMLElement;
-											const container = target.closest(".modal") as HTMLElement;
-											const ischecked = (
-												container?.querySelectorAll("#testcheckbox")[0] as HTMLInputElement
-											)?.checked;
+				return [
+					new b.button(
+						{
+							on: {
+								click: () => {
+									const mdl = b.modal.simple({
+										title: document.title,
+										elem: new h.div({ class: "form-check" }, [
+											new b.input({ type: "checkbox", id: "testcheckbox" }),
+											new b.label(
+												{ for: "testcheckbox", formCheck: true },
+												"Tick this before press {{b::Yes}} button"
+											),
+										]),
+										btn: ["ok", "cancel"],
+										btnFn: [
+											(event) => {
+												const target = event.target as HTMLElement;
+												const container = target.closest(".modal") as HTMLElement;
+												const ischecked = (
+													container?.querySelectorAll("#testcheckbox")[0] as HTMLInputElement
+												)?.checked;
 
-											if (ischecked) {
-												e.toast("success", "Thank you");
-												b.modal.hide(container);
-											} else {
-												e.toast("danger", "Please tick the checkbox before press okay");
-											}
-										},
-									],
-								});
-								b.modal.show(mdl);
+												if (ischecked) {
+													e.toast("success", "Thank you");
+													b.modal.hide(container);
+												} else {
+													e.toast("danger", "Please tick the checkbox before press okay");
+												}
+											},
+										],
+									});
+									b.modal.show(mdl);
+								},
 							},
 						},
-					},
-					"Test b.modal.simple"
-				);
+						"Launch demo modal"
+					),
+					new b.button(
+						{
+							on: {
+								click: () => {
+									const mdl = b.modal.simple({
+										title: document.title,
+										elem: new b.msg(
+											{ type: "bi", id: "info-circle-fill", color: "primary" },
+											"Hello world"
+										),
+										btn: ["ok"],
+									});
+									b.modal.show(mdl);
+								},
+							},
+						},
+						"Msgbox box"
+					),
+					new b.button(
+						{
+							on: {
+								click: () => {
+									const mdl = b.modal.simple({
+										title: document.title,
+										static: true,
+										elem: new b.msg(
+											{ type: "bi", id: "question-circle-fill", color: "success" },
+											"Do you like javascript?"
+										),
+										btn: ["yes", "no", "cancel"],
+										btnFn: [
+											(event) => {
+												e.toast("success", "Good!");
+												b.modal.hide(event.target as HTMLElement);
+											},
+											(event) => {
+												e.toast("danger", "Its so sad!");
+												b.modal.hide(event.target as HTMLElement);
+											},
+										],
+									});
+									b.modal.show(mdl);
+								},
+							},
+						},
+						"Confirm box"
+					),
+				];
 			},
 		}),
 
