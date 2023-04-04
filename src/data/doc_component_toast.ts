@@ -111,7 +111,7 @@ export const doc_component_toast: IAttrContent = {
 
 		new e.subtitle("Live example with {{.show}}"),
 		new e.text(
-			"You also can use our {{b.toast.container.show}} {{i::static}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."
+			"You also can use our {{b.toast.show}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."
 		),
 		new e.code({
 			output: () => {
@@ -135,11 +135,77 @@ export const doc_component_toast: IAttrContent = {
 										new b.toast.body("Hello, world! This is a toast message."),
 									]);
 
-									b.toast.container.show("top-end", tItem);
+									b.toast.show("top-end", tItem);
 								},
 							},
 						},
 						"Show live toast"
+					),
+					new b.button(
+						{
+							color: "primary",
+							on: {
+								click: (_e) => {
+									b.toast.show("top-end", b.toast.primary("This is primary toast"));
+								},
+							},
+						},
+						"Show primary toast"
+					),
+					new b.button(
+						{
+							color: "secondary",
+							on: {
+								click: (_e) => {
+									b.toast.show("top-end", b.toast.secondary("This is secondary toast"));
+								},
+							},
+						},
+						"Show secondary toast"
+					),
+					new b.button(
+						{
+							color: "info",
+							on: {
+								click: (_e) => {
+									b.toast.show("top-end", b.toast.info("This is info toast"));
+								},
+							},
+						},
+						"Show info toast"
+					),
+					new b.button(
+						{
+							color: "success",
+							on: {
+								click: (_e) => {
+									b.toast.show("top-end", b.toast.success("This is success toast"));
+								},
+							},
+						},
+						"Show success toast"
+					),
+					new b.button(
+						{
+							color: "warning",
+							on: {
+								click: (_e) => {
+									b.toast.show("top-end", b.toast.warning("This is warning toast"));
+								},
+							},
+						},
+						"Show warning toast"
+					),
+					new b.button(
+						{
+							color: "danger",
+							on: {
+								click: (_e) => {
+									b.toast.show("top-end", b.toast.danger("This is danger toast"));
+								},
+							},
+						},
+						"Show danger toast"
 					),
 				];
 			},
@@ -446,7 +512,7 @@ export const doc_component_toast: IAttrContent = {
 										new b.toast.body("This toast auto close {{delay}} set to 10 second"),
 									]);
 
-									b.toast.container.show("top-end", tItem);
+									b.toast.show("top-end", tItem);
 								},
 							},
 						},

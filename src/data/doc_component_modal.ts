@@ -99,7 +99,7 @@ export const doc_component_modal: IAttrContent = {
 
 		new e.subtitle("Live demo with {{.show}}"),
 		new e.text(
-			"You also can use our {{b.modal.container.show}} {{i::static}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
+			"You also can use our {{b.modal.show}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
 		),
 		new e.code({
 			output: () => {
@@ -121,7 +121,7 @@ export const doc_component_modal: IAttrContent = {
 											new b.button({ color: "primary" }, "Save changes"),
 										]),
 									]);
-									b.modal.container.show(mdl);
+									b.modal.show(mdl);
 								},
 							},
 						},
@@ -353,7 +353,7 @@ export const doc_component_modal: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Test {{b.modal.container.show}} {{i::static}} function for {{auto init}} popover and tooltips."),
+		new e.text("Test {{b.modal.show}} function for {{auto init}} popover and tooltips."),
 		new e.code({
 			output: () => {
 				return [
@@ -408,7 +408,7 @@ export const doc_component_modal: IAttrContent = {
 										]),
 									]);
 
-									b.modal.container.show(mdl);
+									b.modal.show(mdl);
 								},
 							},
 						},
