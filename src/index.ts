@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_component_modal";
+let CURRENT_PAGE = "doc_form_overview";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -14,6 +14,11 @@ let m = {
 			label: "Getting started",
 			icon: { id: "book-half", color: "primary" },
 			item: [{ label: "Introduction", value: "doc_gettingstarted_introduction" }],
+		},
+		{
+			label: "Forms",
+			icon: { id: "ui-radios", color: "primary" },
+			item: [{ label: "Overview", value: "doc_form_overview" }],
 		},
 		{
 			label: "Component",

@@ -24,9 +24,15 @@ import { doc_component_scrollspy } from "./doc_component_scrollspy.js";
 import { doc_component_spinner } from "./doc_component_spinner.js";
 import { doc_component_toast } from "./doc_component_toast.js";
 import { doc_component_tooltip } from "./doc_component_tooltip.js";
+import { doc_form_overview } from "./doc_form_overview.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
+		//--------------------------
+		case "doc_form_overview":
+			return doc_form_overview;
+
+		//--------------------------
 		case "doc_component_accordion":
 			return doc_component_accordion;
 		case "doc_component_alert":
@@ -76,6 +82,7 @@ export const data = (doc: string): IAttrContent => {
 		case "doc_component_tooltip":
 			return doc_component_tooltip;
 
+		//--------------------------
 		case "doc_gettingstarted_introduction":
 			return doc_gettingstarted_introduction;
 		default:
