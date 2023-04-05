@@ -842,7 +842,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 								),
 								new h.span({ display: ["xxl-inline-block", "none"] }, "Super large {{k::xxl}}"),
 							]),
-							new h.li({ marginBottom: 2 }, "Currently v5.3.0-alpha2."),
+							new h.li({ marginBottom: 2 }, "Currently v5.3.0-alpha3."),
 						]),
 					]),
 					...genFooter(attr.itemFooter),

@@ -109,8 +109,8 @@ const itemCode = (
 	header: boolean,
 	collapseable: boolean,
 	allowcopy: boolean,
-	title: string,
-	elem: string | t | (string | t)[],
+	title: core.IElem,
+	elem: core.IElem,
 	onshow?: (target: HTMLElement) => void
 ): b.list.item[] => {
 	let id = core.UUID();
@@ -123,62 +123,101 @@ const itemCode = (
 				{
 					padding: 0,
 					bgColor: "body-tertiary",
+					display: "flex",
+					justifyContent: "between",
+					verticalAlign: "middle",
 				},
-				new h.div(
-					{
-						display: "flex",
-						justifyContent: "between",
-						verticalAlign: "middle",
-					},
-					[
-						new h.div(
-							{
-								paddingY: 2,
-								paddingX: 4,
-								flex: "fill",
-								control: collapseable ? id : undefined,
-								data: {
-									"bs-toggle": collapseable ? "collapse" : undefined,
-									"bs-target": collapseable ? `#${id}` : undefined,
-								},
-								aria: {
-									expended: collapseable ? "false" : undefined,
-								},
+				[
+					new h.div(
+						{
+							paddingY: 2,
+							paddingX: 4,
+							flex: "fill",
+							control: collapseable ? id : undefined,
+							data: {
+								"bs-toggle": collapseable ? "collapse" : undefined,
+								"bs-target": collapseable ? `#${id}` : undefined,
 							},
-							new h.small(
-								{
-									monospace: true,
-									// textTransform: "uppercase",
-									textColor: "body-secondary",
-								},
-								title
-							)
-						),
+							aria: {
+								expended: collapseable ? "false" : undefined,
+							},
+							monospace: true,
+							textColor: "body-secondary",
+						},
+						new h.small(title)
+					),
 
-						allowcopy
-							? new h.div(
-									{ display: "flex" },
-									new h.div(
-										{ paddingTop: 2, paddingX: 4 },
-										new b.tooltip(
+					allowcopy
+						? new h.div(
+								{ display: "flex" },
+								new h.div(
+									{ paddingTop: 2, paddingX: 4 },
+									new b.tooltip(
+										{
+											content: "Copy to clipboard",
+										},
+										new h.a(
 											{
-												content: "Copy to clipboard",
+												href: "#",
+												color: "secondary",
+												class: "primary-on-hover",
+												on: { click: itemCodeCopy },
 											},
-											new h.a(
-												{
-													href: "#",
-													color: "secondary",
-													class: "primary-on-hover",
-													on: { click: itemCodeCopy },
-												},
-												b.icon.bi("clipboard")
-											)
+											b.icon.bi("clipboard")
 										)
 									)
-							  )
-							: "",
-					]
-				)
+								)
+						  )
+						: "",
+					onshow
+						? new h.div(
+								{ display: "flex" },
+								new h.div(
+									{ paddingTop: 2, paddingX: 4 },
+									new b.tooltip(
+										{
+											content: "Refresh code",
+										},
+										new h.a(
+											{
+												href: "#",
+												color: "secondary",
+												class: "primary-on-hover",
+												on: {
+													click: (e) => {
+														const target = e.target as HTMLElement;
+														const iconElem = target.closest(".bi") as HTMLElement;
+														const container = target.closest(".list-group-item")
+															?.nextSibling as HTMLElement;
+
+														container.setAttribute("data-loaded", "true");
+														onshow(container);
+
+														if (iconElem) {
+															iconElem.classList.remove("arrow-clockwise");
+															iconElem.classList.add("bi-check2");
+															iconElem.classList.add("text-success");
+
+															setTimeout(
+																(iconElem) => {
+																	iconElem.classList.remove("text-success");
+																	iconElem.classList.remove("bi-check2");
+																	iconElem.classList.add("arrow-clockwise");
+																},
+																1000,
+																iconElem
+															);
+														}
+													},
+												},
+											},
+											b.icon.bi("arrow-clockwise")
+										)
+									)
+								)
+						  )
+						: "",
+				]
 			)
 		);
 	} else {
@@ -213,7 +252,7 @@ const itemCode = (
 				on: {
 					"show.bs.collapse": onshow
 						? (e) => {
-								let target = e.target as HTMLElement;
+								const target = e.target as HTMLElement;
 								if (target.getAttribute("data-loaded") !== "true") {
 									target.setAttribute("data-loaded", "true");
 									onshow(target);
