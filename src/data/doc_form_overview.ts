@@ -88,7 +88,7 @@ export const doc_form_overview: IAttrContent = {
 						new b.input({ type: "password", id: "exampleInputPassword1" }),
 					]),
 					new h.div({ marginBottom: 3, class: "form-check" }, [
-						new b.input({ type: "checkbox", id: "exampleCheck1", describedby: "emailHelp" }),
+						new b.input({ type: "checkbox", id: "exampleCheck1" }),
 						new b.label({ for: "exampleCheck1", class: "form-check-label" }, "Check me out"),
 					]),
 					new b.button({ type: "submit" }, "Submit"),

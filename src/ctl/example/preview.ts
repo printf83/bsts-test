@@ -34,6 +34,7 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 				preserve_newlines: false,
 				end_with_newline: true,
 				indent_size: 4,
+				brace_style: "end-expand",
 			}) as string;
 
 		case "css":
@@ -48,6 +49,7 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 				preserve_newlines: true,
 				end_with_newline: true,
 				indent_size: 4,
+				brace_style: "end-expand",
 			}) as string;
 	}
 };
