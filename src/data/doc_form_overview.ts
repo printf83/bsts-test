@@ -76,7 +76,7 @@ export const doc_form_overview: IAttrContent = {
 			output: () => {
 				return new h.form([
 					new h.div({ marginBottom: 3 }, [
-						new b.label({ for: "exampleInputEmail1" }, "Email address"),
+						new b.label({ for: "exampleInputEmail1", class: "form-label" }, "Email address"),
 						new b.input({ type: "email", id: "exampleInputEmail1", describedby: "emailHelp" }),
 						new h.div(
 							{ id: "emailHelp", class: "form-text" },
@@ -84,13 +84,37 @@ export const doc_form_overview: IAttrContent = {
 						),
 					]),
 					new h.div({ marginBottom: 3 }, [
-						new b.label({ for: "exampleInputPassword1" }, "Password"),
-						new b.input({ type: "password", id: "exampleInputPassword1", describedby: "emailHelp" }),
+						new b.label({ for: "exampleInputPassword1", class: "form-label" }, "Password"),
+						new b.input({ type: "password", id: "exampleInputPassword1" }),
 					]),
 					new h.div({ marginBottom: 3, class: "form-check" }, [
 						new b.input({ type: "checkbox", id: "exampleCheck1", describedby: "emailHelp" }),
-						new b.label({ for: "exampleCheck1", formCheck: true }, "Check me out"),
+						new b.label({ for: "exampleCheck1", class: "form-check-label" }, "Check me out"),
 					]),
+					new b.button({ type: "submit" }, "Submit"),
+				]);
+			},
+		}),
+		new e.text("Using {{b.form.item}}"),
+		new e.code({
+			output: () => {
+				return new h.form([
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Email address",
+						description: "We'll never share your email with anyone else.",
+						type: "email",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Password",
+						type: "password",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Check me out",
+						type: "checkbox",
+					}),
 					new b.button({ type: "submit" }, "Submit"),
 				]);
 			},
@@ -98,149 +122,110 @@ export const doc_form_overview: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Headings"),
+		new e.title("Disabled forms"),
+		new e.text(
+			"Add the {{disabled}} boolean attribute on an input to prevent user interactions and make it appear lighter."
+		),
+		new e.codepreview({
+			type: "html",
+			code: `
+			    <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
+			`,
+		}),
+		new e.text(
+			"Add the {{disabled}} attribute to a {{<fieldset>}} to disable all the controls within. Browsers treat all native form controls ({{<input>}}, {{<select>}}, and {{<button>}} elements) inside a {{<fieldset disabled>}} as disabled, preventing both keyboard and mouse interactions on them."
+		),
+		new e.text(
+			"However, if your form also includes custom button-like elements such as {{<a class='btn btn-*'>...</a>}}, these will only be given a style of {{pointer-events: none}}, meaning they are still focusable and operable using the keyboard. In this case, you must manually modify these controls by adding {{tabindex='-1'}} to prevent them from receiving focus and {{aria-disabled='disabled'}} to signal their state to assistive technologies."
+		),
+
 		new e.code({
 			output: () => {
-				return [1, 2, 3, 4, 5, 6].map((i) => {
-					return new h.h(i as h.HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
-				});
+				return new h.form(
+					new h.fieldset({ disabled: true }, [
+						new h.legend("Disabled fieldset example"),
+						b.form.input({
+							container: { marginBottom: 3 },
+							label: "Disabled input",
+							placeholder: "Disabled input",
+							type: "text",
+						}),
+						b.form.select({
+							container: { marginBottom: 3 },
+							label: "Disabled select menu",
+							item: [{ elem: "Disabled select" }],
+						}),
+						b.form.input({
+							container: { marginBottom: 3 },
+							label: "Check me out",
+							type: "checkbox",
+						}),
+						new b.button({ type: "submit" }, "Submit"),
+					])
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle("Buttons"),
-		new e.text("Badges can be used as part of links or buttons to provide a counter."),
-		new e.code({
-			output: () => {
-				return new b.button(["Notification ", new b.badge({ bgColor: "secondary" }, "4")]);
-			},
-		}),
+		new e.title("Accessibility"),
 		new e.text(
-			"Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button."
+			"Ensure that all form controls have an appropriate accessible name so that their purpose can be conveyed to users of assistive technologies. The simplest way to achieve this is to use a {{<label>}} element, or—in the case of buttons—to include sufficiently descriptive text as part of the {{<button>...</button>}} content."
 		),
 		new e.text(
-			"Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional text."
+			"For situations where it’s not possible to include a visible {{<label>}} or appropriate text content, there are alternative ways of still providing an accessible name, such as:"
 		),
-
-		//-----------------------
-
-		new e.subtitle("Positioned"),
-		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
-		new e.code({
-			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Inbox ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "pill",
-						},
-						["99+", new b.visuallyhidden("unread messages")]
-					),
-				]);
-			},
+		new e.ul({
+			item: [
+				"{{<label>}} elements hidden using the {{.visually-hidden}} class",
+				"Pointing to an existing element that can act as a label using {{aria-labelledby}}",
+				"Providing a {{title}} attribute",
+				"Explicitly setting the accessible name on an element using {{aria-label}}",
+			],
 		}),
 		new e.text(
-			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
+			"If none of these are present, assistive technologies may resort to using the {{placeholder}} attribute as a fallback for the accessible name on {{<input>}} and {{<textarea>}} elements. The examples in this section provide a few suggested, case-specific approaches."
 		),
-		new e.code({
-			output: () => {
-				return new b.button({ position: "relative" }, [
-					"Profile ",
-					new b.badge(
-						{
-							bgColor: "danger",
-							position: "absolute",
-							top: 0,
-							start: 100,
-							tMiddle: true,
-							rounded: "circle",
-							border: true,
-							borderColor: "light",
-							padding: 2,
-						},
-						new b.visuallyhidden("New alerts")
-					),
-				]);
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Background colors"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"While using visually hidden content ({{.visually-hidden}}, {{aria-label}}, and even {{placeholder}} content, which disappears once a form field has content) will benefit assistive technology users, a lack of visible label text may still be problematic for certain users. Some form of visible label is generally the best approach, both for accessibility and usability."
 		),
-		new e.code({
-			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number] },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
-			},
-		}),
-		new e.alert({ color: "info", callout: true }, [
-			new h.h(5, "Conveying meaning to assistive technologies"),
-			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
-			),
-		]),
-
-		//-----------------------
-
-		new e.title("Pill badges"),
-		new e.text(
-			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
-		),
-		new e.code({
-			output: () => {
-				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.badge(
-						{ textBgColor: i as core.bootstrapType.textBgColor[number], rounded: "pill" },
-						i.charAt(0).toUpperCase() + i.slice(1)
-					);
-				});
-			},
-		}),
 
 		//-----------------------
 
 		new e.title("CSS"),
-		new e.subtitle("Variables"),
 		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			"Many form variables are set at a general level to be re-used and extended by individual form components. You’ll see these most often as {{$input-btn-*}} and {{$input-*}} variables."
+		),
+
+		new e.subtitle("Sass variables"),
+		new e.text(
+			"{{$input-btn-*}} variables are shared global variables between our {{https://getbootstrap.com/docs/5.3/components/buttons/::buttons}} and our form components. You’ll find these frequently reassigned as values to other component-specific variables."
 		),
 
 		new e.codepreview({
 			type: "css",
 			code: `
-			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
-				--#{$prefix}badge-padding-y: #{$badge-padding-y};
-				@include rfs($badge-font-size, --#{$prefix}badge-font-size);
-				--#{$prefix}badge-font-weight: #{$badge-font-weight};
-				--#{$prefix}badge-color: #{$badge-color};
-				--#{$prefix}badge-border-radius: #{$badge-border-radius};
-			`,
-		}),
+				$input-btn-padding-y:         .375rem;
+				$input-btn-padding-x:         .75rem;
+				$input-btn-font-family:       null;
+				$input-btn-font-size:         $font-size-base;
+				$input-btn-line-height:       $line-height-base;
 
-		new e.subtitle("Sass variables"),
+				$input-btn-focus-width:         $focus-ring-width;
+				$input-btn-focus-color-opacity: $focus-ring-opacity;
+				$input-btn-focus-color:         $focus-ring-color;
+				$input-btn-focus-blur:          $focus-ring-blur;
+				$input-btn-focus-box-shadow:    $focus-ring-box-shadow;
 
-		new e.codepreview({
-			type: "css",
-			code: `
-				$badge-font-size:                   .75em;
-				$badge-font-weight:                 $font-weight-bold;
-				$badge-color:                       $white;
-				$badge-padding-y:                   .35em;
-				$badge-padding-x:                   .65em;
-				$badge-border-radius:               $border-radius;
+				$input-btn-padding-y-sm:      .25rem;
+				$input-btn-padding-x-sm:      .5rem;
+				$input-btn-font-size-sm:      $font-size-sm;
+
+				$input-btn-padding-y-lg:      .5rem;
+				$input-btn-padding-x-lg:      1rem;
+				$input-btn-font-size-lg:      $font-size-lg;
+
+				$input-btn-border-width:      var(--#{$prefix}border-width);
 			`,
 		}),
 	],
