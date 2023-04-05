@@ -39,7 +39,7 @@ function failCopyCode(iconElem?: HTMLElement) {
 
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();
-	e.preventDefault();
+	e.stopImmediatePropagation();
 
 	const target = e.target as HTMLElement;
 	const iconElem = target.closest(".bi") as HTMLElement;

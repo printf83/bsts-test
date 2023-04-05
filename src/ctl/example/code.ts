@@ -76,7 +76,7 @@ function failCopyCode(iconElem?: HTMLElement) {
 
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();
-	e.preventDefault();
+	e.stopImmediatePropagation();
 
 	const target = e.target as HTMLElement;
 	const iconElem = target.closest(".bi") as HTMLElement;
@@ -121,58 +121,64 @@ const itemCode = (
 		res.push(
 			new b.list.item(
 				{
-					display: "flex",
-					verticalAlign: "middle",
-					justifyContent: "between",
-					paddingX: 4,
+					padding: 0,
 					bgColor: "body-tertiary",
-					control: collapseable ? id : undefined,
-					data: {
-						"bs-toggle": collapseable ? "collapse" : undefined,
-						"bs-target": collapseable ? `#${id}` : undefined,
-					},
-					aria: {
-						expended: collapseable ? "false" : undefined,
-					},
 				},
-				[
-					new h.span(
-						new h.small(
+				new h.div(
+					{
+						display: "flex",
+						justifyContent: "between",
+						verticalAlign: "middle",
+					},
+					[
+						new h.div(
 							{
-								monospace: true,
-								// textTransform: "uppercase",
-								textColor: "body-secondary",
-							},
-							title
-						)
-					),
-
-					allowcopy
-						? new h.div(
-								{
-									on: {
-										click: (e) => {
-											e.preventDefault();
-											e.stopPropagation();
-											return false;
-										},
-									},
+								paddingY: 2,
+								paddingX: 4,
+								flex: "fill",
+								control: collapseable ? id : undefined,
+								data: {
+									"bs-toggle": collapseable ? "collapse" : undefined,
+									"bs-target": collapseable ? `#${id}` : undefined,
 								},
-								new b.tooltip(
-									{ content: "Copy to clipboard" },
-									new h.a(
-										{
-											href: "#",
-											color: "secondary",
-											class: "primary-on-hover",
-											on: { click: itemCodeCopy },
-										},
-										b.icon.bi("clipboard")
+								aria: {
+									expended: collapseable ? "false" : undefined,
+								},
+							},
+							new h.small(
+								{
+									monospace: true,
+									// textTransform: "uppercase",
+									textColor: "body-secondary",
+								},
+								title
+							)
+						),
+
+						allowcopy
+							? new h.div(
+									{ display: "flex" },
+									new h.div(
+										{ paddingTop: 2, paddingX: 4 },
+										new b.tooltip(
+											{
+												content: "Copy to clipboard",
+											},
+											new h.a(
+												{
+													href: "#",
+													color: "secondary",
+													class: "primary-on-hover",
+													on: { click: itemCodeCopy },
+												},
+												b.icon.bi("clipboard")
+											)
+										)
 									)
-								)
-						  )
-						: "",
-				]
+							  )
+							: "",
+					]
+				)
 			)
 		);
 	} else {
