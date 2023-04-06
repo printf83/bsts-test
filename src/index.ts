@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_form_control";
+let CURRENT_PAGE = "doc_form_select";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -21,6 +21,7 @@ let m = {
 			item: [
 				{ label: "Overview", value: "doc_form_overview" },
 				{ label: "Form control", value: "doc_form_control" },
+				{ label: "Select", value: "doc_form_select" },
 			],
 		},
 		{
@@ -114,7 +115,7 @@ const maincontainer = new main.container({
 		{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
 		{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 	],
-	currentTheme: "auto",
+	currentTheme: "dark",
 
 	itemVersion: [{ value: "0.1.71", label: "Latest (0.1.71)" }],
 	currentVersion: "0.1.71",
