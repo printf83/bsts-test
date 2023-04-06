@@ -2,7 +2,7 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_form_checkradio";
+let CURRENT_PAGE = "doc_form_range";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -23,6 +23,7 @@ let m = {
 				{ label: "Form control", value: "doc_form_control" },
 				{ label: "Select", value: "doc_form_select" },
 				{ label: "Checks & radios", value: "doc_form_checkradio" },
+				{ label: "Range", value: "doc_form_range" },
 			],
 		},
 		{

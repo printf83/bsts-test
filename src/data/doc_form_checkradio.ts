@@ -45,7 +45,7 @@ export const doc_form_checkradio: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Indeterminate"),
+		new e.subtitle("Indeterminate"),
 		new e.text(
 			"Checkboxes can utilize the {{:indeterminate}} pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it)."
 		),
@@ -57,7 +57,7 @@ export const doc_form_checkradio: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Disabled"),
+		new e.subtitle("Disabled"),
 		new e.text(
 			"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
 		),
@@ -124,7 +124,7 @@ export const doc_form_checkradio: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Disabled"),
+		new e.subtitle({ id: "radio_disabled" }, "Disabled"),
 		new e.text(
 			"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
 		),
@@ -301,7 +301,7 @@ export const doc_form_checkradio: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Checkbox toggle buttons"),
+		new e.subtitle("Checkbox toggle buttons"),
 		new e.code({
 			output: () => {
 				return b.form.toggle({ type: "checkbox", label: "Single toggle", container: { color: "primary" } });
@@ -334,7 +334,7 @@ export const doc_form_checkradio: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Radio toggle buttons"),
+		new e.subtitle("Radio toggle buttons"),
 		new e.code({
 			output: () => {
 				return [
@@ -370,7 +370,7 @@ export const doc_form_checkradio: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Outlined styles"),
+		new e.subtitle("Outlined styles"),
 		new e.text("Different variants of {{.btn}}, such at the various outlined styles, are supported."),
 		new e.code({
 			output: () => {
