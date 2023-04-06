@@ -21,108 +21,37 @@ export const doc_form_checkradio: IAttrContent = {
 		new e.title("Checks"),
 		new e.code({
 			output: () => {
-				return new b.select({ label: "Default select example" }, [
-					new h.option({ selected: true }, "Open this select menu"),
-					new h.option({ value: "1" }, "One"),
-					new h.option({ value: "2" }, "Two"),
-					new h.option({ value: "3" }, "Three"),
-				]);
+				return [
+					new h.div({ class: "form-check" }, [
+						new b.input({ type: "checkbox", id: "flexCheckDefault" }),
+						new b.label({ for: "flexCheckDefault", formCheck: true }, "Default checkbox"),
+					]),
+					new h.div({ class: "form-check" }, [
+						new b.input({ type: "checkbox", id: "flexCheckChecked", checked: true }),
+						new b.label({ for: "flexCheckChecked", formCheck: true }, "Checked checkbox"),
+					]),
+				];
 			},
 		}),
-		new e.text("Using {{item}} to setup option"),
+		new e.text("Using {{b.form.check}}"),
 		new e.code({
 			output: () => {
-				return new b.select({
-					label: "Default select example using item",
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
-			},
-		}),
-		new e.text("Using {{b.form.select}}"),
-		new e.code({
-			output: () => {
-				return b.form.select({
-					label: "Default select example using b.form.select",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
+				return [
+					b.form.check({ type: "checkbox", label: "Default checkbox" }),
+					b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true }),
+				];
 			},
 		}),
 
 		//-----------------------
 
-		new e.title("Sizing"),
-		new e.text("Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."),
+		new e.title("Indeterminate"),
+		new e.text(
+			"Checkboxes can utilize the {{:indeterminate}} pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it)."
+		),
 		new e.code({
 			output: () => {
-				return [
-					b.form.select({
-						weight: "lg",
-						label: ".form-select-lg example",
-						hideLabel: true,
-						item: [
-							{ selected: true, elem: "Open this select menu" },
-							{ value: "1", elem: "One" },
-							{ value: "2", elem: "Two" },
-							{ value: "3", elem: "Three" },
-						],
-					}),
-					b.form.select({
-						weight: "sm",
-						label: ".form-select-sm example",
-						hideLabel: true,
-						item: [
-							{ selected: true, elem: "Open this select menu" },
-							{ value: "1", elem: "One" },
-							{ value: "2", elem: "Two" },
-							{ value: "3", elem: "Three" },
-						],
-					}),
-				];
-			},
-		}),
-
-		new e.text("The {{multiple}} attribute is also supported:"),
-		new e.code({
-			output: () => {
-				return b.form.select({
-					multiple: true,
-					label: "Multiple select example",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
-			},
-		}),
-
-		new e.text("As is the {{size}} attribute:"),
-		new e.code({
-			output: () => {
-				return b.form.select({
-					size: 3,
-					label: "Size 3 select example",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
+				return b.form.check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
 			},
 		}),
 
@@ -130,21 +59,349 @@ export const doc_form_checkradio: IAttrContent = {
 
 		new e.title("Disabled"),
 		new e.text(
-			"Add the {{disabled}} boolean attribute on a select to give it a grayed out appearance and remove pointer events."
+			"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
 		),
 		new e.code({
 			output: () => {
-				return b.form.select({
-					disabled: true,
-					label: "Disabled select example",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
+				return [
+					b.form.check({
+						type: "checkbox",
+						label: "Disabled indeterminate checkbox",
+						indeterminate: true,
+						disabled: true,
+					}),
+					b.form.check({
+						type: "checkbox",
+						label: "Disabled checkbox",
+						disabled: true,
+					}),
+					b.form.check({
+						type: "checkbox",
+						label: "Disabled checked checkbox",
+						checked: true,
+						disabled: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Radios"),
+		new e.code({
+			output: () => {
+				return [
+					new h.div({ class: "form-check" }, [
+						new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }),
+						new b.label({ for: "flexRadioDefault", formCheck: true }, "Default radio"),
+					]),
+					new h.div({ class: "form-check" }, [
+						new b.input({
+							type: "radio",
+							id: "flexRadioDefault2",
+							name: "exampeRadioGroup1",
+							checked: true,
+						}),
+						new b.label({ for: "flexRadioDefault2", formCheck: true }, "Default checked radio"),
+					]),
+				];
+			},
+		}),
+		new e.text("Using {{b.form.check}}"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "radio", name: "exampeRadioGroup2", label: "Default radio" }),
+					b.form.check({
+						type: "radio",
+						name: "exampeRadioGroup2",
+						label: "Default checked radio",
+						checked: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Disabled"),
+		new e.text(
+			"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "radio", name: "exampeRadioGroup3", label: "Disabled radio", disabled: true }),
+					b.form.check({
+						type: "radio",
+						name: "exampeRadioGroup3",
+						label: "Disabled checked radio",
+						checked: true,
+						disabled: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Switches"),
+		new e.text(
+			"A switch has the markup of a custom checkbox but uses the {{.form-switch}} class to render a toggle switch. Consider using {{role='switch'}} to more accurately convey the nature of the control to assistive technologies that support this role. In older assistive technologies, it will simply be announced as a regular checkbox as a fallback. Switches also support the {{disabled}} attribute."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "checkbox", switch: true, label: "Default switch checkbox input" }),
+					b.form.check({
+						type: "checkbox",
+						switch: true,
+						label: "Checked switch checkbox input",
+						checked: true,
+					}),
+					b.form.check({
+						type: "checkbox",
+						switch: true,
+						label: "Disabled switch checkbox input",
+						disabled: true,
+					}),
+					b.form.check({
+						type: "checkbox",
+						switch: true,
+						label: "Disabled switch checkbox input",
+						checked: true,
+						disabled: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Default (stacked)"),
+		new e.text(
+			"By default, any number of checkboxes and radios that are immediate sibling will be vertically stacked and appropriately spaced with {{.form-check}}."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "checkbox", label: "Default checkbox" }),
+					b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true }),
+				];
+			},
+		}),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "radio", name: "exampeRadioGroup4", label: "Default radio", checked: true }),
+					b.form.check({ type: "radio", name: "exampeRadioGroup4", label: "Second default radio" }),
+					b.form.check({
+						type: "radio",
+						name: "exampeRadioGroup4",
+						label: "Disabled radio",
+						disabled: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Inline"),
+		new e.text(
+			"Group checkboxes or radios on the same horizontal row by adding {{.form-check-inline}} to any {{.form-check}}."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "checkbox", label: "1", inline: true }),
+					b.form.check({ type: "checkbox", label: "2", inline: true }),
+					b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true }),
+				];
+			},
+		}),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "1", inline: true }),
+					b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "2", inline: true }),
+					b.form.check({
+						type: "radio",
+						name: "exampeRadioGroup5",
+						label: "3 (disabled)",
+						disabled: true,
+						inline: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Reverse"),
+		new e.text(
+			"Put your checkboxes, radios, and switches on the opposite side with the .form-check-reverse modifier class."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "checkbox", label: "Reverse checkbox", reverse: true }),
+					b.form.check({
+						type: "checkbox",
+						label: "Disabled reverse checkbox",
+						disabled: true,
+						reverse: true,
+					}),
+					b.form.check({
+						type: "checkbox",
+						label: "Reverse switch checkbox input",
+						switch: true,
+						reverse: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Without labels"),
+		new e.text(
+			"Omit the wrapping {{.form-check}} for checkboxes and radios that have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using {{aria-label}}). See the {{https://getbootstrap.com/docs/5.3/forms/overview/#accessibility::forms overview accessibility}} section for details."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.check({ type: "checkbox", label: "Checkbox without label", hideLabel: true }),
+					b.form.check({
+						type: "radio",
+						label: "Radio without label",
+						name: "exampeRadioGroup6",
+						hideLabel: true,
+					}),
+					b.form.check({
+						type: "checkbox",
+						label: "Switch without label",
+						switch: true,
+						hideLabel: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Toggle buttons"),
+		new e.text(
+			"Create button-like checkboxes and radio buttons by using {{.btn}} styles rather than {{.form-check-label}} on the {{<label>}} elements. These toggle buttons can further be grouped in a {{https://getbootstrap.com/docs/5.3/components/button-group/::button group}} if needed."
+		),
+		new e.alert(
+			{ color: "danger", callout: true },
+			"{{b::Heads up!}} The {{b.form.toggle}} function return an array. You need to flat the array before add the result into your array. For this example, we use the {{...}} to flatten the array."
+		),
+
+		//-----------------------
+
+		new e.title("Checkbox toggle buttons"),
+		new e.code({
+			output: () => {
+				return b.form.toggle({ type: "checkbox", label: "Single toggle", container: { color: "primary" } });
+			},
+		}),
+		new e.code({
+			output: () => {
+				return b.form.toggle({
+					type: "checkbox",
+					label: "Checked",
+					container: { color: "primary" },
+					checked: true,
 				});
+			},
+		}),
+		new e.code({
+			output: () => {
+				return b.form.toggle({
+					type: "checkbox",
+					label: "Disabled",
+					container: { color: "primary" },
+					disabled: true,
+				});
+			},
+		}),
+		new e.alert(
+			{ color: "info", callout: true },
+			" Visually, these checkbox toggle buttons are identical to the {{https://getbootstrap.com/docs/5.3/components/buttons/#button-plugin::button plugin toggle buttons}}. However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as “checked”/“not checked” (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as “button”/“button pressed”. The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button."
+		),
+
+		//-----------------------
+
+		new e.title("Radio toggle buttons"),
+		new e.code({
+			output: () => {
+				return [
+					...b.form.toggle({
+						type: "radio",
+						label: "Checked",
+						name: "exampeRadioGroup7",
+						checked: true,
+						container: { color: "secondary" },
+					}),
+					...b.form.toggle({
+						type: "radio",
+						label: "Radio",
+						name: "exampeRadioGroup7",
+						container: { color: "secondary" },
+					}),
+					...b.form.toggle({
+						type: "radio",
+						label: "Disabled",
+						name: "exampeRadioGroup7",
+						disabled: true,
+						container: { color: "secondary" },
+					}),
+					...b.form.toggle({
+						type: "radio",
+						label: "Radio",
+						name: "exampeRadioGroup7",
+						container: { color: "secondary" },
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Outlined styles"),
+		new e.text("Different variants of {{.btn}}, such at the various outlined styles, are supported."),
+		new e.code({
+			output: () => {
+				return [
+					...b.form.toggle({
+						type: "checkbox",
+						label: "Single toggle",
+						container: { color: "primary", outline: true },
+					}),
+					new h.br(),
+					...b.form.toggle({
+						type: "checkbox",
+						label: "Checked",
+						checked: true,
+						container: { color: "secondary", outline: true },
+					}),
+					new h.br(),
+					...b.form.toggle({
+						type: "radio",
+						label: "Checked success radio",
+						name: "exampeRadioGroup8",
+						checked: true,
+						container: { color: "success", outline: true },
+					}),
+					...b.form.toggle({
+						type: "radio",
+						label: "Radio",
+						name: "exampeRadioGroup8",
+						container: { color: "danger", outline: true },
+					}),
+				];
 			},
 		}),
 
@@ -152,50 +409,62 @@ export const doc_form_checkradio: IAttrContent = {
 
 		new e.title("CSS"),
 		new e.subtitle("Sass variables"),
+		new e.text("Variables for checks:"),
 		new e.codepreview({
 			type: "css",
 			code: `
-				$form-select-padding-y:             $input-padding-y;
-				$form-select-padding-x:             $input-padding-x;
-				$form-select-font-family:           $input-font-family;
-				$form-select-font-size:             $input-font-size;
-				$form-select-indicator-padding:     $form-select-padding-x * 3; // Extra padding for background-image
-				$form-select-font-weight:           $input-font-weight;
-				$form-select-line-height:           $input-line-height;
-				$form-select-color:                 $input-color;
-				$form-select-bg:                    $input-bg;
-				$form-select-disabled-color:        null;
-				$form-select-disabled-bg:           $input-disabled-bg;
-				$form-select-disabled-border-color: $input-disabled-border-color;
-				$form-select-bg-position:           right $form-select-padding-x center;
-				$form-select-bg-size:               16px 12px; // In pixels because image dimensions
-				$form-select-indicator-color:       $gray-800;
-				$form-select-indicator:             url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+				$form-check-input-width:                  1em;
+				$form-check-min-height:                   $font-size-base * $line-height-base;
+				$form-check-padding-start:                $form-check-input-width + .5em;
+				$form-check-margin-bottom:                .125rem;
+				$form-check-label-color:                  null;
+				$form-check-label-cursor:                 null;
+				$form-check-transition:                   null;
 
-				$form-select-feedback-icon-padding-end: $form-select-padding-x * 2.5 + $form-select-indicator-padding;
-				$form-select-feedback-icon-position:    center right $form-select-indicator-padding;
-				$form-select-feedback-icon-size:        $input-height-inner-half $input-height-inner-half;
+				$form-check-input-active-filter:          brightness(90%);
 
-				$form-select-border-width:        $input-border-width;
-				$form-select-border-color:        $input-border-color;
-				$form-select-border-radius:       $input-border-radius;
-				$form-select-box-shadow:          $box-shadow-inset;
+				$form-check-input-bg:                     $input-bg;
+				$form-check-input-border:                 var(--#{$prefix}border-width) solid var(--#{$prefix}border-color);
+				$form-check-input-border-radius:          .25em;
+				$form-check-radio-border-radius:          50%;
+				$form-check-input-focus-border:           $input-focus-border-color;
+				$form-check-input-focus-box-shadow:       $focus-ring-box-shadow;
 
-				$form-select-focus-border-color:  $input-focus-border-color;
-				$form-select-focus-width:         $input-focus-width;
-				$form-select-focus-box-shadow:    0 0 0 $form-select-focus-width $input-btn-focus-color;
+				$form-check-input-checked-color:          $component-active-color;
+				$form-check-input-checked-bg-color:       $component-active-bg;
+				$form-check-input-checked-border-color:   $form-check-input-checked-bg-color;
+				$form-check-input-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>");
+				$form-check-radio-checked-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>");
 
-				$form-select-padding-y-sm:        $input-padding-y-sm;
-				$form-select-padding-x-sm:        $input-padding-x-sm;
-				$form-select-font-size-sm:        $input-font-size-sm;
-				$form-select-border-radius-sm:    $input-border-radius-sm;
+				$form-check-input-indeterminate-color:          $component-active-color;
+				$form-check-input-indeterminate-bg-color:       $component-active-bg;
+				$form-check-input-indeterminate-border-color:   $form-check-input-indeterminate-bg-color;
+				$form-check-input-indeterminate-bg-image:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-indeterminate-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>");
 
-				$form-select-padding-y-lg:        $input-padding-y-lg;
-				$form-select-padding-x-lg:        $input-padding-x-lg;
-				$form-select-font-size-lg:        $input-font-size-lg;
-				$form-select-border-radius-lg:    $input-border-radius-lg;
+				$form-check-input-disabled-opacity:        .5;
+				$form-check-label-disabled-opacity:        $form-check-input-disabled-opacity;
+				$form-check-btn-check-disabled-opacity:    $btn-disabled-opacity;
 
-				$form-select-transition:          $input-transition;
+				$form-check-inline-margin-end:    1rem;
+			`,
+		}),
+		new e.text("Variables for switches:"),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$form-switch-color:               rgba($black, .25);
+				$form-switch-width:               2em;
+				$form-switch-padding-start:       $form-switch-width + .5em;
+				$form-switch-bg-image:            url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-color}'/></svg>");
+				$form-switch-border-radius:       $form-switch-width;
+				$form-switch-transition:          background-position .15s ease-in-out;
+
+				$form-switch-focus-color:         $input-focus-border-color;
+				$form-switch-focus-bg-image:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-focus-color}'/></svg>");
+
+				$form-switch-checked-color:       $component-active-color;
+				$form-switch-checked-bg-image:    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-switch-checked-color}'/></svg>");
+				$form-switch-checked-bg-position: right center;
 			`,
 		}),
 	],
