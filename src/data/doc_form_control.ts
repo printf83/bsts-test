@@ -173,10 +173,81 @@ export const doc_form_control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.input({
-						value: "Readonly input here...",
-						label: "Readonly input example",
-						readonly: true,
+					b.form.input({
+						container: { marginBottom: 3 },
+						value: "email@example.com",
+						label: "Email",
+						plaintext: true,
+						col1: "sm-2",
+						col2: "sm-10",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Password",
+						type: "password",
+						col1: "sm-2",
+						col2: "sm-10",
+					}),
+				];
+			},
+		}),
+		new e.code({
+			output: () => {
+				return new h.div({ row: true, marginBottom: 3 }, [
+					b.form.input({
+						container: { col: "auto" },
+						value: "email@example.com",
+						label: "Email",
+						hideLabel: true,
+						plaintext: true,
+					}),
+					b.form.input({
+						container: { col: "auto" },
+						label: "Password",
+						hideLabel: true,
+						type: "password",
+						placeholder: "Password",
+					}),
+					new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Confirm identity")),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("File input"),
+
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Default file input example",
+						type: "file",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Multiple file input example",
+						type: "file",
+						multiple: true,
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Disabled file input example",
+						type: "file",
+						disabled: true,
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Small file input example",
+						type: "file",
+						weight: "sm",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Large file input example",
+						type: "file",
+						weight: "lg",
 					}),
 				];
 			},
@@ -184,40 +255,129 @@ export const doc_form_control: IAttrContent = {
 
 		//-----------------------
 
+		new e.title("Color"),
+		new e.text(
+			"Set the {{type='color'}} and add {{.form-control-color}} to the {{<input>}}. We use the modifier class to set fixed {{heights}} and override some inconsistencies between browsers."
+		),
+
+		new e.code({
+			output: () => {
+				return b.form.input({
+					label: "Color picker",
+					type: "color",
+					value: "#563d7c",
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Datalists"),
+		new e.text(
+			"Datalists allow you to create a group of {{<option>}}s that can be accessed (and autocompleted) from within an {{<input>}}. These are similar to {{<select>}} elements, but come with more menu styling limitations and differences. While most browsers and operating systems include some support for {{<datalist>}} elements, their styling is inconsistent at best."
+		),
+		new e.text("Learn more about {{https://caniuse.com/datalist::support for datalist elements}}."),
+
+		new e.code({
+			output: () => {
+				return b.form.input({
+					label: "Datalist example",
+					type: "text",
+					placeholder: "Type to search...",
+					datalist: ["San Francisco", "New York", "Seattle", "Los Angeles", "Chicago"],
+				});
+			},
+		}),
+
+		//-----------------------
+
 		new e.title("CSS"),
-		new e.text(
-			"Many form variables are set at a general level to be re-used and extended by individual form components. You’ll see these most often as {{$input-btn-*}} and {{$input-*}} variables."
-		),
-
 		new e.subtitle("Sass variables"),
-		new e.text(
-			"{{$input-btn-*}} variables are shared global variables between our {{https://getbootstrap.com/docs/5.3/components/buttons/::buttons}} and our form components. You’ll find these frequently reassigned as values to other component-specific variables."
-		),
-
+		new e.text("{{$input-*}} are shared across most of our form controls (and not buttons)."),
 		new e.codepreview({
 			type: "css",
 			code: `
-				$input-btn-padding-y:         .375rem;
-				$input-btn-padding-x:         .75rem;
-				$input-btn-font-family:       null;
-				$input-btn-font-size:         $font-size-base;
-				$input-btn-line-height:       $line-height-base;
+				$input-padding-y:                       $input-btn-padding-y;
+				$input-padding-x:                       $input-btn-padding-x;
+				$input-font-family:                     $input-btn-font-family;
+				$input-font-size:                       $input-btn-font-size;
+				$input-font-weight:                     $font-weight-base;
+				$input-line-height:                     $input-btn-line-height;
 
-				$input-btn-focus-width:         $focus-ring-width;
-				$input-btn-focus-color-opacity: $focus-ring-opacity;
-				$input-btn-focus-color:         $focus-ring-color;
-				$input-btn-focus-blur:          $focus-ring-blur;
-				$input-btn-focus-box-shadow:    $focus-ring-box-shadow;
+				$input-padding-y-sm:                    $input-btn-padding-y-sm;
+				$input-padding-x-sm:                    $input-btn-padding-x-sm;
+				$input-font-size-sm:                    $input-btn-font-size-sm;
 
-				$input-btn-padding-y-sm:      .25rem;
-				$input-btn-padding-x-sm:      .5rem;
-				$input-btn-font-size-sm:      $font-size-sm;
+				$input-padding-y-lg:                    $input-btn-padding-y-lg;
+				$input-padding-x-lg:                    $input-btn-padding-x-lg;
+				$input-font-size-lg:                    $input-btn-font-size-lg;
 
-				$input-btn-padding-y-lg:      .5rem;
-				$input-btn-padding-x-lg:      1rem;
-				$input-btn-font-size-lg:      $font-size-lg;
+				$input-bg:                              var(--#{$prefix}body-bg);
+				$input-disabled-color:                  null;
+				$input-disabled-bg:                     var(--#{$prefix}secondary-bg);
+				$input-disabled-border-color:           null;
 
-				$input-btn-border-width:      var(--#{$prefix}border-width);
+				$input-color:                           var(--#{$prefix}body-color);
+				$input-border-color:                    var(--#{$prefix}border-color);
+				$input-border-width:                    $input-btn-border-width;
+				$input-box-shadow:                      $box-shadow-inset;
+
+				$input-border-radius:                   var(--#{$prefix}border-radius);
+				$input-border-radius-sm:                var(--#{$prefix}border-radius-sm);
+				$input-border-radius-lg:                var(--#{$prefix}border-radius-lg);
+
+				$input-focus-bg:                        $input-bg;
+				$input-focus-border-color:              tint-color($component-active-bg, 50%);
+				$input-focus-color:                     $input-color;
+				$input-focus-width:                     $input-btn-focus-width;
+				$input-focus-box-shadow:                $input-btn-focus-box-shadow;
+
+				$input-placeholder-color:               var(--#{$prefix}secondary-color);
+				$input-plaintext-color:                 var(--#{$prefix}body-color);
+
+				$input-height-border:                   calc(#{$input-border-width} * 2); // stylelint-disable-line function-disallowed-list
+
+				$input-height-inner:                    add($input-line-height * 1em, $input-padding-y * 2);
+				$input-height-inner-half:               add($input-line-height * .5em, $input-padding-y);
+				$input-height-inner-quarter:            add($input-line-height * .25em, $input-padding-y * .5);
+
+				$input-height:                          add($input-line-height * 1em, add($input-padding-y * 2, $input-height-border, false));
+				$input-height-sm:                       add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false));
+				$input-height-lg:                       add($input-line-height * 1em, add($input-padding-y-lg * 2, $input-height-border, false));
+
+				$input-transition:                      border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+				$form-color-width:                      3rem;
+			`,
+		}),
+		new e.text("{{$form-label-*}} and {{$form-text-*}} are for our {{<label>}}s and {{.form-text}} component."),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$form-label-margin-bottom:              .5rem;
+				$form-label-font-size:                  null;
+				$form-label-font-style:                 null;
+				$form-label-font-weight:                null;
+				$form-label-color:                      null;
+			`,
+		}),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$form-text-margin-top:                  .25rem;
+				$form-text-font-size:                   $small-font-size;
+				$form-text-font-style:                  null;
+				$form-text-font-weight:                 null;
+				$form-text-color:                       var(--#{$prefix}secondary-color);
+			`,
+		}),
+		new e.text("{{$form-file-*}} are for file input."),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$form-file-button-color:          $input-color;
+				$form-file-button-bg:             var(--#{$prefix}tertiary-bg);
+				$form-file-button-hover-bg:       var(--#{$prefix}secondary-bg);
 			`,
 		}),
 	],
