@@ -27,6 +27,7 @@ import { doc_component_tooltip } from "./doc_component_tooltip.js";
 import { doc_form_overview } from "./doc_form_overview.js";
 import { doc_form_control } from "./doc_form_control.js";
 import { doc_form_select } from "./doc_form_select.js";
+import { doc_form_checkradio } from "./doc_form_checkradio.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -37,6 +38,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_form_control;
 		case "doc_form_select":
 			return doc_form_select;
+		case "doc_form_checkradio":
+			return doc_form_checkradio;
 
 		//--------------------------
 		case "doc_component_accordion":
