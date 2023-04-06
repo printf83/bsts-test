@@ -110,7 +110,7 @@ export const doc_form_overview: IAttrContent = {
 						label: "Password",
 						type: "password",
 					}),
-					b.form.input({
+					b.form.check({
 						container: { marginBottom: 3 },
 						label: "Check me out",
 						type: "checkbox",
@@ -155,7 +155,7 @@ export const doc_form_overview: IAttrContent = {
 							label: "Disabled select menu",
 							item: [{ elem: "Disabled select" }],
 						}),
-						b.form.input({
+						b.form.check({
 							container: { marginBottom: 3 },
 							label: "Check me out",
 							type: "checkbox",
