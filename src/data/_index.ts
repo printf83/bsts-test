@@ -30,6 +30,7 @@ import { doc_form_select } from "./doc_form_select.js";
 import { doc_form_checkradio } from "./doc_form_checkradio.js";
 import { doc_form_range } from "./doc_form_range.js";
 import { doc_form_floatinglabel } from "./doc_form_floatinglabel.js";
+import { doc_form_inputgroup } from "./doc_form_inputgroup.js";
 
 export const data = (doc: string): IAttrContent => {
 	switch (doc) {
@@ -46,6 +47,8 @@ export const data = (doc: string): IAttrContent => {
 			return doc_form_range;
 		case "doc_form_floatinglabel":
 			return doc_form_floatinglabel;
+		case "doc_form_inputgroup":
+			return doc_form_inputgroup;
 
 		//--------------------------
 		case "doc_component_accordion":

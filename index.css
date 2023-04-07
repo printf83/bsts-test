@@ -42,7 +42,10 @@ a:hover *,
 
 /* example */
 
-.example-title,.example-subtitle,
+.example-pagetitle, 
+.example-title,
+.example-subtitle,
+.example-xsubtitle,
 .example-table table b, .example-table table thead th {
     color:var(--bs-emphasis-color);
 }

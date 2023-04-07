@@ -1,0 +1,152 @@
+import { b } from "@printf83/bsts";
+import * as e from "../ctl/example/_index.js";
+import { IAttrContent } from "../ctl/main/container.js";
+
+export const doc_form_inputgroup: IAttrContent = {
+	title: "Input group",
+	description:
+		"Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.",
+	item: [
+		new e.title("Basic example"),
+		new e.text(
+			"Place one add-on or button on either side of an input. You may also place one on both sides of an input. Remember to place {{<label>}}s outside the input group."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						placeholder: "Username",
+						before: "@",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						placeholder: "Recipient's username",
+						after: "@example.com",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Your vanity URL",
+						type: "text",
+						before: "https://example.com/users/",
+						description: "Example help text goes outside the input group.",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						before: "$",
+						after: ".00",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						placeholder: "Username",
+						after: ["@", new b.input({ type: "text", placeholder: "Server" })],
+					}),
+					b.form.textarea({
+						before: "With textarea",
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Wrapping"),
+		new e.text(
+			"Input groups wrap by default via {{flex-wrap: wrap}} in order to accommodate custom form field validation within an input group. You may disable this with {{.flex-nowrap}}."
+		),
+		new e.code({
+			output: () => {
+				return b.form.input({
+					type: "text",
+					placeholder: "Username",
+					before: "@",
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Sizing"),
+		new e.text(
+			"Add the relative form sizing classes to the {{.input-group}} itself and contents within will automatically resize—no need for repeating the form control size classes on each element."
+		),
+		new e.text("{{b::Sizing on the individual input group elements isn’t supported.}}"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						before: "Small",
+						weight: "sm",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						before: "Default",
+					}),
+					b.form.input({
+						type: "text",
+						before: "Large",
+						weight: "lg",
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Checkboxes and radios"),
+		new e.text(
+			"Place any checkbox or radio option within an input group’s addon instead of text. We recommend adding {{.mt-0}} to the {{.form-check-input}} when there’s no visible text next to the input."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						type: "text",
+						aria: { label: "Text input with checkbox" },
+						before: "checkbox",
+					}),
+					b.form.input({
+						type: "text",
+						aria: { label: "Text input with radio" },
+						before: "radio",
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("CSS"),
+		new e.subtitle("Sass variables"),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$form-range-track-width:          100%;
+				$form-range-track-height:         .5rem;
+				$form-range-track-cursor:         pointer;
+				$form-range-track-bg:             var(--#{$prefix}tertiary-bg);
+				$form-range-track-border-radius:  1rem;
+				$form-range-track-box-shadow:     $box-shadow-inset;
+
+				$form-range-thumb-width:                   1rem;
+				$form-range-thumb-height:                  $form-range-thumb-width;
+				$form-range-thumb-bg:                      $component-active-bg;
+				$form-range-thumb-border:                  0;
+				$form-range-thumb-border-radius:           1rem;
+				$form-range-thumb-box-shadow:              0 .1rem .25rem rgba($black, .1);
+				$form-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-focus-box-shadow;
+				$form-range-thumb-focus-box-shadow-width:  $input-focus-width; // For focus box shadow issue in Edge
+				$form-range-thumb-active-bg:               tint-color($component-active-bg, 70%);
+				$form-range-thumb-disabled-bg:             var(--#{$prefix}secondary-color);
+				$form-range-thumb-transition:              background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+			`,
+		}),
+	],
+};
