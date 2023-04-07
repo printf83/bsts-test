@@ -273,7 +273,7 @@ export const doc_component_toast: IAttrContent = {
 						{
 							color: i as b.IAttrBSButton["color"],
 							on: {
-								click: (e) => {
+								click: (_e) => {
 									fnToast(i as b.toast.IAttrBSToastTemplate["color"], `This is {{b::${i}}} toast.`);
 								},
 							},

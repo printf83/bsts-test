@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h } from "@printf83/bsts";
 import * as e from "../ctl/example/_index";
 import { IAttrContent } from "../ctl/main/container";
 

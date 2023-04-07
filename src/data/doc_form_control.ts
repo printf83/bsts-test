@@ -50,9 +50,19 @@ export const doc_form_control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.input({ weight: "lg", placeholder: ".form-control-lg" }),
-					new b.input({ placeholder: "Default input" }),
-					new b.input({ weight: "sm", placeholder: ".form-control-sm" }),
+					b.form.input({
+						container: { marginBottom: 3 },
+						placeholder: ".form-control-lg",
+						weight: "lg",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						placeholder: "Default input",
+					}),
+					b.form.input({
+						placeholder: ".form-control-sm",
+						weight: "sm",
+					}),
 				];
 			},
 		}),

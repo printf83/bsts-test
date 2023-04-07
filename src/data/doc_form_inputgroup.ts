@@ -108,14 +108,16 @@ export const doc_form_inputgroup: IAttrContent = {
 			output: () => {
 				return [
 					b.form.input({
+						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Text input with checkbox" },
-						before: "checkbox",
+						before: "{{checkbox}}",
 					}),
 					b.form.input({
+						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Text input with radio" },
-						before: "radio",
+						before: "{{radio}}",
 					}),
 				];
 			},
