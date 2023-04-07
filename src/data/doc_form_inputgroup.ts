@@ -123,6 +123,68 @@ export const doc_form_inputgroup: IAttrContent = {
 
 		//-----------------------
 
+		new e.title("Multiple inputs"),
+		new e.text(
+			"While multiple {{<input>}}s are supported visually, validation styles are only available for input groups with a single {{<input>}}."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						type: "text",
+						aria: { label: "First name" },
+						before: "First and last name",
+						after: new b.input({ type: "text", aria: { label: "Last name" } }),
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Multiple addons"),
+		new e.text("Multiple add-ons are supported and can be mixed with checkbox and radio input versions."),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						aria: { label: "Dollar amount (with dot and two decimal places)" },
+						before: ["$", "0.00"],
+					}),
+					b.form.input({
+						type: "text",
+						aria: { label: "Dollar amount (with dot and two decimal places)" },
+						after: ["$", "0.00"],
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Button addons"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						aria: { label: "Dollar amount (with dot and two decimal places)" },
+						before: ["$", "0.00"],
+					}),
+					b.form.input({
+						type: "text",
+						aria: { label: "Dollar amount (with dot and two decimal places)" },
+						after: ["$", "0.00"],
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
 		new e.title("CSS"),
 		new e.subtitle("Sass variables"),
 		new e.codepreview({
