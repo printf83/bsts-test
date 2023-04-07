@@ -1,4 +1,4 @@
-import { b } from "@printf83/bsts";
+import { b, h } from "@printf83/bsts";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
@@ -171,13 +171,191 @@ export const doc_form_inputgroup: IAttrContent = {
 					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
-						aria: { label: "Dollar amount (with dot and two decimal places)" },
-						before: ["$", "0.00"],
+						aria: { label: "Example text with button addon" },
+						before: new b.button({ color: "secondary", outline: true }, "Button"),
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						placeholder: "Recipient's username",
+						aria: { label: "Example text with button addon" },
+						after: new b.button({ color: "secondary", outline: true }, "Button"),
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						aria: { label: "Example text with button addons" },
+						before: [
+							new b.button({ color: "secondary", outline: true }, "Button"),
+							new b.button({ color: "secondary", outline: true }, "Button"),
+						],
 					}),
 					b.form.input({
 						type: "text",
-						aria: { label: "Dollar amount (with dot and two decimal places)" },
-						after: ["$", "0.00"],
+						placeholder: "Recipient's username",
+						aria: { label: "Example text with button addons" },
+						after: [
+							new b.button({ color: "secondary", outline: true }, "Button"),
+							new b.button({ color: "secondary", outline: true }, "Button"),
+						],
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Buttons with dropdowns"),
+		new e.code({
+			output: () => {
+				const dropdownItem = [
+					new b.dropdown.item({ href: "#" }, "Action"),
+					new b.dropdown.item({ href: "#" }, "Another action"),
+					new b.dropdown.item({ href: "#" }, "Something else here"),
+					new b.dropdown.divider(),
+					new b.dropdown.item({ href: "#" }, "Separated link"),
+				];
+
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						aria: { label: "Text input with dropdown button" },
+						before: [
+							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.menu(dropdownItem),
+						],
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						aria: { label: "Text input with dropdown button" },
+						after: [
+							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.menu({ positionView: "end" }, dropdownItem),
+						],
+					}),
+					b.form.input({
+						type: "text",
+						aria: { label: "Text input with dropdown button" },
+						before: [
+							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.menu(dropdownItem),
+						],
+						after: [
+							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.menu({ positionView: "end" }, dropdownItem),
+						],
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Segmented buttons"),
+		new e.code({
+			output: () => {
+				const dropdownItem = [
+					new b.dropdown.item({ href: "#" }, "Action"),
+					new b.dropdown.item({ href: "#" }, "Another action"),
+					new b.dropdown.item({ href: "#" }, "Something else here"),
+					new b.dropdown.divider(),
+					new b.dropdown.item({ href: "#" }, "Separated link"),
+				];
+
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "text",
+						aria: { label: "Text input with segmented dropdown button" },
+						before: [
+							new b.button({ color: "secondary", outline: true }, "Action"),
+							new b.dropdown.toggle({ color: "secondary", outline: true, split: true }),
+							new b.dropdown.menu(dropdownItem),
+						],
+					}),
+					b.form.input({
+						type: "text",
+						aria: { label: "Text input with segmented dropdown button" },
+						after: [
+							new b.button({ color: "secondary", outline: true }, "Action"),
+							new b.dropdown.toggle({ color: "secondary", outline: true, split: true }),
+							new b.dropdown.menu({ positionView: "end" }, dropdownItem),
+						],
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Custom forms"),
+		new e.text(
+			"Input groups include support for custom selects and custom file inputs. Browser default versions of these are not supported."
+		),
+		new e.subtitle("Custom select"),
+		new e.code({
+			output: () => {
+				let selectItem: h.IAttrTagSelectItem[] = [
+					{ selected: true, elem: "Choose..." },
+					{ value: "1", elem: "One" },
+					{ value: "2", elem: "Two" },
+					{ value: "3", elem: "Three" },
+				];
+
+				return [
+					b.form.select({
+						container: { marginBottom: 3 },
+						item: selectItem,
+						before: "Options",
+					}),
+					b.form.select({
+						container: { marginBottom: 3 },
+						item: selectItem,
+						after: "Options",
+					}),
+					b.form.select({
+						container: { marginBottom: 3 },
+						item: selectItem,
+						before: new b.button({ color: "secondary", outline: true }, "Button"),
+					}),
+					b.form.select({
+						container: { marginBottom: 3 },
+						item: selectItem,
+						after: new b.button({ color: "secondary", outline: true }, "Button"),
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Custom file input"),
+		new e.text(
+			"Input groups include support for custom selects and custom file inputs. Browser default versions of these are not supported."
+		),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "file",
+						before: "Upload",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "file",
+						after: "Upload",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						type: "file",
+						before: new b.button({ color: "secondary", outline: true }, "Button"),
+					}),
+					b.form.input({
+						type: "file",
+						after: new b.button({ color: "secondary", outline: true }, "Button"),
 					}),
 				];
 			},
@@ -190,24 +368,12 @@ export const doc_form_inputgroup: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			code: `
-				$form-range-track-width:          100%;
-				$form-range-track-height:         .5rem;
-				$form-range-track-cursor:         pointer;
-				$form-range-track-bg:             var(--#{$prefix}tertiary-bg);
-				$form-range-track-border-radius:  1rem;
-				$form-range-track-box-shadow:     $box-shadow-inset;
-
-				$form-range-thumb-width:                   1rem;
-				$form-range-thumb-height:                  $form-range-thumb-width;
-				$form-range-thumb-bg:                      $component-active-bg;
-				$form-range-thumb-border:                  0;
-				$form-range-thumb-border-radius:           1rem;
-				$form-range-thumb-box-shadow:              0 .1rem .25rem rgba($black, .1);
-				$form-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-focus-box-shadow;
-				$form-range-thumb-focus-box-shadow-width:  $input-focus-width; // For focus box shadow issue in Edge
-				$form-range-thumb-active-bg:               tint-color($component-active-bg, 70%);
-				$form-range-thumb-disabled-bg:             var(--#{$prefix}secondary-color);
-				$form-range-thumb-transition:              background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+				$input-group-addon-padding-y:           $input-padding-y;
+				$input-group-addon-padding-x:           $input-padding-x;
+				$input-group-addon-font-weight:         $input-font-weight;
+				$input-group-addon-color:               $input-color;
+				$input-group-addon-bg:                  var(--#{$prefix}tertiary-bg);
+				$input-group-addon-border-color:        $input-border-color;
 			`,
 		}),
 	],
