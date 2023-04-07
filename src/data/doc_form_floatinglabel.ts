@@ -24,21 +24,19 @@ export const doc_form_floatinglabel: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{b.form.item}} :"),
+		new e.text("Using {{b.form.floatinglabel.input}} :"),
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.form.floatinglabel.input({
 						container: { marginBottom: 3 },
 						type: "email",
-						floatingLabel: true,
 						label: "Email address",
 						placeholder: "name@example.com",
 					}),
-					b.form.input({
+					b.form.floatinglabel.input({
 						type: "password",
 						label: "Password",
-						floatingLabel: true,
 					}),
 				];
 			},
@@ -48,9 +46,8 @@ export const doc_form_floatinglabel: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.form.floatinglabel.input({
 					type: "email",
-					floatingLabel: true,
 					label: "Input with value",
 					value: "test@example.com",
 				});
@@ -59,9 +56,8 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.text("Form validation styles also work as expected."),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.form.floatinglabel.input({
 					type: "email",
-					floatingLabel: true,
 					label: "Invalid input",
 					value: "test@example.com",
 					isvalid: false,
@@ -75,8 +71,7 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.text("By default, {{<textarea>}}s with {{.form-control}} will be the same height as {{<input>}}s."),
 		new e.code({
 			output: () => {
-				return b.form.textarea({
-					floatingLabel: true,
+				return b.form.floatinglabel.textarea({
 					label: "Comments",
 				});
 			},
@@ -86,8 +81,7 @@ export const doc_form_floatinglabel: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.form.textarea({
-					floatingLabel: true,
+				return b.form.floatinglabel.textarea({
 					label: "Comments",
 					style: { height: "100px" },
 				});
@@ -102,8 +96,7 @@ export const doc_form_floatinglabel: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.form.select({
-					floatingLabel: true,
+				return b.form.floatinglabel.select({
 					label: "Work with selects",
 					item: [
 						{ selected: true, elem: "Open this select menu" },
@@ -124,28 +117,24 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.form.floatinglabel.input({
 						container: { marginBottom: 3 },
-						floatingLabel: true,
 						label: "Email address",
 						type: "email",
 						disabled: true,
 					}),
-					b.form.textarea({
+					b.form.floatinglabel.textarea({
 						container: { marginBottom: 3 },
-						floatingLabel: true,
 						label: "Comments",
 						disabled: true,
 					}),
-					b.form.textarea({
+					b.form.floatinglabel.textarea({
 						container: { marginBottom: 3 },
-						floatingLabel: true,
 						label: "Comments",
 						disabled: true,
 						style: { height: "100px" },
 					}),
-					b.form.select({
-						floatingLabel: true,
+					b.form.floatinglabel.select({
 						label: "Work with selects",
 						disabled: true,
 						item: [
@@ -168,16 +157,14 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.form.floatinglabel.input({
 						container: { marginBottom: 3 },
-						floatingLabel: true,
 						label: "Empty input",
 						type: "email",
 						readonly: true,
 						plaintext: true,
 					}),
-					b.form.input({
-						floatingLabel: true,
+					b.form.floatinglabel.input({
 						label: "Input with value",
 						type: "email",
 						value: "name@example.com",
@@ -195,7 +182,6 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.code({
 			output: () => {
 				return b.form.input({
-					// floatingLabel: true,
 					label: "Username",
 					type: "text",
 					before: "@",
@@ -210,8 +196,7 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.text("Floating labels also support {{.input-group}}."),
 		new e.code({
 			output: () => {
-				return b.form.input({
-					floatingLabel: true,
+				return b.form.floatinglabel.input({
 					label: "Username",
 					type: "text",
 					before: "@",
@@ -226,9 +211,8 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.text("Floating labels also support {{.input-group}}."),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.form.floatinglabel.input({
 					description: "Please choose your username.",
-					floatingLabel: true,
 					label: "Username",
 					type: "text",
 					before: "@",
