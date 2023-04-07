@@ -190,6 +190,55 @@ export const doc_form_floatinglabel: IAttrContent = {
 
 		//-----------------------
 
+		new e.title("Input groups"),
+		new e.text("Floating labels also support {{.input-group}}."),
+		new e.code({
+			output: () => {
+				return b.form.input({
+					// floatingLabel: true,
+					label: "Username",
+					type: "text",
+					before: "@",
+					after: [".com", new b.button({ color: "primary" }, "Check")],
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Input groups 2"),
+		new e.text("Floating labels also support {{.input-group}}."),
+		new e.code({
+			output: () => {
+				return b.form.input({
+					floatingLabel: true,
+					label: "Username",
+					type: "text",
+					before: "@",
+					after: [".com", new b.button({ color: "primary" }, "Check")],
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Input groups 3"),
+		new e.text("Floating labels also support {{.input-group}}."),
+		new e.code({
+			output: () => {
+				return b.form.input({
+					description: "Please choose your username.",
+					floatingLabel: true,
+					label: "Username",
+					type: "text",
+					before: "@",
+					after: [".com", new b.button({ color: "primary" }, "Check")],
+				});
+			},
+		}),
+
+		//-----------------------
+
 		new e.title("CSS"),
 		new e.subtitle("Sass variables"),
 		new e.codepreview({
