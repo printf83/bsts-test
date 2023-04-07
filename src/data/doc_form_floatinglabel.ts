@@ -181,43 +181,55 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.text("Floating labels also support {{.input-group}}."),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.form.floatinglabel.input({
 					label: "Username",
 					type: "text",
 					before: "@",
-					after: [".com", new b.button({ color: "primary" }, "Check")],
+				});
+			},
+		}),
+
+		new e.text(
+			"When using {{.input-group}} and {{.form-floating}} along with form validation, the {{-feedback}} should be placed outside of the {{.form-floating}}, but inside of the {{.input-group}}. This means that the feedback will need to be shown using javascript."
+		),
+		new e.code({
+			output: () => {
+				return b.form.floatinglabel.input({
+					invalidFeedback: "Please choose a username.",
+					label: "Username",
+					type: "text",
+					before: "@",
+					isvalid: false,
 				});
 			},
 		}),
 
 		//-----------------------
 
-		new e.title("Input groups 2"),
-		new e.text("Floating labels also support {{.input-group}}."),
+		new e.title("Layout"),
+		new e.text(
+			"When working with the Bootstrap grid system, be sure to place form elements within column classes."
+		),
 		new e.code({
 			output: () => {
-				return b.form.floatinglabel.input({
-					label: "Username",
-					type: "text",
-					before: "@",
-					after: [".com", new b.button({ color: "primary" }, "Check")],
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Input groups 3"),
-		new e.text("Floating labels also support {{.input-group}}."),
-		new e.code({
-			output: () => {
-				return b.form.floatinglabel.input({
-					description: "Please choose your username.",
-					label: "Username",
-					type: "text",
-					before: "@",
-					after: [".com", new b.button({ color: "primary" }, "Check")],
-				});
+				return new h.div({ row: true }, [
+					b.form.floatinglabel.input({
+						container: { col: "md-6" },
+						label: "Email address",
+						type: "email",
+						value: "mdo@example.com",
+					}),
+					b.form.floatinglabel.select({
+						container: { col: "md-6" },
+						label: "Work with selects",
+						item: [
+							{ selected: true, elem: "Open this select menu" },
+							{ value: "1", elem: "One" },
+							{ value: "2", elem: "Two" },
+							{ value: "3", elem: "Three" },
+						],
+					}),
+				]);
 			},
 		}),
 
@@ -228,24 +240,17 @@ export const doc_form_floatinglabel: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			code: `
-				$form-range-track-width:          100%;
-				$form-range-track-height:         .5rem;
-				$form-range-track-cursor:         pointer;
-				$form-range-track-bg:             var(--#{$prefix}tertiary-bg);
-				$form-range-track-border-radius:  1rem;
-				$form-range-track-box-shadow:     $box-shadow-inset;
-
-				$form-range-thumb-width:                   1rem;
-				$form-range-thumb-height:                  $form-range-thumb-width;
-				$form-range-thumb-bg:                      $component-active-bg;
-				$form-range-thumb-border:                  0;
-				$form-range-thumb-border-radius:           1rem;
-				$form-range-thumb-box-shadow:              0 .1rem .25rem rgba($black, .1);
-				$form-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-focus-box-shadow;
-				$form-range-thumb-focus-box-shadow-width:  $input-focus-width; // For focus box shadow issue in Edge
-				$form-range-thumb-active-bg:               tint-color($component-active-bg, 70%);
-				$form-range-thumb-disabled-bg:             var(--#{$prefix}secondary-color);
-				$form-range-thumb-transition:              background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+				$form-floating-height:                  add(3.5rem, $input-height-border);
+				$form-floating-line-height:             1.25;
+				$form-floating-padding-x:               $input-padding-x;
+				$form-floating-padding-y:               1rem;
+				$form-floating-input-padding-t:         1.625rem;
+				$form-floating-input-padding-b:         .625rem;
+				$form-floating-label-height:            1.5em;
+				$form-floating-label-opacity:           .65;
+				$form-floating-label-transform:         scale(.85) translateY(-.5rem) translateX(.15rem);
+				$form-floating-label-disabled-color:    $gray-600;
+				$form-floating-transition:              opacity .1s ease-in-out, transform .1s ease-in-out;
 			`,
 		}),
 	],
