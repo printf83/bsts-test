@@ -133,7 +133,7 @@ export const doc_form_layout: IAttrContent = {
 						placeholder: "Apartment, studio, or floor",
 					}),
 					b.form.input({
-						container: { col: 6 },
+						container: { col: 5 },
 						label: "City",
 					}),
 					b.form.select({
@@ -142,15 +142,10 @@ export const doc_form_layout: IAttrContent = {
 						item: [{ selected: true, elem: "Choose..." }, { elem: "..." }],
 					}),
 					b.form.input({
-						container: { col: 2 },
+						container: { col: 3 },
 						label: "Zip",
 					}),
-					new h.div(
-						{ col: 12 },
-						b.form.check({
-							label: "Check me out",
-						})
-					),
+					b.form.check({ container: { col: 12 }, label: "Check me out" }),
 					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
 				]);
 			},
@@ -172,19 +167,17 @@ export const doc_form_layout: IAttrContent = {
 						container: { marginBottom: 3 },
 						label: "Email",
 						type: "email",
-						col1: 2,
-						col2: 10,
+						col1: 3,
 					}),
 					b.form.input({
 						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
-						col1: 2,
-						col2: 10,
+						col1: 3,
 					}),
 					new h.fieldset({ row: true, marginBottom: 3 }, [
-						new h.legend({ class: "col-form-label", col: "sm-2", paddingTop: 0 }, "Radios"),
-						new h.div({ col: "sm-10" }, [
+						new h.legend({ class: "col-form-label", col: "sm-3", paddingTop: 0 }, "Radios"),
+						new h.div({ col: "sm-auto" }, [
 							b.form.check({
 								type: "radio",
 								name: "gridRadios",
@@ -203,10 +196,8 @@ export const doc_form_layout: IAttrContent = {
 						]),
 					]),
 					new h.div(
-						{ col: "sm-10", offset: "sm-2" },
-						b.form.check({
-							label: "Example checkbox",
-						})
+						{ row: true },
+						b.form.check({ container: { col: "sm-auto", offset: "sm-3" }, label: "Example checkbox" })
 					),
 
 					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
@@ -228,24 +219,157 @@ export const doc_form_layout: IAttrContent = {
 						label: "Email",
 						weight: "sm",
 						placeholder: "col-form-label-sm",
-						col1: 2,
-						col2: 10,
+						col1: 3,
 					}),
 					b.form.input({
 						container: { row: true, marginBottom: 3 },
 						label: "Email",
 						placeholder: "col-form-label",
-						col1: 2,
-						col2: 10,
+						col1: 3,
 					}),
 					b.form.input({
 						label: "Email",
 						weight: "lg",
 						placeholder: "col-form-label-lg",
-						col1: 2,
-						col2: 10,
+						col1: 3,
 					}),
 				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Column sizing"),
+		new e.text(
+			"As shown in the previous examples, our grid system allows you to place any number of {{.col}}s within a {{.row}}. They’ll split the available width equally between them. You may also pick a subset of your columns to take up more or less space, while the remaining {{.col}}s equally split the rest, with specific column classes like {{.col-sm-6}}."
+		),
+		new e.code({
+			output: () => {
+				return new h.div({ row: true, gutter: 3 }, [
+					b.form.input({
+						container: { col: "sm-6" },
+						label: "City",
+						hideLabel: true,
+						placeholder: "City",
+					}),
+					b.form.input({
+						container: { col: "sm" },
+						label: "State",
+						hideLabel: true,
+						placeholder: "State",
+					}),
+					b.form.input({
+						container: { col: "sm" },
+						label: "Zip",
+						hideLabel: true,
+						placeholder: "Zip",
+					}),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Auto-sizing"),
+		new e.text(
+			"The example below uses a flexbox utility to vertically center the contents and changes {{.col}} to {{.col-auto}} so that your columns only take up as much space as needed. Put another way, the column sizes itself based on the contents."
+		),
+		new e.code({
+			output: () => {
+				return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
+					b.form.input({
+						container: { col: "auto" },
+						label: "Name",
+						hideLabel: true,
+						placeholder: "Jane Doe",
+					}),
+					b.form.input({
+						container: { col: "auto" },
+						label: "Username",
+						hideLabel: true,
+						placeholder: "Username",
+						before: "@",
+					}),
+					b.form.select({
+						container: { col: "auto" },
+						label: "Preference",
+						hideLabel: true,
+						item: [
+							{ selected: true, elem: "Choose..." },
+							{ value: "1", elem: "One" },
+							{ value: "2", elem: "Two" },
+							{ value: "3", elem: "Three" },
+						],
+					}),
+					b.form.check({ container: { col: "auto" }, label: "Remember me" }),
+					new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Submit")),
+				]);
+			},
+		}),
+		new e.text("You can then remix that once again with size-specific column classes."),
+		new e.code({
+			output: () => {
+				return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
+					b.form.input({
+						container: { col: "sm-3" },
+						label: "Name",
+						hideLabel: true,
+						placeholder: "Jane Doe",
+					}),
+					b.form.input({
+						container: { col: "sm-3" },
+						label: "Username",
+						hideLabel: true,
+						placeholder: "Username",
+						before: "@",
+					}),
+					b.form.select({
+						container: { col: "sm-3" },
+						label: "Preference",
+						hideLabel: true,
+						item: [
+							{ selected: true, elem: "Choose..." },
+							{ value: "1", elem: "One" },
+							{ value: "2", elem: "Two" },
+							{ value: "3", elem: "Three" },
+						],
+					}),
+					b.form.check({ container: { col: "auto" }, label: "Remember me" }),
+					new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Submit")),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Inline forms"),
+		new e.text(
+			"Use the {{.row-cols-*}} classes to create responsive horizontal layouts. By adding {{https://getbootstrap.com/docs/5.3/layout/gutters/::gutter modifier classes}}, we’ll have gutters in horizontal and vertical directions. On narrow mobile viewports, the {{.col-12}} helps stack the form controls and more. The {{.align-items-center}} aligns the form elements to the middle, making the {{.form-check}} align properly."
+		),
+		new e.code({
+			output: () => {
+				return new h.div({ row: true, rowCol: "lg-auto", gutter: 3, alignItem: "center" }, [
+					b.form.input({
+						container: { col: 12 },
+						label: "Username",
+						hideLabel: true,
+						placeholder: "Username",
+						before: "@",
+					}),
+					b.form.select({
+						container: { col: 12 },
+						label: "Preference",
+						hideLabel: true,
+						item: [
+							{ selected: true, elem: "Choose..." },
+							{ value: "1", elem: "One" },
+							{ value: "2", elem: "Two" },
+							{ value: "3", elem: "Three" },
+						],
+					}),
+					b.form.check({ container: { col: 12 }, label: "Remember me" }),
+					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit")),
+				]);
 			},
 		}),
 

@@ -214,13 +214,13 @@ export const doc_form_floating_label: IAttrContent = {
 			output: () => {
 				return new h.div({ row: true, gutter: 3 }, [
 					b.form.floatinglabel.input({
-						container: { col: "md-6" },
+						container: { col: "md" },
 						label: "Email address",
 						type: "email",
 						value: "mdo@example.com",
 					}),
 					b.form.floatinglabel.select({
-						container: { col: "md-6" },
+						container: { col: "md" },
 						label: "Work with selects",
 						item: [
 							{ selected: true, elem: "Open this select menu" },
