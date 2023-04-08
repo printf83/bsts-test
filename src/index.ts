@@ -2,7 +2,32 @@ import { core } from "@printf83/bsts";
 import { data } from "./data/_index.js";
 import * as main from "./ctl/main/_index.js";
 
-let CURRENT_PAGE = "doc_form_inputgroup";
+const cookie = {
+	set: (name: string, value: string, expiredInDays?: number, path?: string) => {
+		expiredInDays ??= 7;
+		path ??= window.location.hostname;
+
+		let date = new Date();
+		date.setTime(date.getTime() + expiredInDays * 24 * 60 * 60 * 1000);
+		const expires = `expires=${date.toUTCString()}`;
+		document.cookie = `${name}=${value};${expires};path=${path}`;
+	},
+	delete: (name: string) => {
+		cookie.set(name, "", -1);
+	},
+	get: (name: string) => {
+		name = `${name}=`;
+		const cDecoded = decodeURIComponent(document.cookie);
+		const cArr = cDecoded.split("; ");
+		let res: string | null = null;
+		cArr.forEach((val) => {
+			if (val.indexOf(name) === 0) res = val.substring(name.length);
+		});
+		return res;
+	},
+};
+
+let CURRENT_PAGE = cookie.get("current_page") || "doc_gettingstarted_introduction";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -72,6 +97,12 @@ const onmenuchange = (value: string) => {
 	window.scrollTo(0, 0);
 	setTimeout(
 		(value) => {
+			cookie.set("current_page", value);
+			//-------------------------------
+			// TODO :  set location without reload
+			// https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
+			// location.href = `?d=${value}`;
+			//-------------------------------
 			let contentbody = document.getElementById("bs-main") as HTMLElement;
 			core.replaceChild(contentbody, main.genMainContent(getData(value)));
 			core.init(contentbody);

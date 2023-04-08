@@ -115,6 +115,7 @@ export const doc_component_tooltip: IAttrContent = {
 			"Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.tooltip(

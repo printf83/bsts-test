@@ -92,6 +92,7 @@ export const doc_component_badge: IAttrContent = {
 			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(
@@ -115,6 +116,7 @@ export const doc_component_badge: IAttrContent = {
 			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(

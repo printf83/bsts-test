@@ -171,15 +171,11 @@ export const doc_component_toast: IAttrContent = {
 					"{{undefined}}",
 					"Manually set close button white. If not, automaticly set base on {{color}}",
 				],
-				[
-					"{{delay}}",
-					"{{number}} | {{undefined}}",
-					"{{5000}}, {{10000}} for warning toast, {{15000}} for danger toast",
-					"Set toast timeout delay in milisecond",
-				],
+				["{{delay}}", "{{number}} | {{undefined}}", "{{5000}}", "Set toast timeout delay in milisecond"],
 			],
 		}),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				const fnToast = (color: b.toast.IAttrBSToastTemplate["color"], elem: core.IElem, icon?: string) => {
 					let tElem;

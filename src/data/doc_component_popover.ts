@@ -74,6 +74,7 @@ export const doc_component_popover: IAttrContent = {
 			"Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{data-bs-placement}} to change the direction."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.popover(

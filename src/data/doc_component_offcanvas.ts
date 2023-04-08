@@ -65,6 +65,7 @@ export const doc_component_offcanvas: IAttrContent = {
 			item: ["{{.offcanvas}} hides content (default)", "{{.offcanvas.show}} shows content"],
 		}),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return [
 					new b.offcanvas.toggle(

@@ -27,6 +27,7 @@ export const doc_component_progress: IAttrContent = {
 		}),
 		new e.text("Put that all together, and you have the following examples."),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return [0, 25, 50, 75, 100].map((i) => {
 					return new b.progress.container(
@@ -62,6 +63,7 @@ export const doc_component_progress: IAttrContent = {
 		),
 
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return [
 					new b.progress.container(
@@ -108,6 +110,7 @@ export const doc_component_progress: IAttrContent = {
 		new e.title("Backgrounds"),
 		new e.text("Use background utility classes to change the appearance of individual progress bars."),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -129,6 +132,7 @@ export const doc_component_progress: IAttrContent = {
 			"If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{text color}}, so the labels remain readable and have sufficient contrast."
 		),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -151,6 +155,7 @@ export const doc_component_progress: IAttrContent = {
 			"Alternatively, you can use the new combined {{https://getbootstrap.com/docs/5.3/helpers/color-background/::color and background}} helper classes."
 		),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -218,6 +223,7 @@ export const doc_component_progress: IAttrContent = {
 			"Add {{.progress-bar-striped}} to any {{.progress-bar}} to apply a stripe via CSS gradient over the progress bar’s background color."
 		),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [10, 25, 50, 75, 100][ix];

@@ -142,6 +142,7 @@ export const doc_component_modal: IAttrContent = {
 					output: e.toast,
 				},
 			],
+			outputAttr: { gap: 1 },
 			output: () => {
 				return [
 					new b.button(
@@ -153,7 +154,7 @@ export const doc_component_modal: IAttrContent = {
 										elem: new h.div({ class: "form-check" }, [
 											new b.input({ type: "checkbox", id: "testcheckbox" }),
 											new b.label(
-												{ for: "testcheckbox", formCheck: true },
+												{ for: "testcheckbox", class: "form-check-label" },
 												"Tick this before press {{b::Yes}} button"
 											),
 										]),
@@ -339,6 +340,7 @@ export const doc_component_modal: IAttrContent = {
 		new e.code({
 			showScript: false,
 			showHTML: false,
+			outputAttr: { gap: 1 },
 			output: () => {
 				let modalContent = (id: string, elem: core.IElem) => {
 					return [
@@ -577,6 +579,7 @@ export const doc_component_modal: IAttrContent = {
 		),
 
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				interface EventWithRelatedTarget extends Event {
 					relatedTarget: HTMLElement;
@@ -800,6 +803,7 @@ export const doc_component_modal: IAttrContent = {
 		}),
 		new e.text("Our default modal without modifier class constitutes the “medium” size modal."),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				const d = [
 					{ weight: "xl", label: "Extra large modal" },
@@ -856,6 +860,7 @@ export const doc_component_modal: IAttrContent = {
 			],
 		}),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				const d = [
 					{ fullscreen: true, label: "Full screen" },

@@ -158,6 +158,7 @@ export const doc_component_list: IAttrContent = {
 			"{{b::ProTip:}} Want equal-width list group items when horizontal? Add {{.flex-fill}} to each list group item."
 		),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				let items = [
 					new b.list.item("An item"),
@@ -294,7 +295,7 @@ export const doc_component_list: IAttrContent = {
 						return new b.list.item([
 							new b.input({ type: "checkbox", id: `${i}Checkbox`, marginEnd: 2 }),
 							new b.label(
-								{ for: `${i}Checkbox`, formCheck: true },
+								{ for: `${i}Checkbox`, class: "form-check-label" },
 								`${i.charAt(0).toUpperCase() + i.slice(1)} checkbox`
 							),
 						]);
@@ -310,7 +311,7 @@ export const doc_component_list: IAttrContent = {
 						return new b.list.item([
 							new b.input({ type: "radio", id: `${i}Radio`, name: "listGroupRadio", marginEnd: 2 }),
 							new b.label(
-								{ for: `${i}Radio`, formCheck: true },
+								{ for: `${i}Radio`, class: "form-check-label" },
 								`${i.charAt(0).toUpperCase() + i.slice(1)} radio`
 							),
 						]);
@@ -328,7 +329,7 @@ export const doc_component_list: IAttrContent = {
 						return new b.list.item([
 							new b.input({ type: "checkbox", id: `${i}CheckboxStretched`, marginEnd: 2 }),
 							new b.label(
-								{ for: `${i}CheckboxStretched`, formCheck: true, stretched: true },
+								{ for: `${i}CheckboxStretched`, class: "form-check-label", stretched: true },
 								`${i.charAt(0).toUpperCase() + i.slice(1)} checkbox`
 							),
 						]);

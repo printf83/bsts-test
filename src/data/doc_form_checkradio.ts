@@ -24,11 +24,11 @@ export const doc_form_checkradio: IAttrContent = {
 				return [
 					new h.div({ class: "form-check" }, [
 						new b.input({ type: "checkbox", id: "flexCheckDefault" }),
-						new b.label({ for: "flexCheckDefault", formCheck: true }, "Default checkbox"),
+						new b.label({ for: "flexCheckDefault", class: "form-check-label" }, "Default checkbox"),
 					]),
 					new h.div({ class: "form-check" }, [
 						new b.input({ type: "checkbox", id: "flexCheckChecked", checked: true }),
-						new b.label({ for: "flexCheckChecked", formCheck: true }, "Checked checkbox"),
+						new b.label({ for: "flexCheckChecked", class: "form-check-label" }, "Checked checkbox"),
 					]),
 				];
 			},
@@ -93,7 +93,7 @@ export const doc_form_checkradio: IAttrContent = {
 				return [
 					new h.div({ class: "form-check" }, [
 						new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }),
-						new b.label({ for: "flexRadioDefault", formCheck: true }, "Default radio"),
+						new b.label({ for: "flexRadioDefault", class: "form-check-label" }, "Default radio"),
 					]),
 					new h.div({ class: "form-check" }, [
 						new b.input({
@@ -102,7 +102,7 @@ export const doc_form_checkradio: IAttrContent = {
 							name: "exampeRadioGroup1",
 							checked: true,
 						}),
-						new b.label({ for: "flexRadioDefault2", formCheck: true }, "Default checked radio"),
+						new b.label({ for: "flexRadioDefault2", class: "form-check-label" }, "Default checked radio"),
 					]),
 				];
 			},

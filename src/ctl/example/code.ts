@@ -23,6 +23,7 @@ export interface IAttrBSExampleContainer extends core.IAttr {
 	showHTML?: boolean;
 
 	previewAttr?: core.IAttr;
+	outputAttr?: core.IAttr;
 }
 
 declare var PR: {
@@ -268,14 +269,28 @@ const itemCode = (
 	return res;
 };
 
-const itemOutput = (previewAttr: core.IAttr | undefined, str: string) => {
+const itemOutput = (previewAttr: core.IAttr | undefined, outputAttr: core.IAttr | undefined, str: string) => {
 	if (previewAttr) {
-		return new b.list.item(
-			core.mergeObject({ padding: 4 }, previewAttr),
-			new h.div({ class: `example-output` }, str)
-		);
+		if (outputAttr) {
+			return new b.list.item(
+				core.mergeObject({ padding: 4 }, previewAttr),
+				new h.div(core.mergeObject({ class: `example-output` }, outputAttr), str)
+			);
+		} else {
+			return new b.list.item(
+				core.mergeObject({ padding: 4 }, previewAttr),
+				new h.div({ class: `example-output` }, str)
+			);
+		}
 	} else {
-		return new b.list.item({ padding: 4 }, new h.div({ class: `example-output` }, str));
+		if (outputAttr) {
+			return new b.list.item(
+				{ padding: 4 },
+				new h.div(core.mergeObject({ class: `example-output` }, outputAttr), str)
+			);
+		} else {
+			return new b.list.item({ padding: 4 }, new h.div({ class: `example-output` }, str));
+		}
 	}
 };
 
@@ -296,9 +311,9 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 	if (attr.output && attr.showOutput) {
 		if (attr.manager) {
-			e.push(itemOutput(attr.previewAttr, attr.manager(attr.output())));
+			e.push(itemOutput(attr.previewAttr, attr.outputAttr, attr.manager(attr.output())));
 		} else {
-			e.push(itemOutput(attr.previewAttr, attr.output()));
+			e.push(itemOutput(attr.previewAttr, attr.outputAttr, attr.output()));
 		}
 	}
 

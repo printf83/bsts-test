@@ -71,9 +71,10 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.text("The best part is you can do this with any button variant, too:"),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-					return new b.dropdown.container({ marginEnd: 2, marginBottom: 2 }, [
+					return new b.dropdown.container([
 						new b.dropdown.toggle(
 							{ color: i as core.bootstrapType.color[number] },
 							i.charAt(0).toUpperCase() + i.slice(1)
@@ -100,9 +101,10 @@ export const doc_component_dropdown: IAttrContent = {
 			"We use this extra class to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-					return new b.dropdown.container({ marginEnd: 2, marginBottom: 2 }, [
+					return new b.dropdown.container([
 						new b.button(
 							{ color: i as core.bootstrapType.color[number] },
 							i.charAt(0).toUpperCase() + i.slice(1)
@@ -125,6 +127,7 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.title("Sizing"),
 		new e.text("Button dropdowns work with buttons of all sizes, including default and split dropdown buttons."),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -135,7 +138,7 @@ export const doc_component_dropdown: IAttrContent = {
 				]);
 
 				return [
-					new b.dropdown.container({ marginEnd: 2 }, [
+					new b.dropdown.container([
 						new b.dropdown.toggle({ color: "secondary", weight: "lg" }, "Large button "),
 						menu,
 					]),
@@ -149,6 +152,7 @@ export const doc_component_dropdown: IAttrContent = {
 		}),
 
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -159,7 +163,7 @@ export const doc_component_dropdown: IAttrContent = {
 				]);
 
 				return [
-					new b.dropdown.container({ marginEnd: 2 }, [
+					new b.dropdown.container([
 						new b.dropdown.toggle({ color: "secondary", weight: "sm" }, "Small button "),
 						menu,
 					]),
@@ -261,6 +265,7 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.subtitle("Dropup"),
 		new e.text("Trigger dropdown menus above elements by adding {{.dropup}} to the parent element."),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -271,7 +276,7 @@ export const doc_component_dropdown: IAttrContent = {
 				]);
 
 				return [
-					new b.dropdown.container({ drop: "up", marginEnd: 2 }, [
+					new b.dropdown.container({ drop: "up" }, [
 						new b.dropdown.toggle({ color: "secondary" }, "Dropup "),
 						menu,
 					]),
@@ -307,6 +312,7 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.subtitle("Dropend"),
 		new e.text("Trigger dropdown menus at the right of the elements by adding {{.dropend}} to the parent element."),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -317,7 +323,7 @@ export const doc_component_dropdown: IAttrContent = {
 				]);
 
 				return [
-					new b.dropdown.container({ drop: "end", marginEnd: 2 }, [
+					new b.dropdown.container({ drop: "end" }, [
 						new b.dropdown.toggle({ color: "secondary" }, "Dropend "),
 						menu,
 					]),
@@ -337,6 +343,7 @@ export const doc_component_dropdown: IAttrContent = {
 			"Trigger dropdown menus at the left of the elements by adding {{.dropstart}} to the parent element."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -347,7 +354,7 @@ export const doc_component_dropdown: IAttrContent = {
 				]);
 
 				return [
-					new b.dropdown.container({ drop: "start", marginEnd: 2 }, [
+					new b.dropdown.container({ drop: "start" }, [
 						new b.dropdown.toggle({ color: "secondary" }, " Dropstart"),
 						menu,
 					]),
@@ -499,6 +506,7 @@ export const doc_component_dropdown: IAttrContent = {
 			"Taking most of the options shown above, here’s a small kitchen sink demo of various dropdown alignment options in one place."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				return [
 					{ label: "Dropdown" },
@@ -509,24 +517,21 @@ export const doc_component_dropdown: IAttrContent = {
 					{ label: "Dropend", drop: "end" },
 					{ label: "Dropup", drop: "up" },
 				].map((i) => {
-					return new b.dropdown.container(
-						{ marginEnd: 2, marginBottom: 2, drop: i.drop as b.dropdown.IAttrBSDropdownContainerDrop },
-						[
-							new b.dropdown.toggle({ color: "secondary" }, i.label),
-							new b.dropdown.menu(
-								{
-									positionView: i.positionView as
-										| core.bootstrapType.positionView[number]
-										| core.bootstrapType.positionView[number][],
-								},
-								[
-									new b.dropdown.item("Action"),
-									new b.dropdown.item("Another action"),
-									new b.dropdown.item("Something else here"),
-								]
-							),
-						]
-					);
+					return new b.dropdown.container({ drop: i.drop as b.dropdown.IAttrBSDropdownContainerDrop }, [
+						new b.dropdown.toggle({ color: "secondary" }, i.label),
+						new b.dropdown.menu(
+							{
+								positionView: i.positionView as
+									| core.bootstrapType.positionView[number]
+									| core.bootstrapType.positionView[number][],
+							},
+							[
+								new b.dropdown.item("Action"),
+								new b.dropdown.item("Another action"),
+								new b.dropdown.item("Something else here"),
+							]
+						),
+					]);
 				});
 			},
 		}),
@@ -689,6 +694,7 @@ export const doc_component_dropdown: IAttrContent = {
 		new e.title("Dropdown options"),
 		new e.text("Use {{data-bs-offset}} or {{data-bs-reference}} to change the location of the dropdown."),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -719,6 +725,7 @@ export const doc_component_dropdown: IAttrContent = {
 			"By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{autoClose}} option to change this behavior of the dropdown."
 		),
 		new e.code({
+			outputAttr: { gap: 1 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),

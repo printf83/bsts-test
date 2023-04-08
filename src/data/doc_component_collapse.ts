@@ -32,6 +32,7 @@ export const doc_component_collapse: IAttrContent = {
 			"Generally, we recommend using a {{<button>}} with the {{data-bs-target}} attribute. While not recommended from a semantic point of view, you can also use an {{<a>}} link with the {{href}} attribute (and a {{role='button'}}). In both cases, the {{data-bs-toggle='collapse'}} is required."
 		),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
@@ -69,6 +70,7 @@ export const doc_component_collapse: IAttrContent = {
 			)
 		),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
@@ -100,6 +102,7 @@ export const doc_component_collapse: IAttrContent = {
 			"A {{<button>}} or {{<a>}} element can show and hide multiple elements by referencing them with a selector in its {{data-bs-target}} or {{href}} attribute. Conversely, multiple {{<button>}} or {{<a>}} elements can show and hide the same element if they each reference it with their {{data-bs-target}} or {{href}} attribute."
 		),
 		new e.code({
+			outputAttr: { gap: 2 },
 			output: () => {
 				return [
 					new b.collapse.toggle(

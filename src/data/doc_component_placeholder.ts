@@ -92,7 +92,7 @@ export const doc_component_placeholder: IAttrContent = {
 				return [
 					new h.span({ loadingPlaceholder: true, col: 6 }, " "),
 					new h.span({ loadingPlaceholder: true, width: 75 }, " "),
-					new h.span({ loadingPlaceholder: true, style: { width: "25%" } }, " "),
+					new h.span({ loadingPlaceholder: true, style: { width: "30%" } }, " "),
 				];
 			},
 		}),

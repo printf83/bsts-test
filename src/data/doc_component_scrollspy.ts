@@ -91,7 +91,6 @@ export const doc_component_scrollspy: IAttrContent = {
 			"Scrollspy also works with nested {{.navs}}. If a nested {{.nav}} is {{.active}}, its parents will also be {{.active}}. Scroll the area next to the navbar and watch the active class change."
 		),
 		new e.code({
-			previewAttr: { paddingY: 4, paddingX: 2 },
 			output: () => {
 				let headerItems = new b.nav.header.containerNav(
 					{
@@ -175,7 +174,6 @@ export const doc_component_scrollspy: IAttrContent = {
 			"Scrollspy also works with {{.list-groups}}. Scroll the area next to the list group and watch the active class change."
 		),
 		new e.code({
-			previewAttr: { paddingY: 4, paddingX: 2 },
 			output: () => {
 				let d = ["1", "2", "3", "4"];
 				let headerItems = d.map((i) => {
@@ -230,7 +228,6 @@ export const doc_component_scrollspy: IAttrContent = {
 				background-color: var(--bs-secondary-bg);
 			}
 			`,
-			previewAttr: { paddingY: 4, paddingX: 2 },
 			output: () => {
 				let d = ["1", "2", "3", "4", "5"];
 				let headerItems = d.map((i) => {

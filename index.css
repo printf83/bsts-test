@@ -56,7 +56,28 @@ a:hover *,
 
 
 /* gap on example code output */
-.example-output > *:not(.modal):not(.offcanvas.show):not(.offcanvas.showing):not(.offcanvas.hiding):not(.offcanvas-backdrop):not(.offcanvas-lg) {
+.example-output{
+    --bs-example-gap-1:0.25rem;
+    --bs-example-gap-2:0.5rem;
+    --bs-example-gap-3:1rem;
+    --bs-example-gap-4:1.5rem;
+    --bs-example-gap-5:3rem;
+
+}
+.example-output.gap-1 { margin: calc(var(--bs-example-gap-1) * -1); }
+.example-output.gap-1>*{ margin: var(--bs-example-gap-1); }
+.example-output.gap-2 { margin: calc(var(--bs-example-gap-2) * -1); }
+.example-output.gap-2>* { margin: var(--bs-example-gap-2); }
+.example-output.gap-3 { margin: calc(var(--bs-example-gap-3) * -1); }
+.example-output.gap-3>* { margin: var(--bs-example-gap-3); }
+.example-output.gap-4 { margin: calc(var(--bs-example-gap-4) * -1); }
+.example-output.gap-4>* { margin: var(--bs-example-gap-4); }
+.example-output.gap-5 { margin: calc(var(--bs-example-gap-5) * -1); }
+.example-output.gap-5>* { margin: var(--bs-example-gap-5); }
+
+
+
+/* .example-output > *:not(.modal):not(.offcanvas.show):not(.offcanvas.showing):not(.offcanvas.hiding):not(.offcanvas-backdrop):not(.offcanvas-lg) {
     margin: 0.25rem;
 }
 
@@ -67,9 +88,8 @@ a:hover *,
 
 .example-output {
     margin: -0.25rem;
-}
+} */
 
-/*example-output debug*/
 .example-output .debug:not(.toast-container){
     position: static !important;
     display: block !important;
@@ -85,11 +105,10 @@ a:hover *,
     position: unset !important;
 }
 
-/* example-output fixed and sticky fix*/
 .example-output .fixed-top,
 .example-output .sticky-top {
     position: static;
-    margin: calc(1.5rem * -1) calc(1.25rem * -1) 1.25rem;
+    /* margin: calc(1.5rem * -1) calc(1.25rem * -1) 1.25rem; */
     border-top-left-radius: var(--bs-border-radius);
     border-top-right-radius: var(--bs-border-radius);
 }
@@ -97,10 +116,9 @@ a:hover *,
 .example-output .fixed-bottom,
 .example-output .sticky-bottom {
     position: static;
-    margin: 1.25rem calc(1.25rem * -1) calc(1.5rem * -1);
+    /* margin: 1.25rem calc(1.25rem * -1) calc(1.5rem * -1); */
 }
 
-/*offcanvas*/
 .example-output .offcanvas.debug{
     transform: none;
     transition: none;
@@ -108,24 +126,23 @@ a:hover *,
     height: 200px;
 }
 
-
 .example-output .offcanvas-start:not(.show):not(.showing):not(.hiding):not(.offcanvas-lg) {
-    margin: calc(1.5rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
+    /* margin: calc(1.5rem * -1) calc(1.25rem * -1) calc(1.5rem * -1); */
     border-top-left-radius: var(--bs-border-radius);
 }
 
 .example-output .offcanvas-top:not(.show):not(.showing):not(.hiding):not(.offcanvas-lg) {
-    margin: calc(1.5rem * -1) calc(1.25rem * -1) 1.25rem;
+    /* margin: calc(1.5rem * -1) calc(1.25rem * -1) 1.25rem; */
     border-top-left-radius: var(--bs-border-radius);
     border-top-right-radius: var(--bs-border-radius);
 }
 
-.example-output .offcanvas-bottom:not(.show):not(.showing):not(.hiding):not(.offcanvas-lg) {
+/* .example-output .offcanvas-bottom:not(.show):not(.showing):not(.hiding):not(.offcanvas-lg) {
     margin: 1.5rem calc(1.5rem * -1) calc(1.5rem * -1);
-}
+} */
 
 .example-output .offcanvas-end:not(.show):not(.showing):not(.offcanvas-lg) {
-    margin: calc(1.25rem * -1) calc(1.25rem * -1) calc(1.5rem * -1);
+    /* margin: calc(1.25rem * -1) calc(1.25rem * -1) calc(1.5rem * -1); */
     border-top-right-radius: var(--bs-border-radius);
 }
 
