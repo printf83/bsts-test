@@ -53,6 +53,7 @@ let m = {
 				{ label: "Input group", value: "doc_form_input_group" },
 				{ label: "Floating labels", value: "doc_form_floating_label" },
 				{ label: "Layout", value: "doc_form_layout" },
+				{ label: "Validation", value: "doc_form_validation" },
 			],
 		},
 		{
@@ -96,18 +97,42 @@ const getData = (value: string) => {
 };
 
 const onmenuchange = (value: string) => {
-	window.scrollTo(0, 0);
 	setTimeout(
 		(value) => {
-			cookie.set("current_page", value);
 			//-------------------------------
 			// TODO :  set location without reload
 			// https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
 			// location.href = `?d=${value}`;
 			//-------------------------------
+
+			//chekc if value have #
+			let docId: string = value;
+			let anchorId: string | null = null;
+
+			if (value.indexOf("#") > -1) {
+				let tempValue = value.split("#");
+				docId = tempValue[0];
+				anchorId = tempValue[1];
+			}
+
+			cookie.set("current_page", docId);
+
 			let contentbody = document.getElementById("bs-main") as HTMLElement;
-			core.replaceChild(contentbody, main.genMainContent(getData(value)));
+			core.replaceChild(contentbody, main.genMainContent(getData(docId)));
 			core.init(contentbody);
+
+			//focus to e
+			if (anchorId) {
+				let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
+				if (anchorNode) {
+					let anchorElem = anchorNode[0] as HTMLElement;
+					let elemPosition = anchorElem.getBoundingClientRect().top;
+					let offsetElemPosition = elemPosition + window.pageYOffset - 60;
+					window.scrollTo(0, offsetElemPosition);
+				}
+			} else {
+				window.scrollTo(0, 0);
+			}
 
 			setTimeout(() => {
 				PR.prettyPrint();
@@ -216,4 +241,28 @@ core.documentReady(() => {
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
 	core.init(body);
+
+	document.addEventListener(
+		"bs-navigate",
+		(e) => {
+			let value = (<CustomEvent>e).detail;
+
+			//highlight current menu
+			let bsMenu = document.getElementById("bs-menu") as HTMLElement;
+			let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
+			if (lastActive) {
+				lastActive.classList.remove("active");
+				lastActive.removeAttribute("aria-current");
+			}
+
+			let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
+			if (newActive) {
+				newActive.classList.add("active");
+				newActive.setAttribute("aria-current", "page");
+			}
+
+			onmenuchange(value);
+		},
+		false
+	);
 });

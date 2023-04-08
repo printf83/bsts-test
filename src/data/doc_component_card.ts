@@ -19,7 +19,7 @@ export const doc_component_card: IAttrContent = {
 			"Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no {{margin}} by default, so use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing utilities}} as needed."
 		),
 		new e.text(
-			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various {{https://getbootstrap.com/docs/5.3/components/card/#sizing::sizing options}}."
+			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various {{nav:doc_component_card#sizing::sizing options}}."
 		),
 		new e.code({
 			output: () => {
@@ -359,7 +359,7 @@ export const doc_component_card: IAttrContent = {
 
 		new e.title("Navigation"),
 		new e.text(
-			"Add some navigation to a card’s header (or block) with Bootstrap’s {{https://getbootstrap.com/docs/5.3/components/navs-tabs/::nav components}}."
+			"Add some navigation to a card’s header (or block) with Bootstrap’s {{nav:doc_component_nav::nav components}}."
 		),
 		new e.code({
 			output: () => {

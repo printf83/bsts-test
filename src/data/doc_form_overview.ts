@@ -12,59 +12,71 @@ export const doc_form_overview: IAttrContent = {
 				{ row: true },
 				[
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/form-control/",
+						data: "doc_form_control",
 						title: "Form control",
 						content: "Style textual inputs and textareas with support for multiple states.",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/select/",
+						data: "doc_form_select",
 						title: "Select",
 						content: "Improve browser default select elements with a custom initial appearance.",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/checks-radios/",
+						data: "doc_form_check_radio",
 						title: "Checks & radios",
 						content: "Use our custom radio buttons and checkboxes in forms for selecting input options.",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/range/",
+						data: "doc_form_range",
 						title: "Range",
 						content: "Replace browser default range inputs with our custom version.",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/input-group/",
+						data: "doc_form_input_group",
 						title: "Input group",
 						content: "Attach labels and buttons to your inputs for increased semantic value.",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/floating-labels/",
+						data: "doc_form_floating_label",
 						title: "Floating labels",
 						content: "Create beautifully simple form labels that float over your input fields.",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/layout/",
+						data: "doc_form_layout",
 						title: "Layout",
 						content: "Create inline, horizontal, or complex grid-based layouts with your forms.",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/forms/validation/",
+						data: "doc_form_validation",
 						title: "Validation",
 						content: "Validate your forms with custom or native validation behaviors and styles.",
 					},
 				].map((i) => {
 					return new h.div(
 						{ col: "md-6", marginBottom: 3 },
-						new h.a({ display: "block", textDecoration: "none", href: i.href }, [
-							new h.strong({ display: "block", marginBottom: 0, class: "h5" }, i.title),
-							new h.span({ textColor: "secondary" }, i.content),
-						])
+						new h.a(
+							{
+								display: "block",
+								textDecoration: "none",
+								href: "#",
+								on: {
+									click: () => {
+										document.dispatchEvent(new CustomEvent("bs-navigate", { detail: i.data }));
+									},
+								},
+							},
+							[
+								new h.strong({ display: "block", marginBottom: 0, class: "h5" }, i.title),
+								new h.span({ textColor: "secondary" }, i.content),
+							]
+						)
 					);
 				})
 			)
 		),
 		new e.title("Overview"),
 		new e.text(
-			"Bootstrap’s form controls expand on {{https://getbootstrap.com/docs/5.3/content/reboot/#forms::our Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."
+			"Bootstrap’s form controls expand on {{nav:doc_content_reboot#forms::our Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."
 		),
 		new e.text(
 			"Be sure to use an appropriate {{type}} attribute on all inputs (e.g., {{email}} for email address or {{number}} for numerical information) to take advantage of newer input controls like email verification, number selection, and more."
@@ -199,7 +211,7 @@ export const doc_form_overview: IAttrContent = {
 
 		new e.subtitle("Sass variables"),
 		new e.text(
-			"{{$input-btn-*}} variables are shared global variables between our {{https://getbootstrap.com/docs/5.3/components/buttons/::buttons}} and our form components. You’ll find these frequently reassigned as values to other component-specific variables."
+			"{{$input-btn-*}} variables are shared global variables between our {{nav:doc_component_button::buttons}} and our form components. You’ll find these frequently reassigned as values to other component-specific variables."
 		),
 
 		new e.codepreview({

@@ -12,7 +12,7 @@ export const doc_component_popover: IAttrContent = {
 		new e.ul({
 			item: [
 				"Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
-				"Popovers require the {{https://getbootstrap.com/docs/5.3/components/popovers/::popover plugin}} as a dependency.",
+				"Popovers require the {{nav:doc_component_popover::popover plugin}} as a dependency.",
 				"Popovers are opt-in for performance reasons, so {{b::you must initialize them yourself}}.",
 				"Zero-length {{title}} and {{content}} values will never show a popover.",
 				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like our input groups, button groups, etc).",
@@ -103,7 +103,7 @@ export const doc_component_popover: IAttrContent = {
 			`,
 		}),
 		new e.text(
-			"Another situation where you’ll want to set an explicit custom {{container}} are popovers inside a {{https://getbootstrap.com/docs/5.3/components/modal/::modal dialog}}, to make sure that the popover itself is appended to the modal. This is particularly important for popovers that contain interactive elements – modal dialogs will trap focus, so unless the popover is a child element of the modal, users won’t be able to focus or activate these interactive elements."
+			"Another situation where you’ll want to set an explicit custom {{container}} are popovers inside a {{nav:doc_component_modal::modal dialog}}, to make sure that the popover itself is appended to the modal. This is particularly important for popovers that contain interactive elements – modal dialogs will trap focus, so unless the popover is a child element of the modal, users won’t be able to focus or activate these interactive elements."
 		),
 		new e.codepreview({
 			type: "js",
@@ -118,7 +118,7 @@ export const doc_component_popover: IAttrContent = {
 
 		new e.subtitle("Custom popovers"),
 		new e.text(
-			"You can customize the appearance of popovers using {{https://getbootstrap.com/docs/5.3/components/popovers/#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope our custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of popovers using {{nav:doc_component_popover#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope our custom appearance and use it to override some of the local CSS variables."
 		),
 
 		// new e.codepreview({
@@ -446,7 +446,7 @@ export const doc_component_popover: IAttrContent = {
 				],
 				[
 					"{{dispose}}",
-					"Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{https://getbootstrap.com/docs/5.3/components/popovers/#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
+					"Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{nav:doc_component_popovers#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
 				],
 				[
 					"{{enable}}",

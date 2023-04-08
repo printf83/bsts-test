@@ -865,9 +865,7 @@ export const doc_component_dropdown: IAttrContent = {
 			`,
 		}),
 
-		new e.text(
-			"Variables for the {{https://getbootstrap.com/docs/5.3/components/dropdowns/#dark-dropdowns::dark dropdown}}:"
-		),
+		new e.text("Variables for the {{nav:doc_component_dropdowns#dark_dropdowns::dark dropdown}}:"),
 
 		new e.codepreview({
 			type: "css",

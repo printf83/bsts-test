@@ -228,7 +228,7 @@ export const doc_component_button: IAttrContent = {
 		new e.text("The button plugin allows you to create simple on/off toggle buttons."),
 		new e.alert(
 			{ color: "info", callout: true },
-			" Visually, these toggle buttons are identical to the {{https://getbootstrap.com/docs/5.3/forms/checks-radios/#checkbox-toggle-buttons::checkbox toggle buttons}}. However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as “checked”/“not checked” (since, despite their appearance, they are fundamentally still checkboxes), whereas these toggle buttons will be announced as “button”/“button pressed”. The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button."
+			" Visually, these toggle buttons are identical to the {{nav:doc_form_check_radio#checkbox_toggle_buttons::checkbox toggle buttons}}. However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as “checked”/“not checked” (since, despite their appearance, they are fundamentally still checkboxes), whereas these toggle buttons will be announced as “button”/“button pressed”. The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button."
 		),
 
 		//-----------------------

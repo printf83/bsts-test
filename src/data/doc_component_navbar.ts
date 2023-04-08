@@ -11,8 +11,8 @@ export const doc_component_navbar: IAttrContent = {
 		new e.text("Here’s what you need to know before getting started with the navbar:"),
 		new e.ul({
 			item: [
-				"Navbars require a wrapping {{.navbar}} with {{.navbar-expand{-sm|-md|-lg|-xl|-xxl}}} for responsive collapsing and {{https://getbootstrap.com/docs/5.3/components/navbar/#color-schemes::color scheme}} classes.",
-				"Navbars and their contents are fluid by default. Change the {{https://getbootstrap.com/docs/5.3/components/navbar/#containers::container}} to limit their horizontal width in different ways.",
+				"Navbars require a wrapping {{.navbar}} with {{.navbar-expand{-sm|-md|-lg|-xl|-xxl}}} for responsive collapsing and {{nav:doc_component_navbar#color_schemes::color scheme}} classes.",
+				"Navbars and their contents are fluid by default. Change the {{nav:doc_component_navbar#containers::container}} to limit their horizontal width in different ways.",
 				"Use our {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing}} and {{https://getbootstrap.com/docs/5.3/utilities/flex/::flex}} utility classes for controlling spacing and alignment within navbars.",
 				"Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.",
 				"Ensure accessibility by using a {{<nav>}} element or, if using a more generic element such as a {{<div>}}, add a {{role='navigation'}} to every navbar to explicitly identify it as a landmark region for users of assistive technologies.",
@@ -34,11 +34,11 @@ export const doc_component_navbar: IAttrContent = {
 			item: [
 				"{{.navbar-brand}} for your company, product, or project name.",
 				"{{.navbar-nav}} for a full-height and lightweight navigation (including support for dropdowns).",
-				"{{.navbar-toggler}} for use with our collapse plugin and other {{https://getbootstrap.com/docs/5.3/components/navbar/#responsive-behaviors::navigation toggling}} behaviors.",
+				"{{.navbar-toggler}} for use with our collapse plugin and other {{nav:doc_component_navbar#responsive_behaviors::navigation toggling}} behaviors.",
 				"Flex and spacing utilities for any form controls and actions.",
 				"{{.navbar-text}} for adding vertically centered strings of text.",
 				"{{.collapse.navbar-collapse}} for grouping and hiding navbar contents by a parent breakpoint.",
-				"Add an optional {{.navbar-scroll}} to set a {{max-height}} and {{https://getbootstrap.com/docs/5.3/components/navbar/#scrolling::scroll expanded navbar content}}.",
+				"Add an optional {{.navbar-scroll}} to set a {{max-height}} and {{nav:doc_component_navbar#scrolling::scroll expanded navbar content}}.",
 			],
 		}),
 		new e.text(
@@ -159,7 +159,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		new e.subtitle("Nav"),
 		new e.text(
-			"Navbar navigation links build on our {{.nav}} options with their own modifier class and require the use of {{https://getbootstrap.com/docs/5.3/components/navbar/#toggler::toggler classes}} for proper responsive styling. {{b::Navigation in navbars will also grow to occupy as much horizontal space as possible}} to keep your navbar contents securely aligned."
+			"Navbar navigation links build on our {{.nav}} options with their own modifier class and require the use of {{nav:doc_component_navbar#toggler::toggler classes}} for proper responsive styling. {{b::Navigation in navbars will also grow to occupy as much horizontal space as possible}} to keep your navbar contents securely aligned."
 		),
 		new e.text("Add the {{.active}} class on {{.nav-link}} to indicate the current page."),
 		new e.text("Please note that you should also add the {{aria-current}} attribute on the active {{.nav-link}}."),
@@ -427,7 +427,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		new e.title("Containers"),
 		new e.text(
-			"Although it’s not required, you can wrap a navbar in a {{.container}} to center it on a page–though note that an inner container is still required. Or you can add a container inside the {{.navbar}} to only center the contents of a {{https://getbootstrap.com/docs/5.3/components/navbar/#placement::fixed or static top navbar}}."
+			"Although it’s not required, you can wrap a navbar in a {{.container}} to center it on a page–though note that an inner container is still required. Or you can add a container inside the {{.navbar}} to only center the contents of a {{nav:doc_component_navbar#placement::fixed or static top navbar}}."
 		),
 		new e.code({
 			output: () => {
@@ -747,7 +747,7 @@ export const doc_component_navbar: IAttrContent = {
 
 		new e.subtitle("Offcanvas"),
 		new e.text(
-			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{https://getbootstrap.com/docs/5.3/components/offcanvas/::offcanvas component}}. We extend both the offcanvas default styles and use our {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
+			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{nav:doc_component_offcanvas::offcanvas component}}. We extend both the offcanvas default styles and use our {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
 		),
 		new e.text(
 			"In the example below, to create an offcanvas navbar that is always collapsed across all breakpoints, omit the {{.navbar-expand-*}} class entirely."
@@ -1048,9 +1048,7 @@ export const doc_component_navbar: IAttrContent = {
 			`,
 		}),
 
-		new e.text(
-			"Variables for the {{https://getbootstrap.com/docs/5.3/components/navbar/#color-schemes::dark navbar}}:"
-		),
+		new e.text("Variables for the {{nav:doc_component_navbar#color_schemes::dark navbar}}:"),
 		new e.codepreview({
 			type: "css",
 			code: `
@@ -1066,7 +1064,7 @@ export const doc_component_navbar: IAttrContent = {
 		}),
 		new e.subtitle("Sass loop"),
 		new e.text(
-			"{{https://getbootstrap.com/docs/5.3/components/navbar/#responsive-behaviors::Responsive navbar expand/collapse classes}} (e.g., {{.navbar-expand-lg}}) are combined with the {{$breakpoints}} map and generated through a loop in {{scss/_navbar.scss}}."
+			"{{nav:doc_component_navbar#responsive_behaviors::Responsive navbar expand/collapse classes}} (e.g., {{.navbar-expand-lg}}) are combined with the {{$breakpoints}} map and generated through a loop in {{scss/_navbar.scss}}."
 		),
 		new e.codepreview({
 			type: "css",

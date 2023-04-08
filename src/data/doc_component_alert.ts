@@ -163,7 +163,7 @@ export const doc_component_alert: IAttrContent = {
 		new e.ul({
 			item: [
 				"Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.",
-				"Add a {{https://getbootstrap.com/docs/5.3/components/close-button/::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
+				"Add a {{nav:doc_component_btnclose::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
 				"On the close button, add the {{data-bs-dismiss='alert'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices.",
 				"To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes.",
 			],
@@ -282,9 +282,7 @@ export const doc_component_alert: IAttrContent = {
 			new h.p(
 				"For the sole purpose of dismissing an alert, it isn’t necessary to initialize the component manually via the JS API. By making use of {{data-bs-dismiss='alert'}}, the component will be initialized automatically and properly dismissed."
 			),
-			new h.p(
-				"See the {{https://getbootstrap.com/docs/5.3/components/alerts/#triggers::triggers}} section for more details."
-			),
+			new h.p("See the {{nav:doc_component_alerts#triggers::triggers}} section for more details."),
 		]),
 
 		//-----------------------

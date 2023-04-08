@@ -168,16 +168,18 @@ export const doc_form_layout: IAttrContent = {
 						label: "Email",
 						type: "email",
 						col1: 3,
+						col2: 9,
 					}),
 					b.form.input({
 						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
 						col1: 3,
+						col2: 9,
 					}),
 					new h.fieldset({ row: true, marginBottom: 3 }, [
 						new h.legend({ class: "col-form-label", col: "sm-3", paddingTop: 0 }, "Radios"),
-						new h.div({ col: "sm-auto" }, [
+						new h.div({ col: "sm-9" }, [
 							b.form.check({
 								type: "radio",
 								name: "gridRadios",
@@ -197,7 +199,7 @@ export const doc_form_layout: IAttrContent = {
 					]),
 					new h.div(
 						{ row: true },
-						b.form.check({ container: { col: "sm-auto", offset: "sm-3" }, label: "Example checkbox" })
+						b.form.check({ container: { col: "sm-9", offset: "sm-3" }, label: "Example checkbox" })
 					),
 
 					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
@@ -207,7 +209,7 @@ export const doc_form_layout: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Horizontal form label sizing"),
+		new e.subtitle("Horizontal form label sizing"),
 		new e.text(
 			"Be sure to use {{.col-form-label-sm}} or {{.col-form-label-lg}} to your {{<label>}}s or {{<legend>}}s to correctly follow the size of {{.form-control-lg}} and {{.form-control-sm}}."
 		),
@@ -220,18 +222,21 @@ export const doc_form_layout: IAttrContent = {
 						weight: "sm",
 						placeholder: "col-form-label-sm",
 						col1: 3,
+						col2: 9,
 					}),
 					b.form.input({
 						container: { row: true, marginBottom: 3 },
 						label: "Email",
 						placeholder: "col-form-label",
 						col1: 3,
+						col2: 9,
 					}),
 					b.form.input({
 						label: "Email",
 						weight: "lg",
 						placeholder: "col-form-label-lg",
 						col1: 3,
+						col2: 9,
 					}),
 				];
 			},
@@ -371,34 +376,6 @@ export const doc_form_layout: IAttrContent = {
 					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit")),
 				]);
 			},
-		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.subtitle("Sass variables"),
-		new e.codepreview({
-			type: "css",
-			code: `
-				$form-range-track-width:          100%;
-				$form-range-track-height:         .5rem;
-				$form-range-track-cursor:         pointer;
-				$form-range-track-bg:             var(--#{$prefix}tertiary-bg);
-				$form-range-track-border-radius:  1rem;
-				$form-range-track-box-shadow:     $box-shadow-inset;
-
-				$form-range-thumb-width:                   1rem;
-				$form-range-thumb-height:                  $form-range-thumb-width;
-				$form-range-thumb-bg:                      $component-active-bg;
-				$form-range-thumb-border:                  0;
-				$form-range-thumb-border-radius:           1rem;
-				$form-range-thumb-box-shadow:              0 .1rem .25rem rgba($black, .1);
-				$form-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-focus-box-shadow;
-				$form-range-thumb-focus-box-shadow-width:  $input-focus-width; // For focus box shadow issue in Edge
-				$form-range-thumb-active-bg:               tint-color($component-active-bg, 70%);
-				$form-range-thumb-disabled-bg:             var(--#{$prefix}secondary-color);
-				$form-range-thumb-transition:              background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-			`,
 		}),
 	],
 };

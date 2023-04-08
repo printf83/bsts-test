@@ -29,7 +29,7 @@ export const doc_component_btngroup: IAttrContent = {
 		]),
 
 		new e.text(
-			"These classes can also be added to groups of links, as an alternative to the {{https://getbootstrap.com/docs/5.3/components/navs-tabs/::.nav navigation components}}."
+			"These classes can also be added to groups of links, as an alternative to the {{nav:doc_component_nav::.nav navigation components}}."
 		),
 		new e.code({
 			output: () => {
@@ -71,7 +71,7 @@ export const doc_component_btngroup: IAttrContent = {
 
 		new e.title("Checkbox and radio button groups"),
 		new e.text(
-			"Combine button-like checkbox and radio {{https://getbootstrap.com/docs/5.3/forms/checks-radios/::toggle buttons}} into a seamless looking button group."
+			"Combine button-like checkbox and radio {{nav:doc_form_check_radio::toggle buttons}} into a seamless looking button group."
 		),
 		new e.code({
 			output: () => {

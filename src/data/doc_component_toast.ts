@@ -540,7 +540,7 @@ export const doc_component_toast: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an {{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions::aria-live region}}. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include {{aria-atomic='true'}} to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the {{https://getbootstrap.com/docs/5.3/components/alerts/::alert component}} instead of toast."
+			"Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an {{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions::aria-live region}}. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include {{aria-atomic='true'}} to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the {{nav:doc_component_alert::alert component}} instead of toast."
 		),
 		new e.text(
 			"Note that the live region needs to be present in the markup {{i::before}} the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies."
@@ -549,7 +549,7 @@ export const doc_component_toast: IAttrContent = {
 			"You also need to adapt the {{role}} and {{aria-live}} level depending on the content. If it’s an important message like an error, use {{role='alert'}} {{aria-live='assertive'}}, otherwise use {{role='status'}} {{aria-live='polite'}} attributes."
 		),
 		new e.text(
-			"As the content you’re displaying changes, be sure to update the {{https://getbootstrap.com/docs/5.3/components/toasts/#options::delay timeout}} so that users have enough time to read the toast."
+			"As the content you’re displaying changes, be sure to update the {{nav:doc_component_toast#options::delay timeout}} so that users have enough time to read the toast."
 		),
 		new e.codepreview({
 			type: "html",
@@ -610,7 +610,7 @@ export const doc_component_toast: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"While technically it’s possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long {{https://getbootstrap.com/docs/5.3/components/toasts/#options::delay timeout}}, keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don’t receive focus when they are displayed). If you absolutely must have further controls, we recommend using a toast with {{autohide: false}}."
+			"While technically it’s possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long {{nav:doc_component_toast#options::delay timeout}}, keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don’t receive focus when they are displayed). If you absolutely must have further controls, we recommend using a toast with {{autohide: false}}."
 		),
 
 		//-----------------------

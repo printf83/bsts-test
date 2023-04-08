@@ -398,7 +398,7 @@ export const doc_component_modal: IAttrContent = {
 
 		new e.subtitle("Tooltips and popovers"),
 		new e.text(
-			"{{https://getbootstrap.com/docs/5.3/components/tooltips/::Tooltips}} and {{https://getbootstrap.com/docs/5.3/components/popovers/::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."
+			"{{nav:doc_component_tooltip::Tooltips}} and {{nav:doc_component_popover::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."
 		),
 		new e.code({
 			output: () => {
@@ -575,7 +575,7 @@ export const doc_component_modal: IAttrContent = {
 			"Have a bunch of buttons that all trigger the same modal with slightly different contents? Use {{event.relatedTarget}} and {{https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes::HTML data-bs-* attributes}} to vary the contents of the modal depending on which button was clicked."
 		),
 		new e.text(
-			"Below is a live demo followed by example HTML and JavaScript. For more information, {{https://getbootstrap.com/docs/5.3/components/modal/#events::read the modal events docs}} for details on {{relatedTarget}}."
+			"Below is a live demo followed by example HTML and JavaScript. For more information, {{nav:doc_component_modal#events::read the modal events docs}} for details on {{relatedTarget}}."
 		),
 
 		new e.code({
@@ -1006,7 +1006,7 @@ export const doc_component_modal: IAttrContent = {
 
 		new e.subtitle("Sass loop"),
 		new e.text(
-			"{{https://getbootstrap.com/docs/5.3/components/modal/#fullscreen-modal::Responsive fullscreen modals}} are generated via the {{$breakpoints}} map and a loop in {{scss/_modal.scss}}."
+			"{{nav:doc_component_modal#fullscreen_modal::Responsive fullscreen modals}} are generated via the {{$breakpoints}} map and a loop in {{scss/_modal.scss}}."
 		),
 
 		new e.codepreview({

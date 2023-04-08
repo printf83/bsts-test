@@ -217,7 +217,7 @@ export const doc_component_collapse: IAttrContent = {
 			"Just add {{data-bs-toggle='collapse'}} and a {{data-bs-target}} to the element to automatically assign control of one or more collapsible elements. The {{data-bs-target}} attribute accepts a CSS selector to apply the collapse to. Be sure to add the class {{collapse}} to the collapsible element. If you’d like it to default open, add the additional class {{show}}."
 		),
 		new e.text(
-			"To add accordion-like group management to a collapsible area, add the data attribute {{data-bs-parent='#selector'}}. Refer to the {{https://getbootstrap.com/docs/5.3/components/accordion/::accordion page}} for more information."
+			"To add accordion-like group management to a collapsible area, add the data attribute {{data-bs-parent='#selector'}}. Refer to the {{nav:doc_component_accordion::accordion page}} for more information."
 		),
 
 		//-----------------------
