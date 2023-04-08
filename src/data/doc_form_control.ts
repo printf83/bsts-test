@@ -108,8 +108,11 @@ export const doc_form_control: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new h.div({ row: true, gap: 3, alignItem: "center" }, [
-					new h.div({ col: "auto" }, new b.label({ for: "inputPassword6", class: "form-label" }, "Password")),
+				return new h.div({ row: true, gutter: 3, alignItem: "center" }, [
+					new h.div(
+						{ col: "auto" },
+						new b.label({ for: "inputPassword6", class: "col-form-label" }, "Password")
+					),
 					new h.div(
 						{ col: "auto" },
 						new b.input({ type: "password", id: "inputPassword6", describedby: "passwordHelpBlock" })
@@ -125,7 +128,7 @@ export const doc_form_control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return b.form.input({
-					container: { gap: 3, alignItem: "center" },
+					container: { gutter: 3, alignItem: "center" },
 					label: "Password",
 					type: "password",
 					description: " Must be 8-20 characters long. ",

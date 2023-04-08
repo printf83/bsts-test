@@ -52,6 +52,7 @@ let m = {
 				{ label: "Range", value: "doc_form_range" },
 				{ label: "Input group", value: "doc_form_input_group" },
 				{ label: "Floating labels", value: "doc_form_floating_label" },
+				{ label: "Layout", value: "doc_form_layout" },
 			],
 		},
 		{

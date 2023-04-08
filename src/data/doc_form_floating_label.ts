@@ -212,7 +212,7 @@ export const doc_form_floating_label: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new h.div({ row: true, gap: 3 }, [
+				return new h.div({ row: true, gutter: 3 }, [
 					b.form.floatinglabel.input({
 						container: { col: "md-6" },
 						label: "Email address",

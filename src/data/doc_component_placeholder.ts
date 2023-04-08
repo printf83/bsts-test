@@ -105,7 +105,7 @@ export const doc_component_placeholder: IAttrContent = {
 		),
 		new e.code({
 			manager: (item: core.tag[]) => {
-				return new h.div({ row: true, gap: 2 }, item);
+				return new h.div({ row: true, gutter: 2 }, item);
 			},
 			output: () => {
 				return [undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
@@ -127,7 +127,7 @@ export const doc_component_placeholder: IAttrContent = {
 		),
 		new e.code({
 			manager: (item: core.tag[]) => {
-				return new h.div({ row: true, gap: 2 }, item);
+				return new h.div({ row: true, gutter: 2 }, item);
 			},
 			output: () => {
 				return ["lg", undefined, "sm", "xs"].map((i) => {
