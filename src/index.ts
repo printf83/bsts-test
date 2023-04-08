@@ -28,6 +28,7 @@ const cookie = {
 };
 
 let CURRENT_PAGE = cookie.get("current_page") || "doc_gettingstarted_introduction";
+let CURRENT_THEME = cookie.get("current_theme") || "auto";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -116,6 +117,11 @@ const onmenuchange = (value: string) => {
 	);
 };
 
+const onthmemechange = (value: string) => {
+	cookie.set("current_theme", value);
+	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
+};
+
 const maincontainer = new main.container({
 	name: "BSTS",
 	bgColor: "primary",
@@ -125,6 +131,9 @@ const maincontainer = new main.container({
 	on: {
 		"bs-menu-change": (e) => {
 			onmenuchange((<CustomEvent>e).detail);
+		},
+		"bs-theme-change": (e) => {
+			onthmemechange((<CustomEvent>e).detail);
 		},
 	},
 
@@ -150,7 +159,7 @@ const maincontainer = new main.container({
 		{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
 		{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 	],
-	currentTheme: "dark",
+	currentTheme: CURRENT_THEME as main.IAttrBSMainContainer["currentTheme"],
 
 	itemVersion: [{ value: "0.1.71", label: "Latest (0.1.71)" }],
 	currentVersion: "0.1.71",
@@ -202,6 +211,7 @@ const maincontainer = new main.container({
 });
 
 core.documentReady(() => {
+	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
 	core.init(body);

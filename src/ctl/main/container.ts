@@ -12,6 +12,7 @@ const dispatchCustomEvent = (root: Element | null, eventName: string, value: str
 		);
 	}
 };
+
 const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
 	let bsThemeMenu = bsTheme.nextSibling as HTMLElement;
@@ -29,7 +30,6 @@ const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
 	}
 
 	core.replaceChild(bsTheme, new b.label({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
-	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
 
 	let root = bsTheme.closest(".bs-main-root");
 	dispatchCustomEvent(root, "bs-theme-change", value);
