@@ -65,11 +65,10 @@ export const doc_component_offcanvas: IAttrContent = {
 			item: ["{{.offcanvas}} hides content (default)", "{{.offcanvas.show}} shows content"],
 		}),
 		new e.code({
-			outputAttr: { gap: 1 },
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ href: "#offcanvasExample", control: "offcanvasExample" },
+						{ href: "#offcanvasExample", control: "offcanvasExample", marginEnd: 2 },
 						"Link with href"
 					),
 					new b.offcanvas.toggle(
