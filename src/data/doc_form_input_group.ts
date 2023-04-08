@@ -2,7 +2,7 @@ import { b, h } from "@printf83/bsts";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
-export const doc_form_inputgroup: IAttrContent = {
+export const doc_form_input_group: IAttrContent = {
 	title: "Input group",
 	description:
 		"Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.",

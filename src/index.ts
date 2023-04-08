@@ -48,10 +48,10 @@ let m = {
 				{ label: "Overview", value: "doc_form_overview" },
 				{ label: "Form control", value: "doc_form_control" },
 				{ label: "Select", value: "doc_form_select" },
-				{ label: "Checks & radios", value: "doc_form_checkradio" },
+				{ label: "Checks & radios", value: "doc_form_check_radio" },
 				{ label: "Range", value: "doc_form_range" },
-				{ label: "Input group", value: "doc_form_inputgroup" },
-				{ label: "Floating labels", value: "doc_form_floatinglabel" },
+				{ label: "Input group", value: "doc_form_input_group" },
+				{ label: "Floating labels", value: "doc_form_floating_label" },
 			],
 		},
 		{

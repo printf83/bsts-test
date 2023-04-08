@@ -2,7 +2,7 @@ import { b, h } from "@printf83/bsts";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
-export const doc_form_floatinglabel: IAttrContent = {
+export const doc_form_floating_label: IAttrContent = {
 	title: "Floating labels",
 	description: "Create beautifully simple form labels that float over your input fields.",
 	item: [

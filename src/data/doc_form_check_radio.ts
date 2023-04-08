@@ -2,7 +2,7 @@ import { h, b } from "@printf83/bsts";
 import * as e from "../ctl/example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
-export const doc_form_checkradio: IAttrContent = {
+export const doc_form_check_radio: IAttrContent = {
 	title: "Checks and radios",
 	description:
 		"Create consistent cross-browser and cross-device checkboxes and radios with our completely rewritten checks component.",
