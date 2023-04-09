@@ -1,4 +1,4 @@
-import { core, h, b, t } from "@printf83/bsts";
+import { core, h, t } from "@printf83/bsts";
 
 export interface IAttrBSExamplePagetitle extends core.IAttr {
 	sourceUrl?: string;
@@ -45,7 +45,7 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 				attr.sourceUrl
 					? new h.a(
 							{
-								class: "primary-on-hover btn btn-outline-secondary small",
+								class: "primary-on-hover btn btn-sm btn-outline-secondary",
 								paddingY: 1,
 								href: attr.sourceUrl,
 								title: `View and edit this file on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`,
