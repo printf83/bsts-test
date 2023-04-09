@@ -200,6 +200,7 @@ export const doc_form_floating_label: IAttrContent = {
 					type: "text",
 					before: "@",
 					isvalid: false,
+					required: true,
 				});
 			},
 		}),
