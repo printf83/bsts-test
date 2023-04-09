@@ -15,6 +15,12 @@ a:hover *,
     background-color: transparent;
 }
 
+.primary-on-hover:hover > * {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    background-color: transparent;
+}
+
 /* simple-list-example */
 #simple-list-example a.active{
     background-color: var(--bs-secondary-bg);
@@ -42,6 +48,7 @@ a:hover *,
 
 /* example */
 
+strong,
 .example-pagetitle, 
 .example-title,
 .example-subtitle,

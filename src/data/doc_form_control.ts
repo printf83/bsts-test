@@ -18,7 +18,7 @@ export const doc_form_control: IAttrContent = {
 						new b.label({ for: "exampleFormControlInput1", class: "form-label" }, "Email address"),
 						new b.input({ type: "email", id: "exampleFormControlInput1", placeholder: "name@example.com" }),
 					]),
-					new h.div({ marginBottom: 3 }, [
+					new h.div([
 						new b.label({ for: "exampleFormControlTextarea1", class: "form-label" }, "Example textarea"),
 						new b.textarea({ id: "exampleFormControlTextarea1" }),
 					]),
@@ -36,7 +36,6 @@ export const doc_form_control: IAttrContent = {
 						type: "email",
 					}),
 					b.form.textarea({
-						container: { marginBottom: 3 },
 						label: "Example textarea",
 					}),
 				];
@@ -148,7 +147,12 @@ export const doc_form_control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.input({ placeholder: "Disabled input", label: "Disabled input example", disabled: true }),
+					new b.input({
+						marginBottom: 3,
+						placeholder: "Disabled input",
+						label: "Disabled input example",
+						disabled: true,
+					}),
 					new b.input({
 						value: "Disabled readonly input",
 						label: "Disabled readonly input example",
@@ -195,7 +199,6 @@ export const doc_form_control: IAttrContent = {
 						col2: "sm-10",
 					}),
 					b.form.input({
-						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
 						col1: "sm-2",
@@ -206,7 +209,7 @@ export const doc_form_control: IAttrContent = {
 		}),
 		new e.code({
 			output: () => {
-				return new h.div({ row: true, marginBottom: 3 }, [
+				return new h.div({ row: true }, [
 					b.form.input({
 						container: { col: "auto" },
 						value: "email@example.com",
@@ -257,7 +260,6 @@ export const doc_form_control: IAttrContent = {
 						weight: "sm",
 					}),
 					b.form.input({
-						container: { marginBottom: 3 },
 						label: "Large file input example",
 						type: "file",
 						weight: "lg",

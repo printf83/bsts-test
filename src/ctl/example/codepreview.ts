@@ -43,10 +43,10 @@ function itemCodeCopy(e: Event) {
 
 	const target = e.target as HTMLElement;
 	const iconElem = target.closest(".bi") as HTMLElement;
-	const cardBody = target.closest(".card-body");
+	const card = target.closest(".card");
 
-	if (cardBody) {
-		const text = cardBody.getElementsByTagName("pre")[0].innerText;
+	if (card) {
+		const text = card.getElementsByTagName("pre")[0].innerText;
 
 		navigator.clipboard.writeText(text).then(
 			() => {
@@ -66,36 +66,68 @@ function itemCodeCopy(e: Event) {
 export interface IAttrBSExampleCodepreview extends core.IAttr {
 	code?: string;
 	type?: "js" | "ts" | "css" | "html";
+	title?: string;
+	source?: string;
 }
 
 const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 	if (attr.code) {
+		const copyButton = new b.tooltip(
+			{ content: "Copy to clipboard" },
+			new h.a(
+				{
+					href: "#",
+					color: "secondary",
+					textColor: "body-secondary",
+					class: "primary-on-hover",
+					on: { click: itemCodeCopy },
+				},
+				b.icon.bi("clipboard")
+			)
+		);
+
+		const cardTitle = attr.title
+			? new b.card.header({ padding: 0, display: "flex", justifyContent: "between", verticalAlign: "middle" }, [
+					new h.div(
+						{
+							paddingY: 2,
+							paddingX: 4,
+							flex: "fill",
+						},
+						attr.source
+							? new h.a(
+									{
+										textDecoration: "none",
+										href: attr.source,
+										target: "_blank",
+										class: "primary-on-hover",
+										monospace: true,
+										textColor: "body-secondary",
+									},
+									new h.small(attr.title)
+							  )
+							: new h.small({ monospace: true, textColor: "body-secondary" }, attr.title)
+					),
+					new h.div({ display: "flex" }, new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)),
+			  ])
+			: "";
+		const cardBody = new b.card.body({ padding: 4 }, [
+			!attr.title ? new h.span({ position: "absolute", end: 0, marginEnd: 4 }, copyButton) : "",
+			new preview({ type: attr.type ? attr.type : "js", marginEnd: 4 }, attr.code),
+		]);
+
 		attr.elem = [
 			new b.card.container({ class: "example-preview", marginY: 3, bgColor: "body-tertiary" }, [
-				new b.card.body({ padding: 4 }, [
-					new h.span(
-						{ position: "absolute", end: 0, marginEnd: 4 },
-						new b.tooltip(
-							{ content: "Copy to clipboard" },
-							new h.a(
-								{
-									href: "#",
-									color: "secondary",
-									class: "primary-on-hover",
-									on: { click: itemCodeCopy },
-								},
-								b.icon.bi("clipboard")
-							)
-						)
-					),
-					new preview({ type: attr.type ? attr.type : "js", marginEnd: 4 }, attr.code),
-				]),
+				cardTitle,
+				cardBody,
 			]),
 		];
 	}
 
 	delete attr.code;
 	delete attr.type;
+	delete attr.title;
+	delete attr.source;
 
 	return attr;
 };

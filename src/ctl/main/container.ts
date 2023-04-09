@@ -315,6 +315,7 @@ const genOutsideLink = (
 									paddingX: [0, "lg-2"],
 									textColor: textColor,
 									href: i.href,
+									target: "_blank",
 								},
 								new b.label({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
 							),
@@ -594,6 +595,7 @@ const genContent = (content?: IAttrContent) => {
 				smooth: true,
 				class: "bs-content",
 				paddingStart: "lg-2",
+				rootMargin: "0px 0px -40%",
 			},
 			content.item
 		);
@@ -817,32 +819,45 @@ const convert = (attr: IAttrBSMainContainer) => {
 							]
 						),
 						new h.ul({ unstyle: true, class: "small" }, [
-							new h.li(
-								{ marginBottom: 2 },
-								"Designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::our contributors}}."
-							),
+							new h.li({ marginBottom: 2 }, [
+								new h.strong({ textColor: "primary" }, "Disclaimer! "),
+								"This is {{s::not a real Bootstrap}} website. This is only a {{s::BSTS test website}} to test our {{https://github.com/printf83/bsts::@printf83/bsts}} library and make sure it's fully support Bootstrap.",
+								"Designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::our contributors}}.",
+							]),
 							new h.li(
 								{ marginBottom: 2 },
 								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
 							),
 							new h.li({ marginBottom: 2 }, [
-								"Current view port is : ",
+								"Currently v5.3.0-alpha3.",
+								"With ",
 								new h.span(
 									{
 										display: ["inline-block", "sm-none"],
 									},
-									"Extra small {{k::xs}}"
+									"extra small view port {{k::xs}}"
 								),
-								new h.span({ display: ["sm-inline-block", "md-none", "none"] }, "Small {{k::sm}}"),
-								new h.span({ display: ["md-inline-block", "lg-none", "none"] }, "Medium {{k::md}}"),
-								new h.span({ display: ["lg-inline-block", "xl-none", "none"] }, "Large {{k::lg}}"),
+								new h.span(
+									{ display: ["sm-inline-block", "md-none", "none"] },
+									"small view port {{k::sm}}"
+								),
+								new h.span(
+									{ display: ["md-inline-block", "lg-none", "none"] },
+									"medium view port {{k::md}}"
+								),
+								new h.span(
+									{ display: ["lg-inline-block", "xl-none", "none"] },
+									"large view port {{k::lg}}"
+								),
 								new h.span(
 									{ display: ["xl-inline-block", "xxl-none", "none"] },
-									"Extra large {{k::xl}}"
+									"extra large view port {{k::xl}}"
 								),
-								new h.span({ display: ["xxl-inline-block", "none"] }, "Super large {{k::xxl}}"),
+								new h.span(
+									{ display: ["xxl-inline-block", "none"] },
+									"super large view port {{k::xxl}}"
+								),
 							]),
-							new h.li({ marginBottom: 2 }, "Currently v5.3.0-alpha3."),
 						]),
 					]),
 					...genFooter(attr.itemFooter),

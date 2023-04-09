@@ -151,13 +151,10 @@ export const doc_component_modal: IAttrContent = {
 								click: () => {
 									const mdl = b.modal.simple({
 										title: document.title,
-										elem: new h.div({ class: "form-check" }, [
-											new b.input({ type: "checkbox", id: "testcheckbox" }),
-											new b.label(
-												{ for: "testcheckbox", class: "form-check-label" },
-												"Tick this before press {{b::Yes}} button"
-											),
-										]),
+										elem: b.form.check({
+											id: "testcheckbox",
+											label: "Tick this checkbox before click {{k::Okay}} button",
+										}),
 										btn: ["ok", "cancel"],
 										btnFn: [
 											(event) => {
@@ -190,7 +187,7 @@ export const doc_component_modal: IAttrContent = {
 										title: document.title,
 										elem: new b.msg(
 											{ type: "bi", id: "info-circle-fill", color: "primary" },
-											"Hello world"
+											"Hello world. Open {{nav:doc_form_select#disabled::Forms select}} document from msgbox then show {{#disabled}} section"
 										),
 										btn: ["ok"],
 									});

@@ -641,6 +641,8 @@ export const doc_form_validation: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_root.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_root.scss",
 			code: `
 				--#{$prefix}form-valid-color: #{$form-valid-color};
 				--#{$prefix}form-valid-border-color: #{$form-valid-border-color};
@@ -655,6 +657,8 @@ export const doc_form_validation: IAttrContent = {
 		new e.subtitle("Sass variables"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-feedback-margin-top:          $form-text-margin-top;
 				$form-feedback-font-size:           $form-text-font-size;
@@ -670,6 +674,8 @@ export const doc_form_validation: IAttrContent = {
 		}),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-valid-color:                  $form-feedback-valid-color;
 				$form-valid-border-color:           $form-feedback-valid-color;
@@ -679,6 +685,8 @@ export const doc_form_validation: IAttrContent = {
 		}),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables-dark.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables-dark.scss",
 			code: `
 				$form-valid-color-dark:             $green-300;
 				$form-valid-border-color-dark:      $green-300;
@@ -695,6 +703,8 @@ export const doc_form_validation: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/mixins/_forms.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_forms.scss",
 			code: `
 				@mixin form-validation-state-selector($state) {
 				@if ($state == "valid" or $state == "invalid") {
@@ -855,6 +865,8 @@ export const doc_form_validation: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-validation-states: (
 				"valid": (
@@ -878,6 +890,30 @@ export const doc_form_validation: IAttrContent = {
 		}),
 		new e.text(
 			"Maps of {{$form-validation-states}} can contain three optional parameters to override tooltips and focus styles."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Sass loop"),
+		new e.text(
+			"Used to iterate over {{$form-validation-states}} map values to generate our validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop."
+		),
+		new e.codepreview({
+			type: "css",
+			title: "scss/forms/_validation.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/forms/_validation.scss",
+			code: `
+				@each $state, $data in $form-validation-states {
+					@include form-validation-state($state, $data...);
+				}
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Customizing"),
+		new e.text(
+			"Validation states can be customized via Sass with the {{$form-validation-states}} map. Located in our {{_variables.scss}} file, this Sass map is how we generate the default {{valid}}/{{invalid}} validation states. Included is a nested map for customizing each state’s color, icon, tooltip color, and focus shadow. While no other states are supported by browsers, those using custom styles can easily add more complex form feedback."
 		),
 	],
 };

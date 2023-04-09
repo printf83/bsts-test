@@ -115,8 +115,15 @@ const onmenuchange = (value: string) => {
 				anchorId = tempValue[1];
 			}
 
+			//keep current page in cookie
 			cookie.set("current_page", docId);
 
+			//remove active popup
+			core.removeActiveModal();
+			core.removeActivePopover();
+			core.removeActiveTooltip();
+
+			//generate content
 			let contentbody = document.getElementById("bs-main") as HTMLElement;
 			core.replaceChild(contentbody, main.genMainContent(getData(docId)));
 			core.init(contentbody);
@@ -175,9 +182,9 @@ const maincontainer = new main.container({
 	currentInsideLink: "doc",
 
 	itemOutsideLink: [
-		{ href: "#", icon: { id: "github" }, label: "Github" },
-		{ href: "#", icon: { id: "twitter" }, label: "Twitter" },
-		{ href: "#", icon: { id: "bootstrap" }, label: "Bootstrap" },
+		{ href: "https://github.com/printf83/bsts", icon: { id: "github", type: "brand" }, label: "Github" },
+		{ href: "https://twitter.com/printf83", icon: { id: "twitter", type: "brand" }, label: "Twitter" },
+		{ href: "https://getbootstrap.com/", icon: { id: "bootstrap", type: "brand" }, label: "Bootstrap" },
 	],
 
 	itemTheme: [
