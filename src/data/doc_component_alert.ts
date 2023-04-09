@@ -193,6 +193,8 @@ export const doc_component_alert: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_alert.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_alert.scss",
 			code: `
 				--#{$prefix}alert-bg: transparent;
 				--#{$prefix}alert-padding-x: #{$alert-padding-x};
@@ -210,6 +212,8 @@ export const doc_component_alert: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$alert-padding-y:               $spacer;
 				$alert-padding-x:               $spacer;
@@ -228,6 +232,8 @@ export const doc_component_alert: IAttrContent = {
 		new e.text("Used in combination with {{$theme-colors}} to create contextual modifier classes for our alerts."),
 		new e.codepreview({
 			type: "css",
+			title: "scss/mixins/_alert.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_alert.scss",
 			code: `
 				@mixin alert-variant($background, $border, $color) {
 				--#{$prefix}alert-color: #{$color};
@@ -250,6 +256,8 @@ export const doc_component_alert: IAttrContent = {
 		new e.text("Loop that generates the modifier classes with the {{alert-variant()}} mixin."),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_alert.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_alert.scss",
 			code: `
 				// Generate contextual modifier classes for colorizing the alert
 				@each $state in map-keys($theme-colors) {

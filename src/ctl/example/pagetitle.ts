@@ -43,13 +43,11 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 					  )
 					: "",
 				attr.sourceUrl
-					? new b.button(
+					? new h.a(
 							{
-								class: "primary-on-hover",
+								class: "primary-on-hover btn btn-outline-secondary small",
+								paddingY: 1,
 								href: attr.sourceUrl,
-								weight: "sm",
-								color: "secondary",
-								outline: true,
 								title: `View and edit this file on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`,
 								target: "_blank",
 							},

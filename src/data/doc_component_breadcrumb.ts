@@ -139,6 +139,8 @@ export const doc_component_breadcrumb: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_breadcrumb.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_breadcrumb.scss",
 			code: `
 		        --#{$prefix}breadcrumb-padding-x: #{$breadcrumb-padding-x};
 				--#{$prefix}breadcrumb-padding-y: #{$breadcrumb-padding-y};
@@ -156,6 +158,8 @@ export const doc_component_breadcrumb: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$breadcrumb-font-size:              null;
 				$breadcrumb-padding-y:              0;

@@ -87,29 +87,38 @@ const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 		);
 
 		const cardTitle = attr.title
-			? new b.card.header({ padding: 0, display: "flex", justifyContent: "between", verticalAlign: "middle" }, [
-					new h.div(
-						{
-							paddingY: 2,
-							paddingX: 4,
-							flex: "fill",
-						},
-						attr.source
-							? new h.a(
-									{
-										textDecoration: "none",
-										href: attr.source,
-										target: "_blank",
-										class: "primary-on-hover",
-										monospace: true,
-										textColor: "body-secondary",
-									},
-									new h.small(attr.title)
-							  )
-							: new h.small({ monospace: true, textColor: "body-secondary" }, attr.title)
-					),
-					new h.div({ display: "flex" }, new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)),
-			  ])
+			? new b.card.header(
+					{
+						padding: 0,
+						display: "flex",
+						justifyContent: "between",
+						verticalAlign: "middle",
+						bgColor: "body-tertiary",
+					},
+					[
+						new h.div(
+							{
+								paddingY: 2,
+								paddingX: 4,
+								flex: "fill",
+							},
+							attr.source
+								? new h.a(
+										{
+											textDecoration: "none",
+											href: attr.source,
+											target: "_blank",
+											class: "primary-on-hover",
+											monospace: true,
+											textColor: "body-secondary",
+										},
+										new h.small(attr.title)
+								  )
+								: new h.small({ monospace: true, textColor: "body-secondary" }, attr.title)
+						),
+						new h.div({ display: "flex" }, new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)),
+					]
+			  )
 			: "";
 		const cardBody = new b.card.body({ padding: 4 }, [
 			!attr.title ? new h.span({ position: "absolute", end: 0, marginEnd: 4 }, copyButton) : "",
@@ -117,10 +126,16 @@ const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 		]);
 
 		attr.elem = [
-			new b.card.container({ class: "example-preview", marginY: 3, bgColor: "body-tertiary" }, [
-				cardTitle,
-				cardBody,
-			]),
+			new b.card.container(
+				{
+					class: "example-preview",
+					marginY: 3,
+					bgColor: !attr.title ? "body-secondary" : "body-tertiary",
+					bgOpacity: !attr.title ? 75 : undefined,
+					border: !attr.title ? false : undefined,
+				},
+				[cardTitle, cardBody]
+			),
 		];
 	}
 

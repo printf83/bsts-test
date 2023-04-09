@@ -305,6 +305,8 @@ export const doc_component_button: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_buttons.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_buttons.scss",
 			code: `
 			    --#{$prefix}btn-padding-x: #{$btn-padding-x};
 				--#{$prefix}btn-padding-y: #{$btn-padding-y};
@@ -361,6 +363,8 @@ export const doc_component_button: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$btn-padding-y:               $input-btn-padding-y;
 				$btn-padding-x:               $input-btn-padding-x;
@@ -415,6 +419,8 @@ export const doc_component_button: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/mixins/_buttons.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_buttons.scss",
 			code: `
 				@mixin button-variant(
 				$background,
@@ -449,6 +455,8 @@ export const doc_component_button: IAttrContent = {
 		}),
 		new e.codepreview({
 			type: "css",
+			title: "scss/mixins/_buttons.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_buttons.scss",
 			code: `
 				@mixin button-outline-variant(
 				$color,
@@ -476,6 +484,8 @@ export const doc_component_button: IAttrContent = {
 		}),
 		new e.codepreview({
 			type: "css",
+			title: "scss/mixins/_buttons.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_buttons.scss",
 			code: `
 				@mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
 				--#{$prefix}btn-padding-y: #{$padding-y};
@@ -491,6 +501,8 @@ export const doc_component_button: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_buttons.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_buttons.scss",
 			code: `
 				@each $color, $value in $theme-colors {
 					.btn-#{$color} {

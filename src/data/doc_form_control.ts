@@ -311,6 +311,8 @@ export const doc_form_control: IAttrContent = {
 		new e.text("{{$input-*}} are shared across most of our form controls (and not buttons)."),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$input-padding-y:                       $input-btn-padding-y;
 				$input-padding-x:                       $input-btn-padding-x;
@@ -368,6 +370,8 @@ export const doc_form_control: IAttrContent = {
 		new e.text("{{$form-label-*}} and {{$form-text-*}} are for our {{<label>}}s and {{.form-text}} component."),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-label-margin-bottom:              .5rem;
 				$form-label-font-size:                  null;
@@ -378,6 +382,8 @@ export const doc_form_control: IAttrContent = {
 		}),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-text-margin-top:                  .25rem;
 				$form-text-font-size:                   $small-font-size;
@@ -389,6 +395,8 @@ export const doc_form_control: IAttrContent = {
 		new e.text("{{$form-file-*}} are for file input."),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-file-button-color:          $input-color;
 				$form-file-button-bg:             var(--#{$prefix}tertiary-bg);

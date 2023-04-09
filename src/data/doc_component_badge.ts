@@ -137,6 +137,8 @@ export const doc_component_badge: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_badge.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_badge.scss",
 			code: `
 			    --#{$prefix}badge-padding-x: #{$badge-padding-x};
 				--#{$prefix}badge-padding-y: #{$badge-padding-y};
@@ -148,9 +150,10 @@ export const doc_component_badge: IAttrContent = {
 		}),
 
 		new e.subtitle("Sass variables"),
-
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$badge-font-size:                   .75em;
 				$badge-font-weight:                 $font-weight-bold;
