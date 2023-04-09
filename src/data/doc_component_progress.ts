@@ -277,6 +277,8 @@ export const doc_component_progress: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_progress.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_progress.scss",
 			code: `
 				--#{$prefix}progress-height: #{$progress-height};
 				@include rfs($progress-font-size, --#{$prefix}progress-font-size);
@@ -297,6 +299,8 @@ export const doc_component_progress: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$progress-height:                   1rem;
 				$progress-font-size:                $font-size-base * .75;
@@ -318,6 +322,8 @@ export const doc_component_progress: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_progress.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_progress.scss",
 			code: `
 				@if $enable-transitions {
 				@keyframes progress-bar-stripes {

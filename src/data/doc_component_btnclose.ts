@@ -51,6 +51,8 @@ export const doc_component_btnclose: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_close.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_close.scss",
 			code: `
 			    --#{$prefix}btn-close-color: #{$btn-close-color};
 				--#{$prefix}btn-close-bg: #{ escape-svg($btn-close-bg) };
@@ -67,6 +69,8 @@ export const doc_component_btnclose: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$btn-close-width:            1em;
 				$btn-close-height:           $btn-close-width;

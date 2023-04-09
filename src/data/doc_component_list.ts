@@ -348,6 +348,8 @@ export const doc_component_list: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_list-group.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_list-group.scss",
 			code: `
 				--#{$prefix}list-group-color: #{$list-group-color};
 				--#{$prefix}list-group-bg: #{$list-group-bg};
@@ -373,6 +375,8 @@ export const doc_component_list: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$list-group-color:                  var(--#{$prefix}body-color);
 				$list-group-bg:                     var(--#{$prefix}body-bg);
@@ -403,42 +407,46 @@ export const doc_component_list: IAttrContent = {
 			`,
 		}),
 
-		new e.subtitle("Sass mixins"),
-		new e.text(
-			"Used in combination with {{$theme-colors}} to generate the {{nav:doc_component_list#variants::contextual variant classes}} for {{.list-group-items}}."
-		),
+		// new e.subtitle("Sass mixins"),
+		// new e.text(
+		// 	"Used in combination with {{$theme-colors}} to generate the {{nav:doc_component_list#variants::contextual variant classes}} for {{.list-group-items}}."
+		// ),
 
-		new e.codepreview({
-			type: "css",
-			code: `
-				@mixin list-group-item-variant($state, $background, $color) {
-				.list-group-item-#{$state} {
-					color: $color;
-					background-color: $background;
+		// new e.codepreview({
+		// 	type: "css",
+		// 	title: "scss/mixins/_list-group.scss",
+		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_list-group.scss",
+		// 	code: `
+		// 		@mixin list-group-item-variant($state, $background, $color) {
+		// 		.list-group-item-#{$state} {
+		// 			color: $color;
+		// 			background-color: $background;
 
-					&.list-group-item-action {
-					&:hover,
-					&:focus {
-						color: $color;
-						background-color: shade-color($background, 10%);
-					}
+		// 			&.list-group-item-action {
+		// 			&:hover,
+		// 			&:focus {
+		// 				color: $color;
+		// 				background-color: shade-color($background, 10%);
+		// 			}
 
-					&.active {
-						color: $white;
-						background-color: $color;
-						border-color: $color;
-					}
-					}
-				}
-				}
-			`,
-		}),
+		// 			&.active {
+		// 				color: $white;
+		// 				background-color: $color;
+		// 				border-color: $color;
+		// 			}
+		// 			}
+		// 		}
+		// 		}
+		// 	`,
+		// }),
 
 		new e.subtitle("Sass loop"),
 		new e.text("Loop that generates the modifier classes with an overriding of CSS variables."),
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_list-group.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_list-group.scss",
 			code: `
 				// List group contextual variants
 				//

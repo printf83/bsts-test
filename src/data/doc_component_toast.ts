@@ -622,6 +622,8 @@ export const doc_component_toast: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_toast.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_toast.scss",
 			code: `
 				--#{$prefix}toast-zindex: #{$zindex-toast};
 				--#{$prefix}toast-padding-x: #{$toast-padding-x};
@@ -645,6 +647,8 @@ export const doc_component_toast: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$toast-max-width:                   350px;
 				$toast-padding-x:                   .75rem;

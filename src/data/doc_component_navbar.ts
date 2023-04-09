@@ -971,6 +971,8 @@ export const doc_component_navbar: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
 			code: `
 				--#{$prefix}navbar-padding-x: #{if($navbar-padding-x == null, 0, $navbar-padding-x)};
 				--#{$prefix}navbar-padding-y: #{$navbar-padding-y};
@@ -999,6 +1001,27 @@ export const doc_component_navbar: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
+			code: `
+				--#{$prefix}nav-link-padding-x: 0;
+				--#{$prefix}nav-link-padding-y: #{$nav-link-padding-y};
+				@include rfs($nav-link-font-size, --#{$prefix}nav-link-font-size);
+				--#{$prefix}nav-link-font-weight: #{$nav-link-font-weight};
+				--#{$prefix}nav-link-color: var(--#{$prefix}navbar-color);
+				--#{$prefix}nav-link-hover-color: var(--#{$prefix}navbar-hover-color);
+				--#{$prefix}nav-link-disabled-color: var(--#{$prefix}navbar-disabled-color);
+			`,
+		}),
+
+		new e.text(
+			"Customization through CSS variables can be seen on the {{.navbar-dark}} class where we override specific values without adding duplicate CSS selectors."
+		),
+
+		new e.codepreview({
+			type: "css",
+			title: "scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
 			code: `
 				--#{$prefix}navbar-color: #{$navbar-dark-color};
 				--#{$prefix}navbar-hover-color: #{$navbar-dark-hover-color};
@@ -1015,6 +1038,8 @@ export const doc_component_navbar: IAttrContent = {
 		new e.text("Variables for all navbars:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$navbar-padding-y:                  $spacer * .5;
 				$navbar-padding-x:                  null;
@@ -1051,6 +1076,8 @@ export const doc_component_navbar: IAttrContent = {
 		new e.text("Variables for the {{nav:doc_component_navbar#color_schemes::dark navbar}}:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$navbar-dark-color:                 rgba($white, .55);
 				$navbar-dark-hover-color:           rgba($white, .75);
@@ -1068,6 +1095,8 @@ export const doc_component_navbar: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
 			code: `
 			// Generate series of '.navbar-expand-*' responsive classes for configuring
 			// where your navbar collapses.

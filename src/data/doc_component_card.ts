@@ -831,6 +831,8 @@ export const doc_component_card: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_card.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_card.scss",
 			code: `
 			    --#{$prefix}card-spacer-y: #{$card-spacer-y};
 				--#{$prefix}card-spacer-x: #{$card-spacer-x};
@@ -858,6 +860,8 @@ export const doc_component_card: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$card-spacer-y:                     $spacer;
 				$card-spacer-x:                     $spacer;

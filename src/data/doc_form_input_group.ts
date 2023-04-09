@@ -369,6 +369,8 @@ export const doc_form_input_group: IAttrContent = {
 		new e.subtitle("Sass variables"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$input-group-addon-padding-y:           $input-padding-y;
 				$input-group-addon-padding-x:           $input-padding-x;

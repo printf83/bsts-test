@@ -766,6 +766,8 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_dropdown.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_dropdown.scss",
 			code: `
 				--#{$prefix}dropdown-zindex: #{$zindex-dropdown};
 				--#{$prefix}dropdown-min-width: #{$dropdown-min-width};
@@ -807,6 +809,8 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_dropdown.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_dropdown.scss",
 			code: `
 				--#{$prefix}dropdown-color: #{$dropdown-dark-color};
 				--#{$prefix}dropdown-bg: #{$dropdown-dark-bg};
@@ -828,6 +832,8 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$dropdown-min-width:                10rem;
 				$dropdown-padding-x:                0;
@@ -869,6 +875,8 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$dropdown-dark-color:               $gray-300;
 				$dropdown-dark-bg:                  $gray-800;
@@ -889,6 +897,8 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$caret-width:                 .3em;
 				$caret-vertical-align:        $caret-width * .85;
@@ -901,6 +911,8 @@ export const doc_component_dropdown: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/mixins/_caret.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_caret.scss",
 			code: `
 				@mixin caret-down($width: $caret-width) {
 				border-top: $width solid;

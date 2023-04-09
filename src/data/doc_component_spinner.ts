@@ -246,6 +246,8 @@ export const doc_component_spinner: IAttrContent = {
 		new e.text("Border spinner variables:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_spinners.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_spinners.scss",
 			code: `
 				--#{$prefix}spinner-width: #{$spinner-width};
 				--#{$prefix}spinner-height: #{$spinner-height};
@@ -258,6 +260,8 @@ export const doc_component_spinner: IAttrContent = {
 		new e.text("Growing spinner variables:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_spinners.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_spinners.scss",
 			code: `
 				--#{$prefix}spinner-width: #{$spinner-width};
 				--#{$prefix}spinner-height: #{$spinner-height};
@@ -271,6 +275,8 @@ export const doc_component_spinner: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_spinners.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_spinners.scss",
 			code: `
 				--#{$prefix}spinner-width: #{$spinner-width-sm};
 				--#{$prefix}spinner-height: #{$spinner-height-sm};
@@ -282,6 +288,8 @@ export const doc_component_spinner: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$spinner-width:           2rem;
 				$spinner-height:          $spinner-width;
@@ -300,6 +308,8 @@ export const doc_component_spinner: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_spinners.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_spinners.scss",
 			code: `
 				@keyframes spinner-border {
 				to { transform: rotate(360deg) #{"/* rtl:ignore */"}; }
@@ -308,6 +318,8 @@ export const doc_component_spinner: IAttrContent = {
 		}),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_spinners.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_spinners.scss",
 			code: `
 				@keyframes spinner-grow {
 					0% {

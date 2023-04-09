@@ -387,6 +387,8 @@ export const doc_component_offcanvas: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_offcanvas.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_offcanvas.scss",
 			code: `
 				--#{$prefix}offcanvas-zindex: #{$zindex-offcanvas};
 				--#{$prefix}offcanvas-width: #{$offcanvas-horizontal-width};
@@ -407,6 +409,8 @@ export const doc_component_offcanvas: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$offcanvas-padding-y:               $modal-inner-padding;
 				$offcanvas-padding-x:               $modal-inner-padding;

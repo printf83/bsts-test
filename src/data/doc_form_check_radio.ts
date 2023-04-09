@@ -416,6 +416,8 @@ export const doc_form_check_radio: IAttrContent = {
 		new e.text("Variables for checks:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-check-input-width:                  1em;
 				$form-check-min-height:                   $font-size-base * $line-height-base;
@@ -455,6 +457,8 @@ export const doc_form_check_radio: IAttrContent = {
 		new e.text("Variables for switches:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$form-switch-color:               rgba($black, .25);
 				$form-switch-width:               2em;

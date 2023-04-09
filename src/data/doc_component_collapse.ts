@@ -164,6 +164,8 @@ export const doc_component_collapse: IAttrContent = {
 		new e.subtitle("Sass variables"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 			    $transition-collapse:         height .35s ease;
 				$transition-collapse-width:   width .35s ease;	
@@ -176,6 +178,8 @@ export const doc_component_collapse: IAttrContent = {
 		),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_transitions.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_transitions.scss",
 			code: `
 				.collapse {
 				&:not(.show) {

@@ -172,6 +172,8 @@ export const doc_component_placeholder: IAttrContent = {
 		new e.subtitle("Variables"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$placeholder-opacity-max:           .5;
 				$placeholder-opacity-min:           .2;

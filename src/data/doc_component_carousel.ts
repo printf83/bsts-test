@@ -299,6 +299,8 @@ export const doc_component_carousel: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 			    $carousel-control-color:             $white;
 				$carousel-control-width:             15%;
@@ -329,6 +331,18 @@ export const doc_component_carousel: IAttrContent = {
 				$carousel-transition:                transform $carousel-transition-duration ease-in-out; // Define transform transition first if using multiple transitions (e.g., 'transform 2s ease, opacity .5s ease-out')
 			`,
 		}),
+		// new e.text("Variables for the {{nav:doc_component_carousel#dark-variant::dark carousel}}:"),
+
+		// new e.codepreview({
+		// 	type: "css",
+		// 	title: "scss/_variables.scss",
+		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+		// 	code: `
+		// 	    $carousel-dark-indicator-active-bg:  $black;
+		// 		$carousel-dark-caption-color:        $black;
+		// 		$carousel-dark-control-icon-filter:  invert(1) grayscale(100);
+		// 	`,
+		// }),
 
 		//-----------------------
 

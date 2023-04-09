@@ -300,6 +300,8 @@ export const doc_component_nav: IAttrContent = {
 		new e.text("On the {{.nav}} base class:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_nav.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_nav.scss",
 			code: `
 				--#{$prefix}nav-link-padding-x: #{$nav-link-padding-x};
 				--#{$prefix}nav-link-padding-y: #{$nav-link-padding-y};
@@ -313,6 +315,8 @@ export const doc_component_nav: IAttrContent = {
 		new e.text("On the {{.nav-tabs}} modifier class:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_nav.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_nav.scss",
 			code: `
 				--#{$prefix}nav-tabs-border-width: #{$nav-tabs-border-width};
 				--#{$prefix}nav-tabs-border-color: #{$nav-tabs-border-color};
@@ -326,6 +330,8 @@ export const doc_component_nav: IAttrContent = {
 		new e.text("On the {{.nav-pills}} modifier class:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_nav.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_nav.scss",
 			code: `
 				--#{$prefix}nav-pills-border-radius: #{$nav-pills-border-radius};
 				--#{$prefix}nav-pills-link-active-color: #{$nav-pills-link-active-color};
@@ -335,6 +341,8 @@ export const doc_component_nav: IAttrContent = {
 		new e.text("On the {{.nav-underline}} modifier class:"),
 		new e.codepreview({
 			type: "css",
+			title: "scss/_nav.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_nav.scss",
 			code: `
 				--#{$prefix}nav-underline-gap: #{$nav-underline-gap};
 				--#{$prefix}nav-underline-border-width: #{$nav-underline-border-width};
@@ -346,6 +354,8 @@ export const doc_component_nav: IAttrContent = {
 
 		new e.codepreview({
 			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
 				$nav-link-padding-y:                .5rem;
 				$nav-link-padding-x:                1rem;
