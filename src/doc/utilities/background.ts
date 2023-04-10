@@ -101,7 +101,7 @@ export const background: IAttrContent = {
 
 		new e.title("Opacity"),
 		new e.text(
-			"As of v5.1.0, background-color utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
+			"As of v5.1.0, {{background-color}} utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
 		),
 
 		//-----------------------
