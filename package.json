@@ -28,9 +28,10 @@
 		"clean": "rm -rf ./lib",
 		"clean:win": "rmdir /s lib",
 		"build": "tsc -p ./configs/tsconfig.esm.json",
+		"rebuild":"npm run clean && npm run build  && npm run webpack",
+		"rebuild:win":"npm run clean:win && npm run build  && npm run webpack",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"link": "sudo npm link ../bsts",
-		"unlink": "sudo npm unlink ../bsts",
 		"webpack:debug": "webpack -w",
 		"webpack": "webpack",
 		"prepack": "npm run clean && npm run build"
