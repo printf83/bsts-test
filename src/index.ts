@@ -27,7 +27,7 @@ const cookie = {
 	},
 };
 
-let CURRENT_PAGE = cookie.get("current_page") || "doc_gettingstarted_introduction";
+let CURRENT_PAGE: string | null = null;
 let CURRENT_THEME = cookie.get("current_theme") || "auto";
 
 declare var PR: {
@@ -127,8 +127,6 @@ const onmenuchange = (value: string) => {
 			// https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
 			// location.href = `?d=${value}`;
 			//-------------------------------
-
-			//chekc if value have #
 			let docId: string = value;
 			let anchorId: string | null = null;
 
@@ -138,21 +136,30 @@ const onmenuchange = (value: string) => {
 				anchorId = tempValue[1];
 			}
 
-			//keep current page in cookie
-			cookie.set("current_page", docId);
+			//chekc if value have #
+			if (CURRENT_PAGE !== docId) {
+				//keep current page in cookie
+				CURRENT_PAGE = docId;
+				cookie.set("current_page", docId);
 
-			//remove active popup
-			core.removeActiveModal();
-			core.removeActivePopover();
-			core.removeActiveTooltip();
+				//remove active popup
+				core.removeActiveModal();
+				core.removeActivePopover();
+				core.removeActiveTooltip();
 
-			//generate content
-			let contentbody = document.getElementById("bs-main") as HTMLElement;
-			core.replaceChild(contentbody, main.genMainContent(getData(docId)));
+				//generate content
+				let contentbody = document.getElementById("bs-main") as HTMLElement;
+				core.replaceChild(contentbody, main.genMainContent(getData(docId)));
 
-			//rename page title and push history
-			let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			document.title = `${pagetitle} · Bootstrap TS`;
+				//rename page title and push history
+				let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+				document.title = `${pagetitle} · Bootstrap TS`;
+				core.init(contentbody);
+
+				setTimeout(() => {
+					PR.prettyPrint();
+				}, 300);
+			}
 
 			//focus to e
 			if (anchorId) {
@@ -166,12 +173,6 @@ const onmenuchange = (value: string) => {
 			} else {
 				window.scrollTo(0, 0);
 			}
-
-			core.init(contentbody);
-
-			setTimeout(() => {
-				PR.prettyPrint();
-			}, 300);
 		},
 		100,
 		value
@@ -199,8 +200,8 @@ const maincontainer = new main.container({
 	},
 
 	itemMenu: m.doc,
-	currentMenu: CURRENT_PAGE,
 
+	// currentMenu: CURRENT_PAGE,
 	// content: getData(CURRENT_PAGE),
 
 	itemInsideLink: [
@@ -275,7 +276,7 @@ core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
-	onmenuchange(CURRENT_PAGE);
+	onmenuchange(cookie.get("current_page") || "doc_gettingstarted_introduction");
 
 	document.addEventListener(
 		"bs-navigate",
