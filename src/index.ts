@@ -94,6 +94,7 @@ let m = {
 				{ label: "Background", value: "doc/utilities/background" },
 				{ label: "Borders", value: "doc/utilities/border" },
 				{ label: "Colors", value: "doc/utilities/color" },
+				{ label: "Display", value: "doc/utilities/display" },
 			],
 		},
 	] as main.IAttrItemMenu[],

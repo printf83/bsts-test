@@ -2,5 +2,6 @@ import { api } from "./api.js";
 import { background } from "./background.js";
 import { color } from "./color.js";
 import { border } from "./border.js";
+import { display } from "./display.js";
 
-export { api, background, color, border };
+export { api, background, color, border, display };
