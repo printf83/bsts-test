@@ -5,7 +5,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const navbar: IAttrContent = {
 	title: "Navbar",
 	description:
-		"Documentation and examples for Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for our collapse plugin.",
+		"Documentation and examples for Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for Bootstrap collapse plugin.",
 	item: [
 		new e.title("How it works"),
 		new e.text("Here’s what you need to know before getting started with the navbar:"),
@@ -13,8 +13,8 @@ export const navbar: IAttrContent = {
 			item: [
 				"Navbars require a wrapping {{.navbar}} with {{.navbar-expand{-sm|-md|-lg|-xl|-xxl}}} for responsive collapsing and {{nav:doc/component/navbar#color_schemes::color scheme}} classes.",
 				"Navbars and their contents are fluid by default. Change the {{nav:doc/component/navbar#containers::container}} to limit their horizontal width in different ways.",
-				"Use our {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing}} and {{https://getbootstrap.com/docs/5.3/utilities/flex/::flex}} utility classes for controlling spacing and alignment within navbars.",
-				"Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.",
+				"Use Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing}} and {{https://getbootstrap.com/docs/5.3/utilities/flex/::flex}} utility classes for controlling spacing and alignment within navbars.",
+				"Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on Bootstrap Collapse JavaScript plugin.",
 				"Ensure accessibility by using a {{<nav>}} element or, if using a more generic element such as a {{<div>}}, add a {{role='navigation'}} to every navbar to explicitly identify it as a landmark region for users of assistive technologies.",
 				"Indicate the current item by using {{aria-current='page'}} for the current page or {{aria-current='true'}} for the current item in a set.",
 				"{{b::New in v5.2.0:}} Navbars can be themed with CSS variables that are scoped to the {{.navbar}} base class. {{.navbar-light}} has been deprecated and {{.navbar-dark}} has been rewritten to override CSS variables instead of adding additional styles.",
@@ -22,7 +22,7 @@ export const navbar: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			" The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+			" The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
 		),
 
 		//-----------------------
@@ -34,7 +34,7 @@ export const navbar: IAttrContent = {
 			item: [
 				"{{.navbar-brand}} for your company, product, or project name.",
 				"{{.navbar-nav}} for a full-height and lightweight navigation (including support for dropdowns).",
-				"{{.navbar-toggler}} for use with our collapse plugin and other {{nav:doc/component/navbar#responsive_behaviors::navigation toggling}} behaviors.",
+				"{{.navbar-toggler}} for use with Bootstrap collapse plugin and other {{nav:doc/component/navbar#responsive_behaviors::navigation toggling}} behaviors.",
 				"Flex and spacing utilities for any form controls and actions.",
 				"{{.navbar-text}} for adding vertically centered strings of text.",
 				"{{.collapse.navbar-collapse}} for grouping and hiding navbar contents by a parent breakpoint.",
@@ -159,7 +159,7 @@ export const navbar: IAttrContent = {
 
 		new e.subtitle("Nav"),
 		new e.text(
-			"Navbar navigation links build on our {{.nav}} options with their own modifier class and require the use of {{nav:doc/component/navbar#toggler::toggler classes}} for proper responsive styling. {{b::Navigation in navbars will also grow to occupy as much horizontal space as possible}} to keep your navbar contents securely aligned."
+			"Navbar navigation links build on Bootstrap {{.nav}} options with their own modifier class and require the use of {{nav:doc/component/navbar#toggler::toggler classes}} for proper responsive styling. {{b::Navigation in navbars will also grow to occupy as much horizontal space as possible}} to keep your navbar contents securely aligned."
 		),
 		new e.text("Add the {{.active}} class on {{.nav-link}} to indicate the current page."),
 		new e.text("Please note that you should also add the {{aria-current}} attribute on the active {{.nav-link}}."),
@@ -187,7 +187,7 @@ export const navbar: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"And because we use classes for our navs, you can avoid the list-based approach entirely if you like."
+			"And because we use classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."
 		),
 		new e.code({
 			output: () => {
@@ -376,12 +376,12 @@ export const navbar: IAttrContent = {
 
 		new e.title("Color schemes"),
 		new e.alert({ color: "warning", callout: true }, [
-			"{{b::New dark navbars in v5.3.0 —}} We’ve deprecated {{.navbar-dark}} in favor of the new {{data-bs-theme='dark'}}. Add {{data-bs-theme='dark'}} to the {{.navbar}} to enable a component-specific color mode. {{https://getbootstrap.com/docs/5.3/customize/color-modes/::Learn more about our color modes}}.",
+			"{{b::New dark navbars in v5.3.0 —}} We’ve deprecated {{.navbar-dark}} in favor of the new {{data-bs-theme='dark'}}. Add {{data-bs-theme='dark'}} to the {{.navbar}} to enable a component-specific color mode. {{https://getbootstrap.com/docs/5.3/customize/color-modes/::Learn more about Bootstrap color modes}}.",
 			new h.hr(),
 			"{{b::New in v5.2.0 —}} Navbar theming is now powered by CSS variables and {{.navbar-light}} has been deprecated. CSS variables are applied to {{.navbar}}, defaulting to the “light” appearance, and can be overridden with {{.navbar-dark}}.",
 		]),
 		new e.text(
-			"Navbar themes are easier than ever thanks to Bootstrap’s combination of Sass and CSS variables. The default is our “light navbar” for use with light background colors, but you can also apply {{data-bs-theme='dark'}} to the {{.navbar}} parent for dark background colors. Then, customize with {{.bg-*}} utilities."
+			"Navbar themes are easier than ever thanks to Bootstrap’s combination of Sass and CSS variables. The default is Bootstrap “light navbar” for use with light background colors, but you can also apply {{data-bs-theme='dark'}} to the {{.navbar}} parent for dark background colors. Then, customize with {{.bg-*}} utilities."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -455,7 +455,7 @@ export const navbar: IAttrContent = {
 
 		new e.title("Placement"),
 		new e.text(
-			"Use our {{https://getbootstrap.com/docs/5.3/utilities/position/::position utilities}} to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the bottom (scrolls with the page until it reaches the bottom, then stays there)."
+			"Use Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/position/::position utilities}} to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the bottom (scrolls with the page until it reaches the bottom, then stays there)."
 		),
 		new e.text(
 			"Fixed navbars use {{position: fixed}}, meaning they’re pulled from the normal flow of the DOM and may require custom CSS (e.g., {{padding-top}} on the {{<body>}}) to prevent overlap with other elements."
@@ -681,7 +681,7 @@ export const navbar: IAttrContent = {
 
 		new e.subtitle("External content"),
 		new e.text(
-			"Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits outside of the {{.navbar}} . Because our plugin works on the {{id}} and {{data-bs-target}} matching, that’s easily done!"
+			"Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits outside of the {{.navbar}} . Because Bootstrap plugin works on the {{id}} and {{data-bs-target}} matching, that’s easily done!"
 		),
 		new e.code({
 			output: () => {
@@ -747,7 +747,7 @@ export const navbar: IAttrContent = {
 
 		new e.subtitle("Offcanvas"),
 		new e.text(
-			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{nav:doc/component/offcanvas::offcanvas component}}. We extend both the offcanvas default styles and use our {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
+			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{nav:doc/component/offcanvas::offcanvas component}}. We extend both the offcanvas default styles and use Bootstrap {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
 		),
 		new e.text(
 			"In the example below, to create an offcanvas navbar that is always collapsed across all breakpoints, omit the {{.navbar-expand-*}} class entirely."

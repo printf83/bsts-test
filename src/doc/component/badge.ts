@@ -4,7 +4,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 
 export const badge: IAttrContent = {
 	title: "Badges",
-	description: "Documentation and examples for badges, our small count and labeling component.",
+	description: "Documentation and examples for badges, Bootstrap small count and labeling component.",
 	item: [
 		new e.title("Examples"),
 		new e.text(
@@ -89,7 +89,7 @@ export const badge: IAttrContent = {
 
 		new e.title("Background colors"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },

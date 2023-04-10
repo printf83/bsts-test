@@ -182,7 +182,7 @@ export const button: IAttrContent = {
 
 		new e.title("Block buttons"),
 		new e.text(
-			"Create responsive stacks of full-width, “block buttons” like those in Bootstrap 4 with a mix of our display and gap utilities. By using utilities instead of button specific classes, we have much greater control over spacing, alignment, and responsive behaviors."
+			"Create responsive stacks of full-width, “block buttons” like those in Bootstrap 4 with a mix of Bootstrap display and gap utilities. By using utilities instead of button specific classes, we have much greater control over spacing, alignment, and responsive behaviors."
 		),
 		new e.code({
 			output: () => {
@@ -212,7 +212,7 @@ export const button: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Additional utilities can be used to adjust the alignment of buttons when horizontal. Here we’ve taken our previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."
+			"Additional utilities can be used to adjust the alignment of buttons when horizontal. Here we’ve taken Bootstrap previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."
 		),
 		new e.code({
 			output: () => {
@@ -326,10 +326,10 @@ export const button: IAttrContent = {
 			`,
 		}),
 		new e.text(
-			"Each {{.btn-*}} modifier class updates the appropriate CSS variables to minimize additional CSS rules with our {{button-variant()}}, {{button-outline-variant()}}, and {{button-size()}} mixins."
+			"Each {{.btn-*}} modifier class updates the appropriate CSS variables to minimize additional CSS rules with Bootstrap {{button-variant()}}, {{button-outline-variant()}}, and {{button-size()}} mixins."
 		),
 		new e.text(
-			"Here’s an example of building a custom {{.btn-*}} modifier class like we do for the buttons unique to our docs by reassigning Bootstrap’s CSS variables with a mixture of our own CSS and Sass variables."
+			"Here’s an example of building a custom {{.btn-*}} modifier class like we do for the buttons unique to Bootstrap docs by reassigning Bootstrap’s CSS variables with a mixture of Bootstrap own CSS and Sass variables."
 		),
 
 		new e.code({
@@ -497,7 +497,7 @@ export const button: IAttrContent = {
 		}),
 		new e.subtitle("Sass loops"),
 		new e.text(
-			"Button variants (for regular and outline buttons) use their respective mixins with our {{$theme-colors}} map to generate the modifier classes in {{scss/_buttons.scss}}."
+			"Button variants (for regular and outline buttons) use their respective mixins with Bootstrap {{$theme-colors}} map to generate the modifier classes in {{scss/_buttons.scss}}."
 		),
 		new e.codepreview({
 			type: "css",

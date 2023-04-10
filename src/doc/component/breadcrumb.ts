@@ -9,7 +9,7 @@ export const breadcrumb: IAttrContent = {
 	item: [
 		new e.title("Example"),
 		new e.text(
-			"Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb. Use our utilities to add additional styles as desired."
+			"Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb. Use Bootstrap utilities to add additional styles as desired."
 		),
 		new e.code({
 			output: () => {
@@ -44,7 +44,7 @@ export const breadcrumb: IAttrContent = {
 
 		new e.title("Dividers"),
 		new e.text(
-			"Dividers are automatically added in CSS through {{https://developer.mozilla.org/en-US/docs/Web/CSS/::before}} and {{https://developer.mozilla.org/en-US/docs/Web/CSS/content::content}}. They can be changed by modifying a local CSS custom property {{--bs-breadcrumb-divider}}, or through the {{$breadcrumb-divider}} Sass variable — and {{$breadcrumb-divider-flipped}} for its RTL counterpart, if needed. We default to our Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
+			"Dividers are automatically added in CSS through {{https://developer.mozilla.org/en-US/docs/Web/CSS/::before}} and {{https://developer.mozilla.org/en-US/docs/Web/CSS/content::content}}. They can be changed by modifying a local CSS custom property {{--bs-breadcrumb-divider}}, or through the {{$breadcrumb-divider}} Sass variable — and {{$breadcrumb-divider-flipped}} for its RTL counterpart, if needed. We default to Bootstrap Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
 		),
 		new e.code({
 			output: () => {
@@ -69,12 +69,12 @@ export const breadcrumb: IAttrContent = {
 				`,
 		}),
 		new e.text(
-			"It’s also possible to use an {{b::embedded SVG icon}}. Apply it via our CSS custom property, or use the Sass variable."
+			"It’s also possible to use an {{b::embedded SVG icon}}. Apply it via Bootstrap CSS custom property, or use the Sass variable."
 		),
 		new e.alert({ color: "info", callout: true }, [
 			new h.h(5, "Using embedded SVG"),
 			new h.p(
-				"Inlining SVG as data URI requires to URL escape a few characters, most notably {{<}}, {{>}} and {{#}}. That’s why the {{$breadcrumb-divider}} variable is passed through our {{https://getbootstrap.com/docs/5.3/customize/sass/#escape-svg::escape-svg() Sass function}}. When using the CSS custom property, you need to URL escape your SVG on your own. Read {{https://codepen.io/kevinweber/pen/dXWoRw::Kevin Weber’s explanations on CodePen}} for detailed information on what to escape. "
+				"Inlining SVG as data URI requires to URL escape a few characters, most notably {{<}}, {{>}} and {{#}}. That’s why the {{$breadcrumb-divider}} variable is passed through Bootstrap {{https://getbootstrap.com/docs/5.3/customize/sass/#escape-svg::escape-svg() Sass function}}. When using the CSS custom property, you need to URL escape your SVG on your own. Read {{https://codepen.io/kevinweber/pen/dXWoRw::Kevin Weber’s explanations on CodePen}} for detailed information on what to escape. "
 			),
 		]),
 		new e.code({

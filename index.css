@@ -61,6 +61,12 @@ strong,
     padding-bottom:0.25rem;
 }
 
+.example-output.span-box > span{
+    display: inline-block;
+    background-color: var(--bs-tertiary-bg);
+    border-width: 0.5rem;
+    padding:2.5rem;
+}
 
 /* gap on example code output */
 .example-output{

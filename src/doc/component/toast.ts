@@ -24,7 +24,7 @@ export const toast: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
 		),
 
 		//-----------------------
@@ -33,7 +33,7 @@ export const toast: IAttrContent = {
 		new e.subtitle("Basic"),
 
 		new e.text(
-			"To encourage extensible and predictable toasts, we recommend a header and body. Toast headers use {{display: flex}}, allowing easy alignment of content thanks to our margin and flexbox utilities."
+			"To encourage extensible and predictable toasts, we recommend a header and body. Toast headers use {{display: flex}}, allowing easy alignment of content thanks to Bootstrap margin and flexbox utilities."
 		),
 		new e.text(
 			"Toasts are as flexible as you need and have very little required markup. At a minimum, we require a single element to contain your “toasted” content and strongly encourage a dismiss button."
@@ -58,14 +58,14 @@ export const toast: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"Previously, our scripts dynamically added the {{.hide}} class to completely hide a toast (with {{display:none}}, rather than just with {{opacity:0}}). This is now not necessary anymore. However, for backwards compatibility, our script will continue to toggle the class (even though there is no practical need for it) until the next major version."
+			"Previously, Bootstrap scripts dynamically added the {{.hide}} class to completely hide a toast (with {{display:none}}, rather than just with {{opacity:0}}). This is now not necessary anymore. However, for backwards compatibility, Bootstrap script will continue to toggle the class (even though there is no practical need for it) until the next major version."
 		),
 
 		//-----------------------
 
 		new e.subtitle("Live example"),
 		new e.text(
-			"Click the button below to show a toast (positioned with our utilities in the lower right corner) that has been hidden by default."
+			"Click the button below to show a toast (positioned with Bootstrap utilities in the lower right corner) that has been hidden by default."
 		),
 		new e.code({
 			output: () => {
@@ -111,7 +111,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Toast show"),
 		new e.text(
-			"You also can use our {{b.toast.show}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."
+			"You also can use Bootstrap {{b.toast.show}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."
 		),
 		new e.code({
 			output: () => {
@@ -146,7 +146,7 @@ export const toast: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Simple toast"),
-		new e.text("You can use our simple toast by calling function {{b.toast.simple()}}."),
+		new e.text("You can use Bootstrap simple toast by calling function {{b.toast.simple()}}."),
 		new e.table({
 			item: [
 				["Option", "Type", "Default", "Description"],
@@ -372,7 +372,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Color schemes"),
 		new e.text(
-			"Building on the above example, you can create different toast color schemes with our {{https://getbootstrap.com/docs/5.3/utilities/colors/::color}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::background}} utilities. Here we’ve added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to our close button. For a crisp edge, we remove the default border with {{.border-0}}."
+			"Building on the above example, you can create different toast color schemes with Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/colors/::color}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::background}} utilities. Here we’ve added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to Bootstrap close button. For a crisp edge, we remove the default border with {{.border-0}}."
 		),
 		new e.code({
 			output: () => {
@@ -726,7 +726,7 @@ export const toast: IAttrContent = {
 		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 
 		new e.table({

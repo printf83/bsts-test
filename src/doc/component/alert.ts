@@ -229,7 +229,9 @@ export const alert: IAttrContent = {
 		}),
 
 		new e.subtitle("Sass mixin"),
-		new e.text("Used in combination with {{$theme-colors}} to create contextual modifier classes for our alerts."),
+		new e.text(
+			"Used in combination with {{$theme-colors}} to create contextual modifier classes for Bootstrap alerts."
+		),
 		new e.codepreview({
 			type: "css",
 			title: "scss/mixins/_alert.scss",

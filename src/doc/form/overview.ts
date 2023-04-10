@@ -24,12 +24,13 @@ export const overview: IAttrContent = {
 					{
 						data: "doc/form/check_radio",
 						title: "Checks & radios",
-						content: "Use our custom radio buttons and checkboxes in forms for selecting input options.",
+						content:
+							"Use Bootstrap custom radio buttons and checkboxes in forms for selecting input options.",
 					},
 					{
 						data: "doc/form/range",
 						title: "Range",
-						content: "Replace browser default range inputs with our custom version.",
+						content: "Replace browser default range inputs with Bootstrap custom version.",
 					},
 					{
 						data: "doc/form/input_group",
@@ -76,7 +77,7 @@ export const overview: IAttrContent = {
 		),
 		new e.title("Overview"),
 		new e.text(
-			"Bootstrap’s form controls expand on {{nav:doc_content_reboot#forms::our Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."
+			"Bootstrap’s form controls expand on {{nav:doc_content_reboot#forms::Bootstrap Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."
 		),
 		new e.text(
 			"Be sure to use an appropriate {{type}} attribute on all inputs (e.g., {{email}} for email address or {{number}} for numerical information) to take advantage of newer input controls like email verification, number selection, and more."
@@ -211,7 +212,7 @@ export const overview: IAttrContent = {
 
 		new e.subtitle("Sass variables"),
 		new e.text(
-			"{{$input-btn-*}} variables are shared global variables between our {{nav:doc/component/button::buttons}} and our form components. You’ll find these frequently reassigned as values to other component-specific variables."
+			"{{$input-btn-*}} variables are shared global variables between Bootstrap {{nav:doc/component/button::buttons}} and Bootstrap form components. You’ll find these frequently reassigned as values to other component-specific variables."
 		),
 
 		new e.codepreview({

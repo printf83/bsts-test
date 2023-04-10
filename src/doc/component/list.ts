@@ -474,7 +474,7 @@ export const list: IAttrContent = {
 
 		new e.title("JavaScript behavior"),
 		new e.text(
-			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend our list group to create tabbable panes of local content."
+			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap list group to create tabbable panes of local content."
 		),
 
 		new e.code({
@@ -609,7 +609,7 @@ export const list: IAttrContent = {
 		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 		new e.text("Activates your content as a tab element."),
 		new e.text("You can create a tab instance with the constructor, for example:"),

@@ -22,19 +22,19 @@ export const validation: IAttrContent = {
 				"As a fallback, {{.is-invalid}} and {{.is-valid}} classes may be used instead of the pseudo-classes for {{https://getbootstrap.com/docs/5.3/forms/validation/#server-side::server-side validation}}. They do not require a {{.was-validated}} parent class.",
 				"Due to constraints in how CSS works, we cannot (at present) apply styles to a {{<label>}} that comes before a form control in the DOM without the help of custom JavaScript.",
 				"All modern browsers support the {{https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-constraint-validation-api::constraint validation API}}, a series of JavaScript methods for validating form controls.",
-				"Feedback messages may utilize the {{https://getbootstrap.com/docs/5.3/forms/validation/#browser-defaults::browser defaults}} (different for each browser, and unstylable via CSS) or our custom feedback styles with additional HTML and CSS.",
+				"Feedback messages may utilize the {{https://getbootstrap.com/docs/5.3/forms/validation/#browser-defaults::browser defaults}} (different for each browser, and unstylable via CSS) or Bootstrap custom feedback styles with additional HTML and CSS.",
 				"You may provide custom validity messages with {{setCustomValidity}} in JavaScript.",
 			],
 		}),
 		new e.text(
-			"With that in mind, consider the following demos for our custom form validation styles, optional server-side classes, and browser defaults."
+			"With that in mind, consider the following demos for Bootstrap custom form validation styles, optional server-side classes, and browser defaults."
 		),
 
 		//-----------------------
 
 		new e.title("Custom styles"),
 		new e.text(
-			"For custom Bootstrap form validation messages, you’ll need to add the {{novalidate}} boolean attribute to your {{<form>}}. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. Try to submit the form below; our JavaScript will intercept the submit button and relay feedback to you. When attempting to submit, you’ll see the {{:invalid}} and {{:valid}} styles applied to your form controls."
+			"For custom Bootstrap form validation messages, you’ll need to add the {{novalidate}} boolean attribute to your {{<form>}}. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. Try to submit the form below; Bootstrap JavaScript will intercept the submit button and relay feedback to you. When attempting to submit, you’ll see the {{:invalid}} and {{:valid}} styles applied to your form controls."
 		),
 		new e.text(
 			"Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for {{<select>}}s are only available with {{.form-select}}, and not {{.form-control}}."
@@ -461,7 +461,7 @@ export const validation: IAttrContent = {
 
 		new e.title("Tooltips"),
 		new e.text(
-			"If your form layout allows it, you can swap the {{.{valid|invalid}-feedback}} classes for {{.{valid|invalid}-tooltip}} classes to display validation feedback in a styled tooltip. Be sure to have a parent with {{position: relative}} on it for tooltip positioning. In the example below, our column classes have this already, but your project may require an alternative setup."
+			"If your form layout allows it, you can swap the {{.{valid|invalid}-feedback}} classes for {{.{valid|invalid}-tooltip}} classes to display validation feedback in a styled tooltip. Be sure to have a parent with {{position: relative}} on it for tooltip positioning. In the example below, Bootstrap column classes have this already, but your project may require an alternative setup."
 		),
 		new e.code({
 			output: () => {
@@ -699,7 +699,7 @@ export const validation: IAttrContent = {
 
 		new e.subtitle("Sass mixins"),
 		new e.text(
-			"Two mixins are combined, through our {{https://getbootstrap.com/docs/5.3/forms/validation/#loop::loop}}, to generate our form validation feedback styles."
+			"Two mixins are combined, through Bootstrap {{https://getbootstrap.com/docs/5.3/forms/validation/#loop::loop}}, to generate Bootstrap form validation feedback styles."
 		),
 		new e.codepreview({
 			type: "css",
@@ -896,7 +896,7 @@ export const validation: IAttrContent = {
 
 		new e.subtitle("Sass loop"),
 		new e.text(
-			"Used to iterate over {{$form-validation-states}} map values to generate our validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop."
+			"Used to iterate over {{$form-validation-states}} map values to generate Bootstrap validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop."
 		),
 		new e.codepreview({
 			type: "css",
@@ -913,7 +913,7 @@ export const validation: IAttrContent = {
 
 		new e.subtitle("Customizing"),
 		new e.text(
-			"Validation states can be customized via Sass with the {{$form-validation-states}} map. Located in our {{_variables.scss}} file, this Sass map is how we generate the default {{valid}}/{{invalid}} validation states. Included is a nested map for customizing each state’s color, icon, tooltip color, and focus shadow. While no other states are supported by browsers, those using custom styles can easily add more complex form feedback."
+			"Validation states can be customized via Sass with the {{$form-validation-states}} map. Located in Bootstrap {{_variables.scss}} file, this Sass map is how we generate the default {{valid}}/{{invalid}} validation states. Included is a nested map for customizing each state’s color, icon, tooltip color, and focus shadow. While no other states are supported by browsers, those using custom styles can easily add more complex form feedback."
 		),
 	],
 };

@@ -4,7 +4,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 
 export const range: IAttrContent = {
 	title: "Range",
-	description: "Use our custom range inputs for consistent cross-browser styling and built-in customization.",
+	description: "Use Bootstrap custom range inputs for consistent cross-browser styling and built-in customization.",
 	item: [
 		new e.title("Overview"),
 		new e.text(

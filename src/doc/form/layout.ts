@@ -5,7 +5,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const layout: IAttrContent = {
 	title: "Layout",
 	description:
-		"Give your forms some structure—from inline to horizontal to custom grid implementations—with our form layout options.",
+		"Give your forms some structure—from inline to horizontal to custom grid implementations—with Bootstrap form layout options.",
 	item: [
 		new e.title("Forms"),
 		new e.text(
@@ -18,7 +18,7 @@ export const layout: IAttrContent = {
 			],
 		}),
 		new e.text(
-			"Since Bootstrap applies {{display: block}} and {{width: 100%}} to almost all our form controls, forms will by default stack vertically. Additional classes can be used to vary this layout on a per-form basis."
+			"Since Bootstrap applies {{display: block}} and {{width: 100%}} to almost all Bootstrap form controls, forms will by default stack vertically. Additional classes can be used to vary this layout on a per-form basis."
 		),
 
 		//-----------------------
@@ -63,7 +63,7 @@ export const layout: IAttrContent = {
 
 		new e.title("Form grid"),
 		new e.text(
-			"More complex forms can be built using our grid classes. Use these for form layouts that require multiple columns, varied widths, and additional alignment options. {{b::Requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."
+			"More complex forms can be built using Bootstrap grid classes. Use these for form layouts that require multiple columns, varied widths, and additional alignment options. {{b::Requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."
 		),
 		new e.code({
 			output: () => {
@@ -158,7 +158,7 @@ export const layout: IAttrContent = {
 			"Create horizontal forms with the grid by adding the {{.row}} class to form groups and using the {{.col-*-*}} classes to specify the width of your labels and controls. Be sure to add {{.col-form-label}} to your {{<label>}}s as well so they’re vertically centered with their associated form controls."
 		),
 		new e.text(
-			"At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, we’ve removed the {{padding-top}} on our stacked radio inputs label to better align the text baseline."
+			"At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, we’ve removed the {{padding-top}} on Bootstrap stacked radio inputs label to better align the text baseline."
 		),
 		new e.code({
 			output: () => {
@@ -246,7 +246,7 @@ export const layout: IAttrContent = {
 
 		new e.title("Column sizing"),
 		new e.text(
-			"As shown in the previous examples, our grid system allows you to place any number of {{.col}}s within a {{.row}}. They’ll split the available width equally between them. You may also pick a subset of your columns to take up more or less space, while the remaining {{.col}}s equally split the rest, with specific column classes like {{.col-sm-6}}."
+			"As shown in the previous examples, Bootstrap grid system allows you to place any number of {{.col}}s within a {{.row}}. They’ll split the available width equally between them. You may also pick a subset of your columns to take up more or less space, while the remaining {{.col}}s equally split the rest, with specific column classes like {{.col-sm-6}}."
 		),
 		new e.code({
 			output: () => {

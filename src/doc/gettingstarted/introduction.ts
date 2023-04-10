@@ -9,7 +9,7 @@ export const introduction: IAttrContent = {
 	item: [
 		new e.alert({ color: "warning", callout: true }, [
 			new b.alert.header(3, "Disclaimer"),
-			"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test our {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
+			"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test Bootstrap {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
 		]),
 
 		new e.title("Quick start"),
@@ -38,7 +38,7 @@ export const introduction: IAttrContent = {
 					}),
 				]),
 				new h.li([
-					"{{b::Include Bootstrap’s CSS and JS}}. Place the {{<link>}} tag in the {{<head>}} for our CSS, and the {{<script>}} tag for our JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing {{</body>}}. Learn more about our {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#cdn-links::CDN links}}.",
+					"{{b::Include Bootstrap’s CSS and JS}}. Place the {{<link>}} tag in the {{<head>}} for Bootstrap CSS, and the {{<script>}} tag for Bootstrap JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing {{</body>}}. Learn more about Bootstrap {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#cdn-links::CDN links}}.",
 					new e.codepreview({
 						type: "html",
 						code: `
@@ -58,7 +58,7 @@ export const introduction: IAttrContent = {
 
 							`,
 					}),
-					"You can also include {{https://popper.js.org/::Popper}} and our JS separately. If you don’t plan to use dropdowns, popovers, or tooltips, save some kilobytes by not including Popper.",
+					"You can also include {{https://popper.js.org/::Popper}} and Bootstrap JS separately. If you don’t plan to use dropdowns, popovers, or tooltips, save some kilobytes by not including Popper.",
 					new e.codepreview({
 						type: "html",
 						code: `
@@ -68,7 +68,7 @@ export const introduction: IAttrContent = {
 					}),
 				]),
 				new h.li([
-					"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{?q=doc_layout_grid::layout}}, adding dozens of {{?q=doc/component/button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::our official examples}}.",
+					"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{?q=doc_layout_grid::layout}}, adding dozens of {{?q=doc/component/button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::Bootstrap official examples}}.",
 				]),
 			])
 		),
@@ -76,7 +76,7 @@ export const introduction: IAttrContent = {
 		//-----------------------
 
 		new e.title("CDN links"),
-		new e.text("As reference, here are our primary CDN links."),
+		new e.text("As reference, here are Bootstrap primary CDN links."),
 		new e.table({
 			item: [
 				["Description", "URLs"],
@@ -85,7 +85,7 @@ export const introduction: IAttrContent = {
 			],
 		}),
 		new e.text(
-			"You can also use the CDN to fetch any of our {{?q=doc_gettingstarted_content::additional builds listed in the Contents page}}."
+			"You can also use the CDN to fetch any of Bootstrap {{?q=doc_gettingstarted_content::additional builds listed in the Contents page}}."
 		),
 
 		//-----------------------
@@ -94,9 +94,9 @@ export const introduction: IAttrContent = {
 		new e.ul({
 			item: [
 				"Read a bit more about some {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#important-globals::important global environment settings}} that Bootstrap utilizes.",
-				"Read about what’s included in Bootstrap in our {{https://getbootstrap.com/docs/5.3/getting-started/contents/::contents section}} and the list of {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#js-components::components that require JavaScript}} below.",
+				"Read about what’s included in Bootstrap in Bootstrap {{https://getbootstrap.com/docs/5.3/getting-started/contents/::contents section}} and the list of {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#js-components::components that require JavaScript}} below.",
 				"Need a little more power? Consider building with Bootstrap by {{https://getbootstrap.com/docs/5.3/getting-started/download/#package-managers::including the source files via package manager}}.",
-				"Looking to use Bootstrap as a module with {{<script type='module'>}}? Please refer to our using {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#using-bootstrap-as-a-module::Bootstrap as a module}} section.",
+				"Looking to use Bootstrap as a module with {{<script type='module'>}}? Please refer to Bootstrap using {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#using-bootstrap-as-a-module::Bootstrap as a module}} section.",
 			],
 		}),
 
@@ -104,7 +104,7 @@ export const introduction: IAttrContent = {
 
 		new e.title("JS components"),
 		new e.text(
-			"Curious which components explicitly require our JavaScript and Popper? Click the show components link below. If you’re at all unsure about the general page structure, keep reading for an example page template."
+			"Curious which components explicitly require Bootstrap JavaScript and Popper? Click the show components link below. If you’re at all unsure about the general page structure, keep reading for an example page template."
 		),
 		new e.text("Components requiring JavaScript"),
 
@@ -116,7 +116,7 @@ export const introduction: IAttrContent = {
 				"Collapse for toggling visibility of content",
 				"Dropdowns for displaying and positioning (also requires {{https://popper.js.org/::Popper}})",
 				"Modals for displaying, positioning, and scroll behavior",
-				"Navbar for extending our Collapse and Offcanvas plugins to implement responsive behaviors",
+				"Navbar for extending Bootstrap Collapse and Offcanvas plugins to implement responsive behaviors",
 				"Navs with the Tab plugin for toggling content panes",
 				"Offcanvases for displaying, positioning, and scroll behavior",
 				"Scrollspy for scroll behavior and navigation updates",
@@ -200,7 +200,7 @@ export const introduction: IAttrContent = {
 		new e.ul({
 			item: [
 				"Read and subscribe to {{https://blog.getbootstrap.com/::The Official Bootstrap Blog}}.",
-				"Ask and explore {{https://github.com/twbs/bootstrap/discussions::our GitHub Discussions}}.",
+				"Ask and explore {{https://github.com/twbs/bootstrap/discussions::Bootstrap GitHub Discussions}}.",
 				"Chat with fellow Bootstrappers in IRC. On the {{irc.libera.chat}} server, in the {{#bootstrap}} channel.",
 				"Implementation help may be found at Stack Overflow (tagged {{https://stackoverflow.com/questions/tagged/bootstrap-5::bootstrap-5}}).",
 				"Developers should use the keyword {{bootstrap}} on packages that modify or add to the functionality of Bootstrap when distributing through {{https://www.npmjs.com/search?q=keywords:bootstrap::npm}} or similar delivery mechanisms for maximum discoverability.",

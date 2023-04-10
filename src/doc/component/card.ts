@@ -9,7 +9,7 @@ export const card: IAttrContent = {
 	item: [
 		new e.title("About"),
 		new e.text(
-			"A {{card}} is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards."
+			"A {{card}} is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace Bootstrap old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards."
 		),
 
 		//-----------------------
@@ -19,14 +19,14 @@ export const card: IAttrContent = {
 			"Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no {{margin}} by default, so use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing utilities}} as needed."
 		),
 		new e.text(
-			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various {{nav:doc/component/card#sizing::sizing options}}."
+			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with Bootstrap various {{nav:doc/component/card#sizing::sizing options}}."
 		),
 		new e.code({
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180",
 						alt: "Image cap",
 					}),
 					new b.card.body([
@@ -94,7 +94,7 @@ export const card: IAttrContent = {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180",
 						alt: "Image cap",
 					}),
 					new b.card.body([
@@ -159,7 +159,7 @@ export const card: IAttrContent = {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180",
 						alt: "Image cap",
 					}),
 					new b.card.body([
@@ -285,7 +285,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Using utilities"),
 		new e.text(
-			"Use our handful of {{https://getbootstrap.com/docs/5.3/utilities/sizing/::available sizing utilities}} to quickly set a card’s width."
+			"Use Bootstrap handful of {{https://getbootstrap.com/docs/5.3/utilities/sizing/::available sizing utilities}} to quickly set a card’s width."
 		),
 		new e.code({
 			output: () => {
@@ -330,7 +330,7 @@ export const card: IAttrContent = {
 
 		new e.title("Text alignment"),
 		new e.text(
-			"You can quickly change the text alignment of any card—in its entirety or specific parts—with our {{https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment::text align classes}}."
+			"You can quickly change the text alignment of any card—in its entirety or specific parts—with Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment::text align classes}}."
 		),
 		new e.code({
 			output: () => {
@@ -416,7 +416,7 @@ export const card: IAttrContent = {
 					new b.card.container({ marginBottom: 3 }, [
 						new b.card.img({
 							location: "top",
-							src: "https://picsum.photos/seed/bsts/708/180",
+							src: "https://picsum.photos/seed/bsts_0/708/180",
 							alt: "Image cap",
 						}),
 						new b.card.body([
@@ -437,7 +437,7 @@ export const card: IAttrContent = {
 						]),
 						new b.card.img({
 							location: "bottom",
-							src: "https://picsum.photos/seed/bsts/708/180",
+							src: "https://picsum.photos/seed/bsts_0/708/180",
 							alt: "Image cap",
 						}),
 					]),
@@ -456,7 +456,7 @@ export const card: IAttrContent = {
 			output: () => {
 				return new b.card.container({ textBgColor: "dark" }, [
 					new b.card.img({
-						src: "https://picsum.photos/seed/bsts/676/238",
+						src: "https://picsum.photos/seed/bsts_0/676/238",
 						alt: "Card image",
 					}),
 					new b.card.imgoverlay([
@@ -491,7 +491,7 @@ export const card: IAttrContent = {
 							new b.card.img({
 								fluid: true,
 								rounded: "start",
-								src: "https://picsum.photos/seed/bsts/180/250",
+								src: "https://picsum.photos/seed/bsts_0/180/250",
 								alt: "Image",
 							})
 						),
@@ -519,7 +519,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Background and color"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::our .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
 
 		new e.code({
@@ -636,7 +636,7 @@ export const card: IAttrContent = {
 					].map((i) => {
 						return new b.card.container([
 							new b.card.img({
-								src: "https://picsum.photos/seed/bsts/235/180",
+								src: "https://picsum.photos/seed/bsts_0/235/180",
 								alt: "Image cap",
 								location: "top",
 							}),
@@ -665,7 +665,7 @@ export const card: IAttrContent = {
 					].map((i) => {
 						return new b.card.container([
 							new b.card.img({
-								src: "https://picsum.photos/seed/bsts/235/180",
+								src: "https://picsum.photos/seed/bsts_0/235/180",
 								alt: "Image cap",
 								location: "top",
 							}),
@@ -702,7 +702,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container([
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts/341/140",
+									src: "https://picsum.photos/seed/bsts_0/341/140",
 									alt: "Image cap",
 									location: "top",
 								}),
@@ -734,7 +734,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container([
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts/218/140",
+									src: "https://picsum.photos/seed/bsts_0/218/140",
 									alt: "Image cap",
 									location: "top",
 								}),
@@ -768,7 +768,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container({ height: 100 }, [
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts/218/140",
+									src: "https://picsum.photos/seed/bsts_0/218/140",
 									alt: "Image cap",
 									location: "top",
 								}),
@@ -799,7 +799,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container({ height: 100 }, [
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts/218/140",
+									src: "https://picsum.photos/seed/bsts_0/218/140",
 									alt: "Image cap",
 									location: "top",
 								}),

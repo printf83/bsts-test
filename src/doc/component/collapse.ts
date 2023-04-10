@@ -4,7 +4,8 @@ import { IAttrContent } from "../../ctl/main/container.js";
 
 export const collapse: IAttrContent = {
 	title: "Collapse",
-	description: "Toggle the visibility of content across your project with a few classes and our JavaScript plugins.",
+	description:
+		"Toggle the visibility of content across your project with a few classes and Bootstrap JavaScript plugins.",
 	item: [
 		new e.title("How it works"),
 		new e.text(
@@ -13,7 +14,7 @@ export const collapse: IAttrContent = {
 		new e.text(
 			new b.alert.container(
 				{ color: "info", callout: true },
-				"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{?q=doc_gettingstarted_accessibility#reduce_motion::reduced motion section of our accessibility documentation}}."
+				"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{?q=doc_gettingstarted_accessibility#reduce_motion::reduced motion section of Bootstrap accessibility documentation}}."
 			)
 		),
 
@@ -61,12 +62,12 @@ export const collapse: IAttrContent = {
 
 		new e.title("Horizontal"),
 		new e.text(
-			"The collapse plugin supports horizontal collapsing. Add the {{.collapse-horizontal}} modifier class to transition the {{width}} instead of {{height}} and set a {{width}} on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use our {{https://getbootstrap.com/docs/5.3/utilities/sizing/::width utilities}}."
+			"The collapse plugin supports horizontal collapsing. Add the {{.collapse-horizontal}} modifier class to transition the {{width}} instead of {{height}} and set a {{width}} on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/sizing/::width utilities}}."
 		),
 		new e.text(
 			new b.alert.container(
 				{ color: "info", callout: true },
-				"Please note that while the example below has a {{min-height}} set to avoid excessive repaints in our docs, this is not explicitly required. {{b::Only the}} {{width}} {{b::on the child element is required}}."
+				"Please note that while the example below has a {{min-height}} set to avoid excessive repaints in Bootstrap docs, this is not explicitly required. {{b::Only the}} {{width}} {{b::on the child element is required}}."
 			)
 		),
 		new e.code({
@@ -264,7 +265,7 @@ export const collapse: IAttrContent = {
 		new e.text(
 			new b.alert.container(
 				{ color: "danger", callout: true },
-				"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+				"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 			)
 		),
 		new e.text("Activates your content as a collapsible element. Accepts an optional options object."),

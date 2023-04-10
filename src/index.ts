@@ -92,6 +92,7 @@ let m = {
 			item: [
 				{ label: "API", value: "doc/utilities/api" },
 				{ label: "Background", value: "doc/utilities/background" },
+				{ label: "Borders", value: "doc/utilities/border" },
 				{ label: "Colors", value: "doc/utilities/color" },
 			],
 		},
@@ -102,7 +103,7 @@ const notfoundData = (value: string) => {
 	return {
 		title: "Oooopppsss!",
 		description: `Content {{${value}}} not found`,
-		sourceUrl: `https://github.com/printf83/bsts-test/blob/main/src/index.ts`,
+		sourceUrl: `https://github.com/printf83/bsts-test/blob/main/src/doc/_index.ts`,
 		sourceWeb: "Github",
 	} as main.IAttrContent;
 };
@@ -123,9 +124,10 @@ const getData = (value: string) => {
 	}
 };
 
-const onmenuchange = (value: string) => {
+const onmenuchange = (value: string, isfirsttime?: boolean) => {
 	setTimeout(
 		(value) => {
+			isfirsttime ??= false;
 			//-------------------------------
 			// TODO :  set location without reload
 			// https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
@@ -175,7 +177,10 @@ const onmenuchange = (value: string) => {
 					window.scrollTo(0, offsetElemPosition);
 				}
 			} else {
-				window.scrollTo(0, 0);
+				if (!isfirsttime) {
+					console.log("is not first");
+					window.scrollTo(0, 0);
+				}
 			}
 		},
 		100,
@@ -280,7 +285,7 @@ core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
-	onmenuchange(cookie.get("current_page") || "doc_gettingstarted_introduction");
+	onmenuchange(cookie.get("current_page") || "doc_gettingstarted_introduction", true);
 
 	document.addEventListener(
 		"bs-navigate",

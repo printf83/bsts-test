@@ -113,7 +113,7 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Tabs"),
 		new e.text(
-			"Takes the basic nav from above and adds the {{.nav-tabs}} class to generate a tabbed interface. Use them to create tabbable regions with our {{nav:doc/component/nav#javascript_behavior::tab JavaScript plugin}}."
+			"Takes the basic nav from above and adds the {{.nav-tabs}} class to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:doc/component/nav#javascript_behavior::tab JavaScript plugin}}."
 		),
 		new e.code({
 			output: () => {
@@ -214,7 +214,7 @@ export const nav: IAttrContent = {
 
 		new e.title("Working with flex utilities"),
 		new e.text(
-			"If you need responsive nav variations, consider using a series of {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, our nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint."
+			"If you need responsive nav variations, consider using a series of {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, Bootstrap nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint."
 		),
 		new e.code({
 			output: () => {
@@ -234,7 +234,7 @@ export const nav: IAttrContent = {
 			"If you’re using navs to provide a navigation bar, be sure to add a {{role='navigation'}} to the most logical parent container of the {{<ul>}}, or wrap a {{<nav>}} element around the whole navigation. Do not add the role to the {{<ul>}} itself, as this would prevent it from being announced as an actual list by assistive technologies."
 		),
 		new e.text(
-			"Note that navigation bars, even if visually styled as tabs with the {{.nav-tabs}} class, should {{b::not}} be given {{role='tablist'}}, {{role='tab'}} or {{role='tabpanel'}} attributes. These are only appropriate for dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}. See {{nav:doc/component/nav#javascript-behavior::JavaScript behavior}} for dynamic tabbed interfaces in this section for an example. The {{aria-current}} attribute is not necessary on dynamic tabbed interfaces since our JavaScript handles the selected state by adding {{aria-selected='true'}} on the active tab."
+			"Note that navigation bars, even if visually styled as tabs with the {{.nav-tabs}} class, should {{b::not}} be given {{role='tablist'}}, {{role='tab'}} or {{role='tabpanel'}} attributes. These are only appropriate for dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}. See {{nav:doc/component/nav#javascript-behavior::JavaScript behavior}} for dynamic tabbed interfaces in this section for an example. The {{aria-current}} attribute is not necessary on dynamic tabbed interfaces since Bootstrap JavaScript handles the selected state by adding {{aria-selected='true'}} on the active tab."
 		),
 
 		//-----------------------
@@ -389,7 +389,7 @@ export const nav: IAttrContent = {
 
 		new e.title("JavaScript behavior"),
 		new e.text(
-			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend our navigational tabs and pills to create tabbable panes of local content."
+			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap navigational tabs and pills to create tabbable panes of local content."
 		),
 		new e.code({
 			output: () => {
@@ -691,7 +691,7 @@ export const nav: IAttrContent = {
 		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 		new e.text("Activates your content as a tab element."),
 		new e.text("You can create a tab instance with the constructor, for example:"),

@@ -9,14 +9,14 @@ export const spinner: IAttrContent = {
 	item: [
 		new e.title("About"),
 		new e.text(
-			"Bootstrap “spinners” can be used to show the loading state in your projects. They’re built only with HTML and CSS, meaning you don’t need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, alignment, and sizing can be easily customized with our amazing utility classes."
+			"Bootstrap “spinners” can be used to show the loading state in your projects. They’re built only with HTML and CSS, meaning you don’t need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, alignment, and sizing can be easily customized with Bootstrap amazing utility classes."
 		),
 		new e.text(
 			"For accessibility purposes, each loader here includes {{role='status'}} and a nested {{<span class='visually-hidden'>Loading...</span>}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
 		),
 
 		//-----------------------
@@ -33,7 +33,7 @@ export const spinner: IAttrContent = {
 
 		new e.subtitle("Colors"),
 		new e.text(
-			"The border spinner uses {{currentColor}} for its {{border-color}}, meaning you can customize the color with text color utilities. You can use any of our {{https://getbootstrap.com/docs/5.3/utilities/colors/::text color utilities}} on the standard spinner."
+			"The border spinner uses {{currentColor}} for its {{border-color}}, meaning you can customize the color with text color utilities. You can use any of Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/colors/::text color utilities}} on the standard spinner."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -304,7 +304,7 @@ export const spinner: IAttrContent = {
 		}),
 
 		new e.subtitle("Keyframes"),
-		new e.text("Used for creating the CSS animations for our spinners. Included in {{scss/_spinners.scss}}."),
+		new e.text("Used for creating the CSS animations for Bootstrap spinners. Included in {{scss/_spinners.scss}}."),
 
 		new e.codepreview({
 			type: "css",

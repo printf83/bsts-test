@@ -15,7 +15,7 @@ export const popover: IAttrContent = {
 				"Popovers require the {{nav:doc/component/popover::popover plugin}} as a dependency.",
 				"Popovers are opt-in for performance reasons, so {{b::you must initialize them yourself}}.",
 				"Zero-length {{title}} and {{content}} values will never show a popover.",
-				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like our input groups, button groups, etc).",
+				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
 				"Triggering popovers on hidden elements will not work.",
 				"Popovers for {{.disabled}} or {{disabled}} elements must be triggered on a wrapper element.",
 				"When triggered from anchors that wrap across multiple lines, popovers will be centered between the anchors’ overall width. Use {{.text-nowrap}} on your {{<a>}}s to avoid this behavior.",
@@ -25,11 +25,11 @@ export const popover: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			"By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::sanitizer section in our JavaScript documentation}} for more details."
+			"By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::sanitizer section in Bootstrap JavaScript documentation}} for more details."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
 		),
 		new e.text("Keep reading to see how popovers work with some examples."),
 
@@ -118,7 +118,7 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Custom popovers"),
 		new e.text(
-			"You can customize the appearance of popovers using {{nav:doc/component/popover#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope our custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of popovers using {{nav:doc/component/popover#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 		),
 
 		// new e.codepreview({
@@ -439,7 +439,7 @@ export const popover: IAttrContent = {
 		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 		new e.table({
 			item: [

@@ -14,7 +14,7 @@ export const tooltip: IAttrContent = {
 				"Tooltips rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
 				"Tooltips are opt-in for performance reasons, so {{b::you must initialize them yourself}}.",
 				"Tooltips with zero-length title are never displayed.",
-				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like our input groups, button groups, etc).",
+				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
 				"Triggering tooltips on hidden elements will not work.",
 				"Tooltips for {{.disabled}} or {{disabled}} elements must be triggered on a wrapper element.",
 				"When triggered from hyperlinks that span multiple lines, tooltips will be centered. Use {{white-space: nowrap;}} on your {{<a>}}s to avoid this behavior.",
@@ -25,11 +25,11 @@ export const tooltip: IAttrContent = {
 		new e.text("Got all that? Great, let’s see how they work with some examples."),
 		new e.alert(
 			{ color: "info", callout: true },
-			"By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::sanitizer section in our JavaScript documentation}} for more details."
+			"By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::sanitizer section in Bootstrap JavaScript documentation}} for more details."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
 		),
 
 		//-----------------------
@@ -79,7 +79,7 @@ export const tooltip: IAttrContent = {
 
 		new e.subtitle("Custom tooltips"),
 		new e.text(
-			"You can customize the appearance of tooltips using {{nav:doc/component/tooltip#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-tooltip'}} to scope our custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of tooltips using {{nav:doc/component/tooltip#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-tooltip'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 		),
 
 		new e.codepreview({
@@ -428,7 +428,7 @@ export const tooltip: IAttrContent = {
 		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 		new e.table({
 			item: [

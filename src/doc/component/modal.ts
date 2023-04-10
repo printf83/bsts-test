@@ -9,7 +9,7 @@ export const modal: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"Before getting started with Bootstrap’s modal component, be sure to read the following as our menu options have recently changed."
+			"Before getting started with Bootstrap’s modal component, be sure to read the following as Bootstrap menu options have recently changed."
 		),
 		new e.ul({
 			item: [
@@ -17,7 +17,7 @@ export const modal: IAttrContent = {
 				"Clicking on the modal “backdrop” will automatically close the modal.",
 				"Bootstrap only supports one modal window at a time. Nested modals aren’t supported as we believe them to be poor user experiences.",
 				"Modals use {{position: fixed}}, which can sometimes be a bit particular about its rendering. Whenever possible, place your modal HTML in a top-level position to avoid potential interference from other elements. You’ll likely run into issues when nesting a {{.modal}} within another fixed element.",
-				"Once again, due to {{position: fixed}}, there are some caveats with using modals on mobile devices. {{https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile::See our browser support docs}} for details.",
+				"Once again, due to {{position: fixed}}, there are some caveats with using modals on mobile devices. {{https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile::See Bootstrap browser support docs}} for details.",
 				"Due to how HTML5 defines its semantics, {{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autofocus::the autofocus HTML attribute}} has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:",
 			],
 		}),
@@ -36,7 +36,7 @@ export const modal: IAttrContent = {
 
 		new e.alert(
 			{ color: "info", callout: true },
-			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
 		),
 
 		new e.text("Keep reading for demos and usage guidelines."),
@@ -99,7 +99,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Modal show"),
 		new e.text(
-			"You also can use our {{b.modal.show}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
+			"You also can use Bootstrap {{b.modal.show}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
 		),
 		new e.code({
 			output: () => {
@@ -133,7 +133,7 @@ export const modal: IAttrContent = {
 
 		//-----------------------
 		new e.subtitle("Simple modal"),
-		new e.text("You can use our simple modal by calling function {{b.modal.simple()}}."),
+		new e.text("You can use Bootstrap simple modal by calling function {{b.modal.simple()}}."),
 
 		new e.code({
 			extention: [
@@ -798,7 +798,7 @@ export const modal: IAttrContent = {
 				["Extra large", "{{.modal-xl}}", "{{1140px}}"],
 			],
 		}),
-		new e.text("Our default modal without modifier class constitutes the “medium” size modal."),
+		new e.text("Bootstrap default modal without modifier class constitutes the “medium” size modal."),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
@@ -1142,7 +1142,7 @@ export const modal: IAttrContent = {
 		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 
 		//-----------------------

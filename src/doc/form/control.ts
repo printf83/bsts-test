@@ -308,7 +308,7 @@ export const control: IAttrContent = {
 
 		new e.title("CSS"),
 		new e.subtitle("Sass variables"),
-		new e.text("{{$input-*}} are shared across most of our form controls (and not buttons)."),
+		new e.text("{{$input-*}} are shared across most of Bootstrap form controls (and not buttons)."),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
@@ -367,7 +367,9 @@ export const control: IAttrContent = {
 				$form-color-width:                      3rem;
 			`,
 		}),
-		new e.text("{{$form-label-*}} and {{$form-text-*}} are for our {{<label>}}s and {{.form-text}} component."),
+		new e.text(
+			"{{$form-label-*}} and {{$form-text-*}} are for Bootstrap {{<label>}}s and {{.form-text}} component."
+		),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",

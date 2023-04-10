@@ -5,11 +5,11 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const offcanvas: IAttrContent = {
 	title: "Offcanvas",
 	description:
-		"Build hidden sidebars into your project for navigation, shopping carts, and more with a few classes and our JavaScript plugin.",
+		"Build hidden sidebars into your project for navigation, shopping carts, and more with a few classes and Bootstrap JavaScript plugin.",
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"Offcanvas is a sidebar component that can be toggled via JavaScript to appear from the left, right, top, or bottom edge of the viewport. Buttons or anchors are used as triggers that are attached to specific elements you toggle, and {{data}} attributes are used to invoke our JavaScript."
+			"Offcanvas is a sidebar component that can be toggled via JavaScript to appear from the left, right, top, or bottom edge of the viewport. Buttons or anchors are used as triggers that are attached to specific elements you toggle, and {{data}} attributes are used to invoke Bootstrap JavaScript."
 		),
 		new e.ul({
 			item: [
@@ -24,7 +24,7 @@ export const offcanvas: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			" The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of our accessibility documentation}}."
+			" The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
 		),
 
 		//-----------------------
@@ -517,7 +517,7 @@ export const offcanvas: IAttrContent = {
 		new e.subtitle("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in our JavaScript docs}}."
+			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 		new e.text("Activates your content as an offcanvas element. Accepts an optional options {{object}}."),
 		new e.text("You can create an offcanvas instance with the constructor, for example:"),

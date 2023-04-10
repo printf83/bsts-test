@@ -9,7 +9,7 @@ export const progress: IAttrContent = {
 	item: [
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::New markup in v5.3.0 —}} We’ve deprecated the previous HTML structure for progress bars and replaced it with a more accessible one. The previous structure will continue to work until v6. {{https://getbootstrap.com/docs/5.3/migration/#improved-markup-for-progress-bars::See what’s changed in our migration guide}}."
+			"{{b::New markup in v5.3.0 —}} We’ve deprecated the previous HTML structure for progress bars and replaced it with a more accessible one. The previous structure will continue to work until v6. {{https://getbootstrap.com/docs/5.3/migration/#improved-markup-for-progress-bars::See what’s changed in Bootstrap migration guide}}."
 		),
 
 		new e.title("How it works"),
