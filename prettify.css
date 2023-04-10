@@ -8,6 +8,7 @@ code .str {
 pre .kwd,
 code .kwd {
     color: var(--bs-danger);
+    font-style: italic;
 }
 
 

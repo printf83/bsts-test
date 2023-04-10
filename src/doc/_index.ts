@@ -12,6 +12,8 @@ export const doc = (value: string) => {
 			return utilities.api;
 		case "doc/utilities/background":
 			return utilities.background;
+		case "doc/utilities/color":
+			return utilities.color;
 
 		//--------------------------
 		case "doc/form/overview":

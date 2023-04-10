@@ -92,6 +92,7 @@ let m = {
 			item: [
 				{ label: "API", value: "doc/utilities/api" },
 				{ label: "Background", value: "doc/utilities/background" },
+				{ label: "Colors", value: "doc/utilities/color" },
 			],
 		},
 	] as main.IAttrItemMenu[],
