@@ -27,16 +27,13 @@
 	"scripts": {
 		"clean": "rm -rf ./lib",
 		"clean:win": "rmdir /s lib",
-		"build": "npm run clean && npm run build:esm",
-		"build:win": "npm run clean:win && npm run build:esm",
-		"build:esm": "tsc -p ./configs/tsconfig.esm.json",
+		"build": "tsc -p ./configs/tsconfig.esm.json",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"link": "sudo npm link ../bsts",
 		"unlink": "sudo npm unlink ../bsts",
-		"debug:link": "npm run unlink && npm run link && npm run debug",
 		"webpack:debug": "webpack -w",
-		"webpack": "npm run build && webpack",
-		"prepack": "npm run build"
+		"webpack": "webpack",
+		"prepack": "npm run clean && npm run build"
 	},
 	"devDependencies": {
 		"@printf83/bsts": "^0.1.80",

@@ -1,5 +1,5 @@
 import { core } from "@printf83/bsts";
-import { data } from "./data/_index.js";
+import { doc } from "./doc/_index.js";
 import * as main from "./ctl/main/_index.js";
 
 const cookie = {
@@ -39,61 +39,79 @@ let m = {
 		{
 			label: "Getting started",
 			icon: { id: "book-half", color: "primary" },
-			item: [{ label: "Introduction", value: "doc_gettingstarted_introduction" }],
+			item: [{ label: "Introduction", value: "doc/gettingstarted/introduction" }],
 		},
 		{
 			label: "Forms",
 			icon: { id: "ui-radios", color: "primary" },
 			item: [
-				{ label: "Overview", value: "doc_form_overview" },
-				{ label: "Form control", value: "doc_form_control" },
-				{ label: "Select", value: "doc_form_select" },
-				{ label: "Checks & radios", value: "doc_form_check_radio" },
-				{ label: "Range", value: "doc_form_range" },
-				{ label: "Input group", value: "doc_form_input_group" },
-				{ label: "Floating labels", value: "doc_form_floating_label" },
-				{ label: "Layout", value: "doc_form_layout" },
-				{ label: "Validation", value: "doc_form_validation" },
+				{ label: "Overview", value: "doc/form/overview" },
+				{ label: "Form control", value: "doc/form/control" },
+				{ label: "Select", value: "doc/form/select" },
+				{ label: "Checks & radios", value: "doc/form/check_radio" },
+				{ label: "Range", value: "doc/form/range" },
+				{ label: "Input group", value: "doc/form/input_group" },
+				{ label: "Floating labels", value: "doc/form/floating_label" },
+				{ label: "Layout", value: "doc/form/layout" },
+				{ label: "Validation", value: "doc/form/validation" },
 			],
 		},
 		{
 			label: "Component",
 			icon: { id: "menu-button-wide-fill", color: "info" },
 			item: [
-				{ label: "Accordion", value: "doc_component_accordion" },
-				{ label: "Alert", value: "doc_component_alert" },
-				{ label: "Badge", value: "doc_component_badge" },
-				{ label: "Breadcrumb", value: "doc_component_breadcrumb" },
-				{ label: "Button", value: "doc_component_button" },
-				{ label: "Button group", value: "doc_component_btngroup" },
-				{ label: "Card", value: "doc_component_card" },
-				{ label: "Carousel", value: "doc_component_carousel" },
-				{ label: "Close button", value: "doc_component_btnclose" },
-				{ label: "Collapse", value: "doc_component_collapse" },
-				{ label: "Dropdowns", value: "doc_component_dropdown" },
-				{ label: "List group", value: "doc_component_list" },
-				{ label: "Modal", value: "doc_component_modal" },
-				{ label: "Navbar", value: "doc_component_navbar" },
-				{ label: "Navs & tabs", value: "doc_component_nav" },
-				{ label: "Offcanvas", value: "doc_component_offcanvas" },
-				{ label: "Pagination", value: "doc_component_pagination" },
-				{ label: "Placeholder", value: "doc_component_placeholder" },
-				{ label: "Popovers", value: "doc_component_popover" },
-				{ label: "Progress", value: "doc_component_progress" },
-				{ label: "Scrollspy", value: "doc_component_scrollspy" },
-				{ label: "Spinners", value: "doc_component_spinner" },
-				{ label: "Toasts", value: "doc_component_toast" },
-				{ label: "Tooltips", value: "doc_component_tooltip" },
+				{ label: "Accordion", value: "doc/component/accordion" },
+				{ label: "Alert", value: "doc/component/alert" },
+				{ label: "Badge", value: "doc/component/badge" },
+				{ label: "Breadcrumb", value: "doc/component/breadcrumb" },
+				{ label: "Button", value: "doc/component/button" },
+				{ label: "Button group", value: "doc/component/button_group" },
+				{ label: "Card", value: "doc/component/card" },
+				{ label: "Carousel", value: "doc/component/carousel" },
+				{ label: "Close button", value: "doc/component/close_button" },
+				{ label: "Collapse", value: "doc/component/collapse" },
+				{ label: "Dropdowns", value: "doc/component/dropdown" },
+				{ label: "List group", value: "doc/component/list" },
+				{ label: "Modal", value: "doc/component/modal" },
+				{ label: "Navbar", value: "doc/component/navbar" },
+				{ label: "Navs & tabs", value: "doc/component/nav" },
+				{ label: "Offcanvas", value: "doc/component/offcanvas" },
+				{ label: "Pagination", value: "doc/component/pagination" },
+				{ label: "Placeholder", value: "doc/component/placeholder" },
+				{ label: "Popovers", value: "doc/component/popover" },
+				{ label: "Progress", value: "doc/component/progress" },
+				{ label: "Scrollspy", value: "doc/component/scrollspy" },
+				{ label: "Spinners", value: "doc/component/spinner" },
+				{ label: "Toasts", value: "doc/component/toast" },
+				{ label: "Tooltips", value: "doc/component/tooltip" },
 			],
 		},
 	] as main.IAttrItemMenu[],
 };
 
+const notfoundData = (value: string) => {
+	return {
+		title: "Oooopppsss!",
+		description: `Content {{${value}}} not found`,
+		sourceUrl: `https://github.com/printf83/bsts-test/blob/main/src/index.ts`,
+		sourceWeb: "Github",
+	} as main.IAttrContent;
+};
+
 const getData = (value: string) => {
-	let c = data(value);
-	c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/data/${value}.ts`;
-	c.sourceWeb = "Github";
-	return c;
+	let tValue = value.split("/");
+	if (tValue.length === 3 && tValue[0] === "doc") {
+		let c = doc(value);
+		if (c) {
+			c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${value}.ts`;
+			c.sourceWeb = "Github";
+			return c;
+		} else {
+			return notfoundData(value);
+		}
+	} else {
+		return notfoundData(value);
+	}
 };
 
 const onmenuchange = (value: string) => {
