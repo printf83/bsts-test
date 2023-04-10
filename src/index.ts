@@ -89,7 +89,10 @@ let m = {
 		{
 			label: "Utilities",
 			icon: { id: "braces-asterisk", color: "danger" },
-			item: [{ label: "API", value: "doc/utilities/api" }],
+			item: [
+				{ label: "API", value: "doc/utilities/api" },
+				{ label: "Background", value: "doc/utilities/background" },
+			],
 		},
 	] as main.IAttrItemMenu[],
 };

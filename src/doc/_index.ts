@@ -10,6 +10,8 @@ export const doc = (value: string) => {
 		//--------------------------
 		case "doc/utilities/api":
 			return utilities.api;
+		case "doc/utilities/background":
+			return utilities.background;
 
 		//--------------------------
 		case "doc/form/overview":
