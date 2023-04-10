@@ -8,8 +8,8 @@ export const introduction: IAttrContent = {
 		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
 	item: [
 		new e.alert({ color: "warning", callout: true }, [
-			new b.alert.header(1, "Disclaimer"),
-			"This is {{b::not a real Bootstrap}} website. This is only a {{b::BSTS test website}} to test our {{b::bsts library}} and make sure it's fully support Bootstrap.",
+			new b.alert.header(3, "Disclaimer"),
+			"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test our {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
 		]),
 
 		new e.title("Quick start"),

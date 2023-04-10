@@ -86,6 +86,11 @@ let m = {
 				{ label: "Tooltips", value: "doc/component/tooltip" },
 			],
 		},
+		{
+			label: "Utilities",
+			icon: { id: "braces-asterisk", color: "danger" },
+			item: [{ label: "API", value: "doc/utilities/api" }],
+		},
 	] as main.IAttrItemMenu[],
 };
 
@@ -144,7 +149,10 @@ const onmenuchange = (value: string) => {
 			//generate content
 			let contentbody = document.getElementById("bs-main") as HTMLElement;
 			core.replaceChild(contentbody, main.genMainContent(getData(docId)));
-			core.init(contentbody);
+
+			//rename page title and push history
+			let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+			document.title = `${pagetitle} · Bootstrap TS`;
 
 			//focus to e
 			if (anchorId) {
@@ -158,6 +166,8 @@ const onmenuchange = (value: string) => {
 			} else {
 				window.scrollTo(0, 0);
 			}
+
+			core.init(contentbody);
 
 			setTimeout(() => {
 				PR.prettyPrint();
@@ -174,7 +184,7 @@ const onthmemechange = (value: string) => {
 };
 
 const maincontainer = new main.container({
-	name: "BSTS",
+	name: "Bootstrap TS",
 	bgColor: "primary",
 	textColor: "light",
 	icon: { class: "animate-icon", weight: "2xl", id: "node-js", type: "brand" },
@@ -191,7 +201,7 @@ const maincontainer = new main.container({
 	itemMenu: m.doc,
 	currentMenu: CURRENT_PAGE,
 
-	content: getData(CURRENT_PAGE),
+	// content: getData(CURRENT_PAGE),
 
 	itemInsideLink: [
 		{ value: "doc", label: "Docs" },
@@ -265,7 +275,7 @@ core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
-	core.init(body);
+	onmenuchange(CURRENT_PAGE);
 
 	document.addEventListener(
 		"bs-navigate",

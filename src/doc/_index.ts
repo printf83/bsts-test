@@ -1,11 +1,16 @@
 import * as gettingstarted from "./gettingstarted/_index.js";
 import * as form from "./form/_index.js";
 import * as component from "./component/_index.js";
+import * as utilities from "./utilities/_index.js";
 
-export { component, form, gettingstarted };
+export { component, form, gettingstarted, utilities };
 
 export const doc = (value: string) => {
 	switch (value) {
+		//--------------------------
+		case "doc/utilities/api":
+			return utilities.api;
+
 		//--------------------------
 		case "doc/form/overview":
 			return form.overview;

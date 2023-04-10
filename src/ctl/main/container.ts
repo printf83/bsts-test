@@ -821,7 +821,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 						new h.ul({ unstyle: true, class: "small" }, [
 							new h.li({ marginBottom: 2 }, [
 								new h.strong({ textColor: "primary" }, "Disclaimer! "),
-								"This is {{s::not a real Bootstrap}} website. This is only a {{s::BSTS test website}} to test our {{https://github.com/printf83/bsts::@printf83/bsts}} library and make sure it's fully support Bootstrap.",
+								"This is {{s::not a real Bootstrap}} website. This is only a {{s::Bootstrap TS test website}} to test our {{https://github.com/printf83/bsts::@printf83/bsts}} library and make sure it's fully support Bootstrap.",
 								"Designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::our contributors}}.",
 							]),
 							new h.li(

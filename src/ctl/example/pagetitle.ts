@@ -59,7 +59,9 @@ const convert = (attr: IAttrBSExamplePagetitle) => {
 	}
 
 	if (attr.elem) {
-		tElem.push(new h.h(1, { fontDisplay: 5, fontWeight: "normal", marginBottom: 0 }, attr.elem));
+		tElem.push(
+			new h.h(1, { fontDisplay: 5, fontWeight: "normal", marginBottom: 0, class: "page-title-text" }, attr.elem)
+		);
 	}
 
 	if (tElem) {
