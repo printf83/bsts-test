@@ -106,7 +106,7 @@ export const background: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("How it works"),
+		new e.subtitle("How it works"),
 		new e.text("Consider our default {{.bg-success}} utility."),
 		new e.codepreview({
 			type: "css",
@@ -123,7 +123,7 @@ export const background: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example"),
+		new e.subtitle("Example"),
 		new e.text("To change that opacity, override {{--bs-bg-opacity}} via custom styles or inline styles."),
 		new e.code({
 			output: () => {
@@ -374,6 +374,112 @@ export const background: IAttrContent = {
                 "light": $light-bg-subtle-dark,
                 "dark": $dark-bg-subtle-dark,
                 );
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Sass mixins"),
+		new e.text(
+			"{{b::No mixins are used to generate our background utilities}}, but we do have some additional mixins for other situations where you’d like to create your own gradients."
+		),
+		new e.codepreview({
+			type: "css",
+			title: "scss/mixins/_gradients.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_gradients.scss",
+			code: `
+                @mixin gradient-bg($color: null) {
+                background-color: $color;
+
+                @if $enable-gradients {
+                    background-image: var(--#{$prefix}gradient);
+                }
+                }
+			`,
+		}),
+		new e.codepreview({
+			type: "css",
+			title: "scss/mixins/_gradients.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_gradients.scss",
+			code: `
+                // Horizontal gradient, from left to right
+                //
+                // Creates two color stops, start and end, by specifying a color and position for each color stop.
+                @mixin gradient-x($start-color: $gray-700, $end-color: $gray-800, $start-percent: 0%, $end-percent: 100%) {
+                background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
+                }
+
+                // Vertical gradient, from top to bottom
+                //
+                // Creates two color stops, start and end, by specifying a color and position for each color stop.
+                @mixin gradient-y($start-color: $gray-700, $end-color: $gray-800, $start-percent: null, $end-percent: null) {
+                background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+                }
+
+                @mixin gradient-directional($start-color: $gray-700, $end-color: $gray-800, $deg: 45deg) {
+                background-image: linear-gradient($deg, $start-color, $end-color);
+                }
+
+                @mixin gradient-x-three-colors($start-color: $blue, $mid-color: $purple, $color-stop: 50%, $end-color: $red) {
+                background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+                }
+
+                @mixin gradient-y-three-colors($start-color: $blue, $mid-color: $purple, $color-stop: 50%, $end-color: $red) {
+                background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
+                }
+
+                @mixin gradient-radial($inner-color: $gray-700, $outer-color: $gray-800) {
+                background-image: radial-gradient(circle, $inner-color, $outer-color);
+                }
+
+                @mixin gradient-striped($color: rgba($white, .15), $angle: 45deg) {
+                background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+                }
+			`,
+		}),
+
+		//-----------------------
+
+		new e.title("Utilities API"),
+		new e.text(
+			"Background utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+		),
+		new e.codepreview({
+			type: "css",
+			title: "scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
+			code: `
+                "background-color": (
+                property: background-color,
+                class: bg,
+                local-vars: (
+                    "bg-opacity": 1
+                ),
+                values: map-merge(
+                    $utilities-bg-colors,
+                    (
+                    "transparent": transparent,
+                    "body-secondary": rgba(var(--#{$prefix}secondary-bg-rgb), var(--#{$prefix}bg-opacity)),
+                    "body-tertiary": rgba(var(--#{$prefix}tertiary-bg-rgb), var(--#{$prefix}bg-opacity)),
+                    )
+                )
+                ),
+                "bg-opacity": (
+                css-var: true,
+                class: bg-opacity,
+                values: (
+                    10: .1,
+                    25: .25,
+                    50: .5,
+                    75: .75,
+                    100: 1
+                )
+                ),
+                "subtle-background-color": (
+                property: background-color,
+                class: bg,
+                values: $utilities-bg-subtle
+                ),
 			`,
 		}),
 	],
