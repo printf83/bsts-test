@@ -46,11 +46,11 @@ export const flex: IAttrContent = {
 			"Use {{.flex-row}} to set a horizontal direction (the browser default), or {{.flex-row-reverse}} to start the horizontal direction from the opposite side."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box" },
+			outputAttr: { class: "flex-box", gap: 3 },
 			output: () => {
 				return [
 					new h.div(
-						{ display: "flex", flex: "row", marginBottom: 3 },
+						{ display: "flex", flex: "row" },
 						[1, 2, 3].map((i) => new h.div({ padding: 2 }, `Flex item ${i}`))
 					),
 					new h.div(
@@ -64,11 +64,11 @@ export const flex: IAttrContent = {
 			"Use {{.flex-column}} to set a vertical direction, or {{.flex-column-reverse}} to start the vertical direction from the opposite side."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box" },
+			outputAttr: { class: "flex-box", gap: 3 },
 			output: () => {
 				return [
 					new h.div(
-						{ display: "flex", flex: "column", marginBottom: 3 },
+						{ display: "flex", flex: "column" },
 						[1, 2, 3].map((i) => new h.div({ padding: 2 }, `Flex item ${i}`))
 					),
 					new h.div(
@@ -105,7 +105,7 @@ export const flex: IAttrContent = {
 			"Use {{justify-content}} utilities on flexbox containers to change the alignment of flex items on the main axis (the x-axis to start, y-axis if {{flex-direction: column}}). Choose from {{start}} (browser default), {{end}}, {{center}}, {{between}}, {{around}}, or {{evenly}}."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box" },
+			outputAttr: { class: "flex-box", gap: 3 },
 			output: () => {
 				const item = (value: string) => {
 					return [
@@ -116,11 +116,11 @@ export const flex: IAttrContent = {
 				};
 
 				return [
-					new h.div({ display: "flex", justifyContent: "start", marginBottom: 3 }, item("Start")),
-					new h.div({ display: "flex", justifyContent: "end", marginBottom: 3 }, item("End")),
-					new h.div({ display: "flex", justifyContent: "center", marginBottom: 3 }, item("Center")),
-					new h.div({ display: "flex", justifyContent: "between", marginBottom: 3 }, item("Between")),
-					new h.div({ display: "flex", justifyContent: "around", marginBottom: 3 }, item("Around")),
+					new h.div({ display: "flex", justifyContent: "start" }, item("Start")),
+					new h.div({ display: "flex", justifyContent: "end" }, item("End")),
+					new h.div({ display: "flex", justifyContent: "center" }, item("Center")),
+					new h.div({ display: "flex", justifyContent: "between" }, item("Between")),
+					new h.div({ display: "flex", justifyContent: "around" }, item("Around")),
 					new h.div({ display: "flex", justifyContent: "evenly" }, item("Evenly")),
 				];
 			},
@@ -156,7 +156,7 @@ export const flex: IAttrContent = {
 			"Use {{align-items}} utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if {{flex-direction: column}}). Choose from {{start}}, {{end}}, {{center}}, {{baseline}}, or {{stretch}} (browser default)."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box" },
+			outputAttr: { class: "flex-box", gap: 3 },
 			output: () => {
 				const item = [
 					new h.div({ padding: 2 }, "Flex item"),
@@ -165,23 +165,11 @@ export const flex: IAttrContent = {
 				];
 
 				return [
-					new h.div(
-						{ display: "flex", alignItem: "start", marginBottom: 3, style: { height: "100px" } },
-						item
-					),
-					new h.div({ display: "flex", alignItem: "end", marginBottom: 3, style: { height: "100px" } }, item),
-					new h.div(
-						{ display: "flex", alignItem: "center", marginBottom: 3, style: { height: "100px" } },
-						item
-					),
-					new h.div(
-						{ display: "flex", alignItem: "baseline", marginBottom: 3, style: { height: "100px" } },
-						item
-					),
-					new h.div(
-						{ display: "flex", alignItem: "stretch", marginBottom: 3, style: { height: "100px" } },
-						item
-					),
+					new h.div({ display: "flex", alignItem: "start", style: { height: "100px" } }, item),
+					new h.div({ display: "flex", alignItem: "end", style: { height: "100px" } }, item),
+					new h.div({ display: "flex", alignItem: "center", style: { height: "100px" } }, item),
+					new h.div({ display: "flex", alignItem: "baseline", style: { height: "100px" } }, item),
+					new h.div({ display: "flex", alignItem: "stretch", style: { height: "100px" } }, item),
 				];
 			},
 		}),
@@ -214,22 +202,22 @@ export const flex: IAttrContent = {
 			"Use {{align-self}} utilities on flexbox items to individually change their alignment on the cross axis (the y-axis to start, x-axis if {{flex-direction: column}}). Choose from the same options as {{align-items}}: {{start}}, {{end}}, {{center}}, {{baseline}}, or {{stretch}} (browser default)."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box" },
+			outputAttr: { class: "flex-box", gap: 3 },
 			output: () => {
 				const item = (i: core.IAttr["alignSelf"]) => {
 					return [
 						new h.div({ padding: 2 }, "Flex item"),
-						new h.div({ padding: 2, alignSelf: i, style: { width: "200px" } }, `.align-self-${i}`),
+						new h.div(
+							{ padding: 2, alignSelf: i, style: { width: "200px" }, textAlign: "center" },
+							`.align-self-${i}`
+						),
 						new h.div({ padding: 2 }, "Flex item"),
 					];
 				};
 
 				return ["start", "end", "center", "baseline", "stretch"].map(
 					(i) =>
-						new h.div(
-							{ display: "flex", marginBottom: 3, style: { height: "100px" } },
-							item(i as core.IAttr["alignSelf"])
-						)
+						new h.div({ display: "flex", style: { height: "100px" } }, item(i as core.IAttr["alignSelf"]))
 				);
 			},
 		}),
@@ -249,6 +237,83 @@ export const flex: IAttrContent = {
 							`{{.align-self-${i}-center}}`,
 							`{{.align-self-${i}-baseline}}`,
 							`{{.align-self-${i}-stretch}}`,
+						];
+					})
+					.flat(),
+			],
+		}),
+
+		//-----------------------
+
+		new e.title("Fill"),
+		new e.text(
+			"Use the {{.flex-fill}} class on a series of sibling elements to force them into widths equal to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available horizontal space."
+		),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div({ display: "flex" }, [
+					new h.div({ flex: "fill", padding: 2 }, "Flex item with a lot of content"),
+					new h.div({ flex: "fill", padding: 2 }, "Flex item"),
+					new h.div({ flex: "fill", padding: 2 }, "Flex item"),
+				]);
+			},
+		}),
+		new e.text("Responsive variations also exist for {{flex-fill}}."),
+		new e.ul({
+			item: [
+				"{{.flex-fill}}",
+				"{{.flex-sm-fill}}",
+				"{{.flex-md-fill}}",
+				"{{.flex-lg-fill}}",
+				"{{.flex-xl-fill}}",
+				"{{.flex-xxl-fill}}",
+			],
+		}),
+
+		//-----------------------
+
+		new e.title("Grow and shrink"),
+		new e.text(
+			"Use {{.flex-grow-*}} utilities to toggle a flex item’s ability to grow to fill available space. In the example below, the {{.flex-grow-1}} elements uses all available space it can, while allowing the remaining two flex items their necessary space."
+		),
+
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div({ display: "flex" }, [
+					new h.div({ flex: "grow-1", padding: 2 }, "Flex item"),
+					new h.div({ padding: 2 }, "Flex item"),
+					new h.div({ padding: 2 }, "Third flex item"),
+				]);
+			},
+		}),
+		new e.text(
+			"Use {{.flex-shrink-*}} utilities to toggle a flex item’s ability to shrink if necessary. In the example below, the second flex item with {{.flex-shrink-1}} is forced to wrap its contents to a new line, “shrinking” to allow more space for the previous flex item with {{.w-100}}."
+		),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div({ display: "flex" }, [
+					new h.div({ width: 100, padding: 2 }, "Flex item"),
+					new h.div({ flex: "shrink-1", padding: 2 }, "Flex item"),
+				]);
+			},
+		}),
+		new e.text("Responsive variations also exist for {{flex-grow}} and {{flex-shrink}}."),
+		new e.ul({
+			item: [
+				"{{.flex-grow-0}}",
+				"{{.flex-shrink-0}}",
+				"{{.flex-grow-1}}",
+				"{{.flex-shrink-1}}",
+				...["sm", "md", "lg", "xl", "xxl"]
+					.map((i) => {
+						return [
+							`{{.flex-${i}-grow-0}}`,
+							`{{.flex-${i}-shrink-0}}`,
+							`{{.flex-${i}-grow-1}}`,
+							`{{.flex-${i}-shrink-1}}`,
 						];
 					})
 					.flat(),
