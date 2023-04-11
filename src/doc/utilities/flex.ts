@@ -2,6 +2,12 @@ import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
+const flexItem = (length: number) => {
+	return Array(length)
+		.fill("")
+		.map(() => new h.div({ padding: 2 }, "Flex item"));
+};
+
 export const flex: IAttrContent = {
 	title: "Flex",
 	description:
@@ -207,10 +213,7 @@ export const flex: IAttrContent = {
 				const item = (i: core.IAttr["alignSelf"]) => {
 					return [
 						new h.div({ padding: 2 }, "Flex item"),
-						new h.div(
-							{ padding: 2, alignSelf: i, style: { width: "200px" }, textAlign: "center" },
-							`.align-self-${i}`
-						),
+						new h.div({ padding: 2, alignSelf: i }, "Flex item"),
 						new h.div({ padding: 2 }, "Flex item"),
 					];
 				};
@@ -322,46 +325,392 @@ export const flex: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
+		new e.title("Auto margins"),
+		new e.text(
+			"Flexbox can do some pretty awesome things when you mix flex alignments with auto margins. Shown below are three examples of controlling flex items via auto margins: default (no auto margin), pushing two items to the right ({{.me-auto}}), and pushing two items to the left ({{.ms-auto}})."
+		),
 		new e.code({
+			outputAttr: { class: "flex-box", gap: 3 },
 			output: () => {
-				return [];
+				return [
+					new h.div({ display: "flex" }, [
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+					]),
+					new h.div({ display: "flex" }, [
+						new h.div({ padding: 2, marginEnd: "auto" }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+					]),
+					new h.div({ display: "flex" }, [
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2, marginStart: "auto" }, "Flex item"),
+					]),
+				];
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.subtitle("With align-items"),
+		new e.text(
+			"Vertically move one flex item to the top or bottom of a container by mixing {{align-items}}, {{flex-direction: column}}, and {{margin-top: auto}} or {{margin-bottom: auto}}."
+		),
+		new e.code({
+			outputAttr: { class: "flex-box", gap: 3 },
+			output: () => {
+				return [
+					new h.div({ display: "flex", alignItem: "start", flex: "column", style: { height: "200px" } }, [
+						new h.div({ padding: 2, marginBottom: "auto" }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+					]),
+					new h.div({ display: "flex", alignItem: "end", flex: "column", style: { height: "200px" } }, [
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2 }, "Flex item"),
+						new h.div({ padding: 2, marginTop: "auto" }, "Flex item"),
+					]),
+				];
+			},
 		}),
 
 		//-----------------------
 
-		new e.title("CSS"),
-		new e.text(""),
+		new e.title("Warp"),
+		new e.text(
+			"Change how flex items wrap in a flex container. Choose from no wrapping at all (the browser default) with {{.flex-nowrap}}, wrapping with {{.flex-wrap}}, or reverse wrapping with {{.flex-wrap-reverse}}."
+		),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			extention: [{ name: "flexItem", output: flexItem }],
+			output: () => {
+				return new h.div({ display: "flex", flex: "nowrap", style: { width: "8rem" } }, flexItem(5));
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div(
+					{ display: "flex", flex: "wrap" },
+					Array(14)
+						.fill("")
+						.map((i, ix) => new h.div({ padding: 2 }, `Flex item ${ix + 1}`))
+				);
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div(
+					{ display: "flex", flex: "wrap-reverse" },
+					Array(14)
+						.fill("")
+						.map((i, ix) => new h.div({ padding: 2 }, `Flex item ${ix + 1}`))
+				);
+			},
+		}),
+		new e.text("Responsive variations also exist for {{flex-wrap}}."),
+		new e.ul({
+			item: [
+				"{{.flex-nowrap}}",
+				"{{.flex-wrap}}",
+				"{{.flex-wrap-reverse}}",
+				...["sm", "md", "lg", "xl", "xxl"]
+					.map((i) => {
+						return [`{{.flex-${i}-nowrap}}`, `{{.flex-${i}-wrap}}`, `{{.flex-${i}-wrap-reverse}}`];
+					})
+					.flat(),
+			],
+		}),
 
 		//-----------------------
 
-		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.title("Order"),
+		new e.text(
+			"Change the visual order of specific flex items with a handful of {{order}} utilities. We only provide options for making an item first or last, as well as a reset to use the DOM order. As {{order}} takes any integer value from 0 to 5, add custom CSS for any additional values needed."
+		),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div({ display: "flex", flex: "nowrap" }, [
+					new h.div({ padding: 2, order: 3 }, "First flex item"),
+					new h.div({ padding: 2, order: 2 }, "Second flex item"),
+					new h.div({ padding: 2, order: 1 }, "Third flex item"),
+				]);
+			},
+		}),
+		new e.text("Responsive variations also exist for {{order}}."),
+		new e.ul({
+			item: [
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
+					.map((i) => {
+						return [0, 1, 2, 3, 4, 5].map((j) => `{{.order${i}-${j}}}`);
+					})
+					.flat(),
+			],
+		}),
+		new e.text(
+			"Additionally there are also responsive {{.order-first}} and {{.order-last}} classes that change the {{order}} of an element by applying {{order: -1}} and {{order: 6}}, respectively."
+		),
+		new e.ul({
+			item: [
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
+					.map((i) => {
+						return ["first", "last"].map((j) => `{{.order${i}-${j}}}`);
+					})
+					.flat(),
+			],
+		}),
+
+		//-----------------------
+
+		new e.title("Align content"),
+		new e.text(
+			"Use {{align-content}} utilities on flexbox containers to align flex items together on the cross axis. Choose from {{start}} (browser default), {{end}}, {{center}}, {{between}}, {{around}}, or {{stretch}}. To demonstrate these utilities, we’ve enforced {{flex-wrap: wrap}} and increased the number of flex items."
+		),
+		new e.text("{{b::Heads up! }}This property has no effect on single rows of flex items."),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			extention: [{ name: "flexItem", output: flexItem }],
+			output: () => {
+				return new h.div(
+					{
+						display: "flex",
+						flex: "wrap",
+						alignContent: "start",
+						style: { height: "200px" },
+					},
+					flexItem(15)
+				);
+			},
+		}),
+
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			extention: [{ name: "flexItem", output: flexItem }],
+			output: () => {
+				return new h.div(
+					{
+						display: "flex",
+						flex: "wrap",
+						alignContent: "end",
+						style: { height: "200px" },
+					},
+					flexItem(15)
+				);
+			},
+		}),
+
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			extention: [{ name: "flexItem", output: flexItem }],
+			output: () => {
+				return new h.div(
+					{
+						display: "flex",
+						flex: "wrap",
+						alignContent: "center",
+						style: { height: "200px" },
+					},
+					flexItem(15)
+				);
+			},
+		}),
+
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			extention: [{ name: "flexItem", output: flexItem }],
+			output: () => {
+				return new h.div(
+					{
+						display: "flex",
+						flex: "wrap",
+						alignContent: "between",
+						style: { height: "200px" },
+					},
+					flexItem(15)
+				);
+			},
+		}),
+
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			extention: [{ name: "flexItem", output: flexItem }],
+			output: () => {
+				return new h.div(
+					{
+						display: "flex",
+						flex: "wrap",
+						alignContent: "around",
+						style: { height: "200px" },
+					},
+					flexItem(15)
+				);
+			},
+		}),
+
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			extention: [{ name: "flexItem", output: flexItem }],
+			output: () => {
+				return new h.div(
+					{
+						display: "flex",
+						flex: "wrap",
+						alignContent: "stretch",
+						style: { height: "200px" },
+					},
+					flexItem(15)
+				);
+			},
+		}),
+		new e.text("Responsive variations also exist for {{align-content}}."),
+		new e.ul({
+			item: [
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
+					.map((i) => {
+						return ["start", "end", "center", "between", "around", "stretch"].map(
+							(j) => `{{.align-content${i}-${j}}}`
+						);
+					})
+					.flat(),
+			],
+		}),
+
+		//-----------------------
+
+		new e.title("Media object"),
+		new e.text(
+			"Looking to replicate the {{https://getbootstrap.com/docs/4.6/components/media-object/::media object component}} from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before."
+		),
+		new e.code({
+			output: () => {
+				return new h.div({ display: "flex" }, [
+					new h.div(
+						{ flex: "shrink-0" },
+						new h.img({ src: "https://picsum.photos/seed/bsts_0/100/100", alt: "..." })
+					),
+					new h.div(
+						{ flex: "grow-1", marginStart: 3 },
+						"This is some content from a media component. You can replace this with any content and adjust it as needed."
+					),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Sass"),
+
+		//-----------------------
+
+		new e.subtitle("Utilities API"),
+		new e.text(
+			"Flexbox utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+		),
 		new e.codepreview({
 			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			title: "scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
 			code: `
+				"flex": (
+				responsive: true,
+				property: flex,
+				values: (fill: 1 1 auto)
+				),
+				"flex-direction": (
+				responsive: true,
+				property: flex-direction,
+				class: flex,
+				values: row column row-reverse column-reverse
+				),
+				"flex-grow": (
+				responsive: true,
+				property: flex-grow,
+				class: flex,
+				values: (
+					grow-0: 0,
+					grow-1: 1,
+				)
+				),
+				"flex-shrink": (
+				responsive: true,
+				property: flex-shrink,
+				class: flex,
+				values: (
+					shrink-0: 0,
+					shrink-1: 1,
+				)
+				),
+				"flex-wrap": (
+				responsive: true,
+				property: flex-wrap,
+				class: flex,
+				values: wrap nowrap wrap-reverse
+				),
+				"justify-content": (
+				responsive: true,
+				property: justify-content,
+				values: (
+					start: flex-start,
+					end: flex-end,
+					center: center,
+					between: space-between,
+					around: space-around,
+					evenly: space-evenly,
+				)
+				),
+				"align-items": (
+				responsive: true,
+				property: align-items,
+				values: (
+					start: flex-start,
+					end: flex-end,
+					center: center,
+					baseline: baseline,
+					stretch: stretch,
+				)
+				),
+				"align-content": (
+				responsive: true,
+				property: align-content,
+				values: (
+					start: flex-start,
+					end: flex-end,
+					center: center,
+					between: space-between,
+					around: space-around,
+					stretch: stretch,
+				)
+				),
+				"align-self": (
+				responsive: true,
+				property: align-self,
+				values: (
+					auto: auto,
+					start: flex-start,
+					end: flex-end,
+					center: center,
+					baseline: baseline,
+					stretch: stretch,
+				)
+				),
+				"order": (
+				responsive: true,
+				property: order,
+				values: (
+					first: -1,
+					0: 0,
+					1: 1,
+					2: 2,
+					3: 3,
+					4: 4,
+					5: 5,
+					last: 6,
+				),
+				),
 			`,
 		}),
 	],
