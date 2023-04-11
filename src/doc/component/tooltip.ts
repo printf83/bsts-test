@@ -156,11 +156,7 @@ export const tooltip: IAttrContent = {
 					{
 						content: "Default tooltip",
 					},
-					new b.img({ src: "favicon.svg", style: { width: "50px", height: "50px" } })
-					// new h.svg({ style: { height: "50px", width: "50px" }, viewBox: "0 0 100 100" }, [
-					// 	new h.rect({ style: { width: "100%", height: "100%" }, fill: "#563d7c" }),
-					// 	new h.circle({ cx: 50, cy: 50, r: 30, fill: "#007bff" }),
-					// ])
+					`<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#563d7c"></rect><circle cx="50" cy="50" r="30" fill="#007bff"></circle></svg>`
 				);
 			},
 		}),
