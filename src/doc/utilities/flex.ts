@@ -32,11 +32,9 @@ export const flex: IAttrContent = {
 		new e.text("Responsive variations also exist for {{.d-flex}} and {{.d-inline-flex}}."),
 		new e.ul({
 			item: [
-				"{{.d-flex}}",
-				"{{.d-inline-flex}}",
-				...["sm", "md", "lg", "xl", "xxl"]
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 					.map((i) => {
-						return [`{{.d-${i}-flex}}`, `{{.d-${i}-inline-flex}}`];
+						return ["flex", "inline-flex"].map((j) => `{{.d${i}-${j}}}`);
 					})
 					.flat(),
 			],
@@ -87,18 +85,11 @@ export const flex: IAttrContent = {
 		new e.text("Responsive variations also exist for {{flex-direction}}."),
 		new e.ul({
 			item: [
-				"{{.flex-row}}",
-				"{{.flex-row-reverse}}",
-				"{{.flex-column}}",
-				"{{.flex-column-reverse}}",
-				...["sm", "md", "lg", "xl", "xxl"]
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 					.map((i) => {
-						return [
-							`{{.flex-${i}-row}}`,
-							`{{.flex-${i}-row-reverse}}`,
-							`{{.flex-${i}-column}}`,
-							`{{.flex-${i}-column-reverse}}`,
-						];
+						return ["row", "column", "row-reverse", "column-reverse"].map(
+							(j) => `{{.justify-content${i}-${j}}}`
+						);
 					})
 					.flat(),
 			],
@@ -134,22 +125,11 @@ export const flex: IAttrContent = {
 		new e.text("Responsive variations also exist for {{justify-content}}."),
 		new e.ul({
 			item: [
-				"{{.justify-content-start}}",
-				"{{.justify-content-end}}",
-				"{{.justify-content-center}}",
-				"{{.justify-content-between}}",
-				"{{.justify-content-around}}",
-				"{{.justify-content-evenly}}",
-				...["sm", "md", "lg", "xl", "xxl"]
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 					.map((i) => {
-						return [
-							`{{.justify-content-${i}-start}}`,
-							`{{.justify-content-${i}-end}}`,
-							`{{.justify-content-${i}-center}}`,
-							`{{.justify-content-${i}-between}}`,
-							`{{.justify-content-${i}-around}}`,
-							`{{.justify-content-${i}-evenly}}`,
-						];
+						return ["start", "end", "center", "between", "around", "evenly"].map(
+							(j) => `{{.justify-content${i}-${j}}}`
+						);
 					})
 					.flat(),
 			],
@@ -182,20 +162,11 @@ export const flex: IAttrContent = {
 		new e.text("Responsive variations also exist for {{align-items}}."),
 		new e.ul({
 			item: [
-				"{{.align-items-start}}",
-				"{{.align-items-end}}",
-				"{{.align-items-center}}",
-				"{{.align-items-baseline}}",
-				"{{.align-items-stretch}}",
-				...["sm", "md", "lg", "xl", "xxl"]
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 					.map((i) => {
-						return [
-							`{{.align-items-${i}-start}}`,
-							`{{.align-items-${i}-end}}`,
-							`{{.align-items-${i}-center}}`,
-							`{{.align-items-${i}-baseline}}`,
-							`{{.align-items-${i}-stretch}}`,
-						];
+						return ["start", "end", "center", "baseline", "stretch"].map(
+							(j) => `{{.align-items${i}-${j}}}`
+						);
 					})
 					.flat(),
 			],
@@ -227,20 +198,9 @@ export const flex: IAttrContent = {
 		new e.text("Responsive variations also exist for {{align-self}}."),
 		new e.ul({
 			item: [
-				"{{.align-self-start}}",
-				"{{.align-self-end}}",
-				"{{.align-self-center}}",
-				"{{.align-self-baseline}}",
-				"{{.align-self-stretch}}",
-				...["sm", "md", "lg", "xl", "xxl"]
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 					.map((i) => {
-						return [
-							`{{.align-self-${i}-start}}`,
-							`{{.align-self-${i}-end}}`,
-							`{{.align-self-${i}-center}}`,
-							`{{.align-self-${i}-baseline}}`,
-							`{{.align-self-${i}-stretch}}`,
-						];
+						return ["start", "end", "center", "baseline", "stretch"].map((j) => `{{.align-self${i}-${j}}}`);
 					})
 					.flat(),
 			],
@@ -306,18 +266,9 @@ export const flex: IAttrContent = {
 		new e.text("Responsive variations also exist for {{flex-grow}} and {{flex-shrink}}."),
 		new e.ul({
 			item: [
-				"{{.flex-grow-0}}",
-				"{{.flex-shrink-0}}",
-				"{{.flex-grow-1}}",
-				"{{.flex-shrink-1}}",
-				...["sm", "md", "lg", "xl", "xxl"]
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 					.map((i) => {
-						return [
-							`{{.flex-${i}-grow-0}}`,
-							`{{.flex-${i}-shrink-0}}`,
-							`{{.flex-${i}-grow-1}}`,
-							`{{.flex-${i}-shrink-1}}`,
-						];
+						return ["grow-0", "grow-1", "shrink-0", "shrink-1"].map((j) => `{{.flex${i}-${j}}}`);
 					})
 					.flat(),
 			],
@@ -414,12 +365,9 @@ export const flex: IAttrContent = {
 		new e.text("Responsive variations also exist for {{flex-wrap}}."),
 		new e.ul({
 			item: [
-				"{{.flex-nowrap}}",
-				"{{.flex-wrap}}",
-				"{{.flex-wrap-reverse}}",
-				...["sm", "md", "lg", "xl", "xxl"]
+				...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 					.map((i) => {
-						return [`{{.flex-${i}-nowrap}}`, `{{.flex-${i}-wrap}}`, `{{.flex-${i}-wrap-reverse}}`];
+						return ["nowarp", "wrap", "wrap-reverse"].map((j) => `{{.flex${i}-${j}}}`);
 					})
 					.flat(),
 			],
