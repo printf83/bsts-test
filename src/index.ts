@@ -99,6 +99,7 @@ let m = {
 				{ label: "Float", value: "doc/utilities/float" },
 				{ label: "Interactions", value: "doc/utilities/interactions" },
 				{ label: "Link", value: "doc/utilities/link" },
+				{ label: "Object fit", value: "doc/utilities/object_fit" },
 			],
 		},
 	] as main.IAttrItemMenu[],

@@ -26,6 +26,8 @@ export const doc = (value: string) => {
 			return utilities.interactions;
 		case "doc/utilities/link":
 			return utilities.link;
+		case "doc/utilities/object_fit":
+			return utilities.object_fit;
 
 		//--------------------------
 		case "doc/form/overview":

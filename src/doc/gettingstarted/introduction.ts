@@ -9,7 +9,7 @@ export const introduction: IAttrContent = {
 	item: [
 		new e.alert({ color: "warning", callout: true }, [
 			new b.alert.header(3, "Disclaimer"),
-			"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test Bootstrap {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
+			"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test our {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
 		]),
 
 		new e.title("Quick start"),

@@ -7,5 +7,6 @@ import { flex } from "./flex.js";
 import { float } from "./float.js";
 import { interactions } from "./interactions.js";
 import { link } from "./link.js";
+import { object_fit } from "./object_fit.js";
 
-export { api, background, color, border, display, flex, float, interactions, link };
+export { api, background, color, border, display, flex, float, interactions, link, object_fit };
