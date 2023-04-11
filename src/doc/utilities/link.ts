@@ -102,7 +102,7 @@ export const link: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Hover variants"),
+		new e.subtitle("Hover variants"),
 		new e.text(
 			"Just like the {{.link-opacity-*-hover}} utilities, {{.link-offset}} and {{.link-underline-opacity}} utilities include {{:hover}} variants by default. Mix and match to create unique link styles."
 		),
