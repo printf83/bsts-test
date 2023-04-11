@@ -1,4 +1,4 @@
-import { core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -70,20 +70,68 @@ export const object_fit: IAttrContent = {
 		new e.text(
 			"The {{.object-fit-{value} }}and responsive {{.object-fit-{breakpoint}-{value} }}utilities also work on {{<video>}} elements."
 		),
+
+		new e.codepreview({
+			type: "css",
+			title: "scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
+			code: `
+				"object-fit": (
+				responsive: true,
+				property: object-fit,
+				values: (
+					contain: contain,
+					cover: cover,
+					fill: fill,
+					scale: scale-down,
+					none: none,
+				)
+				),
+			`,
+		}),
+
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
-				return ["contain", "cover", "fill", "scale", "none"].map(
-					(i) =>
-						new h.video({
-							src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-							objectFit: i as core.IAttr["objectFit"],
-							border: true,
-							rounded: true,
-							controls: true,
-							// style: { width: "235px", height: "115px" },
-							style: { width: "135px", height: "115px" },
-						})
+				return new b.button(
+					{
+						position: "relative",
+						on: {
+							click: (e) => {
+								let target = e.target;
+								core.replaceWith(
+									target as HTMLElement,
+									["contain", "cover", "fill", "scale", "none"].map(
+										(i) =>
+											new h.video({
+												src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+												objectFit: i as core.IAttr["objectFit"],
+												border: true,
+												rounded: true,
+												controls: true,
+												style: { width: "135px", height: "115px" },
+											})
+									)
+								);
+							},
+						},
+					},
+					[
+						"Show live video ",
+						new b.badge(
+							{
+								bgColor: "danger",
+								position: "absolute",
+								top: 0,
+								start: 100,
+								tMiddle: true,
+								rounded: "pill",
+								border: true,
+								borderColor: "light",
+							},
+							["60Mb", new b.visuallyhidden("estimate video size")]
+						),
+					]
 				);
 			},
 		}),

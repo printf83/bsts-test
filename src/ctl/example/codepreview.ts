@@ -76,7 +76,6 @@ const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 			{ content: "Copy to clipboard" },
 			new h.a(
 				{
-					href: "#",
 					color: "secondary",
 					textColor: "body-secondary",
 					class: "primary-on-hover",

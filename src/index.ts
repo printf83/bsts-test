@@ -100,6 +100,7 @@ let m = {
 				{ label: "Interactions", value: "doc/utilities/interactions" },
 				{ label: "Link", value: "doc/utilities/link" },
 				{ label: "Object fit", value: "doc/utilities/object_fit" },
+				{ label: "Opacity", value: "doc/utilities/opacity" },
 			],
 		},
 	] as main.IAttrItemMenu[],

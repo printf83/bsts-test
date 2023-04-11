@@ -159,7 +159,6 @@ const itemCode = (
 										},
 										new h.a(
 											{
-												href: "#",
 												color: "secondary",
 												class: "primary-on-hover",
 												on: { click: itemCodeCopy },
@@ -181,7 +180,6 @@ const itemCode = (
 										},
 										new h.a(
 											{
-												href: "#",
 												color: "secondary",
 												class: "primary-on-hover",
 												on: {

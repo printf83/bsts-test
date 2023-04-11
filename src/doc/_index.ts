@@ -28,6 +28,8 @@ export const doc = (value: string) => {
 			return utilities.link;
 		case "doc/utilities/object_fit":
 			return utilities.object_fit;
+		case "doc/utilities/opacity":
+			return utilities.opacity;
 
 		//--------------------------
 		case "doc/form/overview":

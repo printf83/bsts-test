@@ -8,5 +8,6 @@ import { float } from "./float.js";
 import { interactions } from "./interactions.js";
 import { link } from "./link.js";
 import { object_fit } from "./object_fit.js";
+import { opacity } from "./opacity.js";
 
-export { api, background, color, border, display, flex, float, interactions, link, object_fit };
+export { api, background, color, border, display, flex, float, interactions, link, object_fit, opacity };
