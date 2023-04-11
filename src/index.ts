@@ -103,6 +103,7 @@ let m = {
 				{ label: "Opacity", value: "doc/utilities/opacity" },
 				{ label: "Overflow", value: "doc/utilities/overflow" },
 				{ label: "Position", value: "doc/utilities/position" },
+				{ label: "Shadow", value: "doc/utilities/shadow" },
 			],
 		},
 	] as main.IAttrItemMenu[],

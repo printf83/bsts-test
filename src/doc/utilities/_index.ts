@@ -11,6 +11,7 @@ import { object_fit } from "./object_fit.js";
 import { opacity } from "./opacity.js";
 import { overflow } from "./overflow.js";
 import { position } from "./position.js";
+import { shadow } from "./shadow.js";
 
 export {
 	api,
@@ -26,4 +27,5 @@ export {
 	opacity,
 	overflow,
 	position,
+	shadow,
 };

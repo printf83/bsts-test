@@ -34,6 +34,8 @@ export const doc = (value: string) => {
 			return utilities.overflow;
 		case "doc/utilities/position":
 			return utilities.position;
+		case "doc/utilities/shadow":
+			return utilities.shadow;
 
 		//--------------------------
 		case "doc/form/overview":
