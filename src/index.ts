@@ -96,6 +96,7 @@ let m = {
 				{ label: "Colors", value: "doc/utilities/color" },
 				{ label: "Display", value: "doc/utilities/display" },
 				{ label: "Flex", value: "doc/utilities/flex" },
+				{ label: "Float", value: "doc/utilities/float" },
 			],
 		},
 	] as main.IAttrItemMenu[],
@@ -283,31 +284,33 @@ const maincontainer = new main.container({
 	],
 });
 
+const highlightCurrentMenu = (value: string) => {
+	let bsMenu = document.getElementById("bs-menu") as HTMLElement;
+	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
+	if (lastActive) {
+		lastActive.classList.remove("active");
+		lastActive.removeAttribute("aria-current");
+	}
+
+	let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
+	if (newActive) {
+		newActive.classList.add("active");
+		newActive.setAttribute("aria-current", "page");
+	}
+};
+
 core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
 	onmenuchange(cookie.get("current_page") || "doc/gettingstarted/introduction", true);
+	highlightCurrentMenu(cookie.get("current_page") || "doc/gettingstarted/introduction");
 
 	document.addEventListener(
 		"bs-navigate",
 		(e) => {
 			let value = (<CustomEvent>e).detail;
-
-			//highlight current menu
-			let bsMenu = document.getElementById("bs-menu") as HTMLElement;
-			let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
-			if (lastActive) {
-				lastActive.classList.remove("active");
-				lastActive.removeAttribute("aria-current");
-			}
-
-			let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
-			if (newActive) {
-				newActive.classList.add("active");
-				newActive.setAttribute("aria-current", "page");
-			}
-
+			highlightCurrentMenu(value);
 			onmenuchange(value);
 		},
 		false
