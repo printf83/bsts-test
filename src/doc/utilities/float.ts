@@ -29,13 +29,13 @@ export const float: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new h.div({ float: "sm-start" }, "Float start on viewports sized SM (small) or wider"),
+					new h.div({ float: "sm-end" }, "Float end on viewports sized SM (small) or wider"),
 					new h.br(),
-					new h.div({ float: "md-start" }, "Float start on viewports sized MD (medium) or wider"),
+					new h.div({ float: "md-end" }, "Float end on viewports sized MD (medium) or wider"),
 					new h.br(),
-					new h.div({ float: "lg-start" }, "Float start on viewports sized LG (large) or wider"),
+					new h.div({ float: "lg-end" }, "Float end on viewports sized LG (large) or wider"),
 					new h.br(),
-					new h.div({ float: "xl-start" }, "Float start on viewports sized XL (extra-large) or wider"),
+					new h.div({ float: "xl-end" }, "Float end on viewports sized XL (extra-large) or wider"),
 				];
 			},
 		}),
