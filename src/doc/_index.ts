@@ -30,6 +30,8 @@ export const doc = (value: string) => {
 			return utilities.object_fit;
 		case "doc/utilities/opacity":
 			return utilities.opacity;
+		case "doc/utilities/overflow":
+			return utilities.overflow;
 
 		//--------------------------
 		case "doc/form/overview":

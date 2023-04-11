@@ -1,4 +1,4 @@
-import { core, h } from "@printf83/bsts";
+import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -16,7 +16,7 @@ export const link: IAttrContent = {
 				return [10, 25, 50, 75, 100].map(
 					(i) =>
 						new h.p(
-							new h.a({ href: "#", linkOpacity: i as core.IAttr["linkOpacity"] }, `Link opacity ${i}`)
+							new h.a({ href: "#", linkOpacity: i as h.IAttrTagA["linkOpacity"] }, `Link opacity ${i}`)
 						)
 				);
 			},
@@ -28,7 +28,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkOpacityHover: i as core.IAttr["linkOpacityHover"] },
+								{ href: "#", linkOpacityHover: i as h.IAttrTagA["linkOpacityHover"] },
 								`Link hover opacity ${i}`
 							)
 						)
@@ -47,7 +47,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkUnderlineColor: i as core.IAttr["linkUnderlineColor"] },
+								{ href: "#", linkUnderlineColor: i as h.IAttrTagA["linkUnderlineColor"] },
 								`${i.charAt(0).toUpperCase() + i.slice(1)} underline`
 							)
 						)
@@ -67,7 +67,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkOffset: i as core.IAttr["linkOffset"] },
+								{ href: "#", linkOffset: i as h.IAttrTagA["linkOffset"] },
 								i ? `Offset ${i} link` : "Default link"
 							)
 						)
@@ -91,7 +91,7 @@ export const link: IAttrContent = {
 									href: "#",
 									linkOffset: 2,
 									linkUnderline: true,
-									linkUnderlineOpacity: i as core.IAttr["linkUnderlineOpacity"],
+									linkUnderlineOpacity: i as h.IAttrTagA["linkUnderlineOpacity"],
 								},
 								`Underline opacity ${i}`
 							)
@@ -149,7 +149,7 @@ export const link: IAttrContent = {
 									linkOffset: 2,
 									linkUnderlineOpacity: 25,
 									linkUnderlineOpacityHover: 100,
-									linkColor: i as core.IAttr["linkColor"],
+									linkColor: i as h.IAttrTagA["linkColor"],
 								},
 								`${i.charAt(0).toUpperCase() + i.slice(1)} link`
 							)

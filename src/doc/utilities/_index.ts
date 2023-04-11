@@ -9,5 +9,6 @@ import { interactions } from "./interactions.js";
 import { link } from "./link.js";
 import { object_fit } from "./object_fit.js";
 import { opacity } from "./opacity.js";
+import { overflow } from "./overflow.js";
 
-export { api, background, color, border, display, flex, float, interactions, link, object_fit, opacity };
+export { api, background, color, border, display, flex, float, interactions, link, object_fit, opacity, overflow };
