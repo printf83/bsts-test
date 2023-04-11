@@ -5,5 +5,7 @@ import { border } from "./border.js";
 import { display } from "./display.js";
 import { flex } from "./flex.js";
 import { float } from "./float.js";
+import { interactions } from "./interactions.js";
+import { link } from "./link.js";
 
-export { api, background, color, border, display, flex, float };
+export { api, background, color, border, display, flex, float, interactions, link };

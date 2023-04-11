@@ -22,6 +22,10 @@ export const doc = (value: string) => {
 			return utilities.flex;
 		case "doc/utilities/float":
 			return utilities.float;
+		case "doc/utilities/interactions":
+			return utilities.interactions;
+		case "doc/utilities/link":
+			return utilities.link;
 
 		//--------------------------
 		case "doc/form/overview":

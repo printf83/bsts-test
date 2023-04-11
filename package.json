@@ -28,8 +28,8 @@
 		"clean": "rm -rf ./lib",
 		"clean:win": "rmdir /s lib",
 		"build": "tsc -p ./configs/tsconfig.esm.json",
-		"rebuild":"npm run clean && npm run build  && npm run webpack",
-		"rebuild:win":"npm run clean:win && npm run build  && npm run webpack",
+		"rebuild": "npm run clean && npm run build  && npm run webpack",
+		"rebuild:win": "npm run clean:win && npm run build  && npm run webpack",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"link": "sudo npm link ../bsts",
 		"webpack:debug": "webpack -w",
@@ -37,7 +37,7 @@
 		"prepack": "npm run clean && npm run build"
 	},
 	"devDependencies": {
-		"@printf83/bsts": "^0.1.81",
+		"@printf83/bsts": "^0.1.82",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
 		"ts-loader": "^9.4.2",

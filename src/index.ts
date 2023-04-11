@@ -97,6 +97,8 @@ let m = {
 				{ label: "Display", value: "doc/utilities/display" },
 				{ label: "Flex", value: "doc/utilities/flex" },
 				{ label: "Float", value: "doc/utilities/float" },
+				{ label: "Interactions", value: "doc/utilities/interactions" },
+				{ label: "Link", value: "doc/utilities/link" },
 			],
 		},
 	] as main.IAttrItemMenu[],
