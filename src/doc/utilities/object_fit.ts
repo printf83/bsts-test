@@ -90,7 +90,7 @@ export const object_fit: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Utilities API"),
+		new e.title("Utilities API"),
 		new e.text(
 			"Object fit utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
 		),
