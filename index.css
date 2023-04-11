@@ -63,6 +63,20 @@ strong,
 
 /* make some desing */
 
+.example-output.position-box div.position-relative{
+    display: block;
+    background-color: var(--bs-tertiary-bg);
+    height: 200px;
+}
+
+.example-output.position-box div.position-relative div.position-absolute {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--bs-body-color);
+    border-radius: .375rem;
+}
+
 .example-output.span-box span{
     display: inline-block;
     background-color: var(--bs-tertiary-bg);

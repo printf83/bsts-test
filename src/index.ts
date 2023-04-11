@@ -102,6 +102,7 @@ let m = {
 				{ label: "Object fit", value: "doc/utilities/object_fit" },
 				{ label: "Opacity", value: "doc/utilities/opacity" },
 				{ label: "Overflow", value: "doc/utilities/overflow" },
+				{ label: "Position", value: "doc/utilities/position" },
 			],
 		},
 	] as main.IAttrItemMenu[],

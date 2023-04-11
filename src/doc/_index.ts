@@ -32,6 +32,8 @@ export const doc = (value: string) => {
 			return utilities.opacity;
 		case "doc/utilities/overflow":
 			return utilities.overflow;
+		case "doc/utilities/position":
+			return utilities.position;
 
 		//--------------------------
 		case "doc/form/overview":

@@ -10,5 +10,20 @@ import { link } from "./link.js";
 import { object_fit } from "./object_fit.js";
 import { opacity } from "./opacity.js";
 import { overflow } from "./overflow.js";
+import { position } from "./position.js";
 
-export { api, background, color, border, display, flex, float, interactions, link, object_fit, opacity, overflow };
+export {
+	api,
+	background,
+	color,
+	border,
+	display,
+	flex,
+	float,
+	interactions,
+	link,
+	object_fit,
+	opacity,
+	overflow,
+	position,
+};
