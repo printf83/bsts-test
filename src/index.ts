@@ -287,7 +287,7 @@ core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
-	onmenuchange(cookie.get("current_page") || "doc_gettingstarted_introduction", true);
+	onmenuchange(cookie.get("current_page") || "doc/gettingstarted/introduction", true);
 
 	document.addEventListener(
 		"bs-navigate",
