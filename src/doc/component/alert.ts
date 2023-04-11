@@ -9,11 +9,11 @@ export const alert: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{.alert-success}}). For inline dismissal, use the {{?q=doc/component/alert#dismissing::alerts JavaScript plugin}}."
+			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{.alert-success}}). For inline dismissal, use the {{nav:doc/component/alert#dismissing::alerts JavaScript plugin}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Heads up!}} As of v5.3.0, the {{alert-variant()}} Sass mixin is deprecated. Alert variants now have their CSS variables overridden in the {{?q=doc/component/alert_#sass-loop::Sass loop}}."
+			"{{b::Heads up!}} As of v5.3.0, the {{alert-variant()}} Sass mixin is deprecated. Alert variants now have their CSS variables overridden in the {{nav:doc/component/alert#sass_loop::Sass loop}}."
 		),
 		new e.code({
 			output: () => {

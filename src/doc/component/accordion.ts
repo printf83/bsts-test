@@ -8,11 +8,11 @@ export const accordion: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"The accordion uses {{?q=doc/component/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{.open}} class on the {{.accordion}}."
+			"The accordion uses {{nav:doc/component/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{.open}} class on the {{.accordion}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{?q=doc_gettingstarted_accessibility#reduce_motion::reduced motion section of Bootstrap accessibility documentation}}. "
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{nav:doc/gettingstarted/accessibility#reduce_motion::reduced motion section of Bootstrap accessibility documentation}}. "
 		),
 
 		//-----------------------
@@ -150,7 +150,7 @@ export const accordion: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Please read the {{?q=doc_components_collapse#accessibility::collapse accessibility section}} for more information."
+			"Please read the {{nav:doc/components/collapse#accessibility::collapse accessibility section}} for more information."
 		),
 
 		//-----------------------

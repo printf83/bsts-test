@@ -68,7 +68,7 @@ export const introduction: IAttrContent = {
 					}),
 				]),
 				new h.li([
-					"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{?q=doc_layout_grid::layout}}, adding dozens of {{?q=doc/component/button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::Bootstrap official examples}}.",
+					"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{nav:doc/layout/grid::layout}}, adding dozens of {{nav:doc/component/button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::Bootstrap official examples}}.",
 				]),
 			])
 		),
@@ -85,7 +85,7 @@ export const introduction: IAttrContent = {
 			],
 		}),
 		new e.text(
-			"You can also use the CDN to fetch any of Bootstrap {{?q=doc_gettingstarted_content::additional builds listed in the Contents page}}."
+			"You can also use the CDN to fetch any of Bootstrap {{nav:doc/gettingstarted/content::additional builds listed in the Contents page}}."
 		),
 
 		//-----------------------
