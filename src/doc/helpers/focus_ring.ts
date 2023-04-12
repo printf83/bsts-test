@@ -43,7 +43,7 @@ export const focus_ring: IAttrContent = {
 		),
 		//-----------------------
 
-		new e.title("CSS variables "),
+		new e.subtitle("CSS variables "),
 		new e.text("Modify the {{--bs-focus-ring-*}} CSS variables as needed to change the default appearance."),
 		new e.code({
 			output: () => {
