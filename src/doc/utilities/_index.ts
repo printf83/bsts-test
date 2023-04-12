@@ -14,6 +14,7 @@ import { position } from "./position.js";
 import { shadow } from "./shadow.js";
 import { sizing } from "./sizing.js";
 import { spacing } from "./spacing.js";
+import { text } from "./text.js";
 
 export {
 	api,
@@ -32,4 +33,5 @@ export {
 	shadow,
 	sizing,
 	spacing,
+	text,
 };

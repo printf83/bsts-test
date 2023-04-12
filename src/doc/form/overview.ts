@@ -67,7 +67,7 @@ export const overview: IAttrContent = {
 								},
 							},
 							[
-								new h.strong({ display: "block", marginBottom: 0, class: "h5" }, i.title),
+								new h.strong({ display: "block", marginBottom: 0, h: 5 }, i.title),
 								new h.span({ textColor: "secondary" }, i.content),
 							]
 						)

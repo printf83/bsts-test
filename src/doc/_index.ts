@@ -40,6 +40,8 @@ export const doc = (value: string) => {
 			return utilities.sizing;
 		case "doc/utilities/spacing":
 			return utilities.spacing;
+		case "doc/utilities/text":
+			return utilities.text;
 
 		//--------------------------
 		case "doc/form/overview":

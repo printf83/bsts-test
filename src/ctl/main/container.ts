@@ -384,7 +384,7 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 						unstyle: true,
 						fontWeight: "normal",
 						paddingBottom: 2,
-						class: "small",
+						small: true,
 					},
 					i.item.map((j) => {
 						let active = j.value === currentMenu ? true : false;

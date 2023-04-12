@@ -106,6 +106,7 @@ let m = {
 				{ label: "Shadows", value: "doc/utilities/shadow" },
 				{ label: "Sizing", value: "doc/utilities/sizing" },
 				{ label: "Spacing", value: "doc/utilities/spacing" },
+				{ label: "Text", value: "doc/utilities/text" },
 			],
 		},
 	] as main.IAttrItemMenu[],
@@ -244,8 +245,8 @@ const maincontainer = new main.container({
 	],
 	currentTheme: CURRENT_THEME as main.IAttrBSMainContainer["currentTheme"],
 
-	itemVersion: [{ value: "0.1.71", label: "Latest (0.1.71)" }],
-	currentVersion: "0.1.71",
+	itemVersion: [{ value: "0.1.84", label: "Latest (0.1.84)" }],
+	currentVersion: "0.1.84",
 
 	itemFooter: [
 		{
