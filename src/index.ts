@@ -93,6 +93,7 @@ let m = {
 				{ label: "Clearfix", value: "doc/helpers/clearfix" },
 				{ label: "Color & background", value: "doc/helpers/color_background" },
 				{ label: "Colored links", value: "doc/helpers/colored_links" },
+				{ label: "Focus ring", value: "doc/helpers/focus_ring" },
 			],
 		},
 		{
