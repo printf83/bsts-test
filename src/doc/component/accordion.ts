@@ -150,7 +150,7 @@ export const accordion: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Please read the {{nav:doc/components/collapse#accessibility::collapse accessibility section}} for more information."
+			"Please read the {{nav:doc/component/collapse#accessibility::collapse accessibility section}} for more information."
 		),
 
 		//-----------------------
