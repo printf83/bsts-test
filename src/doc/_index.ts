@@ -2,11 +2,20 @@ import * as gettingstarted from "./gettingstarted/_index.js";
 import * as form from "./form/_index.js";
 import * as component from "./component/_index.js";
 import * as utilities from "./utilities/_index.js";
+import * as helpers from "./helpers/_index.js";
 
 export { component, form, gettingstarted, utilities };
 
 export const doc = (value: string) => {
 	switch (value) {
+		//--------------------------
+		case "doc/helpers/clearfix":
+			return helpers.clearfix;
+		case "doc/helpers/color_background":
+			return helpers.color_background;
+		case "doc/helpers/colored_links":
+			return helpers.colored_links;
+
 		//--------------------------
 		case "doc/utilities/api":
 			return utilities.api;

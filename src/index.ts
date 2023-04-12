@@ -87,6 +87,15 @@ let m = {
 			],
 		},
 		{
+			label: "Helpers",
+			icon: { id: "magic", color: "warning" },
+			item: [
+				{ label: "Clearfix", value: "doc/helpers/clearfix" },
+				{ label: "Color & background", value: "doc/helpers/color_background" },
+				{ label: "Colored links", value: "doc/helpers/colored_links" },
+			],
+		},
+		{
 			label: "Utilities",
 			icon: { id: "braces-asterisk", color: "danger" },
 			item: [
