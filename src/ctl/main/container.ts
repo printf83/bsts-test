@@ -504,7 +504,7 @@ const genToc = (content?: IAttrContent) => {
 		}
 
 		//process toc
-		if (u.length > 0) {
+		if (u.length > 1) {
 			return new h.div(
 				{
 					class: "bs-toc",

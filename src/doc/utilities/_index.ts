@@ -16,6 +16,7 @@ import { sizing } from "./sizing.js";
 import { spacing } from "./spacing.js";
 import { text } from "./text.js";
 import { vertical_align } from "./vertical_align.js";
+import { visibility } from "./visibility.js";
 
 export {
 	api,
@@ -36,4 +37,5 @@ export {
 	spacing,
 	text,
 	vertical_align,
+	visibility,
 };
