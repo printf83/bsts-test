@@ -12,6 +12,8 @@ import { opacity } from "./opacity.js";
 import { overflow } from "./overflow.js";
 import { position } from "./position.js";
 import { shadow } from "./shadow.js";
+import { sizing } from "./sizing.js";
+import { spacing } from "./spacing.js";
 
 export {
 	api,
@@ -28,4 +30,6 @@ export {
 	overflow,
 	position,
 	shadow,
+	sizing,
+	spacing,
 };

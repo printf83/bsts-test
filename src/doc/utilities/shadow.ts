@@ -3,7 +3,7 @@ import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
 export const shadow: IAttrContent = {
-	title: "Shadow",
+	title: "Shadows",
 	description: "Add or remove shadows to elements with box-shadow utilities.",
 	item: [
 		new e.title("Examples"),

@@ -1,3 +1,4 @@
+import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -9,55 +10,150 @@ export const sizing: IAttrContent = {
 		new e.text(
 			"Width and height utilities are generated from the utility API in {{_utilities.scss}}. Includes support for {{25%}}, {{50%}}, {{75%}}, {{100%}}, and auto by default. Modify those values as you need to generate different utilities here."
 		),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
 		new e.code({
+			outputAttr: { class: "flex-box" },
 			output: () => {
-				return [];
+				return [25, 50, 75, 100, "auto"].map(
+					(i) =>
+						new h.div(
+							{ width: i as core.IAttr["width"], padding: 3 },
+							`Width ${i}${i !== "auto" ? "%" : ""}`
+						)
+				);
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div(
+					{ style: { height: "100px" } },
+					[25, 50, 75, 100, "auto"].map(
+						(i) =>
+							new h.div(
+								{
+									height: i as core.IAttr["height"],
+									display: "inline-block",
+									marginEnd: 1,
+									style: { width: "120px" },
+								},
+								`Height ${i}${i !== "auto" ? "%" : ""}`
+							)
+					)
+				);
+			},
+		}),
+		new e.text("You can also use {{max-width: 100%;}} and {{max-height: 100%;}} utilities as needed."),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div(
+					{ style: { width: "50%", height: "100px" } },
+					new h.div({ maxWidth: 100, style: { width: "200%" } }, "Max-width 100%")
+				);
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "flex-box" },
+			output: () => {
+				return new h.div(
+					{ style: { height: "100px" } },
+					new h.div({ maxHeight: 100, style: { width: "100px", height: "200px" } }, "Max-height 100%")
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Relative to the viewport"),
+		new e.text("You can also use utilities to set the width and height relative to the viewport."),
+		// new e.codepreview({
+		// 	type: "html",
+		// 	code: `
+		// 		<div class="min-vw-100">Min-width 100vw</div>
+		// 		<div class="min-vh-100">Min-height 100vh</div>
+		// 		<div class="vw-100">Width 100vw</div>
+		// 		<div class="vh-100">Height 100vh</div>
+		// 		`,
+		// }),
 		new e.code({
+			outputAttr: { class: "flex-box", overflow: "auto", style: { maxHeight: "200px" } },
 			output: () => {
-				return [];
+				return [
+					new h.div({ minViewWidth: 100 }, "Min-width 100vw"),
+					new h.div({ minViewHeight: 100 }, "Min-height 100vh"),
+					new h.div({ viewWidth: 100 }, "Width 100vw"),
+					new h.div({ viewHeight: 100 }, "Height 100vh"),
+				];
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
-		}),
+		new e.title("Sass"),
 
 		//-----------------------
 
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.subtitle("Utilities API"),
+		new e.text(
+			"Sizing utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+		),
 		new e.codepreview({
 			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			title: "scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
 			code: `
+				"width": (
+				property: width,
+				class: w,
+				values: (
+					25: 25%,
+					50: 50%,
+					75: 75%,
+					100: 100%,
+					auto: auto
+				)
+				),
+				"max-width": (
+				property: max-width,
+				class: mw,
+				values: (100: 100%)
+				),
+				"viewport-width": (
+				property: width,
+				class: vw,
+				values: (100: 100vw)
+				),
+				"min-viewport-width": (
+				property: min-width,
+				class: min-vw,
+				values: (100: 100vw)
+				),
+				"height": (
+				property: height,
+				class: h,
+				values: (
+					25: 25%,
+					50: 50%,
+					75: 75%,
+					100: 100%,
+					auto: auto
+				)
+				),
+				"max-height": (
+				property: max-height,
+				class: mh,
+				values: (100: 100%)
+				),
+				"viewport-height": (
+				property: height,
+				class: vh,
+				values: (100: 100vh)
+				),
+				"min-viewport-height": (
+				property: min-height,
+				class: min-vh,
+				values: (100: 100vh)
+				),
 			`,
 		}),
 	],

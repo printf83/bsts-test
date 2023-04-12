@@ -36,6 +36,10 @@ export const doc = (value: string) => {
 			return utilities.position;
 		case "doc/utilities/shadow":
 			return utilities.shadow;
+		case "doc/utilities/sizing":
+			return utilities.sizing;
+		case "doc/utilities/spacing":
+			return utilities.spacing;
 
 		//--------------------------
 		case "doc/form/overview":
