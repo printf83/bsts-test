@@ -94,6 +94,7 @@ let m = {
 				{ label: "Color & background", value: "doc/helpers/color_background" },
 				{ label: "Colored links", value: "doc/helpers/colored_links" },
 				{ label: "Focus ring", value: "doc/helpers/focus_ring" },
+				{ label: "Icon link", value: "doc/helpers/icon_link" },
 			],
 		},
 		{

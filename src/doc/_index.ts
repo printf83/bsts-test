@@ -17,6 +17,8 @@ export const doc = (value: string) => {
 			return helpers.colored_links;
 		case "doc/helpers/focus_ring":
 			return helpers.focus_ring;
+		case "doc/helpers/icon_link":
+			return helpers.icon_link;
 
 		//--------------------------
 		case "doc/utilities/api":
