@@ -107,6 +107,7 @@ let m = {
 				{ label: "Sizing", value: "doc/utilities/sizing" },
 				{ label: "Spacing", value: "doc/utilities/spacing" },
 				{ label: "Text", value: "doc/utilities/text" },
+				{ label: "Vertical align", value: "doc/utilities/vertical_align" },
 			],
 		},
 	] as main.IAttrItemMenu[],
