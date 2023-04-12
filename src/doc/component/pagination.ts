@@ -111,7 +111,7 @@ export const pagination: IAttrContent = {
 
 		new e.title("Alignment"),
 		new e.text(
-			"Change the alignment of pagination components with {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}. For example, with {{.justify-content-center}}:"
+			"Change the alignment of pagination components with {{nav:doc/utilities/flex::flexbox utilities}}. For example, with {{.justify-content-center}}:"
 		),
 		new e.code({
 			output: () => {

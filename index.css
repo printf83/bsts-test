@@ -63,6 +63,48 @@ strong,
 
 /* make some desing */
 
+.example-output.zindex-box div{
+    background-color: var(--bs-primary);
+    border: 1px solid var(--bs-primary-border-subtle);
+    color: var(--bs-primary-text-emphasis);
+}
+.example-output.zindex-box div span{
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    color:var(--bs-body-bg);
+}
+
+.example-output.zindex-box div:nth-child(1) {
+    /* top: 1.5rem;
+    left: 1.5rem; */
+    z-index: 5!important;
+}
+
+.example-output.zindex-box div:nth-child(2) {
+    top:3rem;
+    left: 3rem;
+    z-index: 4!important;
+}
+
+.example-output.zindex-box div:nth-child(3) {
+    top: 4.5rem;
+    left: 4.5rem;
+    z-index: 3!important;
+}
+
+.example-output.zindex-box div:nth-child(4) {
+    top: 6rem;
+    left: 6rem;
+    z-index: 2!important;
+}
+
+.example-output.zindex-box div:nth-child(5) {
+    top: 7.5rem;
+    left: 7.5rem;
+    z-index: 1 !important;
+}
+
 .example-output.position-box div.position-relative{
     display: block;
     background-color: var(--bs-tertiary-bg);

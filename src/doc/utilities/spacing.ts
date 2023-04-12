@@ -13,7 +13,7 @@ export const spacing: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Using the CSS Grid layout module?}} Consider using {{https://getbootstrap.com/docs/5.3/utilities/spacing/#gap::the gap utility}} instead."
+			"{{b::Using the CSS Grid layout module?}} Consider using {{nav:doc/utilities/spacing#gap::the gap utility}} instead."
 		),
 
 		//-----------------------
@@ -131,7 +131,7 @@ export const spacing: IAttrContent = {
 			"{{b::CSS Grid is opt-in}}. Disable the default grid system by setting {{$enable-grid-classes: false}} and enable the CSS Grid by setting {{$enable-cssgrid: true}}. Then, recompile your Sass. This features currently not supported by Bootstrap TS until it enable default by Bootstrap."
 		),
 		new e.text(
-			"When using {{display: grid}} or {{display: flex}}, you can make use of {{gap}} utilities on the parent element. This can save on having to add margin utilities to individual children of a grid or flex container. Gap utilities are responsive by default, and are generated via our utilities API, based on the {{$spacers}} Sass map."
+			"When using {{display: grid}} or {{display: flex}}, you can make use of {{gap}} utilities on the parent element. This can save on having to add margin utilities to individual children of a grid or flex container. Gap utilities are responsive by default, and are generated via Bootstrap utilities API, based on the {{$spacers}} Sass map."
 		),
 
 		new e.codepreview({
@@ -196,7 +196,7 @@ export const spacing: IAttrContent = {
 
 		new e.title("Sass"),
 		new e.subtitle("Maps"),
-		new e.text("Spacing utilities are declared via Sass map and then generated with our utilities API."),
+		new e.text("Spacing utilities are declared via Sass map and then generated with Bootstrap utilities API."),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
@@ -218,7 +218,7 @@ export const spacing: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Spacing utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Spacing utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

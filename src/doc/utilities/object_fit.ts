@@ -9,7 +9,7 @@ export const object_fit: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"Change the value of the {{https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit::object-fit property}} with our responsive {{object-fit}} utility classes. This property tells the content to fill the parent container in a variety of ways, such as preserving the aspect ratio or stretching to take up as much space as possible."
+			"Change the value of the {{https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit::object-fit property}} with Bootstrap responsive {{object-fit}} utility classes. This property tells the content to fill the parent container in a variety of ways, such as preserving the aspect ratio or stretching to take up as much space as possible."
 		),
 		new e.text(
 			"Classes for the value of {{object-fit}} are named using the format {{.object-fit-{value}.}} Choose from the following values:"
@@ -133,7 +133,7 @@ export const object_fit: IAttrContent = {
 
 		new e.title("Utilities API"),
 		new e.text(
-			"Object fit utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Object fit utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

@@ -7,7 +7,7 @@ export const visibility: IAttrContent = {
 	description: "Control the visibility of elements, without modifying their display, with visibility utilities.",
 	item: [
 		new e.text(
-			"Set the {{visibility}} of elements with our visibility utilities. These utility classes do not modify the {{display}} value at all and do not affect layout – {{.invisible}} elements still take up space in the page."
+			"Set the {{visibility}} of elements with Bootstrap visibility utilities. These utility classes do not modify the {{display}} value at all and do not affect layout – {{.invisible}} elements still take up space in the page."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
@@ -42,7 +42,7 @@ export const visibility: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Visibility utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Visibility utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

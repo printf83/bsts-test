@@ -145,16 +145,14 @@ export const api: IAttrContent = {
 		new e.text(
 			"Use the {{values}} key to specify which values for the specified {{property}} should be used in the generated class names and rules. Can be a list or map (set in the utilities or in a Sass variable)."
 		),
-		new e.text(
-			"As a list, like with {{https://getbootstrap.com/docs/5.3/utilities/text/#text-decoration::text-decoration utilities}}:"
-		),
+		new e.text("As a list, like with {{nav:doc/utilities/text#text_decoration::text-decoration utilities}}:"),
 		new e.codepreview({
 			type: "css",
 			code: `
                 values: none underline line-through
 				`,
 		}),
-		new e.text("As a map, like with {{https://getbootstrap.com/docs/5.3/utilities/opacity/::opacity utilities}}:"),
+		new e.text("As a map, like with {{nav:doc/utilities/opacity::opacity utilities}}:"),
 		new e.codepreview({
 			type: "css",
 			code: `
@@ -168,7 +166,7 @@ export const api: IAttrContent = {
 				`,
 		}),
 		new e.text(
-			"As a Sass variable that sets the list or map, as in Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/position/::position utilities}}:"
+			"As a Sass variable that sets the list or map, as in Bootstrap {{nav:doc/utilities/position::position utilities}}:"
 		),
 		new e.codepreview({
 			type: "css",

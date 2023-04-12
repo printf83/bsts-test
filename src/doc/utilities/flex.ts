@@ -556,7 +556,7 @@ export const flex: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Flexbox utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Flexbox utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

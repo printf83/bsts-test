@@ -67,7 +67,7 @@ export const text: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"Note that {{https://rtlstyling.com/posts/rtl-styling#3.-line-break::breaking words isn’t possible in Arabic}}, which is the most used RTL language. Therefore {{.text-break}} is removed from our RTL compiled CSS."
+			"Note that {{https://rtlstyling.com/posts/rtl-styling#3.-line-break::breaking words isn’t possible in Arabic}}, which is the most used RTL language. Therefore {{.text-break}} is removed from Bootstrap RTL compiled CSS."
 		),
 
 		//-----------------------
@@ -91,7 +91,7 @@ export const text: IAttrContent = {
 
 		new e.title("Font size"),
 		new e.text(
-			"Quickly change the {{font-size}} of text. While our heading classes (e.g., {{.h1}}–{{.h6}}) apply {{font-size}}, {{font-weight}}, and {{line-height}}, these utilities only apply {{font-size}}. Sizing for these utilities matches HTML’s heading elements, so as the number increases, their size decreases."
+			"Quickly change the {{font-size}} of text. While Bootstrap heading classes (e.g., {{.h1}}–{{.h6}}) apply {{font-size}}, {{font-weight}}, and {{line-height}}, these utilities only apply {{font-size}}. Sizing for these utilities matches HTML’s heading elements, so as the number increases, their size decreases."
 		),
 		new e.code({
 			output: () => {
@@ -131,7 +131,7 @@ export const text: IAttrContent = {
 		new e.code({
 			output: () => {
 				const text =
-					"This is a long paragraph written to show how the line-height of an element is affected by our utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be customized as needed with our utility API.";
+					"This is a long paragraph written to show how the line-height of an element is affected by Bootstrap utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be customized as needed with Bootstrap utility API.";
 
 				return [
 					new h.p({ lineHeight: 1 }, text),
@@ -145,7 +145,7 @@ export const text: IAttrContent = {
 		//-----------------------
 
 		new e.title("Monospace"),
-		new e.text("Change a selection to our monospace font stack with {{.font-monospace}}."),
+		new e.text("Change a selection to Bootstrap monospace font stack with {{.font-monospace}}."),
 		new e.code({
 			output: () => {
 				return new h.p({ monospace: true }, "This is in monospace");
@@ -228,7 +228,7 @@ export const text: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Sass maps"),
-		new e.text("Font-size utilities are generated from this map, in combination with our utilities API."),
+		new e.text("Font-size utilities are generated from this map, in combination with Bootstrap utilities API."),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
@@ -266,7 +266,7 @@ export const text: IAttrContent = {
 
 		new e.title("Utilities API"),
 		new e.text(
-			"Font and text utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Font and text utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

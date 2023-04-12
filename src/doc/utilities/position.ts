@@ -227,7 +227,9 @@ export const position: IAttrContent = {
 
 		new e.title("Sass"),
 		new e.subtitle("Maps"),
-		new e.text("Default position utility values are declared in a Sass map, then used to generate our utilities."),
+		new e.text(
+			"Default position utility values are declared in a Sass map, then used to generate Bootstrap utilities."
+		),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
@@ -245,7 +247,7 @@ export const position: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Position utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Position utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

@@ -16,7 +16,7 @@ export const card: IAttrContent = {
 
 		new e.title("Example"),
 		new e.text(
-			"Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no {{margin}} by default, so use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing utilities}} as needed."
+			"Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no {{margin}} by default, so use {{nav:doc/utilities/spacing::spacing utilities}} as needed."
 		),
 		new e.text(
 			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with Bootstrap various {{nav:doc/component/card#sizing::sizing options}}."
@@ -285,7 +285,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Using utilities"),
 		new e.text(
-			"Use Bootstrap handful of {{https://getbootstrap.com/docs/5.3/utilities/sizing/::available sizing utilities}} to quickly set a card’s width."
+			"Use Bootstrap handful of {{nav:doc/utilities/sizing::available sizing utilities}} to quickly set a card’s width."
 		),
 		new e.code({
 			output: () => {
@@ -330,7 +330,7 @@ export const card: IAttrContent = {
 
 		new e.title("Text alignment"),
 		new e.text(
-			"You can quickly change the text alignment of any card—in its entirety or specific parts—with Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment::text align classes}}."
+			"You can quickly change the text alignment of any card—in its entirety or specific parts—with Bootstrap {{nav:doc/utilities/text#text_alignment::text align classes}}."
 		),
 		new e.code({
 			output: () => {
@@ -519,7 +519,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Background and color"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-{color}}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{nav:doc/utilities/colors::.text-{color}}} and {{nav:doc/utilities/background::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
 
 		new e.code({
@@ -558,7 +558,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Border"),
 		new e.text(
-			"Use {{https://getbootstrap.com/docs/5.3/utilities/borders/::border utilities}} to change just the {{border-color}} of a card. Note that you can put {{.text-{color}}} classes on the parent {{.card}} or a subset of the card’s contents as shown below."
+			"Use {{nav:doc/utilities/borders::border utilities}} to change just the {{border-color}} of a card. Note that you can put {{.text-{color}}} classes on the parent {{.card}} or a subset of the card’s contents as shown below."
 		),
 
 		new e.code({

@@ -62,7 +62,7 @@ export const collapse: IAttrContent = {
 
 		new e.title("Horizontal"),
 		new e.text(
-			"The collapse plugin supports horizontal collapsing. Add the {{.collapse-horizontal}} modifier class to transition the {{width}} instead of {{height}} and set a {{width}} on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/sizing/::width utilities}}."
+			"The collapse plugin supports horizontal collapsing. Add the {{.collapse-horizontal}} modifier class to transition the {{width}} instead of {{height}} and set a {{width}} on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use Bootstrap {{nav:doc/utilities/sizing::width utilities}}."
 		),
 		new e.text(
 			new b.alert.container(

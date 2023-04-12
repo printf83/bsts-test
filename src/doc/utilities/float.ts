@@ -4,11 +4,11 @@ import { IAttrContent } from "../../ctl/main/container.js";
 
 export const float: IAttrContent = {
 	title: "Float",
-	description: "Toggle floats on any element, across any breakpoint, using our responsive float utilities.",
+	description: "Toggle floats on any element, across any breakpoint, using Bootstrap responsive float utilities.",
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"These utility classes float an element to the left or right, or disable floating, based on the current viewport size using the {{https://developer.mozilla.org/en-US/docs/Web/CSS/float::CSS float property}}. {{!important}} is included to avoid specificity issues. These use the same viewport breakpoints as our grid system. Please be aware float utilities have no effect on flex items."
+			"These utility classes float an element to the left or right, or disable floating, based on the current viewport size using the {{https://developer.mozilla.org/en-US/docs/Web/CSS/float::CSS float property}}. {{!important}} is included to avoid specificity issues. These use the same viewport breakpoints as Bootstrap grid system. Please be aware float utilities have no effect on flex items."
 		),
 		new e.code({
 			output: () => {
@@ -58,7 +58,7 @@ export const float: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Float utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Float utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

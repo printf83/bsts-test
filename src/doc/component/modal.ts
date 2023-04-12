@@ -64,7 +64,7 @@ export const modal: IAttrContent = {
 
 		new e.alert(
 			{ color: "info", callout: true },
-			"In the above static example, we use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{https://getbootstrap.com/docs/5.3/utilities/text/#font-size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach."
+			"In the above static example, we use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{nav:doc/utilities/text#font_size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach."
 		),
 
 		//-----------------------

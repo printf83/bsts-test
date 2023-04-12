@@ -126,7 +126,7 @@ export const link: IAttrContent = {
 
 		new e.title("Colored links"),
 		new e.text(
-			"{{https://getbootstrap.com/docs/5.3/helpers/colored-links/::Colored link helpers}} have been updated to pair with our link utilities. Use the new utilities to modify the link opacity, underline opacity, and underline offset."
+			"{{https://getbootstrap.com/docs/5.3/helpers/colored-links/::Colored link helpers}} have been updated to pair with Bootstrap link utilities. Use the new utilities to modify the link opacity, underline opacity, and underline offset."
 		),
 		new e.code({
 			output: () => {
@@ -166,14 +166,14 @@ export const link: IAttrContent = {
 
 		new e.title("Sass"),
 		new e.text(
-			"In addition to the following Sass functionality, consider reading about our included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
+			"In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
 		),
 
 		//-----------------------
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Link utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Link utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

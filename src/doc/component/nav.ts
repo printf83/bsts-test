@@ -214,7 +214,7 @@ export const nav: IAttrContent = {
 
 		new e.title("Working with flex utilities"),
 		new e.text(
-			"If you need responsive nav variations, consider using a series of {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, Bootstrap nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint."
+			"If you need responsive nav variations, consider using a series of {{nav:doc/utilities/flex::flexbox utilities}}. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, Bootstrap nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint."
 		),
 		new e.code({
 			output: () => {

@@ -122,7 +122,7 @@ export const alert: IAttrContent = {
 
 		new e.subtitle("Icons"),
 		new e.text(
-			"Similarly, you can use {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}} and {{https://icons.getbootstrap.com/::Bootstrap Icons}} to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles."
+			"Similarly, you can use {{nav:doc/utilities/flex::flexbox utilities}} and {{https://icons.getbootstrap.com/::Bootstrap Icons}} to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles."
 		),
 		new e.code({
 			output: () => {

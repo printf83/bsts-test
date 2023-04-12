@@ -5,11 +5,11 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const display: IAttrContent = {
 	title: "Display property",
 	description:
-		"Quickly and responsively toggle the display value of components and more with our display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.",
+		"Quickly and responsively toggle the display value of components and more with Bootstrap display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.",
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"Change the value of the {{https://developer.mozilla.org/en-US/docs/Web/CSS/display::display property}} with our responsive display utility classes. We purposely support only a subset of all possible values for {{display}}. Classes can be combined for various effects as you need."
+			"Change the value of the {{https://developer.mozilla.org/en-US/docs/Web/CSS/display::display property}} with Bootstrap responsive display utility classes. We purposely support only a subset of all possible values for {{display}}. Classes can be combined for various effects as you need."
 		),
 
 		//-----------------------
@@ -112,7 +112,7 @@ export const display: IAttrContent = {
 
 		new e.title("Display in print"),
 		new e.text(
-			"Change the {{display}} value of elements when printing with our print display utility classes. Includes support for the same {{display}} values as our responsive {{.d-*}} utilities."
+			"Change the {{display}} value of elements when printing with Bootstrap print display utility classes. Includes support for the same {{display}} values as Bootstrap responsive {{.d-*}} utilities."
 		),
 		new e.ul({
 			item: [
@@ -149,7 +149,7 @@ export const display: IAttrContent = {
 
 		new e.subtitle("Utilities API "),
 		new e.text(
-			"Display utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Display utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

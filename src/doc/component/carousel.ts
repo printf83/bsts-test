@@ -107,7 +107,7 @@ export const carousel: IAttrContent = {
 
 		new e.subtitle("Captions"),
 		new e.text(
-			"You can add captions to your slides with the {{.carousel-caption}} element within any {{.carousel-item}}. They can be easily hidden on smaller viewports, as shown below, with optional {{https://getbootstrap.com/docs/5.3/utilities/display/::display utilities}}. We hide them initially with {{.d-none}} and bring them back on medium-sized devices with {{.d-md-block}}."
+			"You can add captions to your slides with the {{.carousel-caption}} element within any {{.carousel-item}}. They can be easily hidden on smaller viewports, as shown below, with optional {{nav:doc/utilities/display::display utilities}}. We hide them initially with {{.d-none}} and bring them back on medium-sized devices with {{.d-md-block}}."
 		),
 		new e.code({
 			output: () => {

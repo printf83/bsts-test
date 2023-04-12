@@ -232,7 +232,7 @@ export const list: IAttrContent = {
 
 		new e.title("With badges"),
 		new e.text(
-			"Add badges to any list group item to show unread counts, activity, and more with the help of some {{https://getbootstrap.com/docs/5.3/utilities/flex/::utilities}}."
+			"Add badges to any list group item to show unread counts, activity, and more with the help of some {{nav:doc/utilities/flex::utilities}}."
 		),
 
 		new e.code({
@@ -256,7 +256,7 @@ export const list: IAttrContent = {
 
 		new e.title("Custom content"),
 		new e.text(
-			"Add nearly any HTML within, even for linked list groups like the one below, with the help of {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}."
+			"Add nearly any HTML within, even for linked list groups like the one below, with the help of {{nav:doc/utilities/flex::flexbox utilities}}."
 		),
 
 		new e.code({

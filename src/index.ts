@@ -109,6 +109,7 @@ let m = {
 				{ label: "Text", value: "doc/utilities/text" },
 				{ label: "Vertical align", value: "doc/utilities/vertical_align" },
 				{ label: "Visibility", value: "doc/utilities/visibility" },
+				{ label: "Z-index", value: "doc/utilities/zindex" },
 			],
 		},
 	] as main.IAttrItemMenu[],

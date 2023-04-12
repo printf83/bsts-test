@@ -43,7 +43,7 @@ export const progress: IAttrContent = {
 		new e.title("Bar sizing"),
 		new e.subtitle("Width"),
 		new e.text(
-			"Bootstrap provides a handful of {{https://getbootstrap.com/docs/5.3/utilities/sizing/::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{.progress-bar}}."
+			"Bootstrap provides a handful of {{nav:doc/utilities/sizing::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{.progress-bar}}."
 		),
 
 		new e.code({
@@ -91,7 +91,7 @@ export const progress: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Note that by default, the content inside the {{.progress-bar}} is controlled with {{overflow: hidden}}, so it doesn’t bleed out of the bar. If your progress bar is shorter than its label, the content will be capped and may become unreadable. To change this behavior, you can use {{.overflow-visible}} from the {{https://getbootstrap.com/docs/5.3/utilities/overflow/::overflow utilities}}, but make sure to also define an explicit {{https://getbootstrap.com/docs/5.3/utilities/colors/#colors::text color}} so the text remains readable. Be aware though that currently this approach does not take into account {{https://getbootstrap.com/docs/5.3/customize/color-modes/::color modes}}."
+			"Note that by default, the content inside the {{.progress-bar}} is controlled with {{overflow: hidden}}, so it doesn’t bleed out of the bar. If your progress bar is shorter than its label, the content will be capped and may become unreadable. To change this behavior, you can use {{.overflow-visible}} from the {{nav:doc/utilities/overflow::overflow utilities}}, but make sure to also define an explicit {{nav:doc/utilities/colors#colors::text color}} so the text remains readable. Be aware though that currently this approach does not take into account {{https://getbootstrap.com/docs/5.3/customize/color-modes/::color modes}}."
 		),
 		new e.code({
 			output: () => {

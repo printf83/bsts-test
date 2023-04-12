@@ -340,7 +340,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Custom content"),
 		new e.text(
-			"Customize your toasts by removing sub-components, tweaking them with {{https://getbootstrap.com/docs/5.3/utilities/api/::utilities}}, or by adding your own markup. Here we’ve created a simpler toast by removing the default {{.toast-header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}} to adjust the layout."
+			"Customize your toasts by removing sub-components, tweaking them with {{nav:doc/utilities/api::utilities}}, or by adding your own markup. Here we’ve created a simpler toast by removing the default {{.toast-header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:doc/utilities/flex::flexbox utilities}} to adjust the layout."
 		),
 		new e.code({
 			output: () => {
@@ -372,7 +372,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Color schemes"),
 		new e.text(
-			"Building on the above example, you can create different toast color schemes with Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/colors/::color}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::background}} utilities. Here we’ve added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to Bootstrap close button. For a crisp edge, we remove the default border with {{.border-0}}."
+			"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:doc/utilities/colors::color}} and {{nav:doc/utilities/background::background}} utilities. Here we’ve added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to Bootstrap close button. For a crisp edge, we remove the default border with {{.border-0}}."
 		),
 		new e.code({
 			output: () => {

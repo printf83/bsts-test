@@ -12,7 +12,7 @@ export const background: IAttrContent = {
 		),
 		new e.title("Background color"),
 		new e.text(
-			"Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::color}}, so in some cases you’ll want to use {{.text-*}} {{https://getbootstrap.com/docs/5.3/utilities/colors/::color utilities}}."
+			"Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::color}}, so in some cases you’ll want to use {{.text-*}} {{nav:doc/utilities/colors::color utilities}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -442,7 +442,7 @@ export const background: IAttrContent = {
 
 		new e.title("Utilities API"),
 		new e.text(
-			"Background utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Background utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

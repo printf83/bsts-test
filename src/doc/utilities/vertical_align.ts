@@ -13,7 +13,7 @@ export const vertical_align: IAttrContent = {
 			"Choose from {{.align-baseline}}, {{.align-top}}, {{.align-middle}}, {{.align-bottom}}, {{.align-text-bottom}}, and {{.align-text-top}} as needed."
 		),
 		new e.text(
-			"To vertically center non-inline content (like {{<div>}}s and more), use our {{https://getbootstrap.com/docs/5.3/utilities/flex/#align-items::flex box utilities}}."
+			"To vertically center non-inline content (like {{<div>}}s and more), use Bootstrap {{nav:doc/utilities/flex#align_items::flex box utilities}}."
 		),
 		new e.text("With inline elements:"),
 		new e.code({
@@ -55,7 +55,7 @@ export const vertical_align: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Vertical align utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Vertical align utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

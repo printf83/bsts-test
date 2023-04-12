@@ -8,7 +8,7 @@ export const shadow: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"While shadows on components are disabled by default in Bootstrap and can be enabled via {{$enable-shadows}}, you can also quickly add or remove a shadow with our {{box-shadow}} utility classes. Includes support for {{.shadow-none}} and three default sizes (which have associated variables to match)."
+			"While shadows on components are disabled by default in Bootstrap and can be enabled via {{$enable-shadows}}, you can also quickly add or remove a shadow with Bootstrap {{box-shadow}} utility classes. Includes support for {{.shadow-none}} and three default sizes (which have associated variables to match)."
 		),
 		new e.code({
 			output: () => {
@@ -53,7 +53,7 @@ export const shadow: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Shadow utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Shadow utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

@@ -13,7 +13,7 @@ export const navbar: IAttrContent = {
 			item: [
 				"Navbars require a wrapping {{.navbar}} with {{.navbar-expand{-sm|-md|-lg|-xl|-xxl}}} for responsive collapsing and {{nav:doc/component/navbar#color_schemes::color scheme}} classes.",
 				"Navbars and their contents are fluid by default. Change the {{nav:doc/component/navbar#containers::container}} to limit their horizontal width in different ways.",
-				"Use Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing}} and {{https://getbootstrap.com/docs/5.3/utilities/flex/::flex}} utility classes for controlling spacing and alignment within navbars.",
+				"Use Bootstrap {{nav:doc/utilities/spacing::spacing}} and {{nav:doc/utilities/flex::flex}} utility classes for controlling spacing and alignment within navbars.",
 				"Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on Bootstrap Collapse JavaScript plugin.",
 				"Ensure accessibility by using a {{<nav>}} element or, if using a more generic element such as a {{<div>}}, add a {{role='navigation'}} to every navbar to explicitly identify it as a landmark region for users of assistive technologies.",
 				"Indicate the current item by using {{aria-current='page'}} for the current page or {{aria-current='true'}} for the current item in a set.",
@@ -85,7 +85,7 @@ export const navbar: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"This example uses {{https://getbootstrap.com/docs/5.3/utilities/background/::background}} ({{bg-body-tertiary}}) and {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing}} ({{me-auto}}, {{mb-2}}, {{mb-lg-0}}, {{me-2}}) utility classes."
+			"This example uses {{nav:doc/utilities/background::background}} ({{bg-body-tertiary}}) and {{nav:doc/utilities/spacing::spacing}} ({{me-auto}}, {{mb-2}}, {{mb-lg-0}}, {{me-2}}) utility classes."
 		),
 
 		//-----------------------
@@ -270,7 +270,7 @@ export const navbar: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Immediate child elements of {{.navbar}} use flex layout and will default to {{justify-content: space-between}}. Use additional {{https://getbootstrap.com/docs/5.3/utilities/flex/::flex utilities}} as needed to adjust this behavior."
+			"Immediate child elements of {{.navbar}} use flex layout and will default to {{justify-content: space-between}}. Use additional {{nav:doc/utilities/flex::flex utilities}} as needed to adjust this behavior."
 		),
 		new e.code({
 			output: () => {
@@ -455,7 +455,7 @@ export const navbar: IAttrContent = {
 
 		new e.title("Placement"),
 		new e.text(
-			"Use Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/position/::position utilities}} to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the bottom (scrolls with the page until it reaches the bottom, then stays there)."
+			"Use Bootstrap {{nav:doc/utilities/position::position utilities}} to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the bottom (scrolls with the page until it reaches the bottom, then stays there)."
 		),
 		new e.text(
 			"Fixed navbars use {{position: fixed}}, meaning they’re pulled from the normal flow of the DOM and may require custom CSS (e.g., {{padding-top}} on the {{<body>}}) to prevent overlap with other elements."

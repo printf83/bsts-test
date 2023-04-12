@@ -33,7 +33,7 @@ export const spinner: IAttrContent = {
 
 		new e.subtitle("Colors"),
 		new e.text(
-			"The border spinner uses {{currentColor}} for its {{border-color}}, meaning you can customize the color with text color utilities. You can use any of Bootstrap {{https://getbootstrap.com/docs/5.3/utilities/colors/::text color utilities}} on the standard spinner."
+			"The border spinner uses {{currentColor}} for its {{border-color}}, meaning you can customize the color with text color utilities. You can use any of Bootstrap {{nav:doc/utilities/colors::text color utilities}} on the standard spinner."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -60,7 +60,7 @@ export const spinner: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Once again, this spinner is built with {{currentColor}}, so you can easily change its appearance with {{https://getbootstrap.com/docs/5.3/utilities/colors/::text color utilities}}. Here it is in blue, along with the supported variants."
+			"Once again, this spinner is built with {{currentColor}}, so you can easily change its appearance with {{nav:doc/utilities/colors::text color utilities}}. Here it is in blue, along with the supported variants."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -98,7 +98,7 @@ export const spinner: IAttrContent = {
 
 		new e.subtitle("Placement"),
 		new e.text(
-			"Use {{https://getbootstrap.com/docs/5.3/utilities/flex/::flexbox utilities}}, {{https://getbootstrap.com/docs/5.3/utilities/float/::float utilities}}, or {{https://getbootstrap.com/docs/5.3/utilities/text/::text alignment}} utilities to place spinners exactly where you need them in any situation."
+			"Use {{nav:doc/utilities/flex::flexbox utilities}}, {{nav:doc/utilities/float::float utilities}}, or {{nav:doc/utilities/text::text alignment}} utilities to place spinners exactly where you need them in any situation."
 		),
 
 		//-----------------------

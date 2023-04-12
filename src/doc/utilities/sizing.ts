@@ -4,7 +4,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 
 export const sizing: IAttrContent = {
 	title: "Sizing",
-	description: "Easily make an element as wide or as tall with our width and height utilities.",
+	description: "Easily make an element as wide or as tall with Bootstrap width and height utilities.",
 	item: [
 		new e.title("Relative to the parent"),
 		new e.text(
@@ -95,7 +95,7 @@ export const sizing: IAttrContent = {
 
 		new e.subtitle("Utilities API"),
 		new e.text(
-			"Sizing utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Sizing utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

@@ -17,6 +17,7 @@ import { spacing } from "./spacing.js";
 import { text } from "./text.js";
 import { vertical_align } from "./vertical_align.js";
 import { visibility } from "./visibility.js";
+import { zindex } from "./zindex.js";
 
 export {
 	api,
@@ -38,4 +39,5 @@ export {
 	text,
 	vertical_align,
 	visibility,
+	zindex,
 };

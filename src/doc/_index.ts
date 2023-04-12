@@ -46,6 +46,8 @@ export const doc = (value: string) => {
 			return utilities.vertical_align;
 		case "doc/utilities/visibility":
 			return utilities.visibility;
+		case "doc/utilities/zindex":
+			return utilities.zindex;
 
 		//--------------------------
 		case "doc/form/overview":

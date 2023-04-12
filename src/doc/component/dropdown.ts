@@ -571,7 +571,7 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Text"),
 		new e.text(
-			"Place any freeform text within a dropdown menu with text and use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."
+			"Place any freeform text within a dropdown menu with text and use {{nav:doc/utilities/spacing::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."
 		),
 		new e.code({
 			output: () => {
@@ -594,7 +594,7 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Forms"),
 		new e.text(
-			"Put a form within a dropdown menu, or make it into a dropdown menu, and use {{https://getbootstrap.com/docs/5.3/utilities/spacing/::margin or padding utilities}} to give it the negative space you require."
+			"Put a form within a dropdown menu, or make it into a dropdown menu, and use {{nav:doc/utilities/spacing::margin or padding utilities}} to give it the negative space you require."
 		),
 		new e.code({
 			output: () => {
