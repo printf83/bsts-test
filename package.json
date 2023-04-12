@@ -32,6 +32,7 @@
 		"rebuild:win": "npm run clean:win && npm run build  && npm run webpack",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"link": "sudo npm link ../bsts",
+		"link:win": "npm link ../bsts",
 		"webpack:debug": "webpack -w",
 		"webpack": "webpack",
 		"prepack": "npm run clean && npm run build"
