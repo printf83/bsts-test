@@ -23,6 +23,8 @@ export const doc = (value: string) => {
 			return helpers.position;
 		case "doc/helpers/ratio":
 			return helpers.ratio;
+		case "doc/helpers/stacks":
+			return helpers.stacks;
 
 		//--------------------------
 		case "doc/utilities/api":

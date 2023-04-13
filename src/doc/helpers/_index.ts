@@ -5,5 +5,6 @@ import { focus_ring } from "./focus_ring.js";
 import { icon_link } from "./icon_link.js";
 import { position } from "./position.js";
 import { ratio } from "./ratio.js";
+import { stacks } from "./stacks.js";
 
-export { clearfix, color_background, colored_links, focus_ring, icon_link, position, ratio };
+export { clearfix, color_background, colored_links, focus_ring, icon_link, position, ratio, stacks };

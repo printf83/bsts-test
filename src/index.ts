@@ -97,6 +97,7 @@ let m = {
 				{ label: "Icon link", value: "doc/helpers/icon_link" },
 				{ label: "Position", value: "doc/helpers/position" },
 				{ label: "Ratio", value: "doc/helpers/ratio" },
+				{ label: "Stacks", value: "doc/helpers/stacks" },
 			],
 		},
 		{
