@@ -12,7 +12,7 @@ export const accordion: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{nav:doc/gettingstarted/accessibility#reduce_motion::reduced motion section of Bootstrap accessibility documentation}}. "
+			"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{nav:docs/gettingstarted/accessibility#reduce_motion::reduced motion section of Bootstrap accessibility documentation}}. "
 		),
 
 		//-----------------------

@@ -85,7 +85,7 @@ export const introduction: IAttrContent = {
 			],
 		}),
 		new e.text(
-			"You can also use the CDN to fetch any of Bootstrap {{nav:doc/gettingstarted/content::additional builds listed in the Contents page}}."
+			"You can also use the CDN to fetch any of Bootstrap {{nav:docs/gettingstarted/content::additional builds listed in the Contents page}}."
 		),
 
 		//-----------------------

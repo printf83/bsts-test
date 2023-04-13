@@ -147,7 +147,7 @@ export const doc = (value: string) => {
 			return components.tooltip;
 
 		//--------------------------
-		case "doc/gettingstarted/introduction":
+		case "docs/gettingstarted/introduction":
 			return gettingstarted.introduction;
 		default:
 			return null;

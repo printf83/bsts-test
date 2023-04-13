@@ -39,7 +39,7 @@ let m = {
 		{
 			label: "Getting started",
 			icon: { id: "book-half", color: "primary" },
-			item: [{ label: "Introduction", value: "doc/gettingstarted/introduction" }],
+			item: [{ label: "Introduction", value: "docs/gettingstarted/introduction" }],
 		},
 		{
 			label: "Forms",
@@ -334,8 +334,8 @@ core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as HTMLElement;
 	core.replaceChild(body, maincontainer);
-	onmenuchange(cookie.get("current_page") || "doc/gettingstarted/introduction", true);
-	highlightCurrentMenu(cookie.get("current_page") || "doc/gettingstarted/introduction");
+	onmenuchange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
+	highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
 
 	document.addEventListener(
 		"bs-navigate",
