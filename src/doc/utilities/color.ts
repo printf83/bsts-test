@@ -13,7 +13,7 @@ export const color: IAttrContent = {
 		),
 		new e.title("Colors"),
 		new e.text(
-			"Colorize text with color utilities. If you want to colorize links, you can use the {{https://getbootstrap.com/docs/5.3/helpers/colored-links/::.link-* helper classes}} which have {{:hover}} and {{:focus}} states."
+			"Colorize text with color utilities. If you want to colorize links, you can use the {{nav:docs/helpers/colored_links::.link-* helper classes}} which have {{:hover}} and {{:focus}} states."
 		),
 		new e.alert(
 			{ color: "info", callout: true },

@@ -268,7 +268,7 @@ export const check_radio: IAttrContent = {
 
 		new e.title("Without labels"),
 		new e.text(
-			"Omit the wrapping {{.form-check}} for checkboxes and radios that have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using {{aria-label}}). See the {{nav:doc/form/overview#accessibility::forms overview accessibility}} section for details."
+			"Omit the wrapping {{.form-check}} for checkboxes and radios that have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using {{aria-label}}). See the {{nav:doc/forms/overview#accessibility::forms overview accessibility}} section for details."
 		),
 		new e.code({
 			output: () => {
@@ -294,7 +294,7 @@ export const check_radio: IAttrContent = {
 
 		new e.title("Toggle buttons"),
 		new e.text(
-			"Create button-like checkboxes and radio buttons by using {{.btn}} styles rather than {{.form-check-label}} on the {{<label>}} elements. These toggle buttons can further be grouped in a {{nav:doc/component/button_group::button group}} if needed."
+			"Create button-like checkboxes and radio buttons by using {{.btn}} styles rather than {{.form-check-label}} on the {{<label>}} elements. These toggle buttons can further be grouped in a {{nav:doc/components/button_group::button group}} if needed."
 		),
 		new e.alert(
 			{ color: "danger", callout: true },
@@ -331,7 +331,7 @@ export const check_radio: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			" Visually, these checkbox toggle buttons are identical to the {{nav:doc/component/button#button_plugin::button plugin toggle buttons}}. However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as “checked”/“not checked” (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as “button”/“button pressed”. The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button."
+			" Visually, these checkbox toggle buttons are identical to the {{nav:doc/components/button#button_plugin::button plugin toggle buttons}}. However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as “checked”/“not checked” (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as “button”/“button pressed”. The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button."
 		),
 
 		//-----------------------

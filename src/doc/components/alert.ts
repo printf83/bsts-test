@@ -9,11 +9,11 @@ export const alert: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{.alert-success}}). For inline dismissal, use the {{nav:doc/component/alert#dismissing::alerts JavaScript plugin}}."
+			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{.alert-success}}). For inline dismissal, use the {{nav:doc/components/alert#dismissing::alerts JavaScript plugin}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Heads up!}} As of v5.3.0, the {{alert-variant()}} Sass mixin is deprecated. Alert variants now have their CSS variables overridden in the {{nav:doc/component/alert#sass_loop::Sass loop}}."
+			"{{b::Heads up!}} As of v5.3.0, the {{alert-variant()}} Sass mixin is deprecated. Alert variants now have their CSS variables overridden in the {{nav:doc/components/alert#sass_loop::Sass loop}}."
 		),
 		new e.code({
 			output: () => {
@@ -163,7 +163,7 @@ export const alert: IAttrContent = {
 		new e.ul({
 			item: [
 				"Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.",
-				"Add a {{nav:doc/component/close_button::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
+				"Add a {{nav:doc/components/close_button::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
 				"On the close button, add the {{data-bs-dismiss='alert'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices.",
 				"To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes.",
 			],
@@ -292,7 +292,7 @@ export const alert: IAttrContent = {
 			new h.p(
 				"For the sole purpose of dismissing an alert, it isn’t necessary to initialize the component manually via the JS API. By making use of {{data-bs-dismiss='alert'}}, the component will be initialized automatically and properly dismissed."
 			),
-			new h.p("See the {{nav:doc/component/alerts#triggers::triggers}} section for more details."),
+			new h.p("See the {{nav:doc/components/alerts#triggers::triggers}} section for more details."),
 		]),
 
 		//-----------------------

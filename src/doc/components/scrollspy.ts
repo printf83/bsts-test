@@ -9,7 +9,7 @@ export const scrollspy: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"Scrollspy toggles the {{.active}} class on anchor ({{<a>}}) elements when the element with the {{id}} referenced by the anchor’s {{href}} is scrolled into view. Scrollspy is best used in conjunction with a Bootstrap {{nav:doc/component/nav::nav component}} or {{nav:doc/component/list::list group}}, but it will also work with any anchor elements in the current page. Here’s how it works."
+			"Scrollspy toggles the {{.active}} class on anchor ({{<a>}}) elements when the element with the {{id}} referenced by the anchor’s {{href}} is scrolled into view. Scrollspy is best used in conjunction with a Bootstrap {{nav:doc/components/nav::nav component}} or {{nav:doc/components/list::list group}}, but it will also work with any anchor elements in the current page. Here’s how it works."
 		),
 		new e.ul({
 			item: [

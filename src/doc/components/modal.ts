@@ -187,7 +187,7 @@ export const modal: IAttrContent = {
 										title: document.title,
 										elem: new b.msg(
 											{ type: "bi", id: "info-circle-fill", color: "primary" },
-											"Hello world. Open {{nav:doc/form/select#disabled::Forms select}} document from msgbox then show {{#disabled}} section"
+											"Hello world. Open {{nav:doc/forms/select#disabled::Forms select}} document from msgbox then show {{#disabled}} section"
 										),
 										btn: ["ok"],
 									});
@@ -395,7 +395,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Tooltips and popovers"),
 		new e.text(
-			"{{nav:doc/component/tooltip::Tooltips}} and {{nav:doc/component/popover::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."
+			"{{nav:doc/components/tooltip::Tooltips}} and {{nav:doc/components/popover::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."
 		),
 		new e.code({
 			output: () => {
@@ -572,7 +572,7 @@ export const modal: IAttrContent = {
 			"Have a bunch of buttons that all trigger the same modal with slightly different contents? Use {{event.relatedTarget}} and {{https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes::HTML data-bs-* attributes}} to vary the contents of the modal depending on which button was clicked."
 		),
 		new e.text(
-			"Below is a live demo followed by example HTML and JavaScript. For more information, {{nav:doc/component/modal#events::read the modal events docs}} for details on {{relatedTarget}}."
+			"Below is a live demo followed by example HTML and JavaScript. For more information, {{nav:doc/components/modal#events::read the modal events docs}} for details on {{relatedTarget}}."
 		),
 
 		new e.code({
@@ -1009,7 +1009,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Sass loop"),
 		new e.text(
-			"{{nav:doc/component/modal#fullscreen_modal::Responsive fullscreen modals}} are generated via the {{$breakpoints}} map and a loop in {{scss/_modal.scss}}."
+			"{{nav:doc/components/modal#fullscreen_modal::Responsive fullscreen modals}} are generated via the {{$breakpoints}} map and a loop in {{scss/_modal.scss}}."
 		),
 
 		new e.codepreview({

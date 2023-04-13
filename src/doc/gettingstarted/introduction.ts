@@ -68,7 +68,7 @@ export const introduction: IAttrContent = {
 					}),
 				]),
 				new h.li([
-					"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{nav:doc/layout/grid::layout}}, adding dozens of {{nav:doc/component/button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::Bootstrap official examples}}.",
+					"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{nav:doc/layout/grid::layout}}, adding dozens of {{nav:doc/components/button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::Bootstrap official examples}}.",
 				]),
 			])
 		),

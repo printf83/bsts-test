@@ -1,10 +1,10 @@
 import * as gettingstarted from "./gettingstarted/_index.js";
-import * as form from "./form/_index.js";
-import * as component from "./component/_index.js";
+import * as forms from "./forms/_index.js";
+import * as components from "./components/_index.js";
 import * as utilities from "./utilities/_index.js";
 import * as helpers from "./helpers/_index.js";
 
-export { component, form, gettingstarted, utilities };
+export { components as component, forms as form, gettingstarted, utilities };
 
 export const doc = (value: string) => {
 	switch (value) {
@@ -77,74 +77,74 @@ export const doc = (value: string) => {
 			return utilities.zindex;
 
 		//--------------------------
-		case "doc/form/overview":
-			return form.overview;
-		case "doc/form/control":
-			return form.control;
-		case "doc/form/select":
-			return form.select;
-		case "doc/form/check_radio":
-			return form.check_radio;
-		case "doc/form/range":
-			return form.range;
-		case "doc/form/floating_label":
-			return form.floating_label;
-		case "doc/form/input_group":
-			return form.input_group;
-		case "doc/form/layout":
-			return form.layout;
-		case "doc/form/validation":
-			return form.validation;
+		case "doc/forms/overview":
+			return forms.overview;
+		case "doc/forms/control":
+			return forms.control;
+		case "doc/forms/select":
+			return forms.select;
+		case "doc/forms/check_radio":
+			return forms.check_radio;
+		case "doc/forms/range":
+			return forms.range;
+		case "doc/forms/floating_label":
+			return forms.floating_label;
+		case "doc/forms/input_group":
+			return forms.input_group;
+		case "doc/forms/layout":
+			return forms.layout;
+		case "doc/forms/validation":
+			return forms.validation;
 
 		//--------------------------
-		case "doc/component/accordion":
-			return component.accordion;
-		case "doc/component/alert":
-			return component.alert;
-		case "doc/component/badge":
-			return component.badge;
-		case "doc/component/breadcrumb":
-			return component.breadcrumb;
-		case "doc/component/button":
-			return component.button;
-		case "doc/component/button_group":
-			return component.button_group;
-		case "doc/component/card":
-			return component.card;
-		case "doc/component/carousel":
-			return component.carousel;
-		case "doc/component/close_button":
-			return component.close_button;
-		case "doc/component/collapse":
-			return component.collapse;
-		case "doc/component/dropdown":
-			return component.dropdown;
-		case "doc/component/list":
-			return component.list;
-		case "doc/component/modal":
-			return component.modal;
-		case "doc/component/navbar":
-			return component.navbar;
-		case "doc/component/nav":
-			return component.nav;
-		case "doc/component/offcanvas":
-			return component.offcanvas;
-		case "doc/component/pagination":
-			return component.pagination;
-		case "doc/component/popover":
-			return component.popover;
-		case "doc/component/placeholder":
-			return component.placeholder;
-		case "doc/component/progress":
-			return component.progress;
-		case "doc/component/scrollspy":
-			return component.scrollspy;
-		case "doc/component/spinner":
-			return component.spinner;
-		case "doc/component/toast":
-			return component.toast;
-		case "doc/component/tooltip":
-			return component.tooltip;
+		case "doc/components/accordion":
+			return components.accordion;
+		case "doc/components/alert":
+			return components.alert;
+		case "doc/components/badge":
+			return components.badge;
+		case "doc/components/breadcrumb":
+			return components.breadcrumb;
+		case "doc/components/button":
+			return components.button;
+		case "doc/components/button_group":
+			return components.button_group;
+		case "doc/components/card":
+			return components.card;
+		case "doc/components/carousel":
+			return components.carousel;
+		case "doc/components/close_button":
+			return components.close_button;
+		case "doc/components/collapse":
+			return components.collapse;
+		case "doc/components/dropdown":
+			return components.dropdown;
+		case "doc/components/list":
+			return components.list;
+		case "doc/components/modal":
+			return components.modal;
+		case "doc/components/navbar":
+			return components.navbar;
+		case "doc/components/nav":
+			return components.nav;
+		case "doc/components/offcanvas":
+			return components.offcanvas;
+		case "doc/components/pagination":
+			return components.pagination;
+		case "doc/components/popover":
+			return components.popover;
+		case "doc/components/placeholder":
+			return components.placeholder;
+		case "doc/components/progress":
+			return components.progress;
+		case "doc/components/scrollspy":
+			return components.scrollspy;
+		case "doc/components/spinner":
+			return components.spinner;
+		case "doc/components/toast":
+			return components.toast;
+		case "doc/components/tooltip":
+			return components.tooltip;
 
 		//--------------------------
 		case "doc/gettingstarted/introduction":

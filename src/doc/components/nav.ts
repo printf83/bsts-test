@@ -113,7 +113,7 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Tabs"),
 		new e.text(
-			"Takes the basic nav from above and adds the {{.nav-tabs}} class to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:doc/component/nav#javascript_behavior::tab JavaScript plugin}}."
+			"Takes the basic nav from above and adds the {{.nav-tabs}} class to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:doc/components/nav#javascript_behavior::tab JavaScript plugin}}."
 		),
 		new e.code({
 			output: () => {
@@ -234,14 +234,14 @@ export const nav: IAttrContent = {
 			"If you’re using navs to provide a navigation bar, be sure to add a {{role='navigation'}} to the most logical parent container of the {{<ul>}}, or wrap a {{<nav>}} element around the whole navigation. Do not add the role to the {{<ul>}} itself, as this would prevent it from being announced as an actual list by assistive technologies."
 		),
 		new e.text(
-			"Note that navigation bars, even if visually styled as tabs with the {{.nav-tabs}} class, should {{b::not}} be given {{role='tablist'}}, {{role='tab'}} or {{role='tabpanel'}} attributes. These are only appropriate for dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}. See {{nav:doc/component/nav#javascript-behavior::JavaScript behavior}} for dynamic tabbed interfaces in this section for an example. The {{aria-current}} attribute is not necessary on dynamic tabbed interfaces since Bootstrap JavaScript handles the selected state by adding {{aria-selected='true'}} on the active tab."
+			"Note that navigation bars, even if visually styled as tabs with the {{.nav-tabs}} class, should {{b::not}} be given {{role='tablist'}}, {{role='tab'}} or {{role='tabpanel'}} attributes. These are only appropriate for dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}. See {{nav:doc/components/nav#javascript-behavior::JavaScript behavior}} for dynamic tabbed interfaces in this section for an example. The {{aria-current}} attribute is not necessary on dynamic tabbed interfaces since Bootstrap JavaScript handles the selected state by adding {{aria-selected='true'}} on the active tab."
 		),
 
 		//-----------------------
 
 		new e.title("Using dropdowns"),
 		new e.text(
-			"Add dropdown menus with a little extra HTML and the {{nav:doc/component/dropdown#usage::dropdowns JavaScript plugin}}."
+			"Add dropdown menus with a little extra HTML and the {{nav:doc/components/dropdown#usage::dropdowns JavaScript plugin}}."
 		),
 
 		//-----------------------

@@ -12,43 +12,43 @@ export const overview: IAttrContent = {
 				{ row: true },
 				[
 					{
-						data: "doc/form/control",
+						data: "doc/forms/control",
 						title: "Form control",
 						content: "Style textual inputs and textareas with support for multiple states.",
 					},
 					{
-						data: "doc/form/select",
+						data: "doc/forms/select",
 						title: "Select",
 						content: "Improve browser default select elements with a custom initial appearance.",
 					},
 					{
-						data: "doc/form/check_radio",
+						data: "doc/forms/check_radio",
 						title: "Checks & radios",
 						content:
 							"Use Bootstrap custom radio buttons and checkboxes in forms for selecting input options.",
 					},
 					{
-						data: "doc/form/range",
+						data: "doc/forms/range",
 						title: "Range",
 						content: "Replace browser default range inputs with Bootstrap custom version.",
 					},
 					{
-						data: "doc/form/input_group",
+						data: "doc/forms/input_group",
 						title: "Input group",
 						content: "Attach labels and buttons to your inputs for increased semantic value.",
 					},
 					{
-						data: "doc/form/floating_label",
+						data: "doc/forms/floating_label",
 						title: "Floating labels",
 						content: "Create beautifully simple form labels that float over your input fields.",
 					},
 					{
-						data: "doc/form/layout",
+						data: "doc/forms/layout",
 						title: "Layout",
 						content: "Create inline, horizontal, or complex grid-based layouts with your forms.",
 					},
 					{
-						data: "doc/form/validation",
+						data: "doc/forms/validation",
 						title: "Validation",
 						content: "Validate your forms with custom or native validation behaviors and styles.",
 					},
@@ -212,7 +212,7 @@ export const overview: IAttrContent = {
 
 		new e.subtitle("Sass variables"),
 		new e.text(
-			"{{$input-btn-*}} variables are shared global variables between Bootstrap {{nav:doc/component/button::buttons}} and Bootstrap form components. You’ll find these frequently reassigned as values to other component-specific variables."
+			"{{$input-btn-*}} variables are shared global variables between Bootstrap {{nav:doc/components/button::buttons}} and Bootstrap form components. You’ll find these frequently reassigned as values to other component-specific variables."
 		),
 
 		new e.codepreview({

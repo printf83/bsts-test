@@ -10,8 +10,8 @@ export const carousel: IAttrContent = {
 		new e.ul({
 			item: [
 				"The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.",
-				"For performance reasons, {{b::carousels must be manually initialized}} using the {{nav:doc/component/carousel#methods::carousel constructor method}}. Without initialization, some of the event listeners (specifically, the events needed touch/swipe support) will not be registered until a user has explicitly activated a control or indicator.",
-				"The only exception are {{nav:doc/component/carousel#autoplaying_carousels::autoplaying carousels}} with the {{data-bs-ride='carousel'}} attribute as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, {{b::don’t explicitly initialize the same carousels with the constructor method}}.",
+				"For performance reasons, {{b::carousels must be manually initialized}} using the {{nav:doc/components/carousel#methods::carousel constructor method}}. Without initialization, some of the event listeners (specifically, the events needed touch/swipe support) will not be registered until a user has explicitly activated a control or indicator.",
+				"The only exception are {{nav:doc/components/carousel#autoplaying_carousels::autoplaying carousels}} with the {{data-bs-ride='carousel'}} attribute as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, {{b::don’t explicitly initialize the same carousels with the constructor method}}.",
 				"Nested carousels are not supported. You should also be aware that carousels in general can often cause usability and accessibility challenges.",
 			],
 		}),
@@ -331,7 +331,7 @@ export const carousel: IAttrContent = {
 				$carousel-transition:                transform $carousel-transition-duration ease-in-out; // Define transform transition first if using multiple transitions (e.g., 'transform 2s ease, opacity .5s ease-out')
 			`,
 		}),
-		// new e.text("Variables for the {{nav:doc/component/carousel#dark-variant::dark carousel}}:"),
+		// new e.text("Variables for the {{nav:doc/components/carousel#dark-variant::dark carousel}}:"),
 
 		// new e.codepreview({
 		// 	type: "css",

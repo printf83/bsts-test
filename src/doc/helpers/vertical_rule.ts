@@ -37,7 +37,7 @@ export const vertical_rule: IAttrContent = {
 		//-----------------------
 
 		new e.title("With stack"),
-		new e.text("They can also be used in {{https://getbootstrap.com/docs/5.3/helpers/stacks/::stacks}}:"),
+		new e.text("They can also be used in {{nav:docs/helpers/stacks::stacks}}:"),
 		new e.code({
 			outputAttr: { class: "flex-box" },
 			output: () => {

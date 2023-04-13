@@ -12,7 +12,7 @@ export const popover: IAttrContent = {
 		new e.ul({
 			item: [
 				"Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
-				"Popovers require the {{nav:doc/component/popover::popover plugin}} as a dependency.",
+				"Popovers require the {{nav:doc/components/popover::popover plugin}} as a dependency.",
 				"Popovers are opt-in for performance reasons, so {{b::you must initialize them yourself}}.",
 				"Zero-length {{title}} and {{content}} values will never show a popover.",
 				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
@@ -103,7 +103,7 @@ export const popover: IAttrContent = {
 			`,
 		}),
 		new e.text(
-			"Another situation where you’ll want to set an explicit custom {{container}} are popovers inside a {{nav:doc/component/modal::modal dialog}}, to make sure that the popover itself is appended to the modal. This is particularly important for popovers that contain interactive elements – modal dialogs will trap focus, so unless the popover is a child element of the modal, users won’t be able to focus or activate these interactive elements."
+			"Another situation where you’ll want to set an explicit custom {{container}} are popovers inside a {{nav:doc/components/modal::modal dialog}}, to make sure that the popover itself is appended to the modal. This is particularly important for popovers that contain interactive elements – modal dialogs will trap focus, so unless the popover is a child element of the modal, users won’t be able to focus or activate these interactive elements."
 		),
 		new e.codepreview({
 			type: "js",
@@ -118,7 +118,7 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Custom popovers"),
 		new e.text(
-			"You can customize the appearance of popovers using {{nav:doc/component/popover#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of popovers using {{nav:doc/components/popover#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 		),
 
 		// new e.codepreview({
@@ -450,7 +450,7 @@ export const popover: IAttrContent = {
 				],
 				[
 					"{{dispose}}",
-					"Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{nav:doc/component/popovers#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
+					"Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{nav:doc/components/popovers#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
 				],
 				[
 					"{{enable}}",

@@ -56,7 +56,7 @@ export const stacks: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("And with {{https://getbootstrap.com/docs/5.3/helpers/vertical-rule/::vertical rules}}:"),
+		new e.text("And with {{nav:docs/helpers/vertical_rule::vertical rules}}:"),
 		new e.code({
 			outputAttr: { class: "flex-box" },
 			output: () => {

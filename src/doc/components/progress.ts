@@ -152,7 +152,7 @@ export const progress: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Alternatively, you can use the new combined {{https://getbootstrap.com/docs/5.3/helpers/color-background/::color and background}} helper classes."
+			"Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} helper classes."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },

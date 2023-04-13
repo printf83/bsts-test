@@ -241,7 +241,7 @@ strong,
 
 
 
-/* use by doc/component/modal#grid_in_modal*/
+/* use by doc/components/modal#grid_in_modal*/
 .bs-highlight-col div[class^="col"]{
     padding-top:0.75rem;
     padding-bottom: 0.75rem;

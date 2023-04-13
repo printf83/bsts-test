@@ -12,7 +12,7 @@ export const ratio: IAttrContent = {
 			"Use the ratio helper to manage the aspect ratios of external content like {{<iframe>}}s, {{<embed>}}s, {{<video>}}s, and {{<object>}}s. These helpers also can be used on any standard HTML child element (e.g., a {{<div>}} or {{<img>}}). Styles are applied from the parent {{.ratio}} class directly to the child."
 		),
 		new e.text(
-			"Aspect ratios are declared in a Sass map and included in each class via CSS variable, which also allows {{https://getbootstrap.com/docs/5.3/helpers/ratio/#custom-ratios::custom aspect ratios}}."
+			"Aspect ratios are declared in a Sass map and included in each class via CSS variable, which also allows {{nav:docs/helpers/ratio#custom-ratios::custom aspect ratios}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },

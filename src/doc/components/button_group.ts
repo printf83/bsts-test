@@ -29,7 +29,7 @@ export const button_group: IAttrContent = {
 		]),
 
 		new e.text(
-			"These classes can also be added to groups of links, as an alternative to the {{nav:doc/component/nav::.nav navigation components}}."
+			"These classes can also be added to groups of links, as an alternative to the {{nav:doc/components/nav::.nav navigation components}}."
 		),
 		new e.code({
 			output: () => {
@@ -71,7 +71,7 @@ export const button_group: IAttrContent = {
 
 		new e.title("Checkbox and radio button groups"),
 		new e.text(
-			"Combine button-like checkbox and radio {{nav:doc/form/check_radio::toggle buttons}} into a seamless looking button group."
+			"Combine button-like checkbox and radio {{nav:doc/forms/check_radio::toggle buttons}} into a seamless looking button group."
 		),
 		new e.code({
 			output: () => {

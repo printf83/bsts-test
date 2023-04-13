@@ -871,7 +871,7 @@ export const dropdown: IAttrContent = {
 			`,
 		}),
 
-		new e.text("Variables for the {{nav:doc/component/dropdowns#dark_dropdowns::dark dropdown}}:"),
+		new e.text("Variables for the {{nav:doc/components/dropdowns#dark_dropdowns::dark dropdown}}:"),
 
 		new e.codepreview({
 			type: "css",

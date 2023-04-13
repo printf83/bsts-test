@@ -14,7 +14,7 @@ export const offcanvas: IAttrContent = {
 		new e.ul({
 			item: [
 				"Offcanvas shares some of the same JavaScript code as modals. Conceptually, they are quite similar, but they are separate plugins.",
-				"Similarly, some source {{nav:doc/component/offcanvas#sass_variables::Sass variables}} for offcanvas’s styles and dimensions are inherited from the modal’s variables.",
+				"Similarly, some source {{nav:doc/components/offcanvas#sass_variables::Sass variables}} for offcanvas’s styles and dimensions are inherited from the modal’s variables.",
 				"When shown, offcanvas includes a default backdrop that can be clicked to hide the offcanvas.",
 				"Similar to modals, only one offcanvas can be shown at a time.",
 			],

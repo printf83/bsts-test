@@ -184,7 +184,7 @@ export const list: IAttrContent = {
 
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Heads up!}} As of v5.3.0, the {{list-group-item-variant()}} Sass mixin is deprecated. List group item variants now have their CSS variables overridden in {{nav:doc/component/list#sass_loop::the Sass loop}}."
+			"{{b::Heads up!}} As of v5.3.0, the {{list-group-item-variant()}} Sass mixin is deprecated. List group item variants now have their CSS variables overridden in {{nav:doc/components/list#sass_loop::the Sass loop}}."
 		),
 		new e.text("Use contextual classes to style list items with a stateful background and color."),
 		new e.code({
@@ -409,7 +409,7 @@ export const list: IAttrContent = {
 
 		// new e.subtitle("Sass mixins"),
 		// new e.text(
-		// 	"Used in combination with {{$theme-colors}} to generate the {{nav:doc/component/list#variants::contextual variant classes}} for {{.list-group-items}}."
+		// 	"Used in combination with {{$theme-colors}} to generate the {{nav:doc/components/list#variants::contextual variant classes}} for {{.list-group-items}}."
 		// ),
 
 		// new e.codepreview({

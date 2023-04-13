@@ -126,7 +126,7 @@ export const link: IAttrContent = {
 
 		new e.title("Colored links"),
 		new e.text(
-			"{{https://getbootstrap.com/docs/5.3/helpers/colored-links/::Colored link helpers}} have been updated to pair with Bootstrap link utilities. Use the new utilities to modify the link opacity, underline opacity, and underline offset."
+			"{{nav:docs/helpers/colored_links::Colored link helpers}} have been updated to pair with Bootstrap link utilities. Use the new utilities to modify the link opacity, underline opacity, and underline offset."
 		),
 		new e.code({
 			output: () => {

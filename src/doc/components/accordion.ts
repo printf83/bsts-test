@@ -8,7 +8,7 @@ export const accordion: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"The accordion uses {{nav:doc/component/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{.open}} class on the {{.accordion}}."
+			"The accordion uses {{nav:doc/components/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{.open}} class on the {{.accordion}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -150,7 +150,7 @@ export const accordion: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Please read the {{nav:doc/component/collapse#accessibility::collapse accessibility section}} for more information."
+			"Please read the {{nav:doc/components/collapse#accessibility::collapse accessibility section}} for more information."
 		),
 
 		//-----------------------

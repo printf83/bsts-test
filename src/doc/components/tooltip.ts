@@ -79,7 +79,7 @@ export const tooltip: IAttrContent = {
 
 		new e.subtitle("Custom tooltips"),
 		new e.text(
-			"You can customize the appearance of tooltips using {{nav:doc/component/tooltip#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-tooltip'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of tooltips using {{nav:doc/components/tooltip#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-tooltip'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 		),
 
 		new e.codepreview({
@@ -439,7 +439,7 @@ export const tooltip: IAttrContent = {
 				],
 				[
 					"{{dispose}}",
-					"Hides and destroys an element’s tooltip (Removes stored data on the DOM element). Tooltips that use delegation (which are created using {{nav:doc/component/tooltip#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
+					"Hides and destroys an element’s tooltip (Removes stored data on the DOM element). Tooltips that use delegation (which are created using {{nav:doc/components/tooltip#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
 				],
 				[
 					"{{enable}}",

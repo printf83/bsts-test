@@ -19,7 +19,7 @@ export const card: IAttrContent = {
 			"Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no {{margin}} by default, so use {{nav:doc/utilities/spacing::spacing utilities}} as needed."
 		),
 		new e.text(
-			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with Bootstrap various {{nav:doc/component/card#sizing::sizing options}}."
+			"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with Bootstrap various {{nav:doc/components/card#sizing::sizing options}}."
 		),
 		new e.code({
 			output: () => {
@@ -359,7 +359,7 @@ export const card: IAttrContent = {
 
 		new e.title("Navigation"),
 		new e.text(
-			"Add some navigation to a card’s header (or block) with Bootstrap’s {{nav:doc/component/nav::nav components}}."
+			"Add some navigation to a card’s header (or block) with Bootstrap’s {{nav:doc/components/nav::nav components}}."
 		),
 		new e.code({
 			output: () => {
@@ -519,7 +519,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Background and color"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{https://getbootstrap.com/docs/5.3/helpers/color-background/::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{nav:doc/utilities/colors::.text-{color}}} and {{nav:doc/utilities/background::.bg-{color}}} utilities for styling, which you still may use if you prefer."
+			"Set a {{background-color}} with contrasting foreground {{color}} with {{nav:docs/helpers/color_background::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{nav:doc/utilities/colors::.text-{color}}} and {{nav:doc/utilities/background::.bg-{color}}} utilities for styling, which you still may use if you prefer."
 		),
 
 		new e.code({
