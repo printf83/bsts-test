@@ -8,11 +8,11 @@ export const color_background: IAttrContent = {
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"Color and background helpers combine the power of our {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-* utilities}} and {{https://getbootstrap.com/docs/5.3/utilities/background/::.bg-* utilities}} in one class. Using our Sass {{color-contrast()}} function, we automatically determine a contrasting {{color}} for a particular {{background-color}}."
+			"Color and background helpers combine the power of Bootstrap {{nav:doc/utilities/colors::.text-* utilities}} and {{nav:doc/utilities/background::.bg-* utilities}} in one class. Using Bootstrap Sass {{color-contrast()}} function, we automatically determine a contrasting {{color}} for a particular {{background-color}}."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Heads up! }}There’s currently no support for a CSS-native {{color-contrast}} function, so we use our own via Sass. This means that customizing our theme colors via CSS variables may cause color contrast issues with these utilities."
+			"{{b::Heads up! }}There’s currently no support for a CSS-native {{color-contrast}} function, so we use Bootstrap own via Sass. This means that customizing Bootstrap theme colors via CSS variables may cause color contrast issues with these utilities."
 		),
 		new e.code({
 			output: () => {
@@ -34,7 +34,7 @@ export const color_background: IAttrContent = {
 
 		new e.title("With components"),
 		new e.text(
-			"Use them in place of combined {{.text-*}} and {{.bg-*}} classes, like on {{https://getbootstrap.com/docs/5.3/components/badge/#background-colors::badges}}:"
+			"Use them in place of combined {{.text-*}} and {{.bg-*}} classes, like on {{nav:doc/components/badge/#background-colors::badges}}:"
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -45,7 +45,7 @@ export const color_background: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Or on {{https://getbootstrap.com/docs/5.3/components/card/#background-and-color::cards}}:"),
+		new e.text("Or on {{nav:doc/components/card/#background-and-color::cards}}:"),
 		new e.code({
 			outputAttr: { gap: 3 },
 			output: () => {

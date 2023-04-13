@@ -7,14 +7,14 @@ export const icon_link: IAttrContent = {
 	description: "Quickly create stylized hyperlinks with Bootstrap Icons or other icons.",
 	item: [
 		new e.text(
-			"The icon link helper component modifies our default link styles to enhance their appearance and quickly align any pairing of icon and text. Alignment is set via inline flexbox styling and a default {{gap}} value. We stylize the underline with a custom offset and color. Icons are automatically sized to {{1em}} to best match their associated text’s {{font-size}}."
+			"The icon link helper component modifies Bootstrap default link styles to enhance their appearance and quickly align any pairing of icon and text. Alignment is set via inline flexbox styling and a default {{gap}} value. We stylize the underline with a custom offset and color. Icons are automatically sized to {{1em}} to best match their associated text’s {{font-size}}."
 		),
 		new e.text(
 			"Icon links assume {{https://icons.getbootstrap.com/::Bootstrap Icons}} are being used, but you can use any icon or image you like."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"When icons are purely decorative, they should be hidden from assistive technologies using {{aria-hidden='true'}}, as we’ve done in our examples. For icons that convey meaning, provide an appropriate text alternative by adding {{role='img'}} and an appropriate {{aria-label='...'}} to the SVGs."
+			"When icons are purely decorative, they should be hidden from assistive technologies using {{aria-hidden='true'}}, as we’ve done in Bootstrap examples. For icons that convey meaning, provide an appropriate text alternative by adding {{role='img'}} and an appropriate {{aria-label='...'}} to the SVGs."
 		),
 		new e.title("Example"),
 		new e.text(
@@ -53,7 +53,7 @@ export const icon_link: IAttrContent = {
 
 		new e.title("Customize"),
 		new e.text(
-			"Modify the styling of an icon link with our link CSS variables, Sass variables, utilities, or custom styles."
+			"Modify the styling of an icon link with Bootstrap link CSS variables, Sass variables, utilities, or custom styles."
 		),
 		//-----------------------
 
@@ -118,7 +118,7 @@ export const icon_link: IAttrContent = {
 
 		new e.subtitle("Utilities"),
 		new e.text(
-			"Modify icon links with any of {{https://getbootstrap.com/docs/5.3/utilities/link/::our link utilities}} for modifying underline color and offset."
+			"Modify icon links with any of {{nav:doc/utilities/link::Bootstrap link utilities}} for modifying underline color and offset."
 		),
 		new e.code({
 			output: () => {

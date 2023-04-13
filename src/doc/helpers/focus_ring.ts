@@ -39,7 +39,7 @@ export const focus_ring: IAttrContent = {
 
 		new e.title("Customize"),
 		new e.text(
-			"Modify the styling of a focus ring with our CSS variables, Sass variables, utilities, or custom styles."
+			"Modify the styling of a focus ring with Bootstrap CSS variables, Sass variables, utilities, or custom styles."
 		),
 		//-----------------------
 
@@ -127,7 +127,7 @@ export const focus_ring: IAttrContent = {
 
 		new e.subtitle("Utilities"),
 		new e.text(
-			"In addition to {{.focus-ring}}, we have several {{.focus-ring-*}} utilities to modify the helper class defaults. Modify the color with any of our {{https://getbootstrap.com/docs/5.3/customize/color/#theme-colors::theme colors}}. Note that the light and dark variants may not be visible on all background colors given current color mode support."
+			"In addition to {{.focus-ring}}, we have several {{.focus-ring-*}} utilities to modify the helper class defaults. Modify the color with any of Bootstrap {{https://getbootstrap.com/docs/5.3/customize/color/#theme-colors::theme colors}}. Note that the light and dark variants may not be visible on all background colors given current color mode support."
 		),
 
 		new e.code({
@@ -153,7 +153,7 @@ export const focus_ring: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Focus ring utilities are declared in our utilities API in {{scss/_utilities.scss}}. {{https://getbootstrap.com/docs/5.3/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Focus ring utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:doc/utilities/api/#using-the-api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

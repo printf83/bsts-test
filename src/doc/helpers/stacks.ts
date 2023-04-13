@@ -5,7 +5,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const stacks: IAttrContent = {
 	title: "Stacks",
 	description:
-		"Shorthand helpers that build on top of our flexbox utilities to make component layout faster and easier than ever.",
+		"Shorthand helpers that build on top of Bootstrap flexbox utilities to make component layout faster and easier than ever.",
 	item: [
 		new e.text(
 			"Stacks offer a shortcut for applying a number of flexbox properties to quickly and easily create layouts in Bootstrap. All credit for the concept and implementation goes to the open source {{https://almonk.github.io/pylon/::Pylon project}}."

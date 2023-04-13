@@ -59,7 +59,6 @@ export const overview: IAttrContent = {
 							{
 								display: "block",
 								textDecoration: "none",
-								href: "#",
 								on: {
 									click: () => {
 										document.dispatchEvent(new CustomEvent("bs-navigate", { detail: i.data }));

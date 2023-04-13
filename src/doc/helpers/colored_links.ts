@@ -8,11 +8,11 @@ export const colored_links: IAttrContent = {
 	item: [
 		new e.title("Link colors"),
 		new e.text(
-			"You can use the {{.link-*}} classes to colorize links. Unlike the {{https://getbootstrap.com/docs/5.3/utilities/colors/::.text-* classes}}, these classes have a {{:hover}} and {{:focus}} state. Some of the link styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast."
+			"You can use the {{.link-*}} classes to colorize links. Unlike the {{nav:doc/utilities/colors::.text-* classes}}, these classes have a {{:hover}} and {{:focus}} state. Some of the link styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Heads up! }}{{.link-body-emphasis}} is currently the only colored link that adapts to color modes. It’s treated as a special case until v6 arrives and we can more thoroughly rebuild our theme colors for color modes. Until then, it’s a unique, high-contrast link color with custom {{:hover}} and {{:focus}} styles. However, it still responds to the new link utilities."
+			"{{b::Heads up! }}{{.link-body-emphasis}} is currently the only colored link that adapts to color modes. It’s treated as a special case until v6 arrives and we can more thoroughly rebuild Bootstrap theme colors for color modes. Until then, it’s a unique, high-contrast link color with custom {{:hover}} and {{:focus}} styles. However, it still responds to the new link utilities."
 		),
 		new e.code({
 			output: () => {
@@ -45,9 +45,7 @@ export const colored_links: IAttrContent = {
 		//-----------------------
 
 		new e.title("Link utilities"),
-		new e.text(
-			"Colored links can also be modified by our {{https://getbootstrap.com/docs/5.3/utilities/link/::link utilities}}."
-		),
+		new e.text("Colored links can also be modified by Bootstrap {{nav:doc/utilities/link::link utilities}}."),
 		new e.code({
 			output: () => {
 				return [

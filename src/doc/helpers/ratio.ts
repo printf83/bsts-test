@@ -23,7 +23,7 @@ export const ratio: IAttrContent = {
 
 		new e.title("Example"),
 		new e.text(
-			"Wrap any embed, like an {{<iframe>}}, in a parent element with {{.ratio}} and an aspect ratio class. The immediate child element is automatically sized thanks to our universal selector {{.ratio > *}}."
+			"Wrap any embed, like an {{<iframe>}}, in a parent element with {{.ratio}} and an aspect ratio class. The immediate child element is automatically sized thanks to Bootstrap universal selector {{.ratio > *}}."
 		),
 		new e.code({
 			output: () => {
@@ -87,7 +87,7 @@ export const ratio: IAttrContent = {
 
 		new e.title("Sass map"),
 		new e.text(
-			"Within {{_variables.scss}}, you can change the aspect ratios you want to use. Here’s our default {{$ratio-aspect-ratios}} map. Modify the map as you like and recompile your Sass to put them to use."
+			"Within {{_variables.scss}}, you can change the aspect ratios you want to use. Here’s Bootstrap default {{$ratio-aspect-ratios}} map. Modify the map as you like and recompile your Sass to put them to use."
 		),
 		new e.codepreview({
 			type: "css",
