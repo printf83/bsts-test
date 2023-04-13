@@ -29,6 +29,8 @@ export const doc = (value: string) => {
 			return helpers.stretched_link;
 		case "doc/helpers/text_truncation":
 			return helpers.text_truncation;
+		case "doc/helpers/vertical_rule":
+			return helpers.vertical_rule;
 
 		//--------------------------
 		case "doc/utilities/api":

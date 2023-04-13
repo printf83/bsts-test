@@ -8,6 +8,7 @@ import { ratio } from "./ratio.js";
 import { stacks } from "./stacks.js";
 import { stretched_link } from "./stretched_link.js";
 import { text_truncation } from "./text_truncation.js";
+import { vertical_rule } from "./vertical_rule.js";
 
 export {
 	clearfix,
@@ -20,4 +21,5 @@ export {
 	stacks,
 	stretched_link,
 	text_truncation,
+	vertical_rule,
 };

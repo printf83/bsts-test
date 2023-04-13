@@ -100,6 +100,7 @@ let m = {
 				{ label: "Stacks", value: "doc/helpers/stacks" },
 				{ label: "Stretched link", value: "doc/helpers/stretched_link" },
 				{ label: "Text truncation", value: "doc/helpers/text_truncation" },
+				{ label: "Vertical rule", value: "doc/helpers/vertical_rule" },
 			],
 		},
 		{
