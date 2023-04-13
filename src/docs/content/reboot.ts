@@ -588,7 +588,7 @@ export const reboot: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Pointers on buttons"),
+		new e.subtitle("Pointers on buttons"),
 		new e.text(
 			"Reboot includes an enhancement for {{role='button'}} to change the default cursor to {{pointer}}. Add this attribute to elements to help indicate elements are interactive. This role isn’t necessary for {{<button>}} elements, which get their own cursor change."
 		),
@@ -629,7 +629,7 @@ export const reboot: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Blockquote"),
+		new e.subtitle("Blockquote"),
 		new e.text(
 			"The default {{margin}} on blockquotes is {{1em 40px}}, so we reset that to {{0 0 1rem}} for something more consistent with other elements."
 		),
@@ -644,7 +644,7 @@ export const reboot: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Inline elements"),
+		new e.subtitle("Inline elements"),
 		new e.text("The {{<abbr>}} element receives basic styling to make it stand out amongst paragraph text."),
 		new e.code({
 			output: () => {
@@ -654,7 +654,7 @@ export const reboot: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Summary"),
+		new e.subtitle("Summary"),
 		new e.text(
 			"The default {{cursor}} on summary is {{text}}, so we reset that to {{pointer}} to convey that the element can be interacted with by clicking on it."
 		),

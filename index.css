@@ -8,6 +8,10 @@ a:hover *,
     font-weight: 600;
 }
 
+.ms-n4{
+    margin-left: -2rem;
+}
+
 /*clipboard icon hover*/
 .primary-on-hover:hover{
     color:var(--bs-primary);
