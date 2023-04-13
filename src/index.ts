@@ -99,6 +99,7 @@ let m = {
 				{ label: "Ratio", value: "doc/helpers/ratio" },
 				{ label: "Stacks", value: "doc/helpers/stacks" },
 				{ label: "Stretched link", value: "doc/helpers/stretched_link" },
+				{ label: "Text truncation", value: "doc/helpers/text_truncation" },
 			],
 		},
 		{

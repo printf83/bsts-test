@@ -7,5 +7,17 @@ import { position } from "./position.js";
 import { ratio } from "./ratio.js";
 import { stacks } from "./stacks.js";
 import { stretched_link } from "./stretched_link.js";
+import { text_truncation } from "./text_truncation.js";
 
-export { clearfix, color_background, colored_links, focus_ring, icon_link, position, ratio, stacks, stretched_link };
+export {
+	clearfix,
+	color_background,
+	colored_links,
+	focus_ring,
+	icon_link,
+	position,
+	ratio,
+	stacks,
+	stretched_link,
+	text_truncation,
+};

@@ -27,6 +27,8 @@ export const doc = (value: string) => {
 			return helpers.stacks;
 		case "doc/helpers/stretched_link":
 			return helpers.stretched_link;
+		case "doc/helpers/text_truncation":
+			return helpers.text_truncation;
 
 		//--------------------------
 		case "doc/utilities/api":
