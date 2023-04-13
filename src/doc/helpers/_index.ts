@@ -6,5 +6,6 @@ import { icon_link } from "./icon_link.js";
 import { position } from "./position.js";
 import { ratio } from "./ratio.js";
 import { stacks } from "./stacks.js";
+import { stretched_link } from "./stretched_link.js";
 
-export { clearfix, color_background, colored_links, focus_ring, icon_link, position, ratio, stacks };
+export { clearfix, color_background, colored_links, focus_ring, icon_link, position, ratio, stacks, stretched_link };

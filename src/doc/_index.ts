@@ -25,6 +25,8 @@ export const doc = (value: string) => {
 			return helpers.ratio;
 		case "doc/helpers/stacks":
 			return helpers.stacks;
+		case "doc/helpers/stretched_link":
+			return helpers.stretched_link;
 
 		//--------------------------
 		case "doc/utilities/api":
