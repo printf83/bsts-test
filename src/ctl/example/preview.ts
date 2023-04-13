@@ -67,7 +67,7 @@ const convert = (attr: IAttrBSExampleCode) => {
 	);
 
 	attr.elem = new h.code(
-		{ class: ["prettyprint", `lang-${attr.type}`], margin: 0, lang: attr.type, border: false },
+		{ class: ["prettyprint", `lang-${attr.type}`], lang: attr.type, border: false },
 		attr.elem ? (typeof attr.elem === "string" ? beautify(attr.type, attr.elem) : attr.elem) : ""
 	);
 
