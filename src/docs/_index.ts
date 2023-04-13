@@ -12,6 +12,8 @@ export const doc = (value: string) => {
 		//--------------------------
 		case "docs/content/reboot":
 			return content.reboot;
+		case "docs/content/typography":
+			return content.typography;
 
 		//--------------------------
 		case "docs/helpers/clearfix":

@@ -44,7 +44,10 @@ let m = {
 		{
 			label: "Content",
 			icon: { id: "file-earmark-richtext", color: "secondary" },
-			item: [{ label: "Reboot", value: "docs/content/reboot" }],
+			item: [
+				{ label: "Reboot", value: "docs/content/reboot" },
+				{ label: "Typography", value: "docs/content/typography" },
+			],
 		},
 		{
 			label: "Forms",
