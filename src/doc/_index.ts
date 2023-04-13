@@ -31,6 +31,8 @@ export const doc = (value: string) => {
 			return helpers.text_truncation;
 		case "doc/helpers/vertical_rule":
 			return helpers.vertical_rule;
+		case "doc/helpers/visually_hidden":
+			return helpers.visually_hidden;
 
 		//--------------------------
 		case "doc/utilities/api":

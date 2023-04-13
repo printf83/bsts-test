@@ -101,6 +101,7 @@ let m = {
 				{ label: "Stretched link", value: "doc/helpers/stretched_link" },
 				{ label: "Text truncation", value: "doc/helpers/text_truncation" },
 				{ label: "Vertical rule", value: "doc/helpers/vertical_rule" },
+				{ label: "Visually hidden", value: "doc/helpers/visually_hidden" },
 			],
 		},
 		{

@@ -9,6 +9,7 @@ import { stacks } from "./stacks.js";
 import { stretched_link } from "./stretched_link.js";
 import { text_truncation } from "./text_truncation.js";
 import { vertical_rule } from "./vertical_rule.js";
+import { visually_hidden } from "./visually_hidden.js";
 
 export {
 	clearfix,
@@ -22,4 +23,5 @@ export {
 	stretched_link,
 	text_truncation,
 	vertical_rule,
+	visually_hidden,
 };
