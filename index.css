@@ -146,6 +146,9 @@ strong,
     background-color: rgba(var(--bs-primary-rgb), 0.15);
     border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
 }
+.example-output.flex-box div .vr {
+    background-color: rgba(var(--bs-primary-rgb), 1);
+}
 
 /* gap on example code output */
 .example-output{
@@ -241,7 +244,7 @@ strong,
 
 
 
-/* use by doc/components/modal#grid_in_modal*/
+/* use by docs/components/modal#grid_in_modal*/
 .bs-highlight-col div[class^="col"]{
     padding-top:0.75rem;
     padding-bottom: 0.75rem;
