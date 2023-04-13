@@ -106,24 +106,31 @@ export const introduction: IAttrContent = {
 		new e.text(
 			"Curious which components explicitly require Bootstrap JavaScript and Popper? Click the show components link below. If you’re at all unsure about the general page structure, keep reading for an example page template."
 		),
-		new e.text("Components requiring JavaScript"),
 
-		new e.ul({
-			item: [
-				"Alerts for dismissing",
-				"Buttons for toggling states and checkbox/radio functionality",
-				"Carousel for all slide behaviors, controls, and indicators",
-				"Collapse for toggling visibility of content",
-				"Dropdowns for displaying and positioning (also requires {{https://popper.js.org/::Popper}})",
-				"Modals for displaying, positioning, and scroll behavior",
-				"Navbar for extending Bootstrap Collapse and Offcanvas plugins to implement responsive behaviors",
-				"Navs with the Tab plugin for toggling content panes",
-				"Offcanvases for displaying, positioning, and scroll behavior",
-				"Scrollspy for scroll behavior and navigation updates",
-				"Toasts for displaying and dismissing",
-				"Tooltips and popovers for displaying and positioning (also requires {{https://popper.js.org/::Popper}})",
-			],
-		}),
+		new e.item(
+			new h.details([
+				new h.summary({ textColor: "primary" }, "Components requiring JavaScript"),
+				new h.p(
+					{ marginY: 3 },
+					new h.ul({
+						item: [
+							"Alerts for dismissing",
+							"Buttons for toggling states and checkbox/radio functionality",
+							"Carousel for all slide behaviors, controls, and indicators",
+							"Collapse for toggling visibility of content",
+							"Dropdowns for displaying and positioning (also requires {{https://popper.js.org/::Popper}})",
+							"Modals for displaying, positioning, and scroll behavior",
+							"Navbar for extending Bootstrap Collapse and Offcanvas plugins to implement responsive behaviors",
+							"Navs with the Tab plugin for toggling content panes",
+							"Offcanvases for displaying, positioning, and scroll behavior",
+							"Scrollspy for scroll behavior and navigation updates",
+							"Toasts for displaying and dismissing",
+							"Tooltips and popovers for displaying and positioning (also requires {{https://popper.js.org/::Popper}})",
+						],
+					})
+				),
+			])
+		),
 
 		//-----------------------
 

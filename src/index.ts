@@ -42,6 +42,11 @@ let m = {
 			item: [{ label: "Introduction", value: "docs/gettingstarted/introduction" }],
 		},
 		{
+			label: "Content",
+			icon: { id: "file-earmark-richtext", color: "secondary" },
+			item: [{ label: "Reboot", value: "docs/content/reboot" }],
+		},
+		{
 			label: "Forms",
 			icon: { id: "ui-radios", color: "primary" },
 			item: [
