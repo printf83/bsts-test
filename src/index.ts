@@ -96,6 +96,7 @@ let m = {
 				{ label: "Focus ring", value: "doc/helpers/focus_ring" },
 				{ label: "Icon link", value: "doc/helpers/icon_link" },
 				{ label: "Position", value: "doc/helpers/position" },
+				{ label: "Ratio", value: "doc/helpers/ratio" },
 			],
 		},
 		{
