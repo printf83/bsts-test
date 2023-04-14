@@ -19,57 +19,88 @@ export const images: IAttrContent = {
 			},
 		}),
 
-		new e.title(""),
-		new e.text(""),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
+		//-----------------------
+
+		new e.title("Image thumbnails"),
+		new e.text(
+			"In addition to our {{https://getbootstrap.com/docs/5.3/utilities/borders/::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."
+		),
 		new e.code({
 			output: () => {
-				return [];
+				return new b.img({ thumbnail: true, src: "https://picsum.photos/seed/bsts_0/200/200", alt: "..." });
 			},
 		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Aligning images"),
+		new e.text(
+			"Align images with the {{https://getbootstrap.com/docs/5.3/utilities/float/::helper float classes}} or {{https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment::text alignment classes}}. {{block}}-level images can be centered using the {{https://getbootstrap.com/docs/5.3/utilities/spacing/#horizontal-centering::.mx-auto margin utility class}}."
+		),
 		new e.code({
 			output: () => {
-				return [];
+				return [
+					new b.img({
+						float: "start",
+						rounded: true,
+						src: "https://picsum.photos/seed/bsts_0/200/200",
+						alt: "...",
+					}),
+					new b.img({
+						float: "end",
+						rounded: true,
+						src: "https://picsum.photos/seed/bsts_0/200/200",
+						alt: "...",
+					}),
+				];
+			},
+		}),
+		new e.code({
+			output: () => {
+				return new h.div(
+					{ textAlign: "center" },
+					new b.img({ rounded: true, src: "https://picsum.photos/seed/bsts_0/200/200", alt: "..." })
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.title("Picture"),
+		new e.text(
+			"If you are using the {{<picture>}} element to specify multiple {{<source>}} elements for a specific {{<img>}}, make sure to add the {{.img-*}} classes to the {{<img>}} and not to the {{<picture>}} tag."
+		),
+		new e.code({
+			output: () => {
+				return new h.picture([
+					new h.source({ media: "(min-width:992px)", srcset: "https://picsum.photos/seed/bsts_0/820/250" }),
+					new h.source({ media: "(min-width:768px)", srcset: "https://picsum.photos/seed/bsts_1/710/200" }),
+					new b.img({
+						fluid: true,
+						thumbnail: true,
+						src: "https://picsum.photos/seed/bsts_2/450/200",
+						alt: "...",
+					}),
+				]);
+			},
 		}),
 
 		//-----------------------
 
 		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
 		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.text("Variables are available for image thumbnails."),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
 			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
+				$thumbnail-padding:                 .25rem;
+				$thumbnail-bg:                      var(--#{$prefix}body-bg);
+				$thumbnail-border-width:            var(--#{$prefix}border-width);
+				$thumbnail-border-color:            var(--#{$prefix}border-color);
+				$thumbnail-border-radius:           var(--#{$prefix}border-radius);
+				$thumbnail-box-shadow:              var(--#{$prefix}box-shadow-sm);
 			`,
 		}),
 	],
