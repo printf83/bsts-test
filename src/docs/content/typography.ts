@@ -55,7 +55,7 @@ export const typography: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Customizing headings"),
+		new e.subtitle("Customizing headings"),
 		new e.text("Use the included utility classes to recreate the small secondary heading text from Bootstrap 3."),
 		new e.code({
 			output: () => {
@@ -196,7 +196,7 @@ export const typography: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Naming a source"),
+		new e.subtitle("Naming a source"),
 		new e.text(
 			"The HTML spec requires that blockquote attribution be placed outside the {{<blockquote>}}. When providing attribution, wrap your {{<blockquote>}} in a {{<figure>}} and use a {{<figcaption>}} or a block level element (e.g., {{<p>}}) with the {{.blockquote-footer}} class. Be sure to wrap the name of the source work in {{<cite>}} as well."
 		),
@@ -214,7 +214,7 @@ export const typography: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Alignment"),
+		new e.subtitle("Alignment"),
 		new e.text("Use text utilities as needed to change the alignment of your blockquote."),
 		new e.code({
 			output: () => {
@@ -289,7 +289,7 @@ export const typography: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Description list alignment"),
+		new e.subtitle("Description list alignment"),
 		new e.text(
 			"Align terms and descriptions horizontally by using our grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a {{.text-truncate}} class to truncate the text with an ellipsis."
 		),
