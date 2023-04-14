@@ -215,9 +215,9 @@ export const card: IAttrContent = {
 				return new b.card.container([
 					new h.div({ class: "card-header" }, "Quote"),
 					new b.card.body([
-						new h.blockquote({ marginBottom: 0 }, [
+						new b.blockquote.container({ marginBottom: 0 }, [
 							new h.p("A well-known quote, contained in a blockquote element."),
-							new h.footer({ class: "blockquote-footer" }, [
+							new b.blockquote.footer([
 								"Someone famous in ",
 								new h.cite({ title: "Source Title" }, "Source Title"),
 							]),

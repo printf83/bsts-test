@@ -1,4 +1,4 @@
-import { core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -190,7 +190,7 @@ export const typography: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new h.blockquote(new h.p("A well-known quote, contained in a blockquote element."));
+				return new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element."));
 			},
 		}),
 
@@ -203,8 +203,8 @@ export const typography: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.figure([
-					new h.blockquote(new h.p("A well-known quote, contained in a blockquote element.")),
-					new h.figcaption({ blockquoteFooter: true }, [
+					new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")),
+					new b.blockquote.caption([
 						"Someone famous in ",
 						new h.cite({ title: "Source Title" }, "Source Title"),
 					]),
@@ -219,8 +219,8 @@ export const typography: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.figure({ textAlign: "center" }, [
-					new h.blockquote(new h.p("A well-known quote, contained in a blockquote element.")),
-					new h.figcaption({ blockquoteFooter: true }, [
+					new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")),
+					new b.blockquote.caption([
 						"Someone famous in ",
 						new h.cite({ title: "Source Title" }, "Source Title"),
 					]),
@@ -230,8 +230,8 @@ export const typography: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.figure({ textAlign: "end" }, [
-					new h.blockquote(new h.p("A well-known quote, contained in a blockquote element.")),
-					new h.figcaption({ blockquoteFooter: true }, [
+					new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")),
+					new b.blockquote.caption([
 						"Someone famous in ",
 						new h.cite({ title: "Source Title" }, "Source Title"),
 					]),

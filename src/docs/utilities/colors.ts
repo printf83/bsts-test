@@ -2,7 +2,7 @@ import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-export const color: IAttrContent = {
+export const colors: IAttrContent = {
 	title: "Colors",
 	description:
 		"Convey meaning through {{color}} with a handful of color utility classes. Includes support for styling links with hover states, too.",

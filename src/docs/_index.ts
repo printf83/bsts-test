@@ -18,6 +18,8 @@ export const doc = (value: string) => {
 			return content.images;
 		case "docs/content/tables":
 			return content.tables;
+		case "docs/content/figures":
+			return content.figures;
 
 		//--------------------------
 		case "docs/helpers/clearfix":
@@ -50,10 +52,10 @@ export const doc = (value: string) => {
 			return utilities.api;
 		case "docs/utilities/background":
 			return utilities.background;
-		case "docs/utilities/color":
-			return utilities.color;
-		case "docs/utilities/border":
-			return utilities.border;
+		case "docs/utilities/colors":
+			return utilities.colors;
+		case "docs/utilities/borders":
+			return utilities.borders;
 		case "docs/utilities/display":
 			return utilities.display;
 		case "docs/utilities/flex":

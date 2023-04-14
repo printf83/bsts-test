@@ -49,6 +49,7 @@ let m = {
 				{ label: "Typography", value: "docs/content/typography" },
 				{ label: "Images", value: "docs/content/images" },
 				{ label: "Tables", value: "docs/content/tables" },
+				{ label: "Figures", value: "docs/content/figures" },
 			],
 		},
 		{
@@ -120,8 +121,8 @@ let m = {
 			item: [
 				{ label: "API", value: "docs/utilities/api" },
 				{ label: "Background", value: "docs/utilities/background" },
-				{ label: "Borders", value: "docs/utilities/border" },
-				{ label: "Colors", value: "docs/utilities/color" },
+				{ label: "Borders", value: "docs/utilities/borders" },
+				{ label: "Colors", value: "docs/utilities/colors" },
 				{ label: "Display", value: "docs/utilities/display" },
 				{ label: "Flex", value: "docs/utilities/flex" },
 				{ label: "Float", value: "docs/utilities/float" },

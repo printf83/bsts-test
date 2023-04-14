@@ -2,7 +2,7 @@ import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-export const border: IAttrContent = {
+export const borders: IAttrContent = {
 	title: "Borders",
 	description:
 		"Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.",

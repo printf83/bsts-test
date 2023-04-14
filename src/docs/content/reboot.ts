@@ -1,4 +1,4 @@
-import { h } from "@printf83/bsts";
+import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -637,7 +637,7 @@ export const reboot: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new h.blockquote(new h.p("A well-known quote, contained in a blockquote element.")),
+					new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")),
 					new h.p(["Someone famous in", new h.cite({ title: "Source Title" }, "Source Title")]),
 				];
 			},

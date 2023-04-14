@@ -1,7 +1,7 @@
 import { api } from "./api.js";
 import { background } from "./background.js";
-import { color } from "./color.js";
-import { border } from "./border.js";
+import { colors } from "./colors.js";
+import { borders } from "./borders.js";
 import { display } from "./display.js";
 import { flex } from "./flex.js";
 import { float } from "./float.js";
@@ -22,8 +22,8 @@ import { zindex } from "./zindex.js";
 export {
 	api,
 	background,
-	color,
-	border,
+	colors,
+	borders,
 	display,
 	flex,
 	float,
