@@ -26,47 +26,26 @@ export const figures: IAttrContent = {
 				]);
 			},
 		}),
-
-		new e.text(""),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
+		new e.text(
+			"Aligning the figure’s caption is easy with our {{https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment::text utilities}}."
+		),
 		new e.code({
 			output: () => {
-				return [];
+				return new b.figure.container([
+					new b.figure.img({
+						fluid: true,
+						rounded: true,
+						src: "https://picsum.photos/seed/bsts_0/400/300",
+						alt: "...",
+					}),
+					new b.figure.caption({ textAlign: "end" }, "A caption for the above image"),
+				]);
 			},
-		}),
-
-		//-----------------------
-
-		new e.title(""),
-		new e.text(""),
-		new e.code({
-			output: () => {
-				return [];
-			},
-		}),
-
-		//-----------------------
-
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
 		}),
 
 		//-----------------------
 
 		new e.title("CSS"),
-		new e.text(""),
 
 		//-----------------------
 
@@ -77,6 +56,8 @@ export const figures: IAttrContent = {
 			title: "scss/_variables.scss",
 			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
+				$figure-caption-font-size:          $small-font-size;
+				$figure-caption-color:              var(--#{$prefix}secondary-color);
 			`,
 		}),
 	],
