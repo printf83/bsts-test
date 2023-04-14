@@ -118,6 +118,46 @@ export const typography: IAttrContent = {
 
 		//-----------------------
 
+		new e.title("Inline text elements"),
+		new e.text("Styling for common inline HTML5 elements."),
+		new e.code({
+			output: () => {
+				return [
+					new h.p(["You can use the mark tag to ", new h.mark("highlight"), " text."]),
+					new h.p(new h.del("This line of text is meant to be treated as deleted text.")),
+					new h.p(new h.s("This line of text is meant to be treated as no longer accurate.")),
+					new h.p(new h.ins("This line of text is meant to be treated as an addition to the document.")),
+					new h.p(new h.u("This line of text will render as underlined.")),
+					new h.p(new h.small("This line of text is meant to be treated as fine print.")),
+					new h.p(new h.strong("This line rendered as bold text.")),
+					new h.p(new h.em("This line rendered as italicized text.")),
+				];
+			},
+		}),
+		new e.text("Beware that those tags should be used for semantic purpose:"),
+		new e.ul({
+			item: [
+				"{{<mark>}} represents text which is marked or highlighted for reference or notation purposes.",
+				"{{<small>}} represents side-comments and small print, like copyright and legal text.",
+				"{{<s>}} represents element that are no longer relevant or no longer accurate.",
+				"{{<u>}} represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation.",
+			],
+		}),
+		new e.text("If you want to style your text, you should use the following classes instead:"),
+		new e.ul({
+			item: [
+				"{{.mark}} will apply the same styles as {{<mark>}}.",
+				"{{.small}} will apply the same styles as {{<small>}}.",
+				"{{.text-decoration-underline}} will apply the same styles as {{<u>}}.",
+				"{{.text-decoration-line-through}} will apply the same styles as {{<s>}}.",
+			],
+		}),
+		new e.text(
+			"While not shown above, feel free to use {{<b>}} and {{<i>}} in HTML5. {{<b>}} is meant to highlight words or phrases without conveying additional importance, while {{<i>}} is mostly for voice, technical terms, etc."
+		),
+
+		//-----------------------
+
 		new e.title(""),
 		new e.text(""),
 		new e.ul({
