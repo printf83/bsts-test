@@ -74,9 +74,12 @@ export const typography: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return [1, 2, 3, 4, 5, 6].map(
-					(i) => new h.h(1, { fontDisplay: i as core.IAttr["fontDisplay"] }, `Display ${i}`)
-				);
+				return [1, 2, 3, 4, 5, 6]
+					.map((i) => [
+						new h.h(1, { fontDisplay: i as core.IAttr["fontDisplay"] }, `Display ${i}`),
+						i < 6 ? new h.hr() : "",
+					])
+					.flat();
 			},
 		}),
 		new e.text(
@@ -158,68 +161,255 @@ export const typography: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
+		new e.title("Text utilities"),
+		new e.text(
+			"Change text alignment, transform, style, weight, line-height, decoration and color with our {{https://getbootstrap.com/docs/5.3/utilities/text/::text utilities}} and {{https://getbootstrap.com/docs/5.3/utilities/colors/::color utilities}}."
+		),
+
+		//-----------------------
+
+		new e.title("Abbreviations"),
+		new e.text(
+			"Stylized implementation of HTML’s {{<abbr>}} element for abbreviations and acronyms to show the expanded version on hover. Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies."
+		),
+		new e.text("Add {{.initialism}} to an abbreviation for a slightly smaller font-size."),
 		new e.code({
 			output: () => {
-				return [];
+				return [
+					new h.p(new h.abbr({ title: "attribute" }, "attr")),
+					new h.p(new h.abbr({ title: "HyperText Markup Language", small: true }, "HTML")),
+				];
 			},
 		}),
 
 		//-----------------------
 
-		new e.title("Inline text elements"),
-		new e.text("Styling for common inline HTML5 elements."),
+		new e.title("Blockquotes"),
+		new e.text(
+			"For quoting blocks of content from another source within your document. Wrap {{<blockquote class='blockquote'>}} around any HTML as the quote."
+		),
 		new e.code({
 			output: () => {
-				return [];
+				return new h.blockquote(new h.p("A well-known quote, contained in a blockquote element."));
 			},
 		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Naming a source"),
+		new e.text(
+			"The HTML spec requires that blockquote attribution be placed outside the {{<blockquote>}}. When providing attribution, wrap your {{<blockquote>}} in a {{<figure>}} and use a {{<figcaption>}} or a block level element (e.g., {{<p>}}) with the {{.blockquote-footer}} class. Be sure to wrap the name of the source work in {{<cite>}} as well."
+		),
 		new e.code({
 			output: () => {
-				return [];
+				return new h.figure([
+					new h.blockquote(new h.p("A well-known quote, contained in a blockquote element.")),
+					new h.figcaption({ blockquoteFooter: true }, [
+						"Someone famous in ",
+						new h.cite({ title: "Source Title" }, "Source Title"),
+					]),
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.title("Alignment"),
+		new e.text("Use text utilities as needed to change the alignment of your blockquote."),
+		new e.code({
+			output: () => {
+				return new h.figure({ textAlign: "center" }, [
+					new h.blockquote(new h.p("A well-known quote, contained in a blockquote element.")),
+					new h.figcaption({ blockquoteFooter: true }, [
+						"Someone famous in ",
+						new h.cite({ title: "Source Title" }, "Source Title"),
+					]),
+				]);
+			},
 		}),
+		new e.code({
+			output: () => {
+				return new h.figure({ textAlign: "end" }, [
+					new h.blockquote(new h.p("A well-known quote, contained in a blockquote element.")),
+					new h.figcaption({ blockquoteFooter: true }, [
+						"Someone famous in ",
+						new h.cite({ title: "Source Title" }, "Source Title"),
+					]),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("List"),
+		new e.subtitle("Unstyled"),
+		new e.text(
+			"Remove the default {{list-style}} and left margin on list items (immediate children only). This only applies to immediate children list items, meaning you will need to add the class for any nested lists as well."
+		),
+		new e.code({
+			output: () => {
+				return new h.ul(
+					{
+						unstyle: true,
+					},
+					[
+						new h.li("This is a list."),
+						new h.li("It appears completely unstyled."),
+						new h.li("Structurally, it's still a list."),
+						new h.li("However, this style only applies to immediate child elements."),
+						new h.li([
+							"Nested lists: ",
+							new h.ul([
+								"are unaffected by this style",
+								"will still show a bullet",
+								"and have appropriate left margin",
+							]),
+						]),
+						new h.li("This may still come in handy in some situations."),
+					]
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Inline"),
+		new e.text(
+			"Remove a list’s bullets and apply some light {{margin}} with a combination of two classes, {{.list-inline}} and {{.list-inline-item}}."
+		),
+		new e.code({
+			output: () => {
+				return new h.ul({ inline: true }, [
+					new h.li({ inline: true }, "This is a list item."),
+					new h.li({ inline: true }, "And another one."),
+					new h.li({ inline: true }, "But they're displayed inline."),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Description list alignment"),
+		new e.text(
+			"Align terms and descriptions horizontally by using our grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a {{.text-truncate}} class to truncate the text with an ellipsis."
+		),
+		new e.code({
+			output: () => {
+				return new h.dl({ row: true }, [
+					new h.dt({ col: "sm-3" }, "Description lists"),
+					new h.dd({ col: "sm-9" }, "A description list is perfect for defining terms."),
+
+					new h.dt({ col: "sm-3" }, "Term"),
+					new h.dd({ col: "sm-9" }, [
+						new h.p("Definition for the term."),
+						new h.p("And some more placeholder definition text."),
+					]),
+
+					new h.dt({ col: "sm-3" }, "Another term"),
+					new h.dd({ col: "sm-9" }, "his definition is short, so no extra paragraphs or anything."),
+
+					new h.dt({ col: "sm-3", textTruncate: true }, "Truncated term is truncated"),
+					new h.dd({ col: "sm-9" }, "This can be useful when space is tight. Adds an ellipsis at the end."),
+
+					new h.dt({ col: "sm-3" }, "Nesting"),
+					new h.dd(
+						{ col: "sm-9" },
+						new h.dl({ row: true }, [
+							new h.dt({ col: "sm-4" }, "Nested definition list"),
+							new h.dd(
+								{ col: "sm-8" },
+								"I heard you like definition lists. Let me put a definition list inside your definition list."
+							),
+						])
+					),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Responsive font sizes"),
+		new e.text(
+			"In Bootstrap 5, we’ve enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the {{https://getbootstrap.com/docs/5.3/getting-started/rfs/::RFS page}} to find out how this works."
+		),
 
 		//-----------------------
 
 		new e.title("CSS"),
-		new e.text(""),
 
 		//-----------------------
 
 		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.text("Headings have some dedicated variables for sizing and spacing."),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
 			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
+				$headings-margin-bottom:      $spacer * .5;
+				$headings-font-family:        null;
+				$headings-font-style:         null;
+				$headings-font-weight:        500;
+				$headings-line-height:        1.2;
+				$headings-color:              null;
 			`,
 		}),
+		new e.text(
+			"Miscellaneous typography elements covered here and in {{https://getbootstrap.com/docs/5.3/content/reboot/::Reboot}} also have dedicated variables."
+		),
+		new e.codepreview({
+			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			code: `
+				$lead-font-size:              $font-size-base * 1.25;
+				$lead-font-weight:            300;
+
+				$small-font-size:             .875em;
+
+				$sub-sup-font-size:           .75em;
+
+				// fusv-disable
+				$text-muted:                  var(--#{$prefix}secondary-color); // Deprecated in 5.3.0
+				// fusv-enable
+
+				$initialism-font-size:        $small-font-size;
+
+				$blockquote-margin-y:         $spacer;
+				$blockquote-font-size:        $font-size-base * 1.25;
+				$blockquote-footer-color:     $gray-600;
+				$blockquote-footer-font-size: $small-font-size;
+
+				$hr-margin-y:                 $spacer;
+				$hr-color:                    inherit;
+
+				// fusv-disable
+				$hr-bg-color:                 null; // Deprecated in v5.2.0
+				$hr-height:                   null; // Deprecated in v5.2.0
+				// fusv-enable
+
+				$hr-border-color:             null; // Allows for inherited colors
+				$hr-border-width:             var(--#{$prefix}border-width);
+				$hr-opacity:                  .25;
+
+				$legend-margin-bottom:        .5rem;
+				$legend-font-size:            1.5rem;
+				$legend-font-weight:          null;
+
+				$dt-font-weight:              $font-weight-bold;
+
+				$list-inline-padding:         .5rem;
+
+				$mark-padding:                .1875em;
+				$mark-bg:                     $yellow-100;
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Sass mixins"),
+		new e.text(
+			"There are no dedicated mixins for typography, but Bootstrap does use {{https://getbootstrap.com/docs/5.3/getting-started/rfs/::Responsive Font Sizing (RFS)}}."
+		),
 	],
 };

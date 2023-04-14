@@ -361,6 +361,7 @@ export const reboot: IAttrContent = {
 			"Tables are slightly adjusted to style {{<caption>}}s, collapse borders, and ensure consistent {{text-align}} throughout. Additional changes for borders, padding, and more come with {{https://getbootstrap.com/docs/5.3/content/tables/::the .table class}}."
 		),
 		new e.code({
+			outputAttr: { overflow: "auto" },
 			output: () => {
 				return new h.table([
 					new h.caption("This is an example table, and this is its caption to describe the contents."),
