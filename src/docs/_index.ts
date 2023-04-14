@@ -16,6 +16,8 @@ export const doc = (value: string) => {
 			return content.typography;
 		case "docs/content/images":
 			return content.images;
+		case "docs/content/tables":
+			return content.tables;
 
 		//--------------------------
 		case "docs/helpers/clearfix":

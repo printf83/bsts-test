@@ -48,6 +48,7 @@ let m = {
 				{ label: "Reboot", value: "docs/content/reboot" },
 				{ label: "Typography", value: "docs/content/typography" },
 				{ label: "Images", value: "docs/content/images" },
+				{ label: "Tables", value: "docs/content/tables" },
 			],
 		},
 		{
