@@ -1,12 +1,10 @@
-import { core, h, b } from "@printf83/bsts";
+import { core, b } from "@printf83/bsts";
 
 const convert = (attr: b.table.IAttrBSTableContainer) => {
 	let tAttr: core.IAttr = {};
 
 	tAttr.class = "example-table";
 	tAttr.marginBottom ??= 3;
-	tAttr.overflow = "auto";
-
 	attr.class = core.mergeClass(attr.class, "small");
 
 	tAttr.elem = new b.table.container(attr);
@@ -14,7 +12,7 @@ const convert = (attr: b.table.IAttrBSTableContainer) => {
 	return tAttr;
 };
 
-export class table extends h.div {
+export class table extends b.table.responsive {
 	constructor(); //#1
 	constructor(attr: b.table.IAttrBSTableContainer); //#2
 	constructor(elem: core.IElem); //#3
