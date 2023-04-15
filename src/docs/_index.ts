@@ -15,6 +15,8 @@ export const doc = (value: string) => {
 			return layout.breakpoints;
 		case "docs/layout/containers":
 			return layout.containers;
+		case "docs/layout/grid":
+			return layout.grid;
 
 		//--------------------------
 		case "docs/content/reboot":

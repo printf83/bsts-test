@@ -158,6 +158,17 @@ strong,
     background-color: rgba(var(--bs-primary-rgb), 1);
 }
 
+.example-output.col-box div.col {
+    background-color: rgba(var(--bs-primary-rgb), 0.15);
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+.example-output.col-box div.row:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
 /* gap on example code output */
 .example-output{
     --bs-example-gap-1:0.25rem;
