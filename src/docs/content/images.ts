@@ -15,7 +15,7 @@ export const images: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new b.img({ fluid: true, src: "https://picsum.photos/seed/bsts_0/710/250", alt: "..." });
+				return new b.img({ fluid: true, src: "https://picsum.photos/seed/bsts_0/820/250", alt: "..." });
 			},
 		}),
 
