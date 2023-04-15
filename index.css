@@ -158,7 +158,8 @@ strong,
     background-color: rgba(var(--bs-primary-rgb), 1);
 }
 
-.example-output.col-box div.row div:not(.row):not(.w-100) {
+.example-output.col-box div.row div:not(.row):not(.w-100),
+.example-output.col-box div.col-3,.example-output.col-box div.col-sm-9 {
     background-color: rgba(var(--bs-primary-rgb), 0.15);
     border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
     padding-top: .75rem;

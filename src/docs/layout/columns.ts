@@ -327,6 +327,8 @@ export const columns: IAttrContent = {
 			"The {{.col-*}} classes can also be used outside a {{.row}} to give an element a specific width. Whenever column classes are used as non-direct children of a row, the paddings are omitted."
 		),
 		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
 			output: () => {
 				return [
 					new h.div({ col: 3, padding: 3, marginBottom: 2 }, ".col-3: width of 25%"),
@@ -338,6 +340,7 @@ export const columns: IAttrContent = {
 			"The classes can be used together with utilities to create responsive floated images. Make sure to wrap the content in a {{https://getbootstrap.com/docs/5.3/helpers/clearfix/::.clearfix}} wrapper to clear the float if the text is shorter."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div({ clearfix: true }, [
 					new h.img({
