@@ -66,7 +66,7 @@ export const breakpoints: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Min-width"),
+		new e.subtitle("Min-width"),
 		new e.text(
 			"Bootstrap primarily uses the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components."
 		),
@@ -126,58 +126,100 @@ export const breakpoints: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Max-width"),
+		new e.subtitle("Max-width"),
 		new e.text(
 			"We occasionally use media queries that go in the other direction (the given screen size or smaller):"
 		),
-		new e.code({
-			output: () => {
-				return [];
-			},
-		}),
-
-		//-----------------------
-
-		new e.title(""),
-		new e.text(""),
-		new e.code({
-			output: () => {
-				return [];
-			},
-		}),
-
-		//-----------------------
-
-		new e.subtitle(""),
-		new e.text(""),
-		new e.alert({ color: "info", callout: true }, ""),
-		new e.code({
-			output: () => {
-				return [];
-			},
-		}),
-		new e.text(""),
 		new e.codepreview({
 			type: "css",
 			code: `
+				// No media query necessary for xs breakpoint as it's effectively '@media (max-width: 0) { ... }'
+				@include media-breakpoint-down(sm) { ... }
+				@include media-breakpoint-down(md) { ... }
+				@include media-breakpoint-down(lg) { ... }
+				@include media-breakpoint-down(xl) { ... }
+				@include media-breakpoint-down(xxl) { ... }
+
+				// Example: Style from medium breakpoint and down
+				@include media-breakpoint-down(md) {
+				.custom-class {
+					display: block;
+				}
+				}
+
 				`,
 		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.text(
+			"These mixins take those declared breakpoints, subtract {{.02px}} from them, and use them as our {{max-width}} values. For example:"
+		),
 		new e.codepreview({
 			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
-			`,
+				// 'xs' returns only a ruleset and no media query
+				// ... { ... }
+
+				// 'sm' applies to x-small devices (portrait phones, less than 576px)
+				@media (max-width: 575.98px) { ... }
+
+				// 'md' applies to small devices (landscape phones, less than 768px)
+				@media (max-width: 767.98px) { ... }
+
+				// 'lg' applies to medium devices (tablets, less than 992px)
+				@media (max-width: 991.98px) { ... }
+
+				// 'xl' applies to large devices (desktops, less than 1200px)
+				@media (max-width: 1199.98px) { ... }
+
+				// 'xxl' applies to x-large devices (large desktops, less than 1400px)
+				@media (max-width: 1399.98px) { ... }
+
+				`,
+		}),
+		new e.alert(
+			{ color: "warning", callout: true },
+			"{{b::Why subtract .02px?}} Browsers don’t currently support {{https://www.w3.org/TR/mediaqueries-4/#range-context::range context queries}}, so we work around the limitations of {{https://www.w3.org/TR/mediaqueries-4/#mq-min-max::min- and max- prefixes}} and viewports with fractional widths (which can occur under certain conditions on high-dpi devices, for instance) by using values with higher precision."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Single breakpoint"),
+		new e.text(
+			"There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+					@include media-breakpoint-only(xs) { ... }
+					@include media-breakpoint-only(sm) { ... }
+					@include media-breakpoint-only(md) { ... }
+					@include media-breakpoint-only(lg) { ... }
+					@include media-breakpoint-only(xl) { ... }
+					@include media-breakpoint-only(xxl) { ... }
+				`,
+		}),
+		new e.text("For example the {{@include media-breakpoint-only(md) { ... } }}will result in :"),
+		new e.codepreview({
+			type: "css",
+			code: `@media (min-width: 768px) and (max-width: 991.98px) { ... }`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Between breakpoints"),
+		new e.text("Similarly, media queries may span multiple breakpoint widths:"),
+		new e.codepreview({
+			type: "css",
+			code: `@include media-breakpoint-between(md, xl) { ... }`,
+		}),
+		new e.text("Which results in:"),
+		new e.codepreview({
+			type: "css",
+			code: `
+				// Example
+				// Apply styles starting from medium devices and up to extra large devices
+				@media (min-width: 768px) and (max-width: 1199.98px) { ... }
+
+				`,
 		}),
 	],
 };

@@ -46,7 +46,7 @@ let m = {
 			icon: { id: "grid-fill", color: "success" },
 			item: [
 				{ label: "Breakpoints", value: "docs/layout/breakpoints" },
-				{ label: "Breakpoints", value: "docs/layout/breakpoints" },
+				{ label: "Containers", value: "docs/layout/containers" },
 			],
 		},
 		{

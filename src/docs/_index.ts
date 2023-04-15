@@ -13,6 +13,8 @@ export const doc = (value: string) => {
 		//--------------------------
 		case "docs/layout/breakpoints":
 			return layout.breakpoints;
+		case "docs/layout/containers":
+			return layout.containers;
 
 		//--------------------------
 		case "docs/content/reboot":
