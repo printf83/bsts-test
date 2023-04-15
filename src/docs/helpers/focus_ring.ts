@@ -153,7 +153,7 @@ export const focus_ring: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Focus ring utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api/#using-the-api::Learn how to use the utilities API}}."
+			"Focus ring utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
 		),
 		new e.codepreview({
 			type: "css",

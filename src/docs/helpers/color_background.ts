@@ -34,7 +34,7 @@ export const color_background: IAttrContent = {
 
 		new e.title("With components"),
 		new e.text(
-			"Use them in place of combined {{.text-*}} and {{.bg-*}} classes, like on {{nav:docs/components/badge/#background-colors::badges}}:"
+			"Use them in place of combined {{.text-*}} and {{.bg-*}} classes, like on {{nav:docs/components/badge#background-colors::badges}}:"
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -45,7 +45,7 @@ export const color_background: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Or on {{nav:docs/components/card/#background-and-color::cards}}:"),
+		new e.text("Or on {{nav:docs/components/card#background_and_color::cards}}:"),
 		new e.code({
 			outputAttr: { gap: 3 },
 			output: () => {

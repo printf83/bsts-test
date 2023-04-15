@@ -48,6 +48,7 @@ let m = {
 				{ label: "Breakpoints", value: "docs/layout/breakpoints" },
 				{ label: "Containers", value: "docs/layout/containers" },
 				{ label: "Grid", value: "docs/layout/grid" },
+				{ label: "Columns", value: "docs/layout/columns" },
 			],
 		},
 		{
