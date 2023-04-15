@@ -67,6 +67,10 @@ strong,
 
 /* make some desing */
 
+.example-output.reset-list > ul {
+    list-style: initial;
+}
+
 .example-output.ratio-box div.ratio{
     display: inline-block;
     width: 10rem;
