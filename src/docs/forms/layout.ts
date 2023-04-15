@@ -249,6 +249,7 @@ export const layout: IAttrContent = {
 			"As shown in the previous examples, Bootstrap grid system allows you to place any number of {{.col}}s within a {{.row}}. They’ll split the available width equally between them. You may also pick a subset of your columns to take up more or less space, while the remaining {{.col}}s equally split the rest, with specific column classes like {{.col-sm-6}}."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div({ row: true, gutter: 3 }, [
 					b.form.input({

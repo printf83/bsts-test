@@ -12,6 +12,7 @@ export const text: IAttrContent = {
 			"Easily realign text to components with text alignment classes. For start, end, and center alignment, responsive classes are available that use the same viewport width breakpoints as the grid system."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return [
 					new h.p({ textAlign: "start" }, "Start aligned text on all viewport sizes."),

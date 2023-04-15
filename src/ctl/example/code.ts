@@ -17,6 +17,7 @@ export interface IAttrBSExampleContainer extends core.IAttr {
 	strManager?: string;
 	scriptConverter?: Function;
 
+	showViewport?: boolean;
 	showOutput?: boolean;
 	showScript?: boolean;
 	showManager?: boolean;
@@ -292,6 +293,54 @@ const itemOutput = (previewAttr: core.IAttr | undefined, outputAttr: core.IAttr 
 	}
 };
 
+const itemViewport = () => {
+	return new b.list.item(
+		{
+			padding: 0,
+			bgColor: "primary-subtle",
+			display: "flex",
+			justifyContent: "between",
+			textColor: "primary-emphasis",
+			verticalAlign: "middle",
+			monospace: true,
+		},
+		[
+			new h.div(
+				{
+					paddingY: 1,
+					paddingX: 4,
+					flex: "fill",
+				},
+				new h.small("VIEW PORT")
+			),
+
+			new h.div(
+				{
+					paddingY: 1,
+					paddingX: 4,
+					flex: "fill",
+					textAlign: "end",
+				},
+				[
+					new h.small([
+						new h.span(
+							{
+								display: ["inline-block", "sm-none"],
+							},
+							"<576px {{k::XS}}"
+						),
+						new h.span({ display: ["sm-inline-block", "md-none", "none"] }, "≥576px <768px {{k::SM}}"),
+						new h.span({ display: ["md-inline-block", "lg-none", "none"] }, "≥768px <992px {{k::MD}}"),
+						new h.span({ display: ["lg-inline-block", "xl-none", "none"] }, "≥992px <1200px {{k::LG}}"),
+						new h.span({ display: ["xl-inline-block", "xxl-none", "none"] }, "≥1200px <1400px {{k::XL}}"),
+						new h.span({ display: ["xxl-inline-block", "none"] }, "≥1400px {{k::XXL}}"),
+					]),
+				]
+			),
+		]
+	);
+};
+
 const convert = (attr: IAttrBSExampleContainer) => {
 	let id = core.UUID();
 
@@ -313,6 +362,10 @@ const convert = (attr: IAttrBSExampleContainer) => {
 		} else {
 			e.push(itemOutput(attr.previewAttr, attr.outputAttr, attr.output()));
 		}
+	}
+
+	if (attr.output && attr.showOutput && attr.showViewport) {
+		e.push(itemViewport());
 	}
 
 	if (attr.output && attr.showOutput && attr.showHTML) {

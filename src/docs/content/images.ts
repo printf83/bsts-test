@@ -71,6 +71,7 @@ export const images: IAttrContent = {
 			"If you are using the {{<picture>}} element to specify multiple {{<source>}} elements for a specific {{<img>}}, make sure to add the {{.img-*}} classes to the {{<img>}} and not to the {{<picture>}} tag."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.picture([
 					new h.source({ media: "(min-width:992px)", srcset: "https://picsum.photos/seed/bsts_0/820/250" }),

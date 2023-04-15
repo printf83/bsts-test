@@ -76,7 +76,7 @@ export const overview: IAttrContent = {
 		),
 		new e.title("Overview"),
 		new e.text(
-			"Bootstrap’s form controls expand on {{nav:doc_content_reboot#forms::Bootstrap Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."
+			"Bootstrap’s form controls expand on {{nav:docs/content/reboot#forms::Bootstrap Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."
 		),
 		new e.text(
 			"Be sure to use an appropriate {{type}} attribute on all inputs (e.g., {{email}} for email address or {{number}} for numerical information) to take advantage of newer input controls like email verification, number selection, and more."

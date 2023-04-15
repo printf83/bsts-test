@@ -100,6 +100,7 @@ export const display: IAttrContent = {
 			],
 		}),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return [
 					new h.div({ display: "lg-none" }, "hide on lg and wider screens"),

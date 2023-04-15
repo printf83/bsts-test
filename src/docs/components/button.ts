@@ -193,6 +193,7 @@ export const button: IAttrContent = {
 			"Here we create a responsive variation, starting with vertically stacked buttons until the {{md}} breakpoint, where {{.d-md-block}} replaces the {{.d-grid}} class, thus nullifying the {{gap-2}} utility. Resize your browser to see them change."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div({ display: ["grid", "md-block"], gap: 2 }, [
 					new b.button("Button"),
@@ -215,6 +216,7 @@ export const button: IAttrContent = {
 			"Additional utilities can be used to adjust the alignment of buttons when horizontal. Here we’ve taken Bootstrap previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div({ display: ["grid", "md-flex"], gap: 2, justifyContent: "md-end" }, [
 					new b.button("Button"),

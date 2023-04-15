@@ -372,6 +372,7 @@ export const reboot: IAttrContent = {
 							new h.th("Table heading"),
 							new h.th("Table heading"),
 							new h.th("Table heading"),
+							new h.th("Table heading"),
 						])
 					),
 					new h.tbody([

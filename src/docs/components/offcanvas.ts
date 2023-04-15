@@ -236,6 +236,7 @@ export const offcanvas: IAttrContent = {
 			"Responsive offcanvas classes hide content outside the viewport from a specified breakpoint and down. Above that breakpoint, the contents within will behave as usual. For example, {{.offcanvas-lg}} hides content in an offcanvas below the {{lg}} breakpoint, but shows the content above the {{lg}} breakpoint."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return [
 					new b.offcanvas.toggle(

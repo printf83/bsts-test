@@ -728,6 +728,7 @@ export const tables: IAttrContent = {
 		new e.text("Across every breakpoint, use {{.table-responsive}} for horizontally scrolling tables."),
 
 		new e.code({
+			showViewport: true,
 			outputAttr: { overflow: "hidden" },
 			extention: [{ name: "tableBig", output: tableBig }],
 			output: () => {
@@ -746,6 +747,7 @@ export const tables: IAttrContent = {
 		),
 
 		new e.code({
+			showViewport: true,
 			outputAttr: { overflow: "hidden" },
 			extention: [{ name: "tableBig", output: tableBig }],
 			output: () => {
@@ -759,6 +761,7 @@ export const tables: IAttrContent = {
 		}),
 
 		new e.code({
+			showViewport: true,
 			outputAttr: { overflow: "hidden" },
 			extention: [{ name: "tableBig", output: tableBig }],
 			output: () => {
@@ -773,6 +776,7 @@ export const tables: IAttrContent = {
 		}),
 
 		new e.code({
+			showViewport: true,
 			outputAttr: { overflow: "hidden" },
 			extention: [{ name: "tableBig", output: tableBig }],
 			output: () => {
@@ -787,6 +791,7 @@ export const tables: IAttrContent = {
 		}),
 
 		new e.code({
+			showViewport: true,
 			outputAttr: { overflow: "hidden" },
 			extention: [{ name: "tableBig", output: tableBig }],
 			output: () => {
@@ -815,6 +820,7 @@ export const tables: IAttrContent = {
 		}),
 
 		new e.code({
+			showViewport: true,
 			outputAttr: { overflow: "hidden" },
 			extention: [{ name: "tableBig", output: tableBig }],
 			output: () => {

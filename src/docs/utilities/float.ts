@@ -27,6 +27,7 @@ export const float: IAttrContent = {
 		new e.title("Responsive"),
 		new e.text("Responsive variations also exist for each {{float}} value."),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return [
 					new h.div({ float: "sm-end" }, "Float end on viewports sized SM (small) or wider"),
