@@ -68,7 +68,7 @@ export const placeholder: IAttrContent = {
 			"Create placeholders with the {{.placeholder}} class and a grid column class (e.g., {{.col-6}}) to set the {{width}}. They can replace the text inside an element or be added as a modifier class to an existing component."
 		),
 		new e.text(
-			"We apply additional styling to {{.btn}}s via{{ ::before}} to ensure the {{height}} is respected. You may extend this pattern for other situations as needed, or add a {{&nbsp;}} within the element to reflect the height when actual text is rendered in its place."
+			"We apply additional styling to {{.btn}}s via {{:/:before}} to ensure the {{height}} is respected. You may extend this pattern for other situations as needed, or add a {{&nbsp;}} within the element to reflect the height when actual text is rendered in its place."
 		),
 		new e.code({
 			output: () => {

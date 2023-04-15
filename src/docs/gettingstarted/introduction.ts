@@ -193,7 +193,7 @@ export const introduction: IAttrContent = {
 				`,
 		}),
 		new e.text(
-			"With the above snippet, nested elements—including generated content via{{ ::before}} and{{ ::after}}—will all inherit the specified {{box-sizing}} for that {{.selector-for-some-widget}}."
+			"With the above snippet, nested elements—including generated content via {{:/:before}} and {{:/:after}}—will all inherit the specified {{box-sizing}} for that {{.selector-for-some-widget}}."
 		),
 		new e.text("Learn more about {{https://css-tricks.com/box-sizing/::box model and sizing at CSS Tricks}}."),
 
