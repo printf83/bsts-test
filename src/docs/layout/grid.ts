@@ -152,18 +152,53 @@ export const grid: IAttrContent = {
 				]);
 			},
 		}),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
+
+		//-----------------------
+
+		new e.title("Setting one column width"),
+		new e.text(
+			"Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note that the other columns will resize no matter the width of the center column."
+		),
 		new e.code({
+			outputAttr: { class: "col-box" },
 			output: () => {
-				return [];
+				return new h.div({ container: true, textAlign: "center" }, [
+					new h.div({ row: true }, [
+						new h.div({ col: true }, "1 of 3"),
+						new h.div({ col: 6 }, "2 of 3 (wider)"),
+						new h.div({ col: true }, "2 of 3"),
+					]),
+					new h.div({ row: true }, [
+						new h.div({ col: true }, "1 of 3"),
+						new h.div({ col: 5 }, "2 of 3 (wider)"),
+						new h.div({ col: true }, "3 of 3"),
+					]),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Variable width content"),
+		new e.text(
+			"Use {{col-{breakpoint}-auto}} classes to size columns based on the natural width of their content."
+		),
+		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div({ container: true, textAlign: "center" }, [
+					new h.div({ row: true, justifyContent: "md-center" }, [
+						new h.div({ col: [true, "lg-2"] }, "1 of 3"),
+						new h.div({ col: "md-auto" }, "Variable width content"),
+						new h.div({ col: [true, "lg-2"] }, "2 of 3"),
+					]),
+					new h.div({ row: true }, [
+						new h.div({ col: true }, "1 of 3"),
+						new h.div({ col: "md-auto" }, "Variable witth content"),
+						new h.div({ col: true }, "3 of 3"),
+					]),
+				]);
 			},
 		}),
 

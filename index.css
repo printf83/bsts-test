@@ -158,7 +158,7 @@ strong,
     background-color: rgba(var(--bs-primary-rgb), 1);
 }
 
-.example-output.col-box div.col {
+.example-output.col-box div.row div {
     background-color: rgba(var(--bs-primary-rgb), 0.15);
     border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
     padding-top: .75rem;

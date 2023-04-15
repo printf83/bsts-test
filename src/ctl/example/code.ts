@@ -305,35 +305,77 @@ const itemViewport = () => {
 			monospace: true,
 		},
 		[
-			new h.div(
+			new h.span(
 				{
-					paddingY: 1,
+					paddingY: 0,
 					paddingX: 4,
 					flex: "fill",
 				},
 				new h.small("VIEW PORT")
 			),
 
-			new h.div(
+			new h.span(
 				{
-					paddingY: 1,
+					paddingY: 0,
 					paddingX: 4,
-					flex: "fill",
-					textAlign: "end",
 				},
+				// [
+				// 	new h.small([
+				// 		new h.span(
+				// 			{
+				// 				display: ["inline-block", "sm-none"],
+				// 			},
+				// 			"<576px {{k::XS}}"
+				// 		),
+				// 		new h.span({ display: ["sm-inline-block", "md-none", "none"] }, "≥576px <768px {{k::SM}}"),
+				// 		new h.span({ display: ["md-inline-block", "lg-none", "none"] }, "≥768px <992px {{k::MD}}"),
+				// 		new h.span({ display: ["lg-inline-block", "xl-none", "none"] }, "≥992px <1200px {{k::LG}}"),
+				// 		new h.span({ display: ["xl-inline-block", "xxl-none", "none"] }, "≥1200px <1400px {{k::XL}}"),
+				// 		new h.span({ display: ["xxl-inline-block", "none"] }, "≥1400px {{k::XXL}}"),
+				// 	]),
+				// ]
+
+				// [
+				// 	new h.small([
+				// 		new h.span(
+				// 			{
+				// 				display: ["inline-block", "sm-none"],
+				// 			},
+				// 			"Less than 576px {{k::XS}}"
+				// 		),
+				// 		new h.span(
+				// 			{ display: ["sm-inline-block", "md-none", "none"] },
+				// 			"Between 576px and 768px {{k::SM}}"
+				// 		),
+				// 		new h.span(
+				// 			{ display: ["md-inline-block", "lg-none", "none"] },
+				// 			"Between 768px and 992px {{k::MD}}"
+				// 		),
+				// 		new h.span(
+				// 			{ display: ["lg-inline-block", "xl-none", "none"] },
+				// 			"Between 992px and 1200px {{k::LG}}"
+				// 		),
+				// 		new h.span(
+				// 			{ display: ["xl-inline-block", "xxl-none", "none"] },
+				// 			"Between 1200px and 1400px {{k::XL}}"
+				// 		),
+				// 		new h.span({ display: ["xxl-inline-block", "none"] }, "More than 1400px {{k::XXL}}"),
+				// 	]),
+				// ]
+
 				[
 					new h.small([
 						new h.span(
 							{
 								display: ["inline-block", "sm-none"],
 							},
-							"<576px {{k::XS}}"
+							"XS"
 						),
-						new h.span({ display: ["sm-inline-block", "md-none", "none"] }, "≥576px <768px {{k::SM}}"),
-						new h.span({ display: ["md-inline-block", "lg-none", "none"] }, "≥768px <992px {{k::MD}}"),
-						new h.span({ display: ["lg-inline-block", "xl-none", "none"] }, "≥992px <1200px {{k::LG}}"),
-						new h.span({ display: ["xl-inline-block", "xxl-none", "none"] }, "≥1200px <1400px {{k::XL}}"),
-						new h.span({ display: ["xxl-inline-block", "none"] }, "≥1400px {{k::XXL}}"),
+						new h.span({ display: ["sm-inline-block", "md-none", "none"] }, "SM"),
+						new h.span({ display: ["md-inline-block", "lg-none", "none"] }, "MD"),
+						new h.span({ display: ["lg-inline-block", "xl-none", "none"] }, "LG"),
+						new h.span({ display: ["xl-inline-block", "xxl-none", "none"] }, "XL"),
+						new h.span({ display: ["xxl-inline-block", "none"] }, "XXL"),
 					]),
 				]
 			),
