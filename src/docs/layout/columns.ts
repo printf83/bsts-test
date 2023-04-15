@@ -27,7 +27,7 @@ export const columns: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Vertical alignment"),
+		new e.subtitle("Vertical alignment"),
 		new e.text("Change the vertical alignment with any of the responsive {{align-items-*}} classes."),
 		new e.code({
 			outputAttr: { class: ["col-box", "row-10"] },
@@ -87,7 +87,7 @@ export const columns: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Horizontal alignment"),
+		new e.subtitle("Horizontal alignment"),
 		new e.text("Change the horizontal alignment with any of the responsive {{justify-content-*}} classes."),
 		new e.code({
 			outputAttr: { class: "col-box" },
@@ -123,7 +123,7 @@ export const columns: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Column wrapping"),
+		new e.subtitle("Column wrapping"),
 		new e.text(
 			"If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line."
 		),
@@ -151,7 +151,7 @@ export const columns: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Column breaks"),
+		new e.subtitle("Column breaks"),
 		new e.text(
 			"Breaking columns to a new line in flexbox requires a small hack: add an element with {{width: 100%}} wherever you want to wrap your columns to a new line. Normally this is accomplished with multiple {{.row}}s, but not every implementation method can account for this."
 		),
@@ -199,65 +199,166 @@ export const columns: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Reordering"),
+
+		//-----------------------
+
+		new e.subtitle("Order classes"),
+		new e.text(
+			"Use {{.order-}} classes for controlling the {{b::visual order}} of your content. These classes are responsive, so you can set the {{order}} by breakpoint (e.g., {{.order-1.order-md-2}}). Includes support for {{1}} through {{5}} across all six grid tiers. If you need more {{.order-*}} classes, you can modify the default number via Sass variable."
+		),
 		new e.code({
+			outputAttr: { class: "col-box" },
 			output: () => {
-				return [];
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true }, [
+						new h.div({ col: true }, "First in DOM, no order applied"),
+						new h.div({ col: true, order: 5 }, "Second in DOM, with a larger order"),
+						new h.div({ col: true, order: 1 }, "Third in DOM, with an order of 1"),
+					])
+				);
+			},
+		}),
+		new e.text(
+			"There are also responsive {{.order-first}} and {{.order-last}} classes that change the {{order}} of an element by applying {{order: -1}} and {{order: 6}}, respectively. These classes can also be intermixed with the numbered {{.order-*}} classes as needed."
+		),
+		new e.code({
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true }, [
+						new h.div({ col: true, order: "last" }, "First in DOM, ordered last"),
+						new h.div({ col: true }, "Second in DOM, unordered"),
+						new h.div({ col: true, order: "first" }, "Third in DOM, ordered first"),
+					])
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.subtitle("Offsetting columns"),
+		new e.text(
+			"You can offset grid columns in two ways: our responsive {{.offset-}} grid classes and our {{https://getbootstrap.com/docs/5.3/utilities/spacing/::margin utilities}}. Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable."
+		),
+
+		//-----------------------
+
+		new e.xsubtitle("Offset classes"),
+		new e.text(
+			"Move columns to the right using {{.offset-md-*}} classes. These classes increase the left margin of a column by {{*}} columns. For example, {{.offset-md-4}} moves {{.col-md-4}} over four columns."
+		),
 		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
 			output: () => {
-				return [];
+				return new h.div({ container: true, textAlign: "center" }, [
+					new h.div({ row: true }, [
+						new h.div({ col: "md-4" }, ".col-md-4"),
+						new h.div({ col: "md-4", offset: "md-4" }, ".col-md-4 .offset-md-4"),
+					]),
+					new h.div({ row: true }, [
+						new h.div({ col: "md-3", offset: "md-3" }, ".col-md-3 .offset-md-3"),
+						new h.div({ col: "md-3", offset: "md-3" }, ".col-md-3 .offset-md-3"),
+					]),
+					new h.div({ row: true }, [new h.div({ col: "md-6", offset: "md-3" }, ".col-md-6 .offset-md-3")]),
+				]);
 			},
 		}),
-		new e.alert({ color: "info", callout: true }, ""),
+		new e.text(
+			"In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in {{https://getbootstrap.com/docs/5.3/examples/grid/::the grid example}}."
+		),
 		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
 			output: () => {
-				return [];
+				return new h.div({ container: true, textAlign: "center" }, [
+					new h.div({ row: true }, [
+						new h.div({ col: ["sm-5", "md-6"] }, ".col-sm-5 .col-md-6"),
+						new h.div(
+							{ col: ["sm-5", "md-6"], offset: ["sm-2", "md-0"] },
+							".col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0"
+						),
+					]),
+					new h.div({ row: true }, [
+						new h.div({ col: ["sm-6", "md-5", "lg-6"] }, ".col-sm-6 .col-md-5 .col-lg-6"),
+						new h.div(
+							{ col: ["sm-6", "md-5", "lg-6"], offset: ["md-2", "lg-0"] },
+							".col-sm-6 .col-md-5 .offset-md-2 .col-lg-6 .offset-lg-0"
+						),
+					]),
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.xsubtitle("Margin utilities"),
+		new e.text(
+			"With the move to flexbox in v4, you can use margin utilities like {{.me-auto}} to force sibling columns away from one another."
+		),
 		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
 			output: () => {
-				return [];
+				return new h.div({ container: true, textAlign: "center" }, [
+					new h.div({ row: true }, [
+						new h.div({ col: "md-4" }, ".col-md-4"),
+						new h.div({ col: "md-4", marginStart: "auto" }, ".col-md-4 .ms-auto"),
+					]),
+					new h.div({ row: true }, [
+						new h.div({ col: "md-3", marginStart: "md-auto" }, ".col-md-3 .ms-md-auto"),
+						new h.div({ col: "md-3", marginStart: "md-auto" }, ".col-md-3 .ms-md-auto"),
+					]),
+					new h.div({ row: true }, [
+						new h.div({ col: "auto", marginEnd: "auto" }, ".col-auto .me-auto"),
+						new h.div({ col: "auto" }, ".col-auto"),
+					]),
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.title("Standalone column classes"),
+		new e.text(
+			"The {{.col-*}} classes can also be used outside a {{.row}} to give an element a specific width. Whenever column classes are used as non-direct children of a row, the paddings are omitted."
+		),
+		new e.code({
+			output: () => {
+				return [
+					new h.div({ col: 3, padding: 3, marginBottom: 2 }, ".col-3: width of 25%"),
+					new h.div({ col: "sm-9", padding: 3 }, ".col-sm-9: width of 75% above sm breakpoint"),
+				];
+			},
 		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
-			code: `
-			`,
+		new e.text(
+			"The classes can be used together with utilities to create responsive floated images. Make sure to wrap the content in a {{https://getbootstrap.com/docs/5.3/helpers/clearfix/::.clearfix}} wrapper to clear the float if the text is shorter."
+		),
+		new e.code({
+			output: () => {
+				return new h.div({ clearfix: true }, [
+					new h.img({
+						col: "md-6",
+						float: "end",
+						marginBottom: 3,
+						marginStart: "md-3",
+						alt: "...",
+						src: "https://picsum.photos/seed/bsts_0/355/210",
+					}),
+					new h.p(
+						"A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image."
+					),
+					new h.p(
+						"As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible information at. It simply takes up space and should not really be read."
+					),
+					new h.p(
+						"And yet, here you are, still persevering in reading this placeholder text, hoping for some more insights, or some hidden easter egg of content. A joke, perhaps. Unfortunately, there's none of that here."
+					),
+				]);
+			},
 		}),
 	],
 };
