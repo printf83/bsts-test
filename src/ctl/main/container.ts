@@ -828,36 +828,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 								{ marginBottom: 2 },
 								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
 							),
-							new h.li({ marginBottom: 2 }, [
-								"Currently v5.3.0-alpha3.",
-								"With ",
-								new h.span(
-									{
-										display: ["inline-block", "sm-none"],
-									},
-									"extra small view port {{k::xs}}"
-								),
-								new h.span(
-									{ display: ["sm-inline-block", "md-none", "none"] },
-									"small view port {{k::sm}}"
-								),
-								new h.span(
-									{ display: ["md-inline-block", "lg-none", "none"] },
-									"medium view port {{k::md}}"
-								),
-								new h.span(
-									{ display: ["lg-inline-block", "xl-none", "none"] },
-									"large view port {{k::lg}}"
-								),
-								new h.span(
-									{ display: ["xl-inline-block", "xxl-none", "none"] },
-									"extra large view port {{k::xl}}"
-								),
-								new h.span(
-									{ display: ["xxl-inline-block", "none"] },
-									"super large view port {{k::xxl}}"
-								),
-							]),
+							new h.li({ marginBottom: 2 }, "Currently v5.3.0-alpha3."),
 						]),
 					]),
 					...genFooter(attr.itemFooter),

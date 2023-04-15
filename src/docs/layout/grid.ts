@@ -135,7 +135,7 @@ export const grid: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Equal-width"),
+		new e.subtitle("Equal-width"),
 		new e.text(
 			"For example, here are two grid layouts that apply to every device and viewport, from {{xs}} to {{xxl}}. Add any number of unit-less classes for each breakpoint you need and every column will be the same width."
 		),
@@ -155,7 +155,7 @@ export const grid: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Setting one column width"),
+		new e.subtitle("Setting one column width"),
 		new e.text(
 			"Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note that the other columns will resize no matter the width of the center column."
 		),
@@ -179,7 +179,7 @@ export const grid: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Variable width content"),
+		new e.subtitle("Variable width content"),
 		new e.text(
 			"Use {{col-{breakpoint}-auto}} classes to size columns based on the natural width of their content."
 		),
@@ -204,58 +204,398 @@ export const grid: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
+		new e.title("Responsive classes"),
+		new e.text(
+			"Bootstrap’s grid includes six tiers of predefined classes for building complex responsive layouts. Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit."
+		),
+
+		//-----------------------
+
+		new e.subtitle("All breakpoints"),
+		new e.text(
+			"For grids that are the same from the smallest of devices to the largest, use the {{.col}} and {{.col-*}} classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to {{.col}}."
+		),
 		new e.code({
+			outputAttr: { class: "col-box" },
 			output: () => {
-				return [];
+				return new h.div({ container: true, textAlign: "center" }, [
+					new h.div({ row: true }, [
+						new h.div({ col: true }, "col"),
+						new h.div({ col: true }, "col"),
+						new h.div({ col: true }, "col"),
+						new h.div({ col: true }, "col"),
+					]),
+					new h.div({ row: true }, [new h.div({ col: 8 }, "col-8"), new h.div({ col: 4 }, "col-4")]),
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.subtitle("Stacked to horizontal"),
+		new e.text(
+			"Using a single set of {{.col-sm-*}} classes, you can create a basic grid system that starts out stacked and becomes horizontal at the small breakpoint ({{sm}})."
+		),
 		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
 			output: () => {
-				return [];
+				return new h.div({ container: true, textAlign: "center" }, [
+					new h.div({ row: true }, [
+						new h.div({ col: "sm-8" }, "col-sm-8"),
+						new h.div({ col: "sm-4" }, "col-sm-4"),
+					]),
+					new h.div({ row: true }, [
+						new h.div({ col: "sm" }, "col-sm"),
+						new h.div({ col: "sm" }, "col-sm"),
+						new h.div({ col: "sm" }, "col-sm"),
+					]),
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
+		new e.subtitle("Mix and match"),
+		new e.text(
+			"Don’t want your columns to simply stack in some grid tiers? Use a combination of different classes for each tier as needed. See the example below for a better idea of how it all works."
+		),
+		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div({ container: true, textAlign: "center" }, [
+					//Stack the columns on mobile by making one full-width and the other half-width
+					new h.div({ row: true }, [
+						new h.div({ col: "md-8" }, ".col-md-8"),
+						new h.div({ col: [6, "md-4"] }, ".col-6.col-md-4"),
+					]),
+					//Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop
+					new h.div({ row: true }, [
+						new h.div({ col: [6, "md-4"] }, ".col-6.col-md-4"),
+						new h.div({ col: [6, "md-4"] }, ".col-6.col-md-4"),
+						new h.div({ col: [6, "md-4"] }, ".col-6.col-md-4"),
+					]),
+					//Columns are always 50% wide, on mobile and desktop
+					new h.div({ row: true }, [new h.div({ col: 6 }, ".col-6"), new h.div({ col: 6 }, ".col-6")]),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Row columns"),
+		new e.text(
+			"Use the responsive {{.row-cols-*}} classes to quickly set the number of columns that best render your content and layout. Whereas normal {{.col-*}} classes apply to the individual columns (e.g., {{.col-md-4}}), the row columns classes are set on the parent {{.row}} as a shortcut. With {{.row-cols-auto}} you can give the columns their natural width."
+		),
+		new e.text(
+			"Use these row columns classes to quickly create basic grid layouts or to control your card layouts."
+		),
+		new e.code({
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true, rowCol: 2 }, [
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+					])
+				);
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true, rowCol: 3 }, [
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+					])
+				);
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true, rowCol: "auto" }, [
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+					])
+				);
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true, rowCol: 4 }, [
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+					])
+				);
+			},
+		}),
+		new e.code({
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true, rowCol: 4 }, [
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: 6 }, "Column"),
+						new h.div({ col: true }, "Column"),
+					])
+				);
+			},
+		}),
+		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true, rowCol: [1, "sm-2", "md-4"] }, [
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+						new h.div({ col: true }, "Column"),
+					])
+				);
+			},
+		}),
+		new e.text("You can also use the accompanying Sass mixin, {{row-cols()}}:"),
 		new e.codepreview({
 			type: "css",
 			code: `
+				.element {
+				// Three columns to start
+				@include row-cols(3);
+
+				// Five columns from medium breakpoint up
+				@include media-breakpoint-up(md) {
+					@include row-cols(5);
+				}
+				}
 				`,
 		}),
 
 		//-----------------------
 
+		new e.title("Nesting"),
+		new e.text(
+			"To nest your content with the default grid, add a new {{.row}} and set of {{.col-sm-*}} columns within an existing {{.col-sm-*}} column. Nested rows should include a set of columns that add up to 12 or fewer (it is not required that you use all 12 available columns)."
+		),
+		new e.code({
+			showViewport: true,
+			outputAttr: { class: "col-box" },
+			output: () => {
+				return new h.div(
+					{ container: true, textAlign: "center" },
+					new h.div({ row: true }, [
+						new h.div({ col: "sm-3" }, "Level 1: .col-sm-3"),
+						new h.div(
+							{ col: "sm-9" },
+							new h.div({ row: true }, [
+								new h.div({ col: [8, "sm-6"] }, "Level 2: .col-8 .col-sm-6"),
+								new h.div({ col: [4, "sm-6"] }, "Level 2: .col-4 .col-sm-6"),
+							])
+						),
+					])
+				);
+			},
+		}),
+
+		//-----------------------
+
 		new e.title("CSS"),
-		new e.text(""),
+		new e.text(
+			"When using Bootstrap’s source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Our predefined grid classes use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts."
+		),
 
 		//-----------------------
 
 		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.text(
+			"Variables and maps determine the number of columns, the gutter width, and the media query point at which to begin floating columns. We use these to generate the predefined grid classes documented above, as well as for the custom mixins listed below."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$grid-columns:      12;
+				$grid-gutter-width: 1.5rem;
+				$grid-row-columns:  6;
+				`,
+		}),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
 			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
+				$grid-breakpoints: (
+				xs: 0,
+				sm: 576px,
+				md: 768px,
+				lg: 992px,
+				xl: 1200px,
+				xxl: 1400px
+				);
 			`,
 		}),
+		new e.codepreview({
+			type: "css",
+			title: "scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			code: `
+				$container-max-widths: (
+				sm: 540px,
+				md: 720px,
+				lg: 960px,
+				xl: 1140px,
+				xxl: 1320px
+				);
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Sass mixins"),
+		new e.text(
+			"Mixins are used in conjunction with the grid variables to generate semantic CSS for individual grid columns."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				// Creates a wrapper for a series of columns
+				@include make-row();
+
+				// Make the element grid-ready (applying everything but the width)
+				@include make-col-ready();
+
+				// Without optional size values, the mixin will create equal columns (similar to using .col)
+				@include make-col();
+				@include make-col($size, $columns: $grid-columns);
+
+				// Offset with margins
+				@include make-col-offset($size, $columns: $grid-columns);
+				`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Example usage"),
+		new e.text(
+			"You can modify the variables to your own custom values, or just use the mixins with their default values. Here’s an example of using the default settings to create a two-column layout with a gap between."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				.example-container {
+				@include make-container();
+				// Make sure to define this width after the mixin to override
+				// 'width: 100%' generated by 'make-container()'
+				width: 800px;
+				}
+
+				.example-row {
+				@include make-row();
+				}
+
+				.example-content-main {
+				@include make-col-ready();
+
+				@include media-breakpoint-up(sm) {
+					@include make-col(6);
+				}
+				@include media-breakpoint-up(lg) {
+					@include make-col(8);
+				}
+				}
+
+				.example-content-secondary {
+				@include make-col-ready();
+
+				@include media-breakpoint-up(sm) {
+					@include make-col(6);
+				}
+				@include media-breakpoint-up(lg) {
+					@include make-col(4);
+				}
+				}
+				`,
+		}),
+		new e.code({
+			outputAttr: { class: "example-container-css" },
+			output: () => {
+				return new h.div(
+					{ class: "example-container" },
+					new h.div({ class: "example-row" }, [
+						new h.div({ class: "example-content-main" }, "Main content"),
+						new h.div({ class: "example-content-secondary" }, "Secondary content"),
+					])
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Customizing the grid"),
+		new e.text(
+			"Using our built-in grid Sass variables and maps, it’s possible to completely customize the predefined grid classes. Change the number of tiers, the media query dimensions, and the container widths—then recompile."
+		),
+
+		//-----------------------
+
+		new e.subtitle("Columns and gutters"),
+		new e.text(
+			"The number of grid columns can be modified via Sass variables. {{$grid-columns}} is used to generate the widths (in percent) of each individual column while {{$grid-gutter-width}} sets the width for the column gutters. {{$grid-row-columns}} is used to set the maximum number of columns of {{.row-cols-*}}, any number over this limit is ignored."
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$grid-columns: 12 !default;
+				$grid-gutter-width: 1.5rem !default;
+				$grid-row-columns: 6 !default;
+			`,
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Grid tiers"),
+		new e.text(
+			"Moving beyond the columns themselves, you may also customize the number of grid tiers. If you wanted just four grid tiers, you’d update the {{$grid-breakpoints}} and {{$container-max-widths}} to something like this:"
+		),
+		new e.codepreview({
+			type: "css",
+			code: `
+				$grid-breakpoints: (
+				xs: 0,
+				sm: 480px,
+				md: 768px,
+				lg: 1024px
+				);
+
+				$container-max-widths: (
+				sm: 420px,
+				md: 720px,
+				lg: 960px
+				);
+				`,
+		}),
+		new e.text(
+			"When making any changes to the Sass variables or maps, you’ll need to save your changes and recompile. Doing so will output a brand-new set of predefined grid classes for column widths, offsets, and ordering. Responsive visibility utilities will also be updated to use the custom breakpoints. Make sure to set grid values in {{px}} (not {{rem}}, {{em}}, or {{%}})."
+		),
 	],
 };

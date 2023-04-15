@@ -307,7 +307,7 @@ const itemViewport = () => {
 		[
 			new h.span(
 				{
-					paddingY: 0,
+					paddingY: 1,
 					paddingX: 4,
 					flex: "fill",
 				},
@@ -316,7 +316,7 @@ const itemViewport = () => {
 
 			new h.span(
 				{
-					paddingY: 0,
+					paddingY: 1,
 					paddingX: 4,
 				},
 				// [
