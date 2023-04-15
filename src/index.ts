@@ -42,6 +42,14 @@ let m = {
 			item: [{ label: "Introduction", value: "docs/gettingstarted/introduction" }],
 		},
 		{
+			label: "Layout",
+			icon: { id: "grid-fill", color: "success" },
+			item: [
+				{ label: "Breakpoints", value: "docs/layout/breakpoints" },
+				{ label: "Breakpoints", value: "docs/layout/breakpoints" },
+			],
+		},
+		{
 			label: "Content",
 			icon: { id: "file-earmark-richtext", color: "secondary" },
 			item: [

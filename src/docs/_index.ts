@@ -4,11 +4,16 @@ import * as components from "./components/_index.js";
 import * as utilities from "./utilities/_index.js";
 import * as helpers from "./helpers/_index.js";
 import * as content from "./content/_index.js";
+import * as layout from "./layout/_index.js";
 
-export { components as component, forms as form, gettingstarted, utilities };
+export { components as component, forms as form, gettingstarted, utilities, layout };
 
 export const doc = (value: string) => {
 	switch (value) {
+		//--------------------------
+		case "docs/layout/breakpoints":
+			return layout.breakpoints;
+
 		//--------------------------
 		case "docs/content/reboot":
 			return content.reboot;
