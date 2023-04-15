@@ -73,59 +73,57 @@ export const containers: IAttrContent = {
 				new h.div({ container: "xxl" }, "100% wide until extra extra large breakpoint");
 				`,
 		}),
-		new e.alert({ color: "info", callout: true }, ""),
-		new e.code({
-			output: () => {
-				return [];
-			},
-		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Fluid containers"),
+		new e.text("Use {{.container-fluid}} for a full width container, spanning the entire width of the viewport."),
 		new e.codepreview({
-			type: "css",
-			code: `
-				`,
-		}),
-		new e.code({
-			output: () => {
-				return [];
-			},
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
-		new e.code({
-			output: () => {
-				return [];
-			},
+			type: "js",
+			code: `new h.div({container:"fluid"},"Content here");`,
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
-		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.title("Sass"),
+		new e.text(
+			"As shown above, Bootstrap generates a series of predefined container classes to help you build the layouts you desire. You may customize these predefined container classes by modifying the Sass map (found in {{_variables.scss}}) that powers them:"
+		),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
 			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
+				$container-max-widths: (
+				sm: 540px,
+				md: 720px,
+				lg: 960px,
+				xl: 1140px,
+				xxl: 1320px
+				);
 			`,
 		}),
+		new e.text("In addition to customizing the Sass, you can also create your own containers with our Sass mixin."),
+		new e.codepreview({
+			type: "css",
+			code: `
+				// Source mixin
+				@mixin make-container($padding-x: $container-padding-x) {
+				width: 100%;
+				padding-right: $padding-x;
+				padding-left: $padding-x;
+				margin-right: auto;
+				margin-left: auto;
+				}
+
+				// Usage
+				.custom-container {
+				@include make-container();
+				}
+			`,
+		}),
+		new e.text(
+			"For more information and examples on how to modify our Sass maps and variables, please refer to {{https://getbootstrap.com/docs/5.3/layout/grid/#sass::the Sass section of the Grid documentation}}."
+		),
 	],
 };
