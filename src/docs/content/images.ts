@@ -23,7 +23,7 @@ export const images: IAttrContent = {
 
 		new e.title("Image thumbnails"),
 		new e.text(
-			"In addition to our {{https://getbootstrap.com/docs/5.3/utilities/borders/::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."
+			"In addition to our {{nav:docs/utilities/borders::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."
 		),
 		new e.code({
 			output: () => {
@@ -35,7 +35,7 @@ export const images: IAttrContent = {
 
 		new e.title("Aligning images"),
 		new e.text(
-			"Align images with the {{https://getbootstrap.com/docs/5.3/utilities/float/::helper float classes}} or {{https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment::text alignment classes}}. {{block}}-level images can be centered using the {{https://getbootstrap.com/docs/5.3/utilities/spacing/#horizontal-centering::.mx-auto margin utility class}}."
+			"Align images with the {{nav:docs/utilities/float::helper float classes}} or {{nav:docs/utilities/text#text_alignment::text alignment classes}}. {{block}}-level images can be centered using the {{nav:docs/utilities/spacing#horizontal_centering::.mx-auto margin utility class}}."
 		),
 		new e.code({
 			output: () => {

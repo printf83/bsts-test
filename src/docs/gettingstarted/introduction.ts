@@ -257,7 +257,7 @@ export const introduction: IAttrContent = {
 
 		new e.subtitle("Reboot"),
 		new e.text(
-			"For improved cross-browser rendering, we use {{https://getbootstrap.com/docs/5.3/content/reboot/::Reboot}} to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements."
+			"For improved cross-browser rendering, we use {{nav:docs/content/reboot::Reboot}} to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements."
 		),
 
 		//-----------------------

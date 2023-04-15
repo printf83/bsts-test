@@ -16,7 +16,7 @@ export const ratio: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Pro-Tip! }}You don’t need {{frameborder='0'}} on your {{<iframe>}}s as we override that for you in {{https://getbootstrap.com/docs/5.3/content/reboot/::Reboot}}."
+			"{{b::Pro-Tip! }}You don’t need {{frameborder='0'}} on your {{<iframe>}}s as we override that for you in {{nav:docs/content/reboot::Reboot}}."
 		),
 
 		//-----------------------

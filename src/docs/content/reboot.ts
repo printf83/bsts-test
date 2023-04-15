@@ -358,7 +358,7 @@ export const reboot: IAttrContent = {
 
 		new e.title("Tables"),
 		new e.text(
-			"Tables are slightly adjusted to style {{<caption>}}s, collapse borders, and ensure consistent {{text-align}} throughout. Additional changes for borders, padding, and more come with {{https://getbootstrap.com/docs/5.3/content/tables/::the .table class}}."
+			"Tables are slightly adjusted to style {{<caption>}}s, collapse borders, and ensure consistent {{text-align}} throughout. Additional changes for borders, padding, and more come with {{nav:docs/content/tables::the .table class}}."
 		),
 		new e.code({
 			outputAttr: { overflow: "auto" },
@@ -688,7 +688,7 @@ export const reboot: IAttrContent = {
 		),
 
 		new e.text(
-			"To merely toggle the visibility of an element, meaning its {{display}} is not modified and the element can still affect the flow of the document, use {{https://getbootstrap.com/docs/5.3/utilities/visibility/::the .invisible class}} instead."
+			"To merely toggle the visibility of an element, meaning its {{display}} is not modified and the element can still affect the flow of the document, use {{nav:docs/utilities/visibility::the .invisible class}} instead."
 		),
 	],
 };

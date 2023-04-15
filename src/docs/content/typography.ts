@@ -9,11 +9,11 @@ export const typography: IAttrContent = {
 	item: [
 		new e.title("Global settings"),
 		new e.text(
-			"Bootstrap sets basic global display, typography, and link styles. When more control is needed, check out the {{https://getbootstrap.com/docs/5.3/utilities/text/::textual utility classes}}."
+			"Bootstrap sets basic global display, typography, and link styles. When more control is needed, check out the {{nav:docs/utilities/text::textual utility classes}}."
 		),
 		new e.ul({
 			item: [
-				"Use a {{https://getbootstrap.com/docs/5.3/content/reboot/#native-font-stack::native font stack}} that selects the best {{font-family}} for each OS and device.",
+				"Use a {{nav:docs/content/reboot#native_font_stack::native font stack}} that selects the best {{font-family}} for each OS and device.",
 				"For a more inclusive and accessible type scale, we use the browser’s default root {{font-size}} (typically 16px) so visitors can customize their browser defaults as needed.",
 				"Use the {{$font-family-base}}, {{$font-size-base}}, and {{$line-height-base}} attributes as our typographic base applied to the {{<body>}}.",
 				"Set the global link color via {{$link-color}}.",
@@ -163,7 +163,7 @@ export const typography: IAttrContent = {
 
 		new e.title("Text utilities"),
 		new e.text(
-			"Change text alignment, transform, style, weight, line-height, decoration and color with our {{https://getbootstrap.com/docs/5.3/utilities/text/::text utilities}} and {{https://getbootstrap.com/docs/5.3/utilities/colors/::color utilities}}."
+			"Change text alignment, transform, style, weight, line-height, decoration and color with our {{nav:docs/utilities/text::text utilities}} and {{nav:docs/utilities/colors::color utilities}}."
 		),
 
 		//-----------------------
@@ -355,7 +355,7 @@ export const typography: IAttrContent = {
 			`,
 		}),
 		new e.text(
-			"Miscellaneous typography elements covered here and in {{https://getbootstrap.com/docs/5.3/content/reboot/::Reboot}} also have dedicated variables."
+			"Miscellaneous typography elements covered here and in {{nav:docs/content/reboot::Reboot}} also have dedicated variables."
 		),
 		new e.codepreview({
 			type: "css",

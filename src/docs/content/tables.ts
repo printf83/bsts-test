@@ -352,7 +352,7 @@ export const tables: IAttrContent = {
 
 		new e.title("How do the variants and accented tables work?"),
 		new e.text(
-			"For the accented tables ({{https://getbootstrap.com/docs/5.3/content/tables/#striped-rows::striped rows}}, {{https://getbootstrap.com/docs/5.3/content/tables/#striped-columns::striped columns}}, {{https://getbootstrap.com/docs/5.3/content/tables/#hoverable-rows::hoverable rows}}, and {{https://getbootstrap.com/docs/5.3/content/tables/#active-tables::active tables}}), we used some techniques to make these effects work for all our {{https://getbootstrap.com/docs/5.3/content/tables/#variants::table variants}}:"
+			"For the accented tables ({{nav:docs/content/tables#striped_rows::striped rows}}, {{nav:docs/content/tables#striped_columns::striped columns}}, {{nav:docs/content/tables#hoverable_rows::hoverable rows}}, and {{nav:docs/content/tables#active_tables::active tables}}), we used some techniques to make these effects work for all our {{nav:docs/content/tables#variants::table variants}}:"
 		),
 		new e.ul({
 			item: [
@@ -407,7 +407,7 @@ export const tables: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"{{https://getbootstrap.com/docs/5.3/utilities/borders/#border-color::Border color utilities}} can be added to change colors:"
+			"{{nav:docs/utilities/borders#border_color::Border color utilities}} can be added to change colors:"
 		),
 		new e.code({
 			outputAttr: { overflow: "auto" },
@@ -500,7 +500,7 @@ export const tables: IAttrContent = {
 
 		new e.title("Vertical alignment"),
 		new e.text(
-			"Table cells of {{<thead>}} are always vertical aligned to the bottom. Table cells in {{<tbody>}} inherit their alignment from {{<table>}} and are aligned to the top by default. Use the {{https://getbootstrap.com/docs/5.3/utilities/vertical-align/::vertical align}} classes to re-align where needed."
+			"Table cells of {{<thead>}} are always vertical aligned to the bottom. Table cells in {{<tbody>}} inherit their alignment from {{<table>}} and are aligned to the top by default. Use the {{nav:docs/utilities/vertical_align::vertical align}} classes to re-align where needed."
 		),
 		new e.code({
 			output: () => {
