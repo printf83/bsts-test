@@ -19,6 +19,12 @@ a:hover *,
     width: 11rem;
 }
 
+.swatch input{
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
 /*clipboard icon hover*/
 .primary-on-hover:hover{
     color:var(--bs-primary);

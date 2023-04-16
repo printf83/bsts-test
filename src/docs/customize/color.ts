@@ -53,29 +53,111 @@ const getCSSVar = (variableName: string) => {
 	}
 };
 
-const colorpicker = (variableName: string | string[]) => {
+const colorpickerBg = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
 	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
-
-	return new b.input({
-		class: "swatch",
-		type: "color",
-		data: { "bs-var": v },
-		value: getCSSVar(firstVariableName),
-		on: {
-			input: (e) => {
-				let target = e.target as HTMLInputElement;
-				let value = target.value;
-				let bsVar = target.getAttribute("data-bs-var");
-				if (bsVar) {
-					let varList = bsVar.split(",");
-					varList.forEach((i) => {
-						setCSSVar(i, value);
-					});
-				}
+	let value = getCSSVar(firstVariableName);
+	return new h.div({ class: "swatch", rounded: true, border: true, style: { backgroundColor: value } }, [
+		new b.input({
+			type: "color",
+			data: { "bs-var": v },
+			value: value,
+			on: {
+				input: (e) => {
+					let target = e.target as HTMLInputElement;
+					let value = target.value;
+					let bsVar = target.getAttribute("data-bs-var");
+					if (bsVar) {
+						let varList = bsVar.split(",");
+						varList.forEach((i) => {
+							let container = target.closest(".swatch") as HTMLElement;
+							if (container) {
+								container.style.setProperty("background-color", value);
+								setCSSVar(i, value);
+							}
+						});
+					}
+				},
 			},
-		},
-	});
+		}),
+	]);
+};
+
+const colorpickerBorder = (variableName: string | string[]) => {
+	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
+	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
+	let value = getCSSVar(firstVariableName);
+	return new h.div(
+		{ class: "swatch", rounded: true, border: true, borderWidth: 5, style: { borderColor: `${value} !important` } },
+		[
+			new b.input({
+				type: "color",
+				data: { "bs-var": v },
+				value: value,
+				on: {
+					input: (e) => {
+						let target = e.target as HTMLInputElement;
+						let value = target.value;
+						let bsVar = target.getAttribute("data-bs-var");
+						if (bsVar) {
+							let varList = bsVar.split(",");
+							varList.forEach((i) => {
+								let container = target.closest(".swatch") as HTMLElement;
+								if (container) {
+									container.style.setProperty("border-color", value, "important");
+									setCSSVar(i, value);
+								}
+							});
+						}
+					},
+				},
+			}),
+		]
+	);
+};
+
+const colorpickerText = (variableName: string | string[]) => {
+	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
+	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
+	let value = getCSSVar(firstVariableName);
+	return new h.div({ class: "swatch", position: "relative", style: { color: `${value}` } }, [
+		new h.span(
+			{
+				h: 4,
+				fontWeight: "bolder",
+				position: "absolute",
+				width: 100,
+				zIndex: 0,
+				textAlign: "center",
+				marginTop: 2,
+				paddingTop: 1,
+			},
+			"Text"
+		),
+		new b.input({
+			type: "color",
+			data: { "bs-var": v },
+			zIndex: 1,
+			value: value,
+			on: {
+				input: (e) => {
+					let target = e.target as HTMLInputElement;
+					let value = target.value;
+					let bsVar = target.getAttribute("data-bs-var");
+					if (bsVar) {
+						let varList = bsVar.split(",");
+						varList.forEach((i) => {
+							let container = target.closest(".swatch") as HTMLElement;
+							if (container) {
+								container.style.setProperty("color", value);
+								setCSSVar(i, value);
+							}
+						});
+					}
+				},
+			},
+		}),
+	]);
 };
 
 export const color: IAttrContent = {
@@ -110,11 +192,11 @@ export const color: IAttrContent = {
 						{ rowspan: 2 },
 						"{{b::Body — }}Default foreground (color) and background, including components."
 					),
-					new b.table.td(colorpicker(["--bs-body-color", "--bs-body-color-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-body-color", "--bs-body-color-rgb"])),
 					new b.table.td(["{{--bs-body-color}}", new h.br(), "{{--bs-body-color-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker(["--bs-body-bg", "--bs-body-bg-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-body-bg", "--bs-body-bg-rgb"])),
 					new b.table.td(["{{--bs-body-bg}}", new h.br(), "{{--bs-body-bg-rgb}}"]),
 				]),
 
@@ -124,11 +206,11 @@ export const color: IAttrContent = {
 						{ rowspan: 2 },
 						"{{b::Secondary — }}Use the {{color}} option for lighter text. Use the {{bg}} option for dividers and to indicate disabled component states."
 					),
-					new b.table.td(colorpicker(["--bs-secondary-color", "--bs-secondary-color-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-secondary-color", "--bs-secondary-color-rgb"])),
 					new b.table.td(["{{--bs-secondary-color}}", new h.br(), "{{--bs-secondary-color-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker(["--bs-secondary-bg", "--bs-secondary-bg-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-secondary-bg", "--bs-secondary-bg-rgb"])),
 					new b.table.td(["{{--bs-secondary-bg}}", new h.br(), "{{--bs-secondary-bg-rgb}}"]),
 				]),
 
@@ -138,18 +220,18 @@ export const color: IAttrContent = {
 						{ rowspan: 2 },
 						"{{b::Tertiary — }}Use the {{color}} option for even lighter text. Use the {{bg}} option to style backgrounds for hover states, accents, and wells."
 					),
-					new b.table.td(colorpicker(["--bs-tertiary-color", "--bs-tertiary-color-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-tertiary-color", "--bs-tertiary-color-rgb"])),
 					new b.table.td(["{{--bs-tertiary-color}}", new h.br(), "{{--bs-tertiary-color-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker(["--bs-tertiary-bg", "--bs-tertiary-bg-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-tertiary-bg", "--bs-tertiary-bg-rgb"])),
 					new b.table.td(["{{--bs-tertiary-bg}}", new h.br(), "{{--bs-tertiary-bg-rgb}}"]),
 				]),
 
 				//-----------------------
 				new b.table.tr([
 					new b.table.td("{{b::Emphasis — }}For higher contrast text. Not applicable for backgrounds."),
-					new b.table.td(colorpicker(["--bs-emphasis-color", "--bs-emphasis-color-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-emphasis-color", "--bs-emphasis-color-rgb"])),
 					new b.table.td(["{{--bs-emphasis-color}}", new h.br(), "{{--bs-emphasis-color-rgb}}"]),
 				]),
 
@@ -158,7 +240,7 @@ export const color: IAttrContent = {
 					new b.table.td(
 						"{{b::Border — }}For component borders, dividers, and rules. Use {{--bs-border-color-translucent}} to blend with backgrounds with an {{rgba()}} value."
 					),
-					new b.table.td(colorpicker(["--bs-border-color", "--bs-border-color-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-border-color", "--bs-border-color-rgb"])),
 					new b.table.td(["{{--bs-border-color}}", new h.br(), "{{--bs-border-color-rgb}}"]),
 				]),
 
@@ -168,19 +250,19 @@ export const color: IAttrContent = {
 						{ rowspan: 4 },
 						"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
 					),
-					new b.table.td(colorpicker(["--bs-primary", "--bs-primary-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-primary", "--bs-primary-rgb"])),
 					new b.table.td(["{{--bs-primary}}", new h.br(), "{{--bs-primary-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-primary-bg-subtle")),
+					new b.table.td(colorpickerBg("--bs-primary-bg-subtle")),
 					new b.table.td("{{--bs-primary-bg-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-primary-border-subtle")),
+					new b.table.td(colorpickerBorder("--bs-primary-border-subtle")),
 					new b.table.td("{{--bs-primary-border-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-primary-text-emphasis")),
+					new b.table.td(colorpickerText("--bs-primary-text-emphasis")),
 					new b.table.td("{{--bs-primary-text-emphasis}}"),
 				]),
 
@@ -190,19 +272,19 @@ export const color: IAttrContent = {
 						{ rowspan: 4 },
 						"{{b::Success — }}Theme color used for positive or successful actions and information."
 					),
-					new b.table.td(colorpicker(["--bs-success", "--bs-success-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-success", "--bs-success-rgb"])),
 					new b.table.td(["{{--bs-success}}", new h.br(), "{{--bs-success-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-success-bg-subtle")),
+					new b.table.td(colorpickerBg("--bs-success-bg-subtle")),
 					new b.table.td("{{--bs-success-bg-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-success-border-subtle")),
+					new b.table.td(colorpickerBorder("--bs-success-border-subtle")),
 					new b.table.td("{{--bs-success-border-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-success-text-emphasis")),
+					new b.table.td(colorpickerText("--bs-success-text-emphasis")),
 					new b.table.td("{{--bs-success-text-emphasis}}"),
 				]),
 
@@ -212,19 +294,19 @@ export const color: IAttrContent = {
 						{ rowspan: 4 },
 						"{{b::Danger — }}Theme color used for errors and dangerous actions."
 					),
-					new b.table.td(colorpicker(["--bs-danger", "--bs-danger-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-danger", "--bs-danger-rgb"])),
 					new b.table.td(["{{--bs-danger}}", new h.br(), "{{--bs-danger-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-danger-bg-subtle")),
+					new b.table.td(colorpickerBg("--bs-danger-bg-subtle")),
 					new b.table.td("{{--bs-danger-bg-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-danger-border-subtle")),
+					new b.table.td(colorpickerBorder("--bs-danger-border-subtle")),
 					new b.table.td("{{--bs-danger-border-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-danger-text-emphasis")),
+					new b.table.td(colorpickerText("--bs-danger-text-emphasis")),
 					new b.table.td("{{--bs-danger-text-emphasis}}"),
 				]),
 
@@ -234,19 +316,19 @@ export const color: IAttrContent = {
 						{ rowspan: 4 },
 						"{{b::Warning — }}Theme color used for non-destructive warning messages."
 					),
-					new b.table.td(colorpicker(["--bs-warning", "--bs-warning-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-warning", "--bs-warning-rgb"])),
 					new b.table.td(["{{--bs-warning}}", new h.br(), "{{--bs-warning-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-warning-bg-subtle")),
+					new b.table.td(colorpickerBg("--bs-warning-bg-subtle")),
 					new b.table.td("{{--bs-warning-bg-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-warning-border-subtle")),
+					new b.table.td(colorpickerBorder("--bs-warning-border-subtle")),
 					new b.table.td("{{--bs-warning-border-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-warning-text-emphasis")),
+					new b.table.td(colorpickerText("--bs-warning-text-emphasis")),
 					new b.table.td("{{--bs-warning-text-emphasis}}"),
 				]),
 
@@ -256,19 +338,19 @@ export const color: IAttrContent = {
 						{ rowspan: 4 },
 						"{{b::Info — }}Theme color used for neutral and informative content."
 					),
-					new b.table.td(colorpicker(["--bs-info", "--bs-info-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-info", "--bs-info-rgb"])),
 					new b.table.td(["{{--bs-info}}", new h.br(), "{{--bs-info-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-info-bg-subtle")),
+					new b.table.td(colorpickerBg("--bs-info-bg-subtle")),
 					new b.table.td("{{--bs-info-bg-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-info-border-subtle")),
+					new b.table.td(colorpickerBorder("--bs-info-border-subtle")),
 					new b.table.td("{{--bs-info-border-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-info-text-emphasis")),
+					new b.table.td(colorpickerText("--bs-info-text-emphasis")),
 					new b.table.td("{{--bs-info-text-emphasis}}"),
 				]),
 
@@ -278,19 +360,19 @@ export const color: IAttrContent = {
 						{ rowspan: 4 },
 						"{{b::Light — }}Additional theme option for less contrasting colors."
 					),
-					new b.table.td(colorpicker(["--bs-light", "--bs-light-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-light", "--bs-light-rgb"])),
 					new b.table.td(["{{--bs-light}}", new h.br(), "{{--bs-light-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-light-bg-subtle")),
+					new b.table.td(colorpickerBg("--bs-light-bg-subtle")),
 					new b.table.td("{{--bs-light-bg-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-light-border-subtle")),
+					new b.table.td(colorpickerBorder("--bs-light-border-subtle")),
 					new b.table.td("{{--bs-light-border-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-light-text-emphasis")),
+					new b.table.td(colorpickerText("--bs-light-text-emphasis")),
 					new b.table.td("{{--bs-light-text-emphasis}}"),
 				]),
 
@@ -300,19 +382,19 @@ export const color: IAttrContent = {
 						{ rowspan: 4 },
 						"{{b::Dark — }}Additional theme option for higher contrasting colors."
 					),
-					new b.table.td(colorpicker(["--bs-dark", "--bs-dark-rgb"])),
+					new b.table.td(colorpickerBg(["--bs-dark", "--bs-dark-rgb"])),
 					new b.table.td(["{{--bs-dark}}", new h.br(), "{{--bs-dark-rgb}}"]),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-dark-bg-subtle")),
+					new b.table.td(colorpickerBg("--bs-dark-bg-subtle")),
 					new b.table.td("{{--bs-dark-bg-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-dark-border-subtle")),
+					new b.table.td(colorpickerBorder("--bs-dark-border-subtle")),
 					new b.table.td("{{--bs-dark-border-subtle}}"),
 				]),
 				new b.table.tr([
-					new b.table.td(colorpicker("--bs-dark-text-emphasis")),
+					new b.table.td(colorpickerText("--bs-dark-text-emphasis")),
 					new b.table.td("{{--bs-dark-text-emphasis}}"),
 				]),
 			]),
