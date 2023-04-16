@@ -23,25 +23,33 @@ const RGBToHex = (r: number, g: number, b: number) => {
 };
 
 const setCSSVar = (variableName: string, value: string) => {
-	if (variableName.endsWith("-rgb") && value.startsWith("#")) {
-		let v = hexToRGB(value);
-		if (v) {
-			document.documentElement.style.setProperty(variableName, `${v.r},${v.g},${v.b}`);
+	let root = document.querySelector(":root") as HTMLElement;
+	if (root) {
+		if (variableName.endsWith("-rgb") && value.startsWith("#")) {
+			let v = hexToRGB(value);
+			if (v) {
+				root.style.setProperty(variableName, `${v.r},${v.g},${v.b}`);
+			}
+		} else {
+			root.style.setProperty(variableName, value);
 		}
-	} else {
-		document.documentElement.style.setProperty(variableName, value);
 	}
 };
 const getCSSVar = (variableName: string) => {
-	let value = getComputedStyle(document.documentElement).getPropertyValue(variableName);
-	if (value.startsWith("#")) {
-		console.log(`${variableName}:${value}`);
-		return value;
+	let root = document.querySelector(":root");
+	if (root) {
+		let value = getComputedStyle(root).getPropertyValue(variableName);
+		if (value.startsWith("#")) {
+			console.log(`1. ${variableName}:${value}`);
+			return value;
+		} else {
+			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
+			let result = RGBToHex(parseInt(v[0]), parseInt(v[1]), parseInt(v[2]));
+			console.log(`2. ${variableName}:${result}`);
+			return result;
+		}
 	} else {
-		let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
-		let result = RGBToHex(parseInt(v[0]), parseInt(v[1]), parseInt(v[2]));
-		console.log(`${variableName}:${result}`);
-		return result;
+		return "#ffffff";
 	}
 };
 
