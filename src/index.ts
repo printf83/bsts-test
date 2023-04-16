@@ -49,6 +49,7 @@ let m = {
 				{ label: "Containers", value: "docs/layout/containers" },
 				{ label: "Grid", value: "docs/layout/grid" },
 				{ label: "Columns", value: "docs/layout/columns" },
+				{ label: "Gutters", value: "docs/layout/gutters" },
 			],
 		},
 		{

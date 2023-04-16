@@ -349,7 +349,7 @@ export const columns: IAttrContent = {
 						marginBottom: 3,
 						marginStart: "md-3",
 						alt: "...",
-						src: "https://picsum.photos/seed/bsts_0/355/210",
+						src: "https://picsum.photos/seed/bsts_0/300/200",
 					}),
 					new h.p(
 						"A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image."
