@@ -122,7 +122,7 @@ export const gutters: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("No gutters"),
+		new e.title("No gutters"),
 		new e.text(
 			"The gutters between columns in our predefined grid classes can be removed with {{.g-0}}. This removes the negative {{margins}} from {{.row}} and the horizontal {{padding}} from all immediate children columns."
 		),
