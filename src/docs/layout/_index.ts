@@ -3,5 +3,6 @@ import { containers } from "./containers.js";
 import { grid } from "./grid.js";
 import { columns } from "./columns.js";
 import { gutters } from "./gutters.js";
+import { utilities } from "./utilities.js";
 
-export { breakpoints, containers, grid, columns, gutters };
+export { breakpoints, containers, grid, columns, gutters, utilities };

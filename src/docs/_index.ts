@@ -21,6 +21,8 @@ export const doc = (value: string) => {
 			return layout.columns;
 		case "docs/layout/gutters":
 			return layout.gutters;
+		case "docs/layout/utilities":
+			return layout.utilities;
 
 		//--------------------------
 		case "docs/content/reboot":

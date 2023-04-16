@@ -50,6 +50,7 @@ let m = {
 				{ label: "Grid", value: "docs/layout/grid" },
 				{ label: "Columns", value: "docs/layout/columns" },
 				{ label: "Gutters", value: "docs/layout/gutters" },
+				{ label: "Utilities", value: "docs/layout/utilities" },
 			],
 		},
 		{
