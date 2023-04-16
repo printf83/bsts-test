@@ -166,7 +166,7 @@ export const color: IAttrContent = {
 				new b.table.tr([
 					new b.table.td(
 						{ rowspan: 4 },
-						"{{Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
+						"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
 					),
 					new b.table.td(colorpicker(["--bs-primary", "--bs-primary-rgb"])),
 					new b.table.td(["{{--bs-primary}}", new h.br(), "{{--bs-primary-rgb}}"]),
