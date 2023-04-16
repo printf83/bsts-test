@@ -331,7 +331,7 @@ export const carousel: IAttrContent = {
 				$carousel-transition:                transform $carousel-transition-duration ease-in-out; // Define transform transition first if using multiple transitions (e.g., 'transform 2s ease, opacity .5s ease-out')
 			`,
 		}),
-		// new e.text("Variables for the {{nav:docs/components/carousel#dark-variant::dark carousel}}:"),
+		// new e.text("Variables for the {{nav:docs/components/carousel#dark_variant::dark carousel}}:"),
 
 		// new e.codepreview({
 		// 	type: "css",

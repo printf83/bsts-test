@@ -15,7 +15,7 @@ export const utilities: IAttrContent = {
 
 		new e.title("Flexbox options"),
 		new e.text(
-			"Bootstrap is built with flexbox, but not every element’s {{display}} has been changed to {{display: flex}} as this would add many unnecessary overrides and unexpectedly change key browser behaviors. Most of {{nav:docs/components/alerts::Bootstrap components}} are built with flexbox enabled."
+			"Bootstrap is built with flexbox, but not every element’s {{display}} has been changed to {{display: flex}} as this would add many unnecessary overrides and unexpectedly change key browser behaviors. Most of {{nav:docs/components/alert::Bootstrap components}} are built with flexbox enabled."
 		),
 		new e.text(
 			"Should you need to add {{display: flex}} to an element, do so with {{.d-flex}} or one of the responsive variants (e.g., {{.d-sm-flex}}). You’ll need this class or {{display}} value to allow the use of Bootstrap extra {{nav:docs/utilities/flex::flexbox utilities}} for sizing, alignment, spacing, and more."
