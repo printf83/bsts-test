@@ -11,7 +11,7 @@ export const reboot: IAttrContent = {
 		new e.text(
 			"Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, we reboot some {{<table>}} styles for a simpler baseline and later provide {{.table}}, {{.table-bordered}}, and more."
 		),
-		new e.text("Here are our guidelines and reasons for choosing what to override in Reboot:"),
+		new e.text("Here are Bootstrap guidelines and reasons for choosing what to override in Reboot:"),
 		new e.ul({
 			item: [
 				"Update some browser default values to use {{rem}}s instead of {{em}}s for scalable component spacing.",
@@ -25,7 +25,7 @@ export const reboot: IAttrContent = {
 
 		new e.title("CSS variables"),
 		new e.text(
-			"With v5.1.1, we standardized our required {{@imports}} across all our CSS bundles (including {{bootstrap.css}}, {{bootstrap-reboot.css}}, and {{bootstrap-grid.css}}) to include {{_root.scss}}. This adds {{:root}} level CSS variables to all bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see more {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS variables}} added over time, in order to provide more real-time customization without the need to always recompile Sass. Our approach is to take our source Sass variables and transform them into CSS variables. That way, even if you don’t use CSS variables, you still have all the power of Sass. {{b::This is still in-progress and will take time to fully implement}}."
+			"With v5.1.1, we standardized Bootstrap required {{@imports}} across all Bootstrap CSS bundles (including {{bootstrap.css}}, {{bootstrap-reboot.css}}, and {{bootstrap-grid.css}}) to include {{_root.scss}}. This adds {{:root}} level CSS variables to all bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see more {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS variables}} added over time, in order to provide more real-time customization without the need to always recompile Sass. Bootstrap approach is to take Bootstrap source Sass variables and transform them into CSS variables. That way, even if you don’t use CSS variables, you still have all the power of Sass. {{b::This is still in-progress and will take time to fully implement}}."
 		),
 		new e.text("For example, consider these {{:root}} CSS variables for common {{<body>}} styles:"),
 

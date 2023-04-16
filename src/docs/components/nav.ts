@@ -56,7 +56,7 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Horizontal alignment"),
 		new e.text(
-			"Change the horizontal alignment of your nav with {{https://getbootstrap.com/docs/5.3/layout/grid/#horizontal-alignment::flexbox utilities}}. By default, navs are left-aligned, but you can easily change them to center or right aligned."
+			"Change the horizontal alignment of your nav with {{nav:docs/layout/grid#horizontal_alignment::flexbox utilities}}. By default, navs are left-aligned, but you can easily change them to center or right aligned."
 		),
 		new e.text("Centered with {{.justify-content-center}}:"),
 		new e.code({

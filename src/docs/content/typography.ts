@@ -15,7 +15,7 @@ export const typography: IAttrContent = {
 			item: [
 				"Use a {{nav:docs/content/reboot#native_font_stack::native font stack}} that selects the best {{font-family}} for each OS and device.",
 				"For a more inclusive and accessible type scale, we use the browser’s default root {{font-size}} (typically 16px) so visitors can customize their browser defaults as needed.",
-				"Use the {{$font-family-base}}, {{$font-size-base}}, and {{$line-height-base}} attributes as our typographic base applied to the {{<body>}}.",
+				"Use the {{$font-family-base}}, {{$font-size-base}}, and {{$line-height-base}} attributes as Bootstrap typographic base applied to the {{<body>}}.",
 				"Set the global link color via {{$link-color}}.",
 				"Use {{$body-bg}} to set a {{background-color}} on the {{<body>}} ({{#fff}} by default).",
 			],
@@ -163,7 +163,7 @@ export const typography: IAttrContent = {
 
 		new e.title("Text utilities"),
 		new e.text(
-			"Change text alignment, transform, style, weight, line-height, decoration and color with our {{nav:docs/utilities/text::text utilities}} and {{nav:docs/utilities/colors::color utilities}}."
+			"Change text alignment, transform, style, weight, line-height, decoration and color with Bootstrap {{nav:docs/utilities/text::text utilities}} and {{nav:docs/utilities/colors::color utilities}}."
 		),
 
 		//-----------------------
@@ -291,7 +291,7 @@ export const typography: IAttrContent = {
 
 		new e.subtitle("Description list alignment"),
 		new e.text(
-			"Align terms and descriptions horizontally by using our grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a {{.text-truncate}} class to truncate the text with an ellipsis."
+			"Align terms and descriptions horizontally by using Bootstrap grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a {{.text-truncate}} class to truncate the text with an ellipsis."
 		),
 		new e.code({
 			output: () => {

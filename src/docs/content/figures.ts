@@ -27,7 +27,7 @@ export const figures: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Aligning the figure’s caption is easy with our {{nav:docs/utilities/text#text_alignment::text utilities}}."
+			"Aligning the figure’s caption is easy with Bootstrap {{nav:docs/utilities/text#text_alignment::text utilities}}."
 		),
 		new e.code({
 			output: () => {

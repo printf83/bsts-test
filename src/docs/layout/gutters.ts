@@ -11,7 +11,7 @@ export const gutters: IAttrContent = {
 		new e.ul({
 			item: [
 				"{{b::Gutters are the gaps between column content, created by horizontal }}{{bc::padding}}{{b::.}} We set {{padding-right}} and {{padding-left}} on each column, and use negative {{margin}} to offset that at the start and end of each row to align content.",
-				"{{b::Gutters start at }}{{bc::1.5rem }}{{b::(}}{{bc::24px}}{{b::) wide.}} This allows us to match our grid to the {{https://getbootstrap.com/docs/5.3/utilities/spacing/::padding and margin spacers}} scale.",
+				"{{b::Gutters start at }}{{bc::1.5rem }}{{b::(}}{{bc::24px}}{{b::) wide.}} This allows us to match Bootstrap grid to the {{nav:docs/utilities/spacing::padding and margin spacers}} scale.",
 				"{{b::Gutters can be responsively adjusted.}} Use breakpoint-specific gutter classes to modify horizontal gutters, vertical gutters, and all gutters.",
 			],
 		}),
@@ -96,7 +96,7 @@ export const gutters: IAttrContent = {
 
 		new e.title("Row columns gutters"),
 		new e.text(
-			"Gutter classes can also be added to {{https://getbootstrap.com/docs/5.3/layout/grid/#row-columns::row columns}}. In the following example, we use responsive row columns and responsive gutter classes."
+			"Gutter classes can also be added to {{nav:docs/layout/grid#row_columns::row columns}}. In the following example, we use responsive row columns and responsive gutter classes."
 		),
 		new e.code({
 			showViewport: true,
@@ -124,7 +124,7 @@ export const gutters: IAttrContent = {
 
 		new e.title("No gutters"),
 		new e.text(
-			"The gutters between columns in our predefined grid classes can be removed with {{.g-0}}. This removes the negative {{margins}} from {{.row}} and the horizontal {{padding}} from all immediate children columns."
+			"The gutters between columns in Bootstrap predefined grid classes can be removed with {{.g-0}}. This removes the negative {{margins}} from {{.row}} and the horizontal {{padding}} from all immediate children columns."
 		),
 		new e.text(
 			"{{b::Need an edge-to-edge design?}} Drop the parent {{.container}} or {{.container-fluid}} and add {{.mx-0}} to the {{.row}} to prevent overflow."

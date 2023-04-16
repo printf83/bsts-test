@@ -23,7 +23,7 @@ export const images: IAttrContent = {
 
 		new e.title("Image thumbnails"),
 		new e.text(
-			"In addition to our {{nav:docs/utilities/borders::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."
+			"In addition to Bootstrap {{nav:docs/utilities/borders::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."
 		),
 		new e.code({
 			output: () => {

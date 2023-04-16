@@ -5,7 +5,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const grid: IAttrContent = {
 	title: "Grid",
 	description:
-		"Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve column system, six default responsive tiers, Sass variables and mixins, and dozens of predefined classes.",
+		"Use Bootstrap powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve column system, six default responsive tiers, Sass variables and mixins, and dozens of predefined classes.",
 	item: [
 		new e.title("Example"),
 		new e.text(
@@ -29,7 +29,7 @@ export const grid: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"The above example creates three equal-width columns across all devices and viewports using our predefined grid classes. Those columns are centered in the page with the parent {{.container}}."
+			"The above example creates three equal-width columns across all devices and viewports using Bootstrap predefined grid classes. Those columns are centered in the page with the parent {{.container}}."
 		),
 
 		//-----------------------
@@ -38,12 +38,12 @@ export const grid: IAttrContent = {
 		new e.text("Breaking it down, here’s how the grid system comes together:"),
 		new e.ul({
 			item: [
-				"{{b::Our grid supports }}{{https://getbootstrap.com/docs/5.3/layout/breakpoints/::six responsive breakpoints}}. Breakpoints are based on {{min-width}} media queries, meaning they affect that breakpoint and all those above it (e.g., {{.col-sm-4}} applies to {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}). This means you can control container and column sizing and behavior by each breakpoint.",
+				"{{b::Bootstrap grid supports }}{{nav:docs/layout/breakpoints::six responsive breakpoints}}. Breakpoints are based on {{min-width}} media queries, meaning they affect that breakpoint and all those above it (e.g., {{.col-sm-4}} applies to {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}). This means you can control container and column sizing and behavior by each breakpoint.",
 				"{{b::Containers center and horizontally pad your content.}} Use {{.container}} for a responsive pixel width, {{.container-fluid}} for {{width: 100%}} across all viewports and devices, or a responsive container (e.g., {{.container-md}}) for a combination of fluid and pixel widths.",
-				"{{b::Rows are wrappers for columns.}} Each column has horizontal {{padding}} (called a gutter) for controlling the space between them. This {{padding}} is then counteracted on the rows with negative margins to ensure the content in your columns is visually aligned down the left side. Rows also support modifier classes to {{https://getbootstrap.com/docs/5.3/layout/grid/#row-columns::uniformly apply column sizing}} and {{https://getbootstrap.com/docs/5.3/layout/gutters/::gutter classes}} to change the spacing of your content.",
+				"{{b::Rows are wrappers for columns.}} Each column has horizontal {{padding}} (called a gutter) for controlling the space between them. This {{padding}} is then counteracted on the rows with negative margins to ensure the content in your columns is visually aligned down the left side. Rows also support modifier classes to {{nav:docs/layout/grid#row_columns::uniformly apply column sizing}} and {{nav:docs/layout/gutters::gutter classes}} to change the spacing of your content.",
 				"{{b::Columns are incredibly flexible.}} There are 12 template columns available per row, allowing you to create different combinations of elements that span any number of columns. Column classes indicate the number of template columns to span (e.g., col-4 spans four). widths are set in percentages so you always have the same relative sizing.",
-				"{{b::Gutters are also responsive and customizable.}} {{Be aware of the limitations and bugs around flexbox, like the inability to use some HTML elements as flex containers.::Gutter classes are available}} across all breakpoints, with all the same sizes as our {{https://getbootstrap.com/docs/5.3/utilities/spacing/::margin and padding spacing}}. Change horizontal gutters with {{.gx-*}} classes, vertical gutters with {{.gy-*}}, or all gutters with {{.g-*}} classes. {{.g-0}} is also available to remove gutters.",
-				"{{b::Sass variables, maps, and mixins power the grid.}} If you don’t want to use the predefined grid classes in Bootstrap, you can use our {{https://getbootstrap.com/docs/5.3/layout/grid/#sass::grid’s source Sass}} to create your own with more semantic markup. We also include some CSS custom properties to consume these Sass variables for even greater flexibility for you.",
+				"{{b::Gutters are also responsive and customizable.}} {{Be aware of the limitations and bugs around flexbox, like the inability to use some HTML elements as flex containers.::Gutter classes are available}} across all breakpoints, with all the same sizes as Bootstrap {{nav:docs/utilities/spacing::margin and padding spacing}}. Change horizontal gutters with {{.gx-*}} classes, vertical gutters with {{.gy-*}}, or all gutters with {{.g-*}} classes. {{.g-0}} is also available to remove gutters.",
+				"{{b::Sass variables, maps, and mixins power the grid.}} If you don’t want to use the predefined grid classes in Bootstrap, you can use Bootstrap {{nav:docs/layout/grid#sass::grid’s source Sass}} to create your own with more semantic markup. We also include some CSS custom properties to consume these Sass variables for even greater flexibility for you.",
 			],
 		}),
 		new e.text(
@@ -110,18 +110,15 @@ export const grid: IAttrContent = {
 				]),
 				new b.table.tr([
 					new b.table.th({ scope: "row" }, "Custom gutters"),
-					new b.table.td({ colspan: 6 }, "{{https://getbootstrap.com/docs/5.3/layout/gutters/::Yes}}"),
+					new b.table.td({ colspan: 6 }, "{{nav:docs/layout/gutters::Yes}}"),
 				]),
 				new b.table.tr([
 					new b.table.th({ scope: "row" }, "Nestable"),
-					new b.table.td({ colspan: 6 }, "{{https://getbootstrap.com/docs/5.3/layout/grid/#nesting::Yes}}"),
+					new b.table.td({ colspan: 6 }, "{{nav:docs/layout/grid#nesting::Yes}}"),
 				]),
 				new b.table.tr([
 					new b.table.th({ scope: "row" }, "Column ordering"),
-					new b.table.td(
-						{ colspan: 6 },
-						"{{https://getbootstrap.com/docs/5.3/layout/columns/#reordering::Yes}}"
-					),
+					new b.table.td({ colspan: 6 }, "{{nav:docs/layout/columns#reordering::Yes}}"),
 				]),
 			]),
 		]),
@@ -422,7 +419,7 @@ export const grid: IAttrContent = {
 
 		new e.title("CSS"),
 		new e.text(
-			"When using Bootstrap’s source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Our predefined grid classes use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts."
+			"When using Bootstrap’s source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Bootstrap predefined grid classes use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts."
 		),
 
 		//-----------------------
@@ -553,7 +550,7 @@ export const grid: IAttrContent = {
 
 		new e.title("Customizing the grid"),
 		new e.text(
-			"Using our built-in grid Sass variables and maps, it’s possible to completely customize the predefined grid classes. Change the number of tiers, the media query dimensions, and the container widths—then recompile."
+			"Using Bootstrap built-in grid Sass variables and maps, it’s possible to completely customize the predefined grid classes. Change the number of tiers, the media query dimensions, and the container widths—then recompile."
 		),
 
 		//-----------------------

@@ -16,7 +16,7 @@ export const display: IAttrContent = {
 
 		new e.title("Notation"),
 		new e.text(
-			"Display utility classes that apply to all {{https://getbootstrap.com/docs/5.3/layout/breakpoints/::breakpoints}}, from {{xs}} to {{xxl}}, have no breakpoint abbreviation in them. This is because those classes are applied from {{min-width: 0;}} and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation."
+			"Display utility classes that apply to all {{nav:docs/layout/breakpoints::breakpoints}}, from {{xs}} to {{xxl}}, have no breakpoint abbreviation in them. This is because those classes are applied from {{min-width: 0;}} and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation."
 		),
 		new e.text("As such, the classes are named using the format:"),
 		new e.ul({

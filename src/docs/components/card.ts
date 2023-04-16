@@ -681,7 +681,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Grid cards"),
 		new e.text(
-			"Use the Bootstrap grid system and its {{https://getbootstrap.com/docs/5.3/layout/grid#row-columns::.row-cols classes}} to control how many grid columns (wrapped around your cards) you show per row. For example, here’s {{.row-cols-1}} laying out the cards on one column, and {{.row-cols-md-2}} splitting four cards to equal width across multiple rows, from the medium breakpoint up."
+			"Use the Bootstrap grid system and its {{nav:docs/layout/grid#row_columns::.row-cols classes}} to control how many grid columns (wrapped around your cards) you show per row. For example, here’s {{.row-cols-1}} laying out the cards on one column, and {{.row-cols-md-2}} splitting four cards to equal width across multiple rows, from the medium breakpoint up."
 		),
 
 		new e.code({

@@ -9,7 +9,7 @@ export const containers: IAttrContent = {
 	item: [
 		new e.title("How they work"),
 		new e.text(
-			"Containers are the most basic layout element in Bootstrap and are {{b::required when using our default grid system}}. Containers are used to contain, pad, and (sometimes) center the content within them. While containers {{i::can}} be nested, most layouts do not require a nested container."
+			"Containers are the most basic layout element in Bootstrap and are {{b::required when using Bootstrap default grid system}}. Containers are used to contain, pad, and (sometimes) center the content within them. While containers {{i::can}} be nested, most layouts do not require a nested container."
 		),
 		new e.text("Bootstrap comes with three different containers:"),
 		new e.ul({
@@ -23,7 +23,7 @@ export const containers: IAttrContent = {
 			"The table below illustrates how each container’s {{max-width}} compares to the original {{.container}} and {{.container-fluid}} across each breakpoint."
 		),
 		new e.text(
-			"See them in action and compare them in our {{https://getbootstrap.com/docs/5.3/examples/grid/#containers::Grid example}}."
+			"See them in action and compare them in Bootstrap {{https://getbootstrap.com/docs/5.3/examples/grid/#containers::Grid example}}."
 		),
 		new e.table({
 			item: [
@@ -50,7 +50,7 @@ export const containers: IAttrContent = {
 
 		new e.title("Default container"),
 		new e.text(
-			"Our default {{.container}} class is a responsive, fixed-width container, meaning its {{max-width}} changes at each breakpoint."
+			"Bootstrap default {{.container}} class is a responsive, fixed-width container, meaning its {{max-width}} changes at each breakpoint."
 		),
 		new e.codepreview({
 			type: "js",
@@ -103,7 +103,9 @@ export const containers: IAttrContent = {
 				);
 			`,
 		}),
-		new e.text("In addition to customizing the Sass, you can also create your own containers with our Sass mixin."),
+		new e.text(
+			"In addition to customizing the Sass, you can also create your own containers with Bootstrap Sass mixin."
+		),
 		new e.codepreview({
 			type: "css",
 			code: `
@@ -123,7 +125,7 @@ export const containers: IAttrContent = {
 			`,
 		}),
 		new e.text(
-			"For more information and examples on how to modify our Sass maps and variables, please refer to {{https://getbootstrap.com/docs/5.3/layout/grid/#sass::the Sass section of the Grid documentation}}."
+			"For more information and examples on how to modify Bootstrap Sass maps and variables, please refer to {{nav:docs/layout/grid#sass::the Sass section of the Grid documentation}}."
 		),
 	],
 };

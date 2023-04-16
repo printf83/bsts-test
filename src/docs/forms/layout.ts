@@ -88,7 +88,7 @@ export const layout: IAttrContent = {
 
 		new e.title("Gutters"),
 		new e.text(
-			"By adding {{https://getbootstrap.com/docs/5.3/layout/gutters/::gutter modifier classes}}, you can have control over the gutter width in as well the inline as block direction. {{b::Also requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."
+			"By adding {{nav:docs/layout/gutters::gutter modifier classes}}, you can have control over the gutter width in as well the inline as block direction. {{b::Also requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."
 		),
 		new e.code({
 			output: () => {
@@ -350,7 +350,7 @@ export const layout: IAttrContent = {
 
 		new e.title("Inline forms"),
 		new e.text(
-			"Use the {{.row-cols-*}} classes to create responsive horizontal layouts. By adding {{https://getbootstrap.com/docs/5.3/layout/gutters/::gutter modifier classes}}, we’ll have gutters in horizontal and vertical directions. On narrow mobile viewports, the {{.col-12}} helps stack the form controls and more. The {{.align-items-center}} aligns the form elements to the middle, making the {{.form-check}} align properly."
+			"Use the {{.row-cols-*}} classes to create responsive horizontal layouts. By adding {{nav:docs/layout/gutters::gutter modifier classes}}, we’ll have gutters in horizontal and vertical directions. On narrow mobile viewports, the {{.col-12}} helps stack the form controls and more. The {{.align-items-center}} aligns the form elements to the middle, making the {{.form-check}} align properly."
 		),
 		new e.code({
 			output: () => {

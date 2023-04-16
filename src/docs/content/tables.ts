@@ -96,7 +96,7 @@ export const tables: IAttrContent = {
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"Due to the widespread use of {{<table>}} elements across third-party widgets like calendars and date pickers, Bootstrap’s tables are opt-in. Add the base class {{.table}} to any {{<table>}}, then extend with our optional modifier classes or custom styles. All table styles are not inherited in Bootstrap, meaning any nested tables can be styled independent from the parent."
+			"Due to the widespread use of {{<table>}} elements across third-party widgets like calendars and date pickers, Bootstrap’s tables are opt-in. Add the base class {{.table}} to any {{<table>}}, then extend with Bootstrap optional modifier classes or custom styles. All table styles are not inherited in Bootstrap, meaning any nested tables can be styled independent from the parent."
 		),
 		new e.text("Using the most basic table markup, here’s how {{.table}}-based tables look in Bootstrap."),
 		new e.code({
@@ -140,7 +140,7 @@ export const tables: IAttrContent = {
 		new e.text("Use contextual classes to color tables, table rows or individual cells."),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Heads up! }}Because of the more complicated CSS used to generate our table variants, they most likely won’t see color mode adaptive styling until v6."
+			"{{b::Heads up! }}Because of the more complicated CSS used to generate Bootstrap table variants, they most likely won’t see color mode adaptive styling until v6."
 		),
 		new e.code({
 			outputAttr: { overflow: "auto" },
@@ -352,7 +352,7 @@ export const tables: IAttrContent = {
 
 		new e.title("How do the variants and accented tables work?"),
 		new e.text(
-			"For the accented tables ({{nav:docs/content/tables#striped_rows::striped rows}}, {{nav:docs/content/tables#striped_columns::striped columns}}, {{nav:docs/content/tables#hoverable_rows::hoverable rows}}, and {{nav:docs/content/tables#active_tables::active tables}}), we used some techniques to make these effects work for all our {{nav:docs/content/tables#variants::table variants}}:"
+			"For the accented tables ({{nav:docs/content/tables#striped_rows::striped rows}}, {{nav:docs/content/tables#striped_columns::striped columns}}, {{nav:docs/content/tables#hoverable_rows::hoverable rows}}, and {{nav:docs/content/tables#active_tables::active tables}}), we used some techniques to make these effects work for all Bootstrap {{nav:docs/content/tables#variants::table variants}}:"
 		),
 		new e.ul({
 			item: [
@@ -607,10 +607,10 @@ export const tables: IAttrContent = {
 
 		new e.title("How nesting works"),
 		new e.text(
-			"To prevent any styles from leaking to nested tables, we use the child combinator ({{>}}) selector in our CSS. Since we need to target all the {{td}}s and {{th}}s in the {{thead}}, {{tbody}}, and {{tfoot}}, our selector would look pretty long without it. As such, we use the rather odd looking {{.table > :not(caption) > * > *}} selector to target all {{td}}s and {{th}}s of the {{.table}}, but none of any potential nested tables."
+			"To prevent any styles from leaking to nested tables, we use the child combinator ({{>}}) selector in Bootstrap CSS. Since we need to target all the {{td}}s and {{th}}s in the {{thead}}, {{tbody}}, and {{tfoot}}, Bootstrap selector would look pretty long without it. As such, we use the rather odd looking {{.table > :not(caption) > * > *}} selector to target all {{td}}s and {{th}}s of the {{.table}}, but none of any potential nested tables."
 		),
 		new e.text(
-			"Note that if you add {{<tr>}}s as direct children of a table, those {{<tr>}} will be wrapped in a {{<tbody>}} by default, thus making our selectors work as intended."
+			"Note that if you add {{<tr>}}s as direct children of a table, those {{<tr>}} will be wrapped in a {{<tbody>}} by default, thus making Bootstrap selectors work as intended."
 		),
 
 		//-----------------------

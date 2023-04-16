@@ -5,18 +5,18 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const columns: IAttrContent = {
 	title: "Columns",
 	description:
-		"Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.",
+		"Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to Bootstrap flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.",
 	item: [
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Heads up! }}Be sure to {{https://getbootstrap.com/docs/5.3/layout/grid/::read the Grid page}} first before diving into how to modify and customize your grid columns. "
+			"{{b::Heads up! }}Be sure to {{nav:docs/layout/grid::read the Grid page}} first before diving into how to modify and customize your grid columns. "
 		),
 		new e.title("How they work"),
 		new e.ul({
 			item: [
-				"{{b::Columns build on the grid’s flexbox architecture.}} Flexbox means we have options for changing individual columns and {{https://getbootstrap.com/docs/5.3/layout/grid/#row-columns::modifying groups of columns at the row level}}. You choose how columns grow, shrink, or otherwise change.",
-				"{{b::When building grid layouts, all content goes in columns.}} The hierarchy of Bootstrap’s grid goes from {{https://getbootstrap.com/docs/5.3/layout/containers/::container}} to row to column to your content. On rare occasions, you may combine content and column, but be aware there can be unintended consequences.",
-				"{{b::Bootstrap includes predefined classes for creating fast, responsive layouts.}} With {{https://getbootstrap.com/docs/5.3/layout/breakpoints/::six breakpoints}} and a dozen columns at each grid tier, we have dozens of classes already built for you to create your desired layouts. This can be disabled via Sass if you wish.",
+				"{{b::Columns build on the grid’s flexbox architecture.}} Flexbox means we have options for changing individual columns and {{nav:docs/layout/grid#row_columns::modifying groups of columns at the row level}}. You choose how columns grow, shrink, or otherwise change.",
+				"{{b::When building grid layouts, all content goes in columns.}} The hierarchy of Bootstrap’s grid goes from {{nav:docs/layout/containers::container}} to row to column to your content. On rare occasions, you may combine content and column, but be aware there can be unintended consequences.",
+				"{{b::Bootstrap includes predefined classes for creating fast, responsive layouts.}} With {{nav:docs/layout/breakpoints::six breakpoints}} and a dozen columns at each grid tier, we have dozens of classes already built for you to create your desired layouts. This can be disabled via Sass if you wish.",
 			],
 		}),
 
@@ -175,7 +175,7 @@ export const columns: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"You may also apply this break at specific breakpoints with our {{https://getbootstrap.com/docs/5.3/utilities/display/::responsive display utilities}}."
+			"You may also apply this break at specific breakpoints with Bootstrap {{nav:docs/utilities/display::responsive display utilities}}."
 		),
 		new e.code({
 			showViewport: true,
@@ -241,7 +241,7 @@ export const columns: IAttrContent = {
 
 		new e.subtitle("Offsetting columns"),
 		new e.text(
-			"You can offset grid columns in two ways: our responsive {{.offset-}} grid classes and our {{https://getbootstrap.com/docs/5.3/utilities/spacing/::margin utilities}}. Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable."
+			"You can offset grid columns in two ways: Bootstrap responsive {{.offset-}} grid classes and Bootstrap {{nav:docs/utilities/spacing::margin utilities}}. Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable."
 		),
 
 		//-----------------------
@@ -268,7 +268,7 @@ export const columns: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in {{https://getbootstrap.com/docs/5.3/examples/grid/::the grid example}}."
+			"In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in {{nav:docs/examples/grid::the grid example}}."
 		),
 		new e.code({
 			showViewport: true,
@@ -337,7 +337,7 @@ export const columns: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"The classes can be used together with utilities to create responsive floated images. Make sure to wrap the content in a {{https://getbootstrap.com/docs/5.3/helpers/clearfix/::.clearfix}} wrapper to clear the float if the text is shorter."
+			"The classes can be used together with utilities to create responsive floated images. Make sure to wrap the content in a {{nav:docs/helpers/clearfix::.clearfix}} wrapper to clear the float if the text is shorter."
 		),
 		new e.code({
 			showViewport: true,

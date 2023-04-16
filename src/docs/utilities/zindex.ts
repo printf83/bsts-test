@@ -34,9 +34,7 @@ export const zindex: IAttrContent = {
 		new e.text(
 			"Bootstrap overlay components—dropdown, modal, offcanvas, popover, toast, and tooltip—all have their own {{z-index}} values to ensure a usable experience with competing “layers” of an interface."
 		),
-		new e.text(
-			"Read about them in the {{https://getbootstrap.com/docs/5.3/layout/z-index/::z-index layout page}}."
-		),
+		new e.text("Read about them in the {{nav:docs/layout/zindex::z-index layout page}}."),
 
 		//-----------------------
 
