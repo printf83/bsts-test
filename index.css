@@ -12,6 +12,13 @@ a:hover *,
     margin-left: -2rem;
 }
 
+/*swatch*/
+.swatch{
+    padding: 0;
+    height: 3.5rem;
+    width: 11rem;
+}
+
 /*clipboard icon hover*/
 .primary-on-hover:hover{
     color:var(--bs-primary);

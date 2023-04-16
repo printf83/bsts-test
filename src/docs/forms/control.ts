@@ -274,7 +274,7 @@ export const control: IAttrContent = {
 		new e.text(
 			"Set the {{type='color'}} and add {{.form-control-color}} to the {{<input>}}. We use the modifier class to set fixed {{heights}} and override some inconsistencies between browsers."
 		),
-
+		new e.text([new h.span({ class: "teal-700" }, "This teal-700")]),
 		new e.code({
 			output: () => {
 				return b.form.input({

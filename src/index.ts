@@ -42,6 +42,14 @@ let m = {
 			item: [{ label: "Introduction", value: "docs/gettingstarted/introduction" }],
 		},
 		{
+			label: "Customize",
+			icon: { id: "palette2", color: "danger" },
+			item: [
+				{ label: "Color", value: "docs/customize/color" },
+				{ label: "Color", value: "docs/customize/color" },
+			],
+		},
+		{
 			label: "Layout",
 			icon: { id: "grid-fill", color: "success" },
 			item: [

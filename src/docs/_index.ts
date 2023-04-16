@@ -5,11 +5,16 @@ import * as utilities from "./utilities/_index.js";
 import * as helpers from "./helpers/_index.js";
 import * as content from "./content/_index.js";
 import * as layout from "./layout/_index.js";
+import * as customize from "./customize/_index.js";
 
-export { components as component, forms as form, gettingstarted, utilities, layout };
+export { components, forms, gettingstarted, utilities, layout, customize };
 
 export const doc = (value: string) => {
 	switch (value) {
+		//--------------------------
+		case "docs/customize/color":
+			return customize.color;
+
 		//--------------------------
 		case "docs/layout/breakpoints":
 			return layout.breakpoints;
