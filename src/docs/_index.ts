@@ -23,6 +23,10 @@ export const doc = (value: string) => {
 			return layout.gutters;
 		case "docs/layout/utilities":
 			return layout.utilities;
+		case "docs/layout/zindex":
+			return layout.zindex;
+		case "docs/layout/cssgrid":
+			return layout.cssgrid;
 
 		//--------------------------
 		case "docs/content/reboot":

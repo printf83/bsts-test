@@ -51,6 +51,8 @@ let m = {
 				{ label: "Columns", value: "docs/layout/columns" },
 				{ label: "Gutters", value: "docs/layout/gutters" },
 				{ label: "Utilities", value: "docs/layout/utilities" },
+				{ label: "Z-index", value: "docs/layout/zindex" },
+				{ label: "CSS Grid", value: "docs/layout/cssgrid" },
 			],
 		},
 		{
