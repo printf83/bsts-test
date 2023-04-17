@@ -40,12 +40,12 @@ const getCSSVar = (variableName: string) => {
 	if (root) {
 		let value = getComputedStyle(root).getPropertyValue(variableName);
 		if (value.startsWith("#")) {
-			console.log(`1. ${variableName}:${value}`);
+			//console.log(`1. ${variableName}:${value}`);
 			return value;
 		} else {
 			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
 			let result = RGBToHex(parseInt(v[0]), parseInt(v[1]), parseInt(v[2]));
-			console.log(`2. ${variableName}:${result}`);
+			//console.log(`2. ${variableName}:${result}`);
 			return result;
 		}
 	} else {

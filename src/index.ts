@@ -10,7 +10,7 @@ const cookie = {
 		let date = new Date();
 		date.setTime(date.getTime() + expiredInDays * 24 * 60 * 60 * 1000);
 		const expires = `expires=${date.toUTCString()}`;
-		document.cookie = `${name}=${value};${expires};path=${path}`;
+		document.cookie = `${name}=${value};${expires};SameSite=Strict;path=${path}`;
 	},
 	delete: (name: string) => {
 		cookie.set(name, "", -1);
@@ -27,8 +27,19 @@ const cookie = {
 	},
 };
 
+const getCurrentTheme = () => {
+	let themeCookie = cookie.get("current_theme");
+	if (themeCookie) {
+		return themeCookie;
+	} else {
+		let defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+		cookie.set("current_theme", defaultTheme);
+		return defaultTheme;
+	}
+};
+
 let CURRENT_PAGE: string | null = null;
-let CURRENT_THEME = cookie.get("current_theme") || "auto";
+let CURRENT_THEME = getCurrentTheme();
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -46,7 +57,7 @@ let m = {
 			icon: { id: "palette2", color: "danger" },
 			item: [
 				{ label: "Color", value: "docs/customize/color" },
-				{ label: "Color", value: "docs/customize/color" },
+				// { label: "Color", value: "docs/customize/color" },
 			],
 		},
 		{
