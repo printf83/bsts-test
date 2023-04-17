@@ -256,7 +256,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 				}
 			} else {
 				if (!isfirsttime) {
-					console.log("is not first");
+					// console.log("is not first");
 					window.scrollTo(0, 0);
 				}
 			}
