@@ -1,4 +1,4 @@
-import { b, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -23,7 +23,7 @@ const RGBToHex = (r: number, g: number, b: number) => {
 };
 
 const setCSSVar = (variableName: string, value: string) => {
-	let root = document.querySelector(":root") as HTMLElement;
+	let root = document.querySelector(":root") as HTMLStyleElement;
 	if (root) {
 		if (variableName.endsWith("-rgb") && value.startsWith("#")) {
 			let v = hexToRGB(value);
@@ -36,7 +36,7 @@ const setCSSVar = (variableName: string, value: string) => {
 	}
 };
 const getCSSVar = (variableName: string) => {
-	let root = document.querySelector(":root");
+	let root = document.querySelector(":root") as HTMLStyleElement;
 	if (root) {
 		let value = getComputedStyle(root).getPropertyValue(variableName);
 		if (value.startsWith("#")) {
@@ -399,56 +399,175 @@ export const color: IAttrContent = {
 				]),
 			]),
 		]),
-		new e.ul({
-			item: [
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-				"aaaaaaaaaaaaaaaaaaaaaaaa",
-			],
-		}),
-		new e.alert({ color: "info", callout: true }, ""),
+
+		//-----------------------
+
+		new e.title("Using the new colors"),
+		new e.text(
+			"These new colors are accessible via CSS variables and utility classes—like {{--bs-primary-bg-subtle}} and {{.bg-primary-subtle}}—allowing you to compose your own CSS rules with the variables, or to quickly apply styles via classes. The utilities are built with the color’s associated CSS variables, and since we customize those CSS variables for dark mode, they are also adaptive to color mode by default."
+		),
 		new e.code({
 			output: () => {
-				return [];
+				return new h.div(
+					{
+						padding: 3,
+						textColor: "primary-emphasis",
+						bgColor: "primary-subtle",
+						border: true,
+						borderColor: "primary-subtle",
+						roundedSize: 3,
+					},
+					"Example element with utilities"
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
-		new e.code({
-			output: () => {
-				return [];
-			},
-		}),
-
-		//-----------------------
-
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
-		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
+		new e.title("Theme colors"),
+		new e.text(
+			"We use a subset of all colors to create a smaller color palette for generating color schemes, also available as Sass variables and a Sass map in Bootstrap’s {{scss/_variables.scss}} file."
+		),
+		new e.item(
+			new h.div(
+				{ container: "fluid", margin: 0, padding: 0 },
+				new h.div(
+					{ row: true, gutter: 3 },
+					["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
+						(i) =>
+							new h.div(
+								{
+									col: [12, "sm-6", "md-4"],
+								},
+								new h.div(
+									{
+										padding: 3,
+										textBgColor: i as core.IAttr["textBgColor"],
+										rounded: true,
+									},
+									i.charAt(0).toUpperCase() + i.slice(1)
+								)
+							)
+					)
+				)
+			)
+		),
+		new e.text("All these colors are available as a Sass map, {{$theme-colors}}."),
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
 			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
 			code: `
+				$theme-colors: (
+				"primary":    $primary,
+				"secondary":  $secondary,
+				"success":    $success,
+				"info":       $info,
+				"warning":    $warning,
+				"danger":     $danger,
+				"light":      $light,
+				"dark":       $dark
+				);
 			`,
 		}),
+		new e.text("Check out our Sass maps and loops docs for how to modify these colors."),
+
+		//-----------------------
+
+		new e.title("All colors"),
+		new e.text(
+			"All Bootstrap colors are available as Sass variables and a Sass map in {{scss/_variables.scss}} file. To avoid increased file sizes, we don’t create text or background color classes for each of these variables. Instead, we choose a subset of these colors for a {{https://getbootstrap.com/docs/5.3/customize/color/#theme-colors::theme palette}}."
+		),
+		new e.text(
+			"Be sure to monitor contrast ratios as you customize colors. As shown below, we’ve added three contrast ratios to each of the main colors—one for the swatch’s current colors, one for against white, and one for against black."
+		),
+		new e.alert({ color: "danger", callout: true }, [
+			new b.alert.header(5, "Unsuppoterd in Bootstrap TS"),
+			"This feature will supported when Bootstrap make it opt-in by default or available in CDN.",
+		]),
+		new e.text("If you like to use this feature using Bootstrap TS, you can manually set it by class property:"),
+		new e.code({
+			output: () => {
+				return new h.div(
+					{ container: "fluid", margin: 0, padding: 0 },
+					new h.div(
+						{ row: true, gutter: 3 },
+						[
+							"blue-100",
+							"blue-200",
+							"blue-300",
+							"blue-400",
+							"blue-500",
+							"blue-600",
+							"blue-700",
+							"blue-800",
+							"blue-900",
+						].map(
+							(i) =>
+								new h.div(
+									{
+										col: [12, "sm-6", "md-4"],
+									},
+									new h.div(
+										{
+											padding: 3,
+											class: i,
+											rounded: true,
+										},
+										`$${i}`
+									)
+								)
+						)
+					)
+				);
+			},
+		}),
+		// new e.code({
+		// 	output: () => {
+		// 		return [];
+		// 	},
+		// }),
+
+		// new e.ul({
+		// 	item: [
+		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
+		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
+		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
+		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
+		// 	],
+		// }),
+		// new e.alert({ color: "info", callout: true }, ""),
+		// new e.code({
+		// 	output: () => {
+		// 		return [];
+		// 	},
+		// }),
+
+		// //-----------------------
+
+		// new e.subtitle(""),
+		// new e.text(""),
+		// new e.codepreview({
+		// 	type: "css",
+		// 	code: `
+		// 		`,
+		// }),
+
+		// //-----------------------
+
+		// new e.title("CSS"),
+		// new e.text(""),
+
+		// //-----------------------
+
+		// new e.subtitle("Sass variables"),
+		// new e.text(""),
+		// new e.codepreview({
+		// 	type: "css",
+		// 	title: "scss/_variables.scss",
+		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+		// 	code: `
+		// 	`,
+		// }),
 	],
 };

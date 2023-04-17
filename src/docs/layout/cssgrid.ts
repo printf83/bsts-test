@@ -1,4 +1,4 @@
-import { b } from "@printf83/bsts";
+import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -19,5 +19,15 @@ export const cssgrid: IAttrContent = {
 			new b.alert.header(5, "Unsuppoterd in Bootstrap TS"),
 			"This feature will supported when Bootstrap make it opt-in by default or available in CDN.",
 		]),
+		new e.text("If you like to use this feature using Bootstrap TS, you can manually set it by class property:"),
+		new e.code({
+			output: () => {
+				return new h.div({ class: "grid", textAlign: "center" }, [
+					new h.div({ class: "g-col-4" }, ".g-col-4"),
+					new h.div({ class: "g-col-4" }, ".g-col-4"),
+					new h.div({ class: "g-col-4" }, ".g-col-4"),
+				]);
+			},
+		}),
 	],
 };
