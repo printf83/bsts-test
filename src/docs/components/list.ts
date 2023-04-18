@@ -193,7 +193,7 @@ export const list: IAttrContent = {
 					[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 						(i) => {
 							return new b.list.item(
-								{ color: i as core.bootstrapType.color[number] },
+								{ color: i as core.bootstrapType.color },
 								`A simple ${i ? i : "default"} list group item`
 							);
 						}
@@ -214,7 +214,7 @@ export const list: IAttrContent = {
 					[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 						(i) => {
 							return new b.listDiv.item(
-								{ href: "#", action: true, color: i as core.bootstrapType.color[number] },
+								{ href: "#", action: true, color: i as core.bootstrapType.color },
 								`A simple ${i ? i : "default"} list group item`
 							);
 						}
@@ -491,7 +491,7 @@ export const list: IAttrContent = {
 									{
 										active: ix === 0,
 										id: `list-${i}-list`,
-										control: `list-${i}`,
+										controlfor: `list-${i}`,
 										href: `#list-${i}`,
 										toggle: true,
 									},

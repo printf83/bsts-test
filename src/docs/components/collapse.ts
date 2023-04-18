@@ -38,11 +38,11 @@ export const collapse: IAttrContent = {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
 						new b.collapse.toggle(
-							{ href: "#collapseExample", control: "collapseExample" },
+							{ href: "#collapseExample", controlfor: "collapseExample" },
 							"Link with href"
 						),
 						new b.collapse.toggle(
-							{ target: "#collapseExample", control: "collapseExample" },
+							{ target: "#collapseExample", controlfor: "collapseExample" },
 							"Button with data-bs-target"
 						),
 					]),
@@ -76,7 +76,7 @@ export const collapse: IAttrContent = {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
 						new b.collapse.toggle(
-							{ target: "#collapseWidthExample", control: "collapseWidthExample" },
+							{ target: "#collapseWidthExample", controlfor: "collapseWidthExample" },
 							"Toggle width collapse"
 						),
 					]),
@@ -107,15 +107,15 @@ export const collapse: IAttrContent = {
 			output: () => {
 				return [
 					new b.collapse.toggle(
-						{ href: "#multiCollapseExample1", control: "multiCollapseExample1" },
+						{ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" },
 						"Toggle first element"
 					),
 					new b.collapse.toggle(
-						{ target: "#multiCollapseExample2", control: "multiCollapseExample2" },
+						{ target: "#multiCollapseExample2", controlfor: "multiCollapseExample2" },
 						"Toggle second element"
 					),
 					new b.collapse.toggle(
-						{ target: ".multi-collapse", control: "multiCollapseExample1 multiCollapseExample2" },
+						{ target: ".multi-collapse", controlfor: "multiCollapseExample1 multiCollapseExample2" },
 						"Toggle both element"
 					),
 					new h.div({ row: true }, [

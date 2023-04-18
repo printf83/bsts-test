@@ -76,7 +76,7 @@ export const dropdown: IAttrContent = {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
 						new b.dropdown.toggle(
-							{ color: i as core.bootstrapType.color[number] },
+							{ color: i as core.bootstrapType.color },
 							i.charAt(0).toUpperCase() + i.slice(1)
 						),
 						new b.dropdown.menu([
@@ -105,11 +105,8 @@ export const dropdown: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
-						new b.button(
-							{ color: i as core.bootstrapType.color[number] },
-							i.charAt(0).toUpperCase() + i.slice(1)
-						),
-						new b.dropdown.toggle({ color: i as core.bootstrapType.color[number], split: true }),
+						new b.button({ color: i as core.bootstrapType.color }, i.charAt(0).toUpperCase() + i.slice(1)),
+						new b.dropdown.toggle({ color: i as core.bootstrapType.color, split: true }),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -212,7 +209,7 @@ export const dropdown: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarNavDarkDropdown",
-							control: "navbarNavDarkDropdown",
+							controlfor: "navbarNavDarkDropdown",
 						}),
 						new b.navbar.collapse(
 							{ id: "navbarNavDarkDropdown" },
@@ -522,8 +519,8 @@ export const dropdown: IAttrContent = {
 						new b.dropdown.menu(
 							{
 								positionView: i.positionView as
-									| core.bootstrapType.positionView[number]
-									| core.bootstrapType.positionView[number][],
+									| core.bootstrapType.dropdownMenuPositionView
+									| core.bootstrapType.dropdownMenuPositionView[],
 							},
 							[
 								new b.dropdown.item("Action"),

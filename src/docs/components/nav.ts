@@ -412,7 +412,7 @@ export const nav: IAttrContent = {
 										disabled: i.disabled,
 										id: `${i.id}-tab`,
 										target: `#${i.id}-tab-pane`,
-										control: `${i.id}-tab-pane`,
+										controlfor: `${i.id}-tab-pane`,
 										toggle: "tab",
 									},
 									i.label
@@ -459,7 +459,7 @@ export const nav: IAttrContent = {
 									disabled: i.disabled,
 									id: `${i.id}-tab`,
 									target: `#nav-${i.id}-tab-pane`,
-									control: `nav-${i.id}-tab-pane`,
+									controlfor: `nav-${i.id}-tab-pane`,
 									toggle: "tab",
 								},
 								i.label
@@ -505,7 +505,7 @@ export const nav: IAttrContent = {
 										disabled: i.disabled,
 										id: `pills-${i.id}-tab`,
 										target: `#pills-${i.id}-tab-pane`,
-										control: `pills-${i.id}-tab-pane`,
+										controlfor: `pills-${i.id}-tab-pane`,
 										toggle: "pill",
 									},
 									i.label
@@ -560,7 +560,7 @@ export const nav: IAttrContent = {
 									disabled: i.disabled,
 									id: `v-pills-${i.id}-tab`,
 									target: `#v-pills-${i.id}-tab-pane`,
-									control: `v-pills-${i.id}-tab-pane`,
+									controlfor: `v-pills-${i.id}-tab-pane`,
 									toggle: "pill",
 								},
 								i.label

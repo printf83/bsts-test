@@ -135,7 +135,7 @@ const itemCode = (
 							paddingY: 2,
 							paddingX: 4,
 							flex: "fill",
-							control: collapseable ? id : undefined,
+							controlfor: collapseable ? id : undefined,
 							data: {
 								"bs-toggle": collapseable ? "collapse" : undefined,
 								"bs-target": collapseable ? `#${id}` : undefined,

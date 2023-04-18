@@ -47,7 +47,7 @@ export const accordion: IAttrContent = {
 								{
 									id: `heading-${itemID}`,
 									target: `#collapse-${itemID}`,
-									control: `collapse-${itemID}`,
+									controlfor: `collapse-${itemID}`,
 									expanded: i.show,
 								},
 								i.title

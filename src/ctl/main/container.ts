@@ -157,7 +157,7 @@ export interface IAttrFooter {
 }
 
 const genTheme = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	navbarItemTheme?: IAttrItemTheme[],
 	currentTheme?: string
 ) => {
@@ -236,7 +236,7 @@ const genTheme = (
 };
 
 const genVersion = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	name: string,
 	navbarItemVersion?: IAttrItemVersion[],
 	currentVersion?: string
@@ -298,7 +298,7 @@ const genVersion = (
 };
 
 const genOutsideLink = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	itemOutsideLink?: IAttrItemOutsideLink[],
 	itemVersion?: t[],
 	itemTheme?: t[]
@@ -329,7 +329,7 @@ const genOutsideLink = (
 };
 
 const genInsideLink = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	itemInsideLink?: IAttrItemInsideLink[],
 	currentInsideLink?: string
 ) => {
@@ -526,7 +526,7 @@ const genToc = (content?: IAttrContent) => {
 							class: "bs-toc-toggle",
 							display: "md-none",
 							target: "#tocContents",
-							control: "tocContents",
+							controlfor: "tocContents",
 						},
 						[
 							"On this page",
@@ -630,8 +630,8 @@ export interface IAttrBSMainContainer extends core.IAttr {
 	icon?: b.IAttrBSIcon;
 	name?: string;
 
-	textColor?: core.bootstrapType.textColor[number];
-	bgColor?: core.bootstrapType.bgColor[number];
+	textColor?: core.bootstrapType.textColor;
+	bgColor?: core.bootstrapType.bgColor;
 
 	itemOutsideLink?: IAttrItemOutsideLink[];
 
@@ -676,7 +676,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									class: "bs-noshadow",
 									padding: 2,
 									target: "#bsSidebar",
-									control: "bsSidebar",
+									controlfor: "bsSidebar",
 									label: "Toggle docs navigation",
 									textColor: attr.textColor || "light",
 								},
@@ -703,7 +703,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									order: 3,
 									padding: 2,
 									target: "#bsNavbar",
-									control: "bsNavbar",
+									controlfor: "bsNavbar",
 									label: "Toggle navigation",
 									textColor: attr.textColor || "light",
 								},
