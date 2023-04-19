@@ -13,7 +13,7 @@ const dispatchCustomEvent = (root: Element | null, eventName: string, value: str
 	}
 };
 
-const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
+const changeTheme = (value: string, icon: b.IBsIcon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
 	let bsThemeMenu = bsTheme.nextSibling as HTMLElement;
 
@@ -104,12 +104,12 @@ export interface IAttrItemInsideLink {
 export interface IAttrItemOutsideLink {
 	href: string;
 	label: string;
-	icon: b.IAttrBSIcon;
+	icon: b.IBsIcon;
 }
 
 export interface IAttrItemTheme {
 	value: string;
-	icon: b.IAttrBSIcon;
+	icon: b.IBsIcon;
 	label: string;
 }
 
@@ -120,7 +120,7 @@ export interface IAttrItemVersion {
 
 export interface IAttrItemMenu {
 	label: string;
-	icon: b.IAttrBSIcon;
+	icon: b.IBsIcon;
 	item: IAttrItemSubMenu[];
 }
 
@@ -626,8 +626,8 @@ export const genMainContent = (content?: IAttrContent) => {
 	return [genIntro(content), genToc(content), genContent(content)];
 };
 
-export interface IAttrBSMainContainer extends core.IAttr {
-	icon?: b.IAttrBSIcon;
+export interface IBsMainContainer extends core.IAttr {
+	icon?: b.IBsIcon;
 	name?: string;
 
 	textColor?: core.bootstrapType.textColor;
@@ -649,7 +649,7 @@ export interface IAttrBSMainContainer extends core.IAttr {
 	content?: IAttrContent;
 }
 
-const convert = (attr: IAttrBSMainContainer) => {
+const convert = (attr: IBsMainContainer) => {
 	attr.class = core.mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
 		new b.navbar.containerHeader(
@@ -868,8 +868,8 @@ const convert = (attr: IAttrBSMainContainer) => {
 
 export class container extends h.div {
 	constructor();
-	constructor(attr: IAttrBSMainContainer);
+	constructor(attr: IBsMainContainer);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IAttrBSMainContainer>(convert, arg));
+		super(core.bsConsNoElemArg<IBsMainContainer>(convert, arg));
 	}
 }

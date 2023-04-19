@@ -1,9 +1,9 @@
 import { core, h } from "@printf83/bsts";
 
-export type IAttrBSExampleCodeType = "js" | "ts" | "html" | "css";
+export type IBsExampleCodeType = "js" | "ts" | "html" | "css";
 
-export interface IAttrBSExampleCode extends core.IAttr {
-	type?: IAttrBSExampleCodeType;
+export interface IBsExampleCode extends core.IAttr {
+	type?: IBsExampleCodeType;
 }
 
 declare var js_beautify: {
@@ -24,7 +24,7 @@ declare var html_beautify: {
 	html_beautify: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
 };
 
-const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string): string => {
+const beautify = (type: IBsExampleCodeType | undefined, source_text: string): string => {
 	switch (type) {
 		case "html":
 			source_text = source_text.replace(/\>/g, ">\n");
@@ -54,7 +54,7 @@ const beautify = (type: IAttrBSExampleCodeType | undefined, source_text: string)
 	}
 };
 
-const convert = (attr: IAttrBSExampleCode) => {
+const convert = (attr: IBsExampleCode) => {
 	attr = core.mergeObject(
 		{
 			class: "example-preview",
@@ -78,10 +78,10 @@ const convert = (attr: IAttrBSExampleCode) => {
 
 export class preview extends h.pre {
 	constructor(); //#1
-	constructor(attr: IAttrBSExampleCode); //#2
+	constructor(attr: IBsExampleCode); //#2
 	constructor(elem: core.IElem); //#3
-	constructor(attr: IAttrBSExampleCode, elem: core.IElem); //#4
+	constructor(attr: IBsExampleCode, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<IAttrBSExampleCode>("elem", convert, arg));
+		super(core.bsConstArg<IBsExampleCode>("elem", convert, arg));
 	}
 }

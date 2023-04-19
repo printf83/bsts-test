@@ -39,7 +39,7 @@ export const spinner: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.spinner({ type: "border", color: i as b.IAttrBSSpinner["color"] });
+					return new b.spinner({ type: "border", color: i as b.IBsSpinner["color"] });
 				});
 			},
 		}),
@@ -66,7 +66,7 @@ export const spinner: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.spinner({ type: "grow", color: i as b.IAttrBSSpinner["color"] });
+					return new b.spinner({ type: "grow", color: i as b.IBsSpinner["color"] });
 				});
 			},
 		}),

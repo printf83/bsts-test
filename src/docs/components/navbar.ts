@@ -386,7 +386,7 @@ export const navbar: IAttrContent = {
 		new e.code({
 			outputAttr: { gap: 2 },
 			output: () => {
-				const navbarItem = (btnColor: b.IAttrBSButton["color"]) => {
+				const navbarItem = (btnColor: b.IBsButton["color"]) => {
 					let id = core.UUID();
 					return new b.navbar.innercontainer({ container: "fluid" }, [
 						new b.navbar.brand({ href: "#" }, "Navbar"),

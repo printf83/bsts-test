@@ -308,7 +308,7 @@ const maincontainer = new main.container({
 		{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
 		{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 	],
-	currentTheme: CURRENT_THEME as main.IAttrBSMainContainer["currentTheme"],
+	currentTheme: CURRENT_THEME as main.IBsMainContainer["currentTheme"],
 
 	itemVersion: [{ value: "0.1.84", label: "Latest (0.1.84)" }],
 	currentVersion: "0.1.84",

@@ -824,7 +824,7 @@ export const modal: IAttrContent = {
 							{
 								id: `${i.weight}SizeModal`,
 								labelledby: `#${i.weight}SizeModalLabel`,
-								weight: i.weight as b.modal.IAttrBSModalContainer["weight"],
+								weight: i.weight as b.modal.IBsModalContainer["weight"],
 							},
 							[
 								new b.modal.header(
@@ -885,7 +885,7 @@ export const modal: IAttrContent = {
 								id: `${i.fullscreen !== true ? i.fullscreen : "xs"}FSModal`,
 								labelledby: `#${i.fullscreen !== true ? i.fullscreen : "xs"}FSModalLabel`,
 								fullscreen: i.fullscreen
-									? (i.fullscreen as b.modal.IAttrBSModalContainer["fullscreen"])
+									? (i.fullscreen as b.modal.IBsModalContainer["fullscreen"])
 									: undefined,
 							},
 							[

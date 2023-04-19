@@ -120,7 +120,7 @@ export const tooltip: IAttrContent = {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.tooltip(
 						{
-							placement: i as b.IAttrBSTooltip["placement"],
+							placement: i as b.IBsTooltip["placement"],
 							content: `Tooltip on ${i}`,
 						},
 						new b.button({ color: "secondary" }, `Tooltip on ${i}`)

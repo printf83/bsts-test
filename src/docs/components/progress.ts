@@ -117,7 +117,7 @@ export const progress: IAttrContent = {
 					return new b.progress.container(
 						{ label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar({
-							color: i as b.progress.IAttrBSProgressBar["color"],
+							color: i as b.progress.IBsProgressBar["color"],
 							style: { width: `${val}%` },
 						})
 					);
@@ -141,8 +141,8 @@ export const progress: IAttrContent = {
 						{ label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar(
 							{
-								color: i as b.progress.IAttrBSProgressBar["color"],
-								textColor: text as b.progress.IAttrBSProgressBar["textColor"],
+								color: i as b.progress.IBsProgressBar["color"],
+								textColor: text as b.progress.IBsProgressBar["textColor"],
 								style: { width: `${val}%` },
 							},
 							`${val}%`
@@ -163,7 +163,7 @@ export const progress: IAttrContent = {
 						{ label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar(
 							{
-								textBgColor: i as b.progress.IAttrBSProgressBar["textBgColor"],
+								textBgColor: i as b.progress.IBsProgressBar["textBgColor"],
 								style: { width: `${val}%` },
 							},
 							`${val}%`
@@ -236,7 +236,7 @@ export const progress: IAttrContent = {
 						},
 						new b.progress.bar({
 							striped: true,
-							textBgColor: i as b.progress.IAttrBSProgressBar["textBgColor"],
+							textBgColor: i as b.progress.IBsProgressBar["textBgColor"],
 							style: { width: `${val}%` },
 						})
 					);

@@ -177,7 +177,7 @@ export const toast: IAttrContent = {
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
-				const fnToast = (color: b.toast.IAttrBSToastTemplate["color"], elem: core.IElem, icon?: string) => {
+				const fnToast = (color: b.toast.IBsToastTemplate["color"], elem: core.IElem, icon?: string) => {
 					let tElem;
 
 					switch (color) {
@@ -267,10 +267,10 @@ export const toast: IAttrContent = {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.button(
 						{
-							color: i as b.IAttrBSButton["color"],
+							color: i as b.IBsButton["color"],
 							on: {
 								click: (_e) => {
-									fnToast(i as b.toast.IAttrBSToastTemplate["color"], `This is {{b::${i} }}toast.`);
+									fnToast(i as b.toast.IBsToastTemplate["color"], `This is {{b::${i} }}toast.`);
 								},
 							},
 						},
@@ -401,7 +401,7 @@ export const toast: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				const container = (placement: b.toast.IAttrBSToastContainer["placement"]) => {
+				const container = (placement: b.toast.IBsToastContainer["placement"]) => {
 					return new b.toast.container(
 						{
 							class: "debug",
@@ -451,7 +451,7 @@ export const toast: IAttrContent = {
 									const value = target.value;
 									core.replaceWith(
 										document.getElementById("toastPlacement") as HTMLElement,
-										container(value as b.toast.IAttrBSToastContainer["placement"])
+										container(value as b.toast.IBsToastContainer["placement"])
 									);
 								},
 							},

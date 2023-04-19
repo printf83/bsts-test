@@ -166,7 +166,7 @@ export const tables: IAttrContent = {
 							"dark",
 						].map(
 							(i) =>
-								new b.table.tr({ color: i as b.table.IAttrBSTableTr["color"] }, [
+								new b.table.tr({ color: i as b.table.IBsTableTr["color"] }, [
 									new b.table.th(
 										{ scope: "row" },
 										i ? i.charAt(0).toUpperCase() + i.slice(1) : "Default"
@@ -208,12 +208,12 @@ export const tables: IAttrContent = {
 									new b.table.th(
 										{
 											scope: "row",
-											color: i as b.table.IAttrBSTableTh["color"],
+											color: i as b.table.IBsTableTh["color"],
 										},
 										i ? i.charAt(0).toUpperCase() + i.slice(1) : "Default"
 									),
 									new b.table.td("Cell"),
-									new b.table.td({ color: i as b.table.IAttrBSTableTr["color"] }, "Cell"),
+									new b.table.td({ color: i as b.table.IBsTableTr["color"] }, "Cell"),
 								])
 						)
 					),

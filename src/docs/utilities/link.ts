@@ -15,9 +15,7 @@ export const link: IAttrContent = {
 			output: () => {
 				return [10, 25, 50, 75, 100].map(
 					(i) =>
-						new h.p(
-							new h.a({ href: "#", linkOpacity: i as h.IAttrTagA["linkOpacity"] }, `Link opacity ${i}`)
-						)
+						new h.p(new h.a({ href: "#", linkOpacity: i as h.ITagA["linkOpacity"] }, `Link opacity ${i}`))
 				);
 			},
 		}),
@@ -28,7 +26,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkOpacityHover: i as h.IAttrTagA["linkOpacityHover"] },
+								{ href: "#", linkOpacityHover: i as h.ITagA["linkOpacityHover"] },
 								`Link hover opacity ${i}`
 							)
 						)
@@ -47,7 +45,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkUnderlineColor: i as h.IAttrTagA["linkUnderlineColor"] },
+								{ href: "#", linkUnderlineColor: i as h.ITagA["linkUnderlineColor"] },
 								`${i.charAt(0).toUpperCase() + i.slice(1)} underline`
 							)
 						)
@@ -67,7 +65,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkOffset: i as h.IAttrTagA["linkOffset"] },
+								{ href: "#", linkOffset: i as h.ITagA["linkOffset"] },
 								i ? `Offset ${i} link` : "Default link"
 							)
 						)
@@ -91,7 +89,7 @@ export const link: IAttrContent = {
 									href: "#",
 									linkOffset: 2,
 									linkUnderline: true,
-									linkUnderlineOpacity: i as h.IAttrTagA["linkUnderlineOpacity"],
+									linkUnderlineOpacity: i as h.ITagA["linkUnderlineOpacity"],
 								},
 								`Underline opacity ${i}`
 							)
@@ -149,7 +147,7 @@ export const link: IAttrContent = {
 									linkOffset: 2,
 									linkUnderlineOpacity: 25,
 									linkUnderlineOpacityHover: 100,
-									linkColor: i as h.IAttrTagA["linkColor"],
+									linkColor: i as h.ITagA["linkColor"],
 								},
 								`${i.charAt(0).toUpperCase() + i.slice(1)} link`
 							)

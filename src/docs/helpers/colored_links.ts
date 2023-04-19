@@ -30,7 +30,7 @@ export const colored_links: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkColor: i as h.IAttrTagA["linkColor"] },
+								{ href: "#", linkColor: i as h.ITagA["linkColor"] },
 								`${i.charAt(0).toUpperCase() + i.slice(1)} link`
 							)
 						)
@@ -64,7 +64,7 @@ export const colored_links: IAttrContent = {
 							new h.a(
 								{
 									href: "#",
-									linkColor: i as h.IAttrTagA["linkColor"],
+									linkColor: i as h.ITagA["linkColor"],
 									linkOffset: 2,
 									linkUnderlineOpacity: 25,
 									linkUnderlineOpacityHover: 100,

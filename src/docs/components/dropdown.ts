@@ -514,7 +514,7 @@ export const dropdown: IAttrContent = {
 					{ label: "Dropend", drop: "end" },
 					{ label: "Dropup", drop: "up" },
 				].map((i) => {
-					return new b.dropdown.container({ drop: i.drop as b.dropdown.IAttrBSDropdownContainerDrop }, [
+					return new b.dropdown.container({ drop: i.drop as b.dropdown.IBsDropdownContainerDrop }, [
 						new b.dropdown.toggle({ color: "secondary" }, i.label),
 						new b.dropdown.menu(
 							{

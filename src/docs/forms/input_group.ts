@@ -299,7 +299,7 @@ export const input_group: IAttrContent = {
 		new e.subtitle("Custom select"),
 		new e.code({
 			output: () => {
-				let selectItem: h.IAttrTagSelectItem[] = [
+				let selectItem: h.ITagSelectItem[] = [
 					{ selected: true, elem: "Choose..." },
 					{ value: "1", elem: "One" },
 					{ value: "2", elem: "Two" },

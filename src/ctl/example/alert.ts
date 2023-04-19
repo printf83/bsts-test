@@ -1,6 +1,6 @@
 import { core, h, b } from "@printf83/bsts";
 
-const convert = (attr: b.alert.IAttrBSAlertContainer) => {
+const convert = (attr: b.alert.IBsAlertContainer) => {
 	let tAttr: core.IAttr = {};
 
 	tAttr.class = "example-alert";
@@ -12,10 +12,10 @@ const convert = (attr: b.alert.IAttrBSAlertContainer) => {
 
 export class alert extends h.div {
 	constructor(); //#1
-	constructor(attr: b.alert.IAttrBSAlertContainer); //#2
+	constructor(attr: b.alert.IBsAlertContainer); //#2
 	constructor(elem: core.IElem); //#3
-	constructor(attr: b.alert.IAttrBSAlertContainer, elem: core.IElem); //#4
+	constructor(attr: b.alert.IBsAlertContainer, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<b.alert.IAttrBSAlertContainer>("elem", convert, arg));
+		super(core.bsConstArg<b.alert.IBsAlertContainer>("elem", convert, arg));
 	}
 }

@@ -1,5 +1,5 @@
-import { code, IAttrBSExampleContainer, IAttrBSExampleExt } from "./code.js";
-import { codepreview, IAttrBSExampleCodepreview } from "./codepreview.js";
+import { code, IBsExampleContainer, IBsExampleExt } from "./code.js";
+import { codepreview, IBsExampleCodepreview } from "./codepreview.js";
 import { description } from "./description.js";
 import { item } from "./item.js";
 import { pagetitle } from "./pagetitle.js";
@@ -28,7 +28,7 @@ export {
 	ul,
 	alert,
 	toast,
-	IAttrBSExampleCodepreview,
-	IAttrBSExampleContainer,
-	IAttrBSExampleExt,
+	IBsExampleCodepreview,
+	IBsExampleContainer,
+	IBsExampleExt,
 };
