@@ -16,6 +16,6 @@ export class ol extends h.div {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: h.ITagOl, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<h.ITagOl>("elem", convert, arg));
+		super(convert(core.bsConstArg<h.ITagOl>("elem", arg)));
 	}
 }

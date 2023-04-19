@@ -166,6 +166,7 @@ export const color: IAttrContent = {
 		"Bootstrap is supported by an extensive color system that themes our styles and components. This enables more comprehensive customization and extension for any project.",
 	item: [
 		new e.title("Colors"),
+		new e.item(b.Button({ id: "hello", color: "success" }, "World")),
 		new e.text(
 			"Bootstrap’s color palette has continued to expand and become more nuanced in v5.3.0. We’ve added new variables for {{secondary}} and {{tertiary}} text and background colors, plus{{ {color}-bg-subtle}},{{ {color}-border-subtle}}, and{{ {color}-text-emphasis}} for our theme colors. These new colors are available through Sass and CSS variables (but not our color maps or utility classes) with the express goal of making it easier to customize across multiple colors modes like light and dark. These new variables are globally set on {{:root}} and are adapted for our new dark color mode while our original theme colors remain unchanged."
 		),

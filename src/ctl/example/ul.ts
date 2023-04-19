@@ -16,6 +16,6 @@ export class ul extends h.div {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: h.ITagUl, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<h.ITagUl>("elem", convert, arg));
+		super(convert(core.bsConstArg<h.ITagUl>("elem", arg)));
 	}
 }

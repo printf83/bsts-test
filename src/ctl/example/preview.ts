@@ -82,6 +82,6 @@ export class preview extends h.pre {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: IBsExampleCode, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<IBsExampleCode>("elem", convert, arg));
+		super(convert(core.bsConstArg<IBsExampleCode>("elem", arg)));
 	}
 }

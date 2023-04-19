@@ -81,6 +81,6 @@ export class pagetitle extends h.div {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: IBsExamplePagetitle, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<IBsExamplePagetitle>("elem", convert, arg));
+		super(convert(core.bsConstArg<IBsExamplePagetitle>("elem", arg)));
 	}
 }

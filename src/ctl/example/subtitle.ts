@@ -61,6 +61,6 @@ export class subtitle extends html.h {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: core.IAttr, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(3, core.bsConstArg("elem", convert, arg));
+		super(3, convert(core.bsConstArg("elem", arg)));
 	}
 }

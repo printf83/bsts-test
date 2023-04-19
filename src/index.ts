@@ -276,7 +276,6 @@ const maincontainer = new main.container({
 	bgColor: "primary",
 	textColor: "light",
 	icon: { class: "animate-icon", weight: "2xl", id: "node-js", type: "brand" },
-
 	on: {
 		"bs-menu-change": (e) => {
 			onmenuchange((<CustomEvent>e).detail);

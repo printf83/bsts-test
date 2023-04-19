@@ -18,6 +18,6 @@ export class table extends b.table.responsive {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: b.table.IBsTableContainer, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<b.table.IBsTableContainer>("elem", convert, arg));
+		super(convert(core.bsConstArg<b.table.IBsTableContainer>("elem", arg)));
 	}
 }

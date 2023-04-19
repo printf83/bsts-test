@@ -16,6 +16,6 @@ export class alert extends h.div {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: b.alert.IBsAlertContainer, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<b.alert.IBsAlertContainer>("elem", convert, arg));
+		super(convert(core.bsConstArg<b.alert.IBsAlertContainer>("elem", arg)));
 	}
 }

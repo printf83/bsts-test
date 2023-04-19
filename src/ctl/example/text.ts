@@ -10,6 +10,6 @@ export class text extends h.p {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: h.ITagP, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<h.ITagP>("elem", convert, arg));
+		super(convert(core.bsConstArg<h.ITagP>("elem", arg)));
 	}
 }

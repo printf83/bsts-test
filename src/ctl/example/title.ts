@@ -61,6 +61,6 @@ export class title extends html.h {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: core.IAttr, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(2, core.bsConstArg("elem", convert, arg));
+		super(2, convert(core.bsConstArg("elem", arg)));
 	}
 }
