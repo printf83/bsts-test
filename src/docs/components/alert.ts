@@ -9,7 +9,7 @@ export const alert: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{.alert-success}}). For inline dismissal, use the {{nav:docs/components/alert#dismissing::alerts JavaScript plugin}}."
+			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{color:'success'}}). For inline dismissal, use the {{nav:docs/components/alert#dismissing::alerts JavaScript plugin}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -29,7 +29,7 @@ export const alert: IAttrContent = {
 		new e.alert({ color: "info", callout: true }, [
 			new h.h(5, "Conveying meaning to assistive technologies"),
 			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 			),
 		]),
 
@@ -85,7 +85,7 @@ export const alert: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Link color"),
-		new e.text("Use the {{.alert-link}} utility class to quickly provide matching colored links within any alert."),
+		new e.text("Use the {{b.alert.link}} component to quickly provide matching colored links within any alert."),
 		new e.code({
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -159,15 +159,16 @@ export const alert: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Dismissing"),
-		new e.text("Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:"),
-		new e.ul({
-			item: [
-				"Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.",
-				"Add a {{nav:docs/components/close_button::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
-				"On the close button, add the {{data-bs-dismiss='alert'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices.",
-				"To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes.",
-			],
-		}),
+		// new e.text("Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:"),
+		// new e.ul({
+		// 	item: [
+		// 		"Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.",
+		// 		"Add a {{nav:docs/components/close_button::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
+		// 		"On the close button, add the {{data-bs-dismiss='alert'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices.",
+		// 		"To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes.",
+		// 	],
+		// }),
+		new e.text("Add {{dismissible: true}} to {{b.alert.container}} to dismiss the alert."),
 		new e.text("You can see this in action with a live demo:"),
 
 		new e.code({

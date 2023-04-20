@@ -30,17 +30,39 @@ export const introduction: IAttrContent = {
 							<head>
 								<meta charset="utf-8">
 								<meta name="viewport" content="width=device-width, initial-scale=1">
-								<title>Bootstrap demo</title>
+								<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+								<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+								<title>Bootstrap TS demo</title>
 							</head>
 							<body>
-								<h1>Hello, world!</h1>
+								<div id="root"></div>
+								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 							</body>
 							</html>
 							`,
 					}),
 				]),
 				new h.div([
-					"{{b::Include Bootstrap’s CSS and JS}}. Place the {{<link>}} tag in the {{<head>}} for Bootstrap CSS, and the {{<script>}} tag for Bootstrap JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips) before the closing {{</body>}}. Learn more about Bootstrap {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#cdn-links::CDN links}}.",
+					'{{b::Create a new }}{{bc::index.js}}{{b:: file in your project root}}. Import Bootstrap TS library {{import {core, h} from "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm";}} and write some code. Learn more about Bootstrap TS {{nav:docs/gettingstarted/introduction#expose_function::Exposed function}}.',
+					new e.codepreview({
+						class: "ms-n4",
+						marginStart: "md-0",
+						type: "js",
+						code: `
+							import {core, h, b} from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+
+							core.documentReady(() => {
+								let root = document.getElementById("root");
+								core.replaceChild(root, new h.div([
+									"Hello world", 
+									new b.button({color:"primary"},"Button"),
+								]));
+							});
+							`,
+					}),
+				]),
+				new h.div([
+					"{{b::Include your index.js file in the index.html}}. Place the {{<script>}} tag before the closing {{</body>}}.",
 					new e.codepreview({
 						class: "ms-n4",
 						marginStart: "md-0",
@@ -57,19 +79,11 @@ export const introduction: IAttrContent = {
 							<body>
 								<h1>Hello, world!</h1>
 								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+								
+								<!--- put your script here ---->
+								<script src="index.js" type="module"></script>
 							</body>
 							</html>
-
-							`,
-					}),
-					"You can also include {{https://popper.js.org/::Popper}} and Bootstrap JS separately. If you don’t plan to use dropdowns, popovers, or tooltips, save some kilobytes by not including Popper.",
-					new e.codepreview({
-						class: "ms-n4",
-						marginStart: "md-0",
-						type: "html",
-						code: `
-							<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-							<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 							`,
 					}),
 				]),
@@ -81,13 +95,26 @@ export const introduction: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("CDN links"),
-		new e.text("As reference, here are Bootstrap primary CDN links."),
+		new e.title("Expose function"),
+		new e.text("As reference, here are Bootstrap TS primary CDN links."),
+		new e.codepreview({
+			class: "ms-n4",
+			marginStart: "md-0",
+			type: "js",
+			code: `
+				import { core } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+				`,
+		}),
 		new e.table({
 			item: [
-				["Description", "URLs"],
-				["CSS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css}}"],
-				["JS", "{{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js}}"],
+				["Library", "Description"],
+				["core", "Core function to build html using Bootstrap TS"],
+				["h", "HTML component"],
+				["b", "Bootstrap component"],
+				["t", "Main class that build all HTML and Bootstrap component"],
+				["T", "Function to create t without {{new}} keyword."],
+				["strHtml", "Class to allow developer write HTML syntax and process by core.build as HTML"],
+				["StrHtml", "Function to create strHtml wihthout {{new}} keyword."],
 			],
 		}),
 		new e.text(
@@ -99,8 +126,8 @@ export const introduction: IAttrContent = {
 		new e.title("Next steps"),
 		new e.ul({
 			item: [
-				"Read a bit more about some {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#important-globals::important global environment settings}} that Bootstrap utilizes.",
-				"Read about what’s included in Bootstrap in Bootstrap {{https://getbootstrap.com/docs/5.3/getting-started/contents/::contents section}} and the list of {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#js-components::components that require JavaScript}} below.",
+				"Read a bit more about some {{nav:docs/gettingstarted/introduction#important_globals::important global environment settings}} that Bootstrap utilizes.",
+				"Read about what’s included in Bootstrap in Bootstrap {{https://getbootstrap.com/docs/5.3/getting-started/contents/::contents section}} and the list of {{nav:docs/gettingstarted/introduction#js_components::components that require JavaScript}} below.",
 				"Need a little more power? Consider building with Bootstrap by {{https://getbootstrap.com/docs/5.3/getting-started/download/#package-managers::including the source files via package manager}}.",
 				"Looking to use Bootstrap as a module with {{<script type='module'>}}? Please refer to Bootstrap using {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#using-bootstrap-as-a-module::Bootstrap as a module}} section.",
 			],
@@ -174,7 +201,7 @@ export const introduction: IAttrContent = {
 				`,
 		}),
 		new e.text(
-			"You can see an example of this in action in the {{https://getbootstrap.com/docs/5.3/getting-started/introduction/#quick-start::quick start}}."
+			"You can see an example of this in action in the {{nav:docs/gettingstarted/introduction#quick_start::quick start}}."
 		),
 
 		//-----------------------
