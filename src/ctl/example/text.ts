@@ -13,3 +13,6 @@ export class text extends h.p {
 		super(convert(core.bsConstArg<h.ITagP>("elem", arg)));
 	}
 }
+
+export const Text = (AttrOrElem?: h.ITagP | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<text, h.ITagP>(text, AttrOrElem, Elem);

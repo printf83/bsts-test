@@ -519,3 +519,5 @@ export class code extends h.div {
 		super(core.bsConsNoElemArg<IBsExampleContainer>(convert, arg));
 	}
 }
+
+export const Code = (Attr?: IBsExampleContainer) => core.genTagClass<code, IBsExampleContainer>(code, Attr);

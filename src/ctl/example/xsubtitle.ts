@@ -64,3 +64,6 @@ export class xsubtitle extends html.h {
 		super(4, convert(core.bsConstArg("elem", arg)));
 	}
 }
+
+export const Xsubtitle = (AttrOrElem?: core.IAttr | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<xsubtitle, core.IAttr>(xsubtitle, AttrOrElem, Elem);

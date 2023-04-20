@@ -14,3 +14,6 @@ export class description extends h.p {
 		super(convert(core.bsConstArg<h.ITagP>("elem", arg)));
 	}
 }
+
+export const Description = (AttrOrElem?: h.ITagP | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<description, h.ITagP>(description, AttrOrElem, Elem);

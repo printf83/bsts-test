@@ -84,3 +84,5 @@ export class pagetitle extends h.div {
 		super(convert(core.bsConstArg<IBsExamplePagetitle>("elem", arg)));
 	}
 }
+export const Pagetitle = (AttrOrElem?: IBsExamplePagetitle | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<pagetitle, IBsExamplePagetitle>(pagetitle, AttrOrElem, Elem);

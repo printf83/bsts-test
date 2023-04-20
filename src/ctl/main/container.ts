@@ -873,3 +873,5 @@ export class container extends h.div {
 		super(core.bsConsNoElemArg<IBsMainContainer>(convert, arg));
 	}
 }
+
+export const Container = (Attr?: IBsMainContainer) => core.genTagClass<container, IBsMainContainer>(container, Attr);

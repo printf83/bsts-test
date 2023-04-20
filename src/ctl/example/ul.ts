@@ -19,3 +19,6 @@ export class ul extends h.div {
 		super(convert(core.bsConstArg<h.ITagUl>("elem", arg)));
 	}
 }
+
+export const Ul = (AttrOrElem?: h.ITagUl | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<ul, h.ITagUl>(ul, AttrOrElem, Elem);

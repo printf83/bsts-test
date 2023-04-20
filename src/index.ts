@@ -271,7 +271,7 @@ const onthmemechange = (value: string) => {
 	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
 };
 
-const maincontainer = new main.container({
+const maincontainer = main.Container({
 	name: "Bootstrap TS",
 	bgColor: "primary",
 	textColor: "light",

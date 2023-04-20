@@ -85,3 +85,5 @@ export class preview extends h.pre {
 		super(convert(core.bsConstArg<IBsExampleCode>("elem", arg)));
 	}
 }
+export const Preview = (AttrOrElem?: IBsExampleCode | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<preview, IBsExampleCode>(preview, AttrOrElem, Elem);
