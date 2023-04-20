@@ -1,4 +1,4 @@
-import { core, h as html, t } from "@printf83/bsts";
+import { core, h as html, t, strHtml } from "@printf83/bsts";
 
 const genIDFromElem = (attr: core.IAttr) => {
 	if (!attr.id) {
@@ -24,7 +24,7 @@ const convert = (attr: core.IAttr) => {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: (string | t)[] = [];
+		let tElem: (string | t | strHtml)[] = [];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {
@@ -61,6 +61,9 @@ export class subtitle extends html.h {
 	constructor(elem: core.IElem); //#3
 	constructor(attr: core.IAttr, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(3, core.bsConstArg("elem", convert, arg));
+		super(3, convert(core.bsConstArg("elem", arg)));
 	}
 }
+
+export const Subtitle = (AttrOrElem?: core.IAttr | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<subtitle, core.IAttr>(subtitle, AttrOrElem, Elem);

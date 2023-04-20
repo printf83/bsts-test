@@ -33,12 +33,12 @@ export const check_radio: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{b.form.check}}"),
+		new e.text("Using {{b.Form.Check}}"),
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "checkbox", label: "Default checkbox" }),
-					b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true }),
+					b.Form.Check({ type: "checkbox", label: "Default checkbox" }),
+					b.Form.Check({ type: "checkbox", label: "Checked checkbox", checked: true }),
 				];
 			},
 		}),
@@ -51,7 +51,7 @@ export const check_radio: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.form.check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
+				return b.Form.Check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
 			},
 		}),
 
@@ -64,18 +64,18 @@ export const check_radio: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({
+					b.Form.Check({
 						type: "checkbox",
 						label: "Disabled indeterminate checkbox",
 						indeterminate: true,
 						disabled: true,
 					}),
-					b.form.check({
+					b.Form.Check({
 						type: "checkbox",
 						label: "Disabled checkbox",
 						disabled: true,
 					}),
-					b.form.check({
+					b.Form.Check({
 						type: "checkbox",
 						label: "Disabled checked checkbox",
 						checked: true,
@@ -107,12 +107,12 @@ export const check_radio: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{b.form.check}}"),
+		new e.text("Using {{b.Form.Check}}"),
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "radio", name: "exampeRadioGroup2", label: "Default radio" }),
-					b.form.check({
+					b.Form.Check({ type: "radio", name: "exampeRadioGroup2", label: "Default radio" }),
+					b.Form.Check({
 						type: "radio",
 						name: "exampeRadioGroup2",
 						label: "Default checked radio",
@@ -131,8 +131,8 @@ export const check_radio: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "radio", name: "exampeRadioGroup3", label: "Disabled radio", disabled: true }),
-					b.form.check({
+					b.Form.Check({ type: "radio", name: "exampeRadioGroup3", label: "Disabled radio", disabled: true }),
+					b.Form.Check({
 						type: "radio",
 						name: "exampeRadioGroup3",
 						label: "Disabled checked radio",
@@ -152,20 +152,20 @@ export const check_radio: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "checkbox", switch: true, label: "Default switch checkbox input" }),
-					b.form.check({
+					b.Form.Check({ type: "checkbox", switch: true, label: "Default switch checkbox input" }),
+					b.Form.Check({
 						type: "checkbox",
 						switch: true,
 						label: "Checked switch checkbox input",
 						checked: true,
 					}),
-					b.form.check({
+					b.Form.Check({
 						type: "checkbox",
 						switch: true,
 						label: "Disabled switch checkbox input",
 						disabled: true,
 					}),
-					b.form.check({
+					b.Form.Check({
 						type: "checkbox",
 						switch: true,
 						label: "Disabled switch checkbox input",
@@ -185,17 +185,17 @@ export const check_radio: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "checkbox", label: "Default checkbox" }),
-					b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true }),
+					b.Form.Check({ type: "checkbox", label: "Default checkbox" }),
+					b.Form.Check({ type: "checkbox", label: "Disabled checkbox", disabled: true }),
 				];
 			},
 		}),
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "radio", name: "exampeRadioGroup4", label: "Default radio", checked: true }),
-					b.form.check({ type: "radio", name: "exampeRadioGroup4", label: "Second default radio" }),
-					b.form.check({
+					b.Form.Check({ type: "radio", name: "exampeRadioGroup4", label: "Default radio", checked: true }),
+					b.Form.Check({ type: "radio", name: "exampeRadioGroup4", label: "Second default radio" }),
+					b.Form.Check({
 						type: "radio",
 						name: "exampeRadioGroup4",
 						label: "Disabled radio",
@@ -215,9 +215,9 @@ export const check_radio: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return [
-					b.form.check({ type: "checkbox", label: "1", inline: true }),
-					b.form.check({ type: "checkbox", label: "2", inline: true }),
-					b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true }),
+					b.Form.Check({ type: "checkbox", label: "1", inline: true }),
+					b.Form.Check({ type: "checkbox", label: "2", inline: true }),
+					b.Form.Check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true }),
 				];
 			},
 		}),
@@ -225,9 +225,9 @@ export const check_radio: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return [
-					b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "1", inline: true }),
-					b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "2", inline: true }),
-					b.form.check({
+					b.Form.Check({ type: "radio", name: "exampeRadioGroup5", label: "1", inline: true }),
+					b.Form.Check({ type: "radio", name: "exampeRadioGroup5", label: "2", inline: true }),
+					b.Form.Check({
 						type: "radio",
 						name: "exampeRadioGroup5",
 						label: "3 (disabled)",
@@ -247,14 +247,14 @@ export const check_radio: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "checkbox", label: "Reverse checkbox", reverse: true }),
-					b.form.check({
+					b.Form.Check({ type: "checkbox", label: "Reverse checkbox", reverse: true }),
+					b.Form.Check({
 						type: "checkbox",
 						label: "Disabled reverse checkbox",
 						disabled: true,
 						reverse: true,
 					}),
-					b.form.check({
+					b.Form.Check({
 						type: "checkbox",
 						label: "Reverse switch checkbox input",
 						switch: true,
@@ -273,14 +273,14 @@ export const check_radio: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.check({ type: "checkbox", label: "Checkbox without label", hideLabel: true }),
-					b.form.check({
+					b.Form.Check({ type: "checkbox", label: "Checkbox without label", hideLabel: true }),
+					b.Form.Check({
 						type: "radio",
 						label: "Radio without label",
 						name: "exampeRadioGroup6",
 						hideLabel: true,
 					}),
-					b.form.check({
+					b.Form.Check({
 						type: "checkbox",
 						label: "Switch without label",
 						switch: true,
@@ -298,7 +298,7 @@ export const check_radio: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::Heads up!}} The {{b.form.toggle}} function return an array. You need to flat the array before add the result into your array. For this example, we use the {{...}} to flatten the array."
+			"{{b::Heads up!}} The {{b.Form.Toggle}} function return an array. You need to flat the array before add the result into your array. For this example, we use the {{...}} to flatten the array."
 		),
 
 		//-----------------------
@@ -306,12 +306,12 @@ export const check_radio: IAttrContent = {
 		new e.subtitle("Checkbox toggle buttons"),
 		new e.code({
 			output: () => {
-				return b.form.toggle({ type: "checkbox", label: "Single toggle", container: { color: "primary" } });
+				return b.Form.Toggle({ type: "checkbox", label: "Single toggle", container: { color: "primary" } });
 			},
 		}),
 		new e.code({
 			output: () => {
-				return b.form.toggle({
+				return b.Form.Toggle({
 					type: "checkbox",
 					label: "Checked",
 					container: { color: "primary" },
@@ -321,7 +321,7 @@ export const check_radio: IAttrContent = {
 		}),
 		new e.code({
 			output: () => {
-				return b.form.toggle({
+				return b.Form.Toggle({
 					type: "checkbox",
 					label: "Disabled",
 					container: { color: "primary" },
@@ -341,27 +341,27 @@ export const check_radio: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return [
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "radio",
 						label: "Checked",
 						name: "exampeRadioGroup7",
 						checked: true,
 						container: { color: "secondary" },
 					}),
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "radio",
 						label: "Radio",
 						name: "exampeRadioGroup7",
 						container: { color: "secondary" },
 					}),
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "radio",
 						label: "Disabled",
 						name: "exampeRadioGroup7",
 						disabled: true,
 						container: { color: "secondary" },
 					}),
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "radio",
 						label: "Radio",
 						name: "exampeRadioGroup7",
@@ -379,27 +379,27 @@ export const check_radio: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return [
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "checkbox",
 						label: "Single toggle",
 						container: { color: "primary", outline: true },
 					}),
 					new h.br(),
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "checkbox",
 						label: "Checked",
 						checked: true,
 						container: { color: "secondary", outline: true },
 					}),
 					new h.br(),
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "radio",
 						label: "Checked success radio",
 						name: "exampeRadioGroup8",
 						checked: true,
 						container: { color: "success", outline: true },
 					}),
-					...b.form.toggle({
+					...b.Form.Toggle({
 						type: "radio",
 						label: "Radio",
 						name: "exampeRadioGroup8",

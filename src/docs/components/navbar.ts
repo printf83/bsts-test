@@ -52,7 +52,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarSupportedContent",
-							control: "navbarSupportedContent",
+							controlfor: "navbarSupportedContent",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarSupportedContent" }, [
@@ -171,7 +171,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarNavContent",
-							control: "navbarNavContent",
+							controlfor: "navbarNavContent",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarNavContent" }, [
@@ -197,7 +197,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarNavAltMarkup",
-							control: "navbarNavAltMarkup",
+							controlfor: "navbarNavAltMarkup",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarNavAltMarkup" }, [
@@ -223,7 +223,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarNavDropdown",
-							control: "navbarNavDropdown",
+							controlfor: "navbarNavDropdown",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarNavDropdown" }, [
@@ -356,7 +356,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar w/ text"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarText",
-							control: "navbarText",
+							controlfor: "navbarText",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarText" }, [
@@ -386,13 +386,13 @@ export const navbar: IAttrContent = {
 		new e.code({
 			outputAttr: { gap: 2 },
 			output: () => {
-				const navbarItem = (btnColor: b.IAttrBSButton["color"]) => {
+				const navbarItem = (btnColor: b.IBsButton["color"]) => {
 					let id = core.UUID();
 					return new b.navbar.innercontainer({ container: "fluid" }, [
 						new b.navbar.brand({ href: "#" }, "Navbar"),
 						new b.navbar.toggle.collapse({
 							target: `#${id}`,
-							control: id,
+							controlfor: id,
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: id }, [
@@ -528,7 +528,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar scroll"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarScroll",
-							control: "navbarScroll",
+							controlfor: "navbarScroll",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarScroll" }, [
@@ -588,7 +588,7 @@ export const navbar: IAttrContent = {
 					new b.navbar.innercontainer({ container: "fluid" }, [
 						new b.navbar.toggle.collapse({
 							target: "#navbarTogglerDemo01",
-							control: "navbarTogglerDemo01",
+							controlfor: "navbarTogglerDemo01",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarTogglerDemo01" }, [
@@ -621,7 +621,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Navbar"),
 						new b.navbar.toggle.collapse({
 							target: "#navbarTogglerDemo02",
-							control: "navbarTogglerDemo02",
+							controlfor: "navbarTogglerDemo02",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.collapse({ id: "navbarTogglerDemo02" }, [
@@ -652,7 +652,7 @@ export const navbar: IAttrContent = {
 					new b.navbar.innercontainer({ container: "fluid" }, [
 						new b.navbar.toggle.collapse({
 							target: "#navbarTogglerDemo03",
-							control: "navbarTogglerDemo03",
+							controlfor: "navbarTogglerDemo03",
 							label: "Toggle navigation",
 						}),
 						new b.navbar.brand({ href: "#" }, "Navbar"),
@@ -698,7 +698,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.innercontainer({ container: "fluid" }, [
 							new b.navbar.toggle.collapse({
 								target: "#navbarToggleExternalContent",
-								control: "navbarToggleExternalContent",
+								controlfor: "navbarToggleExternalContent",
 								label: "Toggle navigation",
 							}),
 						])
@@ -734,7 +734,7 @@ export const navbar: IAttrContent = {
 		// 				new b.navbar.innercontainer({ container: "fluid" }, [
 		// 					new b.navbar.toggle.collapse({
 		// 						target: "#navbarToggleExternalContent",
-		// 						control: "navbarToggleExternalContent",
+		// 						controlfor: "navbarToggleExternalContent",
 		// 						label: "Toggle navigation",
 		// 					}),
 		// 				])
@@ -760,7 +760,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Offcanvas navbar"),
 						new b.navbar.toggle.offcanvas({
 							target: "#offcanvasNavbar",
-							control: "offcanvasNavbar",
+							controlfor: "offcanvasNavbar",
 							label: "Toggle navigation",
 						}),
 						new b.offcanvas.container(
@@ -839,7 +839,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Offcanvas lg navbar"),
 						new b.navbar.toggle.offcanvas({
 							target: "#offcanvasLgNavbar",
-							control: "offcanvasLgNavbar",
+							controlfor: "offcanvasLgNavbar",
 							label: "Toggle navigation",
 						}),
 						new b.offcanvas.container(
@@ -909,7 +909,7 @@ export const navbar: IAttrContent = {
 						new b.navbar.brand({ href: "#" }, "Offcanvas dark navbar"),
 						new b.navbar.toggle.offcanvas({
 							target: "#offcanvasDarkNavbar",
-							control: "offcanvasDarkNavbar",
+							controlfor: "offcanvasDarkNavbar",
 							label: "Toggle navigation",
 						}),
 						new b.offcanvas.container(

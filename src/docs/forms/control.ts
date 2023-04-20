@@ -25,17 +25,17 @@ export const control: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{b.form.item}} and {{b.form.textarea}}"),
+		new e.text("Using {{b.form.item}} and {{b.Form.Textarea}}"),
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Email address",
 						placeholder: "name@example.com",
 						type: "email",
 					}),
-					b.form.textarea({
+					b.Form.Textarea({
 						label: "Example textarea",
 					}),
 				];
@@ -49,16 +49,16 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						placeholder: ".form-control-lg",
 						weight: "lg",
 					}),
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						placeholder: "Default input",
 					}),
-					b.form.input({
+					b.Form.Input({
 						placeholder: ".form-control-sm",
 						weight: "sm",
 					}),
@@ -93,7 +93,7 @@ export const control: IAttrContent = {
 		new e.text("Using {{b.form.item}}"),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					label: "Password",
 					type: "password",
 					description:
@@ -126,7 +126,7 @@ export const control: IAttrContent = {
 		new e.text("Using {{b.form.item}}"),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					container: { gutter: 3, alignItem: "center" },
 					label: "Password",
 					type: "password",
@@ -190,7 +190,7 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						value: "email@example.com",
 						label: "Email",
@@ -198,7 +198,7 @@ export const control: IAttrContent = {
 						col1: "sm-2",
 						col2: "sm-10",
 					}),
-					b.form.input({
+					b.Form.Input({
 						label: "Password",
 						type: "password",
 						col1: "sm-2",
@@ -210,14 +210,14 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true }, [
-					b.form.input({
+					b.Form.Input({
 						container: { col: "auto" },
 						value: "email@example.com",
 						label: "Email",
 						hideLabel: true,
 						plaintext: true,
 					}),
-					b.form.input({
+					b.Form.Input({
 						container: { col: "auto" },
 						label: "Password",
 						hideLabel: true,
@@ -236,30 +236,30 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Default file input example",
 						type: "file",
 					}),
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Multiple file input example",
 						type: "file",
 						multiple: true,
 					}),
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Disabled file input example",
 						type: "file",
 						disabled: true,
 					}),
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Small file input example",
 						type: "file",
 						weight: "sm",
 					}),
-					b.form.input({
+					b.Form.Input({
 						label: "Large file input example",
 						type: "file",
 						weight: "lg",
@@ -277,7 +277,7 @@ export const control: IAttrContent = {
 		new e.text([new h.span({ class: "teal-700" }, "This teal-700")]),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					label: "Color picker",
 					type: "color",
 					value: "#563d7c",
@@ -295,7 +295,7 @@ export const control: IAttrContent = {
 
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					label: "Datalist example",
 					type: "text",
 					placeholder: "Type to search...",

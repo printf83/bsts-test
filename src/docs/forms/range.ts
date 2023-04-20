@@ -21,7 +21,7 @@ export const range: IAttrContent = {
 		new e.text("Using {{item}} to setup option"),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					label: "Example range",
 					type: "range",
 				});
@@ -36,7 +36,7 @@ export const range: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					label: "Disabled range",
 					type: "range",
 					disabled: true,
@@ -52,7 +52,7 @@ export const range: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					label: "Example range",
 					type: "range",
 					min: 0,
@@ -70,7 +70,7 @@ export const range: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.form.input({
+				return b.Form.Input({
 					label: "Example range",
 					type: "range",
 					min: 0,

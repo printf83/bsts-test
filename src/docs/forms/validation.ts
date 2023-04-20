@@ -62,34 +62,34 @@ export const validation: IAttrContent = {
 						},
 					},
 					[
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "First name",
 							value: "Mark",
 							required: true,
 							validFeedback: "Looks good!",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Last name",
 							value: "Otto",
 							required: true,
 							validFeedback: "Looks good!",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Username",
 							before: "@",
 							required: true,
 							invalidFeedback: "Please choose a username.",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-6" },
 							label: "City",
 							required: true,
 							invalidFeedback: "Please choose a valid city.",
 						}),
-						b.form.select({
+						b.Form.Select({
 							container: { col: "md-3" },
 							label: "State",
 							required: true,
@@ -104,13 +104,13 @@ export const validation: IAttrContent = {
 							],
 							invalidFeedback: "Please select a valid state",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-3" },
 							label: "Zip",
 							required: true,
 							invalidFeedback: "Please provide a valid zip",
 						}),
-						b.form.check({
+						b.Form.Check({
 							container: { col: 12 },
 							required: true,
 							label: "Agree to terms and conditions",
@@ -173,34 +173,34 @@ export const validation: IAttrContent = {
 						},
 					},
 					[
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-4" },
 							label: "First name",
 							value: "Mark",
 							required: true,
 							validFeedback: "Looks good!",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-4" },
 							label: "Last name",
 							value: "Otto",
 							required: true,
 							validFeedback: "Looks good!",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-4" },
 							label: "Username",
 							before: "@",
 							required: true,
 							invalidFeedback: "Please choose a username.",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-6" },
 							label: "City",
 							required: true,
 							invalidFeedback: "Please choose a valid city.",
 						}),
-						b.form.floatinglabel.select({
+						b.Form.FloatingLabel.Select({
 							container: { col: "md-3" },
 							label: "State",
 							required: true,
@@ -215,13 +215,13 @@ export const validation: IAttrContent = {
 							],
 							invalidFeedback: "Please select a valid state",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-3" },
 							label: "Zip",
 							required: true,
 							invalidFeedback: "Please provide a valid zip",
 						}),
-						b.form.check({
+						b.Form.Check({
 							container: { col: 12 },
 							required: true,
 							label: "Agree to terms and conditions",
@@ -250,30 +250,30 @@ export const validation: IAttrContent = {
 						gutter: 3,
 					},
 					[
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "First name",
 							value: "Mark",
 							required: true,
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Last name",
 							value: "Otto",
 							required: true,
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Username",
 							before: "@",
 							required: true,
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-6" },
 							label: "City",
 							required: true,
 						}),
-						b.form.select({
+						b.Form.Select({
 							container: { col: "md-3" },
 							label: "State",
 							required: true,
@@ -287,12 +287,12 @@ export const validation: IAttrContent = {
 								{ value: "...", elem: "..." },
 							],
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-3" },
 							label: "Zip",
 							required: true,
 						}),
-						b.form.check({
+						b.Form.Check({
 							container: { col: 12 },
 							required: true,
 							label: "Agree to terms and conditions",
@@ -323,7 +323,7 @@ export const validation: IAttrContent = {
 						gutter: 3,
 					},
 					[
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "First name",
 							value: "Mark",
@@ -331,7 +331,7 @@ export const validation: IAttrContent = {
 							validFeedback: "Looks good!",
 							isvalid: true,
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Last name",
 							value: "Otto",
@@ -339,7 +339,7 @@ export const validation: IAttrContent = {
 							validFeedback: "Looks good!",
 							isvalid: true,
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Username",
 							before: "@",
@@ -347,14 +347,14 @@ export const validation: IAttrContent = {
 							invalidFeedback: "Please choose a username.",
 							isvalid: false,
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-6" },
 							label: "City",
 							required: true,
 							invalidFeedback: "Please choose a valid city.",
 							isvalid: false,
 						}),
-						b.form.select({
+						b.Form.Select({
 							container: { col: "md-3" },
 							label: "State",
 							required: true,
@@ -370,14 +370,14 @@ export const validation: IAttrContent = {
 							invalidFeedback: "Please select a valid state",
 							isvalid: false,
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-3" },
 							label: "Zip",
 							required: true,
 							invalidFeedback: "Please provide a valid zip",
 							isvalid: false,
 						}),
-						b.form.check({
+						b.Form.Check({
 							container: { col: 12 },
 							required: true,
 							label: "Agree to terms and conditions",
@@ -404,26 +404,26 @@ export const validation: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.form({ class: "was-validated" }, [
-					b.form.textarea({
+					b.Form.Textarea({
 						container: { marginBottom: 3 },
 						label: "Textarea",
 						placeholder: "Required example textarea",
 						required: true,
 						invalidFeedback: "Please enter a message in the textarea.",
 					}),
-					b.form.check({
+					b.Form.Check({
 						container: { marginBottom: 3 },
 						label: "Check this checkbox",
 						required: true,
 						invalidFeedback: "Example invalid feedback text",
 					}),
-					b.form.check({
+					b.Form.Check({
 						type: "radio",
 						name: "radio-stacked",
 						label: "Or toggle this other radio",
 						required: true,
 					}),
-					b.form.check({
+					b.Form.Check({
 						container: { marginBottom: 3 },
 						type: "radio",
 						name: "radio-stacked",
@@ -431,7 +431,7 @@ export const validation: IAttrContent = {
 						required: true,
 						invalidFeedback: "More example invalid feedback text",
 					}),
-					b.form.select({
+					b.Form.Select({
 						container: { marginBottom: 3 },
 						label: "select example",
 						hideLabel: true,
@@ -444,7 +444,7 @@ export const validation: IAttrContent = {
 						],
 						invalidFeedback: "Example invalid select feedback",
 					}),
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "file example",
 						hideLabel: true,
@@ -486,34 +486,34 @@ export const validation: IAttrContent = {
 						},
 					},
 					[
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "First name",
 							value: "Mark",
 							required: true,
 							validTooltip: "Looks good!",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Last name",
 							value: "Otto",
 							required: true,
 							validTooltip: "Looks good!",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-4" },
 							label: "Username",
 							before: "@",
 							required: true,
 							invalidTooltip: "Please choose a unique and valid username.",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-6" },
 							label: "City",
 							required: true,
 							invalidTooltip: "Please provide a valid city.",
 						}),
-						b.form.select({
+						b.Form.Select({
 							container: { col: "md-3" },
 							label: "State",
 							required: true,
@@ -528,13 +528,13 @@ export const validation: IAttrContent = {
 							],
 							invalidTooltip: "Please select a valid state",
 						}),
-						b.form.input({
+						b.Form.Input({
 							container: { col: "md-3" },
 							label: "Zip",
 							required: true,
 							invalidTooltip: "Please provide a valid zip",
 						}),
-						b.form.check({
+						b.Form.Check({
 							container: { col: 12 },
 							required: true,
 							label: "Agree to terms and conditions",
@@ -572,34 +572,34 @@ export const validation: IAttrContent = {
 						},
 					},
 					[
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-4" },
 							label: "First name",
 							value: "Mark",
 							required: true,
 							validTooltip: "Looks good!",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-4" },
 							label: "Last name",
 							value: "Otto",
 							required: true,
 							validTooltip: "Looks good!",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-4" },
 							label: "Username",
 							before: "@",
 							required: true,
 							invalidTooltip: "Please choose a unique and valid username.",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-6" },
 							label: "City",
 							required: true,
 							invalidTooltip: "Please provide a valid city.",
 						}),
-						b.form.floatinglabel.select({
+						b.Form.FloatingLabel.Select({
 							container: { col: "md-3" },
 							label: "State",
 							required: true,
@@ -614,13 +614,13 @@ export const validation: IAttrContent = {
 							],
 							invalidTooltip: "Please select a valid state",
 						}),
-						b.form.floatinglabel.input({
+						b.Form.FloatingLabel.Input({
 							container: { col: "md-3" },
 							label: "Zip",
 							required: true,
 							invalidTooltip: "Please provide a valid zip",
 						}),
-						b.form.check({
+						b.Form.Check({
 							container: { col: 12 },
 							required: true,
 							label: "Agree to terms and conditions",

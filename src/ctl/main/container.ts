@@ -13,7 +13,7 @@ const dispatchCustomEvent = (root: Element | null, eventName: string, value: str
 	}
 };
 
-const changeTheme = (value: string, icon: b.IAttrBSIcon) => {
+const changeTheme = (value: string, icon: b.IBsIcon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
 	let bsThemeMenu = bsTheme.nextSibling as HTMLElement;
 
@@ -104,12 +104,12 @@ export interface IAttrItemInsideLink {
 export interface IAttrItemOutsideLink {
 	href: string;
 	label: string;
-	icon: b.IAttrBSIcon;
+	icon: b.IBsIcon;
 }
 
 export interface IAttrItemTheme {
 	value: string;
-	icon: b.IAttrBSIcon;
+	icon: b.IBsIcon;
 	label: string;
 }
 
@@ -120,7 +120,7 @@ export interface IAttrItemVersion {
 
 export interface IAttrItemMenu {
 	label: string;
-	icon: b.IAttrBSIcon;
+	icon: b.IBsIcon;
 	item: IAttrItemSubMenu[];
 }
 
@@ -157,7 +157,7 @@ export interface IAttrFooter {
 }
 
 const genTheme = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	navbarItemTheme?: IAttrItemTheme[],
 	currentTheme?: string
 ) => {
@@ -236,7 +236,7 @@ const genTheme = (
 };
 
 const genVersion = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	name: string,
 	navbarItemVersion?: IAttrItemVersion[],
 	currentVersion?: string
@@ -298,7 +298,7 @@ const genVersion = (
 };
 
 const genOutsideLink = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	itemOutsideLink?: IAttrItemOutsideLink[],
 	itemVersion?: t[],
 	itemTheme?: t[]
@@ -329,7 +329,7 @@ const genOutsideLink = (
 };
 
 const genInsideLink = (
-	textColor: core.bootstrapType.textColor[number],
+	textColor: core.bootstrapType.textColor,
 	itemInsideLink?: IAttrItemInsideLink[],
 	currentInsideLink?: string
 ) => {
@@ -526,7 +526,7 @@ const genToc = (content?: IAttrContent) => {
 							class: "bs-toc-toggle",
 							display: "md-none",
 							target: "#tocContents",
-							control: "tocContents",
+							controlfor: "tocContents",
 						},
 						[
 							"On this page",
@@ -626,12 +626,12 @@ export const genMainContent = (content?: IAttrContent) => {
 	return [genIntro(content), genToc(content), genContent(content)];
 };
 
-export interface IAttrBSMainContainer extends core.IAttr {
-	icon?: b.IAttrBSIcon;
+export interface IBsMainContainer extends core.IAttr {
+	icon?: b.IBsIcon;
 	name?: string;
 
-	textColor?: core.bootstrapType.textColor[number];
-	bgColor?: core.bootstrapType.bgColor[number];
+	textColor?: core.bootstrapType.textColor;
+	bgColor?: core.bootstrapType.bgColor;
 
 	itemOutsideLink?: IAttrItemOutsideLink[];
 
@@ -649,7 +649,7 @@ export interface IAttrBSMainContainer extends core.IAttr {
 	content?: IAttrContent;
 }
 
-const convert = (attr: IAttrBSMainContainer) => {
+const convert = (attr: IBsMainContainer) => {
 	attr.class = core.mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
 		new b.navbar.containerHeader(
@@ -676,7 +676,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									class: "bs-noshadow",
 									padding: 2,
 									target: "#bsSidebar",
-									control: "bsSidebar",
+									controlfor: "bsSidebar",
 									label: "Toggle docs navigation",
 									textColor: attr.textColor || "light",
 								},
@@ -703,7 +703,7 @@ const convert = (attr: IAttrBSMainContainer) => {
 									order: 3,
 									padding: 2,
 									target: "#bsNavbar",
-									control: "bsNavbar",
+									controlfor: "bsNavbar",
 									label: "Toggle navigation",
 									textColor: attr.textColor || "light",
 								},
@@ -868,8 +868,10 @@ const convert = (attr: IAttrBSMainContainer) => {
 
 export class container extends h.div {
 	constructor();
-	constructor(attr: IAttrBSMainContainer);
+	constructor(attr: IBsMainContainer);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IAttrBSMainContainer>(convert, arg));
+		super(core.bsConsNoElemArg<IBsMainContainer>(convert, arg));
 	}
 }
+
+export const Container = (Attr?: IBsMainContainer) => core.genTagClass<container, IBsMainContainer>(container, Attr);

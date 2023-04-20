@@ -79,7 +79,7 @@ export const popover: IAttrContent = {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.popover(
 						{
-							placement: i as b.IAttrBSPopover["placement"],
+							placement: i as b.IBsPopover["placement"],
 							content: `${i.charAt(0).toUpperCase() + i.slice(1)} popover`,
 						},
 						new b.button({ color: "secondary" }, `Popover on ${i}`)

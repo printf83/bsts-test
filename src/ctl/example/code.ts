@@ -1,16 +1,16 @@
 import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
 
-export interface IAttrBSExampleExt {
+export interface IBsExampleExt {
 	name?: string;
 	output?: Function;
 	strOutput?: string;
 }
 
-export interface IAttrBSExampleContainer extends core.IAttr {
+export interface IBsExampleContainer extends core.IAttr {
 	lib?: string | string[];
 	css?: string;
-	extention?: IAttrBSExampleExt | IAttrBSExampleExt[];
+	extention?: IBsExampleExt | IBsExampleExt[];
 	output?: Function;
 	manager?: Function;
 	strOutput?: string;
@@ -135,7 +135,7 @@ const itemCode = (
 							paddingY: 2,
 							paddingX: 4,
 							flex: "fill",
-							control: collapseable ? id : undefined,
+							controlfor: collapseable ? id : undefined,
 							data: {
 								"bs-toggle": collapseable ? "collapse" : undefined,
 								"bs-target": collapseable ? `#${id}` : undefined,
@@ -383,7 +383,7 @@ const itemViewport = () => {
 	);
 };
 
-const convert = (attr: IAttrBSExampleContainer) => {
+const convert = (attr: IBsExampleContainer) => {
 	let id = core.UUID();
 
 	attr.showOutput = attr.showOutput === undefined ? true : attr.showOutput;
@@ -419,7 +419,7 @@ const convert = (attr: IAttrBSExampleContainer) => {
 	}
 
 	if (attr.extention) {
-		let f: IAttrBSExampleExt[] = [];
+		let f: IBsExampleExt[] = [];
 		if (Array.isArray(attr.extention)) {
 			f = attr.extention;
 		} else {
@@ -514,8 +514,10 @@ const convert = (attr: IAttrBSExampleContainer) => {
 
 export class code extends h.div {
 	constructor();
-	constructor(attr: IAttrBSExampleContainer);
+	constructor(attr: IBsExampleContainer);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IAttrBSExampleContainer>(convert, arg));
+		super(core.bsConsNoElemArg<IBsExampleContainer>(convert, arg));
 	}
 }
+
+export const Code = (Attr?: IBsExampleContainer) => core.genTagClass<code, IBsExampleContainer>(code, Attr);

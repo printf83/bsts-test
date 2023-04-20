@@ -1,6 +1,6 @@
 import { core, b } from "@printf83/bsts";
 
-const convert = (attr: b.table.IAttrBSTableContainer) => {
+const convert = (attr: b.table.IBsTableContainer) => {
 	let tAttr: core.IAttr = {};
 
 	tAttr.class = "example-table";
@@ -14,10 +14,13 @@ const convert = (attr: b.table.IAttrBSTableContainer) => {
 
 export class table extends b.table.responsive {
 	constructor(); //#1
-	constructor(attr: b.table.IAttrBSTableContainer); //#2
+	constructor(attr: b.table.IBsTableContainer); //#2
 	constructor(elem: core.IElem); //#3
-	constructor(attr: b.table.IAttrBSTableContainer, elem: core.IElem); //#4
+	constructor(attr: b.table.IBsTableContainer, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<b.table.IAttrBSTableContainer>("elem", convert, arg));
+		super(convert(core.bsConstArg<b.table.IBsTableContainer>("elem", arg)));
 	}
 }
+
+export const Table = (AttrOrElem?: b.table.IBsTableContainer | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<table, b.table.IBsTableContainer>(table, AttrOrElem, Elem);

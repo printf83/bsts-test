@@ -339,7 +339,7 @@ export const card: IAttrContent = {
 						{
 							style: { width: "18rem" },
 							marginTop: i ? 3 : undefined,
-							textAlign: i as core.bootstrapType.textAlign[number],
+							textAlign: i as core.bootstrapType.textAlign,
 						},
 						[
 							new b.card.body([
@@ -528,7 +528,7 @@ export const card: IAttrContent = {
 					(i, ix) => {
 						return new b.card.container(
 							{
-								textBgColor: i as core.bootstrapType.textBgColor[number],
+								textBgColor: i as core.bootstrapType.textBgColor,
 								marginTop: ix !== 0 ? 3 : undefined,
 								style: { width: "18rem" },
 							},
@@ -567,13 +567,13 @@ export const card: IAttrContent = {
 					(i, ix) => {
 						return new b.card.container(
 							{
-								borderColor: i as core.bootstrapType.borderColor[number],
+								borderColor: i as core.bootstrapType.borderColor,
 								marginTop: ix !== 0 ? 3 : undefined,
 								style: { width: "18rem" },
 							},
 							[
 								new b.card.header("Header"),
-								new b.card.body({ textColor: i as core.bootstrapType.textColor[number] }, [
+								new b.card.body({ textColor: i as core.bootstrapType.textColor }, [
 									new b.card.title(`${i.charAt(0).toUpperCase() + i.slice(1)} card title`),
 									new b.card.text(
 										"Some quick example text to build on the card title and make up the bulk of the card's content."

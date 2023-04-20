@@ -1,6 +1,6 @@
 import { core, h } from "@printf83/bsts";
 
-const convert = (attr: h.IAttrTagUl) => {
+const convert = (attr: h.ITagUl) => {
 	let tAttr: core.IAttr = {};
 
 	tAttr.class = "example-ul";
@@ -12,10 +12,13 @@ const convert = (attr: h.IAttrTagUl) => {
 
 export class ul extends h.div {
 	constructor(); //#1
-	constructor(attr: h.IAttrTagUl); //#2
+	constructor(attr: h.ITagUl); //#2
 	constructor(elem: core.IElem); //#3
-	constructor(attr: h.IAttrTagUl, elem: core.IElem); //#4
+	constructor(attr: h.ITagUl, elem: core.IElem); //#4
 	constructor(...arg: any[]) {
-		super(core.bsConstArg<h.IAttrTagUl>("elem", convert, arg));
+		super(convert(core.bsConstArg<h.ITagUl>("elem", arg)));
 	}
 }
+
+export const Ul = (AttrOrElem?: h.ITagUl | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<ul, h.ITagUl>(ul, AttrOrElem, Elem);

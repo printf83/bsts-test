@@ -63,14 +63,14 @@ function itemCodeCopy(e: Event) {
 	return false;
 }
 
-export interface IAttrBSExampleCodepreview extends core.IAttr {
+export interface IBsExampleCodepreview extends core.IAttr {
 	code?: string;
 	type?: "js" | "ts" | "css" | "html";
 	title?: string;
 	source?: string;
 }
 
-const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
+const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 	if (attr.code) {
 		const copyButton = new b.tooltip(
 			{ content: "Copy to clipboard" },
@@ -148,8 +148,11 @@ const convert = (attr: IAttrBSExampleCodepreview): core.IAttr => {
 
 export class codepreview extends h.div {
 	constructor();
-	constructor(attr: IAttrBSExampleCodepreview);
+	constructor(attr: IBsExampleCodepreview);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IAttrBSExampleCodepreview>(convert, arg));
+		super(core.bsConsNoElemArg<IBsExampleCodepreview>(convert, arg));
 	}
 }
+
+export const Codepreview = (Attr?: IBsExampleCodepreview) =>
+	core.genTagClass<codepreview, IBsExampleCodepreview>(codepreview, Attr);

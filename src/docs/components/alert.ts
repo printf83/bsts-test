@@ -19,7 +19,7 @@ export const alert: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.alert.container(
-						{ color: i as core.bootstrapType.color[number] },
+						{ color: i as core.bootstrapType.color },
 						`A simple ${i} alert—check it out!`
 					);
 				});
@@ -41,7 +41,7 @@ export const alert: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.alert.container(
-						{ color: i as core.bootstrapType.color[number], callout: true },
+						{ color: i as core.bootstrapType.color, callout: true },
 						`A simple ${i} callout—check it out!`
 					);
 				});
@@ -89,7 +89,7 @@ export const alert: IAttrContent = {
 		new e.code({
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.alert.container({ color: i as core.bootstrapType.color[number] }, [
+					return new b.alert.container({ color: i as core.bootstrapType.color }, [
 						`A simple ${i} alert with `,
 						new b.alert.link({ href: "#" }, "an example link"),
 						".",
@@ -149,7 +149,7 @@ export const alert: IAttrContent = {
 					{ color: "warning", icon: b.icon.bi("exclamation-triangle-fill", { fontSize: 5 }) },
 					{ color: "danger", icon: b.icon.bi("x-circle-fill", { fontSize: 5 }) },
 				].map((i) => {
-					return new b.alert.container({ color: i.color as core.bootstrapType.color[number] }, [
+					return new b.alert.container({ color: i.color as core.bootstrapType.color }, [
 						new b.label({ icon: i.icon }, `An example ${i.color} alert with an icon`),
 					]);
 				});

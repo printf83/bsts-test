@@ -1,6 +1,6 @@
 import { core, b } from "@printf83/bsts";
 
-export const toast = (color: b.toast.IAttrBSToastTemplate["color"], elem: core.IElem, icon?: string) => {
+export const toast = (color: b.toast.IBsToastTemplate["color"], elem: core.IElem, icon?: string) => {
 	let tElem: core.IElem;
 
 	switch (color) {

@@ -1,7 +1,7 @@
 import {
 	container,
 	genMainContent,
-	IAttrBSMainContainer,
+	IBsMainContainer,
 	IAttrContent,
 	IAttrFooter,
 	IAttrFooterItem,
@@ -12,12 +12,15 @@ import {
 	IAttrItemTheme,
 	IAttrItemVersion,
 	IAttrTocItem,
+	Container,
 } from "./container.js";
+
+export { Container };
 
 export {
 	container,
 	genMainContent,
-	IAttrBSMainContainer,
+	IBsMainContainer,
 	IAttrContent,
 	IAttrFooter,
 	IAttrFooterItem,

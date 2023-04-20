@@ -68,11 +68,11 @@ export const offcanvas: IAttrContent = {
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ href: "#offcanvasExample", control: "offcanvasExample", marginEnd: 2 },
+						{ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 },
 						"Link with href"
 					),
 					new b.offcanvas.toggle(
-						{ target: "#offcanvasExample", control: "offcanvasExample" },
+						{ target: "#offcanvasExample", controlfor: "offcanvasExample" },
 						"Button with data-bs-target"
 					),
 					new b.offcanvas.container({ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" }, [
@@ -108,7 +108,7 @@ export const offcanvas: IAttrContent = {
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ target: "#offcanvasScrolling", control: "offcanvasScrolling" },
+						{ target: "#offcanvasScrolling", controlfor: "offcanvasScrolling" },
 						"Enable body scrolling"
 					),
 					new b.offcanvas.container(
@@ -143,7 +143,7 @@ export const offcanvas: IAttrContent = {
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ target: "#offcanvasWithBothOptions", control: "offcanvasWithBothOptions" },
+						{ target: "#offcanvasWithBothOptions", controlfor: "offcanvasWithBothOptions" },
 						"Enable both scrolling & backdrop"
 					),
 					new b.offcanvas.container(
@@ -178,7 +178,7 @@ export const offcanvas: IAttrContent = {
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ target: "#staticBackdrop", control: "staticBackdrop" },
+						{ target: "#staticBackdrop", controlfor: "staticBackdrop" },
 						"Toggle static offcanvas"
 					),
 					new b.offcanvas.container(
@@ -242,7 +242,7 @@ export const offcanvas: IAttrContent = {
 					new b.offcanvas.toggle(
 						{
 							target: "#offcanvasResponsive",
-							control: "offcanvasResponsive",
+							controlfor: "offcanvasResponsive",
 							display: "lg-none",
 						},
 						"Toggle offcanvas"
@@ -302,7 +302,7 @@ export const offcanvas: IAttrContent = {
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ target: "#offcanvasTop", control: "offcanvasTop" },
+						{ target: "#offcanvasTop", controlfor: "offcanvasTop" },
 						"Toggle top offcanvas"
 					),
 					new b.offcanvas.container(
@@ -326,7 +326,7 @@ export const offcanvas: IAttrContent = {
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ target: "#offcanvasEnd", control: "offcanvasEnd" },
+						{ target: "#offcanvasEnd", controlfor: "offcanvasEnd" },
 						"Toggle end offcanvas"
 					),
 					new b.offcanvas.container(
@@ -350,7 +350,7 @@ export const offcanvas: IAttrContent = {
 			output: () => {
 				return [
 					new b.offcanvas.toggle(
-						{ target: "#offcanvasBottom", control: "offcanvasBottom" },
+						{ target: "#offcanvasBottom", controlfor: "offcanvasBottom" },
 						"Toggle bottom offcanvas"
 					),
 					new b.offcanvas.container(
