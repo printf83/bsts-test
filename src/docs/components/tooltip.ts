@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, strHtml } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -156,7 +156,9 @@ export const tooltip: IAttrContent = {
 					{
 						content: "Default tooltip",
 					},
-					`<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#563d7c"></rect><circle cx="50" cy="50" r="30" fill="#007bff"></circle></svg>`
+					new strHtml(
+						`<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#563d7c"></rect><circle cx="50" cy="50" r="30" fill="#007bff"></circle></svg>`
+					)
 				);
 			},
 		}),
