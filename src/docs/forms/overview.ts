@@ -111,18 +111,18 @@ export const overview: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.form([
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Email address",
 						description: "We'll never share your email with anyone else.",
 						type: "email",
 					}),
-					b.form.input({
+					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
 					}),
-					b.form.check({
+					b.Form.Check({
 						container: { marginBottom: 3 },
 						label: "Check me out",
 						type: "checkbox",
@@ -156,18 +156,18 @@ export const overview: IAttrContent = {
 				return new h.form(
 					new h.fieldset({ disabled: true }, [
 						new h.legend("Disabled fieldset example"),
-						b.form.input({
+						b.Form.Input({
 							container: { marginBottom: 3 },
 							label: "Disabled input",
 							placeholder: "Disabled input",
 							type: "text",
 						}),
-						b.form.select({
+						b.Form.Select({
 							container: { marginBottom: 3 },
 							label: "Disabled select menu",
 							item: [{ elem: "Disabled select" }],
 						}),
-						b.form.check({
+						b.Form.Check({
 							container: { marginBottom: 3 },
 							label: "Check me out",
 							type: "checkbox",

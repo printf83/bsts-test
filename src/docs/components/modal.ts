@@ -151,7 +151,7 @@ export const modal: IAttrContent = {
 								click: () => {
 									const mdl = b.modal.simple({
 										title: document.title,
-										elem: b.form.check({
+										elem: b.Form.Check({
 											id: "testcheckbox",
 											label: "Tick this checkbox before click {{k::Okay}} button",
 										}),

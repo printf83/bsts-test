@@ -95,7 +95,7 @@ export const borders: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.form.input({
+					b.Form.Input({
 						borderColor: "success",
 
 						container: { marginBottom: 4 },
