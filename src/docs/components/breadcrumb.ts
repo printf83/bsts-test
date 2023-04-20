@@ -9,7 +9,7 @@ export const breadcrumb: IAttrContent = {
 	item: [
 		new e.title("Example"),
 		new e.text(
-			"Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb. Use Bootstrap utilities to add additional styles as desired."
+			"Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb ({{b.breadcrumb.container}}). Use Bootstrap utilities to add additional styles as desired."
 		),
 		new e.code({
 			output: () => {
@@ -44,7 +44,7 @@ export const breadcrumb: IAttrContent = {
 
 		new e.title("Dividers"),
 		new e.text(
-			"Dividers are automatically added in CSS through {{https://developer.mozilla.org/en-US/docs/Web/CSS/::before}} and {{https://developer.mozilla.org/en-US/docs/Web/CSS/content::content}}. They can be changed by modifying a local CSS custom property {{--bs-breadcrumb-divider}}, or through the {{$breadcrumb-divider}} Sass variable — and {{$breadcrumb-divider-flipped}} for its RTL counterpart, if needed. We default to Bootstrap Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
+			"Dividers are automatically added in CSS through {{https://developer.mozilla.org/en-US/docs/Web/CSS/::before}} and {{https://developer.mozilla.org/en-US/docs/Web/CSS/content::content}}. They can be changed by modifying the {{divider: '<divide>'}} property, or through the {{$breadcrumb-divider}} Sass variable — and {{$breadcrumb-divider-flipped}} for its RTL counterpart, if needed. We default to Bootstrap Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
 		),
 		new e.code({
 			output: () => {
@@ -98,7 +98,7 @@ export const breadcrumb: IAttrContent = {
 				`,
 		}),
 		new e.text(
-			"You can also remove the divider setting {{--bs-breadcrumb-divider: '';}} (empty strings in CSS custom properties counts as a value), or setting the Sass variable to {{$breadcrumb-divider: none;}}."
+			"You can also remove the divider setting {{divider: ''}} (empty strings as a value), or setting the Sass variable to {{$breadcrumb-divider: none;}}."
 		),
 		new e.code({
 			output: () => {

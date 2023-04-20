@@ -8,7 +8,7 @@ export const badge: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"Badges scale to match the size of the immediate parent element by using relative font sizing and {{em}} units. As of v5, badges no longer have focus or hover styles for links."
+			"Badges ({{b.badge}}) scale to match the size of the immediate parent element by using relative font sizing and {{em}} units. As of v5, badges no longer have focus or hover styles for links."
 		),
 
 		//-----------------------
@@ -41,7 +41,7 @@ export const badge: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Positioned"),
-		new e.text("Use utilities to modify a {{.badge}} and position it in the corner of a link or button."),
+		new e.text("Use utilities to modify a {{b.badge}} and position it in the corner of a link or button."),
 		new e.code({
 			output: () => {
 				return new b.button({ position: "relative" }, [
@@ -61,7 +61,7 @@ export const badge: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"You can also replace the {{.badge}} class with a few more utilities without a count for a more generic indicator."
+			"You can also replace the {{b.badge}} component with a few more utilities without a count for a more generic indicator."
 		),
 		new e.code({
 			output: () => {
@@ -89,7 +89,7 @@ export const badge: IAttrContent = {
 
 		new e.title("Background colors"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{nav:docs/helpers/color_background::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::.text-{color} }}and {{nav:docs/utilities/background::.bg-{color} }}utilities for styling, which you still may use if you prefer."
+			"Set a {{bgColor}} with contrasting foreground {{textColor}} with {{nav:docs/helpers/color_background::textBgColor: <color> helpers}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::textColor: <color> }}and {{nav:docs/utilities/background::bgColor: <color> }}utilities for styling, which you still may use if you prefer."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -105,16 +105,14 @@ export const badge: IAttrContent = {
 		new e.alert({ color: "info", callout: true }, [
 			new h.h(5, "Conveying meaning to assistive technologies"),
 			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 			),
 		]),
 
 		//-----------------------
 
 		new e.title("Pill badges"),
-		new e.text(
-			"Use the {{.rounded-pill}} utility class to make badges more rounded with a larger {{border-radius}}."
-		),
+		new e.text("Use the {{rounded: 'pill'}} property to make badges more rounded with a larger {{border-radius}}."),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {

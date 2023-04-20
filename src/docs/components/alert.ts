@@ -9,7 +9,7 @@ export const alert: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{color:'success'}}). For inline dismissal, use the {{nav:docs/components/alert#dismissing::alerts JavaScript plugin}}."
+			"Alerts ({{b.alert.container}}) are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., {{color:'success'}}). For inline dismissal, use the {{nav:docs/components/alert#dismissing::alerts JavaScript plugin}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -182,7 +182,7 @@ export const alert: IAttrContent = {
 
 		new e.alert(
 			{ color: "warning", callout: true },
-			"When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the {{closed.bs.alert}} event and programmatically sets {{focus()}} to the most appropriate location in the page. If you’re planning to move focus to a non-interactive element that normally does not receive focus, make sure to add {{tabindex='-1'}} to the element."
+			"When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the {{closed.bs.alert}} event and programmatically sets {{focus()}} to the most appropriate location in the page. If you’re planning to move focus to a non-interactive element that normally does not receive focus, make sure to add {{tabindex:'-1'}} to the element."
 		),
 		//-----------------------
 
