@@ -9,7 +9,7 @@ export const card: IAttrContent = {
 	item: [
 		new e.title("About"),
 		new e.text(
-			"A {{card}} is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace Bootstrap old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards."
+			"A {{card}} ({{b.card.container}}) is a flexible and extensible content container. It includes options for headers ({{b.card.header}}) and footers ({{b.card.footer}}), a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace Bootstrap old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards."
 		),
 
 		//-----------------------
@@ -44,11 +44,11 @@ export const card: IAttrContent = {
 
 		new e.title("Content types"),
 		new e.text(
-			"Cards support a wide variety of content, including images, text, list groups, links, and more. Below are examples of what’s supported."
+			"Cards support a wide variety of content, including images ({{b.card.img}}), text ({{b.card.text}}), list groups ({{b.list.container}}), links ({{b.card.link}}), and more. Below are examples of what’s supported."
 		),
 		new e.subtitle("Body"),
 		new e.text(
-			"The building block of a card is the {{.card-body}}. Use it whenever you need a padded section within a card."
+			"The building block of a card is the {{b.card.body}}. Use it whenever you need a padded section within a card."
 		),
 		new e.code({
 			output: () => {
@@ -60,10 +60,10 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Titles, text, and links"),
 		new e.text(
-			"Card titles are used by adding {{.card-title}} to a {{<h*>}} tag. In the same way, links are added and placed next to each other by adding {{.card-link}} to an {{<a>}} tag."
+			"Card titles are used by adding {{b.card.title}} component. In the same way, links are added and placed next to each other by adding {{b.card.link}} component."
 		),
 		new e.text(
-			"Subtitles are used by adding a {{.card-subtitle}} to a {{<h*>}} tag. If the {{.card-title}} and the {{.card-subtitle}} items are placed in a {{.card-body}} item, the card title and subtitle are aligned nicely."
+			"Subtitles are used by adding a {{b.card.subtitle}} component. If the {{b.card.title}} and the {{b.card.subtitle}} items are placed in a {{b.card.body}} component, the card title and subtitle are aligned nicely."
 		),
 
 		new e.code({
@@ -87,7 +87,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle({ id: "contenttype_images" }, "Images"),
 		new e.text(
-			"{{.card-img-top}} places an image to the top of the card. With {{.card-text}}, text can be added to the card. Text within {{.card-text}} can also be styled with the standard HTML tags."
+			"{{location:top}} places an image ({{b.card.img}}) to the top of the card. With {{b.card.text}}, text can be added to the card. Text within {{b.card.text}} can also be styled with the standard HTML tags using {{strHtml}}."
 		),
 		new e.code({
 			output: () => {
@@ -109,7 +109,9 @@ export const card: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("List groups"),
-		new e.text("Create lists of content in a card with a flush list group."),
+		new e.text(
+			"Create lists of content in a card using {{b.list.container}} with a flush list group using {{flush:true}} property."
+		),
 		new e.code({
 			output: () => {
 				return new b.card.container({ style: { width: "18rem" } }, [
@@ -183,7 +185,7 @@ export const card: IAttrContent = {
 
 		//-----------------------
 		new e.subtitle("Header and footer"),
-		new e.text("Add an optional header and/or footer within a card."),
+		new e.text("Add an optional header ({{b.card.header}}) and/or footer ({{b.card.footer}}) within a card."),
 		new e.code({
 			output: () => {
 				return new b.card.container([
@@ -197,7 +199,7 @@ export const card: IAttrContent = {
 			},
 		}),
 
-		new e.text("Card headers can be styled by adding {{.card-header}} to {{<h*>}} elements."),
+		new e.text("Card headers can be styled by adding {{b.card.header}} component."),
 		new e.code({
 			output: () => {
 				return new b.card.container([
@@ -330,7 +332,7 @@ export const card: IAttrContent = {
 
 		new e.title("Text alignment"),
 		new e.text(
-			"You can quickly change the text alignment of any card—in its entirety or specific parts—with Bootstrap {{nav:docs/utilities/text#text_alignment::text align classes}}."
+			"You can quickly change the text alignment of any card—in its entirety or specific parts—with Bootstrap {{nav:docs/utilities/text#text_alignment::text align property}} like {{textAlign:<value>}}."
 		),
 		new e.code({
 			output: () => {
@@ -407,7 +409,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Image caps"),
 		new e.text(
-			"Similar to headers and footers, cards can include top and bottom “image caps”—images at the top or bottom of a card."
+			"Similar to headers and footers, cards can include top and bottom “image caps”—images at the top or bottom of a card using {{location:'top'|'bottom'}} property to {{b.card.img}}."
 		),
 
 		new e.code({
@@ -479,10 +481,11 @@ export const card: IAttrContent = {
 
 		new e.title("Horizontal"),
 		new e.text(
-			"Using a combination of grid and utility classes, cards can be made horizontal in a mobile-friendly and responsive way. In the example below, we remove the grid gutters with {{.g-0}} and use {{.col-md-*}} classes to make the card horizontal at the {{md}} breakpoint. Further adjustments may be needed depending on your card content."
+			"Using a combination of grid and utility classes, cards can be made horizontal in a mobile-friendly and responsive way. In the example below, we remove the grid gutters with {{gutter:0}} and use {{col:'<value>'}} property to make the card horizontal at the {{md}} breakpoint. Further adjustments may be needed depending on your card content."
 		),
 
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new b.card.container({ style: { maxWidth: "540px" } }, [
 					new h.div({ row: true, gutter: 0 }, [
@@ -519,7 +522,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Background and color"),
 		new e.text(
-			"Set a {{background-color}} with contrasting foreground {{color}} with {{nav:docs/helpers/color_background::Bootstrap .text-bg-{color} helpers}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::.text-{color} }}and {{nav:docs/utilities/background::.bg-{color} }}utilities for styling, which you still may use if you prefer."
+			"Set a {{bgColor}} with contrasting foreground {{textColor}} with {{nav:docs/helpers/color_background::Bootstrap textBgColor helpers}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::textColor}} and {{nav:docs/utilities/background::bgColor}} utilities for styling, which you still may use if you prefer."
 		),
 
 		new e.code({
@@ -550,7 +553,7 @@ export const card: IAttrContent = {
 		new e.alert({ color: "info", callout: true }, [
 			new h.h(5, "Conveying meaning to assistive technologies"),
 			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 			),
 		]),
 
@@ -558,7 +561,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Border"),
 		new e.text(
-			"Use {{nav:docs/utilities/borders::border utilities}} to change just the {{border-color}} of a card. Note that you can put {{.text-{color} }}classes on the parent {{.card}} or a subset of the card’s contents as shown below."
+			"Use {{nav:docs/utilities/borders::border utilities}} to change just the {{borderColor}} of a card. Note that you can put {{textColor}} property on the parent {{b.card.container}} or a subset of the card’s contents as shown below."
 		),
 
 		new e.code({
@@ -590,7 +593,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Mixins utilities"),
 		new e.text(
-			"You can also change the borders on the card header and footer as needed, and even remove their {{background-color}} with {{.bg-transparent}}."
+			"You can also change the borders on the card header and footer as needed, and even remove their {{background-color}} with {{bgColor:'transparent'}}."
 		),
 
 		new e.code({
@@ -623,7 +626,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Card groups"),
 		new e.text(
-			"Use card groups to render cards as a single, attached element with equal width and height columns. Card groups start off stacked and use {{display: flex;}} to become attached with uniform dimensions starting at the {{sm}} breakpoint."
+			"Use card groups to render cards as a single, attached element with equal width and height columns. Card groups start off stacked and use {{display:'flex'}} to become attached with uniform dimensions starting at the {{sm}} breakpoint."
 		),
 
 		new e.code({
@@ -681,10 +684,11 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Grid cards"),
 		new e.text(
-			"Use the Bootstrap grid system and its {{nav:docs/layout/grid#row_columns::.row-cols classes}} to control how many grid columns (wrapped around your cards) you show per row. For example, here’s {{.row-cols-1}} laying out the cards on one column, and {{.row-cols-md-2}} splitting four cards to equal width across multiple rows, from the medium breakpoint up."
+			"Use the Bootstrap grid system and its {{nav:docs/layout/grid#row_columns::.row-cols classes}} to control how many grid columns (wrapped around your cards) you show per row. For example, here’s {{rowCols:1}} laying out the cards on one column, and {{rowCols:'md-2'}} splitting four cards to equal width across multiple rows, from the medium breakpoint up."
 		),
 
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div(
 					{
@@ -714,9 +718,10 @@ export const card: IAttrContent = {
 			},
 		}),
 
-		new e.text("Change it to {{.row-cols-3}} and you’ll see the fourth card wrap."),
+		new e.text("Change it to {{rowCols:3}} and you’ll see the fourth card wrap."),
 
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div(
 					{
@@ -747,10 +752,11 @@ export const card: IAttrContent = {
 		}),
 
 		new e.text(
-			"When you need equal height, add {{.h-100}} to the cards. If you want equal heights by default, you can set {{$card-height: 100%}} in Sass."
+			"When you need equal height, add {{height:100}} to the cards. If you want equal heights by default, you can set {{$card-height: 100%}} in Sass."
 		),
 
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div(
 					{
@@ -783,6 +789,7 @@ export const card: IAttrContent = {
 		new e.text("Just like with card groups, card footers will automatically line up."),
 
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new h.div(
 					{
