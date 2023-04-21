@@ -199,7 +199,7 @@ export const carousel: IAttrContent = {
 
 		new e.subtitle("Individual {{.carousel-item}} interval"),
 		new e.text(
-			"Add {{interval='<milisecond>'}} to a {{.carousel-item}} to change the amount of time to delay between automatically cycling to the next item."
+			"Add {{interval='<milisecond>'}} to a {{b.carousel.inner.item.container}} to change the amount of time to delay between automatically cycling to the next item."
 		),
 		new e.code({
 			output: () => {
@@ -239,7 +239,7 @@ export const carousel: IAttrContent = {
 
 		new e.title("Disable touch swiping"),
 		new e.text(
-			"Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} option to {{false}}."
+			"Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{disableTouch}} property to {{true}}."
 		),
 		new e.code({
 			output: () => {
@@ -263,7 +263,7 @@ export const carousel: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.carousel-dark}}, set {{data-bs-theme='dark'}} on the root element, a parent wrapper, or the component itself."
+			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.carousel-dark}}, set {{theme:'dark'}} on the {{b.carousel.container}}, a parent wrapper, or the component itself."
 		),
 
 		new e.code({
