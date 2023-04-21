@@ -9,7 +9,7 @@ export const carousel: IAttrContent = {
 		new e.title("How it works"),
 		new e.ul({
 			item: [
-				"The carousel is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.",
+				"The carousel ({{b.carousel.container}}) is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.",
 				"For performance reasons, {{b::carousels must be manually initialized}} using the {{nav:docs/components/carousel#methods::carousel constructor method}}. Without initialization, some of the event listeners (specifically, the events needed touch/swipe support) will not be registered until a user has explicitly activated a control or indicator.",
 				"The only exception are {{nav:docs/components/carousel#autoplaying_carousels::autoplaying carousels}} with the {{data-bs-ride='carousel'}} attribute as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, {{b::don’t explicitly initialize the same carousels with the constructor method}}.",
 				"Nested carousels are not supported. You should also be aware that carousels in general can often cause usability and accessibility challenges.",
@@ -24,7 +24,7 @@ export const carousel: IAttrContent = {
 
 		new e.title("Basic examples"),
 		new e.text(
-			"Here is a basic example of a carousel with three slides. Note the previous/next controls. We recommend using {{<button>}} elements, but you can also use {{<a>}} elements with {{role='button'}}."
+			"Here is a basic example of a carousel with three slides. Note the previous/next controls. We recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."
 		),
 		new e.code({
 			output: () => {
@@ -61,6 +61,7 @@ export const carousel: IAttrContent = {
 		new e.text(
 			"{{b::You must add the}} {{.active}} {{b::class to one of the slides}}, otherwise the carousel will not be visible. Also be sure to set a unique {{id}} on the {{.carousel}} for optional controls, especially if you’re using multiple carousels on a single page. Control and indicator elements must have a {{data-bs-target}} attribute (or {{href}} for links) that matches the {{id}} of the {{.carousel}} element."
 		),
+		new e.text("Bootstrap TS do this automaticly for you."),
 
 		//-----------------------
 
@@ -87,7 +88,7 @@ export const carousel: IAttrContent = {
 
 		new e.subtitle("Indicators"),
 		new e.text(
-			"You can add indicators to the carousel, alongside the previous/next controls. The indicators let users jump directly to a particular slide."
+			"You can add indicators to the carousel using {{itemIndicator:true}}, alongside the previous/next controls using {{itemControl:true}}. The indicators let users jump directly to a particular slide."
 		),
 		new e.code({
 			output: () => {
@@ -107,7 +108,7 @@ export const carousel: IAttrContent = {
 
 		new e.subtitle("Captions"),
 		new e.text(
-			"You can add captions to your slides with the {{.carousel-caption}} element within any {{.carousel-item}}. They can be easily hidden on smaller viewports, as shown below, with optional {{nav:docs/utilities/display::display utilities}}. We hide them initially with {{.d-none}} and bring them back on medium-sized devices with {{.d-md-block}}."
+			"You can add captions to your slides with the {{b.carousel.inner.item.caption}} component within any {{b.carousel.inner.item.container}}. They can be easily hidden on smaller viewports, as shown below, with optional {{nav:docs/utilities/display::display utilities}}. We hide them initially with {{display:'none'}} and bring them back on medium-sized devices with {{display:'md-block'}}."
 		),
 		new e.code({
 			output: () => {
@@ -131,7 +132,7 @@ export const carousel: IAttrContent = {
 
 		new e.subtitle("Crossfade"),
 		new e.text(
-			"Add {{.carousel-fade}} to your carousel to animate slides with a fade transition instead of a slide. Depending on your carousel content (e.g., text only slides), you may want to add {{.bg-body}} or some custom CSS to the {{.carousel-items}} for proper crossfading."
+			"Add {{fade:true}} to your carousel to animate slides with a fade transition instead of a slide. Depending on your carousel content (e.g., text only slides), you may want to add {{bgColor:'body'}} or some custom CSS to the {{b.carousel.inner.item.container}} for proper crossfading."
 		),
 		new e.code({
 			output: () => {
@@ -153,6 +154,7 @@ export const carousel: IAttrContent = {
 		new e.text(
 			"You can make your carousels autoplay on page load by setting the {{ride}} option to {{carousel}}. Autoplaying carousels automatically pause while hovered with the mouse. This behavior can be controlled with the {{pause}} option. In browsers that support the {{https://www.w3.org/TR/page-visibility/::Page Visibility API}}, the carousel will stop cycling when the webpage is not visible to the user (such as when the browser tab is inactive, or when the browser window is minimized)."
 		),
+		new e.text("Bootstrap TS automaticly handle this."),
 		new e.alert({ color: "info", callout: true }, [
 			new h.p(
 				"For accessibility reasons, we recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, we recommend providing an additional button or control to explicitly pause/stop the carousel."
@@ -176,7 +178,7 @@ export const carousel: IAttrContent = {
 		}),
 
 		new e.text(
-			"When the {{ride}} option is set to {{true}}, rather than {{carousel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."
+			"When the {{autoPlay}} property is set to {{false}}, rather than {{truel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."
 		),
 
 		new e.code({
@@ -197,7 +199,7 @@ export const carousel: IAttrContent = {
 
 		new e.subtitle("Individual {{.carousel-item}} interval"),
 		new e.text(
-			"Add {{data-bs-interval=''}} to a {{.carousel-item}} to change the amount of time to delay between automatically cycling to the next item."
+			"Add {{interval='<milisecond>'}} to a {{.carousel-item}} to change the amount of time to delay between automatically cycling to the next item."
 		),
 		new e.code({
 			output: () => {
