@@ -89,7 +89,7 @@ export const badge: IAttrContent = {
 
 		new e.title("Background colors"),
 		new e.text(
-			"Set a {{bgColor}} with contrasting foreground {{textColor}} with {{nav:docs/helpers/color_background::textBgColor: <color> helpers}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::textColor: <color> }}and {{nav:docs/utilities/background::bgColor: <color> }}utilities for styling, which you still may use if you prefer."
+			"Set a {{bgColor}} with contrasting foreground {{textColor}} with {{nav:docs/helpers/color_background::textBgColor:<color> property}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::textColor:<color> }}and {{nav:docs/utilities/background::bgColor:<color> }}utilities for styling, which you still may use if you prefer."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -112,7 +112,7 @@ export const badge: IAttrContent = {
 		//-----------------------
 
 		new e.title("Pill badges"),
-		new e.text("Use the {{rounded: 'pill'}} property to make badges more rounded with a larger {{border-radius}}."),
+		new e.text("Use the {{rounded:'pill'}} property to make badges more rounded with a larger {{border-radius}}."),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {

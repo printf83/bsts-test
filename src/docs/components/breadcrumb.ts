@@ -123,7 +123,7 @@ export const breadcrumb: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Since breadcrumbs provide a navigation, it’s a good idea to add a meaningful label such as {{aria-label='breadcrumb'}} to describe the type of navigation provided in the {{<nav>}} element, as well as applying an {{aria-current='page'}} to the last item of the set to indicate that it represents the current page."
+			"Since breadcrumbs provide a navigation, it’s a good idea to add a meaningful label such as {{label:'breadcrumb'}} to describe the type of navigation provided in the {{b.breadcrumb.container}} component, and automaticly applying an {{aria-current='page'}} to the last item of the set to indicate that it represents the current page."
 		),
 		new e.text(
 			"For more information, see the {{https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/::ARIA Authoring Practices Guide breadcrumb pattern}}."

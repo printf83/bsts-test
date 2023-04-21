@@ -160,15 +160,16 @@ export const alert: IAttrContent = {
 
 		new e.subtitle("Dismissing"),
 		// new e.text("Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:"),
-		// new e.ul({
-		// 	item: [
-		// 		"Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.",
-		// 		"Add a {{nav:docs/components/close_button::close button}} and the {{.alert-dismissible}} class, which adds extra padding to the right of the alert and positions the close button.",
-		// 		"On the close button, add the {{data-bs-dismiss='alert'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices.",
-		// 		"To animate alerts when dismissing them, be sure to add the {{.fade}} and {{.show}} classes.",
-		// 	],
-		// }),
-		new e.text("Add {{dismissible: true}} to {{b.alert.container}} to dismiss the alert."),
+
+		new e.text("Add {{dismissible:true}} to {{b.alert.container}} to dismiss the alert."),
+		new e.ul({
+			item: [
+				"Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.",
+				"Set {{dismissible:true}} property to {{b.alert.container}} to add {{nav:docs/components/close_button::close button}}.",
+				"{{dismissible:true}} add the {{data-bs-dismiss='alert'}} attribute automaticly, which triggers the JavaScript functionality and use the {{<button>}} element with it for proper behavior across all devices.",
+				"{{b.alert.container}} automaticly animate alerts when dismissing them, by add the {{.fade}} and {{.show}} classes.",
+			],
+		}),
 		new e.text("You can see this in action with a live demo:"),
 
 		new e.code({
@@ -182,7 +183,7 @@ export const alert: IAttrContent = {
 
 		new e.alert(
 			{ color: "warning", callout: true },
-			"When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the {{closed.bs.alert}} event and programmatically sets {{focus()}} to the most appropriate location in the page. If you’re planning to move focus to a non-interactive element that normally does not receive focus, make sure to add {{tabindex:'-1'}} to the element."
+			"When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the {{on:{'closed.bs.alert':Event} }} and programmatically sets {{focus()}} to the most appropriate location in the page. If you’re planning to move focus to a non-interactive element that normally does not receive focus, make sure to add {{tabindex:'-1'}} to the element."
 		),
 		//-----------------------
 

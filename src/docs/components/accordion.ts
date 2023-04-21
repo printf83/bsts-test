@@ -8,7 +8,7 @@ export const accordion: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"The accordion ({{b.accordion.container}) uses {{nav:docs/components/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{show: true}} class on the {{b.accordion.item}}."
+			"The accordion ({{b.accordion.container}) uses {{nav:docs/components/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{show:true}} property on the {{b.accordion.item}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -92,7 +92,7 @@ export const accordion: IAttrContent = {
 
 		new e.subtitle("Flush"),
 		new e.text(
-			"Add {{flush: true}} to {{b.accordion.container}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
+			"Add {{flush:true}} to {{b.accordion.container}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
 		),
 		new e.code({
 			output: () => {
@@ -121,7 +121,7 @@ export const accordion: IAttrContent = {
 
 		new e.subtitle("Always open"),
 		new e.text(
-			"Add {{alwaysOpen: true}} to {{b.accordion.container}} to make accordion items stay open when another item is opened."
+			"Add {{alwaysOpen:true}} to {{b.accordion.container}} to make accordion items stay open when another item is opened."
 		),
 		new e.code({
 			output: () => {

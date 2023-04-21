@@ -8,7 +8,7 @@ export const button_group: IAttrContent = {
 		"Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.",
 	item: [
 		new e.title("Basic example"),
-		new e.text("Wrap a series of buttons with {{.btn}} in {{.btn-group}}."),
+		new e.text("Wrap a series of buttons with {{b.button}} in {{b.btngroup}}."),
 		new e.code({
 			output: () => {
 				return new b.btngroup({ label: "Basic example", role: "group" }, [
@@ -21,10 +21,10 @@ export const button_group: IAttrContent = {
 		new e.alert({ color: "warning", callout: true }, [
 			new h.h(5, "Ensure correct {{role}} and provide a label"),
 			new h.p(
-				"In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate {{role}} attribute needs to be provided. For button groups, this would be {{role='group'}}, while toolbars should have a {{role='toolbar'}}."
+				"In order for assistive technologies (such as screen readers) to convey that a series of buttons is grouped, an appropriate {{role}} attribute needs to be provided. For button groups, this would be {{role:'group'}}, while toolbars should have a {{role:'toolbar'}}."
 			),
 			new h.p(
-				"In addition, groups and toolbars should be given an explicit label, as most assistive technologies will otherwise not announce them, despite the presence of the correct role attribute. In the examples provided here, we use {{aria-label}}, but alternatives such as {{aria-labelledby}} can also be used."
+				"In addition, groups and toolbars should be given an explicit label, as most assistive technologies will otherwise not announce them, despite the presence of the correct role attribute. In the examples provided here, we use {{label}}, but alternatives such as {{labelledby}} can also be used."
 			),
 		]),
 
@@ -175,7 +175,7 @@ export const button_group: IAttrContent = {
 
 		new e.title("Sizing"),
 		new e.text(
-			"Instead of applying button sizing classes to every button in a group, just add {{.btn-group-*}} to each {{.btn-group}}, including each one when nesting multiple groups."
+			"Instead of applying button sizing classes to every button in a group, just add {{weight:<weight>}} to each {{b.btngroup}}, including each one when nesting multiple groups."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -201,7 +201,7 @@ export const button_group: IAttrContent = {
 
 		new e.title("Nesting"),
 		new e.text(
-			"Place a {{.btn-group}} within another {{.btn-group}} when you want dropdown menus mixed with a series of buttons."
+			"Place a {{b.btngroup}} within another {{b.btngroup}} when you want dropdown menus mixed with a series of buttons."
 		),
 		new e.code({
 			output: () => {
