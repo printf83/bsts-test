@@ -13,7 +13,7 @@ export const cssgrid: IAttrContent = {
 
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Heads up—Bootstrap CSS Grid system is experimental and opt-in as of v5.1.0!}} We included it in Bootstrap documentation’s CSS to demonstrate it for you, but it’s disabled by default. Keep reading to learn how to enable it in your projects."
+			"{{b::Heads up—Bootstrap CSS Grid system is experimental and opt-in as of v5.1.0!}} Bootstrap included it in Bootstrap documentation’s CSS to demonstrate it for you, but it’s disabled by default. Keep reading to learn how to enable it in your projects."
 		),
 		new e.alert({ color: "danger", callout: true }, [
 			new b.alert.header(5, "Unsuppoterd in Bootstrap TS"),

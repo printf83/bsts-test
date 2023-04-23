@@ -24,7 +24,7 @@ export const carousel: IAttrContent = {
 
 		new e.title("Basic examples"),
 		new e.text(
-			"Here is a basic example of a carousel with three slides. Note the previous/next controls. We recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."
+			"Here is a basic example of a carousel with three slides. Note the previous/next controls. Bootstrap recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."
 		),
 		new e.code({
 			output: () => {
@@ -108,7 +108,7 @@ export const carousel: IAttrContent = {
 
 		new e.subtitle("Captions"),
 		new e.text(
-			"You can add captions to your slides with the {{b.carousel.inner.item.caption}} component within any {{b.carousel.inner.item.container}}. They can be easily hidden on smaller viewports, as shown below, with optional {{nav:docs/utilities/display::display utilities}}. We hide them initially with {{display:'none'}} and bring them back on medium-sized devices with {{display:'md-block'}}."
+			"You can add captions to your slides with the {{b.carousel.inner.item.caption}} component within any {{b.carousel.inner.item.container}}. They can be easily hidden on smaller viewports, as shown below, with optional {{nav:docs/utilities/display::display utilities}}. Bootstrap hide them initially with {{display:'none'}} and bring them back on medium-sized devices with {{display:'md-block'}}."
 		),
 		new e.code({
 			output: () => {
@@ -513,15 +513,10 @@ export const carousel: IAttrContent = {
 														title: "slide.bs.carousel",
 														color: "info",
 														elem: [
-															`Direction: {{b::${carouselEvent.direction}}}`,
-															new h.br(),
-															`From: {{b::${carouselEvent.from}}}`,
-															new h.br(),
-															`To: {{b::${carouselEvent.to}}}`,
-															new h.br(),
-															`relatedTarget: {{b::${core.elemInfo(
-																carouselEvent.relatedTarget as HTMLElement
-															)}}}`,
+															`Direction: {{b::${carouselEvent.direction}}}{{br}}
+															From: {{b::${carouselEvent.from}}}{{br}}
+															To: {{b::${carouselEvent.to}}}{{br}}
+															relatedTarget: {{b::${core.elemInfo(carouselEvent.relatedTarget as HTMLElement)}}}`,
 														],
 													})
 												);

@@ -10,7 +10,7 @@ export const breakpoints: IAttrContent = {
 		new e.ul({
 			item: [
 				"{{b::Breakpoints are the building blocks of responsive design}}. Use them to control when your layout can be adapted at a particular viewport or device size.",
-				"{{b::Use media queries to architect your CSS by breakpoint}}. Media queries are a feature of CSS that allow you to conditionally apply styles based on a set of browser and operating system parameters. We most commonly use {{min-width}} in Bootstrap media queries.",
+				"{{b::Use media queries to architect your CSS by breakpoint}}. Media queries are a feature of CSS that allow you to conditionally apply styles based on a set of browser and operating system parameters. Bootstrap most commonly use {{min-width}} in Bootstrap media queries.",
 				"{{b::Mobile first, responsive design is the goal}}. Bootstrap’s CSS aims to apply the bare minimum of styles to make a layout work at the smallest breakpoint, and then layers on styles to adjust that design for larger devices. This optimizes your CSS, improves rendering time, and provides a great experience for your visitors.",
 			],
 		}),
@@ -128,7 +128,7 @@ export const breakpoints: IAttrContent = {
 
 		new e.subtitle("Max-width"),
 		new e.text(
-			"We occasionally use media queries that go in the other direction (the given screen size or smaller):"
+			"Bootstrap occasionally use media queries that go in the other direction (the given screen size or smaller):"
 		),
 		new e.codepreview({
 			type: "css",

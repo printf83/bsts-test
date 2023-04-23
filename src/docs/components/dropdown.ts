@@ -662,11 +662,59 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 
+		new e.text("Use {{h.div({class:'dropdown'})}} to prevent small form layout under menu:"),
+		new e.code({
+			output: () => {
+				return new h.div({ class: "dropdown" }, [
+					new b.dropdown.toggle({ menuAutoClose: "outside" }, "Dropdown form"),
+					new b.dropdown.menu(
+						new h.form(
+							{
+								padding: 3,
+							},
+							[
+								new h.div({ marginBottom: 3 }, [
+									new b.label({ for: "exampleDropdownFormEmail2" }, "Email address"),
+									new b.input({
+										type: "email",
+										id: "exampleDropdownFormEmail2",
+										placeholder: "email@example.com",
+									}),
+								]),
+								new h.div({ marginBottom: 3 }, [
+									new b.label({ for: "exampleDropdownFormPassword2" }, "Password"),
+									new b.input({
+										type: "email",
+										id: "exampleDropdownFormPassword2",
+										placeholder: "email@example.com",
+									}),
+								]),
+								new h.div({ marginBottom: 3 }, [
+									new h.div({ class: "form-check" }, [
+										new b.input({
+											type: "checkbox",
+											id: "dropdownCheck2",
+											placeholder: "email@example.com",
+										}),
+										new b.label({ for: "dropdownCheck2" }, "Remember me"),
+									]),
+								]),
+								new b.button({ type: "submit" }, "Sign in"),
+							]
+						)
+					),
+				]);
+			},
+		}),
+		new e.text(
+			"Use {{b.dropdown.container}} and set{{ style:{width:''} }}property on {{b.dropdown.menu}} to prevent small form layout under menu:"
+		),
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ menuAutoClose: "outside" }, "Dropdown form"),
 					new b.dropdown.menu(
+						{ style: { width: "18rem" } },
 						new h.form(
 							{
 								padding: 3,

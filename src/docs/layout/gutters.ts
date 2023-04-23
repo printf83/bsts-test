@@ -10,7 +10,7 @@ export const gutters: IAttrContent = {
 		new e.title("How they work"),
 		new e.ul({
 			item: [
-				"{{b::Gutters are the gaps between column content, created by horizontal }}{{bc::padding}}{{b::.}} We set {{padding-right}} and {{padding-left}} on each column, and use negative {{margin}} to offset that at the start and end of each row to align content.",
+				"{{b::Gutters are the gaps between column content, created by horizontal }}{{bc::padding}}{{b::.}} Bootstrap set {{padding-right}} and {{padding-left}} on each column, and use negative {{margin}} to offset that at the start and end of each row to align content.",
 				"{{b::Gutters start at }}{{bc::1.5rem }}{{b::(}}{{bc::24px}}{{b::) wide.}} This allows us to match Bootstrap grid to the {{nav:docs/utilities/spacing::padding and margin spacers}} scale.",
 				"{{b::Gutters can be responsively adjusted.}} Use breakpoint-specific gutter classes to modify horizontal gutters, vertical gutters, and all gutters.",
 			],

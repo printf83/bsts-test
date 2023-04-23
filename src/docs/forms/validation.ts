@@ -9,7 +9,7 @@ export const validation: IAttrContent = {
 	item: [
 		new e.alert(
 			{ color: "warning", callout: true },
-			"We are aware that currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap work on a solution, Bootstrap’d recommend either using the server-side option or the default browser validation method."
+			"Bootstrap are aware that currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap work on a solution, Bootstrap’d recommend either using the server-side option or the default browser validation method."
 		),
 
 		new e.title("How it works"),
@@ -307,7 +307,7 @@ export const validation: IAttrContent = {
 
 		new e.title("Server-side"),
 		new e.text(
-			"We recommend using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with {{.is-invalid}} and {{.is-valid}}. Note that {{.invalid-feedback}} is also supported with these classes."
+			"Bootstrap recommend using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with {{.is-invalid}} and {{.is-valid}}. Note that {{.invalid-feedback}} is also supported with these classes."
 		),
 		new e.text(
 			"For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using {{aria-describedby}} (noting that this attribute allows more than one {{id}} to be referenced, in case the field already points to additional form text)."

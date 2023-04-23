@@ -43,7 +43,7 @@ export const grid: IAttrContent = {
 				"{{b::Rows are wrappers for columns.}} Each column has horizontal {{padding}} (called a gutter) for controlling the space between them. This {{padding}} is then counteracted on the rows with negative margins to ensure the content in your columns is visually aligned down the left side. Rows also support modifier classes to {{nav:docs/layout/grid#row_columns::uniformly apply column sizing}} and {{nav:docs/layout/gutters::gutter classes}} to change the spacing of your content.",
 				"{{b::Columns are incredibly flexible.}} There are 12 template columns available per row, allowing you to create different combinations of elements that span any number of columns. Column classes indicate the number of template columns to span (e.g., col-4 spans four). widths are set in percentages so you always have the same relative sizing.",
 				"{{b::Gutters are also responsive and customizable.}} {{Be aware of the limitations and bugs around flexbox, like the inability to use some HTML elements as flex containers.::Gutter classes are available}} across all breakpoints, with all the same sizes as Bootstrap {{nav:docs/utilities/spacing::margin and padding spacing}}. Change horizontal gutters with {{.gx-*}} classes, vertical gutters with {{.gy-*}}, or all gutters with {{.g-*}} classes. {{.g-0}} is also available to remove gutters.",
-				"{{b::Sass variables, maps, and mixins power the grid.}} If you don’t want to use the predefined grid classes in Bootstrap, you can use Bootstrap {{nav:docs/layout/grid#sass::grid’s source Sass}} to create your own with more semantic markup. We also include some CSS custom properties to consume these Sass variables for even greater flexibility for you.",
+				"{{b::Sass variables, maps, and mixins power the grid.}} If you don’t want to use the predefined grid classes in Bootstrap, you can use Bootstrap {{nav:docs/layout/grid#sass::grid’s source Sass}} to create your own with more semantic markup. Bootstrap also include some CSS custom properties to consume these Sass variables for even greater flexibility for you.",
 			],
 		}),
 		new e.text(
@@ -426,7 +426,7 @@ export const grid: IAttrContent = {
 
 		new e.subtitle("Sass variables"),
 		new e.text(
-			"Variables and maps determine the number of columns, the gutter width, and the media query point at which to begin floating columns. We use these to generate the predefined grid classes documented above, as well as for the custom mixins listed below."
+			"Variables and maps determine the number of columns, the gutter width, and the media query point at which to begin floating columns. Bootstrap use these to generate the predefined grid classes documented above, as well as for the custom mixins listed below."
 		),
 		new e.codepreview({
 			type: "css",

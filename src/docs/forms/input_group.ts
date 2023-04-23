@@ -102,7 +102,7 @@ export const input_group: IAttrContent = {
 
 		new e.title("Checkboxes and radios"),
 		new e.text(
-			"Place any checkbox or radio option within an input group’s addon instead of text. We recommend adding {{.mt-0}} to the {{.form-check-input}} when there’s no visible text next to the input."
+			"Place any checkbox or radio option within an input group’s addon instead of text. Bootstrap recommend adding {{.mt-0}} to the {{.form-check-input}} when there’s no visible text next to the input."
 		),
 		new e.code({
 			output: () => {

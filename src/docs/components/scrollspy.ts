@@ -48,7 +48,7 @@ export const scrollspy: IAttrContent = {
 					contentItems.push(new h.h(4, { id: `scrollspyHeading${ix + 1}` }, `${i} heading`));
 					contentItems.push(
 						new h.p(
-							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting."
+							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
 						)
 					);
 				});
@@ -128,7 +128,7 @@ export const scrollspy: IAttrContent = {
 					return new h.div({ id: `item-${i}` }, [
 						new h.h(4, `Item ${i}`),
 						new h.p(
-							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting."
+							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
 						),
 						new h.p(
 							"Keep in mind that the JavaScript plugin tries to pick the right element among all that may be visible. Multiple visible scrollspy targets at the same time may cause some issues."
@@ -185,7 +185,7 @@ export const scrollspy: IAttrContent = {
 					contentItems.push(new h.h(4, { id: `list-item-${i}` }, `Item ${i}`));
 					contentItems.push(
 						new h.p(
-							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting."
+							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
 						)
 					);
 				});
@@ -239,7 +239,7 @@ export const scrollspy: IAttrContent = {
 					contentItems.push(new h.h(4, { id: `simple-list-item-${i}` }, `Item ${i}`));
 					contentItems.push(
 						new h.p(
-							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting."
+							"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
 						)
 					);
 				});

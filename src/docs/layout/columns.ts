@@ -352,7 +352,7 @@ export const columns: IAttrContent = {
 						src: "https://picsum.photos/seed/bsts_0/300/200",
 					}),
 					new h.p(
-						"A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image."
+						"A paragraph of placeholder text. Bootstrap're using it here to show the use of the clearfix class. Bootstrap're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image."
 					),
 					new h.p(
 						"As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible information at. It simply takes up space and should not really be read."

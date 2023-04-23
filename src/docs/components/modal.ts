@@ -46,7 +46,7 @@ export const modal: IAttrContent = {
 		new e.title("Examples"),
 		new e.subtitle("Modal components"),
 		new e.text(
-			"Below is a static modal example (meaning its {{position}} and {{display}} have been overridden). Included are the modal header, modal body (required for {{padding}}), and modal footer (optional). We ask that you include modal headers with dismiss actions whenever possible, or provide another explicit dismiss action."
+			"Below is a static modal example (meaning its {{position}} and {{display}} have been overridden). Included are the modal header, modal body (required for {{padding}}), and modal footer (optional). Bootstrap ask that you include modal headers with dismiss actions whenever possible, or provide another explicit dismiss action."
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary" },
@@ -334,7 +334,7 @@ export const modal: IAttrContent = {
 							new b.modal.body([
 								new h.p(
 									{ style: { height: "100vh" } },
-									"This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+									"This is some placeholder content to show the scrolling behavior for modals. Bootstrap use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
 								),
 								new h.p("This content should appear at the bottom after you scroll."),
 							]),
@@ -400,7 +400,7 @@ export const modal: IAttrContent = {
 						modalContent("verticalCenterScrollableModal", [
 							new h.p(
 								{ style: { height: "50vh" } },
-								"This is some placeholder content to show a vertically centered modal. We've added some extra copy here to show how vertically centering the modal works when combined with scrollable modals. We also use some repeated line breaks to quickly extend the height of the content, thereby triggering the scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+								"This is some placeholder content to show a vertically centered modal. Bootstrap've added some extra copy here to show how vertically centering the modal works when combined with scrollable modals. Bootstrap also use some repeated line breaks to quickly extend the height of the content, thereby triggering the scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
 							),
 							new h.p("Just like that."),
 						])

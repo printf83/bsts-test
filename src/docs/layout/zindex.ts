@@ -7,13 +7,13 @@ export const zindex: IAttrContent = {
 		"While not a part of Bootstrap’s grid system, z-indexes play an important part in how Bootstrap components overlay and interact with one another.",
 	item: [
 		new e.text(
-			"Several Bootstrap components utilize {{z-index}}, the CSS property that helps control layout by providing a third axis to arrange content. We utilize a default z-index scale in Bootstrap that’s been designed to properly layer navigation, tooltips and popovers, modals, and more."
+			"Several Bootstrap components utilize {{z-index}}, the CSS property that helps control layout by providing a third axis to arrange content. Bootstrap utilize a default z-index scale in Bootstrap that’s been designed to properly layer navigation, tooltips and popovers, modals, and more."
 		),
 		new e.text(
-			"These higher values start at an arbitrary number, high and specific enough to ideally avoid conflicts. We need a standard set of these across Bootstrap layered components—tooltips, popovers, navbars, dropdowns, modals—so Bootstrap can be reasonably consistent in the behaviors. There’s no reason Bootstrap couldn’t have used {{100+}} or {{500+}}."
+			"These higher values start at an arbitrary number, high and specific enough to ideally avoid conflicts. Bootstrap need a standard set of these across Bootstrap layered components—tooltips, popovers, navbars, dropdowns, modals—so Bootstrap can be reasonably consistent in the behaviors. There’s no reason Bootstrap couldn’t have used {{100+}} or {{500+}}."
 		),
 		new e.text(
-			"We don’t encourage customization of these individual values; should you change one, you likely need to change them all."
+			"Bootstrap don’t encourage customization of these individual values; should you change one, you likely need to change them all."
 		),
 
 		new e.codepreview({

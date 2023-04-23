@@ -25,7 +25,7 @@ export const layout: IAttrContent = {
 
 		new e.title("Utilities"),
 		new e.text(
-			"{{nav:docs/utilities/spacing::Margin utilities}} are the easiest way to add some structure to forms. They provide basic grouping of labels, controls, optional form text, and form validation messaging. We recommend sticking to {{margin-bottom}} utilities, and using a single direction throughout the form for consistency."
+			"{{nav:docs/utilities/spacing::Margin utilities}} are the easiest way to add some structure to forms. They provide basic grouping of labels, controls, optional form text, and form validation messaging. Bootstrap recommend sticking to {{margin-bottom}} utilities, and using a single direction throughout the form for consistency."
 		),
 		new e.text(
 			"Feel free to build your forms however you like, with {{<fieldset>}}s, {{<div>}}s, or nearly any other element."

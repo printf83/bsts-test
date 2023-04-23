@@ -92,7 +92,7 @@ export const overview: IAttrContent = {
 						new b.input({ type: "email", id: "exampleInputEmail1", describedby: "emailHelp" }),
 						new h.div(
 							{ id: "emailHelp", class: "form-text" },
-							"We'll never share your email with anyone else."
+							"Bootstrap'll never share your email with anyone else."
 						),
 					]),
 					new h.div({ marginBottom: 3 }, [
@@ -114,7 +114,7 @@ export const overview: IAttrContent = {
 					b.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Email address",
-						description: "We'll never share your email with anyone else.",
+						description: "Bootstrap'll never share your email with anyone else.",
 						type: "email",
 					}),
 					b.Form.Input({

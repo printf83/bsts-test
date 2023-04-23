@@ -178,7 +178,7 @@ export const color: IAttrContent = {
 
 		new e.title("Colors"),
 		new e.text(
-			"Bootstrap’s color palette has continued to expand and become more nuanced in v5.3.0. We’ve added new variables for {{secondary}} and {{tertiary}} text and background colors, plus{{ {color}-bg-subtle}},{{ {color}-border-subtle}}, and{{ {color}-text-emphasis}} for our theme colors. These new colors are available through Sass and CSS variables (but not our color maps or utility classes) with the express goal of making it easier to customize across multiple colors modes like light and dark. These new variables are globally set on {{:root}} and are adapted for our new dark color mode while our original theme colors remain unchanged."
+			"Bootstrap’s color palette has continued to expand and become more nuanced in v5.3.0. Bootstrap’ve added new variables for {{secondary}} and {{tertiary}} text and background colors, plus{{ {color}-bg-subtle}},{{ {color}-border-subtle}}, and{{ {color}-text-emphasis}} for our theme colors. These new colors are available through Sass and CSS variables (but not our color maps or utility classes) with the express goal of making it easier to customize across multiple colors modes like light and dark. These new variables are globally set on {{:root}} and are adapted for our new dark color mode while our original theme colors remain unchanged."
 		),
 		new e.text(
 			"Colors ending in {{-rgb}} provide the {{red}}, {{green}}, {{blue}} values for use in {{rgb()}} and {{rgba()}} color modes. For example, {{rgba(var(--bs-secondary-bg-rgb), .5)}}."
@@ -204,11 +204,11 @@ export const color: IAttrContent = {
 						"{{b::Body — }}Default foreground (color) and background, including components."
 					),
 					new b.table.td(colorpickerBg(["--bs-body-color", "--bs-body-color-rgb"])),
-					new b.table.td(["{{--bs-body-color}}", new h.br(), "{{--bs-body-color-rgb}}"]),
+					new b.table.td(["{{--bs-body-color}}{{br}}{{--bs-body-color-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg(["--bs-body-bg", "--bs-body-bg-rgb"])),
-					new b.table.td(["{{--bs-body-bg}}", new h.br(), "{{--bs-body-bg-rgb}}"]),
+					new b.table.td(["{{--bs-body-bg}}{{br}}{{--bs-body-bg-rgb}}"]),
 				]),
 
 				//-----------------------
@@ -218,11 +218,11 @@ export const color: IAttrContent = {
 						"{{b::Secondary — }}Use the {{color}} option for lighter text. Use the {{bg}} option for dividers and to indicate disabled component states."
 					),
 					new b.table.td(colorpickerBg(["--bs-secondary-color", "--bs-secondary-color-rgb"])),
-					new b.table.td(["{{--bs-secondary-color}}", new h.br(), "{{--bs-secondary-color-rgb}}"]),
+					new b.table.td(["{{--bs-secondary-color}}{{br}}{{--bs-secondary-color-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg(["--bs-secondary-bg", "--bs-secondary-bg-rgb"])),
-					new b.table.td(["{{--bs-secondary-bg}}", new h.br(), "{{--bs-secondary-bg-rgb}}"]),
+					new b.table.td(["{{--bs-secondary-bg}}{{br}}{{--bs-secondary-bg-rgb}}"]),
 				]),
 
 				//-----------------------
@@ -232,18 +232,18 @@ export const color: IAttrContent = {
 						"{{b::Tertiary — }}Use the {{color}} option for even lighter text. Use the {{bg}} option to style backgrounds for hover states, accents, and wells."
 					),
 					new b.table.td(colorpickerBg(["--bs-tertiary-color", "--bs-tertiary-color-rgb"])),
-					new b.table.td(["{{--bs-tertiary-color}}", new h.br(), "{{--bs-tertiary-color-rgb}}"]),
+					new b.table.td(["{{--bs-tertiary-color}}{{br}}{{--bs-tertiary-color-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg(["--bs-tertiary-bg", "--bs-tertiary-bg-rgb"])),
-					new b.table.td(["{{--bs-tertiary-bg}}", new h.br(), "{{--bs-tertiary-bg-rgb}}"]),
+					new b.table.td(["{{--bs-tertiary-bg}}{{br}}{{--bs-tertiary-bg-rgb}}"]),
 				]),
 
 				//-----------------------
 				new b.table.tr([
 					new b.table.td("{{b::Emphasis — }}For higher contrast text. Not applicable for backgrounds."),
 					new b.table.td(colorpickerBg(["--bs-emphasis-color", "--bs-emphasis-color-rgb"])),
-					new b.table.td(["{{--bs-emphasis-color}}", new h.br(), "{{--bs-emphasis-color-rgb}}"]),
+					new b.table.td(["{{--bs-emphasis-color}}{{br}}{{--bs-emphasis-color-rgb}}"]),
 				]),
 
 				//-----------------------
@@ -252,7 +252,7 @@ export const color: IAttrContent = {
 						"{{b::Border — }}For component borders, dividers, and rules. Use {{--bs-border-color-translucent}} to blend with backgrounds with an {{rgba()}} value."
 					),
 					new b.table.td(colorpickerBg(["--bs-border-color", "--bs-border-color-rgb"])),
-					new b.table.td(["{{--bs-border-color}}", new h.br(), "{{--bs-border-color-rgb}}"]),
+					new b.table.td(["{{--bs-border-color}}{{br}}{{--bs-border-color-rgb}}"]),
 				]),
 
 				//-----------------------
@@ -262,7 +262,7 @@ export const color: IAttrContent = {
 						"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
 					),
 					new b.table.td(colorpickerBg(["--bs-primary", "--bs-primary-rgb", "--bs-dropdown-link-active-bg"])),
-					new b.table.td(["{{--bs-primary}}", new h.br(), "{{--bs-primary-rgb}}"]),
+					new b.table.td(["{{--bs-primary}}{{br}}{{--bs-primary-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg("--bs-primary-bg-subtle")),
@@ -284,7 +284,7 @@ export const color: IAttrContent = {
 						"{{b::Success — }}Theme color used for positive or successful actions and information."
 					),
 					new b.table.td(colorpickerBg(["--bs-success", "--bs-success-rgb"])),
-					new b.table.td(["{{--bs-success}}", new h.br(), "{{--bs-success-rgb}}"]),
+					new b.table.td(["{{--bs-success}}{{br}}{{--bs-success-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg("--bs-success-bg-subtle")),
@@ -306,7 +306,7 @@ export const color: IAttrContent = {
 						"{{b::Danger — }}Theme color used for errors and dangerous actions."
 					),
 					new b.table.td(colorpickerBg(["--bs-danger", "--bs-danger-rgb"])),
-					new b.table.td(["{{--bs-danger}}", new h.br(), "{{--bs-danger-rgb}}"]),
+					new b.table.td(["{{--bs-danger}}{{br}}{{--bs-danger-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg("--bs-danger-bg-subtle")),
@@ -328,7 +328,7 @@ export const color: IAttrContent = {
 						"{{b::Warning — }}Theme color used for non-destructive warning messages."
 					),
 					new b.table.td(colorpickerBg(["--bs-warning", "--bs-warning-rgb"])),
-					new b.table.td(["{{--bs-warning}}", new h.br(), "{{--bs-warning-rgb}}"]),
+					new b.table.td(["{{--bs-warning}}{{br}}{{--bs-warning-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg("--bs-warning-bg-subtle")),
@@ -350,7 +350,7 @@ export const color: IAttrContent = {
 						"{{b::Info — }}Theme color used for neutral and informative content."
 					),
 					new b.table.td(colorpickerBg(["--bs-info", "--bs-info-rgb"])),
-					new b.table.td(["{{--bs-info}}", new h.br(), "{{--bs-info-rgb}}"]),
+					new b.table.td(["{{--bs-info}}{{br}}{{--bs-info-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg("--bs-info-bg-subtle")),
@@ -372,7 +372,7 @@ export const color: IAttrContent = {
 						"{{b::Light — }}Additional theme option for less contrasting colors."
 					),
 					new b.table.td(colorpickerBg(["--bs-light", "--bs-light-rgb"])),
-					new b.table.td(["{{--bs-light}}", new h.br(), "{{--bs-light-rgb}}"]),
+					new b.table.td(["{{--bs-light}}{{br}}{{--bs-light-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg("--bs-light-bg-subtle")),
@@ -394,7 +394,7 @@ export const color: IAttrContent = {
 						"{{b::Dark — }}Additional theme option for higher contrasting colors."
 					),
 					new b.table.td(colorpickerBg(["--bs-dark", "--bs-dark-rgb"])),
-					new b.table.td(["{{--bs-dark}}", new h.br(), "{{--bs-dark-rgb}}"]),
+					new b.table.td(["{{--bs-dark}}{{br}}{{--bs-dark-rgb}}"]),
 				]),
 				new b.table.tr([
 					new b.table.td(colorpickerBg("--bs-dark-bg-subtle")),
@@ -437,7 +437,7 @@ export const color: IAttrContent = {
 
 		new e.title("Theme colors"),
 		new e.text(
-			"We use a subset of all colors to create a smaller color palette for generating color schemes, also available as Sass variables and a Sass map in Bootstrap’s {{scss/_variables.scss}} file."
+			"Bootstrap use a subset of all colors to create a smaller color palette for generating color schemes, also available as Sass variables and a Sass map in Bootstrap’s {{scss/_variables.scss}} file."
 		),
 		new e.item(
 			new h.div(

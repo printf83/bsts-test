@@ -356,7 +356,7 @@ export const tables: IAttrContent = {
 		),
 		new e.ul({
 			item: [
-				"We start by setting the background of a table cell with the {{--bs-table-bg}} custom property. All table variants then set that custom property to colorize the table cells. This way, Bootstrap don’t get into trouble if semi-transparent colors are used as table backgrounds.",
+				"Bootstrap start by setting the background of a table cell with the {{--bs-table-bg}} custom property. All table variants then set that custom property to colorize the table cells. This way, Bootstrap don’t get into trouble if semi-transparent colors are used as table backgrounds.",
 				"Then Bootstrap add an inset box shadow on the table cells with {{box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);}} to layer on top of any specified {{background-color}}. Because Bootstrap use a huge spread and no blur, the color will be monotone. Since {{--bs-table-accent-bg}} is unset by default, Bootstrap don’t have a default box shadow.",
 				"When either {{.table-striped}}, {{.table-striped-columns}}, {{.table-hover}} or {{.table-active}} classes are added, the {{--bs-table-accent-bg}} is set to a semitransparent color to colorize the background.",
 				"For each table variant, Bootstrap generate a {{--bs-table-accent-bg}} color with the highest contrast depending on that color. For example, the accent color for {{.table-primary}} is darker while {{.table-dark}} has a lighter accent color.",

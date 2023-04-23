@@ -52,7 +52,7 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Live demo"),
 		new e.text(
-			"We use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{data-bs-title}} and body content is set via {{data-bs-content}}."
+			"Bootstrap use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{data-bs-title}} and body content is set via {{data-bs-content}}."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
@@ -118,7 +118,7 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Custom popovers"),
 		new e.text(
-			"You can customize the appearance of popovers using {{nav:docs/components/popover#variables::CSS variables}}. We set a custom class with {{data-bs-custom-class='custom-popover'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of popovers using {{nav:docs/components/popover#variables::CSS variables}}. Bootstrap set a custom class with {{data-bs-custom-class='custom-popover'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 		),
 
 		// new e.codepreview({

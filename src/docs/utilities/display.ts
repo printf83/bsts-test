@@ -9,7 +9,7 @@ export const display: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"Change the value of the {{https://developer.mozilla.org/en-US/docs/Web/CSS/display::display property}} with Bootstrap responsive display utility classes. We purposely support only a subset of all possible values for {{display}}. Classes can be combined for various effects as you need."
+			"Change the value of the {{https://developer.mozilla.org/en-US/docs/Web/CSS/display::display property}} with Bootstrap responsive display utility classes. Bootstrap purposely support only a subset of all possible values for {{display}}. Classes can be combined for various effects as you need."
 		),
 
 		//-----------------------

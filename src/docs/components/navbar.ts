@@ -376,7 +376,7 @@ export const navbar: IAttrContent = {
 
 		new e.title("Color schemes"),
 		new e.alert({ color: "warning", callout: true }, [
-			"{{b::New dark navbars in v5.3.0 —}} We’ve deprecated {{.navbar-dark}} in favor of the new {{data-bs-theme='dark'}}. Add {{data-bs-theme='dark'}} to the {{.navbar}} to enable a component-specific color mode. {{https://getbootstrap.com/docs/5.3/customize/color-modes/::Learn more about Bootstrap color modes}}.",
+			"{{b::New dark navbars in v5.3.0 —}} Bootstrap’ve deprecated {{.navbar-dark}} in favor of the new {{data-bs-theme='dark'}}. Add {{data-bs-theme='dark'}} to the {{.navbar}} to enable a component-specific color mode. {{https://getbootstrap.com/docs/5.3/customize/color-modes/::Learn more about Bootstrap color modes}}.",
 			new h.hr(),
 			"{{b::New in v5.2.0 —}} Navbar theming is now powered by CSS variables and {{.navbar-light}} has been deprecated. CSS variables are applied to {{.navbar}}, defaulting to the “light” appearance, and can be overridden with {{.navbar-dark}}.",
 		]),
@@ -707,7 +707,7 @@ export const navbar: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"When you do this, Bootstrap recommend including additional JavaScript to move the focus programmatically to the container when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes before the toggler in the document’s structure. We also recommend making sure that the toggler has the {{aria-controls}} attribute, pointing to the {{id}} of the content container. In theory, this allows assistive technology users to jump directly from the toggler to the container it controls–but support for this is currently quite patchy."
+			"When you do this, Bootstrap recommend including additional JavaScript to move the focus programmatically to the container when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes before the toggler in the document’s structure. Bootstrap also recommend making sure that the toggler has the {{aria-controls}} attribute, pointing to the {{id}} of the content container. In theory, this allows assistive technology users to jump directly from the toggler to the container it controls–but support for this is currently quite patchy."
 		),
 
 		// new e.text("This is how you do it in {{bsts}}"),
@@ -747,7 +747,7 @@ export const navbar: IAttrContent = {
 
 		new e.subtitle("Offcanvas"),
 		new e.text(
-			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{nav:docs/components/offcanvas::offcanvas component}}. We extend both the offcanvas default styles and use Bootstrap {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
+			"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{nav:docs/components/offcanvas::offcanvas component}}. Bootstrap extend both the offcanvas default styles and use Bootstrap {{.navbar-expand-*}} classes to create a dynamic and flexible navigation sidebar."
 		),
 		new e.text(
 			"In the example below, to create an offcanvas navbar that is always collapsed across all breakpoints, omit the {{.navbar-expand-*}} class entirely."

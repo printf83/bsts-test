@@ -9,20 +9,20 @@ export const progress: IAttrContent = {
 	item: [
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::New markup in v5.3.0 —}} We’ve deprecated the previous HTML structure for progress bars and replaced it with a more accessible one. The previous structure will continue to work until v6. {{https://getbootstrap.com/docs/5.3/migration/#improved-markup-for-progress-bars::See what’s changed in Bootstrap migration guide}}."
+			"{{b::New markup in v5.3.0 —}} Bootstrap’ve deprecated the previous HTML structure for progress bars and replaced it with a more accessible one. The previous structure will continue to work until v6. {{https://getbootstrap.com/docs/5.3/migration/#improved-markup-for-progress-bars::See what’s changed in Bootstrap migration guide}}."
 		),
 
 		new e.title("How it works"),
 		new e.text(
-			"Progress components are built with two HTML elements, some CSS to set the width, and a few attributes. We don’t use the {{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress::HTML5 <progress> element}}, ensuring you can stack progress bars, animate them, and place text labels over them."
+			"Progress components are built with two HTML elements, some CSS to set the width, and a few attributes. Bootstrap don’t use the {{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress::HTML5 <progress> element}}, ensuring you can stack progress bars, animate them, and place text labels over them."
 		),
 		new e.ul({
 			item: [
-				"We use the {{.progress}} as a wrapper to indicate the max value of the progress bar.",
+				"Bootstrap use the {{.progress}} as a wrapper to indicate the max value of the progress bar.",
 				"The {{.progress}} wrapper also requires a {{role='progressbar'}} and {{aria}} attributes to make it accessible, including an accessible name (using {{aria-label}}, {{aria-labelledby}}, or similar).",
-				"We use the inner {{.progress-bar}} purely for the visual bar and label.",
+				"Bootstrap use the inner {{.progress-bar}} purely for the visual bar and label.",
 				"The {{.progress-bar}} requires an inline style, utility class, or custom CSS to set its width.",
-				"We provide a special {{.progress-stacked}} class to create multiple/stacked progress bars.",
+				"Bootstrap provide a special {{.progress-stacked}} class to create multiple/stacked progress bars.",
 			],
 		}),
 		new e.text("Put that all together, and you have the following examples."),

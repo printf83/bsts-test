@@ -20,7 +20,7 @@ export const close_button: IAttrContent = {
 
 		new e.title("Disabled state"),
 		new e.text(
-			"Disabled close buttons change their {{opacity}}. We’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
+			"Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
 		),
 		new e.code({
 			output: () => {

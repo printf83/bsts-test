@@ -47,11 +47,7 @@ export const overflow: IAttrContent = {
 							bgColor: "body-tertiary",
 							style: { maxHeight: "100px", maxWidth: "200px", whiteSpace: "nowrap" },
 						},
-						[
-							`{{.overflow-x-${i} }}example`,
-							new h.br(),
-							"on an element with set width and height dimensions.",
-						]
+						[`{{.overflow-x-${i} }}example{{br}}on an element with set width and height dimensions.`]
 					);
 				});
 			},

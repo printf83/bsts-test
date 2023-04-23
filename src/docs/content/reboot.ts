@@ -236,7 +236,7 @@ export const reboot: IAttrContent = {
 
 		new e.title("Lists"),
 		new e.text(
-			"All lists—{{<ul>}}, {{<ol>}}, and {{<dl>}}—have their {{margin-top}} removed and a {{margin-bottom: 1rem}}. Nested lists have no {{margin-bottom}}. We’ve also reset the {{padding-left}} on {{<ul>}} and {{<ol>}} elements."
+			"All lists—{{<ul>}}, {{<ol>}}, and {{<dl>}}—have their {{margin-top}} removed and a {{margin-bottom: 1rem}}. Nested lists have no {{margin-bottom}}. Bootstrap’ve also reset the {{padding-left}} on {{<ul>}} and {{<ol>}} elements."
 		),
 		new e.code({
 			outputAttr: { class: "reset-list", gap: 3 },
@@ -337,9 +337,7 @@ export const reboot: IAttrContent = {
 				return [
 					"To switch directories, type ",
 					new h.kbd("cd"),
-					" followed by the name of the directory.",
-					new h.br(),
-					"To edit settings, press ",
+					" followed by the name of the directory.{{br}}To edit settings, press ",
 					new h.kbd([new h.kbd("Ctrl"), " + ", new h.kbd(",")]),
 				];
 			},

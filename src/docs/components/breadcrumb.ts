@@ -44,7 +44,7 @@ export const breadcrumb: IAttrContent = {
 
 		new e.title("Dividers"),
 		new e.text(
-			"Dividers are automatically added in CSS through {{https://developer.mozilla.org/en-US/docs/Web/CSS/::before}} and {{https://developer.mozilla.org/en-US/docs/Web/CSS/content::content}}. They can be changed by modifying the {{divider: '<divide>'}} property, or through the {{$breadcrumb-divider}} Sass variable — and {{$breadcrumb-divider-flipped}} for its RTL counterpart, if needed. We default to Bootstrap Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
+			"Dividers are automatically added in CSS through {{https://developer.mozilla.org/en-US/docs/Web/CSS/::before}} and {{https://developer.mozilla.org/en-US/docs/Web/CSS/content::content}}. They can be changed by modifying the {{divider: '<divide>'}} property, or through the {{$breadcrumb-divider}} Sass variable — and {{$breadcrumb-divider-flipped}} for its RTL counterpart, if needed. Bootstrap default to Bootstrap Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
 		),
 		new e.code({
 			output: () => {

@@ -56,7 +56,7 @@ export const text: IAttrContent = {
 
 		new e.title("Word break"),
 		new e.text(
-			"Prevent long strings of text from breaking your components’ layout by using {{.text-break}} to set {{word-wrap: break-word}} and {{word-break: break-word}}. We use {{word-wrap}} instead of the more common {{overflow-wrap}} for wider browser support, and add the deprecated {{word-break: break-word}} to avoid issues with flex containers."
+			"Prevent long strings of text from breaking your components’ layout by using {{.text-break}} to set {{word-wrap: break-word}} and {{word-break: break-word}}. Bootstrap use {{word-wrap}} instead of the more common {{overflow-wrap}} for wider browser support, and add the deprecated {{word-break: break-word}} to avoid issues with flex containers."
 		),
 		new e.code({
 			output: () => {

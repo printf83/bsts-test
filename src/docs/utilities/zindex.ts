@@ -13,7 +13,7 @@ export const zindex: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"We call these “low-level” {{z-index}} utilities because of their default values of {{-1}} through {{3}}, which Bootstrap use for the layout of overlapping components. High-level {{z-index}} values are used for overlay components like modals and tooltips."
+			"Bootstrap call these “low-level” {{z-index}} utilities because of their default values of {{-1}} through {{3}}, which Bootstrap use for the layout of overlapping components. High-level {{z-index}} values are used for overlay components like modals and tooltips."
 		),
 		new e.code({
 			outputAttr: { class: "zindex-box", style: { height: "200px" } },
