@@ -9,7 +9,7 @@ export const dropdown: IAttrContent = {
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re made interactive with the included Bootstrap dropdown JavaScript plugin. They’re toggled by clicking, not by hovering; this is {{https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/::an intentional design decision}}."
+			"Dropdowns are toggleable ({{b.dropdown.toggle}}), contextual overlays for displaying lists of links and more using {{b.dropdown.menu}}. They’re made interactive with the included Bootstrap dropdown JavaScript plugin. They’re toggled by clicking, not by hovering; this is {{https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/::an intentional design decision}}."
 		),
 		new e.text(
 			"Dropdowns are built on a third party library, {{https://popper.js.org/::Popper}}, which provides dynamic positioning and viewport detection. Be sure to include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before Bootstrap’s JavaScript or use {{bootstrap.bundle.min.js}} / {{bootstrap.bundle.js}} which contains Popper. Popper isn’t used to position dropdowns in navbars though as dynamic positioning isn’t required."
@@ -25,25 +25,23 @@ export const dropdown: IAttrContent = {
 			"Bootstrap’s dropdowns, on the other hand, are designed to be generic and applicable to a variety of situations and markup structures. For instance, it is possible to create dropdowns that contain additional inputs and form controls, such as search fields or login forms. For this reason, Bootstrap does not expect (nor automatically add) any of the {{role}} and {{aria-}} attributes required for true ARIA menus. Authors will have to include these more specific attributes themselves."
 		),
 		new e.text(
-			"However, Bootstrap does add built-in support for most standard keyboard menu interactions, such as the ability to move through individual {{.dropdown-item}} elements using the cursor keys and close the menu with the {{k::Esc}} key."
+			"However, Bootstrap does add built-in support for most standard keyboard menu interactions, such as the ability to move through individual {{b.dropdown.item}} elements using the cursor keys and close the menu with the {{k::Esc}} key."
 		),
 
 		//-----------------------
 
 		new e.title("Examples"),
 		new e.text(
-			"Wrap the dropdown’s toggle (your button or link) and the dropdown menu within {{.dropdown}}, or another element that declares {{position: relative;}}. Ideally, you should use a {{<button>}} element as the dropdown trigger, but the plugin will work with {{<a>}} elements as well. The examples shown here use semantic {{<ul>}} elements where appropriate, but custom markup is supported."
+			"Wrap the dropdown’s toggle (your button or link) and the dropdown menu within {{class:'dropdown'}}, or another component that declares {{position: relative}}. Ideally, you should use a {{b.dropdown.toggle}} element as the dropdown trigger. The examples shown here use {{b.dropdown.item}} component where appropriate, but custom markup is supported."
 		),
 
 		//-----------------------
 
 		new e.subtitle("Single button"),
-		new e.text(
-			"Any single {{.btn}} can be turned into a dropdown toggle with some markup changes. Here’s how you can put them to work with {{<button>}} elements:"
-		),
+		new e.text("Use {{b.dropdown.toggle}} like this to toggle the {{b.dropdown.menu}} component:"),
 		new e.code({
 			output: () => {
-				return new h.div({ class: "dropdown" }, [
+				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
 					new b.dropdown.menu([
 						new b.dropdown.item({ href: "#" }, "Action"),
@@ -54,11 +52,11 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"While {{<button>}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{<a>}} element. If you do, Bootstrap recommend adding a {{role='button'}} attribute to appropriately convey control’s purpose to assistive technologies such as screen readers."
+			"While {{b.dropdown.toggle}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{b.dropdown.toggle(href:'')}} component that create {{h.a}} component. Bootstrap TS automaticly add {{role='button'}} property which recomended by Bootstrap to appropriately convey control’s purpose to assistive technologies such as screen readers."
 		),
 		new e.code({
 			output: () => {
-				return new h.div({ class: "dropdown" }, [
+				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary", href: "#" }, "Dropdown link"),
 					new b.dropdown.menu([
 						new b.dropdown.item({ href: "#" }, "Action"),
@@ -69,7 +67,7 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 
-		new e.text("The best part is you can do this with any button variant, too:"),
+		new e.text("The best part is you can do this with any button {{color}} variant, too:"),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
@@ -95,10 +93,10 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Split button"),
 		new e.text(
-			"Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of {{.dropdown-toggle-split}} for proper spacing around the dropdown caret."
+			"Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of {{b.dropdown.toggle({split:true})}} for proper spacing around the dropdown caret."
 		),
 		new e.text(
-			"We use this extra class to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
+			"Bootstrap use this extra property to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -181,11 +179,11 @@ export const dropdown: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.dropdown-menu-dark}}, set {{data-bs-theme='dark'}} on the root element, a parent wrapper, or the component itself."
+			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.dropdown-menu-dark}}, set {{theme:'dark'}} on {{b.dropdown.menu}} component, a parent wrapper ({{new b.dropdown.container}}), or the component itself."
 		),
 		new e.code({
 			output: () => {
-				return new h.div({ class: "dropdown" }, [
+				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
 					new b.dropdown.menu({ theme: "dark" }, [
 						new b.dropdown.item({ href: "#" }, "Action"),
@@ -242,7 +240,9 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Centered"),
-		new e.text("Make the dropdown menu centered below the toggle with {{.dropdown-center}} on the parent element."),
+		new e.text(
+			"Make the dropdown menu centered below the toggle with {{drop:'down-center'}} on the {{b.dropdown.container}} component."
+		),
 
 		new e.code({
 			output: () => {
@@ -260,7 +260,9 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Dropup"),
-		new e.text("Trigger dropdown menus above elements by adding {{.dropup}} to the parent element."),
+		new e.text(
+			"Trigger dropdown menus above elements by adding {{drop:'up'}} on the {{b.dropdown.container}} component."
+		),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
@@ -289,7 +291,9 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Dropup centered"),
-		new e.text("Make the dropup menu centered above the toggle with {{.dropup-center}} on the parent element."),
+		new e.text(
+			"Make the dropup menu centered above the toggle with {{drop:'up-center'}} on the {{b.dropdown.container}} component."
+		),
 
 		new e.code({
 			output: () => {
@@ -307,7 +311,9 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Dropend"),
-		new e.text("Trigger dropdown menus at the right of the elements by adding {{.dropend}} to the parent element."),
+		new e.text(
+			"Trigger dropdown menus at the right of the elements by adding {{drop:'end'}} on the {{b.dropdown.container}} component."
+		),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
@@ -337,7 +343,7 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Dropstart"),
 		new e.text(
-			"Trigger dropdown menus at the left of the elements by adding {{.dropstart}} to the parent element."
+			"Trigger dropdown menus at the left of the elements by adding {{drop:'start'}} on the {{b.dropdown.container}} component."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -368,10 +374,10 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.title("Menu items"),
-		new e.text("You can use {{<a>}} or {{<button>}} elements as dropdown items."),
+		new e.text("You can use {{new b.dropdown.item}} elements as dropdown items."),
 		new e.code({
 			output: () => {
-				return new h.div({ class: "dropdown" }, [
+				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
 					new b.dropdown.menu([
 						new b.dropdown.item("Action"),
@@ -382,7 +388,7 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"You can also create non-interactive dropdown items with {{.dropdown-item-text}}. Feel free to style further with custom CSS or text utilities."
+			"You can also create non-interactive dropdown items with {{b.dropdown.text}}. Feel free to style further with custom CSS or text utilities."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -403,9 +409,7 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Active"),
-		new e.text(
-			"Add {{.active}} to items in the dropdown to {{b::style them as active}}. To convey the active state to assistive technologies, use the {{aria-current}} attribute — using the {{page}} value for the current page, or {{true}} for the current item in a set."
-		),
+		new e.text("Add {{active:true}} to items in the {{b.dropdown.item}} to {{b::style them as active}}."),
 		new e.code({
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
@@ -415,11 +419,25 @@ export const dropdown: IAttrContent = {
 				]);
 			},
 		}),
+		new e.text(
+			"By default Bootstrap TS set active item as {{aria-current:'true'}}. To convey the active state to assistive technologies, set {{current:'page'}} property — when you using the {{page}} value for the current page."
+		),
+		new e.code({
+			output: () => {
+				return new b.dropdown.menu({ debug: true }, [
+					new b.dropdown.item({ href: "#" }, "Regular link"),
+					new b.dropdown.item({ href: "#", active: true, current: "page" }, "Active link"),
+					new b.dropdown.item({ href: "#" }, "Another link"),
+				]);
+			},
+		}),
 
 		//-----------------------
 
 		new e.subtitle("Disabled"),
-		new e.text("Add {{.disabled}} to items in the dropdown to {{b::style them as disabled}}."),
+		new e.text(
+			"Add {{disabled:true}} to {{b.dropdown.item}} in the {{b.dropdown.menu}} to {{b::style them as disabled}}."
+		),
 		new e.code({
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
@@ -434,10 +452,10 @@ export const dropdown: IAttrContent = {
 
 		new e.title("Menu alignment"),
 		new e.text(
-			"By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. You can change this with the directional .drop* classes, but you can also control them with additional modifier classes."
+			"By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. You can change this with the directional .{{positionView}} property, but you can also control them with additional modifier classes."
 		),
 		new e.text(
-			"Add {{.dropdown-menu-end}} to a {{.dropdown-menu}} to right align the dropdown menu. Directions are mirrored when using Bootstrap in RTL, meaning {{.dropdown-menu-end}} will appear on the left side."
+			"Add {{positionView:'end'}} to a {{b.dropdown.menu}} to right align the dropdown menu. Directions are mirrored when using Bootstrap in RTL, meaning {{positionView:'end'}} will appear on the left side."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -644,7 +662,7 @@ export const dropdown: IAttrContent = {
 
 		new e.code({
 			output: () => {
-				return new h.div({ class: "dropdown" }, [
+				return new b.dropdown.container([
 					new b.dropdown.toggle({ menuAutoClose: "outside" }, "Dropdown form"),
 					new b.dropdown.menu(
 						new h.form(
