@@ -187,7 +187,7 @@ export const navbar: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"And because we use classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."
+			"And because Bootstrap use classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."
 		),
 		new e.code({
 			output: () => {
@@ -707,7 +707,7 @@ export const navbar: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"When you do this, we recommend including additional JavaScript to move the focus programmatically to the container when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes before the toggler in the document’s structure. We also recommend making sure that the toggler has the {{aria-controls}} attribute, pointing to the {{id}} of the content container. In theory, this allows assistive technology users to jump directly from the toggler to the container it controls–but support for this is currently quite patchy."
+			"When you do this, Bootstrap recommend including additional JavaScript to move the focus programmatically to the container when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes before the toggler in the document’s structure. We also recommend making sure that the toggler has the {{aria-controls}} attribute, pointing to the {{id}} of the content container. In theory, this allows assistive technology users to jump directly from the toggler to the container it controls–but support for this is currently quite patchy."
 		),
 
 		// new e.text("This is how you do it in {{bsts}}"),
@@ -898,7 +898,7 @@ export const navbar: IAttrContent = {
 		}),
 
 		new e.text(
-			"When using offcanvas in a dark navbar, be aware that you may need to have a dark background on the offcanvas content to avoid the text becoming illegible. In the example below, we add {{.navbar-dark}} and {{.bg-dark}} to the {{.navbar}}, {{.text-bg-dark}} to the {{.offcanvas}}, {{.dropdown-menu-dark}} to {{.dropdown-menu}}, and {{.btn-close-white}} to {{.btn-close}} for proper styling with a dark offcanvas."
+			"When using offcanvas in a dark navbar, be aware that you may need to have a dark background on the offcanvas content to avoid the text becoming illegible. In the example below, Bootstrap add {{.navbar-dark}} and {{.bg-dark}} to the {{.navbar}}, {{.text-bg-dark}} to the {{.offcanvas}}, {{.dropdown-menu-dark}} to {{.dropdown-menu}}, and {{.btn-close-white}} to {{.btn-close}} for proper styling with a dark offcanvas."
 		),
 
 		new e.code({
@@ -1015,7 +1015,7 @@ export const navbar: IAttrContent = {
 		}),
 
 		new e.text(
-			"Customization through CSS variables can be seen on the {{.navbar-dark}} class where we override specific values without adding duplicate CSS selectors."
+			"Customization through CSS variables can be seen on the {{.navbar-dark}} class where Bootstrap override specific values without adding duplicate CSS selectors."
 		),
 
 		new e.codepreview({

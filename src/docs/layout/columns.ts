@@ -14,9 +14,9 @@ export const columns: IAttrContent = {
 		new e.title("How they work"),
 		new e.ul({
 			item: [
-				"{{b::Columns build on the grid’s flexbox architecture.}} Flexbox means we have options for changing individual columns and {{nav:docs/layout/grid#row_columns::modifying groups of columns at the row level}}. You choose how columns grow, shrink, or otherwise change.",
+				"{{b::Columns build on the grid’s flexbox architecture.}} Flexbox means Bootstrap have options for changing individual columns and {{nav:docs/layout/grid#row_columns::modifying groups of columns at the row level}}. You choose how columns grow, shrink, or otherwise change.",
 				"{{b::When building grid layouts, all content goes in columns.}} The hierarchy of Bootstrap’s grid goes from {{nav:docs/layout/containers::container}} to row to column to your content. On rare occasions, you may combine content and column, but be aware there can be unintended consequences.",
-				"{{b::Bootstrap includes predefined classes for creating fast, responsive layouts.}} With {{nav:docs/layout/breakpoints::six breakpoints}} and a dozen columns at each grid tier, we have dozens of classes already built for you to create your desired layouts. This can be disabled via Sass if you wish.",
+				"{{b::Bootstrap includes predefined classes for creating fast, responsive layouts.}} With {{nav:docs/layout/breakpoints::six breakpoints}} and a dozen columns at each grid tier, Bootstrap have dozens of classes already built for you to create your desired layouts. This can be disabled via Sass if you wish.",
 			],
 		}),
 

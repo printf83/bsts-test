@@ -8,7 +8,7 @@ export const cssgrid: IAttrContent = {
 		"Learn how to enable, use, and customize Bootstrap alternate layout system built on CSS Grid with examples and code snippets.",
 	item: [
 		new e.text(
-			"Bootstrap’s default grid system represents the culmination of over a decade of CSS layout techniques, tried and tested by millions of people. But, it was also created without many of the modern CSS features and techniques we’re seeing in browsers like the new CSS Grid."
+			"Bootstrap’s default grid system represents the culmination of over a decade of CSS layout techniques, tried and tested by millions of people. But, it was also created without many of the modern CSS features and techniques Bootstrap’re seeing in browsers like the new CSS Grid."
 		),
 
 		new e.alert(

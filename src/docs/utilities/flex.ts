@@ -416,7 +416,7 @@ export const flex: IAttrContent = {
 
 		new e.title("Align content"),
 		new e.text(
-			"Use {{align-content}} utilities on flexbox containers to align flex items together on the cross axis. Choose from {{start}} (browser default), {{end}}, {{center}}, {{between}}, {{around}}, or {{stretch}}. To demonstrate these utilities, we’ve enforced {{flex-wrap: wrap}} and increased the number of flex items."
+			"Use {{align-content}} utilities on flexbox containers to align flex items together on the cross axis. Choose from {{start}} (browser default), {{end}}, {{center}}, {{between}}, {{around}}, or {{stretch}}. To demonstrate these utilities, Bootstrap enforced {{flex-wrap: wrap}} and increased the number of flex items."
 		),
 		new e.text("{{b::Heads up! }}This property has no effect on single rows of flex items."),
 		new e.code({

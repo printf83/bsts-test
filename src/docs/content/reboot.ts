@@ -9,7 +9,7 @@ export const reboot: IAttrContent = {
 	item: [
 		new e.title("Approach"),
 		new e.text(
-			"Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, we reboot some {{<table>}} styles for a simpler baseline and later provide {{.table}}, {{.table-bordered}}, and more."
+			"Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, Bootstrap reboot some {{<table>}} styles for a simpler baseline and later provide {{.table}}, {{.table-bordered}}, and more."
 		),
 		new e.text("Here are Bootstrap guidelines and reasons for choosing what to override in Reboot:"),
 		new e.ul({
@@ -25,7 +25,7 @@ export const reboot: IAttrContent = {
 
 		new e.title("CSS variables"),
 		new e.text(
-			"With v5.1.1, we standardized Bootstrap required {{@imports}} across all Bootstrap CSS bundles (including {{bootstrap.css}}, {{bootstrap-reboot.css}}, and {{bootstrap-grid.css}}) to include {{_root.scss}}. This adds {{:root}} level CSS variables to all bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see more {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS variables}} added over time, in order to provide more real-time customization without the need to always recompile Sass. Bootstrap approach is to take Bootstrap source Sass variables and transform them into CSS variables. That way, even if you don’t use CSS variables, you still have all the power of Sass. {{b::This is still in-progress and will take time to fully implement}}."
+			"With v5.1.1, Bootstrap standardized Bootstrap required {{@imports}} across all Bootstrap CSS bundles (including {{bootstrap.css}}, {{bootstrap-reboot.css}}, and {{bootstrap-grid.css}}) to include {{_root.scss}}. This adds {{:root}} level CSS variables to all bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see more {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS variables}} added over time, in order to provide more real-time customization without the need to always recompile Sass. Bootstrap approach is to take Bootstrap source Sass variables and transform them into CSS variables. That way, even if you don’t use CSS variables, you still have all the power of Sass. {{b::This is still in-progress and will take time to fully implement}}."
 		),
 		new e.text("For example, consider these {{:root}} CSS variables for common {{<body>}} styles:"),
 
@@ -634,7 +634,7 @@ export const reboot: IAttrContent = {
 
 		new e.subtitle("Blockquote"),
 		new e.text(
-			"The default {{margin}} on blockquotes is {{1em 40px}}, so we reset that to {{0 0 1rem}} for something more consistent with other elements."
+			"The default {{margin}} on blockquotes is {{1em 40px}}, so Bootstrap reset that to {{0 0 1rem}} for something more consistent with other elements."
 		),
 		new e.code({
 			output: () => {
@@ -659,7 +659,7 @@ export const reboot: IAttrContent = {
 
 		new e.subtitle("Summary"),
 		new e.text(
-			"The default {{cursor}} on summary is {{text}}, so we reset that to {{pointer}} to convey that the element can be interacted with by clicking on it."
+			"The default {{cursor}} on summary is {{text}}, so Bootstrap reset that to {{pointer}} to convey that the element can be interacted with by clicking on it."
 		),
 		new e.code({
 			output: () => {
@@ -677,7 +677,7 @@ export const reboot: IAttrContent = {
 
 		new e.title("HTML5 {{[hidden]}} attribute "),
 		new e.text(
-			"HTML5 adds {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden::a new global attribute named [hidden]}}, which is styled as {{display: none}} by default. Borrowing an idea from {{https://purecss.io/::PureCSS}}, we improve upon this default by making {{[hidden] { display: none !important; } }}to help prevent its {{display}} from getting accidentally overridden."
+			"HTML5 adds {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden::a new global attribute named [hidden]}}, which is styled as {{display: none}} by default. Borrowing an idea from {{https://purecss.io/::PureCSS}}, Bootstrap improve upon this default by making {{[hidden] { display: none !important; } }}to help prevent its {{display}} from getting accidentally overridden."
 		),
 		new e.code({
 			output: () => {
@@ -686,7 +686,7 @@ export const reboot: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			"Since {{[hidden]}} is not compatible with jQuery’s {{$(...).hide()}} and {{$(...).show()}} methods, we don’t specifically endorse {{[hidden]}} over other techniques for managing the {{display}} of elements."
+			"Since {{[hidden]}} is not compatible with jQuery’s {{$(...).hide()}} and {{$(...).show()}} methods, Bootstrap don’t specifically endorse {{[hidden]}} over other techniques for managing the {{display}} of elements."
 		),
 
 		new e.text(

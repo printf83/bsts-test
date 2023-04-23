@@ -192,7 +192,7 @@ export const introduction: IAttrContent = {
 
 		new e.subtitle("Viewport meta"),
 		new e.text(
-			"Bootstrap is developed {{i::mobile first}}, a strategy in which we optimize code for mobile devices first and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your {{<head>}}."
+			"Bootstrap is developed {{i::mobile first}}, a strategy in which Bootstrap optimize code for mobile devices first and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your {{<head>}}."
 		),
 		new e.codepreview({
 			type: "html",
@@ -208,7 +208,7 @@ export const introduction: IAttrContent = {
 
 		new e.subtitle("Box-sizing"),
 		new e.text(
-			"For more straightforward sizing in CSS, we switch the global {{box-sizing}} value from {{content-box}} to {{border-box}}. This ensures {{padding}} does not affect the final computed width of an element, but it can cause problems with some third-party software like Google Maps and Google Custom Search Engine."
+			"For more straightforward sizing in CSS, Bootstrap switch the global {{box-sizing}} value from {{content-box}} to {{border-box}}. This ensures {{padding}} does not affect the final computed width of an element, but it can cause problems with some third-party software like Google Maps and Google Custom Search Engine."
 		),
 		new e.text("On the rare occasion you need to override it, use something like the following:"),
 		new e.codepreview({
@@ -228,7 +228,7 @@ export const introduction: IAttrContent = {
 
 		new e.subtitle("Reboot"),
 		new e.text(
-			"For improved cross-browser rendering, we use {{nav:docs/content/reboot::Reboot}} to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements."
+			"For improved cross-browser rendering, Bootstrap use {{nav:docs/content/reboot::Reboot}} to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements."
 		),
 
 		//-----------------------

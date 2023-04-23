@@ -481,7 +481,7 @@ export const card: IAttrContent = {
 
 		new e.title("Horizontal"),
 		new e.text(
-			"Using a combination of grid and utility classes, cards can be made horizontal in a mobile-friendly and responsive way. In the example below, we remove the grid gutters with {{gutter:0}} and use {{col:'<value>'}} property to make the card horizontal at the {{md}} breakpoint. Further adjustments may be needed depending on your card content."
+			"Using a combination of grid and utility classes, cards can be made horizontal in a mobile-friendly and responsive way. In the example below, Bootstrap remove the grid gutters with {{gutter:0}} and use {{col:'<value>'}} property to make the card horizontal at the {{md}} breakpoint. Further adjustments may be needed depending on your card content."
 		),
 
 		new e.code({
@@ -825,7 +825,7 @@ export const card: IAttrContent = {
 
 		new e.subtitle("Masonry"),
 		new e.text(
-			"In v4 we used a CSS-only technique to mimic the behavior of {{https://masonry.desandro.com/::Masonry}}-like columns, but this technique came with lots of unpleasant {{https://github.com/twbs/bootstrap/pull/28922::side effects}}. If you want to have this type of layout in v5, you can just make use of Masonry plugin. {{b::Masonry is not included in Bootstrap}}, but we’ve made a {{https://getbootstrap.com/docs/5.3/examples/masonry/::demo example}} to help you get started."
+			"In v4 Bootstrap used a CSS-only technique to mimic the behavior of {{https://masonry.desandro.com/::Masonry}}-like columns, but this technique came with lots of unpleasant {{https://github.com/twbs/bootstrap/pull/28922::side effects}}. If you want to have this type of layout in v5, you can just make use of Masonry plugin. {{b::Masonry is not included in Bootstrap}}, but Bootstrap made a {{https://getbootstrap.com/docs/5.3/examples/masonry/::demo example}} to help you get started."
 		),
 
 		//-----------------------

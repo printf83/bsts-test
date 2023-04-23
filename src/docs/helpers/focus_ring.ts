@@ -79,7 +79,7 @@ export const focus_ring: IAttrContent = {
 			`,
 		}),
 		new e.text(
-			"By default, there is no {{--bs-focus-ring-x}}, {{--bs-focus-ring-y}}, or {{--bs-focus-ring-blur}}, but we provide CSS variables with fallbacks to initial {{0}} values. Modify them to change the default appearance."
+			"By default, there is no {{--bs-focus-ring-x}}, {{--bs-focus-ring-y}}, or {{--bs-focus-ring-blur}}, but Bootstrap provide CSS variables with fallbacks to initial {{0}} values. Modify them to change the default appearance."
 		),
 		new e.code({
 			output: () => {
@@ -127,7 +127,7 @@ export const focus_ring: IAttrContent = {
 
 		new e.subtitle("Utilities"),
 		new e.text(
-			"In addition to {{.focus-ring}}, we have several {{.focus-ring-*}} utilities to modify the helper class defaults. Modify the color with any of Bootstrap {{https://getbootstrap.com/docs/5.3/customize/color/#theme-colors::theme colors}}. Note that the light and dark variants may not be visible on all background colors given current color mode support."
+			"In addition to {{.focus-ring}}, Bootstrap have several {{.focus-ring-*}} utilities to modify the helper class defaults. Modify the color with any of Bootstrap {{https://getbootstrap.com/docs/5.3/customize/color/#theme-colors::theme colors}}. Note that the light and dark variants may not be visible on all background colors given current color mode support."
 		),
 
 		new e.code({

@@ -27,7 +27,7 @@ export const text: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			" Note that we don’t provide utility classes for justified text. While, aesthetically, justified text might look more appealing, it does make word-spacing more random and therefore harder to read."
+			" Note that Bootstrap don’t provide utility classes for justified text. While, aesthetically, justified text might look more appealing, it does make word-spacing more random and therefore harder to read."
 		),
 
 		//-----------------------

@@ -251,7 +251,7 @@ export const colors: IAttrContent = {
 
 		new e.subtitle("Sass maps"),
 		new e.text(
-			"Theme colors are then put into a Sass map so we can loop over them to generate Bootstrap utilities, component modifiers, and more."
+			"Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."
 		),
 		new e.codepreview({
 			type: "css",

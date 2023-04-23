@@ -14,7 +14,7 @@ export const icon_link: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"When icons are purely decorative, they should be hidden from assistive technologies using {{aria-hidden='true'}}, as we’ve done in Bootstrap examples. For icons that convey meaning, provide an appropriate text alternative by adding {{role='img'}} and an appropriate {{aria-label='...'}} to the SVGs."
+			"When icons are purely decorative, they should be hidden from assistive technologies using {{aria-hidden='true'}}, as Bootstrap done in Bootstrap examples. For icons that convey meaning, provide an appropriate text alternative by adding {{role='img'}} and an appropriate {{aria-label='...'}} to the SVGs."
 		),
 		new e.title("Example"),
 		new e.text(

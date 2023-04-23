@@ -1,4 +1,4 @@
-import { b, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -9,7 +9,7 @@ export const collapse: IAttrContent = {
 	item: [
 		new e.title("How it works"),
 		new e.text(
-			"The collapse JavaScript plugin is used to show and hide content. Buttons or anchors are used as triggers that are mapped to specific elements you toggle. Collapsing an element will animate the {{height}} from its current value to {{0}}. Given how CSS handles animations, you cannot use {{padding}} on a {{.collapse}} element. Instead, use the class as an independent wrapping element."
+			"The collapse JavaScript plugin is used to show and hide content. {{b.collapse.toggle}} are used as triggers that are mapped to specific elements you toggle. Collapsing an element will animate the {{height}} from its current value to {{0}}. Given how CSS handles animations, you cannot use {{padding}} on a {{b.collapse.container}} element. Instead, use the class as an independent wrapping element."
 		),
 		new e.text(
 			new b.alert.container(
@@ -30,7 +30,7 @@ export const collapse: IAttrContent = {
 			],
 		}),
 		new e.text(
-			"Generally, we recommend using a {{<button>}} with the {{data-bs-target}} attribute. While not recommended from a semantic point of view, you can also use an {{<a>}} link with the {{href}} attribute (and a {{role='button'}}). In both cases, the {{data-bs-toggle='collapse'}} is required."
+			"Generally, Bootstrap TS recommend using a {{b.collapse.toggle}} with the {{target}} property. While not recommended from a semantic point of view, you can also use an {{b.collapse.toggle}} with the {{href}} property (Bootstrap TS automaticly add {{role:'button'}} and the {{toggle:'collapse'}} because it's required by Bootstrap."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -62,7 +62,7 @@ export const collapse: IAttrContent = {
 
 		new e.title("Horizontal"),
 		new e.text(
-			"The collapse plugin supports horizontal collapsing. Add the {{.collapse-horizontal}} modifier class to transition the {{width}} instead of {{height}} and set a {{width}} on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use Bootstrap {{nav:docs/utilities/sizing::width utilities}}."
+			"The collapse plugin supports horizontal collapsing. Add the {{horizontal:true}} to {{b.collapse.container}} to transition the {{width}} instead of {{height}} and set a {{width}} on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use Bootstrap {{nav:docs/utilities/sizing::width utilities}}."
 		),
 		new e.text(
 			new b.alert.container(
@@ -100,7 +100,7 @@ export const collapse: IAttrContent = {
 
 		new e.title("Multiple toggles and targets"),
 		new e.text(
-			"A {{<button>}} or {{<a>}} element can show and hide multiple elements by referencing them with a selector in its {{data-bs-target}} or {{href}} attribute. Conversely, multiple {{<button>}} or {{<a>}} elements can show and hide the same element if they each reference it with their {{data-bs-target}} or {{href}} attribute."
+			"A {{b.collapse.toggle}} component can show and hide multiple elements by referencing them with a selector in its {{target}} or {{href}} property. Conversely, multiple {{b.collapse.toggle}} component can show and hide the same element if they each reference it with their {{target}} or {{href}} property."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -152,8 +152,9 @@ export const collapse: IAttrContent = {
 		new e.text(
 			"Be sure to add {{aria-expanded}} to the control element. This attribute explicitly conveys the current state of the collapsible element tied to the control to screen readers and similar assistive technologies. If the collapsible element is closed by default, the attribute on the control element should have a value of {{aria-expanded='false'}}. If you’ve set the collapsible element to be open by default using the {{show}} class, set {{aria-expanded='true'}} on the control instead. The plugin will automatically toggle this attribute on the control based on whether or not the collapsible element has been opened or closed (via JavaScript, or because the user triggered another control element also tied to the same collapsible element). If the control element’s HTML element is not a button (e.g., an {{<a>}} or {{<div>}}), the attribute {{role='button'}} should be added to the element."
 		),
+		new e.text("Bootstrap TS automaticly handle this when you using {{b.collapse.toggle}}."),
 		new e.text(
-			"If your control element is targeting a single collapsible element – i.e. the {{data-bs-target}} attribute is pointing to an {{id}} selector – you should add the {{aria-controls}} attribute to the control element, containing the {{id}} of the collapsible element. Modern screen readers and similar assistive technologies make use of this attribute to provide users with additional shortcuts to navigate directly to the collapsible element itself."
+			"If your {{b.collapse.toggle}} component is targeting a single {{b.collapse.container}} component – i.e. the {{target}} property is pointing to an {{id}} selector – you should add the {{controlfor}} property to the control element, containing the {{id}} of the {{b.collapse.container}}. Modern screen readers and similar assistive technologies make use of this attribute to provide users with additional shortcuts to navigate directly to the {{b.collapse.container}} component itself."
 		),
 		new e.text(
 			"Note that Bootstrap’s current implementation does not cover the various optional keyboard interactions described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/accordion/::ARIA Authoring Practices Guide accordion pattern}} - you will need to include these yourself with custom JavaScript."
@@ -221,9 +222,12 @@ export const collapse: IAttrContent = {
 		new e.text(
 			"Just add {{data-bs-toggle='collapse'}} and a {{data-bs-target}} to the element to automatically assign control of one or more collapsible elements. The {{data-bs-target}} attribute accepts a CSS selector to apply the collapse to. Be sure to add the class {{collapse}} to the collapsible element. If you’d like it to default open, add the additional class {{show}}."
 		),
+		new e.text("Bootstrap TS automaticly handle this when you using {{b.collapse.toggle}}."),
+
 		new e.text(
 			"To add accordion-like group management to a collapsible area, add the data attribute {{data-bs-parent='#selector'}}. Refer to the {{nav:docs/components/accordion::accordion page}} for more information."
 		),
+		new e.text("Bootstrap TS automaticly handle this when you using {{b.accordion.container}}."),
 
 		//-----------------------
 
@@ -332,6 +336,53 @@ export const collapse: IAttrContent = {
 					// do something...
 				})
 			`,
+		}),
+		new e.code({
+			outputAttr: { gap: 2 },
+			output: () => {
+				return [
+					new b.collapse.toggle(
+						{ target: "#collapseEventExample", controlfor: "collapseEventExample" },
+						"Collapse event"
+					),
+					new b.collapse.container(
+						{
+							id: "collapseEventExample",
+							on: {
+								"hidden.bs.collapse": (event) => {
+									let collapseEvent = event.target;
+
+									b.toast.show(
+										"top-end",
+										b.toast.simple({
+											title: "hidden.bs.collapse",
+											color: "info",
+											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,
+										})
+									);
+								},
+								"shown.bs.collapse": (event) => {
+									let collapseEvent = event.target;
+
+									b.toast.show(
+										"top-end",
+										b.toast.simple({
+											title: "shown.bs.collapse",
+											color: "success",
+											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,
+										})
+									);
+								},
+							},
+						},
+						new b.card.container(
+							new b.card.body(
+								"Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."
+							)
+						)
+					),
+				];
+			},
 		}),
 	],
 };

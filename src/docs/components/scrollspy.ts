@@ -364,7 +364,7 @@ export const scrollspy: IAttrContent = {
 
 		new e.alert({ color: "warning", callout: true }, [
 			new b.alert.header(4, "Deprecated Options"),
-			"Up until v5.1.3 we were using {{offset}} & {{method}} options, which are now deprecated and replaced by {{rootMargin}}. To keep backwards compatibility, we will continue to parse a given {{offset}} to {{rootMargin}}, but this feature will be removed in {{b::v6}}.",
+			"Up until v5.1.3 Bootstrap were using {{offset}} & {{method}} options, which are now deprecated and replaced by {{rootMargin}}. To keep backwards compatibility, Bootstrap will continue to parse a given {{offset}} to {{rootMargin}}, but this feature will be removed in {{b::v6}}.",
 		]),
 
 		//-----------------------

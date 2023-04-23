@@ -352,14 +352,14 @@ export const tables: IAttrContent = {
 
 		new e.title("How do the variants and accented tables work?"),
 		new e.text(
-			"For the accented tables ({{nav:docs/content/tables#striped_rows::striped rows}}, {{nav:docs/content/tables#striped_columns::striped columns}}, {{nav:docs/content/tables#hoverable_rows::hoverable rows}}, and {{nav:docs/content/tables#active_tables::active tables}}), we used some techniques to make these effects work for all Bootstrap {{nav:docs/content/tables#variants::table variants}}:"
+			"For the accented tables ({{nav:docs/content/tables#striped_rows::striped rows}}, {{nav:docs/content/tables#striped_columns::striped columns}}, {{nav:docs/content/tables#hoverable_rows::hoverable rows}}, and {{nav:docs/content/tables#active_tables::active tables}}), Bootstrap used some techniques to make these effects work for all Bootstrap {{nav:docs/content/tables#variants::table variants}}:"
 		),
 		new e.ul({
 			item: [
-				"We start by setting the background of a table cell with the {{--bs-table-bg}} custom property. All table variants then set that custom property to colorize the table cells. This way, we don’t get into trouble if semi-transparent colors are used as table backgrounds.",
-				"Then we add an inset box shadow on the table cells with {{box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);}} to layer on top of any specified {{background-color}}. Because we use a huge spread and no blur, the color will be monotone. Since {{--bs-table-accent-bg}} is unset by default, we don’t have a default box shadow.",
+				"We start by setting the background of a table cell with the {{--bs-table-bg}} custom property. All table variants then set that custom property to colorize the table cells. This way, Bootstrap don’t get into trouble if semi-transparent colors are used as table backgrounds.",
+				"Then Bootstrap add an inset box shadow on the table cells with {{box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);}} to layer on top of any specified {{background-color}}. Because Bootstrap use a huge spread and no blur, the color will be monotone. Since {{--bs-table-accent-bg}} is unset by default, Bootstrap don’t have a default box shadow.",
 				"When either {{.table-striped}}, {{.table-striped-columns}}, {{.table-hover}} or {{.table-active}} classes are added, the {{--bs-table-accent-bg}} is set to a semitransparent color to colorize the background.",
-				"For each table variant, we generate a {{--bs-table-accent-bg}} color with the highest contrast depending on that color. For example, the accent color for {{.table-primary}} is darker while {{.table-dark}} has a lighter accent color.",
+				"For each table variant, Bootstrap generate a {{--bs-table-accent-bg}} color with the highest contrast depending on that color. For example, the accent color for {{.table-primary}} is darker while {{.table-dark}} has a lighter accent color.",
 				"Text and border colors are generated the same way, and their colors are inherited by default.",
 			],
 		}),
@@ -459,7 +459,7 @@ export const tables: IAttrContent = {
 
 		new e.title("Table group dividers"),
 		new e.text(
-			"Add a thicker border, darker between table groups—{{<thead>}}, {{<tbody>}}, and {{<tfoot>}}—with {{.table-group-divider}}. Customize the color by changing the {{border-top-color}} (which we don’t currently provide a utility class for at this time)."
+			"Add a thicker border, darker between table groups—{{<thead>}}, {{<tbody>}}, and {{<tfoot>}}—with {{.table-group-divider}}. Customize the color by changing the {{border-top-color}} (which Bootstrap don’t currently provide a utility class for at this time)."
 		),
 		new e.code({
 			outputAttr: { overflow: "auto" },
@@ -607,7 +607,7 @@ export const tables: IAttrContent = {
 
 		new e.title("How nesting works"),
 		new e.text(
-			"To prevent any styles from leaking to nested tables, we use the child combinator ({{>}}) selector in Bootstrap CSS. Since we need to target all the {{td}}s and {{th}}s in the {{thead}}, {{tbody}}, and {{tfoot}}, Bootstrap selector would look pretty long without it. As such, we use the rather odd looking {{.table > :not(caption) > * > *}} selector to target all {{td}}s and {{th}}s of the {{.table}}, but none of any potential nested tables."
+			"To prevent any styles from leaking to nested tables, Bootstrap use the child combinator ({{>}}) selector in Bootstrap CSS. Since Bootstrap need to target all the {{td}}s and {{th}}s in the {{thead}}, {{tbody}}, and {{tfoot}}, Bootstrap selector would look pretty long without it. As such, Bootstrap use the rather odd looking {{.table > :not(caption) > * > *}} selector to target all {{td}}s and {{th}}s of the {{.table}}, but none of any potential nested tables."
 		),
 		new e.text(
 			"Note that if you add {{<tr>}}s as direct children of a table, those {{<tr>}} will be wrapped in a {{<tbody>}} by default, thus making Bootstrap selectors work as intended."

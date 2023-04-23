@@ -158,7 +158,7 @@ export const layout: IAttrContent = {
 			"Create horizontal forms with the grid by adding the {{.row}} class to form groups and using the {{.col-*-*}} classes to specify the width of your labels and controls. Be sure to add {{.col-form-label}} to your {{<label>}}s as well so they’re vertically centered with their associated form controls."
 		),
 		new e.text(
-			"At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, we’ve removed the {{padding-top}} on Bootstrap stacked radio inputs label to better align the text baseline."
+			"At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, Bootstrap removed the {{padding-top}} on Bootstrap stacked radio inputs label to better align the text baseline."
 		),
 		new e.code({
 			output: () => {
@@ -350,7 +350,7 @@ export const layout: IAttrContent = {
 
 		new e.title("Inline forms"),
 		new e.text(
-			"Use the {{.row-cols-*}} classes to create responsive horizontal layouts. By adding {{nav:docs/layout/gutters::gutter modifier classes}}, we’ll have gutters in horizontal and vertical directions. On narrow mobile viewports, the {{.col-12}} helps stack the form controls and more. The {{.align-items-center}} aligns the form elements to the middle, making the {{.form-check}} align properly."
+			"Use the {{.row-cols-*}} classes to create responsive horizontal layouts. By adding {{nav:docs/layout/gutters::gutter modifier classes}}, Bootstrap’ll have gutters in horizontal and vertical directions. On narrow mobile viewports, the {{.col-12}} helps stack the form controls and more. The {{.align-items-center}} aligns the form elements to the middle, making the {{.form-check}} align properly."
 		),
 		new e.code({
 			output: () => {

@@ -8,7 +8,7 @@ export const close_button: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"Provide an option to dismiss or close a component with {{.btn-close}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as we’ve done with {{aria-label}}."
+			"Provide an option to dismiss or close a component with {{b.btnclose}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as Bootstrap TS done with {{label}}."
 		),
 		new e.code({
 			output: () => {
@@ -32,7 +32,7 @@ export const close_button: IAttrContent = {
 
 		new e.title("Dark variant"),
 		new e.text(
-			"Add {{data-bs-theme='dark'}} to the {{.btn-close}}, or to its parent element, to invert the close button. This uses the {{filter}} property to invert the {{background-image}} without overriding its value."
+			"Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."
 		),
 		new e.code({
 			previewAttr: { bgColor: "dark" },

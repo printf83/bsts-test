@@ -36,7 +36,7 @@ export const stretched_link: IAttrContent = {
 		}),
 
 		new e.text(
-			"Most custom components do not have {{position: relative}} by default, so we need to add the {{.position-relative}} here to prevent the link from stretching outside the parent element."
+			"Most custom components do not have {{position: relative}} by default, so Bootstrap need to add the {{.position-relative}} here to prevent the link from stretching outside the parent element."
 		),
 		new e.code({
 			output: () => {
@@ -50,7 +50,7 @@ export const stretched_link: IAttrContent = {
 					new h.div([
 						new h.h(5, { marginTop: 0 }, "Custom component with stretched link"),
 						new h.p(
-							"This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size."
+							"This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."
 						),
 						new h.a({ href: "#", stretched: true }, "Go somewhere"),
 					]),
@@ -71,7 +71,7 @@ export const stretched_link: IAttrContent = {
 					new h.div({ col: "md-6", padding: 4, paddingStart: "md-0" }, [
 						new h.h(5, { marginTop: 0 }, "Columns with stretched link"),
 						new h.p(
-							"Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size."
+							"Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."
 						),
 						new h.a({ href: "#", stretched: true }, "Go somewhere"),
 					]),

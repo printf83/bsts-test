@@ -61,7 +61,7 @@ export const breakpoints: IAttrContent = {
 
 		new e.title("Media queries"),
 		new e.text(
-			"Since Bootstrap is developed to be mobile first, we use a handful of {{https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries::media queries}} to create sensible breakpoints for Bootstrap layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes."
+			"Since Bootstrap is developed to be mobile first, Bootstrap use a handful of {{https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries::media queries}} to create sensible breakpoints for Bootstrap layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes."
 		),
 
 		//-----------------------
@@ -177,7 +177,7 @@ export const breakpoints: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Why subtract .02px?}} Browsers don’t currently support {{https://www.w3.org/TR/mediaqueries-4/#range-context::range context queries}}, so we work around the limitations of {{https://www.w3.org/TR/mediaqueries-4/#mq-min-max::min- and max- prefixes}} and viewports with fractional widths (which can occur under certain conditions on high-dpi devices, for instance) by using values with higher precision."
+			"{{b::Why subtract .02px?}} Browsers don’t currently support {{https://www.w3.org/TR/mediaqueries-4/#range-context::range context queries}}, so Bootstrap work around the limitations of {{https://www.w3.org/TR/mediaqueries-4/#mq-min-max::min- and max- prefixes}} and viewports with fractional widths (which can occur under certain conditions on high-dpi devices, for instance) by using values with higher precision."
 		),
 
 		//-----------------------

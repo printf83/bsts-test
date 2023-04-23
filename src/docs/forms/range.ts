@@ -8,7 +8,7 @@ export const range: IAttrContent = {
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"Create custom {{<input type='range'>}} controls with {{.form-range}}. The track (the background) and thumb (the value) are both styled to appear the same across browsers. As only Firefox supports “filling” their track from the left or right of the thumb as a means to visually indicate progress, we do not currently support it."
+			"Create custom {{<input type='range'>}} controls with {{.form-range}}. The track (the background) and thumb (the value) are both styled to appear the same across browsers. As only Firefox supports “filling” their track from the left or right of the thumb as a means to visually indicate progress, Bootstrap do not currently support it."
 		),
 		new e.code({
 			output: () => {
@@ -66,7 +66,7 @@ export const range: IAttrContent = {
 
 		new e.title("Steps"),
 		new e.text(
-			"By default, range inputs “snap” to integer values. To change this, you can specify a {{step}} value. In the example below, we double the number of steps by using {{step='0.5'}}."
+			"By default, range inputs “snap” to integer values. To change this, you can specify a {{step}} value. In the example below, Bootstrap double the number of steps by using {{step='0.5'}}."
 		),
 		new e.code({
 			output: () => {

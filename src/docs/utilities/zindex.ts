@@ -13,7 +13,7 @@ export const zindex: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"We call these “low-level” {{z-index}} utilities because of their default values of {{-1}} through {{3}}, which we use for the layout of overlapping components. High-level {{z-index}} values are used for overlay components like modals and tooltips."
+			"We call these “low-level” {{z-index}} utilities because of their default values of {{-1}} through {{3}}, which Bootstrap use for the layout of overlapping components. High-level {{z-index}} values are used for overlay components like modals and tooltips."
 		),
 		new e.code({
 			outputAttr: { class: "zindex-box", style: { height: "200px" } },
@@ -40,7 +40,7 @@ export const zindex: IAttrContent = {
 
 		new e.title("Component approach"),
 		new e.text(
-			"On some components, we use Bootstrap low-level {{z-index}} values to manage repeating elements that overlap one another (like buttons in a button group or items in a list group)."
+			"On some components, Bootstrap use Bootstrap low-level {{z-index}} values to manage repeating elements that overlap one another (like buttons in a button group or items in a list group)."
 		),
 		new e.text(
 			"Learn about Bootstrap {{https://getbootstrap.com/docs/5.3/extend/approach/#z-index-scales::z-index approach}}."

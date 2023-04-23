@@ -15,7 +15,7 @@ export const placeholder: IAttrContent = {
 
 		new e.title("Example"),
 		new e.text(
-			"In the example below, we take a typical card component and recreate it with placeholders applied to create a “loading card”. Size and proportions are the same between the two."
+			"In the example below, Bootstrap take a typical card component and recreate it with placeholders applied to create a “loading card”. Size and proportions are the same between the two."
 		),
 
 		new e.code({

@@ -20,7 +20,7 @@ export const gutters: IAttrContent = {
 
 		new e.title("Horizontal gutters"),
 		new e.text(
-			"{{.gx-*}} classes can be used to control the horizontal gutter widths. The {{.container}} or {{.container-fluid}} parent may need to be adjusted if larger gutters are used too to avoid unwanted overflow, using a matching padding utility. For example, in the following example we’ve increased the padding with {{.px-4}}:"
+			"{{.gx-*}} classes can be used to control the horizontal gutter widths. The {{.container}} or {{.container-fluid}} parent may need to be adjusted if larger gutters are used too to avoid unwanted overflow, using a matching padding utility. For example, in the following example Bootstrap increased the padding with {{.px-4}}:"
 		),
 		new e.code({
 			outputAttr: { class: "p-box" },
@@ -75,7 +75,7 @@ export const gutters: IAttrContent = {
 
 		new e.title("Horizontal & vertical gutters"),
 		new e.text(
-			"Use {{.g-*}} classes to control the horizontal and vertical grid gutters. In the example below, we use a smaller gutter width, so there isn’t a need for the {{.overflow-hidden}} wrapper class."
+			"Use {{.g-*}} classes to control the horizontal and vertical grid gutters. In the example below, Bootstrap use a smaller gutter width, so there isn’t a need for the {{.overflow-hidden}} wrapper class."
 		),
 		new e.code({
 			outputAttr: { class: "p-box" },
@@ -96,7 +96,7 @@ export const gutters: IAttrContent = {
 
 		new e.title("Row columns gutters"),
 		new e.text(
-			"Gutter classes can also be added to {{nav:docs/layout/grid#row_columns::row columns}}. In the following example, we use responsive row columns and responsive gutter classes."
+			"Gutter classes can also be added to {{nav:docs/layout/grid#row_columns::row columns}}. In the following example, Bootstrap use responsive row columns and responsive gutter classes."
 		),
 		new e.code({
 			showViewport: true,

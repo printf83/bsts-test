@@ -77,7 +77,7 @@ export const link: IAttrContent = {
 
 		new e.subtitle("Underline opacity"),
 		new e.text(
-			"Change the underline’s opacity. Requires adding {{.link-underline}} to first set an {{rgba()}} color we use to then modify the alpha opacity."
+			"Change the underline’s opacity. Requires adding {{.link-underline}} to first set an {{rgba()}} color Bootstrap use to then modify the alpha opacity."
 		),
 		new e.code({
 			output: () => {

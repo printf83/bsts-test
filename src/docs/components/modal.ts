@@ -15,7 +15,7 @@ export const modal: IAttrContent = {
 			item: [
 				"Modals are built with HTML, CSS, and JavaScript. They’re positioned over everything else in the document and remove scroll from the {{<body>}} so that modal content scrolls instead.",
 				"Clicking on the modal “backdrop” will automatically close the modal.",
-				"Bootstrap only supports one modal window at a time. Nested modals aren’t supported as we believe them to be poor user experiences.",
+				"Bootstrap only supports one modal window at a time. Nested modals aren’t supported as Bootstrap believe them to be poor user experiences.",
 				"Modals use {{position: fixed}}, which can sometimes be a bit particular about its rendering. Whenever possible, place your modal HTML in a top-level position to avoid potential interference from other elements. You’ll likely run into issues when nesting a {{.modal}} within another fixed element.",
 				"Once again, due to {{position: fixed}}, there are some caveats with using modals on mobile devices. {{https://getbootstrap.com/docs/5.3/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile::See Bootstrap browser support docs}} for details.",
 				"Due to how HTML5 defines its semantics, {{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autofocus::the autofocus HTML attribute}} has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:",
@@ -64,7 +64,7 @@ export const modal: IAttrContent = {
 
 		new e.alert(
 			{ color: "info", callout: true },
-			"In the above static example, we use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{nav:docs/utilities/text#font_size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach."
+			"In the above static example, Bootstrap use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{nav:docs/utilities/text#font_size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach."
 		),
 
 		//-----------------------
@@ -136,12 +136,6 @@ export const modal: IAttrContent = {
 		new e.text("You can use Bootstrap simple modal by calling function {{b.modal.simple()}}."),
 
 		new e.code({
-			extention: [
-				{
-					name: "e.toast",
-					output: e.toast,
-				},
-			],
 			outputAttr: { gap: 1 },
 			output: () => {
 				return [
@@ -165,10 +159,22 @@ export const modal: IAttrContent = {
 												)?.checked;
 
 												if (ischecked) {
-													e.toast("success", "Thank you");
+													b.toast.show(
+														"top-end",
+														b.toast.simple({
+															color: "success",
+															elem: "Thank you for tick the checkbox.",
+														})
+													);
 													b.modal.hide(container);
 												} else {
-													e.toast("danger", "Please tick the checkbox before press okay");
+													b.toast.show(
+														"top-end",
+														b.toast.simple({
+															color: "danger",
+															elem: "Please tick the checkbox before press okay.",
+														})
+													);
 												}
 											},
 										],
@@ -211,11 +217,23 @@ export const modal: IAttrContent = {
 										btn: ["yes", "no", "cancel"],
 										btnFn: [
 											(event) => {
-												e.toast("success", "Good!");
+												b.toast.show(
+													"top-end",
+													b.toast.simple({
+														color: "success",
+														elem: "Me too.",
+													})
+												);
 												b.modal.hide(event.target as HTMLElement);
 											},
 											(event) => {
-												e.toast("danger", "Its so sad!");
+												b.toast.show(
+													"top-end",
+													b.toast.simple({
+														color: "danger",
+														elem: "Its so sad! :'(",
+													})
+												);
 												b.modal.hide(event.target as HTMLElement);
 											},
 										],
@@ -265,7 +283,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Scrolling long content"),
 		new e.text(
-			"When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what we mean."
+			"When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what Bootstrap mean."
 		),
 		new e.code({
 			showScript: false,
@@ -282,7 +300,7 @@ export const modal: IAttrContent = {
 						new b.modal.body(
 							new h.p(
 								{ style: { height: "100vh" } },
-								"This is some placeholder content to show the scrolling behavior for modals. Instead of repeating the text the modal, we use an inline style set a minimum height, thereby extending the length of the overall modal and demonstrating the overflow scrolling. When content becomes longer than the height of the viewport, scrolling will move the modal as needed."
+								"This is some placeholder content to show the scrolling behavior for modals. Instead of repeating the text the modal, Bootstrap use an inline style set a minimum height, thereby extending the length of the overall modal and demonstrating the overflow scrolling. When content becomes longer than the height of the viewport, scrolling will move the modal as needed."
 							)
 						),
 						new b.modal.footer([
@@ -773,7 +791,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Accessibility"),
 		new e.text(
-			"Be sure to add {{aria-labelledby='...'}}, referencing the modal title, to {{.modal}}. Additionally, you may give a description of your modal dialog with {{aria-describedby}} on {{.modal}}. Note that you don’t need to add {{role='dialog'}} since we already add it via JavaScript."
+			"Be sure to add {{aria-labelledby='...'}}, referencing the modal title, to {{.modal}}. Additionally, you may give a description of your modal dialog with {{aria-describedby}} on {{.modal}}. Note that you don’t need to add {{role='dialog'}} since Bootstrap already add it via JavaScript."
 		),
 
 		//-----------------------

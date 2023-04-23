@@ -264,7 +264,7 @@ export const background: IAttrContent = {
 
 		new e.subtitle("Sass maps"),
 		new e.text(
-			"Theme colors are then put into a Sass map so we can loop over them to generate Bootstrap utilities, component modifiers, and more."
+			"Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."
 		),
 		new e.codepreview({
 			type: "css",
@@ -381,7 +381,7 @@ export const background: IAttrContent = {
 
 		new e.subtitle("Sass mixins"),
 		new e.text(
-			"{{b::No mixins are used to generate Bootstrap background utilities}}, but we do have some additional mixins for other situations where you’d like to create your own gradients."
+			"{{b::No mixins are used to generate Bootstrap background utilities}}, but Bootstrap do have some additional mixins for other situations where you’d like to create your own gradients."
 		),
 		new e.codepreview({
 			type: "css",

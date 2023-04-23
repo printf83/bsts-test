@@ -33,10 +33,10 @@ export const toast: IAttrContent = {
 		new e.subtitle("Basic"),
 
 		new e.text(
-			"To encourage extensible and predictable toasts, we recommend a header and body. Toast headers use {{display: flex}}, allowing easy alignment of content thanks to Bootstrap margin and flexbox utilities."
+			"To encourage extensible and predictable toasts, Bootstrap recommend a header and body. Toast headers use {{display: flex}}, allowing easy alignment of content thanks to Bootstrap margin and flexbox utilities."
 		),
 		new e.text(
-			"Toasts are as flexible as you need and have very little required markup. At a minimum, we require a single element to contain your “toasted” content and strongly encourage a dismiss button."
+			"Toasts are as flexible as you need and have very little required markup. At a minimum, Bootstrap require a single element to contain your “toasted” content and strongly encourage a dismiss button."
 		),
 		new e.code({
 			output: () => {
@@ -340,7 +340,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Custom content"),
 		new e.text(
-			"Customize your toasts by removing sub-components, tweaking them with {{nav:docs/utilities/api::utilities}}, or by adding your own markup. Here we’ve created a simpler toast by removing the default {{.toast-header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:docs/utilities/flex::flexbox utilities}} to adjust the layout."
+			"Customize your toasts by removing sub-components, tweaking them with {{nav:docs/utilities/api::utilities}}, or by adding your own markup. Here Bootstrap created a simpler toast by removing the default {{.toast-header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:docs/utilities/flex::flexbox utilities}} to adjust the layout."
 		),
 		new e.code({
 			output: () => {
@@ -372,7 +372,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Color schemes"),
 		new e.text(
-			"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:docs/utilities/colors::color}} and {{nav:docs/utilities/background::background}} utilities. Here we’ve added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to Bootstrap close button. For a crisp edge, we remove the default border with {{.border-0}}."
+			"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:docs/utilities/colors::color}} and {{nav:docs/utilities/background::background}} utilities. Here Bootstrap added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to Bootstrap close button. For a crisp edge, Bootstrap remove the default border with {{.border-0}}."
 		),
 		new e.code({
 			output: () => {
@@ -610,7 +610,7 @@ export const toast: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"While technically it’s possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long {{nav:docs/components/toast#options::delay timeout}}, keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don’t receive focus when they are displayed). If you absolutely must have further controls, we recommend using a toast with {{autohide: false}}."
+			"While technically it’s possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long {{nav:docs/components/toast#options::delay timeout}}, keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don’t receive focus when they are displayed). If you absolutely must have further controls, Bootstrap recommend using a toast with {{autohide: false}}."
 		),
 
 		//-----------------------

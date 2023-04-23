@@ -203,7 +203,7 @@ export const offcanvas: IAttrContent = {
 
 		new e.title("Dark offcanvas"),
 		new e.text(
-			"Change the appearance of offcanvases with utilities to better match them to different contexts like dark navbars. Here we add {{.text-bg-dark}} to the {{.offcanvas}} and {{.btn-close-white}} to {{.btn-close}} for proper styling with a dark offcanvas. If you have dropdowns within, consider also adding {{.dropdown-menu-dark}} to {{.dropdown-menu}}."
+			"Change the appearance of offcanvases with utilities to better match them to different contexts like dark navbars. Here Bootstrap add {{.text-bg-dark}} to the {{.offcanvas}} and {{.btn-close-white}} to {{.btn-close}} for proper styling with a dark offcanvas. If you have dropdowns within, consider also adding {{.dropdown-menu-dark}} to {{.dropdown-menu}}."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
@@ -375,7 +375,7 @@ export const offcanvas: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Since the offcanvas panel is conceptually a modal dialog, be sure to add {{aria-labelledby='...'}}—referencing the offcanvas title—to {{.offcanvas}}. Note that you don’t need to add {{role='dialog'}} since we already add it via JavaScript."
+			"Since the offcanvas panel is conceptually a modal dialog, be sure to add {{aria-labelledby='...'}}—referencing the offcanvas title—to {{.offcanvas}}. Note that you don’t need to add {{role='dialog'}} since Bootstrap already add it via JavaScript."
 		),
 
 		//-----------------------

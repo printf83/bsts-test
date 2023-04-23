@@ -187,7 +187,7 @@ export const button: IAttrContent = {
 
 		new e.title("Block buttons"),
 		new e.text(
-			"Create responsive stacks of full-width, “block buttons” like those in Bootstrap 4 with a mix of Bootstrap display and gap utilities. By using utilities instead of button specific classes, we have much greater control over spacing, alignment, and responsive behaviors."
+			"Create responsive stacks of full-width, “block buttons” like those in Bootstrap 4 with a mix of Bootstrap display and gap utilities. By using utilities instead of button specific classes, Bootstrap have much greater control over spacing, alignment, and responsive behaviors."
 		),
 		new e.code({
 			output: () => {
@@ -195,7 +195,7 @@ export const button: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Here we create a responsive variation, starting with vertically stacked buttons until the {{md}} breakpoint, where {{display:'md-block'}} replaces the {{display:'grid'}}, thus nullifying the {{gap:2}} utility. Resize your browser to see them change."
+			"Here Bootstrap create a responsive variation, starting with vertically stacked buttons until the {{md}} breakpoint, where {{display:'md-block'}} replaces the {{display:'grid'}}, thus nullifying the {{gap:2}} utility. Resize your browser to see them change."
 		),
 		new e.code({
 			showViewport: true,
@@ -218,7 +218,7 @@ export const button: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Additional utilities can be used to adjust the alignment of buttons when horizontal. Here we’ve taken Bootstrap previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."
+			"Additional utilities can be used to adjust the alignment of buttons when horizontal. Here Bootstrap taken Bootstrap previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."
 		),
 		new e.code({
 			showViewport: true,
@@ -336,7 +336,7 @@ export const button: IAttrContent = {
 			"Each {{.btn-*}} modifier class updates the appropriate CSS variables to minimize additional CSS rules with Bootstrap {{button-variant()}}, {{button-outline-variant()}}, and {{button-size()}} mixins."
 		),
 		new e.text(
-			"Here’s an example of building a custom {{.btn-*}} modifier class like we do for the buttons unique to Bootstrap docs by reassigning Bootstrap’s CSS variables with a mixture of Bootstrap own CSS and Sass variables."
+			"Here’s an example of building a custom {{.btn-*}} modifier class like Bootstrap do for the buttons unique to Bootstrap docs by reassigning Bootstrap’s CSS variables with a mixture of Bootstrap own CSS and Sass variables."
 		),
 
 		new e.code({

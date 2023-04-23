@@ -14,7 +14,7 @@ export const typography: IAttrContent = {
 		new e.ul({
 			item: [
 				"Use a {{nav:docs/content/reboot#native_font_stack::native font stack}} that selects the best {{font-family}} for each OS and device.",
-				"For a more inclusive and accessible type scale, we use the browser’s default root {{font-size}} (typically 16px) so visitors can customize their browser defaults as needed.",
+				"For a more inclusive and accessible type scale, Bootstrap use the browser’s default root {{font-size}} (typically 16px) so visitors can customize their browser defaults as needed.",
 				"Use the {{$font-family-base}}, {{$font-size-base}}, and {{$line-height-base}} attributes as Bootstrap typographic base applied to the {{<body>}}.",
 				"Set the global link color via {{$link-color}}.",
 				"Use {{$body-bg}} to set a {{background-color}} on the {{<body>}} ({{#fff}} by default).",
@@ -330,7 +330,7 @@ export const typography: IAttrContent = {
 
 		new e.title("Responsive font sizes"),
 		new e.text(
-			"In Bootstrap 5, we’ve enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the {{https://getbootstrap.com/docs/5.3/getting-started/rfs/::RFS page}} to find out how this works."
+			"In Bootstrap 5, Bootstrap enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the {{https://getbootstrap.com/docs/5.3/getting-started/rfs/::RFS page}} to find out how this works."
 		),
 
 		//-----------------------

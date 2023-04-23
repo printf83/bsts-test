@@ -8,11 +8,11 @@ export const color_background: IAttrContent = {
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"Color and background helpers combine the power of Bootstrap {{nav:docs/utilities/colors::.text-* utilities}} and {{nav:docs/utilities/background::.bg-* utilities}} in one class. Using Bootstrap Sass {{color-contrast()}} function, we automatically determine a contrasting {{color}} for a particular {{background-color}}."
+			"Color and background helpers combine the power of Bootstrap {{nav:docs/utilities/colors::.text-* utilities}} and {{nav:docs/utilities/background::.bg-* utilities}} in one class. Using Bootstrap Sass {{color-contrast()}} function, Bootstrap automatically determine a contrasting {{color}} for a particular {{background-color}}."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Heads up! }}There’s currently no support for a CSS-native {{color-contrast}} function, so we use Bootstrap own via Sass. This means that customizing Bootstrap theme colors via CSS variables may cause color contrast issues with these utilities."
+			"{{b::Heads up! }}There’s currently no support for a CSS-native {{color-contrast}} function, so Bootstrap use Bootstrap own via Sass. This means that customizing Bootstrap theme colors via CSS variables may cause color contrast issues with these utilities."
 		),
 		new e.code({
 			output: () => {

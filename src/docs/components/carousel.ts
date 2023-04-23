@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -157,7 +157,7 @@ export const carousel: IAttrContent = {
 		new e.text("Bootstrap TS automaticly handle this."),
 		new e.alert({ color: "info", callout: true }, [
 			new h.p(
-				"For accessibility reasons, we recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, we recommend providing an additional button or control to explicitly pause/stop the carousel."
+				"For accessibility reasons, Bootstrap recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, Bootstrap recommend providing an additional button or control to explicitly pause/stop the carousel."
 			),
 			new h.p(
 				"See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."
@@ -486,15 +486,55 @@ export const carousel: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-			    const myCarousel = document.getElementById('myCarousel')
+		new e.code({
+			output: () => {
+				return new b.button(
+					{
+						on: {
+							click: (event) => {
+								const target = event.target as HTMLElement;
+								core.replaceWith(
+									target,
+									new b.carousel.container({
+										disableTouch: true,
+										itemControl: true,
+										item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+											return {
+												src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+											};
+										}),
+										on: {
+											"slide.bs.carousel": (event) => {
+												let carouselEvent = (<unknown>event) as bootstrap.Carousel.Event;
 
-				myCarousel.addEventListener('slide.bs.carousel', event => {
-					// do something...
-				})
-				`,
+												b.toast.show(
+													"top-end",
+													b.toast.simple({
+														title: "slide.bs.carousel",
+														color: "info",
+														elem: [
+															`Direction: {{b::${carouselEvent.direction}}}`,
+															new h.br(),
+															`From: {{b::${carouselEvent.from}}}`,
+															new h.br(),
+															`To: {{b::${carouselEvent.to}}}`,
+															new h.br(),
+															`relatedTarget: {{b::${core.elemInfo(
+																carouselEvent.relatedTarget as HTMLElement
+															)}}}`,
+														],
+													})
+												);
+											},
+										},
+									})
+								);
+							},
+						},
+					},
+					"Show event preview"
+				);
+			},
 		}),
 	],
 };

@@ -242,7 +242,7 @@ export const api: IAttrContent = {
 			"Set the {{css-var}} boolean option to {{true}} and the API will generate local CSS variables for the given selector instead of the usual {{property: value}} rules. Add an optional {{css-variable-name}} to set a different CSS variable name than the class name."
 		),
 		new e.text(
-			"Consider Bootstrap {{.text-opacity-*}} utilities. If we add the {{css-variable-name}} option, we’ll get a custom output."
+			"Consider Bootstrap {{.text-opacity-*}} utilities. If Bootstrap add the {{css-variable-name}} option, Bootstrap’ll get a custom output."
 		),
 		new e.codepreview({
 			type: "css",
@@ -537,7 +537,7 @@ export const api: IAttrContent = {
 
 		new e.subtitle("Modify utilities"),
 		new e.text(
-			"Modify existing utilities in the default {{$utilities}} map with {{map-get}} and {{map-merge}} functions. In the example below, we’re adding an additional value to the {{width}} utilities. Start with an initial {{map-merge}} and then specify which utility you want to modify. From there, fetch the nested {{'width'}} map with {{map-get}} to access and modify the utility’s options and values."
+			"Modify existing utilities in the default {{$utilities}} map with {{map-get}} and {{map-merge}} functions. In the example below, Bootstrap’re adding an additional value to the {{width}} utilities. Start with an initial {{map-merge}} and then specify which utility you want to modify. From there, fetch the nested {{'width'}} map with {{map-get}} to access and modify the utility’s options and values."
 		),
 		new e.codepreview({
 			type: "css",

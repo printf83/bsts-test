@@ -183,7 +183,7 @@ export const alert: IAttrContent = {
 
 		new e.alert(
 			{ color: "warning", callout: true },
-			"When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the {{on:{'closed.bs.alert':Event} }} and programmatically sets {{focus()}} to the most appropriate location in the page. If you’re planning to move focus to a non-interactive element that normally does not receive focus, make sure to add {{tabindex:'-1'}} to the element."
+			"When an alert is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the alert using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, Bootstrap recommend including additional JavaScript that listens for the {{on:{'closed.bs.alert':Event} }} and programmatically sets {{focus()}} to the most appropriate location in the page. If you’re planning to move focus to a non-interactive element that normally does not receive focus, make sure to add {{tabindex:'-1'}} to the element."
 		),
 		//-----------------------
 
@@ -386,18 +386,22 @@ export const alert: IAttrContent = {
 		}),
 
 		new e.code({
-			extention: [{ name: "e.toast", output: e.toast }],
 			output: () => {
 				return new b.alert.container(
 					{
 						color: "info",
 						dismissible: true,
 						on: {
-							"close.bs.alert": (_e) => {
-								e.toast("primary", "{{b::close.bs.alert}} trigged.");
-							},
-							"closed.bs.alert": (_e) => {
-								e.toast("primary", "{{b::closed.bs.alert}} trigged.");
+							"closed.bs.alert": (event) => {
+								const target = event.target;
+								b.toast.show(
+									"top-end",
+									b.toast.simple({
+										title: "closed.bs.alert",
+										color: "info",
+										elem: `Event target: {{b::${core.elemInfo(target as HTMLElement)}}}`,
+									})
+								);
 							},
 						},
 					},

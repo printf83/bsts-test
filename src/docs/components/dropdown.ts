@@ -54,7 +54,7 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"While {{<button>}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{<a>}} element. If you do, we recommend adding a {{role='button'}} attribute to appropriately convey control’s purpose to assistive technologies such as screen readers."
+			"While {{<button>}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{<a>}} element. If you do, Bootstrap recommend adding a {{role='button'}} attribute to appropriately convey control’s purpose to assistive technologies such as screen readers."
 		),
 		new e.code({
 			output: () => {
@@ -386,7 +386,7 @@ export const dropdown: IAttrContent = {
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Heads up!}} In this example, we use {{debug='true'}} for documentation only."
+			"{{b::Heads up!}} In this example, Bootstrap use {{debug='true'}} for documentation only."
 		),
 
 		new e.code({
@@ -801,7 +801,7 @@ export const dropdown: IAttrContent = {
 		]),
 
 		new e.text(
-			"Customization through CSS variables can be seen on the {{.dropdown-menu-dark}} class where we override specific values without adding duplicate CSS selectors."
+			"Customization through CSS variables can be seen on the {{.dropdown-menu-dark}} class where Bootstrap override specific values without adding duplicate CSS selectors."
 		),
 
 		new e.codepreview({
@@ -1073,7 +1073,7 @@ export const dropdown: IAttrContent = {
 					"{{display}}",
 					"string, element",
 					"{{'dynamic'}}",
-					"By default, we use Popper for dynamic positioning. Disable this with {{static}}.",
+					"By default, Bootstrap use Popper for dynamic positioning. Disable this with {{static}}.",
 				],
 				[
 					"{{offset}}",

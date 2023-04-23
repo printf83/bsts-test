@@ -9,7 +9,7 @@ export const validation: IAttrContent = {
 	item: [
 		new e.alert(
 			{ color: "warning", callout: true },
-			"We are aware that currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While we work on a solution, we’d recommend either using the server-side option or the default browser validation method."
+			"We are aware that currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap work on a solution, Bootstrap’d recommend either using the server-side option or the default browser validation method."
 		),
 
 		new e.title("How it works"),
@@ -20,7 +20,7 @@ export const validation: IAttrContent = {
 				"Bootstrap scopes the {{:invalid}} and {{:valid}} styles to parent {{.was-validated}} class, usually applied to the {{<form>}}. Otherwise, any required field without a value shows up as invalid on page load. This way, you may choose when to activate them (typically after form submission is attempted).",
 				"To reset the appearance of the form (for instance, in the case of dynamic form submissions using Ajax), remove the {{.was-validated}} class from the {{<form>}} again after submission.",
 				"As a fallback, {{.is-invalid}} and {{.is-valid}} classes may be used instead of the pseudo-classes for {{nav:docs/forms/validation#server_side::server-side validation}}. They do not require a {{.was-validated}} parent class.",
-				"Due to constraints in how CSS works, we cannot (at present) apply styles to a {{<label>}} that comes before a form control in the DOM without the help of custom JavaScript.",
+				"Due to constraints in how CSS works, Bootstrap cannot (at present) apply styles to a {{<label>}} that comes before a form control in the DOM without the help of custom JavaScript.",
 				"All modern browsers support the {{https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-constraint-validation-api::constraint validation API}}, a series of JavaScript methods for validating form controls.",
 				"Feedback messages may utilize the {{nav:docs/forms/validation#browser_defaults::browser defaults}} (different for each browser, and unstylable via CSS) or Bootstrap custom feedback styles with additional HTML and CSS.",
 				"You may provide custom validity messages with {{setCustomValidity}} in JavaScript.",
@@ -129,7 +129,7 @@ export const validation: IAttrContent = {
 				(() => {
 				'use strict'
 
-				// Fetch all the forms we want to apply custom Bootstrap validation styles to
+				// Fetch all the forms Bootstrap want to apply custom Bootstrap validation styles to
 				const forms = document.querySelectorAll('.needs-validation')
 
 				// Loop over them and prevent submission
@@ -913,7 +913,7 @@ export const validation: IAttrContent = {
 
 		new e.subtitle("Customizing"),
 		new e.text(
-			"Validation states can be customized via Sass with the {{$form-validation-states}} map. Located in Bootstrap {{_variables.scss}} file, this Sass map is how we generate the default {{valid}}/{{invalid}} validation states. Included is a nested map for customizing each state’s color, icon, tooltip color, and focus shadow. While no other states are supported by browsers, those using custom styles can easily add more complex form feedback."
+			"Validation states can be customized via Sass with the {{$form-validation-states}} map. Located in Bootstrap {{_variables.scss}} file, this Sass map is how Bootstrap generate the default {{valid}}/{{invalid}} validation states. Included is a nested map for customizing each state’s color, icon, tooltip color, and focus shadow. While no other states are supported by browsers, those using custom styles can easily add more complex form feedback."
 		),
 	],
 };
