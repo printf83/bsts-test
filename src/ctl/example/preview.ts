@@ -50,6 +50,7 @@ const beautify = (type: IBsExampleCodeType | undefined, source_text: string): st
 				end_with_newline: true,
 				indent_size: 4,
 				brace_style: "preserve-inline",
+				unescape_strings: false,
 			}) as string;
 	}
 };
