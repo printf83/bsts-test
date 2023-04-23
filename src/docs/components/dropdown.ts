@@ -478,16 +478,17 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Responsive alignment"),
 		new e.text(
-			"If you want to use responsive alignment, disable dynamic positioning by adding the {{data-bs-display='static'}} attribute and use the responsive variation classes."
+			"If you want to use responsive alignment, disable Popper dynamic positioning by set the {{dynamicPosition:false}} property and use the responsive variation classes."
 		),
 		new e.text(
-			"To align {{b::right}} the dropdown menu with the given breakpoint or larger, add {{.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-end}}."
+			"To align {{b::right}} the dropdown menu with the given breakpoint or larger, set {{positionView:'{sm|md|lg|xl|xxl}-end'}}."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Left-aligned but right aligned when large screen"),
-					new b.dropdown.menu({ positionView: "lg-end" }, [
+					new b.dropdown.menu({ positionView: "lg-end", dynamicPosition: false }, [
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
 						new b.dropdown.item("Something else here"),
@@ -496,13 +497,14 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"To align {{b::left}} the dropdown menu with the given breakpoint or larger, add {{.dropdown-menu-end}} and {{.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-start}}."
+			"To align {{b::left}} the dropdown menu with the given breakpoint or larger, set {{positionView:['end','{sm|md|lg|xl|xxl}-start']}}."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Right-aligned but left aligned when large screen"),
-					new b.dropdown.menu({ positionView: ["end", "lg-start"] }, [
+					new b.dropdown.menu({ positionView: ["end", "lg-start"], dynamicPosition: false }, [
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
 						new b.dropdown.item("Something else here"),
@@ -511,7 +513,7 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Note that you don’t need to add a {{data-bs-display='static'}} attribute to dropdown buttons in navbars, since Popper isn’t used in navbars."
+			"Note that you don’t need to add a {{dynamicPosition:false}} property to {{b.dropdown.menu}} in navbars, since Popper isn’t used in navbars."
 		),
 
 		//-----------------------
@@ -555,7 +557,7 @@ export const dropdown: IAttrContent = {
 
 		new e.title("Menu content"),
 		new e.subtitle("Headers"),
-		new e.text("Add a header to label sections of actions in any dropdown menu."),
+		new e.text("Add a {{b.dropdown.header}} to label sections of actions in any dropdown menu."),
 		new e.code({
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
@@ -569,7 +571,7 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Dividers"),
-		new e.text("Separate groups of related menu items with a divider."),
+		new e.text("Separate groups of related menu items with a {{b.dropdown.divider}}."),
 		new e.code({
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
@@ -609,7 +611,7 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Forms"),
 		new e.text(
-			"Put a form within a dropdown menu, or make it into a dropdown menu, and use {{nav:docs/utilities/spacing::margin or padding utilities}} to give it the negative space you require."
+			"Put a form using {{h.form}} within a dropdown menu, or make it into a dropdown menu, and use {{nav:docs/utilities/spacing::margin or padding utilities}} to give it the negative space you require."
 		),
 		new e.code({
 			output: () => {
@@ -707,7 +709,9 @@ export const dropdown: IAttrContent = {
 		//-----------------------
 
 		new e.title("Dropdown options"),
-		new e.text("Use {{data-bs-offset}} or {{data-bs-reference}} to change the location of the dropdown."),
+		new e.text(
+			"Use {{menuOffset}} or {{menuReference}} property on {{b.dropdown.toggle}} to change the location of the dropdown."
+		),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
@@ -737,7 +741,7 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Auto close behavior"),
 		new e.text(
-			"By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{autoClose}} option to change this behavior of the dropdown."
+			"By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{menuAutoClose}} option to change this behavior of the dropdown."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
