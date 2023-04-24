@@ -134,6 +134,7 @@ export const toast: IAttrContent = {
 									new b.toast.body("Hello, world! This is a toast message."),
 								]);
 
+								//show the above toast on the top-end
 								b.toast.show("top-end", tItem);
 							},
 						},
@@ -146,7 +147,7 @@ export const toast: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Simple toast"),
-		new e.text("You can use Bootstrap simple toast by calling function {{b.toast.simple()}}."),
+		new e.text("You can use Bootstrap simple toast by calling {{b.Toast.Simple}} function."),
 		new e.table({
 			item: [
 				["Option", "Type", "Default", "Description"],
@@ -255,7 +256,7 @@ export const toast: IAttrContent = {
 					}
 					b.toast.show(
 						"top-end",
-						b.toast.simple({
+						b.Toast.Simple({
 							color: color,
 							elem: tElem,
 

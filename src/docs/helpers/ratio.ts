@@ -9,21 +9,21 @@ export const ratio: IAttrContent = {
 	item: [
 		new e.title("About"),
 		new e.text(
-			"Use the ratio helper to manage the aspect ratios of external content like {{<iframe>}}s, {{<embed>}}s, {{<video>}}s, and {{<object>}}s. These helpers also can be used on any standard HTML child element (e.g., a {{<div>}} or {{<img>}}). Styles are applied from the parent {{.ratio}} class directly to the child."
+			"Use the ratio helper to manage the aspect ratios of external content like {{h.iframe}}s, {{h.embed}}s, {{h.video}}s, and {{h.obj}}s. These helpers also can be used on any standard HTML child element (e.g., a {{h.div}} or {{h.img}}). Styles are applied from the parent {{ratio}} property directly to the child."
 		),
 		new e.text(
 			"Aspect ratios are declared in a Sass map and included in each class via CSS variable, which also allows {{nav:docs/helpers/ratio#custom_ratios::custom aspect ratios}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Pro-Tip! }}You don’t need {{frameborder='0'}} on your {{<iframe>}}s as Bootstrap override that for you in {{nav:docs/content/reboot::Reboot}}."
+			"{{b::Pro-Tip! }}You don’t need {{frameborder:'0'}} on your {{h.iframe}}s as Bootstrap override that for you in {{nav:docs/content/reboot::Reboot}}."
 		),
 
 		//-----------------------
 
 		new e.title("Example"),
 		new e.text(
-			"Wrap any embed, like an {{<iframe>}}, in a parent element with {{.ratio}} and an aspect ratio class. The immediate child element is automatically sized thanks to Bootstrap universal selector {{.ratio > *}}."
+			"Wrap any embed, like an {{h.iframe}}, in a parent element with {{ratio}} and an aspect ratio class. The immediate child element is automatically sized thanks to Bootstrap universal selector {{.ratio > *}}."
 		),
 		new e.code({
 			output: () => {
@@ -60,9 +60,11 @@ export const ratio: IAttrContent = {
 
 		new e.title("Custom ratios"),
 		new e.text(
-			"Each {{.ratio-*}} class includes a CSS custom property (or CSS variable) in the selector. You can override this CSS variable to create custom aspect ratios on the fly with some quick math on your part."
+			"Each {{ratio}} property includes a CSS custom property (or CSS variable) in the selector. You can override this CSS variable to create custom aspect ratios on the fly with some quick math on your part."
 		),
-		new e.text("For example, to create a 2x1 aspect ratio, set {{--bs-aspect-ratio: 50%}} on the {{.ratio}}."),
+		new e.text(
+			"For example, to create a 2x1 aspect ratio, set {{style:{'--bs-aspect-ratio': '50%'} }}beside the {{ratio}} property."
+		),
 		new e.code({
 			outputAttr: { class: "ratio-box", gap: 1 },
 			output: () => {

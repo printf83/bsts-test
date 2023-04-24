@@ -509,7 +509,7 @@ export const carousel: IAttrContent = {
 
 												b.toast.show(
 													"top-end",
-													b.toast.simple({
+													b.Toast.Simple({
 														title: "slide.bs.carousel",
 														color: "info",
 														elem: [

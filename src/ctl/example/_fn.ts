@@ -33,7 +33,7 @@ export const toast = (color: b.toast.IBsToastTemplate["color"], elem: core.IElem
 
 	b.toast.show(
 		"top-end",
-		b.toast.simple({
+		b.Toast.Simple({
 			title: document.title,
 			color: color,
 			elem: elem,

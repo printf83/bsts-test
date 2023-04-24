@@ -46,7 +46,7 @@ export const modal: IAttrContent = {
 		new e.title("Examples"),
 		new e.subtitle("Modal components"),
 		new e.text(
-			"Below is a static modal example (meaning its {{position}} and {{display}} have been overridden). Included are the modal header, modal body (required for {{padding}}), and modal footer (optional). Bootstrap ask that you include modal headers with dismiss actions whenever possible, or provide another explicit dismiss action."
+			"Below is a static modal ({{b.modal.container}}) example (meaning its {{position}} and {{display}} have been overridden using {{debug}} property). Included are the {{b.modal.header}}, {{b.modal.body}} (required for {{padding}}), and {{b.modal.footer}} (optional). Bootstrap ask that you include modal headers with dismiss actions whenever possible, or provide another explicit dismiss action."
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary" },
@@ -64,7 +64,7 @@ export const modal: IAttrContent = {
 
 		new e.alert(
 			{ color: "info", callout: true },
-			"In the above static example, Bootstrap use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{nav:docs/utilities/text#font_size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach."
+			"In the above static example, Bootstrap use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{nav:docs/utilities/text#font_size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach.{{hr}}Bootstrap TS using {{h.h(1)}} because we don't have that issue."
 		),
 
 		//-----------------------
@@ -132,8 +132,9 @@ export const modal: IAttrContent = {
 		}),
 
 		//-----------------------
+
 		new e.subtitle("Simple modal"),
-		new e.text("You can use Bootstrap simple modal by calling function {{b.modal.simple()}}."),
+		new e.text("You can use Bootstrap simple modal by calling function {{b.Modal.Simple}}."),
 
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -143,11 +144,11 @@ export const modal: IAttrContent = {
 						{
 							on: {
 								click: () => {
-									const mdl = b.modal.simple({
+									const mdl = b.Modal.Simple({
 										title: document.title,
 										elem: b.Form.Check({
 											id: "testcheckbox",
-											label: "Tick this checkbox before click {{k::Okay}} button",
+											label: "Please tick this checkbox before click {{k::Okay}}",
 										}),
 										btn: ["ok", "cancel"],
 										btnFn: [
@@ -161,16 +162,20 @@ export const modal: IAttrContent = {
 												if (ischecked) {
 													b.toast.show(
 														"top-end",
-														b.toast.simple({
+														b.Toast.Simple({
+															title: "Simple modal example",
 															color: "success",
 															elem: "Thank you for tick the checkbox.",
 														})
 													);
+
+													//hide the modal manually
 													b.modal.hide(container);
 												} else {
 													b.toast.show(
 														"top-end",
-														b.toast.simple({
+														b.Toast.Simple({
+															title: "Simple modal example",
 															color: "danger",
 															elem: "Please tick the checkbox before press okay.",
 														})
@@ -178,6 +183,12 @@ export const modal: IAttrContent = {
 												}
 											},
 										],
+										on: {
+											"shown.bs.modal": (_e) => {
+												//focus to checkbox when modal show
+												document.getElementById("testcheckbox")?.focus();
+											},
+										},
 									});
 									b.modal.show(mdl);
 								},
@@ -189,7 +200,7 @@ export const modal: IAttrContent = {
 						{
 							on: {
 								click: () => {
-									const mdl = b.modal.simple({
+									const mdl = b.Modal.Simple({
 										title: document.title,
 										elem: new b.msg(
 											{ type: "bi", id: "info-circle-fill", color: "primary" },
@@ -207,7 +218,7 @@ export const modal: IAttrContent = {
 						{
 							on: {
 								click: () => {
-									const mdl = b.modal.simple({
+									const mdl = b.Modal.Simple({
 										title: document.title,
 										static: true,
 										elem: new b.msg(
@@ -219,21 +230,27 @@ export const modal: IAttrContent = {
 											(event) => {
 												b.toast.show(
 													"top-end",
-													b.toast.simple({
+													b.Toast.Simple({
+														title: "Simple modal example",
 														color: "success",
 														elem: "Me too.",
 													})
 												);
+
+												//manually hidden the modal
 												b.modal.hide(event.target as HTMLElement);
 											},
 											(event) => {
 												b.toast.show(
 													"top-end",
-													b.toast.simple({
+													b.Toast.Simple({
+														title: "Simple modal example",
 														color: "danger",
 														elem: "Its so sad! :'(",
 													})
 												);
+
+												//manually hidden the modal
 												b.modal.hide(event.target as HTMLElement);
 											},
 										],
@@ -252,7 +269,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Static backdrop"),
 		new e.text(
-			"When backdrop is set to static, the modal will not close when clicking outside of it. Click the button below to try it."
+			"When backdrop is set to static by setting {{static:true}} on {{b.modal.container}}, the modal will not close when clicking outside of it. Click the button below to try it."
 		),
 		new e.code({
 			output: () => {
@@ -313,7 +330,7 @@ export const modal: IAttrContent = {
 		}),
 
 		new e.text(
-			"You can also create a scrollable modal that allows scroll the modal body by adding {{.modal-dialog-scrollable}} to {{.modal-dialog}}."
+			"You can also create a scrollable modal that allows scroll the modal body by set {{scrollable:true}} to {{b.modal.container}}."
 		),
 
 		new e.code({

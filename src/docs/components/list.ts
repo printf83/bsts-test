@@ -625,7 +625,7 @@ export const list: IAttrContent = {
 
 											b.toast.show(
 												"top-end",
-												b.toast.simple({
+												b.Toast.Simple({
 													title: document.title,
 													color: "success",
 													elem: "Tab trigger attached",
@@ -881,7 +881,7 @@ export const list: IAttrContent = {
 
 												b.toast.show(
 													"top-end",
-													b.toast.simple({
+													b.Toast.Simple({
 														title: "closed.bs.alert",
 														color: "info",
 														elem: [

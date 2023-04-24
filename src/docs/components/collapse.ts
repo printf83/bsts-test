@@ -354,7 +354,7 @@ export const collapse: IAttrContent = {
 
 									b.toast.show(
 										"top-end",
-										b.toast.simple({
+										b.Toast.Simple({
 											title: "hidden.bs.collapse",
 											color: "info",
 											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,
@@ -366,7 +366,7 @@ export const collapse: IAttrContent = {
 
 									b.toast.show(
 										"top-end",
-										b.toast.simple({
+										b.Toast.Simple({
 											title: "shown.bs.collapse",
 											color: "success",
 											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,

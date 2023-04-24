@@ -396,7 +396,7 @@ export const alert: IAttrContent = {
 								const target = event.target;
 								b.toast.show(
 									"top-end",
-									b.toast.simple({
+									b.Toast.Simple({
 										title: "closed.bs.alert",
 										color: "info",
 										elem: `Event target: {{b::${core.elemInfo(target as HTMLElement)}}}`,
