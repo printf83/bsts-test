@@ -8,17 +8,20 @@ export const nav: IAttrContent = {
 	item: [
 		new e.title("Base nav"),
 		new e.text(
-			"Navigation available in Bootstrap share general markup and styles, from the base {{.nav}} class to the active and disabled states. Swap modifier classes to switch between each style."
+			"Navigation available in Bootstrap share general markup and styles, from the base {{b.nav.header.container}} component to the active and disabled states. Swap modifier property to switch between each style."
 		),
 		new e.text(
-			"The base {{.nav}} component is built with flexbox and provide a strong foundation for building all types of navigation components. It includes some style overrides (for working with lists), some link padding for larger hit areas, and basic disabled styling."
+			"The base {{b.nav.header.container}} component is built with flexbox and provide a strong foundation for building all types of navigation components. It includes some style overrides (for working with lists), some link padding for larger hit areas, and basic disabled styling."
 		),
 		new e.alert({ color: "info", callout: true }, [
 			new h.p(
-				"The base {{.nav}} component does not include any {{.active}} state. The following examples include the class, mainly to demonstrate that this particular class does not trigger any special styling."
+				"The base {{b.nav.header.container}} component does not include any {{active}} state property. The following examples include the class, mainly to demonstrate that this particular class does not trigger any special styling."
 			),
 			new h.p(
 				"To convey the active state to assistive technologies, use the {{aria-current}} attribute — using the page value for current page, or {{true}} for the current item in a set."
+			),
+			new h.p(
+				"By default, Bootstrap TS set {{aria-current:'page'}} when {{active:true}} on {{b.nav.header.link}}. Change it using {{current:true}} to change this behavior."
 			),
 		]),
 		new e.code({
@@ -32,7 +35,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Classes are used throughout, so your markup can be super flexible. Use {{<ul>}}s like above, {{<ol>}} if the order of your items is important, or roll your own with a {{<nav>}} element. Because the {{.nav}} uses {{display: flex}}, the nav links behave the same as nav items would, but without the extra markup."
+			"{{b.nav.header.container}} component will generate {{h.ul}} component. If the order of your items is important, or roll your own with a {{b.nav.header.containerNav}} component to generate {{h.nav}}. Because the {{h.hav}} uses {{display: flex}}, the nav links behave the same as nav items would, but without the extra markup ({{b.nav.header.item}})."
 		),
 		new e.code({
 			output: () => {
@@ -49,7 +52,7 @@ export const nav: IAttrContent = {
 
 		new e.title("Available styles"),
 		new e.text(
-			"Change the style of {{.nav}}s component with modifiers and utilities. Mix and match as needed, or build your own."
+			"Change the style of {{b.nav.header.container}}s component with modifiers and utilities. Mix and match as needed, or build your own."
 		),
 
 		//-----------------------
@@ -58,7 +61,7 @@ export const nav: IAttrContent = {
 		new e.text(
 			"Change the horizontal alignment of your nav with {{nav:docs/layout/grid#horizontal_alignment::flexbox utilities}}. By default, navs are left-aligned, but you can easily change them to center or right aligned."
 		),
-		new e.text("Centered with {{.justify-content-center}}:"),
+		new e.text("Centered with {{justifyContent:'center'}} property:"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ justifyContent: "center" }, [
@@ -69,7 +72,7 @@ export const nav: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("Right-aligned with {{.justify-content-end}}:"),
+		new e.text("Right-aligned with {{justifyContent:'end'}} property:"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ justifyContent: "end" }, [
@@ -85,7 +88,7 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Vertical"),
 		new e.text(
-			"Stack your navigation by changing the flex item direction with the {{.flex-column}} utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., {{.flex-sm-column}})."
+			"Stack your navigation by changing the flex item direction with the {{flex:'column'}} property. Need to stack them on some viewports but not others? Use the responsive versions (e.g., {{flex:'sm-column'}})."
 		),
 		new e.code({
 			output: () => {
@@ -97,7 +100,7 @@ export const nav: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("As always, vertical navigation is possible without {{<ul>}}s, too."),
+		new e.text("As always, vertical navigation also possible with {{b.nav.header.containerNav}}s, too."),
 		new e.code({
 			output: () => {
 				return new b.nav.header.containerNav({ flex: "column" }, [
@@ -113,7 +116,7 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Tabs"),
 		new e.text(
-			"Takes the basic nav from above and adds the {{.nav-tabs}} class to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:docs/components/nav#javascript_behavior::tab JavaScript plugin}}."
+			"Takes the basic nav from above and adds the {{type:'tab'}} property on {{b.nav.header.container}} to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:docs/components/nav#javascript_behavior::tab JavaScript plugin}}."
 		),
 		new e.code({
 			output: () => {
@@ -129,7 +132,7 @@ export const nav: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Pills"),
-		new e.text("Take that same HTML, but use {{.nav-pills}} instead:"),
+		new e.text("Take that same code, but use {{type:'pill'}} instead:"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ type: "pill" }, [
@@ -144,7 +147,7 @@ export const nav: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Underline"),
-		new e.text("Take that same HTML, but use {{.nav-underline}} instead:"),
+		new e.text("Take that same code, but use {{type:'underline'}} instead:"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ type: "underline" }, [
@@ -160,7 +163,7 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Fill and justify"),
 		new e.text(
-			"Force your {{.nav}}’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your {{.nav-items}}, use {{.nav-fill}}. Notice that all horizontal space is occupied, but not every nav item has the same width."
+			"Force your {{b.nav.header.container}}’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your {{b.nav.header.item}}, use {{itemWidth:'fill'}}. Notice that all horizontal space is occupied, but not every nav item has the same width."
 		),
 		new e.code({
 			output: () => {
@@ -173,7 +176,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"When using a {{<nav>}}-based navigation, you can safely omit {{.nav-item}} as only {{.nav-link}} is required for styling {{<a>}} elements."
+			"When using a {{b.nav.header.containerNav}}-based navigation, you can safely omit {{b.nav.header.item}} as only {{b.nav.header.link}} is required for styling {{h.a}} component."
 		),
 		new e.code({
 			output: () => {
@@ -186,7 +189,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"For equal-width elements, use {{.nav-justified}}. All horizontal space will be occupied by nav links, but unlike the {{.nav-fill}} above, every nav item will be the same width."
+			"For equal-width component, use {{itemWidth:'justified'}}. All horizontal space will be occupied by nav links, but unlike the {{itemWidth:'fill'}} above, every nav item will be the same width."
 		),
 		new e.code({
 			output: () => {
@@ -198,7 +201,9 @@ export const nav: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("Similar to the {{.nav-fill}} example using a {{<nav>}}-based navigation."),
+		new e.text(
+			"Similar to the {{itemWidth:'fill'}} example using a {{b.nav.header.containerNav}}-based navigation."
+		),
 		new e.code({
 			output: () => {
 				return new b.nav.header.containerNav({ type: "pill", itemWidth: "justified" }, [
@@ -217,6 +222,7 @@ export const nav: IAttrContent = {
 			"If you need responsive nav variations, consider using a series of {{nav:docs/utilities/flex::flexbox utilities}}. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, Bootstrap nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint."
 		),
 		new e.code({
+			showViewport: true,
 			output: () => {
 				return new b.nav.header.containerNav({ type: "pill", flex: ["column", "sm-row"] }, [
 					new b.nav.header.link({ active: true, href: "#" }, "Active"),
@@ -231,10 +237,10 @@ export const nav: IAttrContent = {
 
 		new e.title("Regarding accessibility"),
 		new e.text(
-			"If you’re using navs to provide a navigation bar, be sure to add a {{role='navigation'}} to the most logical parent container of the {{<ul>}}, or wrap a {{<nav>}} element around the whole navigation. Do not add the role to the {{<ul>}} itself, as this would prevent it from being announced as an actual list by assistive technologies."
+			"If you’re using navs to provide a navigation bar, be sure to add a {{role:'navigation'}} to the most logical parent container of the {{b.nav.header.container}}, or wrap a {{b.nav.header.containerNav}} element around the whole navigation. Do not add the role to the {{b.nav.header.container}} itself, as this would prevent it from being announced as an actual list by assistive technologies."
 		),
 		new e.text(
-			"Note that navigation bars, even if visually styled as tabs with the {{.nav-tabs}} class, should {{b::not}} be given {{role='tablist'}}, {{role='tab'}} or {{role='tabpanel'}} attributes. These are only appropriate for dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}. See {{nav:docs/components/nav#javascript_behavior::JavaScript behavior}} for dynamic tabbed interfaces in this section for an example. The {{aria-current}} attribute is not necessary on dynamic tabbed interfaces since Bootstrap JavaScript handles the selected state by adding {{aria-selected='true'}} on the active tab."
+			"Note that navigation bars, even if visually styled as tabs with the {{type:'tab'}} property, should {{b::not}} be given {{role:'tablist'}}, {{role:'tab'}} or {{role:'tabpanel'}} property. These are only appropriate for dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}. See {{nav:docs/components/nav#javascript_behavior::JavaScript behavior}} for dynamic tabbed interfaces in this section for an example. The {{current}} property is not necessary on dynamic tabbed interfaces since Bootstrap JavaScript handles the selected state by adding {{aria-selected='true'}} on the active tab."
 		),
 
 		//-----------------------
@@ -246,7 +252,7 @@ export const nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Tabs with dropdowns"),
+		new e.subtitle("Tabs with dropdowns with set {{dropdown:true}} property on {{b.nav.header.item}}"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ type: "tab" }, [
@@ -438,7 +444,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"To help fit your needs, this works with {{<ul>}}-based markup, as shown above, or with any arbitrary “roll your own” markup. Note that if you’re using {{<nav>}}, you shouldn’t add {{role='tablist'}} directly to it, as this would override the element’s native role as a navigation landmark. Instead, switch to an alternative element (in the example below, a simple {{<div>}}) and wrap the {{<nav>}} around it."
+			"To help fit your needs, this works with {{b.nav.header.container}}-based markup, as shown above, or with any arbitrary “roll your own” markup. Note that if you’re using {{b.nav.header.containerNav}}, you shouldn’t add {{role:'tablist'}} directly to it, as this would override the element’s native role as a navigation landmark. Instead, switch to an alternative element (in the example below, a simple {{h.div}}) and wrap the {{b.nav.header.containerNav}} around it."
 		),
 		new e.code({
 			output: () => {
@@ -531,7 +537,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"And with vertical pills. Ideally, for vertical tabs, you should also add {{aria-orientation='vertical'}} to the tab list container."
+			"And with vertical pills. Ideally, for vertical tabs, you should also add {{vertical:true}} to the tab {{b.nav.header.container}} or {{b.nav.header.containerNav}}."
 		),
 		new e.code({
 			output: () => {
@@ -589,14 +595,15 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Accessibility"),
 		new e.text(
-			"Dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}, require {{role='tablist'}}, {{role='tab'}}, {{role='tabpanel'}}, and additional {{aria-}} attributes in order to convey their structure, functionality, and current state to users of assistive technologies (such as screen readers). As a best practice, Bootstrap recommend using {{<button>}} elements for the tabs, as these are controls that trigger a dynamic change, rather than links that navigate to a new page or location."
+			"Dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}, require {{role:'tablist'}}, {{role:'tab'}}, {{role:'tabpanel'}}, and additional {{aria-}} attributes in order to convey their structure, functionality, and current state to users of assistive technologies (such as screen readers). As a best practice, Bootstrap recommend using {{h.button}} elements for the tabs, as these are controls that trigger a dynamic change, rather than links that navigate to a new page or location."
 		),
+		new e.text("Bootstrap TS will update this on next release."),
 		new e.text(
 			"In line with the ARIA Authoring Practices pattern, only the currently active tab receives keyboard focus. When the JavaScript plugin is initialized, it will set {{tabindex='-1'}} on all inactive tab controls. Once the currently active tab has focus, the cursor keys activate the previous/next tab, with the plugin changing the {{https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/::roving tabindex}} accordingly. However, note that the JavaScript plugin does not distinguish between horizontal and vertical tab lists when it comes to cursor key interactions: regardless of the tab list’s orientation, both the up and left cursor go to the previous tab, and down and right cursor go to the next tab."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"In general, to facilitate keyboard navigation, it’s recommended to make the tab panels themselves focusable as well, unless the first element containing meaningful content inside the tab panel is already focusable. The JavaScript plugin does not try to handle this aspect—where appropriate, you’ll need to explicitly make your tab panels focusable by adding {{tabindex='0'}} in your markup."
+			"In general, to facilitate keyboard navigation, it’s recommended to make the tab panels themselves focusable as well, unless the first element containing meaningful content inside the tab panel is already focusable. The JavaScript plugin does not try to handle this aspect—where appropriate, you’ll need to explicitly make your tab panels focusable by adding {{tabindex:'0'}} in your component."
 		),
 		new e.alert(
 			{ color: "danger", callout: true },
@@ -607,34 +614,55 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Using data attributes"),
 		new e.text(
-			"You can activate a tab or pill navigation without writing any JavaScript by simply specifying {{data-bs-toggle='tab'}} or {{data-bs-toggle='pill'}} on an element. Use these data attributes on {{.nav-tabs}} or {{.nav-pills}}."
+			"You can activate a tab or pill navigation by simply specifying {{type:'tab'}} or {{type:'pill'}} on an {{b.nav.header.container}} or {{b.nav.header.containerNav}} component."
 		),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item" role="presentation">
-					<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Messages</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
-				</li>
-				</ul>
+				() => {
+				const d = [
+					{ label: "Home", id: "home", active: true },
+					{ label: "Profile", id: "profile" },
+					{ label: "Contact", id: "contact" },
+					{ label: "Disabled", id: "disabled", disabled: true },
+				];
 
-				<!-- Tab panes -->
-				<div class="tab-content">
-				<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
-				<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
-				<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab" tabindex="0">...</div>
-				<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
-				</div>
+				return [
+					new b.nav.header.container(
+						{ type: "tab", role: "tablist", id: "myTab" },
+						d.map((i) => {
+							return new b.nav.header.item(
+								{ role: "presentation" },
+								new b.nav.header.button(
+									{
+										active: i.active,
+										disabled: i.disabled,
+										id: '{i.id}-tab',
+										target: '#{i.id}-tab-pane',
+										controlfor: '{i.id}-tab-pane',
+										toggle: "tab",
+									},
+									i.label
+								)
+							);
+						})
+					),
+					new b.nav.content.container(
+						{ id: "myTabContent", marginTop: 3 },
+						d.map((i) => {
+							return new b.nav.content.item(
+								{
+									active: i.active,
+									id: '{i.id}-tab-pane',
+									role: "tabpanel",
+									labelledby: '{i.id}-tab',
+								},
+								'...'
+							);
+						})
+					),
+				];
+			}
 			`,
 		}),
 
@@ -672,18 +700,54 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Fade effect"),
 		new e.text(
-			"To make tabs fade in, add {{.fade}} to each {{.tab-pane}}. The first tab pane must also have {{.show}} to make the initial content visible."
+			"To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}}. The first tab pane must also have {{active:true}} to make the initial content visible."
 		),
-		new e.codepreview({
-			type: "html",
-			code: `
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
-					<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
-					<div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab" tabindex="0">...</div>
-					<div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">...</div>
-				</div>
-			`,
+		new e.code({
+			output: () => {
+				const d = [
+					{ label: "Home", id: "home", active: true },
+					{ label: "Profile", id: "profile" },
+					{ label: "Messages", id: "messages" },
+					{ label: "Settings", id: "settings" },
+				];
+
+				return [
+					new b.nav.header.containerNav(
+						{
+							type: "tab",
+							role: "tablist",
+							id: "fade-tab",
+						},
+						d.map((i) => {
+							return new b.nav.header.button(
+								{
+									active: i.active,
+									id: `fade-${i.id}-tab`,
+									target: `#fade-${i.id}-tab-pane`,
+									controlfor: `fade-${i.id}-tab-pane`,
+									toggle: "tab",
+								},
+								i.label
+							);
+						})
+					),
+					new b.nav.content.container(
+						{ id: "fade-tabContent", marginTop: 3 },
+						d.map((i) => {
+							return new b.nav.content.item(
+								{
+									active: i.active,
+									animation: false,
+									id: `fade-${i.id}-tab-pane`,
+									role: "tabpanel",
+									labelledby: `fade-${i.id}-tab`,
+								},
+								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{.nav-}}powered navigation.`
+							);
+						})
+					),
+				];
+			},
 		}),
 
 		//-----------------------
