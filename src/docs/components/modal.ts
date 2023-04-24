@@ -910,12 +910,15 @@ export const modal: IAttrContent = {
 								"shown.bs.modal": (event) => {
 									const target = event.target as HTMLElement;
 									const iframe = target.querySelector(".modal-body iframe") as HTMLIFrameElement;
+
+									//set video to play when modal shown
 									iframe.setAttribute("src", "https://www.youtube.com/embed/eVxNksC88_U?autoplay=1");
 								},
 								"hidden.bs.modal": (event) => {
-									//reset text
 									const target = event.target as HTMLElement;
 									const iframe = target.querySelector(".modal-body iframe") as HTMLIFrameElement;
+
+									//stop video from playing when modal is hidden
 									iframe.setAttribute("src", "");
 								},
 							},

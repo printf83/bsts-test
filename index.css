@@ -329,15 +329,15 @@ strong,
 
 }
 .example-output.gap-1 { margin: calc(var(--bs-example-gap-1) * -1); }
-.example-output.gap-1>*{ margin: var(--bs-example-gap-1); }
+.example-output.gap-1>*:not(.modal){ margin: var(--bs-example-gap-1); }
 .example-output.gap-2 { margin: calc(var(--bs-example-gap-2) * -1); }
-.example-output.gap-2>* { margin: var(--bs-example-gap-2); }
+.example-output.gap-2>*:not(.modal) { margin: var(--bs-example-gap-2); }
 .example-output.gap-3 { margin: calc(var(--bs-example-gap-3) * -1); }
-.example-output.gap-3>* { margin: var(--bs-example-gap-3); }
+.example-output.gap-3>*:not(.modal) { margin: var(--bs-example-gap-3); }
 .example-output.gap-4 { margin: calc(var(--bs-example-gap-4) * -1); }
-.example-output.gap-4>* { margin: var(--bs-example-gap-4); }
+.example-output.gap-4>*:not(.modal) { margin: var(--bs-example-gap-4); }
 .example-output.gap-5 { margin: calc(var(--bs-example-gap-5) * -1); }
-.example-output.gap-5>* { margin: var(--bs-example-gap-5); }
+.example-output.gap-5>*:not(.modal) { margin: var(--bs-example-gap-5); }
 
 
 
