@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -397,6 +397,7 @@ export const nav: IAttrContent = {
 		new e.text(
 			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap navigational tabs and pills to create tabbable panes of local content."
 		),
+		new e.text("Tab panel header should using {{b.nav.header.button}} insted of {{b.nav.header.link}}."),
 		new e.code({
 			output: () => {
 				const d = [
@@ -436,7 +437,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{.nav-}}powered navigation.`
+								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
 							);
 						})
 					),
@@ -444,7 +445,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"To help fit your needs, this works with {{b.nav.header.container}}-based markup, as shown above, or with any arbitrary “roll your own” markup. Note that if you’re using {{b.nav.header.containerNav}}, you shouldn’t add {{role:'tablist'}} directly to it, as this would override the element’s native role as a navigation landmark. Instead, switch to an alternative element (in the example below, a simple {{h.div}}) and wrap the {{b.nav.header.containerNav}} around it."
+			"To help fit your needs, this works with {{b.nav.header.container}}-based markup, as shown above, or with any arbitrary “roll your own” markup."
 		),
 		new e.code({
 			output: () => {
@@ -482,7 +483,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `nav-${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{.nav-}}powered navigation.`
+								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
 							);
 						})
 					),
@@ -529,7 +530,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `pills-${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{.nav-}}powered navigation.`
+								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
 							);
 						})
 					),
@@ -583,7 +584,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `v-pills-${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{.nav-}}powered navigation.`
+								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
 							);
 						})
 					),
@@ -742,7 +743,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `fade-${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{.nav-}}powered navigation.`
+								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
 							);
 						})
 					),
@@ -820,6 +821,7 @@ export const nav: IAttrContent = {
 				],
 			],
 		}),
+
 		new e.codepreview({
 			type: "js",
 			code: `
@@ -829,6 +831,94 @@ export const nav: IAttrContent = {
 				event.relatedTarget // previous active tab
 				})
 			`,
+		}),
+
+		new e.code({
+			output: () => {
+				interface EventWithTargetAndRelatedTarget extends Event {
+					target: HTMLElement;
+					relatedTarget: HTMLElement;
+				}
+
+				const d = [
+					{ label: "Home", id: "home", active: true },
+					{ label: "Profile", id: "profile" },
+					{ label: "Messages", id: "messages" },
+					{ label: "Settings", id: "settings" },
+				];
+
+				return [
+					new b.nav.header.containerNav(
+						{
+							type: "tab",
+							role: "tablist",
+							id: "event-tab",
+							on: {
+								"shown.bs.tab": (event) => {
+									const evnt = event as EventWithTargetAndRelatedTarget;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "shown.bs.tab",
+											color: "success",
+											elem: [
+												`target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+											],
+										})
+									);
+								},
+
+								"hidden.bs.tab": (event) => {
+									const evnt = event as EventWithTargetAndRelatedTarget;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "hidden.bs.tab",
+											color: "danger",
+											elem: [
+												`target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+											],
+										})
+									);
+								},
+							},
+						},
+						d.map((i) => {
+							return new b.nav.header.button(
+								{
+									active: i.active,
+									id: `event-${i.id}-tab`,
+									target: `#event-${i.id}-tab-pane`,
+									controlfor: `event-${i.id}-tab-pane`,
+									toggle: "tab",
+								},
+								i.label
+							);
+						})
+					),
+					new b.nav.content.container(
+						{ id: "event-tabContent", marginTop: 3 },
+						d.map((i) => {
+							return new b.nav.content.item(
+								{
+									active: i.active,
+									animation: false,
+									id: `event-${i.id}-tab-pane`,
+									role: "tabpanel",
+									labelledby: `event-${i.id}-tab`,
+								},
+								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
+							);
+						})
+					),
+				];
+			},
 		}),
 	],
 };
