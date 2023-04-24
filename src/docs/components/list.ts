@@ -852,6 +852,11 @@ export const list: IAttrContent = {
 		}),
 		new e.code({
 			output: () => {
+				interface EventWithTargetAndRelatedTarget extends Event {
+					target: HTMLElement;
+					relatedTarget: HTMLElement;
+				}
+
 				let data = ["home", "profile", "messages", "settings"];
 
 				return new h.div({ row: true }, [
@@ -869,15 +874,7 @@ export const list: IAttrContent = {
 										toggle: true,
 										on: {
 											"shown.bs.tab": (event) => {
-												let target = "";
-												if ("target" in event) {
-													target = core.elemInfo(event.target as HTMLElement);
-												}
-
-												let relatedTarget = "";
-												if ("relatedTarget" in event) {
-													relatedTarget = core.elemInfo(event.relatedTarget as HTMLElement);
-												}
+												const evnt = event as EventWithTargetAndRelatedTarget;
 
 												b.toast.show(
 													"top-end",
@@ -885,7 +882,7 @@ export const list: IAttrContent = {
 														title: "closed.bs.alert",
 														color: "info",
 														elem: [
-															`target: {{b::${target}}}{{br}}relatedTarget: {{b::${relatedTarget}}}`,
+															`target: {{b::${evnt.target}}}{{br}}relatedTarget: {{b::${evnt.relatedTarget}}}`,
 														],
 													})
 												);

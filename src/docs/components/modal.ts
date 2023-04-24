@@ -142,6 +142,8 @@ export const modal: IAttrContent = {
 				return [
 					new b.button(
 						{
+							id: "btntestcheckbox",
+							focusRing: true,
 							on: {
 								click: () => {
 									const mdl = b.Modal.Simple({
@@ -187,6 +189,10 @@ export const modal: IAttrContent = {
 											"shown.bs.modal": (_e) => {
 												//focus to checkbox when modal show
 												document.getElementById("testcheckbox")?.focus();
+											},
+											"hidden.bs.modal": (_e) => {
+												//focus to button when modal hide
+												document.getElementById("btntestcheckbox")?.focus();
 											},
 										},
 									});
@@ -368,10 +374,8 @@ export const modal: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Vertically centered"),
-		new e.text("Add {{.modal-dialog-centered}} to {{.modal-dialog}} to vertically center the modal."),
+		new e.text("Set {{centered:true}} to {{b.modal.container}} to vertically center the modal."),
 		new e.code({
-			showScript: false,
-			showHTML: false,
 			outputAttr: { gap: 1 },
 			output: () => {
 				let modalContent = (id: string, elem: core.IElem) => {
@@ -557,7 +561,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Using the grid"),
 		new e.text(
-			"Utilize the Bootstrap grid system within a modal by nesting {{.container-fluid}} within the {{.modal-body}}. Then, use the normal grid system classes as you would anywhere else."
+			"Utilize the Bootstrap grid system within a modal by nesting {{container:'fluid'}} within the {{b.modal.body}}. Then, use the normal grid system as you would anywhere else."
 		),
 		new e.code({
 			output: () => {
@@ -604,7 +608,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Varying modal content"),
 		new e.text(
-			"Have a bunch of buttons that all trigger the same modal with slightly different contents? Use {{event.relatedTarget}} and {{https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes::HTML data-bs-* attributes}} to vary the contents of the modal depending on which button was clicked."
+			"Have a bunch of buttons that all trigger the same modal with slightly different contents? Use {{event.relatedTarget}} and {{https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes::HTML data-bs-* attributes}} by setting {{data:{'bs-*':'value'} }} to vary the contents of the modal depending on which button was clicked."
 		),
 		new e.text(
 			"Below is a live demo followed by example HTML and JavaScript. For more information, {{nav:docs/components/modal#events::read the modal events docs}} for details on {{relatedTarget}}."
@@ -703,7 +707,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Toggle between modals"),
 		new e.text(
-			"Toggle between multiple modals with some clever placement of the {{data-bs-target}} and {{data-bs-toggle}} attributes. For example, you could toggle a password reset modal from within an already open sign in modal. {{b::Please note multiple modals cannot be open at the same time}}—this method simply toggles between two separate modals."
+			"Toggle between multiple modals with some clever placement of the {{target}} and {{toggle}} property. For example, you could toggle a password reset modal from within an already open sign in modal. {{b::Please note multiple modals cannot be open at the same time}}—this method simply toggles between two separate modals."
 		),
 		new e.code({
 			output: () => {
@@ -758,7 +762,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Change animation"),
 		new e.text(
-			"The {{$modal-fade-transform}} variable determines the transform state of {{.modal-dialog}} before the modal fade-in animation, the {{$modal-show-transform}} variable determines the transform of {{.modal-dialog}} at the end of the modal fade-in animation."
+			"The {{$modal-fade-transform}} variable determines the transform state of {{b.modal.container}} before the modal fade-in animation, the {{$modal-show-transform}} variable determines the transform of {{b.modal.container}} at the end of the modal fade-in animation."
 		),
 		new e.text("If you want for example a zoom-in animation, you can set {{$modal-fade-transform: scale(.8)}}."),
 
@@ -766,7 +770,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Remove animation"),
 		new e.text(
-			"For modals that simply appear rather than fade in to view, remove the {{.fade}} class from your modal markup."
+			"For modals that simply appear rather than fade in to view, set {{animation:false}} property to {{b.modal.container}}."
 		),
 
 		new e.code({
@@ -804,11 +808,79 @@ export const modal: IAttrContent = {
 			"If the height of a modal changes while it is open, you should call {{myModal.handleUpdate()}} to readjust the modal’s position in case a scrollbar appears."
 		),
 
+		new e.code({
+			output: () => {
+				return [
+					// Button trigger modal
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#dynamicHeightModal" },
+						"Launch dynamic height modal"
+					),
+
+					// Modal
+					new b.modal.container(
+						{
+							id: "dynamicHeightModal",
+							labelledby: "dynamicHeightModalLabel",
+							centered: true,
+							on: {
+								"shown.bs.modal": (event) => {
+									const target = event.target as HTMLElement;
+									const body = target.querySelector(".modal-body") as HTMLDivElement;
+
+									setTimeout(
+										(target, body) => {
+											core.replaceChild(body, [
+												new h.p(
+													{ style: { height: "100vh" } },
+													"This is some placeholder content to show the scrolling behavior for modals. Bootstrap use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+												),
+												new h.p("This content should appear at the bottom after you scroll."),
+											]);
+
+											// readjust the modal’s position
+											const mdl = window.bootstrap.Modal.getInstance(target);
+											if (mdl) {
+												mdl.handleUpdate();
+											}
+										},
+										3000,
+										target,
+										body
+									);
+								},
+								"hidden.bs.modal": (event) => {
+									//reset text
+									const target = event.target as HTMLElement;
+									const body = target.querySelector(".modal-body") as HTMLDivElement;
+									core.replaceChild(
+										body,
+										new h.p("This modal body content will change after 3 seconds.")
+									);
+								},
+							},
+						},
+						[
+							new b.modal.header(
+								{ close: true },
+								new b.modal.title({ id: "dynamicHeightModalLabel" }, "Modal title")
+							),
+							new b.modal.body(new h.p("This modal body content will change after 3 seconds.")),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Okay"),
+							]),
+						]
+					),
+				];
+			},
+		}),
+
 		//-----------------------
 
 		new e.subtitle("Accessibility"),
 		new e.text(
-			"Be sure to add {{aria-labelledby='...'}}, referencing the modal title, to {{.modal}}. Additionally, you may give a description of your modal dialog with {{aria-describedby}} on {{.modal}}. Note that you don’t need to add {{role='dialog'}} since Bootstrap already add it via JavaScript."
+			"Be sure to add {{labelledby='...'}}, referencing the {{b.modal.title({id:'...'})}}, to {{b.modal.container}}. Additionally, you may give a description of your modal dialog with {{describedby}} on {{b.modal.container}}. Note that you don’t need to add {{role:'dialog'}} since Bootstrap already add it via JavaScript."
 		),
 
 		//-----------------------
@@ -818,19 +890,74 @@ export const modal: IAttrContent = {
 			"Embedding YouTube videos in modals requires additional JavaScript not in Bootstrap to automatically stop playback and more. {{https://stackoverflow.com/questions/18622508/bootstrap-3-and-youtube-in-modal::See this helpful Stack Overflow post}} for more information."
 		),
 
+		new e.code({
+			output: () => {
+				return [
+					// Button trigger modal
+					new b.button(
+						{ color: "primary", toggle: "modal", target: "#youtubeModal" },
+						"Launch Youtube modal"
+					),
+
+					// Modal
+					new b.modal.container(
+						{
+							id: "youtubeModal",
+							labelledby: "youtubeModalLabel",
+							centered: true,
+							weight: "lg",
+							on: {
+								"shown.bs.modal": (event) => {
+									const target = event.target as HTMLElement;
+									const iframe = target.querySelector(".modal-body iframe") as HTMLIFrameElement;
+									iframe.setAttribute("src", "https://www.youtube.com/embed/eVxNksC88_U;autoplay=1");
+								},
+								"hidden.bs.modal": (event) => {
+									//reset text
+									const target = event.target as HTMLElement;
+									const iframe = target.querySelector(".modal-body iframe") as HTMLIFrameElement;
+									iframe.setAttribute("src", "");
+								},
+							},
+						},
+						[
+							new b.modal.header(
+								{ close: true },
+								new b.modal.title({ id: "youtubeModalLabel" }, "Modal title")
+							),
+							new b.modal.body(
+								new h.div(
+									{ ratio: "16x9" },
+									new h.iframe({
+										src: "",
+										title: "YouTube video player",
+										allowfullscreen: true,
+									})
+								)
+							),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Okay"),
+							]),
+						]
+					),
+				];
+			},
+		}),
+
 		//-----------------------
 
 		new e.title("Optional sizes"),
 		new e.text(
-			"Modals have three optional sizes, available via modifier classes to be placed on a {{.modal-dialog}}. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports."
+			"Modals have three optional sizes, available via modifier classes to be placed on a {{b.modal.container}}. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports."
 		),
 		new e.table({
 			item: [
-				["Size", "Class", "Modal max-width"],
-				["Small", "{{.modal-sm}}", "{{300px}}"],
+				["Size", "Property", "Modal max-width"],
+				["Small", "{{weight:'sm'}}", "{{300px}}"],
 				["Default", "None", "{{500px}}"],
-				["Large", "{{.modal-lg}}", "{{800px}}"],
-				["Extra large", "{{.modal-xl}}", "{{1140px}}"],
+				["Large", "{{weight:'lg'}}", "{{800px}}"],
+				["Extra large", "{{weight:'xl'}}", "{{1140px}}"],
 			],
 		}),
 		new e.text("Bootstrap default modal without modifier class constitutes the “medium” size modal."),
@@ -878,17 +1005,17 @@ export const modal: IAttrContent = {
 
 		new e.title("Fullscreen Modal"),
 		new e.text(
-			"Another override is the option to pop up a modal that covers the user viewport, available via modifier classes that are placed on a {{.modal-dialog}}."
+			"Another override is the option to pop up a modal that covers the user viewport, available via {{fullscreen}} property that are placed on a {{b.modal.container}}."
 		),
 		new e.table({
 			item: [
-				["Class", "Availability"],
-				["{{.modal-fullscreen}}", "Always"],
-				["{{.modal-fullscreen-sm-down}}", "{{576px}}"],
-				["{{.modal-fullscreen-md-down}}", "{{768px}}"],
-				["{{.modal-fullscreen-lg-down}}", "{{992px}}"],
-				["{{.modal-fullscreen-xl-down}}", "{{1200px}}"],
-				["{{.modal-fullscreen-xxl-down}}", "{{1400px}}"],
+				["Property", "Availability"],
+				["{{fullscreen:true}}", "Always"],
+				["{{fullscreen:'sm-down'}}", "{{576px}}"],
+				["{{fullscreen:'md-down'}}", "{{768px}}"],
+				["{{fullscreen:'lg-down'}}", "{{992px}}"],
+				["{{fullscreen:'xl-down'}}", "{{1200px}}"],
+				["{{fullscreen:'xxl-down'}}", "{{1400px}}"],
 			],
 		}),
 		new e.code({
@@ -1095,38 +1222,36 @@ export const modal: IAttrContent = {
 		new e.subtitle("Via data attributes"),
 		new e.xsubtitle("Toggle"),
 		new e.text(
-			"Activate a modal without writing JavaScript. Set {{data-bs-toggle='modal'}} on a controller element, like a button, along with a {{data-bs-target='#foo'}} or {{href='#foo'}} to target a specific modal to toggle."
+			"Activate a modal without writing JavaScript. Set {{toggle:'modal'}} on a controller component, like a button, along with a {{target:'#foo'}} or {{href:'#foo'}} to target a specific modal to toggle."
 		),
 
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" data-bs-toggle="modal" data-bs-target="#myModal">Launch modal</button>
+				new b.button({ toggle: "modal", target: "#myModal" }, "Launch modal")
 			`,
 		}),
 
 		//-----------------------
 
 		new e.xsubtitle("Dismiss"),
-		new e.text(
-			"Dismissal can be achieved with the {{data-bs-dismiss}} attribute on a button {{b::within the modal}} as demonstrated below:"
-		),
+		new e.text("Dismissal can be achieved with the {{b.modal.btnclose}} as demonstrated below:"),
 
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				new b.modal.btnclose();
+				new b.button({dismiss:"modal", label:"Close"});
 			`,
 		}),
 
-		new e.text(
-			"or on a button {{b::outside the modal}} using the additional {{data-bs-target}} as demonstrated below:"
-		),
+		new e.text("or on a button {{b::outside the modal}} using the additional {{target}} as demonstrated below:"),
 
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal" aria-label="Close"></button>
+				new b.modal.btnclose({target: "#myModal"});
+				new b.button({target: "#myModal", dismiss: "modal",label: "Close"});
 			`,
 		}),
 
@@ -1263,6 +1388,114 @@ export const modal: IAttrContent = {
 				// do something...
 				})
 			`,
+		}),
+
+		new e.code({
+			output: () => {
+				interface EventWithTargetAndRelatedTarget extends Event {
+					target: HTMLElement;
+					relatedTarget: HTMLElement;
+				}
+
+				return [
+					// Button trigger modal
+					new b.button({ color: "primary", toggle: "modal", target: "#eventModal" }, "Launch event modal"),
+
+					// Modal
+					new b.modal.container(
+						{
+							id: "eventModal",
+							labelledby: "eventModalLabel",
+							static: true,
+							on: {
+								"shown.bs.modal": (event) => {
+									const evnt = event as EventWithTargetAndRelatedTarget;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "shown.bs.modal",
+											color: "success",
+											elem: [
+												`target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+											],
+										})
+									);
+								},
+
+								"show.bs.modal": (event) => {
+									const evnt = event as EventWithTargetAndRelatedTarget;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "show.bs.modal",
+											color: "info",
+											elem: [
+												`target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+											],
+										})
+									);
+								},
+
+								"hidden.bs.modal": (event) => {
+									const target = event.target as HTMLElement;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "hidden.bs.modal",
+											color: "danger",
+											elem: [`target: {{b::${core.elemInfo(target)}}}`],
+										})
+									);
+								},
+
+								"hide.bs.modal": (event) => {
+									const target = event.target as HTMLElement;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "hide.bs.modal",
+											color: "info",
+											elem: [`target: {{b::${core.elemInfo(target)}}}`],
+										})
+									);
+								},
+
+								"hidePrevented.bs.modal": (event) => {
+									const target = event.target as HTMLElement;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "hidePrevented.bs.modal",
+											color: "warning",
+											elem: [`target: {{b::${core.elemInfo(target)}}}`],
+										})
+									);
+								},
+							},
+						},
+						[
+							new b.modal.header(
+								{ close: true },
+								new b.modal.title({ id: "eventModalLabel" }, "Modal title")
+							),
+							new b.modal.body("Try press {{k::Esc}} key"),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Okay"),
+							]),
+						]
+					),
+				];
+			},
 		}),
 	],
 };
