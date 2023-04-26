@@ -1,4 +1,4 @@
-import { b } from "@printf83/bsts";
+import { b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -18,11 +18,11 @@ export const progress: IAttrContent = {
 		),
 		new e.ul({
 			item: [
-				"Bootstrap use the {{.progress}} as a wrapper to indicate the max value of the progress bar.",
-				"The {{.progress}} wrapper also requires a {{role='progressbar'}} and {{aria}} attributes to make it accessible, including an accessible name (using {{aria-label}}, {{aria-labelledby}}, or similar).",
-				"Bootstrap use the inner {{.progress-bar}} purely for the visual bar and label.",
-				"The {{.progress-bar}} requires an inline style, utility class, or custom CSS to set its width.",
-				"Bootstrap provide a special {{.progress-stacked}} class to create multiple/stacked progress bars.",
+				"Bootstrap use the {{b.progress.container}} as a wrapper to indicate the max value of the progress bar.",
+				"The {{b.progress.container}} wrapper automaticly get {{role:'progressbar'}} and {{aria}} attributes to make it accessible, including an accessible name (using {{label}}, {{labelledby}}, or similar).",
+				"Bootstrap use the inner {{b.progress.bar}} purely for the visual bar and label.",
+				"The {{b.progress.bar}} requires an inline style, utility class, or custom CSS to set its width.",
+				"Bootstrap provide a special {{stacked}} property to create multiple/stacked progress bars.",
 			],
 		}),
 		new e.text("Put that all together, and you have the following examples."),
@@ -38,12 +38,27 @@ export const progress: IAttrContent = {
 			},
 		}),
 
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			outputAttr: { gap: 2 },
+			output: () => {
+				return [0, 25, 50, 75, 100].map((i) => {
+					return new b.progress.container({
+						label: "Basic example",
+						value: i,
+						min: 0,
+						max: 100,
+					});
+				});
+			},
+		}),
+
 		//-----------------------
 
 		new e.title("Bar sizing"),
 		new e.subtitle("Width"),
 		new e.text(
-			"Bootstrap provides a handful of {{nav:docs/utilities/sizing::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{.progress-bar}}."
+			"Bootstrap provides a handful of {{nav:docs/utilities/sizing::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{b.progress.bar}}."
 		),
 
 		new e.code({
@@ -54,12 +69,18 @@ export const progress: IAttrContent = {
 				);
 			},
 		}),
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			output: () => {
+				return new b.progress.container({ label: "Basic example", value: 75, min: 0, max: 100 });
+			},
+		}),
 
 		//-----------------------
 
 		new e.subtitle("Height"),
 		new e.text(
-			"You only set a {{height}} value on the {{.progress}} container, so if you change that value, the inner {{.progress-bar}} will automatically resize accordingly."
+			"You only set a {{height}} value on the {{b.progress.container}} component, so if you change that value, the inner {{b.progress.bar}} will automatically resize accordingly."
 		),
 
 		new e.code({
@@ -77,11 +98,33 @@ export const progress: IAttrContent = {
 				];
 			},
 		}),
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			outputAttr: { gap: 2 },
+			output: () => {
+				return [
+					new b.progress.container({
+						label: "Example 1px high",
+						value: 25,
+						min: 0,
+						max: 100,
+						style: { height: "1px" },
+					}),
+					new b.progress.container({
+						label: "Example 20px high",
+						value: 25,
+						min: 0,
+						max: 100,
+						style: { height: "20px" },
+					}),
+				];
+			},
+		}),
 
 		//-----------------------
 
 		new e.title("Labels"),
-		new e.text("Add labels to your progress bars by placing text within the {{.progress-bar}}."),
+		new e.text("Add labels to your progress bars by placing text within the {{b.progress.bar}}."),
 		new e.code({
 			output: () => {
 				return new b.progress.container(
@@ -90,8 +133,31 @@ export const progress: IAttrContent = {
 				);
 			},
 		}),
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			output: () => {
+				return new b.progress.container({
+					label: "Example with label",
+					value: 25,
+					min: 0,
+					max: 100,
+					text: "percent",
+				});
+			},
+		}),
+		new e.code({
+			output: () => {
+				return new b.progress.container({
+					label: "Example with label",
+					value: 25,
+					min: 0,
+					max: 100,
+					text: "progress",
+				});
+			},
+		}),
 		new e.text(
-			"Note that by default, the content inside the {{.progress-bar}} is controlled with {{overflow: hidden}}, so it doesn’t bleed out of the bar. If your progress bar is shorter than its label, the content will be capped and may become unreadable. To change this behavior, you can use {{.overflow-visible}} from the {{nav:docs/utilities/overflow::overflow utilities}}, but make sure to also define an explicit {{nav:docs/utilities/colors#colors::text color}} so the text remains readable. Be aware though that currently this approach does not take into account {{https://getbootstrap.com/docs/5.3/customize/color-modes/::color modes}}."
+			"Note that by default, the content inside the {{b.progress.bar}} is controlled with {{overflow: hidden}}, so it doesn’t bleed out of the bar. If your progress bar is shorter than its label, the content will be capped and may become unreadable. To change this behavior, you can use {{overflow:'visible'}} from the {{nav:docs/utilities/overflow::overflow utilities}}, but make sure to also define an explicit {{nav:docs/utilities/colors#colors::text color}} so the text remains readable. Be aware though that currently this approach does not take into account {{https://getbootstrap.com/docs/5.3/customize/color-modes/::color modes}}."
 		),
 		new e.code({
 			output: () => {
@@ -102,6 +168,18 @@ export const progress: IAttrContent = {
 						"Long label text for the progress bar, set to a dark color"
 					)
 				);
+			},
+		}),
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			output: () => {
+				return new b.progress.container({
+					label: "Example with label",
+					value: 10,
+					min: 0,
+					max: 100,
+					text: "Long label text for the progress bar, set to a dark color",
+				});
 			},
 		}),
 
@@ -124,12 +202,28 @@ export const progress: IAttrContent = {
 				});
 			},
 		}),
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			outputAttr: { gap: 2 },
+			output: () => {
+				return ["success", "info", "warning", "danger"].map((i, ix) => {
+					let val = [25, 50, 75, 100][ix];
+					return new b.progress.container({
+						label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`,
+						value: val,
+						min: 0,
+						max: 100,
+						color: i as b.progress.IBsProgressBar["color"],
+					});
+				});
+			},
+		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+			"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 		),
 		new e.text(
-			"If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{text color}}, so the labels remain readable and have sufficient contrast."
+			"If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{textColor}}, so the labels remain readable and have sufficient contrast."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -151,8 +245,26 @@ export const progress: IAttrContent = {
 				});
 			},
 		}),
+		new e.text("Or without {{b.progress.bar}}."),
+
+		new e.code({
+			outputAttr: { gap: 2 },
+			output: () => {
+				return ["success", "info", "warning", "danger"].map((i, ix) => {
+					let val = [25, 50, 75, 100][ix];
+					return new b.progress.container({
+						label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`,
+						value: val,
+						min: 0,
+						max: 100,
+						color: i as core.bootstrapType.textBgColor,
+						text: "percent",
+					});
+				});
+			},
+		}),
 		new e.text(
-			"Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} helper classes."
+			"Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} property. Without {{b.progress.bar}} the {{textBgColor}} will be used."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -177,7 +289,7 @@ export const progress: IAttrContent = {
 
 		new e.title("Multiple bars"),
 		new e.text(
-			"You can include multiple progress components inside a container with {{.progress-stacked}} to create a single stacked progress bar. Note that in this case, the styling to set the visual width of the progress bar must be applied to the {{.progress}} elements, rather than the {{.progress-bars}}."
+			"You can include multiple progress components inside a container with {{B.progress.stacked}} to create a single stacked progress bar. Note that in this case, the styling to set the visual width of the progress bar must be applied to the {{b.progress.container}} component, rather than the {{b.progress.bar}}."
 		),
 		new e.code({
 			output: () => {
@@ -215,12 +327,42 @@ export const progress: IAttrContent = {
 				]);
 			},
 		}),
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			output: () => {
+				return new b.progress.stacked([
+					new b.progress.container({
+						label: "Segment one",
+						value: 15,
+						min: 0,
+						max: 100,
+						stacked: true,
+					}),
+					new b.progress.container({
+						label: "Segment two",
+						value: 30,
+						min: 0,
+						max: 100,
+						stacked: true,
+						color: "success",
+					}),
+					new b.progress.container({
+						label: "Segment three",
+						value: 20,
+						min: 0,
+						max: 100,
+						stacked: true,
+						color: "info",
+					}),
+				]);
+			},
+		}),
 
 		//-----------------------
 
 		new e.title("Striped"),
 		new e.text(
-			"Add {{.progress-bar-striped}} to any {{.progress-bar}} to apply a stripe via CSS gradient over the progress bar’s background color."
+			"Add {{striped:true}} to any {{b.progress.bar}} to apply a stripe via CSS gradient over the progress bar’s background color."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -243,12 +385,29 @@ export const progress: IAttrContent = {
 				});
 			},
 		}),
+		new e.text("Or without {{b.progress.bar}}."),
+		new e.code({
+			outputAttr: { gap: 2 },
+			output: () => {
+				return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
+					let val = [10, 25, 50, 75, 100][ix];
+					return new b.progress.container({
+						label: `${i ? i.charAt(0).toUpperCase() + i.slice(1) : "Default"} striped example`,
+						value: val,
+						min: 0,
+						max: 100,
+						striped: true,
+						color: i as core.bootstrapType.textBgColor,
+					});
+				});
+			},
+		}),
 
 		//-----------------------
 
 		new e.title("Animated stripes"),
 		new e.text(
-			"The striped gradient can also be animated. Add {{.progress-bar-animated}} to {{.progress-bar}} to animate the stripes right to left via CSS3 animations."
+			"The striped gradient can also be animated. Add {{striped:true}} and {{animated:true}} togather to {{b.progress.bar}} to animate the stripes right to left via CSS3 animations."
 		),
 		new e.code({
 			output: () => {
@@ -265,6 +424,20 @@ export const progress: IAttrContent = {
 						style: { width: `75%` },
 					})
 				);
+			},
+		}),
+		new e.text("Or without {{b.progress.bar}}."),
+
+		new e.code({
+			output: () => {
+				return new b.progress.container({
+					label: `Animated striped example`,
+					value: 75,
+					min: 0,
+					max: 100,
+					striped: true,
+					animated: true,
+				});
 			},
 		}),
 

@@ -15,10 +15,10 @@ export const popover: IAttrContent = {
 				"Popovers require the {{nav:docs/components/popover::popover plugin}} as a dependency.",
 				"Popovers initialize by {{core.init}} function.",
 				"Zero-length {{title}} and {{content}} values will never show a popover.",
-				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
+				"{{b.popover}} automaticly specify {{container:'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc). You can change this by set {{container:'.modal-body'}} when you need.",
 				"Triggering popovers on hidden elements will not work.",
-				"Popovers for {{.disabled}} or {{disabled}} elements must be triggered on a wrapper element.",
-				"When triggered from anchors that wrap across multiple lines, popovers will be centered between the anchors’ overall width. Use {{.text-nowrap}} on your {{<a>}}s to avoid this behavior.",
+				"Popovers for {{disabled}} elements must be triggered on a wrapper element. {{bsts}} currently using this method for showing popover over other component.",
+				"When triggered from anchors that wrap across multiple lines, popovers will be centered between the anchors’ overall width. Use {{textWrap:false}} on your {{h.a}}s to avoid this behavior.",
 				"Popovers must be hidden before their corresponding elements have been removed from the DOM.",
 				"Popovers can be triggered thanks to an element inside a shadow DOM.",
 			],
@@ -38,25 +38,39 @@ export const popover: IAttrContent = {
 		new e.title("Examples"),
 		new e.subtitle("Enable popovers"),
 		new e.text(
-			"As mentioned above, you must initialize popovers before they can be used. One way to initialize all popovers on a page would be to select them by their {{data-bs-toggle}} attribute, like so:"
+			"As mentioned above, you must initialize popovers before they can be used. One way to initialize all popovers on a page would be to call {{core.init}} function after {{core.build}}, like so:"
 		),
 		new e.codepreview({
 			type: "js",
 			code: `
-				const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-				const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+				core.documentReady(() => {
+					let root = document.getElementById("root");
+					core.replaceChild(root, new h.div([
+						"Hello world", 
+						new b.popover(
+							{ title: "Popover title", content: "And here's some amazing content. It's very engaging. Right?" },
+							new b.button({ weight: "lg", color: "danger" }, "Click to toggle popover")
+						),
+					]));
+
+					core.init(root);
+				});
 			`,
 		}),
+
+		new e.text(
+			"{{bsts}} automaticly call {{core.init}} when you show your modal dialog using {{b.modal.show}} function."
+		),
 
 		//-----------------------
 
 		new e.subtitle("Live demo"),
 		new e.text(
-			"Bootstrap use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{data-bs-title}} and body content is set via {{data-bs-content}}."
+			"Bootstrap use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{title}} and body content is set via {{content}}."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"Feel free to use either {{title}} or {{data-bs-title}} in your HTML. When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} when the element is rendered."
+			"When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} attribute when the element is rendered."
 		),
 		new e.code({
 			output: () => {
@@ -71,7 +85,7 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Four directions"),
 		new e.text(
-			"Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{data-bs-placement}} to change the direction."
+			"Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{placement}} to change the direction."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -92,14 +106,12 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Custom {{container}}"),
 		new e.text(
-			"When you have some styles on a parent element that interfere with a popover, you’ll want to specify a custom {{container}} so that the popover’s HTML appears within that element instead. This is common in responsive tables, input groups, and the like."
+			"When you have some styles on a parent element that interfere with a popover, you’ll want to specify a custom {{container}} by set {{parent:'container'}} so that the popover’s HTML appears within that element instead. This is common in responsive tables, input groups, and the like."
 		),
 		new e.codepreview({
 			type: "js",
 			code: `
-				const popover = new bootstrap.Popover('.example-popover', {
-				container: 'body'
-				})
+				new b.popover({parent:'body'});
 			`,
 		}),
 		new e.text(
@@ -108,32 +120,21 @@ export const popover: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const popover = new bootstrap.Popover('.example-popover', {
-				container: '.modal-body'
-				})
+				new b.popover({parent:'.modal-body'});
 			`,
 		}),
+
+		new e.alert(
+			{ color: "danger", callout: true },
+			"Setting {{parent}} currently not working correctly. But it still working only when you set {{parent:'body'}} (default)."
+		),
 
 		//-----------------------
 
 		new e.subtitle("Custom popovers"),
 		new e.text(
-			"You can customize the appearance of popovers using {{nav:docs/components/popover#variables::CSS variables}}. Bootstrap set a custom class with {{data-bs-custom-class='custom-popover'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of popovers using {{nav:docs/components/popover#variables::CSS variables}}. Bootstrap set a custom class with {{customClass:'custom-popover'}} property to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 		),
-
-		// new e.codepreview({
-		// 	type: "css",
-		// 	code: `
-		// 		.custom-popover {
-		// 		--bs-popover-max-width: 200px;
-		// 		--bs-popover-border-color: var(--bs-primary);
-		// 		--bs-popover-header-bg: var(--bs-primary);
-		// 		--bs-popover-header-color: var(--bs-white);
-		// 		--bs-popover-body-padding-x: 1rem;
-		// 		--bs-popover-body-padding-y: .5rem;
-		// 		}
-		// 	`,
-		// }),
 		new e.code({
 			css: `
 			.custom-popover {
@@ -161,11 +162,11 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Dismiss on next click"),
 		new e.text(
-			"Use the {{focus}} trigger to dismiss popovers on the user’s next click of an element other than the toggle element."
+			"Use the {{trigger:'focus'}} to dismiss popovers on the user’s next click of an element other than the toggle element."
 		),
 		new e.alert(
 			{ color: "danger", callout: true },
-			"{{b::Dismissing on next click requires specific HTML for proper cross-browser and cross-platform behavior}}. You can only use {{<a>}} elements, not {{<button>}}s, and you must include a {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex::tabindex}}."
+			"{{b::Dismissing on next click requires specific HTML for proper cross-browser and cross-platform behavior}}. You can only use {{h.a}} elements, not {{b.button}}s or {{h.button}}s, and you must include a {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex::tabindex}}.{{hr}}This not a problem in {{b.popover}} since it is a wrapper."
 		),
 		new e.code({
 			output: () => {
@@ -184,11 +185,15 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Disabled elements"),
 		new e.text(
-			"Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a popover (or tooltip). As a workaround, you’ll want to trigger the popover from a wrapper {{<div>}} or {{<span>}}, ideally made keyboard-focusable using {{tabindex='0'}}."
+			"Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a popover (or tooltip). As a workaround, you’ll want to trigger the popover from a wrapper {{h.div}} or {{h.span}}, ideally made keyboard-focusable using {{tabindex:'0'}}."
 		),
 		new e.text(
-			"For disabled popover triggers, you may also prefer {{data-bs-trigger='hover focus'}} so that the popover appears as immediate visual feedback to your users as they may not expect to click on a disabled element."
+			"{{b.popover}} create a wrapper using {{h.span}}. You can change the {{display:'block'}} to make it behave like {{h.div}}"
 		),
+		new e.text(
+			"For disabled popover triggers, you may also prefer {{trigger:['hover','focus']}} so that the popover appears as immediate visual feedback to your users as they may not expect to click on a disabled element."
+		),
+
 		new e.code({
 			output: () => {
 				return new b.popover(
@@ -273,10 +278,9 @@ export const popover: IAttrContent = {
 		new e.title("Usage"),
 		new e.text("Enable popovers via JavaScript:"),
 		new e.codepreview({
-			type: "css",
+			type: "js",
 			code: `
-				const exampleEl = document.getElementById('example');
-				const popover = new bootstrap.Popover(exampleEl, options);
+				core.init();
 			`,
 		}),
 		new e.alert({ color: "warning", callout: true }, [
@@ -284,7 +288,7 @@ export const popover: IAttrContent = {
 				"{{b::Keep popovers accessible to keyboard and assistive technology users}} by only adding them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). While other HTML elements can be made focusable by adding {{tabindex='0'}}, this can create annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce popovers in this situation. Additionally, do not rely solely on {{hover}} as the trigger for your popovers as this will make them impossible to trigger for keyboard users."
 			),
 			new h.p(
-				"Avoid adding an excessive amount of content in popovers with the {{html}} option. Once popovers are displayed, their content is tied to the trigger element with the {{aria-describedby}} attribute, causing all of the popover’s content to be announced to assistive technology users as one long, uninterrupted stream."
+				"Avoid adding an excessive amount of content in popovers with the {{html}} option. Once popovers are displayed, their content is tied to the trigger element with the {{describedby}} property, causing all of the popover’s content to be announced to assistive technology users as one long, uninterrupted stream."
 			),
 			new h.p(
 				"Popovers do not manage keyboard focus order, and their placement can be random in the DOM, so be careful when adding interactive elements (like forms or links), as it may lead to an illogical focus order or make the popover content itself completely unreachable for keyboard users. In cases where you must use these elements, consider using a modal dialog instead."
@@ -295,10 +299,10 @@ export const popover: IAttrContent = {
 
 		new e.subtitle("Options"),
 		new e.text(
-			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data-bs-}}, as in {{data-bs-animation="{value}"}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data-bs-custom-class="beautifier"}} instead of {{data-bs-customClass="beautifier"}}.`
+			`As options can be passed via data attributes or JavaScript, you can append an option name to {{data:{'bs-*':'{value}'\}\}}, as in {{data:{'bs-animation':'{value}'\}\}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data:{'bs-custom-class':'beautifier'\}\}} instead of {{data:{'bs-customClass':'beautifier'\}\}}.`
 		),
 		new e.text(
-			`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data-bs-config='{"delay":0, "title":123}'}} and {{data-bs-title="456"}} attributes, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data-bs-config}}. In addition, existing data attributes are able to house JSON values like {{data-bs-delay='{"show":0,"hide":150}'}}.`
+			`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data:{'bs-config':'{"delay":0, "title":123}'/}/}} and {{data:{'bs-title':'456'/}/}} property, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data:{'bs-config':''/}/}}. In addition, existing data attributes are able to house JSON values like {{data:{'bs-delay':'{"show":0,"hide":150}'/}/}}.`
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
