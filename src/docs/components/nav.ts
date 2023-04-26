@@ -34,6 +34,22 @@ export const nav: IAttrContent = {
 				]);
 			},
 		}),
+
+		new e.text("Or using {{link}} property to create {{b.nav.header.item}} and {{b.nav.header.link}} directly."),
+
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
+			},
+		}),
+
 		new e.text(
 			"{{b.nav.header.container}} component will generate {{h.ul}} component. If the order of your items is important, or roll your own with a {{b.nav.header.containerNav}} component to generate {{h.nav}}. Because the {{h.hav}} uses {{display: flex}}, the nav links behave the same as nav items would, but without the extra markup ({{b.nav.header.item}})."
 		),
@@ -45,6 +61,20 @@ export const nav: IAttrContent = {
 					new b.nav.header.link({ href: "#" }, "Link"),
 					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
 				]);
+			},
+		}),
+
+		new e.text("Or using {{link}} property to create {{b.nav.header.link}} directly."),
+		new e.code({
+			output: () => {
+				return new b.nav.header.containerNav({
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -64,23 +94,29 @@ export const nav: IAttrContent = {
 		new e.text("Centered with {{justifyContent:'center'}} property:"),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ justifyContent: "center" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					justifyContent: "center",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 		new e.text("Right-aligned with {{justifyContent:'end'}} property:"),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ justifyContent: "end" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					justifyContent: "end",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -92,23 +128,29 @@ export const nav: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ flex: "column" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					flex: "column",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 		new e.text("As always, vertical navigation also possible with {{b.nav.header.containerNav}}s, too."),
 		new e.code({
 			output: () => {
-				return new b.nav.header.containerNav({ flex: "column" }, [
-					new b.nav.header.link({ active: true, href: "#" }, "Active"),
-					new b.nav.header.link({ href: "#" }, "Link"),
-					new b.nav.header.link({ href: "#" }, "Link"),
-					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
-				]);
+				return new b.nav.header.containerNav({
+					flex: "column",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -120,12 +162,15 @@ export const nav: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ type: "tab" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					type: "tab",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -135,12 +180,15 @@ export const nav: IAttrContent = {
 		new e.text("Take that same code, but use {{type:'pill'}} instead:"),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ type: "pill" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					type: "pill",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -150,12 +198,15 @@ export const nav: IAttrContent = {
 		new e.text("Take that same code, but use {{type:'underline'}} instead:"),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ type: "underline" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					type: "underline",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -167,12 +218,16 @@ export const nav: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ type: "pill", itemWidth: "fill" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Much longer nav link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					type: "pill",
+					itemWidth: "fill",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Much longer nav link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 		new e.text(
@@ -180,12 +235,16 @@ export const nav: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new b.nav.header.containerNav({ type: "pill", itemWidth: "fill" }, [
-					new b.nav.header.link({ active: true, href: "#" }, "Active"),
-					new b.nav.header.link({ href: "#" }, "Much longer nav link"),
-					new b.nav.header.link({ href: "#" }, "Link"),
-					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
-				]);
+				return new b.nav.header.containerNav({
+					type: "pill",
+					itemWidth: "fill",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Much longer nav link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 		new e.text(
@@ -193,12 +252,16 @@ export const nav: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ type: "pill", itemWidth: "justified" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Much longer nav link")),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					type: "pill",
+					itemWidth: "justified",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Much longer nav link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 		new e.text(
@@ -206,12 +269,16 @@ export const nav: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return new b.nav.header.containerNav({ type: "pill", itemWidth: "justified" }, [
-					new b.nav.header.link({ active: true, href: "#" }, "Active"),
-					new b.nav.header.link({ href: "#" }, "Much longer nav link"),
-					new b.nav.header.link({ href: "#" }, "Link"),
-					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
-				]);
+				return new b.nav.header.containerNav({
+					type: "pill",
+					itemWidth: "justified",
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Much longer nav link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -224,12 +291,16 @@ export const nav: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			output: () => {
-				return new b.nav.header.containerNav({ type: "pill", flex: ["column", "sm-row"] }, [
-					new b.nav.header.link({ active: true, href: "#" }, "Active"),
-					new b.nav.header.link({ href: "#" }, "Much longer nav link"),
-					new b.nav.header.link({ href: "#" }, "Link"),
-					new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
-				]);
+				return new b.nav.header.containerNav({
+					type: "pill",
+					flex: ["column", "sm-row"],
+					link: [
+						{ active: true, href: "#", elem: "Active" },
+						{ href: "#", elem: "Much longer nav link" },
+						{ href: "#", elem: "Link" },
+						{ disabled: true, href: "#", elem: "Disabled" },
+					],
+				});
 			},
 		}),
 
@@ -252,7 +323,7 @@ export const nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Tabs with dropdowns with set {{dropdown:true}} property on {{b.nav.header.item}}"),
+		new e.text("Tabs with dropdowns with set {{dropdown:true}} property on {{b.nav.header.item}}"),
 		new e.code({
 			output: () => {
 				return new b.nav.header.container({ type: "tab" }, [
@@ -273,26 +344,59 @@ export const nav: IAttrContent = {
 			},
 		}),
 
+		new e.text("Or using {{item}} property to create {{b.nav.header.item}} directly."),
+		new e.code({
+			output: () => {
+				return new b.nav.header.container({
+					type: "tab",
+					item: [
+						{ link: { active: true, href: "#", elem: "Active" } },
+						{
+							dropdown: true,
+							elem: [
+								new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Action"),
+									new b.dropdown.item({ href: "#" }, "Another action"),
+									new b.dropdown.item({ href: "#" }, "Something else here"),
+									new b.dropdown.divider(),
+									new b.dropdown.item({ href: "#" }, "Separated link"),
+								]),
+							],
+						},
+						{ link: { href: "#", elem: "Link" } },
+						{ link: { disabled: true, href: "#", elem: "Disabled" } },
+					],
+				});
+			},
+		}),
+
 		//-----------------------
 
 		new e.subtitle("Pills with dropdowns"),
 		new e.code({
 			output: () => {
-				return new b.nav.header.container({ type: "pill" }, [
-					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-					new b.nav.header.item({ dropdown: true }, [
-						new b.dropdown.toggle({ navItem: true }, "Dropdown"),
-						new b.dropdown.menu([
-							new b.dropdown.item({ href: "#" }, "Action"),
-							new b.dropdown.item({ href: "#" }, "Another action"),
-							new b.dropdown.item({ href: "#" }, "Something else here"),
-							new b.dropdown.divider(),
-							new b.dropdown.item({ href: "#" }, "Separated link"),
-						]),
-					]),
-					new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-					new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-				]);
+				return new b.nav.header.container({
+					type: "pill",
+					item: [
+						{ link: { active: true, href: "#", elem: "Active" } },
+						{
+							dropdown: true,
+							elem: [
+								new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Action"),
+									new b.dropdown.item({ href: "#" }, "Another action"),
+									new b.dropdown.item({ href: "#" }, "Something else here"),
+									new b.dropdown.divider(),
+									new b.dropdown.item({ href: "#" }, "Separated link"),
+								]),
+							],
+						},
+						{ link: { href: "#", elem: "Link" } },
+						{ link: { disabled: true, href: "#", elem: "Disabled" } },
+					],
+				});
 			},
 		}),
 
@@ -400,6 +504,9 @@ export const nav: IAttrContent = {
 		new e.text("Tab panel header should using {{b.nav.header.button}} insted of {{b.nav.header.link}}."),
 		new e.code({
 			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
 				const d = [
 					{ label: "Home", id: "home", active: true },
 					{ label: "Profile", id: "profile" },
@@ -437,7 +544,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
+								content(i.label)
 							);
 						})
 					),
@@ -449,6 +556,9 @@ export const nav: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
 				const d = [
 					{ label: "Home", id: "home", active: true },
 					{ label: "Profile", id: "profile" },
@@ -483,7 +593,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `nav-${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
+								content(i.label)
 							);
 						})
 					),
@@ -493,6 +603,9 @@ export const nav: IAttrContent = {
 		new e.text("The tabs plugin also works with pills."),
 		new e.code({
 			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
 				const d = [
 					{ label: "Home", id: "home", active: true },
 					{ label: "Profile", id: "profile" },
@@ -530,7 +643,7 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `pills-${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
+								content(i.label)
 							);
 						})
 					),
@@ -538,57 +651,50 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"And with vertical pills. Ideally, for vertical tabs, you should also add {{vertical:true}} to the tab {{b.nav.header.container}} or {{b.nav.header.containerNav}}."
+			"You also can use Bootstrap TS {{b.Nav.Tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."
 		),
 		new e.code({
 			output: () => {
-				const d = [
-					{ label: "Home", id: "home", active: true },
-					{ label: "Profile", id: "profile" },
-					{ label: "Disabled", id: "disabled", disabled: true },
-					{ label: "Messages", id: "messages" },
-					{ label: "Settings", id: "settings" },
-				];
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
-				return new h.div({ display: "flex", alignItem: "start" }, [
-					new b.nav.header.containerNav(
-						{
-							type: "pill",
-							role: "tablist",
-							id: "v-pills-tab",
-							flex: "column",
-							marginEnd: 3,
-							vertical: true,
-						},
-						d.map((i) => {
-							return new b.nav.header.button(
-								{
-									active: i.active,
-									disabled: i.disabled,
-									id: `v-pills-${i.id}-tab`,
-									target: `#v-pills-${i.id}-tab-pane`,
-									controlfor: `v-pills-${i.id}-tab-pane`,
-									toggle: "pill",
-								},
-								i.label
-							);
-						})
-					),
-					new b.nav.content.container(
-						{ id: "v-pills-tabContent", marginTop: 3 },
-						d.map((i) => {
-							return new b.nav.content.item(
-								{
-									active: i.active,
-									id: `v-pills-${i.id}-tab-pane`,
-									role: "tabpanel",
-									labelledby: `v-pills-${i.id}-tab`,
-								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
-							);
-						})
-					),
-				]);
+				return b.Nav.Tab({
+					type: "pill",
+					item: [
+						{ label: "Home", active: true, elem: content("Home") },
+						{ label: "Profile", elem: content("Profile") },
+						{ label: "Contact", elem: content("Contact") },
+						{ label: "Disabled", disabled: true, elem: content("Disabled") },
+					],
+				});
+			},
+		}),
+		new e.text(
+			"And with vertical pills. Ideally, for vertical tabs, you should also add {{vertical:true}} to the tab {{b.nav.header.container}} or {{b.nav.header.containerNav}}."
+		),
+		new e.code({
+			showViewport: true,
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				return new h.div(
+					{ display: "md-flex", alignItem: "md-start" },
+					b.Nav.Tab({
+						type: "pill",
+						vertical: true,
+						flex: "md-column",
+						marginEnd: "md-3",
+						attrContent: { marginTop: [3, "md-0"] },
+						item: [
+							{ label: "Home", active: true, elem: content("Home") },
+							{ label: "Profile", elem: content("Profile") },
+							{ label: "Disabled", disabled: true, elem: content("Disabled") },
+							{ label: "Messages", elem: content("Messages") },
+							{ label: "Settings", elem: content("Settings") },
+						],
+					})
+				);
 			},
 		}),
 
@@ -621,48 +727,18 @@ export const nav: IAttrContent = {
 			type: "js",
 			code: `
 				() => {
-				const d = [
-					{ label: "Home", id: "home", active: true },
-					{ label: "Profile", id: "profile" },
-					{ label: "Contact", id: "contact" },
-					{ label: "Disabled", id: "disabled", disabled: true },
-				];
+					const content = (title: string) =>
+						'This is some placeholder content the {{b::" + title + " tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.';
 
-				return [
-					new b.nav.header.container(
-						{ type: "tab", role: "tablist", id: "myTab" },
-						d.map((i) => {
-							return new b.nav.header.item(
-								{ role: "presentation" },
-								new b.nav.header.button(
-									{
-										active: i.active,
-										disabled: i.disabled,
-										id: '{i.id}-tab',
-										target: '#{i.id}-tab-pane',
-										controlfor: '{i.id}-tab-pane',
-										toggle: "tab",
-									},
-									i.label
-								)
-							);
-						})
-					),
-					new b.nav.content.container(
-						{ id: "myTabContent", marginTop: 3 },
-						d.map((i) => {
-							return new b.nav.content.item(
-								{
-									active: i.active,
-									id: '{i.id}-tab-pane',
-									role: "tabpanel",
-									labelledby: '{i.id}-tab',
-								},
-								'...'
-							);
-						})
-					),
-				];
+					return b.Nav.Tab({
+						item: [
+							{ label: "Home", active: true, elem: content("Home") },
+							{ label: "Profile", elem: content("Profile") },
+							{ label: "Disabled", disabled: true, elem: content("Disabled") },
+							{ label: "Messages", elem: content("Messages") },
+							{ label: "Settings", elem: content("Settings") },
+						],
+					});
 			}
 			`,
 		}),
@@ -701,59 +777,113 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Fade effect"),
 		new e.text(
-			"To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}}. The first tab pane must also have {{active:true}} to make the initial content visible."
+			"To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}} or {{b.Nav.Tab}}. The first tab pane must also have {{active:true}} to make the initial content visible."
 		),
 		new e.code({
 			output: () => {
-				const d = [
-					{ label: "Home", id: "home", active: true },
-					{ label: "Profile", id: "profile" },
-					{ label: "Messages", id: "messages" },
-					{ label: "Settings", id: "settings" },
-				];
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
-				return [
-					new b.nav.header.containerNav(
-						{
-							type: "tab",
-							role: "tablist",
-							id: "fade-tab",
-						},
-						d.map((i) => {
-							return new b.nav.header.button(
-								{
-									active: i.active,
-									id: `fade-${i.id}-tab`,
-									target: `#fade-${i.id}-tab-pane`,
-									controlfor: `fade-${i.id}-tab-pane`,
-									toggle: "tab",
-								},
-								i.label
-							);
-						})
-					),
-					new b.nav.content.container(
-						{ id: "fade-tabContent", marginTop: 3 },
-						d.map((i) => {
-							return new b.nav.content.item(
-								{
-									active: i.active,
-									animation: false,
-									id: `fade-${i.id}-tab-pane`,
-									role: "tabpanel",
-									labelledby: `fade-${i.id}-tab`,
-								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
-							);
-						})
-					),
-				];
+				return b.Nav.Tab({
+					animation: false,
+					item: [
+						{ label: "Home", active: true, elem: content("Home") },
+						{ label: "Profile", elem: content("Profile") },
+						{ label: "Messages", elem: content("Messages") },
+						{ label: "Settings", elem: content("Settings") },
+					],
+				});
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle("Methods"),
+		new e.title("Tab in card"),
+		new e.text("Just set {{container:'card'}} to {{b.Nav.Tab}} then wrap it using {{b.card.container}}"),
+		new e.code({
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				return new b.card.container(
+					b.Nav.Tab({
+						card: true,
+						item: [
+							{ label: "Home", active: true, elem: content("Home") },
+							{ label: "Profile", elem: content("Profile") },
+							{ label: "Messages", elem: content("Messages") },
+							{ label: "Settings", elem: content("Settings") },
+						],
+					})
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Pill in card"),
+		new e.text("Just set {{container:'card'}} and {{type:'pill'}} to {{b.Nav.Tab}}"),
+		new e.code({
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				return new b.card.container(
+					b.Nav.Tab({
+						card: true,
+						type: "pill",
+						item: [
+							{ label: "Home", active: true, elem: content("Home") },
+							{ label: "Profile", elem: content("Profile") },
+							{ label: "Messages", elem: content("Messages") },
+							{ label: "Settings", elem: content("Settings") },
+						],
+					})
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Tab in modal"),
+		new e.text(
+			"You also can put card tab in {{b.modal.body}}. Just make sure you add {{padding:0}} to {{b.modal.body}} and {{border:false}} to {{b.card.container}}."
+		),
+		new e.text("You may need to "),
+		new e.code({
+			previewAttr: { bgColor: "body-tertiary" },
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				return new b.modal.container({ debug: true }, [
+					new b.modal.header({ close: true }, new b.modal.title("Modal title")),
+					new b.modal.body(
+						{ padding: 0 },
+						new b.card.container(
+							{ border: false },
+							b.Nav.Tab({
+								card: true,
+								item: [
+									{ label: "Home", active: true, elem: content("Home") },
+									{ label: "Profile", elem: content("Profile") },
+									{ label: "Messages", elem: content("Messages") },
+									{ label: "Settings", elem: content("Settings") },
+								],
+							})
+						)
+					),
+					new b.modal.footer([
+						new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+						new b.button({ color: "primary" }, "Save changes"),
+					]),
+				]);
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Methods"),
 		new e.alert(
 			{ color: "danger", callout: true },
 			"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
@@ -833,12 +963,16 @@ export const nav: IAttrContent = {
 			`,
 		}),
 
+		new e.text("Example tracking event using {{b.nav.header.container}} or  {{b.nav.header.containerNav}}."),
 		new e.code({
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
 					target: HTMLElement;
 					relatedTarget: HTMLElement;
 				}
+
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
 				const d = [
 					{ label: "Home", id: "home", active: true },
@@ -913,11 +1047,68 @@ export const nav: IAttrContent = {
 									role: "tabpanel",
 									labelledby: `event-${i.id}-tab`,
 								},
-								`This is some placeholder content the {{b::${i.label} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`
+								content(i.label)
 							);
 						})
 					),
 				];
+			},
+		}),
+
+		new e.text("Or track event using {{b.Nav.Tab}}"),
+		new e.code({
+			output: () => {
+				interface EventWithTargetAndRelatedTarget extends Event {
+					target: HTMLElement;
+					relatedTarget: HTMLElement;
+				}
+
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				return b.Nav.Tab({
+					on: {
+						"shown.bs.tab": (event) => {
+							const evnt = event as EventWithTargetAndRelatedTarget;
+
+							b.toast.show(
+								"top-end",
+								b.Toast.Simple({
+									title: "shown.bs.tab",
+									color: "success",
+									elem: [
+										`target: {{b::${core.elemInfo(
+											evnt.target
+										)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+									],
+								})
+							);
+						},
+
+						"hidden.bs.tab": (event) => {
+							const evnt = event as EventWithTargetAndRelatedTarget;
+
+							b.toast.show(
+								"top-end",
+								b.Toast.Simple({
+									title: "hidden.bs.tab",
+									color: "danger",
+									elem: [
+										`target: {{b::${core.elemInfo(
+											evnt.target
+										)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+									],
+								})
+							);
+						},
+					},
+					item: [
+						{ label: "Home", active: true, elem: content("Home") },
+						{ label: "Profile", elem: content("Profile") },
+						{ label: "Messages", elem: content("Messages") },
+						{ label: "Settings", elem: content("Settings") },
+					],
+				});
 			},
 		}),
 	],
