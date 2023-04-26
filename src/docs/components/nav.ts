@@ -812,7 +812,6 @@ export const nav: IAttrContent = {
 							{ label: "Home", active: true, elem: content("Home") },
 							{ label: "Profile", elem: content("Profile") },
 							{ label: "Messages", elem: content("Messages") },
-							{ label: "Settings", elem: content("Settings") },
 						],
 					})
 				);
@@ -836,7 +835,6 @@ export const nav: IAttrContent = {
 							{ label: "Home", active: true, elem: content("Home") },
 							{ label: "Profile", elem: content("Profile") },
 							{ label: "Messages", elem: content("Messages") },
-							{ label: "Settings", elem: content("Settings") },
 						],
 					})
 				);
@@ -851,6 +849,7 @@ export const nav: IAttrContent = {
 		),
 		new e.text("You may need to "),
 		new e.code({
+			showViewport: true,
 			previewAttr: { bgColor: "body-tertiary" },
 			output: () => {
 				const content = (title: string) =>
@@ -864,11 +863,49 @@ export const nav: IAttrContent = {
 							{ border: false },
 							b.Nav.Tab({
 								card: true,
+								on: {
+									"shown.bs.tab": (event) => {
+										const target = (event.target as HTMLElement).closest(".modal") as HTMLElement;
+
+										// readjust the modal’s position
+										window.bootstrap.Modal.getInstance(target)?.handleUpdate;
+									},
+								},
 								item: [
-									{ label: "Home", active: true, elem: content("Home") },
-									{ label: "Profile", elem: content("Profile") },
-									{ label: "Messages", elem: content("Messages") },
-									{ label: "Settings", elem: content("Settings") },
+									{
+										label: new b.label(
+											{
+												icon: "house-fill",
+												labelDisplay: ["none", "md-block"],
+												iconDisplay: "md-none",
+											},
+											"Home"
+										),
+										active: true,
+										elem: content("Home"),
+									},
+									{
+										label: new b.label(
+											{
+												icon: "person-vcard-fill",
+												labelDisplay: ["none", "md-block"],
+												iconDisplay: "md-none",
+											},
+											"Home"
+										),
+										elem: content("Profile"),
+									},
+									{
+										label: new b.label(
+											{
+												icon: "envelope-at-fill",
+												labelDisplay: ["none", "md-block"],
+												iconDisplay: "md-none",
+											},
+											"Message"
+										),
+										elem: content("Messages"),
+									},
 								],
 							})
 						)
