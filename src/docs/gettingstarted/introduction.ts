@@ -43,7 +43,7 @@ export const introduction: IAttrContent = {
 					}),
 				]),
 				new h.div([
-					'{{b::Create a new }}{{bc::index.js}}{{b:: file in your project root}}. Import Bootstrap TS library {{import {core, h} from "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm";}} and write some code. Learn more about Bootstrap TS {{nav:docs/gettingstarted/introduction#expose_function::Exposed function}}.',
+					'{{b::Create a new }}{{bc::index.js}}{{b:: file in your project root}}. Import {{bsts}} library {{import {core, h} from "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm";}} and write some code. Learn more about {{bsts}} {{nav:docs/gettingstarted/introduction#expose_function::Exposed function}}.',
 					new e.codepreview({
 						class: "ms-n4",
 						marginStart: "md-0",
@@ -96,7 +96,7 @@ export const introduction: IAttrContent = {
 		//-----------------------
 
 		new e.title("Expose function"),
-		new e.text("As reference, here are Bootstrap TS primary CDN links."),
+		new e.text("As reference, here are {{bsts}} primary CDN links."),
 		new e.codepreview({
 			class: "ms-n4",
 			marginStart: "md-0",
@@ -108,7 +108,7 @@ export const introduction: IAttrContent = {
 		new e.table({
 			item: [
 				["Library", "Description"],
-				["core", "Core function to build html using Bootstrap TS"],
+				["core", "Core function to build html using {{bsts}}"],
 				["h", "HTML component"],
 				["b", "Bootstrap component"],
 				["t", "Main class that build all HTML and Bootstrap component"],
@@ -220,7 +220,7 @@ export const introduction: IAttrContent = {
 				`,
 		}),
 		new e.text(
-			"With the above snippet, nested elements—including generated content via {{:/:before}} and {{:/:after}}—will all inherit the specified {{box-sizing}} for that {{.selector-for-some-widget}}."
+			"With the above snippet, nested elements—including generated content via {{/://:/before}} and {{/://:/after}}—will all inherit the specified {{box-sizing}} for that {{.selector-for-some-widget}}."
 		),
 		new e.text("Learn more about {{https://css-tricks.com/box-sizing/::box model and sizing at CSS Tricks}}."),
 

@@ -8,7 +8,7 @@ export const close_button: IAttrContent = {
 	item: [
 		new e.title("Examples"),
 		new e.text(
-			"Provide an option to dismiss or close a component with {{b.btnclose}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as Bootstrap TS done with {{label}}."
+			"Provide an option to dismiss or close a component with {{b.btnclose}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as {{bsts}} done with {{label}}."
 		),
 		new e.code({
 			output: () => {

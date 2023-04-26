@@ -68,7 +68,7 @@ export const placeholder: IAttrContent = {
 			"Create placeholders with the {{loadingPlaceholder:true}} property and a grid column property (e.g., {{col:6}}) to set the {{width}}. They can replace the text inside an element or be added as a modifier class to an existing component."
 		),
 		new e.text(
-			"Bootstrap apply additional styling to {{b.button}}s via {{:/:before}} to ensure the {{height}} is respected. You may extend this pattern for other situations as needed, or add a {{empty string}} within the element to reflect the height when actual text is rendered in its place."
+			"Bootstrap apply additional styling to {{b.button}}s via {{/://:/before}} to ensure the {{height}} is respected. You may extend this pattern for other situations as needed, or add a {{empty string}} within the element to reflect the height when actual text is rendered in its place."
 		),
 		new e.code({
 			output: () => {

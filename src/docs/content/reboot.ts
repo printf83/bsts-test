@@ -106,7 +106,7 @@ export const reboot: IAttrContent = {
 		new e.ul({
 			item: [
 				new h.div([
-					"The {{box-sizing}} is globally set on every element—including {{*:/:before}} and {{*:/:after}}, to {{border-box}}. This ensures that the declared width of element is never exceeded due to padding or border.",
+					"The {{box-sizing}} is globally set on every element—including {{*/://:/before}} and {{*/://:/after}}, to {{border-box}}. This ensures that the declared width of element is never exceeded due to padding or border.",
 					new h.ul({
 						item: [
 							"No base {{font-size}} is declared on the {{<html>}}, but {{16px}} is assumed (the browser default). {{font-size: 1rem}} is applied on the {{<body>}} for easy responsive type-scaling via media queries while respecting user preferences and ensuring a more accessible approach. This browser default can be overridden by modifying the {{$font-size-root}} variable.",

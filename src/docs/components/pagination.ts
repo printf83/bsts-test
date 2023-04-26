@@ -71,7 +71,7 @@ export const pagination: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"Bootstrap TS automaticly swap out active or disabled {{b.pagination.item}} with {{h.span}}, to remove click functionality and prevent keyboard focus while retaining intended styles."
+			"{{bsts}} automaticly swap out active or disabled {{b.pagination.item}} with {{h.span}}, to remove click functionality and prevent keyboard focus while retaining intended styles."
 		),
 		new e.code({
 			output: () => {

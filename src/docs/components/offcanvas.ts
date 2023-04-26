@@ -32,7 +32,7 @@ export const offcanvas: IAttrContent = {
 		new e.title("Examples"),
 		new e.subtitle("Offcanvas components"),
 		new e.text(
-			"Below is an offcanvas example that is shown by default (via {{debug}} on {{b.offcanvas.container}}). Offcanvas includes support for a header ({{b.offcanvas.header}}) with a close button ({{b.offcanvas.btnclose}}) and an optional body ({b.offcanvas.body}) component for some initial {{padding}}. Bootstrap suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action."
+			"Below is an offcanvas example that is shown by default (via {{debug}} on {{b.offcanvas.container}}). Offcanvas includes support for a header ({{b.offcanvas.header}}) with a close button ({{b.offcanvas.btnclose}}) and an optional body ({{b.offcanvas.body}}) component for some initial {{padding}}. Bootstrap suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action."
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary", padding: 0 },

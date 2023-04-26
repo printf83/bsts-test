@@ -189,7 +189,7 @@ export const navbar: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"And because Bootstrap TS use Bootstrap classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."
+			"And because {{bsts}} use Bootstrap classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."
 		),
 		new e.code({
 			showViewport: true,

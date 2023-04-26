@@ -61,7 +61,7 @@ export const carousel: IAttrContent = {
 		new e.text(
 			"{{b::You must add the}} {{.active}} {{b::class to one of the slides}}, otherwise the carousel will not be visible. Also be sure to set a unique {{id}} on the {{.carousel}} for optional controls, especially if you’re using multiple carousels on a single page. Control and indicator elements must have a {{data-bs-target}} attribute (or {{href}} for links) that matches the {{id}} of the {{.carousel}} element."
 		),
-		new e.text("Bootstrap TS do this automaticly for you."),
+		new e.text("{{bsts}} do this automaticly for you."),
 
 		//-----------------------
 
@@ -154,7 +154,7 @@ export const carousel: IAttrContent = {
 		new e.text(
 			"You can make your carousels autoplay on page load by setting the {{ride}} option to {{carousel}}. Autoplaying carousels automatically pause while hovered with the mouse. This behavior can be controlled with the {{pause}} option. In browsers that support the {{https://www.w3.org/TR/page-visibility/::Page Visibility API}}, the carousel will stop cycling when the webpage is not visible to the user (such as when the browser tab is inactive, or when the browser window is minimized)."
 		),
-		new e.text("Bootstrap TS automaticly handle this."),
+		new e.text("{{bsts}} automaticly handle this."),
 		new e.alert({ color: "info", callout: true }, [
 			new h.p(
 				"For accessibility reasons, Bootstrap recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, Bootstrap recommend providing an additional button or control to explicitly pause/stop the carousel."

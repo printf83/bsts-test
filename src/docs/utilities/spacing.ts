@@ -99,7 +99,7 @@ export const spacing: IAttrContent = {
 		new e.title("Negative margin"),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"These negative margins are {{b::disabled by default}}, but can be enabled in Sass by setting {{$enable-negative-margins: true}}. Then, recompile your Sass. This features currently not supported by Bootstrap TS until it enable default by Bootstrap."
+			"These negative margins are {{b::disabled by default}}, but can be enabled in Sass by setting {{$enable-negative-margins: true}}. Then, recompile your Sass. This features currently not supported by {{bsts}} until it enable default by Bootstrap."
 		),
 		new e.text("In CSS, {{margin}} properties can utilize negative values ({{padding}} cannot)."),
 		new e.text(
@@ -113,7 +113,7 @@ export const spacing: IAttrContent = {
 				}
 				`,
 		}),
-		new e.text("If you like to use this feature in Bootstrap TS, you need to write the class manually:"),
+		new e.text("If you like to use this feature in {{bsts}}, you need to write the class manually:"),
 		new e.codepreview({
 			type: "js",
 			code: `
@@ -128,7 +128,7 @@ export const spacing: IAttrContent = {
 		new e.title("Gap"),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::CSS Grid is opt-in}}. Disable the default grid system by setting {{$enable-grid-classes: false}} and enable the CSS Grid by setting {{$enable-cssgrid: true}}. Then, recompile your Sass. This features currently not supported by Bootstrap TS until it enable default by Bootstrap."
+			"{{b::CSS Grid is opt-in}}. Disable the default grid system by setting {{$enable-grid-classes: false}} and enable the CSS Grid by setting {{$enable-cssgrid: true}}. Then, recompile your Sass. This features currently not supported by {{bsts}} until it enable default by Bootstrap."
 		),
 		new e.text(
 			"When using {{display: grid}} or {{display: flex}}, you can make use of {{gap}} utilities on the parent element. This can save on having to add margin utilities to individual children of a grid or flex container. Gap utilities are responsive by default, and are generated via Bootstrap utilities API, based on the {{$spacers}} Sass map."
@@ -145,7 +145,7 @@ export const spacing: IAttrContent = {
 				</div>
 				`,
 		}),
-		new e.text("If you like to use this feature in Bootstrap TS, you need to write the class manually:"),
+		new e.text("If you like to use this feature in {{bsts}}, you need to write the class manually:"),
 		new e.codepreview({
 			type: "js",
 			code: `

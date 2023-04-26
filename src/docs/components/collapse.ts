@@ -30,7 +30,7 @@ export const collapse: IAttrContent = {
 			],
 		}),
 		new e.text(
-			"Generally, Bootstrap TS recommend using a {{b.collapse.toggle}} with the {{target}} property. While not recommended from a semantic point of view, you can also use an {{b.collapse.toggle}} with the {{href}} property (Bootstrap TS automaticly add {{role:'button'}} and the {{toggle:'collapse'}} because it's required by Bootstrap."
+			"Generally, {{bsts}} recommend using a {{b.collapse.toggle}} with the {{target}} property. While not recommended from a semantic point of view, you can also use an {{b.collapse.toggle}} with the {{href}} property ({{bsts}} automaticly add {{role:'button'}} and the {{toggle:'collapse'}} because it's required by Bootstrap."
 		),
 		new e.code({
 			outputAttr: { gap: 2 },
@@ -152,7 +152,7 @@ export const collapse: IAttrContent = {
 		new e.text(
 			"Be sure to add {{aria-expanded}} to the control element. This attribute explicitly conveys the current state of the collapsible element tied to the control to screen readers and similar assistive technologies. If the collapsible element is closed by default, the attribute on the control element should have a value of {{aria-expanded='false'}}. If you’ve set the collapsible element to be open by default using the {{show}} class, set {{aria-expanded='true'}} on the control instead. The plugin will automatically toggle this attribute on the control based on whether or not the collapsible element has been opened or closed (via JavaScript, or because the user triggered another control element also tied to the same collapsible element). If the control element’s HTML element is not a button (e.g., an {{<a>}} or {{<div>}}), the attribute {{role='button'}} should be added to the element."
 		),
-		new e.text("Bootstrap TS automaticly handle this when you using {{b.collapse.toggle}}."),
+		new e.text("{{bsts}} automaticly handle this when you using {{b.collapse.toggle}}."),
 		new e.text(
 			"If your {{b.collapse.toggle}} component is targeting a single {{b.collapse.container}} component – i.e. the {{target}} property is pointing to an {{id}} selector – you should add the {{controlfor}} property to the control element, containing the {{id}} of the {{b.collapse.container}}. Modern screen readers and similar assistive technologies make use of this attribute to provide users with additional shortcuts to navigate directly to the {{b.collapse.container}} component itself."
 		),
@@ -222,12 +222,12 @@ export const collapse: IAttrContent = {
 		new e.text(
 			"Just add {{data-bs-toggle='collapse'}} and a {{data-bs-target}} to the element to automatically assign control of one or more collapsible elements. The {{data-bs-target}} attribute accepts a CSS selector to apply the collapse to. Be sure to add the class {{collapse}} to the collapsible element. If you’d like it to default open, add the additional class {{show}}."
 		),
-		new e.text("Bootstrap TS automaticly handle this when you using {{b.collapse.toggle}}."),
+		new e.text("{{bsts}} automaticly handle this when you using {{b.collapse.toggle}}."),
 
 		new e.text(
 			"To add accordion-like group management to a collapsible area, add the data attribute {{data-bs-parent='#selector'}}. Refer to the {{nav:docs/components/accordion::accordion page}} for more information."
 		),
-		new e.text("Bootstrap TS automaticly handle this when you using {{b.accordion.container}}."),
+		new e.text("{{bsts}} automaticly handle this when you using {{b.accordion.container}}."),
 
 		//-----------------------
 

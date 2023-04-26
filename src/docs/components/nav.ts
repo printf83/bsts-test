@@ -21,7 +21,7 @@ export const nav: IAttrContent = {
 				"To convey the active state to assistive technologies, use the {{aria-current}} attribute — using the page value for current page, or {{true}} for the current item in a set."
 			),
 			new h.p(
-				"By default, Bootstrap TS set {{aria-current:'page'}} when {{active:true}} on {{b.nav.header.link}}. Change it using {{current:true}} to change this behavior."
+				"By default, {{bsts}} set {{aria-current:'page'}} when {{active:true}} on {{b.nav.header.link}}. Change it using {{current:true}} to change this behavior."
 			),
 		]),
 		new e.code({
@@ -651,7 +651,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"You also can use Bootstrap TS {{b.Nav.Tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."
+			"You also can use {{bsts}} {{b.Nav.Tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."
 		),
 		new e.code({
 			output: () => {
@@ -704,7 +704,7 @@ export const nav: IAttrContent = {
 		new e.text(
 			"Dynamic tabbed interfaces, as described in the {{https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/::ARIA Authoring Practices Guide tabs pattern}}, require {{role:'tablist'}}, {{role:'tab'}}, {{role:'tabpanel'}}, and additional {{aria-}} attributes in order to convey their structure, functionality, and current state to users of assistive technologies (such as screen readers). As a best practice, Bootstrap recommend using {{h.button}} elements for the tabs, as these are controls that trigger a dynamic change, rather than links that navigate to a new page or location."
 		),
-		new e.text("Bootstrap TS will update this on next release."),
+		new e.text("{{bsts}} will update this on next release."),
 		new e.text(
 			"In line with the ARIA Authoring Practices pattern, only the currently active tab receives keyboard focus. When the JavaScript plugin is initialized, it will set {{tabindex='-1'}} on all inactive tab controls. Once the currently active tab has focus, the cursor keys activate the previous/next tab, with the plugin changing the {{https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/::roving tabindex}} accordingly. However, note that the JavaScript plugin does not distinguish between horizontal and vertical tab lists when it comes to cursor key interactions: regardless of the tab list’s orientation, both the up and left cursor go to the previous tab, and down and right cursor go to the next tab."
 		),

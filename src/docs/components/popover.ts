@@ -13,7 +13,7 @@ export const popover: IAttrContent = {
 			item: [
 				"Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
 				"Popovers require the {{nav:docs/components/popover::popover plugin}} as a dependency.",
-				"Popovers are opt-in for performance reasons, so {{b::you must initialize them yourself}}.",
+				"Popovers initialize by {{core.init}} function.",
 				"Zero-length {{title}} and {{content}} values will never show a popover.",
 				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
 				"Triggering popovers on hidden elements will not work.",

@@ -16,10 +16,10 @@ export const cssgrid: IAttrContent = {
 			"{{b::Heads up—Bootstrap CSS Grid system is experimental and opt-in as of v5.1.0!}} Bootstrap included it in Bootstrap documentation’s CSS to demonstrate it for you, but it’s disabled by default. Keep reading to learn how to enable it in your projects."
 		),
 		new e.alert({ color: "danger", callout: true }, [
-			new b.alert.header(5, "Unsuppoterd in Bootstrap TS"),
+			new b.alert.header(5, "Unsuppoterd in {{bsts}}"),
 			"This feature will supported when Bootstrap make it opt-in by default or available in CDN.",
 		]),
-		new e.text("If you like to use this feature using Bootstrap TS, you can manually set it by class property:"),
+		new e.text("If you like to use this feature using {{bsts}}, you can manually set it by class property:"),
 		new e.code({
 			output: () => {
 				return new h.div({ class: "grid", textAlign: "center" }, [

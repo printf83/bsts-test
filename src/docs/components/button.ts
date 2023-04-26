@@ -156,7 +156,7 @@ export const button: IAttrContent = {
 				"Disabled buttons using {{<a>}} should not include the {{href}} attribute.",
 			],
 		}),
-		new e.text("Bootstrap TS handle this if you using {{b.button({href:'#'})}} component"),
+		new e.text("{{bsts}} handle this if you using {{b.button({href:'#'})}} component"),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
@@ -172,7 +172,7 @@ export const button: IAttrContent = {
 		new e.text(
 			"To cover cases where you have to keep the {{href}} property on a disabled link, the {{disabled:true}} property uses {{pointer-events: none}} to try to disable the link functionality of {{h.a}}s. Note that this CSS property is not yet standardized for HTML, but all modern browsers support it. In addition, even in browsers that do support {{pointer-events: none}}, keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, in addition to {{aria-disabled='true'}}, also include a {{tabindex='-1'}} attribute on these links to prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether."
 		),
-		new e.text("Bootstrap TS handle this automaticly."),
+		new e.text("{{bsts}} handle this automaticly."),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
@@ -242,7 +242,7 @@ export const button: IAttrContent = {
 
 		new e.subtitle("Toggle states"),
 		new e.text(
-			"Add {{toggle:true}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{active:true}} property. The {{aria-pressed='true'}} add automaticly by Bootstrap TS to ensure that it is conveyed appropriately to assistive technologies."
+			"Add {{toggle:true}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{active:true}} property. The {{aria-pressed='true'}} add automaticly by {{bsts}} to ensure that it is conveyed appropriately to assistive technologies."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },

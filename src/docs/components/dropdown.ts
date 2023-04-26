@@ -52,7 +52,7 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"While {{b.dropdown.toggle}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{b.dropdown.toggle(href:'')}} component that create {{h.a}} component. Bootstrap TS automaticly add {{role='button'}} property which recomended by Bootstrap to appropriately convey control’s purpose to assistive technologies such as screen readers."
+			"While {{b.dropdown.toggle}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{b.dropdown.toggle(href:'')}} component that create {{h.a}} component. {{bsts}} automaticly add {{role='button'}} property which recomended by Bootstrap to appropriately convey control’s purpose to assistive technologies such as screen readers."
 		),
 		new e.code({
 			output: () => {
@@ -420,7 +420,7 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"By default Bootstrap TS set active item as {{aria-current:'true'}}. To convey the active state to assistive technologies, set {{current:'page'}} property — when you using the {{page}} value for the current page."
+			"By default {{bsts}} set active item as {{aria-current:'true'}}. To convey the active state to assistive technologies, set {{current:'page'}} property — when you using the {{page}} value for the current page."
 		),
 		new e.code({
 			output: () => {
