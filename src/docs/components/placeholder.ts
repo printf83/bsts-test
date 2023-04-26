@@ -65,10 +65,10 @@ export const placeholder: IAttrContent = {
 
 		new e.title("How it works"),
 		new e.text(
-			"Create placeholders with the {{.placeholder}} class and a grid column class (e.g., {{.col-6}}) to set the {{width}}. They can replace the text inside an element or be added as a modifier class to an existing component."
+			"Create placeholders with the {{loadingPlaceholder:true}} property and a grid column property (e.g., {{col:6}}) to set the {{width}}. They can replace the text inside an element or be added as a modifier class to an existing component."
 		),
 		new e.text(
-			"Bootstrap apply additional styling to {{.btn}}s via {{:/:before}} to ensure the {{height}} is respected. You may extend this pattern for other situations as needed, or add a {{&nbsp;}} within the element to reflect the height when actual text is rendered in its place."
+			"Bootstrap apply additional styling to {{b.button}}s via {{:/:before}} to ensure the {{height}} is respected. You may extend this pattern for other situations as needed, or add a {{empty string}} within the element to reflect the height when actual text is rendered in its place."
 		),
 		new e.code({
 			output: () => {
@@ -80,13 +80,13 @@ export const placeholder: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			" The use of {{aria-hidden='true'}} only indicates that the element should be hidden to screen readers. The loading behavior of the placeholder depends on how authors will actually use the placeholder styles, how they plan to update things, etc. Some JavaScript code may be needed to swap the state of the placeholder and inform AT users of the update."
+			" The use of {{aria:{hidden:'true'} }}only indicates that the element should be hidden to screen readers. The loading behavior of the placeholder depends on how authors will actually use the placeholder styles, how they plan to update things, etc. Some JavaScript code may be needed to swap the state of the placeholder and inform AT users of the update."
 		),
 
 		//-----------------------
 
 		new e.subtitle("Width"),
-		new e.text("You can change the {{width}} through grid column classes, width utilities, or inline styles."),
+		new e.text("You can change the {{width}} through grid column propertu, width utilities, or inline styles."),
 		new e.code({
 			output: () => {
 				return [
@@ -101,7 +101,7 @@ export const placeholder: IAttrContent = {
 
 		new e.subtitle("Colors"),
 		new e.text(
-			"By default, the {{placeholder}} uses {{currentColor}}. This can be overridden with a custom color or utility class."
+			"By default, the {{placeholder}} uses {{currentColor}}. This can be overridden with a custom color or utility property."
 		),
 		new e.code({
 			manager: (item: core.tag[]) => {
@@ -123,7 +123,7 @@ export const placeholder: IAttrContent = {
 
 		new e.subtitle("Sizing"),
 		new e.text(
-			"The size of {{.placeholders}} are based on the typographic style of the parent element. Customize them with sizing modifiers: {{.placeholder-lg}}, {{.placeholder-sm}}, or {{.placeholder-xs}}."
+			"The size of {{placeholders}} are based on the typographic style of the parent element. Customize them with sizing modifiers: {{placeholderWeight:'lg'}}, {{placeholderWeight:'sm'}}, or {{placeholderWeight:'xs'}}."
 		),
 		new e.code({
 			manager: (item: core.tag[]) => {
@@ -147,7 +147,7 @@ export const placeholder: IAttrContent = {
 
 		new e.subtitle("Animation"),
 		new e.text(
-			"Animate placeholders with {{.placeholder-glow}} or {{.placeholder-wave}} to better convey the perception of something being {{i::actively}} loaded."
+			"Animate placeholders with {{loadingPlaceholderAnimation:'glow'}} or {{loadingPlaceholderAnimation:'wave'}} to better convey the perception of something being {{i::actively}} loaded."
 		),
 		new e.code({
 			output: () => {
