@@ -1225,14 +1225,58 @@ export const dropdown: IAttrContent = {
 				],
 			],
 		}),
-		new e.codepreview({
-			type: "js",
-			code: `
-			const myDropdown = document.getElementById('myDropdown')
-			myDropdown.addEventListener('show.bs.dropdown', event => {
-			// do something...
-			})
-			`,
+
+		new e.code({
+			output: () => {
+				interface EventWithTargetAndRelatedTarget extends Event {
+					target: HTMLElement;
+					relatedTarget: HTMLElement;
+				}
+
+				return new b.dropdown.container(
+					{
+						on: {
+							"shown.bs.dropdown": (event) => {
+								const evnt = event as EventWithTargetAndRelatedTarget;
+
+								b.toast.show(
+									"top-end",
+									b.Toast.Simple({
+										title: "shown.bs.dropdown",
+										color: "success",
+										elem: [
+											`target: {{b::${core.elemInfo(
+												evnt.target
+											)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+										],
+									})
+								);
+							},
+
+							"hidden.bs.dropdown": (event) => {
+								const target = event.target as HTMLElement;
+
+								b.toast.show(
+									"top-end",
+									b.Toast.Simple({
+										title: "hidden.bs.dropdown",
+										color: "danger",
+										elem: [`target: {{b::${core.elemInfo(target)}}}`],
+									})
+								);
+							},
+						},
+					},
+					[
+						new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+						new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+						]),
+					]
+				);
+			},
 		}),
 	],
 };

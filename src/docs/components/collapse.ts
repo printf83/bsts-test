@@ -328,15 +328,7 @@ export const collapse: IAttrContent = {
 				],
 			],
 		}),
-		new e.codepreview({
-			type: "js",
-			code: `
-				const myCollapsible = document.getElementById('myCollapsible')
-				myCollapsible.addEventListener('hidden.bs.collapse', event => {
-					// do something...
-				})
-			`,
-		}),
+
 		new e.code({
 			outputAttr: { gap: 2 },
 			output: () => {

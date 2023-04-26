@@ -9,10 +9,10 @@ export const pagination: IAttrContent = {
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"Bootstrap use a large block of connected links for Bootstrap pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping {{<nav>}} element to identify it as a navigation section to screen readers and other assistive technologies."
+			"Bootstrap use a large block of connected links for Bootstrap pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. {{b.pagination.container}} use a wrapping {{h.nav}} element to identify it as a navigation section to screen readers and other assistive technologies."
 		),
 		new e.text(
-			"In addition, as pages likely have more than one such navigation section, it’s advisable to provide a descriptive {{aria-label}} for the {{<nav>}} to reflect its purpose. For example, if the pagination component is used to navigate between a set of search results, an appropriate label could be {{aria-label='Search results pages'}}."
+			"In addition, as pages likely have more than one such navigation section, it’s advisable to provide a descriptive {{label}} for the {{b.pagination.container}} to reflect its purpose. For example, if the pagination component is used to navigate between a set of search results, an appropriate label could be {{label:'Search results pages'}}."
 		),
 		new e.code({
 			output: () => {
@@ -30,19 +30,22 @@ export const pagination: IAttrContent = {
 
 		new e.title("Working with icons"),
 		new e.text(
-			"Looking to use an icon or symbol in place of text for some pagination links? Be sure to provide proper screen reader support with {{aria}} attributes."
+			"Looking to use an icon or symbol in place of text for some pagination links? Be sure to provide proper screen reader support with {{label}} attributes."
 		),
 		new e.code({
 			output: () => {
 				return new b.pagination.container({ label: "Page navigation example" }, [
 					new b.pagination.item(
 						{ href: "#", label: "Previous" },
-						new h.span({ aria: { hidden: true } }, "«")
+						new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-left"))
 					),
 					new b.pagination.item({ href: "#" }, "1"),
 					new b.pagination.item({ href: "#" }, "2"),
 					new b.pagination.item({ href: "#" }, "3"),
-					new b.pagination.item({ href: "#", label: "Next" }, new h.span({ aria: { hidden: true } }, "»")),
+					new b.pagination.item(
+						{ href: "#", label: "Next" },
+						new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-right"))
+					),
 				]);
 			},
 		}),
@@ -51,10 +54,10 @@ export const pagination: IAttrContent = {
 
 		new e.title("Disabled and active states"),
 		new e.text(
-			"Pagination links are customizable for different circumstances. Use {{.disabled}} for links that appear un-clickable and {{.active}} to indicate the current page."
+			"Pagination links ({{b.pagination.item}}) are customizable for different circumstances. Use {{disabled}} for links that appear un-clickable and {{active}} to indicate the current page."
 		),
 		new e.text(
-			"While the {{.disabled}} class uses {{pointer-events: none}} to {{i::try}} to disable the link functionality of {{<a>}}s, that CSS property is not yet standardized and doesn’t account for keyboard navigation. As such, you should always add {{tabindex='-1'}} on disabled links and use custom JavaScript to fully disable their functionality."
+			"The {{disabled}} property not just uses {{pointer-events: none}} to fully disable the functionality of {{b.pagination.item}}s"
 		),
 		new e.code({
 			output: () => {
@@ -68,7 +71,7 @@ export const pagination: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"You can optionally swap out active or disabled anchors for {{<span>}}, or omit the anchor in the case of the prev/next arrows, to remove click functionality and prevent keyboard focus while retaining intended styles."
+			"Bootstrap TS automaticly swap out active or disabled {{b.pagination.item}} with {{h.span}}, to remove click functionality and prevent keyboard focus while retaining intended styles."
 		),
 		new e.code({
 			output: () => {
@@ -76,7 +79,7 @@ export const pagination: IAttrContent = {
 					new b.pagination.item({ disabled: true }, "Previous"),
 					new b.pagination.item({ href: "#" }, "1"),
 					new b.pagination.item({ active: true }, "2"),
-					new b.pagination.item({ href: "#" }, "3"),
+					new b.pagination.item({ href: "#", disabled: true }, "3"),
 					new b.pagination.item({ href: "#" }, "Next"),
 				]);
 			},
@@ -85,9 +88,7 @@ export const pagination: IAttrContent = {
 		//-----------------------
 
 		new e.title("Sizing"),
-		new e.text(
-			"Fancy larger or smaller pagination? Add {{.pagination-lg}} or {{.pagination-sm}} for additional sizes."
-		),
+		new e.text("Fancy larger or smaller pagination? Add {{weight:'lg'}} or {{weight:'sm'}} for additional sizes."),
 		new e.code({
 			output: () => {
 				return new b.pagination.container({ label: "...", weight: "lg" }, [
@@ -111,7 +112,7 @@ export const pagination: IAttrContent = {
 
 		new e.title("Alignment"),
 		new e.text(
-			"Change the alignment of pagination components with {{nav:docs/utilities/flex::flexbox utilities}}. For example, with {{.justify-content-center}}:"
+			"Change the alignment of pagination components with {{nav:docs/utilities/flex::flexbox utilities}}. For example, with {{justifyContent:'center'}}:"
 		),
 		new e.code({
 			output: () => {
@@ -124,7 +125,7 @@ export const pagination: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("Or with {{.justify-content-end}}:"),
+		new e.text("Or with {{justifyContent:'end'}}:"),
 		new e.code({
 			output: () => {
 				return new b.pagination.container({ label: "Page navigation example", justifyContent: "end" }, [

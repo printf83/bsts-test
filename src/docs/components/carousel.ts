@@ -527,7 +527,7 @@ export const carousel: IAttrContent = {
 							},
 						},
 					},
-					"Show event preview"
+					"Show carousel event"
 				);
 			},
 		}),

@@ -989,17 +989,6 @@ export const nav: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const tabEl = document.querySelector('button[data-bs-toggle="tab"]')
-				tabEl.addEventListener('shown.bs.tab', event => {
-				event.target // newly activated tab
-				event.relatedTarget // previous active tab
-				})
-			`,
-		}),
-
 		new e.text("Example tracking event using {{b.nav.header.container}} or  {{b.nav.header.containerNav}}."),
 		new e.code({
 			output: () => {

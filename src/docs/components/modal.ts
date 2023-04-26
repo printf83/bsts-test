@@ -1385,16 +1385,6 @@ export const modal: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const myModalEl = document.getElementById('myModal')
-				myModalEl.addEventListener('hidden.bs.modal', event => {
-				// do something...
-				})
-			`,
-		}),
-
 		new e.code({
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
@@ -1404,7 +1394,7 @@ export const modal: IAttrContent = {
 
 				return [
 					// Button trigger modal
-					new b.button({ color: "primary", toggle: "modal", target: "#eventModal" }, "Launch event modal"),
+					new b.button({ color: "primary", toggle: "modal", target: "#eventModal" }, "Show modal event"),
 
 					// Modal
 					new b.modal.container(
