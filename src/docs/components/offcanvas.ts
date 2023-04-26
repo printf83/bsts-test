@@ -32,7 +32,7 @@ export const offcanvas: IAttrContent = {
 		new e.title("Examples"),
 		new e.subtitle("Offcanvas components"),
 		new e.text(
-			"Below is an offcanvas example that is shown by default (via {{.show}} on {{.offcanvas}}). Offcanvas includes support for a header with a close button and an optional body class for some initial {{padding}}. Bootstrap suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action."
+			"Below is an offcanvas example that is shown by default (via {{debug}} on {{b.offcanvas.container}}). Offcanvas includes support for a header ({{b.offcanvas.header}}) with a close button ({{b.offcanvas.btnclose}}) and an optional body ({b.offcanvas.body}) component for some initial {{padding}}. Bootstrap suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action."
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary", padding: 0 },
@@ -59,10 +59,10 @@ export const offcanvas: IAttrContent = {
 
 		new e.subtitle("Live demo"),
 		new e.text(
-			"Use the buttons below to show and hide an offcanvas element via JavaScript that toggles the {{.show}} class on an element with the {{.offcanvas}} class."
+			"Use the buttons below to show and hide an offcanvas element via JavaScript that toggles the {{b.offcanvas.container}} component."
 		),
 		new e.ul({
-			item: ["{{.offcanvas}} hides content (default)", "{{.offcanvas.show}} shows content"],
+			item: ["{{b.offcanvas.container}} hides content (default)", "{{hide:false}} to shows content"],
 		}),
 		new e.code({
 			output: () => {
@@ -102,7 +102,7 @@ export const offcanvas: IAttrContent = {
 
 		new e.subtitle("Body scrolling"),
 		new e.text(
-			"Scrolling the {{<body>}} element is disabled when an offcanvas and its backdrop are visible. Use the {{data-bs-scroll}} attribute to enable {{<body>}} scrolling."
+			"Scrolling the {{<body>}} element is disabled when an offcanvas and its backdrop are visible. Use the {{scroll:true}} property to enable {{<body>}} scrolling."
 		),
 		new e.code({
 			output: () => {
@@ -138,7 +138,9 @@ export const offcanvas: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Body scrolling and backdrop"),
-		new e.text("You can also enable {{<body>}} scrolling with a visible backdrop."),
+		new e.text(
+			"You can also enable {{<body>}} scrolling with a visible backdrop by set {{scroll:true}} and {{backdrop:true}}."
+		),
 		new e.code({
 			output: () => {
 				return [
@@ -173,7 +175,7 @@ export const offcanvas: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Static backdrop"),
-		new e.text("When backdrop is set to static, the offcanvas will not close when clicking outside of it."),
+		new e.text("When {{backdrop}} is set to {{static}}, the offcanvas will not close when clicking outside of it."),
 		new e.code({
 			output: () => {
 				return [
@@ -203,11 +205,11 @@ export const offcanvas: IAttrContent = {
 
 		new e.title("Dark offcanvas"),
 		new e.text(
-			"Change the appearance of offcanvases with utilities to better match them to different contexts like dark navbars. Here Bootstrap add {{.text-bg-dark}} to the {{.offcanvas}} and {{.btn-close-white}} to {{.btn-close}} for proper styling with a dark offcanvas. If you have dropdowns within, consider also adding {{.dropdown-menu-dark}} to {{.dropdown-menu}}."
+			"Change the appearance of offcanvases to dark by setting {{theme:'dark'}} to {{b.offcanvas.container}}."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of manually adding classes mentioned above, set {{data-bs-theme='dark'}} on the root element, a parent wrapper, or the component itself."
+			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes."
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary", padding: 0 },
@@ -233,7 +235,7 @@ export const offcanvas: IAttrContent = {
 
 		new e.title("Responsive"),
 		new e.text(
-			"Responsive offcanvas classes hide content outside the viewport from a specified breakpoint and down. Above that breakpoint, the contents within will behave as usual. For example, {{.offcanvas-lg}} hides content in an offcanvas below the {{lg}} breakpoint, but shows the content above the {{lg}} breakpoint."
+			"Responsive offcanvas classes hide content outside the viewport from a specified breakpoint and down. Above that breakpoint, the contents within will behave as usual. For example, {{show:'lg'}} hides content in an offcanvas below the {{lg}} breakpoint, but shows the content above the {{lg}} breakpoint."
 		),
 		new e.code({
 			showViewport: true,
@@ -255,7 +257,7 @@ export const offcanvas: IAttrContent = {
 						{
 							id: "offcanvasResponsive",
 							placement: "end",
-							hide: "lg",
+							show: "lg",
 							labelledby: "offcanvasResponsiveLabel",
 						},
 						[
@@ -264,7 +266,7 @@ export const offcanvas: IAttrContent = {
 								new b.offcanvas.btnclose({ target: "#offcanvasResponsive" }),
 							]),
 							new b.offcanvas.body(
-								new h.p({ marginBottom: 0 }, "This is content within an {{.offcanvas-lg}}.")
+								new h.p({ marginBottom: 0 }, "This is content within an {{show:lg}}.")
 							),
 						]
 					),
@@ -274,12 +276,12 @@ export const offcanvas: IAttrContent = {
 		new e.text("Responsive offcanvas classes are available across for each breakpoint."),
 		new e.ul({
 			item: [
-				"{{.offcanvas}}",
-				"{{.offcanvas-sm}}",
-				"{{.offcanvas-md}}",
-				"{{.offcanvas-lg}}",
-				"{{.offcanvas-xl}}",
-				"{{.offcanvas-xxl}}",
+				"{{show:true}}",
+				"{{show:'sm'}}",
+				"{{show:'md'}}",
+				"{{show:'lg'}}",
+				"{{show:'xl'}}",
+				"{{show:'xxl'}}",
 			],
 		}),
 
@@ -291,10 +293,10 @@ export const offcanvas: IAttrContent = {
 		),
 		new e.ul({
 			item: [
-				"{{.offcanvas-start}} places offcanvas on the left of the viewport (shown above)",
-				"{{.offcanvas-end}} places offcanvas on the right of the viewport",
-				"{{.offcanvas-top}} places offcanvas on the top of the viewport",
-				"{{.offcanvas-bottom}} places offcanvas on the bottom of the viewport",
+				"{{placement:'start'}} places offcanvas on the left of the viewport (shown above)",
+				"{{placement:'end'}} places offcanvas on the right of the viewport",
+				"{{placement:'top'}} places offcanvas on the top of the viewport",
+				"{{placement:'bottom'}} places offcanvas on the bottom of the viewport",
 			],
 		}),
 		new e.text("Try the top, right, and bottom examples out below."),
@@ -375,7 +377,7 @@ export const offcanvas: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Since the offcanvas panel is conceptually a modal dialog, be sure to add {{aria-labelledby='...'}}—referencing the offcanvas title—to {{.offcanvas}}. Note that you don’t need to add {{role='dialog'}} since Bootstrap already add it via JavaScript."
+			"Since the offcanvas panel is conceptually a modal dialog, be sure to add {{labelledby:'...'}}—referencing the offcanvas title—to {{b.offcanvas.title(id)}}. Note that you don’t need to add {{role:'dialog'}} since Bootstrap already add it via JavaScript."
 		),
 
 		//-----------------------
@@ -435,16 +437,16 @@ export const offcanvas: IAttrContent = {
 		new e.text("The offcanvas plugin utilizes a few classes and attributes to handle the heavy lifting:"),
 		new e.ul({
 			item: [
-				"{{.offcanvas}} hides the content",
-				"{{.offcanvas.show}} shows the content",
-				"{{.offcanvas-start}} hides the offcanvas on the left",
-				"{{.offcanvas-end}} hides the offcanvas on the right",
-				"{{.offcanvas-top}} hides the offcanvas on the top",
-				"{{.offcanvas-bottom}} hides the offcanvas on the bottom",
+				"{{show:false}} hides the content",
+				"{{show:true}} shows the content",
+				"{{placement:'start'}} hides the offcanvas on the left",
+				"{{placement:'end'}} hides the offcanvas on the right",
+				"{{placement:'top'}} hides the offcanvas on the top",
+				"{{placement:'bottom'}} hides the offcanvas on the bottom",
 			],
 		}),
 		new e.text(
-			"Add a dismiss button with the {{data-bs-dismiss='offcanvas'}} attribute, which triggers the JavaScript functionality. Be sure to use the {{<button>}} element with it for proper behavior across all devices."
+			"Add a dismiss button with the {{dismiss:'offcanvas'}} property, which triggers the JavaScript functionality. Be sure to use the {{b.button}} component with it for proper behavior across all devices."
 		),
 
 		//-----------------------
@@ -452,16 +454,17 @@ export const offcanvas: IAttrContent = {
 		new e.subtitle("Via data attributes"),
 		new e.xsubtitle("Toggle"),
 		new e.text(
-			"Add {{data-bs-toggle='offcanvas'}} and a {{data-bs-target}} or {{href}} to the element to automatically assign control of one offcanvas element. The {{data-bs-target}} attribute accepts a CSS selector to apply the offcanvas to. Be sure to add the class {{offcanvas}} to the offcanvas element. If you’d like it to default open, add the additional class {{show}}."
+			"Add {{toggle:'offcanvas'}} and a {{target}} or {{href}} to the component to automatically assign control of one offcanvas component. The {{target}} property accepts a CSS selector to apply the offcanvas to. Be sure to add the class {{offcanvas}} to the offcanvas element. If you’d like it to default open, add the additional class {{show}}."
 		),
 		new e.xsubtitle("Dismiss"),
 		new e.text(
-			"Dismissal can be achieved with the {{data-bs-dismiss}} attribute on a button {{b::within the offcanvas}} as demonstrated below:"
+			"Dismissal can be achieved with the {{dismiss}} property on a {{b.button}} {{b::within the offcanvas}} as demonstrated below:"
 		),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				b.offcanvas.btnclose();
+				b.button({dismiss:"offcanvas"});
 			`,
 		}),
 		new e.text(
@@ -470,7 +473,8 @@ export const offcanvas: IAttrContent = {
 		new e.codepreview({
 			type: "html",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#my-offcanvas" aria-label="Close"></button>
+				b.offcanvas.btnclose({target:"#myOffcanvas"});
+				b.button({dismiss:"offcanvas",target:"#myOffcanvas"});
 			`,
 		}),
 		new e.alert(

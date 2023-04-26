@@ -715,7 +715,7 @@ const convert = (attr: IBsMainContainer) => {
 								id: "bsNavbar",
 								bgColor: attr.bgColor || "primary",
 								placement: "end",
-								hide: "lg",
+								show: "lg",
 								flex: "grow-1",
 								labelledby: "bsNavbarOffcanvasLabel",
 								scroll: true,
@@ -760,7 +760,7 @@ const convert = (attr: IBsMainContainer) => {
 				new b.offcanvas.container(
 					{
 						id: "bsSidebar",
-						hide: "lg",
+						show: "lg",
 						placement: "start",
 						labelledby: "bsSidebarOffcanvasLabel",
 					},
