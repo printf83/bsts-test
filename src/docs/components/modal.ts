@@ -1430,23 +1430,6 @@ export const modal: IAttrContent = {
 									);
 								},
 
-								"show.bs.modal": (event) => {
-									const evnt = event as EventWithTargetAndRelatedTarget;
-
-									b.toast.show(
-										"top-end",
-										b.Toast.Simple({
-											title: "show.bs.modal",
-											color: "info",
-											elem: [
-												`target: {{b::${core.elemInfo(
-													evnt.target
-												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-											],
-										})
-									);
-								},
-
 								"hidden.bs.modal": (event) => {
 									const target = event.target as HTMLElement;
 
@@ -1455,19 +1438,6 @@ export const modal: IAttrContent = {
 										b.Toast.Simple({
 											title: "hidden.bs.modal",
 											color: "danger",
-											elem: [`target: {{b::${core.elemInfo(target)}}}`],
-										})
-									);
-								},
-
-								"hide.bs.modal": (event) => {
-									const target = event.target as HTMLElement;
-
-									b.toast.show(
-										"top-end",
-										b.Toast.Simple({
-											title: "hide.bs.modal",
-											color: "info",
 											elem: [`target: {{b::${core.elemInfo(target)}}}`],
 										})
 									);

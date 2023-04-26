@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -593,6 +593,92 @@ export const offcanvas: IAttrContent = {
 				// do something...
 				})
 			`,
+		}),
+
+		new e.code({
+			output: () => {
+				interface EventWithTargetAndRelatedTarget extends Event {
+					target: HTMLElement;
+					relatedTarget: HTMLElement;
+				}
+
+				return [
+					new b.offcanvas.toggle(
+						{ target: "#offcanvasEventExample", controlfor: "offcanvasEventExample" },
+						"Show offcanvas event"
+					),
+					new b.offcanvas.container(
+						{
+							id: "offcanvasEventExample",
+							labelledby: "offcanvasEventExampleLabel",
+							backdrop: "static",
+							on: {
+								"shown.bs.offcanvas": (event) => {
+									const evnt = event as EventWithTargetAndRelatedTarget;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "shown.bs.offcanvas",
+											color: "success",
+											elem: [
+												`target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+											],
+										})
+									);
+								},
+
+								"hidden.bs.offcanvas": (event) => {
+									const target = event.target as HTMLElement;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "hidden.bs.offcanvas",
+											color: "danger",
+											elem: [`target: {{b::${core.elemInfo(target)}}}`],
+										})
+									);
+								},
+
+								"hidePrevented.bs.offcanvas": (event) => {
+									const target = event.target as HTMLElement;
+
+									b.toast.show(
+										"top-end",
+										b.Toast.Simple({
+											title: "hidePrevented.bs.offcanvas",
+											color: "warning",
+											elem: [`target: {{b::${core.elemInfo(target)}}}`],
+										})
+									);
+								},
+							},
+						},
+						[
+							new b.offcanvas.header([
+								new b.offcanvas.title({ id: "offcanvasEventExampleLabel" }, "Offcanvas"),
+								new b.offcanvas.btnclose(),
+							]),
+							new b.offcanvas.body([
+								new h.div(
+									"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+								),
+								new b.dropdown.container({ marginTop: 3 }, [
+									new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+									new b.dropdown.menu([
+										new b.dropdown.item({ href: "#" }, "Action"),
+										new b.dropdown.item({ href: "#" }, "Another action"),
+										new b.dropdown.item({ href: "#" }, "Something else here"),
+									]),
+								]),
+							]),
+						]
+					),
+				];
+			},
 		}),
 	],
 };
