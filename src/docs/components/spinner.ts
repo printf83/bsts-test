@@ -205,14 +205,14 @@ export const spinner: IAttrContent = {
 				return [
 					new b.button(
 						{ disabled: true },
-						new b.label(
+						new b.caption(
 							{ iconPosition: "end", icon: new b.spinner({ type: "border", small: true }, "") },
 							"Loading"
 						)
 					),
 					new b.button(
 						{ disabled: true },
-						new b.label({ icon: new b.spinner({ type: "border", small: true }, "") }, "Loading")
+						new b.caption({ icon: new b.spinner({ type: "border", small: true }, "") }, "Loading")
 					),
 				];
 			},
@@ -223,14 +223,14 @@ export const spinner: IAttrContent = {
 				return [
 					new b.button(
 						{ disabled: true },
-						new b.label(
+						new b.caption(
 							{ iconPosition: "end", icon: new b.spinner({ type: "grow", small: true }, "") },
 							"Loading"
 						)
 					),
 					new b.button(
 						{ disabled: true },
-						new b.label({ icon: new b.spinner({ type: "grow", small: true }, "") }, "Loading")
+						new b.caption({ icon: new b.spinner({ type: "grow", small: true }, "") }, "Loading")
 					),
 				];
 			},

@@ -149,7 +149,7 @@ export const navbar: IAttrContent = {
 						{ container: "fluid" },
 						new b.navbar.brand(
 							{ href: "#" },
-							new b.label({ icon: b.icon.brand("bootstrap", { textColor: "primary" }) }, "Bootstrap")
+							new b.caption({ icon: b.icon.brand("bootstrap", { textColor: "primary" }) }, "Bootstrap")
 						)
 					)
 				);

@@ -873,11 +873,9 @@ export const nav: IAttrContent = {
 								},
 								item: [
 									{
-										label: new b.label(
+										label: new b.caption(
 											{
 												icon: "house-fill",
-												labelDisplay: ["none", "md-block"],
-												iconDisplay: "md-none",
 											},
 											"Home"
 										),
@@ -885,7 +883,7 @@ export const nav: IAttrContent = {
 										elem: content("Home"),
 									},
 									{
-										label: new b.label(
+										label: new b.caption(
 											{
 												icon: "person-vcard-fill",
 												labelDisplay: ["none", "md-block"],
@@ -896,7 +894,7 @@ export const nav: IAttrContent = {
 										elem: content("Profile"),
 									},
 									{
-										label: new b.label(
+										label: new b.caption(
 											{
 												icon: "envelope-at-fill",
 												labelDisplay: ["none", "md-block"],

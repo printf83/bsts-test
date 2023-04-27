@@ -183,7 +183,7 @@ export const toast: IAttrContent = {
 
 					switch (color) {
 						case "danger":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "x-circle-fill", {
 									fontSize: 5,
 								}),
@@ -191,7 +191,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						case "dark":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "info-circle-fill", {
 									fontSize: 5,
 								}),
@@ -199,7 +199,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						case "info":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "info-circle-fill", {
 									fontSize: 5,
 								}),
@@ -207,7 +207,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						case "light":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "info-circle-fill", {
 									fontSize: 5,
 								}),
@@ -215,7 +215,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						case "primary":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "info-circle-fill", {
 									fontSize: 5,
 								}),
@@ -223,7 +223,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						case "secondary":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "info-circle-fill", {
 									fontSize: 5,
 								}),
@@ -231,7 +231,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						case "success":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "check-circle-fill", {
 									fontSize: 5,
 								}),
@@ -239,7 +239,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						case "warning":
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "exclamation-triangle-fill", {
 									fontSize: 5,
 								}),
@@ -247,7 +247,7 @@ export const toast: IAttrContent = {
 							});
 							break;
 						default:
-							tElem = new b.label({
+							tElem = new b.caption({
 								icon: b.icon.bi(icon || "info-circle-fill", {
 									fontSize: 5,
 								}),

@@ -128,8 +128,8 @@ export const alert: IAttrContent = {
 			output: () => {
 				return new b.alert.container(
 					{ color: "info" },
-					new b.label(
-						{ icon: b.icon.bi("info-circle-fill", { fontSize: 5 }) },
+					new b.caption(
+						{ gap: 3, icon: b.icon.bi("info-circle-fill", { fontSize: 5 }) },
 						" An example alert with an icon"
 					)
 				);
@@ -150,7 +150,7 @@ export const alert: IAttrContent = {
 					{ color: "danger", icon: b.icon.bi("x-circle-fill", { fontSize: 5 }) },
 				].map((i) => {
 					return new b.alert.container({ color: i.color as core.bootstrapType.color }, [
-						new b.label({ icon: i.icon }, `An example ${i.color} alert with an icon`),
+						new b.caption({ gap: 3, icon: i.icon }, `An example ${i.color} alert with an icon`),
 					]);
 				});
 			},

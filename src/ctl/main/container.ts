@@ -29,7 +29,7 @@ const changeTheme = (value: string, icon: b.IBsIcon) => {
 		newActive.setAttribute("aria-current", "true");
 	}
 
-	core.replaceChild(bsTheme, new b.label({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
+	core.replaceChild(bsTheme, new b.caption({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme"));
 
 	let root = bsTheme.closest(".bs-main-root");
 	dispatchCustomEvent(root, "bs-theme-change", value);
@@ -200,7 +200,7 @@ const genTheme = (
 							alignItem: "center",
 							textColor: textColor,
 						},
-						new b.label(
+						new b.caption(
 							{
 								icon: currentIcon,
 								labelDisplay: "lg-none",
@@ -221,7 +221,7 @@ const genTheme = (
 									active: i.value === currentTheme,
 									data: { value: i.value },
 								},
-								new b.label({ icon: i.icon }, i.label)
+								new b.caption({ icon: i.icon }, i.label)
 							);
 						})
 					),
@@ -317,7 +317,7 @@ const genOutsideLink = (
 									href: i.href,
 									target: "_blank",
 								},
-								new b.label({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
+								new b.caption({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
 							),
 						]);
 				  })
@@ -377,7 +377,7 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 						alignItem: "center",
 						fontWeight: "semibold",
 					},
-					new b.label({ icon: i.icon }, i.label)
+					new b.caption({ icon: i.icon }, i.label)
 				),
 				new h.ul(
 					{
