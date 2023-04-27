@@ -35,6 +35,7 @@ export const containers: IAttrContent = {
 				"X-Large (≥1200px)",
 				"XX-Large (≥1400px)",
 			],
+			responsiveCol: "20ch auto",
 			item: [
 				[
 					"",
