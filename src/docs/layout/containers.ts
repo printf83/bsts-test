@@ -26,6 +26,15 @@ export const containers: IAttrContent = {
 			"See them in action and compare them in Bootstrap {{https://getbootstrap.com/docs/5.3/examples/grid/#containers::Grid example}}."
 		),
 		new e.table({
+			responsiveHeader: [
+				"Property",
+				"Extra small (576px)",
+				"Small (≥576px)",
+				"Medium (≥768px)",
+				"Large (≥992px)",
+				"X-Large (≥1200px)",
+				"XX-Large (≥1400px)",
+			],
 			item: [
 				[
 					"",

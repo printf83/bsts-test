@@ -187,229 +187,460 @@ export const color: IAttrContent = {
 			{ color: "warning", callout: true },
 			"{{b::Heads up!}} There’s some potential confusion with our new secondary and tertiary colors, and our existing secondary theme color, as well as our light and dark theme colors. Expect this to be ironed out in v6."
 		),
-		new e.table([
-			new b.table.thead(
-				new b.table.tr([
-					new b.table.th({ scope: "col" }, "Description"),
-					new b.table.th({ scope: "col" }, "Swatch"),
-					new b.table.th({ scope: "col", style: { minWidth: "15rem" } }, "Variables"),
-				])
-			),
+		new e.table(
+			{
+				responsiveAttr: "bs-title-name",
+				responsiveCol: "15ch auto",
+				responsiveColXs: "auto",
+			},
+			[
+				new b.table.thead(
+					new b.table.tr([
+						new b.table.th({ scope: "col" }, "Description"),
+						new b.table.th({ scope: "col" }, "Swatch"),
+						new b.table.th({ scope: "col", style: { minWidth: "15rem" } }, "Variables"),
+					])
+				),
 
-			new b.table.tbody([
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 2 },
-						"{{b::Body — }}Default foreground (color) and background, including components."
-					),
-					new b.table.td(colorpickerBg(["--bs-body-color", "--bs-body-color-rgb"])),
-					new b.table.td(["{{--bs-body-color}}{{br}}{{--bs-body-color-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg(["--bs-body-bg", "--bs-body-bg-rgb"])),
-					new b.table.td(["{{--bs-body-bg}}{{br}}{{--bs-body-bg-rgb}}"]),
-				]),
+				new b.table.tbody([
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 2, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div("{{b::Body — }}Default foreground (color) and background, including components.")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-body-color", "--bs-body-color-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-body-color}}{{br}}{{--bs-body-color-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-body-bg", "--bs-body-bg-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-body-bg}}{{br}}{{--bs-body-bg-rgb}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 2 },
-						"{{b::Secondary — }}Use the {{color}} option for lighter text. Use the {{bg}} option for dividers and to indicate disabled component states."
-					),
-					new b.table.td(colorpickerBg(["--bs-secondary-color", "--bs-secondary-color-rgb"])),
-					new b.table.td(["{{--bs-secondary-color}}{{br}}{{--bs-secondary-color-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg(["--bs-secondary-bg", "--bs-secondary-bg-rgb"])),
-					new b.table.td(["{{--bs-secondary-bg}}{{br}}{{--bs-secondary-bg-rgb}}"]),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 2, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div(
+								"{{b::Secondary — }}Use the {{color}} option for lighter text. Use the {{bg}} option for dividers and to indicate disabled component states."
+							)
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-secondary-color", "--bs-secondary-color-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-secondary-color}}{{br}}{{--bs-secondary-color-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-secondary-bg", "--bs-secondary-bg-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-secondary-bg}}{{br}}{{--bs-secondary-bg-rgb}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 2 },
-						"{{b::Tertiary — }}Use the {{color}} option for even lighter text. Use the {{bg}} option to style backgrounds for hover states, accents, and wells."
-					),
-					new b.table.td(colorpickerBg(["--bs-tertiary-color", "--bs-tertiary-color-rgb"])),
-					new b.table.td(["{{--bs-tertiary-color}}{{br}}{{--bs-tertiary-color-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg(["--bs-tertiary-bg", "--bs-tertiary-bg-rgb"])),
-					new b.table.td(["{{--bs-tertiary-bg}}{{br}}{{--bs-tertiary-bg-rgb}}"]),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 2, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div(
+								"{{b::Tertiary — }}Use the {{color}} option for even lighter text. Use the {{bg}} option to style backgrounds for hover states, accents, and wells."
+							)
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-tertiary-color", "--bs-tertiary-color-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-tertiary-color}}{{br}}{{--bs-tertiary-color-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-tertiary-bg", "--bs-tertiary-bg-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-tertiary-bg}}{{br}}{{--bs-tertiary-bg-rgb}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td("{{b::Emphasis — }}For higher contrast text. Not applicable for backgrounds."),
-					new b.table.td(colorpickerBg(["--bs-emphasis-color", "--bs-emphasis-color-rgb"])),
-					new b.table.td(["{{--bs-emphasis-color}}{{br}}{{--bs-emphasis-color-rgb}}"]),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div("{{b::Emphasis — }}For higher contrast text. Not applicable for backgrounds.")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-emphasis-color", "--bs-emphasis-color-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-emphasis-color}}{{br}}{{--bs-emphasis-color-rgb}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						"{{b::Border — }}For component borders, dividers, and rules. Use {{--bs-border-color-translucent}} to blend with backgrounds with an {{rgba()}} value."
-					),
-					new b.table.td(colorpickerBg(["--bs-border-color", "--bs-border-color-rgb"])),
-					new b.table.td(["{{--bs-border-color}}{{br}}{{--bs-border-color-rgb}}"]),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div(
+								"{{b::Border — }}For component borders, dividers, and rules. Use {{--bs-border-color-translucent}} to blend with backgrounds with an {{rgba()}} value."
+							)
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-border-color", "--bs-border-color-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-border-color}}{{br}}{{--bs-border-color-rgb}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 4 },
-						"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
-					),
-					new b.table.td(colorpickerBg(["--bs-primary", "--bs-primary-rgb", "--bs-dropdown-link-active-bg"])),
-					new b.table.td(["{{--bs-primary}}{{br}}{{--bs-primary-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg("--bs-primary-bg-subtle")),
-					new b.table.td("{{--bs-primary-bg-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBorder("--bs-primary-border-subtle")),
-					new b.table.td("{{--bs-primary-border-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerText("--bs-primary-text-emphasis")),
-					new b.table.td("{{--bs-primary-text-emphasis}}"),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div(
+								"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
+							)
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-primary", "--bs-primary-rgb", "--bs-dropdown-link-active-bg"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-primary}}{{br}}{{--bs-primary-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg("--bs-primary-bg-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-primary-bg-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBorder("--bs-primary-border-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-primary-border-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerText("--bs-primary-text-emphasis")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-primary-text-emphasis}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 4 },
-						"{{b::Success — }}Theme color used for positive or successful actions and information."
-					),
-					new b.table.td(colorpickerBg(["--bs-success", "--bs-success-rgb"])),
-					new b.table.td(["{{--bs-success}}{{br}}{{--bs-success-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg("--bs-success-bg-subtle")),
-					new b.table.td("{{--bs-success-bg-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBorder("--bs-success-border-subtle")),
-					new b.table.td("{{--bs-success-border-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerText("--bs-success-text-emphasis")),
-					new b.table.td("{{--bs-success-text-emphasis}}"),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div(
+								"{{b::Success — }}Theme color used for positive or successful actions and information."
+							)
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-success", "--bs-success-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-success}}{{br}}{{--bs-success-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg("--bs-success-bg-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-success-bg-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBorder("--bs-success-border-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-success-border-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerText("--bs-success-text-emphasis")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-success-text-emphasis}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 4 },
-						"{{b::Danger — }}Theme color used for errors and dangerous actions."
-					),
-					new b.table.td(colorpickerBg(["--bs-danger", "--bs-danger-rgb"])),
-					new b.table.td(["{{--bs-danger}}{{br}}{{--bs-danger-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg("--bs-danger-bg-subtle")),
-					new b.table.td("{{--bs-danger-bg-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBorder("--bs-danger-border-subtle")),
-					new b.table.td("{{--bs-danger-border-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerText("--bs-danger-text-emphasis")),
-					new b.table.td("{{--bs-danger-text-emphasis}}"),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div("{{b::Danger — }}Theme color used for errors and dangerous actions.")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-danger", "--bs-danger-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-danger}}{{br}}{{--bs-danger-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg("--bs-danger-bg-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-danger-bg-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBorder("--bs-danger-border-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-danger-border-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerText("--bs-danger-text-emphasis")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-danger-text-emphasis}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 4 },
-						"{{b::Warning — }}Theme color used for non-destructive warning messages."
-					),
-					new b.table.td(colorpickerBg(["--bs-warning", "--bs-warning-rgb"])),
-					new b.table.td(["{{--bs-warning}}{{br}}{{--bs-warning-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg("--bs-warning-bg-subtle")),
-					new b.table.td("{{--bs-warning-bg-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBorder("--bs-warning-border-subtle")),
-					new b.table.td("{{--bs-warning-border-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerText("--bs-warning-text-emphasis")),
-					new b.table.td("{{--bs-warning-text-emphasis}}"),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div("{{b::Warning — }}Theme color used for non-destructive warning messages.")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-warning", "--bs-warning-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-warning}}{{br}}{{--bs-warning-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg("--bs-warning-bg-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-warning-bg-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBorder("--bs-warning-border-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-warning-border-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerText("--bs-warning-text-emphasis")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-warning-text-emphasis}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 4 },
-						"{{b::Info — }}Theme color used for neutral and informative content."
-					),
-					new b.table.td(colorpickerBg(["--bs-info", "--bs-info-rgb"])),
-					new b.table.td(["{{--bs-info}}{{br}}{{--bs-info-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg("--bs-info-bg-subtle")),
-					new b.table.td("{{--bs-info-bg-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBorder("--bs-info-border-subtle")),
-					new b.table.td("{{--bs-info-border-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerText("--bs-info-text-emphasis")),
-					new b.table.td("{{--bs-info-text-emphasis}}"),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div("{{b::Info — }}Theme color used for neutral and informative content.")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-info", "--bs-info-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-info}}{{br}}{{--bs-info-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg("--bs-info-bg-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-info-bg-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBorder("--bs-info-border-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-info-border-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerText("--bs-info-text-emphasis")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-info-text-emphasis}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 4 },
-						"{{b::Light — }}Additional theme option for less contrasting colors."
-					),
-					new b.table.td(colorpickerBg(["--bs-light", "--bs-light-rgb"])),
-					new b.table.td(["{{--bs-light}}{{br}}{{--bs-light-rgb}}"]),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg("--bs-light-bg-subtle")),
-					new b.table.td("{{--bs-light-bg-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBorder("--bs-light-border-subtle")),
-					new b.table.td("{{--bs-light-border-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerText("--bs-light-text-emphasis")),
-					new b.table.td("{{--bs-light-text-emphasis}}"),
-				]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div("{{b::Light — }}Additional theme option for less contrasting colors.")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-light", "--bs-light-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-light}}{{br}}{{--bs-light-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg("--bs-light-bg-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-light-bg-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBorder("--bs-light-border-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-light-border-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(colorpickerText("--bs-light-text-emphasis")),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-light-text-emphasis}}"])
+						),
+					]),
 
-				//-----------------------
-				new b.table.tr([
-					new b.table.td(
-						{ rowspan: 4 },
-						"{{b::Dark — }}Additional theme option for higher contrasting colors."
-					),
-					new b.table.td(colorpickerBg(["--bs-dark", "--bs-dark-rgb"])),
-					new b.table.td(["{{--bs-dark}}{{br}}{{--bs-dark-rgb}}"]),
+					//-----------------------
+					new b.table.tr([
+						new b.table.td(
+							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
+							new h.div("{{b::Dark — }}Additional theme option for higher contrasting colors.")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg(["--bs-dark", "--bs-dark-rgb"])
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-dark}}{{br}}{{--bs-dark-rgb}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBg("--bs-dark-bg-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-dark-bg-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
+							colorpickerBorder("--bs-dark-border-subtle")
+						),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
+							new h.div(["{{--bs-dark-border-subtle}}"])
+						),
+					]),
+					new b.table.tr([
+						new b.table.td(colorpickerText("--bs-dark-text-emphasis")),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variable" },
+							new h.div(["{{--bs-dark-text-emphasis}}"])
+						),
+					]),
 				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBg("--bs-dark-bg-subtle")),
-					new b.table.td("{{--bs-dark-bg-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerBorder("--bs-dark-border-subtle")),
-					new b.table.td("{{--bs-dark-border-subtle}}"),
-				]),
-				new b.table.tr([
-					new b.table.td(colorpickerText("--bs-dark-text-emphasis")),
-					new b.table.td("{{--bs-dark-text-emphasis}}"),
-				]),
-			]),
-		]),
+			]
+		),
 
 		//-----------------------
 

@@ -12,6 +12,78 @@ a:hover *,
     margin-left: -2rem;
 }
 
+/* data-bs-responsive-title */
+@media (max-width: 768px) {
+    div.example-table{
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] thead {
+        display: none;
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody.table-group-divider{
+        border:none;
+    }
+    
+    table.table[data-bs-responsive-title="bs-title-name"] tbody tr {
+        margin: 0.5rem 0;
+        padding:0.5rem 0;
+        display: block;
+        /* border-radius: var(--bs-border-radius); */
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody tr:nth-of-type(2n) {
+        background-color: rgba(var(--bs-body-color-rgb), 0.05);
+    }
+
+    
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody td::before{
+        content: attr(data-bs-title-name) ": ";
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody td {
+        border: none;
+        padding: 0.125rem 1.5rem;
+
+        /* display: block; */
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody td {
+        grid-template-columns: var(--bs-responsive-columns);
+    }
+}
+@media (max-width: 576px) {
+   
+    table.table[data-bs-responsive-title="bs-title-name"] tbody td::before{
+        content: attr(data-bs-title-name);
+        font-weight: bold;
+        font-size: 0.75em;
+        text-transform: capitalize;
+        line-height: 0;
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody td:not(:last-of-type) {
+        padding-bottom: 1rem;
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody td:first-of-type {
+        padding-top: 0.75rem;
+    }
+
+    table.table[data-bs-responsive-title="bs-title-name"] tbody td {
+        grid-template-columns: var(--bs-responsive-columns-xs);
+    }
+}
+
+
+
 /*swatch*/
 .swatch{
     padding: 0;
