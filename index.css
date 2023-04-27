@@ -34,7 +34,7 @@ a:hover *,
         /* border-radius: var(--bs-border-radius); */
     }
 
-    table.table[data-bs-responsive-title="bs-title-name"] tbody tr:nth-of-type(2n) {
+    table.table[data-bs-responsive-title="bs-title-name"] tbody tr:nth-of-type(2n-1) {
         background-color: rgba(var(--bs-body-color-rgb), 0.05);
     }
 
@@ -63,9 +63,7 @@ a:hover *,
    
     table.table[data-bs-responsive-title="bs-title-name"] tbody td::before{
         content: attr(data-bs-title-name);
-        font-weight: bold;
         font-size: 0.75em;
-        text-transform: capitalize;
         line-height: 0;
     }
 
