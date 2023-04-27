@@ -20,6 +20,7 @@ export const toast: IAttrContent = {
 			item: [
 				"Toasts are opt-in for performance reasons, so {{b:you must initialize them yourself}}.",
 				"Toasts will automatically hide if you do not specify {{autohide: false}}.",
+				"{{bsts}} automaticly initialize toast using {{core.init}} function.",
 			],
 		}),
 		new e.alert(
@@ -33,7 +34,7 @@ export const toast: IAttrContent = {
 		new e.subtitle("Basic"),
 
 		new e.text(
-			"To encourage extensible and predictable toasts, Bootstrap recommend a header and body. Toast headers use {{display: flex}}, allowing easy alignment of content thanks to Bootstrap margin and flexbox utilities."
+			"To encourage extensible and predictable toasts, Bootstrap recommend a header and body. Toast headers use {{display:'flex'}}, allowing easy alignment of content thanks to Bootstrap margin and flexbox utilities."
 		),
 		new e.text(
 			"Toasts are as flexible as you need and have very little required markup. At a minimum, Bootstrap require a single element to contain your “toasted” content and strongly encourage a dismiss button."
@@ -341,7 +342,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Custom content"),
 		new e.text(
-			"Customize your toasts by removing sub-components, tweaking them with {{nav:docs/utilities/api::utilities}}, or by adding your own markup. Here Bootstrap created a simpler toast by removing the default {{.toast-header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:docs/utilities/flex::flexbox utilities}} to adjust the layout."
+			"Customize your toasts by removing sub-components, tweaking them with {{nav:docs/utilities/api::utilities}}, or by adding your own markup. Here Bootstrap created a simpler toast by removing the default {{b.toast.header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:docs/utilities/flex::flexbox utilities}} to adjust the layout."
 		),
 		new e.code({
 			output: () => {
@@ -373,7 +374,7 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Color schemes"),
 		new e.text(
-			"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:docs/utilities/colors::color}} and {{nav:docs/utilities/background::background}} utilities. Here Bootstrap added {{.text-bg-primary}} to the {{.toast}}, and then added {{.btn-close-white}} to Bootstrap close button. For a crisp edge, Bootstrap remove the default border with {{.border-0}}."
+			"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:docs/utilities/colors::color}} and {{nav:docs/utilities/background::background}} utilities. Here Bootstrap added {{textBgColor:'primary'}} to the {{b.toast.item}}, and then added {{b.toast.btnclose({white:true})}} to Bootstrap close button. For a crisp edge, Bootstrap remove the default border with {{border:false}}."
 		),
 		new e.code({
 			output: () => {

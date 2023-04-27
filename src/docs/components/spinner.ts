@@ -12,7 +12,7 @@ export const spinner: IAttrContent = {
 			"Bootstrap “spinners” can be used to show the loading state in your projects. They’re built only with HTML and CSS, meaning you don’t need any JavaScript to create them. You will, however, need some custom JavaScript to toggle their visibility. Their appearance, alignment, and sizing can be easily customized with Bootstrap amazing utility classes."
 		),
 		new e.text(
-			"For accessibility purposes, each loader here includes {{role='status'}} and a nested {{<span class='visually-hidden'>Loading...</span>}}."
+			"For accessibility purposes, each loader includes {{role:'status'}} and a nested {{h.span({visually:'hidden'},'Loading...')}} automaticly by {{b.spinner}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -33,7 +33,7 @@ export const spinner: IAttrContent = {
 
 		new e.subtitle("Colors"),
 		new e.text(
-			"The border spinner uses {{currentColor}} for its {{border-color}}, meaning you can customize the color with text color utilities. You can use any of Bootstrap {{nav:docs/utilities/colors::text color utilities}} on the standard spinner."
+			"The border spinner uses {{currentColor}} for its {{borderColor}}, meaning you can customize the color with text color utilities. You can use any of Bootstrap {{nav:docs/utilities/colors::text color utilities}} on the standard spinner."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -45,7 +45,7 @@ export const spinner: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Why not use }}{{cb::border-color}}{{b:: utilities?}} Each border spinner specifies a {{transparent}} border for at least one side, so {{.border-{color} }}utilities would override that."
+			"{{b::Why not use }}{{cb::borderColor}}{{b:: utilities?}} Each border spinner specifies a {{transparent}} border for at least one side, so {{borderColor}} utilities would override that."
 		),
 
 		//-----------------------
@@ -74,13 +74,13 @@ export const spinner: IAttrContent = {
 		//-----------------------
 
 		new e.title("Alignment"),
-		new e.text("Use margin utilities like {{.m-5}} for easy spacing."),
+		new e.text("Use margin utilities like {{margin:5}} for easy spacing."),
 
 		//-----------------------
 
 		new e.subtitle("Margin"),
 		new e.text(
-			"Spinners in Bootstrap are built with {{rems}}, {{currentColor}}, and {{display: inline-flex}}. This means they can easily be resized, recolored, and quickly aligned."
+			"Spinners in Bootstrap are built with {{rems}}, {{currentColor}}, and {{display:'inline-flex'}}. This means they can easily be resized, recolored, and quickly aligned."
 		),
 		new e.code({
 			output: () => {
@@ -90,7 +90,7 @@ export const spinner: IAttrContent = {
 		new e.alert({ color: "info", callout: true }, [
 			new h.h(5, "Conveying meaning to assistive technologies"),
 			new h.p(
-				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+				"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 			),
 		]),
 
@@ -140,7 +140,7 @@ export const spinner: IAttrContent = {
 
 		new e.title("Size"),
 		new e.text(
-			"Add {{.spinner-border-sm}} and {{.spinner-grow-sm}} to make a smaller spinner that can quickly be used within other components."
+			"Add {{small:true}} to make a smaller spinner that can quickly be used within other components."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
