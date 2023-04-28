@@ -12,12 +12,12 @@ export const tooltip: IAttrContent = {
 		new e.ul({
 			item: [
 				"Tooltips rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
-				"Tooltips are opt-in for performance reasons, so {{b::you must initialize them yourself}}.",
+				"Tooltips initialize by {{core.init}} function.",
 				"Tooltips with zero-length title are never displayed.",
-				"Specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
-				"Triggering tooltips on hidden elements will not work.",
-				"Tooltips for {{.disabled}} or {{disabled}} elements must be triggered on a wrapper element.",
-				"When triggered from hyperlinks that span multiple lines, tooltips will be centered. Use {{white-space: nowrap;}} on your {{<a>}}s to avoid this behavior.",
+				"{{b.tooltip}} automaticly specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
+				"Triggering tooltips on hidden component will not work.",
+				"Tooltips for {{disabled}} component must be triggered on a wrapper element. {{bsts}} currently using this method for showing tooltip over other component.",
+				"When triggered from anchor that span multiple lines, tooltips will be centered. Use {{textWrap:false}} on your {{h.a}}s to avoid this behavior.",
 				"Tooltips must be hidden before their corresponding elements have been removed from the DOM.",
 				"Tooltips can be triggered thanks to an element inside a shadow DOM.",
 			],
@@ -37,7 +37,7 @@ export const tooltip: IAttrContent = {
 		new e.title("Examples"),
 		new e.subtitle("Enable tooltips"),
 		new e.text(
-			"As mentioned above, you must initialize tooltips before they can be used. One way to initialize all tooltips on a page would be to select them by their {{data-bs-toggle}} attribute, like so:"
+			"As mentioned above, you must initialize tooltips before they can be used. One way to initialize all tooltips on a page would be to call {{core.init}} function after {{core.build}}, like so:"
 		),
 		new e.codepreview({
 			type: "js",
@@ -46,6 +46,27 @@ export const tooltip: IAttrContent = {
 				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 			`,
 		}),
+		new e.codepreview({
+			type: "js",
+			code: `
+				core.documentReady(() => {
+					let root = document.getElementById("root");
+					core.replaceChild(root, new h.div([
+						"Hello world", 
+						new b.tooltip(
+							{ content: "Default tooltip" },
+							new b.button({ weight: "lg", color: "danger" }, "Hover to toggle tooltip")
+						),
+					]));
+
+					core.init(root);
+				});
+			`,
+		}),
+
+		new e.text(
+			"{{bsts}} automaticly call {{core.init}} when you show your modal dialog using {{b.modal.show}} function."
+		),
 
 		//-----------------------
 
@@ -72,14 +93,14 @@ export const tooltip: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"Feel free to use either {{title}} or {{data-bs-title}} in your HTML. When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} when the element is rendered."
+			"When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} when the element is rendered."
 		),
 
 		//-----------------------
 
 		new e.subtitle("Custom tooltips"),
 		new e.text(
-			"You can customize the appearance of tooltips using {{nav:docs/components/tooltip#variables::CSS variables}}. Bootstrap set a custom class with {{data-bs-custom-class='custom-tooltip'}} to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
+			"You can customize the appearance of tooltips using {{nav:docs/components/tooltip#variables::CSS variables}}. Bootstrap set a custom class with {{customClass:'custom-tooltip'}} property to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 		),
 
 		new e.codepreview({
@@ -112,7 +133,7 @@ export const tooltip: IAttrContent = {
 
 		new e.subtitle("Directions"),
 		new e.text(
-			"Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL."
+			"Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left by set the {{placement}} property. Directions are mirrored when using Bootstrap in RTL."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -130,6 +151,7 @@ export const tooltip: IAttrContent = {
 		}),
 		new e.text("And with custom HTML added:"),
 		// new e.code({
+		// 	outputAttr: { gap: 1 },
 		// 	output: () => {
 		// 		return new b.tooltip(
 		// 			{
@@ -140,11 +162,14 @@ export const tooltip: IAttrContent = {
 		// 	},
 		// }),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="&lt;em&gt;Tooltip&lt;/em&gt; &lt;u&gt;with&lt;/u&gt; &lt;b>HTML&lt;/b&gt;">
-				Tooltip with HTML
-				</button>
+				new b.tooltip(
+					{
+						content: "<em>Tooltip</em> <u>with</u> <b>HTML</b>",
+					},
+					new b.button({ color: "secondary" }, "Tooltip on HTML")
+				);
 			`,
 		}),
 		new e.text("With an SVG:"),
@@ -225,13 +250,12 @@ export const tooltip: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const exampleEl = document.getElementById('example')
-				const tooltip = new bootstrap.Tooltip(exampleEl, options)
+				core.init();
 			`,
 		}),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"Tooltips automatically attempt to change positions when a parent container has {{overflow: auto}} or {{overflow: scroll}}, but still keeps the original placement’s positioning. Set the {{https://popper.js.org/docs/v2/modifiers/flip/#boundary::boundary option}} (for the flip modifier using the {{popperConfig}} option) to any HTMLElement to override the default value, {{'clippingParents'}}, such as {{document.body}}:"
+			"Tooltips automatically attempt to change positions when a parent container has {{overflow:'auto'}} or {{overflow:'scroll'}}, but still keeps the original placement’s positioning. Set the {{https://popper.js.org/docs/v2/modifiers/flip/#boundary::boundary option}} (for the flip modifier using the {{popperConfig}} option) to any HTMLElement to override the default value, {{'clippingParents'}}, such as {{document.body}}:"
 		),
 		new e.codepreview({
 			type: "js",
