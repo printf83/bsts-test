@@ -26,9 +26,9 @@
 	],
 	"scripts": {
 		"clean": "rm -rf ./lib",
-		"clean:win": "rmdir /s lib",
+		"clean:win": "rmdir /s /q lib",
 		"build": "tsc -p ./configs/tsconfig.esm.json",
-		"rebuild": "npm run clean && npm run build  && npm run webpack",
+		"rebuild": "npm run clean && npm run build && npm run webpack",
 		"rebuild:win": "npm run clean:win && npm run build  && npm run webpack",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"link": "sudo npm link ../bsts",
