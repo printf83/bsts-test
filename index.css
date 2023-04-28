@@ -449,15 +449,15 @@ strong,
     display: block !important;
 }
 
-.example-output .debug.toast-container {
+.example-output .debug.toast-container:not(#toastPlacement) {
     position: static !important;
     display: block !important;
 }
 
-.example-output #toastPlacement.debug {
+/* .example-output #toastPlacement.debug {
     display: block !important;
     position: unset !important;
-}
+} */
 
 .example-output .fixed-top,
 .example-output .sticky-top {

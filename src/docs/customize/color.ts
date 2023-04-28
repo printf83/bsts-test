@@ -221,10 +221,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 2,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Body — }}Default foreground (color) and background, including components.")
 						),
@@ -259,10 +258,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 2,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Secondary — }}Use the {{color}} option for lighter text. Use the {{bg}} option for dividers and to indicate disabled component states."
@@ -299,10 +297,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 2,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Tertiary — }}Use the {{color}} option for even lighter text. Use the {{bg}} option to style backgrounds for hover states, accents, and wells."
@@ -375,10 +372,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
@@ -396,10 +392,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
@@ -417,10 +412,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
@@ -457,10 +451,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Success — }}Theme color used for positive or successful actions and information."
@@ -478,10 +471,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Success — }}Theme color used for positive or successful actions and information."
@@ -499,10 +491,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div(
 								"{{b::Success — }}Theme color used for positive or successful actions and information."
@@ -537,10 +528,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Danger — }}Theme color used for errors and dangerous actions.")
 						),
@@ -556,10 +546,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Danger — }}Theme color used for errors and dangerous actions.")
 						),
@@ -575,10 +564,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Danger — }}Theme color used for errors and dangerous actions.")
 						),
@@ -611,10 +599,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Warning — }}Theme color used for non-destructive warning messages.")
 						),
@@ -630,10 +617,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Warning — }}Theme color used for non-destructive warning messages.")
 						),
@@ -649,10 +635,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Warning — }}Theme color used for non-destructive warning messages.")
 						),
@@ -685,10 +670,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Info — }}Theme color used for neutral and informative content.")
 						),
@@ -704,10 +688,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Info — }}Theme color used for neutral and informative content.")
 						),
@@ -723,10 +706,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Info — }}Theme color used for neutral and informative content.")
 						),
@@ -759,10 +741,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Light — }}Additional theme option for less contrasting colors.")
 						),
@@ -778,10 +759,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Light — }}Additional theme option for less contrasting colors.")
 						),
@@ -797,10 +777,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Light — }}Additional theme option for less contrasting colors.")
 						),
@@ -830,10 +809,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Dark — }}Additional theme option for higher contrasting colors.")
 						),
@@ -849,10 +827,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Dark — }}Additional theme option for higher contrasting colors.")
 						),
@@ -868,10 +845,9 @@ export const color: IAttrContent = {
 					new b.table.tr([
 						new b.table.td(
 							{
-								rowspan: 4,
 								responsiveAttr: "bs-title-name",
 								responsiveTitle: "Description",
-								display: ["block", "md-none"],
+								display: ["grid", "md-none"],
 							},
 							new h.div("{{b::Dark — }}Additional theme option for higher contrasting colors.")
 						),
