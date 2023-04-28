@@ -84,7 +84,6 @@ a:hover *,
         content: attr(data-bs-title-name);
         line-height: 0.25;
         text-align: left;
-        font-style: italic;
     }
 
     table.table[data-bs-responsive-title="bs-title-name"] tbody td:not(:last-of-type) {
