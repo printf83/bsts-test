@@ -465,7 +465,7 @@ export const toast: IAttrContent = {
 							rounded: 3,
 							bgColor: "body-secondary",
 							marginTop: 3,
-							style: { minHeight: "240px" },
+							style: { minHeight: "240px", zIndex: "0" },
 							aria: { live: "polite", atomic: "true" },
 						},
 						container("top-start")
@@ -542,23 +542,36 @@ export const toast: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an {{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions::aria-live region}}. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include {{aria-atomic='true'}} to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the {{nav:docs/components/alert::alert component}} instead of toast."
+			"Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an {{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions::aria-live region}}. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include {{aria:{atomic:'true'/}/}} to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the {{nav:docs/components/alert::alert component}} instead of toast."
 		),
 		new e.text(
 			"Note that the live region needs to be present in the markup {{i::before}} the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies."
 		),
 		new e.text(
-			"You also need to adapt the {{role}} and {{aria-live}} level depending on the content. If it’s an important message like an error, use {{role='alert'}} {{aria-live='assertive'}}, otherwise use {{role='status'}} {{aria-live='polite'}} attributes."
+			"You also need to adapt the {{role}} and {{aria:{live:'...'/}/}} level depending on the content. If it’s an important message like an error, use {{role:'alert'}} {{aria:{live:'assertive'/}/}}, otherwise use {{role:'status'}} {{aria:{live:'polite'/}/}} attributes."
 		),
 		new e.text(
 			"As the content you’re displaying changes, be sure to update the {{nav:docs/components/toast#options::delay timeout}} so that users have enough time to read the toast."
 		),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-bs-delay="10000">
-				<div role="alert" aria-live="assertive" aria-atomic="true">...</div>
-				</div>
+				new h.div(
+					{
+						class:"toast",
+						role:"alert",
+						aria: { live: "polite", atomic: "true" },
+						data: { "bs-delay": "10000" },
+					},
+					new h.div(
+						{
+							class:"toast",
+							role:"alert",
+							aria: { live: "assertive", atomic: "true" },
+						},
+						"..."
+					)	
+				);
 			`,
 		}),
 		new e.code({
@@ -592,7 +605,7 @@ export const toast: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("When using {{autohide: false}}, you must add a close button to allow users to dismiss the toast."),
+		new e.text("When using {{autohide:false}}, you must add a close button to allow users to dismiss the toast."),
 		new e.code({
 			output: () => {
 				return new b.toast.item({ debug: true, live: "assertive", atomic: true, autohide: false }, [
@@ -612,7 +625,7 @@ export const toast: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"While technically it’s possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long {{nav:docs/components/toast#options::delay timeout}}, keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don’t receive focus when they are displayed). If you absolutely must have further controls, Bootstrap recommend using a toast with {{autohide: false}}."
+			"While technically it’s possible to add focusable/actionable controls (such as additional buttons or links) in your toast, you should avoid doing this for autohiding toasts. Even if you give the toast a long {{nav:docs/components/toast#options::delay timeout}}, keyboard and assistive technology users may find it difficult to reach the toast in time to take action (since toasts don’t receive focus when they are displayed). If you absolutely must have further controls, Bootstrap recommend using a toast with {{autohide:false}}."
 		),
 
 		//-----------------------
@@ -678,8 +691,7 @@ export const toast: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const toastElList = document.querySelectorAll('.toast')
-				const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl, option))
+				b.toast.show("top-end", document.getElementById("my-toast"));
 			`,
 		}),
 
@@ -687,21 +699,21 @@ export const toast: IAttrContent = {
 
 		new e.subtitle("Triggers"),
 		new e.text(
-			"Dismissal can be achieved with the {{data-bs-dismiss}} attribute on a button {{b::within the toast}} as demonstrated below:"
+			"Dismissal can be achieved with the {{dismiss:'toast'}} property on a button {{b::within the toast}} as demonstrated below:"
 		),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				new b.button({ dismiss: "toast" }, "Close")
+				new b.toast.btnclose();
 			`,
 		}),
-		new e.text(
-			"or on a button {{b::outside the toast}} using the additional {{data-bs-target}} as demonstrated below:"
-		),
+		new e.text("or on a button {{b::outside the toast}} using the additional {{target}} as demonstrated below:"),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="toast" data-bs-target="#my-toast" aria-label="Close"></button>
+				new b.button({ dismiss: "toast", target: "#my-toast" }, "Close")
+				new b.toast.btnclose({ target: "#my-toast" });
 			`,
 		}),
 
@@ -770,14 +782,73 @@ export const toast: IAttrContent = {
 				["{{shown.bs.toast}}", "This event is fired when the toast has been made visible to the user."],
 			],
 		}),
-		new e.codepreview({
-			type: "js",
-			code: `
-				const myToastEl = document.getElementById('myToast')
-				myToastEl.addEventListener('hidden.bs.toast', () => {
-				// do something...
-				})
-			`,
+
+		new e.code({
+			output: () => {
+				return new b.button(
+					{
+						on: {
+							click: (_e) => {
+								const tItem = new b.toast.item(
+									{
+										color: "primary",
+										autohide: false,
+										live: "assertive",
+										atomic: true,
+										on: {
+											"shown.bs.toast": (event) => {
+												const target = event.target as HTMLElement;
+
+												b.toast.show(
+													"top-end",
+													b.Toast.Simple({
+														title: "shown.bs.toast",
+														color: "success",
+														elem: [`target: {{b::${core.elemInfo(target)}}}`],
+													})
+												);
+											},
+
+											"hidden.bs.toast": (event) => {
+												const target = event.target as HTMLElement;
+
+												b.toast.show(
+													"top-end",
+													b.Toast.Simple({
+														title: "hidden.bs.toast",
+														color: "danger",
+														elem: [`target: {{b::${core.elemInfo(target)}}}`],
+													})
+												);
+											},
+										},
+									},
+									[
+										new b.toast.header([
+											new h.div({
+												bgColor: "primary",
+												rounded: true,
+												marginEnd: 2,
+												style: { width: "20px", height: "20px" },
+											}),
+											new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+											new b.toast.time(),
+											new b.toast.btnclose(),
+										]),
+										new b.toast.body(
+											"Hello, world! This is a toast event example. This toast {{b::dose not}} close automaticly. Click on the close button to close this toast."
+										),
+									]
+								);
+
+								//show the above toast on the top-end
+								b.toast.show("bottom-end", tItem);
+							},
+						},
+					},
+					"Show toast event"
+				);
+			},
 		}),
 	],
 };
