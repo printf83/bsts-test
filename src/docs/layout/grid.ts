@@ -69,59 +69,88 @@ export const grid: IAttrContent = {
 		new e.text(
 			"As noted above, each of these breakpoints have their own container, unique class prefix, and modifiers. Here’s how the grid changes across these breakpoints:"
 		),
-		new e.table([
-			new b.table.thead(
-				new b.table.tr([
-					new b.table.th({ scope: "col" }, ""),
-					new b.table.th({ scope: "col" }, ["xs", new h.div({ fontWeight: "normal" }, "<576px")]),
-					new b.table.th({ scope: "col" }, ["sm", new h.div({ fontWeight: "normal" }, "≥576px")]),
-					new b.table.th({ scope: "col" }, ["md", new h.div({ fontWeight: "normal" }, "≥768px")]),
-					new b.table.th({ scope: "col" }, ["lg", new h.div({ fontWeight: "normal" }, "≥992px")]),
-					new b.table.th({ scope: "col" }, ["xl", new h.div({ fontWeight: "normal" }, "≥1200px")]),
-					new b.table.th({ scope: "col" }, ["xxl", new h.div({ fontWeight: "normal" }, "≥1400px")]),
-				])
-			),
-			new b.table.tbody([
-				new b.table.tr([
-					new b.table.th({ scope: "row" }, "Container {{max-width}}"),
-					new b.table.td("None (auto)"),
-					new b.table.td("540px"),
-					new b.table.td("720px"),
-					new b.table.td("960px"),
-					new b.table.td("1140px"),
-					new b.table.td("1320px"),
+		new e.table(
+			{
+				responsiveAttr: "bs-title-name",
+				responsiveCol: "15ch auto",
+				responsiveColXs: "auto",
+				responsiveHeader: ["Property", "Extra small", "Small", "Medium", "Large", "X-Large", "XX-Large"],
+			},
+			[
+				new b.table.thead(
+					new b.table.tr([
+						new b.table.th({ scope: "col" }, ""),
+						new b.table.th({ scope: "col" }, ["xs", new h.div({ fontWeight: "normal" }, "<576px")]),
+						new b.table.th({ scope: "col" }, ["sm", new h.div({ fontWeight: "normal" }, "≥576px")]),
+						new b.table.th({ scope: "col" }, ["md", new h.div({ fontWeight: "normal" }, "≥768px")]),
+						new b.table.th({ scope: "col" }, ["lg", new h.div({ fontWeight: "normal" }, "≥992px")]),
+						new b.table.th({ scope: "col" }, ["xl", new h.div({ fontWeight: "normal" }, "≥1200px")]),
+						new b.table.th({ scope: "col" }, ["xxl", new h.div({ fontWeight: "normal" }, "≥1400px")]),
+					])
+				),
+				new b.table.tbody([
+					new b.table.tr([
+						new b.table.th({ scope: "row" }, new h.div("Container {{max-width}}")),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "Small" }, "None (auto)"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "Small" }, "540px"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "Medium" }, "720px"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "Large" }, "960px"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "X-Large" }, "1140px"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "XX-Large" }, "1320px"),
+					]),
+					new b.table.tr([
+						new b.table.th({ scope: "row" }, "Class prefix"),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "Extra small" },
+							"{{.col-}}"
+						),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "Small" }, "{{.col-sm-}}"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "Medium" }, "{{.col-md-}}"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "Large" }, "{{.col-lg-}}"),
+						new b.table.td({ responsiveAttr: "bs-title-name", responsiveTitle: "X-Large" }, "{{.col-xl-}}"),
+						new b.table.td(
+							{ responsiveAttr: "bs-title-name", responsiveTitle: "XX-Large" },
+							"{{.col-xxl-}}"
+						),
+					]),
+					new b.table.tr([
+						new b.table.th({ scope: "row" }, "# of columns"),
+						new b.table.td(
+							{ colspan: 6, responsiveAttr: "bs-title-name", responsiveTitle: "All breakpoint" },
+							"12"
+						),
+					]),
+					new b.table.tr([
+						new b.table.th({ scope: "row" }, "Gutter width"),
+						new b.table.td(
+							{ colspan: 6, responsiveAttr: "bs-title-name", responsiveTitle: "All breakpoint" },
+							"1.5rem (.75rem on left and right)"
+						),
+					]),
+					new b.table.tr([
+						new b.table.th({ scope: "row" }, "Custom gutters"),
+						new b.table.td(
+							{ colspan: 6, responsiveAttr: "bs-title-name", responsiveTitle: "All breakpoint" },
+							"{{nav:docs/layout/gutters::Yes}}"
+						),
+					]),
+					new b.table.tr([
+						new b.table.th({ scope: "row" }, "Nestable"),
+						new b.table.td(
+							{ colspan: 6, responsiveAttr: "bs-title-name", responsiveTitle: "All breakpoint" },
+							"{{nav:docs/layout/grid#nesting::Yes}}"
+						),
+					]),
+					new b.table.tr([
+						new b.table.th({ scope: "row" }, "Column ordering"),
+						new b.table.td(
+							{ colspan: 6, responsiveAttr: "bs-title-name", responsiveTitle: "All breakpoint" },
+							"{{nav:docs/layout/columns#reordering::Yes}}"
+						),
+					]),
 				]),
-				new b.table.tr([
-					new b.table.th({ scope: "row" }, "Class prefix"),
-					new b.table.td("{{.col-}}"),
-					new b.table.td("{{.col-sm-}}"),
-					new b.table.td("{{.col-md-}}"),
-					new b.table.td("{{.col-lg-}}"),
-					new b.table.td("{{.col-xl-}}"),
-					new b.table.td("{{.col-xxl-}}"),
-				]),
-				new b.table.tr([
-					new b.table.th({ scope: "row" }, "# of columns"),
-					new b.table.td({ colspan: 6 }, "12"),
-				]),
-				new b.table.tr([
-					new b.table.th({ scope: "row" }, "Gutter width"),
-					new b.table.td({ colspan: 6 }, "1.5rem (.75rem on left and right)"),
-				]),
-				new b.table.tr([
-					new b.table.th({ scope: "row" }, "Custom gutters"),
-					new b.table.td({ colspan: 6 }, "{{nav:docs/layout/gutters::Yes}}"),
-				]),
-				new b.table.tr([
-					new b.table.th({ scope: "row" }, "Nestable"),
-					new b.table.td({ colspan: 6 }, "{{nav:docs/layout/grid#nesting::Yes}}"),
-				]),
-				new b.table.tr([
-					new b.table.th({ scope: "row" }, "Column ordering"),
-					new b.table.td({ colspan: 6 }, "{{nav:docs/layout/columns#reordering::Yes}}"),
-				]),
-			]),
-		]),
+			]
+		),
 
 		//-----------------------
 

@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -517,14 +517,56 @@ export const popover: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const myPopoverTrigger = document.getElementById('myPopover')
-				myPopoverTrigger.addEventListener('hidden.bs.popover', () => {
-				// do something...
-				})
-			`,
+		new e.code({
+			output: () => {
+				return new b.popover(
+					{
+						title: "Popover title",
+						content: "And here's some amazing content. It's very engaging. Right?",
+						on: {
+							"shown.bs.popover": (event) => {
+								const target = event.target as HTMLElement;
+
+								b.toast.show(
+									"top-end",
+									b.Toast.Simple({
+										title: "shown.bs.popover",
+										color: "success",
+										elem: [`target: {{b::${core.elemInfo(target)}}}`],
+									})
+								);
+							},
+
+							"hidden.bs.popover": (event) => {
+								const target = event.target as HTMLElement;
+
+								b.toast.show(
+									"top-end",
+									b.Toast.Simple({
+										title: "hidden.bs.popover",
+										color: "danger",
+										elem: [`target: {{b::${core.elemInfo(target)}}}`],
+									})
+								);
+							},
+
+							"inserted.bs.popover": (event) => {
+								const target = event.target as HTMLElement;
+
+								b.toast.show(
+									"top-end",
+									b.Toast.Simple({
+										title: "inserted.bs.popover",
+										color: "warning",
+										elem: [`target: {{b::${core.elemInfo(target)}}}`],
+									})
+								);
+							},
+						},
+					},
+					new b.button({ weight: "lg" }, "Click to toggle popover")
+				);
+			},
 		}),
 	],
 };

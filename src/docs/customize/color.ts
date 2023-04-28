@@ -220,6 +220,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 2,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Body — }}Default foreground (color) and background, including components.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg(["--bs-body-bg", "--bs-body-bg-rgb"])
 						),
@@ -230,6 +239,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 2, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -248,6 +258,17 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 2,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Secondary — }}Use the {{color}} option for lighter text. Use the {{bg}} option for dividers and to indicate disabled component states."
+							)
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg(["--bs-secondary-bg", "--bs-secondary-bg-rgb"])
 						),
@@ -258,6 +279,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 2, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -276,6 +298,17 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 2,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Tertiary — }}Use the {{color}} option for even lighter text. Use the {{bg}} option to style backgrounds for hover states, accents, and wells."
+							)
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg(["--bs-tertiary-bg", "--bs-tertiary-bg-rgb"])
 						),
@@ -286,6 +319,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -302,6 +336,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -320,6 +355,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -338,6 +374,17 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
+							)
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg("--bs-primary-bg-subtle")
 						),
@@ -347,6 +394,17 @@ export const color: IAttrContent = {
 						),
 					]),
 					new b.table.tr([
+						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
+							)
+						),
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBorder("--bs-primary-border-subtle")
@@ -358,6 +416,17 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Primary — }}Main theme color, used for hyperlinks, focus styles, and component and form active states."
+							)
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerText("--bs-primary-text-emphasis")
 						),
@@ -368,6 +437,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -386,6 +456,17 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Success — }}Theme color used for positive or successful actions and information."
+							)
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg("--bs-success-bg-subtle")
 						),
@@ -395,6 +476,17 @@ export const color: IAttrContent = {
 						),
 					]),
 					new b.table.tr([
+						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Success — }}Theme color used for positive or successful actions and information."
+							)
+						),
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBorder("--bs-success-border-subtle")
@@ -406,6 +498,17 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div(
+								"{{b::Success — }}Theme color used for positive or successful actions and information."
+							)
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerText("--bs-success-text-emphasis")
 						),
@@ -416,6 +519,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -432,6 +536,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Danger — }}Theme color used for errors and dangerous actions.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg("--bs-danger-bg-subtle")
 						),
@@ -441,6 +554,15 @@ export const color: IAttrContent = {
 						),
 					]),
 					new b.table.tr([
+						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Danger — }}Theme color used for errors and dangerous actions.")
+						),
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBorder("--bs-danger-border-subtle")
@@ -452,6 +574,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Danger — }}Theme color used for errors and dangerous actions.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerText("--bs-danger-text-emphasis")
 						),
@@ -462,6 +593,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -478,6 +610,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Warning — }}Theme color used for non-destructive warning messages.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg("--bs-warning-bg-subtle")
 						),
@@ -487,6 +628,15 @@ export const color: IAttrContent = {
 						),
 					]),
 					new b.table.tr([
+						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Warning — }}Theme color used for non-destructive warning messages.")
+						),
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBorder("--bs-warning-border-subtle")
@@ -498,6 +648,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Warning — }}Theme color used for non-destructive warning messages.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerText("--bs-warning-text-emphasis")
 						),
@@ -508,6 +667,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -524,6 +684,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Info — }}Theme color used for neutral and informative content.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg("--bs-info-bg-subtle")
 						),
@@ -533,6 +702,15 @@ export const color: IAttrContent = {
 						),
 					]),
 					new b.table.tr([
+						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Info — }}Theme color used for neutral and informative content.")
+						),
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBorder("--bs-info-border-subtle")
@@ -544,6 +722,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Info — }}Theme color used for neutral and informative content.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerText("--bs-info-text-emphasis")
 						),
@@ -554,6 +741,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -570,6 +758,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Light — }}Additional theme option for less contrasting colors.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg("--bs-light-bg-subtle")
 						),
@@ -580,6 +777,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Light — }}Additional theme option for less contrasting colors.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBorder("--bs-light-border-subtle")
 						),
@@ -589,6 +795,15 @@ export const color: IAttrContent = {
 						),
 					]),
 					new b.table.tr([
+						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Light — }}Additional theme option for less contrasting colors.")
+						),
 						new b.table.td(colorpickerText("--bs-light-text-emphasis")),
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variables" },
@@ -597,6 +812,7 @@ export const color: IAttrContent = {
 					]),
 
 					//-----------------------
+
 					new b.table.tr([
 						new b.table.td(
 							{ rowspan: 4, responsiveAttr: "bs-title-name", responsiveTitle: "Description" },
@@ -613,6 +829,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Dark — }}Additional theme option for higher contrasting colors.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBg("--bs-dark-bg-subtle")
 						),
@@ -623,6 +848,15 @@ export const color: IAttrContent = {
 					]),
 					new b.table.tr([
 						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Dark — }}Additional theme option for higher contrasting colors.")
+						),
+						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 							colorpickerBorder("--bs-dark-border-subtle")
 						),
@@ -632,6 +866,15 @@ export const color: IAttrContent = {
 						),
 					]),
 					new b.table.tr([
+						new b.table.td(
+							{
+								rowspan: 4,
+								responsiveAttr: "bs-title-name",
+								responsiveTitle: "Description",
+								display: ["block", "md-none"],
+							},
+							new h.div("{{b::Dark — }}Additional theme option for higher contrasting colors.")
+						),
 						new b.table.td(colorpickerText("--bs-dark-text-emphasis")),
 						new b.table.td(
 							{ responsiveAttr: "bs-title-name", responsiveTitle: "Variable" },
