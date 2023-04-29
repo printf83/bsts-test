@@ -1,6 +1,7 @@
-import { h, b, strHtml } from "@printf83/bsts";
+import { h, b, strHtml, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
+import { flex } from "../utilities/flex.js";
 
 export const tooltip: IAttrContent = {
 	title: "Tooltips",
@@ -260,7 +261,7 @@ export const tooltip: IAttrContent = {
 
 		new e.subtitle("Markup"),
 		new e.text(
-			"The required markup for a {{b.tooltip}} is only a {{content}} on the component you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to {{top}} by the plugin)."
+			"{{content}} property on {{b.tooltip}} required to create a tooltip on the component you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to {{top}} by the plugin)."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
@@ -327,27 +328,39 @@ export const tooltip: IAttrContent = {
 				["{{animation}}", "boolean", "{{true}}", "Apply a CSS fade transition to the tooltip."],
 				[
 					"{{boundary}}",
-					"string, element",
+					"string",
 					"{{'clippingParents'}}",
 					"Overflow constraint boundary of the tooltip (applies only to Popper’s preventOverflow modifier). By default, it’s {{'clippingParents'}} and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
 				],
 				[
-					"{{container}}",
-					"string, element, false",
+					"{{parent}}",
+					"string, false",
 					"{{false}}",
-					"Appends the tooltip to a specific element. Example: {{container: 'body'}}. This option is particularly useful in that it allows you to position the tooltip in the flow of the document near the triggering element - which will prevent the tooltip from floating away from the triggering element during a window resize.",
+					"Appends the tooltip to a specific element. Example: {{parent:'body'}}. This option is particularly useful in that it allows you to position the tooltip in the flow of the document near the triggering element - which will prevent the tooltip from floating away from the triggering element during a window resize.",
 				],
 				[
 					"{{customClass}}",
-					"string, function",
-					"{{''}}",
+					"string",
+					"{{undefined}}",
 					"Add classes to the tooltip when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: {{'class-1 class-2'}}. You can also pass a function that should return a single string containing additional class names.",
 				],
 				[
 					"{{delay}}",
-					"number, object",
+					"number",
 					"{{0}}",
-					`Delay showing and hiding the tooltip (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide/show. Object structure is: {{delay: { "show": 500, "hide": 100 } }}.`,
+					`Delay showing and hiding the tooltip (ms)—doesn’t apply to manual trigger type. If a value is supplied, delay is applied to both hide/show.`,
+				],
+				[
+					"{{hideDelay}}",
+					"number",
+					"{{0}}",
+					`Delay hiding the tooltip (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide. Object structure created is: {{delay: { "hide": value } }}.`,
+				],
+				[
+					"{{showDelay}}",
+					"number",
+					"{{0}}",
+					`Delay showing the tooltip (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to show. Object structure created is: {{delay: { "show": value } }}.`,
 				],
 				[
 					"{{fallbackPlacements}}",
@@ -359,36 +372,36 @@ export const tooltip: IAttrContent = {
 					"{{html}}",
 					"boolean",
 					"{{false}}",
-					"Allow HTML in the tooltip. If true, HTML tags in the tooltip’s {{title}} will be rendered in the tooltip. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks.",
+					"Allow HTML in the tooltip. If true, HTML tags in the tooltip’s {{content}} will be rendered in the tooltip. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks.",
 				],
 				[
-					"{{offset}}",
-					"number, string, function",
+					"{{viewOffset}}",
+					"array number, string",
 					"{{[0, 0]}}",
-					"Offset of the tooltip relative to its target. You can pass a string in data attributes with comma separated values like: {{data-bs-offset='10,20'}}. When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: {{https://popper.js.org/docs/v2/modifiers/offset/#skidding-1::skidding}}, {{https://popper.js.org/docs/v2/modifiers/offset/#distance-1::distance}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/offset/#options::offset docs}}.",
+					"Offset of the tooltip relative to its target. You can pass a string in data attributes with comma separated values like: {{'10,20'}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/offset/#options::offset docs}}.",
 				],
 				[
 					"{{placement}}",
-					"string, function",
+					"string",
 					"{{'top'}}",
 					"How to position the tooltip: auto, top, bottom, left, right. When {{auto}} is specified, it will dynamically reorient the tooltip. When a function is used to determine the placement, it is called with the tooltip DOM node as its first argument and the triggering element DOM node as its second. The {{this}} context is set to the tooltip instance.",
 				],
 				[
 					"{{popperConfig}}",
-					"null, object, function",
-					"{{null}}",
+					"object",
+					"{{undefined}}",
 					"To change Bootstrap’s default Popper config, see {{https://popper.js.org/docs/v2/constructors/#options::Popper’s configuration}}. When a function is used to create the Popper configuration, it’s called with an object that contains the Bootstrap’s default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper.",
 				],
 				[
 					"{{sanitize}}",
 					"boolean",
 					"{{true}}",
-					"Enable or disable the sanitization. If activated {{'template'}}, {{'content'}} and {{'title'}} options will be sanitized.",
+					"Enable or disable the sanitization. If activated {{'template'}} and {{'title'}} options will be sanitized.",
 				],
 				[
 					"{{sanitizeFn}}",
-					"null, function",
-					"{{null}}",
+					"function name in string",
+					"{{undefined}}",
 					"Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization.",
 				],
 				[
@@ -404,14 +417,14 @@ export const tooltip: IAttrContent = {
 					`Base HTML to use when creating the tooltip. The tooltip’s {{title}} will be injected into the {{.tooltip-inner}}. {{.tooltip-arrow}} will become the tooltip’s arrow. The outermost wrapper element should have the {{.tooltip}} class and {{role="tooltip"}}.`,
 				],
 				[
-					"{{title}}",
-					"string, element, function",
-					"{{''}}",
+					"{{content}}",
+					"string, element",
+					"{{undefinde}}",
 					"The tooltip title. If a function is given, it will be called with its {{this}} reference set to the element that the popover is attached to.",
 				],
 				[
 					"{{trigger}}",
-					"string",
+					"string, array of string",
 					"{{'hover focus'}}",
 					"How tooltip is triggered: click, hover, focus, manual. You may pass multiple triggers; separate them with a space. {{'manual'}} indicates that the tooltip will be triggered programmatically via the {{.tooltip('show')}}, {{.tooltip('hide')}} and {{.tooltip('toggle')}} methods; this value cannot be combined with any other trigger. {{'hover'}} on its own will result in tooltips that cannot be triggered via the keyboard, and should only be used if alternative methods for conveying the same information for keyboard users is present.",
 				],
@@ -487,14 +500,150 @@ export const tooltip: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const tooltip = bootstrap.Tooltip.getInstance('#example') // Returns a Bootstrap tooltip instance
+		new e.code({
+			output: () => {
+				return [
+					new h.div({ display: "flex" }, [
+						new h.div(
+							{
+								width: 100,
+								marginEnd: 3,
+								bgColor: "body-tertiary",
+								rounded: true,
+								position: "relative",
+							},
+							new h.div(
+								{ position: "absolute", top: 50, start: 50, tMiddle: true },
+								new b.button(
+									{ id: "example-tooltip", color: "primary", title: "Default tooltip", weight: "lg" },
+									"Example"
+								)
+							)
+						),
+						new h.div(
+							{ marginStart: "auto" },
+							new b.btngroup({ vertical: true, weight: "sm" }, [
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.enable("#example-tooltip");
+											},
+										},
+									},
+									"Enable"
+								),
 
-				// setContent example
-				tooltip.setContent({ '.tooltip-inner': 'another title' })
-			`,
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.toggle("#example-tooltip");
+											},
+										},
+									},
+									"Toggle"
+								),
+								new b.button(
+									{
+										outline: true,
+										toggle: true,
+										on: {
+											click: () => {
+												b.tooltip.toggleEnabled("#example-tooltip");
+											},
+										},
+									},
+									"toggleEnabled"
+								),
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.show("#example-tooltip");
+											},
+										},
+									},
+									"Show"
+								),
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.hide("#example-tooltip");
+											},
+										},
+									},
+									"Hide"
+								),
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.update("#example-tooltip");
+											},
+										},
+									},
+									"Update"
+								),
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.setContent("#example-tooltip", {
+													".tooltip-inner": "Another tooltip",
+												});
+											},
+										},
+									},
+									"setContent"
+								),
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.setContent("#example-tooltip", {
+													".tooltip-inner": "Default tooltip",
+												});
+											},
+										},
+									},
+									"setContent II"
+								),
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.disable("#example-tooltip");
+											},
+										},
+									},
+									"Disabled"
+								),
+								new b.button(
+									{
+										outline: true,
+										on: {
+											click: () => {
+												b.tooltip.dispose("#example-tooltip");
+											},
+										},
+									},
+									"Dispose"
+								),
+							])
+						),
+					]),
+				];
+			},
 		}),
 
 		new e.alert(
@@ -528,18 +677,78 @@ export const tooltip: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const myTooltipEl = document.getElementById('myTooltip')
-				const tooltip = bootstrap.Tooltip.getOrCreateInstance(myTooltipEl)
+		new e.code({
+			outputAttr: { gap: 2 },
+			output: () => {
+				const showOutput = (title: string, color: core.bootstrapType.textColor, msg: string) => {
+					const n = new Date();
+					const strNow = `${n.getHours()}:${n.getMinutes()}:${n.getSeconds()}`;
+					const console = document.getElementById("event-tooltip-console") as HTMLDivElement;
+					core.prependChild(
+						console,
+						new h.div({ textColor: color, textWrap: false }, `${strNow} : [${title}] ${msg}`)
+					);
+				};
 
-				myTooltipEl.addEventListener('hidden.bs.tooltip', () => {
-				// do something...
-				})
+				return [
+					new b.tooltip(
+						{
+							id: "event-tooltip",
+							content: "Tooltip event",
+							on: {
+								"shown.bs.tooltip": (event) => {
+									const target = event.target as HTMLElement;
 
-				tooltip.hide()
-			`,
+									showOutput(
+										"shown.bs.tooltip",
+										"success",
+										`target: {{b::${core.elemInfo(target)}}}`
+									);
+								},
+
+								"hidden.bs.tooltip": (event) => {
+									const target = event.target as HTMLElement;
+
+									showOutput(
+										"hidden.bs.tooltip",
+										"danger",
+										`target: {{b::${core.elemInfo(target)}}}`
+									);
+								},
+
+								"inserted.bs.tooltip": (event) => {
+									const target = event.target as HTMLElement;
+
+									showOutput(
+										"inserted.bs.tooltip",
+										"info",
+										`target: {{b::${core.elemInfo(target)}}}`
+									);
+								},
+							},
+						},
+						new b.button({ color: "primary" }, "Tooltip event")
+					),
+					new h.div(
+						{
+							rounded: true,
+							bgColor: "body-tertiary",
+							padding: 3,
+							monospace: true,
+							overflow: "hidden",
+						},
+						new h.div(
+							{
+								id: "event-tooltip-console",
+								overflowY: "scroll",
+								overflowX: "hidden",
+								style: { height: "200px" },
+							},
+							""
+						)
+					),
+				];
+			},
 		}),
 	],
 };
