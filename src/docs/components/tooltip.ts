@@ -150,27 +150,17 @@ export const tooltip: IAttrContent = {
 			},
 		}),
 		new e.text("And with custom HTML added:"),
-		// new e.code({
-		// 	outputAttr: { gap: 1 },
-		// 	output: () => {
-		// 		return new b.tooltip(
-		// 			{
-		// 				content: "<em>Tooltip</em> <u>with</u> <b>HTML</b>",
-		// 			},
-		// 			new b.button({ color: "secondary" }, "Tooltip on HTML")
-		// 		);
-		// 	},
-		// }),
-		new e.codepreview({
-			type: "js",
-			code: `
-				new b.tooltip(
+		new e.code({
+			outputAttr: { gap: 1 },
+			output: () => {
+				return new b.tooltip(
 					{
 						content: "<em>Tooltip</em> <u>with</u> <b>HTML</b>",
+						allowHtml: true,
 					},
 					new b.button({ color: "secondary" }, "Tooltip on HTML")
 				);
-			`,
+			},
 		}),
 		new e.text("With an SVG:"),
 		new e.code({
@@ -270,11 +260,11 @@ export const tooltip: IAttrContent = {
 
 		new e.subtitle("Markup"),
 		new e.text(
-			"The required markup for a tooltip is only a {{data}} attribute and {{title}} on the HTML element you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to {{top}} by the plugin)."
+			"The required markup for a {{b.tooltip}} is only a {{content}} on the component you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to {{top}} by the plugin)."
 		),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"{{b::Keep tooltips accessible to keyboard and assistive technology users}} by only adding them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). While other HTML elements can be made focusable by adding {{tabindex='0'}}, this can create annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce tooltips in this situation. Additionally, do not rely solely on {{hover}} as the trigger for your tooltips as this will make theme impossible to trigger for keyboard users."
+			"{{b::Keep tooltips accessible to keyboard and assistive technology users}} by only adding them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). While other HTML elements can be made focusable by adding {{tabindex:'0'}}, this can create annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce tooltips in this situation. Additionally, do not rely solely on {{hover}} as the trigger for your tooltips as this will make theme impossible to trigger for keyboard users."
 		),
 		new e.codepreview({
 			type: "html",
@@ -296,7 +286,7 @@ export const tooltip: IAttrContent = {
 
 		new e.subtitle("Disabled elements"),
 		new e.text(
-			"Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a tooltip (or popover). As a workaround, you’ll want to trigger the tooltip from a wrapper {{<div>}} or {{<span>}}, ideally made keyboard-focusable using {{tabindex='0'}}."
+			"Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a tooltip (or popover). {{bsts}} use {{b.tooltip}} as a wrapper, and automaticlly made keyboard-focusable using {{tabindex:'0'}}."
 		),
 		new e.code({
 			output: () => {
