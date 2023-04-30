@@ -174,6 +174,7 @@ export const toast: IAttrContent = {
 					"Manually set close button white. If not, automaticly set base on {{color}}",
 				],
 				["{{delay}}", "{{number}} | {{undefined}}", "{{5000}}", "Set toast timeout delay in milisecond"],
+				["{{animation}}", "{{boolean}} | {{undefined}}", "{{true}}", "Set toast animation."],
 			],
 		}),
 		new e.code({
@@ -391,6 +392,35 @@ export const toast: IAttrContent = {
 						new b.toast.body("Hello, world! This is a toast message."),
 						new b.toast.btnclose({ white: true, marginEnd: 2, margin: "auto" }),
 					])
+				);
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Disable animation"),
+		new e.text(
+			"{{bsts}} automaticly set {{animation:true}} on {{b.toast.item}}. Set {{animation:false}} to disable toast animation."
+		),
+		new e.code({
+			output: () => {
+				return new b.button(
+					{
+						on: {
+							click: () => {
+								b.toast.show(
+									"top-end",
+									b.Toast.Simple({
+										delay: 30000,
+										animation: false,
+										elem: "Toast without animation",
+										title: document.title,
+									})
+								);
+							},
+						},
+					},
+					"Show live toast"
 				);
 			},
 		}),
