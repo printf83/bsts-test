@@ -1,4 +1,4 @@
-import { b, h, core } from "@printf83/bsts";
+import { b, h, core, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -383,7 +383,7 @@ export const alert: IAttrContent = {
 							"closed.bs.alert": (event) => {
 								const target = event.target;
 								b.toast.show(
-									b.Toast.Simple({
+									B.Toast.Simple({
 										title: "closed.bs.alert",
 										color: "info",
 										elem: `Event target: {{b::${core.elemInfo(target as HTMLElement)}}}`,

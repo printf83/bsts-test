@@ -1,4 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
+import { B, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -345,7 +345,7 @@ export const collapse: IAttrContent = {
 									let collapseEvent = event.target;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "hidden.bs.collapse",
 											color: "info",
 											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,
@@ -356,7 +356,7 @@ export const collapse: IAttrContent = {
 									let collapseEvent = event.target;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "shown.bs.collapse",
 											color: "success",
 											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,

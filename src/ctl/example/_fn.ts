@@ -1,8 +1,8 @@
-import { core, b } from "@printf83/bsts";
+import { core, b, I, B } from "@printf83/bsts";
 
-export const toast = (color: b.toast.IBsToastTemplate["color"], elem: core.IElem, icon?: string) => {
+export const toast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
 	b.toast.show(
-		b.Toast.Simple({
+		B.Toast.Simple({
 			title: document.title,
 			color: color,
 			elem: elem,

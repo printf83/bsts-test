@@ -1,4 +1,4 @@
-import { core, h, b } from "@printf83/bsts";
+import { core, h, b, I, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -534,7 +534,7 @@ export const dropdown: IAttrContent = {
 					{ label: "Dropend", drop: "end" },
 					{ label: "Dropup", drop: "up" },
 				].map((i) => {
-					return new b.dropdown.container({ drop: i.drop as b.dropdown.IBsDropdownContainerDrop }, [
+					return new b.dropdown.container({ drop: i.drop as I.B.Dropdown.Drop }, [
 						new b.dropdown.toggle({ color: "secondary" }, i.label),
 						new b.dropdown.menu(
 							{
@@ -1240,7 +1240,7 @@ export const dropdown: IAttrContent = {
 								const evnt = event as EventWithTargetAndRelatedTarget;
 
 								b.toast.show(
-									b.Toast.Simple({
+									B.Toast.Simple({
 										title: "shown.bs.dropdown",
 										color: "success",
 										elem: [
@@ -1256,7 +1256,7 @@ export const dropdown: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									b.Toast.Simple({
+									B.Toast.Simple({
 										title: "hidden.bs.dropdown",
 										color: "danger",
 										elem: [`target: {{b::${core.elemInfo(target)}}}`],

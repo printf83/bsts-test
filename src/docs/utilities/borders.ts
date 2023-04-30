@@ -1,4 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
+import { B, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -95,7 +95,7 @@ export const borders: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.Form.Input({
+					B.Form.Input({
 						borderColor: "success",
 
 						container: { marginBottom: 4 },

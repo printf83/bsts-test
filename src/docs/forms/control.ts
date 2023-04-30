@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -25,17 +25,17 @@ export const control: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{b.form.item}} and {{b.Form.Textarea}}"),
+		new e.text("Using {{b.form.item}} and {{B.Form.Textarea}}"),
 		new e.code({
 			output: () => {
 				return [
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Email address",
 						placeholder: "name@example.com",
 						type: "email",
 					}),
-					b.Form.Textarea({
+					B.Form.Textarea({
 						label: "Example textarea",
 					}),
 				];
@@ -49,16 +49,16 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						placeholder: ".form-control-lg",
 						weight: "lg",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						placeholder: "Default input",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						placeholder: ".form-control-sm",
 						weight: "sm",
 					}),
@@ -93,7 +93,7 @@ export const control: IAttrContent = {
 		new e.text("Using {{b.form.item}}"),
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					label: "Password",
 					type: "password",
 					description:
@@ -126,7 +126,7 @@ export const control: IAttrContent = {
 		new e.text("Using {{b.form.item}}"),
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					container: { gutter: 3, alignItem: "center" },
 					label: "Password",
 					type: "password",
@@ -190,7 +190,7 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						value: "email@example.com",
 						label: "Email",
@@ -198,7 +198,7 @@ export const control: IAttrContent = {
 						col1: "sm-2",
 						col2: "sm-10",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						label: "Password",
 						type: "password",
 						col1: "sm-2",
@@ -210,14 +210,14 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "auto" },
 						value: "email@example.com",
 						label: "Email",
 						hideLabel: true,
 						plaintext: true,
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "auto" },
 						label: "Password",
 						hideLabel: true,
@@ -236,30 +236,30 @@ export const control: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Default file input example",
 						type: "file",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Multiple file input example",
 						type: "file",
 						multiple: true,
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Disabled file input example",
 						type: "file",
 						disabled: true,
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Small file input example",
 						type: "file",
 						weight: "sm",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						label: "Large file input example",
 						type: "file",
 						weight: "lg",
@@ -277,7 +277,7 @@ export const control: IAttrContent = {
 		new e.text([new h.span({ class: "teal-700" }, "This teal-700")]),
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					label: "Color picker",
 					type: "color",
 					value: "#563d7c",
@@ -295,7 +295,7 @@ export const control: IAttrContent = {
 
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					label: "Datalist example",
 					type: "text",
 					placeholder: "Type to search...",

@@ -1,4 +1,4 @@
-import { h, b, core } from "@printf83/bsts";
+import { h, b, core, I, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -148,7 +148,7 @@ export const toast: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Simple toast"),
-		new e.text("You can use Bootstrap simple toast by calling {{b.Toast.Simple}} function."),
+		new e.text("You can use Bootstrap simple toast by calling {{B.Toast.Simple}} function."),
 		new e.table({
 			item: [
 				["Option", "Type", "Default", "Description"],
@@ -180,7 +180,7 @@ export const toast: IAttrContent = {
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
-				const fnToast = (color: b.toast.IBsToastTemplate["color"], elem: core.IElem, icon?: string) => {
+				const fnToast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
 					let tElem;
 
 					switch (color) {
@@ -257,7 +257,7 @@ export const toast: IAttrContent = {
 							});
 					}
 					b.toast.show(
-						b.Toast.Simple({
+						B.Toast.Simple({
 							color: color,
 							elem: tElem,
 
@@ -269,10 +269,10 @@ export const toast: IAttrContent = {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.button(
 						{
-							color: i as b.IBsButton["color"],
+							color: i as I.B.Button["color"],
 							on: {
 								click: (_e) => {
-									fnToast(i as b.toast.IBsToastTemplate["color"], `This is {{b::${i} }}toast.`);
+									fnToast(i as I.B.Toast.Simple["color"], `This is {{b::${i} }}toast.`);
 								},
 							},
 						},
@@ -408,7 +408,7 @@ export const toast: IAttrContent = {
 						on: {
 							click: () => {
 								b.toast.show(
-									b.Toast.Simple({
+									B.Toast.Simple({
 										delay: 30000,
 										animation: false,
 										elem: "Toast without animation",
@@ -431,7 +431,7 @@ export const toast: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				const container = (placement: b.toast.IBsToastContainer["placement"]) => {
+				const container = (placement: I.B.Toast.Container["placement"]) => {
 					return new b.toast.container(
 						{
 							class: "debug",
@@ -481,7 +481,7 @@ export const toast: IAttrContent = {
 									const value = target.value;
 									core.replaceWith(
 										document.getElementById("toastPlacement") as HTMLElement,
-										container(value as b.toast.IBsToastContainer["placement"])
+										container(value as I.B.Toast.Container["placement"])
 									);
 								},
 							},
@@ -856,7 +856,7 @@ export const toast: IAttrContent = {
 										on: {
 											click: () => {
 												b.toast.show(
-													b.Toast.Simple({
+													B.Toast.Simple({
 														title: "b.toast.isShown",
 														color: "primary",
 														elem: [`isShown : {{b::${b.toast.isShown("#example-toast")}}}`],
@@ -919,7 +919,7 @@ export const toast: IAttrContent = {
 												const target = event.target as HTMLElement;
 
 												b.toast.show(
-													b.Toast.Simple({
+													B.Toast.Simple({
 														title: "shown.bs.toast",
 														color: "success",
 														elem: [`target: {{b::${core.elemInfo(target)}}}`],
@@ -931,7 +931,7 @@ export const toast: IAttrContent = {
 												const target = event.target as HTMLElement;
 
 												b.toast.show(
-													b.Toast.Simple({
+													B.Toast.Simple({
 														title: "hidden.bs.toast",
 														color: "danger",
 														elem: [`target: {{b::${core.elemInfo(target)}}}`],

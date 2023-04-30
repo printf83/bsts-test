@@ -1,4 +1,4 @@
-import { b, h } from "@printf83/bsts";
+import { B, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -24,17 +24,17 @@ export const floating_label: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{b.Form.FloatingLabel.Input}} :"),
+		new e.text("Using {{B.Form.FloatingLabel.Input}} :"),
 		new e.code({
 			output: () => {
 				return [
-					b.Form.FloatingLabel.Input({
+					B.Form.FloatingLabel.Input({
 						container: { marginBottom: 3 },
 						type: "email",
 						label: "Email address",
 						placeholder: "name@example.com",
 					}),
-					b.Form.FloatingLabel.Input({
+					B.Form.FloatingLabel.Input({
 						type: "password",
 						label: "Password",
 					}),
@@ -46,7 +46,7 @@ export const floating_label: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.Form.FloatingLabel.Input({
+				return B.Form.FloatingLabel.Input({
 					type: "email",
 					label: "Input with value",
 					value: "test@example.com",
@@ -56,7 +56,7 @@ export const floating_label: IAttrContent = {
 		new e.text("Form validation styles also work as expected."),
 		new e.code({
 			output: () => {
-				return b.Form.FloatingLabel.Input({
+				return B.Form.FloatingLabel.Input({
 					type: "email",
 					label: "Invalid input",
 					value: "test@example.com",
@@ -71,7 +71,7 @@ export const floating_label: IAttrContent = {
 		new e.text("By default, {{<textarea>}}s with {{.form-control}} will be the same height as {{<input>}}s."),
 		new e.code({
 			output: () => {
-				return b.Form.FloatingLabel.Textarea({
+				return B.Form.FloatingLabel.Textarea({
 					label: "Comments",
 				});
 			},
@@ -81,7 +81,7 @@ export const floating_label: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.Form.FloatingLabel.Textarea({
+				return B.Form.FloatingLabel.Textarea({
 					label: "Comments",
 					style: { height: "100px" },
 				});
@@ -96,7 +96,7 @@ export const floating_label: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.Form.FloatingLabel.Select({
+				return B.Form.FloatingLabel.Select({
 					label: "Work with selects",
 					item: [
 						{ selected: true, elem: "Open this select menu" },
@@ -117,24 +117,24 @@ export const floating_label: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.Form.FloatingLabel.Input({
+					B.Form.FloatingLabel.Input({
 						container: { marginBottom: 3 },
 						label: "Email address",
 						type: "email",
 						disabled: true,
 					}),
-					b.Form.FloatingLabel.Textarea({
+					B.Form.FloatingLabel.Textarea({
 						container: { marginBottom: 3 },
 						label: "Comments",
 						disabled: true,
 					}),
-					b.Form.FloatingLabel.Textarea({
+					B.Form.FloatingLabel.Textarea({
 						container: { marginBottom: 3 },
 						label: "Comments",
 						disabled: true,
 						style: { height: "100px" },
 					}),
-					b.Form.FloatingLabel.Select({
+					B.Form.FloatingLabel.Select({
 						label: "Work with selects",
 						disabled: true,
 						item: [
@@ -157,14 +157,14 @@ export const floating_label: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.Form.FloatingLabel.Input({
+					B.Form.FloatingLabel.Input({
 						container: { marginBottom: 3 },
 						label: "Empty input",
 						type: "email",
 						readonly: true,
 						plaintext: true,
 					}),
-					b.Form.FloatingLabel.Input({
+					B.Form.FloatingLabel.Input({
 						label: "Input with value",
 						type: "email",
 						value: "name@example.com",
@@ -181,7 +181,7 @@ export const floating_label: IAttrContent = {
 		new e.text("Floating labels also support {{.input-group}}."),
 		new e.code({
 			output: () => {
-				return b.Form.FloatingLabel.Input({
+				return B.Form.FloatingLabel.Input({
 					label: "Username",
 					type: "text",
 					before: "@",
@@ -194,7 +194,7 @@ export const floating_label: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.Form.FloatingLabel.Input({
+				return B.Form.FloatingLabel.Input({
 					invalidFeedback: "Please choose a username.",
 					label: "Username",
 					type: "text",
@@ -214,13 +214,13 @@ export const floating_label: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true, gutter: 3 }, [
-					b.Form.FloatingLabel.Input({
+					B.Form.FloatingLabel.Input({
 						container: { col: "md" },
 						label: "Email address",
 						type: "email",
 						value: "mdo@example.com",
 					}),
-					b.Form.FloatingLabel.Select({
+					B.Form.FloatingLabel.Select({
 						container: { col: "md" },
 						label: "Work with selects",
 						item: [

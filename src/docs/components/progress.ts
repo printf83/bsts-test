@@ -1,4 +1,4 @@
-import { b, core } from "@printf83/bsts";
+import { I, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -195,7 +195,7 @@ export const progress: IAttrContent = {
 					return new b.progress.container(
 						{ label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar({
-							color: i as b.progress.IBsProgressBar["color"],
+							color: i as I.B.Progress.Bar["color"],
 							style: { width: `${val}%` },
 						})
 					);
@@ -213,7 +213,7 @@ export const progress: IAttrContent = {
 						value: val,
 						min: 0,
 						max: 100,
-						color: i as b.progress.IBsProgressBar["color"],
+						color: i as I.B.Progress.Bar["color"],
 					});
 				});
 			},
@@ -235,8 +235,8 @@ export const progress: IAttrContent = {
 						{ label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar(
 							{
-								color: i as b.progress.IBsProgressBar["color"],
-								textColor: text as b.progress.IBsProgressBar["textColor"],
+								color: i as I.B.Progress.Bar["color"],
+								textColor: text as I.B.Progress.Bar["textColor"],
 								style: { width: `${val}%` },
 							},
 							`${val}%`
@@ -275,7 +275,7 @@ export const progress: IAttrContent = {
 						{ label: `${i.charAt(0).toUpperCase() + i.slice(1)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar(
 							{
-								textBgColor: i as b.progress.IBsProgressBar["textBgColor"],
+								textBgColor: i as I.B.Progress.Bar["textBgColor"],
 								style: { width: `${val}%` },
 							},
 							`${val}%`
@@ -378,7 +378,7 @@ export const progress: IAttrContent = {
 						},
 						new b.progress.bar({
 							striped: true,
-							textBgColor: i as b.progress.IBsProgressBar["textBgColor"],
+							textBgColor: i as I.B.Progress.Bar["textBgColor"],
 							style: { width: `${val}%` },
 						})
 					);

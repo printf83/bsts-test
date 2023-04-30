@@ -1,4 +1,4 @@
-import { h, b, strHtml, core } from "@printf83/bsts";
+import { h, b, strHtml, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -140,7 +140,7 @@ export const tooltip: IAttrContent = {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.tooltip(
 						{
-							placement: i as b.IBsTooltip["placement"],
+							placement: i as I.B.Tooltip["placement"],
 							content: `Tooltip on ${i}`,
 						},
 						new b.button({ color: "secondary" }, `Tooltip on ${i}`)
@@ -503,8 +503,7 @@ export const tooltip: IAttrContent = {
 		new e.code({
 			output: () => {
 				const myDefaultAllowList = window.bootstrap.Tooltip.Default.allowList;
-				myDefaultAllowList.iframe = ["src"];
-				myDefaultAllowList.div = ["style"];
+				myDefaultAllowList.img = ["src", "alt"];
 
 				return [
 					new h.div({ display: "flex" }, [
@@ -525,7 +524,7 @@ export const tooltip: IAttrContent = {
 										allowHtml: true,
 										content: "Default tooltip",
 										on: {
-											"hidden.bs.popover": (eent) => {
+											"hidden.bs.tooltip": () => {
 												b.tooltip.setContent("#example-tooltip", {
 													".tooltip-inner": "Default tooltip",
 												});
@@ -614,7 +613,8 @@ export const tooltip: IAttrContent = {
 										on: {
 											click: () => {
 												b.tooltip.setContent("#example-tooltip", {
-													".tooltip-inner": `<div class="ratio ratio-16x9" style="width:11rem;"><iframe src="https://www.youtube.com/embed/eVxNksC88_U?autoplay=1"></iframe></div>`,
+													".tooltip-inner":
+														"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170' alt='Image cap'>",
 												});
 											},
 										},

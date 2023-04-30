@@ -1,4 +1,4 @@
-import { h, b, core } from "@printf83/bsts";
+import { h, b, core, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -508,7 +508,7 @@ export const carousel: IAttrContent = {
 												let carouselEvent = (<unknown>event) as bootstrap.Carousel.Event;
 
 												b.toast.show(
-													b.Toast.Simple({
+													B.Toast.Simple({
 														title: "slide.bs.carousel",
 														color: "info",
 														elem: [

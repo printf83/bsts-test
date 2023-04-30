@@ -1,4 +1,4 @@
-import { core, b, h, t } from "@printf83/bsts";
+import { core, b, h, t, I } from "@printf83/bsts";
 import * as e from "../example/_index.js";
 
 const dispatchCustomEvent = (root: Element | null, eventName: string, value: string) => {
@@ -13,7 +13,7 @@ const dispatchCustomEvent = (root: Element | null, eventName: string, value: str
 	}
 };
 
-const changeTheme = (value: string, icon: b.IBsIcon) => {
+const changeTheme = (value: string, icon: I.B.Icon) => {
 	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
 	let bsThemeMenu = bsTheme.nextSibling as HTMLElement;
 
@@ -104,12 +104,12 @@ export interface IAttrItemInsideLink {
 export interface IAttrItemOutsideLink {
 	href: string;
 	label: string;
-	icon: b.IBsIcon;
+	icon: I.B.Icon;
 }
 
 export interface IAttrItemTheme {
 	value: string;
-	icon: b.IBsIcon;
+	icon: I.B.Icon;
 	label: string;
 }
 
@@ -120,7 +120,7 @@ export interface IAttrItemVersion {
 
 export interface IAttrItemMenu {
 	label: string;
-	icon: b.IBsIcon;
+	icon: I.B.Icon;
 	item: IAttrItemSubMenu[];
 }
 
@@ -627,7 +627,7 @@ export const genMainContent = (content?: IAttrContent) => {
 };
 
 export interface IBsMainContainer extends core.IAttr {
-	icon?: b.IBsIcon;
+	icon?: I.B.Icon;
 	name?: string;
 
 	textColor?: core.bootstrapType.textColor;

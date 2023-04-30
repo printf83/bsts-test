@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -111,18 +111,18 @@ export const overview: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.form([
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Email address",
 						description: "Bootstrap'll never share your email with anyone else.",
 						type: "email",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
 					}),
-					b.Form.Check({
+					B.Form.Check({
 						container: { marginBottom: 3 },
 						label: "Check me out",
 						type: "checkbox",
@@ -156,18 +156,18 @@ export const overview: IAttrContent = {
 				return new h.form(
 					new h.fieldset({ disabled: true }, [
 						new h.legend("Disabled fieldset example"),
-						b.Form.Input({
+						B.Form.Input({
 							container: { marginBottom: 3 },
 							label: "Disabled input",
 							placeholder: "Disabled input",
 							type: "text",
 						}),
-						b.Form.Select({
+						B.Form.Select({
 							container: { marginBottom: 3 },
 							label: "Disabled select menu",
 							item: [{ elem: "Disabled select" }],
 						}),
-						b.Form.Check({
+						B.Form.Check({
 							container: { marginBottom: 3 },
 							label: "Check me out",
 							type: "checkbox",

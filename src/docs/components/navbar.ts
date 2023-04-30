@@ -1,4 +1,4 @@
-import { core, h, b } from "@printf83/bsts";
+import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -391,7 +391,7 @@ export const navbar: IAttrContent = {
 		new e.code({
 			outputAttr: { gap: 2 },
 			output: () => {
-				const navbarItem = (btnColor: b.IBsButton["color"]) => {
+				const navbarItem = (btnColor: I.B.Button["color"]) => {
 					let id = core.UUID();
 					return new b.navbar.innercontainer({ container: "fluid" }, [
 						new b.navbar.brand({ href: "#" }, "Navbar"),

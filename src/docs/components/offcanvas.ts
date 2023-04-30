@@ -1,4 +1,4 @@
-import { h, b, core } from "@printf83/bsts";
+import { h, b, core, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -617,7 +617,7 @@ export const offcanvas: IAttrContent = {
 									const evnt = event as EventWithTargetAndRelatedTarget;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "shown.bs.offcanvas",
 											color: "success",
 											elem: [
@@ -633,7 +633,7 @@ export const offcanvas: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "hidden.bs.offcanvas",
 											color: "danger",
 											elem: [`target: {{b::${core.elemInfo(target)}}}`],
@@ -645,7 +645,7 @@ export const offcanvas: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "hidePrevented.bs.offcanvas",
 											color: "warning",
 											elem: [`target: {{b::${core.elemInfo(target)}}}`],

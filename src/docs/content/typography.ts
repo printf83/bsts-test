@@ -1,4 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
+import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -41,7 +41,7 @@ export const typography: IAttrContent = {
 		}),
 		new e.code({
 			output: () => {
-				return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as h.HLevel, `h${i}. Bootstrap heading`));
+				return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as I.H.HLevel, `h${i}. Bootstrap heading`));
 			},
 		}),
 		new e.text(

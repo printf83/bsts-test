@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -39,7 +39,7 @@ export const spinner: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.spinner({ type: "border", color: i as b.IBsSpinner["color"] });
+					return new b.spinner({ type: "border", color: i as I.B.Spinner["color"] });
 				});
 			},
 		}),
@@ -66,7 +66,7 @@ export const spinner: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-					return new b.spinner({ type: "grow", color: i as b.IBsSpinner["color"] });
+					return new b.spinner({ type: "grow", color: i as I.B.Spinner["color"] });
 				});
 			},
 		}),
@@ -139,9 +139,7 @@ export const spinner: IAttrContent = {
 		//-----------------------
 
 		new e.title("Size"),
-		new e.text(
-			"Add {{small:true}} to make a smaller spinner that can quickly be used within other components."
-		),
+		new e.text("Add {{small:true}} to make a smaller spinner that can quickly be used within other components."),
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {

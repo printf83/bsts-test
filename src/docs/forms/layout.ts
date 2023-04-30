@@ -1,4 +1,4 @@
-import { b, h } from "@printf83/bsts";
+import { B, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -45,16 +45,16 @@ export const layout: IAttrContent = {
 			},
 		}),
 
-		new e.text("Using {{b.form.item}}"),
+		new e.text("Using {{B.Form.Input}}"),
 		new e.code({
 			output: () => {
 				return [
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Example label",
 						placeholder: "Example input placeholder",
 					}),
-					b.Form.Input({ label: "Another label", placeholder: "Another input placeholder" }),
+					B.Form.Input({ label: "Another label", placeholder: "Another input placeholder" }),
 				];
 			},
 		}),
@@ -68,13 +68,13 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: true },
 						label: "First name",
 						hideLabel: true,
 						placeholder: "First name",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: true },
 						label: "Last name",
 						hideLabel: true,
@@ -93,13 +93,13 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true, gutter: 3 }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: true },
 						label: "First name",
 						hideLabel: true,
 						placeholder: "First name",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: true },
 						label: "Last name",
 						hideLabel: true,
@@ -112,40 +112,40 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.form({ row: true, gutter: 3 }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "md-6" },
 						label: "Email",
 						type: "email",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "md-6" },
 						label: "Password",
 						type: "password",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: 12 },
 						label: "Address",
 						placeholder: "1234 Main st",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: 12 },
 						label: "Address 2",
 						placeholder: "Apartment, studio, or floor",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: 5 },
 						label: "City",
 					}),
-					b.Form.Select({
+					B.Form.Select({
 						container: { col: 4 },
 						label: "State",
 						item: [{ selected: true, elem: "Choose..." }, { elem: "..." }],
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: 3 },
 						label: "Zip",
 					}),
-					b.Form.Check({ container: { col: 12 }, label: "Check me out" }),
+					B.Form.Check({ container: { col: 12 }, label: "Check me out" }),
 					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
 				]);
 			},
@@ -163,14 +163,14 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.form([
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Email",
 						type: "email",
 						col1: 3,
 						col2: 9,
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
@@ -180,17 +180,17 @@ export const layout: IAttrContent = {
 					new h.fieldset({ row: true, marginBottom: 3 }, [
 						new h.legend({ class: "col-form-label", col: "sm-3", paddingTop: 0 }, "Radios"),
 						new h.div({ col: "sm-9" }, [
-							b.Form.Check({
+							B.Form.Check({
 								type: "radio",
 								name: "gridRadios",
 								label: "First radio",
 							}),
-							b.Form.Check({
+							B.Form.Check({
 								type: "radio",
 								name: "gridRadios",
 								label: "Second radio",
 							}),
-							b.Form.Check({
+							B.Form.Check({
 								type: "radio",
 								name: "gridRadios",
 								label: "Third radio",
@@ -199,7 +199,7 @@ export const layout: IAttrContent = {
 					]),
 					new h.div(
 						{ row: true },
-						b.Form.Check({ container: { col: "sm-9", offset: "sm-3" }, label: "Example checkbox" })
+						B.Form.Check({ container: { col: "sm-9", offset: "sm-3" }, label: "Example checkbox" })
 					),
 
 					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
@@ -216,7 +216,7 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					b.Form.Input({
+					B.Form.Input({
 						container: { row: true, marginBottom: 3 },
 						label: "Email",
 						weight: "sm",
@@ -224,14 +224,14 @@ export const layout: IAttrContent = {
 						col1: 3,
 						col2: 9,
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { row: true, marginBottom: 3 },
 						label: "Email",
 						placeholder: "col-form-label",
 						col1: 3,
 						col2: 9,
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						label: "Email",
 						weight: "lg",
 						placeholder: "col-form-label-lg",
@@ -252,19 +252,19 @@ export const layout: IAttrContent = {
 			showViewport: true,
 			output: () => {
 				return new h.div({ row: true, gutter: 3 }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "sm-6" },
 						label: "City",
 						hideLabel: true,
 						placeholder: "City",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "sm" },
 						label: "State",
 						hideLabel: true,
 						placeholder: "State",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "sm" },
 						label: "Zip",
 						hideLabel: true,
@@ -283,20 +283,20 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "auto" },
 						label: "Name",
 						hideLabel: true,
 						placeholder: "Jane Doe",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "auto" },
 						label: "Username",
 						hideLabel: true,
 						placeholder: "Username",
 						before: "@",
 					}),
-					b.Form.Select({
+					B.Form.Select({
 						container: { col: "auto" },
 						label: "Preference",
 						hideLabel: true,
@@ -307,7 +307,7 @@ export const layout: IAttrContent = {
 							{ value: "3", elem: "Three" },
 						],
 					}),
-					b.Form.Check({ container: { col: "auto" }, label: "Remember me" }),
+					B.Form.Check({ container: { col: "auto" }, label: "Remember me" }),
 					new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Submit")),
 				]);
 			},
@@ -316,20 +316,20 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "sm-3" },
 						label: "Name",
 						hideLabel: true,
 						placeholder: "Jane Doe",
 					}),
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: "sm-3" },
 						label: "Username",
 						hideLabel: true,
 						placeholder: "Username",
 						before: "@",
 					}),
-					b.Form.Select({
+					B.Form.Select({
 						container: { col: "sm-3" },
 						label: "Preference",
 						hideLabel: true,
@@ -340,7 +340,7 @@ export const layout: IAttrContent = {
 							{ value: "3", elem: "Three" },
 						],
 					}),
-					b.Form.Check({ container: { col: "auto" }, label: "Remember me" }),
+					B.Form.Check({ container: { col: "auto" }, label: "Remember me" }),
 					new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Submit")),
 				]);
 			},
@@ -355,14 +355,14 @@ export const layout: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ row: true, rowCol: "lg-auto", gutter: 3, alignItem: "center" }, [
-					b.Form.Input({
+					B.Form.Input({
 						container: { col: 12 },
 						label: "Username",
 						hideLabel: true,
 						placeholder: "Username",
 						before: "@",
 					}),
-					b.Form.Select({
+					B.Form.Select({
 						container: { col: 12 },
 						label: "Preference",
 						hideLabel: true,
@@ -373,7 +373,7 @@ export const layout: IAttrContent = {
 							{ value: "3", elem: "Three" },
 						],
 					}),
-					b.Form.Check({ container: { col: 12 }, label: "Remember me" }),
+					B.Form.Check({ container: { col: 12 }, label: "Remember me" }),
 					new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit")),
 				]);
 			},

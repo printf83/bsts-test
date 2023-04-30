@@ -1,4 +1,4 @@
-import { core, h, b } from "@printf83/bsts";
+import { core, h, b, B, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -134,7 +134,7 @@ export const modal: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Simple modal"),
-		new e.text("You can use Bootstrap simple modal by calling function {{b.Modal.Simple}}."),
+		new e.text("You can use Bootstrap simple modal by calling function {{B.Modal.Simple}}."),
 
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -146,9 +146,9 @@ export const modal: IAttrContent = {
 							focusRing: true,
 							on: {
 								click: () => {
-									const mdl = b.Modal.Simple({
+									const mdl = B.Modal.Simple({
 										title: document.title,
-										elem: b.Form.Check({
+										elem: B.Form.Check({
 											id: "testcheckbox",
 											label: "Please tick this checkbox before click {{k::Okay}}",
 										}),
@@ -163,7 +163,7 @@ export const modal: IAttrContent = {
 
 												if (ischecked) {
 													b.toast.show(
-														b.Toast.Simple({
+														B.Toast.Simple({
 															title: "Simple modal example",
 															color: "success",
 															elem: "Thank you for tick the checkbox.",
@@ -174,7 +174,7 @@ export const modal: IAttrContent = {
 													b.modal.hide(container);
 												} else {
 													b.toast.show(
-														b.Toast.Simple({
+														B.Toast.Simple({
 															title: "Simple modal example",
 															color: "danger",
 															elem: "Please tick the checkbox before press okay.",
@@ -204,7 +204,7 @@ export const modal: IAttrContent = {
 						{
 							on: {
 								click: () => {
-									const mdl = b.Modal.Simple({
+									const mdl = B.Modal.Simple({
 										title: document.title,
 										elem: new b.msg(
 											{ type: "bi", id: "info-circle-fill", color: "primary" },
@@ -222,7 +222,7 @@ export const modal: IAttrContent = {
 						{
 							on: {
 								click: () => {
-									const mdl = b.Modal.Simple({
+									const mdl = B.Modal.Simple({
 										title: document.title,
 										static: true,
 										elem: new b.msg(
@@ -233,7 +233,7 @@ export const modal: IAttrContent = {
 										btnFn: [
 											(event) => {
 												b.toast.show(
-													b.Toast.Simple({
+													B.Toast.Simple({
 														title: "Simple modal example",
 														color: "success",
 														elem: "Me too.",
@@ -245,7 +245,7 @@ export const modal: IAttrContent = {
 											},
 											(event) => {
 												b.toast.show(
-													b.Toast.Simple({
+													B.Toast.Simple({
 														title: "Simple modal example",
 														color: "danger",
 														elem: "Its so sad! :'(",
@@ -986,7 +986,7 @@ export const modal: IAttrContent = {
 							{
 								id: `${i.weight}SizeModal`,
 								labelledby: `#${i.weight}SizeModalLabel`,
-								weight: i.weight as b.modal.IBsModalContainer["weight"],
+								weight: i.weight as I.B.Modal.Container["weight"],
 							},
 							[
 								new b.modal.header(
@@ -1048,7 +1048,7 @@ export const modal: IAttrContent = {
 								id: `${i.fullscreen !== true ? i.fullscreen : "xs"}FSModal`,
 								labelledby: `#${i.fullscreen !== true ? i.fullscreen : "xs"}FSModalLabel`,
 								fullscreen: i.fullscreen
-									? (i.fullscreen as b.modal.IBsModalContainer["fullscreen"])
+									? (i.fullscreen as I.B.Modal.Container["fullscreen"])
 									: undefined,
 							},
 							[
@@ -1403,7 +1403,7 @@ export const modal: IAttrContent = {
 									const evnt = event as EventWithTargetAndRelatedTarget;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "shown.bs.modal",
 											color: "success",
 											elem: [
@@ -1419,7 +1419,7 @@ export const modal: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "hidden.bs.modal",
 											color: "danger",
 											elem: [`target: {{b::${core.elemInfo(target)}}}`],
@@ -1431,7 +1431,7 @@ export const modal: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										b.Toast.Simple({
+										B.Toast.Simple({
 											title: "hidePrevented.bs.modal",
 											color: "warning",
 											elem: [`target: {{b::${core.elemInfo(target)}}}`],

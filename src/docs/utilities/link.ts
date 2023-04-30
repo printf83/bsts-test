@@ -1,4 +1,4 @@
-import { h } from "@printf83/bsts";
+import { I, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -14,8 +14,7 @@ export const link: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [10, 25, 50, 75, 100].map(
-					(i) =>
-						new h.p(new h.a({ href: "#", linkOpacity: i as h.ITagA["linkOpacity"] }, `Link opacity ${i}`))
+					(i) => new h.p(new h.a({ href: "#", linkOpacity: i as I.H.A["linkOpacity"] }, `Link opacity ${i}`))
 				);
 			},
 		}),
@@ -26,7 +25,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkOpacityHover: i as h.ITagA["linkOpacityHover"] },
+								{ href: "#", linkOpacityHover: i as I.H.A["linkOpacityHover"] },
 								`Link hover opacity ${i}`
 							)
 						)
@@ -45,7 +44,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkUnderlineColor: i as h.ITagA["linkUnderlineColor"] },
+								{ href: "#", linkUnderlineColor: i as I.H.A["linkUnderlineColor"] },
 								`${i.charAt(0).toUpperCase() + i.slice(1)} underline`
 							)
 						)
@@ -65,7 +64,7 @@ export const link: IAttrContent = {
 					(i) =>
 						new h.p(
 							new h.a(
-								{ href: "#", linkOffset: i as h.ITagA["linkOffset"] },
+								{ href: "#", linkOffset: i as I.H.A["linkOffset"] },
 								i ? `Offset ${i} link` : "Default link"
 							)
 						)
@@ -89,7 +88,7 @@ export const link: IAttrContent = {
 									href: "#",
 									linkOffset: 2,
 									linkUnderline: true,
-									linkUnderlineOpacity: i as h.ITagA["linkUnderlineOpacity"],
+									linkUnderlineOpacity: i as I.H.A["linkUnderlineOpacity"],
 								},
 								`Underline opacity ${i}`
 							)
@@ -147,7 +146,7 @@ export const link: IAttrContent = {
 									linkOffset: 2,
 									linkUnderlineOpacity: 25,
 									linkUnderlineOpacityHover: 100,
-									linkColor: i as h.ITagA["linkColor"],
+									linkColor: i as I.H.A["linkColor"],
 								},
 								`${i.charAt(0).toUpperCase() + i.slice(1)} link`
 							)

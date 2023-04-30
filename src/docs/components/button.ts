@@ -1,4 +1,4 @@
-import { b, h, core } from "@printf83/bsts";
+import { b, h, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -17,7 +17,7 @@ export const button: IAttrContent = {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
 						return new b.button(
-							{ color: i as b.IBsButton["color"] },
+							{ color: i as I.B.Button["color"] },
 							i.charAt(0).toUpperCase() + i.slice(1)
 						);
 					}
@@ -79,7 +79,7 @@ export const button: IAttrContent = {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
 						return new b.button(
-							{ color: i as b.IBsButton["color"], outline: true },
+							{ color: i as I.B.Button["color"], outline: true },
 							i.charAt(0).toUpperCase() + i.slice(1)
 						);
 					}

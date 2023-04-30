@@ -1,4 +1,4 @@
-import { h, b, core } from "@printf83/bsts";
+import { h, b, core, I, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -93,7 +93,7 @@ export const popover: IAttrContent = {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.popover(
 						{
-							placement: i as b.IBsPopover["placement"],
+							placement: i as I.B.Popover["placement"],
 							content: `${i.charAt(0).toUpperCase() + i.slice(1)} popover`,
 						},
 						new b.button({ color: "secondary" }, `Popover on ${i}`)
@@ -498,8 +498,7 @@ export const popover: IAttrContent = {
 		new e.code({
 			output: () => {
 				const myDefaultAllowList = window.bootstrap.Tooltip.Default.allowList;
-				myDefaultAllowList.iframe = ["src"];
-				myDefaultAllowList.div = ["style"];
+				myDefaultAllowList.img = ["src", "alt"];
 
 				return [
 					new h.div({ display: "flex" }, [
@@ -615,8 +614,9 @@ export const popover: IAttrContent = {
 										on: {
 											click: () => {
 												b.popover.setContent("#example-popover", {
-													".popover-header": "Youtube video",
-													".popover-body": `<div class="ratio ratio-16x9" style="width:13rem;"><iframe src="https://www.youtube.com/embed/eVxNksC88_U?autoplay=1"></iframe></div>`,
+													".popover-header": "Image",
+													".popover-body":
+														"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170' alt='Image cap'>",
 												});
 											},
 										},
@@ -693,7 +693,7 @@ export const popover: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									b.Toast.Simple({
+									B.Toast.Simple({
 										title: "shown.bs.popover",
 										color: "success",
 										elem: [`target: {{b::${core.elemInfo(target)}}}`],
@@ -705,7 +705,7 @@ export const popover: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									b.Toast.Simple({
+									B.Toast.Simple({
 										title: "hidden.bs.popover",
 										color: "danger",
 										elem: [`target: {{b::${core.elemInfo(target)}}}`],
@@ -717,7 +717,7 @@ export const popover: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									b.Toast.Simple({
+									B.Toast.Simple({
 										title: "inserted.bs.popover",
 										color: "warning",
 										elem: [`target: {{b::${core.elemInfo(target)}}}`],

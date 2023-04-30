@@ -1,4 +1,4 @@
-import { core, h, b } from "@printf83/bsts";
+import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -17,7 +17,7 @@ export const badge: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [1, 2, 3, 4, 5, 6].map((i) => {
-					return new h.h(i as h.HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
+					return new h.h(i as I.H.HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
 				});
 			},
 		}),

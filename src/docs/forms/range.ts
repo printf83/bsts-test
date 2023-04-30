@@ -1,4 +1,4 @@
-import { b } from "@printf83/bsts";
+import { B, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -21,7 +21,7 @@ export const range: IAttrContent = {
 		new e.text("Using {{item}} to setup option"),
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					label: "Example range",
 					type: "range",
 				});
@@ -36,7 +36,7 @@ export const range: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					label: "Disabled range",
 					type: "range",
 					disabled: true,
@@ -52,7 +52,7 @@ export const range: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					label: "Example range",
 					type: "range",
 					min: 0,
@@ -70,7 +70,7 @@ export const range: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return b.Form.Input({
+				return B.Form.Input({
 					label: "Example range",
 					type: "range",
 					min: 0,

@@ -1,4 +1,4 @@
-import { core, b, h } from "@printf83/bsts";
+import { core, b, h, B } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -624,7 +624,7 @@ export const list: IAttrContent = {
 											});
 
 											b.toast.show(
-												b.Toast.Simple({
+												B.Toast.Simple({
 													title: document.title,
 													color: "success",
 													elem: "Tab trigger attached",
@@ -876,7 +876,7 @@ export const list: IAttrContent = {
 												const evnt = event as EventWithTargetAndRelatedTarget;
 
 												b.toast.show(
-													b.Toast.Simple({
+													B.Toast.Simple({
 														title: "closed.bs.alert",
 														color: "info",
 														elem: [
