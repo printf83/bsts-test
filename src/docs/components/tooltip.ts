@@ -1,7 +1,6 @@
 import { h, b, strHtml, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
-import { flex } from "../utilities/flex.js";
 
 export const tooltip: IAttrContent = {
 	title: "Tooltips",
@@ -43,8 +42,7 @@ export const tooltip: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+				core.init(document.body);
 			`,
 		}),
 		new e.codepreview({
@@ -320,6 +318,12 @@ export const tooltip: IAttrContent = {
 			item: [
 				["Name", "Type", "Default", "Description"],
 				[
+					"{{autoInit}}",
+					"boolean",
+					"{{true}}",
+					"Auto add {{data:{'bs-toggle':'tooltip'/}/}} to the component for auto initilize.",
+				],
+				[
 					"{{allowList}}",
 					"object",
 					"{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}",
@@ -514,9 +518,15 @@ export const tooltip: IAttrContent = {
 							},
 							new h.div(
 								{ position: "absolute", top: 50, start: 50, tMiddle: true },
-								new b.button(
-									{ id: "example-tooltip", color: "primary", title: "Default tooltip", weight: "lg" },
-									"Example"
+								new b.tooltip(
+									{ autoInit: false, id: "example-tooltip", content: "Default tooltip" },
+									new b.button(
+										{
+											color: "primary",
+											weight: "lg",
+										},
+										"Example"
+									)
 								)
 							)
 						),
@@ -532,7 +542,7 @@ export const tooltip: IAttrContent = {
 											},
 										},
 									},
-									"Enable"
+									"enable"
 								),
 
 								new b.button(
@@ -544,7 +554,7 @@ export const tooltip: IAttrContent = {
 											},
 										},
 									},
-									"Toggle"
+									"toggle"
 								),
 								new b.button(
 									{
@@ -567,7 +577,7 @@ export const tooltip: IAttrContent = {
 											},
 										},
 									},
-									"Show"
+									"show"
 								),
 								new b.button(
 									{
@@ -578,7 +588,7 @@ export const tooltip: IAttrContent = {
 											},
 										},
 									},
-									"Hide"
+									"hide"
 								),
 								new b.button(
 									{
@@ -589,7 +599,7 @@ export const tooltip: IAttrContent = {
 											},
 										},
 									},
-									"Update"
+									"update"
 								),
 								new b.button(
 									{
@@ -626,7 +636,7 @@ export const tooltip: IAttrContent = {
 											},
 										},
 									},
-									"Disabled"
+									"disabled"
 								),
 								new b.button(
 									{
@@ -637,7 +647,7 @@ export const tooltip: IAttrContent = {
 											},
 										},
 									},
-									"Dispose"
+									"dispose"
 								),
 							])
 						),
