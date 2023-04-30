@@ -508,7 +508,6 @@ export const carousel: IAttrContent = {
 												let carouselEvent = (<unknown>event) as bootstrap.Carousel.Event;
 
 												b.toast.show(
-													"top-end",
 													b.Toast.Simple({
 														title: "slide.bs.carousel",
 														color: "info",

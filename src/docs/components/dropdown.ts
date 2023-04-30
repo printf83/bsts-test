@@ -1240,7 +1240,6 @@ export const dropdown: IAttrContent = {
 								const evnt = event as EventWithTargetAndRelatedTarget;
 
 								b.toast.show(
-									"top-end",
 									b.Toast.Simple({
 										title: "shown.bs.dropdown",
 										color: "success",
@@ -1257,7 +1256,6 @@ export const dropdown: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									"top-end",
 									b.Toast.Simple({
 										title: "hidden.bs.dropdown",
 										color: "danger",

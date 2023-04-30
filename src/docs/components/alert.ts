@@ -383,7 +383,6 @@ export const alert: IAttrContent = {
 							"closed.bs.alert": (event) => {
 								const target = event.target;
 								b.toast.show(
-									"top-end",
 									b.Toast.Simple({
 										title: "closed.bs.alert",
 										color: "info",

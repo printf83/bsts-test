@@ -1016,7 +1016,6 @@ export const nav: IAttrContent = {
 									const evnt = event as EventWithTargetAndRelatedTarget;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "shown.bs.tab",
 											color: "success",
@@ -1033,7 +1032,6 @@ export const nav: IAttrContent = {
 									const evnt = event as EventWithTargetAndRelatedTarget;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "hidden.bs.tab",
 											color: "danger",
@@ -1096,7 +1094,6 @@ export const nav: IAttrContent = {
 							const evnt = event as EventWithTargetAndRelatedTarget;
 
 							b.toast.show(
-								"top-end",
 								b.Toast.Simple({
 									title: "shown.bs.tab",
 									color: "success",
@@ -1113,7 +1110,6 @@ export const nav: IAttrContent = {
 							const evnt = event as EventWithTargetAndRelatedTarget;
 
 							b.toast.show(
-								"top-end",
 								b.Toast.Simple({
 									title: "hidden.bs.tab",
 									color: "danger",

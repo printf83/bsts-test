@@ -624,7 +624,6 @@ export const list: IAttrContent = {
 											});
 
 											b.toast.show(
-												"top-end",
 												b.Toast.Simple({
 													title: document.title,
 													color: "success",
@@ -877,7 +876,6 @@ export const list: IAttrContent = {
 												const evnt = event as EventWithTargetAndRelatedTarget;
 
 												b.toast.show(
-													"top-end",
 													b.Toast.Simple({
 														title: "closed.bs.alert",
 														color: "info",
