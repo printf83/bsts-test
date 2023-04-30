@@ -342,6 +342,7 @@ export const tooltip: IAttrContent = {
 					"{{false}}",
 					"Appends the tooltip to a specific element. Example: {{parent:'body'}}. This option is particularly useful in that it allows you to position the tooltip in the flow of the document near the triggering element - which will prevent the tooltip from floating away from the triggering element during a window resize.",
 				],
+				["{{content}}", "string, element", "{{undefinde}}", "The tooltip content."],
 				[
 					"{{customClass}}",
 					"string",
@@ -420,12 +421,7 @@ export const tooltip: IAttrContent = {
 					`{{'<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'}}`,
 					`Base HTML to use when creating the tooltip. The tooltip’s {{title}} will be injected into the {{.tooltip-inner}}. {{.tooltip-arrow}} will become the tooltip’s arrow. The outermost wrapper element should have the {{.tooltip}} class and {{role="tooltip"}}.`,
 				],
-				[
-					"{{content}}",
-					"string, element",
-					"{{undefinde}}",
-					"The tooltip title. If a function is given, it will be called with its {{this}} reference set to the element that the popover is attached to.",
-				],
+
 				[
 					"{{trigger}}",
 					"string, array of string",
@@ -506,6 +502,10 @@ export const tooltip: IAttrContent = {
 
 		new e.code({
 			output: () => {
+				const myDefaultAllowList = window.bootstrap.Tooltip.Default.allowList;
+				myDefaultAllowList.iframe = ["src"];
+				myDefaultAllowList.div = ["style"];
+
 				return [
 					new h.div({ display: "flex" }, [
 						new h.div(
@@ -519,7 +519,19 @@ export const tooltip: IAttrContent = {
 							new h.div(
 								{ position: "absolute", top: 50, start: 50, tMiddle: true },
 								new b.tooltip(
-									{ autoInit: false, id: "example-tooltip", content: "Default tooltip" },
+									{
+										autoInit: false,
+										id: "example-tooltip",
+										allowHtml: true,
+										content: "Default tooltip",
+										on: {
+											"hidden.bs.popover": (eent) => {
+												b.tooltip.setContent("#example-tooltip", {
+													".tooltip-inner": "Default tooltip",
+												});
+											},
+										},
+									},
 									new b.button(
 										{
 											color: "primary",
@@ -602,24 +614,12 @@ export const tooltip: IAttrContent = {
 										on: {
 											click: () => {
 												b.tooltip.setContent("#example-tooltip", {
-													".tooltip-inner": "Another tooltip",
+													".tooltip-inner": `<div class="ratio ratio-16x9" style="width:11rem;"><iframe src="https://www.youtube.com/embed/eVxNksC88_U?autoplay=1"></iframe></div>`,
 												});
 											},
 										},
 									},
 									"setContent"
-								),
-								new b.button(
-									{
-										on: {
-											click: () => {
-												b.tooltip.setContent("#example-tooltip", {
-													".tooltip-inner": "Default tooltip",
-												});
-											},
-										},
-									},
-									"setContent II"
 								),
 								new b.button(
 									{

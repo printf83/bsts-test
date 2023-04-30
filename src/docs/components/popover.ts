@@ -312,6 +312,12 @@ export const popover: IAttrContent = {
 			item: [
 				["Name", "Type", "Default", "Description"],
 				[
+					"{{autoInit}}",
+					"boolean",
+					"{{true}}",
+					"Auto add {{data:{'bs-toggle':'popover'/}/}} to the component for auto initilize.",
+				],
+				[
 					"{{allowList}}",
 					"object",
 					"{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}",
@@ -325,28 +331,36 @@ export const popover: IAttrContent = {
 					"Overflow constraint boundary of the popover (applies only to Popper’s preventOverflow modifier). By default, it’s {{'clippingParents'}} and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
 				],
 				[
-					"{{container}}",
-					"string, element, false",
+					"{{parent}}",
+					"string, false",
 					"{{false}}",
-					"Appends the popover to a specific element. Example: {{container: 'body'}}. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element - which will prevent the popover from floating away from the triggering element during a window resize.",
+					"Appends the popover to a specific element. Example: {{parent: 'body'}}. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element - which will prevent the popover from floating away from the triggering element during a window resize.",
 				],
-				[
-					"{{content}}",
-					"string, element, function",
-					"{{''}}",
-					"Default content value if {{data-bs-content}} attribute isn’t present. If a function is given, it will be called with its {{this}} reference set to the element that the popover is attached to.",
-				],
+				["{{content}}", "string, element", "{{undefinde}}", "Default content value."],
+				["{{title}}", "string, element", "{{undefinde}}", "Default title value."],
 				[
 					"{{customClass}}",
-					"string, function",
-					"{{''}}",
+					"string",
+					"{{undefined}}",
 					"Add classes to the popover when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: {{'class-1 class-2'}}. You can also pass a function that should return a single string containing additional class names.",
 				],
 				[
 					"{{delay}}",
-					"number, object",
+					"number",
 					"{{0}}",
-					`Delay showing and hiding the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide/show. Object structure is: {{delay: { "show": 500, "hide": 100 } }}.`,
+					`Delay showing and hiding the popover (ms)—doesn’t apply to manual trigger type. If a value is supplied, delay is applied to both hide/show.`,
+				],
+				[
+					"{{hideDelay}}",
+					"number",
+					"{{0}}",
+					`Delay hiding the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide. Object structure created is: {{delay: { "hide": value } }}.`,
+				],
+				[
+					"{{showDelay}}",
+					"number",
+					"{{0}}",
+					`Delay showing the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to show. Object structure created is: {{delay: { "show": value } }}.`,
 				],
 				[
 					"{{fallbackPlacements}}",
@@ -361,14 +375,14 @@ export const popover: IAttrContent = {
 					"Allow HTML in the popover. If true, HTML tags in the popover’s {{title}} will be rendered in the popover. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks.",
 				],
 				[
-					"{{offset}}",
-					"number, string, function",
+					"{{viewOffset}}",
+					"array number, string",
 					"{{[0, 0]}}",
-					"Offset of the popover relative to its target. You can pass a string in data attributes with comma separated values like: {{data-bs-offset='10,20'}}. When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: {{https://popper.js.org/docs/v2/modifiers/offset/#skidding-1::skidding}}, {{https://popper.js.org/docs/v2/modifiers/offset/#distance-1::distance}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/offset/#options::offset docs}}.",
+					"Offset of the popover relative to its target. You can pass a string in data attributes with comma separated values like: {{'10,20'}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/offset/#options::offset docs}}.",
 				],
 				[
 					"{{placement}}",
-					"string, function",
+					"string",
 					"{{'top'}}",
 					"How to position the popover: auto, top, bottom, left, right. When {{auto}} is specified, it will dynamically reorient the popover. When a function is used to determine the placement, it is called with the popover DOM node as its first argument and the triggering element DOM node as its second. The {{this}} context is set to the popover instance.",
 				],
@@ -386,8 +400,8 @@ export const popover: IAttrContent = {
 				],
 				[
 					"{{sanitizeFn}}",
-					"null, function",
-					"{{null}}",
+					"function name in string",
+					"{{undefined}}",
 					"Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization.",
 				],
 				[
@@ -402,12 +416,7 @@ export const popover: IAttrContent = {
 					`{{'<div class="popover" role="popover"><div class="popover-arrow"></div><div class="popover-inner"></div></div>'}}`,
 					`Base HTML to use when creating the popover. The popover’s {{title}} will be injected into the {{.popover-inner}}. {{.popover-arrow}} will become the popover’s arrow. The outermost wrapper element should have the {{.popover}} class and {{role="popover"}}.`,
 				],
-				[
-					"{{title}}",
-					"string, element, function",
-					"{{''}}",
-					"Default title value if {{title}} attribute isn’t present. If a function is given, it will be called with its {{this}} reference set to the element that the popover is attached to.",
-				],
+
 				[
 					"{{trigger}}",
 					"string",
@@ -488,6 +497,10 @@ export const popover: IAttrContent = {
 
 		new e.code({
 			output: () => {
+				const myDefaultAllowList = window.bootstrap.Tooltip.Default.allowList;
+				myDefaultAllowList.iframe = ["src"];
+				myDefaultAllowList.div = ["style"];
+
 				return [
 					new h.div({ display: "flex" }, [
 						new h.div(
@@ -506,8 +519,19 @@ export const popover: IAttrContent = {
 										id: "example-popover",
 										placement: "top",
 										fallbackPlacement: "bottom",
+										allowHtml: true,
+										allowList: myDefaultAllowList,
 										title: "Popover title",
 										content: "And here's some amazing content. It's very engaging. Right?",
+										on: {
+											"hidden.bs.popover": (eent) => {
+												b.popover.setContent("#example-popover", {
+													".popover-header": "Popover title",
+													".popover-body":
+														"And here's some amazing content. It's very engaging. Right?",
+												});
+											},
+										},
 									},
 									new b.button(
 										{
@@ -591,27 +615,13 @@ export const popover: IAttrContent = {
 										on: {
 											click: () => {
 												b.popover.setContent("#example-popover", {
-													".popover-header": "Another title",
-													".popover-body": "Another popover",
+													".popover-header": "Youtube video",
+													".popover-body": `<div class="ratio ratio-16x9" style="width:13rem;"><iframe src="https://www.youtube.com/embed/eVxNksC88_U?autoplay=1"></iframe></div>`,
 												});
 											},
 										},
 									},
 									"setContent"
-								),
-								new b.button(
-									{
-										on: {
-											click: () => {
-												b.popover.setContent("#example-popover", {
-													".popover-header": "Popover title",
-													".popover-body":
-														"And here's some amazing content. It's very engaging. Right?",
-												});
-											},
-										},
-									},
-									"setContent II"
 								),
 								new b.button(
 									{
