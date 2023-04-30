@@ -535,7 +535,7 @@ export const tooltip: IAttrContent = {
 							new b.btngroup({ vertical: true, weight: "sm" }, [
 								new b.button(
 									{
-										outline: true,
+										color: "success",
 										on: {
 											click: () => {
 												b.tooltip.enable("#example-tooltip");
@@ -547,7 +547,6 @@ export const tooltip: IAttrContent = {
 
 								new b.button(
 									{
-										outline: true,
 										on: {
 											click: () => {
 												b.tooltip.toggle("#example-tooltip");
@@ -558,7 +557,7 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
+										color: "warning",
 										toggle: true,
 										on: {
 											click: () => {
@@ -570,7 +569,6 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
 										on: {
 											click: () => {
 												b.tooltip.show("#example-tooltip");
@@ -581,7 +579,6 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
 										on: {
 											click: () => {
 												b.tooltip.hide("#example-tooltip");
@@ -592,7 +589,6 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
 										on: {
 											click: () => {
 												b.tooltip.update("#example-tooltip");
@@ -603,7 +599,6 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
 										on: {
 											click: () => {
 												b.tooltip.setContent("#example-tooltip", {
@@ -616,7 +611,6 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
 										on: {
 											click: () => {
 												b.tooltip.setContent("#example-tooltip", {
@@ -629,7 +623,7 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
+										color: "danger",
 										on: {
 											click: () => {
 												b.tooltip.disable("#example-tooltip");
@@ -640,7 +634,7 @@ export const tooltip: IAttrContent = {
 								),
 								new b.button(
 									{
-										outline: true,
+										color: "danger",
 										on: {
 											click: () => {
 												b.tooltip.dispose("#example-tooltip");

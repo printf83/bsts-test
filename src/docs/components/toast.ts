@@ -795,6 +795,97 @@ export const toast: IAttrContent = {
 			],
 		}),
 
+		new e.code({
+			output: () => {
+				return [
+					new h.div({ display: "flex" }, [
+						new h.div(
+							{
+								width: 100,
+								marginEnd: 3,
+								bgColor: "body-tertiary",
+								rounded: true,
+								position: "relative",
+							},
+							new h.div(
+								{ position: "absolute", top: 50, start: 50, tMiddle: true },
+								new b.toast.item(
+									{ id: "example-toast", live: "assertive", atomic: true, autohide: false },
+									[
+										new b.toast.header([
+											new h.div({
+												bgColor: "primary",
+												rounded: true,
+												marginEnd: 2,
+												style: { width: "20px", height: "20px" },
+											}),
+											new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+											new h.small("Just now"),
+											new b.toast.btnclose(),
+										]),
+										new b.toast.body("Example toast"),
+									]
+								)
+							)
+						),
+						new h.div(
+							{ marginStart: "auto" },
+							new b.btngroup({ vertical: true, weight: "sm" }, [
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.toast.show("#example-toast");
+											},
+										},
+									},
+									"show"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.toast.hide("#example-toast");
+											},
+										},
+									},
+									"hide"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.toast.show(
+													b.Toast.Simple({
+														title: "b.toast.isShown",
+														color: "primary",
+														elem: [`isShown : {{b::${b.toast.isShown("#example-toast")}}}`],
+													})
+												);
+											},
+										},
+									},
+									"isShown"
+								),
+
+								new b.button(
+									{
+										color: "danger",
+										on: {
+											click: () => {
+												b.toast.dispose("#example-toast");
+											},
+										},
+									},
+									"dispose"
+								),
+							])
+						),
+					]),
+				];
+			},
+		}),
+
 		//-----------------------
 
 		new e.subtitle("Events"),
