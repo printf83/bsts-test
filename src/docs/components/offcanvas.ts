@@ -617,7 +617,6 @@ export const offcanvas: IAttrContent = {
 									const evnt = event as EventWithTargetAndRelatedTarget;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "shown.bs.offcanvas",
 											color: "success",
@@ -634,7 +633,6 @@ export const offcanvas: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "hidden.bs.offcanvas",
 											color: "danger",
@@ -647,7 +645,6 @@ export const offcanvas: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "hidePrevented.bs.offcanvas",
 											color: "warning",

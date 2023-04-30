@@ -136,7 +136,7 @@ export const toast: IAttrContent = {
 								]);
 
 								//show the above toast on the top-end
-								b.toast.show("top-end", tItem);
+								b.toast.show(tItem, "top-end");
 							},
 						},
 					},
@@ -409,7 +409,6 @@ export const toast: IAttrContent = {
 						on: {
 							click: () => {
 								b.toast.show(
-									"top-end",
 									b.Toast.Simple({
 										delay: 30000,
 										animation: false,
@@ -626,7 +625,7 @@ export const toast: IAttrContent = {
 										new b.toast.body("This toast auto close {{delay}} set to 10 second"),
 									]);
 
-									b.toast.show("top-end", tItem);
+									b.toast.show(tItem);
 								},
 							},
 						},
@@ -721,7 +720,7 @@ export const toast: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				b.toast.show("top-end", document.getElementById("my-toast"));
+				b.toast.show(document.getElementById("my-toast"),"top-end");
 			`,
 		}),
 
@@ -830,7 +829,6 @@ export const toast: IAttrContent = {
 												const target = event.target as HTMLElement;
 
 												b.toast.show(
-													"top-end",
 													b.Toast.Simple({
 														title: "shown.bs.toast",
 														color: "success",
@@ -843,7 +841,6 @@ export const toast: IAttrContent = {
 												const target = event.target as HTMLElement;
 
 												b.toast.show(
-													"top-end",
 													b.Toast.Simple({
 														title: "hidden.bs.toast",
 														color: "danger",
@@ -872,7 +869,7 @@ export const toast: IAttrContent = {
 								);
 
 								//show the above toast on the top-end
-								b.toast.show("bottom-end", tItem);
+								b.toast.show(tItem, "bottom-end");
 							},
 						},
 					},

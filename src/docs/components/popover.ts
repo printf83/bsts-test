@@ -528,7 +528,6 @@ export const popover: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									"top-end",
 									b.Toast.Simple({
 										title: "shown.bs.popover",
 										color: "success",
@@ -541,7 +540,6 @@ export const popover: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									"top-end",
 									b.Toast.Simple({
 										title: "hidden.bs.popover",
 										color: "danger",
@@ -554,7 +552,6 @@ export const popover: IAttrContent = {
 								const target = event.target as HTMLElement;
 
 								b.toast.show(
-									"top-end",
 									b.Toast.Simple({
 										title: "inserted.bs.popover",
 										color: "warning",

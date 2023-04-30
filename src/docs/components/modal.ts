@@ -163,7 +163,6 @@ export const modal: IAttrContent = {
 
 												if (ischecked) {
 													b.toast.show(
-														"top-end",
 														b.Toast.Simple({
 															title: "Simple modal example",
 															color: "success",
@@ -175,7 +174,6 @@ export const modal: IAttrContent = {
 													b.modal.hide(container);
 												} else {
 													b.toast.show(
-														"top-end",
 														b.Toast.Simple({
 															title: "Simple modal example",
 															color: "danger",
@@ -235,7 +233,6 @@ export const modal: IAttrContent = {
 										btnFn: [
 											(event) => {
 												b.toast.show(
-													"top-end",
 													b.Toast.Simple({
 														title: "Simple modal example",
 														color: "success",
@@ -248,7 +245,6 @@ export const modal: IAttrContent = {
 											},
 											(event) => {
 												b.toast.show(
-													"top-end",
 													b.Toast.Simple({
 														title: "Simple modal example",
 														color: "danger",
@@ -1407,7 +1403,6 @@ export const modal: IAttrContent = {
 									const evnt = event as EventWithTargetAndRelatedTarget;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "shown.bs.modal",
 											color: "success",
@@ -1424,7 +1419,6 @@ export const modal: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "hidden.bs.modal",
 											color: "danger",
@@ -1437,7 +1431,6 @@ export const modal: IAttrContent = {
 									const target = event.target as HTMLElement;
 
 									b.toast.show(
-										"top-end",
 										b.Toast.Simple({
 											title: "hidePrevented.bs.modal",
 											color: "warning",
