@@ -257,7 +257,6 @@ export const toast: IAttrContent = {
 							});
 					}
 					b.toast.show(
-						"top-end",
 						b.Toast.Simple({
 							color: color,
 							elem: tElem,
