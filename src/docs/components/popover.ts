@@ -486,6 +486,161 @@ export const popover: IAttrContent = {
 			],
 		}),
 
+		new e.code({
+			output: () => {
+				return [
+					new h.div({ display: "flex" }, [
+						new h.div(
+							{
+								width: 100,
+								marginEnd: 3,
+								bgColor: "body-tertiary",
+								rounded: true,
+								position: "relative",
+							},
+							new h.div(
+								{ position: "absolute", top: 50, start: 50, tMiddle: true },
+								new b.popover(
+									{
+										autoInit: false,
+										id: "example-popover",
+										placement: "top",
+										fallbackPlacement: "bottom",
+										title: "Popover title",
+										content: "And here's some amazing content. It's very engaging. Right?",
+									},
+									new b.button(
+										{
+											color: "primary",
+											weight: "lg",
+										},
+										"Example"
+									)
+								)
+							)
+						),
+						new h.div(
+							{ marginStart: "auto" },
+							new b.btngroup({ vertical: true, weight: "sm" }, [
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												b.popover.enable("#example-popover");
+											},
+										},
+									},
+									"enable"
+								),
+
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.popover.toggle("#example-popover");
+											},
+										},
+									},
+									"toggle"
+								),
+								new b.button(
+									{
+										color: "warning",
+										toggle: true,
+										on: {
+											click: () => {
+												b.popover.toggleEnabled("#example-popover");
+											},
+										},
+									},
+									"toggleEnabled"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.popover.show("#example-popover");
+											},
+										},
+									},
+									"show"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.popover.hide("#example-popover");
+											},
+										},
+									},
+									"hide"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.popover.update("#example-popover");
+											},
+										},
+									},
+									"update"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.popover.setContent("#example-popover", {
+													".popover-header": "Another title",
+													".popover-body": "Another popover",
+												});
+											},
+										},
+									},
+									"setContent"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.popover.setContent("#example-popover", {
+													".popover-header": "Popover title",
+													".popover-body":
+														"And here's some amazing content. It's very engaging. Right?",
+												});
+											},
+										},
+									},
+									"setContent II"
+								),
+								new b.button(
+									{
+										color: "danger",
+										on: {
+											click: () => {
+												b.popover.disable("#example-popover");
+											},
+										},
+									},
+									"disabled"
+								),
+								new b.button(
+									{
+										color: "danger",
+										on: {
+											click: () => {
+												b.popover.dispose("#example-popover");
+											},
+										},
+									},
+									"dispose"
+								),
+							])
+						),
+					]),
+				];
+			},
+		}),
 		new e.alert(
 			{ color: "info", callout: true },
 			" The {{setContent}} method accepts an {{object}} argument, where each property-key is a valid {{string}} selector within the popover template, and each related property-value can be {{string}} | {{element}} | {{function}} | {{null}}"
