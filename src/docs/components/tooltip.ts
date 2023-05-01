@@ -244,7 +244,7 @@ export const tooltip: IAttrContent = {
 		}),
 		new e.alert(
 			{ color: "warning", callout: true },
-			"Tooltips automatically attempt to change positions when a parent container has {{overflow:'auto'}} or {{overflow:'scroll'}}, but still keeps the original placement’s positioning. Set the {{https://popper.js.org/docs/v2/modifiers/flip/#boundary::boundary option}} (for the flip modifier using the {{popperConfig}} option) to any HTMLElement to override the default value, {{'clippingParents'}}, such as {{document.body}}:"
+			"Tooltips automatically attempt to change positions when a parent container has {{overflow:'auto'}} or {{overflow:'scroll'}}, but still keeps the original placement’s positioning. Set the {{https://popper.js.org/docs/v2/modifiers/flip/#boundary::boundary option}} (for the flip modifier using the {{popperConfig}} option) to any Element to override the default value, {{'clippingParents'}}, such as {{document.body}}:"
 		),
 		new e.codepreview({
 			type: "js",
@@ -334,7 +334,7 @@ export const tooltip: IAttrContent = {
 					"{{boundary}}",
 					"string",
 					"{{'clippingParents'}}",
-					"Overflow constraint boundary of the tooltip (applies only to Popper’s preventOverflow modifier). By default, it’s {{'clippingParents'}} and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
+					"Overflow constraint boundary of the tooltip (applies only to Popper’s preventOverflow modifier). By default, it’s {{'clippingParents'}} and can accept an Element reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
 				],
 				[
 					"{{parent}}",
@@ -711,75 +711,46 @@ export const tooltip: IAttrContent = {
 
 		new e.code({
 			outputAttr: { gap: 2 },
+			showConsole: true,
 			output: () => {
-				const showOutput = (title: string, color: core.bootstrapType.textColor, msg: string) => {
-					const n = new Date();
-					const strNow = `${n.getHours()}:${n.getMinutes()}:${n.getSeconds()}`;
-					const console = document.getElementById("event-tooltip-console") as HTMLDivElement;
-					core.prependChild(
-						console,
-						new h.div({ textColor: color, textWrap: false }, `${strNow} : [${title}] ${msg}`)
-					);
-				};
+				return new b.tooltip(
+					{
+						id: "event-tooltip",
+						content: "Tooltip event",
+						on: {
+							"shown.bs.tooltip": (event) => {
+								const target = event.target as Element;
+								e.console(
+									target,
+									"shown.bs.tooltip",
+									`target: {{b::${core.elemInfo(target)}}}`,
+									"success"
+								);
+							},
 
-				return [
-					new b.tooltip(
-						{
-							id: "event-tooltip",
-							content: "Tooltip event",
-							on: {
-								"shown.bs.tooltip": (event) => {
-									const target = event.target as HTMLElement;
+							"hidden.bs.tooltip": (event) => {
+								const target = event.target as Element;
+								e.console(
+									target,
+									"hidden.bs.tooltip",
+									`target: {{b::${core.elemInfo(target)}}}`,
+									"danger"
+								);
+							},
 
-									showOutput(
-										"shown.bs.tooltip",
-										"success",
-										`target: {{b::${core.elemInfo(target)}}}`
-									);
-								},
-
-								"hidden.bs.tooltip": (event) => {
-									const target = event.target as HTMLElement;
-
-									showOutput(
-										"hidden.bs.tooltip",
-										"danger",
-										`target: {{b::${core.elemInfo(target)}}}`
-									);
-								},
-
-								"inserted.bs.tooltip": (event) => {
-									const target = event.target as HTMLElement;
-
-									showOutput(
-										"inserted.bs.tooltip",
-										"info",
-										`target: {{b::${core.elemInfo(target)}}}`
-									);
-								},
+							"inserted.bs.tooltip": (event) => {
+								const target = event.target as Element;
+								e.console(
+									target,
+									"inserted.bs.tooltip",
+									`target: {{b::${core.elemInfo(target)}}}`,
+									"info"
+								);
 							},
 						},
-						new b.button({ color: "primary" }, "Tooltip event")
-					),
-					new h.div(
-						{
-							rounded: true,
-							bgColor: "body-tertiary",
-							padding: 3,
-							monospace: true,
-							overflow: "hidden",
-						},
-						new h.div(
-							{
-								id: "event-tooltip-console",
-								overflowY: "scroll",
-								overflowX: "hidden",
-								style: { height: "200px" },
-							},
-							""
-						)
-					),
-				];
+					},
+					new b.button({ color: "primary" }, "Tooltip event")
+				);
 			},
 		}),
 	],

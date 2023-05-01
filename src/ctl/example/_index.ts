@@ -11,7 +11,7 @@ import { Table, table } from "./table.js";
 import { Ol, ol } from "./ol.js";
 import { Ul, ul } from "./ul.js";
 import { Alert, alert } from "./alert.js";
-import { toast } from "./_fn.js";
+import { toast, console } from "./_fn.js";
 
 export {
 	code,
@@ -28,6 +28,7 @@ export {
 	ul,
 	alert,
 	toast,
+	console,
 	IBsExampleCodepreview,
 	IBsExampleContainer,
 	IBsExampleExt,

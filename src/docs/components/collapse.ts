@@ -1,4 +1,4 @@
-import { B, b, core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -331,6 +331,7 @@ export const collapse: IAttrContent = {
 
 		new e.code({
 			outputAttr: { gap: 2 },
+			showConsole: true,
 			output: () => {
 				return [
 					new b.collapse.toggle(
@@ -342,25 +343,21 @@ export const collapse: IAttrContent = {
 							id: "collapseEventExample",
 							on: {
 								"hidden.bs.collapse": (event) => {
-									let collapseEvent = event.target;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "hidden.bs.collapse",
-											color: "info",
-											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,
-										})
+									let target = event.target as Element;
+									e.console(
+										event.target as Element,
+										"hidden.bs.collapse",
+										`Target: {{b::${core.elemInfo(target)}}}`,
+										"danger"
 									);
 								},
 								"shown.bs.collapse": (event) => {
-									let collapseEvent = event.target;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "shown.bs.collapse",
-											color: "success",
-											elem: `Event target: {{b::${core.elemInfo(collapseEvent as HTMLElement)}}}`,
-										})
+									let target = event.target as Element;
+									e.console(
+										event.target as Element,
+										"shown.bs.collapse",
+										`Target: {{b::${core.elemInfo(target)}}}`,
+										"success"
 									);
 								},
 							},

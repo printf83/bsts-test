@@ -61,7 +61,7 @@ export const overview: IAttrContent = {
 								textDecoration: "none",
 								on: {
 									click: () => {
-										document.dispatchEvent(new CustomEvent("bs-navigate", { detail: i.data }));
+										document.dispatchEvent(new CustomEvent("bs.navigate", { detail: i.data }));
 									},
 								},
 							},

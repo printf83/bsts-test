@@ -1,4 +1,4 @@
-import { h, b, core, I, B } from "@printf83/bsts";
+import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -328,7 +328,7 @@ export const popover: IAttrContent = {
 					"{{boundary}}",
 					"string, element",
 					"{{'clippingParents'}}",
-					"Overflow constraint boundary of the popover (applies only to Popper’s preventOverflow modifier). By default, it’s {{'clippingParents'}} and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
+					"Overflow constraint boundary of the popover (applies only to Popper’s preventOverflow modifier). By default, it’s {{'clippingParents'}} and can accept an Element reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
 				],
 				[
 					"{{parent}}",
@@ -719,38 +719,32 @@ export const popover: IAttrContent = {
 						content: "And here's some amazing content. It's very engaging. Right?",
 						on: {
 							"shown.bs.popover": (event) => {
-								const target = event.target as HTMLElement;
-
-								b.toast.show(
-									B.Toast.Simple({
-										title: "shown.bs.popover",
-										color: "success",
-										elem: [`target: {{b::${core.elemInfo(target)}}}`],
-									})
+								const target = event.target as Element;
+								e.console(
+									target,
+									"shown.bs.popover",
+									`Target: {{b::${core.elemInfo(target)}}}`,
+									"success"
 								);
 							},
 
 							"hidden.bs.popover": (event) => {
-								const target = event.target as HTMLElement;
-
-								b.toast.show(
-									B.Toast.Simple({
-										title: "hidden.bs.popover",
-										color: "danger",
-										elem: [`target: {{b::${core.elemInfo(target)}}}`],
-									})
+								const target = event.target as Element;
+								e.console(
+									target,
+									"hidden.bs.popover",
+									`Target: {{b::${core.elemInfo(target)}}}`,
+									"danger"
 								);
 							},
 
 							"inserted.bs.popover": (event) => {
-								const target = event.target as HTMLElement;
-
-								b.toast.show(
-									B.Toast.Simple({
-										title: "inserted.bs.popover",
-										color: "warning",
-										elem: [`target: {{b::${core.elemInfo(target)}}}`],
-									})
+								const target = event.target as Element;
+								e.console(
+									target,
+									"inserted.bs.popover",
+									`Target: {{b::${core.elemInfo(target)}}}`,
+									"info"
 								);
 							},
 						},

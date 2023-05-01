@@ -155,8 +155,8 @@ export const modal: IAttrContent = {
 										btn: ["ok", "cancel"],
 										btnFn: [
 											(event) => {
-												const target = event.target as HTMLElement;
-												const container = target.closest(".modal") as HTMLElement;
+												const target = event.target as Element;
+												const container = target.closest(".modal") as Element;
 												const ischecked = (
 													container?.querySelectorAll("#testcheckbox")[0] as HTMLInputElement
 												)?.checked;
@@ -241,7 +241,7 @@ export const modal: IAttrContent = {
 												);
 
 												//manually hidden the modal
-												b.modal.hide(event.target as HTMLElement);
+												b.modal.hide(event.target as Element);
 											},
 											(event) => {
 												b.toast.show(
@@ -253,7 +253,7 @@ export const modal: IAttrContent = {
 												);
 
 												//manually hidden the modal
-												b.modal.hide(event.target as HTMLElement);
+												b.modal.hide(event.target as Element);
 											},
 										],
 									});
@@ -614,7 +614,7 @@ export const modal: IAttrContent = {
 			outputAttr: { gap: 1 },
 			output: () => {
 				interface EventWithRelatedTarget extends Event {
-					relatedTarget: HTMLElement;
+					relatedTarget: Element;
 				}
 
 				return [
@@ -642,7 +642,7 @@ export const modal: IAttrContent = {
 									const btn = (e as EventWithRelatedTarget).relatedTarget;
 									const recipient = btn.getAttribute("data-bs-whatever");
 									const mdl = document.getElementById("varyingContentModal");
-									const mdlTitle = mdl?.querySelector(".modal-title") as HTMLElement;
+									const mdlTitle = mdl?.querySelector(".modal-title") as Element;
 									const mdlName = mdl?.querySelector("#recipient-name") as HTMLInputElement;
 
 									mdlTitle.textContent = `New message to ${recipient}`;
@@ -821,7 +821,7 @@ export const modal: IAttrContent = {
 							centered: true,
 							on: {
 								"shown.bs.modal": (event) => {
-									const target = event.target as HTMLElement;
+									const target = event.target as Element;
 									const body = target.querySelector(".modal-body") as HTMLDivElement;
 
 									setTimeout(
@@ -847,7 +847,7 @@ export const modal: IAttrContent = {
 								},
 								"hidden.bs.modal": (event) => {
 									//reset text
-									const target = event.target as HTMLElement;
+									const target = event.target as Element;
 									const body = target.querySelector(".modal-body") as HTMLDivElement;
 									core.replaceChild(
 										body,
@@ -904,14 +904,14 @@ export const modal: IAttrContent = {
 							weight: "lg",
 							on: {
 								"shown.bs.modal": (event) => {
-									const target = event.target as HTMLElement;
+									const target = event.target as Element;
 									const iframe = target.querySelector(".modal-body iframe") as HTMLIFrameElement;
 
 									//set video to play when modal shown
 									iframe.setAttribute("src", "https://www.youtube.com/embed/eVxNksC88_U?autoplay=1");
 								},
 								"hidden.bs.modal": (event) => {
-									const target = event.target as HTMLElement;
+									const target = event.target as Element;
 									const iframe = target.querySelector(".modal-body iframe") as HTMLIFrameElement;
 
 									//stop video from playing when modal is hidden
@@ -1382,10 +1382,11 @@ export const modal: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
-					target: HTMLElement;
-					relatedTarget: HTMLElement;
+					target: Element;
+					relatedTarget: Element;
 				}
 
 				return [
@@ -1401,41 +1402,32 @@ export const modal: IAttrContent = {
 							on: {
 								"shown.bs.modal": (event) => {
 									const evnt = event as EventWithTargetAndRelatedTarget;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "shown.bs.modal",
-											color: "success",
-											elem: [
-												`target: {{b::${core.elemInfo(
-													evnt.target
-												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-											],
-										})
+									e.console(
+										evnt.target,
+										"shown.bs.modal",
+										`Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}
+										RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+										"success"
 									);
 								},
 
 								"hidden.bs.modal": (event) => {
-									const target = event.target as HTMLElement;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "hidden.bs.modal",
-											color: "danger",
-											elem: [`target: {{b::${core.elemInfo(target)}}}`],
-										})
+									const target = event.target as Element;
+									e.console(
+										target,
+										"hidden.bs.modal",
+										`Target: {{b::${core.elemInfo(target)}}}`,
+										"danger"
 									);
 								},
 
 								"hidePrevented.bs.modal": (event) => {
-									const target = event.target as HTMLElement;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "hidePrevented.bs.modal",
-											color: "warning",
-											elem: [`target: {{b::${core.elemInfo(target)}}}`],
-										})
+									const target = event.target as Element;
+									e.console(
+										target,
+										"hidePrevented.bs.modal",
+										`Target: {{b::${core.elemInfo(target)}}}`,
+										"warning"
 									);
 								},
 							},

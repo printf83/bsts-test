@@ -232,7 +232,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 				core.removeActiveTooltip();
 
 				//generate content
-				let contentbody = document.getElementById("bs-main") as HTMLElement;
+				let contentbody = document.getElementById("bs-main") as Element;
 				core.replaceChild(contentbody, main.genMainContent(getData(docId)));
 
 				//rename page title and push history
@@ -249,7 +249,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 			if (anchorId) {
 				let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
 				if (anchorNode) {
-					let anchorElem = anchorNode[0] as HTMLElement;
+					let anchorElem = anchorNode[0] as Element;
 					let elemPosition = anchorElem.getBoundingClientRect().top;
 					let offsetElemPosition = elemPosition + window.pageYOffset - 60;
 					window.scrollTo(0, offsetElemPosition);
@@ -359,7 +359,7 @@ const maincontainer = main.Container({
 });
 
 const highlightCurrentMenu = (value: string) => {
-	let bsMenu = document.getElementById("bs-menu") as HTMLElement;
+	let bsMenu = document.getElementById("bs-menu") as Element;
 	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
 	if (lastActive) {
 		lastActive.classList.remove("active");
@@ -375,13 +375,13 @@ const highlightCurrentMenu = (value: string) => {
 
 core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
-	let body = document.getElementById("main") as HTMLElement;
+	let body = document.getElementById("main") as Element;
 	core.replaceChild(body, maincontainer);
 	onmenuchange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
 	highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
 
 	document.addEventListener(
-		"bs-navigate",
+		"bs.navigate",
 		(e) => {
 			let value = (<CustomEvent>e).detail;
 			highlightCurrentMenu(value);

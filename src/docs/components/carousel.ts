@@ -1,4 +1,4 @@
-import { h, b, core, B } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -487,12 +487,13 @@ export const carousel: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				return new b.button(
 					{
 						on: {
 							click: (event) => {
-								const target = event.target as HTMLElement;
+								const target = event.target as Element;
 								core.replaceWith(
 									target,
 									new b.carousel.container({
@@ -507,17 +508,14 @@ export const carousel: IAttrContent = {
 											"slide.bs.carousel": (event) => {
 												let carouselEvent = (<unknown>event) as bootstrap.Carousel.Event;
 
-												b.toast.show(
-													B.Toast.Simple({
-														title: "slide.bs.carousel",
-														color: "info",
-														elem: [
-															`Direction: {{b::${carouselEvent.direction}}}{{br}}
-															From: {{b::${carouselEvent.from}}}{{br}}
-															To: {{b::${carouselEvent.to}}}{{br}}
-															relatedTarget: {{b::${core.elemInfo(carouselEvent.relatedTarget as HTMLElement)}}}`,
-														],
-													})
+												e.console(
+													event.target as Element,
+													"slide.bs.carousel",
+													`Direction: {{b::${carouselEvent.direction}}}{{br}}
+													From: {{b::${carouselEvent.from}}}{{br}}
+													To: {{b::${carouselEvent.to}}}{{br}}
+													RelatedTarget: {{b::${core.elemInfo(carouselEvent.relatedTarget as Element)}}}`,
+													"info"
 												);
 											},
 										},

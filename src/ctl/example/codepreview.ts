@@ -1,7 +1,7 @@
 import { core, b, h } from "@printf83/bsts";
 import { preview } from "./preview.js";
 
-function successCopyCode(iconElem?: HTMLElement) {
+function successCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-check2");
@@ -19,7 +19,7 @@ function successCopyCode(iconElem?: HTMLElement) {
 	}
 }
 
-function failCopyCode(iconElem?: HTMLElement) {
+function failCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-exclamation-triangle");
@@ -41,8 +41,8 @@ function itemCodeCopy(e: Event) {
 	e.stopPropagation();
 	e.stopImmediatePropagation();
 
-	const target = e.target as HTMLElement;
-	const iconElem = target.closest(".bi") as HTMLElement;
+	const target = e.target as Element;
+	const iconElem = target.closest(".bi") as Element;
 	const card = target.closest(".card");
 
 	if (card) {

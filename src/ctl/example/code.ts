@@ -17,6 +17,7 @@ export interface IBsExampleContainer extends core.IAttr {
 	strManager?: string;
 	scriptConverter?: Function;
 
+	showConsole?: boolean;
 	showViewport?: boolean;
 	showOutput?: boolean;
 	showScript?: boolean;
@@ -31,7 +32,7 @@ declare var PR: {
 	prettyPrint: () => void;
 };
 
-const getOutputHTML = (target: HTMLElement): void => {
+const getOutputHTML = (target: Element): void => {
 	let html = target.closest(".example-code")?.getElementsByClassName("example-output")[0].innerHTML;
 	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
 
@@ -40,7 +41,7 @@ const getOutputHTML = (target: HTMLElement): void => {
 	}, 300);
 };
 
-function successCopyCode(iconElem?: HTMLElement) {
+function successCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-check2");
@@ -58,7 +59,7 @@ function successCopyCode(iconElem?: HTMLElement) {
 	}
 }
 
-function failCopyCode(iconElem?: HTMLElement) {
+function failCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-exclamation-triangle");
@@ -80,8 +81,8 @@ function itemCodeCopy(e: Event) {
 	e.stopPropagation();
 	e.stopImmediatePropagation();
 
-	const target = e.target as HTMLElement;
-	const iconElem = target.closest(".bi") as HTMLElement;
+	const target = e.target as Element;
+	const iconElem = target.closest(".bi") as Element;
 	const listGroupItem = target.closest(".list-group-item");
 
 	if (listGroupItem) {
@@ -107,13 +108,109 @@ function itemCodeCopy(e: Event) {
 	return;
 }
 
+function successClearConsoleLog(iconElem?: Element) {
+	if (iconElem) {
+		iconElem.classList.remove("bi-trash");
+		iconElem.classList.add("bi-check2");
+		iconElem.classList.add("text-success");
+
+		setTimeout(
+			(iconElem) => {
+				iconElem.classList.remove("text-success");
+				iconElem.classList.remove("bi-check2");
+				iconElem.classList.add("bi-trash");
+			},
+			1000,
+			iconElem
+		);
+	}
+}
+
+function clearConsoleLog(e: Event) {
+	e.stopPropagation();
+	e.stopImmediatePropagation();
+
+	const target = e.target as Element;
+	const iconElem = target.closest(".bi") as Element;
+	const listGroupItem = target.closest(".list-group-item");
+
+	if (listGroupItem) {
+		const nextListGroupItem = listGroupItem.nextElementSibling;
+		if (nextListGroupItem) {
+			const exampleConsole = nextListGroupItem.getElementsByClassName("example-console")[0];
+			core.removeChildElement(exampleConsole);
+			successClearConsoleLog(iconElem);
+		}
+	}
+
+	return;
+}
+
+function addConsoleLog(elem: Element, title: string, msg: string, color?: core.bootstrapType.textColor) {
+	const exampleConsole = elem.getElementsByClassName("example-console")[0];
+	if (exampleConsole) {
+		//add log
+		const n = new Date();
+		const hour = n.getHours();
+		const minute = n.getMinutes();
+		const second = n.getSeconds();
+		const strNow = `${(hour >= 12 ? hour - 12 : hour === 0 ? 12 : hour).toString().padStart(2, "0")}:${minute
+			.toString()
+			.padStart(2, "0")}:${second.toString().padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
+		core.prependChild(
+			exampleConsole,
+			new h.div(
+				{
+					display: "flex",
+					flex: ["column", "md-row"],
+					textColor: "light",
+					gap: [0, "md-2"],
+					marginBottom: [3, "md-0"],
+				},
+				[
+					new h.span({ textColor: "secondary", textWrap: false }, `[${strNow}]`),
+					new h.span({ textColor: color }, `{{b::${title}}}`),
+					new h.span(`${msg}`),
+				]
+			)
+		);
+
+		//show notification
+		const listGroupItem = exampleConsole.closest(".list-group-item");
+		if (listGroupItem) {
+			if (!listGroupItem.classList.contains("show")) {
+				const codeContainer = listGroupItem.closest(".example-code");
+				if (codeContainer) {
+					const noti = codeContainer.getElementsByClassName("example-console-notification")[0];
+					if (noti) {
+						const hash = core.UUID();
+
+						noti.setAttribute("bs-hash", hash);
+						noti.classList.add("active");
+						setTimeout(
+							(noti: Element, hash: string) => {
+								if (noti.getAttribute("bs-hash") === hash) {
+									noti.classList.remove("active");
+								}
+							},
+							5000,
+							noti,
+							hash
+						);
+					}
+				}
+			}
+		}
+	}
+}
+
 const itemCode = (
 	header: boolean,
 	collapseable: boolean,
 	allowcopy: boolean,
 	title: core.IElem,
 	elem: core.IElem,
-	onshow?: (target: HTMLElement) => void
+	onshow?: (target: Element) => void
 ): b.list.item[] => {
 	let id = core.UUID();
 
@@ -185,10 +282,10 @@ const itemCode = (
 												class: "primary-on-hover",
 												on: {
 													click: (e) => {
-														const target = e.target as HTMLElement;
-														const iconElem = target.closest(".bi") as HTMLElement;
+														const target = e.target as Element;
+														const iconElem = target.closest(".bi") as Element;
 														const container = target.closest(".list-group-item")
-															?.nextSibling as HTMLElement;
+															?.nextSibling as Element;
 
 														container.setAttribute("data-loaded", "true");
 														onshow(container);
@@ -252,7 +349,7 @@ const itemCode = (
 				on: {
 					"show.bs.collapse": onshow
 						? (e) => {
-								const target = e.target as HTMLElement;
+								const target = e.target as Element;
 								if (target.getAttribute("data-loaded") !== "true") {
 									target.setAttribute("data-loaded", "true");
 									onshow(target);
@@ -293,6 +390,104 @@ const itemOutput = (previewAttr: core.IAttr | undefined, outputAttr: core.IAttr 
 	}
 };
 
+const itemConsole = () => {
+	let id = core.UUID();
+
+	let res: b.list.item[] = [];
+
+	res.push(
+		new b.list.item(
+			{
+				padding: 0,
+				bgColor: "body-tertiary",
+				display: "flex",
+				justifyContent: "between",
+				verticalAlign: "middle",
+			},
+			[
+				new h.div(
+					{
+						paddingY: 2,
+						paddingX: 4,
+						flex: "fill",
+						controlfor: id,
+						data: {
+							"bs-toggle": "collapse",
+							"bs-target": `#${id}`,
+						},
+						aria: {
+							expended: "false",
+						},
+						monospace: true,
+						textColor: "body-secondary",
+					},
+					new h.small("CONSOLE")
+				),
+
+				new h.div(
+					{ display: "flex" },
+					new h.div(
+						{ paddingTop: 2 },
+						new h.span(
+							{ class: "example-console-notification", textColor: "primary" },
+							b.icon.bi("info-circle-fill")
+						)
+					)
+				),
+
+				new h.div(
+					{ display: "flex" },
+					new h.div(
+						{ paddingTop: 2, paddingX: 4 },
+						new b.tooltip(
+							{
+								content: "Cleanup console log",
+							},
+							new h.a(
+								{
+									color: "secondary",
+									class: "primary-on-hover",
+									on: { click: clearConsoleLog },
+								},
+								b.icon.bi("trash")
+							)
+						)
+					)
+				),
+			]
+		)
+	);
+
+	res.push(
+		new b.list.item(
+			{
+				bgColor: "dark",
+				padding: 4,
+				class: "collapse",
+				id: id,
+			},
+			new h.div(
+				{
+					monospace: true,
+					small: true,
+					overflow: "hidden",
+				},
+				new h.div(
+					{
+						class: "example-console",
+						overflowY: "scroll",
+						overflowX: "hidden",
+						style: { height: "200px" },
+					},
+					""
+				)
+			)
+		)
+	);
+
+	return res;
+};
+
 const itemViewport = () => {
 	return new b.list.item(
 		{
@@ -319,49 +514,6 @@ const itemViewport = () => {
 					paddingY: 1,
 					paddingX: 4,
 				},
-				// [
-				// 	new h.small([
-				// 		new h.span(
-				// 			{
-				// 				display: ["inline-block", "sm-none"],
-				// 			},
-				// 			"<576px {{k::XS}}"
-				// 		),
-				// 		new h.span({ display: ["sm-inline-block", "md-none", "none"] }, "≥576px <768px {{k::SM}}"),
-				// 		new h.span({ display: ["md-inline-block", "lg-none", "none"] }, "≥768px <992px {{k::MD}}"),
-				// 		new h.span({ display: ["lg-inline-block", "xl-none", "none"] }, "≥992px <1200px {{k::LG}}"),
-				// 		new h.span({ display: ["xl-inline-block", "xxl-none", "none"] }, "≥1200px <1400px {{k::XL}}"),
-				// 		new h.span({ display: ["xxl-inline-block", "none"] }, "≥1400px {{k::XXL}}"),
-				// 	]),
-				// ]
-
-				// [
-				// 	new h.small([
-				// 		new h.span(
-				// 			{
-				// 				display: ["inline-block", "sm-none"],
-				// 			},
-				// 			"Less than 576px {{k::XS}}"
-				// 		),
-				// 		new h.span(
-				// 			{ display: ["sm-inline-block", "md-none", "none"] },
-				// 			"Between 576px and 768px {{k::SM}}"
-				// 		),
-				// 		new h.span(
-				// 			{ display: ["md-inline-block", "lg-none", "none"] },
-				// 			"Between 768px and 992px {{k::MD}}"
-				// 		),
-				// 		new h.span(
-				// 			{ display: ["lg-inline-block", "xl-none", "none"] },
-				// 			"Between 992px and 1200px {{k::LG}}"
-				// 		),
-				// 		new h.span(
-				// 			{ display: ["xl-inline-block", "xxl-none", "none"] },
-				// 			"Between 1200px and 1400px {{k::XL}}"
-				// 		),
-				// 		new h.span({ display: ["xxl-inline-block", "none"] }, "More than 1400px {{k::XXL}}"),
-				// 	]),
-				// ]
 
 				[
 					new h.small([
@@ -386,10 +538,16 @@ const itemViewport = () => {
 const convert = (attr: IBsExampleContainer) => {
 	let id = core.UUID();
 
-	attr.showOutput = attr.showOutput === undefined ? true : attr.showOutput;
-	attr.showScript = attr.showScript === undefined ? true : attr.showScript;
-	attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
-	attr.showManager = attr.showManager === undefined ? true : attr.showManager;
+	// attr.showOutput = attr.showOutput === undefined ? true : attr.showOutput;
+	// attr.showScript = attr.showScript === undefined ? true : attr.showScript;
+	// attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
+	// attr.showManager = attr.showManager === undefined ? true : attr.showManager;
+
+	attr.showOutput ??= true;
+	attr.showScript ??= true;
+	attr.showHTML ??= true;
+	attr.showManager ??= true;
+
 	attr.scriptConverter ??= (str: string) => {
 		return str
 			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_0__\./gm, "")
@@ -408,6 +566,10 @@ const convert = (attr: IBsExampleContainer) => {
 
 	if (attr.output && attr.showOutput && attr.showViewport) {
 		e.push(itemViewport());
+	}
+
+	if (attr.showConsole) {
+		e.push(...itemConsole());
 	}
 
 	if (attr.output && attr.showOutput && attr.showHTML) {
@@ -488,7 +650,23 @@ const convert = (attr: IBsExampleContainer) => {
 
 	attr.elem = [
 		new b.card.container(
-			{ id: id, class: "example-code", marginY: 3 },
+			{
+				id: id,
+				class: "example-code",
+				marginY: 3,
+				on: {
+					"bs.console.log": attr.showConsole
+						? (event) => {
+								const ce = event as CustomEvent<{
+									title: string;
+									msg: string;
+									color?: core.bootstrapType.textColor;
+								}>;
+								addConsoleLog(ce.target as Element, ce.detail.title, ce.detail.msg, ce.detail.color);
+						  }
+						: undefined,
+				},
+			},
 			new b.card.body({ padding: 0 }, [new b.list.container({ flush: true, rounded: 2 }, e)])
 		),
 	];
@@ -496,18 +674,20 @@ const convert = (attr: IBsExampleContainer) => {
 	delete attr.lib;
 	delete attr.css;
 	delete attr.extention;
-	delete attr.manager;
-	delete attr.strManager;
 	delete attr.output;
-	delete attr.scriptConverter;
+	delete attr.manager;
 	delete attr.strOutput;
+	delete attr.strManager;
+	delete attr.scriptConverter;
 
-	delete attr.showHTML;
-	delete attr.showScript;
+	delete attr.showConsole;
+	delete attr.showViewport;
 	delete attr.showOutput;
+	delete attr.showScript;
 	delete attr.showManager;
-
+	delete attr.showHTML;
 	delete attr.previewAttr;
+	delete attr.outputAttr;
 
 	return attr;
 };

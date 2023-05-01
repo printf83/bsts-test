@@ -1,4 +1,4 @@
-import { core, h, b, I, B } from "@printf83/bsts";
+import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -1137,7 +1137,7 @@ export const dropdown: IAttrContent = {
 					"{{boundary}}",
 					"boolean, string",
 					"{{'clippingParents'}}",
-					"Overflow constraint boundary of the dropdown menu (applies only to Popper’s preventOverflow modifier). By default it’s {{clippingParents}} and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
+					"Overflow constraint boundary of the dropdown menu (applies only to Popper’s preventOverflow modifier). By default it’s {{clippingParents}} and can accept an Element reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
 				],
 				[
 					"{{display}}",
@@ -1161,7 +1161,7 @@ export const dropdown: IAttrContent = {
 					"{{reference}}",
 					"string, element, object, string",
 					"{{'toggle'}}",
-					"Reference element of the dropdown menu. Accepts the values of {{'toggle'}}, {{'parent'}}, an HTMLElement reference or an object providing {{getBoundingClientRect}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/constructors/#createpopper::constructor docs}} and {{https://popper.js.org/docs/v2/virtual-elements/::virtual element docs}}.",
+					"Reference element of the dropdown menu. Accepts the values of {{'toggle'}}, {{'parent'}}, an Element reference or an object providing {{getBoundingClientRect}}. For more information refer to Popper’s {{https://popper.js.org/docs/v2/constructors/#createpopper::constructor docs}} and {{https://popper.js.org/docs/v2/virtual-elements/::virtual element docs}}.",
 				],
 			],
 		}),
@@ -1227,10 +1227,11 @@ export const dropdown: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
-					target: HTMLElement;
-					relatedTarget: HTMLElement;
+					target: Element;
+					relatedTarget: Element;
 				}
 
 				return new b.dropdown.container(
@@ -1238,29 +1239,22 @@ export const dropdown: IAttrContent = {
 						on: {
 							"shown.bs.dropdown": (event) => {
 								const evnt = event as EventWithTargetAndRelatedTarget;
-
-								b.toast.show(
-									B.Toast.Simple({
-										title: "shown.bs.dropdown",
-										color: "success",
-										elem: [
-											`target: {{b::${core.elemInfo(
-												evnt.target
-											)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-										],
-									})
+								e.console(
+									evnt.target,
+									"shown.bs.dropdown",
+									`Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}
+									RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+									"success"
 								);
 							},
 
 							"hidden.bs.dropdown": (event) => {
-								const target = event.target as HTMLElement;
-
-								b.toast.show(
-									B.Toast.Simple({
-										title: "hidden.bs.dropdown",
-										color: "danger",
-										elem: [`target: {{b::${core.elemInfo(target)}}}`],
-									})
+								const target = event.target as Element;
+								e.console(
+									target,
+									"hidden.bs.dropdown",
+									`Target: {{b::${core.elemInfo(target)}}}`,
+									"success"
 								);
 							},
 						},

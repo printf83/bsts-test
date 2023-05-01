@@ -14,8 +14,8 @@ const dispatchCustomEvent = (root: Element | null, eventName: string, value: str
 };
 
 const changeTheme = (value: string, icon: I.B.Icon) => {
-	let bsTheme = document.getElementById("bs-theme") as HTMLElement;
-	let bsThemeMenu = bsTheme.nextSibling as HTMLElement;
+	let bsTheme = document.getElementById("bs-theme") as Element;
+	let bsThemeMenu = bsTheme.nextSibling as Element;
 
 	let lastActive = bsThemeMenu.querySelectorAll(".dropdown-item.active")[0];
 	if (lastActive) {
@@ -36,9 +36,9 @@ const changeTheme = (value: string, icon: I.B.Icon) => {
 };
 
 const changeVersion = (value: string) => {
-	let bsVersion = document.getElementById("bs-version") as HTMLElement;
-	let bsVersionMenu = bsVersion.nextSibling as HTMLElement;
-	let bsVersionLabel = document.getElementById("bs-version-label") as HTMLElement;
+	let bsVersion = document.getElementById("bs-version") as Element;
+	let bsVersionMenu = bsVersion.nextSibling as Element;
+	let bsVersionLabel = document.getElementById("bs-version-label") as Element;
 
 	let lastActive = bsVersionMenu.querySelectorAll(".dropdown-item.active")[0];
 	if (lastActive) {
@@ -59,7 +59,7 @@ const changeVersion = (value: string) => {
 };
 
 const changeInsideLink = (value: string) => {
-	let bsInsideLink = document.getElementById("bs-inside-link") as HTMLElement;
+	let bsInsideLink = document.getElementById("bs-inside-link") as Element;
 
 	let lastActive = bsInsideLink.querySelectorAll(".nav-link.active")[0];
 	if (lastActive) {
@@ -76,7 +76,7 @@ const changeInsideLink = (value: string) => {
 };
 
 const changeMenu = (value: string) => {
-	let bsMenu = document.getElementById("bs-menu") as HTMLElement;
+	let bsMenu = document.getElementById("bs-menu") as Element;
 
 	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
 	if (lastActive) {

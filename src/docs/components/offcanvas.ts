@@ -1,4 +1,4 @@
-import { h, b, core, B } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -596,10 +596,11 @@ export const offcanvas: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
-					target: HTMLElement;
-					relatedTarget: HTMLElement;
+					target: Element;
+					relatedTarget: Element;
 				}
 
 				return [
@@ -615,41 +616,34 @@ export const offcanvas: IAttrContent = {
 							on: {
 								"shown.bs.offcanvas": (event) => {
 									const evnt = event as EventWithTargetAndRelatedTarget;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "shown.bs.offcanvas",
-											color: "success",
-											elem: [
-												`target: {{b::${core.elemInfo(
-													evnt.target
-												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-											],
-										})
+									e.console(
+										evnt.target,
+										"shown.bs.offcanvas",
+										`Target: {{b::${core.elemInfo(
+											evnt.target
+										)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+										"success"
 									);
 								},
 
 								"hidden.bs.offcanvas": (event) => {
-									const target = event.target as HTMLElement;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "hidden.bs.offcanvas",
-											color: "danger",
-											elem: [`target: {{b::${core.elemInfo(target)}}}`],
-										})
+									const target = event.target as Element;
+									e.console(
+										target,
+										"hidden.bs.offcanvas",
+										`Target: {{b::${core.elemInfo(target)}}}`,
+										"danger"
 									);
 								},
 
 								"hidePrevented.bs.offcanvas": (event) => {
-									const target = event.target as HTMLElement;
+									const target = event.target as Element;
 
-									b.toast.show(
-										B.Toast.Simple({
-											title: "hidePrevented.bs.offcanvas",
-											color: "warning",
-											elem: [`target: {{b::${core.elemInfo(target)}}}`],
-										})
+									e.console(
+										target,
+										"hidePrevented.bs.offcanvas",
+										`Target: {{b::${core.elemInfo(target)}}}`,
+										"warning"
 									);
 								},
 							},

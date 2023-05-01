@@ -480,7 +480,7 @@ export const toast: IAttrContent = {
 									const target = e.target as HTMLSelectElement;
 									const value = target.value;
 									core.replaceWith(
-										document.getElementById("toastPlacement") as HTMLElement,
+										document.getElementById("toastPlacement") as Element,
 										container(value as I.B.Toast.Container["placement"])
 									);
 								},
@@ -796,6 +796,7 @@ export const toast: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				return [
 					new h.div({ display: "flex" }, [
@@ -854,14 +855,10 @@ export const toast: IAttrContent = {
 								new b.button(
 									{
 										on: {
-											click: () => {
-												b.toast.show(
-													B.Toast.Simple({
-														title: "b.toast.isShown",
-														color: "primary",
-														elem: [`isShown : {{b::${b.toast.isShown("#example-toast")}}}`],
-													})
-												);
+											click: (event) => {
+												const target = event.target as Element;
+												const result = b.toast.isShown("#example-toast");
+												e.console(target, "b.toast.isShown", result ? "true" : "false", "info");
 											},
 										},
 									},
@@ -903,11 +900,12 @@ export const toast: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				return new b.button(
 					{
 						on: {
-							click: (_e) => {
+							click: (btnEvent) => {
 								const tItem = new b.toast.item(
 									{
 										color: "primary",
@@ -916,26 +914,22 @@ export const toast: IAttrContent = {
 										atomic: true,
 										on: {
 											"shown.bs.toast": (event) => {
-												const target = event.target as HTMLElement;
-
-												b.toast.show(
-													B.Toast.Simple({
-														title: "shown.bs.toast",
-														color: "success",
-														elem: [`target: {{b::${core.elemInfo(target)}}}`],
-													})
+												const target = event.target as Element;
+												e.console(
+													btnEvent.target as Element,
+													"shown.bs.toast",
+													`Target: {{b::${core.elemInfo(target)}}}`,
+													"success"
 												);
 											},
 
 											"hidden.bs.toast": (event) => {
-												const target = event.target as HTMLElement;
-
-												b.toast.show(
-													B.Toast.Simple({
-														title: "hidden.bs.toast",
-														color: "danger",
-														elem: [`target: {{b::${core.elemInfo(target)}}}`],
-													})
+												const target = event.target as Element;
+												e.console(
+													btnEvent.target as Element,
+													"hidden.bs.toast",
+													`Target: {{b::${core.elemInfo(target)}}}`,
+													"danger"
 												);
 											},
 										},

@@ -865,7 +865,7 @@ export const nav: IAttrContent = {
 								card: true,
 								on: {
 									"shown.bs.tab": (event) => {
-										const target = (event.target as HTMLElement).closest(".modal") as HTMLElement;
+										const target = (event.target as Element).closest(".modal") as Element;
 
 										// readjust the modal’s position
 										window.bootstrap.Modal.getInstance(target)?.handleUpdate;
@@ -989,10 +989,11 @@ export const nav: IAttrContent = {
 
 		new e.text("Example tracking event using {{b.nav.header.container}} or  {{b.nav.header.containerNav}}."),
 		new e.code({
+			showConsole: true,
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
-					target: HTMLElement;
-					relatedTarget: HTMLElement;
+					target: Element;
+					relatedTarget: Element;
 				}
 
 				const content = (title: string) =>
@@ -1014,33 +1015,25 @@ export const nav: IAttrContent = {
 							on: {
 								"shown.bs.tab": (event) => {
 									const evnt = event as EventWithTargetAndRelatedTarget;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "shown.bs.tab",
-											color: "success",
-											elem: [
-												`target: {{b::${core.elemInfo(
-													evnt.target
-												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-											],
-										})
+									e.console(
+										evnt.target,
+										"shown.bs.tab",
+										`Target: {{b::${core.elemInfo(
+											evnt.target
+										)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+										"success"
 									);
 								},
 
 								"hidden.bs.tab": (event) => {
 									const evnt = event as EventWithTargetAndRelatedTarget;
-
-									b.toast.show(
-										B.Toast.Simple({
-											title: "hidden.bs.tab",
-											color: "danger",
-											elem: [
-												`target: {{b::${core.elemInfo(
-													evnt.target
-												)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-											],
-										})
+									e.console(
+										evnt.target,
+										"hidden.bs.tab",
+										`Target: {{b::${core.elemInfo(
+											evnt.target
+										)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
+										"danger"
 									);
 								},
 							},
@@ -1079,10 +1072,11 @@ export const nav: IAttrContent = {
 
 		new e.text("Or track event using {{B.Nav.Tab}}"),
 		new e.code({
+			showConsole: true,
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
-					target: HTMLElement;
-					relatedTarget: HTMLElement;
+					target: Element;
+					relatedTarget: Element;
 				}
 
 				const content = (title: string) =>
@@ -1092,33 +1086,25 @@ export const nav: IAttrContent = {
 					on: {
 						"shown.bs.tab": (event) => {
 							const evnt = event as EventWithTargetAndRelatedTarget;
-
-							b.toast.show(
-								B.Toast.Simple({
-									title: "shown.bs.tab",
-									color: "success",
-									elem: [
-										`target: {{b::${core.elemInfo(
-											evnt.target
-										)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-									],
-								})
+							e.console(
+								evnt.target,
+								"shown.bs.tab",
+								`Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(
+									evnt.relatedTarget
+								)}}}`,
+								"success"
 							);
 						},
 
 						"hidden.bs.tab": (event) => {
 							const evnt = event as EventWithTargetAndRelatedTarget;
-
-							b.toast.show(
-								B.Toast.Simple({
-									title: "hidden.bs.tab",
-									color: "danger",
-									elem: [
-										`target: {{b::${core.elemInfo(
-											evnt.target
-										)}}}{{br}}relatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`,
-									],
-								})
+							e.console(
+								evnt.target,
+								"hidden.bs.tab",
+								`Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(
+									evnt.relatedTarget
+								)}}}`,
+								"danger"
 							);
 						},
 					},

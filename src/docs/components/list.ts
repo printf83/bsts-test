@@ -612,7 +612,7 @@ export const list: IAttrContent = {
 								{
 									on: {
 										click: (e) => {
-											const target = e.target as HTMLElement;
+											const target = e.target as Element;
 											const triggerTabList = document.querySelectorAll("#list-manual-tab a");
 											triggerTabList.forEach((triggerEl) => {
 												const tabTrigger = new window.bootstrap.Tab(triggerEl);
@@ -631,7 +631,7 @@ export const list: IAttrContent = {
 												})
 											);
 
-											core.removeElement(target.closest(".row") as HTMLElement);
+											core.removeElement(target.closest(".row") as Element);
 										},
 									},
 								},
@@ -850,10 +850,11 @@ export const list: IAttrContent = {
 			`,
 		}),
 		new e.code({
+			showConsole: true,
 			output: () => {
 				interface EventWithTargetAndRelatedTarget extends Event {
-					target: HTMLElement;
-					relatedTarget: HTMLElement;
+					target: Element;
+					relatedTarget: Element;
 				}
 
 				let data = ["home", "profile", "messages", "settings"];
@@ -874,15 +875,11 @@ export const list: IAttrContent = {
 										on: {
 											"shown.bs.tab": (event) => {
 												const evnt = event as EventWithTargetAndRelatedTarget;
-
-												b.toast.show(
-													B.Toast.Simple({
-														title: "closed.bs.alert",
-														color: "info",
-														elem: [
-															`target: {{b::${evnt.target}}}{{br}}relatedTarget: {{b::${evnt.relatedTarget}}}`,
-														],
-													})
+												e.console(
+													evnt.target,
+													"shown.bs.tab",
+													`target: {{b::${evnt.target}}}{{br}}relatedTarget: {{b::${evnt.relatedTarget}}}`,
+													"info"
 												);
 											},
 										},

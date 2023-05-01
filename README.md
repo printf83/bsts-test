@@ -9,7 +9,7 @@ example :
 import {core, b, h} from "@printf83/bsts";
 
 core.documentReady(() => {
-	let body = document.getElementById("main") as HTMLElement;
+	let body = document.getElementById("main") as Element;
 	core.replaceChild(body, new h.div([
         new h.p("This is example p tag"),
         new h.p({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),
@@ -25,7 +25,7 @@ or without new keyword:
 import {core, b, h} from "@printf83/bsts";
 
 core.documentReady(() => {
-	let body = document.getElementById("main") as HTMLElement;
+	let body = document.getElementById("main") as Element;
 	core.replaceChild(body, h.Div([
         h.P("This is example p tag"),
         h.P({lead:true,data:{test:"test-data"}},"This is example p tag with attribute"),

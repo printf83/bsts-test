@@ -105,7 +105,7 @@ export const object_fit: IAttrContent = {
 						on: {
 							click: (e) => {
 								let target = e.target;
-								core.replaceWith(target as HTMLElement, videoFn());
+								core.replaceWith(target as Element, videoFn());
 							},
 						},
 					},

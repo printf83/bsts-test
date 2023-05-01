@@ -1,4 +1,4 @@
-import { b, h, core, B } from "@printf83/bsts";
+import { b, h, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -64,7 +64,7 @@ export const alert: IAttrContent = {
 								color: "primary",
 								on: {
 									click: (_e) => {
-										let container = document.getElementById("liveAlertPlaceholder") as HTMLElement;
+										let container = document.getElementById("liveAlertPlaceholder") as Element;
 										core.appendChild(
 											container,
 											new b.alert.container(
@@ -370,6 +370,7 @@ export const alert: IAttrContent = {
 						top: 50,
 						start: 50,
 						tMiddle: true,
+						col: [10, "md-6"],
 					},
 					new b.alert.container(
 						{
@@ -377,7 +378,6 @@ export const alert: IAttrContent = {
 							animation: true,
 							color: "primary",
 							marginBottom: 0,
-							style: { width: "18rem" },
 						},
 						"Example"
 					)
@@ -496,6 +496,7 @@ export const alert: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				return new b.alert.container(
 					{
@@ -503,14 +504,8 @@ export const alert: IAttrContent = {
 						dismissible: true,
 						on: {
 							"closed.bs.alert": (event) => {
-								const target = event.target;
-								b.toast.show(
-									B.Toast.Simple({
-										title: "closed.bs.alert",
-										color: "info",
-										elem: `Event target: {{b::${core.elemInfo(target as HTMLElement)}}}`,
-									})
-								);
+								const target = event.target as Element;
+								e.console(target, "closed.bs.alert", `Target: {{b::${core.elemInfo(target)}}}`, "info");
 							},
 						},
 					},

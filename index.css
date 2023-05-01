@@ -11,6 +11,25 @@ a:hover *,
 .ms-n4{
     margin-left: -2rem;
 }
+/*example-console*/
+.example-console-notification:not(.active){
+    visibility: hidden;
+}
+.example-console-notification.active{
+    animation: example-console-notification-animation 1s steps(3, start) infinite;
+    -webkit-animation: example-console-notification-animation 1s steps(3, start) infinite;
+}
+@keyframes example-console-notification-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes example-console-notification-animation {
+    to {
+        visibility: hidden;
+    }
+}
 
 /* data-bs-responsive-title */
 @media (max-width: 768px) {

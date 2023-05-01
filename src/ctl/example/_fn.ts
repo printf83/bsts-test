@@ -9,3 +9,18 @@ export const toast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?:
 		})
 	);
 };
+
+export const console = (elem: Element, title?: string, msg?: string, color?: core.bootstrapType.textColor) => {
+	const exampleCodeContainer = elem.closest(".example-code");
+	if (exampleCodeContainer) {
+		exampleCodeContainer.dispatchEvent(
+			new CustomEvent("bs.console.log", {
+				detail: {
+					title: title,
+					msg: msg ? msg : "Message",
+					color: color,
+				},
+			})
+		);
+	}
+};
