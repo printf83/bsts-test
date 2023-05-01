@@ -503,9 +503,9 @@ export const alert: IAttrContent = {
 						color: "info",
 						dismissible: true,
 						on: {
-							"closed.bs.alert": (event) => {
+							"close.bs.alert": (event) => {
 								const target = event.target as Element;
-								e.console(target, "closed.bs.alert", `Target: {{b::${core.elemInfo(target)}}}`, "info");
+								e.console(target, "close.bs.alert", `Target: {{b::${core.elemInfo(target)}}}`, "info");
 							},
 						},
 					},

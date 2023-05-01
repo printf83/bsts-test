@@ -496,6 +496,7 @@ export const popover: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				const myDefaultAllowList = window.bootstrap.Tooltip.Default.allowList;
 				myDefaultAllowList.img = ["src", "alt"];
@@ -560,10 +561,28 @@ export const popover: IAttrContent = {
 									{
 										color: "success",
 										on: {
-											click: () => {
-												console.log(
-													`b.popover.getInstance("#example-popover")`,
-													b.popover.getInstance("#example-popover")
+											click: (event) => {
+												const elem = b.popover.getInstance("#example-popover");
+												let iserror = false;
+												let result = "null";
+												try {
+													if (elem) {
+														result = JSON.stringify(elem);
+													}
+												} catch (ex) {
+													iserror = true;
+													if (ex instanceof Error) {
+														result = ex.message;
+													} else {
+														result = "Unknow error";
+													}
+												}
+
+												e.console(
+													event.target as Element,
+													"b.popover.getInstance",
+													result,
+													elem ? (iserror ? "warning" : "success") : "danger"
 												);
 											},
 										},
@@ -574,10 +593,29 @@ export const popover: IAttrContent = {
 									{
 										color: "success",
 										on: {
-											click: () => {
-												console.log(
-													`b.popover.getOrCreateInstance("#example-popover")`,
-													b.popover.getOrCreateInstance("#example-popover")
+											click: (event) => {
+												const elem = b.popover.getOrCreateInstance("#example-popover");
+												let iserror = false;
+												let result = "null";
+												try {
+													if (elem) {
+														result = JSON.stringify(elem);
+													}
+												} catch (ex) {
+													iserror = true;
+
+													if (ex instanceof Error) {
+														result = ex.message;
+													} else {
+														result = "Unknow error";
+													}
+												}
+
+												e.console(
+													event.target as Element,
+													"b.popover.getOrCreateInstance",
+													result,
+													elem ? (iserror ? "warning" : "success") : "danger"
 												);
 											},
 										},

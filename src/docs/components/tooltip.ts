@@ -501,6 +501,7 @@ export const tooltip: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				const myDefaultAllowList = window.bootstrap.Tooltip.Default.allowList;
 				myDefaultAllowList.img = ["src", "alt"];
@@ -559,10 +560,28 @@ export const tooltip: IAttrContent = {
 									{
 										color: "success",
 										on: {
-											click: () => {
-												console.log(
-													`b.tooltip.getInstance("#example-tooltip")`,
-													b.tooltip.getInstance("#example-tooltip")
+											click: (event) => {
+												const elem = b.tooltip.getInstance("#example-tooltip");
+												let iserror = false;
+												let result = "null";
+												try {
+													if (elem) {
+														result = JSON.stringify(elem);
+													}
+												} catch (ex) {
+													iserror = true;
+													if (ex instanceof Error) {
+														result = ex.message;
+													} else {
+														result = "Unknow error";
+													}
+												}
+
+												e.console(
+													event.target as Element,
+													"b.tooltip.getInstance",
+													result,
+													elem ? (iserror ? "warning" : "success") : "danger"
 												);
 											},
 										},
@@ -573,10 +592,28 @@ export const tooltip: IAttrContent = {
 									{
 										color: "success",
 										on: {
-											click: () => {
-												console.log(
-													`b.tooltip.getOrCreateInstance("#example-tooltip")`,
-													b.tooltip.getOrCreateInstance("#example-tooltip")
+											click: (event) => {
+												const elem = b.tooltip.getOrCreateInstance("#example-tooltip");
+												let iserror = false;
+												let result = "null";
+												try {
+													if (elem) {
+														result = JSON.stringify(elem);
+													}
+												} catch (ex) {
+													iserror = true;
+													if (ex instanceof Error) {
+														result = ex.message;
+													} else {
+														result = "Unknow error";
+													}
+												}
+
+												e.console(
+													event.target as Element,
+													"b.tooltip.getOrCreateInstance",
+													result,
+													elem ? (iserror ? "warning" : "success") : "danger"
 												);
 											},
 										},
