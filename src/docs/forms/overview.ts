@@ -107,7 +107,38 @@ export const overview: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("Using {{b.form.item}}"),
+		new e.title("Function {{B.Form}}"),
+		new e.text(
+			"{{bsts}} create {{B.Form}} function to help you create same output as above. This function automaticly create {{id}} for related component. You still can give an {{id}} and {{B.Form}} will use it to related component."
+		),
+		new e.text("Using {{B.Form.Input}} with {{id}}"),
+		new e.code({
+			output: () => {
+				return new h.form([
+					B.Form.Input({
+						id: "easy-email-form",
+						container: { marginBottom: 3 },
+						label: "Email address",
+						description: "Bootstrap'll never share your email with anyone else.",
+						type: "email",
+					}),
+					B.Form.Input({
+						id: "easy-password-form",
+						container: { marginBottom: 3 },
+						label: "Password",
+						type: "password",
+					}),
+					B.Form.Check({
+						id: "easy-check-form",
+						container: { marginBottom: 3 },
+						label: "Check me out",
+						type: "checkbox",
+					}),
+					new b.button({ type: "submit" }, "Submit"),
+				]);
+			},
+		}),
+		new e.text("Using {{B.Form.Input}} without {{id}}"),
 		new e.code({
 			output: () => {
 				return new h.form([
@@ -131,24 +162,48 @@ export const overview: IAttrContent = {
 				]);
 			},
 		}),
+		new e.item(
+			new h.details([
+				new h.summary({ textColor: "primary" }, "List of function to help create component:"),
+				new h.p(
+					{ marginY: 3 },
+					new h.ul({
+						item: [
+							"{{B.Form.Input}} - Create input (text,number,date and others) component.",
+							"{{B.Form.Textarea}} - Create textarea component.",
+							"{{B.Form.Select}} - Create select component.",
+							"{{B.Form.Check}} - Create checkbox,radio and switch component.",
+							"{{B.Form.Toggle}} - Create checkbox or radio toggle component. {{b::Heads Up!}} This function return an array. Please flatten the array before you pass it into {{core.build}}",
+							"{{B.Form.FloatingLabel.Input}} - Create input (text,number,date and others) component with floating label.",
+							"{{B.Form.FloatingLabel.Textarea}} - Create textarea component with floating label.",
+							"{{B.Form.FloatingLabel.Select}} - Create select component with floating label.",
+						],
+					})
+				),
+			])
+		),
 
 		//-----------------------
 
 		new e.title("Disabled forms"),
 		new e.text(
-			"Add the {{disabled}} boolean attribute on an input to prevent user interactions and make it appear lighter."
+			"Add the {{disabled:true}} property on an {{b.input}} to prevent user interactions and make it appear lighter."
 		),
-		new e.codepreview({
-			type: "html",
-			code: `
-			    <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
-			`,
+		new e.code({
+			output: () => {
+				return new b.input({
+					type: "text",
+					id: "disabledInput",
+					placeholder: "Disabled input here...",
+					disabled: true,
+				});
+			},
 		}),
 		new e.text(
-			"Add the {{disabled}} attribute to a {{<fieldset>}} to disable all the controls within. Browsers treat all native form controls ({{<input>}}, {{<select>}}, and {{<button>}} elements) inside a {{<fieldset disabled>}} as disabled, preventing both keyboard and mouse interactions on them."
+			"Add the {{disabled:true}} to a {{h.fieldset}} to disable all the controls within. Browsers treat all native form controls ({{h.input}}, {{b.input}}, {{h.select}}, {{b.select}}, {{h.button}}, and {{b.button}} elements) inside a {{h.fieldset({disabled:true})}} as disabled, preventing both keyboard and mouse interactions on them."
 		),
 		new e.text(
-			"However, if your form also includes custom button-like elements such as {{<a class='btn btn-*'>...</a>}}, these will only be given a style of {{pointer-events: none}}, meaning they are still focusable and operable using the keyboard. In this case, you must manually modify these controls by adding {{tabindex='-1'}} to prevent them from receiving focus and {{aria-disabled='disabled'}} to signal their state to assistive technologies."
+			"However, if your form also includes custom button-like elements such as {{b.button({href:''})}}, these will only be given a style of {{pointer-events: none}}, meaning they are still focusable and operable using the keyboard. In this case, you must manually modify these controls by omit the {{href}} property or set {{disabled:true}} to prevent them from receiving focus."
 		),
 
 		new e.code({
@@ -182,24 +237,24 @@ export const overview: IAttrContent = {
 
 		new e.title("Accessibility"),
 		new e.text(
-			"Ensure that all form controls have an appropriate accessible name so that their purpose can be conveyed to users of assistive technologies. The simplest way to achieve this is to use a {{<label>}} element, or—in the case of buttons—to include sufficiently descriptive text as part of the {{<button>...</button>}} content."
+			"Ensure that all form controls have an appropriate accessible name so that their purpose can be conveyed to users of assistive technologies. The simplest way to achieve this is to use a {{label}} property on {{B.Form}}, or—in the case of buttons—to include sufficiently descriptive text as part of the {{b.button}} content."
 		),
 		new e.text(
-			"For situations where it’s not possible to include a visible {{<label>}} or appropriate text content, there are alternative ways of still providing an accessible name, such as:"
+			"For situations where it’s not possible to include a visible {{h.label}} or {{b.label}} or appropriate text content, there are alternative ways of still providing an accessible name, such as:"
 		),
 		new e.ul({
 			item: [
-				"{{<label>}} elements hidden using the {{.visually-hidden}} class",
-				"Pointing to an existing element that can act as a label using {{aria-labelledby}}",
+				"{{h.label}} component hidden using the {{visually:'hidden'}} property",
+				"Pointing to an existing component that can act as a label using {{labelledby}}",
 				"Providing a {{title}} attribute",
-				"Explicitly setting the accessible name on an element using {{aria-label}}",
+				"Explicitly setting the accessible name on an element using {{label}}",
 			],
 		}),
 		new e.text(
-			"If none of these are present, assistive technologies may resort to using the {{placeholder}} attribute as a fallback for the accessible name on {{<input>}} and {{<textarea>}} elements. The examples in this section provide a few suggested, case-specific approaches."
+			"If none of these are present, assistive technologies may resort to using the {{placeholder}} attribute as a fallback for the accessible name on {{h.input}} or {{b.input}} and {{h.textarea}} or {{b.textarea}} component. The examples in this section provide a few suggested, case-specific approaches."
 		),
 		new e.text(
-			"While using visually hidden content ({{.visually-hidden}}, {{aria-label}}, and even {{placeholder}} content, which disappears once a form field has content) will benefit assistive technology users, a lack of visible label text may still be problematic for certain users. Some form of visible label is generally the best approach, both for accessibility and usability."
+			"While using visually hidden content ({{visually:'hidden'}}, {{label}}, and even {{placeholder}} content, which disappears once a form field has content) will benefit assistive technology users, a lack of visible label text may still be problematic for certain users. Some form of visible label is generally the best approach, both for accessibility and usability."
 		),
 
 		//-----------------------

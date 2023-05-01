@@ -109,14 +109,49 @@ export const introduction: IAttrContent = {
 			item: [
 				["Library", "Description"],
 				["core", "Core function to build html using {{bsts}}"],
+				["I", "Interface if you like to use {{Typescript}}"],
 				["h", "HTML component"],
+				["H", "Create HTML component without {{new}} keyword"],
 				["b", "Bootstrap component"],
+				["B", "Create Bootstrap component without {{new}} keyword"],
 				["t", "Main class that build all HTML and Bootstrap component"],
-				["T", "Function to create t without {{new}} keyword."],
-				["strHtml", "Class to allow developer write HTML syntax and process by core.build as HTML"],
-				["StrHtml", "Function to create strHtml wihthout {{new}} keyword."],
+				["T", "Create t without {{new}} keyword."],
+				["s", "Class to allow HTML syntax and process by {{core.build}} as HTML"],
+				["S", "Create s wihthout {{new}} keyword."],
 			],
 		}),
+
+		new e.text("Example usage."),
+		new e.codepreview({
+			type: "js",
+			code: `
+				import {core, h, b} from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+
+				core.documentReady(() => {
+					let root = document.getElementById("root");
+					core.replaceChild(root, new h.div([
+						"Hello world", 
+						new b.button({color:"primary"},"Button"),
+					]));
+				});
+				`,
+		}),
+		new e.text("Example usage without {{new}} keyword."),
+		new e.codepreview({
+			type: "js",
+			code: `
+				import {core, H, B} from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+
+				core.documentReady(() => {
+					let root = document.getElementById("root");
+					core.replaceChild(root, H.Div([
+						"Hello world", 
+						B.Button({color:"primary"},"Button"),
+					]));
+				});
+				`,
+		}),
+
 		new e.text(
 			"You can also use the CDN to fetch any of Bootstrap {{nav:docs/gettingstarted/content::additional builds listed in the Contents page}}."
 		),

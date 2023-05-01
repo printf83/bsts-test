@@ -1,4 +1,4 @@
-import { core, t, h as html, strHtml } from "@printf83/bsts";
+import { core, t, h as html, s } from "@printf83/bsts";
 
 const genIDFromElem = (attr: core.IAttr) => {
 	if (!attr.id) {
@@ -24,7 +24,7 @@ const convert = (attr: core.IAttr) => {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: (string | t | strHtml)[] = [];
+		let tElem: (string | t | s)[] = [];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {

@@ -25,7 +25,7 @@ export const control: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{b.form.item}} and {{B.Form.Textarea}}"),
+		new e.text("Using {{B.Form.Input}} and {{B.Form.Textarea}}"),
 		new e.code({
 			output: () => {
 				return [
@@ -90,7 +90,7 @@ export const control: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("Using {{b.form.item}}"),
+		new e.text("Using {{B.Form.Input}}"),
 		new e.code({
 			output: () => {
 				return B.Form.Input({
@@ -123,7 +123,7 @@ export const control: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("Using {{b.form.item}}"),
+		new e.text("Using {{B.Form.Input}}"),
 		new e.code({
 			output: () => {
 				return B.Form.Input({
