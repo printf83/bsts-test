@@ -720,6 +720,7 @@ export const popover: IAttrContent = {
 		}),
 
 		new e.code({
+			showConsole: true,
 			output: () => {
 				return new b.popover(
 					{
