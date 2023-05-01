@@ -556,6 +556,34 @@ export const popover: IAttrContent = {
 									},
 									"enable"
 								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												console.log(
+													`b.popover.getInstance("#example-popover")`,
+													b.popover.getInstance("#example-popover")
+												);
+											},
+										},
+									},
+									"getInstance"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												console.log(
+													`b.popover.getOrCreateInstance("#example-popover")`,
+													b.popover.getOrCreateInstance("#example-popover")
+												);
+											},
+										},
+									},
+									"getOrCreateInstance"
+								),
 
 								new b.button(
 									{
@@ -623,6 +651,7 @@ export const popover: IAttrContent = {
 									},
 									"setContent"
 								),
+
 								new b.button(
 									{
 										color: "danger",

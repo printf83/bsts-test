@@ -555,7 +555,34 @@ export const tooltip: IAttrContent = {
 									},
 									"enable"
 								),
-
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												console.log(
+													`b.tooltip.getInstance("#example-tooltip")`,
+													b.tooltip.getInstance("#example-tooltip")
+												);
+											},
+										},
+									},
+									"getInstance"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												console.log(
+													`b.tooltip.getOrCreateInstance("#example-tooltip")`,
+													b.tooltip.getOrCreateInstance("#example-tooltip")
+												);
+											},
+										},
+									},
+									"getOrCreateInstance"
+								),
 								new b.button(
 									{
 										on: {
@@ -621,6 +648,7 @@ export const tooltip: IAttrContent = {
 									},
 									"setContent"
 								),
+
 								new b.button(
 									{
 										color: "danger",

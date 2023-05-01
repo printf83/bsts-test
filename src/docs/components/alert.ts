@@ -286,13 +286,13 @@ export const alert: IAttrContent = {
 			type: "js",
 			code: `
 				const alertList = document.querySelectorAll('.alert')
-				const alerts = [...alertList].map(element => new bootstrap.Alert(element))
+				const alerts = [...alertList].map(element => b.alert.init(element))
 			`,
 		}),
 
 		new e.alert({ color: "warning", callout: true }, [
 			new h.p(
-				"For the sole purpose of dismissing an alert, it isn’t necessary to initialize the component manually via the JS API. By making use of {{data-bs-dismiss='alert'}}, the component will be initialized automatically and properly dismissed."
+				"For the sole purpose of dismissing an alert, it isn’t necessary to initialize the component manually via the JS API. By making use of {{b.alert.btnclose}} component, the alert component will be initialized automatically and properly dismissed."
 			),
 			new h.p("See the {{nav:docs/components/alerts#triggers::triggers}} section for more details."),
 		]),
@@ -305,17 +305,19 @@ export const alert: IAttrContent = {
 			"Dismissal can be achieved with the {{data}} attribute on a button within the alert as demonstrated below:"
 		),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				new b.alert.btnclose();
+				new b.button({dismiss:"alert"},"Close");
 			`,
 		}),
 
 		new e.text("or on a button outside the alert using the {{data-bs-target}} as demonstrated below:"),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
-				<button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#my-alert" aria-label="Close"></button>
+				new b.alert.btnclose({target:"#my-alert"});
+				new b.button({dismiss:"alert", target:"#my-alert"},"Close");
 			`,
 		}),
 
@@ -328,11 +330,11 @@ export const alert: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const bsAlert = new bootstrap.Alert('#myAlert')
+				const bsAlert = b.alert.init('#myAlert');
 			`,
 		}),
 		new e.text(
-			"This makes an alert listen for click events on descendant elements which have the {{data-bs-dismiss='alert'}} attribute. (Not necessary when using the data-api’s auto-initialization.)"
+			"This makes an alert listen for click events on descendant elements which have the {{dismiss:'alert'}} property. (Not necessary when using the data-api’s auto-initialization.)"
 		),
 		new e.table({
 			item: [
@@ -344,11 +346,11 @@ export const alert: IAttrContent = {
 				["{{dispose}}", "Destroys an element’s alert. (Removes stored data on the DOM element)"],
 				[
 					"{{getInstance}}",
-					"Static method which allows you to get the alert instance associated to a DOM element. For example: {{bootstrap.Alert.getInstance(alert)}}.",
+					"Static method which allows you to get the alert instance associated to a DOM element. For example: {{b.alert.getInstance('#alert')}}.",
 				],
 				[
 					"{{getOrCreateInstance}}",
-					"Static method which returns an alert instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Alert.getOrCreateInstance(element)}}.",
+					"Static method which returns an alert instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{b.alert.getOrCreateInstance('#alert')}}.",
 				],
 			],
 		}),
@@ -356,9 +358,129 @@ export const alert: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const alert = bootstrap.Alert.getOrCreateInstance('#myAlert')
-				alert.close()
+				b.alert.getOrCreateInstance('#myAlert')?.close();
 			`,
+		}),
+		new e.code({
+			output: () => {
+				const exampleAlert = new h.div(
+					{
+						id: "example-alert-container",
+						position: "absolute",
+						top: 50,
+						start: 50,
+						tMiddle: true,
+					},
+					new b.alert.container(
+						{
+							id: "example-alert",
+							animation: true,
+							color: "primary",
+							marginBottom: 0,
+							style: { width: "18rem" },
+						},
+						"Example"
+					)
+				);
+
+				return [
+					new h.div({ display: "flex" }, [
+						new h.div(
+							{
+								width: 100,
+								marginEnd: 3,
+								bgColor: "body-tertiary",
+								rounded: true,
+								position: "relative",
+							},
+							exampleAlert
+						),
+						new h.div(
+							{ marginStart: "auto" },
+							new b.btngroup({ vertical: true, weight: "sm" }, [
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												console.log(
+													`b.alert.init("#example-alert")`,
+													b.alert.init("#example-alert")
+												);
+											},
+										},
+									},
+									"init"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												console.log(
+													`b.alert.getInstance("#example-alert")`,
+													b.alert.getInstance("#example-alert")
+												);
+											},
+										},
+									},
+									"getInstance"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: () => {
+												console.log(
+													`b.alert.getOrCreateInstance("#example-alert")`,
+													b.alert.getOrCreateInstance("#example-alert")
+												);
+											},
+										},
+									},
+									"getOrCreateInstance"
+								),
+
+								new b.button(
+									{
+										color: "danger",
+										on: {
+											click: () => {
+												b.alert.close("#example-alert");
+											},
+										},
+									},
+									"close"
+								),
+								new b.button(
+									{
+										color: "danger",
+										on: {
+											click: () => {
+												b.alert.dispose("#example-alert");
+											},
+										},
+									},
+									"dispose"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												core.replaceWith(
+													document.getElementById("example-alert-container")!,
+													exampleAlert
+												);
+											},
+										},
+									},
+									"reset"
+								),
+							])
+						),
+					]),
+				];
+			},
 		}),
 
 		//-----------------------
