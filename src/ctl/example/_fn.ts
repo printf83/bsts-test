@@ -10,9 +10,32 @@ export const toast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?:
 	);
 };
 
-export const console = (elem: Element, title?: string, msg?: string, color?: core.bootstrapType.textColor) => {
+export const console = (elem: Element, title?: string, msg?: string | object, color?: core.bootstrapType.textColor) => {
 	const exampleCodeContainer = elem.closest(".example-code");
 	if (exampleCodeContainer) {
+		if (typeof msg !== "string") {
+			let iserror = false;
+			let result = "null";
+			try {
+				if (msg) {
+					result = JSON.stringify(msg);
+				}
+			} catch (ex) {
+				iserror = true;
+
+				if (ex instanceof Error) {
+					result = `{{u::Error!}} {{b::${ex.message}}}`;
+				} else {
+					result = "{{u::Error!}} {{b::Unknow error}}";
+				}
+			}
+
+			msg = result;
+			if (iserror) {
+				color = "danger";
+			}
+		}
+
 		exampleCodeContainer.dispatchEvent(
 			new CustomEvent("bs.console.log", {
 				detail: {

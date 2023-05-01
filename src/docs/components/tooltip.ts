@@ -562,26 +562,12 @@ export const tooltip: IAttrContent = {
 										on: {
 											click: (event) => {
 												const elem = b.tooltip.getInstance("#example-tooltip");
-												let iserror = false;
-												let result = "null";
-												try {
-													if (elem) {
-														result = JSON.stringify(elem);
-													}
-												} catch (ex) {
-													iserror = true;
-													if (ex instanceof Error) {
-														result = ex.message;
-													} else {
-														result = "Unknow error";
-													}
-												}
 
 												e.console(
 													event.target as Element,
 													"b.tooltip.getInstance",
-													result,
-													elem ? (iserror ? "warning" : "success") : "danger"
+													elem ? elem : "null",
+													elem ? "success" : "danger"
 												);
 											},
 										},
@@ -594,26 +580,12 @@ export const tooltip: IAttrContent = {
 										on: {
 											click: (event) => {
 												const elem = b.tooltip.getOrCreateInstance("#example-tooltip");
-												let iserror = false;
-												let result = "null";
-												try {
-													if (elem) {
-														result = JSON.stringify(elem);
-													}
-												} catch (ex) {
-													iserror = true;
-													if (ex instanceof Error) {
-														result = ex.message;
-													} else {
-														result = "Unknow error";
-													}
-												}
 
 												e.console(
 													event.target as Element,
 													"b.tooltip.getOrCreateInstance",
-													result,
-													elem ? (iserror ? "warning" : "success") : "danger"
+													elem,
+													elem ? "success" : "danger"
 												);
 											},
 										},

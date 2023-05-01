@@ -563,26 +563,12 @@ export const popover: IAttrContent = {
 										on: {
 											click: (event) => {
 												const elem = b.popover.getInstance("#example-popover");
-												let iserror = false;
-												let result = "null";
-												try {
-													if (elem) {
-														result = JSON.stringify(elem);
-													}
-												} catch (ex) {
-													iserror = true;
-													if (ex instanceof Error) {
-														result = ex.message;
-													} else {
-														result = "Unknow error";
-													}
-												}
 
 												e.console(
 													event.target as Element,
 													"b.popover.getInstance",
-													result,
-													elem ? (iserror ? "warning" : "success") : "danger"
+													elem ? elem : "null",
+													elem ? "success" : "danger"
 												);
 											},
 										},
@@ -595,27 +581,11 @@ export const popover: IAttrContent = {
 										on: {
 											click: (event) => {
 												const elem = b.popover.getOrCreateInstance("#example-popover");
-												let iserror = false;
-												let result = "null";
-												try {
-													if (elem) {
-														result = JSON.stringify(elem);
-													}
-												} catch (ex) {
-													iserror = true;
-
-													if (ex instanceof Error) {
-														result = ex.message;
-													} else {
-														result = "Unknow error";
-													}
-												}
-
 												e.console(
 													event.target as Element,
 													"b.popover.getOrCreateInstance",
-													result,
-													elem ? (iserror ? "warning" : "success") : "danger"
+													elem,
+													elem ? "success" : "danger"
 												);
 											},
 										},
