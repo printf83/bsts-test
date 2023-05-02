@@ -177,7 +177,7 @@ export const scrollspy: IAttrContent = {
 			output: () => {
 				let d = ["1", "2", "3", "4"];
 				let headerItems = d.map((i) => {
-					return new b.listDiv.item({ action: true, href: `#list-item-${i}` }, `Item ${i}`);
+					return new b.tabList.item({ action: true, href: `#list-item-${i}` }, `Item ${i}`);
 				});
 
 				let contentItems: core.tag[] = [];
@@ -193,7 +193,7 @@ export const scrollspy: IAttrContent = {
 				return new h.div({ row: true }, [
 					new h.div(
 						{ col: 4 },
-						new b.listDiv.container(
+						new b.tabList.container(
 							{
 								id: "list-example",
 							},

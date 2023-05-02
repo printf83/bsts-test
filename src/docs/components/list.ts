@@ -59,33 +59,33 @@ export const list: IAttrContent = {
 
 		new e.title("Links and buttons"),
 		new e.text(
-			"Use {{b.listDiv.item({href:''})}}s to create actionable list group items with hover, disabled, and active states by set {{action:true}} property. Bootstrap separate these pseudo-classes to ensure list groups made of non-interactive elements (like {{h.li}}s or {{h.div}}s) don’t provide a click or tap affordance."
+			"Use {{b.tabList.item({href:''})}}s to create actionable list group items with hover, disabled, and active states by set {{action:true}} property. Bootstrap separate these pseudo-classes to ensure list groups made of non-interactive elements (like {{h.li}}s or {{h.div}}s) don’t provide a click or tap affordance."
 		),
 		new e.text("{{bsts}} not {{b::use the standard}} {{cb::.btn}}{{b:: classes here}}."),
 		new e.code({
 			output: () => {
-				return new b.listDiv.container([
-					new b.listDiv.item({ href: "#", active: true }, "The current link item"),
-					new b.listDiv.item({ href: "#" }, "A second link item"),
-					new b.listDiv.item({ href: "#" }, "A third link item"),
-					new b.listDiv.item({ href: "#" }, "A fourth link item"),
-					new b.listDiv.item({ disabled: true }, "A disabled link item"),
+				return new b.tabList.container([
+					new b.tabList.item({ href: "#", active: true }, "The current link item"),
+					new b.tabList.item({ href: "#" }, "A second link item"),
+					new b.tabList.item({ href: "#" }, "A third link item"),
+					new b.tabList.item({ href: "#" }, "A fourth link item"),
+					new b.tabList.item({ disabled: true }, "A disabled link item"),
 				]);
 			},
 		}),
 
 		new e.text(
-			"With {{b.list.item}}s or {{b.listDiv.item}}, {{bsts}} also make use of the {{disabled}} attribute instead of the {{.disabled}} class automaticly."
+			"With {{b.list.item}}s or {{b.tabList.item}}, {{bsts}} also make use of the {{disabled}} attribute instead of the {{.disabled}} class automaticly."
 		),
 
 		new e.code({
 			output: () => {
-				return new b.listDiv.container([
-					new b.listDiv.item({ href: "#", action: true, active: true }, "The current link item"),
-					new b.listDiv.item({ href: "#", action: true }, "A second link item"),
-					new b.listDiv.item({ href: "#", action: true }, "A third link item"),
-					new b.listDiv.item({ href: "#", action: true }, "A fourth link item"),
-					new b.listDiv.item({ disabled: true, action: true }, "A disabled link item"),
+				return new b.tabList.container([
+					new b.tabList.item({ href: "#", action: true, active: true }, "The current link item"),
+					new b.tabList.item({ href: "#", action: true }, "A second link item"),
+					new b.tabList.item({ href: "#", action: true }, "A third link item"),
+					new b.tabList.item({ href: "#", action: true }, "A fourth link item"),
+					new b.tabList.item({ disabled: true, action: true }, "A disabled link item"),
 				]);
 			},
 		}),
@@ -226,14 +226,14 @@ export const list: IAttrContent = {
 
 		new e.subtitle("For links and buttons"),
 		new e.text(
-			"The {{color:'<value>'}} property also work with {{action:true}} for {{new b.listDiv.item}} component. Note the addition of the hover styles here not present in the previous example. Also supported is the {{active:true}} state; apply it to indicate an active selection on a contextual list group item."
+			"The {{color:'<value>'}} property also work with {{action:true}} for {{new b.tabList.item}} component. Note the addition of the hover styles here not present in the previous example. Also supported is the {{active:true}} state; apply it to indicate an active selection on a contextual list group item."
 		),
 		new e.code({
 			output: () => {
-				return new b.listDiv.container(
+				return new b.tabList.container(
 					[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 						(i) => {
-							return new b.listDiv.item(
+							return new b.tabList.item(
 								{ href: "#", action: true, color: i as core.bootstrapType.color },
 								`A simple ${i ? i : "default"} list group item`
 							);
@@ -281,14 +281,14 @@ export const list: IAttrContent = {
 
 		new e.code({
 			output: () => {
-				return new b.listDiv.container(
+				return new b.tabList.container(
 					{ style: { maxWidth: "400px" } },
 					[
 						{ label: "And some small print", active: true },
 						{ label: "And some muted small print" },
 						{ label: "And some muted small print" },
 					].map((i) => {
-						return new b.listDiv.item({ href: "#", action: true, active: i.active }, [
+						return new b.tabList.item({ href: "#", action: true, active: i.active }, [
 							new h.div({ display: "flex", width: 100, justifyContent: "between" }, [
 								new h.h(5, { marginBottom: 1 }, "List group item heading"),
 								new h.small({ textColor: !i.active ? "body-secondary" : undefined }, "3 days ago"),
@@ -506,16 +506,16 @@ export const list: IAttrContent = {
 				return new h.div({ row: true }, [
 					new h.div(
 						{ col: 4 },
-						new b.listDiv.container(
+						new b.tabList.container(
 							{ id: "list-tab" },
 							data.map((i, ix) => {
-								return new b.listDiv.item(
+								return new b.tabList.item(
 									{
 										active: ix === 0,
 										id: `list-${i}-list`,
 										controlfor: `list-${i}`,
 										href: `#list-${i}`,
-										toggle: true,
+										autoInit: true,
 									},
 									i.charAt(0).toUpperCase() + i.slice(1)
 								);
@@ -524,10 +524,10 @@ export const list: IAttrContent = {
 					),
 					new h.div(
 						{ col: 8 },
-						new b.listDiv.tab.content(
+						new b.tabList.tab.content(
 							{ id: "nav-tabContent" },
 							data.map((i, ix) => {
-								return new b.listDiv.tab.pane(
+								return new b.tabList.tab.pane(
 									{
 										active: ix === 0,
 										id: `list-${i}`,
@@ -575,7 +575,7 @@ export const list: IAttrContent = {
 		}),
 
 		new e.text(
-			"Fortunately in {{bsts}}, you only need to set {{toggle:true}} on {{new b.listDiv.item}} to do activate list group navigation"
+			"Fortunately in {{bsts}}, you only need to set {{autoInit:true}} on {{new b.tabList.item}} to do activate list group navigation"
 		),
 
 		//-----------------------
@@ -643,10 +643,10 @@ export const list: IAttrContent = {
 					new h.div({ row: true }, [
 						new h.div(
 							{ col: 4 },
-							new b.listDiv.container(
+							new b.tabList.container(
 								{ id: "list-manual-tab" },
 								data.map((i, ix) => {
-									return new b.listDiv.item(
+									return new b.tabList.item(
 										{
 											active: ix === 0,
 											id: `list-manual-${i}-list`,
@@ -660,10 +660,10 @@ export const list: IAttrContent = {
 						),
 						new h.div(
 							{ col: 8 },
-							new b.listDiv.tab.content(
+							new b.tabList.tab.content(
 								{ id: "nav-manual-tabContent" },
 								data.map((i, ix) => {
-									return new b.listDiv.tab.pane(
+									return new b.tabList.tab.pane(
 										{
 											active: ix === 0,
 											id: `list-manual-${i}`,
@@ -714,7 +714,7 @@ export const list: IAttrContent = {
 		}),
 
 		new e.text(
-			"By default, {{bsts}} add {{.fade}} class automaticly into {{b.listDiv.tab.pane}} component. If you don't like it, you can disable it by set {{animation:false}} to each {{b.listDiv.tab.pane}}"
+			"By default, {{bsts}} add {{.fade}} class automaticly into {{b.tabList.tab.pane}} component. If you don't like it, you can disable it by set {{animation:false}} to each {{b.tabList.tab.pane}}"
 		),
 		new e.code({
 			output: () => {
@@ -723,16 +723,17 @@ export const list: IAttrContent = {
 				return new h.div({ row: true }, [
 					new h.div(
 						{ col: 4 },
-						new b.listDiv.container(
+						new b.tabList.container(
 							{ id: "list-noanimate-tab" },
 							data.map((i, ix) => {
-								return new b.listDiv.item(
+								return new b.tabList.item(
 									{
 										active: ix === 0,
 										id: `list-noanimate-${i}-list`,
 										controlfor: `list-noanimate-${i}`,
 										href: `#list-noanimate-${i}`,
-										toggle: true,
+
+										autoInit: true,
 									},
 									i.charAt(0).toUpperCase() + i.slice(1)
 								);
@@ -741,10 +742,10 @@ export const list: IAttrContent = {
 					),
 					new h.div(
 						{ col: 8 },
-						new b.listDiv.tab.content(
+						new b.tabList.tab.content(
 							{ id: "nav-noanimate-tabContent" },
 							data.map((i, ix) => {
-								return new b.listDiv.tab.pane(
+								return new b.tabList.tab.pane(
 									{
 										active: ix === 0,
 										id: `list-noanimate-${i}`,
@@ -862,16 +863,16 @@ export const list: IAttrContent = {
 				return new h.div({ row: true }, [
 					new h.div(
 						{ col: 4 },
-						new b.listDiv.container(
+						new b.tabList.container(
 							{ id: "list-event-tab" },
 							data.map((i, ix) => {
-								return new b.listDiv.item(
+								return new b.tabList.item(
 									{
 										active: ix === 0,
 										id: `list-event-${i}-list`,
 										controlfor: `list-event-${i}`,
 										href: `#list-event-${i}`,
-										toggle: true,
+										autoInit: true,
 										on: {
 											"shown.bs.tab": (event) => {
 												const evnt = event as EventWithTargetAndRelatedTarget;
@@ -891,10 +892,10 @@ export const list: IAttrContent = {
 					),
 					new h.div(
 						{ col: 8 },
-						new b.listDiv.tab.content(
+						new b.tabList.tab.content(
 							{ id: "nav-event-tabContent" },
 							data.map((i, ix) => {
-								return new b.listDiv.tab.pane(
+								return new b.tabList.tab.pane(
 									{
 										active: ix === 0,
 										id: `list-event-${i}`,
