@@ -186,19 +186,26 @@ const notfoundData = (value: string) => {
 	} as main.IAttrContent;
 };
 
-const getData = (value: string) => {
+const getDataPromise = async (value: string, callback: (arg: main.IAttrContent | null) => void) => {
+	doc(value).then((d) => {
+		callback(d);
+	});
+};
+
+const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 	let tValue = value.split("/");
 	if (tValue.length === 3 && tValue[0] === "docs") {
-		let c = doc(value);
-		if (c) {
-			c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${value}.ts`;
-			c.sourceWeb = "Github";
-			return c;
-		} else {
-			return notfoundData(value);
-		}
+		getDataPromise(value, (c) => {
+			if (c) {
+				c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${value}.ts`;
+				c.sourceWeb = "Github";
+				callback(c);
+			} else {
+				callback(notfoundData(value));
+			}
+		});
 	} else {
-		return notfoundData(value);
+		callback(notfoundData(value));
 	}
 };
 
@@ -222,48 +229,53 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 
 			//chekc if value have #
 			if (CURRENT_PAGE !== docId) {
-				//keep current page in cookie
-				CURRENT_PAGE = docId;
-				cookie.set("current_page", docId);
+				getData(docId, (docData) => {
+					//keep current page in cookie
+					CURRENT_PAGE = docId;
+					cookie.set("current_page", docId);
 
-				//remove active popup
-				core.removeActiveModal();
-				core.removeActivePopover();
-				core.removeActiveTooltip();
+					//remove active popup
+					core.removeActiveModal();
+					core.removeActivePopover();
+					core.removeActiveTooltip();
 
-				//generate content
-				let contentbody = document.getElementById("bs-main") as Element;
-				core.replaceChild(contentbody, main.genMainContent(getData(docId)));
+					//generate content
+					let contentbody = document.getElementById("bs-main") as Element;
+					core.replaceChild(contentbody, main.genMainContent(docData));
 
-				//rename page title and push history
-				let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-				document.title = `${pagetitle} · Bootstrap TS`;
-				core.init(contentbody);
+					//rename page title and push history
+					let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+					document.title = `${pagetitle} · Bootstrap TS`;
+					core.init(contentbody);
 
-				setTimeout(() => {
-					PR.prettyPrint();
-				}, 300);
-			}
-
-			//focus to e
-			if (anchorId) {
-				let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
-				if (anchorNode) {
-					let anchorElem = anchorNode[0] as Element;
-					let elemPosition = anchorElem.getBoundingClientRect().top;
-					let offsetElemPosition = elemPosition + window.pageYOffset - 60;
-					window.scrollTo(0, offsetElemPosition);
-				}
+					setTimeout(() => {
+						PR.prettyPrint();
+					}, 300);
+				});
 			} else {
-				if (!isfirsttime) {
-					// console.log("is not first");
-					window.scrollTo(0, 0);
-				}
+				//focus to e
+				focusToAnchor(anchorId, isfirsttime);
 			}
 		},
 		100,
 		value
 	);
+};
+
+const focusToAnchor = (anchorId: string | null, isfirsttime: boolean) => {
+	if (anchorId) {
+		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
+		if (anchorNode) {
+			let anchorElem = anchorNode[0] as Element;
+			let elemPosition = anchorElem.getBoundingClientRect().top;
+			let offsetElemPosition = elemPosition + window.pageYOffset - 60;
+			window.scrollTo(0, offsetElemPosition);
+		}
+	} else {
+		if (!isfirsttime) {
+			window.scrollTo(0, 0);
+		}
+	}
 };
 
 const onthmemechange = (value: string) => {

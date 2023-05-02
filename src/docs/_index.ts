@@ -6,187 +6,271 @@ import * as helpers from "./helpers/_index.js";
 import * as content from "./content/_index.js";
 import * as layout from "./layout/_index.js";
 import * as customize from "./customize/_index.js";
+import { IAttrContent } from "../ctl/main/container.js";
 
-export { components, forms, gettingstarted, utilities, layout, customize };
+export const doc = async (value: string) => {
+	let result: IAttrContent;
 
-export const doc = (value: string) => {
 	switch (value) {
 		//--------------------------
 		case "docs/customize/color":
-			return customize.color;
+			result = await customize.color();
+			break;
 
 		//--------------------------
 		case "docs/layout/breakpoints":
-			return layout.breakpoints;
+			result = await layout.breakpoints();
+			break;
 		case "docs/layout/containers":
-			return layout.containers;
+			result = await layout.containers();
+			break;
 		case "docs/layout/grid":
-			return layout.grid;
+			result = await layout.grid();
+			break;
 		case "docs/layout/columns":
-			return layout.columns;
+			result = await layout.columns();
+			break;
 		case "docs/layout/gutters":
-			return layout.gutters;
+			result = await layout.gutters();
+			break;
 		case "docs/layout/utilities":
-			return layout.utilities;
+			result = await layout.utilities();
+			break;
 		case "docs/layout/zindex":
-			return layout.zindex;
+			result = await layout.zindex();
+			break;
 		case "docs/layout/cssgrid":
-			return layout.cssgrid;
+			result = await layout.cssgrid();
+			break;
 
 		//--------------------------
 		case "docs/content/reboot":
-			return content.reboot;
+			result = await content.reboot();
+			break;
 		case "docs/content/typography":
-			return content.typography;
+			result = await content.typography();
+			break;
 		case "docs/content/images":
-			return content.images;
+			result = await content.images();
+			break;
 		case "docs/content/tables":
-			return content.tables;
+			result = await content.tables();
+			break;
 		case "docs/content/figures":
-			return content.figures;
+			result = await content.figures();
+			break;
 
 		//--------------------------
 		case "docs/helpers/clearfix":
-			return helpers.clearfix;
+			result = await helpers.clearfix();
+			break;
 		case "docs/helpers/color_background":
-			return helpers.color_background;
+			result = await helpers.color_background();
+			break;
 		case "docs/helpers/colored_links":
-			return helpers.colored_links;
+			result = await helpers.colored_links();
+			break;
 		case "docs/helpers/focus_ring":
-			return helpers.focus_ring;
+			result = await helpers.focus_ring();
+			break;
 		case "docs/helpers/icon_link":
-			return helpers.icon_link;
+			result = await helpers.icon_link();
+			break;
 		case "docs/helpers/position":
-			return helpers.position;
+			result = await helpers.position();
+			break;
 		case "docs/helpers/ratio":
-			return helpers.ratio;
+			result = await helpers.ratio();
+			break;
 		case "docs/helpers/stacks":
-			return helpers.stacks;
+			result = await helpers.stacks();
+			break;
 		case "docs/helpers/stretched_link":
-			return helpers.stretched_link;
+			result = await helpers.stretched_link();
+			break;
 		case "docs/helpers/text_truncation":
-			return helpers.text_truncation;
+			result = await helpers.text_truncation();
+			break;
 		case "docs/helpers/vertical_rule":
-			return helpers.vertical_rule;
+			result = await helpers.vertical_rule();
+			break;
 		case "docs/helpers/visually_hidden":
-			return helpers.visually_hidden;
+			result = await helpers.visually_hidden();
+			break;
 
 		//--------------------------
 		case "docs/utilities/api":
-			return utilities.api;
+			result = await utilities.api();
+			break;
 		case "docs/utilities/background":
-			return utilities.background;
+			result = await utilities.background();
+			break;
 		case "docs/utilities/colors":
-			return utilities.colors;
+			result = await utilities.colors();
+			break;
 		case "docs/utilities/borders":
-			return utilities.borders;
+			result = await utilities.borders();
+			break;
 		case "docs/utilities/display":
-			return utilities.display;
+			result = await utilities.display();
+			break;
 		case "docs/utilities/flex":
-			return utilities.flex;
+			result = await utilities.flex();
+			break;
 		case "docs/utilities/float":
-			return utilities.float;
+			result = await utilities.float();
+			break;
 		case "docs/utilities/interactions":
-			return utilities.interactions;
+			result = await utilities.interactions();
+			break;
 		case "docs/utilities/link":
-			return utilities.link;
+			result = await utilities.link();
+			break;
 		case "docs/utilities/object_fit":
-			return utilities.object_fit;
+			result = await utilities.object_fit();
+			break;
 		case "docs/utilities/opacity":
-			return utilities.opacity;
+			result = await utilities.opacity();
+			break;
 		case "docs/utilities/overflow":
-			return utilities.overflow;
+			result = await utilities.overflow();
+			break;
 		case "docs/utilities/position":
-			return utilities.position;
+			result = await utilities.position();
+			break;
 		case "docs/utilities/shadow":
-			return utilities.shadow;
+			result = await utilities.shadow();
+			break;
 		case "docs/utilities/sizing":
-			return utilities.sizing;
+			result = await utilities.sizing();
+			break;
 		case "docs/utilities/spacing":
-			return utilities.spacing;
+			result = await utilities.spacing();
+			break;
 		case "docs/utilities/text":
-			return utilities.text;
+			result = await utilities.text();
+			break;
 		case "docs/utilities/vertical_align":
-			return utilities.vertical_align;
+			result = await utilities.vertical_align();
+			break;
 		case "docs/utilities/visibility":
-			return utilities.visibility;
+			result = await utilities.visibility();
+			break;
 		case "docs/utilities/zindex":
-			return utilities.zindex;
+			result = await utilities.zindex();
+			break;
 
 		//--------------------------
 		case "docs/forms/overview":
-			return forms.overview;
+			result = await forms.overview();
+			break;
 		case "docs/forms/control":
-			return forms.control;
+			result = await forms.control();
+			break;
 		case "docs/forms/select":
-			return forms.select;
+			result = await forms.select();
+			break;
 		case "docs/forms/check_radio":
-			return forms.check_radio;
+			result = await forms.check_radio();
+			break;
 		case "docs/forms/range":
-			return forms.range;
+			result = await forms.range();
+			break;
 		case "docs/forms/floating_label":
-			return forms.floating_label;
+			result = await forms.floating_label();
+			break;
 		case "docs/forms/input_group":
-			return forms.input_group;
+			result = await forms.input_group();
+			break;
 		case "docs/forms/layout":
-			return forms.layout;
+			result = await forms.layout();
+			break;
 		case "docs/forms/validation":
-			return forms.validation;
+			result = await forms.validation();
+			break;
 
 		//--------------------------
 		case "docs/components/accordion":
-			return components.accordion;
+			result = await components.accordion();
+			break;
 		case "docs/components/alert":
-			return components.alert;
+			result = await components.alert();
+			break;
 		case "docs/components/badge":
-			return components.badge;
+			result = await components.badge();
+			break;
 		case "docs/components/breadcrumb":
-			return components.breadcrumb;
+			result = await components.breadcrumb();
+			break;
 		case "docs/components/button":
-			return components.button;
+			result = await components.button();
+			break;
 		case "docs/components/button_group":
-			return components.button_group;
+			result = await components.button_group();
+			break;
 		case "docs/components/card":
-			return components.card;
+			result = await components.card();
+			break;
 		case "docs/components/carousel":
-			return components.carousel;
+			result = await components.carousel();
+			break;
 		case "docs/components/close_button":
-			return components.close_button;
+			result = await components.close_button();
+			break;
 		case "docs/components/collapse":
-			return components.collapse;
+			result = await components.collapse();
+			break;
 		case "docs/components/dropdown":
-			return components.dropdown;
+			result = await components.dropdown();
+			break;
 		case "docs/components/list":
-			return components.list;
+			result = await components.list();
+			break;
 		case "docs/components/modal":
-			return components.modal;
+			result = await components.modal();
+			break;
 		case "docs/components/navbar":
-			return components.navbar;
+			result = await components.navbar();
+			break;
 		case "docs/components/nav":
-			return components.nav;
+			result = await components.nav();
+			break;
 		case "docs/components/offcanvas":
-			return components.offcanvas;
+			result = await components.offcanvas();
+			break;
 		case "docs/components/pagination":
-			return components.pagination;
+			result = await components.pagination();
+			break;
 		case "docs/components/popover":
-			return components.popover;
+			result = await components.popover();
+			break;
 		case "docs/components/placeholder":
-			return components.placeholder;
+			result = await components.placeholder();
+			break;
 		case "docs/components/progress":
-			return components.progress;
+			result = await components.progress();
+			break;
 		case "docs/components/scrollspy":
-			return components.scrollspy;
+			result = await components.scrollspy();
+			break;
 		case "docs/components/spinner":
-			return components.spinner;
+			result = await components.spinner();
+			break;
 		case "docs/components/toast":
-			return components.toast;
+			result = await components.toast();
+			break;
 		case "docs/components/tooltip":
-			return components.tooltip;
+			result = await components.tooltip();
+			break;
 
 		//--------------------------
 		case "docs/gettingstarted/introduction":
-			return gettingstarted.introduction;
+			result = await gettingstarted.introduction();
+			break;
+
 		default:
 			return null;
 	}
+
+	return result;
 };

@@ -23,7 +23,7 @@ module.exports = {
 		extensions: [".ts", ".js"],
 	},
 	output: {
-		filename: "index.bundle.js",
+		filename: "[name].js",
 		path: path.resolve(__dirname, "dist"),
 	},
 };
