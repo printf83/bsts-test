@@ -110,7 +110,7 @@ function itemCodeCopy(e: Event) {
 
 function successClearConsoleLog(iconElem?: Element) {
 	if (iconElem) {
-		iconElem.classList.remove("bi-trash");
+		iconElem.classList.remove("bi-trash3");
 		iconElem.classList.add("bi-check2");
 		iconElem.classList.add("text-success");
 
@@ -118,7 +118,7 @@ function successClearConsoleLog(iconElem?: Element) {
 			(iconElem) => {
 				iconElem.classList.remove("text-success");
 				iconElem.classList.remove("bi-check2");
-				iconElem.classList.add("bi-trash");
+				iconElem.classList.add("bi-trash3");
 			},
 			1000,
 			iconElem
@@ -441,7 +441,7 @@ const itemConsole = () => {
 						{ paddingTop: 2, paddingX: 4 },
 						new b.tooltip(
 							{
-								content: "Cleanup console log",
+								content: "Cleanup console",
 							},
 							new h.a(
 								{
@@ -449,7 +449,7 @@ const itemConsole = () => {
 									class: "primary-on-hover",
 									on: { click: clearConsoleLog },
 								},
-								b.icon.bi("trash")
+								b.icon.bi("trash3")
 							)
 						)
 					)

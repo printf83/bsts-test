@@ -953,7 +953,7 @@ export const toast: IAttrContent = {
 								);
 
 								//show the above toast on the top-end
-								b.toast.show(tItem, "bottom-end");
+								b.toast.show(tItem, "top-end");
 							},
 						},
 					},

@@ -242,7 +242,7 @@ export const button: IAttrContent = {
 
 		new e.subtitle("Toggle states"),
 		new e.text(
-			"Add {{toggle:true}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{active:true}} property. The {{aria-pressed='true'}} add automaticly by {{bsts}} to ensure that it is conveyed appropriately to assistive technologies."
+			"Add {{toggle:true}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{active:true}} property. The {{aria:{pressed:'true'/}/}} add automaticly by {{bsts}} to ensure that it is conveyed appropriately to assistive technologies."
 		),
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -273,7 +273,7 @@ export const button: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-			    const bsButton = new bootstrap.Button('#myButton')
+			    const bsButton = b.button.init('#myButton')
 			`,
 		}),
 		new e.table({
@@ -291,15 +291,126 @@ export const button: IAttrContent = {
 				["{{toggle}}", "Toggles push state. Gives the button the appearance that it has been activated."],
 			],
 		}),
+
 		new e.text("For example, to toggle all buttons"),
 		new e.codepreview({
 			type: "js",
 			code: `
 			    document.querySelectorAll('.btn').forEach(buttonElement => {
-					const button = bootstrap.Button.getOrCreateInstance(buttonElement)
-					button.toggle()
-				})
+					b.button.toggle(buttonElement);
+				});
 			`,
+		}),
+
+		new e.code({
+			showConsole: true,
+			output: () => {
+				return [
+					new h.div({ display: "flex" }, [
+						new h.div(
+							{
+								width: 100,
+								marginEnd: 3,
+								bgColor: "body-tertiary",
+								rounded: true,
+								position: "relative",
+							},
+							new h.div(
+								{ position: "absolute", top: 50, start: 50, tMiddle: true },
+								new b.button(
+									{
+										id: "example-button",
+										outline: true,
+										color: "primary",
+										weight: "lg",
+									},
+									"Example"
+								)
+							)
+						),
+						new h.div(
+							{ marginStart: "auto" },
+							new b.btngroup({ vertical: true, weight: "sm" }, [
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: (event) => {
+												const elem = b.button.init("#example-button");
+
+												e.console(
+													event.target as Element,
+													"b.button.init",
+													elem ? elem : "null",
+													elem ? "success" : "danger"
+												);
+											},
+										},
+									},
+									"init"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: (event) => {
+												const elem = b.button.getInstance("#example-button");
+
+												e.console(
+													event.target as Element,
+													"b.button.getInstance",
+													elem ? elem : "null",
+													elem ? "success" : "danger"
+												);
+											},
+										},
+									},
+									"getInstance"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: (event) => {
+												const elem = b.button.getOrCreateInstance("#example-button");
+
+												e.console(
+													event.target as Element,
+													"b.button.getOrCreateInstance",
+													elem,
+													elem ? "success" : "danger"
+												);
+											},
+										},
+									},
+									"getOrCreateInstance"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.button.toggle("#example-button");
+											},
+										},
+									},
+									"toggle"
+								),
+								new b.button(
+									{
+										color: "danger",
+										on: {
+											click: () => {
+												b.button.dispose("#example-button");
+											},
+										},
+									},
+									"dispose"
+								),
+							])
+						),
+					]),
+				];
+			},
 		}),
 
 		//-----------------------

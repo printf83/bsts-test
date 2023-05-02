@@ -151,6 +151,7 @@ export const tooltip: IAttrContent = {
 		new e.text("And with custom HTML added:"),
 		new e.code({
 			outputAttr: { gap: 1 },
+			showHTML: false,
 			output: () => {
 				return new b.tooltip(
 					{
@@ -164,7 +165,6 @@ export const tooltip: IAttrContent = {
 		new e.text("With an SVG:"),
 		new e.code({
 			showHTML: false,
-			showScript: false,
 			output: () => {
 				return new b.tooltip(
 					{
@@ -249,7 +249,7 @@ export const tooltip: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const tooltip = new bootstrap.Tooltip('#example', {
+				const tooltip = b.tooltip.init('#example', {
 				boundary: document.body // or document.querySelector('#boundary')
 				})
 			`,
@@ -441,7 +441,7 @@ export const tooltip: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const tooltip = new bootstrap.Tooltip(element, {
+				const tooltip = b.tooltip.init(element, {
 				popperConfig(defaultBsPopperConfig) {
 					// const newPopperConfig = {...}
 					// use defaultBsPopperConfig if needed...

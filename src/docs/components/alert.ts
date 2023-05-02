@@ -358,7 +358,7 @@ export const alert: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				b.alert.getOrCreateInstance('#myAlert')?.close();
+				b.alert.close('#myAlert');
 			`,
 		}),
 		new e.code({

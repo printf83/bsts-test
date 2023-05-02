@@ -361,7 +361,7 @@ export const carousel: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-			    const carousel = new bootstrap.Carousel('#myCarousel')
+			    const carousel = b.carousel.init('#myCarousel');
 				`,
 		}),
 
@@ -419,17 +419,16 @@ export const carousel: IAttrContent = {
 			"{{b::All API methods are asynchronous and start a transition.}} They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 		),
 		new e.text(
-			"You can create a carousel instance with the carousel constructor, and pass on any additional options. For example, to manually initialize an autoplaying carousel (assuming you’re not using the {{data-bs-ride='carousel'}} attribute in the markup itself) with a specific interval and with touch support disabled, you can use:"
+			"You can create a carousel instance with the carousel constructor, and pass on any additional options. For example, to manually initialize an autoplaying carousel (assuming you’re not using the {{ride:'carousel'}} property in the markup itself) with a specific interval and with touch support disabled, you can use:"
 		),
 		new e.codepreview({
 			type: "js",
 			code: `
-			    const myCarouselElement = document.querySelector('#myCarousel')
-
-				const carousel = new bootstrap.Carousel(myCarouselElement, {
+			    const myCarouselElement = document.querySelector('#myCarousel');
+				const carousel = b.carousel.init(myCarouselElement, {
 					interval: 2000,
 					touch: false
-				})
+				});
 				`,
 		}),
 
@@ -464,6 +463,172 @@ export const carousel: IAttrContent = {
 					"Cycles the carousel to a particular frame (0 based, similar to an array). {{b::Returns to the caller before the target item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
 				],
 			],
+		}),
+
+		new e.code({
+			showConsole: true,
+			output: () => {
+				return [
+					new h.div({ display: "flex" }, [
+						new h.div(
+							{
+								width: 100,
+								marginEnd: 3,
+								bgColor: "body-tertiary",
+								rounded: true,
+								position: "relative",
+							},
+							new h.div(
+								{ position: "absolute", top: 50, start: 50, tMiddle: true },
+								new b.carousel.container({
+									id: "example-carousel",
+									itemIndicator: true,
+									item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+										return {
+											src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+										};
+									}),
+								})
+							)
+						),
+						new h.div(
+							{ marginStart: "auto" },
+							new b.btngroup({ vertical: true, weight: "sm" }, [
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: (event) => {
+												const elem = b.carousel.init("#example-carousel", {
+													interval: 1500,
+												});
+
+												e.console(
+													event.target as Element,
+													"b.carousel.getInstance",
+													elem ? elem : "null",
+													elem ? "success" : "danger"
+												);
+											},
+										},
+									},
+									"init"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: (event) => {
+												const elem = b.carousel.getInstance("#example-carousel");
+
+												e.console(
+													event.target as Element,
+													"b.carousel.getInstance",
+													elem ? elem : "null",
+													elem ? "success" : "danger"
+												);
+											},
+										},
+									},
+									"getInstance"
+								),
+								new b.button(
+									{
+										color: "success",
+										on: {
+											click: (event) => {
+												const elem = b.carousel.getOrCreateInstance("#example-carousel");
+
+												e.console(
+													event.target as Element,
+													"b.carousel.getOrCreateInstance",
+													elem,
+													elem ? "success" : "danger"
+												);
+											},
+										},
+									},
+									"getOrCreateInstance"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.carousel.cycle("#example-carousel");
+											},
+										},
+									},
+									"cycle"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.carousel.pause("#example-carousel", false);
+											},
+										},
+									},
+									"pause"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.carousel.next("#example-carousel");
+											},
+										},
+									},
+									"next"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.carousel.nextWhenVisible("#example-carousel");
+											},
+										},
+									},
+									"nextWhenVisible"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.carousel.prev("#example-carousel");
+											},
+										},
+									},
+									"prev"
+								),
+								new b.button(
+									{
+										on: {
+											click: () => {
+												b.carousel.to(
+													"#example-carousel",
+													Math.floor(Math.random() * (6 - +1))
+												);
+											},
+										},
+									},
+									"to (random)"
+								),
+								new b.button(
+									{
+										color: "danger",
+										on: {
+											click: () => {
+												b.carousel.dispose("#example-carousel");
+											},
+										},
+									},
+									"dispose"
+								),
+							])
+						),
+					]),
+				];
+			},
 		}),
 
 		//-----------------------
