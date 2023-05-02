@@ -666,7 +666,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ class: "dropdown" }, [
-					new b.dropdown.toggle({ menuAutoClose: "outside" }, "Dropdown form"),
+					new b.dropdown.toggle({ autoClose: "outside" }, "Dropdown form"),
 					new b.dropdown.menu(
 						new h.form(
 							{
@@ -712,7 +712,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ menuAutoClose: "outside" }, "Dropdown form"),
+					new b.dropdown.toggle({ autoClose: "outside" }, "Dropdown form"),
 					new b.dropdown.menu(
 						{ style: { width: "18rem" } },
 						new h.form(
@@ -773,12 +773,12 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", menuOffset: "10,20" }, "Offset "),
+						new b.dropdown.toggle({ color: "secondary", viewOffset: "10,20" }, "Offset "),
 						menu,
 					]),
 					new b.dropdown.container([
 						new b.button({ color: "secondary" }, "Reference"),
-						new b.dropdown.toggle({ color: "secondary", split: true, menuReference: "parent" }),
+						new b.dropdown.toggle({ color: "secondary", split: true, reference: "parent" }),
 						menu,
 					]),
 				];
@@ -808,15 +808,15 @@ export const dropdown: IAttrContent = {
 						menu,
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", menuAutoClose: "inside" }, "Clickable inside "),
+						new b.dropdown.toggle({ color: "secondary", autoClose: "inside" }, "Clickable inside "),
 						menu,
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", menuAutoClose: "outside" }, "Clickable outside "),
+						new b.dropdown.toggle({ color: "secondary", autoClose: "outside" }, "Clickable outside "),
 						menu,
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", menuAutoClose: "manual" }, "Manual close "),
+						new b.dropdown.toggle({ color: "secondary", autoClose: "manual" }, "Manual close "),
 						menu,
 					]),
 				];
