@@ -41,6 +41,7 @@
 		"@printf83/bsts": "^0.1.96",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
+		"compression-webpack-plugin": "^10.0.0",
 		"ts-loader": "^9.4.2",
 		"typescript": "^5.0.4",
 		"webpack": "^5.81.0",
