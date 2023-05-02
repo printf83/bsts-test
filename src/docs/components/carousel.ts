@@ -11,7 +11,7 @@ export const carousel: IAttrContent = {
 			item: [
 				"The carousel ({{b.carousel.container}}) is a slideshow for cycling through a series of content, built with CSS 3D transforms and a bit of JavaScript. It works with a series of images, text, or custom markup. It also includes support for previous/next controls and indicators.",
 				"For performance reasons, {{b::carousels must be manually initialized}} using the {{nav:docs/components/carousel#methods::carousel constructor method}}. Without initialization, some of the event listeners (specifically, the events needed touch/swipe support) will not be registered until a user has explicitly activated a control or indicator.",
-				"The only exception are {{nav:docs/components/carousel#autoplaying_carousels::autoplaying carousels}} with the {{data-bs-ride='carousel'}} attribute as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, {{b::don’t explicitly initialize the same carousels with the constructor method}}.",
+				"The only exception are {{nav:docs/components/carousel#autoplaying_carousels::autoplaying carousels}} with the {{ride:'carousel'}} property as these are initialized automatically on page load. If you’re using autoplaying carousels with the data attribute, {{b::don’t explicitly initialize the same carousels with the constructor method}}.",
 				"Nested carousels are not supported. You should also be aware that carousels in general can often cause usability and accessibility challenges.",
 			],
 		}),
@@ -166,7 +166,7 @@ export const carousel: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.carousel.container({
-					autoPlay: true,
+					ride: "carousel",
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
@@ -178,13 +178,16 @@ export const carousel: IAttrContent = {
 		}),
 
 		new e.text(
-			"When the {{autoPlay}} property is set to {{false}}, rather than {{truel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."
+			"When the {{ride}} property is set to {{true}}, rather than {{carousel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."
+		),
+		new e.text(
+			"By default {{bsts}} set {{ride:true}} if {{itemControl:true}} and {{ride:'carousel'}} if {{itemControl:false}}. So it will only start after first user intraction."
 		),
 
 		new e.code({
 			output: () => {
 				return new b.carousel.container({
-					autoPlay: false,
+					ride: true,
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
@@ -204,7 +207,6 @@ export const carousel: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.carousel.container({
-					autoPlay: false,
 					itemControl: true,
 					item: [1000, 2000, 3000, 4000, 5000, 6000, 7000].map((i, ix) => {
 						return {
@@ -225,7 +227,8 @@ export const carousel: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.carousel.container({
-					autoPlay: true,
+					ride: "carousel",
+					itemControl: false,
 					item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 						return {
 							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
@@ -239,12 +242,12 @@ export const carousel: IAttrContent = {
 
 		new e.title("Disable touch swiping"),
 		new e.text(
-			"Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{disableTouch}} property to {{true}}."
+			"Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} property to {{false}}."
 		),
 		new e.code({
 			output: () => {
 				return new b.carousel.container({
-					disableTouch: true,
+					touch: false,
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 						return {
@@ -258,9 +261,9 @@ export const carousel: IAttrContent = {
 		//------------
 
 		new e.title("Dark variant"),
-		new e.text(
-			"Add {{.carousel-dark}} to the {{.carousel}} for darker controls, indicators, and captions. Controls are inverted compared to their default white fill with the {{filter}} CSS property. Captions and controls have additional Sass variables that customize the {{color}} and {{background-color}}."
-		),
+		// new e.text(
+		// 	"Add {{.carousel-dark}} to the {{.carousel}} for darker controls, indicators, and captions. Controls are inverted compared to their default white fill with the {{filter}} CSS property. Captions and controls have additional Sass variables that customize the {{color}} and {{background-color}}."
+		// ),
 		new e.alert(
 			{ color: "warning", callout: true },
 			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.carousel-dark}}, set {{theme:'dark'}} on the {{b.carousel.container}}, a parent wrapper, or the component itself."
@@ -489,43 +492,30 @@ export const carousel: IAttrContent = {
 		new e.code({
 			showConsole: true,
 			output: () => {
-				return new b.button(
-					{
-						on: {
-							click: (event) => {
-								const target = event.target as Element;
-								core.replaceWith(
-									target,
-									new b.carousel.container({
-										disableTouch: true,
-										itemControl: true,
-										item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
-											return {
-												src: `https://picsum.photos/seed/bsts_${i}/710/400`,
-											};
-										}),
-										on: {
-											"slide.bs.carousel": (event) => {
-												let carouselEvent = (<unknown>event) as bootstrap.Carousel.Event;
+				return new b.carousel.container({
+					interval: 3000,
+					itemControl: true,
+					item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+						return {
+							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+						};
+					}),
+					on: {
+						"slide.bs.carousel": (event) => {
+							let carouselEvent = (<unknown>event) as bootstrap.Carousel.Event;
 
-												e.console(
-													event.target as Element,
-													"slide.bs.carousel",
-													`Direction: {{b::${carouselEvent.direction}}}{{br}}
+							e.console(
+								event.target as Element,
+								"slide.bs.carousel",
+								`Direction: {{b::${carouselEvent.direction}}}{{br}}
 													From: {{b::${carouselEvent.from}}}{{br}}
 													To: {{b::${carouselEvent.to}}}{{br}}
 													RelatedTarget: {{b::${core.elemInfo(carouselEvent.relatedTarget as Element)}}}`,
-													"info"
-												);
-											},
-										},
-									})
-								);
-							},
+								"info"
+							);
 						},
 					},
-					"Show carousel event"
-				);
+				});
 			},
 		}),
 	],
