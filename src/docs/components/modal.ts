@@ -224,7 +224,7 @@ export const modal: IAttrContent = {
 								click: () => {
 									const mdl = B.Modal.Simple({
 										title: document.title,
-										static: true,
+										backdrop: "static",
 										elem: new b.msg(
 											{ type: "bi", id: "question-circle-fill", color: "success" },
 											"Do you like javascript?"
@@ -271,7 +271,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Static backdrop"),
 		new e.text(
-			"When backdrop is set to static by setting {{static:true}} on {{b.modal.container}}, the modal will not close when clicking outside of it. Click the button below to try it."
+			"When backdrop is set to static by setting {{backdrop:'static'}} on {{b.modal.container}}, the modal will not close when clicking outside of it. Click the button below to try it."
 		),
 		new e.code({
 			output: () => {
@@ -281,19 +281,28 @@ export const modal: IAttrContent = {
 						"Launch static backdrop modal"
 					),
 
-					new b.modal.container({ id: "staticBackdrop", labelledby: "staticBackdropLabel", static: true }, [
-						new b.modal.header(
-							{ close: true },
-							new b.modal.title({ id: "staticBackdropLabel" }, "Modal title")
-						),
-						new b.modal.body(
-							new h.p("I will not close if you click outside of me. Don't even try to press escape key.")
-						),
-						new b.modal.footer([
-							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
-							new b.button({ color: "primary" }, "Save changes"),
-						]),
-					]),
+					new b.modal.container(
+						{
+							id: "staticBackdrop",
+							labelledby: "staticBackdropLabel",
+							backdrop: "static",
+						},
+						[
+							new b.modal.header(
+								{ close: true },
+								new b.modal.title({ id: "staticBackdropLabel" }, "Modal title")
+							),
+							new b.modal.body(
+								new h.p(
+									"I will not close if you click outside of me. Don't even try to press escape key."
+								)
+							),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Save changes"),
+							]),
+						]
+					),
 				];
 			},
 		}),
@@ -1398,7 +1407,7 @@ export const modal: IAttrContent = {
 						{
 							id: "eventModal",
 							labelledby: "eventModalLabel",
-							static: true,
+							backdrop: "static",
 							on: {
 								"shown.bs.modal": (event) => {
 									const evnt = event as EventWithTargetAndRelatedTarget;
