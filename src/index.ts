@@ -248,6 +248,8 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 					document.title = `${pagetitle} · Bootstrap TS`;
 					core.init(contentbody);
 
+					focusToAnchor(anchorId, isfirsttime);
+
 					setTimeout(() => {
 						PR.prettyPrint();
 					}, 300);
@@ -262,7 +264,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 	);
 };
 
-const focusToAnchor = (anchorId: string | null, isfirsttime: boolean) => {
+const focusToAnchor = (anchorId: string | null, isfirsttime?: boolean) => {
 	if (anchorId) {
 		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
 		if (anchorNode) {
