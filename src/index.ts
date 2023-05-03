@@ -229,6 +229,11 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 
 			//chekc if value have #
 			if (CURRENT_PAGE !== docId) {
+				let contentbody = document.getElementById("bs-main") as Element;
+				core.replaceChild(contentbody, main.genLoadingContent());
+
+				// setTimeout(
+				// 	(docId, contentbody, anchorId, isfirsttime) => {
 				getData(docId, (docData) => {
 					//keep current page in cookie
 					CURRENT_PAGE = docId;
@@ -240,12 +245,11 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 					core.removeActiveTooltip();
 
 					//generate content
-					let contentbody = document.getElementById("bs-main") as Element;
 					core.replaceChild(contentbody, main.genMainContent(docData));
 
 					//rename page title and push history
 					let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-					document.title = `${pagetitle} · Bootstrap TS`;
+					document.title = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
 					core.init(contentbody);
 
 					focusToAnchor(anchorId, isfirsttime);
@@ -254,6 +258,13 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 						PR.prettyPrint();
 					}, 300);
 				});
+				// 	},
+				// 	30000,
+				// 	docId,
+				// 	contentbody,
+				// 	anchorId,
+				// 	isfirsttime
+				// );
 			} else {
 				//focus to e
 				focusToAnchor(anchorId, isfirsttime);

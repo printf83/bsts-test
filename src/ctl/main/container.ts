@@ -438,6 +438,38 @@ const genIntro = (content?: IAttrContent) => {
 	}
 };
 
+const genPlaceholder = (min: number, max: number, minWidth?: string) => {
+	let aR = Array(core.rndBetween(min, max)).fill("");
+	return new h.div(
+		{ loadingPlaceholderAnimation: "wave", style: { minWidth: minWidth ? `${minWidth}` : undefined } },
+		aR.map(
+			(i) =>
+				new h.span(
+					{
+						loadingPlaceholder: true,
+						marginEnd: 1,
+						col: core.rndBetween(1, 3) as core.bootstrapType.col,
+					},
+					""
+				)
+		)
+	);
+};
+
+const genLoadingIntro = () => {
+	return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
+		new e.pagetitle(
+			{
+				sourceWeb: "",
+				sourceUrl: "",
+				col: 6,
+			},
+			genPlaceholder(2, 4, "18rem")
+		),
+		new e.description(genPlaceholder(10, 20)),
+	]);
+};
+
 interface IAttrTocTemp {
 	deep: number;
 	item: IAttrTocItem;
@@ -624,6 +656,10 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 
 export const genMainContent = (content?: IAttrContent) => {
 	return [genIntro(content), genToc(content), genContent(content)];
+};
+
+export const genLoadingContent = () => {
+	return [genLoadingIntro()];
 };
 
 export interface IBsMainContainer extends core.IAttr {
