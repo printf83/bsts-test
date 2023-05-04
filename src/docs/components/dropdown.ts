@@ -488,7 +488,7 @@ export const dropdown: IAttrContent = {
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Left-aligned but right aligned when large screen"),
-					new b.dropdown.menu({ positionView: "lg-end", dynamicPosition: false }, [
+					new b.dropdown.menu({ positionView: "lg-end", positioning: "static" }, [
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
 						new b.dropdown.item("Something else here"),
@@ -504,7 +504,7 @@ export const dropdown: IAttrContent = {
 			output: () => {
 				return new b.dropdown.container([
 					new b.dropdown.toggle({ color: "secondary" }, "Right-aligned but left aligned when large screen"),
-					new b.dropdown.menu({ positionView: ["end", "lg-start"], dynamicPosition: false }, [
+					new b.dropdown.menu({ positionView: ["end", "lg-start"], positioning: "static" }, [
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
 						new b.dropdown.item("Something else here"),
@@ -1202,6 +1202,181 @@ export const dropdown: IAttrContent = {
 				["{{toggle}}", "Toggles the dropdown menu of a given navbar or tabbed navigation."],
 				["{{update}}", "Updates the position of an element’s dropdown."],
 			],
+		}),
+
+		new e.code({
+			outputAttr: { position: "relative" },
+			showConsole: true,
+			output: () => {
+				const dropdownMenu = new b.dropdown.menu(
+					{
+						id: "example-dropdown",
+						reference: "parent",
+					},
+					[
+						new b.dropdown.item({ href: "#" }, "Action"),
+						new b.dropdown.item({ href: "#" }, "Another action"),
+						new b.dropdown.item({ href: "#" }, "Something else here"),
+					]
+				);
+
+				const dropdownContainer = new b.dropdown.container([
+					new b.dropdown.toggle("Dropdown button"),
+					dropdownMenu,
+				]);
+
+				const initButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = b.dropdown.init("#example-dropdown");
+								e.console(
+									event.target as Element,
+									"b.dropdown.init",
+									elem ? elem : "null",
+									elem ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"init"
+				);
+
+				const getInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = b.dropdown.getInstance("#example-dropdown");
+								e.console(
+									event.target as Element,
+									"b.dropdown.getInstance",
+									elem ? elem : "null",
+									elem ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getInstance"
+				);
+
+				const getOrCreateInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = b.dropdown.getOrCreateInstance("#example-dropdown");
+								e.console(
+									event.target as Element,
+									"b.dropdown.getOrCreateInstance",
+									elem,
+									elem ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getOrCreateInstance"
+				);
+
+				const hideButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.dropdown.hide("#example-dropdown");
+							},
+						},
+					},
+					"hide"
+				);
+
+				const showButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.dropdown.show("#example-dropdown");
+							},
+						},
+					},
+					"show"
+				);
+
+				const toggleButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.dropdown.toggles("#example-dropdown");
+							},
+						},
+					},
+					"toggle"
+				);
+				const updateButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.dropdown.update("#example-dropdown");
+							},
+						},
+					},
+					"update"
+				);
+
+				const disposeButton = new b.button(
+					{
+						color: "danger",
+						on: {
+							click: () => {
+								b.dropdown.dispose("#example-dropdown");
+							},
+						},
+					},
+					"dispose"
+				);
+
+				const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+					initButton,
+					getInstanceButton,
+					getOrCreateInstanceButton,
+					hideButton,
+					showButton,
+					toggleButton,
+					updateButton,
+					disposeButton,
+				]);
+
+				const previewContainer = new h.div(
+					{
+						width: 100,
+						marginEnd: 3,
+						bgColor: "body-tertiary",
+						rounded: true,
+						position: "relative",
+					},
+					[
+						new h.div(
+							{
+								position: "absolute",
+								top: 50,
+								start: 50,
+								tMiddle: true,
+							},
+							dropdownContainer
+						),
+					]
+				);
+
+				const controlContainer = new h.div(
+					{
+						marginStart: "auto",
+					},
+					buttonGroup
+				);
+
+				const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+
+				return [mainContainer];
+			},
 		}),
 
 		//-----------------------

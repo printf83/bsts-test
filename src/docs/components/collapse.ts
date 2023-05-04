@@ -355,12 +355,13 @@ export const collapse: IAttrContent = {
 		new e.code({
 			showConsole: true,
 			output: () => {
-				const collapseContent = new b.card.body(
-					"Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."
-				);
+				const collapseContent = new b.card.body("Some placeholder content for the collapse component.");
 
 				const collapseContainer = new b.collapse.container(
-					{ id: "example-collapse", autoInit: false },
+					{
+						id: "example-collapse",
+						autoInit: false,
+					},
 					new b.card.container(collapseContent)
 				);
 
