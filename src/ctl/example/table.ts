@@ -16,10 +16,10 @@ const convert = (attr: I.B.Table.Container) => {
 };
 
 export class table extends b.table.responsive {
-	constructor(); //#1
-	constructor(attr: I.B.Table.Container); //#2
-	constructor(elem: core.IElem); //#3
-	constructor(attr: I.B.Table.Container, elem: core.IElem); //#4
+	constructor();
+	constructor(attr: I.B.Table.Container);
+	constructor(elem: core.IElem);
+	constructor(attr: I.B.Table.Container, elem: core.IElem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<I.B.Table.Container>("elem", arg)));
 	}

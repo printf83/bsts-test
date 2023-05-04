@@ -5,10 +5,10 @@ const convert = (attr: I.H.P) => {
 };
 
 export class text extends h.p {
-	constructor(); //#1
-	constructor(attr: I.H.P); //#2
-	constructor(elem: core.IElem); //#3
-	constructor(attr: I.H.P, elem: core.IElem); //#4
+	constructor();
+	constructor(attr: I.H.P);
+	constructor(elem: core.IElem);
+	constructor(attr: I.H.P, elem: core.IElem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<I.H.P>("elem", arg)));
 	}

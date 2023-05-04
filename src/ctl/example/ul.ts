@@ -11,10 +11,10 @@ const convert = (attr: I.H.Ul) => {
 };
 
 export class ul extends h.div {
-	constructor(); //#1
-	constructor(attr: I.H.Ul); //#2
-	constructor(elem: core.IElem); //#3
-	constructor(attr: I.H.Ul, elem: core.IElem); //#4
+	constructor();
+	constructor(attr: I.H.Ul);
+	constructor(elem: core.IElem);
+	constructor(attr: I.H.Ul, elem: core.IElem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<I.H.Ul>("elem", arg)));
 	}

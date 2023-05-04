@@ -11,10 +11,10 @@ const convert = (attr: I.B.Alert.Container) => {
 };
 
 export class alert extends h.div {
-	constructor(); //#1
-	constructor(attr: I.B.Alert.Container); //#2
-	constructor(elem: core.IElem); //#3
-	constructor(attr: I.B.Alert.Container, elem: core.IElem); //#4
+	constructor();
+	constructor(attr: I.B.Alert.Container);
+	constructor(elem: core.IElem);
+	constructor(attr: I.B.Alert.Container, elem: core.IElem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<I.B.Alert.Container>("elem", arg)));
 	}

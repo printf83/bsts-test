@@ -79,10 +79,10 @@ const convert = (attr: IBsExampleCode) => {
 };
 
 export class preview extends h.pre {
-	constructor(); //#1
-	constructor(attr: IBsExampleCode); //#2
-	constructor(elem: core.IElem); //#3
-	constructor(attr: IBsExampleCode, elem: core.IElem); //#4
+	constructor();
+	constructor(attr: IBsExampleCode);
+	constructor(elem: core.IElem);
+	constructor(attr: IBsExampleCode, elem: core.IElem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<IBsExampleCode>("elem", arg)));
 	}

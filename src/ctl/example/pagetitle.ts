@@ -107,10 +107,10 @@ const convert = (attr: IBsExamplePagetitle) => {
 };
 
 export class pagetitle extends h.div {
-	constructor(); //#1
-	constructor(attr: IBsExamplePagetitle); //#2
-	constructor(elem: core.IElem); //#3
-	constructor(attr: IBsExamplePagetitle, elem: core.IElem); //#4
+	constructor();
+	constructor(attr: IBsExamplePagetitle);
+	constructor(elem: core.IElem);
+	constructor(attr: IBsExamplePagetitle, elem: core.IElem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<IBsExamplePagetitle>("elem", arg)));
 	}
