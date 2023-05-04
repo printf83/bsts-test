@@ -477,6 +477,7 @@ const itemConsole = () => {
 						class: "example-console",
 						overflowY: "scroll",
 						overflowX: "hidden",
+						tabindex:0,
 						style: { height: "200px" },
 					},
 					""

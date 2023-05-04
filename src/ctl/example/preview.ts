@@ -61,6 +61,7 @@ const convert = (attr: IBsExampleCode) => {
 			class: "example-preview",
 			display: "block",
 			overflow: "auto",
+			tabindex: 0,
 			marginX: 0,
 			marginY: 1,
 		},
