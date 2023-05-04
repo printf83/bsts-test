@@ -230,7 +230,12 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 			//chekc if value have #
 			if (CURRENT_PAGE !== docId) {
 				let contentbody = document.getElementById("bs-main") as Element;
-				core.replaceChild(contentbody, main.genLoadingContent());
+				core.replaceChild(
+					contentbody,
+					main.genMainContent({
+						loading: true,
+					} as main.IAttrContent)
+				);
 
 				// setTimeout(
 				// 	(docId, contentbody, anchorId, isfirsttime) => {
@@ -259,7 +264,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 					}, 300);
 				});
 				// 	},
-				// 	30000,
+				// 	6000,
 				// 	docId,
 				// 	contentbody,
 				// 	anchorId,
@@ -311,9 +316,6 @@ const maincontainer = main.Container({
 	},
 
 	itemMenu: m.doc,
-
-	// currentMenu: CURRENT_PAGE,
-	// content: getData(CURRENT_PAGE),
 
 	itemInsideLink: [
 		{ value: "doc", label: "Docs" },

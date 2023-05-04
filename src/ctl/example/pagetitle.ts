@@ -1,6 +1,7 @@
 import { core, h, t } from "@printf83/bsts";
 
 export interface IBsExamplePagetitle extends core.IAttr {
+	loading?: boolean;
 	sourceUrl?: string;
 	sourceWeb?: string;
 	addedVersion?: string;
@@ -19,6 +20,24 @@ const convert = (attr: IBsExamplePagetitle) => {
 	);
 
 	let tElem: t[] = [];
+	if (attr.loading) {
+		tElem.push(
+			new h.div({ marginBottom: [3, "md-0"], display: "flex" }, [
+				new h.a(
+					{
+						class: "primary-on-hover btn btn-sm btn-outline-secondary",
+						paddingY: 1,
+						href: "#",
+						loadingPlaceholder: true,
+					},
+					"View on Github"
+				),
+			])
+		);
+
+		attr.marginBottom = 3;
+	}
+
 	if (attr.sourceUrl || attr.addedVersion) {
 		tElem.push(
 			new h.div({ marginBottom: [3, "md-0"], display: "flex" }, [
@@ -60,7 +79,18 @@ const convert = (attr: IBsExamplePagetitle) => {
 
 	if (attr.elem) {
 		tElem.push(
-			new h.h(1, { fontDisplay: 5, fontWeight: "normal", marginBottom: 0, class: "page-title-text" }, attr.elem)
+			new h.h(
+				1,
+				{
+					fontDisplay: 5,
+					fontWeight: "normal",
+					marginBottom: 0,
+					class: "page-title-text",
+					loadingPlaceholderAnimation: attr.loading ? "wave" : undefined,
+					col: attr.loading ? 6 : undefined,
+				},
+				attr.elem
+			)
 		);
 	}
 
@@ -68,6 +98,7 @@ const convert = (attr: IBsExamplePagetitle) => {
 		attr.elem = tElem;
 	}
 
+	delete attr.loading;
 	delete attr.sourceUrl;
 	delete attr.sourceWeb;
 	delete attr.addedVersion;

@@ -604,10 +604,7 @@ export const carousel: IAttrContent = {
 									{
 										on: {
 											click: () => {
-												b.carousel.to(
-													"#example-carousel",
-													Math.floor(Math.random() * (6 - +1))
-												);
+												b.carousel.to("#example-carousel", core.rndBetween(0, 6));
 											},
 										},
 									},

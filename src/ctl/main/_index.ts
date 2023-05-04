@@ -13,7 +13,6 @@ import {
 	IAttrItemVersion,
 	IAttrTocItem,
 	Container,
-	genLoadingContent,
 } from "./container.js";
 
 export { Container };
@@ -21,7 +20,6 @@ export { Container };
 export {
 	container,
 	genMainContent,
-	genLoadingContent,
 	IBsMainContainer,
 	IAttrContent,
 	IAttrFooter,
