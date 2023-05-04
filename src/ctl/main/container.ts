@@ -136,6 +136,8 @@ export interface IAttrTocItem {
 }
 
 export interface IAttrContent {
+	loading?: boolean;
+
 	title?: string;
 	sourceUrl?: string;
 	sourceWeb?: string;
@@ -420,54 +422,34 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 
 const genIntro = (content?: IAttrContent) => {
 	if (content) {
-		return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
-			content.title
-				? new e.pagetitle(
-						{
-							sourceWeb: content.sourceWeb,
-							sourceUrl: content.sourceUrl,
-							addedVersion: content.addedVersion,
-						},
-						content.title ? content.title : ""
-				  )
-				: "",
-			content.description ? new e.description(content.description) : "",
-		]);
+		if (content.loading) {
+			return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
+				new e.pagetitle(
+					{
+						loading: true,
+					},
+					core.placeholder(1, 3)
+				),
+				new e.description({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 15)),
+			]);
+		} else {
+			return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
+				content.title
+					? new e.pagetitle(
+							{
+								sourceWeb: content.sourceWeb,
+								sourceUrl: content.sourceUrl,
+								addedVersion: content.addedVersion,
+							},
+							content.title ? content.title : ""
+					  )
+					: "",
+				content.description ? new e.description(content.description) : "",
+			]);
+		}
 	} else {
 		return "";
 	}
-};
-
-const genPlaceholder = (min: number, max: number, minWidth?: string) => {
-	let aR = Array(core.rndBetween(min, max)).fill("");
-	return new h.div(
-		{ loadingPlaceholderAnimation: "wave", style: { minWidth: minWidth ? `${minWidth}` : undefined } },
-		aR.map(
-			(i) =>
-				new h.span(
-					{
-						loadingPlaceholder: true,
-						marginEnd: 1,
-						col: core.rndBetween(1, 3) as core.bootstrapType.col,
-					},
-					""
-				)
-		)
-	);
-};
-
-const genLoadingIntro = () => {
-	return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
-		new e.pagetitle(
-			{
-				sourceWeb: "",
-				sourceUrl: "",
-				col: 6,
-			},
-			genPlaceholder(2, 4, "18rem")
-		),
-		new e.description(genPlaceholder(10, 20)),
-	]);
 };
 
 interface IAttrTocTemp {
@@ -583,29 +565,39 @@ const genToc = (content?: IAttrContent) => {
 								{
 									marginStart: [3, "md-0"],
 								},
-								u.map((i) => {
-									return new h.li([
-										new h.a({ href: i.href }, i.label),
-										i.item
-											? new h.ul(
-													i.item.map((j) => {
-														return new h.li([
-															new h.a({ href: j.href }, j.label),
-															j.item
-																? new h.ul(
-																		j.item.map((k) => {
-																			return new h.li(
-																				new h.a({ href: k.href }, k.label)
-																			);
-																		})
-																  )
-																: "",
-														]);
-													})
-											  )
-											: "",
-									]);
-								})
+								content.loading
+									? u.map((_i) => {
+											return new h.li(
+												{ loadingPlaceholderAnimation: "wave" },
+												core.placeholder(1, 3, 1, 3)
+											);
+									  })
+									: u.map((i) => {
+											return new h.li([
+												new h.a({ href: i.href }, i.label),
+												i.item
+													? new h.ul(
+															i.item.map((j) => {
+																return new h.li([
+																	new h.a({ href: j.href }, j.label),
+																	j.item
+																		? new h.ul(
+																				j.item.map((k) => {
+																					return new h.li(
+																						new h.a(
+																							{ href: k.href },
+																							k.label
+																						)
+																					);
+																				})
+																		  )
+																		: "",
+																]);
+															})
+													  )
+													: "",
+											]);
+									  })
 							)
 						)
 					),
@@ -655,11 +647,26 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 };
 
 export const genMainContent = (content?: IAttrContent) => {
-	return [genIntro(content), genToc(content), genContent(content)];
-};
+	if (content?.loading) {
+		content.item = Array(core.rndBetween(3, 10))
+			.fill("")
+			.map((i) => {
+				return [
+					new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
+					...Array(core.rndBetween(1, 3))
+						.fill("")
+						.map((j) => {
+							return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
+						}),
+					new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
+				];
+			})
+			.flat();
 
-export const genLoadingContent = () => {
-	return [genLoadingIntro()];
+		return [genIntro(content), genToc(content), genContent(content)];
+	} else {
+		return [genIntro(content), genToc(content), genContent(content)];
+	}
 };
 
 export interface IBsMainContainer extends core.IAttr {
