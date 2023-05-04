@@ -505,7 +505,7 @@ export const carousel: IAttrContent = {
 
 												e.console(
 													event.target as Element,
-													"b.carousel.getInstance",
+													"b.carousel.init",
 													elem ? elem : "null",
 													elem ? "success" : "danger"
 												);
