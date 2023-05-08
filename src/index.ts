@@ -233,7 +233,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 			//chekc if value have #
 			if (CURRENT_PAGE !== docId) {
 				let contentbody = document.getElementById("bs-main") as Element;
-				core.replaceChild(
+				contentbody = core.replaceChild(
 					contentbody,
 					main.genMainContent({
 						loading: true,
@@ -251,7 +251,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 					core.removeActiveTooltip();
 
 					//generate content
-					core.replaceChild(contentbody, main.genMainContent(docData));
+					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 
 					//rename page title and push history
 					let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
@@ -354,8 +354,8 @@ const maincontainer = main.Container({
 	],
 	currentTheme: CURRENT_THEME as main.IBsMainContainer["currentTheme"],
 
-	itemVersion: [{ value: "0.1.96", label: "Latest (0.1.96)" }],
-	currentVersion: "0.1.96",
+	itemVersion: [{ value: "0.1.97", label: "Latest (0.1.97)" }],
+	currentVersion: "0.1.97",
 
 	itemFooter: [
 		{

@@ -581,6 +581,57 @@ const itemViewport = () => {
 	);
 };
 
+type IBsExampleCodeType = "js" | "ts" | "html" | "css";
+
+declare var js_beautify: {
+	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
+	js: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
+	js_beautify: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
+};
+
+declare var css_beautify: {
+	(js_source_text: string, options?: js_beautify.CSSBeautifyOptions): string;
+	css: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
+	css_beautify: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
+};
+
+declare var html_beautify: {
+	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
+	html: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
+	html_beautify: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
+};
+
+const beautify = (type: IBsExampleCodeType | undefined, source_text: string): string => {
+	switch (type) {
+		case "html":
+			source_text = source_text.replace(/\>/g, ">\n");
+			source_text = source_text.replace(/\</g, "\n<");
+
+			return html_beautify(source_text, {
+				preserve_newlines: false,
+				end_with_newline: true,
+				indent_size: 4,
+				brace_style: "preserve-inline",
+			}) as string;
+
+		case "css":
+			return css_beautify(source_text, {
+				preserve_newlines: false,
+				end_with_newline: true,
+				indent_size: 4,
+			}) as string;
+
+		default:
+			return js_beautify(source_text, {
+				preserve_newlines: true,
+				end_with_newline: true,
+				indent_size: 4,
+				brace_style: "preserve-inline",
+				unescape_strings: false,
+			}) as string;
+	}
+};
+
 export interface ICodePen {
 	title?: string;
 	description?: string;
@@ -608,12 +659,6 @@ export interface ICodePen {
 	js_external?: string; // semi-colon separate multiple files
 }
 
-const trimAll = (str: string) => {
-	// return str.replace(/\s+/gm, " ").trim();
-	// return str.replace(/\t+/gm, " ").trim();
-	return str;
-};
-
 const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 	let libImported: string[] = ["core"];
 	let strCodeResult = "";
@@ -638,8 +683,29 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 			"(T.",
 			"(I.",
 			"(S(",
+			"...B.",
 		];
-		const libListB = ["b", "h", "t", "s", "B", "H", "T", "I", "S", "b", "h", "t", "s", "B", "H", "T", "I", "S"];
+		const libListB = [
+			"b",
+			"h",
+			"t",
+			"s",
+			"B",
+			"H",
+			"T",
+			"I",
+			"S",
+			"b",
+			"h",
+			"t",
+			"s",
+			"B",
+			"H",
+			"T",
+			"I",
+			"S",
+			"B",
+		];
 
 		libListA.forEach((i, ix) => {
 			if (strCode.indexOf(i) > -1) {
@@ -653,34 +719,70 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 			});
 		}
 
-		let strConsole = "";
+		let strConsole = null;
 		if (strCode.indexOf("e.console") > -1) {
-			strConsole = `const consoleOutput = (target, title, elem, color) => { 
-	console.log(title, elem);
-};`;
+			strConsole = `const consoleOutput = (_target, title, elem, _color) => { 
+				console.log(title, elem);
+			};
+			`;
 
 			strCode = strCode.replace(/e.console/gm, "consoleOutput");
 		}
 
-		let strExt = "";
+		let strExt = null;
 		if (strExtention && strExtention.length > 0) {
-			strExt = strExtention.join(`
-`);
+			strExt = strExtention.join("");
 		}
 
-		strCodeResult = `import { ${libImported.join(
-			", "
-		)} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+		if (strConsole && strExt) {
+			strCodeResult = `
+			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
 
-${strConsole}
-${strExt}
-const source = ${strCode.replace(/\t+/gm, " ")};
+			${strConsole}
+			${strExt}
+			const source = ${strCode};
 
-core.documentReady(() => {
-	let root = document.getElementById("root");
-	core.replaceChild(root, source());
-	core.init(root);
-});`;
+			core.documentReady(() => {
+				let root = document.getElementById("root");
+				core.replaceChild(root, source());
+				core.init(root);
+			});`;
+		} else if (strConsole && !strExt) {
+			strCodeResult = `
+			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
+
+			${strConsole}
+			const source = ${strCode};
+
+			core.documentReady(() => {
+				let root = document.getElementById("root");
+				core.replaceChild(root, source());
+				core.init(root);
+			});`;
+		} else if (!strConsole && strExt) {
+			strCodeResult = `
+			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
+
+			${strExt}
+			const source = ${strCode};
+
+			core.documentReady(() => {
+				let root = document.getElementById("root");
+				core.replaceChild(root, source());
+				core.init(root);
+			});`;
+		} else {
+			strCodeResult = `
+			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
+
+			const source = ${strCode};
+
+			core.documentReady(() => {
+				let root = document.getElementById("root");
+				core.replaceChild(root, source());
+				core.init(root);
+			});`;
+		}
 	}
 
 	return {
@@ -693,16 +795,22 @@ core.documentReady(() => {
 
 		css_external:
 			"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
-		head: trimAll(`<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">`),
+		head: beautify(
+			"html",
+			`<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">`
+		),
 
-		html: trimAll(`<div class="container p-4">
-	<div id="root">
-	</div>
-</div>`),
+		html: beautify(
+			"html",
+			`<div class="container p-4">
+				<div id="root">
+				</div>
+			</div>`
+		),
 
 		js_external: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js",
-		js: trimAll(strCodeResult),
+		js: beautify("js", strCodeResult),
 	} satisfies ICodePen;
 };
 
