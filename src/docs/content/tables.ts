@@ -2,16 +2,49 @@ import { I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const tableItem = () => [
-	new b.table.thead(
-		new b.table.tr([
-			new b.table.th({ scope: "col" }, "#"),
-			new b.table.th({ scope: "col" }, "First"),
-			new b.table.th({ scope: "col" }, "Last"),
-			new b.table.th({ scope: "col" }, "Handle"),
-		])
-	),
-	new b.table.tbody([
+const tableItem = () => {
+	return [
+		new b.table.thead(
+			new b.table.tr([
+				new b.table.th({ scope: "col" }, "#"),
+				new b.table.th({ scope: "col" }, "First"),
+				new b.table.th({ scope: "col" }, "Last"),
+				new b.table.th({ scope: "col" }, "Handle"),
+			])
+		),
+		new b.table.tbody([
+			new b.table.tr([
+				new b.table.th({ scope: "row" }, "1"),
+				new b.table.td("Mark"),
+				new b.table.td("Otto"),
+				new b.table.td("@mdo"),
+			]),
+			new b.table.tr([
+				new b.table.th({ scope: "row" }, "2"),
+				new b.table.td("Jacob"),
+				new b.table.td("Thornton"),
+				new b.table.td("@fat"),
+			]),
+			new b.table.tr([
+				new b.table.th({ scope: "row" }, "3"),
+				new b.table.td({ colspan: 2 }, "Larry the Bird"),
+				new b.table.td("@twitter"),
+			]),
+		]),
+	];
+};
+
+const tableItemHead = () => {
+	return new b.table.tr([
+		new b.table.th({ scope: "col" }, "#"),
+		new b.table.th({ scope: "col" }, "First"),
+		new b.table.th({ scope: "col" }, "Last"),
+		new b.table.th({ scope: "col" }, "Handle"),
+	]);
+};
+
+const tableItemBody = () => {
+	return [
 		new b.table.tr([
 			new b.table.th({ scope: "row" }, "1"),
 			new b.table.td("Mark"),
@@ -26,40 +59,12 @@ const tableItem = () => [
 		]),
 		new b.table.tr([
 			new b.table.th({ scope: "row" }, "3"),
-			new b.table.td({ colspan: 2 }, "Larry the Bird"),
+			new b.table.td("Larry"),
+			new b.table.td("the Bird"),
 			new b.table.td("@twitter"),
 		]),
-	]),
-];
-
-const tableItemHead = () =>
-	new b.table.tr([
-		new b.table.th({ scope: "col" }, "#"),
-		new b.table.th({ scope: "col" }, "First"),
-		new b.table.th({ scope: "col" }, "Last"),
-		new b.table.th({ scope: "col" }, "Handle"),
-	]);
-
-const tableItemBody = () => [
-	new b.table.tr([
-		new b.table.th({ scope: "row" }, "1"),
-		new b.table.td("Mark"),
-		new b.table.td("Otto"),
-		new b.table.td("@mdo"),
-	]),
-	new b.table.tr([
-		new b.table.th({ scope: "row" }, "2"),
-		new b.table.td("Jacob"),
-		new b.table.td("Thornton"),
-		new b.table.td("@fat"),
-	]),
-	new b.table.tr([
-		new b.table.th({ scope: "row" }, "3"),
-		new b.table.td("Larry"),
-		new b.table.td("the Bird"),
-		new b.table.td("@twitter"),
-	]),
-];
+	];
+};
 
 const tableBig = (row: number, col: number) => {
 	return [

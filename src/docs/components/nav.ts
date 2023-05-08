@@ -850,6 +850,7 @@ export const nav: IAttrContent = {
 		new e.text("You may need to "),
 		new e.code({
 			showViewport: true,
+			showCodepen: false,
 			previewAttr: { bgColor: "body-tertiary" },
 			output: () => {
 				const content = (title: string) =>

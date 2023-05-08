@@ -40,6 +40,7 @@ export const toast: IAttrContent = {
 			"Toasts are as flexible as you need and have very little required markup. At a minimum, Bootstrap require a single element to contain your “toasted” content and strongly encourage a dismiss button."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
 					new b.toast.header([
@@ -287,6 +288,7 @@ export const toast: IAttrContent = {
 		new e.subtitle("Translucent"),
 		new e.text("Toasts are slightly translucent to blend in with what’s below them."),
 		new e.code({
+			showCodepen: false,
 			previewAttr: { bgColor: "dark" },
 			output: () => {
 				return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
@@ -313,6 +315,7 @@ export const toast: IAttrContent = {
 			"You can stack toasts by wrapping them in a toast container, which will vertically add some spacing."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				const item = (msg: string, timer: string) => {
 					return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
@@ -345,6 +348,7 @@ export const toast: IAttrContent = {
 			"Customize your toasts by removing sub-components, tweaking them with {{nav:docs/utilities/api::utilities}}, or by adding your own markup. Here Bootstrap created a simpler toast by removing the default {{b.toast.header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:docs/utilities/flex::flexbox utilities}} to adjust the layout."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.toast.item(
 					{ debug: true, alignItem: "center", live: "assertive", atomic: true },
@@ -357,6 +361,7 @@ export const toast: IAttrContent = {
 		}),
 		new e.text("Alternatively, you can also add additional controls and components to toasts."),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, [
 					new b.toast.body([
@@ -377,6 +382,7 @@ export const toast: IAttrContent = {
 			"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:docs/utilities/colors::color}} and {{nav:docs/utilities/background::background}} utilities. Here Bootstrap added {{textBgColor:'primary'}} to the {{b.toast.item}}, and then added {{b.toast.btnclose({white:true})}} to Bootstrap close button. For a crisp edge, Bootstrap remove the default border with {{border:false}}."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.toast.item(
 					{
@@ -430,6 +436,7 @@ export const toast: IAttrContent = {
 			"Place toasts with custom CSS as you need them. The top right is often used for notifications, as is the top middle. If you’re only ever going to show one toast at a time, put the positioning styles right on the .toast."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				const container = (placement: I.B.Toast.Container["placement"]) => {
 					return new b.toast.container(
@@ -505,6 +512,7 @@ export const toast: IAttrContent = {
 			"For systems that generate more notifications, consider using a wrapping element so they can easily stack."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				const item = (msg: string, timer: string) => {
 					return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
@@ -534,6 +542,7 @@ export const toast: IAttrContent = {
 		}),
 		new e.text("You can also get fancy with flexbox utilities to align toasts horizontally and/or vertically."),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				const item = (msg: string, timer: string) => {
 					return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
@@ -635,6 +644,7 @@ export const toast: IAttrContent = {
 		}),
 		new e.text("When using {{autohide:false}}, you must add a close button to allow users to dismiss the toast."),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.toast.item({ debug: true, live: "assertive", atomic: true, autohide: false }, [
 					new b.toast.header([

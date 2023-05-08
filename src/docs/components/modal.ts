@@ -50,6 +50,7 @@ export const modal: IAttrContent = {
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary" },
+			showCodepen: false,
 			output: () => {
 				return new b.modal.container({ debug: true }, [
 					new b.modal.header({ close: true }, new b.modal.title("Modal title")),

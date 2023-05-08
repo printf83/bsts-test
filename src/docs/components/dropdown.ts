@@ -396,6 +396,7 @@ export const dropdown: IAttrContent = {
 		),
 
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.text("Dropdown item text"),
@@ -411,6 +412,7 @@ export const dropdown: IAttrContent = {
 		new e.subtitle("Active"),
 		new e.text("Add {{active:true}} to items in the {{b.dropdown.item}} to {{b::style them as active}}."),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.item({ href: "#" }, "Regular link"),
@@ -423,6 +425,7 @@ export const dropdown: IAttrContent = {
 			"By default {{bsts}} set active item as {{aria-current:'true'}}. To convey the active state to assistive technologies, set {{current:'page'}} property — when you using the {{page}} value for the current page."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.item({ href: "#" }, "Regular link"),
@@ -439,6 +442,7 @@ export const dropdown: IAttrContent = {
 			"Add {{disabled:true}} to {{b.dropdown.item}} in the {{b.dropdown.menu}} to {{b::style them as disabled}}."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.item({ href: "#" }, "Regular link"),
@@ -559,6 +563,7 @@ export const dropdown: IAttrContent = {
 		new e.subtitle("Headers"),
 		new e.text("Add a {{b.dropdown.header}} to label sections of actions in any dropdown menu."),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.header("Dropdown header"),
@@ -573,6 +578,7 @@ export const dropdown: IAttrContent = {
 		new e.subtitle("Dividers"),
 		new e.text("Separate groups of related menu items with a {{b.dropdown.divider}}."),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu({ debug: true }, [
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -591,6 +597,7 @@ export const dropdown: IAttrContent = {
 			"Place any freeform text within a dropdown menu with text and use {{nav:docs/utilities/spacing::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu(
 					{
@@ -614,6 +621,7 @@ export const dropdown: IAttrContent = {
 			"Put a form using {{h.form}} within a dropdown menu, or make it into a dropdown menu, and use {{nav:docs/utilities/spacing::margin or padding utilities}} to give it the negative space you require."
 		),
 		new e.code({
+			showCodepen: false,
 			output: () => {
 				return new b.dropdown.menu(
 					{

@@ -36,6 +36,7 @@ export const offcanvas: IAttrContent = {
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary", padding: 0 },
+			showCodepen: false,
 			output: () => {
 				return new b.offcanvas.container(
 					{
@@ -213,6 +214,7 @@ export const offcanvas: IAttrContent = {
 		),
 		new e.code({
 			previewAttr: { bgColor: "body-tertiary", padding: 0 },
+			showCodepen: false,
 			output: () => {
 				return new b.offcanvas.container(
 					{

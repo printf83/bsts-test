@@ -581,6 +581,175 @@ const itemViewport = () => {
 	);
 };
 
+export interface ICodePen {
+	title?: string;
+	description?: string;
+	parent?: string;
+	private?: boolean;
+	tags?: string[];
+	editors?: string;
+	layout?: "left" | "top" | "right";
+
+	html?: string;
+	html_pre_processor?: "none" | "slim" | "haml" | "markdown";
+
+	css?: string;
+	css_pre_processor?: "none" | "less" | "scss" | "sass" | "stylus";
+	css_starter?: "normalize" | "reset" | "neither";
+	css_prefix?: "autoprefixer" | "prefixfree" | "neither";
+
+	js?: string;
+	js_pre_processor?: "none" | "coffeescript" | "babel" | "livescript" | "typescript";
+
+	html_classes?: string;
+	head?: string;
+
+	css_external?: string; // semi-colon separate multiple files
+	js_external?: string; // semi-colon separate multiple files
+}
+
+const trimAll = (str: string) => {
+	// return str.replace(/\s+/gm, " ").trim();
+	// return str.replace(/\t+/gm, " ").trim();
+	return str;
+};
+
+const generateCodePenData = (strCode: string, strExtention?: string[]) => {
+	let libImported: string[] = ["core"];
+	let strCodeResult = "";
+
+	if (strCode !== "") {
+		const libListA = [
+			" b.",
+			" h.",
+			" t.",
+			" s(",
+			" B.",
+			" H.",
+			" T.",
+			" I.",
+			" S(",
+			"(b.",
+			"(h.",
+			"(t.",
+			"(s(",
+			"(B.",
+			"(H.",
+			"(T.",
+			"(I.",
+			"(S(",
+		];
+		const libListB = ["b", "h", "t", "s", "B", "H", "T", "I", "S", "b", "h", "t", "s", "B", "H", "T", "I", "S"];
+
+		libListA.forEach((i, ix) => {
+			if (strCode.indexOf(i) > -1) {
+				libImported.push(libListB[ix]);
+			}
+		});
+
+		if (libImported) {
+			libImported = libImported.filter(function (item, pos) {
+				return libImported.indexOf(item) == pos;
+			});
+		}
+
+		let strConsole = "";
+		if (strCode.indexOf("e.console") > -1) {
+			strConsole = `const consoleOutput = (target, title, elem, color) => { 
+	console.log(title, elem);
+};`;
+
+			strCode = strCode.replace(/e.console/gm, "consoleOutput");
+		}
+
+		let strExt = "";
+		if (strExtention && strExtention.length > 0) {
+			strExt = strExtention.join(`
+`);
+		}
+
+		strCodeResult = `import { ${libImported.join(
+			", "
+		)} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+
+${strConsole}
+${strExt}
+const source = ${strCode.replace(/\t\t/gm, "\t")};
+
+core.documentReady(() => {
+	let root = document.getElementById("root");
+	core.replaceChild(root, source());
+	core.init(root);
+});`;
+	}
+
+	return {
+		title: "Bootstrap TS",
+		description: "Create bootstrap using TS/JS",
+		private: false,
+		tags: ["bsts", "Bootstrap TS", "@printf83/bsts"],
+		editors: "001",
+		layout: "top",
+
+		css_external:
+			"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
+		head: trimAll(`<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">`),
+
+		html: trimAll(`<div class="container p-4">
+	<div id="root">
+	</div>
+</div>`),
+
+		js_external: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js",
+		js: trimAll(strCodeResult),
+	} satisfies ICodePen;
+};
+
+const openCodePen = (data: ICodePen) => {
+	if (data) {
+		const id = core.UUID();
+		core.appendChild(
+			document.body,
+			new h.form(
+				{
+					id: `codepen-form-${id}`,
+					target: "_blank",
+					action: "https://codepen.io/pen/define",
+					method: "post",
+				},
+				[
+					new b.input({
+						type: "hidden",
+						name: "data",
+						value: JSON.stringify(data),
+					}),
+				]
+			)
+		);
+
+		setTimeout(
+			(id) => {
+				const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+				form.submit();
+
+				setTimeout(
+					(id) => {
+						const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+						if (form) {
+							core.removeElement(form);
+						}
+					},
+					3000,
+					id
+				);
+			},
+			300,
+			id
+		);
+	}
+};
+
 const convert = (attr: IBsExampleContainer) => {
 	let id = core.UUID();
 
@@ -622,6 +791,8 @@ const convert = (attr: IBsExampleContainer) => {
 		e.push(...itemCode(e.length > 0, true, true, "CSS", new preview({ type: "css" }, attr.css)));
 	}
 
+	let strExtention: string[] = [];
+
 	if (attr.extention) {
 		let f: IBsExampleExt[] = [];
 		if (Array.isArray(attr.extention)) {
@@ -632,6 +803,16 @@ const convert = (attr: IBsExampleContainer) => {
 
 		f.forEach((i) => {
 			if (i && i.name && (i.output || i.strOutput)) {
+				let strCode = i.strOutput
+					? i.strOutput
+					: attr.scriptConverter
+					? attr.scriptConverter(i.output!.toString())
+					: i.output!.toString();
+
+				strExtention.push(`
+						const ${i.name} = ${strCode};
+					`);
+
 				e.push(
 					...itemCode(
 						e.length > 0,
@@ -639,14 +820,7 @@ const convert = (attr: IBsExampleContainer) => {
 						true,
 
 						i.name,
-						new preview(
-							{ type: i.strOutput ? "ts" : "js" },
-							i.strOutput
-								? i.strOutput
-								: attr.scriptConverter
-								? attr.scriptConverter(i.output!.toString())
-								: i.output!.toString()
-						)
+						new preview({ type: i.strOutput ? "ts" : "js" }, strCode)
 					)
 				);
 			}
@@ -689,13 +863,11 @@ const convert = (attr: IBsExampleContainer) => {
 				"SOURCE",
 				new preview({ type: attr.strOutput ? "ts" : "js" }, sCode),
 				undefined,
-				() => {
-					openCodePen(generateCodePenData(sCode));
-					// openCodePen({
-					// 	html: `<div>HTML here.</div>`,
-					// 	js: `import { core, h, b } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';`,
-					// });
-				}
+				attr.showCodepen
+					? () => {
+							openCodePen(generateCodePenData(sCode, strExtention));
+					  }
+					: undefined
 			)
 		);
 	}
@@ -743,138 +915,6 @@ const convert = (attr: IBsExampleContainer) => {
 	delete attr.outputAttr;
 
 	return attr;
-};
-
-export interface ICodePen {
-	title?: string;
-	description?: string;
-	parent?: string;
-	private?: boolean;
-	tags?: string[];
-	editors?: string;
-	layout?: "left" | "top" | "right";
-
-	html?: string;
-	html_pre_processor?: "none" | "slim" | "haml" | "markdown";
-
-	css?: string;
-	css_pre_processor?: "none" | "less" | "scss" | "sass" | "stylus";
-	css_starter?: "normalize" | "reset" | "neither";
-	css_prefix?: "autoprefixer" | "prefixfree" | "neither";
-
-	js?: string;
-	js_pre_processor?: "none" | "coffeescript" | "babel" | "livescript" | "typescript";
-
-	html_classes?: string;
-	head?: string;
-
-	css_external?: string; // semi-colon separate multiple files
-	js_external?: string; // semi-colon separate multiple files
-}
-
-const generateCodePenData = (strCode: string) => {
-	let libImported: string[] = ["core"];
-	let strCodeResult = "";
-
-	if (strCode !== "") {
-		const libListA = [" b.", " h.", " t.", " s(", " B.", " H.", " T.", " I.", " S("];
-		const libListB = ["b", "h", "t", "s", "B", "H", "T", "I", "S"];
-
-		libListA.forEach((i, ix) => {
-			if (strCode.indexOf(i) > -1) {
-				libImported.push(libListB[ix]);
-			}
-		});
-
-		let strConsole = "";
-		if (strCode.indexOf("e.console") > -1) {
-			strConsole = `const consoleOutput = (target, title, elem, color) => { 
-				console.log(title, elem);
-			};`;
-
-			strCode = strCode.replace(/e.console/gm, "consoleOutput");
-		}
-
-		strCodeResult = `
-			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
-
-			${strConsole}
-
-			const source = ${strCode};
-
-			core.documentReady(() => {
-				let root = document.getElementById("root");
-				core.replaceChild(root, source());
-			});
-		`;
-	}
-
-	return {
-		title: "Bootstrap TS",
-		description: "Create bootstrap using TS/JS",
-		private: false,
-		tags: ["bsts"],
-		editors: "001",
-		layout: "top",
-
-		head: `
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">`,
-
-		html: `
-			<div id="root" bs-theme="dark">
-			</div>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>`,
-
-		js: strCodeResult,
-	} satisfies ICodePen;
-};
-
-const openCodePen = (data: ICodePen) => {
-	if (data) {
-		const id = core.UUID();
-		core.appendChild(
-			document.body,
-			new h.form(
-				{
-					id: `codepen-form-${id}`,
-					target: "_blank",
-					action: "https://codepen.io/pen/define",
-					method: "post",
-				},
-				[
-					new b.input({
-						type: "hidden",
-						name: "data",
-						// value: JSON.stringify(data).replace(/"/g, "&​quot;").replace(/'/g, "&apos;"),
-						value: JSON.stringify(data),
-					}),
-				]
-			)
-		);
-
-		setTimeout(
-			(id) => {
-				const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
-				form.submit();
-
-				setTimeout(
-					(id) => {
-						const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
-						if (form) {
-							core.removeElement(form);
-						}
-					},
-					60000,
-					id
-				);
-			},
-			300,
-			id
-		);
-	}
 };
 
 export class code extends h.div {
