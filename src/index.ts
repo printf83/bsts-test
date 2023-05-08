@@ -209,17 +209,20 @@ const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 	}
 };
 
-const onmenuchange = (value: string, isfirsttime?: boolean) => {
+interface IWindowState {
+	docId?: string;
+	anchorId?: string;
+	isfirsttime?: boolean;
+}
+
+const onmenuchange = (value: string, isfirsttime?: boolean, state?: "push" | "replace") => {
 	setTimeout(
 		(value) => {
 			isfirsttime ??= false;
-			//-------------------------------
-			// TODO :  set location without reload
-			// https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
-			// location.href = `?d=${value}`;
-			//-------------------------------
+			state ??= "push";
+
 			let docId: string = value;
-			let anchorId: string | null = null;
+			let anchorId: string | undefined;
 
 			if (value.indexOf("#") > -1) {
 				let tempValue = value.split("#");
@@ -237,12 +240,10 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 					} as main.IAttrContent)
 				);
 
-				// setTimeout(
-				// 	(docId, contentbody, anchorId, isfirsttime) => {
 				getData(docId, (docData) => {
 					//keep current page in cookie
 					CURRENT_PAGE = docId;
-					cookie.set("current_page", docId);
+					cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
 					//remove active popup
 					core.removeActiveModal();
@@ -254,22 +255,39 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 
 					//rename page title and push history
 					let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-					document.title = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-					core.init(contentbody);
+					let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+					const { origin, pathname } = window.location;
+					document.title = strPagetitle;
 
+					if (state === "push") {
+						window.history.pushState(
+							{
+								docId: docId,
+								anchorId: anchorId,
+								isfirsttime: isfirsttime,
+							} satisfies IWindowState,
+							strPagetitle,
+							`${origin}${pathname}?d=${value}`
+						);
+					} else if (state === "replace") {
+						window.history.replaceState(
+							{
+								docId: docId,
+								anchorId: anchorId,
+								isfirsttime: isfirsttime,
+							} satisfies IWindowState,
+							strPagetitle,
+							`${origin}${pathname}?d=${value}`
+						);
+					}
+
+					core.init(contentbody);
 					focusToAnchor(anchorId, isfirsttime);
 
 					setTimeout(() => {
 						PR.prettyPrint();
 					}, 300);
 				});
-				// 	},
-				// 	6000,
-				// 	docId,
-				// 	contentbody,
-				// 	anchorId,
-				// 	isfirsttime
-				// );
 			} else {
 				//focus to e
 				focusToAnchor(anchorId, isfirsttime);
@@ -280,7 +298,7 @@ const onmenuchange = (value: string, isfirsttime?: boolean) => {
 	);
 };
 
-const focusToAnchor = (anchorId: string | null, isfirsttime?: boolean) => {
+const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 	if (anchorId) {
 		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
 		if (anchorNode) {
@@ -343,33 +361,33 @@ const maincontainer = main.Container({
 		{
 			title: "Links",
 			item: [
-				{ href: "#", label: "Home" },
-				{ href: "#", label: "Docs" },
-				{ href: "#", label: "Examples" },
-				{ href: "#", label: "Icons" },
-				{ href: "#", label: "Themes" },
-				{ href: "#", label: "Blog" },
-				{ href: "#", label: "Swag Store" },
+				{ href: "https://getbootstrap.com/", label: "Home" },
+				{ href: "https://getbootstrap.com/docs/5.3/", label: "Docs" },
+				{ href: "https://getbootstrap.com/docs/5.3/examples/", label: "Examples" },
+				{ href: "https://icons.getbootstrap.com/", label: "Icons" },
+				{ href: "https://themes.getbootstrap.com/", label: "Themes" },
+				{ href: "https://blog.getbootstrap.com/", label: "Blog" },
+				{ href: "https://cottonbureau.com/people/bootstrap", label: "Swag Store" },
 			],
 		},
 		{
 			title: "Guides",
 			item: [
-				{ href: "#", label: "Getting started" },
-				{ href: "#", label: "Starter template" },
-				{ href: "#", label: "Webpack" },
-				{ href: "#", label: "Parcel" },
-				{ href: "#", label: "Vite" },
+				{ href: "https://getbootstrap.com/docs/5.3/getting-started/", label: "Getting started" },
+				{ href: "https://getbootstrap.com/docs/5.3/examples/starter-template/", label: "Starter template" },
+				{ href: "https://getbootstrap.com/docs/5.3/getting-started/webpack/", label: "Webpack" },
+				{ href: "https://getbootstrap.com/docs/5.3/getting-started/parcel/", label: "Parcel" },
+				{ href: "https://getbootstrap.com/docs/5.3/getting-started/vite/", label: "Vite" },
 			],
 		},
 		{
 			title: "Projects",
 			item: [
-				{ href: "#", label: "Bootstrap 5" },
-				{ href: "#", label: "Bootstrap 4" },
-				{ href: "#", label: "Icons" },
-				{ href: "#", label: "RFS" },
-				{ href: "#", label: "npm starter" },
+				{ href: "https://github.com/twbs/bootstrap", label: "Bootstrap 5" },
+				{ href: "https://github.com/twbs/bootstrap/tree/v4-dev", label: "Bootstrap 4" },
+				{ href: "https://github.com/twbs/icons", label: "Icons" },
+				{ href: "https://github.com/twbs/rfs", label: "RFS" },
+				{ href: "https://github.com/twbs/examples/", label: "npm starter" },
 			],
 		},
 		{
@@ -385,7 +403,7 @@ const maincontainer = main.Container({
 	],
 });
 
-const highlightCurrentMenu = (value: string) => {
+const highlightCurrentMenu = (value?: string) => {
 	let bsMenu = document.getElementById("bs-menu") as Element;
 	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
 	if (lastActive) {
@@ -393,10 +411,12 @@ const highlightCurrentMenu = (value: string) => {
 		lastActive.removeAttribute("aria-current");
 	}
 
-	let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
-	if (newActive) {
-		newActive.classList.add("active");
-		newActive.setAttribute("aria-current", "page");
+	if (value) {
+		let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
+		if (newActive) {
+			newActive.classList.add("active");
+			newActive.setAttribute("aria-current", "page");
+		}
 	}
 };
 
@@ -404,8 +424,38 @@ core.documentReady(() => {
 	onthmemechange(CURRENT_THEME);
 	let body = document.getElementById("main") as Element;
 	core.replaceChild(body, maincontainer);
-	onmenuchange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
-	highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
+
+	const { search } = window.location;
+
+	if (search && search.startsWith("?d=")) {
+		let docId: string = search.slice(3);
+		let anchorId: string | null = null;
+
+		if (docId.indexOf("#") > -1) {
+			let tempValue = docId.split("#");
+			docId = tempValue[0];
+			anchorId = tempValue[1];
+		}
+
+		onmenuchange(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, true);
+		highlightCurrentMenu(docId);
+	} else {
+		onmenuchange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
+		highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
+	}
+
+	window.onpopstate = function (e) {
+		if (e.state) {
+			const state: IWindowState = e.state as IWindowState;
+
+			onmenuchange(
+				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
+				true,
+				"replace"
+			);
+			highlightCurrentMenu(state.docId);
+		}
+	};
 
 	document.addEventListener(
 		"bs.navigate",
