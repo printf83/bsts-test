@@ -584,11 +584,6 @@ const itemViewport = () => {
 const convert = (attr: IBsExampleContainer) => {
 	let id = core.UUID();
 
-	// attr.showOutput = attr.showOutput === undefined ? true : attr.showOutput;
-	// attr.showScript = attr.showScript === undefined ? true : attr.showScript;
-	// attr.showHTML = attr.showHTML === undefined ? true : attr.showHTML;
-	// attr.showManager = attr.showManager === undefined ? true : attr.showManager;
-
 	attr.showOutput ??= true;
 	attr.showScript ??= true;
 	attr.showHTML ??= true;
@@ -679,6 +674,12 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	if ((attr.output || attr.strOutput) && attr.showScript) {
+		let sCode = attr.strOutput
+			? attr.strOutput
+			: attr.scriptConverter
+			? attr.scriptConverter(attr.output!.toString())
+			: attr.output!.toString();
+
 		e.push(
 			...itemCode(
 				e.length > 0,
@@ -686,20 +687,14 @@ const convert = (attr: IBsExampleContainer) => {
 				true,
 
 				"SOURCE",
-				new preview(
-					{ type: attr.strOutput ? "ts" : "js" },
-					attr.strOutput
-						? attr.strOutput
-						: attr.scriptConverter
-						? attr.scriptConverter(attr.output!.toString())
-						: attr.output!.toString()
-				),
+				new preview({ type: attr.strOutput ? "ts" : "js" }, sCode),
 				undefined,
 				() => {
-					openCodePen({
-						html: `<div>HTML here.</div>`,
-						js: `import { core, h, b } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';`,
-					});
+					openCodePen(generateCodePenData(sCode));
+					// openCodePen({
+					// 	html: `<div>HTML here.</div>`,
+					// 	js: `import { core, h, b } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';`,
+					// });
 				}
 			)
 		);
@@ -777,15 +772,57 @@ export interface ICodePen {
 	js_external?: string; // semi-colon separate multiple files
 }
 
+const generateCodePenData = (strCode: string) => {
+	let libImported: string[] = ["core"];
+	let strCodeResult = "";
+
+	if (strCode !== "") {
+		const libListA = [" b.", " c.", " t.", " s(", " B.", " C.", " T.", " I.", " S("];
+		const libListB = ["b", "c", "t", "s", "B", "C", "T", "I", "S"];
+
+		libListA.forEach((i, ix) => {
+			if (strCode.indexOf(i) > -1) {
+				libImported.push(libListB[ix]);
+			}
+		});
+
+		strCodeResult = `
+			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+
+			const source = ${strCode};
+
+			core.documentReady(() => {
+				let root = document.getElementById("root");
+				core.replaceChild(root, source());
+			});
+		`;
+	}
+
+	return {
+		title: "Bootstrap TS",
+		description: "Create bootstrap using TS/JS",
+		private: false,
+		tags: ["bsts"],
+		editors: "001",
+		layout: "top",
+
+		head: `
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">`,
+
+		html: `
+			<div id="root">
+			</div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js">
+    		</script>`,
+
+		js: strCodeResult,
+	} satisfies ICodePen;
+};
+
 const openCodePen = (data: ICodePen) => {
 	if (data) {
-		data.title ??= "Bootstrap TS";
-		data.description ??= "Create bootstrap using TS/JS";
-		data.private ??= false;
-		data.tags = ["bsts"];
-		data.editors ??= "001";
-		data.layout ??= "top";
-
 		const id = core.UUID();
 		core.appendChild(
 			document.body,
