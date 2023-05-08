@@ -98,8 +98,6 @@ export const introduction: IAttrContent = {
 		new e.title("Expose function"),
 		new e.text("As reference, here are {{bsts}} primary CDN links."),
 		new e.codepreview({
-			class: "ms-n4",
-			marginStart: "md-0",
 			type: "js",
 			code: `
 				import { core } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';

@@ -17,6 +17,7 @@ export interface IBsExampleContainer extends core.IAttr {
 	strManager?: string;
 	scriptConverter?: Function;
 
+	showCodepen?: boolean;
 	showConsole?: boolean;
 	showViewport?: boolean;
 	showOutput?: boolean;
@@ -210,7 +211,8 @@ const itemCode = (
 	allowcopy: boolean,
 	title: core.IElem,
 	elem: core.IElem,
-	onshow?: (target: Element) => void
+	onshow?: (target: Element) => void,
+	onedit?: (event: Event) => void
 ): b.list.item[] => {
 	let id = core.UUID();
 
@@ -246,11 +248,33 @@ const itemCode = (
 						new h.small(title)
 					),
 
+					onedit
+						? new h.div(
+								{ display: "flex" },
+								new h.div(
+									{ paddingTop: 2, paddingStart: 4, paddingEnd: allowcopy ? 2 : 4 },
+									new b.tooltip(
+										{
+											content: "Edit on CodePen",
+										},
+										new h.a(
+											{
+												color: "secondary",
+												class: "primary-on-hover",
+												on: { click: onedit },
+											},
+											b.icon.bi("lightning-charge-fill")
+										)
+									)
+								)
+						  )
+						: "",
+
 					allowcopy
 						? new h.div(
 								{ display: "flex" },
 								new h.div(
-									{ paddingTop: 2, paddingX: 4 },
+									{ paddingTop: 2, paddingEnd: 4, paddingStart: onedit ? 2 : 4 },
 									new b.tooltip(
 										{
 											content: "Copy to clipboard",
@@ -267,6 +291,7 @@ const itemCode = (
 								)
 						  )
 						: "",
+
 					onshow
 						? new h.div(
 								{ display: "flex" },
@@ -318,22 +343,42 @@ const itemCode = (
 			)
 		);
 	} else {
-		if (allowcopy) {
+		if (allowcopy || onedit) {
 			if (!Array.isArray(elem)) {
 				elem = [elem];
 			}
 
 			elem.unshift(
-				new h.span(
-					{ position: "absolute", end: 0, marginEnd: 3 },
-					new b.tooltip(
-						{ content: "Copy to clipboard" },
-						new h.a(
-							{ href: "#", color: "secondary", class: "primary-on-hover", on: { click: itemCodeCopy } },
-							b.icon.bi("clipboard")
-						)
-					)
-				)
+				new h.div({ position: "absolute", end: 0, marginEnd: 3 }, [
+					onedit
+						? new b.tooltip(
+								{ marginEnd: allowcopy ? 2 : 0, content: "Edit on CodePen" },
+								new h.a(
+									{
+										href: "#",
+										color: "secondary",
+										class: "primary-on-hover",
+										on: { click: onedit },
+									},
+									b.icon.bi("lightning-charge-fill")
+								)
+						  )
+						: "",
+					allowcopy
+						? new b.tooltip(
+								{ content: "Copy to clipboard" },
+								new h.a(
+									{
+										href: "#",
+										color: "secondary",
+										class: "primary-on-hover",
+										on: { click: itemCodeCopy },
+									},
+									b.icon.bi("clipboard")
+								)
+						  )
+						: "",
+				])
 			);
 		}
 	}
@@ -477,7 +522,7 @@ const itemConsole = () => {
 						class: "example-console",
 						overflowY: "scroll",
 						overflowX: "hidden",
-						tabindex:0,
+						tabindex: 0,
 						style: { height: "200px" },
 					},
 					""
@@ -548,6 +593,7 @@ const convert = (attr: IBsExampleContainer) => {
 	attr.showScript ??= true;
 	attr.showHTML ??= true;
 	attr.showManager ??= true;
+	attr.showCodepen ??= attr.showScript;
 
 	attr.scriptConverter ??= (str: string) => {
 		return str
@@ -596,6 +642,7 @@ const convert = (attr: IBsExampleContainer) => {
 						e.length > 0,
 						true,
 						true,
+
 						i.name,
 						new preview(
 							{ type: i.strOutput ? "ts" : "js" },
@@ -617,6 +664,7 @@ const convert = (attr: IBsExampleContainer) => {
 				e.length > 0,
 				true,
 				true,
+
 				"MANAGER",
 				new preview(
 					{ type: attr.strManager ? "ts" : "js" },
@@ -636,6 +684,7 @@ const convert = (attr: IBsExampleContainer) => {
 				e.length > 0,
 				false,
 				true,
+
 				"SOURCE",
 				new preview(
 					{ type: attr.strOutput ? "ts" : "js" },
@@ -644,7 +693,14 @@ const convert = (attr: IBsExampleContainer) => {
 						: attr.scriptConverter
 						? attr.scriptConverter(attr.output!.toString())
 						: attr.output!.toString()
-				)
+				),
+				undefined,
+				() => {
+					openCodePen({
+						html: `<div>HTML here.</div>`,
+						js: `import { core, h, b } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';`,
+					});
+				}
 			)
 		);
 	}
@@ -681,6 +737,7 @@ const convert = (attr: IBsExampleContainer) => {
 	delete attr.strManager;
 	delete attr.scriptConverter;
 
+	delete attr.showCodepen;
 	delete attr.showConsole;
 	delete attr.showViewport;
 	delete attr.showOutput;
@@ -691,6 +748,85 @@ const convert = (attr: IBsExampleContainer) => {
 	delete attr.outputAttr;
 
 	return attr;
+};
+
+export interface ICodePen {
+	title?: string;
+	description?: string;
+	parent?: string;
+	private?: boolean;
+	tags?: string[];
+	editors?: string;
+	layout?: "left" | "top" | "right";
+
+	html?: string;
+	html_pre_processor?: "none" | "slim" | "haml" | "markdown";
+
+	css?: string;
+	css_pre_processor?: "none" | "less" | "scss" | "sass" | "stylus";
+	css_starter?: "normalize" | "reset" | "neither";
+	css_prefix?: "autoprefixer" | "prefixfree" | "neither";
+
+	js?: string;
+	js_pre_processor?: "none" | "coffeescript" | "babel" | "livescript" | "typescript";
+
+	html_classes?: string;
+	head?: string;
+
+	css_external?: string; // semi-colon separate multiple files
+	js_external?: string; // semi-colon separate multiple files
+}
+
+const openCodePen = (data: ICodePen) => {
+	if (data) {
+		data.title ??= "Bootstrap TS";
+		data.description ??= "Create bootstrap using TS/JS";
+		data.private ??= false;
+		data.tags = ["bsts"];
+		data.editors ??= "001";
+		data.layout ??= "top";
+
+		const id = core.UUID();
+		core.appendChild(
+			document.body,
+			new h.form(
+				{
+					id: `codepen-form-${id}`,
+					target: "_blank",
+					action: "https://codepen.io/pen/define",
+					method: "post",
+				},
+				[
+					new b.input({
+						type: "hidden",
+						name: "data",
+						// value: JSON.stringify(data).replace(/"/g, "&​quot;").replace(/'/g, "&apos;"),
+						value: JSON.stringify(data),
+					}),
+				]
+			)
+		);
+
+		setTimeout(
+			(id) => {
+				const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+				form.submit();
+
+				setTimeout(
+					(id) => {
+						const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+						if (form) {
+							core.removeElement(form);
+						}
+					},
+					60000,
+					id
+				);
+			},
+			300,
+			id
+		);
+	}
 };
 
 export class code extends h.div {
