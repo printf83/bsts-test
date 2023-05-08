@@ -674,7 +674,7 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 
 ${strConsole}
 ${strExt}
-const source = ${strCode.replace(/\t\t/gm, "\t")};
+const source = ${strCode.replace(/\t+/gm, " ")};
 
 core.documentReady(() => {
 	let root = document.getElementById("root");
