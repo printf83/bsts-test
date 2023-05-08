@@ -777,8 +777,8 @@ const generateCodePenData = (strCode: string) => {
 	let strCodeResult = "";
 
 	if (strCode !== "") {
-		const libListA = [" b.", " c.", " t.", " s(", " B.", " C.", " T.", " I.", " S("];
-		const libListB = ["b", "c", "t", "s", "B", "C", "T", "I", "S"];
+		const libListA = [" b.", " h.", " t.", " s(", " B.", " H.", " T.", " I.", " S("];
+		const libListB = ["b", "h", "t", "s", "B", "H", "T", "I", "S"];
 
 		libListA.forEach((i, ix) => {
 			if (strCode.indexOf(i) > -1) {
@@ -786,8 +786,19 @@ const generateCodePenData = (strCode: string) => {
 			}
 		});
 
+		let strConsole = "";
+		if (strCode.indexOf("e.console") > -1) {
+			strConsole = `const consoleOutput = (target, title, elem, color) => { 
+				console.log(title, elem);
+			};`;
+
+			strCode = strCode.replace(/e.console/gm, "consoleOutput");
+		}
+
 		strCodeResult = `
 			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+
+			${strConsole}
 
 			const source = ${strCode};
 
@@ -813,9 +824,9 @@ const generateCodePenData = (strCode: string) => {
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">`,
 
 		html: `
-			<div id="root">
-			</div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js">
-    		</script>`,
+			<div id="root" bs-theme="dark">
+			</div>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>`,
 
 		js: strCodeResult,
 	} satisfies ICodePen;
