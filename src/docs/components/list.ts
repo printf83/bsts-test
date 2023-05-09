@@ -316,7 +316,7 @@ export const list: IAttrContent = {
 							new b.input({ type: "checkbox", id: `${i}Checkbox`, marginEnd: 2 }),
 							new b.label(
 								{ for: `${i}Checkbox`, class: "form-check-label" },
-								`${core.uppecaseFirst(i)} checkbox`
+								`${core.uppercaseFirst(i)} checkbox`
 							),
 						]);
 					})
@@ -332,7 +332,7 @@ export const list: IAttrContent = {
 							new b.input({ type: "radio", id: `${i}Radio`, name: "listGroupRadio", marginEnd: 2 }),
 							new b.label(
 								{ for: `${i}Radio`, class: "form-check-label" },
-								`${core.uppecaseFirst(i)} radio`
+								`${core.uppercaseFirst(i)} radio`
 							),
 						]);
 					})
@@ -352,7 +352,7 @@ export const list: IAttrContent = {
 							new b.input({ type: "checkbox", id: `${i}CheckboxStretched`, marginEnd: 2 }),
 							new b.label(
 								{ for: `${i}CheckboxStretched`, class: "form-check-label", stretched: true },
-								`${core.uppecaseFirst(i)} checkbox`
+								`${core.uppercaseFirst(i)} checkbox`
 							),
 						]);
 					})
@@ -484,7 +484,7 @@ export const list: IAttrContent = {
 										href: `#list-${i}`,
 										autoInit: true,
 									},
-									core.uppecaseFirst(i)
+									core.uppercaseFirst(i)
 								);
 							})
 						)
@@ -500,9 +500,9 @@ export const list: IAttrContent = {
 										id: `list-${i}`,
 										labelledby: `#list-${i}-list`,
 									},
-									`Some placeholder content in a paragraph relating to "${
-										core.uppecaseFirst(i)
-									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+									`Some placeholder content in a paragraph relating to "${core.uppercaseFirst(
+										i
+									)}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
 						)
@@ -536,7 +536,7 @@ export const list: IAttrContent = {
 										href: `#list-useprop-${i}`, //point to tab pane
 										autoInit: true, //auto init tab item
 									},
-									core.uppecaseFirst(i)
+									core.uppercaseFirst(i)
 								);
 							})
 						)
@@ -552,9 +552,9 @@ export const list: IAttrContent = {
 										id: `list-useprop-${i}`,
 										labelledby: `#list-useprop-${i}-list`,
 									},
-									`Some placeholder content in a paragraph relating to "${
-										core.uppecaseFirst(i)
-									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+									`Some placeholder content in a paragraph relating to "${core.uppercaseFirst(
+										i
+									)}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
 						)
@@ -639,7 +639,7 @@ export const list: IAttrContent = {
 											controlfor: `list-manual-${i}`,
 											href: `#list-manual-${i}`,
 										},
-										core.uppecaseFirst(i)
+										core.uppercaseFirst(i)
 									);
 								})
 							)
@@ -655,9 +655,9 @@ export const list: IAttrContent = {
 											id: `list-manual-${i}`,
 											labelledby: `#list-manual-${i}-list`,
 										},
-										`Some placeholder content in a paragraph relating to "${
-											core.uppecaseFirst(i)
-										}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+										`Some placeholder content in a paragraph relating to "${core.uppercaseFirst(
+											i
+										)}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 									);
 								})
 							)
@@ -698,7 +698,7 @@ export const list: IAttrContent = {
 											},
 										},
 									},
-									core.uppecaseFirst(i)
+									core.uppercaseFirst(i)
 								);
 							})
 						)
@@ -714,9 +714,9 @@ export const list: IAttrContent = {
 										id: `list-direct-${i}`,
 										labelledby: `#list-direct-${i}-list`,
 									},
-									`Some placeholder content in a paragraph relating to "${
-										core.uppecaseFirst(i)
-									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+									`Some placeholder content in a paragraph relating to "${core.uppercaseFirst(
+										i
+									)}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
 						)
@@ -751,7 +751,7 @@ export const list: IAttrContent = {
 										href: `#list-noanimate-${i}`,
 										autoInit: true,
 									},
-									core.uppecaseFirst(i)
+									core.uppercaseFirst(i)
 								);
 							})
 						)
@@ -768,9 +768,9 @@ export const list: IAttrContent = {
 										labelledby: `#list-noanimate-${i}-list`,
 										animation: false, //disable tab pane animation
 									},
-									`Some placeholder content in a paragraph relating to "${
-										core.uppecaseFirst(i)
-									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+									`Some placeholder content in a paragraph relating to "${core.uppercaseFirst(
+										i
+									)}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
 						)
@@ -840,7 +840,7 @@ export const list: IAttrContent = {
 										controlfor: `list-method-${i}`,
 										href: `#list-method-${i}`,
 									},
-									core.uppecaseFirst(i)
+									core.uppercaseFirst(i)
 								);
 							})
 						)
@@ -856,9 +856,9 @@ export const list: IAttrContent = {
 										id: `list-method-${i}`,
 										labelledby: `#list-method-${i}-list`,
 									},
-									`Some placeholder content in a paragraph relating to "${
-										core.uppecaseFirst(i)
-									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+									`Some placeholder content in a paragraph relating to "${core.uppercaseFirst(
+										i
+									)}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
 						)
@@ -1100,7 +1100,7 @@ export const list: IAttrContent = {
 											},
 										},
 									},
-									core.uppecaseFirst(i)
+									core.uppercaseFirst(i)
 								);
 							})
 						)
@@ -1117,9 +1117,9 @@ export const list: IAttrContent = {
 										labelledby: `#list-event-${i}-list`,
 										animation: false,
 									},
-									`Some placeholder content in a paragraph relating to "${
-										core.uppecaseFirst(i)
-									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+									`Some placeholder content in a paragraph relating to "${core.uppercaseFirst(
+										i
+									)}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
 						)

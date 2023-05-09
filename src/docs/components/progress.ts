@@ -193,7 +193,7 @@ export const progress: IAttrContent = {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
 					return new b.progress.container(
-						{ label: `${core.uppecaseFirst(i)} example`, value: val, min: 0, max: 100 },
+						{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar({
 							color: i as I.B.Progress.Bar["color"],
 							style: { width: `${val}%` },
@@ -209,7 +209,7 @@ export const progress: IAttrContent = {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
 					return new b.progress.container({
-						label: `${core.uppecaseFirst(i)} example`,
+						label: `${core.uppercaseFirst(i)} example`,
 						value: val,
 						min: 0,
 						max: 100,
@@ -232,7 +232,7 @@ export const progress: IAttrContent = {
 					let val = [25, 50, 75, 100][ix];
 					let text = ["light", "dark", "dark", "light"][ix];
 					return new b.progress.container(
-						{ label: `${core.uppecaseFirst(i)} example`, value: val, min: 0, max: 100 },
+						{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar(
 							{
 								color: i as I.B.Progress.Bar["color"],
@@ -253,7 +253,7 @@ export const progress: IAttrContent = {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
 					return new b.progress.container({
-						label: `${core.uppecaseFirst(i)} example`,
+						label: `${core.uppercaseFirst(i)} example`,
 						value: val,
 						min: 0,
 						max: 100,
@@ -272,7 +272,7 @@ export const progress: IAttrContent = {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
 					return new b.progress.container(
-						{ label: `${core.uppecaseFirst(i)} example`, value: val, min: 0, max: 100 },
+						{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
 						new b.progress.bar(
 							{
 								textBgColor: i as I.B.Progress.Bar["textBgColor"],
@@ -371,7 +371,7 @@ export const progress: IAttrContent = {
 					let val = [10, 25, 50, 75, 100][ix];
 					return new b.progress.container(
 						{
-							label: `${i ? core.uppecaseFirst(i) : "Default"} striped example`,
+							label: `${i ? core.uppercaseFirst(i) : "Default"} striped example`,
 							value: val,
 							min: 0,
 							max: 100,
@@ -392,7 +392,7 @@ export const progress: IAttrContent = {
 				return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [10, 25, 50, 75, 100][ix];
 					return new b.progress.container({
-						label: `${i ? core.uppecaseFirst(i) : "Default"} striped example`,
+						label: `${i ? core.uppercaseFirst(i) : "Default"} striped example`,
 						value: val,
 						min: 0,
 						max: 100,

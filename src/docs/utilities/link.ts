@@ -45,7 +45,7 @@ export const link: IAttrContent = {
 						new h.p(
 							new h.a(
 								{ href: "#", linkUnderlineColor: i as I.H.A["linkUnderlineColor"] },
-								`${core.uppecaseFirst(i)} underline`
+								`${core.uppercaseFirst(i)} underline`
 							)
 						)
 				);
@@ -148,7 +148,7 @@ export const link: IAttrContent = {
 									linkUnderlineOpacityHover: 100,
 									linkColor: i as I.H.A["linkColor"],
 								},
-								`${core.uppecaseFirst(i)} link`
+								`${core.uppercaseFirst(i)} link`
 							)
 						)
 				);

@@ -29,7 +29,7 @@ export const colored_links: IAttrContent = {
 				].map(
 					(i) =>
 						new h.p(
-							new h.a({ href: "#", linkColor: i as I.H.A["linkColor"] }, `${core.uppecaseFirst(i)} link`)
+							new h.a({ href: "#", linkColor: i as I.H.A["linkColor"] }, `${core.uppercaseFirst(i)} link`)
 						)
 				);
 			},
@@ -66,7 +66,7 @@ export const colored_links: IAttrContent = {
 									linkUnderlineOpacity: 25,
 									linkUnderlineOpacityHover: 100,
 								},
-								`${core.uppecaseFirst(i)} link`
+								`${core.uppercaseFirst(i)} link`
 							)
 						)
 				);

@@ -146,7 +146,7 @@ export const focus_ring: IAttrContent = {
 									border: true,
 									rounded: 2,
 								},
-								`${core.uppecaseFirst(i)} focus`
+								`${core.uppercaseFirst(i)} focus`
 							)
 						)
 				);

@@ -830,6 +830,23 @@ export const modal: IAttrContent = {
 							labelledby: "dynamicHeightModalLabel",
 							centered: true,
 							on: {
+								"show.bs.modal": (event) => {
+									const target = event.target as Element;
+									const body = target.querySelector(".modal-body") as HTMLDivElement;
+									const ct = new Date();
+
+									//reset text
+									core.replaceChild(
+										body,
+										new h.p([
+											"This modal body content will change after ",
+											new h.b(new b.time(ct.setSeconds(ct.getSeconds() + 6).toString())),
+											".",
+										])
+									);
+
+									core.init(body);
+								},
 								"shown.bs.modal": (event) => {
 									const target = event.target as Element;
 									const body = target.querySelector(".modal-body") as HTMLDivElement;
@@ -850,18 +867,9 @@ export const modal: IAttrContent = {
 												mdl.handleUpdate();
 											}
 										},
-										3000,
+										5000,
 										target,
 										body
-									);
-								},
-								"hidden.bs.modal": (event) => {
-									//reset text
-									const target = event.target as Element;
-									const body = target.querySelector(".modal-body") as HTMLDivElement;
-									core.replaceChild(
-										body,
-										new h.p("This modal body content will change after 3 seconds.")
 									);
 								},
 							},
@@ -871,7 +879,7 @@ export const modal: IAttrContent = {
 								{ close: true },
 								new b.modal.title({ id: "dynamicHeightModalLabel" }, "Modal title")
 							),
-							new b.modal.body(new h.p("This modal body content will change after 3 seconds.")),
+							new b.modal.body(new h.p("")),
 							new b.modal.footer([
 								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
 								new b.button({ color: "primary" }, "Okay"),
