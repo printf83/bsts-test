@@ -20,7 +20,7 @@ export const color_background: IAttrContent = {
 					(i) =>
 						new h.div(
 							{ textBgColor: i as core.IAttr["textBgColor"], padding: 3 },
-							`${i.charAt(0).toUpperCase() + i.slice(1)} with contrasting color`
+							`${core.uppecaseFirst(i)} with contrasting color`
 						)
 				);
 			},

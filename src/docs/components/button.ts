@@ -16,10 +16,7 @@ export const button: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
-						return new b.button(
-							{ color: i as I.B.Button["color"] },
-							i.charAt(0).toUpperCase() + i.slice(1)
-						);
+						return new b.button({ color: i as I.B.Button["color"] }, core.uppecaseFirst(i));
 					}
 				);
 			},
@@ -78,10 +75,7 @@ export const button: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
-						return new b.button(
-							{ color: i as I.B.Button["color"], outline: true },
-							i.charAt(0).toUpperCase() + i.slice(1)
-						);
+						return new b.button({ color: i as I.B.Button["color"], outline: true }, core.uppecaseFirst(i));
 					}
 				);
 			},

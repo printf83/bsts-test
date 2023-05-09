@@ -538,7 +538,7 @@ export const card: IAttrContent = {
 							[
 								new b.card.header("Header"),
 								new b.card.body([
-									new b.card.title(`${i.charAt(0).toUpperCase() + i.slice(1)} card title`),
+									new b.card.title(`${core.uppecaseFirst(i)} card title`),
 									new b.card.text(
 										"Some quick example text to build on the card title and make up the bulk of the card's content."
 									),
@@ -577,7 +577,7 @@ export const card: IAttrContent = {
 							[
 								new b.card.header("Header"),
 								new b.card.body({ textColor: i as core.bootstrapType.textColor }, [
-									new b.card.title(`${i.charAt(0).toUpperCase() + i.slice(1)} card title`),
+									new b.card.title(`${core.uppecaseFirst(i)} card title`),
 									new b.card.text(
 										"Some quick example text to build on the card title and make up the bulk of the card's content."
 									),

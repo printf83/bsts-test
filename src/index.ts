@@ -354,8 +354,8 @@ const maincontainer = main.Container({
 	],
 	currentTheme: CURRENT_THEME as main.IBsMainContainer["currentTheme"],
 
-	itemVersion: [{ value: "0.1.97", label: "Latest (0.1.97)" }],
-	currentVersion: "0.1.97",
+	itemVersion: [{ value: "0.1.98", label: "Latest (0.1.98)" }],
+	currentVersion: "0.1.98",
 
 	itemFooter: [
 		{

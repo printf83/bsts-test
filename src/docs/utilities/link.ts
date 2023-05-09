@@ -1,4 +1,4 @@
-import { I, h } from "@printf83/bsts";
+import { core, I, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -45,7 +45,7 @@ export const link: IAttrContent = {
 						new h.p(
 							new h.a(
 								{ href: "#", linkUnderlineColor: i as I.H.A["linkUnderlineColor"] },
-								`${i.charAt(0).toUpperCase() + i.slice(1)} underline`
+								`${core.uppecaseFirst(i)} underline`
 							)
 						)
 				);
@@ -148,7 +148,7 @@ export const link: IAttrContent = {
 									linkUnderlineOpacityHover: 100,
 									linkColor: i as I.H.A["linkColor"],
 								},
-								`${i.charAt(0).toUpperCase() + i.slice(1)} link`
+								`${core.uppecaseFirst(i)} link`
 							)
 						)
 				);

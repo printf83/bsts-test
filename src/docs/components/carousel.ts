@@ -278,7 +278,7 @@ export const carousel: IAttrContent = {
 						return {
 							src: `https://picsum.photos/seed/bsts_${ix}/710/400`,
 							caption: [
-								new h.h(5, `${i.charAt(0).toUpperCase() + i.slice(1)} slide label`),
+								new h.h(5, `${core.uppecaseFirst(i)} slide label`),
 								new h.p(`Some representative placeholder content for the ${i} slide.`),
 							],
 						};

@@ -1,4 +1,4 @@
-import { I, h } from "@printf83/bsts";
+import { core, I, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -29,10 +29,7 @@ export const colored_links: IAttrContent = {
 				].map(
 					(i) =>
 						new h.p(
-							new h.a(
-								{ href: "#", linkColor: i as I.H.A["linkColor"] },
-								`${i.charAt(0).toUpperCase() + i.slice(1)} link`
-							)
+							new h.a({ href: "#", linkColor: i as I.H.A["linkColor"] }, `${core.uppecaseFirst(i)} link`)
 						)
 				);
 			},
@@ -69,7 +66,7 @@ export const colored_links: IAttrContent = {
 									linkUnderlineOpacity: 25,
 									linkUnderlineOpacityHover: 100,
 								},
-								`${i.charAt(0).toUpperCase() + i.slice(1)} link`
+								`${core.uppecaseFirst(i)} link`
 							)
 						)
 				);

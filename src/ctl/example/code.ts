@@ -1,5 +1,11 @@
 import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
+import { codeBeautify } from "./_fn.js";
+
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.98/+esm";
+const BSCDNCSS =
+	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css";
+const BSCDNJS = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js";
 
 export interface IBsExampleExt {
 	name?: string;
@@ -256,6 +262,8 @@ const itemCode = (
 									new b.tooltip(
 										{
 											content: "Edit on CodePen",
+											trigger: "hover",
+											hideDelay: 500,
 										},
 										new h.a(
 											{
@@ -278,6 +286,8 @@ const itemCode = (
 									new b.tooltip(
 										{
 											content: "Copy to clipboard",
+											trigger: "hover",
+											hideDelay: 500,
 										},
 										new h.a(
 											{
@@ -300,6 +310,8 @@ const itemCode = (
 									new b.tooltip(
 										{
 											content: "Refresh code",
+											trigger: "hover",
+											hideDelay: 500,
 										},
 										new h.a(
 											{
@@ -352,7 +364,12 @@ const itemCode = (
 				new h.div({ position: "absolute", end: 0, marginEnd: 3 }, [
 					onedit
 						? new b.tooltip(
-								{ marginEnd: allowcopy ? 2 : 0, content: "Edit on CodePen" },
+								{
+									marginEnd: allowcopy ? 2 : 0,
+									content: "Edit on CodePen",
+									trigger: "hover",
+									hideDelay: 500,
+								},
 								new h.a(
 									{
 										href: "#",
@@ -366,7 +383,7 @@ const itemCode = (
 						: "",
 					allowcopy
 						? new b.tooltip(
-								{ content: "Copy to clipboard" },
+								{ content: "Copy to clipboard", trigger: "hover", hideDelay: 500 },
 								new h.a(
 									{
 										href: "#",
@@ -472,10 +489,10 @@ const itemConsole = () => {
 				new h.div(
 					{ display: "flex" },
 					new h.div(
-						{ paddingTop: 2 },
+						{ paddingTop: 2, paddingEnd: 2 },
 						new h.span(
-							{ class: "example-console-notification", textColor: "primary" },
-							b.icon.bi("info-circle-fill")
+							{ class: "example-console-notification", textColor: "danger" },
+							b.icon.bi("asterisk")
 						)
 					)
 				),
@@ -483,10 +500,12 @@ const itemConsole = () => {
 				new h.div(
 					{ display: "flex" },
 					new h.div(
-						{ paddingTop: 2, paddingX: 4 },
+						{ paddingTop: 2, paddingEnd: 4, paddingStart: 2 },
 						new b.tooltip(
 							{
 								content: "Cleanup console",
+								trigger: "hover",
+								hideDelay: 500,
 							},
 							new h.a(
 								{
@@ -581,57 +600,6 @@ const itemViewport = () => {
 	);
 };
 
-type IBsExampleCodeType = "js" | "ts" | "html" | "css";
-
-declare var js_beautify: {
-	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
-	js: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
-	js_beautify: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
-};
-
-declare var css_beautify: {
-	(js_source_text: string, options?: js_beautify.CSSBeautifyOptions): string;
-	css: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
-	css_beautify: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
-};
-
-declare var html_beautify: {
-	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
-	html: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
-	html_beautify: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
-};
-
-const beautify = (type: IBsExampleCodeType | undefined, source_text: string): string => {
-	switch (type) {
-		case "html":
-			source_text = source_text.replace(/\>/g, ">\n");
-			source_text = source_text.replace(/\</g, "\n<");
-
-			return html_beautify(source_text, {
-				preserve_newlines: false,
-				end_with_newline: true,
-				indent_size: 4,
-				brace_style: "preserve-inline",
-			}) as string;
-
-		case "css":
-			return css_beautify(source_text, {
-				preserve_newlines: false,
-				end_with_newline: true,
-				indent_size: 4,
-			}) as string;
-
-		default:
-			return js_beautify(source_text, {
-				preserve_newlines: true,
-				end_with_newline: true,
-				indent_size: 4,
-				brace_style: "preserve-inline",
-				unescape_strings: false,
-			}) as string;
-	}
-};
-
 export interface ICodePen {
 	title?: string;
 	description?: string;
@@ -659,7 +627,7 @@ export interface ICodePen {
 	js_external?: string; // semi-colon separate multiple files
 }
 
-const generateCodePenData = (strCode: string, strExtention?: string[]) => {
+const generateCodePenData = (strCode: string, strExtention?: string[], strCSS?: string) => {
 	let libImported: string[] = ["core"];
 	let strCodeResult = "";
 
@@ -736,7 +704,7 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 
 		if (strConsole && strExt) {
 			strCodeResult = `
-			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
+			import { ${libImported.join(", ")} } from "${BSTSCDN}";
 
 			${strConsole}
 			${strExt}
@@ -749,7 +717,7 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 			});`;
 		} else if (strConsole && !strExt) {
 			strCodeResult = `
-			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
+			import { ${libImported.join(", ")} } from "${BSTSCDN}";
 
 			${strConsole}
 			const source = ${strCode};
@@ -761,7 +729,7 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 			});`;
 		} else if (!strConsole && strExt) {
 			strCodeResult = `
-			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
+			import { ${libImported.join(", ")} } from "${BSTSCDN}";
 
 			${strExt}
 			const source = ${strCode};
@@ -773,7 +741,7 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 			});`;
 		} else {
 			strCodeResult = `
-			import { ${libImported.join(", ")} } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.97/+esm';
+			import { ${libImported.join(", ")} } from "${BSTSCDN}";
 
 			const source = ${strCode};
 
@@ -785,7 +753,7 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 		}
 	}
 
-	return {
+	const result = {
 		title: "Bootstrap TS",
 		description: "Create bootstrap using TS/JS",
 		private: false,
@@ -793,15 +761,15 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 		editors: "001",
 		layout: "top",
 
-		css_external:
-			"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
-		head: beautify(
+		css_external: BSCDNCSS,
+		css: strCSS ? codeBeautify("css", strCSS) : undefined,
+		head: codeBeautify(
 			"html",
 			`<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">`
 		),
 
-		html: beautify(
+		html: codeBeautify(
 			"html",
 			`<div class="container p-4">
 				<div id="root">
@@ -809,9 +777,12 @@ const generateCodePenData = (strCode: string, strExtention?: string[]) => {
 			</div>`
 		),
 
-		js_external: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js",
-		js: beautify("js", strCodeResult),
+		js_external: BSCDNJS,
+		js: codeBeautify("js", strCodeResult),
 	} satisfies ICodePen;
+
+	console.log(result);
+	return result;
 };
 
 const openCodePen = (data: ICodePen) => {
@@ -895,7 +866,9 @@ const convert = (attr: IBsExampleContainer) => {
 		e.push(...itemCode(e.length > 0, true, false, "HTML", "Loading...", getOutputHTML));
 	}
 
+	let strCSS: string = "";
 	if (attr.css) {
+		strCSS = attr.css;
 		e.push(...itemCode(e.length > 0, true, true, "CSS", new preview({ type: "css" }, attr.css)));
 	}
 
@@ -956,7 +929,7 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	if ((attr.output || attr.strOutput) && attr.showScript) {
-		let sCode = attr.strOutput
+		let strSource = attr.strOutput
 			? attr.strOutput
 			: attr.scriptConverter
 			? attr.scriptConverter(attr.output!.toString())
@@ -969,11 +942,11 @@ const convert = (attr: IBsExampleContainer) => {
 				true,
 
 				"SOURCE",
-				new preview({ type: attr.strOutput ? "ts" : "js" }, sCode),
+				new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
 				undefined,
 				attr.showCodepen
 					? () => {
-							openCodePen(generateCodePenData(sCode, strExtention));
+							openCodePen(generateCodePenData(strSource, strExtention, strCSS));
 					  }
 					: undefined
 			)

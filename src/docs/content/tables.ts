@@ -1,4 +1,4 @@
-import { I, b, h } from "@printf83/bsts";
+import { core,  I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -172,10 +172,7 @@ export const tables: IAttrContent = {
 						].map(
 							(i) =>
 								new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [
-									new b.table.th(
-										{ scope: "row" },
-										i ? i.charAt(0).toUpperCase() + i.slice(1) : "Default"
-									),
+									new b.table.th({ scope: "row" }, i ? core.uppecaseFirst(i) : "Default"),
 									new b.table.td("Cell"),
 									new b.table.td("Cell"),
 								])
@@ -215,7 +212,7 @@ export const tables: IAttrContent = {
 											scope: "row",
 											color: i as I.B.Table.Th["color"],
 										},
-										i ? i.charAt(0).toUpperCase() + i.slice(1) : "Default"
+										i ? core.uppecaseFirst(i) : "Default"
 									),
 									new b.table.td("Cell"),
 									new b.table.td({ color: i as I.B.Table.Tr["color"] }, "Cell"),

@@ -362,24 +362,19 @@ export const alert: IAttrContent = {
 			`,
 		}),
 		new e.code({
+			showConsole: true,
 			output: () => {
 				const exampleAlert = new h.div(
-					{
-						id: "example-alert-container",
-						position: "absolute",
-						top: 50,
-						start: 50,
-						tMiddle: true,
-						col: [10, "md-6"],
-					},
+					{ id: "example-alert-container" },
 					new b.alert.container(
 						{
 							id: "example-alert",
 							animation: true,
 							color: "primary",
 							marginBottom: 0,
+							dismissible: true,
 						},
-						"Example"
+						"Example alert"
 					)
 				);
 
@@ -391,7 +386,10 @@ export const alert: IAttrContent = {
 								marginEnd: 3,
 								bgColor: "body-tertiary",
 								rounded: true,
-								position: "relative",
+								padding: 5,
+								display: "flex",
+								justifyContent: "center",
+								alignItem: "center",
 							},
 							exampleAlert
 						),
@@ -402,10 +400,14 @@ export const alert: IAttrContent = {
 									{
 										color: "success",
 										on: {
-											click: () => {
-												console.log(
-													`b.alert.init("#example-alert")`,
-													b.alert.init("#example-alert")
+											click: (event) => {
+												const elem = b.alert.init("#example-alert");
+
+												e.console(
+													event.target as Element,
+													"b.alert.init",
+													elem ? elem : "null",
+													elem ? "success" : "danger"
 												);
 											},
 										},
@@ -416,10 +418,14 @@ export const alert: IAttrContent = {
 									{
 										color: "success",
 										on: {
-											click: () => {
-												console.log(
-													`b.alert.getInstance("#example-alert")`,
-													b.alert.getInstance("#example-alert")
+											click: (event) => {
+												const elem = b.alert.getInstance("#example-alert");
+
+												e.console(
+													event.target as Element,
+													"b.alert.getInstance",
+													elem ? elem : "null",
+													elem ? "success" : "danger"
 												);
 											},
 										},
@@ -430,10 +436,14 @@ export const alert: IAttrContent = {
 									{
 										color: "success",
 										on: {
-											click: () => {
-												console.log(
-													`b.alert.getOrCreateInstance("#example-alert")`,
-													b.alert.getOrCreateInstance("#example-alert")
+											click: (event) => {
+												const elem = b.alert.getOrCreateInstance("#example-alert");
+
+												e.console(
+													event.target as Element,
+													"b.alert.getOrCreateInstance",
+													elem ? elem : "null",
+													elem ? "success" : "danger"
 												);
 											},
 										},

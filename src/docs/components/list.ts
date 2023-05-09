@@ -316,7 +316,7 @@ export const list: IAttrContent = {
 							new b.input({ type: "checkbox", id: `${i}Checkbox`, marginEnd: 2 }),
 							new b.label(
 								{ for: `${i}Checkbox`, class: "form-check-label" },
-								`${i.charAt(0).toUpperCase() + i.slice(1)} checkbox`
+								`${core.uppecaseFirst(i)} checkbox`
 							),
 						]);
 					})
@@ -332,7 +332,7 @@ export const list: IAttrContent = {
 							new b.input({ type: "radio", id: `${i}Radio`, name: "listGroupRadio", marginEnd: 2 }),
 							new b.label(
 								{ for: `${i}Radio`, class: "form-check-label" },
-								`${i.charAt(0).toUpperCase() + i.slice(1)} radio`
+								`${core.uppecaseFirst(i)} radio`
 							),
 						]);
 					})
@@ -352,7 +352,7 @@ export const list: IAttrContent = {
 							new b.input({ type: "checkbox", id: `${i}CheckboxStretched`, marginEnd: 2 }),
 							new b.label(
 								{ for: `${i}CheckboxStretched`, class: "form-check-label", stretched: true },
-								`${i.charAt(0).toUpperCase() + i.slice(1)} checkbox`
+								`${core.uppecaseFirst(i)} checkbox`
 							),
 						]);
 					})
@@ -429,39 +429,6 @@ export const list: IAttrContent = {
 			`,
 		}),
 
-		// new e.subtitle("Sass mixins"),
-		// new e.text(
-		// 	"Used in combination with {{$theme-colors}} to generate the {{nav:docs/components/list#variants::contextual variant classes}} for {{.list-group-items}}."
-		// ),
-
-		// new e.codepreview({
-		// 	type: "css",
-		// 	title: "scss/mixins/_list-group.scss",
-		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_list-group.scss",
-		// 	code: `
-		// 		@mixin list-group-item-variant($state, $background, $color) {
-		// 		.list-group-item-#{$state} {
-		// 			color: $color;
-		// 			background-color: $background;
-
-		// 			&.list-group-item-action {
-		// 			&:hover,
-		// 			&:focus {
-		// 				color: $color;
-		// 				background-color: shade-color($background, 10%);
-		// 			}
-
-		// 			&.active {
-		// 				color: $white;
-		// 				background-color: $color;
-		// 				border-color: $color;
-		// 			}
-		// 			}
-		// 		}
-		// 		}
-		// 	`,
-		// }),
-
 		new e.subtitle("Sass loop"),
 		new e.text("Loop that generates the modifier classes with an overriding of CSS variables."),
 
@@ -494,18 +461,18 @@ export const list: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("JavaScript behavior"),
+		new e.title("Tab behavior"),
 		new e.text(
 			"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap list group to create tabbable panes of local content."
 		),
 
 		new e.code({
 			output: () => {
-				let data = ["home", "profile", "messages", "settings"];
+				const data = ["home", "profile", "messages", "settings"];
 
 				return new h.div({ row: true }, [
 					new h.div(
-						{ col: 4 },
+						{ col: [5, "md-4"] },
 						new b.tabList.container(
 							{ id: "list-tab" },
 							data.map((i, ix) => {
@@ -517,13 +484,13 @@ export const list: IAttrContent = {
 										href: `#list-${i}`,
 										autoInit: true,
 									},
-									i.charAt(0).toUpperCase() + i.slice(1)
+									core.uppecaseFirst(i)
 								);
 							})
 						)
 					),
 					new h.div(
-						{ col: 8 },
+						{ col: [7, "md-8"] },
 						new b.tabList.tab.content(
 							{ id: "nav-tabContent" },
 							data.map((i, ix) => {
@@ -534,7 +501,7 @@ export const list: IAttrContent = {
 										labelledby: `#list-${i}-list`,
 									},
 									`Some placeholder content in a paragraph relating to "${
-										i.charAt(0).toUpperCase() + i.slice(1)
+										core.uppecaseFirst(i)
 									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
@@ -546,103 +513,122 @@ export const list: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Using data attributes"),
+		new e.subtitle("Using {{autoInit}} property"),
 		new e.text(
-			"You can activate a list group navigation without writing any JavaScript by simply specifying {{data-bs-toggle='list'}} or on an element. Use these data attributes on {{.list-group-item}}."
+			"You can activate a list group navigation automaticly by simply specifying {{autoInit:true}} on {{b.tabList.item}}. Make sure you provide {{href}} property that point to {{b.tabList.tab.pane}} {{id}}"
 		),
 
-		new e.codepreview({
-			type: "html",
-			code: `
-				<div role="tabpanel">
-				<!-- List group -->
-				<div class="list-group" id="myList" role="tablist">
-					<a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
-					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
-					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
-					<a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
-				</div>
+		new e.code({
+			output: () => {
+				const data = ["home", "profile", "messages", "settings"];
 
-				<!-- Tab panes -->
-				<div class="tab-content">
-					<div class="tab-pane active" id="home" role="tabpanel">...</div>
-					<div class="tab-pane" id="profile" role="tabpanel">...</div>
-					<div class="tab-pane" id="messages" role="tabpanel">...</div>
-					<div class="tab-pane" id="settings" role="tabpanel">...</div>
-				</div>
-				</div>
-			`,
+				return new h.div({ row: true }, [
+					new h.div(
+						{ col: [5, "md-4"] },
+						new b.tabList.container(
+							{ id: "list-useprop-tab" },
+							data.map((i, ix) => {
+								return new b.tabList.item(
+									{
+										active: ix === 0,
+										id: `list-useprop-${i}-list`,
+										controlfor: `list-useprop-${i}`,
+										href: `#list-useprop-${i}`, //point to tab pane
+										autoInit: true, //auto init tab item
+									},
+									core.uppecaseFirst(i)
+								);
+							})
+						)
+					),
+					new h.div(
+						{ col: [7, "md-8"] },
+						new b.tabList.tab.content(
+							{ id: "nav-useprop-tabContent" },
+							data.map((i, ix) => {
+								return new b.tabList.tab.pane(
+									{
+										active: ix === 0,
+										id: `list-useprop-${i}`,
+										labelledby: `#list-useprop-${i}-list`,
+									},
+									`Some placeholder content in a paragraph relating to "${
+										core.uppecaseFirst(i)
+									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+								);
+							})
+						)
+					),
+				]);
+			},
 		}),
-
-		new e.text(
-			"Fortunately in {{bsts}}, you only need to set {{autoInit:true}} on {{new b.tabList.item}} to do activate list group navigation"
-		),
 
 		//-----------------------
 
-		new e.subtitle("Via JavaScript"),
+		new e.subtitle("Manual init"),
 		new e.text("Enable tabbable list item via JavaScript (each list item needs to be activated individually):"),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const triggerTabList = document.querySelectorAll('#myTab a')
-				triggerTabList.forEach(triggerEl => {
-				const tabTrigger = new bootstrap.Tab(triggerEl)
+		// new e.codepreview({
+		// 	type: "js",
+		// 	code: `
+		// 		const triggerTabList = document.querySelectorAll('#myTab a')
+		// 		triggerTabList.forEach(triggerEl => {
+		// 		const tabTrigger = b.tabList.init(triggerEl)
 
-				triggerEl.addEventListener('click', event => {
-					event.preventDefault()
-					tabTrigger.show()
-				})
-				})
-			`,
-		}),
+		// 		triggerEl.addEventListener('click', event => {
+		// 			event.preventDefault()
+		// 			tabTrigger.show()
+		// 		})
+		// 		})
+		// 	`,
+		// }),
+
+		new e.alert(
+			{ callout: true, color: "danger" },
+			"By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."
+		),
 
 		new e.code({
 			outputAttr: { gap: 1 },
 			output: () => {
-				let data = ["home", "profile", "messages", "settings"];
+				const btnAttach = new b.button(
+					{
+						on: {
+							click: (e) => {
+								const target = e.target as Element;
+								const elem = document.querySelectorAll("#list-manual-tab a");
+								elem.forEach((i) => {
+									const tabTrigger = b.tabList.init(i);
+
+									i.addEventListener("click", (event) => {
+										event.preventDefault();
+										tabTrigger.show();
+									});
+								});
+
+								b.toast.show(
+									B.Toast.Simple({
+										title: document.title,
+										color: "success",
+										elem: "Tab trigger attached",
+									})
+								);
+
+								core.removeElement(target.closest(".row") as Element);
+							},
+						},
+					},
+					new b.caption({ icon: "paperclip" }, "Attach tab")
+				);
+
+				const data = ["home", "profile", "messages", "settings"];
 
 				return [
-					new h.div(
-						{ row: true },
-						new h.div(
-							{ col: true },
-							new b.button(
-								{
-									on: {
-										click: (e) => {
-											const target = e.target as Element;
-											const triggerTabList = document.querySelectorAll("#list-manual-tab a");
-											triggerTabList.forEach((triggerEl) => {
-												const tabTrigger = new window.bootstrap.Tab(triggerEl);
-
-												triggerEl.addEventListener("click", (event) => {
-													event.preventDefault();
-													tabTrigger.show();
-												});
-											});
-
-											b.toast.show(
-												B.Toast.Simple({
-													title: document.title,
-													color: "success",
-													elem: "Tab trigger attached",
-												})
-											);
-
-											core.removeElement(target.closest(".row") as Element);
-										},
-									},
-								},
-								"Attach list navigation"
-							)
-						)
-					),
+					new h.div({ row: true }, new h.div({ col: [5, "md-4"], display: "grid" }, btnAttach)),
 
 					new h.div({ row: true }, [
 						new h.div(
-							{ col: 4 },
+							{ col: [5, "md-4"] },
 							new b.tabList.container(
 								{ id: "list-manual-tab" },
 								data.map((i, ix) => {
@@ -653,13 +639,13 @@ export const list: IAttrContent = {
 											controlfor: `list-manual-${i}`,
 											href: `#list-manual-${i}`,
 										},
-										i.charAt(0).toUpperCase() + i.slice(1)
+										core.uppecaseFirst(i)
 									);
 								})
 							)
 						),
 						new h.div(
-							{ col: 8 },
+							{ col: [7, "md-8"] },
 							new b.tabList.tab.content(
 								{ id: "nav-manual-tabContent" },
 								data.map((i, ix) => {
@@ -670,7 +656,7 @@ export const list: IAttrContent = {
 											labelledby: `#list-manual-${i}-list`,
 										},
 										`Some placeholder content in a paragraph relating to "${
-											i.charAt(0).toUpperCase() + i.slice(1)
+											core.uppecaseFirst(i)
 										}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 									);
 								})
@@ -682,47 +668,78 @@ export const list: IAttrContent = {
 		}),
 
 		new e.text("You can activate individual list item in several ways:"),
+		new e.alert(
+			{ callout: true, color: "success" },
+			"{{bsts}} automaticly {{removeEventListener}} for event that create using {{on}} property to prevent memory leak."
+		),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const triggerEl = document.querySelector('#myTab a[href="#profile"]')
-				bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+		new e.code({
+			outputAttr: { gap: 1 },
+			output: () => {
+				const data = ["home", "profile", "messages", "settings"];
 
-				const triggerFirstTabEl = document.querySelector('#myTab li:first-child a')
-				bootstrap.Tab.getInstance(triggerFirstTabEl).show() // Select first tab
-			`,
+				return new h.div({ row: true }, [
+					new h.div(
+						{ col: [5, "md-4"] },
+						new b.tabList.container(
+							{ id: "list-direct-tab" },
+							data.map((i, ix) => {
+								return new b.tabList.item(
+									{
+										active: ix === 0,
+										id: `list-direct-${i}-list`,
+										controlfor: `list-direct-${i}`,
+										href: `#list-direct-${i}`,
+										on: {
+											click: (e) => {
+												e.preventDefault();
+												const target = e.target as Element;
+												b.tabList.show(target); //direct init and show the tab
+											},
+										},
+									},
+									core.uppecaseFirst(i)
+								);
+							})
+						)
+					),
+					new h.div(
+						{ col: [7, "md-8"] },
+						new b.tabList.tab.content(
+							{ id: "nav-direct-tabContent" },
+							data.map((i, ix) => {
+								return new b.tabList.tab.pane(
+									{
+										active: ix === 0,
+										id: `list-direct-${i}`,
+										labelledby: `#list-direct-${i}-list`,
+									},
+									`Some placeholder content in a paragraph relating to "${
+										core.uppecaseFirst(i)
+									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+								);
+							})
+						)
+					),
+				]);
+			},
 		}),
 
 		//-----------------------
 
 		new e.subtitle("Fade effect"),
-		new e.text(
-			"To make tabs panel fade in, add {{.fade}} to each {{.tab-pane}}. The first tab pane must also have {{.show}} to make the initial content visible."
-		),
-
-		new e.codepreview({
-			type: "html",
-			code: `
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="home" role="tabpanel">...</div>
-					<div class="tab-pane fade" id="profile" role="tabpanel">...</div>
-					<div class="tab-pane fade" id="messages" role="tabpanel">...</div>
-					<div class="tab-pane fade" id="settings" role="tabpanel">...</div>
-				</div>
-			`,
-		}),
 
 		new e.text(
-			"By default, {{bsts}} add {{.fade}} class automaticly into {{b.tabList.tab.pane}} component. If you don't like it, you can disable it by set {{animation:false}} to each {{b.tabList.tab.pane}}"
+			"By default, {{bsts}} add {{.fade}} class automaticly into {{b.tabList.tab.pane}} component. You can disable it by set {{animation:false}} to each {{b.tabList.tab.pane}}"
 		),
+
 		new e.code({
 			output: () => {
-				let data = ["home", "profile", "messages", "settings"];
+				const data = ["home", "profile", "messages", "settings"];
 
 				return new h.div({ row: true }, [
 					new h.div(
-						{ col: 4 },
+						{ col: [5, "md-4"] },
 						new b.tabList.container(
 							{ id: "list-noanimate-tab" },
 							data.map((i, ix) => {
@@ -732,16 +749,15 @@ export const list: IAttrContent = {
 										id: `list-noanimate-${i}-list`,
 										controlfor: `list-noanimate-${i}`,
 										href: `#list-noanimate-${i}`,
-
 										autoInit: true,
 									},
-									i.charAt(0).toUpperCase() + i.slice(1)
+									core.uppecaseFirst(i)
 								);
 							})
 						)
 					),
 					new h.div(
-						{ col: 8 },
+						{ col: [7, "md-8"] },
 						new b.tabList.tab.content(
 							{ id: "nav-noanimate-tabContent" },
 							data.map((i, ix) => {
@@ -750,10 +766,10 @@ export const list: IAttrContent = {
 										active: ix === 0,
 										id: `list-noanimate-${i}`,
 										labelledby: `#list-noanimate-${i}-list`,
-										animation: false,
+										animation: false, //disable tab pane animation
 									},
 									`Some placeholder content in a paragraph relating to "${
-										i.charAt(0).toUpperCase() + i.slice(1)
+										core.uppecaseFirst(i)
 									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})
@@ -799,6 +815,205 @@ export const list: IAttrContent = {
 			],
 		}),
 
+		new e.code({
+			outputAttr: { position: "relative" },
+			showConsole: true,
+			output: () => {
+				const data = ["home", "profile", "messages", "settings"];
+
+				const clickTabEvent = (event: Event) => {
+					event.preventDefault();
+					const target = event.target as Element;
+					b.tabList.show(target);
+				};
+
+				const tabContainer = new h.div({ row: true }, [
+					new h.div(
+						{ col: [5, "md-4"] },
+						new b.tabList.container(
+							{ id: "list-method-tab" },
+							data.map((i, ix) => {
+								return new b.tabList.item(
+									{
+										active: ix === 0,
+										id: `list-method-${i}-list`,
+										controlfor: `list-method-${i}`,
+										href: `#list-method-${i}`,
+									},
+									core.uppecaseFirst(i)
+								);
+							})
+						)
+					),
+					new h.div(
+						{ col: [7, "md-8"] },
+						new b.tabList.tab.content(
+							{ id: "nav-method-tabContent" },
+							data.map((i, ix) => {
+								return new b.tabList.tab.pane(
+									{
+										active: ix === 0,
+										id: `list-method-${i}`,
+										labelledby: `#list-method-${i}-list`,
+									},
+									`Some placeholder content in a paragraph relating to "${
+										core.uppecaseFirst(i)
+									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
+								);
+							})
+						)
+					),
+				]);
+
+				const initButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = document.querySelectorAll("#list-method-tab a");
+								elem.forEach((i) => {
+									i.addEventListener("click", clickTabEvent);
+								});
+
+								e.console(
+									event.target as Element,
+									"b.tabList.init",
+									elem ? elem : "null",
+									elem ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"init"
+				);
+
+				const getInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = document.querySelectorAll("#list-method-tab a");
+								let elemInstance: (bootstrap.Tab | null)[] = [];
+
+								elem.forEach((i) => {
+									elemInstance.push(b.tabList.getInstance(i));
+								});
+
+								e.console(
+									event.target as Element,
+									"b.tabList.getInstance",
+									elemInstance && elemInstance.length > 0 ? elemInstance : "null",
+									elemInstance && elemInstance.length > 0 ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getInstance"
+				);
+
+				const getOrCreateInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = document.querySelectorAll("#list-method-tab a");
+								let elemInstance: (bootstrap.Tab | null)[] = [];
+
+								elem.forEach((i) => {
+									elemInstance.push(b.tabList.getOrCreateInstance(i));
+								});
+
+								e.console(
+									event.target as Element,
+									"b.tabList.getOrCreateInstance",
+									elemInstance && elemInstance.length > 0 ? elemInstance : "null",
+									elemInstance && elemInstance.length > 0 ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getOrCreateInstance"
+				);
+
+				const showButton = new b.button(
+					{
+						on: {
+							click: (event) => {
+								const elem = document.querySelectorAll("#list-method-tab a");
+								if (elem) {
+									let i = elem[core.rndBetween(0, elem.length - 1)];
+									if (i) {
+										b.tabList.show(i);
+										e.console(
+											event.target as Element,
+											"b.tabList.show",
+											i ? i : "null",
+											i ? "success" : "danger"
+										);
+									}
+								}
+							},
+						},
+					},
+					"show (random)"
+				);
+
+				const disposeButton = new b.button(
+					{
+						color: "danger",
+						on: {
+							click: (event) => {
+								const elem = document.querySelectorAll("#list-method-tab a");
+
+								elem.forEach((i) => {
+									b.tabList.dispose(i);
+									i.removeEventListener("click", clickTabEvent);
+								});
+
+								e.console(
+									event.target as Element,
+									"b.tabList.dispose",
+									elem && elem.length > 0 ? elem : "null",
+									elem && elem.length > 0 ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"dispose"
+				);
+
+				const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+					initButton,
+					getInstanceButton,
+					getOrCreateInstanceButton,
+					showButton,
+					disposeButton,
+				]);
+
+				const previewContainer = new h.div(
+					{
+						width: 100,
+						marginEnd: 3,
+						bgColor: "body-tertiary",
+						rounded: true,
+						padding: 2,
+					},
+					tabContainer
+				);
+
+				const controlContainer = new h.div(
+					{
+						marginStart: "auto",
+					},
+					buttonGroup
+				);
+
+				const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+
+				return [mainContainer];
+			},
+		}),
+
 		//-----------------------
 
 		new e.subtitle("Events"),
@@ -838,18 +1053,18 @@ export const list: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const tabElms = document.querySelectorAll('a[data-bs-toggle="list"]')
-				tabElms.forEach(tabElm => {
-				tabElm.addEventListener('shown.bs.tab', event => {
-					event.target // newly activated tab
-					event.relatedTarget // previous active tab
-				})
-				})
-			`,
-		}),
+		// new e.codepreview({
+		// 	type: "js",
+		// 	code: `
+		// 		const tabElms = document.querySelectorAll('a[data-bs-toggle="list"]')
+		// 		tabElms.forEach(tabElm => {
+		// 		tabElm.addEventListener('shown.bs.tab', event => {
+		// 			event.target // newly activated tab
+		// 			event.relatedTarget // previous active tab
+		// 		})
+		// 		})
+		// 	`,
+		// }),
 		new e.code({
 			showConsole: true,
 			output: () => {
@@ -858,11 +1073,11 @@ export const list: IAttrContent = {
 					relatedTarget: Element;
 				}
 
-				let data = ["home", "profile", "messages", "settings"];
+				const data = ["home", "profile", "messages", "settings"];
 
 				return new h.div({ row: true }, [
 					new h.div(
-						{ col: 4 },
+						{ col: [5, "md-4"] },
 						new b.tabList.container(
 							{ id: "list-event-tab" },
 							data.map((i, ix) => {
@@ -885,13 +1100,13 @@ export const list: IAttrContent = {
 											},
 										},
 									},
-									i.charAt(0).toUpperCase() + i.slice(1)
+									core.uppecaseFirst(i)
 								);
 							})
 						)
 					),
 					new h.div(
-						{ col: 8 },
+						{ col: [7, "md-8"] },
 						new b.tabList.tab.content(
 							{ id: "nav-event-tabContent" },
 							data.map((i, ix) => {
@@ -903,7 +1118,7 @@ export const list: IAttrContent = {
 										animation: false,
 									},
 									`Some placeholder content in a paragraph relating to "${
-										i.charAt(0).toUpperCase() + i.slice(1)
+										core.uppecaseFirst(i)
 									}". And some more content, used here just to pad out and fill this tab panel. In production, you would obviously have more real content here. And not just text. It could be anything, really. Text, images, forms.`
 								);
 							})

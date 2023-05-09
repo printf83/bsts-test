@@ -94,7 +94,7 @@ export const popover: IAttrContent = {
 					return new b.popover(
 						{
 							placement: i as I.B.Popover["placement"],
-							content: `${i.charAt(0).toUpperCase() + i.slice(1)} popover`,
+							content: `${core.uppecaseFirst(i)} popover`,
 						},
 						new b.button({ color: "secondary" }, `Popover on ${i}`)
 					);

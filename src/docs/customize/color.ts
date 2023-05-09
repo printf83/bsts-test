@@ -906,7 +906,7 @@ export const color: IAttrContent = {
 										textBgColor: i as core.IAttr["textBgColor"],
 										rounded: true,
 									},
-									i.charAt(0).toUpperCase() + i.slice(1)
+									core.uppecaseFirst(i)
 								)
 							)
 					)
