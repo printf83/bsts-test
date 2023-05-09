@@ -374,7 +374,7 @@ export const alert: IAttrContent = {
 							marginBottom: 0,
 							dismissible: true,
 						},
-						"Example alert"
+						"Example"
 					)
 				);
 
@@ -386,7 +386,7 @@ export const alert: IAttrContent = {
 								marginEnd: 3,
 								bgColor: "body-tertiary",
 								rounded: true,
-								padding: 5,
+								padding: [1, "md-4"],
 								display: "flex",
 								justifyContent: "center",
 								alignItem: "center",

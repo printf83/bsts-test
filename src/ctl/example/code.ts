@@ -491,7 +491,7 @@ const itemConsole = () => {
 					new h.div(
 						{ paddingTop: 2, paddingEnd: 2 },
 						new h.span(
-							{ class: "example-console-notification", textColor: "danger" },
+							{ class: "example-console-notification", textColor: "primary" },
 							b.icon.bi("asterisk")
 						)
 					)
