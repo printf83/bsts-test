@@ -2,6 +2,13 @@ import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index";
 import { IAttrContent } from "../../ctl/main/container";
 
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.98/+esm";
+const BSCDNCSS = [
+	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
+];
+const BSCDNJS = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"];
+
 export const introduction: IAttrContent = {
 	title: "Get started with Bootstrap",
 	description:
@@ -13,9 +20,61 @@ export const introduction: IAttrContent = {
 		]),
 
 		new e.title("Quick start"),
-		new e.text(
-			"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this {{https://codepen.io/team/bootstrap/pen/qBamdLj::Bootstrap CodePen demo}}."
-		),
+		new e.text([
+			"Get started by including Bootstrap’s production-ready CSS and JavaScript via CDN without the need for any build steps. See it in practice with this ",
+			new h.a(
+				{
+					href: "#",
+					on: {
+						click: () => {
+							e.codePen({
+								title: "Bootstrap TS demo",
+								description: "Create bootstrap using TS/JS",
+								private: false,
+								tags: ["bsts", "Bootstrap TS", "@printf83/bsts"],
+								editors: "001",
+								layout: "top",
+
+								css_external: BSCDNCSS,
+								head: e.codeBeautify(
+									"html",
+									`<meta charset="utf-8">
+									<meta name="viewport" content="width=device-width, initial-scale=1">`
+								),
+
+								html: e.codeBeautify("html", `<div id="root"></div>`),
+
+								js_external: BSCDNJS,
+								js: e.codeBeautify(
+									"js",
+									`
+									import {core, h, b} from '${BSTSCDN}';
+
+									const Component1 = new h.p("Hello world");
+									const Component2 = new b.button({ color: "primary" }, "Button");
+									const Component3 = new h.div({ row: true }, [
+										new h.div({ col:4 }, ".col-4"),
+										new h.div({ col:4 }, ".col-4"),
+										new h.div({ col:4 }, ".col-4"),
+									]);
+									
+									core.documentReady(() => {
+										core.replaceChild(document.getElementById("root"), [
+											Component1, 
+											Component2, 
+											Component3
+										]);
+									});
+								`
+								),
+							} satisfies e.ICodePen);
+						},
+					},
+				},
+				"Bootstrap TS Demo"
+			),
+			" on {{CodePen}}.",
+		]),
 		new e.ol({
 			item: [
 				new h.div([
@@ -30,33 +89,41 @@ export const introduction: IAttrContent = {
 							<head>
 								<meta charset="utf-8">
 								<meta name="viewport" content="width=device-width, initial-scale=1">
-								<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-								<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+								<link rel="stylesheet" href="${BSCDNCSS[0]}">
+								<link rel="stylesheet" href="${BSCDNCSS[1]}">
 								<title>Bootstrap TS demo</title>
 							</head>
 							<body>
 								<div id="root"></div>
-								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+								<script src="${BSCDNJS[0]}"></script>
 							</body>
 							</html>
 							`,
 					}),
 				]),
 				new h.div([
-					'{{b::Create a new }}{{bc::index.js}}{{b:: file in your project root}}. Import {{bsts}} library {{import {core, h} from "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm";}} and write some code. Learn more about {{bsts}} {{nav:docs/gettingstarted/introduction#expose_function::Exposed function}}.',
+					`{{b::Create a new }}{{bc::index.js}}{{b:: file in your project root}}. Import {{bsts}} library {{import {core, h} from "${BSTSCDN}";}} and write some code. Learn more about {{bsts}} {{nav:docs/gettingstarted/introduction#expose_function::Exposed function}}.`,
 					new e.codepreview({
 						class: "ms-n4",
 						marginStart: "md-0",
 						type: "js",
 						code: `
-							import {core, h, b} from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
-
+							import {core, h, b} from '${BSTSCDN}';
+							
+							const Component1 = new h.p("Hello world");
+							const Component2 = new b.button({ color: "primary" }, "Button");
+							const Component3 = new h.div({ row: true }, [
+								new h.div({ col:4 }, ".col-4"),
+								new h.div({ col:4 }, ".col-4"),
+								new h.div({ col:4 }, ".col-4"),
+							]);
+							
 							core.documentReady(() => {
-								let root = document.getElementById("root");
-								core.replaceChild(root, new h.div([
-									"Hello world", 
-									new b.button({color:"primary"},"Button"),
-								]));
+								core.replaceChild(document.getElementById("root"), [
+									Component1, 
+									Component2, 
+									Component3
+								]);
 							});
 							`,
 					}),
@@ -73,13 +140,14 @@ export const introduction: IAttrContent = {
 							<head>
 								<meta charset="utf-8">
 								<meta name="viewport" content="width=device-width, initial-scale=1">
-								<title>Bootstrap demo</title>
-								<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+								<link rel="stylesheet" href="${BSCDNCSS[0]}">
+								<link rel="stylesheet" href="${BSCDNCSS[1]}">
+								<title>Bootstrap TS demo</title>
 							</head>
 							<body>
-								<h1>Hello, world!</h1>
-								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-								
+								<div id="root"></div>
+								<script src="${BSCDNJS[0]}"></script>
+
 								<!--- put your script here ---->
 								<script src="index.js" type="module"></script>
 							</body>
@@ -99,9 +167,7 @@ export const introduction: IAttrContent = {
 		new e.text("As reference, here are {{bsts}} primary CDN links."),
 		new e.codepreview({
 			type: "js",
-			code: `
-				import { core } from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
-				`,
+			code: `import { core } from "${BSTSCDN}";`,
 		}),
 		new e.table({
 			item: [
@@ -123,14 +189,16 @@ export const introduction: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				import {core, h, b} from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+				import {core, h, b} from "${BSTSCDN}";
+
+				const Component1 = new h.p("Hello world");
+				const Component2 = new b.button({ color: "primary" }, "Button");
 
 				core.documentReady(() => {
-					let root = document.getElementById("root");
-					core.replaceChild(root, new h.div([
-						"Hello world", 
-						new b.button({color:"primary"},"Button"),
-					]));
+					core.replaceChild(document.getElementById("root"), [
+						Component1,
+						Component2,
+					]);
 				});
 				`,
 		}),
@@ -138,14 +206,16 @@ export const introduction: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				import {core, H, B} from 'https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1/+esm';
+				import {core, H, B} from "${BSTSCDN}";
+
+				const Component1 = H.P("Hello world");
+				const Component2 = B.Button({ color: "primary" }, "Button");
 
 				core.documentReady(() => {
-					let root = document.getElementById("root");
-					core.replaceChild(root, H.Div([
-						"Hello world", 
-						B.Button({color:"primary"},"Button"),
-					]));
+					core.replaceChild(document.getElementById("root"), [
+						Component1,
+						Component2,
+					]);
 				});
 				`,
 		}),

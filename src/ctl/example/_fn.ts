@@ -1,4 +1,4 @@
-import { core, b, I, B } from "@printf83/bsts";
+import { core, b, I, B, h } from "@printf83/bsts";
 
 export const toast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
 	b.toast.show(
@@ -96,5 +96,84 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 				brace_style: "preserve-inline",
 				unescape_strings: false,
 			}) as string;
+	}
+};
+
+export interface ICodePen {
+	title?: string;
+	description?: string;
+	parent?: string;
+	private?: boolean;
+	tags?: string[];
+	editors?: string;
+	layout?: "left" | "top" | "right";
+
+	html?: string;
+	html_pre_processor?: "none" | "slim" | "haml" | "markdown";
+
+	css?: string;
+	css_pre_processor?: "none" | "less" | "scss" | "sass" | "stylus";
+	css_starter?: "normalize" | "reset" | "neither";
+	css_prefix?: "autoprefixer" | "prefixfree" | "neither";
+
+	js?: string;
+	js_pre_processor?: "none" | "coffeescript" | "babel" | "livescript" | "typescript";
+
+	html_classes?: string;
+	head?: string;
+
+	css_external?: string | string[]; // semi-colon separate multiple files
+	js_external?: string | string[]; // semi-colon separate multiple files
+}
+
+export const codePen = (data: ICodePen) => {
+	if (data) {
+		if (data.css_external && Array.isArray(data.css_external)) {
+			data.css_external = data.css_external.join(";");
+		}
+
+		if (data.js_external && Array.isArray(data.js_external)) {
+			data.js_external = data.js_external.join(";");
+		}
+
+		const id = core.UUID();
+		core.appendChild(
+			document.body,
+			new h.form(
+				{
+					id: `codepen-form-${id}`,
+					target: "_blank",
+					action: "https://codepen.io/pen/define",
+					method: "post",
+				},
+				[
+					new b.input({
+						type: "hidden",
+						name: "data",
+						value: JSON.stringify(data),
+					}),
+				]
+			)
+		);
+
+		setTimeout(
+			(id) => {
+				const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+				form.submit();
+
+				setTimeout(
+					(id) => {
+						const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+						if (form) {
+							core.removeElement(form);
+						}
+					},
+					3000,
+					id
+				);
+			},
+			300,
+			id
+		);
 	}
 };
