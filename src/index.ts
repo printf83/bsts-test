@@ -40,6 +40,7 @@ const getCurrentTheme = () => {
 
 let CURRENT_PAGE: string | null = null;
 let CURRENT_THEME = getCurrentTheme();
+let CURRENT_VERSION = "0.1.99";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -354,8 +355,8 @@ const maincontainer = main.Container({
 	],
 	currentTheme: CURRENT_THEME as main.IBsMainContainer["currentTheme"],
 
-	itemVersion: [{ value: "0.1.98", label: "Latest (0.1.98)" }],
-	currentVersion: "0.1.98",
+	itemVersion: [{ value: CURRENT_VERSION, label: `Latest (${CURRENT_VERSION})` }],
+	currentVersion: CURRENT_VERSION,
 
 	itemFooter: [
 		{
