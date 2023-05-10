@@ -1053,18 +1053,6 @@ export const list: IAttrContent = {
 			],
 		}),
 
-		// new e.codepreview({
-		// 	type: "js",
-		// 	code: `
-		// 		const tabElms = document.querySelectorAll('a[data-bs-toggle="list"]')
-		// 		tabElms.forEach(tabElm => {
-		// 		tabElm.addEventListener('shown.bs.tab', event => {
-		// 			event.target // newly activated tab
-		// 			event.relatedTarget // previous active tab
-		// 		})
-		// 		})
-		// 	`,
-		// }),
 		new e.code({
 			showConsole: true,
 			output: () => {

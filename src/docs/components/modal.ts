@@ -1,4 +1,4 @@
-import { core, h, b, B, I } from "@printf83/bsts";
+import { core, h, b, B, I, s } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -22,16 +22,39 @@ export const modal: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-			const myModal = document.getElementById('myModal')
-			const myInput = document.getElementById('myInput')
+		new e.code({
+			output: () => {
+				const myModal = new b.modal.container(
+					{
+						id: "myModal",
+						labelledby: "myModalLabel",
+						on: {
+							"shown.bs.modal": () => {
+								const myInput = document.getElementById("myModalInput");
+								if (myInput) {
+									//focus to input when modal is shown
+									myInput.focus();
+								}
+							},
+						},
+					},
+					[
+						new b.modal.header({ close: true }, new b.modal.title({ id: "myModalLabel" }, "Modal title")),
+						new b.modal.body(new b.input({ id: "myModalInput" })),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					]
+				);
 
-			myModal.addEventListener('shown.bs.modal', () => {
-				myInput.focus()
-			})
-			`,
+				const myModalToggle = new b.button(
+					{ color: "primary", toggle: "modal", target: "#myModal" },
+					"Launch demo modal"
+				);
+
+				return [myModalToggle, myModal];
+			},
 		}),
 
 		new e.alert(
@@ -100,7 +123,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Modal show"),
 		new e.text(
-			"You also can use Bootstrap {{b.modal.show}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
+			"You also can use {{bsts}} {{b.modal.show}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."
 		),
 		new e.code({
 			output: () => {
@@ -111,6 +134,7 @@ export const modal: IAttrContent = {
 							color: "primary",
 							on: {
 								click: (_e) => {
+									//manually generate modal using bsts component
 									const mdl = new b.modal.container({ labelledby: "exampleShowModalLabel" }, [
 										new b.modal.header(
 											{ close: true },
@@ -122,6 +146,8 @@ export const modal: IAttrContent = {
 											new b.button({ color: "primary" }, "Save changes"),
 										]),
 									]);
+
+									//show the manually generated modal
 									b.modal.show(mdl);
 								},
 							},
@@ -147,21 +173,24 @@ export const modal: IAttrContent = {
 							focusRing: true,
 							on: {
 								click: () => {
+									//simple modal
 									const mdl = B.Modal.Simple({
 										title: document.title,
 										elem: B.Form.Check({
 											id: "testcheckbox",
 											label: "Please tick this checkbox before click {{k::Okay}}",
 										}),
-										btn: ["ok", "cancel"],
+										btn: ["ok", "cancel"], //easy button setup
 										btnFn: [
 											(event) => {
+												//event handler for first button
 												const target = event.target as Element;
 												const container = target.closest(".modal") as Element;
 												const ischecked = (
 													container?.querySelectorAll("#testcheckbox")[0] as HTMLInputElement
 												)?.checked;
 
+												//hide modal base on rules
 												if (ischecked) {
 													b.toast.show(
 														B.Toast.Simple({
@@ -171,7 +200,7 @@ export const modal: IAttrContent = {
 														})
 													);
 
-													//hide the modal manually
+													//hide the modal because the checkbox is ticked
 													b.modal.hide(container);
 												} else {
 													b.toast.show(
@@ -181,6 +210,9 @@ export const modal: IAttrContent = {
 															elem: "Please tick the checkbox before press okay.",
 														})
 													);
+
+													//dont hide the modal until user tick the check box
+													//b.modal.hide(container);
 												}
 											},
 										],
@@ -195,6 +227,8 @@ export const modal: IAttrContent = {
 											},
 										},
 									});
+
+									//show the simple modal using b.modal.show
 									b.modal.show(mdl);
 								},
 							},
@@ -205,14 +239,19 @@ export const modal: IAttrContent = {
 						{
 							on: {
 								click: () => {
+									//simple modal
+
 									const mdl = B.Modal.Simple({
 										title: document.title,
 										elem: new b.msg(
 											{ type: "bi", id: "info-circle-fill", color: "primary" },
 											"Hello world. Open {{nav:docs/forms/select#disabled::Forms select}} document from msgbox then show {{#disabled}} section"
 										),
+										//easy button wihtout btnFn will act as close button
 										btn: ["ok"],
 									});
+
+									//show the simple modal using b.modal.show
 									b.modal.show(mdl);
 								},
 							},
@@ -223,6 +262,7 @@ export const modal: IAttrContent = {
 						{
 							on: {
 								click: () => {
+									//simple modal
 									const mdl = B.Modal.Simple({
 										title: document.title,
 										backdrop: "static",
@@ -230,9 +270,10 @@ export const modal: IAttrContent = {
 											{ type: "bi", id: "question-circle-fill", color: "success" },
 											"Do you like javascript?"
 										),
-										btn: ["yes", "no", "cancel"],
+										btn: ["yes", "no", "cancel"], //easy button setup
 										btnFn: [
 											(event) => {
+												//event handler for first button
 												b.toast.show(
 													B.Toast.Simple({
 														title: "Simple modal example",
@@ -241,10 +282,11 @@ export const modal: IAttrContent = {
 													})
 												);
 
-												//manually hidden the modal
+												//manually hidden the modal when you create handler for the button
 												b.modal.hide(event.target as Element);
 											},
 											(event) => {
+												//event handler for second button
 												b.toast.show(
 													B.Toast.Simple({
 														title: "Simple modal example",
@@ -253,11 +295,13 @@ export const modal: IAttrContent = {
 													})
 												);
 
-												//manually hidden the modal
+												//manually hidden the modal when you create handler for the button
 												b.modal.hide(event.target as Element);
 											},
 										],
 									});
+
+									//show the simple modal using b.modal.show
 									b.modal.show(mdl);
 								},
 							},
@@ -286,7 +330,7 @@ export const modal: IAttrContent = {
 						{
 							id: "staticBackdrop",
 							labelledby: "staticBackdropLabel",
-							backdrop: "static",
+							backdrop: "static", //set static backdrop
 						},
 						[
 							new b.modal.header(
@@ -354,7 +398,11 @@ export const modal: IAttrContent = {
 					),
 
 					new b.modal.container(
-						{ id: "scrollableModal", labelledby: "scrollableModalLabel", scrollable: true },
+						{
+							id: "scrollableModal",
+							labelledby: "scrollableModalLabel",
+							scrollable: true, //set scrollable container
+						},
 						[
 							new b.modal.header(
 								{ close: true },
@@ -413,7 +461,11 @@ export const modal: IAttrContent = {
 
 					// Vertically centered modal
 					new b.modal.container(
-						{ id: "verticalCenterModal", labelledby: "verticalCenterModalLabel", centered: true },
+						{
+							id: "verticalCenterModal",
+							labelledby: "verticalCenterModalLabel",
+							centered: true, //set centered modal
+						},
 						modalContent("verticalCenterModal", new h.p("This is a vertically centered modal."))
 					),
 
@@ -600,6 +652,34 @@ export const modal: IAttrContent = {
 									])
 								),
 							])
+						),
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					]),
+				];
+			},
+		}),
+		new e.text("Or using {{s}} or {{S}} library :"),
+		new e.alert(
+			{ color: "warning", callout: true },
+			"{{Warning!}} When you using {{s}} or {{S}} library to create html tag, it may broken when future update of Bootstrap library without any warning."
+		),
+		new e.code({
+			output: () => {
+				return [
+					// Button trigger modal
+					new b.button({ color: "primary", toggle: "modal", target: "#gridModal" }, "Launch demo modal"),
+
+					// Modal
+					new b.modal.container({ id: "gridModal", labelledby: "gridModalLabel" }, [
+						new b.modal.header({ close: true }, new b.modal.title({ id: "gridModalLabel" }, "Modal title")),
+						new b.modal.body(
+							{ class: "bs-highlight-col" },
+							new s(
+								'<div class="container-fluid"><div class="row"><div class="col-md-4">.col-md-4</div><div class="col-md-4 ms-auto">.col-md-4 .ms-auto</div></div><div class="row"><div class="col-md-3 ms-auto">.col-md-3 .ms-auto</div><div class="col-md-2 ms-auto">.col-md-2 .ms-auto</div></div><div class="row"><div class="col-md-6 ms-auto">.col-md-6 .ms-auto</div></div><div class="row"><div class="col-sm-9">Level 1: .col-sm-9<div class="row"><div class="col-8 col-sm-6">Level 2: .col-8 .col-sm-6</div><div class="col-4 col-sm-6">Level 2: .col-4 .col-sm-6</div></div></div></div></div>'
+							)
 						),
 						new b.modal.footer([
 							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
@@ -894,7 +974,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Accessibility"),
 		new e.text(
-			"Be sure to add {{labelledby='...'}}, referencing the {{b.modal.title({id:'...'})}}, to {{b.modal.container}}. Additionally, you may give a description of your modal dialog with {{describedby}} on {{b.modal.container}}. Note that you don’t need to add {{role:'dialog'}} since Bootstrap already add it via JavaScript."
+			"Be sure to add {{labelledby:'...'}}, referencing the {{b.modal.title({id:'...'})}}, to {{b.modal.container}}. Additionally, you may give a description of your modal dialog with {{describedby}} on {{b.modal.container}}. Note that you don’t need to add {{role:'dialog'}} since Bootstrap already add it via JavaScript."
 		),
 
 		//-----------------------
@@ -1287,9 +1367,9 @@ export const modal: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+				const myModal = b.modal.init(document.getElementById('myModal'), options)
 				// or
-				const myModalAlternative = new bootstrap.Modal('#myModal', options)
+				const myModalAlternative = b.modal.init('#myModal', options)
 			`,
 		}),
 
@@ -1331,7 +1411,7 @@ export const modal: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const myModal = new bootstrap.Modal('#myModal', {
+				const myModal = b.modal.init('#myModal', {
 				keyboard: false
 				})
 			`,
@@ -1365,6 +1445,215 @@ export const modal: IAttrContent = {
 					"Manually toggles a modal. {{b::Returns to the caller before the modal has actually been shown or hidden}} (i.e. before the {{shown.bs.modal}} or {{hidden.bs.modal}} event occurs).",
 				],
 			],
+		}),
+
+		new e.code({
+			showConsole: true,
+			output: () => {
+				const modalBody = new b.modal.body(
+					{ id: "example-modal-body" },
+					new h.p("Woo-hoo, you're reading this text in a modal!")
+				);
+
+				const modalContainer = new b.modal.container(
+					{
+						id: "example-modal",
+						labelledby: "example-modal-label",
+						on: {
+							"show.bs.modal": () => {
+								const mdlBody = document.getElementById("example-modal-body");
+								if (mdlBody) {
+									core.replaceWith(mdlBody, modalBody);
+								}
+							},
+						},
+					},
+					[
+						new b.modal.header(
+							{ close: true },
+							new b.modal.title({ id: "example-modal-label" }, "Modal title")
+						),
+						modalBody,
+						new b.modal.footer([
+							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+							new b.button({ color: "primary" }, "Save changes"),
+						]),
+					]
+				);
+
+				const initButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const mdl = b.modal.init("#example-modal");
+								e.console(
+									event.target as Element,
+									"b.modal.init",
+									mdl ? mdl : "null",
+									mdl ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"init"
+				);
+
+				const getInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const mdl = b.modal.getInstance("#example-modal");
+								e.console(
+									event.target as Element,
+									"b.modal.getInstance",
+									mdl ? mdl : "null",
+									mdl ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getInstance"
+				);
+
+				const getOrCreateInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const mdl = b.modal.getOrCreateInstance("#example-modal");
+								e.console(
+									event.target as Element,
+									"b.modal.getOrCreateInstance",
+									mdl ? mdl : "null",
+									mdl ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getOrCreateInstance"
+				);
+
+				const showButton = new b.button(
+					{
+						on: {
+							click: (event) => {
+								b.modal.show("#example-modal", event.target as HTMLElement);
+							},
+						},
+					},
+					"show"
+				);
+
+				const hideButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.modal.hide("#example-modal");
+							},
+						},
+					},
+					"hide"
+				);
+
+				const toggleButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.modal.toggle("#example-modal");
+							},
+						},
+					},
+					"toggle"
+				);
+
+				const handleUpdateButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.modal.handleUpdate("#example-modal");
+							},
+						},
+					},
+					"handleUpdate"
+				);
+
+				const changeContent = new b.button(
+					{
+						color: "warning",
+						on: {
+							click: () => {
+								const mdlBody = document.getElementById("example-modal-body");
+								if (mdlBody) {
+									core.replaceWith(
+										mdlBody,
+										new b.modal.body({ id: "example-modal-body" }, [
+											new h.p(
+												{ style: { height: "100vh" } },
+												"This is some placeholder content to show the scrolling behavior for modals. Bootstrap use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+											),
+											new h.p("This content should appear at the bottom after you scroll."),
+										])
+									);
+								}
+							},
+						},
+					},
+					"changeContent"
+				);
+
+				const disposeButton = new b.button(
+					{
+						color: "danger",
+						on: {
+							click: () => {
+								b.modal.handleUpdate("#example-modal");
+							},
+						},
+					},
+					"dispose"
+				);
+
+				const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+					initButton,
+					getInstanceButton,
+					getOrCreateInstanceButton,
+					showButton,
+					hideButton,
+					toggleButton,
+					handleUpdateButton,
+					changeContent,
+					disposeButton,
+				]);
+
+				const previewContainer = new h.div(
+					{
+						width: 100,
+						margin: 1,
+						marginEnd: 2,
+						bgColor: "body-tertiary",
+						rounded: true,
+						padding: 2,
+					},
+					modalContainer
+				);
+
+				const controlContainer = new h.div(
+					{
+						marginStart: "auto",
+						padding: 1,
+						rounded: true,
+						bgColor: "body",
+						style: { zIndex: "1055" },
+					},
+					buttonGroup
+				);
+
+				const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+
+				return [mainContainer];
+			},
 		}),
 
 		//-----------------------

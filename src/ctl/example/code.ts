@@ -265,7 +265,6 @@ const itemCode = (
 										{
 											content: "Edit on CodePen",
 											trigger: "hover",
-											hideDelay: 500,
 										},
 										new h.a(
 											{
@@ -289,7 +288,6 @@ const itemCode = (
 										{
 											content: "Copy to clipboard",
 											trigger: "hover",
-											hideDelay: 500,
 										},
 										new h.a(
 											{
@@ -313,7 +311,6 @@ const itemCode = (
 										{
 											content: "Refresh code",
 											trigger: "hover",
-											hideDelay: 500,
 										},
 										new h.a(
 											{
@@ -370,7 +367,6 @@ const itemCode = (
 									marginEnd: allowcopy ? 2 : 0,
 									content: "Edit on CodePen",
 									trigger: "hover",
-									hideDelay: 500,
 								},
 								new h.a(
 									{
@@ -385,7 +381,7 @@ const itemCode = (
 						: "",
 					allowcopy
 						? new b.tooltip(
-								{ content: "Copy to clipboard", trigger: "hover", hideDelay: 500 },
+								{ content: "Copy to clipboard", trigger: "hover" },
 								new h.a(
 									{
 										href: "#",
@@ -507,7 +503,6 @@ const itemConsole = () => {
 							{
 								content: "Cleanup console",
 								trigger: "hover",
-								hideDelay: 500,
 							},
 							new h.a(
 								{
