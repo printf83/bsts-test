@@ -648,14 +648,14 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 
 export const genMainContent = (content?: IAttrContent) => {
 	if (content?.loading) {
-		content.item = Array(core.rndBetween(3, 10))
+		content.item = Array(50)
 			.fill("")
 			.map((i) => {
 				return [
 					new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
 					...Array(core.rndBetween(1, 3))
 						.fill("")
-						.map((j) => {
+						.map(() => {
 							return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
 						}),
 					new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),

@@ -401,7 +401,7 @@ export const modal: IAttrContent = {
 						{
 							id: "scrollableModal",
 							labelledby: "scrollableModalLabel",
-							scrollable: true, //set scrollable container
+							scrollable: true, //set scrollable
 						},
 						[
 							new b.modal.header(
@@ -464,7 +464,7 @@ export const modal: IAttrContent = {
 						{
 							id: "verticalCenterModal",
 							labelledby: "verticalCenterModalLabel",
-							centered: true, //set centered modal
+							centered: true, //set centered
 						},
 						modalContent("verticalCenterModal", new h.p("This is a vertically centered modal."))
 					),
@@ -677,6 +677,8 @@ export const modal: IAttrContent = {
 						new b.modal.header({ close: true }, new b.modal.title({ id: "gridModalLabel" }, "Modal title")),
 						new b.modal.body(
 							{ class: "bs-highlight-col" },
+
+							//using s bsts library
 							new s(
 								'<div class="container-fluid"><div class="row"><div class="col-md-4">.col-md-4</div><div class="col-md-4 ms-auto">.col-md-4 .ms-auto</div></div><div class="row"><div class="col-md-3 ms-auto">.col-md-3 .ms-auto</div><div class="col-md-2 ms-auto">.col-md-2 .ms-auto</div></div><div class="row"><div class="col-md-6 ms-auto">.col-md-6 .ms-auto</div></div><div class="row"><div class="col-sm-9">Level 1: .col-sm-9<div class="row"><div class="col-8 col-sm-6">Level 2: .col-8 .col-sm-6</div><div class="col-4 col-sm-6">Level 2: .col-4 .col-sm-6</div></div></div></div></div>'
 							)
@@ -767,27 +769,27 @@ export const modal: IAttrContent = {
 			},
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-			const exampleModal = document.getElementById('exampleModal')
-			exampleModal.addEventListener('show.bs.modal', event => {
-			// Button that triggered the modal
-			const button = event.relatedTarget
-			// Extract info from data-bs-* attributes
-			const recipient = button.getAttribute('data-bs-whatever')
-			// If necessary, you could initiate an Ajax request here
-			// and then do the updating in a callback.
-			//
-			// Update the modal's content.
-			const modalTitle = exampleModal.querySelector('.modal-title')
-			const modalBodyInput = exampleModal.querySelector('.modal-body input')
+		// new e.codepreview({
+		// 	type: "js",
+		// 	code: `
+		// 	const exampleModal = document.getElementById('exampleModal')
+		// 	exampleModal.addEventListener('show.bs.modal', event => {
+		// 	// Button that triggered the modal
+		// 	const button = event.relatedTarget
+		// 	// Extract info from data-bs-* attributes
+		// 	const recipient = button.getAttribute('data-bs-whatever')
+		// 	// If necessary, you could initiate an Ajax request here
+		// 	// and then do the updating in a callback.
+		// 	//
+		// 	// Update the modal's content.
+		// 	const modalTitle = exampleModal.querySelector('.modal-title')
+		// 	const modalBodyInput = exampleModal.querySelector('.modal-body input')
 
-			modalTitle.textContent = "New message to " + recipient
-			modalBodyInput.value = recipient
-			})
-			`,
-		}),
+		// 	modalTitle.textContent = "New message to " + recipient
+		// 	modalBodyInput.value = recipient
+		// 	})
+		// 	`,
+		// }),
 
 		//-----------------------
 
@@ -870,7 +872,11 @@ export const modal: IAttrContent = {
 
 					// Modal
 					new b.modal.container(
-						{ id: "noAnimationModal", labelledby: "noAnimationModalLabel", animation: false },
+						{
+							id: "noAnimationModal",
+							labelledby: "noAnimationModalLabel",
+							animation: false, //remove animation
+						},
 						[
 							new b.modal.header(
 								{ close: true },
@@ -891,7 +897,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Dynamic heights"),
 		new e.text(
-			"If the height of a modal changes while it is open, you should call {{myModal.handleUpdate()}} to readjust the modal’s position in case a scrollbar appears."
+			"If the height of a modal changes while it is open, you should call {{b.modal.handleUpdate}} to readjust the modal’s position in case a scrollbar appears."
 		),
 
 		new e.code({
@@ -942,10 +948,7 @@ export const modal: IAttrContent = {
 											]);
 
 											// readjust the modal’s position
-											const mdl = window.bootstrap.Modal.getInstance(target);
-											if (mdl) {
-												mdl.handleUpdate();
-											}
+											b.modal.handleUpdate(target);
 										},
 										5000,
 										target,
@@ -1084,7 +1087,7 @@ export const modal: IAttrContent = {
 							{
 								id: `${i.weight}SizeModal`,
 								labelledby: `#${i.weight}SizeModalLabel`,
-								weight: i.weight as I.B.Modal.Container["weight"],
+								weight: i.weight as I.B.Modal.Container["weight"], //set modal weight
 							},
 							[
 								new b.modal.header(
@@ -1145,6 +1148,8 @@ export const modal: IAttrContent = {
 							{
 								id: `${i.fullscreen !== true ? i.fullscreen : "xs"}FSModal`,
 								labelledby: `#${i.fullscreen !== true ? i.fullscreen : "xs"}FSModalLabel`,
+
+								//set fullscreen property
 								fullscreen: i.fullscreen
 									? (i.fullscreen as I.B.Modal.Container["fullscreen"])
 									: undefined,
@@ -1660,7 +1665,7 @@ export const modal: IAttrContent = {
 
 		new e.subtitle("Events"),
 		new e.text(
-			"Bootstrap’s modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the {{<div class='modal'>}})."
+			"Bootstrap’s modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the {{b.modal.container}})."
 		),
 		new e.table({
 			item: [
