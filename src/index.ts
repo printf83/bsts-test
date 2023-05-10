@@ -40,7 +40,7 @@ const getCurrentTheme = () => {
 
 let CURRENT_PAGE: string | null = null;
 let CURRENT_THEME = getCurrentTheme();
-let CURRENT_VERSION = "0.1.99";
+let CURRENT_VERSION = "0.1.100";
 
 declare var PR: {
 	prettyPrint: () => void;

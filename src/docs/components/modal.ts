@@ -1417,7 +1417,9 @@ export const modal: IAttrContent = {
 			type: "js",
 			code: `
 				const myModal = b.modal.init('#myModal', {
-				keyboard: false
+				keyboard: false,
+				backdrop: 'static',
+				focus: false,
 				})
 			`,
 		}),

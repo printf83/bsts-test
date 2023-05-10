@@ -2,7 +2,7 @@ import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
 import { ICodePen, codeBeautify, codePen } from "./_fn.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.99/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.100/+esm";
 const BSCDNCSS = [
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",

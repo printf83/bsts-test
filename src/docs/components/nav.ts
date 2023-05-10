@@ -847,7 +847,7 @@ export const nav: IAttrContent = {
 		new e.text(
 			"You also can put card tab in {{b.modal.body}}. Just make sure you add {{padding:0}} to {{b.modal.body}} and {{border:false}} to {{b.card.container}}."
 		),
-		new e.text("You may need to "),
+
 		new e.code({
 			showViewport: true,
 			showCodepen: false,
@@ -869,7 +869,7 @@ export const nav: IAttrContent = {
 										const target = (event.target as Element).closest(".modal") as Element;
 
 										// readjust the modal’s position
-										window.bootstrap.Modal.getInstance(target)?.handleUpdate;
+										b.modal.handleUpdate(target);
 									},
 								},
 								item: [
@@ -914,6 +914,79 @@ export const nav: IAttrContent = {
 						new b.button({ color: "primary" }, "Save changes"),
 					]),
 				]);
+			},
+		}),
+
+		new e.text("Live preview :"),
+
+		new e.code({
+			showViewport: true,
+			previewAttr: { bgColor: "body-tertiary" },
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				const tabCard = new b.card.container(
+					{ border: false },
+					B.Nav.Tab({
+						card: true,
+						on: {
+							"shown.bs.tab": (event) => {
+								const target = (event.target as Element).closest(".modal") as Element;
+
+								// readjust the modal’s position
+								b.modal.handleUpdate(target);
+							},
+						},
+						item: [
+							{
+								label: new b.caption(
+									{
+										icon: "house-fill",
+									},
+									"Home"
+								),
+								active: true,
+								elem: content("Home"),
+							},
+							{
+								label: new b.caption(
+									{
+										icon: "person-vcard-fill",
+										labelDisplay: ["none", "md-block"],
+										iconDisplay: "md-none",
+									},
+									"Home"
+								),
+								elem: content("Profile"),
+							},
+							{
+								label: new b.caption(
+									{
+										icon: "envelope-at-fill",
+										labelDisplay: ["none", "md-block"],
+										iconDisplay: "md-none",
+									},
+									"Message"
+								),
+								elem: content("Messages"),
+							},
+						],
+					})
+				);
+
+				const modal = B.Modal.Simple({
+					id: "modal-tab-example",
+					title: "Modal title",
+					attrBody: { padding: 0 },
+					btn: ["savechanges", "close"],
+					btnFn: () => {},
+					elem: tabCard,
+				});
+
+				const btnShow = new b.button({ target: "#modal-tab-example", toggle: "modal" }, "Show tab in modal");
+
+				return [btnShow, modal];
 			},
 		}),
 

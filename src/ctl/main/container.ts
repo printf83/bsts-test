@@ -648,7 +648,7 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 
 export const genMainContent = (content?: IAttrContent) => {
 	if (content?.loading) {
-		content.item = Array(50)
+		content.item = Array(core.rndBetween(3, 10))
 			.fill("")
 			.map((i) => {
 				return [
