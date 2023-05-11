@@ -27,7 +27,7 @@ const cookie = {
 	},
 };
 
-const getCurrentTheme = () => {
+const getSavedTheme = () => {
 	let themeCookie = cookie.get("current_theme");
 	if (themeCookie) {
 		return themeCookie;
@@ -36,7 +36,7 @@ const getCurrentTheme = () => {
 	}
 };
 
-const onthmemechange = (value: string) => {
+const onThemeChange = (value: string) => {
 	cookie.set("current_theme", value);
 
 	if (value === "auto") {
@@ -50,16 +50,16 @@ const onthmemechange = (value: string) => {
 	}
 };
 
-const themechangesetup = () => {
+const setupThemeChanges = () => {
 	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-		if (getCurrentTheme() === "auto") {
-			onthmemechange("auto");
+		if (getSavedTheme() === "auto") {
+			onThemeChange("auto");
 		}
 	});
 };
 
 let CURRENT_PAGE: string | null = null;
-let CURRENT_THEME = getCurrentTheme();
+let CURRENT_THEME = getSavedTheme();
 let CURRENT_VERSION = "0.1.100";
 
 declare var PR: {
@@ -198,7 +198,7 @@ let m = {
 	] as main.IAttrItemMenu[],
 };
 
-const notfoundData = (value: string) => {
+const dataNotFound = (value: string) => {
 	return {
 		title: "Oooopppsss!",
 		description: `Content {{${value} }}not found`,
@@ -222,21 +222,15 @@ const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 				c.sourceWeb = "Github";
 				callback(c);
 			} else {
-				callback(notfoundData(value));
+				callback(dataNotFound(value));
 			}
 		});
 	} else {
-		callback(notfoundData(value));
+		callback(dataNotFound(value));
 	}
 };
 
-interface IWindowState {
-	docId?: string;
-	anchorId?: string;
-	isfirsttime?: boolean;
-}
-
-const loaddefaultdoc = () => {
+const loadDefaultDoc = () => {
 	const { search } = window.location;
 	if (search && search.startsWith("?d=")) {
 		let docId: string = search.slice(3);
@@ -248,15 +242,15 @@ const loaddefaultdoc = () => {
 			anchorId = tempValue[1];
 		}
 
-		onmenuchange(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, true);
+		onMenuChange(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, true);
 		highlightCurrentMenu(docId);
 	} else {
-		onmenuchange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
+		onMenuChange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
 		highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
 	}
 };
 
-const onmenuchange = (value: string, isfirsttime?: boolean, state?: "push" | "replace") => {
+const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "replace") => {
 	setTimeout(
 		(value) => {
 			isfirsttime ??= false;
@@ -339,24 +333,30 @@ const onmenuchange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 	);
 };
 
-const onbsnavigatesetup = () => {
+const setupBSNavigate = () => {
 	document.addEventListener(
 		"bs.navigate",
 		(e) => {
 			let value = (<CustomEvent>e).detail;
 			highlightCurrentMenu(value);
-			onmenuchange(value);
+			onMenuChange(value);
 		},
 		false
 	);
 };
 
-const onwindowpopstatesetup = () => {
+interface IWindowState {
+	docId?: string;
+	anchorId?: string;
+	isfirsttime?: boolean;
+}
+
+const setupWindowPopState = () => {
 	window.onpopstate = function (e) {
 		if (e.state) {
 			const state: IWindowState = e.state as IWindowState;
 
-			onmenuchange(
+			onMenuChange(
 				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
 				true,
 				"replace"
@@ -382,17 +382,17 @@ const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 	}
 };
 
-const maincontainer = main.Container({
+const mainContainer = main.Container({
 	name: "Bootstrap TS",
 	bgColor: "primary",
 	textColor: "light",
 	icon: { class: "animate-icon", weight: "2xl", id: "node-js", type: "brand" },
 	on: {
 		"bs-menu-change": (e) => {
-			onmenuchange((<CustomEvent>e).detail);
+			onMenuChange((<CustomEvent>e).detail);
 		},
 		"bs-theme-change": (e) => {
-			onthmemechange((<CustomEvent>e).detail);
+			onThemeChange((<CustomEvent>e).detail);
 		},
 	},
 
@@ -484,13 +484,13 @@ const highlightCurrentMenu = (value?: string) => {
 };
 
 core.documentReady(() => {
-	onthmemechange(getCurrentTheme());
+	onThemeChange(getSavedTheme());
 
 	let body = document.getElementById("main") as Element;
-	core.replaceChild(body, maincontainer);
+	core.replaceChild(body, mainContainer);
 
-	loaddefaultdoc();
-	onwindowpopstatesetup();
-	onbsnavigatesetup();
-	themechangesetup();
+	loadDefaultDoc();
+	setupWindowPopState();
+	setupBSNavigate();
+	setupThemeChanges();
 });
