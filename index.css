@@ -222,8 +222,8 @@ strong,
 }
 
 .example-output.zindex-box div:nth-child(1) {
-    /* top: 1.5rem;
-    left: 1.5rem; */
+    top: 1.5rem;
+    left: 1.5rem;
     z-index: 5!important;
 }
 

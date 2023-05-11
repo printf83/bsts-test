@@ -622,6 +622,18 @@ export const modal: IAttrContent = {
 			"Utilize the Bootstrap grid system within a modal by nesting {{container:'fluid'}} within the {{b.modal.body}}. Then, use the normal grid system as you would anywhere else."
 		),
 		new e.code({
+			css: `
+				.bs-highlight-col div[class^="col"]{
+					padding-top:0.75rem;
+					padding-bottom: 0.75rem;
+					background-color: rgba(var(--bs-primary-rgb), 0.15);
+					border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
+				}
+
+				.bs-highlight-col div.row{
+					margin-bottom: 0.75rem;
+				}
+			`,
 			output: () => {
 				return [
 					// Button trigger modal
@@ -667,6 +679,18 @@ export const modal: IAttrContent = {
 			"{{Warning!}} When you using {{s}} or {{S}} library to create html tag, it may broken when future update of Bootstrap library without any warning."
 		),
 		new e.code({
+			css: `
+				.bs-highlight-col div[class^="col"]{
+					padding-top:0.75rem;
+					padding-bottom: 0.75rem;
+					background-color: rgba(var(--bs-primary-rgb), 0.15);
+					border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
+				}
+
+				.bs-highlight-col div.row{
+					margin-bottom: 0.75rem;
+				}
+			`,
 			output: () => {
 				return [
 					// Button trigger modal

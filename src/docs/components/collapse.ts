@@ -103,7 +103,7 @@ export const collapse: IAttrContent = {
 			"A {{b.collapse.toggle}} component can show and hide multiple elements by referencing them with a selector in its {{target}} or {{href}} property. Conversely, multiple {{b.collapse.toggle}} component can show and hide the same element if they each reference it with their {{target}} or {{href}} property."
 		),
 		new e.code({
-			outputAttr: { gap: 2 },
+			outputAttr: { gap: 1 },
 			output: () => {
 				const toggle1 = new b.collapse.toggle(
 					{ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" },
@@ -138,10 +138,13 @@ export const collapse: IAttrContent = {
 					)
 				);
 
-				const rowDiv = new h.div({ row: true }, [
-					new h.div({ col: 6 }, collapse1),
-					new h.div({ col: 6 }, collapse2),
-				]);
+				const rowDiv = new h.div(
+					{ padding: 0 },
+					new h.div({ row: true, gutter: 2 }, [
+						new h.div({ col: 6 }, collapse1),
+						new h.div({ col: 6 }, collapse2),
+					])
+				);
 
 				return [toggle1, toggle2, toggleBoth, rowDiv];
 			},
