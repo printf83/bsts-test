@@ -32,10 +32,30 @@ const getCurrentTheme = () => {
 	if (themeCookie) {
 		return themeCookie;
 	} else {
-		let defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-		cookie.set("current_theme", defaultTheme);
-		return defaultTheme;
+		return "auto";
 	}
+};
+
+const onthmemechange = (value: string) => {
+	cookie.set("current_theme", value);
+
+	if (value === "auto") {
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "dark");
+		} else {
+			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "light");
+		}
+	} else {
+		document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
+	}
+};
+
+const themechangesetup = () => {
+	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+		if (getCurrentTheme() === "auto") {
+			onthmemechange("auto");
+		}
+	});
 };
 
 let CURRENT_PAGE: string | null = null;
@@ -216,6 +236,26 @@ interface IWindowState {
 	isfirsttime?: boolean;
 }
 
+const loaddefaultdoc = () => {
+	const { search } = window.location;
+	if (search && search.startsWith("?d=")) {
+		let docId: string = search.slice(3);
+		let anchorId: string | null = null;
+
+		if (docId.indexOf("#") > -1) {
+			let tempValue = docId.split("#");
+			docId = tempValue[0];
+			anchorId = tempValue[1];
+		}
+
+		onmenuchange(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, true);
+		highlightCurrentMenu(docId);
+	} else {
+		onmenuchange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
+		highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
+	}
+};
+
 const onmenuchange = (value: string, isfirsttime?: boolean, state?: "push" | "replace") => {
 	setTimeout(
 		(value) => {
@@ -299,6 +339,33 @@ const onmenuchange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 	);
 };
 
+const onbsnavigatesetup = () => {
+	document.addEventListener(
+		"bs.navigate",
+		(e) => {
+			let value = (<CustomEvent>e).detail;
+			highlightCurrentMenu(value);
+			onmenuchange(value);
+		},
+		false
+	);
+};
+
+const onwindowpopstatesetup = () => {
+	window.onpopstate = function (e) {
+		if (e.state) {
+			const state: IWindowState = e.state as IWindowState;
+
+			onmenuchange(
+				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
+				true,
+				"replace"
+			);
+			highlightCurrentMenu(state.docId);
+		}
+	};
+};
+
 const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 	if (anchorId) {
 		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
@@ -313,11 +380,6 @@ const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 			window.scrollTo(0, 0);
 		}
 	}
-};
-
-const onthmemechange = (value: string) => {
-	cookie.set("current_theme", value);
-	document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
 };
 
 const maincontainer = main.Container({
@@ -422,49 +484,13 @@ const highlightCurrentMenu = (value?: string) => {
 };
 
 core.documentReady(() => {
-	onthmemechange(CURRENT_THEME);
+	onthmemechange(getCurrentTheme());
+
 	let body = document.getElementById("main") as Element;
 	core.replaceChild(body, maincontainer);
 
-	const { search } = window.location;
-
-	if (search && search.startsWith("?d=")) {
-		let docId: string = search.slice(3);
-		let anchorId: string | null = null;
-
-		if (docId.indexOf("#") > -1) {
-			let tempValue = docId.split("#");
-			docId = tempValue[0];
-			anchorId = tempValue[1];
-		}
-
-		onmenuchange(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, true);
-		highlightCurrentMenu(docId);
-	} else {
-		onmenuchange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
-		highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
-	}
-
-	window.onpopstate = function (e) {
-		if (e.state) {
-			const state: IWindowState = e.state as IWindowState;
-
-			onmenuchange(
-				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
-				true,
-				"replace"
-			);
-			highlightCurrentMenu(state.docId);
-		}
-	};
-
-	document.addEventListener(
-		"bs.navigate",
-		(e) => {
-			let value = (<CustomEvent>e).detail;
-			highlightCurrentMenu(value);
-			onmenuchange(value);
-		},
-		false
-	);
+	loaddefaultdoc();
+	onwindowpopstatesetup();
+	onbsnavigatesetup();
+	themechangesetup();
 });
