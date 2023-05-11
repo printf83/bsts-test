@@ -268,12 +268,12 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 			//chekc if value have #
 			if (CURRENT_PAGE !== docId) {
 				let contentbody = document.getElementById("bs-main") as Element;
-				contentbody = core.replaceChild(
-					contentbody,
-					main.genMainContent({
-						loading: true,
-					} as main.IAttrContent)
-				);
+				// contentbody = core.replaceChild(
+				// 	contentbody,
+				// main.genMainContent({
+				// 	loading: true,
+				// } as main.IAttrContent)
+				// );
 
 				getData(docId, (docData) => {
 					//keep current page in cookie
@@ -419,7 +419,9 @@ const mainContainer = main.Container({
 
 	itemVersion: [{ value: CURRENT_VERSION, label: `Latest (${CURRENT_VERSION})` }],
 	currentVersion: CURRENT_VERSION,
-
+	content: {
+		loading: true,
+	} as main.IAttrContent,
 	itemFooter: [
 		{
 			title: "Links",

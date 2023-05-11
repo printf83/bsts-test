@@ -719,57 +719,99 @@ export const nav: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Using data attributes"),
+		new e.subtitle("Using toggle property"),
 		new e.text(
-			"You can activate a tab or pill navigation by simply specifying {{type:'tab'}} or {{type:'pill'}} on an {{b.nav.header.container}} or {{b.nav.header.containerNav}} component."
+			"You can activate a tab or pill navigation by simply specifying {{toggle:'tab'}} or {{toggle:'pill'}} on an {{b.nav.header.container}} or {{b.nav.header.containerNav}} component."
 		),
-		new e.codepreview({
-			type: "js",
-			code: `
-				() => {
-					const content = (title: string) =>
-						'This is some placeholder content the {{b::" + title + " tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.';
 
-					return B.Nav.Tab({
-						item: [
-							{ label: "Home", active: true, elem: content("Home") },
-							{ label: "Profile", elem: content("Profile") },
-							{ label: "Disabled", disabled: true, elem: content("Disabled") },
-							{ label: "Messages", elem: content("Messages") },
-							{ label: "Settings", elem: content("Settings") },
-						],
-					});
-			}
-			`,
+		new e.code({
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				const d = [
+					{ label: "Home", id: "home", active: true },
+					{ label: "Profile", id: "profile" },
+					{ label: "Contact", id: "contact" },
+				];
+
+				return [
+					new b.nav.header.container(
+						{
+							type: "tab",
+							role: "tablist",
+							id: "prop-tab",
+						},
+						d.map((i) => {
+							return new b.nav.header.item(
+								{ role: "presentation" },
+								new b.nav.header.button(
+									{
+										active: i.active,
+										id: `prop-${i.id}-tab`,
+										target: `#prop-${i.id}-tab-pane`,
+										controlfor: `prop-${i.id}-tab-pane`,
+
+										//set toggle property
+										toggle: "tab",
+									},
+									i.label
+								)
+							);
+						})
+					),
+					new b.nav.content.container(
+						{ id: "prop-tabContent", marginTop: 3 },
+						d.map((i) => {
+							return new b.nav.content.item(
+								{
+									active: i.active,
+									id: `prop-${i.id}-tab-pane`,
+									role: "tabpanel",
+									labelledby: `prop-${i.id}-tab`,
+								},
+								content(i.label)
+							);
+						})
+					),
+				];
+			},
 		}),
 
 		//-----------------------
 
 		new e.subtitle("Via JavaScript"),
 		new e.text("Enable tabbable tabs via JavaScript (each tab needs to be activated individually):"),
+
+		new e.alert(
+			{ color: "warning", callout: true },
+			"By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."
+		),
+
 		new e.codepreview({
 			type: "js",
 			code: `
-				const triggerTabList = document.querySelectorAll('#myTab button')
-				triggerTabList.forEach(triggerEl => {
-				const tabTrigger = new bootstrap.Tab(triggerEl)
+				const triggerTabList = document.querySelectorAll('#myTab button');
+				triggerTabList.forEach((triggerEl) => {
+					const tabTrigger = b.tabList.init(triggerEl);
 
-				triggerEl.addEventListener('click', event => {
-					event.preventDefault()
-					tabTrigger.show()
-				})
-				})
+					triggerEl.addEventListener('click', (event) => {
+						event.preventDefault();
+						tabTrigger.show();
+					});
+				});
 			`,
 		}),
+
 		new e.text("You can activate individual tabs in several ways:"),
 		new e.codepreview({
 			type: "js",
 			code: `
 				const triggerEl = document.querySelector('#myTab button[data-bs-target="#profile"]')
-				bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+				b.tabList.show(triggerEl) // Select tab by name
 
 				const triggerFirstTabEl = document.querySelector('#myTab li:first-child button')
-				bootstrap.Tab.getInstance(triggerFirstTabEl).show() // Select first tab
+				b.tabList.show(triggerFirstTabEl).show() // Select first tab
 			`,
 		}),
 
@@ -877,6 +919,8 @@ export const nav: IAttrContent = {
 										label: new b.caption(
 											{
 												icon: "house-fill",
+												labelDisplay: ["none", "md-block"],
+												iconDisplay: "md-none",
 											},
 											"Home"
 										),
@@ -890,7 +934,7 @@ export const nav: IAttrContent = {
 												labelDisplay: ["none", "md-block"],
 												iconDisplay: "md-none",
 											},
-											"Home"
+											"Profile"
 										),
 										elem: content("Profile"),
 									},
@@ -917,7 +961,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 
-		new e.text("Live preview :"),
+		new e.text("Tab card in modal live demo :"),
 
 		new e.code({
 			showViewport: true,
@@ -943,6 +987,8 @@ export const nav: IAttrContent = {
 								label: new b.caption(
 									{
 										icon: "house-fill",
+										labelDisplay: ["none", "md-block"],
+										iconDisplay: "md-none",
 									},
 									"Home"
 								),
@@ -956,7 +1002,7 @@ export const nav: IAttrContent = {
 										labelDisplay: ["none", "md-block"],
 										iconDisplay: "md-none",
 									},
-									"Home"
+									"Profile"
 								),
 								elem: content("Profile"),
 							},
@@ -1002,7 +1048,7 @@ export const nav: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const bsTab = new bootstrap.Tab('#myTab')
+				const bsTab = b.tabList.init('#myTabButton');
 			`,
 		}),
 		new e.table({
@@ -1022,6 +1068,174 @@ export const nav: IAttrContent = {
 					"Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. {{b::Returns to the caller before the tab pane has actually been shown}} (i.e. before the {{shown.bs.tab}} event occurs).",
 				],
 			],
+		}),
+
+		new e.code({
+			showConsole: true,
+			output: () => {
+				const showTabPaneEventHandler = (event: Event) => {
+					event.preventDefault();
+					b.tabList.show(event.target as Element);
+				};
+
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				const d = [
+					{ label: "1", id: "one", active: true },
+					{ label: "2", id: "two" },
+					{ label: "3", id: "three" },
+					{ label: "4", id: "four" },
+					{ label: "5", id: "five" },
+				];
+
+				const navTabContainer = [
+					new b.nav.header.containerNav(
+						{ type: "tab", role: "tablist", id: "example-nav-tab" },
+						d.map((i) => {
+							return new b.nav.header.button(
+								{
+									active: i.active,
+									id: `example-nav-${i.id}-tab`,
+									target: `#example-nav-${i.id}-tab-pane`,
+									controlfor: `example-nav-${i.id}-tab-pane`,
+
+									//disable auto init tab for documentation
+									//toggle: "tab",
+								},
+								i.label
+							);
+						})
+					),
+					new b.nav.content.container(
+						{ id: "example-nav-tabContent", marginTop: 3 },
+						d.map((i) => {
+							return new b.nav.content.item(
+								{
+									active: i.active,
+									id: `example-nav-${i.id}-tab-pane`,
+									role: "tabpanel",
+									labelledby: `example-nav-${i.id}-tab`,
+								},
+								content(i.label)
+							);
+						})
+					),
+				];
+
+				const initButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = document.querySelectorAll("#example-nav-tab button");
+								elem.forEach((i) => {
+									b.tabList.init(i);
+									i.addEventListener("click", showTabPaneEventHandler);
+								});
+								e.console(
+									event.target as Element,
+									"b.tabList.init",
+									elem ? elem : "null",
+									elem ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"init"
+				);
+
+				const getInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = b.tabList.getInstance("#example-nav-tab button.active");
+								e.console(
+									event.target as Element,
+									"b.tabList.getInstance",
+									elem ? elem : "null",
+									elem ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getInstance"
+				);
+
+				const getOrCreateInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const elem = b.tabList.getOrCreateInstance("#example-nav-tab button.active");
+								e.console(
+									event.target as Element,
+									"b.tabList.getOrCreateInstance",
+									elem ? elem : "null",
+									elem ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getOrCreateInstance"
+				);
+
+				const showButton = new b.button(
+					{
+						on: {
+							click: (event) => {
+								const elem = document.querySelectorAll("#example-nav-tab button");
+								b.tabList.show(elem[core.rndBetween(0, elem.length - 1)]);
+							},
+						},
+					},
+					"show (random)"
+				);
+
+				const disposeButton = new b.button(
+					{
+						color: "danger",
+						on: {
+							click: () => {
+								const elem = document.querySelectorAll("#example-nav-tab button");
+								elem.forEach((i) => {
+									b.tabList.dispose(i);
+									i.removeEventListener("click", showTabPaneEventHandler);
+								});
+							},
+						},
+					},
+					"dispose"
+				);
+
+				const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+					initButton,
+					getInstanceButton,
+					getOrCreateInstanceButton,
+					showButton,
+					disposeButton,
+				]);
+
+				const previewContainer = new h.div(
+					{
+						width: 100,
+						marginEnd: 2,
+					},
+					navTabContainer
+				);
+
+				const controlContainer = new h.div(
+					{
+						marginStart: "auto",
+					},
+					buttonGroup
+				);
+
+				const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+
+				return [mainContainer];
+			},
 		}),
 
 		//-----------------------

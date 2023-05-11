@@ -584,7 +584,7 @@ export const list: IAttrContent = {
 		// }),
 
 		new e.alert(
-			{ callout: true, color: "danger" },
+			{ callout: true, color: "warning" },
 			"By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."
 		),
 
