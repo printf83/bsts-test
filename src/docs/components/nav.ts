@@ -1085,8 +1085,6 @@ export const nav: IAttrContent = {
 					{ label: "1", id: "one", active: true },
 					{ label: "2", id: "two" },
 					{ label: "3", id: "three" },
-					{ label: "4", id: "four" },
-					{ label: "5", id: "five" },
 				];
 
 				const navTabContainer = [
