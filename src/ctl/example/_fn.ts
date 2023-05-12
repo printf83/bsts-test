@@ -531,7 +531,20 @@ export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExt
 };
 
 export const isRequiredCoreInit = (strCode?: string, strManager?: string, strExtention?: string[]) => {
-	const strFind = ["b.tooltip", "b.time", "b.popover", "b.carousel"];
+	const strFind = [
+		"b.tooltip",
+		"b.timer",
+		"b.toast.timer",
+		"b.popover",
+		"b.carousel",
+		"b.scrollspy",
+		"B.Tooltip",
+		"B.Timer",
+		"B.Toast.Timer",
+		"B.Popover",
+		"B.Carousel",
+		"B.Scrollspy",
+	];
 	if (strCode) {
 		let result: boolean = false;
 		strFind.forEach((i) => {
