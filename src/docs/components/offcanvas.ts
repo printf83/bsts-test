@@ -560,6 +560,157 @@ export const offcanvas: IAttrContent = {
 			],
 		}),
 
+		new e.code({
+			showConsole: true,
+			output: () => {
+				const offcanvasContainer = new b.offcanvas.container(
+					{
+						id: "example-offcanvas",
+						labelledby: "example-offcanvas-label",
+					},
+					[
+						new b.offcanvas.header([
+							new b.offcanvas.title({ id: "example-offcanvas-label" }, "Offcanvas"),
+							new b.offcanvas.btnclose(),
+						]),
+						new b.offcanvas.body(
+							"Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here."
+						),
+					]
+				);
+
+				const initButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const oc = b.offcanvas.init("#example-offcanvas", { keyboard: false, backdrop: false });
+								e.console(
+									event.target as Element,
+									"b.offcanvas.init",
+									oc ? oc : "null",
+									oc ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"init"
+				);
+
+				const getInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const oc = b.offcanvas.getInstance("#example-offcanvas");
+								e.console(
+									event.target as Element,
+									"b.offcanvas.getInstance",
+									oc ? oc : "null",
+									oc ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getInstance"
+				);
+
+				const getOrCreateInstanceButton = new b.button(
+					{
+						color: "success",
+						on: {
+							click: (event) => {
+								const oc = b.offcanvas.getOrCreateInstance("#example-offcanvas");
+								e.console(
+									event.target as Element,
+									"b.offcanvas.getOrCreateInstance",
+									oc ? oc : "null",
+									oc ? "success" : "danger"
+								);
+							},
+						},
+					},
+					"getOrCreateInstance"
+				);
+
+				const showButton = new b.button(
+					{
+						on: {
+							click: (event) => {
+								b.offcanvas.show("#example-offcanvas", event.target as HTMLElement);
+							},
+						},
+					},
+					"show"
+				);
+
+				const hideButton = new b.button(
+					{
+						on: {
+							click: () => {
+								b.offcanvas.hide("#example-offcanvas");
+							},
+						},
+					},
+					"hide"
+				);
+
+				const toggleButton = new b.button(
+					{
+						on: {
+							click: (event) => {
+								b.offcanvas.toggles("#example-offcanvas", event.target as HTMLElement);
+							},
+						},
+					},
+					"toggle"
+				);
+
+				const disposeButton = new b.button(
+					{
+						color: "danger",
+						on: {
+							click: () => {
+								b.offcanvas.dispose("#example-offcanvas");
+							},
+						},
+					},
+					"dispose"
+				);
+
+				const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+					initButton,
+					getInstanceButton,
+					getOrCreateInstanceButton,
+					showButton,
+					hideButton,
+					toggleButton,
+					disposeButton,
+				]);
+
+				const previewContainer = new h.div(
+					{
+						width: 100,
+						marginEnd: 3,
+						bgColor: "body-tertiary",
+						rounded: true,
+					},
+					offcanvasContainer
+				);
+
+				const controlContainer = new h.div(
+					{
+						marginStart: "auto",
+					},
+					buttonGroup
+				);
+
+				const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+
+				return [mainContainer];
+			},
+		}),
+
 		//-----------------------
 
 		new e.subtitle("Events"),

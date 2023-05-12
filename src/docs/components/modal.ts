@@ -1639,7 +1639,7 @@ export const modal: IAttrContent = {
 						color: "danger",
 						on: {
 							click: () => {
-								b.modal.handleUpdate("#example-modal");
+								b.modal.dispose("#example-modal");
 							},
 						},
 					},
