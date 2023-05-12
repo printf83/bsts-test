@@ -473,7 +473,7 @@ export const offcanvas: IAttrContent = {
 			"or on a button {{outside the offcanvas}} using the additional {{data-bs-target}} as demonstrated below:"
 		),
 		new e.codepreview({
-			type: "html",
+			type: "js",
 			code: `
 				b.offcanvas.btnclose({target:"#myOffcanvas"});
 				b.button({dismiss:"offcanvas",target:"#myOffcanvas"});
@@ -492,7 +492,7 @@ export const offcanvas: IAttrContent = {
 			type: "js",
 			code: `
 				const offcanvasElementList = document.querySelectorAll('.offcanvas')
-				const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap.Offcanvas(offcanvasEl))
+				const offcanvasList = [...offcanvasElementList].map(offcanvasEl => b.offcanvas.init(offcanvasEl))
 			`,
 		}),
 
@@ -531,7 +531,7 @@ export const offcanvas: IAttrContent = {
 		new e.codepreview({
 			type: "js",
 			code: `
-				const bsOffcanvas = new bootstrap.Offcanvas('#myOffcanvas')
+				const bsOffcanvas = b.offcanvas.init('#myOffcanvas')
 			`,
 		}),
 		new e.table({
@@ -554,7 +554,7 @@ export const offcanvas: IAttrContent = {
 					"Shows an offcanvas element. {{b::Returns to the caller before the offcanvas element has actually been shown}} (i.e. before the {{shown.bs.offcanvas}} event occurs).",
 				],
 				[
-					"{{toggle}}",
+					"{{toggles}}",
 					"Toggles an offcanvas element to shown or hidden. {{b::Returns to the caller before the offcanvas element has actually been shown or hidden}} (i.e. before the {{shown.bs.offcanvas}} or {{hidden.bs.offcanvas}} event occurs).",
 				],
 			],
@@ -584,7 +584,11 @@ export const offcanvas: IAttrContent = {
 						color: "success",
 						on: {
 							click: (event) => {
-								const oc = b.offcanvas.init("#example-offcanvas", { keyboard: false, backdrop: false });
+								const oc = b.offcanvas.init("#example-offcanvas", {
+									keyboard: false,
+									backdrop: false,
+									scroll: true,
+								});
 								e.console(
 									event.target as Element,
 									"b.offcanvas.init",
@@ -738,15 +742,15 @@ export const offcanvas: IAttrContent = {
 			],
 		}),
 
-		new e.codepreview({
-			type: "js",
-			code: `
-				const myOffcanvas = document.getElementById('myOffcanvas')
-				myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
-				// do something...
-				})
-			`,
-		}),
+		// new e.codepreview({
+		// 	type: "js",
+		// 	code: `
+		// 		const myOffcanvas = document.getElementById('myOffcanvas')
+		// 		myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
+		// 		// do something...
+		// 		})
+		// 	`,
+		// }),
 
 		new e.code({
 			showConsole: true,
