@@ -194,7 +194,7 @@ export const button: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			output: () => {
-				return new h.div({ display: ["grid", "md-block"], gap: 2 }, [
+				return new h.div({ display: ["grid", "md-flex"], gap: 2 }, [
 					new b.button("Button"),
 					new b.button("Button"),
 				]);
