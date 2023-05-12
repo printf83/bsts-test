@@ -609,6 +609,7 @@ const generateCodePenData = (
 	reqInit: boolean,
 	strLib: string,
 	strCode: string,
+	strManager?: string,
 	strExtention?: string[],
 	strCSS?: string
 ) => {
@@ -623,17 +624,35 @@ const generateCodePenData = (
 			strExt = strExtention.join("");
 		}
 
-		strCodeResult = `
-			import { ${strLib} } from "${BSTSCDN}";
+		strCodeResult =
+			"import { " +
+			strLib +
+			' } from "' +
+			BSTSCDN +
+			'";\n\n' +
+			(res.consoleFn ? res.consoleFn + "\n\n" : "") +
+			(strExt ? strExt + "\n\n" : "") +
+			(strManager ? "const manager = " + strManager + ";\n\n" : "") +
+			"const source = " +
+			strCode +
+			';\n\ncore.documentReady(() => {	core.replaceChild(document.getElementById("root"), ' +
+			(strManager ? "manager(source())" : "source()") +
+			");\n" +
+			(reqInit ? "core.init(root);\n" : "") +
+			"});";
 
-			${res.consoleFn ? res.consoleFn : ""}
-			${strExt ? strExt : ""}
-			const source = ${strCode};
+		// strCodeResult = `
+		// 	import { ${strLib} } from "${BSTSCDN}";
 
-			core.documentReady(() => {
-				core.replaceChild(document.getElementById("root"), source());
-				${reqInit ? "core.init(root);" : ""}
-			});`;
+		// 	${res.consoleFn ? res.consoleFn : ""}
+		// 	${strExt ? strExt : ""}
+		// 	${strManager ? "const manager = " + strManager + ";" : ""}
+		// 	const source = ${strCode};
+
+		// 	core.documentReady(() => {
+		// 		core.replaceChild(document.getElementById("root"), ${strManager ? "manager(source())" : "source()"});
+		// 		${reqInit ? "core.init(root);" : ""}
+		// 	});`;
 	}
 
 	const result = {
@@ -728,7 +747,6 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	let strExtention: string[] = [];
-
 	if (attr.extention) {
 		let f: IBsExampleExt[] = [];
 		if (Array.isArray(attr.extention)) {
@@ -763,7 +781,14 @@ const convert = (attr: IBsExampleContainer) => {
 		});
 	}
 
+	let strManager: string | undefined = undefined;
 	if ((attr.output || attr.strOutput) && attr.showScript && (attr.manager || attr.strManager) && attr.showManager) {
+		strManager = attr.strManager
+			? attr.strManager
+			: attr.scriptConverter
+			? attr.scriptConverter(attr.manager!.toString())
+			: attr.manager!.toString();
+
 		e.push(
 			...itemCode(
 				e.length > 0,
@@ -771,14 +796,7 @@ const convert = (attr: IBsExampleContainer) => {
 				true,
 
 				"MANAGER",
-				new preview(
-					{ type: attr.strManager ? "ts" : "js" },
-					attr.strManager
-						? attr.strManager
-						: attr.scriptConverter
-						? attr.scriptConverter(attr.manager!.toString())
-						: attr.manager!.toString()
-				)
+				new preview({ type: attr.strManager ? "ts" : "js" }, strManager!)
 			)
 		);
 	}
@@ -803,9 +821,10 @@ const convert = (attr: IBsExampleContainer) => {
 					? () => {
 							codePen(
 								generateCodePenData(
-									isRequiredCoreInit(strSource, strExtention),
-									getLibBaseOnSource(strSource, strExtention),
+									isRequiredCoreInit(strSource, strManager, strExtention),
+									getLibBaseOnSource(strSource, strManager, strExtention),
 									strSource,
+									strManager,
 									strExtention,
 									strCSS
 								)

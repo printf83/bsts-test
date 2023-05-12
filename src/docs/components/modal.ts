@@ -950,7 +950,7 @@ export const modal: IAttrContent = {
 										body,
 										new h.p([
 											"This modal body content will change after ",
-											new h.b(new b.time(ct.setSeconds(ct.getSeconds() + 6).toString())),
+											new h.b(new b.timer(ct.setSeconds(ct.getSeconds() + 6).toString())),
 											".",
 										])
 									);

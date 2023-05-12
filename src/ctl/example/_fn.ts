@@ -471,7 +471,7 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	return undefined;
 };
 
-export const getLibBaseOnSource = (strCode?: string, strExtention?: string[]) => {
+export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExtention?: string[]) => {
 	let libImported: string[] = ["core"];
 
 	const libListA = [
@@ -505,6 +505,14 @@ export const getLibBaseOnSource = (strCode?: string, strExtention?: string[]) =>
 		});
 	}
 
+	if (strManager) {
+		libListA.forEach((i, ix) => {
+			if (strManager.indexOf(i) > -1) {
+				libImported.push(libListB[ix]);
+			}
+		});
+	}
+
 	if (strExtention && strExtention.length > 0) {
 		strExtention.forEach((j) => {
 			libListA.forEach((i, ix) => {
@@ -522,12 +530,26 @@ export const getLibBaseOnSource = (strCode?: string, strExtention?: string[]) =>
 		.join(", ");
 };
 
-export const isRequiredCoreInit = (strCode?: string, strExtention?: string[]) => {
+export const isRequiredCoreInit = (strCode?: string, strManager?: string, strExtention?: string[]) => {
 	const strFind = ["b.tooltip", "b.time", "b.popover", "b.carousel"];
 	if (strCode) {
 		let result: boolean = false;
 		strFind.forEach((i) => {
 			if (strCode.indexOf(i) > -1) {
+				result = true;
+				return;
+			}
+		});
+
+		if (result) {
+			return true;
+		}
+	}
+
+	if (strManager) {
+		let result: boolean = false;
+		strFind.forEach((i) => {
+			if (strManager.indexOf(i) > -1) {
 				result = true;
 				return;
 			}
