@@ -246,7 +246,7 @@ export const pagination: IAttrContent = {
 					label: "Event example",
 					total: 1284,
 					limit: 10,
-					maxBtnCount: 3,
+					maxBtnCount: 5,
 					on: {
 						"change.bs.pagination": (event) => {
 							e.console(
