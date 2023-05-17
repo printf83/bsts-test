@@ -237,5 +237,28 @@ export const pagination: IAttrContent = {
 				}
 			`,
 		}),
+
+		new e.title("Event"),
+		new e.code({
+			showConsole: true,
+			output: () => {
+				return new b.pagination.container({
+					label: "Event example",
+					total: 1284,
+					limit: 10,
+					maxBtnCount: 3,
+					on: {
+						"change.bs.pagination": (event) => {
+							e.console(
+								event.target as Element,
+								"change.bs.pagination",
+								(event as CustomEvent).detail,
+								"success"
+							);
+						},
+					},
+				});
+			},
+		}),
 	],
 };
