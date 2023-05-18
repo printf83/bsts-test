@@ -1,4 +1,89 @@
 
+/* loading */
+
+.bs-main.loading .page-title-text,
+.bs-main.loading .example-description,
+.bs-main.loading .example-text,
+.bs-main.loading .example-ul li,
+.bs-main.loading .example-ol li,
+.bs-main.loading .example-alert,
+.bs-main.loading .example-item,
+.bs-main.loading .example-table,
+.bs-main.loading .example-code .example-output,
+.bs-main.loading .example-code .example-preview,
+.bs-main.loading .example-code .font-monospace small,
+.bs-main.loading .example-title,
+.bs-main.loading .example-subtitle,
+.bs-main.loading .example-xsubtitle,
+.bs-main.loading .bs-toc ul li,
+.bs-main.loading .bs-toc h5
+{
+    color:transparent;
+    position: relative;
+} 
+
+.bs-main.loading .page-title-text >*:not(.placeholder-wave),
+.bs-main.loading .example-description >*:not(.placeholder-wave),
+.bs-main.loading .example-text >*:not(.placeholder-wave),
+.bs-main.loading .example-ul li >*:not(.placeholder-wave),
+.bs-main.loading .example-ol li >*:not(.placeholder-wave),
+.bs-main.loading .example-alert >*:not(.placeholder-wave),
+.bs-main.loading .example-item >*:not(.placeholder-wave),
+.bs-main.loading .example-table >*:not(.placeholder-wave),
+.bs-main.loading .example-code .example-output >*:not(.placeholder-wave),
+.bs-main.loading .example-code .example-preview >*:not(.placeholder-wave),
+.bs-main.loading .example-code .font-monospace small >*:not(.placeholder-wave),
+.bs-main.loading .example-title >*:not(.placeholder-wave),
+.bs-main.loading .example-subtitle >*:not(.placeholder-wave),
+.bs-main.loading .example-xsubtitle >*:not(.placeholder-wave),
+.bs-main.loading .bs-toc ul li >*:not(.placeholder-wave),
+.bs-main.loading .bs-toc h5 >*:not(.placeholder-wave)
+{
+    visibility: hidden;
+} 
+
+.bs-main.loading .page-title-text > .placeholder-wave,
+.bs-main.loading .example-description > .placeholder-wave,
+.bs-main.loading .example-text > .placeholder-wave,
+.bs-main.loading .example-ul li > .placeholder-wave,
+.bs-main.loading .example-ol li > .placeholder-wave,
+.bs-main.loading .example-alert > .placeholder-wave,
+.bs-main.loading .example-item > .placeholder-wave,
+.bs-main.loading .example-table > .placeholder-wave,
+.bs-main.loading .example-code .example-output > .placeholder-wave,
+.bs-main.loading .example-code .example-preview > .placeholder-wave,
+.bs-main.loading .example-code .font-monospace small > .placeholder-wave,
+.bs-main.loading .example-title > .placeholder-wave,
+.bs-main.loading .example-subtitle > .placeholder-wave,
+.bs-main.loading .example-xsubtitle > .placeholder-wave,
+.bs-main.loading .bs-toc ul li > .placeholder-wave,
+.bs-main.loading .bs-toc h5 > .placeholder-wave
+{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top:0;
+    left:0;
+    color: var(--bs-body-color);
+} 
+
+.bs-main.loading .btn
+ {
+    animation: placeholder-glow 2s ease-in-out infinite;
+    display: inline-block;
+    min-height: 1em;
+    vertical-align: middle;
+    cursor: wait;
+    background-color: currentcolor;
+    opacity: .5;
+}
+
+.bs-main.loading .placeholder{
+    animation: placeholder-glow 2s ease-in-out infinite;
+}
+
+
 /* a:hover *,
 [data-bs-toggle="collapse"]:hover{
     cursor: pointer;

@@ -1,6 +1,7 @@
 import { core, h, I } from "@printf83/bsts";
 
 const convert = (attr: I.H.P) => {
+	attr.class = core.mergeClass(attr.class, "example-text");
 	return attr;
 };
 

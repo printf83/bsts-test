@@ -1,4 +1,4 @@
-import { core } from "@printf83/bsts";
+import { core, h } from "@printf83/bsts";
 import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 
@@ -250,6 +250,67 @@ const loadDefaultDoc = () => {
 	}
 };
 
+const setLoading = (contentbody: Element) => {
+	contentbody.classList.add("loading");
+
+	let a = [
+		".page-title-text",
+		".example-description",
+		".example-text",
+		".example-ul li",
+		".example-ol li",
+		".example-alert",
+		".example-item",
+		".example-table",
+		".example-code .font-monospace small",
+		".example-title",
+		".example-subtitle",
+		".example-xsubtitle",
+		".bs-toc ul li",
+		".bs-toc h5",
+	];
+
+	a.forEach((selector) => {
+		let m1: number = 10;
+		let m2: number = 100;
+		let m3: 1 | 2 | 3 | 4 | 5 | 6 = 1;
+		let m4: 1 | 2 | 3 | 4 | 5 | 6 = 6;
+
+		switch (selector) {
+			case ".bs-toc h5":
+			case ".bs-toc ul li":
+			case ".example-xsubtitle":
+			case ".example-subtitle":
+			case ".example-title":
+			case ".example-code .font-monospace small":
+			case ".page-title-text":
+				m1 = 1;
+				m2 = 3;
+				m3 = 1;
+				m4 = 3;
+				break;
+		}
+
+		let elem = contentbody.querySelectorAll(selector);
+		if (elem) {
+			elem.forEach((i) => {
+				core.appendChild(
+					i,
+					new h.div(
+						{
+							loadingPlaceholderAnimation: "wave",
+						},
+						core.placeholder(m1, m2, m3, m4)
+					)
+				);
+			});
+		}
+	});
+};
+const resetLoading = (contentbody: Element) => {
+	contentbody.classList.remove("loading");
+};
+
 const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "replace") => {
 	setTimeout(
 		(value) => {
@@ -268,65 +329,66 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 			//chekc if value have #
 			if (CURRENT_PAGE !== docId) {
 				let contentbody = document.getElementById("bs-main") as Element;
-				// contentbody = core.replaceChild(
-				// 	contentbody,
-				// main.genMainContent({
-				// 	loading: true,
-				// } as main.IAttrContent)
-				// );
 
-				getData(docId, (docData) => {
-					//keep current page in cookie
-					CURRENT_PAGE = docId;
-					cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+				//set loading
+				setLoading(contentbody);
+				setTimeout(() => {
+					getData(docId, (docData) => {
+						//keep current page in cookie
+						CURRENT_PAGE = docId;
+						cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-					//remove active popup
-					core.removeAllActivePopup();
+						//remove active popup
+						core.removeAllActivePopup();
 
-					//generate content
-					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+						//generate content
+						contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 
-					//rename page title and push history
-					let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-					let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-					const { origin, pathname } = window.location;
-					document.title = strPagetitle;
+						//reset loading
+						resetLoading(contentbody);
 
-					if (state === "push") {
-						window.history.pushState(
-							{
-								docId: docId,
-								anchorId: anchorId,
-								isfirsttime: isfirsttime,
-							} satisfies IWindowState,
-							strPagetitle,
-							`${origin}${pathname}?d=${value}`
-						);
-					} else if (state === "replace") {
-						window.history.replaceState(
-							{
-								docId: docId,
-								anchorId: anchorId,
-								isfirsttime: isfirsttime,
-							} satisfies IWindowState,
-							strPagetitle,
-							`${origin}${pathname}?d=${value}`
-						);
-					}
+						//rename page title and push history
+						let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+						let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+						const { origin, pathname } = window.location;
+						document.title = strPagetitle;
 
-					core.init(contentbody);
-					focusToAnchor(anchorId, isfirsttime);
+						if (state === "push") {
+							window.history.pushState(
+								{
+									docId: docId,
+									anchorId: anchorId,
+									isfirsttime: isfirsttime,
+								} satisfies IWindowState,
+								strPagetitle,
+								`${origin}${pathname}?d=${value}`
+							);
+						} else if (state === "replace") {
+							window.history.replaceState(
+								{
+									docId: docId,
+									anchorId: anchorId,
+									isfirsttime: isfirsttime,
+								} satisfies IWindowState,
+								strPagetitle,
+								`${origin}${pathname}?d=${value}`
+							);
+						}
 
-					setTimeout(() => {
-						PR.prettyPrint();
-					}, 300);
-				});
+						core.init(contentbody);
+						focusToAnchor(anchorId, isfirsttime);
+
+						setTimeout(() => {
+							PR.prettyPrint();
+						}, 100);
+					});
+				}, 0);
 			} else {
 				//focus to e
 				focusToAnchor(anchorId, isfirsttime);
 			}
 		},
-		100,
+		0,
 		value
 	);
 };
