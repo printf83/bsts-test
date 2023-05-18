@@ -426,7 +426,7 @@ const itemCode = (
 						: undefined,
 				},
 			},
-			elem
+			new h.div({ class: "example-preview-container" }, elem)
 		)
 	);
 

@@ -6,12 +6,15 @@
 .bs-main.loading .example-text,
 .bs-main.loading .example-ul li,
 .bs-main.loading .example-ol li,
-.bs-main.loading .example-alert,
+.bs-main.loading .example-alert .alert,
 .bs-main.loading .example-item,
-.bs-main.loading .example-table,
+.bs-main.loading .example-table .table td,
+.bs-main.loading .example-table .table th,
 .bs-main.loading .example-code .example-output,
-.bs-main.loading .example-code .example-preview,
+.bs-main.loading .example-code .example-preview-container,
 .bs-main.loading .example-code .font-monospace small,
+.bs-main.loading .example-preview.card .card-header a.font-monospace,
+.bs-main.loading .example-preview.card .card-body pre,
 .bs-main.loading .example-title,
 .bs-main.loading .example-subtitle,
 .bs-main.loading .example-xsubtitle,
@@ -27,12 +30,15 @@
 .bs-main.loading .example-text >*:not(.placeholder-wave),
 .bs-main.loading .example-ul li >*:not(.placeholder-wave),
 .bs-main.loading .example-ol li >*:not(.placeholder-wave),
-.bs-main.loading .example-alert >*:not(.placeholder-wave),
+.bs-main.loading .example-alert .alert >*:not(.placeholder-wave),
 .bs-main.loading .example-item >*:not(.placeholder-wave),
-.bs-main.loading .example-table >*:not(.placeholder-wave),
+.bs-main.loading .example-table .table td>*:not(.placeholder-wave),
+.bs-main.loading .example-table .table th>*:not(.placeholder-wave),
 .bs-main.loading .example-code .example-output >*:not(.placeholder-wave),
-.bs-main.loading .example-code .example-preview >*:not(.placeholder-wave),
+.bs-main.loading .example-code .example-preview-container >*:not(.placeholder-wave),
 .bs-main.loading .example-code .font-monospace small >*:not(.placeholder-wave),
+.bs-main.loading .example-preview.card .card-header a.font-monospace >*:not(.placeholder-wave),
+.bs-main.loading .example-preview.card .card-body pre >*:not(.placeholder-wave),
 .bs-main.loading .example-title >*:not(.placeholder-wave),
 .bs-main.loading .example-subtitle >*:not(.placeholder-wave),
 .bs-main.loading .example-xsubtitle >*:not(.placeholder-wave),
@@ -47,12 +53,15 @@
 .bs-main.loading .example-text > .placeholder-wave,
 .bs-main.loading .example-ul li > .placeholder-wave,
 .bs-main.loading .example-ol li > .placeholder-wave,
-.bs-main.loading .example-alert > .placeholder-wave,
+.bs-main.loading .example-alert .alert > .placeholder-wave,
 .bs-main.loading .example-item > .placeholder-wave,
-.bs-main.loading .example-table > .placeholder-wave,
+.bs-main.loading .example-table .table td > .placeholder-wave,
+.bs-main.loading .example-table .table th > .placeholder-wave,
 .bs-main.loading .example-code .example-output > .placeholder-wave,
-.bs-main.loading .example-code .example-preview > .placeholder-wave,
+.bs-main.loading .example-code .example-preview-container > .placeholder-wave,
 .bs-main.loading .example-code .font-monospace small > .placeholder-wave,
+.bs-main.loading .example-preview.card .card-header a.font-monospace >.placeholder-wave,
+.bs-main.loading .example-preview.card .card-body pre >.placeholder-wave,
 .bs-main.loading .example-title > .placeholder-wave,
 .bs-main.loading .example-subtitle > .placeholder-wave,
 .bs-main.loading .example-xsubtitle > .placeholder-wave,
@@ -66,7 +75,18 @@
     top:0;
     left:0;
     color: var(--bs-body-color);
+
+
 } 
+
+.bs-main.loading .example-preview  pre > .placeholder-wave{
+    white-space:break-spaces;
+}
+
+.bs-main.loading .example-alert .alert > .placeholder-wave {
+    padding:var(--bs-alert-padding-x) var(--bs-alert-padding-y);
+    height: calc(100% - var(--bs-alert-padding-x));
+}
 
 .bs-main.loading .btn
  {
@@ -81,6 +101,7 @@
 
 .bs-main.loading .placeholder{
     animation: placeholder-glow 2s ease-in-out infinite;
+    border-radius: calc(var(--bs-border-radius) * 0.25);
 }
 
 
@@ -170,6 +191,19 @@
         line-height: calc(var(--bs-body-line-height)*1.35);
     }
 
+        /*loading*/
+        .bs-main.loading table.table[data-bs-responsive-title="bs-title-name"] tbody td::before {
+            content: "";
+        }
+    
+        .bs-main.loading table.table[data-bs-responsive-title="bs-title-name"] .placeholder-wave {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        /*loading*/
+
     table.table[data-bs-responsive-title="bs-title-name"] tbody td,
     table.table[data-bs-responsive-title="bs-title-name"] tbody th {
         border: none;
@@ -190,6 +224,18 @@
         line-height: 0.25;
         text-align: left;
     }
+
+        /*loading*/
+        .bs-main.loading table.table[data-bs-responsive-title="bs-title-name"] tbody td::before {
+            content: "";
+        }
+
+        .bs-main.loading table.table[data-bs-responsive-title="bs-title-name"] .placeholder-wave {
+            padding-left: 1rem;
+            padding-right: 1rem;padding-top: 0;
+                padding-bottom: 0;
+        }
+        /*loading*/
 
     table.table[data-bs-responsive-title="bs-title-name"] tbody td:not(:last-of-type) {
         padding-bottom: 1.25rem;
