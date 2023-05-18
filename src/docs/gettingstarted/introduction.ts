@@ -4,6 +4,7 @@ import { IAttrContent } from "../../ctl/main/container";
 
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.104/+esm";
 const BSCDNCSS = [
+	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
 ];
@@ -91,6 +92,7 @@ export const introduction: IAttrContent = {
 								<meta name="viewport" content="width=device-width, initial-scale=1">
 								<link rel="stylesheet" href="${BSCDNCSS[0]}">
 								<link rel="stylesheet" href="${BSCDNCSS[1]}">
+								<link rel="stylesheet" href="${BSCDNCSS[2]}">
 								<title>Bootstrap TS demo</title>
 							</head>
 							<body>
@@ -142,6 +144,7 @@ export const introduction: IAttrContent = {
 								<meta name="viewport" content="width=device-width, initial-scale=1">
 								<link rel="stylesheet" href="${BSCDNCSS[0]}">
 								<link rel="stylesheet" href="${BSCDNCSS[1]}">
+								<link rel="stylesheet" href="${BSCDNCSS[2]}">
 								<title>Bootstrap TS demo</title>
 							</head>
 							<body>

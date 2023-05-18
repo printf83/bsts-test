@@ -89,6 +89,8 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 			}) as string;
 
 		default:
+			source_text = source_text.replace(/\};/g, "};\n");
+
 			return js_beautify(source_text, {
 				preserve_newlines: true,
 				end_with_newline: true,

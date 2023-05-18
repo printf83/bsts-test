@@ -195,6 +195,11 @@ let m = {
 				{ label: "Z-index", value: "docs/utilities/zindex" },
 			],
 		},
+		{
+			label: "Example",
+			icon: { id: "scissors", color: "success" },
+			item: [{ label: "Headers", value: "docs/example/headers" }],
+		},
 	] as main.IAttrItemMenu[],
 };
 

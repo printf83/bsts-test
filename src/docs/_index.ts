@@ -6,12 +6,18 @@ import * as helpers from "./helpers/_index.js";
 import * as content from "./content/_index.js";
 import * as layout from "./layout/_index.js";
 import * as customize from "./customize/_index.js";
+import * as example from "./example/_index.js";
 import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc = async (value: string) => {
 	let result: IAttrContent;
 
 	switch (value) {
+		//--------------------------
+		case "docs/example/headers":
+			result = await example.headers();
+			break;
+
 		//--------------------------
 		case "docs/customize/color":
 			result = await customize.color();
