@@ -71,8 +71,8 @@ declare var html_beautify: {
 export const codeBeautify = (type: codeBeautifyType | undefined, source_text: string): string => {
 	switch (type) {
 		case "html":
-			source_text = source_text.replace(/\>/g, ">\n");
-			source_text = source_text.replace(/\</g, "\n<");
+			// source_text = source_text.replace(/\>/g, ">\n");
+			// source_text = source_text.replace(/\</g, "\n<");
 
 			return html_beautify(source_text, {
 				preserve_newlines: false,

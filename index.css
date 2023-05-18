@@ -1,8 +1,8 @@
 
-a:hover *,
+/* a:hover *,
 [data-bs-toggle="collapse"]:hover{
     cursor: pointer;
-}
+} */
 
 .bs-navbar-nav .nav-link.active{
     font-weight: 600;
