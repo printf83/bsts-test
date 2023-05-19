@@ -8,6 +8,7 @@ export const headers: IAttrContent = {
 	item: [
 		new e.title("Sample 1"),
 		new e.code({
+			previewAttr: { padding: 0 },
 			output: () => {
 				const component = (arg: {
 					icon: I.B.Caption["icon"];
@@ -66,6 +67,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Sample 2"),
 		new e.code({
+			previewAttr: { padding: 0 },
 			output: () => {
 				const component = (arg: I.B.Nav.Header.Container["link"]) => {
 					return new h.div(
@@ -98,6 +100,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Sample 3"),
 		new e.code({
+			previewAttr: { padding: 0 },
 			output: () => {
 				const component = (arg: {
 					icon: core.IElem;
@@ -171,7 +174,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Sample 4"),
 		new e.code({
-			previewAttr: { bgColor: "dark" },
+			previewAttr: { bgColor: "dark", padding: 0 },
 			output: () => {
 				const component = (arg: {
 					icon: core.IElem;
@@ -184,7 +187,6 @@ export const headers: IAttrContent = {
 						{
 							padding: 3,
 							theme: "dark",
-							textBgColor: "dark",
 						},
 						new h.div(
 							{ container: true },
@@ -268,6 +270,138 @@ export const headers: IAttrContent = {
 						//do search
 					},
 				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Sample 5"),
+		new e.code({
+			previewAttr: { padding: 0 },
+			output: () => {
+				const component = (arg: {
+					img: string;
+					icon: core.IElem;
+					link?: I.B.Nav.Header.Container["link"];
+					menu?: core.IElem;
+					onsearch?: EventListener;
+				}) => {
+					return new h.header(
+						{
+							padding: 3,
+							marginBottom: 3,
+							border: "bottom",
+						},
+						new h.div(
+							{ container: true },
+							new h.div(
+								{
+									display: "flex",
+									flex: "wrap",
+									alignItem: "center",
+									justifyContent: ["center", "lg-start"],
+								},
+								[
+									new h.a(
+										{
+											href: "#",
+											display: "flex",
+											alignItem: "center",
+											marginBottom: [2, "lg-0"],
+											linkColor: "body-emphasis",
+											textDecoration: "none",
+											h: 3,
+											marginEnd: 2,
+										},
+										arg.icon
+									),
+
+									new b.nav.header.container({
+										col: [12, "lg-auto"],
+										marginBottom: [2, "md-0"],
+										marginEnd: "lg-auto",
+										justifyContent: "center",
+										link: arg.link,
+									}),
+
+									new h.form(
+										{
+											col: [12, "lg-auto"],
+											marginBottom: [3, "lg-0"],
+											marginEnd: "lg-3",
+											role: "search",
+											on: {
+												submit: arg.onsearch,
+											},
+										},
+										new b.input({ type: "search", placeholder: "Search..." })
+									),
+
+									new h.div(
+										{
+											textAlign: "end",
+											class: "dropdown",
+										},
+										[
+											new h.a(
+												{
+													href: "#",
+													display: "block",
+													textDecoration: "none",
+													class: "dropdown-toggle",
+													data: { "bs-toggle": "dropdown" },
+												},
+												new h.img({
+													src: arg.img,
+													rounded: "circle",
+													attrWidth: 32,
+													attrHeight: 32,
+												})
+											),
+											new b.dropdown.menu(
+												{
+													small: true,
+												},
+												arg.menu ? arg.menu : ""
+											),
+										]
+									),
+								]
+							)
+						)
+					);
+				};
+
+				return component({
+					img: "https://picsum.photos/seed/bsts_0/32/32",
+					icon: new b.icon("fab bootstrap"),
+					link: [
+						{ paddingX: 2, color: "secondary", href: "#", elem: "Overview" },
+						{ paddingX: 2, href: "#", elem: "Inventory" },
+						{ paddingX: 2, href: "#", elem: "Customers" },
+						{ paddingX: 2, href: "#", elem: "Products" },
+					],
+					menu: [
+						new b.dropdown.item({ href: "#" }, "New project..."),
+						new b.dropdown.item({ href: "#" }, "Setting"),
+						new b.dropdown.item({ href: "#" }, "Profile"),
+						new b.dropdown.divider(),
+						new b.dropdown.item({ href: "#" }, "Sign out"),
+					],
+					onsearch: (event) => {
+						//do search
+					},
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Sample 6"),
+		new e.code({
+			previewAttr: { padding: 0 },
+			output: () => {
+				return [];
 			},
 		}),
 
