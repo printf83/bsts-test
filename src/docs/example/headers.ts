@@ -343,13 +343,9 @@ export const headers: IAttrContent = {
 											class: "dropdown",
 										},
 										[
-											new h.a(
+											new b.dropdown.toggleLink(
 												{
 													href: "#",
-													display: "block",
-													textDecoration: "none",
-													class: "dropdown-toggle",
-													data: { "bs-toggle": "dropdown" },
 												},
 												new h.img({
 													src: arg.img,
@@ -358,6 +354,7 @@ export const headers: IAttrContent = {
 													attrHeight: 32,
 												})
 											),
+
 											new b.dropdown.menu(
 												{
 													small: true,
