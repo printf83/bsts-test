@@ -49,7 +49,7 @@ export const headers: IAttrContent = {
 				};
 
 				return component({
-					icon: "fab bootstrap",
+					icon: new b.icon({ type: "brand", id: "bootstrap", h: 3, marginBottom: 0 }),
 					title: "Simple header",
 					link: [
 						{ active: true, href: "#", elem: "Home" },
@@ -118,18 +118,18 @@ export const headers: IAttrContent = {
 								border: "bottom",
 							},
 							[
-								new h.a(
-									{
-										href: "#",
-										display: "flex",
-										alignItem: "center",
-										marginBottom: [3, "md-0"],
-										marginEnd: "md-auto",
-										linkColor: "body-emphasis",
-										textDecoration: "none",
-										h: 4,
-									},
-									arg.icon
+								new h.div(
+									{ col: "md-3", marginBottom: [2, "md-0"] },
+									new h.a(
+										{
+											href: "#",
+											display: "inline-flex",
+											linkColor: "body-emphasis",
+											textDecoration: "none",
+											h: 3,
+										},
+										arg.icon
+									)
 								),
 
 								new b.nav.header.container({
@@ -141,7 +141,7 @@ export const headers: IAttrContent = {
 
 								new h.div({ col: "md-3", textAlign: "end" }, [
 									new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"),
-									new b.button({ outline: false, on: { click: arg.onsignup } }, "Sign-up"),
+									new b.button({ on: { click: arg.onsignup } }, "Sign-up"),
 								]),
 							]
 						)
@@ -169,39 +169,115 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Sample 4"),
 		new e.code({
+			previewAttr: { bgColor: "dark" },
 			output: () => {
-				return [];
+				const component = (arg: {
+					icon: core.IElem;
+					link?: I.B.Nav.Header.Container["link"];
+					onlogin?: EventListener;
+					onsignup?: EventListener;
+					onsearch?: EventListener;
+				}) => {
+					return new h.header(
+						{
+							padding: 3,
+							theme: "dark",
+							textBgColor: "dark",
+						},
+						new h.div(
+							{ container: true },
+							new h.div(
+								{
+									display: "flex",
+									flex: "wrap",
+									alignItem: "center",
+									justifyContent: ["center", "lg-start"],
+								},
+								[
+									new h.a(
+										{
+											href: "#",
+											display: "flex",
+											alignItem: "center",
+											marginBottom: [2, "lg-0"],
+											textColor: "white",
+											textDecoration: "none",
+											h: 3,
+											marginEnd: 2,
+										},
+										arg.icon
+									),
+
+									new b.nav.header.container({
+										col: [12, "lg-auto"],
+										marginBottom: [2, "md-0"],
+										marginEnd: "lg-auto",
+										justifyContent: "center",
+										link: arg.link,
+									}),
+
+									new h.form(
+										{
+											col: [12, "lg-auto"],
+											marginBottom: [3, "lg-0"],
+											marginEnd: "lg-3",
+											role: "search",
+											on: {
+												submit: arg.onsearch,
+											},
+										},
+										new b.input({ type: "search" })
+									),
+
+									new h.div({ textAlign: "end" }, [
+										new b.button(
+											{
+												outline: true,
+												color: "light",
+												marginEnd: 2,
+												on: { click: arg.onlogin },
+											},
+											"Login"
+										),
+										new b.button({ color: "warning", on: { click: arg.onsignup } }, "Sign-up"),
+									]),
+								]
+							)
+						)
+					);
+				};
+
+				return component({
+					icon: new b.icon("fab bootstrap"),
+					link: [
+						{ paddingX: 2, color: "secondary", href: "#", elem: "Home" },
+						{ paddingX: 2, href: "#", elem: "Features" },
+						{ paddingX: 2, href: "#", elem: "Pricing" },
+						{ paddingX: 2, href: "#", elem: "FAQs" },
+						{ paddingX: 2, href: "#", elem: "About" },
+					],
+					onlogin: (event) => {
+						//do login
+					},
+					onsignup: (event) => {
+						//do sign up
+					},
+					onsearch: (event) => {
+						//do search
+					},
+				});
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
-		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
-			code: `
-			`,
+		new e.title(""),
+		new e.code({
+			output: () => {
+				return [];
+			},
 		}),
 	],
 };

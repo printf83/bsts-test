@@ -197,7 +197,7 @@ let m = {
 		},
 		{
 			label: "Example",
-			icon: { id: "scissors", color: "success" },
+			icon: { id: "file-code-fill", color: "success" },
 			item: [{ label: "Headers", value: "docs/example/headers" }],
 		},
 	] as main.IAttrItemMenu[],
