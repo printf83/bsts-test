@@ -10,11 +10,7 @@ export const headers: IAttrContent = {
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
-				const component = (arg: {
-					icon: I.B.Caption["icon"];
-					title: string;
-					link?: I.B.Nav.Header.Container["link"];
-				}) => {
+				const component = (arg: { icon: string; title: string; link?: I.B.Nav.Header.Container["link"] }) => {
 					return new h.div(
 						{ container: true },
 						new h.header(
@@ -37,7 +33,13 @@ export const headers: IAttrContent = {
 										linkColor: "body-emphasis",
 										textDecoration: "none",
 									},
-									new b.caption({ icon: arg.icon, h: 4 }, arg.title)
+									new b.caption(
+										{
+											icon: new b.icon({ id: arg.icon, h: 3, marginBottom: 0 }),
+											h: 4,
+										},
+										arg.title
+									)
 								),
 
 								new b.nav.header.container({
@@ -50,7 +52,7 @@ export const headers: IAttrContent = {
 				};
 
 				return component({
-					icon: new b.icon({ type: "brand", id: "bootstrap", h: 3, marginBottom: 0 }),
+					icon: "fab bootstrap",
 					title: "Simple header",
 					link: [
 						{ active: true, href: "#", elem: "Home" },
@@ -103,7 +105,7 @@ export const headers: IAttrContent = {
 			previewAttr: { padding: 0 },
 			output: () => {
 				const component = (arg: {
-					icon: core.IElem;
+					icon: string;
 					link?: I.B.Nav.Header.Container["link"];
 					onlogin?: EventListener;
 					onsignup?: EventListener;
@@ -131,7 +133,7 @@ export const headers: IAttrContent = {
 											textDecoration: "none",
 											h: 3,
 										},
-										arg.icon
+										new b.icon(arg.icon)
 									)
 								),
 
@@ -152,7 +154,7 @@ export const headers: IAttrContent = {
 				};
 
 				return component({
-					icon: new b.icon("fab bootstrap"),
+					icon: "fab bootstrap",
 					link: [
 						{ paddingX: 2, color: "secondary", href: "#", elem: "Home" },
 						{ paddingX: 2, href: "#", elem: "Features" },
@@ -177,7 +179,7 @@ export const headers: IAttrContent = {
 			previewAttr: { bgColor: "dark", padding: 0 },
 			output: () => {
 				const component = (arg: {
-					icon: core.IElem;
+					icon: string;
 					link?: I.B.Nav.Header.Container["link"];
 					onlogin?: EventListener;
 					onsignup?: EventListener;
@@ -209,7 +211,7 @@ export const headers: IAttrContent = {
 											h: 3,
 											marginEnd: 2,
 										},
-										arg.icon
+										new b.icon(arg.icon)
 									),
 
 									new b.nav.header.container({
@@ -252,7 +254,7 @@ export const headers: IAttrContent = {
 				};
 
 				return component({
-					icon: new b.icon("fab bootstrap"),
+					icon: "fab bootstrap",
 					link: [
 						{ paddingX: 2, color: "secondary", href: "#", elem: "Home" },
 						{ paddingX: 2, href: "#", elem: "Features" },
@@ -281,7 +283,7 @@ export const headers: IAttrContent = {
 			output: () => {
 				const component = (arg: {
 					img: string;
-					icon: core.IElem;
+					icon: string;
 					link?: I.B.Nav.Header.Container["link"];
 					menu?: core.IElem;
 					onsearch?: EventListener;
@@ -313,7 +315,7 @@ export const headers: IAttrContent = {
 											h: 3,
 											marginEnd: 2,
 										},
-										arg.icon
+										new b.icon(arg.icon)
 									),
 
 									new b.nav.header.container({
@@ -346,6 +348,7 @@ export const headers: IAttrContent = {
 											new b.dropdown.toggleLink(
 												{
 													href: "#",
+													color: "body-emphasis",
 												},
 												new h.img({
 													src: arg.img,
@@ -355,12 +358,7 @@ export const headers: IAttrContent = {
 												})
 											),
 
-											new b.dropdown.menu(
-												{
-													small: true,
-												},
-												arg.menu ? arg.menu : ""
-											),
+											new b.dropdown.menu(arg.menu ? arg.menu : ""),
 										]
 									),
 								]
@@ -371,7 +369,7 @@ export const headers: IAttrContent = {
 
 				return component({
 					img: "https://picsum.photos/seed/bsts_0/32/32",
-					icon: new b.icon("fab bootstrap"),
+					icon: "fab bootstrap",
 					link: [
 						{ paddingX: 2, color: "secondary", href: "#", elem: "Overview" },
 						{ paddingX: 2, href: "#", elem: "Inventory" },
@@ -398,7 +396,124 @@ export const headers: IAttrContent = {
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
-				return [];
+				const componentHeader = (arg: {
+					img: string;
+					icon: string;
+					link?: core.IElem;
+					menu?: core.IElem;
+					onsearch?: EventListener;
+				}) => {
+					return new h.header(
+						{
+							paddingY: 3,
+							marginBottom: 3,
+							border: "bottom",
+						},
+						new h.div(
+							{
+								container: "fluid",
+								display: "grid",
+								gap: 3,
+								alignItem: "center",
+								style: { "grid-template-columns": "1fr 2fr" },
+							},
+
+							[
+								new h.div({ class: "dropdown" }, [
+									new b.dropdown.toggleLink(
+										{
+											href: "#",
+											color: "body-emphasis",
+											display: "flex",
+											alignItem: "center",
+											col: "lg-4",
+											marginBottom: [2, "lg-0"],
+										},
+										new b.icon({ id: arg.icon, h: 3, marginBottom: 0 })
+									),
+									new b.dropdown.menu({ shadow: true }, arg.link ? arg.link : ""),
+								]),
+								new h.div({ display: "flex", alignItem: "center" }, [
+									new h.form(
+										{
+											width: 100,
+											marginEnd: 3,
+											role: "search",
+											on: {
+												submit: arg.onsearch,
+											},
+										},
+										new b.input({ type: "search", placeholder: "Search..." })
+									),
+									new h.div({ flex: "shrink-0", class: "dropdown" }, [
+										new b.dropdown.toggleLink(
+											{
+												href: "#",
+												color: "body-emphasis",
+											},
+											new h.img({
+												src: arg.img,
+												rounded: "circle",
+												attrWidth: 32,
+												attrHeight: 32,
+											})
+										),
+
+										new b.dropdown.menu({ shadow: true }, arg.menu ? arg.menu : ""),
+									]),
+								]),
+							]
+						)
+					);
+				};
+
+				const componentBody = (arg: { side?: core.IElem; main?: core.IElem }) => {
+					return new h.div(
+						{ container: "fluid", paddingBottom: 3 },
+						new h.div({ display: "grid", gap: 3, style: { "grid-template-columns": "1fr 2fr" } }, [
+							new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""),
+							new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : ""),
+						])
+					);
+				};
+
+				const component = (arg: {
+					img: string;
+					icon: string;
+					link?: core.IElem;
+					menu?: core.IElem;
+					onsearch?: EventListener;
+					side?: core.IElem;
+					main?: core.IElem;
+				}) => {
+					return [componentHeader(arg), componentBody(arg)];
+				};
+
+				return component({
+					img: "https://picsum.photos/seed/bsts_0/32/32",
+					icon: "fab bootstrap",
+					link: [
+						new b.dropdown.item({ href: "#", active: true }, "Overview"),
+						new b.dropdown.item({ href: "#" }, "Inventory"),
+						new b.dropdown.item({ href: "#" }, "Customers"),
+						new b.dropdown.item({ href: "#" }, "Products"),
+						new b.dropdown.divider(),
+						new b.dropdown.item({ href: "#" }, "Reports"),
+						new b.dropdown.item({ href: "#" }, "Analytics"),
+					],
+					menu: [
+						new b.dropdown.item({ href: "#" }, "New project..."),
+						new b.dropdown.item({ href: "#" }, "Setting"),
+						new b.dropdown.item({ href: "#" }, "Profile"),
+						new b.dropdown.divider(),
+						new b.dropdown.item({ href: "#" }, "Sign out"),
+					],
+					onsearch: (event) => {
+						//do search
+					},
+					side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
+					main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
+				});
 			},
 		}),
 
