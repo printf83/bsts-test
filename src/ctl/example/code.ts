@@ -5,12 +5,13 @@ import {
 	codeBeautify,
 	codePen,
 	getCSSBaseOnSource,
+	getRootBaseOnSource,
 	getLibBaseOnSource,
 	isRequiredCoreInit,
 	replaceEConsole,
 } from "./_fn.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.108/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.109/+esm";
 const BSCDNCSS = [
 	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css",
@@ -612,7 +613,8 @@ const generateCodePenData = (
 	strCode: string,
 	strManager?: string,
 	strExtention?: string[],
-	strCSS?: string
+	strCSS?: string,
+	strRoot?: string
 ) => {
 	let strCodeResult = "";
 
@@ -641,19 +643,6 @@ const generateCodePenData = (
 			");\n" +
 			(reqInit ? "core.init(root);\n" : "") +
 			"});";
-
-		// strCodeResult = `
-		// 	import { ${strLib} } from "${BSTSCDN}";
-
-		// 	${res.consoleFn ? res.consoleFn : ""}
-		// 	${strExt ? strExt : ""}
-		// 	${strManager ? "const manager = " + strManager + ";" : ""}
-		// 	const source = ${strCode};
-
-		// 	core.documentReady(() => {
-		// 		core.replaceChild(document.getElementById("root"), ${strManager ? "manager(source())" : "source()"});
-		// 		${reqInit ? "core.init(root);" : ""}
-		// 	});`;
 	}
 
 	const result = {
@@ -672,13 +661,7 @@ const generateCodePenData = (
 			<meta name="viewport" content="width=device-width, initial-scale=1">`
 		),
 
-		html: codeBeautify(
-			"html",
-			`<div class="container p-4">
-				<div id="root">
-				</div>
-			</div>`
-		),
+		html: codeBeautify("html", strRoot ? strRoot : `<div class="p-4"><div id="root"></div></div>`),
 
 		js_external: BSCDNJS,
 		js: codeBeautify("js", strCodeResult),
@@ -809,6 +792,8 @@ const convert = (attr: IBsExampleContainer) => {
 			? attr.scriptConverter(attr.output!.toString())
 			: attr.output!.toString();
 
+		let strRoot = getRootBaseOnSource(attr.previewAttr);
+
 		e.push(
 			...itemCode(
 				e.length > 0,
@@ -827,7 +812,8 @@ const convert = (attr: IBsExampleContainer) => {
 									strSource,
 									strManager,
 									strExtention,
-									strCSS
+									strCSS,
+									strRoot
 								)
 							);
 					  }

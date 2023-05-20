@@ -221,6 +221,17 @@ const propHasValue = (
 	return false;
 };
 
+export const getRootBaseOnSource = (attr?: core.IAttr) => {
+	if (attr) {
+		// attr = core.mergeObject({ container: true, padding: 4 }, attr);
+		// attr.container ??= "fluid";
+		attr.padding ??= 4;
+		return core.getHtml(new h.div(attr, new h.div({ id: "root" })));
+	} else {
+		return `<div class="p-4"><div id="root"></div></div>`;
+	}
+};
+
 export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		let result: string[] = [];
