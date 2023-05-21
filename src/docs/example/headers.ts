@@ -519,6 +519,81 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
+		new e.title("Sample 7"),
+		new e.code({
+			previewAttr: { padding: 0 },
+			output: () => {
+				const componentNav = (arg: {
+					startMenu?: I.B.Nav.Header.Link | I.B.Nav.Header.Link[];
+					endMenu?: I.B.Nav.Header.Link | I.B.Nav.Header.Link[];
+				}) => {
+					return new h.nav(
+						{ paddingY: 2, bgColor: "body-secondary", border: "bottom" },
+						new h.div({ container: true, display: "flex", flex: "wrap" }, [
+							new b.nav.header.container({ marginEnd: "auto", link: arg.startMenu }),
+							new b.nav.header.container({ link: arg.endMenu }),
+						])
+					);
+				};
+
+				const componentHeader = (arg: { icon: string; title: string; onsearch?: EventListener }) => {
+					return new h.header(
+						{ paddingY: 3, marginBottom: 4, border: "bottom" },
+						new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
+							new h.a(
+								{
+									href: "#",
+									display: "flex",
+									alignItem: "center",
+									marginBottom: [3, "lg-0"],
+									marginEnd: "lg-auto",
+									linkColor: "body-emphasis",
+									textDecoration: "none",
+								},
+								new b.caption(
+									{
+										icon: new b.icon({ id: arg.icon, h: 3, marginBottom: 0 }),
+										h: 4,
+									},
+									arg.title
+								)
+							),
+							new h.form(
+								{
+									col: [12, "lg-auto"],
+									marginBottom: [3, "lg-0"],
+									role: "search",
+									on: {
+										submit: arg.onsearch ? arg.onsearch : undefined,
+									},
+								},
+								new b.input({ type: "search", placeholder: "Search..." })
+							),
+						])
+					);
+				};
+
+				return [
+					componentNav({
+						startMenu: [
+							{ linkColor: "body-emphasis", href: "#", elem: "Home" },
+							{ linkColor: "body-emphasis", href: "#", elem: "Features" },
+							{ linkColor: "body-emphasis", href: "#", elem: "Pricing" },
+							{ linkColor: "body-emphasis", href: "#", elem: "FAQs" },
+							{ linkColor: "body-emphasis", href: "#", elem: "About" },
+						],
+						endMenu: [
+							{ linkColor: "body-emphasis", href: "#", elem: "Login" },
+							{ linkColor: "body-emphasis", href: "#", elem: "Sign up" },
+						],
+					}),
+					componentHeader({ icon: "fab bootstrap", title: "Double header", onsearch: (event) => {} }),
+				];
+			},
+		}),
+
+		//-----------------------
+
 		new e.title(""),
 		new e.code({
 			output: () => {
