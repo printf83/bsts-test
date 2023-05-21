@@ -1,7 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
-import { caption } from "@printf83/bsts/lib/types/bootstrap/caption.js";
 
 export const headers: IAttrContent = {
 	title: "Headers",
@@ -107,7 +106,7 @@ export const headers: IAttrContent = {
 			output: () => {
 				const component = (arg: {
 					icon: string;
-					link?: I.B.Nav.Header.Container["link"];
+					link?: I.B.Nav.Header.Link[];
 					onlogin?: EventListener;
 					onsignup?: EventListener;
 				}) => {
@@ -142,7 +141,13 @@ export const headers: IAttrContent = {
 									col: [12, "md-auto"],
 									marginBottom: [2, "md-0"],
 									justifyContent: "center",
-									link: arg.link,
+									link: arg.link
+										? arg.link.map((i) => {
+												i.paddingX = 2;
+												i.color = i.active ? "secondary" : undefined;
+												return i;
+										  })
+										: undefined,
 								}),
 
 								new h.div({ col: "md-3", textAlign: "end" }, [
@@ -157,11 +162,11 @@ export const headers: IAttrContent = {
 				return component({
 					icon: "fab bootstrap",
 					link: [
-						{ paddingX: 2, color: "secondary", href: "#", elem: "Home" },
-						{ paddingX: 2, href: "#", elem: "Features" },
-						{ paddingX: 2, href: "#", elem: "Pricing" },
-						{ paddingX: 2, href: "#", elem: "FAQs" },
-						{ paddingX: 2, href: "#", elem: "About" },
+						{ active: true, href: "#", elem: "Home" },
+						{ href: "#", elem: "Features" },
+						{ href: "#", elem: "Pricing" },
+						{ href: "#", elem: "FAQs" },
+						{ href: "#", elem: "About" },
 					],
 					onlogin: (event) => {
 						//do login
@@ -223,7 +228,7 @@ export const headers: IAttrContent = {
 										link: arg.link
 											? arg.link.map((i) => {
 													i.paddingX = 2;
-													i.color = i.active ? "secondary" : undefined;
+													i.color = i.active ? "secondary" : "light";
 													return i;
 											  })
 											: undefined,
@@ -290,7 +295,7 @@ export const headers: IAttrContent = {
 				const component = (arg: {
 					img: string;
 					icon: string;
-					link?: I.B.Nav.Header.Container["link"];
+					link?: I.B.Nav.Header.Link[];
 					menu?: core.IElem;
 					onsearch?: EventListener;
 				}) => {
@@ -329,7 +334,13 @@ export const headers: IAttrContent = {
 										marginBottom: [2, "md-0"],
 										marginEnd: "lg-auto",
 										justifyContent: "center",
-										link: arg.link,
+										link: arg.link
+											? arg.link.map((i) => {
+													i.paddingX = 2;
+													i.color = i.active ? "secondary" : undefined;
+													return i;
+											  })
+											: undefined,
 									}),
 
 									new h.form(
@@ -377,10 +388,10 @@ export const headers: IAttrContent = {
 					img: "https://picsum.photos/seed/bsts_0/32/32",
 					icon: "fab bootstrap",
 					link: [
-						{ paddingX: 2, color: "secondary", href: "#", elem: "Overview" },
-						{ paddingX: 2, href: "#", elem: "Inventory" },
-						{ paddingX: 2, href: "#", elem: "Customers" },
-						{ paddingX: 2, href: "#", elem: "Products" },
+						{ active: true, href: "#", elem: "Overview" },
+						{ href: "#", elem: "Inventory" },
+						{ href: "#", elem: "Customers" },
+						{ href: "#", elem: "Products" },
 					],
 					menu: [
 						new b.dropdown.item({ href: "#" }, "New project..."),
@@ -529,15 +540,23 @@ export const headers: IAttrContent = {
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
-				const componentNav = (arg: {
-					startMenu?: I.B.Nav.Header.Link | I.B.Nav.Header.Link[];
-					endMenu?: I.B.Nav.Header.Link | I.B.Nav.Header.Link[];
-				}) => {
+				const componentNav = (arg: { startMenu?: I.B.Nav.Header.Link[]; endMenu?: I.B.Nav.Header.Link[] }) => {
 					return new h.nav(
 						{ paddingY: 2, bgColor: "body-secondary", border: "bottom" },
 						new h.div({ container: true, display: "flex", flex: "wrap" }, [
-							new b.nav.header.container({ marginEnd: "auto", link: arg.startMenu }),
-							new b.nav.header.container({ link: arg.endMenu }),
+							new b.nav.header.container({
+								marginEnd: "auto",
+								link: arg.startMenu?.map((i) => {
+									i.linkColor = "body-emphasis";
+									return i;
+								}),
+							}),
+							new b.nav.header.container({
+								link: arg.endMenu?.map((i) => {
+									i.linkColor = "body-emphasis";
+									return i;
+								}),
+							}),
 						])
 					);
 				};
@@ -582,15 +601,15 @@ export const headers: IAttrContent = {
 				return [
 					componentNav({
 						startMenu: [
-							{ linkColor: "body-emphasis", href: "#", elem: "Home" },
-							{ linkColor: "body-emphasis", href: "#", elem: "Features" },
-							{ linkColor: "body-emphasis", href: "#", elem: "Pricing" },
-							{ linkColor: "body-emphasis", href: "#", elem: "FAQs" },
-							{ linkColor: "body-emphasis", href: "#", elem: "About" },
+							{ href: "#", elem: "Home" },
+							{ href: "#", elem: "Features" },
+							{ href: "#", elem: "Pricing" },
+							{ href: "#", elem: "FAQs" },
+							{ href: "#", elem: "About" },
 						],
 						endMenu: [
-							{ linkColor: "body-emphasis", href: "#", elem: "Login" },
-							{ linkColor: "body-emphasis", href: "#", elem: "Sign up" },
+							{ href: "#", elem: "Login" },
+							{ href: "#", elem: "Sign up" },
 						],
 					}),
 					componentHeader({ icon: "fab bootstrap", title: "Double header", onsearch: (event) => {} }),
@@ -602,7 +621,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 8"),
 		new e.code({
-			previewAttr: { padding: 0 },
+			previewAttr: { padding: 0, overflow: "hidden" },
 			output: () => {
 				const component = (arg: {
 					icon: string;
