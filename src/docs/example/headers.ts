@@ -36,7 +36,7 @@ export const headers: IAttrContent = {
 									},
 									new b.caption(
 										{
-											icon: new b.icon({ id: arg.icon, h: 3, marginBottom: 0 }),
+											icon: new b.icon({ id: arg.icon, h: 2, marginBottom: 0 }),
 											h: 4,
 										},
 										arg.title
@@ -132,7 +132,7 @@ export const headers: IAttrContent = {
 											display: "inline-flex",
 											linkColor: "body-emphasis",
 											textDecoration: "none",
-											h: 3,
+											h: 2,
 										},
 										new b.icon(arg.icon)
 									)
@@ -181,7 +181,7 @@ export const headers: IAttrContent = {
 			output: () => {
 				const component = (arg: {
 					icon: string;
-					link?: I.B.Nav.Header.Container["link"];
+					link?: I.B.Nav.Header.Link[];
 					onlogin?: EventListener;
 					onsignup?: EventListener;
 					onsearch?: EventListener;
@@ -209,7 +209,7 @@ export const headers: IAttrContent = {
 											marginBottom: [2, "lg-0"],
 											textColor: "white",
 											textDecoration: "none",
-											h: 3,
+											h: 2,
 											marginEnd: 2,
 										},
 										new b.icon(arg.icon)
@@ -220,7 +220,13 @@ export const headers: IAttrContent = {
 										marginBottom: [2, "md-0"],
 										marginEnd: "lg-auto",
 										justifyContent: "center",
-										link: arg.link,
+										link: arg.link
+											? arg.link.map((i) => {
+													i.paddingX = 2;
+													i.color = i.active ? "secondary" : undefined;
+													return i;
+											  })
+											: undefined,
 									}),
 
 									new h.form(
@@ -257,11 +263,10 @@ export const headers: IAttrContent = {
 				return component({
 					icon: "fab bootstrap",
 					link: [
-						{ paddingX: 2, color: "secondary", href: "#", elem: "Home" },
-						{ paddingX: 2, href: "#", elem: "Features" },
-						{ paddingX: 2, href: "#", elem: "Pricing" },
-						{ paddingX: 2, href: "#", elem: "FAQs" },
-						{ paddingX: 2, href: "#", elem: "About" },
+						{ active: true, href: "#", elem: "Home" },
+						{ href: "#", elem: "Features" },
+						{ href: "#", elem: "FAQs" },
+						{ href: "#", elem: "About" },
 					],
 					onlogin: (event) => {
 						//do login
@@ -313,7 +318,7 @@ export const headers: IAttrContent = {
 											marginBottom: [2, "lg-0"],
 											linkColor: "body-emphasis",
 											textDecoration: "none",
-											h: 3,
+											h: 2,
 											marginEnd: 2,
 										},
 										new b.icon(arg.icon)
@@ -430,7 +435,7 @@ export const headers: IAttrContent = {
 											col: "lg-4",
 											marginBottom: [2, "lg-0"],
 										},
-										new b.icon({ id: arg.icon, h: 3, marginBottom: 0 })
+										new b.icon({ id: arg.icon, h: 2, marginBottom: 0 })
 									),
 									new b.dropdown.menu({ shadow: true }, arg.link ? arg.link : ""),
 								]),
@@ -553,7 +558,7 @@ export const headers: IAttrContent = {
 								},
 								new b.caption(
 									{
-										icon: new b.icon({ id: arg.icon, h: 3, marginBottom: 0 }),
+										icon: new b.icon({ id: arg.icon, h: 2, marginBottom: 0 }),
 										h: 4,
 									},
 									arg.title
@@ -601,7 +606,7 @@ export const headers: IAttrContent = {
 			output: () => {
 				const component = (arg: {
 					icon: string;
-					link: I.B.Nav.Header.Link | I.B.Nav.Header.Link[];
+					link: { href: string; icon: string; label: string; active?: boolean }[];
 					onlogin?: EventListener;
 					onsignup?: EventListener;
 					onsearch?: EventListener;
@@ -626,17 +631,28 @@ export const headers: IAttrContent = {
 												alignItem: "center",
 												marginY: [2, "lg-0"],
 												marginEnd: "lg-auto",
-												linkColor: "body-emphasis",
+												linkColor: "light",
 												textDecoration: "none",
 											},
-											new b.icon({ id: arg.icon, h: 3, marginBottom: 0 })
+											new b.icon({ id: arg.icon, h: 2, marginBottom: 0 })
 										),
 										new b.nav.header.container({
 											col: [12, "lg-auto"],
 											marginY: [2, "md-0"],
 											small: true,
 											justifyContent: "center",
-											link: arg.link,
+											link: arg.link.map((i) => {
+												let result: I.B.Nav.Header.Link = {
+													linkColor: i.active === true ? "secondary" : "light",
+													href: i.href,
+													elem: new b.caption(
+														{ icon: new b.icon({ id: i.icon, h: 2 }), iconPosition: "top" },
+														i.label
+													),
+												};
+
+												return result;
+											}),
 										}),
 									]
 								)
@@ -677,44 +693,30 @@ export const headers: IAttrContent = {
 					icon: "fab bootstrap",
 					link: [
 						{
-							linkColor: "secondary",
+							active: true,
 							href: "#",
-							elem: new b.caption(
-								{ icon: new b.icon({ id: "house", fontSize: 3 }), iconPosition: "top" },
-								"Home"
-							),
+							icon: "house",
+							label: "Home",
 						},
 						{
-							linkColor: "body-emphasis",
 							href: "#",
-							elem: new b.caption(
-								{ icon: new b.icon({ id: "speedometer2", fontSize: 3 }), iconPosition: "top" },
-								"Dashboard"
-							),
+							icon: "speedometer2",
+							label: "Dashboard",
 						},
 						{
-							linkColor: "body-emphasis",
 							href: "#",
-							elem: new b.caption(
-								{ icon: new b.icon({ id: "table", fontSize: 3 }), iconPosition: "top" },
-								"Order"
-							),
+							icon: "table",
+							label: "Order",
 						},
 						{
-							linkColor: "body-emphasis",
 							href: "#",
-							elem: new b.caption(
-								{ icon: new b.icon({ id: "grid", fontSize: 3 }), iconPosition: "top" },
-								"Products"
-							),
+							icon: "grid",
+							label: "Products",
 						},
 						{
-							linkColor: "body-emphasis",
 							href: "#",
-							elem: new b.caption(
-								{ icon: new b.icon({ id: "person-circle", fontSize: 3 }), iconPosition: "top" },
-								"Customers"
-							),
+							icon: "person-circle",
+							label: "Customers",
 						},
 					],
 					onlogin: (event) => {
