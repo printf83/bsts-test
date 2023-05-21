@@ -1,12 +1,13 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
+import { caption } from "@printf83/bsts/lib/types/bootstrap/caption.js";
 
 export const headers: IAttrContent = {
 	title: "Headers",
 	description: "Display your branding, navigation, search, and more with these header components",
 	item: [
-		new e.title("Sample 1"),
+		new e.title("Example header 1"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
@@ -67,7 +68,7 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Sample 2"),
+		new e.title("Example header 2"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
@@ -100,7 +101,7 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Sample 3"),
+		new e.title("Example header 3"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
@@ -174,7 +175,7 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Sample 4"),
+		new e.title("Example header 4"),
 		new e.code({
 			previewAttr: { bgColor: "dark", padding: 0 },
 			output: () => {
@@ -277,7 +278,7 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Sample 5"),
+		new e.title("Example header 5"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
@@ -392,7 +393,7 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Sample 6"),
+		new e.title("Example header 6"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
@@ -519,7 +520,7 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Sample 7"),
+		new e.title("Example header 7"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			output: () => {
@@ -594,10 +595,138 @@ export const headers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
+		new e.title("Example header 8"),
 		new e.code({
+			previewAttr: { padding: 0 },
 			output: () => {
-				return [];
+				const component = (arg: {
+					icon: string;
+					link: I.B.Nav.Header.Link | I.B.Nav.Header.Link[];
+					onlogin?: EventListener;
+					onsignup?: EventListener;
+					onsearch?: EventListener;
+				}) => {
+					return new h.header([
+						new h.div(
+							{ paddingX: 3, paddingY: 2, textBgColor: "dark" },
+							new h.div(
+								{ container: true },
+								new h.div(
+									{
+										display: "flex",
+										flex: "wrap",
+										alignItem: "center",
+										justifyContent: ["center", "lg-start"],
+									},
+									[
+										new h.a(
+											{
+												href: "#",
+												display: "flex",
+												alignItem: "center",
+												marginY: [2, "lg-0"],
+												marginEnd: "lg-auto",
+												linkColor: "body-emphasis",
+												textDecoration: "none",
+											},
+											new b.icon({ id: arg.icon, h: 3, marginBottom: 0 })
+										),
+										new b.nav.header.container({
+											col: [12, "lg-auto"],
+											marginY: [2, "md-0"],
+											small: true,
+											justifyContent: "center",
+											link: arg.link,
+										}),
+									]
+								)
+							)
+						),
+						new h.div(
+							{ paddingX: 3, paddingY: 2, border: "bottom", marginBottom: 3 },
+							new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
+								new h.form(
+									{
+										col: [12, "lg-auto"],
+										marginBottom: [2, "lg-0"],
+										marginEnd: "lg-auto",
+										role: "search",
+										on: {
+											submit: arg.onsearch ? arg.onsearch : undefined,
+										},
+									},
+									new b.input({ type: "search", label: "Search", placeholder: "Search..." })
+								),
+								new h.div({ textAlign: "end" }, [
+									new b.button(
+										{
+											color: "light",
+											marginEnd: 2,
+											on: { click: arg.onlogin },
+										},
+										"Login"
+									),
+									new b.button({ color: "primary", on: { click: arg.onsignup } }, "Sign-up"),
+								]),
+							])
+						),
+					]);
+				};
+
+				return component({
+					icon: "fab bootstrap",
+					link: [
+						{
+							linkColor: "secondary",
+							href: "#",
+							elem: new b.caption(
+								{ icon: new b.icon({ id: "house", fontSize: 3 }), iconPosition: "top" },
+								"Home"
+							),
+						},
+						{
+							linkColor: "body-emphasis",
+							href: "#",
+							elem: new b.caption(
+								{ icon: new b.icon({ id: "speedometer2", fontSize: 3 }), iconPosition: "top" },
+								"Dashboard"
+							),
+						},
+						{
+							linkColor: "body-emphasis",
+							href: "#",
+							elem: new b.caption(
+								{ icon: new b.icon({ id: "table", fontSize: 3 }), iconPosition: "top" },
+								"Order"
+							),
+						},
+						{
+							linkColor: "body-emphasis",
+							href: "#",
+							elem: new b.caption(
+								{ icon: new b.icon({ id: "grid", fontSize: 3 }), iconPosition: "top" },
+								"Products"
+							),
+						},
+						{
+							linkColor: "body-emphasis",
+							href: "#",
+							elem: new b.caption(
+								{ icon: new b.icon({ id: "person-circle", fontSize: 3 }), iconPosition: "top" },
+								"Customers"
+							),
+						},
+					],
+					onlogin: (event) => {
+						//do login
+					},
+					onsignup: (event) => {
+						//do sign up
+					},
+					onsearch: (event) => {
+						//do search
+					},
+				});
 			},
 		}),
 	],
