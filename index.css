@@ -114,6 +114,8 @@ button span.bs-ico-fa i{
 }
 
 
+
+
 /* a:hover *,
 [data-bs-toggle="collapse"]:hover{
     cursor: pointer;
@@ -126,6 +128,29 @@ button span.bs-ico-fa i{
 .ms-n4{
     margin-left: -2rem;
 }
+
+/*zoom*/
+
+.example-output.zoom-10{
+    zoom: 10%;
+}
+.example-output.zoom-25 {
+    zoom: 25%;
+}
+.example-output.zoom-50 {
+    zoom: 50%;
+}
+.example-output.zoom-75 {
+    zoom: 75%;
+}
+.example-output.zoom-100 {
+    zoom: 100%;
+}
+.example-output.zoom-150 {
+    zoom: 150%;
+}
+
+
 /*example-console*/
 .example-console-notification:not(.active){
     visibility: hidden;

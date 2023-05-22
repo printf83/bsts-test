@@ -9,6 +9,7 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 1"),
 		new e.code({
 			previewAttr: { padding: 0 },
+			outputAttr: { class: "zoom-75" },
 			output: () => {
 				const component = (arg: { icon: string; title: string; description: string; elem?: core.IElem }) => {
 					return new h.div({ paddingX: 4, paddingY: 5, marginY: 5, textAlign: "center" }, [
@@ -42,6 +43,7 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 2"),
 		new e.code({
 			previewAttr: { padding: 0 },
+			outputAttr: { class: "zoom-75" },
 			output: () => {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
 					return new h.div(
@@ -104,13 +106,12 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 3"),
 		new e.code({
 			previewAttr: { padding: 0 },
+			outputAttr: { class: "zoom-75" },
 			output: () => {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
 					return new h.div(
 						{
-							// We disable col property for documentation purpose only. Please reenable col property when using this component
-							// col: "xxl-8",
-
+							col: "xxl-8",
 							container: true,
 							paddingX: 4,
 							paddingY: 5,
@@ -173,13 +174,12 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 4"),
 		new e.code({
 			previewAttr: { padding: 0 },
+			outputAttr: { class: "zoom-75" },
 			output: () => {
 				const component = (arg: { title: string; description: string; onsignup: EventListener }) => {
 					return new h.div(
 						{
-							// We disable col property for documentation purpose only. Please reenable col property when using this component
-							// col: ["xl-10", "xxl-8"],
-
+							col: ["xl-10", "xxl-8"],
 							container: true,
 							paddingX: 4,
 							paddingY: 5,
@@ -245,6 +245,8 @@ export const heroes: IAttrContent = {
 
 		new e.title("Example heroes 5"),
 		new e.code({
+			previewAttr: { padding: 0 },
+			outputAttr: { class: "zoom-75" },
 			output: () => {
 				const component = (arg: { img: string; title: string; description: string; elem: core.IElem }) => {
 					return new h.div(
