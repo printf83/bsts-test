@@ -198,7 +198,10 @@ let m = {
 		{
 			label: "Example",
 			icon: { id: "file-code-fill", color: "success" },
-			item: [{ label: "Headers", value: "docs/example/headers" }],
+			item: [
+				{ label: "Headers", value: "docs/example/headers" },
+				{ label: "Heroes", value: "docs/example/heroes" },
+			],
 		},
 	] as main.IAttrItemMenu[],
 };
