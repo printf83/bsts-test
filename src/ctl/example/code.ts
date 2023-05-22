@@ -45,6 +45,7 @@ export interface IBsExampleContainer extends core.IAttr {
 
 	previewAttr?: core.IAttr;
 	outputAttr?: core.IAttr;
+	zoom?: number;
 }
 
 declare var PR: {
@@ -435,27 +436,41 @@ const itemCode = (
 	return res;
 };
 
-const itemOutput = (previewAttr: core.IAttr | undefined, outputAttr: core.IAttr | undefined, str: string) => {
+const itemOutput = (
+	zoom: number | undefined,
+	previewAttr: core.IAttr | undefined,
+	outputAttr: core.IAttr | undefined,
+	str: string
+) => {
 	if (previewAttr) {
 		if (outputAttr) {
 			return new b.list.item(
 				core.mergeObject({ padding: 4 }, previewAttr),
-				new h.div(core.mergeObject({ class: `example-output` }, outputAttr), str)
+				new h.div(
+					core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr),
+					str
+				)
 			);
 		} else {
 			return new b.list.item(
 				core.mergeObject({ padding: 4 }, previewAttr),
-				new h.div({ class: `example-output` }, str)
+				new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str)
 			);
 		}
 	} else {
 		if (outputAttr) {
 			return new b.list.item(
 				{ padding: 4 },
-				new h.div(core.mergeObject({ class: `example-output` }, outputAttr), str)
+				new h.div(
+					core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr),
+					str
+				)
 			);
 		} else {
-			return new b.list.item({ padding: 4 }, new h.div({ class: `example-output` }, str));
+			return new b.list.item(
+				{ padding: 4 },
+				new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str)
+			);
 		}
 	}
 };
@@ -607,6 +622,82 @@ const itemViewport = () => {
 	);
 };
 
+const itemZoom = (zoom: number) => {
+	return new b.list.item(
+		{
+			padding: 0,
+			bgColor: "primary-subtle",
+			display: "flex",
+			justifyContent: "between",
+			textColor: "primary-emphasis",
+			verticalAlign: "middle",
+			monospace: true,
+		},
+		[
+			new h.span(
+				{
+					paddingY: 1,
+					paddingX: 4,
+					flex: "fill",
+				},
+				new h.small("ZOOM")
+			),
+
+			new h.span(
+				{
+					paddingY: 1,
+					paddingX: 4,
+				},
+
+				[
+					new h.small(
+						new h.a(
+							{
+								href: "#",
+								textDecoration: "none",
+								linkColor: "primary",
+								data: { "bs-zoom": zoom },
+								on: {
+									click: (event) => {
+										const target = event.target as Element;
+										const exampleOutput = target.closest(".card")?.querySelector(".example-output");
+										if (exampleOutput) {
+											const val = target.getAttribute("data-bs-zoom");
+											if (val) {
+												switch (val) {
+													case "50":
+														exampleOutput.classList.remove("zoom-50");
+														exampleOutput.classList.add("zoom-75");
+														target.setAttribute("data-bs-zoom", "75");
+														target.innerHTML = "75%";
+														break;
+													case "75":
+														exampleOutput.classList.remove("zoom-75");
+														exampleOutput.classList.add("zoom-100");
+														target.setAttribute("data-bs-zoom", "100");
+														target.innerHTML = "100%";
+														break;
+													case "100":
+														exampleOutput.classList.remove("zoom-100");
+														exampleOutput.classList.add("zoom-50");
+														target.setAttribute("data-bs-zoom", "50");
+														target.innerHTML = "50%";
+														break;
+												}
+											}
+										}
+									},
+								},
+							},
+							`${zoom}%`
+						)
+					),
+				]
+			),
+		]
+	);
+};
+
 const generateCodePenData = (
 	reqInit: boolean,
 	strLib: string,
@@ -690,10 +781,14 @@ const convert = (attr: IBsExampleContainer) => {
 
 	if (attr.output && attr.showOutput) {
 		if (attr.manager) {
-			e.push(itemOutput(attr.previewAttr, attr.outputAttr, attr.manager(attr.output())));
+			e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, attr.manager(attr.output())));
 		} else {
-			e.push(itemOutput(attr.previewAttr, attr.outputAttr, attr.output()));
+			e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, attr.output()));
 		}
+	}
+
+	if (attr.output && attr.zoom) {
+		e.push(itemZoom(attr.zoom));
 	}
 
 	if (attr.output && attr.showOutput && attr.showViewport) {
@@ -857,6 +952,7 @@ const convert = (attr: IBsExampleContainer) => {
 	delete attr.showCodepen;
 	delete attr.showConsole;
 	delete attr.showViewport;
+	delete attr.zoom;
 	delete attr.showOutput;
 	delete attr.showScript;
 	delete attr.showManager;

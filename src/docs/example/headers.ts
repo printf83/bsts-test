@@ -9,7 +9,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 1"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const component = (arg: { icon: string; title: string; link?: I.B.Nav.Header.Container["link"] }) => {
 					return new h.div(
@@ -71,7 +71,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 2"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const component = (arg: I.B.Nav.Header.Container["link"]) => {
 					return new h.div(
@@ -105,7 +105,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 3"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const component = (arg: {
 					icon: string;
@@ -186,7 +186,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 4"),
 		new e.code({
 			previewAttr: { bgColor: "dark", padding: 0 },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const component = (arg: {
 					icon: string;
@@ -295,7 +295,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 5"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const component = (arg: {
 					img: string;
@@ -417,7 +417,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 6"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const componentHeader = (arg: {
 					img: string;
@@ -545,7 +545,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 7"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const componentNav = (arg: { startMenu?: I.B.Nav.Header.Link[]; endMenu?: I.B.Nav.Header.Link[] }) => {
 					return new h.nav(
@@ -629,7 +629,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 8"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
-			outputAttr: { class: "zoom-75" },
+			zoom: 75,
 			output: () => {
 				const component = (arg: {
 					icon: string;
