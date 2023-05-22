@@ -130,13 +130,6 @@ button span.bs-ico-fa i{
 }
 
 /*zoom*/
-
-.example-output.zoom-10{
-    zoom: 10%;
-}
-.example-output.zoom-25 {
-    zoom: 25%;
-}
 .example-output.zoom-50 {
     zoom: 50%;
 }
@@ -145,9 +138,6 @@ button span.bs-ico-fa i{
 }
 .example-output.zoom-100 {
     zoom: 100%;
-}
-.example-output.zoom-150 {
-    zoom: 150%;
 }
 
 

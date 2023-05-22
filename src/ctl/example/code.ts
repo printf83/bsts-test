@@ -45,7 +45,7 @@ export interface IBsExampleContainer extends core.IAttr {
 
 	previewAttr?: core.IAttr;
 	outputAttr?: core.IAttr;
-	zoom?: number;
+	zoom?: 50 | 75 | 100;
 }
 
 declare var PR: {
@@ -437,7 +437,7 @@ const itemCode = (
 };
 
 const itemOutput = (
-	zoom: number | undefined,
+	zoom: 50 | 75 | 100 | undefined,
 	previewAttr: core.IAttr | undefined,
 	outputAttr: core.IAttr | undefined,
 	str: string
