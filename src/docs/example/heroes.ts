@@ -1,4 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
+import { B, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -108,12 +108,14 @@ export const heroes: IAttrContent = {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
 					return new h.div(
 						{
+							// We disable col property for documentation purpose only. Please reenable col property when using this component
+							// col: "xxl-8",
+
 							container: true,
-							col: "xxl-8",
 							paddingX: 4,
 							paddingY: 5,
 						},
-						new h.div({ row: true, flex: "lg-row-reverse", alignItem: "center", gap: 5, paddingY: 5 }, [
+						new h.div({ row: true, flex: "lg-row-reverse", alignItem: "center", gutter: 5, paddingY: 5 }, [
 							new h.div(
 								{ col: [10, "sm-8", "lg-6"] },
 								new b.img({
@@ -168,29 +170,148 @@ export const heroes: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.title("Example heroes 4"),
+		new e.code({
+			previewAttr: { padding: 0 },
+			output: () => {
+				const component = (arg: { title: string; description: string; onsignup: EventListener }) => {
+					return new h.div(
+						{
+							// We disable col property for documentation purpose only. Please reenable col property when using this component
+							// col: ["xl-10", "xxl-8"],
+
+							container: true,
+							paddingX: 4,
+							paddingY: 5,
+						},
+						new h.div({ row: true, alignItem: "center", gutter: 5, paddingY: 5 }, [
+							new h.div({ col: "lg-7", textAlign: ["center", "lg-start"] }, [
+								new h.h(
+									1,
+									{
+										fontDisplay: 4,
+										fontWeight: "bold",
+										textColor: "body-emphasis",
+										lineHeight: 1,
+										marginBottom: 3,
+									},
+									arg.title
+								),
+								new h.p({ col: "lg-10", fontSize: 4 }, arg.description),
+							]),
+							new h.div(
+								{
+									col: ["md-10", "lg-5"],
+									marginX: "auto",
+								},
+								new h.form(
+									{
+										padding: [4, "md-5"],
+										border: true,
+										rounded: 3,
+										bgColor: "body-tertiary",
+										gap: 3,
+										display: "grid",
+										on: { submit: arg.onsignup },
+									},
+									[
+										B.Form.FloatingLabel.Input({ type: "email", label: "Email address" }),
+										B.Form.FloatingLabel.Input({ type: "password", label: "Password" }),
+										B.Form.Check({ type: "checkbox", label: "Remember me" }),
+										new b.button({ color: "primary", weight: "lg", width: 100 }, "Sign up"),
+										new h.hr(),
+										new h.small(
+											{ textColor: "body-secondary" },
+											"By clicking Sign up, you agree to the terms of use."
+										),
+									]
+								)
+							),
+						])
+					);
+				};
+				return component({
+					title: "Vertically centered hero sign-up form",
+					description:
+						"Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.",
+					onsignup: (event) => {
+						//do signup
+					},
+				});
+			},
 		}),
 
 		//-----------------------
 
-		new e.title("CSS"),
-		new e.text(""),
+		new e.title("Example heroes 5"),
+		new e.code({
+			output: () => {
+				const component = (arg: { img: string; title: string; description: string; elem: core.IElem }) => {
+					return new h.div(
+						{
+							container: true,
+							marginY: 5,
+						},
+						new h.div(
+							{
+								row: true,
+								padding: 4,
+								paddingBottom: 0,
+								paddingEnd: "lg-0",
+								paddingTop: "lg-5",
+								alignItem: "center",
+								rounded: 3,
+								border: true,
+								shadow: "lg",
+							},
+							[
+								new h.div({ col: "lg-7", padding: [3, "lg-5"], paddingTop: "lg-3" }, [
+									new h.h(
+										1,
+										{
+											fontDisplay: 4,
+											fontWeight: "bold",
+											textColor: "body-emphasis",
+											lineHeight: 1,
+										},
+										arg.title
+									),
+									new h.p({ lead: true }, arg.description),
+									new h.div(
+										{
+											display: ["grid", "md-flex"],
+											gap: 2,
+											justifyContent: "md-start",
+											marginBottom: [4, "lg-3"],
+										},
+										arg.elem ? arg.elem : ""
+									),
+								]),
 
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
-			code: `
-			`,
+								new h.div(
+									{ col: "lg-4", offset: "lg-1", padding: 0, overflow: "hidden", shadow: "lg" },
+									new b.img({
+										src: arg.img,
+										alt: "Example image",
+										attrWidth: 720,
+										rounded: 3,
+									})
+								),
+							]
+						)
+					);
+				};
+				return component({
+					img: "https://picsum.photos/seed/bsts_0/432/308",
+					title: "Border hero with cropped image and shadows",
+					description:
+						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+					elem: [
+						new b.button({ weight: "lg", color: "primary" }, "Primary"),
+						new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
+					],
+				});
+			},
 		}),
 	],
 };
