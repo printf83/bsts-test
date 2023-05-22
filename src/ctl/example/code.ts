@@ -673,12 +673,6 @@ const itemZoom = (zoom: number) => {
 														break;
 													case "75":
 														exampleOutput.classList.remove("zoom-75");
-														exampleOutput.classList.add("zoom-100");
-														target.setAttribute("data-bs-zoom", "100");
-														target.innerHTML = "100%";
-														break;
-													case "100":
-														exampleOutput.classList.remove("zoom-100");
 														exampleOutput.classList.add("zoom-50");
 														target.setAttribute("data-bs-zoom", "50");
 														target.innerHTML = "50%";

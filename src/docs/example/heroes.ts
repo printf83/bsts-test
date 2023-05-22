@@ -42,7 +42,7 @@ export const heroes: IAttrContent = {
 
 		new e.title("Example heroes 2"),
 		new e.code({
-			previewAttr: { padding: 0 },
+			previewAttr: { padding: 0, overflow: "hidden" },
 			zoom: 75,
 			output: () => {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
@@ -111,8 +111,7 @@ export const heroes: IAttrContent = {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
 					return new h.div(
 						{
-							// disable for documentation only. please reanable when using this component
-							// col: "xxl-8",
+							col: "xxl-8",
 
 							container: true,
 							paddingX: 4,
@@ -181,8 +180,7 @@ export const heroes: IAttrContent = {
 				const component = (arg: { title: string; description: string; onsignup: EventListener }) => {
 					return new h.div(
 						{
-							// disable for documentation only. please reanable when using this component
-							// col: ["xl-10", "xxl-8"],
+							col: ["xl-10", "xxl-8"],
 
 							container: true,
 							paddingX: 4,
@@ -314,6 +312,47 @@ export const heroes: IAttrContent = {
 					elem: [
 						new b.button({ weight: "lg", color: "primary" }, "Primary"),
 						new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
+					],
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Example heroes 6"),
+		new e.code({
+			zoom: 75,
+			previewAttr: { padding: 0, bgColor: "dark", overflow: "hidden" },
+			output: () => {
+				const component = (arg: { title: string; description: string; elem?: core.IElem }) => {
+					return new h.div(
+						{
+							paddingX: 4,
+							paddingY: 5,
+							textAlign: "center",
+							bgColor: "dark",
+							textColor: "light",
+						},
+						[
+							new h.h(1, { fontDisplay: 5, fontWeight: "bold" }, arg.title),
+							new h.div({ col: "lg-6", marginX: "auto" }, [
+								new h.p({ lead: true, marginBottom: 4 }, arg.description),
+								new h.div(
+									{ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" },
+									arg.elem ? arg.elem : ""
+								),
+							]),
+						]
+					);
+				};
+
+				return component({
+					title: "Dark color hero",
+					description:
+						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+					elem: [
+						new b.button({ weight: "lg", color: "primary", outline: true }, "Custom button"),
+						new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
 					],
 				});
 			},
