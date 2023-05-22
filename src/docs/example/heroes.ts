@@ -111,7 +111,9 @@ export const heroes: IAttrContent = {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
 					return new h.div(
 						{
-							col: "xxl-8",
+							// disable for documentation only. please reanable when using this component
+							// col: "xxl-8",
+
 							container: true,
 							paddingX: 4,
 							paddingY: 5,
@@ -179,7 +181,9 @@ export const heroes: IAttrContent = {
 				const component = (arg: { title: string; description: string; onsignup: EventListener }) => {
 					return new h.div(
 						{
-							col: ["xl-10", "xxl-8"],
+							// disable for documentation only. please reanable when using this component
+							// col: ["xl-10", "xxl-8"],
+
 							container: true,
 							paddingX: 4,
 							paddingY: 5,

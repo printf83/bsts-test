@@ -131,14 +131,16 @@ button span.bs-ico-fa i{
 
 /*zoom*/
 .example-output.zoom-50 {
-    zoom: 50%;
+    /* zoom: 50%; */
+    transform: scale(0.5);
 }
 .example-output.zoom-75 {
-    zoom: 75%;
+    /* zoom: 75%; */
+    transform: scale(0.75);
 }
-.example-output.zoom-100 {
+/* .example-output.zoom-100 {
     zoom: 100%;
-}
+} */
 
 
 /*example-console*/
