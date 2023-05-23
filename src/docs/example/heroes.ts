@@ -9,7 +9,7 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 1"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			zoom: 75,
+			// zoom: 75,
 			output: () => {
 				const component = (arg: { icon: string; title: string; description: string; elem?: core.IElem }) => {
 					return new h.div({ paddingX: 4, paddingY: 5, marginY: 5, textAlign: "center" }, [
@@ -43,7 +43,7 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 2"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
-			zoom: 75,
+			// zoom: 75,
 			output: () => {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
 					return new h.div(
@@ -106,7 +106,7 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 3"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			zoom: 75,
+			// zoom: 75,
 			output: () => {
 				const component = (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
 					return new h.div(
@@ -175,7 +175,7 @@ export const heroes: IAttrContent = {
 		new e.title("Example heroes 4"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			zoom: 75,
+			// zoom: 75,
 			output: () => {
 				const component = (arg: { title: string; description: string; onsignup: EventListener }) => {
 					return new h.div(
@@ -247,7 +247,7 @@ export const heroes: IAttrContent = {
 
 		new e.title("Example heroes 5"),
 		new e.code({
-			zoom: 75,
+			// zoom: 75,
 			output: () => {
 				const component = (arg: { img: string; title: string; description: string; elem: core.IElem }) => {
 					return new h.div(
@@ -321,7 +321,7 @@ export const heroes: IAttrContent = {
 
 		new e.title("Example heroes 6"),
 		new e.code({
-			zoom: 75,
+			// zoom: 75,
 			previewAttr: { padding: 0, bgColor: "dark", overflow: "hidden" },
 			output: () => {
 				const component = (arg: { title: string; description: string; elem?: core.IElem }) => {

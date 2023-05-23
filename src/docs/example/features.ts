@@ -1,4 +1,4 @@
-import { b, core, h, s } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -59,6 +59,7 @@ export const features: IAttrContent = {
 		}),
 
 		//-----------------------
+
 		new e.title("Hanging icons"),
 		new e.code({
 			// zoom: 75,
@@ -234,39 +235,198 @@ export const features: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Icon grid"),
 		new e.code({
+			// zoom: 75,
 			output: () => {
-				return [];
+				const component = (arg: { icon: string; title: string; description: string }) => {
+					return new h.div(
+						{
+							col: true,
+							display: "flex",
+							alignItem: "start",
+						},
+						[
+							new h.div(
+								{
+									textColor: "body-secondary",
+									flex: "shrink-0",
+									marginEnd: 3,
+									h: 3,
+								},
+								new b.icon(arg.icon)
+							),
+							new h.div([
+								new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title),
+								new h.p(arg.description),
+							]),
+						]
+					);
+				};
+
+				return new h.div(
+					{
+						row: true,
+						gutter: 4,
+						paddingY: 5,
+						rowCol: [1, "sm-2", "md-3", "lg-4"],
+					},
+					[
+						component({
+							icon: "fab bootstrap",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "cpu-fill",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "calendar3",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "house",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "speedometer2",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "toggles2",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "toggles2",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "geo-fill",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+						component({
+							icon: "tools",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						}),
+					]
+				);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.title("Features with title"),
+		new e.code({
+			output: () => {
+				const componentFeature = (arg: { icon: string; title: string; description: string }) => {
+					return new h.div(
+						{
+							col: true,
+							display: "flex",
+							flex: "column",
+							gap: 2,
+						},
+						[
+							new h.div(
+								new h.div(
+									{
+										display: "inline-flex",
+										alignItem: "center",
+										justifyContent: "center",
+										textBgColor: "primary",
+										bgGradient: true,
+										fontSize: 4,
+										paddingX: 3,
+										paddingY: 2,
+										rounded: 3,
+									},
+									new b.icon(arg.icon)
+								)
+							),
+							new h.h(4, { fontWeight: "semibold", marginBottom: 0 }, arg.title),
+							new h.p({ textColor: "body-secondary" }, arg.description),
+						]
+					);
+				};
+
+				const componentTitle = (arg: { title: string; description: string; elem: core.IElem }) => {
+					return new h.div(
+						{
+							col: true,
+							display: "flex",
+							flex: "column",
+							alignItem: "start",
+							gap: 2,
+						},
+						[
+							new h.h(3, { fontWeight: "bold" }, arg.title),
+							new h.p({ textColor: "body-secondary" }, arg.description),
+							new h.div(arg.elem),
+						]
+					);
+				};
+
+				const component = (arg: {
+					main: { title: string; description: string; elem: core.IElem };
+					feature: { icon: string; title: string; description: string }[];
+				}) => {
+					return new h.div(
+						{ row: true, rowCol: [1, "md-2"], alignItem: "md-center", gutter: 5, paddingY: 5 },
+						[
+							componentTitle(arg.main),
+							new h.div(
+								{ col: true },
+								new h.div(
+									{ row: true, rowCol: [1, "sm-2"], gutter: 4 },
+									arg.feature.map((i) => componentFeature(i))
+								)
+							),
+						]
+					);
+				};
+
+				return component({
+					main: {
+						title: "Left-aligned title explaining these awesome features",
+						description:
+							"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+						elem: new b.button({ weight: "lg" }, "Primary button"),
+					},
+					feature: [
+						{
+							icon: "collection",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						},
+						{
+							icon: "gear-fill",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						},
+						{
+							icon: "person-circle",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						},
+						{
+							icon: "toggles2",
+							title: "Featured title",
+							description: "Paragraph of text beneath the heading to explain the heading.",
+						},
+					],
+				});
+			},
 		}),
 
 		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
-			code: `
-			`,
-		}),
 	],
 };
