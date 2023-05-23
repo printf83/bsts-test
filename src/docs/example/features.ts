@@ -61,7 +61,7 @@ export const features: IAttrContent = {
 		//-----------------------
 		new e.title("Hanging icons"),
 		new e.code({
-			zoom: 75,
+			// zoom: 75,
 			output: () => {
 				const component = (arg: { icon: string; title: string; description: string; elem: core.IElem }) => {
 					return new h.div(
@@ -96,7 +96,7 @@ export const features: IAttrContent = {
 					);
 				};
 
-				return new h.div({ row: true, gutter: 4, paddingY: 5, rowCol: [1, "lg-3"] }, [
+				return new h.div({ row: true, gutter: 4, paddingY: 5, rowCol: [1, "md-2", "lg-3"] }, [
 					component({
 						icon: "toggles2",
 						title: "Featured title",
@@ -125,7 +125,7 @@ export const features: IAttrContent = {
 		//-----------------------
 		new e.title("Custom cards"),
 		new e.code({
-			zoom: 75,
+			// zoom: 75,
 			// previewAttr: { padding: 0 },
 			output: () => {
 				const component = (arg: { bg: string; img: string; title: string; location: string; date: string }) => {
@@ -159,7 +159,8 @@ export const features: IAttrContent = {
 												{
 													marginTop: "auto",
 													marginBottom: 4,
-													fontDisplay: 6,
+													// fontDisplay: 6,
+													h: 5,
 													lineHeight: 1,
 													fontWeight: "bold",
 												},
@@ -202,28 +203,28 @@ export const features: IAttrContent = {
 						alignItem: "stretch",
 						gutter: 4,
 						paddingY: 5,
-						rowCol: [1, "lg-3"],
+						rowCol: [1, "md-2", "lg-3"],
 					},
 					[
 						component({
-							img: "https://picsum.photos/seed/bsts_1/32/32",
-							bg: "https://picsum.photos/seed/bsts_2/506/495",
+							img: "https://picsum.photos/seed/bsts_0/32/32",
+							bg: "https://picsum.photos/seed/bsts_1/506/495",
 							title: "Short title, long jacket",
 							location: "Earth",
 							date: "3d",
 						}),
 						component({
-							img: "https://picsum.photos/seed/bsts_3/32/32",
-							bg: "https://picsum.photos/seed/bsts_4/506/495",
-							title: "Longer title that wraps to multiple lines",
-							location: "Kota Kinabalu",
+							img: "https://picsum.photos/seed/bsts_2/32/32",
+							bg: "https://picsum.photos/seed/bsts_3/506/495",
+							title: "Much longer title that wraps to multiple lines",
+							location: "Putatan",
 							date: "4d",
 						}),
 						component({
-							img: "https://picsum.photos/seed/bsts_5/32/32",
-							bg: "https://picsum.photos/seed/bsts_6/506/495",
+							img: "https://picsum.photos/seed/bsts_4/32/32",
+							bg: "https://picsum.photos/seed/bsts_5/506/495",
 							title: "Another longer title belongs here",
-							location: "Kuala Lumpur",
+							location: "Kedah",
 							date: "5d",
 						}),
 					]
