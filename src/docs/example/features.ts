@@ -125,7 +125,7 @@ export const features: IAttrContent = {
 		//-----------------------
 		new e.title("Custom cards"),
 		new e.code({
-			zoom: 50,
+			zoom: 75,
 			// previewAttr: { padding: 0 },
 			output: () => {
 				const component = (arg: { bg: string; img: string; title: string; location: string; date: string }) => {
@@ -215,7 +215,7 @@ export const features: IAttrContent = {
 						component({
 							img: "https://picsum.photos/seed/bsts_3/32/32",
 							bg: "https://picsum.photos/seed/bsts_4/506/495",
-							title: "Much longer title that wraps to multiple lines",
+							title: "Longer title that wraps to multiple lines",
 							location: "Kota Kinabalu",
 							date: "4d",
 						}),
