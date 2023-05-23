@@ -9,6 +9,7 @@ import {
 	getLibBaseOnSource,
 	isRequiredCoreInit,
 	replaceEConsole,
+	replaceExtention,
 } from "./_fn.js";
 
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.110/+esm";
@@ -21,6 +22,7 @@ const BSCDNJS = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bo
 
 export interface IBsExampleExt {
 	name?: string;
+	rename?: string;
 	output?: Function;
 	strOutput?: string;
 }
@@ -819,7 +821,26 @@ const convert = (attr: IBsExampleContainer) => {
 		}
 	}
 
+	let renameExtention: { find: string; replace: string }[] = [];
+	if (attr.extention) {
+		let f: IBsExampleExt[] = [];
+		if (Array.isArray(attr.extention)) {
+			f = attr.extention;
+		} else {
+			f = [attr.extention];
+		}
+
+		f.forEach((i) => {
+			if (i && i.name && (i.output || i.strOutput)) {
+				if (i.name && i.rename) {
+					renameExtention.push({ find: i.rename, replace: i.name });
+				}
+			}
+		});
+	}
+
 	let strExtention: string[] = [];
+
 	if (attr.extention) {
 		let f: IBsExampleExt[] = [];
 		if (Array.isArray(attr.extention)) {
@@ -835,6 +856,8 @@ const convert = (attr: IBsExampleContainer) => {
 					: attr.scriptConverter
 					? attr.scriptConverter(i.output!.toString())
 					: i.output!.toString();
+
+				strCode = replaceExtention(renameExtention, strCode);
 
 				strExtention.push(`
 						const ${i.name} = ${strCode};
@@ -862,6 +885,8 @@ const convert = (attr: IBsExampleContainer) => {
 			? attr.scriptConverter(attr.manager!.toString())
 			: attr.manager!.toString();
 
+		strManager = replaceExtention(renameExtention, strManager);
+
 		e.push(
 			...itemCode(
 				e.length > 0,
@@ -882,6 +907,8 @@ const convert = (attr: IBsExampleContainer) => {
 			: attr.output!.toString();
 
 		let strRoot = getRootBaseOnSource(attr.previewAttr);
+
+		strSource = replaceExtention(renameExtention, strSource);
 
 		e.push(
 			...itemCode(

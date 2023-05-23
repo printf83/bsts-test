@@ -624,3 +624,13 @@ export const replaceEConsole = (strCode: string) => {
 
 	return { consoleFn, strCode };
 };
+
+export const replaceExtention = (rule?: { find: string; replace: string }[], strCode?: string) => {
+	if (strCode && rule && rule.length > 0) {
+		rule.forEach((i) => {
+			strCode = strCode?.replace(new RegExp(i.find, "gm"), i.replace);
+		});
+	}
+
+	return strCode;
+};
