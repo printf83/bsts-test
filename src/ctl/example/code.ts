@@ -47,7 +47,7 @@ export interface IBsExampleContainer extends core.IAttr {
 
 	previewAttr?: core.IAttr;
 	outputAttr?: core.IAttr;
-	zoom?: 50 | 75 | 100;
+	zoom?: 25 | 50 | 75 | 100;
 }
 
 declare var PR: {
@@ -439,7 +439,7 @@ const itemCode = (
 };
 
 const itemOutput = (
-	zoom: 50 | 75 | 100 | undefined,
+	zoom: 25 | 50 | 75 | 100 | undefined,
 	previewAttr: core.IAttr | undefined,
 	outputAttr: core.IAttr | undefined,
 	str: string
@@ -667,6 +667,12 @@ const itemZoom = (zoom: number) => {
 											const val = target.getAttribute("data-bs-zoom");
 											if (val) {
 												switch (val) {
+													case "25":
+														exampleOutput.classList.remove("zoom-25");
+														exampleOutput.classList.add("zoom-50");
+														target.setAttribute("data-bs-zoom", "50");
+														target.innerHTML = "50%";
+														break;
 													case "50":
 														exampleOutput.classList.remove("zoom-50");
 														exampleOutput.classList.add("zoom-75");
@@ -675,9 +681,9 @@ const itemZoom = (zoom: number) => {
 														break;
 													case "75":
 														exampleOutput.classList.remove("zoom-75");
-														exampleOutput.classList.add("zoom-50");
-														target.setAttribute("data-bs-zoom", "50");
-														target.innerHTML = "50%";
+														exampleOutput.classList.add("zoom-25");
+														target.setAttribute("data-bs-zoom", "25");
+														target.innerHTML = "25%";
 														break;
 												}
 											}
@@ -719,14 +725,14 @@ const generateCodePenData = (
 			strLib +
 			' } from "' +
 			BSTSCDN +
-			'";\n\n' +
-			(res.consoleFn ? res.consoleFn + "\n\n" : "") +
-			(strExt ? strExt + "\n\n" : "") +
-			(strManager ? "const manager = " + strManager + ";\n\n" : "") +
-			"const source = " +
+			'";\n' +
+			(res.consoleFn ? res.consoleFn + "\n" : "") +
+			(strExt ? strExt + "\n" : "") +
+			(strManager ? "const MANAGER = " + strManager + ";\n" : "") +
+			"const SOURCE = " +
 			strCode +
-			';\n\ncore.documentReady(() => {	core.replaceChild(document.getElementById("root"), ' +
-			(strManager ? "manager(source())" : "source()") +
+			';\ncore.documentReady(() => {	core.replaceChild(document.getElementById("root"), ' +
+			(strManager ? "MANAGER(SOURCE())" : "SOURCE()") +
 			");\n" +
 			(reqInit ? "core.init(root);\n" : "") +
 			"});";
@@ -860,8 +866,7 @@ const convert = (attr: IBsExampleContainer) => {
 				strCode = replaceExtention(renameExtention, strCode);
 
 				strExtention.push(`
-						const ${i.name} = ${strCode};
-					`);
+						const ${i.name} = ${strCode};`);
 
 				e.push(
 					...itemCode(

@@ -130,19 +130,37 @@ button span.bs-ico-fa i{
 }
 
 /*zoom*/
+.example-output.zoom-25 {
+    width: 100vw;
+    margin-top: -12vw;
+    margin-bottom: -12vw;
+    zoom: 0.25;
+    -ms-zoom: 0.25;
+    -webkit-zoom: 0.25;
+    -moz-transform: scale(0.25);
+    -moz-transform-origin: 11vw;
+
+}
 .example-output.zoom-50 {
+    width: 100vw;
+    margin-top: -8vw;
+    margin-bottom: -8vw;
     zoom: 0.5;
     -ms-zoom: 0.5;
     -webkit-zoom: 0.5;
     -moz-transform: scale(0.5);
-    -moz-transform-origin: center;
+    -moz-transform-origin: -9vw;
+    
 }
 .example-output.zoom-75 {
+    width: 100vw;
+    margin-top: -4vw;
+    margin-bottom: -4vw;
     zoom: 0.75;
     -ms-zoom: 0.75;
     -webkit-zoom: 0.75;
     -moz-transform: scale(0.75);
-    -moz-transform-origin: center;
+    -moz-transform-origin: -65vw;
 }
 
 

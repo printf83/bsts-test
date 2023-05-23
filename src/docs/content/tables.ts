@@ -2,7 +2,7 @@ import { core, I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const tableItem = () => {
+const TABLEITEM = () => {
 	return [
 		new b.table.thead(
 			new b.table.tr([
@@ -34,7 +34,7 @@ const tableItem = () => {
 	];
 };
 
-const tableItemHead = () => {
+const TABLEHEAD = () => {
 	return new b.table.tr([
 		new b.table.th({ scope: "col" }, "#"),
 		new b.table.th({ scope: "col" }, "First"),
@@ -43,7 +43,7 @@ const tableItemHead = () => {
 	]);
 };
 
-const tableItemBody = () => {
+const TABLEBODY = () => {
 	return [
 		new b.table.tr([
 			new b.table.th({ scope: "row" }, "1"),
@@ -66,7 +66,7 @@ const tableItemBody = () => {
 	];
 };
 
-const tableBig = (row: number, col: number) => {
+const TABLEBIG = (row: number, col: number) => {
 	return [
 		new b.table.thead(
 			new b.table.tr(
@@ -237,9 +237,9 @@ export const tables: IAttrContent = {
 		new e.text("Use {{.table-striped}} to add zebra-striping to any table row within the {{<tbody>}}."),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ striped: "row" }, tableItem());
+				return new b.table.container({ striped: "row" }, TABLEITEM());
 			},
 		}),
 
@@ -249,38 +249,38 @@ export const tables: IAttrContent = {
 		new e.text("Use {{.table-striped-columns}} to add zebra-striping to any table column."),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ striped: "col" }, tableItem());
+				return new b.table.container({ striped: "col" }, TABLEITEM());
 			},
 		}),
 		new e.text("These classes can also be added to table variants:"),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ striped: "row", color: "dark" }, tableItem());
+				return new b.table.container({ striped: "row", color: "dark" }, TABLEITEM());
 			},
 		}),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ striped: "col", color: "dark" }, tableItem());
+				return new b.table.container({ striped: "col", color: "dark" }, TABLEITEM());
 			},
 		}),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ striped: "row", color: "success" }, tableItem());
+				return new b.table.container({ striped: "row", color: "success" }, TABLEITEM());
 			},
 		}),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ striped: "col", color: "success" }, tableItem());
+				return new b.table.container({ striped: "col", color: "success" }, TABLEITEM());
 			},
 		}),
 
@@ -290,24 +290,24 @@ export const tables: IAttrContent = {
 		new e.text("Add {{.table-hover}} to enable a hover state on table rows within a {{<tbody>}}."),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ hoverable: true }, tableItem());
+				return new b.table.container({ hoverable: true }, TABLEITEM());
 			},
 		}),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ hoverable: true, color: "dark" }, tableItem());
+				return new b.table.container({ hoverable: true, color: "dark" }, TABLEITEM());
 			},
 		}),
 		new e.text("These hoverable rows can also be combined with the striped rows variant:"),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ hoverable: true, striped: "row" }, tableItem());
+				return new b.table.container({ hoverable: true, striped: "row" }, TABLEITEM());
 			},
 		}),
 
@@ -403,9 +403,9 @@ export const tables: IAttrContent = {
 		new e.text("Add {{.table-bordered}} for borders on all sides of the table and cells."),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ bordered: true }, tableItem());
+				return new b.table.container({ bordered: true }, TABLEITEM());
 			},
 		}),
 		new e.text(
@@ -413,9 +413,9 @@ export const tables: IAttrContent = {
 		),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ bordered: true, borderColor: "primary" }, tableItem());
+				return new b.table.container({ bordered: true, borderColor: "primary" }, TABLEITEM());
 			},
 		}),
 
@@ -425,16 +425,16 @@ export const tables: IAttrContent = {
 		new e.text("Add {{.table-borderless}} for a table without borders."),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ bordered: false }, tableItem());
+				return new b.table.container({ bordered: false }, TABLEITEM());
 			},
 		}),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ bordered: false, color: "dark" }, tableItem());
+				return new b.table.container({ bordered: false, color: "dark" }, TABLEITEM());
 			},
 		}),
 
@@ -444,16 +444,16 @@ export const tables: IAttrContent = {
 		new e.text("Add {{.table-sm}} to make any {{.table}} more compact by cutting all cell {{padding}} in half."),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ small: true }, tableItem());
+				return new b.table.container({ small: true }, TABLEITEM());
 			},
 		}),
 		new e.code({
 			outputAttr: { overflow: "auto" },
-			extention: [{ name: "tableItem", output: tableItem }],
+			extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 			output: () => {
-				return new b.table.container({ small: true, color: "dark" }, tableItem());
+				return new b.table.container({ small: true, color: "dark" }, TABLEITEM());
 			},
 		}),
 
@@ -628,26 +628,26 @@ export const tables: IAttrContent = {
 		new e.code({
 			outputAttr: { overflow: "auto" },
 			extention: [
-				{ name: "tableItemHead", output: tableItemHead },
-				{ name: "tableItemBody", output: tableItemBody },
+				{ name: "TABLEHEAD", output: TABLEHEAD },
+				{ name: "TABLEBODY", output: TABLEBODY },
 			],
 			output: () => {
 				return new b.table.container([
-					new b.table.thead({ color: "light" }, tableItemHead()),
-					new b.table.tbody(tableItemBody()),
+					new b.table.thead({ color: "light" }, TABLEHEAD()),
+					new b.table.tbody(TABLEBODY()),
 				]);
 			},
 		}),
 		new e.code({
 			outputAttr: { overflow: "auto" },
 			extention: [
-				{ name: "tableItemHead", output: tableItemHead },
-				{ name: "tableItemBody", output: tableItemBody },
+				{ name: "TABLEHEAD", output: TABLEHEAD },
+				{ name: "TABLEBODY", output: TABLEBODY },
 			],
 			output: () => {
 				return new b.table.container([
-					new b.table.thead({ color: "dark" }, tableItemHead()),
-					new b.table.tbody(tableItemBody()),
+					new b.table.thead({ color: "dark" }, TABLEHEAD()),
+					new b.table.tbody(TABLEBODY()),
 				]);
 			},
 		}),
@@ -658,13 +658,13 @@ export const tables: IAttrContent = {
 		new e.code({
 			outputAttr: { overflow: "auto" },
 			extention: [
-				{ name: "tableItemHead", output: tableItemHead },
-				{ name: "tableItemBody", output: tableItemBody },
+				{ name: "TABLEHEAD", output: TABLEHEAD },
+				{ name: "TABLEBODY", output: TABLEBODY },
 			],
 			output: () => {
 				return new b.table.container([
-					new b.table.thead({ color: "light" }, tableItemHead()),
-					new b.table.tbody(tableItemBody()),
+					new b.table.thead({ color: "light" }, TABLEHEAD()),
+					new b.table.tbody(TABLEBODY()),
 					new b.table.tfoot(
 						new b.table.tr([
 							new b.table.td("Footer"),
@@ -686,14 +686,14 @@ export const tables: IAttrContent = {
 		new e.code({
 			outputAttr: { overflow: "auto" },
 			extention: [
-				{ name: "tableItemHead", output: tableItemHead },
-				{ name: "tableItemBody", output: tableItemBody },
+				{ name: "TABLEHEAD", output: TABLEHEAD },
+				{ name: "TABLEBODY", output: TABLEBODY },
 			],
 			output: () => {
 				return new b.table.container({ small: true }, [
 					new h.caption("List of user"),
-					new b.table.thead(tableItemHead()),
-					new b.table.tbody(tableItemBody()),
+					new b.table.thead(TABLEHEAD()),
+					new b.table.tbody(TABLEBODY()),
 				]);
 			},
 		}),
@@ -701,14 +701,14 @@ export const tables: IAttrContent = {
 		new e.code({
 			outputAttr: { overflow: "auto" },
 			extention: [
-				{ name: "tableItemHead", output: tableItemHead },
-				{ name: "tableItemBody", output: tableItemBody },
+				{ name: "TABLEHEAD", output: TABLEHEAD },
+				{ name: "TABLEBODY", output: TABLEBODY },
 			],
 			output: () => {
 				return new b.table.container({ small: true, captionLocation: "top" }, [
 					new h.caption("List of user"),
-					new b.table.thead(tableItemHead()),
-					new b.table.tbody(tableItemBody()),
+					new b.table.thead(TABLEHEAD()),
+					new b.table.tbody(TABLEBODY()),
 				]);
 			},
 		}),
@@ -732,9 +732,9 @@ export const tables: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			outputAttr: { overflow: "hidden" },
-			extention: [{ name: "tableBig", output: tableBig }],
+			extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 			output: () => {
-				return new b.table.responsive(new b.table.container(tableBig(3, 9)));
+				return new b.table.responsive(new b.table.container(TABLEBIG(3, 9)));
 			},
 		}),
 
@@ -751,12 +751,12 @@ export const tables: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			outputAttr: { overflow: "hidden" },
-			extention: [{ name: "tableBig", output: tableBig }],
+			extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 			output: () => {
 				return new b.table.responsive(
 					new b.table.container({ captionLocation: "top" }, [
 						new h.caption(".table-responsive"),
-						...tableBig(3, 12),
+						...TABLEBIG(3, 12),
 					])
 				);
 			},
@@ -765,13 +765,13 @@ export const tables: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			outputAttr: { overflow: "hidden" },
-			extention: [{ name: "tableBig", output: tableBig }],
+			extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 			output: () => {
 				return new b.table.responsive(
 					{ responsive: "sm" },
 					new b.table.container({ captionLocation: "top" }, [
 						new h.caption(".table-responsive-sm"),
-						...tableBig(3, 12),
+						...TABLEBIG(3, 12),
 					])
 				);
 			},
@@ -780,13 +780,13 @@ export const tables: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			outputAttr: { overflow: "hidden" },
-			extention: [{ name: "tableBig", output: tableBig }],
+			extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 			output: () => {
 				return new b.table.responsive(
 					{ responsive: "md" },
 					new b.table.container({ captionLocation: "top" }, [
 						new h.caption(".table-responsive-md"),
-						...tableBig(3, 12),
+						...TABLEBIG(3, 12),
 					])
 				);
 			},
@@ -795,13 +795,13 @@ export const tables: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			outputAttr: { overflow: "hidden" },
-			extention: [{ name: "tableBig", output: tableBig }],
+			extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 			output: () => {
 				return new b.table.responsive(
 					{ responsive: "lg" },
 					new b.table.container({ captionLocation: "top" }, [
 						new h.caption(".table-responsive-lg"),
-						...tableBig(3, 12),
+						...TABLEBIG(3, 12),
 					])
 				);
 			},
@@ -809,13 +809,13 @@ export const tables: IAttrContent = {
 
 		new e.code({
 			outputAttr: { overflow: "hidden" },
-			extention: [{ name: "tableBig", output: tableBig }],
+			extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 			output: () => {
 				return new b.table.responsive(
 					{ responsive: "xl" },
 					new b.table.container({ captionLocation: "top" }, [
 						new h.caption(".table-responsive-xxl"),
-						...tableBig(3, 12),
+						...TABLEBIG(3, 12),
 					])
 				);
 			},
@@ -824,13 +824,13 @@ export const tables: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			outputAttr: { overflow: "hidden" },
-			extention: [{ name: "tableBig", output: tableBig }],
+			extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 			output: () => {
 				return new b.table.responsive(
 					{ responsive: "xxl" },
 					new b.table.container({ captionLocation: "top" }, [
 						new h.caption(".table-responsive-xxl"),
-						...tableBig(3, 12),
+						...TABLEBIG(3, 12),
 					])
 				);
 			},

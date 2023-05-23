@@ -512,7 +512,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 1"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			extention: [{ name: "component", rename: "ex.c1", output: ex.c1 }],
+			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 			output: () => {
 				return ex.c1({
 					icon: "fab bootstrap",
@@ -533,7 +533,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 2"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			extention: [{ name: "component", rename: "ex.c2", output: ex.c2 }],
+			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {
 				return ex.c2([
 					{ active: true, href: "#", elem: "Home" },
@@ -550,7 +550,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 3"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			extention: [{ name: "component", rename: "ex.c3", output: ex.c3 }],
+			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
 				return ex.c3({
 					icon: "fab bootstrap",
@@ -576,7 +576,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 4"),
 		new e.code({
 			previewAttr: { bgColor: "dark", padding: 0 },
-			extention: [{ name: "component", rename: "ex.c4", output: ex.c4 }],
+			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
 				return ex.c4({
 					icon: "fab bootstrap",
@@ -604,7 +604,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 5"),
 		new e.code({
 			previewAttr: { padding: 0 },
-			extention: [{ name: "component", rename: "ex.c5", output: ex.c5 }],
+			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
 				return ex.c5({
 					img: "https://picsum.photos/seed/bsts_0/32/32",
@@ -635,9 +635,9 @@ export const headers: IAttrContent = {
 		new e.code({
 			previewAttr: { padding: 0 },
 			extention: [
-				{ name: "component", rename: "ex.c6", output: ex.c6 },
-				{ name: "componentHeader", rename: "ex.c6Header", output: ex.c6Header },
-				{ name: "componentBody", rename: "ex.c6Body", output: ex.c6Body },
+				{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 },
+				{ name: "COMPONENTHEADER", rename: "ex.c6Header", output: ex.c6Header },
+				{ name: "COMPONENTBODY", rename: "ex.c6Body", output: ex.c6Body },
 			],
 
 			output: () => {
@@ -675,8 +675,8 @@ export const headers: IAttrContent = {
 		new e.code({
 			previewAttr: { padding: 0 },
 			extention: [
-				{ name: "componentNav", rename: "ex.c7Nav", output: ex.c7Nav },
-				{ name: "componentHeader", rename: "ex.c7Header", output: ex.c7Header },
+				{ name: "COMPONENTNAV", rename: "ex.c7Nav", output: ex.c7Nav },
+				{ name: "COMPONENTHEADER", rename: "ex.c7Header", output: ex.c7Header },
 			],
 			output: () => {
 				return [
@@ -703,7 +703,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 8"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
-			extention: [{ name: "component", rename: "ex.c8", output: ex.c8 }],
+			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
 			output: () => {
 				return ex.c8({
 					icon: "fab bootstrap",

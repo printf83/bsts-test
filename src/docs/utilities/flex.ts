@@ -2,7 +2,7 @@ import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const flexItem = (length: number) => {
+const FLEXITEM = (length: number) => {
 	return Array(length)
 		.fill("")
 		.map(() => new h.div({ padding: 2 }, "Flex item"));
@@ -335,9 +335,9 @@ export const flex: IAttrContent = {
 		),
 		new e.code({
 			outputAttr: { class: "flex-box" },
-			extention: [{ name: "flexItem", output: flexItem }],
+			extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 			output: () => {
-				return new h.div({ display: "flex", flex: "nowrap", style: { width: "8rem" } }, flexItem(5));
+				return new h.div({ display: "flex", flex: "nowrap", style: { width: "8rem" } }, FLEXITEM(5));
 			},
 		}),
 		new e.code({
@@ -421,7 +421,7 @@ export const flex: IAttrContent = {
 		new e.text("{{b::Heads up! }}This property has no effect on single rows of flex items."),
 		new e.code({
 			outputAttr: { class: "flex-box" },
-			extention: [{ name: "flexItem", output: flexItem }],
+			extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 			output: () => {
 				return new h.div(
 					{
@@ -430,14 +430,14 @@ export const flex: IAttrContent = {
 						alignContent: "start",
 						style: { height: "200px" },
 					},
-					flexItem(15)
+					FLEXITEM(15)
 				);
 			},
 		}),
 
 		new e.code({
 			outputAttr: { class: "flex-box" },
-			extention: [{ name: "flexItem", output: flexItem }],
+			extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 			output: () => {
 				return new h.div(
 					{
@@ -446,14 +446,14 @@ export const flex: IAttrContent = {
 						alignContent: "end",
 						style: { height: "200px" },
 					},
-					flexItem(15)
+					FLEXITEM(15)
 				);
 			},
 		}),
 
 		new e.code({
 			outputAttr: { class: "flex-box" },
-			extention: [{ name: "flexItem", output: flexItem }],
+			extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 			output: () => {
 				return new h.div(
 					{
@@ -462,14 +462,14 @@ export const flex: IAttrContent = {
 						alignContent: "center",
 						style: { height: "200px" },
 					},
-					flexItem(15)
+					FLEXITEM(15)
 				);
 			},
 		}),
 
 		new e.code({
 			outputAttr: { class: "flex-box" },
-			extention: [{ name: "flexItem", output: flexItem }],
+			extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 			output: () => {
 				return new h.div(
 					{
@@ -478,14 +478,14 @@ export const flex: IAttrContent = {
 						alignContent: "between",
 						style: { height: "200px" },
 					},
-					flexItem(15)
+					FLEXITEM(15)
 				);
 			},
 		}),
 
 		new e.code({
 			outputAttr: { class: "flex-box" },
-			extention: [{ name: "flexItem", output: flexItem }],
+			extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 			output: () => {
 				return new h.div(
 					{
@@ -494,14 +494,14 @@ export const flex: IAttrContent = {
 						alignContent: "around",
 						style: { height: "200px" },
 					},
-					flexItem(15)
+					FLEXITEM(15)
 				);
 			},
 		}),
 
 		new e.code({
 			outputAttr: { class: "flex-box" },
-			extention: [{ name: "flexItem", output: flexItem }],
+			extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 			output: () => {
 				return new h.div(
 					{
@@ -510,7 +510,7 @@ export const flex: IAttrContent = {
 						alignContent: "stretch",
 						style: { height: "200px" },
 					},
-					flexItem(15)
+					FLEXITEM(15)
 				);
 			},
 		}),

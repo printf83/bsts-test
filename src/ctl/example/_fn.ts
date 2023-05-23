@@ -225,7 +225,13 @@ export const getRootBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		// attr = core.mergeObject({ container: true, padding: 4 }, attr);
 		// attr.container ??= "fluid";
+		delete attr.overflow;
 		attr.padding ??= 4;
+
+		if (attr.padding === 0 || attr.padding === "0") {
+			delete attr.padding;
+		}
+
 		return core.getHtml(new h.div(attr, new h.div({ id: "root" })));
 	} else {
 		return `<div class="p-4"><div id="root"></div></div>`;
@@ -614,12 +620,12 @@ export const replaceEConsole = (strCode: string) => {
 	let consoleFn: string | undefined = undefined;
 	if (strCode.indexOf("e.console") > -1) {
 		consoleFn = `
-			const consoleOut = (_target, title, elem, _color) => {
+			const CONSOLELOG = (_target, title, elem, _color) => {
 				console.log(title, elem);
 			};
 			`;
 
-		strCode = strCode.replace(/e.console/gm, "consoleOut");
+		strCode = strCode.replace(/e.console/gm, "CONSOLELOG");
 	}
 
 	return { consoleFn, strCode };
