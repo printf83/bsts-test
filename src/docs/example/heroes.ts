@@ -336,7 +336,7 @@ export const heroes: IAttrContent = {
 						[
 							new h.h(1, { fontDisplay: 5, fontWeight: "bold" }, arg.title),
 							new h.div({ col: "lg-6", marginX: "auto" }, [
-								new h.p({ lead: true, marginBottom: 4 }, arg.description),
+								new h.p({ lead: true, marginBottom: 4, textColor: "secondary" }, arg.description),
 								new h.div(
 									{ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" },
 									arg.elem ? arg.elem : ""
@@ -351,7 +351,7 @@ export const heroes: IAttrContent = {
 					description:
 						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
 					elem: [
-						new b.button({ weight: "lg", color: "primary", outline: true }, "Custom button"),
+						new b.button({ weight: "lg", color: "info", outline: true }, "Custom button"),
 						new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
 					],
 				});
