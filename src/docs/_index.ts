@@ -20,6 +20,9 @@ export const doc = async (value: string) => {
 		case "docs/example/heroes":
 			result = await example.heroes();
 			break;
+		case "docs/example/features":
+			result = await example.features();
+			break;
 
 		//--------------------------
 		case "docs/customize/color":

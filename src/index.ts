@@ -201,6 +201,7 @@ let m = {
 			item: [
 				{ label: "Headers", value: "docs/example/headers" },
 				{ label: "Heroes", value: "docs/example/heroes" },
+				{ label: "Features", value: "docs/example/features" },
 			],
 		},
 	] as main.IAttrItemMenu[],

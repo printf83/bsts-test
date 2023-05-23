@@ -4,3 +4,6 @@ export const headers = async () => {
 export const heroes = async () => {
 	return (await import("./heroes.js")).heroes;
 };
+export const features = async () => {
+	return (await import("./features.js")).features;
+};

@@ -131,14 +131,28 @@ button span.bs-ico-fa i{
 
 /*zoom*/
 .example-output.zoom-50 {
-    transform: scale(0.5);
+    /* transform: scale(0.5);
+    translate: 50% 0; */
     /* width: 100vw; */
     /* translate: -30%; */
+
+    zoom: 0.5;
+    -ms-zoom: 0.5;
+    -webkit-zoom: 0.5;
+    -moz-transform: scale(0.5, 0.5);
+    -moz-transform-origin: left center;
 }
 .example-output.zoom-75 {
-    transform: scale(0.75);
+    /* transform: scale(0.75);
+    translate: 50% 0; */
     /* width: 100vw; */
     /* translate: -30%; */
+
+    zoom: 0.75;
+    -ms-zoom: 0.75;
+    -webkit-zoom: 0.75;
+    -moz-transform: scale(0.75, 0.75);
+    -moz-transform-origin: left center;
 }
 
 
