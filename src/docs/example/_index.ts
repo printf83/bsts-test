@@ -7,3 +7,6 @@ export const heroes = async () => {
 export const features = async () => {
 	return (await import("./features.js")).features;
 };
+export const sidebars = async () => {
+	return (await import("./sidebars.js")).sidebars;
+};

@@ -23,6 +23,9 @@ export const doc = async (value: string) => {
 		case "docs/example/features":
 			result = await example.features();
 			break;
+		case "docs/example/sidebars":
+			result = await example.sidebars();
+			break;
 
 		//--------------------------
 		case "docs/customize/color":

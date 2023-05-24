@@ -202,6 +202,7 @@ let m = {
 				{ label: "Headers", value: "docs/example/headers" },
 				{ label: "Heroes", value: "docs/example/heroes" },
 				{ label: "Features", value: "docs/example/features" },
+				{ label: "Sidebars", value: "docs/example/sidebars" },
 			],
 		},
 	] as main.IAttrItemMenu[],
