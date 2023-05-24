@@ -357,14 +357,68 @@ const ex = {
 			]
 		);
 	},
-	c5: (arg: {}) => {},
-	c6: (arg: {}) => {},
+	c5: (arg: {
+		icon: string;
+		title: string;
+		item: {
+			title: string;
+			description: string;
+			date: string;
+		}[];
+	}) => {
+		return new h.div(
+			{
+				display: "flex",
+				flex: ["column", "shrink-0"],
+				shadow: true,
+				style: { width: "380px", height: "500px" },
+			},
+			[
+				new h.a(
+					{
+						href: "#",
+						display: "flex",
+						alignItem: "center",
+						marginBottom: [3, "md-0"],
+						marginEnd: "md-auto",
+						textDecoration: "none",
+						textColor: "body-emphasis",
+						bgColor: "body-tertiary",
+						width: 100,
+						padding: 3,
+						border: "bottom",
+					},
+					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
+				),
+				new b.tabList.container(
+					{ flush: true, overflowY: "auto" },
+					arg.item?.map((i, ix) => {
+						return new b.tabList.item(
+							{
+								action: true,
+								active: ix === 0 ? true : undefined,
+								paddingY: 3,
+								lineHeight: "sm",
+							},
+							[
+								new h.div(
+									{ display: "flex", width: 100, alignItem: "center", justifyContent: "between" },
+									[new h.b(i.title), new h.small(i.date)]
+								),
+								new h.div({ col: 10, marginBottom: 1, small: true }, i.description),
+							]
+						);
+					})
+				),
+			]
+		);
+	},
 };
 export const sidebars: IAttrContent = {
 	title: "Sidebars",
 	description: "Common navigation patterns ideal for offcanvas or multi-column layouts.",
 	item: [
-		new e.title("Example sidebar 1"),
+		new e.title("Dark"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
@@ -394,7 +448,7 @@ export const sidebars: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example sidebar 2"),
+		new e.title("Light"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -424,7 +478,7 @@ export const sidebars: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example sidebar 3"),
+		new e.title("Compact"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
@@ -452,7 +506,7 @@ export const sidebars: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example sidebar 4"),
+		new e.title("Collapsible"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
 			outputAttr: { class: "toggle" },
@@ -501,23 +555,92 @@ export const sidebars: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example sidebar 5"),
+		new e.title("List group"),
 		new e.code({
-			previewAttr: { padding: 0, style: { height: "300px" } },
+			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
-				return ex.c5({});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Example sidebar 6"),
-		new e.code({
-			previewAttr: { padding: 0, style: { height: "300px" } },
-			extention: [{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 }],
-			output: () => {
-				return ex.c6({});
+				return ex.c5({
+					icon: "fab bootstrap",
+					title: "List group",
+					item: [
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Wed",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Tues",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Mon",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Wed",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Tues",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Mon",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Wed",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Tues",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Mon",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Wed",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Tues",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Mon",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Wed",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Tues",
+						},
+						{
+							title: "List group item heading",
+							description: "Some placeholder content in a paragraph below the heading and date.",
+							date: "Mon",
+						},
+					],
+				});
 			},
 		}),
 	],

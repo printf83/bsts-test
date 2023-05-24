@@ -438,7 +438,9 @@ strong,
     background-color: transparent;border: none;
 }
 .example-output.toggle .btn-toggle:hover,
-.example-output.toggle .btn-toggle:focus {
+.example-output.toggle .btn-toggle:focus,
+.example-output.toggle .btn-toggle-nav a:hover,
+.example-output.toggle .btn-toggle-nav a:hover {
     color: rgba(var(--bs-emphasis-color-rgb), .85);
     background-color: var(--bs-tertiary-bg);
 }

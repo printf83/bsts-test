@@ -252,7 +252,9 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 					border: none;
 				}
 				#root .btn-toggle:hover,
-				#root .btn-toggle:focus {
+				#root .btn-toggle:focus,
+				#root .btn-toggle-nav a:hover,
+				#root .btn-toggle-nav a:hover {
 					color: rgba(var(--bs-emphasis-color-rgb), .85);
 					background-color: var(--bs-tertiary-bg);
 				}
