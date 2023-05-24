@@ -1,4 +1,4 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -22,7 +22,7 @@ const ex = {
 				flex: ["column", "shrink-0"],
 				padding: 3,
 				shadow: true,
-				style: { width: "280px", height: "500px" },
+				style: { width: "280px", minHeight: "500px" },
 				theme: "dark",
 				textBgColor: "dark",
 			},
@@ -37,7 +37,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "white",
 					},
-					new b.caption({ icon: arg.icon, fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
 				),
 				new h.hr(),
 				new b.nav.header.container({
@@ -99,7 +99,8 @@ const ex = {
 				flex: ["column", "shrink-0"],
 				padding: 3,
 				shadow: true,
-				style: { width: "280px", height: "500px" },
+				bgColor: "body-tertiary",
+				style: { width: "280px", minHeight: "500px" },
 			},
 			[
 				new h.a(
@@ -112,7 +113,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "body-emphasis",
 					},
-					new b.caption({ icon: arg.icon, fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
 				),
 				new h.hr(),
 				new b.nav.header.container({
@@ -171,7 +172,8 @@ const ex = {
 				display: "flex",
 				flex: ["column", "shrink-0"],
 				shadow: true,
-				style: { width: "4.5rem", height: "500px" },
+				bgColor: "body-tertiary",
+				style: { width: "4.5rem", minHeight: "500px" },
 			},
 			[
 				new h.a(
@@ -186,7 +188,7 @@ const ex = {
 						textColor: "body-emphasis",
 						padding: 3,
 					},
-					new b.icon({ id: arg.icon, fontSize: 2 })
+					new b.icon({ id: arg.icon, weight: "2xl" })
 				),
 				new h.div(
 					{ marginBottom: "auto" },
@@ -247,7 +249,114 @@ const ex = {
 			]
 		);
 	},
-	c4: (arg: {}) => {},
+	c4: (arg: {
+		icon: string;
+		title: string;
+		link: {
+			label: string;
+			item: { href: string; label: string }[];
+		}[];
+		menu: { href: string; label: string }[];
+	}) => {
+		return new h.div(
+			{
+				display: "flex",
+				flex: ["column", "shrink-0"],
+				padding: 3,
+				shadow: true,
+				style: { width: "280px", minHeight: "500px" },
+			},
+			[
+				new h.a(
+					{
+						href: "#",
+						display: "flex",
+						alignItem: "center",
+						marginBottom: [3, "md-0"],
+						marginEnd: "md-auto",
+						textDecoration: "none",
+						textColor: "body-emphasis",
+					},
+					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
+				),
+				new h.hr(),
+				new h.ul(
+					{ unstyle: true, paddingStart: 0 },
+					arg.link?.map((i) => {
+						let id = core.UUID();
+						return new h.li({ marginBottom: 1 }, [
+							new b.collapse.toggle(
+								{ href: `#${id}`, class: "btn btn-toggle", defColor: false },
+								i.label
+							),
+							new b.collapse.container(
+								{ id: id },
+								new h.ul(
+									{
+										unstyle: true,
+										fontWeight: "normal",
+										class: "btn-toggle-nav",
+										paddingBottom: 1,
+										small: true,
+									},
+									i.item.map((j) => {
+										return new h.li(
+											new h.a(
+												{
+													href: j.href,
+													linkColor: "body-emphasis",
+													display: "inline-flex",
+													textDecoration: "none",
+													rounded: true,
+												},
+												j.label
+											)
+										);
+									})
+								)
+							),
+						]);
+					})
+				),
+				new h.hr(),
+				new h.ul(
+					{ unstyle: true, paddingStart: 0 },
+					new h.li({ marginBottom: 1 }, [
+						new b.collapse.toggle(
+							{ href: `#usermenu`, class: "btn btn-toggle", defColor: false },
+							"Account"
+						),
+						new b.collapse.container(
+							{ id: "usermenu" },
+							new h.ul(
+								{
+									unstyle: true,
+									class: "btn-toggle-nav",
+									fontWeight: "normal",
+									paddingBottom: 1,
+									small: true,
+								},
+								arg.menu.map((j) => {
+									return new h.li(
+										new h.a(
+											{
+												href: j.href,
+												linkColor: "body-emphasis",
+												display: "inline-flex",
+												textDecoration: "none",
+												rounded: true,
+											},
+											j.label
+										)
+									);
+								})
+							)
+						),
+					])
+				),
+			]
+		);
+	},
 	c5: (arg: {}) => {},
 	c6: (arg: {}) => {},
 };
@@ -345,10 +454,48 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Example sidebar 4"),
 		new e.code({
-			previewAttr: { padding: 0, style: { height: "300px" } },
+			previewAttr: { padding: 0, overflow: "hidden" },
+			outputAttr: { class: "toggle" },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
-				return ex.c4({});
+				return ex.c4({
+					icon: "fab bootstrap",
+					title: "Collapsible",
+					link: [
+						{
+							label: "Home",
+							item: [
+								{ href: "#", label: "Overview" },
+								{ href: "#", label: "Updates" },
+								{ href: "#", label: "Reports" },
+							],
+						},
+						{
+							label: "Dashboard",
+							item: [
+								{ href: "#", label: "Overview" },
+								{ href: "#", label: "Weekly" },
+								{ href: "#", label: "Monthly" },
+								{ href: "#", label: "Annually" },
+							],
+						},
+						{
+							label: "Orders",
+							item: [
+								{ href: "#", label: "New" },
+								{ href: "#", label: "Processed" },
+								{ href: "#", label: "Shipped" },
+								{ href: "#", label: "Returned" },
+							],
+						},
+					],
+					menu: [
+						{ href: "", label: "New..." },
+						{ href: "", label: "Profile" },
+						{ href: "", label: "Setting" },
+						{ href: "", label: "Sign out" },
+					],
+				});
 			},
 		}),
 
