@@ -148,10 +148,10 @@ const ex = {
 							on: { submit: arg.onsignup },
 						},
 						[
-							B.Form.FloatingLabel.Input({ type: "email", label: "Email address" }),
-							B.Form.FloatingLabel.Input({ type: "password", label: "Password" }),
-							B.Form.Check({ type: "checkbox", label: "Remember me" }),
-							new b.button({ color: "primary", weight: "lg", width: 100 }, "Sign up"),
+							B.Form.FloatingLabel.Input({ type: "email", label: "Email address", name: "email" }),
+							B.Form.FloatingLabel.Input({ type: "password", label: "Password", name: "password" }),
+							B.Form.Check({ type: "checkbox", label: "Remember me", name: "remember" }),
+							new b.button({ color: "primary", weight: "lg", width: 100, type: "submit" }, "Sign up"),
 							new h.hr(),
 							new h.small(
 								{ textColor: "body-secondary" },
@@ -245,7 +245,7 @@ export const heroes: IAttrContent = {
 	title: "Heroes",
 	description: "Set the stage on your homepage with heroes that feature clear calls to action.",
 	item: [
-		new e.title("Example heroes 1"),
+		new e.title("Centered hero"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
@@ -265,7 +265,7 @@ export const heroes: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example heroes 2"),
+		new e.title("Centered screenshot"),
 		new e.code({
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -285,7 +285,7 @@ export const heroes: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example heroes 3"),
+		new e.title("Responsive left-aligned hero with image"),
 		new e.code({
 			previewAttr: { padding: 0 },
 			// zoom: 50,
@@ -306,10 +306,10 @@ export const heroes: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example heroes 4"),
+		new e.title("Vertically centered hero sign-up form"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0 },
-			// zoom: 50,
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
 				return ex.c4({
@@ -318,6 +318,22 @@ export const heroes: IAttrContent = {
 						"Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.",
 					onsignup: (event) => {
 						//do signup
+						event.preventDefault();
+						const form = event.target as HTMLFormElement;
+						const email = form.querySelector("input[name='email']") as HTMLInputElement;
+						const password = form.querySelector("input[name='password']") as HTMLInputElement;
+						const remember = form.querySelector("input[name='remember']") as HTMLInputElement;
+
+						e.console(
+							form,
+							"signup",
+							{
+								email: email.value,
+								password: password.value,
+								remember: remember.checked,
+							},
+							"info"
+						);
 					},
 				});
 			},
@@ -325,7 +341,7 @@ export const heroes: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example heroes 5"),
+		new e.title("Border hero with cropped image and shadows"),
 		new e.code({
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
@@ -344,7 +360,7 @@ export const heroes: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Example heroes 6"),
+		new e.title("Dark color hero"),
 		new e.code({
 			// zoom: 75,
 			previewAttr: { padding: 0, bgColor: "dark", overflow: "hidden" },

@@ -94,7 +94,6 @@ const ex = {
 						link: arg.link
 							? arg.link.map((i) => {
 									i.paddingX = 2;
-									i.color = i.active ? "secondary" : undefined;
 									return i;
 							  })
 							: undefined,
@@ -152,7 +151,6 @@ const ex = {
 							link: arg.link
 								? arg.link.map((i) => {
 										i.paddingX = 2;
-										i.color = i.active ? "secondary" : "light";
 										return i;
 								  })
 								: undefined,
@@ -233,7 +231,6 @@ const ex = {
 							link: arg.link
 								? arg.link.map((i) => {
 										i.paddingX = 2;
-										i.color = i.active ? "secondary" : undefined;
 										return i;
 								  })
 								: undefined,
@@ -458,7 +455,7 @@ const ex = {
 								justifyContent: "center",
 								link: arg.link.map((i) => {
 									let result: I.B.Nav.Header.Link = {
-										linkColor: i.active === true ? "secondary" : "light",
+										// linkColor: i.active === true ? "secondary" : "light",
 										href: i.href,
 										elem: new b.caption(
 											{ icon: new b.icon({ id: i.icon, h: 2 }), iconPosition: "top" },
@@ -549,6 +546,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 3"),
 		new e.code({
+			outputAttr: { class: "nav-custom-1" },
 			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
@@ -580,6 +578,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 4"),
 		new e.code({
+			outputAttr: { class: "nav-custom-2" },
 			showConsole: true,
 			previewAttr: { bgColor: "dark", padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
@@ -626,6 +625,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 5"),
 		new e.code({
 			showConsole: true,
+			outputAttr: { class: "nav-custom-3" },
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
@@ -788,6 +788,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 8"),
 		new e.code({
 			showConsole: true,
+			outputAttr: { class: "nav-custom-2" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
 			output: () => {
