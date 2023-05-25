@@ -452,12 +452,12 @@ strong,
     color: var(--bs-secondary-color);
 }
 
-.example-output.nav-custom-4 .nav .nav-link >* {
-    color: var(--bs-emphasis-color);
+.example-output.nav-custom-4 .nav .nav-link {
+    color: var(--bs-secondary-color);
 }
 
-.example-output.nav-custom-4 .nav .nav-link.active >* {
-    color: var(--bs-secondary-color);
+.example-output.nav-custom-4 .nav .nav-link.active {
+    color: var(--bs-emphasis-color);
 }
 
 /* btn-toggle */

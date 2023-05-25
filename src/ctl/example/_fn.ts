@@ -316,12 +316,12 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "nav-custom-4")) {
 			result.push(`
-				#root .nav .nav-link > * {
-					color: var(--bs-emphasis-color);
+				#root .nav .nav-link {
+					color: var(--bs-secondary-color);
 				}
 
-				#root .nav .nav-link.active > * {
-					color: var(--bs-secondary-color);
+				#root .nav .nav-link.active {
+					color: var(--bs-emphasis-color);
 				}
 			`);
 		}
