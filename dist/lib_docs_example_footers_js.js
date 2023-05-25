@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunk_printf83_bsts_test"] = self["webpackChunk_printf83_bsts_test"] || []).push([["lib_docs_example_footers_js"],{
+
+/***/ "./lib/docs/example/footers.js":
+/*!*************************************!*\
+  !*** ./lib/docs/example/footers.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   footers: () => (/* binding */ footers)\n/* harmony export */ });\n/* harmony import */ var _printf83_bsts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @printf83/bsts */ \"../bsts/lib/index.js\");\n/* harmony import */ var _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../ctl/example/_index.js */ \"./lib/ctl/example/_index.js\");\n\n\nconst ex = {\n    c1: (arg) => {\n        return new _printf83_bsts__WEBPACK_IMPORTED_MODULE_0__.h.footer({\n            display: \"flex\",\n            flex: \"wrap\",\n            justifyContent: \"between\",\n            alignItem: \"center\",\n            paddingY: 3,\n            marginY: 4,\n            border: \"top\",\n        });\n    },\n    c2: () => { },\n    c3: () => { },\n};\nconst footers = {\n    title: \"Footers\",\n    description: \"Finish every page strong with an awesome footer, big or small.\",\n    item: [\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.title(\"Example footer 1\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.code({\n            previewAttr: { padding: 0 },\n            extention: [{ name: \"COMPONENT\", rename: \"ex.c1\", output: ex.c1 }],\n            output: () => {\n                return ex.c1({\n                    copyright: \"© 2023 Company, Inc\",\n                    logo: \"fab bootstrap\",\n                    link: [\n                        { href: \"#\", elem: \"Home\" },\n                        { href: \"#\", elem: \"Features\" },\n                        { href: \"#\", elem: \"Pricing\" },\n                        { href: \"#\", elem: \"FAQs\" },\n                        { href: \"#\", elem: \"About\" },\n                    ],\n                });\n            },\n        }),\n        //-----------------------\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.title(\"\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.text(\"\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.code({\n            output: () => {\n                return [];\n            },\n        }),\n        //-----------------------\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.subtitle(\"\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.text(\"\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.codepreview({\n            type: \"css\",\n            code: `\r\n\t\t\t\t`,\n        }),\n        //-----------------------\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.title(\"CSS\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.text(\"\"),\n        //-----------------------\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.subtitle(\"Sass variables\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.text(\"\"),\n        new _ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__.codepreview({\n            type: \"css\",\n            title: \"scss/_variables.scss\",\n            source: \"https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss\",\n            code: `\r\n\t\t\t`,\n        }),\n    ],\n};\n\n\n//# sourceURL=webpack://@printf83/bsts-test/./lib/docs/example/footers.js?");
+
+/***/ })
+
+}]);

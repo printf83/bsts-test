@@ -430,6 +430,11 @@ strong,
     z-index: 1 !important;
 }
 
+/* sidebar-custom-1 */
+.example-output.sidebar-custom-1 .nav .nav-link:not(.active) {
+    color: var(--bs-body-color);
+}
+
 /* nav-custom-1 */
 .example-output.nav-custom-1 .nav .nav-link.active{
     color:var(--bs-body-color);

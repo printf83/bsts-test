@@ -453,6 +453,7 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Light"),
 		new e.code({
+			outputAttr: { class: "sidebar-custom-1" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {

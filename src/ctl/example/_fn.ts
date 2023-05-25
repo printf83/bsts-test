@@ -326,6 +326,14 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 			`);
 		}
 
+		if (attrHasClass(attr, "sidebar-custom-1")) {
+			result.push(`
+				#root .nav .nav-link:not(.active) {
+					color: var(--bs-body-color);
+				}
+			`);
+		}
+
 		if (attrHasClass(attr, "position-box")) {
 			result.push(`
 				#root div.position-relative {

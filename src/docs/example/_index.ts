@@ -10,3 +10,6 @@ export const features = async () => {
 export const sidebars = async () => {
 	return (await import("./sidebars.js")).sidebars;
 };
+export const footers = async () => {
+	return (await import("./footers.js")).footers;
+};

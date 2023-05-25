@@ -672,12 +672,12 @@ export const headers: IAttrContent = {
 					onlogin: (event) => {
 						//do login
 						const target = event.target as Element;
-						e.console(target, "onlogin", target, "secondary");
+						e.console(target, "onlogin", core.elemInfo(target), "secondary");
 					},
 					onsignup: (event) => {
 						//do sign up
 						const target = event.target as Element;
-						e.console(target, "onsignup", target, "warning");
+						e.console(target, "onsignup", core.elemInfo(target), "warning");
 					},
 				});
 			},
@@ -716,12 +716,12 @@ export const headers: IAttrContent = {
 					onlogin: (event) => {
 						//do login
 						const target = event.target as Element;
-						e.console(target, "onlogin", target, "secondary");
+						e.console(target, "onlogin", core.elemInfo(target), "secondary");
 					},
 					onsignup: (event) => {
 						//do sign up
 						const target = event.target as Element;
-						e.console(target, "onsignup", target, "warning");
+						e.console(target, "onsignup", core.elemInfo(target), "warning");
 					},
 					onsearch: (event) => {
 						//do search
@@ -905,7 +905,7 @@ export const headers: IAttrContent = {
 									click: (event) => {
 										//do login
 										const target = event.target as Element;
-										e.console(target, "login", "show login form", "secondary");
+										e.console(target, "login", core.elemInfo(target), "secondary");
 									},
 								},
 								elem: "Login",
@@ -915,7 +915,7 @@ export const headers: IAttrContent = {
 									click: (event) => {
 										//do signup
 										const target = event.target as Element;
-										e.console(target, "signup", "show signup form", "secondary");
+										e.console(target, "signup", core.elemInfo(target), "secondary");
 									},
 								},
 								elem: "Sign up",
@@ -950,7 +950,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 8"),
 		new e.code({
 			showConsole: true,
-			outputAttr: { class: "nav-custom-4" },
+			outputAttr: { class: "nav-custom-2" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
 			output: () => {
@@ -1000,12 +1000,12 @@ export const headers: IAttrContent = {
 					onlogin: (event) => {
 						//do login
 						const target = event.target as Element;
-						e.console(target, "onlogin", target, "secondary");
+						e.console(target, "onlogin", core.elemInfo(target), "secondary");
 					},
 					onsignup: (event) => {
 						//do sign up
 						const target = event.target as Element;
-						e.console(target, "onsignup", target, "warning");
+						e.console(target, "onsignup", core.elemInfo(target), "warning");
 					},
 					onsearch: (event) => {
 						//do search
