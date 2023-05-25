@@ -3,7 +3,7 @@ import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
 const ex = {
-	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Container["link"] }) => {
+	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -37,13 +37,21 @@ const ex = {
 
 					new b.nav.header.container({
 						type: "pill",
-						link: arg.link,
+						link: arg.link
+							? arg.link.map((i) => {
+									i.handleActive = true;
+									return i;
+							  })
+							: undefined,
+						on: {
+							"change.bs.nav": arg.onlinkchange,
+						},
 					}),
 				]
 			)
 		);
 	},
-	c2: (arg: I.B.Nav.Header.Container["link"]) => {
+	c2: (arg: { link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -54,12 +62,26 @@ const ex = {
 				},
 				new b.nav.header.container({
 					type: "pill",
-					link: arg,
+					link: arg.link
+						? arg.link.map((i) => {
+								i.handleActive = true;
+								return i;
+						  })
+						: undefined,
+					on: {
+						"change.bs.nav": arg.onlinkchange,
+					},
 				})
 			)
 		);
 	},
-	c3: (arg: { icon: string; link?: I.B.Nav.Header.Link[]; onlogin?: EventListener; onsignup?: EventListener }) => {
+	c3: (arg: {
+		icon: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+		onlogin?: EventListener;
+		onsignup?: EventListener;
+	}) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -94,9 +116,13 @@ const ex = {
 						link: arg.link
 							? arg.link.map((i) => {
 									i.paddingX = 2;
+									i.handleActive = true;
 									return i;
 							  })
 							: undefined,
+						on: {
+							"change.bs.nav": arg.onlinkchange,
+						},
 					}),
 
 					new h.div({ col: "md-3", textAlign: "end" }, [
@@ -110,6 +136,7 @@ const ex = {
 	c4: (arg: {
 		icon: string;
 		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
 		onlogin?: EventListener;
 		onsignup?: EventListener;
 		onsearch?: EventListener;
@@ -150,10 +177,14 @@ const ex = {
 							justifyContent: "center",
 							link: arg.link
 								? arg.link.map((i) => {
+										i.handleActive = true;
 										i.paddingX = 2;
 										return i;
 								  })
 								: undefined,
+							on: {
+								"change.bs.nav": arg.onlinkchange,
+							},
 						}),
 
 						new h.form(
@@ -190,6 +221,7 @@ const ex = {
 		img: string;
 		icon: string;
 		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
 		menu?: core.IElem;
 		onsearch?: EventListener;
 	}) => {
@@ -230,10 +262,14 @@ const ex = {
 							justifyContent: "center",
 							link: arg.link
 								? arg.link.map((i) => {
+										i.handleActive = true;
 										i.paddingX = 2;
 										return i;
 								  })
 								: undefined,
+							on: {
+								"change.bs.nav": arg.onlinkchange,
+							},
 						}),
 
 						new h.form(
@@ -276,7 +312,14 @@ const ex = {
 			)
 		);
 	},
-	c6Header: (arg: { img: string; icon: string; link?: core.IElem; menu?: core.IElem; onsearch?: EventListener }) => {
+	c6Header: (arg: {
+		img: string;
+		icon: string;
+		link?: core.IElem;
+		menu?: core.IElem;
+		onsearch?: EventListener;
+		onlinkchange?: EventListener;
+	}) => {
 		return new h.header(
 			{
 				paddingY: 3,
@@ -305,7 +348,15 @@ const ex = {
 							},
 							new b.icon({ id: arg.icon, h: 2, marginBottom: 0 })
 						),
-						new b.dropdown.menu({ shadow: true }, arg.link ? arg.link : ""),
+						new b.dropdown.menu(
+							{
+								shadow: true,
+								on: {
+									"change.bs.menu": arg.onlinkchange,
+								},
+							},
+							arg.link ? arg.link : ""
+						),
 					]),
 					new h.div({ display: "flex", alignItem: "center" }, [
 						new h.form(
@@ -333,7 +384,12 @@ const ex = {
 								})
 							),
 
-							new b.dropdown.menu({ shadow: true }, arg.menu ? arg.menu : ""),
+							new b.dropdown.menu(
+								{
+									shadow: true,
+								},
+								arg.menu ? arg.menu : ""
+							),
 						]),
 					]),
 				]
@@ -355,12 +411,17 @@ const ex = {
 		link?: core.IElem;
 		menu?: core.IElem;
 		onsearch?: EventListener;
+		onlinkchange?: EventListener;
 		side?: core.IElem;
 		main?: core.IElem;
 	}) => {
 		return [ex.c6Header(arg), ex.c6Body(arg)];
 	},
-	c7Nav: (arg: { startMenu?: I.B.Nav.Header.Link[]; endMenu?: I.B.Nav.Header.Link[] }) => {
+	c7Nav: (arg: {
+		startMenu?: I.B.Nav.Header.Link[];
+		endMenu?: I.B.Nav.Header.Link[];
+		onstarmenuchange?: EventListener;
+	}) => {
 		return new h.nav(
 			{ paddingY: 2, bgColor: "body-secondary", border: "bottom" },
 			new h.div({ container: true, display: "flex", flex: "wrap" }, [
@@ -368,6 +429,7 @@ const ex = {
 					marginEnd: "auto",
 					link: arg.startMenu?.map((i) => {
 						i.linkColor = "body-emphasis";
+						i.handleActive = true;
 						return i;
 					}),
 				}),
@@ -376,6 +438,7 @@ const ex = {
 						i.linkColor = "body-emphasis";
 						return i;
 					}),
+					on: { "change.bs.nav": arg.onstarmenuchange },
 				}),
 			])
 		);
@@ -419,6 +482,7 @@ const ex = {
 	c8: (arg: {
 		icon: string;
 		link: { href: string; icon: string; label: string; active?: boolean }[];
+		onlinkchange?: EventListener;
 		onlogin?: EventListener;
 		onsignup?: EventListener;
 		onsearch?: EventListener;
@@ -455,7 +519,7 @@ const ex = {
 								justifyContent: "center",
 								link: arg.link.map((i) => {
 									let result: I.B.Nav.Header.Link = {
-										// linkColor: i.active === true ? "secondary" : "light",
+										handleActive: true,
 										href: i.href,
 										elem: new b.caption(
 											{ icon: new b.icon({ id: i.icon, h: 2 }), iconPosition: "top" },
@@ -465,6 +529,9 @@ const ex = {
 
 									return result;
 								}),
+								on: {
+									"change.bs.nav": arg.onlinkchange,
+								},
 							}),
 						]
 					)
@@ -508,6 +575,7 @@ export const headers: IAttrContent = {
 	item: [
 		new e.title("Example header 1"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 			output: () => {
@@ -521,6 +589,11 @@ export const headers: IAttrContent = {
 						{ href: "#", elem: "FAQs" },
 						{ href: "#", elem: "About" },
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(target, "onlinkchange", detail, "info");
+					},
 				});
 			},
 		}),
@@ -529,16 +602,24 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 2"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {
-				return ex.c2([
-					{ active: true, href: "#", elem: "Home" },
-					{ href: "#", elem: "Features" },
-					{ href: "#", elem: "Pricing" },
-					{ href: "#", elem: "FAQs" },
-					{ href: "#", elem: "About" },
-				]);
+				return ex.c2({
+					link: [
+						{ active: true, href: "#", elem: "Home" },
+						{ href: "#", elem: "Features" },
+						{ href: "#", elem: "Pricing" },
+						{ href: "#", elem: "FAQs" },
+						{ href: "#", elem: "About" },
+					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(target, "onlinkchange", detail, "info");
+					},
+				});
 			},
 		}),
 
@@ -560,6 +641,11 @@ export const headers: IAttrContent = {
 						{ href: "#", elem: "FAQs" },
 						{ href: "#", elem: "About" },
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(target, "onlinkchange", detail, "info");
+					},
 					onlogin: (event) => {
 						//do login
 						const target = event.target as Element;
@@ -591,6 +677,11 @@ export const headers: IAttrContent = {
 						{ href: "#", elem: "FAQs" },
 						{ href: "#", elem: "About" },
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(target, "onlinkchange", detail, "info");
+					},
 					onlogin: (event) => {
 						//do login
 						const target = event.target as Element;
@@ -645,6 +736,11 @@ export const headers: IAttrContent = {
 						new b.dropdown.divider(),
 						new b.dropdown.item({ href: "#" }, "Sign out"),
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(target, "onlinkchange", detail, "info");
+					},
 					onsearch: (event) => {
 						//do search
 						event.preventDefault();
@@ -696,6 +792,11 @@ export const headers: IAttrContent = {
 						new b.dropdown.divider(),
 						new b.dropdown.item({ href: "#" }, "Sign out"),
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(target, "onlinkchange", detail, "info");
+					},
 					onsearch: (event) => {
 						//do search
 						event.preventDefault();
@@ -731,12 +832,17 @@ export const headers: IAttrContent = {
 				return [
 					ex.c7Nav({
 						startMenu: [
-							{ href: "#", elem: "Home" },
-							{ href: "#", elem: "Features" },
-							{ href: "#", elem: "Pricing" },
-							{ href: "#", elem: "FAQs" },
-							{ href: "#", elem: "About" },
+							{ active: true, href: "#", elem: "Home", handleActive: true },
+							{ href: "#", elem: "Features", handleActive: true },
+							{ href: "#", elem: "Pricing", handleActive: true },
+							{ href: "#", elem: "FAQs", handleActive: true },
+							{ href: "#", elem: "About", handleActive: true },
 						],
+						onstarmenuchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(target, "onstarmenuchange", detail, "info");
+						},
 						endMenu: [
 							{
 								on: {
@@ -822,6 +928,11 @@ export const headers: IAttrContent = {
 							label: "Customers",
 						},
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(target, "onlinkchange", detail, "info");
+					},
 					onlogin: (event) => {
 						//do login
 						const target = event.target as Element;
