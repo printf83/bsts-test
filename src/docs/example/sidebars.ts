@@ -46,8 +46,9 @@ const ex = {
 					marginBottom: "auto",
 					link: arg.link?.map((i) => {
 						return {
+							handleActive: true,
 							active: i.active,
-							textColor: i.active ? undefined : "white",
+							textColor: "white",
 							href: i.href,
 							elem: new b.caption({ icon: i.icon }, i.label),
 						};
@@ -122,8 +123,9 @@ const ex = {
 					marginBottom: "auto",
 					link: arg.link?.map((i) => {
 						return {
+							handleActive: true,
 							active: i.active,
-							textColor: i.active ? undefined : "body-emphasis",
+							// textColor: "body-emphasis",
 							href: i.href,
 							elem: new b.caption({ icon: i.icon }, i.label),
 						};
@@ -198,6 +200,7 @@ const ex = {
 						border: "top",
 						link: arg.link?.map((i) => {
 							return {
+								handleActive: true,
 								rounded: 0,
 								active: i.active,
 								href: i.href,
