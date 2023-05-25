@@ -549,6 +549,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 3"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
@@ -563,9 +564,13 @@ export const headers: IAttrContent = {
 					],
 					onlogin: (event) => {
 						//do login
+						const target = event.target as Element;
+						e.console(target, "onlogin", target, "secondary");
 					},
 					onsignup: (event) => {
 						//do sign up
+						const target = event.target as Element;
+						e.console(target, "onsignup", target, "warning");
 					},
 				});
 			},
@@ -575,6 +580,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 4"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { bgColor: "dark", padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
@@ -588,12 +594,28 @@ export const headers: IAttrContent = {
 					],
 					onlogin: (event) => {
 						//do login
+						const target = event.target as Element;
+						e.console(target, "onlogin", target, "secondary");
 					},
 					onsignup: (event) => {
 						//do sign up
+						const target = event.target as Element;
+						e.console(target, "onsignup", target, "warning");
 					},
 					onsearch: (event) => {
 						//do search
+						event.preventDefault();
+						const target = event.target as Element;
+						const input = target.getElementsByTagName("input")[0];
+						e.console(
+							target,
+							"onsearch",
+							{
+								input: core.elemInfo(input),
+								value: input.value,
+							},
+							"success"
+						);
 					},
 				});
 			},
@@ -603,6 +625,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 5"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
@@ -624,6 +647,18 @@ export const headers: IAttrContent = {
 					],
 					onsearch: (event) => {
 						//do search
+						event.preventDefault();
+						const target = event.target as Element;
+						const input = target.getElementsByTagName("input")[0];
+						e.console(
+							target,
+							"onsearch",
+							{
+								input: core.elemInfo(input),
+								value: input.value,
+							},
+							"success"
+						);
 					},
 				});
 			},
@@ -633,6 +668,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 6"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [
 				{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 },
@@ -662,6 +698,18 @@ export const headers: IAttrContent = {
 					],
 					onsearch: (event) => {
 						//do search
+						event.preventDefault();
+						const target = event.target as Element;
+						const input = target.getElementsByTagName("input")[0];
+						e.console(
+							target,
+							"onsearch",
+							{
+								input: core.elemInfo(input),
+								value: input.value,
+							},
+							"success"
+						);
 					},
 					side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
 					main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
@@ -673,6 +721,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 7"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [
 				{ name: "COMPONENTNAV", rename: "ex.c7Nav", output: ex.c7Nav },
@@ -689,11 +738,47 @@ export const headers: IAttrContent = {
 							{ href: "#", elem: "About" },
 						],
 						endMenu: [
-							{ href: "#", elem: "Login" },
-							{ href: "#", elem: "Sign up" },
+							{
+								on: {
+									click: (event) => {
+										//do login
+										const target = event.target as Element;
+										e.console(target, "login", "show login form", "secondary");
+									},
+								},
+								elem: "Login",
+							},
+							{
+								on: {
+									click: (event) => {
+										//do signup
+										const target = event.target as Element;
+										e.console(target, "signup", "show signup form", "secondary");
+									},
+								},
+								elem: "Sign up",
+							},
 						],
 					}),
-					ex.c7Header({ icon: "fab bootstrap", title: "Double header", onsearch: (event) => {} }),
+					ex.c7Header({
+						icon: "fab bootstrap",
+						title: "Double header",
+						onsearch: (event) => {
+							//do search
+							event.preventDefault();
+							const target = event.target as Element;
+							const input = target.getElementsByTagName("input")[0];
+							e.console(
+								target,
+								"onsearch",
+								{
+									input: core.elemInfo(input),
+									value: input.value,
+								},
+								"success"
+							);
+						},
+					}),
 				];
 			},
 		}),
@@ -702,6 +787,7 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 8"),
 		new e.code({
+			showConsole: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
 			output: () => {
@@ -737,12 +823,28 @@ export const headers: IAttrContent = {
 					],
 					onlogin: (event) => {
 						//do login
+						const target = event.target as Element;
+						e.console(target, "onlogin", target, "secondary");
 					},
 					onsignup: (event) => {
 						//do sign up
+						const target = event.target as Element;
+						e.console(target, "onsignup", target, "warning");
 					},
 					onsearch: (event) => {
 						//do search
+						event.preventDefault();
+						const target = event.target as Element;
+						const input = target.getElementsByTagName("input")[0];
+						e.console(
+							target,
+							"onsearch",
+							{
+								input: core.elemInfo(input),
+								value: input.value,
+							},
+							"success"
+						);
 					},
 				});
 			},

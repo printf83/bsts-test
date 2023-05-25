@@ -371,7 +371,7 @@ const ex = {
 				display: "flex",
 				flex: ["column", "shrink-0"],
 				shadow: true,
-				style: { width: "380px", height: "500px" },
+				style: { maxWidth: "380px", height: "500px" },
 			},
 			[
 				new h.a(
