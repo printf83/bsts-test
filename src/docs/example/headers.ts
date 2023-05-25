@@ -428,17 +428,15 @@ const ex = {
 				new b.nav.header.container({
 					marginEnd: "auto",
 					link: arg.startMenu?.map((i) => {
-						i.linkColor = "body-emphasis";
 						i.handleActive = true;
 						return i;
 					}),
+					on: { "change.bs.nav": arg.onstarmenuchange },
 				}),
 				new b.nav.header.container({
 					link: arg.endMenu?.map((i) => {
-						i.linkColor = "body-emphasis";
 						return i;
 					}),
-					on: { "change.bs.nav": arg.onstarmenuchange },
 				}),
 			])
 		);
@@ -489,7 +487,7 @@ const ex = {
 	}) => {
 		return new h.header([
 			new h.div(
-				{ paddingX: 3, paddingY: 2, textBgColor: "dark" },
+				{ paddingX: 3, paddingY: 2, textBgColor: "dark", theme: "dark" },
 				new h.div(
 					{ container: true },
 					new h.div(
@@ -519,6 +517,7 @@ const ex = {
 								justifyContent: "center",
 								link: arg.link.map((i) => {
 									let result: I.B.Nav.Header.Link = {
+										active: i.active,
 										handleActive: true,
 										href: i.href,
 										elem: new b.caption(
@@ -592,7 +591,15 @@ export const headers: IAttrContent = {
 					onlinkchange: (event) => {
 						const target = event.target as Element;
 						const detail = (event as CustomEvent).detail;
-						e.console(target, "onlinkchange", detail, "info");
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
 					},
 				});
 			},
@@ -617,7 +624,15 @@ export const headers: IAttrContent = {
 					onlinkchange: (event) => {
 						const target = event.target as Element;
 						const detail = (event as CustomEvent).detail;
-						e.console(target, "onlinkchange", detail, "info");
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
 					},
 				});
 			},
@@ -644,7 +659,15 @@ export const headers: IAttrContent = {
 					onlinkchange: (event) => {
 						const target = event.target as Element;
 						const detail = (event as CustomEvent).detail;
-						e.console(target, "onlinkchange", detail, "info");
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
 					},
 					onlogin: (event) => {
 						//do login
@@ -680,7 +703,15 @@ export const headers: IAttrContent = {
 					onlinkchange: (event) => {
 						const target = event.target as Element;
 						const detail = (event as CustomEvent).detail;
-						e.console(target, "onlinkchange", detail, "info");
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
 					},
 					onlogin: (event) => {
 						//do login
@@ -739,7 +770,15 @@ export const headers: IAttrContent = {
 					onlinkchange: (event) => {
 						const target = event.target as Element;
 						const detail = (event as CustomEvent).detail;
-						e.console(target, "onlinkchange", detail, "info");
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
 					},
 					onsearch: (event) => {
 						//do search
@@ -777,13 +816,13 @@ export const headers: IAttrContent = {
 					img: "https://picsum.photos/seed/bsts_0/32/32",
 					icon: "fab bootstrap",
 					link: [
-						new b.dropdown.item({ href: "#", active: true }, "Overview"),
-						new b.dropdown.item({ href: "#" }, "Inventory"),
-						new b.dropdown.item({ href: "#" }, "Customers"),
-						new b.dropdown.item({ href: "#" }, "Products"),
+						new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
+						new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
+						new b.dropdown.item({ href: "#", handleActive: true }, "Customers"),
+						new b.dropdown.item({ href: "#", handleActive: true }, "Products"),
 						new b.dropdown.divider(),
-						new b.dropdown.item({ href: "#" }, "Reports"),
-						new b.dropdown.item({ href: "#" }, "Analytics"),
+						new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
+						new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
 					],
 					menu: [
 						new b.dropdown.item({ href: "#" }, "New project..."),
@@ -795,7 +834,15 @@ export const headers: IAttrContent = {
 					onlinkchange: (event) => {
 						const target = event.target as Element;
 						const detail = (event as CustomEvent).detail;
-						e.console(target, "onlinkchange", detail, "info");
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
 					},
 					onsearch: (event) => {
 						//do search
@@ -824,6 +871,7 @@ export const headers: IAttrContent = {
 		new e.code({
 			showConsole: true,
 			previewAttr: { padding: 0 },
+			outputAttr: { class: "nav-custom-2" },
 			extention: [
 				{ name: "COMPONENTNAV", rename: "ex.c7Nav", output: ex.c7Nav },
 				{ name: "COMPONENTHEADER", rename: "ex.c7Header", output: ex.c7Header },
@@ -832,16 +880,24 @@ export const headers: IAttrContent = {
 				return [
 					ex.c7Nav({
 						startMenu: [
-							{ active: true, href: "#", elem: "Home", handleActive: true },
-							{ href: "#", elem: "Features", handleActive: true },
-							{ href: "#", elem: "Pricing", handleActive: true },
-							{ href: "#", elem: "FAQs", handleActive: true },
-							{ href: "#", elem: "About", handleActive: true },
+							{ active: true, href: "#", elem: "Home" },
+							{ href: "#", elem: "Features" },
+							{ href: "#", elem: "Pricing" },
+							{ href: "#", elem: "FAQs" },
+							{ href: "#", elem: "About" },
 						],
 						onstarmenuchange: (event) => {
 							const target = event.target as Element;
 							const detail = (event as CustomEvent).detail;
-							e.console(target, "onstarmenuchange", detail, "info");
+							e.console(
+								target,
+								"onstarmenuchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
 						},
 						endMenu: [
 							{
@@ -894,7 +950,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 8"),
 		new e.code({
 			showConsole: true,
-			outputAttr: { class: "nav-custom-2" },
+			outputAttr: { class: "nav-custom-4" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
 			output: () => {
@@ -931,7 +987,15 @@ export const headers: IAttrContent = {
 					onlinkchange: (event) => {
 						const target = event.target as Element;
 						const detail = (event as CustomEvent).detail;
-						e.console(target, "onlinkchange", detail, "info");
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
 					},
 					onlogin: (event) => {
 						//do login

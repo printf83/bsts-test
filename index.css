@@ -447,6 +447,14 @@ strong,
     color: var(--bs-secondary-color);
 }
 
+.example-output.nav-custom-4 .nav .nav-link >* {
+    color: var(--bs-emphasis-color);
+}
+
+.example-output.nav-custom-4 .nav .nav-link.active >* {
+    color: var(--bs-secondary-color);
+}
+
 /* btn-toggle */
 .example-output.toggle .btn-toggle {
     padding: .25rem .5rem;
