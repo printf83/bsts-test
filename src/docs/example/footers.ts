@@ -1,4 +1,4 @@
-import { I, b, h } from "@printf83/bsts";
+import { I, b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -38,7 +38,7 @@ const ex = {
 			]
 		);
 	},
-	c2: (arg: { copyright: string; icon: string; link: I.B.Nav.Header.Link[] }) => {
+	c2: (arg: { copyright: string; icon: string; link: { icon: string; href: string }[] }) => {
 		return new h.footer(
 			{
 				display: "flex",
@@ -54,29 +54,53 @@ const ex = {
 					new h.a(
 						{
 							href: "#",
-							col: "md-4",
-							display: "flex",
-							alignItem: "center",
-							justifyContent: "center",
 							marginBottom: [3, "md-0"],
-							marginEnd: "md-auto",
-							linkColor: "body-emphasis",
+							marginEnd: 2,
+							textColor: "body-secondary",
 							textDecoration: "none",
+							lineHeight: 1,
 						},
-						new b.icon({ id: arg.icon, weight: "2xl" })
+						new b.icon({ id: arg.icon, weight: "xl" })
 					),
-					new h.p({ col: "md-4", marginBottom: 0, textColor: "body-secondary" }, arg.copyright),
+					new h.span({ marginBottom: [3, "md-0"], textColor: "body-secondary" }, arg.copyright),
 				]),
 
-				new b.nav.header.container({
+				new h.ul({
 					col: "md-4",
 					justifyContent: "end",
-					link: arg.link,
+					display: "flex",
+					item: arg.link.map((i) => {
+						return new h.li(
+							{ marginStart: 3 },
+							new h.a(
+								{ href: i.href },
+								new b.icon({ id: i.icon, weight: "xl", textColor: "body-secondary" })
+							)
+						);
+					}),
+					unstyle: true,
 				}),
 			]
 		);
 	},
-	c3: () => {},
+	c3: (arg: { copyright: string; link: I.B.Nav.Header.Link[] }) => {
+		return new h.footer(
+			{
+				paddingY: 3,
+				marginY: 4,
+			},
+			[
+				new b.nav.header.container({
+					border: "bottom",
+					paddingBottom: 3,
+					marginBottom: 3,
+					justifyContent: "center",
+					link: arg.link,
+				}),
+				new h.p({ textAlign: "center", textColor: "body-secondary" }, arg.copyright),
+			]
+		);
+	},
 };
 export const footers: IAttrContent = {
 	title: "Footers",
@@ -85,7 +109,6 @@ export const footers: IAttrContent = {
 		new e.title("Example footer 1"),
 		new e.code({
 			outputAttr: { class: "nav-custom-4" },
-			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 			output: () => {
 				return ex.c1({
@@ -107,16 +130,15 @@ export const footers: IAttrContent = {
 		new e.title("Example footer 2"),
 		new e.code({
 			outputAttr: { class: "nav-custom-4" },
-			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {
 				return ex.c2({
 					copyright: "© 2023 Company, Inc",
 					icon: "fab bootstrap",
 					link: [
-						{ href: "#", elem: new b.icon({ id: "fab twitter", weight: "2xl" }) },
-						{ href: "#", elem: new b.icon({ id: "fab instagram", weight: "2xl" }) },
-						{ href: "#", elem: new b.icon({ id: "fab facebook", weight: "2xl" }) },
+						{ href: "#", icon: "fab twitter" },
+						{ href: "#", icon: "fab instagram" },
+						{ href: "#", icon: "fab facebook" },
 					],
 				});
 			},
@@ -124,11 +146,21 @@ export const footers: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Example footer 3"),
 		new e.code({
+			outputAttr: { class: "nav-custom-4" },
+			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
-				return [];
+				return ex.c3({
+					copyright: "© 2023 Company, Inc",
+					link: [
+						{ href: "#", elem: "Home" },
+						{ href: "#", elem: "Features" },
+						{ href: "#", elem: "Pricing" },
+						{ href: "#", elem: "FAQs" },
+						{ href: "#", elem: "About" },
+					],
+				});
 			},
 		}),
 
