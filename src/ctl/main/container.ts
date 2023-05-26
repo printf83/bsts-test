@@ -105,6 +105,7 @@ export interface IAttrItemOutsideLink {
 	href: string;
 	label: string;
 	icon: I.B.Icon;
+	onclick?: EventListener;
 }
 
 export interface IAttrItemTheme {
@@ -317,7 +318,8 @@ const genOutsideLink = (
 									paddingX: [0, "lg-2"],
 									textColor: textColor,
 									href: i.href,
-									target: "_blank",
+									target: i.onclick ? undefined : "_blank",
+									on: { click: i.onclick },
 								},
 								new b.caption({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
 							),

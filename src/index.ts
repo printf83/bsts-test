@@ -1,4 +1,4 @@
-import { core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 
@@ -464,6 +464,43 @@ const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 	}
 };
 
+const runMemoryTest = (count: number) => {
+	if (count > 0) {
+		let docX = core.rndBetween(0, m.doc.length - 1);
+		let docY = core.rndBetween(0, m.doc[docX].item.length - 1);
+		let docId = m.doc[docX].item[docY].value;
+
+		let contentbody = document.getElementById("bs-main") as Element;
+		setTimeout(() => {
+			getData(docId, (docData) => {
+				CURRENT_PAGE = docId;
+				cookie.set("current_page", `${docId}`);
+				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+				highlightCurrentMenu(docId);
+
+				let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+				let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+				const { origin, pathname } = window.location;
+				document.title = strPagetitle;
+
+				window.history.pushState(
+					{
+						docId: docId,
+					} satisfies IWindowState,
+					strPagetitle,
+					`${origin}${pathname}?d=${docId}`
+				);
+
+				runMemoryTest(count - 1);
+			});
+		}, 0);
+	} else {
+		CURRENT_PAGE ??= "docs/gettingstarted/introduction";
+		onMenuChange(CURRENT_PAGE);
+		highlightCurrentMenu(CURRENT_PAGE);
+	}
+};
+
 const mainContainer = main.Container({
 	name: "Bootstrap TS",
 	bgColor: "primary",
@@ -480,16 +517,77 @@ const mainContainer = main.Container({
 
 	itemMenu: m.doc,
 
-	itemInsideLink: [
-		{ value: "doc", label: "Docs" },
-		{
-			value: "example",
-			label: "Test",
-		},
-	],
+	itemInsideLink: [{ value: "doc", label: "Docs" }],
 	currentInsideLink: "doc",
 
 	itemOutsideLink: [
+		{
+			href: "#",
+			icon: { id: "flask-vial", type: "solid" },
+			label: "Test",
+			onclick: (_event) => {
+				b.modal.show(
+					new b.modal.container(
+						new b.modal.body(
+							new b.tabList.container([
+								new b.tabList.item(
+									{
+										href: "#",
+										action: true,
+										data: { "bs-toggle": "modal" },
+										on: {
+											click: (_event) => {
+												runMemoryTest(10);
+											},
+										},
+									},
+									"Memory test 10"
+								),
+								new b.tabList.item(
+									{
+										href: "#",
+										action: true,
+										data: { "bs-toggle": "modal" },
+										on: {
+											click: (_event) => {
+												runMemoryTest(100);
+											},
+										},
+									},
+									"Memory test 100"
+								),
+								new b.tabList.item(
+									{
+										href: "#",
+										action: true,
+										data: { "bs-toggle": "modal" },
+										on: {
+											click: (_event) => {
+												runMemoryTest(1000);
+											},
+										},
+									},
+									"Memory test 1000"
+								),
+								new b.tabList.item(
+									{
+										href: "#",
+										action: true,
+										data: { "bs-toggle": "modal" },
+										on: {
+											click: (_event) => {
+												runMemoryTest(5000);
+											},
+										},
+									},
+									"Memory test 5000"
+								),
+							])
+						)
+					)
+				);
+			},
+		},
 		{ href: "https://github.com/printf83/bsts", icon: { id: "github", type: "brand" }, label: "Github" },
 		{ href: "https://twitter.com/printf83", icon: { id: "twitter", type: "brand" }, label: "Twitter" },
 		{ href: "https://getbootstrap.com/", icon: { id: "bootstrap", type: "brand" }, label: "Bootstrap" },
