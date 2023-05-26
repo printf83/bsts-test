@@ -482,7 +482,10 @@ const mainContainer = main.Container({
 
 	itemInsideLink: [
 		{ value: "doc", label: "Docs" },
-		{ value: "example", label: "Examples" },
+		{
+			value: "example",
+			label: "Test",
+		},
 	],
 	currentInsideLink: "doc",
 
