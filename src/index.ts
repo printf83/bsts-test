@@ -197,7 +197,7 @@ let m = {
 		},
 		{
 			label: "Example",
-			icon: { id: "file-code-fill", color: "success" },
+			icon: { id: "code", color: "success" },
 			item: [
 				{ label: "Headers", value: "docs/example/headers" },
 				{ label: "Heroes", value: "docs/example/heroes" },
@@ -518,8 +518,8 @@ const mainContainer = main.Container({
 	itemOutsideLink: [
 		{
 			href: "#",
-			icon: { id: "flask", type: "solid" },
-			label: "Test",
+			icon: { id: "shuffle" },
+			label: "Memory test",
 			onclick: (_event) => {
 				b.modal.show(
 					new b.modal.container(
@@ -549,8 +549,8 @@ const mainContainer = main.Container({
 				);
 			},
 		},
-		{ href: "https://github.com/printf83/bsts", icon: { id: "github", type: "brand" }, label: "Github" },
-		{ href: "https://twitter.com/printf83", icon: { id: "twitter", type: "brand" }, label: "Twitter" },
+		{ href: "https://github.com/printf83/bsts", icon: { id: "github" }, label: "Github" },
+		{ href: "https://twitter.com/printf83", icon: { id: "twitter" }, label: "Twitter" },
 		{ href: "https://getbootstrap.com/", icon: { id: "bootstrap", type: "brand" }, label: "Bootstrap" },
 	],
 
