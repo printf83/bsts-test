@@ -334,85 +334,74 @@ const resetLoading = (contentbody: Element) => {
 };
 
 const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "replace") => {
-	setTimeout(
-		(value) => {
-			isfirsttime ??= false;
-			state ??= "push";
+	isfirsttime ??= false;
+	state ??= "push";
 
-			let docId: string = value;
-			let anchorId: string | undefined;
+	let docId: string = value;
+	let anchorId: string | undefined;
 
-			if (value.indexOf("#") > -1) {
-				let tempValue = value.split("#");
-				docId = tempValue[0];
-				anchorId = tempValue[1];
+	if (value.indexOf("#") > -1) {
+		let tempValue = value.split("#");
+		docId = tempValue[0];
+		anchorId = tempValue[1];
+	}
+
+	let contentbody = document.getElementById("bs-main") as Element;
+
+	//set loading
+	setLoading(contentbody);
+	setTimeout(() => {
+		getData(docId, (docData) => {
+			//keep current page in cookie
+			CURRENT_PAGE = docId;
+			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+
+			//remove active popup
+			core.removeAllActivePopup();
+
+			//generate content
+			contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+
+			//reset loading
+			resetLoading(contentbody);
+
+			//rename page title
+			let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+			let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+			const { origin, pathname } = window.location;
+			document.title = strPagetitle;
+
+			//set history
+			if (state === "push") {
+				window.history.pushState(
+					{
+						docId: docId,
+						anchorId: anchorId,
+						isfirsttime: isfirsttime,
+					} satisfies IWindowState,
+					strPagetitle,
+					`${origin}${pathname}?d=${value}`
+				);
+			} else if (state === "replace") {
+				window.history.replaceState(
+					{
+						docId: docId,
+						anchorId: anchorId,
+						isfirsttime: isfirsttime,
+					} satisfies IWindowState,
+					strPagetitle,
+					`${origin}${pathname}?d=${value}`
+				);
 			}
 
-			//chekc if value have #
-			if (CURRENT_PAGE !== docId) {
-				let contentbody = document.getElementById("bs-main") as Element;
+			core.init(contentbody);
+			focusToAnchor(anchorId, isfirsttime);
 
-				//set loading
-				setLoading(contentbody);
-				setTimeout(() => {
-					getData(docId, (docData) => {
-						//keep current page in cookie
-						CURRENT_PAGE = docId;
-						cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
-
-						//remove active popup
-						core.removeAllActivePopup();
-
-						//generate content
-						contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-
-						//reset loading
-						resetLoading(contentbody);
-
-						//rename page title and push history
-						let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-						let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-						const { origin, pathname } = window.location;
-						document.title = strPagetitle;
-
-						if (state === "push") {
-							window.history.pushState(
-								{
-									docId: docId,
-									anchorId: anchorId,
-									isfirsttime: isfirsttime,
-								} satisfies IWindowState,
-								strPagetitle,
-								`${origin}${pathname}?d=${value}`
-							);
-						} else if (state === "replace") {
-							window.history.replaceState(
-								{
-									docId: docId,
-									anchorId: anchorId,
-									isfirsttime: isfirsttime,
-								} satisfies IWindowState,
-								strPagetitle,
-								`${origin}${pathname}?d=${value}`
-							);
-						}
-
-						core.init(contentbody);
-						focusToAnchor(anchorId, isfirsttime);
-
-						setTimeout(() => {
-							PR.prettyPrint();
-						}, 100);
-					});
-				}, 1);
-			} else {
-				//focus to e
-				focusToAnchor(anchorId, isfirsttime);
-			}
-		},
-		0,
-		value
-	);
+			setTimeout(() => {
+				PR.prettyPrint();
+			}, 10);
+		});
+	}, 0);
 };
 
 const setupBSNavigate = () => {
@@ -464,40 +453,46 @@ const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 	}
 };
 
-const runMemoryTest = (count: number) => {
+let _docDB: string[] = [];
+const docDB = () => {
+	if (_docDB.length > 0) {
+		return _docDB;
+	} else {
+		_docDB = m.doc
+			.map((i) => {
+				return i.item.map((j) => {
+					return j.value;
+				});
+			})
+			.flat();
+
+		return _docDB;
+	}
+};
+
+const runMemoryTest = (count: number, max?: number) => {
 	if (count > 0) {
-		let docX = core.rndBetween(0, m.doc.length - 1);
-		let docY = core.rndBetween(0, m.doc[docX].item.length - 1);
-		let docId = m.doc[docX].item[docY].value;
+		max ??= count;
+
+		let mDB = docDB();
+		let docId = mDB[core.rndBetween(0, mDB.length - 1)];
 
 		let contentbody = document.getElementById("bs-main") as Element;
 		setTimeout(() => {
 			getData(docId, (docData) => {
-				CURRENT_PAGE = docId;
-				cookie.set("current_page", `${docId}`);
 				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 				highlightCurrentMenu(docId);
+				core.init(contentbody);
 
-				let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-				let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-				const { origin, pathname } = window.location;
-				document.title = strPagetitle;
+				document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
 
-				window.history.pushState(
-					{
-						docId: docId,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${docId}`
-				);
-
-				runMemoryTest(count - 1);
+				runMemoryTest(count - 1, max);
 			});
 		}, 0);
 	} else {
 		CURRENT_PAGE ??= "docs/gettingstarted/introduction";
-		onMenuChange(CURRENT_PAGE);
 		highlightCurrentMenu(CURRENT_PAGE);
+		onMenuChange(CURRENT_PAGE);
 	}
 };
 
@@ -523,67 +518,33 @@ const mainContainer = main.Container({
 	itemOutsideLink: [
 		{
 			href: "#",
-			icon: { id: "flask-vial", type: "solid" },
+			icon: { id: "flask", type: "solid" },
 			label: "Test",
 			onclick: (_event) => {
 				b.modal.show(
 					new b.modal.container(
-						new b.modal.body(
-							new b.tabList.container([
-								new b.tabList.item(
-									{
-										href: "#",
-										action: true,
-										data: { "bs-toggle": "modal" },
-										on: {
-											click: (_event) => {
-												runMemoryTest(10);
+						new b.modal.body([
+							new h.p(
+								"Open random page to detect memory leak. Please open Memory Monitor Program on your device and compare the memory diffrence before start memory leak test and after the test complete. You should have back your memory when the test complete."
+							),
+							new b.tabList.container(
+								[10, 100, 1000, 5000, 10000].map((i) => {
+									return new b.tabList.item(
+										{
+											href: "#",
+											action: true,
+											data: { "bs-toggle": "modal" },
+											on: {
+												click: (_event) => {
+													runMemoryTest(i);
+												},
 											},
 										},
-									},
-									"Memory test 10"
-								),
-								new b.tabList.item(
-									{
-										href: "#",
-										action: true,
-										data: { "bs-toggle": "modal" },
-										on: {
-											click: (_event) => {
-												runMemoryTest(100);
-											},
-										},
-									},
-									"Memory test 100"
-								),
-								new b.tabList.item(
-									{
-										href: "#",
-										action: true,
-										data: { "bs-toggle": "modal" },
-										on: {
-											click: (_event) => {
-												runMemoryTest(1000);
-											},
-										},
-									},
-									"Memory test 1000"
-								),
-								new b.tabList.item(
-									{
-										href: "#",
-										action: true,
-										data: { "bs-toggle": "modal" },
-										on: {
-											click: (_event) => {
-												runMemoryTest(5000);
-											},
-										},
-									},
-									"Memory test 5000"
-								),
-							])
-						)
+										`Open ${i} random page`
+									);
+								})
+							),
+						])
 					)
 				);
 			},
