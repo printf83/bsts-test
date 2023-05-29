@@ -1,4 +1,4 @@
-import { I, b, h } from "@printf83/bsts";
+import { I, b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -101,6 +101,57 @@ const ex = {
 			]
 		);
 	},
+	c4Section: (arg: { title: string; link: I.B.Nav.Header.Link[] }) => {
+		return [
+			new h.h(5, arg.title),
+			new b.nav.header.container({
+				flex: "column",
+				elem: arg.link.map((i) => {
+					return new b.nav.header.item(
+						{ marginBottom: 2 },
+						new b.nav.header.link({
+							href: i.href,
+							elem: i.elem,
+							padding: 0,
+						})
+					);
+				}),
+			}),
+		];
+	},
+	c4: (arg: { copyright: string; icon: string; link: (undefined | t[])[] }) => {
+		return new h.footer(
+			{
+				row: true,
+				rowCol: [1, "sm-2", "md-5"],
+				paddingY: 5,
+				marginY: 5,
+				border: "top",
+			},
+			[
+				new h.div({ col: true, marginBottom: 3 }, [
+					new h.a(
+						{
+							href: "#",
+							display: "flex",
+							alignItem: "center",
+							marginBottom: 3,
+							textDecoration: "none",
+						},
+						new b.icon({ id: arg.icon, weight: "2xl", color: "body" })
+					),
+					new h.p({ textColor: "body-secondary" }, arg.copyright),
+				]),
+				...arg.link.map((i) => {
+					if (i !== undefined) {
+						return new h.div({ col: true, marginBottom: 3 }, i!);
+					} else {
+						return new h.div({ col: true, marginBottom: 3 }, "");
+					}
+				}),
+			]
+		);
+	},
 };
 export const footers: IAttrContent = {
 	title: "Footers",
@@ -166,12 +217,52 @@ export const footers: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.title("Example footer 4"),
+		new e.code({
+			outputAttr: { class: "nav-custom-4" },
+			extention: [
+				{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
+				{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 },
+			],
+			output: () => {
+				return ex.c4({
+					copyright: "© 2023",
+					icon: "fab bootstrap",
+					link: [
+						undefined,
+						ex.c4Section({
+							title: "Section",
+							link: [
+								{ href: "#", elem: "Home" },
+								{ href: "#", elem: "Features" },
+								{ href: "#", elem: "Pricing" },
+								{ href: "#", elem: "FAQs" },
+								{ href: "#", elem: "About" },
+							],
+						}),
+						ex.c4Section({
+							title: "Section",
+							link: [
+								{ href: "#", elem: "Home" },
+								{ href: "#", elem: "Features" },
+								{ href: "#", elem: "Pricing" },
+								{ href: "#", elem: "FAQs" },
+								{ href: "#", elem: "About" },
+							],
+						}),
+						ex.c4Section({
+							title: "Section",
+							link: [
+								{ href: "#", elem: "Home" },
+								{ href: "#", elem: "Features" },
+								{ href: "#", elem: "Pricing" },
+								{ href: "#", elem: "FAQs" },
+								{ href: "#", elem: "About" },
+							],
+						}),
+					],
+				});
+			},
 		}),
 
 		//-----------------------
