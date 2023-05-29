@@ -266,20 +266,5 @@ export const footers: IAttrContent = {
 		}),
 
 		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
-			code: `
-			`,
-		}),
 	],
 };
