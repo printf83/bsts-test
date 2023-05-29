@@ -1,8 +1,8 @@
-import { core, b, I, B, h } from "@printf83/bsts";
+import { core, b, I, h } from "@printf83/bsts";
 
 export const toast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
 	b.toast.show(
-		B.Toast.Simple({
+		b.toast.simple({
 			title: document.title,
 			color: color,
 			elem: elem,
@@ -586,28 +586,30 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExtention?: string[]) => {
 	let libImported: string[] = ["core"];
 
-	const libListA = [
-		" b.",
-		" h.",
-		" t.",
-		" s(",
-		" B.",
-		" H.",
-		" T.",
-		" I.",
-		" S(",
-		"(b.",
-		"(h.",
-		"(t.",
-		"(s(",
-		"(B.",
-		"(H.",
-		"(T.",
-		"(I.",
-		"(S(",
-		"...B.",
-	];
-	const libListB = ["b", "h", "t", "s", "B", "H", "T", "I", "S", "b", "h", "t", "s", "B", "H", "T", "I", "S", "B"];
+	const libListA = [" b.", " h.", " t.", " s(", " I.", "(b.", "(h.", "(t.", "(s(", "(I.", "...b."];
+	const libListB = ["b", "h", "t", "s", "I", "b", "h", "t", "s", "I", "b"];
+	// const libListA = [
+	// 	" b.",
+	// 	" h.",
+	// 	" t.",
+	// 	" s(",
+	// 	" B.",
+	// 	" H.",
+	// 	" T.",
+	// 	" I.",
+	// 	" S(",
+	// 	"(b.",
+	// 	"(h.",
+	// 	"(t.",
+	// 	"(s(",
+	// 	"(B.",
+	// 	"(H.",
+	// 	"(T.",
+	// 	"(I.",
+	// 	"(S(",
+	// 	"...B.",
+	// ];
+	// const libListB = ["b", "h", "t", "s", "B", "H", "T", "I", "S", "b", "h", "t", "s", "B", "H", "T", "I", "S", "B"];
 
 	if (strCode) {
 		libListA.forEach((i, ix) => {
@@ -650,12 +652,12 @@ export const isRequiredCoreInit = (strCode?: string, strManager?: string, strExt
 		"b.popover",
 		"b.carousel",
 		"b.scrollspy",
-		"B.Tooltip",
-		"B.Timer",
-		"B.Toast.Timer",
-		"B.Popover",
-		"B.Carousel",
-		"B.Scrollspy",
+		// "B.Tooltip",
+		// "B.Timer",
+		// "B.Toast.Timer",
+		// "B.Popover",
+		// "B.Carousel",
+		// "B.Scrollspy",
 	];
 	if (strCode) {
 		let result: boolean = false;

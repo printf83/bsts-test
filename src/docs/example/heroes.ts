@@ -1,4 +1,4 @@
-import { B, b, core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -148,9 +148,9 @@ const ex = {
 							on: { submit: arg.onsignup },
 						},
 						[
-							B.Form.FloatingLabel.Input({ type: "email", label: "Email address", name: "email" }),
-							B.Form.FloatingLabel.Input({ type: "password", label: "Password", name: "password" }),
-							B.Form.Check({ type: "checkbox", label: "Remember me", name: "remember" }),
+							b.form.floatinglabel.input({ type: "email", label: "Email address", name: "email" }),
+							b.form.floatinglabel.input({ type: "password", label: "Password", name: "password" }),
+							b.form.check({ type: "checkbox", label: "Remember me", name: "remember" }),
 							new b.button({ color: "primary", weight: "lg", width: 100, type: "submit" }, "Sign up"),
 							new h.hr(),
 							new h.small(

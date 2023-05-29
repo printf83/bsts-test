@@ -1,4 +1,4 @@
-import { core, h, b, B, I, s } from "@printf83/bsts";
+import { core, h, b, I, s } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -161,7 +161,7 @@ export const modal: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Simple modal"),
-		new e.text("You can use Bootstrap simple modal by calling function {{B.Modal.Simple}}."),
+		new e.text("You can use Bootstrap simple modal by calling function {{b.modal.simple}}."),
 
 		new e.code({
 			outputAttr: { gap: 1 },
@@ -174,9 +174,9 @@ export const modal: IAttrContent = {
 							on: {
 								click: () => {
 									//simple modal
-									const mdl = B.Modal.Simple({
+									const mdl = b.modal.simple({
 										title: document.title,
-										elem: B.Form.Check({
+										elem: b.form.check({
 											id: "testcheckbox",
 											label: "Please tick this checkbox before click {{k::Okay}}",
 										}),
@@ -193,7 +193,7 @@ export const modal: IAttrContent = {
 												//hide modal base on rules
 												if (ischecked) {
 													b.toast.show(
-														B.Toast.Simple({
+														b.toast.simple({
 															title: "Simple modal example",
 															color: "success",
 															elem: "Thank you for tick the checkbox.",
@@ -204,7 +204,7 @@ export const modal: IAttrContent = {
 													b.modal.hide(container);
 												} else {
 													b.toast.show(
-														B.Toast.Simple({
+														b.toast.simple({
 															title: "Simple modal example",
 															color: "danger",
 															elem: "Please tick the checkbox before press okay.",
@@ -241,7 +241,7 @@ export const modal: IAttrContent = {
 								click: () => {
 									//simple modal
 
-									const mdl = B.Modal.Simple({
+									const mdl = b.modal.simple({
 										title: document.title,
 										elem: new b.msg(
 											{ type: "bi", id: "info-circle-fill", color: "primary" },
@@ -263,7 +263,7 @@ export const modal: IAttrContent = {
 							on: {
 								click: () => {
 									//simple modal
-									const mdl = B.Modal.Simple({
+									const mdl = b.modal.simple({
 										title: document.title,
 										backdrop: "static",
 										elem: new b.msg(
@@ -275,7 +275,7 @@ export const modal: IAttrContent = {
 											(event) => {
 												//event handler for first button
 												b.toast.show(
-													B.Toast.Simple({
+													b.toast.simple({
 														title: "Simple modal example",
 														color: "success",
 														elem: "Me too.",
@@ -288,7 +288,7 @@ export const modal: IAttrContent = {
 											(event) => {
 												//event handler for second button
 												b.toast.show(
-													B.Toast.Simple({
+													b.toast.simple({
 														title: "Simple modal example",
 														color: "danger",
 														elem: "Its so sad! :'(",

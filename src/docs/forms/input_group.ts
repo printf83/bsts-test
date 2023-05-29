@@ -1,4 +1,4 @@
-import { B, I, b } from "@printf83/bsts";
+import { I, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -14,38 +14,38 @@ export const input_group: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						placeholder: "Username",
 						before: "@",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						placeholder: "Recipient's username",
 						after: "@example.com",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						label: "Your vanity URL",
 						type: "text",
 						before: "https://example.com/users/",
 						description: "Example help text goes outside the input group.",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						before: "$",
 						after: ".00",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						placeholder: "Username",
 						after: ["@", new b.input({ type: "text", placeholder: "Server" })],
 					}),
-					B.Form.Textarea({
+					b.form.textarea({
 						before: "With textarea",
 					}),
 				];
@@ -60,7 +60,7 @@ export const input_group: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return B.Form.Input({
+				return b.form.input({
 					type: "text",
 					placeholder: "Username",
 					before: "@",
@@ -78,18 +78,18 @@ export const input_group: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						before: "Small",
 						weight: "sm",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						before: "Default",
 					}),
-					B.Form.Input({
+					b.form.input({
 						type: "text",
 						before: "Large",
 						weight: "lg",
@@ -107,13 +107,13 @@ export const input_group: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Text input with checkbox" },
 						before: "[checkbox]",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Text input with radio" },
@@ -132,7 +132,7 @@ export const input_group: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					B.Form.Input({
+					b.form.input({
 						type: "text",
 						aria: { label: "First name" },
 						before: "First and last name",
@@ -149,13 +149,13 @@ export const input_group: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Dollar amount (with dot and two decimal places)" },
 						before: ["$", "0.00"],
 					}),
-					B.Form.Input({
+					b.form.input({
 						type: "text",
 						aria: { label: "Dollar amount (with dot and two decimal places)" },
 						after: ["$", "0.00"],
@@ -170,20 +170,20 @@ export const input_group: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Example text with button addon" },
 						before: new b.button({ color: "secondary", outline: true }, "Button"),
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						placeholder: "Recipient's username",
 						aria: { label: "Example text with button addon" },
 						after: new b.button({ color: "secondary", outline: true }, "Button"),
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Example text with button addons" },
@@ -192,7 +192,7 @@ export const input_group: IAttrContent = {
 							new b.button({ color: "secondary", outline: true }, "Button"),
 						],
 					}),
-					B.Form.Input({
+					b.form.input({
 						type: "text",
 						placeholder: "Recipient's username",
 						aria: { label: "Example text with button addons" },
@@ -219,7 +219,7 @@ export const input_group: IAttrContent = {
 				];
 
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Text input with dropdown button" },
@@ -228,7 +228,7 @@ export const input_group: IAttrContent = {
 							new b.dropdown.menu(dropdownItem),
 						],
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Text input with dropdown button" },
@@ -237,7 +237,7 @@ export const input_group: IAttrContent = {
 							new b.dropdown.menu({ positionView: "end" }, dropdownItem),
 						],
 					}),
-					B.Form.Input({
+					b.form.input({
 						type: "text",
 						aria: { label: "Text input with dropdown button" },
 						before: [
@@ -267,7 +267,7 @@ export const input_group: IAttrContent = {
 				];
 
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "text",
 						aria: { label: "Text input with segmented dropdown button" },
@@ -277,7 +277,7 @@ export const input_group: IAttrContent = {
 							new b.dropdown.menu(dropdownItem),
 						],
 					}),
-					B.Form.Input({
+					b.form.input({
 						type: "text",
 						aria: { label: "Text input with segmented dropdown button" },
 						after: [
@@ -307,22 +307,22 @@ export const input_group: IAttrContent = {
 				];
 
 				return [
-					B.Form.Select({
+					b.form.select({
 						container: { marginBottom: 3 },
 						item: selectItem,
 						before: "Options",
 					}),
-					B.Form.Select({
+					b.form.select({
 						container: { marginBottom: 3 },
 						item: selectItem,
 						after: "Options",
 					}),
-					B.Form.Select({
+					b.form.select({
 						container: { marginBottom: 3 },
 						item: selectItem,
 						before: new b.button({ color: "secondary", outline: true }, "Button"),
 					}),
-					B.Form.Select({
+					b.form.select({
 						container: { marginBottom: 3 },
 						item: selectItem,
 						after: new b.button({ color: "secondary", outline: true }, "Button"),
@@ -340,22 +340,22 @@ export const input_group: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "file",
 						before: "Upload",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "file",
 						after: "Upload",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						type: "file",
 						before: new b.button({ color: "secondary", outline: true }, "Button"),
 					}),
-					B.Form.Input({
+					b.form.input({
 						type: "file",
 						after: new b.button({ color: "secondary", outline: true }, "Button"),
 					}),

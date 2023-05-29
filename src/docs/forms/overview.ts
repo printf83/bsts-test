@@ -1,4 +1,4 @@
-import { h, b, B } from "@printf83/bsts";
+import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -111,24 +111,24 @@ export const overview: IAttrContent = {
 		new e.text(
 			"{{bsts}} create {{B.Form}} function to help you create same output as above. This function automaticly create {{id}} for related component. You still can give an {{id}} and {{B.Form}} will use it to related component."
 		),
-		new e.text("Using {{B.Form.Input}} with {{id}}"),
+		new e.text("Using {{b.form.input}} with {{id}}"),
 		new e.code({
 			output: () => {
 				return new h.form([
-					B.Form.Input({
+					b.form.input({
 						id: "easy-email-form",
 						container: { marginBottom: 3 },
 						label: "Email address",
 						description: "Bootstrap'll never share your email with anyone else.",
 						type: "email",
 					}),
-					B.Form.Input({
+					b.form.input({
 						id: "easy-password-form",
 						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
 					}),
-					B.Form.Check({
+					b.form.check({
 						id: "easy-check-form",
 						container: { marginBottom: 3 },
 						label: "Check me out",
@@ -138,22 +138,22 @@ export const overview: IAttrContent = {
 				]);
 			},
 		}),
-		new e.text("Using {{B.Form.Input}} without {{id}}"),
+		new e.text("Using {{b.form.input}} without {{id}}"),
 		new e.code({
 			output: () => {
 				return new h.form([
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						label: "Email address",
 						description: "Bootstrap'll never share your email with anyone else.",
 						type: "email",
 					}),
-					B.Form.Input({
+					b.form.input({
 						container: { marginBottom: 3 },
 						label: "Password",
 						type: "password",
 					}),
-					B.Form.Check({
+					b.form.check({
 						container: { marginBottom: 3 },
 						label: "Check me out",
 						type: "checkbox",
@@ -169,14 +169,14 @@ export const overview: IAttrContent = {
 					{ marginY: 3 },
 					new h.ul({
 						item: [
-							"{{B.Form.Input}} - Create input (text,number,date and others) component.",
-							"{{B.Form.Textarea}} - Create textarea component.",
-							"{{B.Form.Select}} - Create select component.",
-							"{{B.Form.Check}} - Create checkbox,radio and switch component.",
-							"{{B.Form.Toggle}} - Create checkbox or radio toggle component. {{b::Heads Up!}} This function return an array. Please flatten the array before you pass it into {{core.build}}",
-							"{{B.Form.FloatingLabel.Input}} - Create input (text,number,date and others) component with floating label.",
-							"{{B.Form.FloatingLabel.Textarea}} - Create textarea component with floating label.",
-							"{{B.Form.FloatingLabel.Select}} - Create select component with floating label.",
+							"{{b.form.input}} - Create input (text,number,date and others) component.",
+							"{{b.form.textarea}} - Create textarea component.",
+							"{{b.form.select}} - Create select component.",
+							"{{b.form.check}} - Create checkbox,radio and switch component.",
+							"{{b.form.toggle}} - Create checkbox or radio toggle component. {{b::Heads Up!}} This function return an array. Please flatten the array before you pass it into {{core.build}}",
+							"{{b.form.floatinglabel.input}} - Create input (text,number,date and others) component with floating label.",
+							"{{b.form.floatinglabel.textarea}} - Create textarea component with floating label.",
+							"{{b.form.floatinglabel.select}} - Create select component with floating label.",
 						],
 					})
 				),
@@ -211,18 +211,18 @@ export const overview: IAttrContent = {
 				return new h.form(
 					new h.fieldset({ disabled: true }, [
 						new h.legend("Disabled fieldset example"),
-						B.Form.Input({
+						b.form.input({
 							container: { marginBottom: 3 },
 							label: "Disabled input",
 							placeholder: "Disabled input",
 							type: "text",
 						}),
-						B.Form.Select({
+						b.form.select({
 							container: { marginBottom: 3 },
 							label: "Disabled select menu",
 							item: [{ elem: "Disabled select" }],
 						}),
-						B.Form.Check({
+						b.form.check({
 							container: { marginBottom: 3 },
 							label: "Check me out",
 							type: "checkbox",

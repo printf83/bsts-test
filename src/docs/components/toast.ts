@@ -1,4 +1,4 @@
-import { h, b, core, I, B } from "@printf83/bsts";
+import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -149,7 +149,7 @@ export const toast: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Simple toast"),
-		new e.text("You can use Bootstrap simple toast by calling {{B.Toast.Simple}} function."),
+		new e.text("You can use Bootstrap simple toast by calling {{b.toast.simple}} function."),
 		new e.table({
 			item: [
 				["Option", "Type", "Default", "Description"],
@@ -258,7 +258,7 @@ export const toast: IAttrContent = {
 							});
 					}
 					b.toast.show(
-						B.Toast.Simple({
+						b.toast.simple({
 							color: color,
 							elem: tElem,
 
@@ -414,7 +414,7 @@ export const toast: IAttrContent = {
 						on: {
 							click: () => {
 								b.toast.show(
-									B.Toast.Simple({
+									b.toast.simple({
 										delay: 30000,
 										animation: false,
 										elem: "Toast without animation",

@@ -1,4 +1,4 @@
-import { h, b, B } from "@printf83/bsts";
+import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -34,11 +34,11 @@ export const select: IAttrContent = {
 				});
 			},
 		}),
-		new e.text("Using {{B.Form.Select}}"),
+		new e.text("Using {{b.form.select}}"),
 		new e.code({
 			output: () => {
-				return B.Form.Select({
-					label: "Default select example using B.Form.Select",
+				return b.form.select({
+					label: "Default select example using b.form.select",
 					hideLabel: true,
 					item: [
 						{ selected: true, elem: "Open this select menu" },
@@ -58,7 +58,7 @@ export const select: IAttrContent = {
 			outputAttr: { gap: 2 },
 			output: () => {
 				return [
-					B.Form.Select({
+					b.form.select({
 						weight: "lg",
 						label: ".form-select-lg example",
 						hideLabel: true,
@@ -69,7 +69,7 @@ export const select: IAttrContent = {
 							{ value: "3", elem: "Three" },
 						],
 					}),
-					B.Form.Select({
+					b.form.select({
 						weight: "sm",
 						label: ".form-select-sm example",
 						hideLabel: true,
@@ -87,7 +87,7 @@ export const select: IAttrContent = {
 		new e.text("The {{multiple}} attribute is also supported:"),
 		new e.code({
 			output: () => {
-				return B.Form.Select({
+				return b.form.select({
 					multiple: true,
 					label: "Multiple select example",
 					hideLabel: true,
@@ -104,7 +104,7 @@ export const select: IAttrContent = {
 		new e.text("As is the {{size}} attribute:"),
 		new e.code({
 			output: () => {
-				return B.Form.Select({
+				return b.form.select({
 					size: 3,
 					label: "Size 3 select example",
 					hideLabel: true,
@@ -126,7 +126,7 @@ export const select: IAttrContent = {
 		),
 		new e.code({
 			output: () => {
-				return B.Form.Select({
+				return b.form.select({
 					disabled: true,
 					label: "Disabled select example",
 					hideLabel: true,

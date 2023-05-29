@@ -1,4 +1,4 @@
-import { h, b, core, B } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -651,14 +651,14 @@ export const nav: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"You also can use {{bsts}} {{B.Nav.Tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."
+			"You also can use {{bsts}} {{b.nav.tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."
 		),
 		new e.code({
 			output: () => {
 				const content = (title: string) =>
 					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
-				return B.Nav.Tab({
+				return b.nav.tab({
 					type: "pill",
 					item: [
 						{ label: "Home", active: true, elem: content("Home") },
@@ -680,7 +680,7 @@ export const nav: IAttrContent = {
 
 				return new h.div(
 					{ display: "md-flex", alignItem: "md-start" },
-					B.Nav.Tab({
+					b.nav.tab({
 						type: "pill",
 						vertical: true,
 						flex: "md-column",
@@ -819,14 +819,14 @@ export const nav: IAttrContent = {
 
 		new e.subtitle("Fade effect"),
 		new e.text(
-			"To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}} or {{B.Nav.Tab}}. The first tab pane must also have {{active:true}} to make the initial content visible."
+			"To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}} or {{b.nav.tab}}. The first tab pane must also have {{active:true}} to make the initial content visible."
 		),
 		new e.code({
 			output: () => {
 				const content = (title: string) =>
 					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
-				return B.Nav.Tab({
+				return b.nav.tab({
 					animation: false,
 					item: [
 						{ label: "Home", active: true, elem: content("Home") },
@@ -841,14 +841,14 @@ export const nav: IAttrContent = {
 		//-----------------------
 
 		new e.title("Tab in card"),
-		new e.text("Just set {{container:'card'}} to {{B.Nav.Tab}} then wrap it using {{b.card.container}}"),
+		new e.text("Just set {{container:'card'}} to {{b.nav.tab}} then wrap it using {{b.card.container}}"),
 		new e.code({
 			output: () => {
 				const content = (title: string) =>
 					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
 				return new b.card.container(
-					B.Nav.Tab({
+					b.nav.tab({
 						card: true,
 						item: [
 							{ label: "Home", active: true, elem: content("Home") },
@@ -863,14 +863,14 @@ export const nav: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Pill in card"),
-		new e.text("Just set {{container:'card'}} and {{type:'pill'}} to {{B.Nav.Tab}}"),
+		new e.text("Just set {{container:'card'}} and {{type:'pill'}} to {{b.nav.tab}}"),
 		new e.code({
 			output: () => {
 				const content = (title: string) =>
 					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
 				return new b.card.container(
-					B.Nav.Tab({
+					b.nav.tab({
 						card: true,
 						type: "pill",
 						item: [
@@ -904,7 +904,7 @@ export const nav: IAttrContent = {
 						{ padding: 0 },
 						new b.card.container(
 							{ border: false },
-							B.Nav.Tab({
+							b.nav.tab({
 								card: true,
 								on: {
 									"shown.bs.tab": (event) => {
@@ -972,7 +972,7 @@ export const nav: IAttrContent = {
 
 				const tabCard = new b.card.container(
 					{ border: false },
-					B.Nav.Tab({
+					b.nav.tab({
 						card: true,
 						on: {
 							"shown.bs.tab": (event) => {
@@ -1021,7 +1021,7 @@ export const nav: IAttrContent = {
 					})
 				);
 
-				const modal = B.Modal.Simple({
+				const modal = b.modal.simple({
 					id: "modal-tab-example",
 					title: "Modal title",
 					attrBody: { padding: 0 },
@@ -1356,7 +1356,7 @@ export const nav: IAttrContent = {
 			},
 		}),
 
-		new e.text("Or track event using {{B.Nav.Tab}}"),
+		new e.text("Or track event using {{b.nav.tab}}"),
 		new e.code({
 			showConsole: true,
 			output: () => {
@@ -1368,7 +1368,7 @@ export const nav: IAttrContent = {
 				const content = (title: string) =>
 					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
-				return B.Nav.Tab({
+				return b.nav.tab({
 					on: {
 						"shown.bs.tab": (event) => {
 							const evnt = event as EventWithTargetAndRelatedTarget;

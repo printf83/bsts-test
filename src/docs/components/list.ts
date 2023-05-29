@@ -1,4 +1,4 @@
-import { core, b, h, B } from "@printf83/bsts";
+import { core, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -607,7 +607,7 @@ export const list: IAttrContent = {
 								});
 
 								b.toast.show(
-									B.Toast.Simple({
+									b.toast.simple({
 										title: document.title,
 										color: "success",
 										elem: "Tab trigger attached",
