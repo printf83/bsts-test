@@ -477,15 +477,14 @@ const runMemoryTest = (count: number, max?: number) => {
 		let mDB = docDB();
 		let docId = mDB[core.rndBetween(0, mDB.length - 1)];
 
-		let contentbody = document.getElementById("bs-main") as Element;
 		setTimeout(() => {
 			getData(docId, (docData) => {
+				let contentbody = document.getElementById("bs-main") as Element;
 				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 				highlightCurrentMenu(docId);
 				core.init(contentbody);
 
 				document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
-
 				runMemoryTest(count - 1, max);
 			});
 		}, 0);
