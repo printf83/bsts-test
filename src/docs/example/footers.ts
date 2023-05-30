@@ -143,12 +143,77 @@ const ex = {
 					new h.p({ textColor: "body-secondary" }, arg.copyright),
 				]),
 				...arg.link.map((i) => {
-					if (i !== undefined) {
-						return new h.div({ col: true, marginBottom: 3 }, i!);
-					} else {
-						return new h.div({ col: true, marginBottom: 3 }, "");
-					}
+					return new h.div({ col: true, marginBottom: 3 }, i ? i : "");
 				}),
+			]
+		);
+	},
+	c5: (arg: {
+		copyright: string;
+		link: (undefined | t[])[];
+		linkicon: { icon: string; href: string }[];
+		onsubscribe: EventListener;
+	}) => {
+		return new h.footer(
+			{
+				paddingY: 5,
+			},
+			[
+				new h.div({ row: true }, [
+					...arg.link.map((i) => {
+						return new h.div({ col: [6, "md-2"], marginBottom: 3 }, i ? i : "");
+					}),
+					new h.div({ col: "md-5", offset: "md-1", marginBottom: 3 }, [
+						new h.form({}, [
+							new h.h(5, "Subscribe to our newsletter"),
+							new h.p("Monthly digest of what's new and exciting from us."),
+							new h.div(
+								{
+									display: "flex",
+									flex: ["column", "sm-row"],
+									width: 100,
+									gap: 2,
+									on: { submit: arg.onsubscribe },
+								},
+								[
+									b.form.input({
+										label: "Email address",
+										hideLabel: true,
+										type: "email",
+										placeholder: "Email address",
+									}),
+									new b.button({ type: "submit" }, "Subscribe"),
+								]
+							),
+						]),
+					]),
+				]),
+				new h.div(
+					{
+						display: "flex",
+						flex: ["column", "sm-row"],
+						justifyContent: "between",
+						paddingY: 4,
+						marginY: 4,
+						border: "top",
+					},
+					[
+						new h.p(arg.copyright),
+						new h.ul({
+							display: "flex",
+							item: arg.linkicon.map((i) => {
+								return new h.li(
+									{ marginStart: 3 },
+									new h.a(
+										{ href: i.href },
+										new b.icon({ id: i.icon, weight: "xl", textColor: "body-tertiary" })
+									)
+								);
+							}),
+							unstyle: true,
+						}),
+					]
+				),
 			]
 		);
 	},
@@ -266,5 +331,57 @@ export const footers: IAttrContent = {
 		}),
 
 		//-----------------------
+
+		new e.title("Example footer 5"),
+		new e.code({
+			outputAttr: { class: "nav-custom-4" },
+			extention: [
+				{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
+				{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 },
+			],
+			output: () => {
+				return ex.c5({
+					copyright: "© 2023 Company, Inc. All rights reserved.",
+					linkicon: [
+						{ href: "#", icon: "fab twitter" },
+						{ href: "#", icon: "fab instagram" },
+						{ href: "#", icon: "fab facebook" },
+					],
+					link: [
+						ex.c4Section({
+							title: "Section",
+							link: [
+								{ href: "#", elem: "Home" },
+								{ href: "#", elem: "Features" },
+								{ href: "#", elem: "Pricing" },
+								{ href: "#", elem: "FAQs" },
+								{ href: "#", elem: "About" },
+							],
+						}),
+						ex.c4Section({
+							title: "Section",
+							link: [
+								{ href: "#", elem: "Home" },
+								{ href: "#", elem: "Features" },
+								{ href: "#", elem: "Pricing" },
+								{ href: "#", elem: "FAQs" },
+								{ href: "#", elem: "About" },
+							],
+						}),
+						ex.c4Section({
+							title: "Section",
+							link: [
+								{ href: "#", elem: "Home" },
+								{ href: "#", elem: "Features" },
+								{ href: "#", elem: "Pricing" },
+								{ href: "#", elem: "FAQs" },
+								{ href: "#", elem: "About" },
+							],
+						}),
+					],
+					onsubscribe: (event) => {},
+				});
+			},
+		}),
 	],
 };
