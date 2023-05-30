@@ -164,7 +164,7 @@ const ex = {
 						return new h.div({ col: [6, "md-2"], marginBottom: 3 }, i ? i : "");
 					}),
 					new h.div({ col: "md-5", offset: "md-1", marginBottom: 3 }, [
-						new h.form({}, [
+						new h.form({ on: { submit: arg.onsubscribe } }, [
 							new h.h(5, "Subscribe to our newsletter"),
 							new h.p("Monthly digest of what's new and exciting from us."),
 							new h.div(
@@ -173,7 +173,6 @@ const ex = {
 									flex: ["column", "sm-row"],
 									width: 100,
 									gap: 2,
-									on: { submit: arg.onsubscribe },
 								},
 								[
 									b.form.input({
@@ -181,6 +180,8 @@ const ex = {
 										hideLabel: true,
 										type: "email",
 										placeholder: "Email address",
+										name: "subcribe",
+										required: true,
 									}),
 									new b.button({ type: "submit" }, "Subscribe"),
 								]
@@ -224,6 +225,7 @@ export const footers: IAttrContent = {
 	item: [
 		new e.title("Example footer 1"),
 		new e.code({
+			showViewport: true,
 			outputAttr: { class: "nav-custom-4" },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 			output: () => {
@@ -245,6 +247,7 @@ export const footers: IAttrContent = {
 
 		new e.title("Example footer 2"),
 		new e.code({
+			showViewport: true,
 			outputAttr: { class: "nav-custom-4" },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {
@@ -284,6 +287,7 @@ export const footers: IAttrContent = {
 
 		new e.title("Example footer 4"),
 		new e.code({
+			showViewport: true,
 			outputAttr: { class: "nav-custom-4" },
 			extention: [
 				{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
@@ -334,6 +338,8 @@ export const footers: IAttrContent = {
 
 		new e.title("Example footer 5"),
 		new e.code({
+			showConsole: true,
+			showViewport: true,
 			outputAttr: { class: "nav-custom-4" },
 			extention: [
 				{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
@@ -379,7 +385,17 @@ export const footers: IAttrContent = {
 							],
 						}),
 					],
-					onsubscribe: (event) => {},
+					onsubscribe: (event) => {
+						event.preventDefault();
+						const target = event.target as Element;
+						if (target) {
+							const input = target.querySelector("input[name='subcribe']") as HTMLInputElement;
+							if (input) {
+								const email = (input as HTMLInputElement).value;
+								e.console(target, "onsubscribe", { email: email }, "info");
+							}
+						}
+					},
 				});
 			},
 		}),

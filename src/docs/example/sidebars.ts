@@ -423,6 +423,7 @@ export const sidebars: IAttrContent = {
 	item: [
 		new e.title("Dark"),
 		new e.code({
+			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 			output: () => {
@@ -453,6 +454,7 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Light"),
 		new e.code({
+			showViewport: true,
 			outputAttr: { class: "sidebar-custom-1" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -484,6 +486,7 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Compact"),
 		new e.code({
+			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
@@ -512,6 +515,7 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Collapsible"),
 		new e.code({
+			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			outputAttr: { class: "toggle" },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
@@ -561,6 +565,7 @@ export const sidebars: IAttrContent = {
 
 		new e.title("List group"),
 		new e.code({
+			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {

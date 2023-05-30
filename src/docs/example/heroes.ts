@@ -148,8 +148,18 @@ const ex = {
 							on: { submit: arg.onsignup },
 						},
 						[
-							b.form.floatinglabel.input({ type: "email", label: "Email address", name: "email" }),
-							b.form.floatinglabel.input({ type: "password", label: "Password", name: "password" }),
+							b.form.floatinglabel.input({
+								type: "email",
+								label: "Email address",
+								name: "email",
+								required: true,
+							}),
+							b.form.floatinglabel.input({
+								type: "password",
+								label: "Password",
+								name: "password",
+								required: true,
+							}),
 							b.form.check({ type: "checkbox", label: "Remember me", name: "remember" }),
 							new b.button({ color: "primary", weight: "lg", width: 100, type: "submit" }, "Sign up"),
 							new h.hr(),
@@ -247,6 +257,7 @@ export const heroes: IAttrContent = {
 	item: [
 		new e.title("Centered hero"),
 		new e.code({
+			showViewport: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 			output: () => {
@@ -267,6 +278,7 @@ export const heroes: IAttrContent = {
 
 		new e.title("Centered screenshot"),
 		new e.code({
+			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {
@@ -287,8 +299,8 @@ export const heroes: IAttrContent = {
 
 		new e.title("Responsive left-aligned hero with image"),
 		new e.code({
+			showViewport: true,
 			previewAttr: { padding: 0 },
-			// zoom: 50,
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
 				return ex.c3({
@@ -308,6 +320,7 @@ export const heroes: IAttrContent = {
 
 		new e.title("Vertically centered hero sign-up form"),
 		new e.code({
+			showViewport: true,
 			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
@@ -343,6 +356,7 @@ export const heroes: IAttrContent = {
 
 		new e.title("Border hero with cropped image and shadows"),
 		new e.code({
+			showViewport: true,
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
 				return ex.c5({
@@ -362,7 +376,7 @@ export const heroes: IAttrContent = {
 
 		new e.title("Dark color hero"),
 		new e.code({
-			// zoom: 75,
+			showViewport: true,
 			previewAttr: { padding: 0, bgColor: "dark", overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 }],
 			output: () => {

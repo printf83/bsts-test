@@ -574,6 +574,7 @@ export const headers: IAttrContent = {
 	item: [
 		new e.title("Example header 1"),
 		new e.code({
+			showViewport: true,
 			showConsole: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
@@ -644,6 +645,7 @@ export const headers: IAttrContent = {
 		new e.code({
 			outputAttr: { class: "nav-custom-1" },
 			showConsole: true,
+			showViewport: true,
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
@@ -689,6 +691,7 @@ export const headers: IAttrContent = {
 		new e.code({
 			outputAttr: { class: "nav-custom-2" },
 			showConsole: true,
+			showViewport: true,
 			previewAttr: { bgColor: "dark", padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
@@ -747,6 +750,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 5"),
 		new e.code({
 			showConsole: true,
+			showViewport: true,
 			outputAttr: { class: "nav-custom-3" },
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
@@ -804,6 +808,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 6"),
 		new e.code({
 			showConsole: true,
+			showViewport: true,
 			previewAttr: { padding: 0 },
 			extention: [
 				{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 },
@@ -870,6 +875,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 7"),
 		new e.code({
 			showConsole: true,
+			showViewport: true,
 			previewAttr: { padding: 0 },
 			outputAttr: { class: "nav-custom-2" },
 			extention: [
@@ -950,6 +956,7 @@ export const headers: IAttrContent = {
 		new e.title("Example header 8"),
 		new e.code({
 			showConsole: true,
+			showViewport: true,
 			outputAttr: { class: "nav-custom-2" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],

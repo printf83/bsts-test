@@ -245,6 +245,7 @@ export const features: IAttrContent = {
 
 		new e.title("Hanging icons"),
 		new e.code({
+			showViewport: true,
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {
 				return new h.div({ row: true, gutter: 4, paddingY: 5, rowCol: [1, "md-2", "lg-3"] }, [
@@ -276,6 +277,7 @@ export const features: IAttrContent = {
 		//-----------------------
 		new e.title("Custom cards"),
 		new e.code({
+			showViewport: true,
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
 				return new h.div(
@@ -317,6 +319,7 @@ export const features: IAttrContent = {
 
 		new e.title("Icon grid"),
 		new e.code({
+			showViewport: true,
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
 				return new h.div(
@@ -381,6 +384,7 @@ export const features: IAttrContent = {
 
 		new e.title("Features with title"),
 		new e.code({
+			showViewport: true,
 			extention: [
 				{ name: "COMPONENTFEATURE", rename: "ex.c5Feature", output: ex.c5Feature },
 				{ name: "COMPONENTTITLE", rename: "ex.c5Title", output: ex.c5Title },
