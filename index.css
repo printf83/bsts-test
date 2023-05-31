@@ -460,6 +460,12 @@ strong,
     color: var(--bs-emphasis-color);
 }
 
+/* sidebar-item */
+.example-output.sidebar-item a.sidebar-item.active{
+    color: #fff !important;
+    background-color: RGBA(13, 110, 253, var(--bs-bg-opacity, 1)) !important;
+}
+
 /* btn-toggle */
 .example-output.toggle .btn-toggle {
     padding: .25rem .5rem;

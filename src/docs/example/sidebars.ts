@@ -14,6 +14,7 @@ const ex = {
 			icon: string;
 			label: string;
 		}[];
+		onlinkchange?: EventListener;
 		menu?: core.IElem;
 	}) => {
 		return new h.div(
@@ -44,6 +45,7 @@ const ex = {
 					type: "pill",
 					flex: "column",
 					marginBottom: "auto",
+					on: { "change.bs.nav": arg.onlinkchange },
 					link: arg.link?.map((i) => {
 						return {
 							handleActive: true,
@@ -86,6 +88,7 @@ const ex = {
 		title: string;
 		userImage: string;
 		userName: string;
+		onlinkchange?: EventListener;
 		link?: {
 			active?: boolean;
 			href: string;
@@ -121,11 +124,11 @@ const ex = {
 					type: "pill",
 					flex: "column",
 					marginBottom: "auto",
+					on: { "change.bs.nav": arg.onlinkchange },
 					link: arg.link?.map((i) => {
 						return {
 							handleActive: true,
 							active: i.active,
-							// textColor: "body-emphasis",
 							href: i.href,
 							elem: new b.caption({ icon: i.icon }, i.label),
 						};
@@ -161,6 +164,7 @@ const ex = {
 	c3: (arg: {
 		icon: string;
 		userImage: string;
+		onlinkchange?: EventListener;
 		link?: {
 			active?: boolean;
 			href: string;
@@ -198,6 +202,7 @@ const ex = {
 						type: "pill",
 						flex: "column",
 						border: "top",
+						on: { "change.bs.nav": arg.onlinkchange },
 						link: arg.link?.map((i) => {
 							return {
 								handleActive: true,
@@ -252,9 +257,41 @@ const ex = {
 			]
 		);
 	},
+	c4ClickEvent: (event: Event) => {
+		const target = (event.target as Element).closest("a.sidebar-item") as Element;
+		const container = target.closest("div.sidebar-container");
+		if (container) {
+			const lastActive = container?.querySelector("a.sidebar-item.active");
+
+			if (lastActive) {
+				lastActive.classList.remove("active");
+
+				container.dispatchEvent(
+					new CustomEvent("change.bs.sidebar", {
+						detail: {
+							target: target,
+							relatedTarget: lastActive,
+						},
+					})
+				);
+			} else {
+				container.dispatchEvent(
+					new CustomEvent("change.bs.sidebar", {
+						detail: {
+							target: target,
+							relatedTarget: null,
+						},
+					})
+				);
+			}
+
+			target.classList.add("active");
+		}
+	},
 	c4: (arg: {
 		icon: string;
 		title: string;
+		onlinkchange?: EventListener;
 		link: {
 			label: string;
 			item: { href: string; label: string }[];
@@ -264,10 +301,12 @@ const ex = {
 		return new h.div(
 			{
 				display: "flex",
+				class: "sidebar-container",
 				flex: ["column", "shrink-0"],
 				padding: 3,
 				shadow: true,
 				style: { width: "280px", minHeight: "500px" },
+				on: { "change.bs.sidebar": arg.onlinkchange },
 			},
 			[
 				new h.a(
@@ -289,7 +328,11 @@ const ex = {
 						let id = core.UUID();
 						return new h.li({ marginBottom: 1 }, [
 							new b.collapse.toggle(
-								{ href: `#${id}`, class: "btn btn-toggle", defColor: false },
+								{
+									href: `#${id}`,
+									class: "btn btn-toggle",
+									defColor: false,
+								},
 								i.label
 							),
 							new b.collapse.container(
@@ -307,10 +350,14 @@ const ex = {
 											new h.a(
 												{
 													href: j.href,
+													class: "sidebar-item",
 													linkColor: "body-emphasis",
 													display: "inline-flex",
 													textDecoration: "none",
 													rounded: true,
+													on: {
+														click: ex.c4ClickEvent,
+													},
 												},
 												j.label
 											)
@@ -343,11 +390,15 @@ const ex = {
 									return new h.li(
 										new h.a(
 											{
+												class: "sidebar-item",
 												href: j.href,
 												linkColor: "body-emphasis",
 												display: "inline-flex",
 												textDecoration: "none",
 												rounded: true,
+												on: {
+													click: ex.c4ClickEvent,
+												},
 											},
 											j.label
 										)
@@ -402,6 +453,7 @@ const ex = {
 								active: ix === 0 ? true : undefined,
 								paddingY: 3,
 								lineHeight: "sm",
+								autoInit: true,
 							},
 							[
 								new h.div(
@@ -423,6 +475,7 @@ export const sidebars: IAttrContent = {
 	item: [
 		new e.title("Dark"),
 		new e.code({
+			showConsole: true,
 			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
@@ -446,6 +499,19 @@ export const sidebars: IAttrContent = {
 						new b.dropdown.divider(),
 						new b.dropdown.item({ href: "#" }, "Sign out"),
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
+					},
 				});
 			},
 		}),
@@ -454,6 +520,7 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Light"),
 		new e.code({
+			showConsole: true,
 			showViewport: true,
 			outputAttr: { class: "sidebar-custom-1" },
 			previewAttr: { padding: 0, overflow: "hidden" },
@@ -478,6 +545,19 @@ export const sidebars: IAttrContent = {
 						new b.dropdown.divider(),
 						new b.dropdown.item({ href: "#" }, "Sign out"),
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
+					},
 				});
 			},
 		}),
@@ -486,6 +566,7 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Compact"),
 		new e.code({
+			showConsole: true,
 			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
@@ -507,6 +588,19 @@ export const sidebars: IAttrContent = {
 						new b.dropdown.divider(),
 						new b.dropdown.item({ href: "#" }, "Sign out"),
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: core.elemInfo(detail.relatedTarget),
+							},
+							"info"
+						);
+					},
 				});
 			},
 		}),
@@ -515,10 +609,14 @@ export const sidebars: IAttrContent = {
 
 		new e.title("Collapsible"),
 		new e.code({
+			showConsole: true,
 			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
-			outputAttr: { class: "toggle" },
-			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
+			outputAttr: { class: ["toggle", "sidebar-item"] },
+			extention: [
+				{ name: "CLICKEVENT", rename: "ex.c4ClickEvent", output: ex.c4ClickEvent },
+				{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 },
+			],
 			output: () => {
 				return ex.c4({
 					icon: "fab bootstrap",
@@ -552,11 +650,24 @@ export const sidebars: IAttrContent = {
 						},
 					],
 					menu: [
-						{ href: "", label: "New..." },
-						{ href: "", label: "Profile" },
-						{ href: "", label: "Setting" },
-						{ href: "", label: "Sign out" },
+						{ href: "#", label: "New..." },
+						{ href: "#", label: "Profile" },
+						{ href: "#", label: "Setting" },
+						{ href: "#", label: "Sign out" },
 					],
+					onlinkchange: (event) => {
+						const target = event.target as Element;
+						const detail = (event as CustomEvent).detail;
+						e.console(
+							target,
+							"onlinkchange",
+							{
+								target: core.elemInfo(detail.target),
+								relatedTarget: detail.relatedTarget ? core.elemInfo(detail.relatedTarget) : "null",
+							},
+							"info"
+						);
+					},
 				});
 			},
 		}),

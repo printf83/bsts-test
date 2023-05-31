@@ -242,6 +242,15 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		let result: string[] = [];
 
+		if (attrHasClass(attr, "sidebar-item")) {
+			result.push(`
+				#root a.sidebar-item.active{
+					color: #fff !important;
+					background-color: RGBA(13,110,253,var(--bs-bg-opacity,1)) !important;
+				}
+			`);
+		}
+
 		if (attrHasClass(attr, "toggle")) {
 			result.push(`
 				#root .btn-toggle {
