@@ -433,7 +433,7 @@ const ex = {
 						href: "#",
 						display: "flex",
 						alignItem: "center",
-						marginBottom: [3, "md-0"],
+						marginBottom: "md-0",
 						marginEnd: "md-auto",
 						textDecoration: "none",
 						textColor: "body-emphasis",
