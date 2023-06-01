@@ -251,50 +251,6 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 			`);
 		}
 
-		if (attrHasClass(attr, "toggle")) {
-			result.push(`
-				#root .btn-toggle {
-					padding: .25rem .5rem;
-					font-weight: 600;
-					color: var(--bs-emphasis-color);
-					background-color: transparent;
-					border: none;
-				}
-				#root .btn-toggle:hover,
-				#root .btn-toggle:focus,
-				#root .btn-toggle-nav a:hover,
-				#root .btn-toggle-nav a:hover {
-					color: rgba(var(--bs-emphasis-color-rgb), .85);
-					background-color: var(--bs-tertiary-bg);
-				}
-
-				#root .btn-toggle::before{
-					width: 1.25em;
-					display: inline-block;
-					line-height: 0;
-					content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-					transition: transform .35s ease;
-					transform-origin: .5em 50%;
-				}
-
-				[data-bs-theme="dark"] #root .btn-toggle::before,
-				#root [data-bs-theme="dark"] .btn-toggle::before,
-				#root[data-bs-theme="dark"] .btn-toggle::before {
-					content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%28255,255,255,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-				}
-
-				#root .btn-toggle[aria-expanded="true"]::before {
-					transform: rotate(90deg);
-				}
-
-				#root .btn-toggle-nav a {
-					padding: 0.1875rem 0.5rem;
-					margin-top: 0.125rem;
-					margin-left: 1.25rem;
-				}
-			`);
-		}
-
 		if (attrHasClass(attr, "position-box")) {
 			result.push(`
 				#root div.position-relative {
@@ -549,28 +505,6 @@ export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExt
 
 	const libListA = [" b.", " h.", " t.", " s(", " I.", "(b.", "(h.", "(t.", "(s(", "(I.", "...b."];
 	const libListB = ["b", "h", "t", "s", "I", "b", "h", "t", "s", "I", "b"];
-	// const libListA = [
-	// 	" b.",
-	// 	" h.",
-	// 	" t.",
-	// 	" s(",
-	// 	" B.",
-	// 	" H.",
-	// 	" T.",
-	// 	" I.",
-	// 	" S(",
-	// 	"(b.",
-	// 	"(h.",
-	// 	"(t.",
-	// 	"(s(",
-	// 	"(B.",
-	// 	"(H.",
-	// 	"(T.",
-	// 	"(I.",
-	// 	"(S(",
-	// 	"...B.",
-	// ];
-	// const libListB = ["b", "h", "t", "s", "B", "H", "T", "I", "S", "b", "h", "t", "s", "B", "H", "T", "I", "S", "B"];
 
 	if (strCode) {
 		libListA.forEach((i, ix) => {
@@ -613,12 +547,12 @@ export const isRequiredCoreInit = (strCode?: string, strManager?: string, strExt
 		"b.popover",
 		"b.carousel",
 		"b.scrollspy",
-		// "B.Tooltip",
-		// "B.Timer",
-		// "B.Toast.Timer",
-		// "B.Popover",
-		// "B.Carousel",
-		// "B.Scrollspy",
+		// "$.B.Tooltip",
+		// "$.B.Timer",
+		// "$.B.Toast.Timer",
+		// "$.B.Popover",
+		// "$.B.Carousel",
+		// "$.B.Scrollspy",
 	];
 	if (strCode) {
 		let result: boolean = false;
