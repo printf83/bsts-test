@@ -38,15 +38,23 @@ const getSavedTheme = () => {
 
 const onThemeChange = (value: string) => {
 	cookie.set("current_theme", value);
+	const faviconEl = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
 
 	if (value === "auto") {
 		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "dark");
+			faviconEl.setAttribute("href", "favicon-light.svg");
 		} else {
 			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "light");
+			faviconEl.setAttribute("href", "favicon.svg");
 		}
 	} else {
 		document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
+		if (value === "dark") {
+			faviconEl.setAttribute("href", "favicon-light.svg");
+		} else {
+			faviconEl.setAttribute("href", "favicon.svg");
+		}
 	}
 };
 
@@ -58,7 +66,6 @@ const setupThemeChanges = () => {
 	});
 };
 
-let CURRENT_PAGE: string | null = null;
 let CURRENT_THEME = getSavedTheme();
 let CURRENT_VERSION = "0.1.118";
 
@@ -353,7 +360,6 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 	setTimeout(() => {
 		getData(docId, (docData) => {
 			//keep current page in cookie
-			CURRENT_PAGE = docId;
 			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
 			//remove active popup
@@ -471,12 +477,12 @@ const docDB = () => {
 };
 
 const runMemoryTest = (count: number, max?: number) => {
+	max ??= count;
+
+	let mDB = docDB();
+	let docId = mDB[core.rndBetween(0, mDB.length - 1)];
+
 	if (count > 0) {
-		max ??= count;
-
-		let mDB = docDB();
-		let docId = mDB[core.rndBetween(0, mDB.length - 1)];
-
 		setTimeout(() => {
 			getData(docId, (docData) => {
 				let contentbody = document.getElementById("bs-main") as Element;
@@ -489,9 +495,8 @@ const runMemoryTest = (count: number, max?: number) => {
 			});
 		}, 0);
 	} else {
-		CURRENT_PAGE ??= "docs/gettingstarted/introduction";
-		highlightCurrentMenu(CURRENT_PAGE);
-		onMenuChange(CURRENT_PAGE);
+		highlightCurrentMenu(docId);
+		onMenuChange(docId);
 	}
 };
 
@@ -499,7 +504,7 @@ const mainContainer = main.Container({
 	name: "Bootstrap TS",
 	bgColor: "primary",
 	textColor: "light",
-	icon: { class: "animate-icon", weight: "2xl", id: "node-js", type: "brand" },
+	icon: { class: "animate-icon", weight: "2xl", id: "bootstrap", type: "brand" },
 	on: {
 		"bs-menu-change": (e) => {
 			onMenuChange((<CustomEvent>e).detail);

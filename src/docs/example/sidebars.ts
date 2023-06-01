@@ -124,6 +124,8 @@ const ex = {
 					type: "pill",
 					flex: "column",
 					marginBottom: "auto",
+					linkNormal: "body",
+					linkActive: "white",
 					on: { "change.bs.nav": arg.onlinkchange },
 					link: arg.link?.map((i) => {
 						return {
@@ -330,7 +332,8 @@ const ex = {
 							new b.collapse.toggle(
 								{
 									href: `#${id}`,
-									class: "btn btn-toggle",
+									class: "btn",
+									icon: true,
 									defColor: false,
 								},
 								i.label
@@ -373,7 +376,7 @@ const ex = {
 					{ unstyle: true, paddingStart: 0 },
 					new h.li({ marginBottom: 1 }, [
 						new b.collapse.toggle(
-							{ href: `#usermenu`, class: "btn btn-toggle", defColor: false },
+							{ href: `#usermenu`, class: "btn", icon: true, defColor: false },
 							"Account"
 						),
 						new b.collapse.container(
@@ -522,7 +525,6 @@ export const sidebars: IAttrContent = {
 		new e.code({
 			showConsole: true,
 			showViewport: true,
-			outputAttr: { class: "sidebar-custom-1" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {

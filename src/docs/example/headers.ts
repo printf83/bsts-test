@@ -113,6 +113,8 @@ const ex = {
 						col: [12, "md-auto"],
 						marginBottom: [2, "md-0"],
 						justifyContent: "center",
+						linkNormal: "body-emphasis",
+						linkActive: "secondary",
 						link: arg.link
 							? arg.link.map((i) => {
 									i.paddingX = 2;
@@ -145,6 +147,8 @@ const ex = {
 			{
 				padding: 3,
 				theme: "dark",
+				linkNormal: "body-emphasis",
+				linkActive: "secondary",
 			},
 			new h.div(
 				{ container: true },
@@ -260,6 +264,8 @@ const ex = {
 							marginBottom: [2, "md-0"],
 							marginEnd: "lg-auto",
 							justifyContent: "center",
+							linkNormal: "body-emphasis",
+							linkActive: "secondary",
 							link: arg.link
 								? arg.link.map((i) => {
 										i.handleActive = true;
@@ -424,21 +430,30 @@ const ex = {
 	}) => {
 		return new h.nav(
 			{ paddingY: 2, bgColor: "body-secondary", border: "bottom" },
-			new h.div({ container: true, display: "flex", flex: "wrap" }, [
-				new b.nav.header.container({
-					marginEnd: "auto",
-					link: arg.startMenu?.map((i) => {
-						i.handleActive = true;
-						return i;
+			new h.div(
+				{
+					container: true,
+					display: "flex",
+					flex: "wrap",
+					linkNormal: "body-emphasis",
+					linkActive: "secondary",
+				},
+				[
+					new b.nav.header.container({
+						marginEnd: "auto",
+						link: arg.startMenu?.map((i) => {
+							i.handleActive = true;
+							return i;
+						}),
+						on: { "change.bs.nav": arg.onstarmenuchange },
 					}),
-					on: { "change.bs.nav": arg.onstarmenuchange },
-				}),
-				new b.nav.header.container({
-					link: arg.endMenu?.map((i) => {
-						return i;
+					new b.nav.header.container({
+						link: arg.endMenu?.map((i) => {
+							return i;
+						}),
 					}),
-				}),
-			])
+				]
+			)
 		);
 	},
 	c7Header: (arg: { icon: string; title: string; onsearch?: EventListener }) => {
@@ -515,6 +530,8 @@ const ex = {
 								marginY: [2, "md-0"],
 								small: true,
 								justifyContent: "center",
+								linkNormal: "body-emphasis",
+								linkActive: "secondary",
 								link: arg.link.map((i) => {
 									let result: I.B.Nav.Header.Link = {
 										active: i.active,
@@ -643,7 +660,6 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 3"),
 		new e.code({
-			outputAttr: { class: "nav-custom-1" },
 			showConsole: true,
 			showViewport: true,
 			previewAttr: { padding: 0 },
@@ -689,7 +705,6 @@ export const headers: IAttrContent = {
 
 		new e.title("Example header 4"),
 		new e.code({
-			outputAttr: { class: "nav-custom-2" },
 			showConsole: true,
 			showViewport: true,
 			previewAttr: { bgColor: "dark", padding: 0 },
@@ -751,7 +766,6 @@ export const headers: IAttrContent = {
 		new e.code({
 			showConsole: true,
 			showViewport: true,
-			outputAttr: { class: "nav-custom-3" },
 			previewAttr: { padding: 0 },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
@@ -877,7 +891,6 @@ export const headers: IAttrContent = {
 			showConsole: true,
 			showViewport: true,
 			previewAttr: { padding: 0 },
-			outputAttr: { class: "nav-custom-2" },
 			extention: [
 				{ name: "COMPONENTNAV", rename: "ex.c7Nav", output: ex.c7Nav },
 				{ name: "COMPONENTHEADER", rename: "ex.c7Header", output: ex.c7Header },
@@ -957,7 +970,6 @@ export const headers: IAttrContent = {
 		new e.code({
 			showConsole: true,
 			showViewport: true,
-			outputAttr: { class: "nav-custom-2" },
 			previewAttr: { padding: 0, overflow: "hidden" },
 			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
 			output: () => {

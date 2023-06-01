@@ -212,7 +212,7 @@ const genTheme = (
 						)
 					),
 					new b.dropdown.menu(
-						{ positionView: "end" },
+						{ positionView: "end", customStyle: 1 },
 						navbarItemTheme.map((i) => {
 							return new b.dropdown.item(
 								{
@@ -277,7 +277,7 @@ const genVersion = (
 					]
 				),
 				new b.dropdown.menu(
-					{ positionView: "end" },
+					{ positionView: "end", customStyle: 1 },
 					navbarItemVersion.map((i) => {
 						return new b.dropdown.item(
 							{

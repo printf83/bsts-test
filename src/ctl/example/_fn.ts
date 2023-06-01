@@ -295,54 +295,6 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 			`);
 		}
 
-		if (attrHasClass(attr, "nav-custom-1")) {
-			result.push(`
-				#root .nav .nav-link.active{
-					color:var(--bs-body-color);
-				}
-			`);
-		}
-
-		if (attrHasClass(attr, "nav-custom-2")) {
-			result.push(`
-				#root .nav .nav-link {
-					color: var(--bs-emphasis-color);
-				}
-
-				#root .nav .nav-link.active {
-					color: var(--bs-secondary-color);
-				}
-			`);
-		}
-
-		if (attrHasClass(attr, "nav-custom-3")) {
-			result.push(`
-				#root .nav .nav-link.active {
-					color: var(--bs-secondary-color);
-				}
-			`);
-		}
-
-		if (attrHasClass(attr, "nav-custom-4")) {
-			result.push(`
-				#root .nav .nav-link {
-					color: var(--bs-secondary-color);
-				}
-
-				#root .nav .nav-link.active {
-					color: var(--bs-emphasis-color);
-				}
-			`);
-		}
-
-		if (attrHasClass(attr, "sidebar-custom-1")) {
-			result.push(`
-				#root .nav .nav-link:not(.active) {
-					color: var(--bs-body-color);
-				}
-			`);
-		}
-
 		if (attrHasClass(attr, "position-box")) {
 			result.push(`
 				#root div.position-relative {
