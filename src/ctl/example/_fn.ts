@@ -500,37 +500,102 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	return undefined;
 };
 
+const getLibBaseOnSourceIsContain = (str: string, find: string[]) => {
+	let found: boolean = false;
+
+	find.forEach((i) => {
+		if (str.indexOf(i) > -1) {
+			found = true;
+			return;
+		}
+	});
+
+	return found;
+};
+
 export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExtention?: string[]) => {
 	let libImported: string[] = ["core"];
-
-	const libListA = [" b.", " h.", " t.", " s(", " I.", "(b.", "(h.", "(t.", "(s(", "(I.", "...b."];
-	const libListB = ["b", "h", "t", "s", "I", "b", "h", "t", "s", "I", "b"];
+	const libList: { find: string[]; lib: string }[] = [
+		{
+			find: [" b.", "(b.", "...b."],
+			lib: "b",
+		},
+		{
+			find: [" h.", "(h."],
+			lib: "h",
+		},
+		{
+			find: [" t.", "(t."],
+			lib: "t",
+		},
+		{
+			find: [" s(", "(s("],
+			lib: "s",
+		},
+		{
+			find: [" I.", "(I."],
+			lib: "I",
+		},
+		{
+			find: [" $.", "($.", "...$."],
+			lib: "$",
+		},
+	];
 
 	if (strCode) {
-		libListA.forEach((i, ix) => {
-			if (strCode.indexOf(i) > -1) {
-				libImported.push(libListB[ix]);
+		libList.forEach((i) => {
+			if (getLibBaseOnSourceIsContain(strCode, i.find)) {
+				libImported.push(i.lib);
 			}
 		});
 	}
 
 	if (strManager) {
-		libListA.forEach((i, ix) => {
-			if (strManager.indexOf(i) > -1) {
-				libImported.push(libListB[ix]);
+		libList.forEach((i) => {
+			if (getLibBaseOnSourceIsContain(strManager, i.find)) {
+				libImported.push(i.lib);
 			}
 		});
 	}
 
 	if (strExtention && strExtention.length > 0) {
 		strExtention.forEach((j) => {
-			libListA.forEach((i, ix) => {
-				if (j.indexOf(i) > -1) {
-					libImported.push(libListB[ix]);
+			libList.forEach((i) => {
+				if (getLibBaseOnSourceIsContain(j, i.find)) {
+					libImported.push(i.lib);
 				}
 			});
 		});
 	}
+
+	// const libListA = [" b.", " h.", " t.", " s(", " I.", "(b.", "(h.", "(t.", "(s(", "(I.", "...b."];
+	// const libListB = ["b", "h", "t", "s", "I", "b", "h", "t", "s", "I", "b"];
+
+	// if (strCode) {
+	// 	libListA.forEach((i, ix) => {
+	// 		if (strCode.indexOf(i) > -1) {
+	// 			libImported.push(libListB[ix]);
+	// 		}
+	// 	});
+	// }
+
+	// if (strManager) {
+	// 	libListA.forEach((i, ix) => {
+	// 		if (strManager.indexOf(i) > -1) {
+	// 			libImported.push(libListB[ix]);
+	// 		}
+	// 	});
+	// }
+
+	// if (strExtention && strExtention.length > 0) {
+	// 	strExtention.forEach((j) => {
+	// 		libListA.forEach((i, ix) => {
+	// 			if (j.indexOf(i) > -1) {
+	// 				libImported.push(libListB[ix]);
+	// 			}
+	// 		});
+	// 	});
+	// }
 
 	return libImported
 		.filter(function (item, pos) {
@@ -547,12 +612,12 @@ export const isRequiredCoreInit = (strCode?: string, strManager?: string, strExt
 		"b.popover",
 		"b.carousel",
 		"b.scrollspy",
-		// "$.B.Tooltip",
-		// "$.B.Timer",
-		// "$.B.Toast.Timer",
-		// "$.B.Popover",
-		// "$.B.Carousel",
-		// "$.B.Scrollspy",
+		"$.B.Tooltip",
+		"$.B.Timer",
+		"$.B.Toast.Timer",
+		"$.B.Popover",
+		"$.B.Carousel",
+		"$.B.Scrollspy",
 	];
 	if (strCode) {
 		let result: boolean = false;

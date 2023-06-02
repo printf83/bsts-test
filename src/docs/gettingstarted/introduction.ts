@@ -2,7 +2,7 @@ import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index";
 import { IAttrContent } from "../../ctl/main/container";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.119/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.120/+esm";
 const BSCDNCSS = [
 	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
@@ -177,14 +177,18 @@ export const introduction: IAttrContent = {
 				["Library", "Description"],
 				["core", "Core function to build html using {{bsts}}"],
 				["I", "Interface if you like to use {{Typescript}}"],
-				["h", "HTML component"],
+				["h", "HTML component. Example {{new h.div()}}."],
 				// ["H", "Create HTML component without {{new}} keyword"],
-				["b", "Bootstrap component"],
+				["b", "Bootstrap component. Example {{new b.button()}}."],
 				// ["B", "Create Bootstrap component without {{new}} keyword"],
-				["t", "Main class that build all HTML and Bootstrap component"],
+				["t", "Main class that build all HTML and Bootstrap component. Example {{new t()}}."],
 				// ["T", "Create t without {{new}} keyword."],
-				["s", "Class to allow HTML syntax and process by {{core.build}} as HTML"],
+				["s", "Class to allow HTML syntax and process by {{core.build}} as HTML. Example {{new s()}}."],
 				// ["S", "Create s wihthout {{new}} keyword."],
+				[
+					"$",
+					"Create bsts component wihthout {{new}} keyword. For example {{$.h.div()}}, {{$.b.button()}}, {{$.t()}} and {{$.s()}}",
+				],
 			],
 		}),
 
@@ -205,23 +209,23 @@ export const introduction: IAttrContent = {
 				});
 				`,
 		}),
-		// new e.text("Example usage without {{new}} keyword."),
-		// new e.codepreview({
-		// 	type: "js",
-		// 	code: `
-		// 		import {core, H, B} from "${BSTSCDN}";
+		new e.text("Example usage without {{new}} keyword."),
+		new e.codepreview({
+			type: "js",
+			code: `
+				import {core, $} from "${BSTSCDN}";
 
-		// 		const Component1 = H.P("Hello world");
-		// 		const Component2 = B.Button({ color: "primary" }, "Button");
+				const Component1 = $.h.p("Hello world");
+				const Component2 = $.b.button({ color: "primary" }, "Button");
 
-		// 		core.documentReady(() => {
-		// 			core.replaceChild(document.getElementById("root"), [
-		// 				Component1,
-		// 				Component2,
-		// 			]);
-		// 		});
-		// 		`,
-		// }),
+				core.documentReady(() => {
+					core.replaceChild(document.getElementById("root"), [
+						Component1,
+						Component2,
+					]);
+				});
+				`,
+		}),
 
 		new e.text(
 			"You can also use the CDN to fetch any of Bootstrap {{nav:docs/gettingstarted/content::additional builds listed in the Contents page}}."

@@ -37,23 +37,24 @@ const getSavedTheme = () => {
 };
 
 const onThemeChange = (value: string) => {
+	const ICONFORMAT = "png";
 	cookie.set("current_theme", value);
 	const faviconEl = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
 
 	if (value === "auto") {
 		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "dark");
-			faviconEl.setAttribute("href", "favicon-light.svg");
+			faviconEl.setAttribute("href", `favicon-light.${ICONFORMAT}`);
 		} else {
 			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "light");
-			faviconEl.setAttribute("href", "favicon.svg");
+			faviconEl.setAttribute("href", `favicon.${ICONFORMAT}`);
 		}
 	} else {
 		document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
 		if (value === "dark") {
-			faviconEl.setAttribute("href", "favicon-light.svg");
+			faviconEl.setAttribute("href", `favicon-light.${ICONFORMAT}`);
 		} else {
-			faviconEl.setAttribute("href", "favicon.svg");
+			faviconEl.setAttribute("href", `favicon.${ICONFORMAT}`);
 		}
 	}
 };
@@ -67,7 +68,7 @@ const setupThemeChanges = () => {
 };
 
 let CURRENT_THEME = getSavedTheme();
-let CURRENT_VERSION = "0.1.119";
+let CURRENT_VERSION = "0.1.120";
 
 declare var PR: {
 	prettyPrint: () => void;
