@@ -63,7 +63,7 @@ export const introduction: IAttrContent = {
 				{ content: "FontAwesome" },
 				new h.a(
 					{ href: "https://fontawesome.com/" },
-					new b.pill({ icon: "fab font-awesome", color: "info", weight: "md" }, "v6.3.0")
+					new b.pill({ icon: "fab font-awesome", color: "secondary", weight: "md" }, "v6.3.0 (Outdated)")
 				)
 			),
 		]),
