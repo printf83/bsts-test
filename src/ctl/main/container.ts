@@ -35,6 +35,29 @@ const changeTheme = (value: string, icon: I.B.Icon) => {
 	dispatchCustomEvent(root, "bs-theme-change", value);
 };
 
+const changeBootswatch = (value: string) => {
+	let bsBootswatch = document.getElementById("bs-bootswatch") as Element;
+	let bsBootswatchMenu = bsBootswatch.nextSibling as Element;
+	let bsBootswatchLabel = document.getElementById("bs-bootswatch-label") as Element;
+
+	let lastActive = bsBootswatchMenu.querySelectorAll(".dropdown-item.active")[0];
+	if (lastActive) {
+		lastActive.classList.remove("active");
+		lastActive.removeAttribute("aria-current");
+	}
+
+	let newActive = bsBootswatchMenu.querySelectorAll(`.dropdown-item[data-value='${value}']`)[0];
+	if (newActive) {
+		newActive.classList.add("active");
+		newActive.setAttribute("aria-current", "true");
+	}
+
+	core.replaceWith(bsBootswatchLabel, new h.span({ id: "bs-bootswatch-label" }, `${core.uppercaseFirst(value)}`));
+
+	let root = bsBootswatch.closest(".bs-main-root");
+	dispatchCustomEvent(root, "bs-bootswatch-change", value);
+};
+
 const changeVersion = (value: string) => {
 	let bsVersion = document.getElementById("bs-version") as Element;
 	let bsVersionMenu = bsVersion.nextSibling as Element;
@@ -111,6 +134,11 @@ export interface IAttrItemOutsideLink {
 export interface IAttrItemTheme {
 	value: string;
 	icon: I.B.Icon;
+	label: string;
+}
+
+export interface IAttrItemBootswatch {
+	value: string;
 	label: string;
 }
 
@@ -238,6 +266,71 @@ const genTheme = (
 	}
 };
 
+const genBootswatch = (
+	textColor: core.bootstrapType.textColor,
+	name: string,
+	navbarItemBootswatch?: IAttrItemBootswatch[],
+	currentBootswatch?: string
+) => {
+	if (navbarItemBootswatch) {
+		return [
+			new b.navbar.item(
+				{
+					paddingY: [2, "lg-1"],
+					col: [12, "lg-auto"],
+				},
+				[
+					new b.verticalrule({
+						display: ["none", "lg-flex"],
+						height: 100,
+						marginX: "lg-2",
+						textColor: textColor,
+					}),
+					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+				]
+			),
+			new b.navbar.item({ dropdown: true }, [
+				new b.dropdown.toggle(
+					{
+						id: "bs-bootswatch",
+						color: "link",
+						class: "nav-link",
+						paddingY: 2,
+						paddingX: [0, "lg-2"],
+						textColor: textColor,
+					},
+					[
+						new h.span({ display: "lg-none", marginEnd: 2, aria: { hidden: "true" } }, name),
+						new h.span(
+							{ id: "bs-bootswatch-label" },
+							`${core.uppercaseFirst(currentBootswatch ? currentBootswatch : "Default")}`
+						),
+					]
+				),
+				new b.dropdown.menu(
+					{ positionView: "end", customStyle: 1 },
+					navbarItemBootswatch.map((i) => {
+						return new b.dropdown.item(
+							{
+								on: {
+									click: (_e) => {
+										changeBootswatch(i.value);
+									},
+								},
+								active: i.value === currentBootswatch,
+								data: { value: i.value },
+							},
+							i.label
+						);
+					})
+				),
+			]),
+		];
+	} else {
+		return [];
+	}
+};
+
 const genVersion = (
 	textColor: core.bootstrapType.textColor,
 	name: string,
@@ -304,6 +397,7 @@ const genOutsideLink = (
 	textColor: core.bootstrapType.textColor,
 	itemOutsideLink?: IAttrItemOutsideLink[],
 	itemVersion?: t[],
+	itemBootswatch?: t[],
 	itemTheme?: t[]
 ) => {
 	return [
@@ -327,6 +421,7 @@ const genOutsideLink = (
 				  })
 				: []),
 			...(itemVersion ? itemVersion : []),
+			...(itemBootswatch ? itemBootswatch : []),
 			...(itemTheme ? itemTheme : []),
 		]),
 	];
@@ -683,12 +778,14 @@ export interface IBsMainContainer extends core.IAttr {
 	itemMenu?: IAttrItemMenu[];
 	itemInsideLink?: IAttrItemInsideLink[];
 	itemTheme?: IAttrItemTheme[];
+	itemBootswatch?: IAttrItemBootswatch[];
 	itemVersion?: IAttrItemVersion[];
 	itemFooter?: IAttrFooter[];
 
 	currentMenu?: string;
 	currentInsideLink?: string;
 	currentTheme?: availabelTheme;
+	currentBootswatch?: string;
 	currentVersion?: string;
 
 	content?: IAttrContent;
@@ -779,15 +876,24 @@ const convert = (attr: IBsMainContainer) => {
 										attr.itemInsideLink,
 										attr.currentInsideLink
 									),
-									...(attr.itemOutsideLink || attr.itemVersion || attr.itemTheme
+									...(attr.itemOutsideLink ||
+									attr.itemVersion ||
+									attr.itemTheme ||
+									attr.itemBootswatch
 										? genOutsideLink(
 												attr.textColor || "primary",
 												attr.itemOutsideLink,
 												genVersion(
 													attr.textColor || "primary",
-													attr.name || "Bootstrap",
+													"@printf83/bsts",
 													attr.itemVersion,
 													attr.currentVersion
+												),
+												genBootswatch(
+													attr.textColor || "primary",
+													"Bootswatch",
+													attr.itemBootswatch,
+													attr.currentBootswatch
 												),
 												genTheme(attr.textColor || "primary", attr.itemTheme, attr.currentTheme)
 										  )
@@ -898,12 +1004,14 @@ const convert = (attr: IBsMainContainer) => {
 	delete attr.itemMenu;
 	delete attr.itemInsideLink;
 	delete attr.itemTheme;
+	delete attr.itemBootswatch;
 	delete attr.itemVersion;
 	delete attr.itemFooter;
 
 	delete attr.currentMenu;
 	delete attr.currentInsideLink;
 	delete attr.currentTheme;
+	delete attr.currentBootswatch;
 	delete attr.currentVersion;
 
 	delete attr.content;

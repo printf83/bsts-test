@@ -59,6 +59,33 @@ const onThemeChange = (value: string) => {
 	}
 };
 
+const getSavedBootswatch = () => {
+	let bootswatchCookie = cookie.get("current_bootswatch");
+	if (bootswatchCookie) {
+		return bootswatchCookie;
+	} else {
+		return "default";
+	}
+};
+
+const onBootswatchChange = (value: string) => {
+	cookie.set("current_bootswatch", value);
+	const bootstrapCssLink = document.getElementById("bootswatchCssLink") as HTMLLinkElement;
+
+	if (bootstrapCssLink) {
+		if (value === "default") {
+			bootstrapCssLink.disabled = true;
+			bootstrapCssLink.setAttribute("href", "");
+		} else {
+			bootstrapCssLink.disabled = false;
+			bootstrapCssLink.setAttribute(
+				"href",
+				`https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/${value}/bootstrap.min.css`
+			);
+		}
+	}
+};
+
 const setupThemeChanges = () => {
 	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
 		if (getSavedTheme() === "auto") {
@@ -68,7 +95,8 @@ const setupThemeChanges = () => {
 };
 
 let CURRENT_THEME = getSavedTheme();
-let CURRENT_VERSION = "0.1.121";
+let CURRENT_BOOTSWATCH = getSavedBootswatch();
+// let CURRENT_VERSION = "0.1.121";
 
 declare var PR: {
 	prettyPrint: () => void;
@@ -513,6 +541,9 @@ const mainContainer = main.Container({
 		"bs-theme-change": (e) => {
 			onThemeChange((<CustomEvent>e).detail);
 		},
+		"bs-bootswatch-change": (e) => {
+			onBootswatchChange((<CustomEvent>e).detail);
+		},
 	},
 
 	itemMenu: m.doc,
@@ -566,8 +597,41 @@ const mainContainer = main.Container({
 	],
 	currentTheme: CURRENT_THEME as main.IBsMainContainer["currentTheme"],
 
-	itemVersion: [{ value: CURRENT_VERSION, label: `Latest (${CURRENT_VERSION})` }],
-	currentVersion: CURRENT_VERSION,
+	// itemVersion: [{ value: CURRENT_VERSION, label: `Latest (${CURRENT_VERSION})` }],
+	// currentVersion: CURRENT_VERSION,
+
+	itemBootswatch: [
+		{
+			value: "default",
+			label: "Default",
+		},
+		{ value: "cerulean", label: "Cerulean" },
+		{ value: "cosmo", label: "Cosmo" },
+		{ value: "cyborg", label: "Cyborg" },
+		{ value: "darkly", label: "Darkly" },
+		{ value: "flatly", label: "Flatly" },
+		{ value: "journal", label: "Journal" },
+		{ value: "litera", label: "Litera" },
+		{ value: "lumen", label: "Lumen" },
+		{ value: "lux", label: "Lux" },
+		{ value: "materia", label: "Materia" },
+		{ value: "minty", label: "Minty" },
+		{ value: "morph", label: "Morph" },
+		{ value: "pulse", label: "Pulse" },
+		{ value: "quartz", label: "Quartz" },
+		{ value: "sandstone", label: "Sandstone" },
+		{ value: "simplex", label: "Simplex" },
+		{ value: "sketchy", label: "Sketchy" },
+		{ value: "slate", label: "Slate" },
+		{ value: "solar", label: "Solar" },
+		{ value: "spacelab", label: "Spacelab" },
+		{ value: "superhero", label: "Superhero" },
+		{ value: "united", label: "United" },
+		{ value: "vapor", label: "Vapor" },
+		{ value: "yeti", label: "Yeti" },
+		{ value: "zephyr", label: "Zephyr" },
+	],
+	currentBootswatch: CURRENT_BOOTSWATCH,
 	content: {
 		loading: true,
 	} as main.IAttrContent,
