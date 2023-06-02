@@ -20,23 +20,51 @@ export const introduction: IAttrContent = {
 			"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
 		]),
 
+		new e.title("Current version"),
+
 		new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [
 			new b.tooltip(
 				{ content: "@printf83/bsts" },
-				new b.pill({ icon: "fab github", color: "danger" }, "v0.1.120")
+				new h.a(
+					{ href: "https://github.com/printf83/bsts" },
+					new b.pill({ icon: "fab github", color: "danger", weight: "lg" }, "v0.1.120")
+				)
 			),
-			new b.tooltip({ content: "Bootstrap" }, new b.pill({ icon: "fab bootstrap", color: "primary" }, "v5.3.0")),
+		]),
+
+		new e.text(
+			{ textAlign: "center" },
+			"{{bsts}} couldn't have done without this awesome library. Thanks for your hard work on this."
+		),
+
+		new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [
+			new b.tooltip(
+				{ content: "Bootstrap" },
+				new h.a(
+					{ href: "https://getbootstrap.com/" },
+					new b.pill({ icon: "fab bootstrap", color: "primary", weight: "md" }, "v5.3.0")
+				)
+			),
 			new b.tooltip(
 				{ content: "Bootstrap Icon" },
-				new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10.3")
+				new h.a(
+					{ href: "https://icons.getbootstrap.com/" },
+					new b.pill({ icon: "bootstrap", color: "warning", weight: "md" }, "v1.10.3")
+				)
 			),
 			new b.tooltip(
 				{ content: "Bootswatch" },
-				new b.pill({ icon: "fas swatchbook", color: "success" }, "v5.3.0")
+				new h.a(
+					{ href: "https://bootswatch.com/" },
+					new b.pill({ icon: "fas swatchbook", color: "success", weight: "md" }, "v5.3.0")
+				)
 			),
 			new b.tooltip(
 				{ content: "FontAwesome" },
-				new b.pill({ icon: "fab font-awesome", color: "info" }, "v6.3.0")
+				new h.a(
+					{ href: "https://fontawesome.com/" },
+					new b.pill({ icon: "fab font-awesome", color: "info", weight: "md" }, "v6.3.0")
+				)
 			),
 		]),
 
