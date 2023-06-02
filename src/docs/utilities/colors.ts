@@ -149,7 +149,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $blue:    #0d6efd;
                 $indigo:  #6610f2;
@@ -166,7 +166,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $primary:       $blue;
                 $secondary:     $gray-600;
@@ -182,7 +182,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $white:    #fff;
                 $gray-100: #f8f9fa;
@@ -200,7 +200,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
                 $theme-colors-text: (
 				"primary": $primary-text-emphasis,
@@ -219,7 +219,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$primary-text-emphasis:   shade-color($primary, 60%);
 				$secondary-text-emphasis: shade-color($secondary, 60%);
@@ -234,7 +234,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables-dark.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables-dark.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables-dark.scss",
 			code: `
 				$primary-text-emphasis-dark:        tint-color($primary, 40%);
 				$secondary-text-emphasis-dark:      tint-color($secondary, 40%);
@@ -256,7 +256,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $theme-colors: (
                 "primary":    $primary,
@@ -276,7 +276,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $grays: (
                 "100": $gray-100,
@@ -295,7 +295,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
                 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 			`,
@@ -304,7 +304,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
 				$utilities-text: map-merge(
 				$utilities-colors,
@@ -332,7 +332,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
 				$theme-colors-text: (
 				"primary": $primary-text-emphasis,
@@ -349,7 +349,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
 				$theme-colors-text-dark: (
 				"primary": $primary-text-emphasis-dark,
@@ -373,7 +373,7 @@ export const colors: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_utilities.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
 			code: `
 				"color": (
 				property: color,

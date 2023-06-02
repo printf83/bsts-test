@@ -18,7 +18,7 @@ export const clearfix: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/mixins/clearfix.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/clearfix.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/clearfix.scss",
 			code: `
 				@mixin clearfix() {
 				&::after {

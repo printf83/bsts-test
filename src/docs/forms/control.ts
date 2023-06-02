@@ -312,7 +312,7 @@ export const control: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$input-padding-y:                       $input-btn-padding-y;
 				$input-padding-x:                       $input-btn-padding-x;
@@ -373,7 +373,7 @@ export const control: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$form-label-margin-bottom:              .5rem;
 				$form-label-font-size:                  null;
@@ -385,7 +385,7 @@ export const control: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$form-text-margin-top:                  .25rem;
 				$form-text-font-size:                   $small-font-size;
@@ -398,7 +398,7 @@ export const control: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$form-file-button-color:          $input-color;
 				$form-file-button-bg:             var(--#{$prefix}tertiary-bg);

@@ -94,7 +94,7 @@ export const images: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$thumbnail-padding:                 .25rem;
 				$thumbnail-bg:                      var(--#{$prefix}body-bg);

@@ -995,7 +995,7 @@ export const navbar: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_navbar.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
 			code: `
 				--#{$prefix}navbar-padding-x: #{if($navbar-padding-x == null, 0, $navbar-padding-x)};
 				--#{$prefix}navbar-padding-y: #{$navbar-padding-y};
@@ -1025,7 +1025,7 @@ export const navbar: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_navbar.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
 			code: `
 				--#{$prefix}nav-link-padding-x: 0;
 				--#{$prefix}nav-link-padding-y: #{$nav-link-padding-y};
@@ -1044,7 +1044,7 @@ export const navbar: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_navbar.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
 			code: `
 				--#{$prefix}navbar-color: #{$navbar-dark-color};
 				--#{$prefix}navbar-hover-color: #{$navbar-dark-hover-color};
@@ -1062,7 +1062,7 @@ export const navbar: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$navbar-padding-y:                  $spacer * .5;
 				$navbar-padding-x:                  null;
@@ -1100,7 +1100,7 @@ export const navbar: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$navbar-dark-color:                 rgba($white, .55);
 				$navbar-dark-hover-color:           rgba($white, .75);
@@ -1119,7 +1119,7 @@ export const navbar: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_navbar.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_navbar.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
 			code: `
 			// Generate series of '.navbar-expand-*' responsive classes for configuring
 			// where your navbar collapses.

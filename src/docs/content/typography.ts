@@ -91,7 +91,7 @@ export const typography: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$display-font-sizes: (
 				1: 5rem,
@@ -344,7 +344,7 @@ export const typography: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$headings-margin-bottom:      $spacer * .5;
 				$headings-font-family:        null;
@@ -360,7 +360,7 @@ export const typography: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$lead-font-size:              $font-size-base * 1.25;
 				$lead-font-weight:            300;

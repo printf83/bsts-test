@@ -188,7 +188,7 @@ export const tooltip: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_tooltip.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_tooltip.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_tooltip.scss",
 			code: `
 				--#{$prefix}tooltip-zindex: #{$zindex-tooltip};
 				--#{$prefix}tooltip-max-width: #{$tooltip-max-width};
@@ -210,7 +210,7 @@ export const tooltip: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$tooltip-font-size:                 $font-size-sm;
 				$tooltip-max-width:                 200px;

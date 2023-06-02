@@ -878,7 +878,7 @@ const convert = (attr: IBsMainContainer) => {
 								{ marginBottom: 2 },
 								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
 							),
-							new h.li({ marginBottom: 2 }, "Currently v5.3.0-alpha3."),
+							new h.li({ marginBottom: 2 }, "Currently v5.3.0."),
 						]),
 					]),
 					...genFooter(attr.itemFooter),

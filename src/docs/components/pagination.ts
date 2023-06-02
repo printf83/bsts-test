@@ -149,7 +149,7 @@ export const pagination: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_pagination.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_pagination.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_pagination.scss",
 			code: `
 				--#{$prefix}pagination-padding-x: #{$pagination-padding-x};
 				--#{$prefix}pagination-padding-y: #{$pagination-padding-y};
@@ -179,7 +179,7 @@ export const pagination: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$pagination-padding-y:              .375rem;
 				$pagination-padding-x:              .75rem;
@@ -227,7 +227,7 @@ export const pagination: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/mixins/_pagination.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_pagination.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_pagination.scss",
 			code: `
 				@mixin pagination-size($padding-y, $padding-x, $font-size, $border-radius) {
 				--#{$prefix}pagination-padding-x: #{$padding-x};

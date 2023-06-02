@@ -40,7 +40,7 @@ export const shadow: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$box-shadow:                  0 .5rem 1rem rgba($black, .15);
 				$box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
@@ -58,7 +58,7 @@ export const shadow: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_utilities.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
 			code: `
 				"shadow": (
 				property: box-shadow,

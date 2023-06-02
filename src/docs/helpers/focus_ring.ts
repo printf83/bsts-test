@@ -71,7 +71,7 @@ export const focus_ring: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_root.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_root.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_root.scss",
 			code: `
 				--#{$prefix}focus-ring-width: #{$focus-ring-width};
 				--#{$prefix}focus-ring-opacity: #{$focus-ring-opacity};
@@ -113,7 +113,7 @@ export const focus_ring: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$focus-ring-width:      .25rem;
 				$focus-ring-opacity:    .25;
@@ -158,7 +158,7 @@ export const focus_ring: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				"focus-ring": (
 				css-var: true,

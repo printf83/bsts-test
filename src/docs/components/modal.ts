@@ -1206,7 +1206,7 @@ export const modal: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_modal.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_modal.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_modal.scss",
 			code: `
 				--#{$prefix}modal-zindex: #{$zindex-modal};
 				--#{$prefix}modal-width: #{$modal-md};
@@ -1235,7 +1235,7 @@ export const modal: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_modal.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_modal.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_modal.scss",
 			code: `
 				--#{$prefix}backdrop-zindex: #{$zindex-modal-backdrop};
 				--#{$prefix}backdrop-bg: #{$modal-backdrop-bg};
@@ -1250,7 +1250,7 @@ export const modal: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$modal-inner-padding:               $spacer;
 
@@ -1305,7 +1305,7 @@ export const modal: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_modal.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_modal.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_modal.scss",
 			code: `
 				@each $breakpoint in map-keys($grid-breakpoints) {
 				$infix: breakpoint-infix($breakpoint, $grid-breakpoints);

@@ -369,7 +369,7 @@ export const tables: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/mixins/_table-variants.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_table-variants.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_table-variants.scss",
 			code: `
 				@mixin table-variant($state, $background) {
 				.table-#{$state} {
@@ -847,7 +847,7 @@ export const tables: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$table-cell-padding-y:        .5rem;
 				$table-cell-padding-x:        .5rem;
@@ -896,7 +896,7 @@ export const tables: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$table-variants: (
 				"primary":    shift-color($primary, $table-bg-scale),

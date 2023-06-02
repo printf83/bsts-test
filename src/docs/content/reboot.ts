@@ -33,7 +33,7 @@ export const reboot: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_root.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_root.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_root.scss",
 			code: `
 				@if $font-size-root != null {
 				--#{$prefix}root-font-size: #{$font-size-root};
@@ -70,7 +70,7 @@ export const reboot: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_reboot.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_reboot.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_reboot.scss",
 			code: `
 				body {
 				margin: 0; // 1

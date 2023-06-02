@@ -172,7 +172,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $blue:    #0d6efd;
                 $indigo:  #6610f2;
@@ -189,7 +189,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $primary:       $blue;
                 $secondary:     $gray-600;
@@ -204,7 +204,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0));
 			`,
@@ -213,7 +213,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $white:    #fff;
                 $gray-100: #f8f9fa;
@@ -232,7 +232,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $primary-bg-subtle:       tint-color($primary, 80%);
                 $secondary-bg-subtle:     tint-color($secondary, 80%);
@@ -247,7 +247,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables-dark.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables-dark.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables-dark.scss",
 			code: `
                 $primary-bg-subtle-dark:            shade-color($primary, 80%);
                 $secondary-bg-subtle-dark:          shade-color($secondary, 80%);
@@ -269,7 +269,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $theme-colors: (
                 "primary":    $primary,
@@ -289,7 +289,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
                 $grays: (
                 "100": $gray-100,
@@ -308,7 +308,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
                 $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 			`,
@@ -317,7 +317,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
                 $utilities-bg: map-merge(
                 $utilities-colors,
@@ -345,7 +345,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
                 $theme-colors-bg-subtle: (
                 "primary": $primary-bg-subtle,
@@ -362,7 +362,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
                 $theme-colors-bg-subtle-dark: (
                 "primary": $primary-bg-subtle-dark,
@@ -386,7 +386,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/mixins/_gradients.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_gradients.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_gradients.scss",
 			code: `
                 @mixin gradient-bg($color: null) {
                 background-color: $color;
@@ -400,7 +400,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/mixins/_gradients.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/mixins/_gradients.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_gradients.scss",
 			code: `
                 // Horizontal gradient, from left to right
                 //
@@ -447,7 +447,7 @@ export const background: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_utilities.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
 			code: `
                 "background-color": (
                 property: background-color,

@@ -217,7 +217,7 @@ export const popover: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_popover.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_popover.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_popover.scss",
 			code: `
 				--#{$prefix}popover-zindex: #{$zindex-popover};
 				--#{$prefix}popover-max-width: #{$popover-max-width};
@@ -247,7 +247,7 @@ export const popover: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$popover-font-size:                 $font-size-sm;
 				$popover-bg:                        var(--#{$prefix}body-bg);

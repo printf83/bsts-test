@@ -6,9 +6,9 @@ const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.121/+esm";
 const BSCDNCSS = [
 	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
-	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
 ];
-const BSCDNJS = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"];
+const BSCDNJS = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"];
 
 export const introduction: IAttrContent = {
 	title: "Get started with Bootstrap",

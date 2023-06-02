@@ -305,7 +305,7 @@ export const carousel: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 			    $carousel-control-color:             $white;
 				$carousel-control-width:             15%;
@@ -341,7 +341,7 @@ export const carousel: IAttrContent = {
 		// new e.codepreview({
 		// 	type: "css",
 		// 	title: "scss/_variables.scss",
-		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 		// 	code: `
 		// 	    $carousel-dark-indicator-active-bg:  $black;
 		// 		$carousel-dark-caption-color:        $black;

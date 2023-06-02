@@ -103,7 +103,7 @@ export const stacks: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/helpers/_stacks.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/helpers/_stacks.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/helpers/_stacks.scss",
 			code: `
 				.hstack {
 				display: flex;

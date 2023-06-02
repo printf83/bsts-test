@@ -187,7 +187,7 @@ export const text: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				// stylelint-disable value-keyword-case
 				$font-family-sans-serif:      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -233,7 +233,7 @@ export const text: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$font-sizes: (
 				1: $h1-font-size,
@@ -248,7 +248,7 @@ export const text: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_maps.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_maps.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
 			code: `
 				$theme-colors-text: (
 				"primary": $primary-text-emphasis,
@@ -272,7 +272,7 @@ export const text: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_utilities.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
 			code: `
 				"font-family": (
 				property: font-family,

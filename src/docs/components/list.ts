@@ -371,7 +371,7 @@ export const list: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_list-group.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_list-group.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_list-group.scss",
 			code: `
 				--#{$prefix}list-group-color: #{$list-group-color};
 				--#{$prefix}list-group-bg: #{$list-group-bg};
@@ -398,7 +398,7 @@ export const list: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_variables.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
 			code: `
 				$list-group-color:                  var(--#{$prefix}body-color);
 				$list-group-bg:                     var(--#{$prefix}body-bg);
@@ -435,7 +435,7 @@ export const list: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_list-group.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_list-group.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_list-group.scss",
 			code: `
 				// List group contextual variants
 				//

@@ -100,7 +100,7 @@ export const sizing: IAttrContent = {
 		new e.codepreview({
 			type: "css",
 			title: "scss/_utilities.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0-alpha3/scss/_utilities.scss",
+			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
 			code: `
 				"width": (
 				property: width,
