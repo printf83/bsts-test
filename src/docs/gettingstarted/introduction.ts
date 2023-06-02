@@ -27,7 +27,7 @@ export const introduction: IAttrContent = {
 				{ content: "@printf83/bsts" },
 				new h.a(
 					{ href: "https://github.com/printf83/bsts" },
-					new b.pill({ icon: "fab github", color: "danger", weight: "lg" }, "v0.1.120")
+					new b.pill({ icon: "fab github", color: "danger", weight: "lg" }, "v0.1.121")
 				)
 			),
 		]),
