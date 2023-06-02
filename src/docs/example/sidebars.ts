@@ -614,7 +614,7 @@ export const sidebars: IAttrContent = {
 			showConsole: true,
 			showViewport: true,
 			previewAttr: { padding: 0, overflow: "hidden" },
-			outputAttr: { class: ["toggle", "sidebar-item"] },
+			outputAttr: { class: ["sidebar-item"] },
 			extention: [
 				{ name: "CLICKEVENT", rename: "ex.c4ClickEvent", output: ex.c4ClickEvent },
 				{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 },

@@ -86,6 +86,10 @@ const onBootswatchChange = (value: string) => {
 	}
 };
 
+const setupBootswatch = () => {
+	onBootswatchChange(CURRENT_BOOTSWATCH);
+};
+
 const setupThemeChanges = () => {
 	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
 		if (getSavedTheme() === "auto") {
@@ -707,5 +711,6 @@ core.documentReady(() => {
 	loadDefaultDoc();
 	setupWindowPopState();
 	setupBSNavigate();
+	setupBootswatch();
 	setupThemeChanges();
 });

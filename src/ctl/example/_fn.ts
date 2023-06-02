@@ -244,9 +244,15 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "sidebar-item")) {
 			result.push(`
+				#root a.sidebar-item {
+					padding: 0.1875rem 0.5rem;
+					margin-top: 0.125rem;
+					margin-left: 1.25rem;
+				}
+	
 				#root a.sidebar-item.active{
 					color: #fff !important;
-					background-color: RGBA(13,110,253,var(--bs-bg-opacity,1)) !important;
+					background-color: RGBA(var(--bs-primary-rgb),var(--bs-bg-opacity,1)) !important;
 				}
 			`);
 		}
