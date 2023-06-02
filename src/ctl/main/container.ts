@@ -308,10 +308,18 @@ const genBootswatch = (
 					]
 				),
 				new b.dropdown.menu(
-					{ positionView: "end", customStyle: 1 },
+					{
+						positionView: "end",
+						customStyle: 1,
+						row: true,
+						style: { minWidth: "20rem" },
+					},
 					navbarItemBootswatch.map((i) => {
 						return new b.dropdown.item(
 							{
+								col: true,
+								display: "inline-block",
+								style: { width: "33.333%" },
 								on: {
 									click: (_e) => {
 										changeBootswatch(i.value);
