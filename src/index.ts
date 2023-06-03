@@ -111,7 +111,10 @@ let m = {
 		{
 			label: "Getting started",
 			icon: { id: "book-half", color: "primary" },
-			item: [{ label: "Introduction", value: "docs/gettingstarted/introduction" }],
+			item: [
+				{ label: "Introduction", value: "docs/gettingstarted/introduction" },
+				{ label: "Bootswatch", value: "docs/gettingstarted/bootswatch" },
+			],
 		},
 		{
 			label: "Customize",

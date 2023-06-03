@@ -285,6 +285,9 @@ export const doc = async (value: string) => {
 		case "docs/gettingstarted/introduction":
 			result = await gettingstarted.introduction();
 			break;
+		case "docs/gettingstarted/bootswatch":
+			result = await gettingstarted.bootswatch();
+			break;
 
 		default:
 			return null;
