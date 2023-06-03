@@ -920,7 +920,6 @@ const convert = (attr: IBsExampleContainer) => {
 				e.length > 0,
 				false,
 				true,
-
 				"SOURCE",
 				new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
 				undefined,
