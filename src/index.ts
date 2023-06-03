@@ -561,7 +561,7 @@ const mainContainer = main.Container({
 	itemOutsideLink: [
 		{
 			href: "#",
-			icon: { id: "shuffle" },
+			icon: { id: "cpu-fill" },
 			label: "Memory test",
 			onclick: (_event) => {
 				b.modal.show(

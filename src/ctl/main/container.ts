@@ -268,7 +268,6 @@ const genTheme = (
 
 const genBootswatch = (
 	textColor: core.bootstrapType.textColor,
-	name: string,
 	navbarItemBootswatch?: IAttrItemBootswatch[],
 	currentBootswatch?: string
 ) => {
@@ -300,7 +299,7 @@ const genBootswatch = (
 						textColor: textColor,
 					},
 					[
-						new h.span({ display: "lg-none", marginEnd: 2, aria: { hidden: "true" } }, name),
+						new h.span({ marginEnd: 2 }, new b.icon({ type: "solid", id: "swatchbook" })),
 						new h.span(
 							{ id: "bs-bootswatch-label" },
 							`${core.uppercaseFirst(currentBootswatch ? currentBootswatch : "Default")}`
@@ -899,7 +898,6 @@ const convert = (attr: IBsMainContainer) => {
 												),
 												genBootswatch(
 													attr.textColor || "primary",
-													"Bootswatch",
 													attr.itemBootswatch,
 													attr.currentBootswatch
 												),
