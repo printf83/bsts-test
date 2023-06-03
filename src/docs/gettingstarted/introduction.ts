@@ -37,33 +37,33 @@ export const introduction: IAttrContent = {
 			"{{bsts}} couldn't have done without this awesome library. Thanks for your hard work on this."
 		),
 
-		new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [
+		new e.item({ display: "flex", flex: ["wrap", "md-row"], gap: 3, justifyContent: "center" }, [
 			new b.tooltip(
 				{ content: "Bootstrap" },
 				new h.a(
 					{ href: "https://getbootstrap.com/" },
-					new b.pill({ icon: "fab bootstrap", color: "primary", weight: "md" }, "v5.3.0")
+					new b.pill({ icon: "fab bootstrap", color: "primary" }, "v5.3.0")
 				)
 			),
 			new b.tooltip(
 				{ content: "Bootstrap Icon" },
 				new h.a(
 					{ href: "https://icons.getbootstrap.com/" },
-					new b.pill({ icon: "bootstrap", color: "warning", weight: "md" }, "v1.10.3")
+					new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10.3")
 				)
 			),
 			new b.tooltip(
 				{ content: "Bootswatch" },
 				new h.a(
 					{ href: "https://bootswatch.com/" },
-					new b.pill({ icon: "fas swatchbook", color: "success", weight: "md" }, "v5.3.0")
+					new b.pill({ icon: "fas swatchbook", color: "success" }, "v5.3.0")
 				)
 			),
 			new b.tooltip(
 				{ content: "FontAwesome" },
 				new h.a(
 					{ href: "https://fontawesome.com/" },
-					new b.pill({ icon: "fab font-awesome", color: "info", weight: "md" }, "v6.3.0")
+					new b.pill({ icon: "fab font-awesome", color: "info" }, "v6.3.0")
 				)
 			),
 		]),
