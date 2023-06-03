@@ -724,8 +724,8 @@ strong,
 }
 
 /* example */
-/* .example-code .list-group-item:last-child [aria-expanded="false"]{
-    border-bottom: none;
+/* .example-code .list-group-item:last-child[aria-expanded="false"] {
+    border-bottom: 0 !important;
 } */
 
 @media (max-width: 768px) {
