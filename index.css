@@ -724,7 +724,7 @@ strong,
 }
 
 /* example */
-/* .example-code .list-group-item:last-child[aria-expanded="false"] {
+/* .example-code .list-group-item:last-of-type {
     border-bottom: 0 !important;
 } */
 

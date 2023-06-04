@@ -226,20 +226,28 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 	}
 }
 
-const itemCode = (
-	header: boolean,
-	collapseable: boolean,
-	allowcopy: boolean,
-	title: core.IElem,
-	elem: core.IElem,
-	onshow?: (target: Element) => void,
-	onedit?: (event: Event) => void
-): b.list.item[] => {
-	let id = core.UUID();
+const itemCode = (arg: {
+	title: core.IElem;
+	elem: core.IElem;
 
+	header?: boolean;
+	islast?: boolean;
+	collapseable?: boolean;
+	allowcopy?: boolean;
+	allowrefresh?: boolean;
+
+	onedit?: (event: Event) => void;
+}): b.list.item[] => {
+	arg.header ??= true;
+	arg.collapseable ??= true;
+	arg.allowcopy ??= true;
+	arg.allowrefresh ??= false;
+	arg.islast ??= false;
+
+	let id = core.UUID();
 	let res: b.list.item[] = [];
 
-	if (header) {
+	if (arg.header) {
 		res.push(
 			new b.list.item(
 				{
@@ -248,6 +256,7 @@ const itemCode = (
 					display: "flex",
 					justifyContent: "between",
 					verticalAlign: "middle",
+					rounded: arg.islast && arg.collapseable ? "bottom-2" : undefined,
 				},
 				[
 					new h.div(
@@ -255,25 +264,25 @@ const itemCode = (
 							paddingY: 2,
 							paddingX: 4,
 							flex: "fill",
-							controlfor: collapseable ? id : undefined,
+							controlfor: arg.collapseable ? id : undefined,
 							data: {
-								"bs-toggle": collapseable ? "collapse" : undefined,
-								"bs-target": collapseable ? `#${id}` : undefined,
+								"bs-toggle": arg.collapseable ? "collapse" : undefined,
+								"bs-target": arg.collapseable ? `#${id}` : undefined,
 							},
 							aria: {
-								expended: collapseable ? "false" : undefined,
+								expended: arg.collapseable ? "false" : undefined,
 							},
 							monospace: true,
 							textColor: "body-secondary",
 						},
-						new h.small(title)
+						new h.small(arg.title)
 					),
 
-					onedit
+					arg.onedit
 						? new h.div(
 								{ display: "flex" },
 								new h.div(
-									{ paddingTop: 2, paddingStart: 4, paddingEnd: allowcopy ? 2 : 4 },
+									{ paddingTop: 2, paddingStart: 4, paddingEnd: arg.allowcopy ? 2 : 4 },
 									new b.tooltip(
 										{
 											content: "Edit on CodePen",
@@ -283,7 +292,7 @@ const itemCode = (
 											{
 												color: "secondary",
 												class: "primary-on-hover",
-												on: { click: onedit },
+												on: { click: arg.onedit },
 											},
 											b.icon.bi("lightning-charge-fill")
 										)
@@ -292,11 +301,11 @@ const itemCode = (
 						  )
 						: "",
 
-					allowcopy
+					arg.allowcopy
 						? new h.div(
 								{ display: "flex" },
 								new h.div(
-									{ paddingTop: 2, paddingEnd: 4, paddingStart: onedit ? 2 : 4 },
+									{ paddingTop: 2, paddingEnd: 4, paddingStart: arg.onedit ? 2 : 4 },
 									new b.tooltip(
 										{
 											content: "Copy to clipboard",
@@ -315,7 +324,7 @@ const itemCode = (
 						  )
 						: "",
 
-					onshow
+					arg.allowrefresh
 						? new h.div(
 								{ display: "flex" },
 								new h.div(
@@ -337,7 +346,7 @@ const itemCode = (
 															?.nextSibling as Element;
 
 														container.setAttribute("data-loaded", "true");
-														onshow(container);
+														getOutputHTML(container);
 
 														if (iconElem) {
 															iconElem.classList.remove("arrow-clockwise");
@@ -367,17 +376,17 @@ const itemCode = (
 			)
 		);
 	} else {
-		if (allowcopy || onedit) {
-			if (!Array.isArray(elem)) {
-				elem = [elem];
+		if (arg.allowcopy || arg.onedit) {
+			if (!Array.isArray(arg.elem)) {
+				arg.elem = [arg.elem];
 			}
 
-			elem.unshift(
+			arg.elem.unshift(
 				new h.div({ position: "absolute", end: 0, marginEnd: 3 }, [
-					onedit
+					arg.onedit
 						? new b.tooltip(
 								{
-									marginEnd: allowcopy ? 2 : 0,
+									marginEnd: arg.allowcopy ? 2 : 0,
 									content: "Edit on CodePen",
 									trigger: "hover",
 								},
@@ -386,13 +395,13 @@ const itemCode = (
 										href: "#",
 										color: "secondary",
 										class: "primary-on-hover",
-										on: { click: onedit },
+										on: { click: arg.onedit },
 									},
 									b.icon.bi("lightning-charge-fill")
 								)
 						  )
 						: "",
-					allowcopy
+					arg.allowcopy
 						? new b.tooltip(
 								{ content: "Copy to clipboard", trigger: "hover" },
 								new h.a(
@@ -416,22 +425,42 @@ const itemCode = (
 			{
 				bgColor: "body-tertiary",
 				paddingX: 4,
-				class: [collapseable ? "collapse" : undefined],
-				id: collapseable ? id : undefined,
-				data: { loaded: onshow ? "false" : undefined },
+				class: [arg.collapseable ? "collapse" : undefined],
+				id: arg.collapseable ? id : undefined,
 				on: {
-					"show.bs.collapse": onshow
+					"show.bs.collapse":
+						arg.islast && !arg.allowrefresh
+							? (e) => {
+									const target = e.target as Element;
+									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove(
+										"rounded-bottom-2"
+									);
+							  }
+							: !arg.islast && arg.allowrefresh
+							? (e) => {
+									const target = e.target as Element;
+									getOutputHTML(target);
+							  }
+							: arg.islast && arg.allowrefresh
+							? (e) => {
+									const target = e.target as Element;
+									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove(
+										"rounded-bottom-2"
+									);
+									getOutputHTML(target);
+							  }
+							: undefined,
+					"hidden.bs.collapse": arg.islast
 						? (e) => {
 								const target = e.target as Element;
-								if (target.getAttribute("data-loaded") !== "true") {
-									target.setAttribute("data-loaded", "true");
-									onshow(target);
-								}
+								(target.closest(".list-group-item")?.previousSibling as Element).classList.add(
+									"rounded-bottom-2"
+								);
 						  }
 						: undefined,
 				},
 			},
-			new h.div({ class: "example-preview-container" }, elem)
+			new h.div({ class: "example-preview-container" }, arg.elem)
 		)
 	);
 
@@ -802,7 +831,15 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	if (attr.output && attr.showOutput && attr.showHTML) {
-		e.push(...itemCode(e.length > 0, true, false, "HTML", "Loading...", getOutputHTML));
+		e.push(
+			...itemCode({
+				header: e.length > 0,
+				allowcopy: false,
+				allowrefresh: true,
+				title: "HTML",
+				elem: "Loading...",
+			})
+		);
 	}
 
 	let strCSS: string | undefined = undefined;
@@ -819,11 +856,25 @@ const convert = (attr: IBsExampleContainer) => {
 			strCSS = attr.css;
 		}
 
-		e.push(...itemCode(e.length > 0, true, true, "CSS", new preview({ type: "css" }, strCSS)));
+		e.push(
+			...itemCode({
+				header: e.length > 0,
+				collapseable: true,
+				allowcopy: true,
+				title: "CSS",
+				elem: new preview({ type: "css" }, strCSS),
+			})
+		);
 	} else {
 		strCSS = getCSSBaseOnSource(attr.outputAttr);
 		if (strCSS) {
-			e.push(...itemCode(e.length > 0, true, true, "CSS", new preview({ type: "css" }, strCSS)));
+			e.push(
+				...itemCode({
+					header: e.length > 0,
+					title: "CSS",
+					elem: new preview({ type: "css" }, strCSS),
+				})
+			);
 		}
 	}
 
@@ -869,14 +920,11 @@ const convert = (attr: IBsExampleContainer) => {
 						const ${i.name} = ${strCode};`);
 
 				e.push(
-					...itemCode(
-						e.length > 0,
-						true,
-						true,
-
-						i.name,
-						new preview({ type: i.strOutput ? "ts" : "js" }, strCode)
-					)
+					...itemCode({
+						header: e.length > 0,
+						title: i.name,
+						elem: new preview({ type: i.strOutput ? "ts" : "js" }, strCode),
+					})
 				);
 			}
 		});
@@ -893,14 +941,11 @@ const convert = (attr: IBsExampleContainer) => {
 		strManager = replaceExtention(renameExtention, strManager);
 
 		e.push(
-			...itemCode(
-				e.length > 0,
-				true,
-				true,
-
-				"MANAGER",
-				new preview({ type: attr.strManager ? "ts" : "js" }, strManager!)
-			)
+			...itemCode({
+				header: e.length > 0,
+				title: "MANAGER",
+				elem: new preview({ type: attr.strManager ? "ts" : "js" }, strManager!),
+			})
 		);
 	}
 
@@ -916,14 +961,12 @@ const convert = (attr: IBsExampleContainer) => {
 		strSource = replaceExtention(renameExtention, strSource);
 
 		e.push(
-			...itemCode(
-				e.length > 0,
-				false,
-				true,
-				"SOURCE",
-				new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
-				undefined,
-				attr.showCodepen
+			...itemCode({
+				islast: true,
+				header: e.length > 0,
+				title: "SOURCE",
+				elem: new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
+				onedit: attr.showCodepen
 					? () => {
 							codePen(
 								generateCodePenData(
@@ -937,8 +980,8 @@ const convert = (attr: IBsExampleContainer) => {
 								)
 							);
 					  }
-					: undefined
-			)
+					: undefined,
+			})
 		);
 	}
 
@@ -948,6 +991,7 @@ const convert = (attr: IBsExampleContainer) => {
 				id: id,
 				class: "example-code",
 				marginY: 3,
+				border: false,
 				on: {
 					"bs.console.log": attr.showConsole
 						? (event) => {
@@ -961,7 +1005,7 @@ const convert = (attr: IBsExampleContainer) => {
 						: undefined,
 				},
 			},
-			new b.card.body({ padding: 0 }, [new b.list.container({ flush: true, rounded: 2 }, e)])
+			new b.card.body({ padding: 0 }, [new b.list.container(e)])
 		),
 	];
 
