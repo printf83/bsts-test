@@ -110,16 +110,20 @@ function itemCodeCopy(e: Event) {
 	if (listGroupItem) {
 		const nextListGroupItem = listGroupItem.nextElementSibling;
 		if (nextListGroupItem) {
-			const text = nextListGroupItem.getElementsByTagName("pre")[0].innerText;
+			try {
+				const text = nextListGroupItem.getElementsByTagName("pre")[0].innerText;
 
-			navigator.clipboard.writeText(text).then(
-				() => {
-					successCopyCode(iconElem);
-				},
-				() => {
-					failCopyCode(iconElem);
-				}
-			);
+				navigator.clipboard.writeText(text).then(
+					() => {
+						successCopyCode(iconElem);
+					},
+					() => {
+						failCopyCode(iconElem);
+					}
+				);
+			} catch (error) {
+				failCopyCode(iconElem);
+			}
 		} else {
 			failCopyCode(iconElem);
 		}
@@ -435,6 +439,12 @@ const itemCode = (arg: {
 									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove(
 										"rounded-bottom-2"
 									);
+
+									core.replaceChild(target, arg.elem);
+
+									setTimeout(() => {
+										PR.prettyPrint();
+									}, 300);
 							  }
 							: !arg.islast && arg.allowrefresh
 							? (e) => {
@@ -449,7 +459,14 @@ const itemCode = (arg: {
 									);
 									getOutputHTML(target);
 							  }
-							: undefined,
+							: (e) => {
+									const target = e.target as Element;
+									core.replaceChild(target, arg.elem);
+
+									setTimeout(() => {
+										PR.prettyPrint();
+									}, 300);
+							  },
 					"hidden.bs.collapse": arg.islast
 						? (e) => {
 								const target = e.target as Element;
@@ -460,7 +477,7 @@ const itemCode = (arg: {
 						: undefined,
 				},
 			},
-			new h.div({ class: "example-preview-container" }, arg.elem)
+			new h.div({ class: "example-preview-container" }, "Loading...")
 		)
 	);
 
