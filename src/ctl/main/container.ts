@@ -862,7 +862,6 @@ const convert = (attr: IBsMainContainer) => {
 						new b.offcanvas.container(
 							{
 								id: "bsNavbar",
-								bgColor: attr.bgColor || "primary",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
@@ -870,41 +869,51 @@ const convert = (attr: IBsMainContainer) => {
 								scroll: true,
 							},
 							[
-								new b.offcanvas.header({ paddingX: 4, paddingBottom: 0 }, [
-									new b.offcanvas.title(
-										{ id: "bsNavbarOffcanvasLabel", textColor: attr.textColor || "light" },
-										attr.name || "Bootstrap"
-									),
-									new b.offcanvas.btnclose({ target: "#bsNavbar", white: true }),
-								]),
-								new b.offcanvas.body({ padding: [4, "lg-0"], paddingTop: 0 }, [
-									...genInsideLink(
-										attr.textColor || "primary",
-										attr.itemInsideLink,
-										attr.currentInsideLink
-									),
-									...(attr.itemOutsideLink ||
-									attr.itemVersion ||
-									attr.itemTheme ||
-									attr.itemBootswatch
-										? genOutsideLink(
-												attr.textColor || "primary",
-												attr.itemOutsideLink,
-												genVersion(
+								new b.offcanvas.header(
+									{ paddingX: 4, paddingBottom: 0, bgColor: attr.bgColor || "primary" },
+									[
+										new b.offcanvas.title(
+											{ id: "bsNavbarOffcanvasLabel", textColor: attr.textColor || "light" },
+											attr.name || "Bootstrap"
+										),
+										new b.offcanvas.btnclose({ target: "#bsNavbar", white: true }),
+									]
+								),
+								new b.offcanvas.body(
+									{ padding: [4, "lg-0"], paddingTop: 0, bgColor: attr.bgColor || "primary" },
+									[
+										...genInsideLink(
+											attr.textColor || "primary",
+											attr.itemInsideLink,
+											attr.currentInsideLink
+										),
+										...(attr.itemOutsideLink ||
+										attr.itemVersion ||
+										attr.itemTheme ||
+										attr.itemBootswatch
+											? genOutsideLink(
 													attr.textColor || "primary",
-													"@printf83/bsts",
-													attr.itemVersion,
-													attr.currentVersion
-												),
-												genBootswatch(
-													attr.textColor || "primary",
-													attr.itemBootswatch,
-													attr.currentBootswatch
-												),
-												genTheme(attr.textColor || "primary", attr.itemTheme, attr.currentTheme)
-										  )
-										: []),
-								]),
+													attr.itemOutsideLink,
+													genVersion(
+														attr.textColor || "primary",
+														"@printf83/bsts",
+														attr.itemVersion,
+														attr.currentVersion
+													),
+													genBootswatch(
+														attr.textColor || "primary",
+														attr.itemBootswatch,
+														attr.currentBootswatch
+													),
+													genTheme(
+														attr.textColor || "primary",
+														attr.itemTheme,
+														attr.currentTheme
+													)
+											  )
+											: []),
+									]
+								),
 							]
 						),
 					]

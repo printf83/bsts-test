@@ -12,7 +12,7 @@ import {
 	replaceExtention,
 } from "./_fn.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.121/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.122/+esm";
 const BSCDNCSS = [
 	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
@@ -54,13 +54,17 @@ declare var PR: {
 	prettyPrint: () => void;
 };
 
-const getOutputHTML = (target: Element): void => {
+const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
+	autoPrettyPrint ??= true;
+
 	let html = target.closest(".example-code")?.getElementsByClassName("example-output")[0].innerHTML;
 	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
 
-	setTimeout(() => {
-		PR.prettyPrint();
-	}, 300);
+	if (autoPrettyPrint) {
+		setTimeout(() => {
+			PR.prettyPrint();
+		}, 300);
+	}
 };
 
 function successCopyCode(iconElem?: Element) {
@@ -111,16 +115,37 @@ function itemCodeCopy(e: Event) {
 		const nextListGroupItem = listGroupItem.nextElementSibling;
 		if (nextListGroupItem) {
 			try {
-				const text = nextListGroupItem.getElementsByTagName("pre")[0].innerText;
+				//check if pre tag exists
+				let preTag = nextListGroupItem.getElementsByTagName("pre");
+				if (!preTag || preTag.length === 0) {
+					//try raiseEvent listgroupitem
+					nextListGroupItem.dispatchEvent(new CustomEvent("load.bs.collapse"));
 
-				navigator.clipboard.writeText(text).then(
-					() => {
-						successCopyCode(iconElem);
-					},
-					() => {
-						failCopyCode(iconElem);
-					}
-				);
+					setTimeout(() => {
+						preTag = nextListGroupItem.getElementsByTagName("pre");
+						const text = preTag[0].innerText;
+
+						navigator.clipboard.writeText(text).then(
+							() => {
+								successCopyCode(iconElem);
+							},
+							() => {
+								failCopyCode(iconElem);
+							}
+						);
+					}, 100);
+				} else {
+					const text = preTag[0].innerText;
+
+					navigator.clipboard.writeText(text).then(
+						() => {
+							successCopyCode(iconElem);
+						},
+						() => {
+							failCopyCode(iconElem);
+						}
+					);
+				}
 			} catch (error) {
 				failCopyCode(iconElem);
 			}
@@ -286,7 +311,11 @@ const itemCode = (arg: {
 						? new h.div(
 								{ display: "flex" },
 								new h.div(
-									{ paddingTop: 2, paddingStart: 4, paddingEnd: arg.allowcopy ? 2 : 4 },
+									{
+										paddingTop: 2,
+										paddingStart: 4,
+										paddingEnd: arg.allowcopy || arg.allowrefresh ? 2 : 4,
+									},
 									new b.tooltip(
 										{
 											content: "Edit on CodePen",
@@ -305,34 +334,15 @@ const itemCode = (arg: {
 						  )
 						: "",
 
-					arg.allowcopy
-						? new h.div(
-								{ display: "flex" },
-								new h.div(
-									{ paddingTop: 2, paddingEnd: 4, paddingStart: arg.onedit ? 2 : 4 },
-									new b.tooltip(
-										{
-											content: "Copy to clipboard",
-											trigger: "hover",
-										},
-										new h.a(
-											{
-												color: "secondary",
-												class: "primary-on-hover",
-												on: { click: itemCodeCopy },
-											},
-											b.icon.bi("clipboard")
-										)
-									)
-								)
-						  )
-						: "",
-
 					arg.allowrefresh
 						? new h.div(
 								{ display: "flex" },
 								new h.div(
-									{ paddingTop: 2, paddingX: 4 },
+									{
+										paddingTop: 2,
+										paddingStart: 4,
+										paddingEnd: arg.onedit || arg.allowcopy ? 2 : 4,
+									},
 									new b.tooltip(
 										{
 											content: "Refresh code",
@@ -371,6 +381,33 @@ const itemCode = (arg: {
 												},
 											},
 											b.icon.bi("arrow-clockwise")
+										)
+									)
+								)
+						  )
+						: "",
+
+					arg.allowcopy
+						? new h.div(
+								{ display: "flex" },
+								new h.div(
+									{
+										paddingTop: 2,
+										paddingEnd: 4,
+										paddingStart: arg.onedit || arg.allowrefresh ? 2 : 4,
+									},
+									new b.tooltip(
+										{
+											content: "Copy to clipboard",
+											trigger: "hover",
+										},
+										new h.a(
+											{
+												color: "secondary",
+												class: "primary-on-hover",
+												on: { click: itemCodeCopy },
+											},
+											b.icon.bi("clipboard")
 										)
 									)
 								)
@@ -432,6 +469,26 @@ const itemCode = (arg: {
 				class: [arg.collapseable ? "collapse" : undefined],
 				id: arg.collapseable ? id : undefined,
 				on: {
+					"load.bs.collapse":
+						arg.islast && !arg.allowrefresh
+							? (e) => {
+									const target = e.target as Element;
+									core.replaceChild(target, arg.elem);
+							  }
+							: !arg.islast && arg.allowrefresh
+							? (e) => {
+									const target = e.target as Element;
+									getOutputHTML(target, false);
+							  }
+							: arg.islast && arg.allowrefresh
+							? (e) => {
+									const target = e.target as Element;
+									getOutputHTML(target, false);
+							  }
+							: (e) => {
+									const target = e.target as Element;
+									core.replaceChild(target, arg.elem);
+							  },
 					"show.bs.collapse":
 						arg.islast && !arg.allowrefresh
 							? (e) => {
@@ -851,7 +908,6 @@ const convert = (attr: IBsExampleContainer) => {
 		e.push(
 			...itemCode({
 				header: e.length > 0,
-				allowcopy: false,
 				allowrefresh: true,
 				title: "HTML",
 				elem: "Loading...",
@@ -876,8 +932,6 @@ const convert = (attr: IBsExampleContainer) => {
 		e.push(
 			...itemCode({
 				header: e.length > 0,
-				collapseable: true,
-				allowcopy: true,
 				title: "CSS",
 				elem: new preview({ type: "css" }, strCSS),
 			})
