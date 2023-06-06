@@ -530,11 +530,15 @@ const itemCode = (arg: {
 								(target.closest(".list-group-item")?.previousSibling as Element).classList.add(
 									"rounded-bottom-2"
 								);
+								let preTag = target.getElementsByTagName("pre");
+								if (preTag && preTag.length > 0) {
+									core.removeElement(preTag![0]);
+								}
 						  }
 						: undefined,
 				},
 			},
-			new h.div({ class: "example-preview-container" }, "Loading...")
+			new h.div({ class: "example-preview" }, "Loading...")
 		)
 	);
 
