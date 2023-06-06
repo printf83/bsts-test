@@ -34,7 +34,8 @@
 		"link": "npm link @printf83/bsts",
 		"webpack:debug": "webpack -w",
 		"webpack": "webpack",
-		"prepack": "npm run clean && npm run build && npm run webpack"
+		"predeploy": "npm run clean && npm run build",
+		"deploy":"npm run webpack"
 	},
 	"devDependencies": {
 		"@printf83/bsts": "^0.1.122",
