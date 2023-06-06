@@ -241,6 +241,7 @@ export const pagination: IAttrContent = {
 		new e.title("Event"),
 		new e.code({
 			showConsole: true,
+			outputAttr: { overflow: "hidden" },
 			output: () => {
 				return new b.pagination.container({
 					label: "Event example",
