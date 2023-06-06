@@ -361,11 +361,6 @@ export const features: IAttrContent = {
 							description: "Paragraph of text beneath the heading to explain the heading.",
 						}),
 						ex.c4({
-							icon: "toggles2",
-							title: "Featured title",
-							description: "Paragraph of text beneath the heading to explain the heading.",
-						}),
-						ex.c4({
 							icon: "geo-fill",
 							title: "Featured title",
 							description: "Paragraph of text beneath the heading to explain the heading.",
