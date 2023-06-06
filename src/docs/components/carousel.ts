@@ -42,7 +42,7 @@ export const carousel: IAttrContent = {
 						[0, 1, 2, 3, 4, 5, 6].map((i, ix) => {
 							return new b.carousel.inner.item.container({ active: ix === 0 ? true : undefined }, [
 								new b.carousel.inner.item.img({
-									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp.webp`,
+									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 								}),
 								new b.carousel.inner.item.caption([
 									new h.h(5, `Slide #${ix + 1}`),
@@ -75,7 +75,7 @@ export const carousel: IAttrContent = {
 					itemIndicator: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp.webp`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 							caption: [
 								new h.h(5, `Slide #${i + 1}`),
 								new h.p(`Some representative placeholder content for the slide #${i + 1}.`),
@@ -99,7 +99,7 @@ export const carousel: IAttrContent = {
 					itemIndicator: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp.webp`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 						};
 					}),
 				});
