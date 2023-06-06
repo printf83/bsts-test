@@ -486,7 +486,7 @@ export const sidebars: IAttrContent = {
 				return ex.c1({
 					icon: "fab bootstrap",
 					title: "Sidebar",
-					userImage: "https://picsum.photos/seed/bsts_0/32/32",
+					userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 					userName: "@printf83",
 					link: [
 						{ active: true, href: "#", icon: "house", label: "Home" },
@@ -531,7 +531,7 @@ export const sidebars: IAttrContent = {
 				return ex.c2({
 					icon: "fab bootstrap",
 					title: "Sidebar",
-					userImage: "https://picsum.photos/seed/bsts_0/32/32",
+					userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 					userName: "@printf83",
 					link: [
 						{ active: true, href: "#", icon: "house", label: "Home" },
@@ -575,7 +575,7 @@ export const sidebars: IAttrContent = {
 			output: () => {
 				return ex.c3({
 					icon: "fab bootstrap",
-					userImage: "https://picsum.photos/seed/bsts_0/32/32",
+					userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 					link: [
 						{ active: true, href: "#", icon: "house", label: "Home" },
 						{ href: "#", icon: "speedometer2", label: "Dashboard" },

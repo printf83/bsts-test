@@ -21,7 +21,7 @@ export const stretched_link: IAttrContent = {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts_0/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180.webp",
 						alt: "Image cap",
 					}),
 					new b.card.body([
@@ -44,7 +44,7 @@ export const stretched_link: IAttrContent = {
 					new h.img({
 						flex: "shrink-0",
 						marginEnd: 3,
-						src: "https://picsum.photos/seed/bsts_0/144/144",
+						src: "https://picsum.photos/seed/bsts_0/144/144.webp",
 						alt: "Image cap",
 					}),
 					new h.div([
@@ -64,7 +64,7 @@ export const stretched_link: IAttrContent = {
 						{ col: "md-6", marginBottom: "md-0", padding: "md-4" },
 						new h.img({
 							width: 100,
-							src: "https://picsum.photos/seed/bsts_0/330/200",
+							src: "https://picsum.photos/seed/bsts_0/330/200.webp",
 							alt: "Image cap",
 						})
 					),
@@ -98,7 +98,7 @@ export const stretched_link: IAttrContent = {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts_0/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180.webp",
 						alt: "Image cap",
 					}),
 					new b.card.body([

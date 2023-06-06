@@ -538,7 +538,7 @@ export const flex: IAttrContent = {
 				return new h.div({ display: "flex" }, [
 					new h.div(
 						{ flex: "shrink-0" },
-						new h.img({ src: "https://picsum.photos/seed/bsts_0/100/100", alt: "..." })
+						new h.img({ src: "https://picsum.photos/seed/bsts_0/100/100.webp", alt: "..." })
 					),
 					new h.div(
 						{ flex: "grow-1", marginStart: 3 },

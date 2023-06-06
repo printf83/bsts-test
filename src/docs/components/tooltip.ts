@@ -650,7 +650,7 @@ export const tooltip: IAttrContent = {
 											click: () => {
 												b.tooltip.setContent("#example-tooltip", {
 													".tooltip-inner":
-														"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170' alt='Image cap'>",
+														"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
 												});
 											},
 										},

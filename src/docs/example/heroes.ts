@@ -290,7 +290,7 @@ export const heroes: IAttrContent = {
 						new b.button({ weight: "lg", color: "primary" }, "Primary button"),
 						new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
 					],
-					img: "https://picsum.photos/seed/bsts_0/622/393",
+					img: "https://picsum.photos/seed/bsts_0/622/393.webp",
 				});
 			},
 		}),
@@ -311,7 +311,7 @@ export const heroes: IAttrContent = {
 						new b.button({ weight: "lg", color: "primary" }, "Primary"),
 						new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
 					],
-					img: "https://picsum.photos/seed/bsts_0/432/308",
+					img: "https://picsum.photos/seed/bsts_0/432/308.webp",
 				});
 			},
 		}),
@@ -360,7 +360,7 @@ export const heroes: IAttrContent = {
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
 				return ex.c5({
-					img: "https://picsum.photos/seed/bsts_0/432/308",
+					img: "https://picsum.photos/seed/bsts_0/432/308.webp",
 					title: "Border hero with cropped image and shadows",
 					description:
 						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",

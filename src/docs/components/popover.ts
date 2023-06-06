@@ -652,7 +652,7 @@ export const popover: IAttrContent = {
 												b.popover.setContent("#example-popover", {
 													".popover-header": "Image",
 													".popover-body":
-														"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170' alt='Image cap'>",
+														"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
 												});
 											},
 										},

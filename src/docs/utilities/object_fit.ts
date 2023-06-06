@@ -30,7 +30,7 @@ export const object_fit: IAttrContent = {
 				return ["contain", "cover", "fill", "scale", "none"].map(
 					(i) =>
 						new h.img({
-							src: "https://picsum.photos/seed/bsts_0/110/65",
+							src: "https://picsum.photos/seed/bsts_0/110/65.webp",
 							objectFit: i as core.IAttr["objectFit"],
 							border: true,
 							rounded: true,
@@ -53,7 +53,7 @@ export const object_fit: IAttrContent = {
 				return ["sm-contain", "md-contain", "lg-contain", "xl-contain", "xxl-contain"].map(
 					(i) =>
 						new h.img({
-							src: "https://picsum.photos/seed/bsts_0/110/65",
+							src: "https://picsum.photos/seed/bsts_0/110/65.webp",
 							objectFit: i as core.IAttr["objectFit"],
 							border: true,
 							rounded: true,

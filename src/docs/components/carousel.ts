@@ -41,7 +41,9 @@ export const carousel: IAttrContent = {
 					new b.carousel.inner.container(
 						[0, 1, 2, 3, 4, 5, 6].map((i, ix) => {
 							return new b.carousel.inner.item.container({ active: ix === 0 ? true : undefined }, [
-								new b.carousel.inner.item.img({ src: `https://picsum.photos/seed/bsts_${i}/710/400` }),
+								new b.carousel.inner.item.img({
+									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp.webp`,
+								}),
 								new b.carousel.inner.item.caption([
 									new h.h(5, `Slide #${ix + 1}`),
 									new h.p(`Some representative placeholder content for the slide #${ix + 1}.`),
@@ -73,7 +75,7 @@ export const carousel: IAttrContent = {
 					itemIndicator: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp.webp`,
 							caption: [
 								new h.h(5, `Slide #${i + 1}`),
 								new h.p(`Some representative placeholder content for the slide #${i + 1}.`),
@@ -97,7 +99,7 @@ export const carousel: IAttrContent = {
 					itemIndicator: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp.webp`,
 						};
 					}),
 				});
@@ -117,7 +119,7 @@ export const carousel: IAttrContent = {
 					itemIndicator: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 							caption: [
 								new h.h(5, `Slide #${i + 1}`),
 								new h.p(`Some representative placeholder content for the slide #${i + 1}.`),
@@ -141,7 +143,7 @@ export const carousel: IAttrContent = {
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 						};
 					}),
 				});
@@ -170,7 +172,7 @@ export const carousel: IAttrContent = {
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 						};
 					}),
 				});
@@ -191,7 +193,7 @@ export const carousel: IAttrContent = {
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 						};
 					}),
 				});
@@ -211,7 +213,7 @@ export const carousel: IAttrContent = {
 					item: [1000, 2000, 3000, 4000, 5000, 6000, 7000].map((i, ix) => {
 						return {
 							interval: i,
-							src: `https://picsum.photos/seed/bsts_${ix}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${ix}/710/400.webp`,
 						};
 					}),
 				});
@@ -231,7 +233,7 @@ export const carousel: IAttrContent = {
 					itemControl: false,
 					item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 						};
 					}),
 				});
@@ -251,7 +253,7 @@ export const carousel: IAttrContent = {
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 						};
 					}),
 				});
@@ -276,7 +278,7 @@ export const carousel: IAttrContent = {
 					itemControl: true,
 					item: ["first", "second", "third", "fourth", "fifth"].map((i, ix) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${ix}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${ix}/710/400.webp`,
 							caption: [
 								new h.h(5, `${core.uppercaseFirst(i)} slide label`),
 								new h.p(`Some representative placeholder content for the ${i} slide.`),
@@ -485,7 +487,7 @@ export const carousel: IAttrContent = {
 									itemIndicator: true,
 									item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 										return {
-											src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+											src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 										};
 									}),
 								})
@@ -659,7 +661,7 @@ export const carousel: IAttrContent = {
 					itemControl: true,
 					item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 						return {
-							src: `https://picsum.photos/seed/bsts_${i}/710/400`,
+							src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 						};
 					}),
 					on: {

@@ -19,7 +19,7 @@ export const figures: IAttrContent = {
 					new b.figure.img({
 						fluid: true,
 						rounded: true,
-						src: "https://picsum.photos/seed/bsts_0/400/300",
+						src: "https://picsum.photos/seed/bsts_0/400/300.webp",
 						alt: "...",
 					}),
 					new b.figure.caption("A caption for the above image"),
@@ -35,7 +35,7 @@ export const figures: IAttrContent = {
 					new b.figure.img({
 						fluid: true,
 						rounded: true,
-						src: "https://picsum.photos/seed/bsts_0/400/300",
+						src: "https://picsum.photos/seed/bsts_0/400/300.webp",
 						alt: "...",
 					}),
 					new b.figure.caption({ textAlign: "end" }, "A caption for the above image"),

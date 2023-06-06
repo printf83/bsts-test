@@ -290,22 +290,22 @@ export const features: IAttrContent = {
 					},
 					[
 						ex.c3({
-							img: "https://picsum.photos/seed/bsts_0/32/32",
-							bg: "https://picsum.photos/seed/bsts_1/506/495",
+							img: "https://picsum.photos/seed/bsts_0/32/32.webp",
+							bg: "https://picsum.photos/seed/bsts_1/506/495.webp",
 							title: "Short title, long jacket",
 							location: "Earth",
 							date: "3d",
 						}),
 						ex.c3({
-							img: "https://picsum.photos/seed/bsts_2/32/32",
-							bg: "https://picsum.photos/seed/bsts_3/506/495",
+							img: "https://picsum.photos/seed/bsts_2/32/32.webp",
+							bg: "https://picsum.photos/seed/bsts_3/506/495.webp",
 							title: "Much longer title that wraps to multiple lines",
 							location: "Putatan",
 							date: "4d",
 						}),
 						ex.c3({
-							img: "https://picsum.photos/seed/bsts_4/32/32",
-							bg: "https://picsum.photos/seed/bsts_5/506/495",
+							img: "https://picsum.photos/seed/bsts_4/32/32.webp",
+							bg: "https://picsum.photos/seed/bsts_5/506/495.webp",
 							title: "Another longer title belongs here",
 							location: "Kedah",
 							date: "5d",

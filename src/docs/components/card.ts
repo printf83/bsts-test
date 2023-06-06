@@ -26,7 +26,7 @@ export const card: IAttrContent = {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts_0/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180.webp",
 						alt: "Image cap",
 					}),
 					new b.card.body([
@@ -94,7 +94,7 @@ export const card: IAttrContent = {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts_0/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180.webp",
 						alt: "Image cap",
 					}),
 					new b.card.body([
@@ -161,7 +161,7 @@ export const card: IAttrContent = {
 				return new b.card.container({ style: { width: "18rem" } }, [
 					new b.card.img({
 						location: "top",
-						src: "https://picsum.photos/seed/bsts_0/286/180",
+						src: "https://picsum.photos/seed/bsts_0/286/180.webp",
 						alt: "Image cap",
 					}),
 					new b.card.body([
@@ -418,7 +418,7 @@ export const card: IAttrContent = {
 					new b.card.container({ marginBottom: 3 }, [
 						new b.card.img({
 							location: "top",
-							src: "https://picsum.photos/seed/bsts_0/708/180",
+							src: "https://picsum.photos/seed/bsts_0/708/180.webp",
 							alt: "Image cap",
 						}),
 						new b.card.body([
@@ -439,7 +439,7 @@ export const card: IAttrContent = {
 						]),
 						new b.card.img({
 							location: "bottom",
-							src: "https://picsum.photos/seed/bsts_0/708/180",
+							src: "https://picsum.photos/seed/bsts_0/708/180.webp",
 							alt: "Image cap",
 						}),
 					]),
@@ -458,7 +458,7 @@ export const card: IAttrContent = {
 			output: () => {
 				return new b.card.container({ textBgColor: "dark" }, [
 					new b.card.img({
-						src: "https://picsum.photos/seed/bsts_0/676/238",
+						src: "https://picsum.photos/seed/bsts_0/676/238.webp",
 						alt: "Card image",
 					}),
 					new b.card.imgoverlay([
@@ -494,7 +494,7 @@ export const card: IAttrContent = {
 							new b.card.img({
 								fluid: true,
 								rounded: "start",
-								src: "https://picsum.photos/seed/bsts_0/180/250",
+								src: "https://picsum.photos/seed/bsts_0/180/250.webp",
 								alt: "Image",
 							})
 						),
@@ -639,7 +639,7 @@ export const card: IAttrContent = {
 					].map((i) => {
 						return new b.card.container([
 							new b.card.img({
-								src: "https://picsum.photos/seed/bsts_0/235/180",
+								src: "https://picsum.photos/seed/bsts_0/235/180.webp",
 								alt: "Image cap",
 								location: "top",
 							}),
@@ -668,7 +668,7 @@ export const card: IAttrContent = {
 					].map((i) => {
 						return new b.card.container([
 							new b.card.img({
-								src: "https://picsum.photos/seed/bsts_0/235/180",
+								src: "https://picsum.photos/seed/bsts_0/235/180.webp",
 								alt: "Image cap",
 								location: "top",
 							}),
@@ -706,7 +706,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container([
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts_0/341/140",
+									src: "https://picsum.photos/seed/bsts_0/341/140.webp",
 									alt: "Image cap",
 									location: "top",
 								}),
@@ -739,7 +739,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container([
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts_0/218/140",
+									src: "https://picsum.photos/seed/bsts_0/218/140.webp",
 									alt: "Image cap",
 									location: "top",
 								}),
@@ -774,7 +774,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container({ height: 100 }, [
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts_0/218/140",
+									src: "https://picsum.photos/seed/bsts_0/218/140.webp",
 									alt: "Image cap",
 									location: "top",
 								}),
@@ -806,7 +806,7 @@ export const card: IAttrContent = {
 							{ col: true },
 							new b.card.container({ height: 100 }, [
 								new b.card.img({
-									src: "https://picsum.photos/seed/bsts_0/218/140",
+									src: "https://picsum.photos/seed/bsts_0/218/140.webp",
 									alt: "Image cap",
 									location: "top",
 								}),

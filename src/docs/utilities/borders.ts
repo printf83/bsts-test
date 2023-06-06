@@ -216,7 +216,7 @@ export const borders: IAttrContent = {
 			output: () => {
 				return [true, "top", "end", "bottom", "start", "circle", "pill"].map((i) => {
 					return new h.img({
-						src: `https://picsum.photos/seed/bsts_0/${i === "pill" ? "150" : "75"}/75`,
+						src: `https://picsum.photos/seed/bsts_0/${i === "pill" ? "150" : "75"}/75.webp`,
 						alt: "...",
 						rounded: i as core.IAttr["rounded"],
 					});
@@ -235,7 +235,7 @@ export const borders: IAttrContent = {
 			output: () => {
 				return [0, 1, 2, 3, 4, 5].map((i) => {
 					return new h.img({
-						src: `https://picsum.photos/seed/bsts_0/75/75`,
+						src: `https://picsum.photos/seed/bsts_0/75/75.webp`,
 						alt: "...",
 						roundedSize: i as core.IAttr["roundedSize"],
 					});
@@ -247,27 +247,27 @@ export const borders: IAttrContent = {
 			output: () => {
 				return [
 					new h.img({
-						src: `https://picsum.photos/seed/bsts_0/75/75`,
+						src: `https://picsum.photos/seed/bsts_0/75/75.webp`,
 						alt: "...",
 						rounded: "bottom-1",
 					}),
 					new h.img({
-						src: `https://picsum.photos/seed/bsts_0/75/75`,
+						src: `https://picsum.photos/seed/bsts_0/75/75.webp`,
 						alt: "...",
 						rounded: "start-2",
 					}),
 					new h.img({
-						src: `https://picsum.photos/seed/bsts_0/75/75`,
+						src: `https://picsum.photos/seed/bsts_0/75/75.webp`,
 						alt: "...",
 						rounded: "end-circle",
 					}),
 					new h.img({
-						src: `https://picsum.photos/seed/bsts_0/75/75`,
+						src: `https://picsum.photos/seed/bsts_0/75/75.webp`,
 						alt: "...",
 						rounded: "start-pill",
 					}),
 					new h.img({
-						src: `https://picsum.photos/seed/bsts_0/75/75`,
+						src: `https://picsum.photos/seed/bsts_0/75/75.webp`,
 						alt: "...",
 						rounded: "top-0",
 						roundedSize: 5,

@@ -770,7 +770,7 @@ export const headers: IAttrContent = {
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
 				return ex.c5({
-					img: "https://picsum.photos/seed/bsts_0/32/32",
+					img: "https://picsum.photos/seed/bsts_0/32/32.webp",
 					icon: "fab bootstrap",
 					link: [
 						{ active: true, href: "#", elem: "Overview" },
@@ -832,7 +832,7 @@ export const headers: IAttrContent = {
 
 			output: () => {
 				return ex.c6({
-					img: "https://picsum.photos/seed/bsts_0/32/32",
+					img: "https://picsum.photos/seed/bsts_0/32/32.webp",
 					icon: "fab bootstrap",
 					link: [
 						new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
