@@ -627,5 +627,155 @@ export const bootswatch: IAttrContent = {
 				];
 			},
 		}),
+
+		//-----------------------
+
+		new e.subtitle("Range"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Example range",
+						type: "range",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Example range",
+						type: "range",
+						disabled: true,
+					}),
+					b.form.input({
+						label: "Example range",
+						type: "range",
+						min: 0,
+						max: 5,
+						step: 0.5,
+						value: 2.5,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Range"),
+		new e.code({
+			outputAttr: { gap: 1 },
+			output: () => {
+				return [
+					new b.button({ type: "submit" }, "Submit"),
+					new b.button({ type: "reset" }, "Reset"),
+					new b.button({ type: "button" }, "Button"),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Disable & readonly"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Disabled input",
+						placeholder: "Disabled input here...",
+						disabled: true,
+					}),
+					b.form.input({
+						label: "Readonly input",
+						placeholder: "Readonly input here...",
+						readonly: true,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Validation"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Valid input",
+						value: "corrent value",
+						validFeedback: "Success! You've done it.",
+						isvalid: true,
+					}),
+					b.form.input({
+						label: "Invalid input",
+						value: "wrong value",
+						invalidFeedback: "Sorry, that username's taken. Try another?",
+						isvalid: false,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Weight"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Large input",
+						placeholder: "weight: 'lg'",
+						weight: "lg",
+					}),
+					b.form.input({
+						container: { marginBottom: 3 },
+						label: "Default input",
+					}),
+					b.form.input({
+						label: "Small input",
+						placeholder: "weight: 'sm'",
+						weight: "sm",
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Input addon"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.input({
+						container: { marginBottom: 3 },
+						before: "$",
+						after: "0.00",
+					}),
+					b.form.input({
+						placeholder: "Recipient's username",
+						after: new b.button("Button"),
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Floading label"),
+		new e.code({
+			output: () => {
+				return [
+					b.form.floatinglabel.input({
+						container: { marginBottom: 3 },
+						label: "Email address",
+						type: "email",
+					}),
+					b.form.floatinglabel.input({
+						label: "Password",
+						type: "password",
+					}),
+				];
+			},
+		}),
 	],
 };
