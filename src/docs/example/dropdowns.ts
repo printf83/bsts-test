@@ -10,49 +10,96 @@ const genCalendar = (arg?: { date?: Date; dayTitle?: string[]; dayStart?: 1 | 2 
 	}
 
 	arg.date ??= new Date();
-	arg.dayTitle ??= ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+	arg.dayTitle ??= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 	arg.dayStart ??= 1;
 
-	const currentMonthDateData = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0);
-	const currentMonthLastDay = currentMonthDateData.getDate();
+	let today = arg.date;
 
-	const prevMonthDateData = new Date(arg.date.getFullYear(), arg.date.getMonth(), 0);
-	const prevMonthLastDay = prevMonthDateData.getDate();
+	arg.date.setDate(1);
 
-	const firstDayIndex = arg.date.getDay();
+	const currentMonthData = new Date(arg.date.getFullYear(), arg.date.getMonth(), 1);
+	const nextMonthData = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 1);
+	const prevMonthData = new Date(arg.date.getFullYear(), arg.date.getMonth() - 1, 1);
 
-	const lastDayIndex = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0).getDay();
+	const currentMonth = {
+		year: currentMonthData.getFullYear(),
+		month: currentMonthData.getMonth(),
+	};
 
-	const nextDays = 7 - lastDayIndex;
+	const nextMonth = {
+		year: nextMonthData.getFullYear(),
+		month: nextMonthData.getMonth(),
+	};
+
+	const prevMonth = {
+		year: prevMonthData.getFullYear(),
+		month: prevMonthData.getMonth(),
+	};
+
+	const currentMonthDayCount = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0).getDate();
+
+	const prevMonthDayCount = new Date(arg.date.getFullYear(), arg.date.getMonth(), 0).getDate();
+
+	const currentMonthFirstDay = arg.date.getDay();
+	const currentMonthLastDay = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0).getDay();
+
+	//7 - 5(Fri) = 2(Tue)
+	const nextMonthViewDayCount = 7 - currentMonthLastDay - 1;
 
 	let days: t[] = [];
 
+	//add days
 	for (let w = 0; w < arg.dayTitle.length; w++) {
 		days.push(new h.li({ class: "day" }, `${arg.dayTitle[w]}`));
 	}
 
-	for (let x = firstDayIndex; x > 0; x--) {
+	//add prev month date
+	for (let x = currentMonthFirstDay; x > 0; x--) {
+		let d = prevMonthDayCount - x + 1;
 		days.push(
 			new h.li(
 				{
 					class: "prev-month",
-					data: { value: "" },
+					data: { value: `${prevMonth.year}-${prevMonth.month}-${d}` },
 				},
-				new h.a({ href: "#" }, `${prevMonthLastDay - x + 1}`)
+				new h.a({ href: "#" }, `${d}`)
 			)
 		);
 	}
 
-	for (let y = 1; y <= currentMonthLastDay; y++) {
+	//add current month date
+	for (let y = 1; y <= currentMonthDayCount; y++) {
 		if (y === new Date().getDate() && arg.date.getMonth() === new Date().getMonth()) {
-			days.push(new h.li({ class: "today" }, new h.a({ href: "a" }, `${y}`)));
+			days.push(
+				new h.li(
+					{
+						class: "today",
+						data: { value: `${currentMonth.year}-${currentMonth.month}-${y}` },
+					},
+					new h.a({ href: "a" }, `${y}`)
+				)
+			);
 		} else {
-			days.push(new h.li(new h.a({ href: "#" }, `${y}`)));
+			days.push(
+				new h.li(
+					{ data: { value: `${currentMonth.year}-${currentMonth.month}-${y}` } },
+					new h.a({ href: "#" }, `${y}`)
+				)
+			);
 		}
 	}
 
-	for (let z = 1; z <= nextDays; z++) {
-		days.push(new h.li({ class: "next-month" }, new h.a({ href: "#" }, `${z}`)));
+	//add next month date
+	for (let z = 1; z <= nextMonthViewDayCount; z++) {
+		days.push(
+			new h.li(
+				{
+					class: "next-month",
+					data: { value: `${nextMonth.year}-${nextMonth.month}-${z}` },
+				},
+				new h.a({ href: "#" }, `${z}`)
+			)
+		);
 	}
 
 	return days;
