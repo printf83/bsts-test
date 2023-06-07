@@ -1,4 +1,50 @@
 
+/* calendar */
+.calendar-item li a {
+
+    text-decoration: none;
+}
+.calendar-item li {
+    display: flex;
+    justify-content: space-around;
+    vertical-align: middle;
+}
+.calendar-item li:not(.day):hover {
+    border-radius: 0.25rem;
+    background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important
+}
+
+.calendar-item li:not(.prev-month):not(.next-month):not(.day) a{
+    color:rgba(var(--bs-body-color-rgb), 1);
+}
+
+.calendar-item li{
+    display: inline-flex;
+    justify-content: space-around;
+    vertical-align: middle;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.calendar-item li.today{
+    background-color: rgba(var(--bs-primary-rgb));
+    border-radius: 0.25rem;
+}
+
+.calendar-item li.today a {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.calendar-item li.prev-month a,
+.calendar-item li.next-month a,
+.calendar-item li.day {
+    color: rgba(var(--bs-body-color-rgb), 0.5);
+}
+
+
+
 /* loading */
 
 .bs-main.loading .page-title-text,

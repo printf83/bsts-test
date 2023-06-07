@@ -102,7 +102,17 @@ const genCalendar = (arg?: { date?: Date; dayTitle?: string[]; dayStart?: 1 | 2 
 		);
 	}
 
-	return days;
+	return new h.ul(
+		{
+			unstyle: true,
+			display: "grid",
+			gap: 1,
+			textAlign: "center",
+			class: "calendar-item",
+			style: { "grid-template-columns": "1fr 1fr 1fr 1fr 1fr 1fr 1fr" },
+		},
+		days
+	);
 };
 
 export const dropdowns: IAttrContent = {
@@ -442,7 +452,7 @@ export const dropdowns: IAttrContent = {
 				gap: 1,
 			},
 			output: () => {
-				return [
+				return new h.div({ style: { width: "320px" } }, [
 					new h.div({ display: "flex", justifyContent: "between" }, [
 						new b.button({ color: "transparent" }, new b.icon({ id: "arrow-left" })),
 						new h.div(
@@ -474,17 +484,8 @@ export const dropdowns: IAttrContent = {
 						),
 						new b.button({ color: "transparent" }, new b.icon({ id: "arrow-right" })),
 					]),
-					new h.ul(
-						{
-							unstyle: true,
-							display: "grid",
-							gap: 1,
-							textAlign: "center",
-							style: { "grid-template-columns": "1fr 1fr 1fr 1fr 1fr 1fr 1fr" },
-						},
-						genCalendar()
-					),
-				];
+					genCalendar(),
+				]);
 			},
 		}),
 	],
