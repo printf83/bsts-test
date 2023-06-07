@@ -442,16 +442,49 @@ export const dropdowns: IAttrContent = {
 				gap: 1,
 			},
 			output: () => {
-				return new h.ul(
-					{
-						unstyle: true,
-						display: "grid",
-						gap: 1,
-						textAlign: "center",
-						style: { "grid-template-columns": "1fr 1fr 1fr 1fr 1fr 1fr 1fr" },
-					},
-					genCalendar()
-				);
+				return [
+					new h.div({ display: "flex", justifyContent: "between" }, [
+						new b.button({ color: "transparent" }, new b.icon({ id: "arrow-left" })),
+						new h.div(
+							{ marginX: "auto" },
+							new b.inputgroup.container([
+								new b.select([
+									new h.option({ value: "1", elem: "January" }),
+									new h.option({ value: "2", elem: "February" }),
+									new h.option({ value: "3", elem: "Mac" }),
+									new h.option({ value: "4", elem: "April" }),
+									new h.option({ value: "5", elem: "May" }),
+									new h.option({ value: "6", elem: "June" }),
+									new h.option({ value: "7", elem: "July" }),
+									new h.option({ value: "8", elem: "August" }),
+									new h.option({ value: "9", elem: "September" }),
+									new h.option({ value: "10", elem: "October" }),
+									new h.option({ value: "11", elem: "November" }),
+									new h.option({ value: "12", elem: "December" }),
+								]),
+								new b.select([
+									new h.option({ value: "2020", elem: "2020" }),
+									new h.option({ value: "2021", elem: "2021" }),
+									new h.option({ value: "2022", elem: "2022" }),
+									new h.option({ value: "2023", elem: "2023" }),
+									new h.option({ value: "2024", elem: "2024" }),
+									new h.option({ value: "2025", elem: "2025" }),
+								]),
+							])
+						),
+						new b.button({ color: "transparent" }, new b.icon({ id: "arrow-right" })),
+					]),
+					new h.ul(
+						{
+							unstyle: true,
+							display: "grid",
+							gap: 1,
+							textAlign: "center",
+							style: { "grid-template-columns": "1fr 1fr 1fr 1fr 1fr 1fr 1fr" },
+						},
+						genCalendar()
+					),
+				];
 			},
 		}),
 	],
