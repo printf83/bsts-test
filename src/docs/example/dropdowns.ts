@@ -1,6 +1,62 @@
-import { b, h } from "@printf83/bsts";
+import { b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
+
+const genCalendar = (arg?: { date?: Date; dayTitle?: string[]; dayStart?: 1 | 2 | 3 | 4 | 5 | 6 | 7 }) => {
+	arg ??= {};
+
+	if (arg.dayTitle && arg.dayTitle.length !== 7) {
+		arg.dayTitle = undefined;
+	}
+
+	arg.date ??= new Date();
+	arg.dayTitle ??= ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+	arg.dayStart ??= 1;
+
+	const currentMonthDateData = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0);
+	const currentMonthLastDay = currentMonthDateData.getDate();
+
+	const prevMonthDateData = new Date(arg.date.getFullYear(), arg.date.getMonth(), 0);
+	const prevMonthLastDay = prevMonthDateData.getDate();
+
+	const firstDayIndex = arg.date.getDay();
+
+	const lastDayIndex = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0).getDay();
+
+	const nextDays = 7 - lastDayIndex;
+
+	let days: t[] = [];
+
+	for (let w = 0; w < arg.dayTitle.length; w++) {
+		days.push(new h.li({ class: "day" }, `${arg.dayTitle[w]}`));
+	}
+
+	for (let x = firstDayIndex; x > 0; x--) {
+		days.push(
+			new h.li(
+				{
+					class: "prev-month",
+					data: { value: "" },
+				},
+				new h.a({ href: "#" }, `${prevMonthLastDay - x + 1}`)
+			)
+		);
+	}
+
+	for (let y = 1; y <= currentMonthLastDay; y++) {
+		if (y === new Date().getDate() && arg.date.getMonth() === new Date().getMonth()) {
+			days.push(new h.li({ class: "today" }, new h.a({ href: "a" }, `${y}`)));
+		} else {
+			days.push(new h.li(new h.a({ href: "#" }, `${y}`)));
+		}
+	}
+
+	for (let z = 1; z <= nextDays; z++) {
+		days.push(new h.li({ class: "next-month" }, new h.a({ href: "#" }, `${z}`)));
+	}
+
+	return days;
+};
 
 export const dropdowns: IAttrContent = {
 	title: "Dropdowns",
@@ -333,29 +389,23 @@ export const dropdowns: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
-		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
-			code: `
-			`,
+		new e.title("Calendar"),
+		new e.code({
+			outputAttr: {
+				gap: 1,
+			},
+			output: () => {
+				return new h.ul(
+					{
+						unstyle: true,
+						display: "grid",
+						gap: 1,
+						textAlign: "center",
+						style: { "grid-template-columns": "1fr 1fr 1fr 1fr 1fr 1fr 1fr" },
+					},
+					genCalendar()
+				);
+			},
 		}),
 	],
 };
