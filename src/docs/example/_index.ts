@@ -13,3 +13,6 @@ export const sidebars = async () => {
 export const footers = async () => {
 	return (await import("./footers.js")).footers;
 };
+export const dropdowns = async () => {
+	return (await import("./dropdowns.js")).dropdowns;
+};

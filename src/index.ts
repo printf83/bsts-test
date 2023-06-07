@@ -247,6 +247,7 @@ let m = {
 				{ label: "Features", value: "docs/example/features" },
 				{ label: "Sidebars", value: "docs/example/sidebars" },
 				{ label: "Footers", value: "docs/example/footers" },
+				{ label: "Dropdowns", value: "docs/example/dropdowns" },
 			],
 		},
 	] as main.IAttrItemMenu[],

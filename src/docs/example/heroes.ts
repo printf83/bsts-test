@@ -221,7 +221,7 @@ const ex = {
 							src: arg.img,
 							alt: "Example image",
 							attrWidth: 720,
-							rounded: 3,
+							// rounded: 3,
 						})
 					),
 				]

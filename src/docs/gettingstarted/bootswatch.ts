@@ -761,7 +761,7 @@ export const bootswatch: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Floading label"),
+		new e.subtitle("Floating label"),
 		new e.code({
 			output: () => {
 				return [
