@@ -13,7 +13,7 @@ const genCalendar = (arg?: { date?: Date; dayTitle?: string[]; dayStart?: 1 | 2 
 	arg.dayTitle ??= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 	arg.dayStart ??= 1;
 
-	let today = arg.date;
+	// let today = arg.date;
 
 	arg.date.setDate(1);
 
