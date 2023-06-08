@@ -36,7 +36,7 @@ export const spinner: IAttrContent = {
 			"The border spinner uses {{currentColor}} for its {{borderColor}}, meaning you can customize the color with text color utilities. You can use any of Bootstrap {{nav:docs/utilities/colors::text color utilities}} on the standard spinner."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.spinner({ type: "border", color: i as I.B.Spinner["color"] });
@@ -63,7 +63,7 @@ export const spinner: IAttrContent = {
 			"Once again, this spinner is built with {{currentColor}}, so you can easily change its appearance with {{nav:docs/utilities/colors::text color utilities}}. Here it is in blue, along with the supported variants."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.spinner({ type: "grow", color: i as I.B.Spinner["color"] });
@@ -141,14 +141,14 @@ export const spinner: IAttrContent = {
 		new e.title("Size"),
 		new e.text("Add {{small:true}} to make a smaller spinner that can quickly be used within other components."),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [new b.spinner({ type: "border", small: true }), new b.spinner({ type: "grow", small: true })];
 			},
 		}),
 		new e.text("Or, use custom CSS or inline styles to change the dimensions as needed."),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.spinner({ style: { width: "3rem", height: "3rem" }, type: "border" }),
@@ -164,7 +164,7 @@ export const spinner: IAttrContent = {
 			"Use spinners within buttons to indicate an action is currently processing or taking place. You may also swap the text out of the spinner element and utilize button text as needed."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ disabled: true }, [
@@ -179,7 +179,7 @@ export const spinner: IAttrContent = {
 			},
 		}),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ disabled: true }, [
@@ -198,7 +198,7 @@ export const spinner: IAttrContent = {
 			"Use spinners within buttons to indicate an action is currently processing or taking place. You may also swap the text out of the spinner element and utilize button text as needed."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button(
@@ -216,7 +216,7 @@ export const spinner: IAttrContent = {
 			},
 		}),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button(

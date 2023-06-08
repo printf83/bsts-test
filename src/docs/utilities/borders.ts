@@ -18,7 +18,7 @@ export const borders: IAttrContent = {
 		new e.text("Add borders to custom elements:"),
 
 		new e.code({
-			outputAttr: { gap: 1, class: "span-box" },
+			outputAttr: { display: "flex", gap: 2, class: "span-box" },
 			output: () => {
 				const data: core.IAttr["border"][] = [true, "top", "end", "bottom", "start"];
 
@@ -36,7 +36,7 @@ export const borders: IAttrContent = {
 		new e.text("Or remove borders:"),
 
 		new e.code({
-			outputAttr: { gap: 1, class: "span-box" },
+			outputAttr: { display: "flex", gap: 2, class: "span-box" },
 			output: () => {
 				const data: core.IAttr["borderNone"][] = [true, "top", "end", "bottom", "start"];
 
@@ -58,7 +58,7 @@ export const borders: IAttrContent = {
 		),
 		new e.text("Change the border color using utilities built on Bootstrap theme colors."),
 		new e.code({
-			outputAttr: { gap: 1, class: "span-box" },
+			outputAttr: { display: "flex", gap: 2, class: "span-box" },
 			output: () => {
 				const data: core.IAttr["borderColor"][] = [
 					"primary",
@@ -196,7 +196,7 @@ export const borders: IAttrContent = {
 
 		new e.title("Width"),
 		new e.code({
-			outputAttr: { gap: 1, class: "span-box" },
+			outputAttr: { display: "flex", gap: 2, class: "span-box" },
 			output: () => {
 				return [1, 2, 3, 4, 5].map((i) => {
 					return new h.span({
@@ -212,7 +212,7 @@ export const borders: IAttrContent = {
 		new e.title("Radius"),
 		new e.text("Add classes to an element to easily round its corners."),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [true, "top", "end", "bottom", "start", "circle", "pill"].map((i) => {
 					return new h.img({
@@ -231,7 +231,7 @@ export const borders: IAttrContent = {
 			"Use the scaling classes for larger or smaller rounded corners. Sizes range from {{0}} to {{5}}, and can be configured by modifying the utilities API."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [0, 1, 2, 3, 4, 5].map((i) => {
 					return new h.img({
@@ -243,7 +243,7 @@ export const borders: IAttrContent = {
 			},
 		}),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new h.img({

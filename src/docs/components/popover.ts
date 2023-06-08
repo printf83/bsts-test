@@ -88,7 +88,7 @@ export const popover: IAttrContent = {
 			"Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{placement}} to change the direction."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.popover(
@@ -502,7 +502,7 @@ export const popover: IAttrContent = {
 				myDefaultAllowList.img = ["src", "alt"];
 
 				return [
-					new h.div({ display: "flex" }, [
+					new h.div({ display: "flex", overflow: "auto" }, [
 						new h.div(
 							{
 								width: 100,

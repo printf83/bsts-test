@@ -50,7 +50,7 @@ export const flex: IAttrContent = {
 			"Use {{.flex-row}} to set a horizontal direction (the browser default), or {{.flex-row-reverse}} to start the horizontal direction from the opposite side."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box", gap: 3 },
+			outputAttr: { class: "flex-box", display: "grid", gap: 3 },
 			output: () => {
 				return [
 					new h.div(
@@ -68,7 +68,7 @@ export const flex: IAttrContent = {
 			"Use {{.flex-column}} to set a vertical direction, or {{.flex-column-reverse}} to start the vertical direction from the opposite side."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box", gap: 3 },
+			outputAttr: { class: "flex-box", display: "grid", gap: 3 },
 			output: () => {
 				return [
 					new h.div(
@@ -102,7 +102,7 @@ export const flex: IAttrContent = {
 			"Use {{justify-content}} utilities on flexbox containers to change the alignment of flex items on the main axis (the x-axis to start, y-axis if {{flex-direction: column}}). Choose from {{start}} (browser default), {{end}}, {{center}}, {{between}}, {{around}}, or {{evenly}}."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box", gap: 3 },
+			outputAttr: { class: "flex-box", display: "grid", gap: 3 },
 			output: () => {
 				const item = (value: string) => {
 					return [
@@ -142,7 +142,7 @@ export const flex: IAttrContent = {
 			"Use {{align-items}} utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if {{flex-direction: column}}). Choose from {{start}}, {{end}}, {{center}}, {{baseline}}, or {{stretch}} (browser default)."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box", gap: 3 },
+			outputAttr: { class: "flex-box", display: "grid", gap: 3 },
 			output: () => {
 				const item = [
 					new h.div({ padding: 2 }, "Flex item"),
@@ -179,7 +179,7 @@ export const flex: IAttrContent = {
 			"Use {{align-self}} utilities on flexbox items to individually change their alignment on the cross axis (the y-axis to start, x-axis if {{flex-direction: column}}). Choose from the same options as {{align-items}}: {{start}}, {{end}}, {{center}}, {{baseline}}, or {{stretch}} (browser default)."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box", gap: 3 },
+			outputAttr: { class: "flex-box", display: "grid", gap: 3 },
 			output: () => {
 				const item = (i: core.IAttr["alignSelf"]) => {
 					return [
@@ -281,7 +281,7 @@ export const flex: IAttrContent = {
 			"Flexbox can do some pretty awesome things when you mix flex alignments with auto margins. Shown below are three examples of controlling flex items via auto margins: default (no auto margin), pushing two items to the right ({{.me-auto}}), and pushing two items to the left ({{.ms-auto}})."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box", gap: 3 },
+			outputAttr: { class: "flex-box", display: "grid", gap: 3 },
 			output: () => {
 				return [
 					new h.div({ display: "flex" }, [
@@ -310,7 +310,7 @@ export const flex: IAttrContent = {
 			"Vertically move one flex item to the top or bottom of a container by mixing {{align-items}}, {{flex-direction: column}}, and {{margin-top: auto}} or {{margin-bottom: auto}}."
 		),
 		new e.code({
-			outputAttr: { class: "flex-box", gap: 3 },
+			outputAttr: { class: "flex-box", display: "grid", gap: 3 },
 			output: () => {
 				return [
 					new h.div({ display: "flex", alignItem: "start", flex: "column", style: { height: "200px" } }, [

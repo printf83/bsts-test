@@ -12,7 +12,7 @@ export const opacity: IAttrContent = {
 		new e.text("Set the {{opacity}} of an element using {{.opacity-{value} }}utilities."),
 
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [100, 75, 50, 25].map(
 					(i) =>

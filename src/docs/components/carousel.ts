@@ -471,7 +471,7 @@ export const carousel: IAttrContent = {
 			showConsole: true,
 			output: () => {
 				return [
-					new h.div({ display: "flex" }, [
+					new h.div({ display: "flex", overflow: "auto" }, [
 						new h.div(
 							{
 								width: 100,

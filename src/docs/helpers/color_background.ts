@@ -37,7 +37,7 @@ export const color_background: IAttrContent = {
 			"Use them in place of combined {{.text-*}} and {{.bg-*}} classes, like on {{nav:docs/components/badge#background-colors::badges}}:"
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.badge({ textBgColor: "primary" }, "Primary"),
@@ -47,7 +47,7 @@ export const color_background: IAttrContent = {
 		}),
 		new e.text("Or on {{nav:docs/components/card#background_and_color::cards}}:"),
 		new e.code({
-			outputAttr: { gap: 3 },
+			outputAttr: { display: "flex", gap: 4 },
 			output: () => {
 				const item = (textBgColor: core.IAttr["textBgColor"]) =>
 					new b.card.container({ textBgColor: textBgColor, style: { width: "18rem" } }, [

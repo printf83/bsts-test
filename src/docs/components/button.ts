@@ -12,7 +12,7 @@ export const button: IAttrContent = {
 			"Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
@@ -48,7 +48,7 @@ export const button: IAttrContent = {
 			"When using button classes on {{h.a}} component that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a {{role:'button'}} to appropriately convey their purpose to assistive technologies such as screen readers."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				let id = core.UUID();
 
@@ -71,7 +71,7 @@ export const button: IAttrContent = {
 			"In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the {{outline:true}} ones to remove all background images and colors on any {{b.button}}."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
@@ -90,7 +90,7 @@ export const button: IAttrContent = {
 		new e.title("Sizes"),
 		new e.text("Fancy larger or smaller buttons? Add {{weight:'lg'|'sm'}} for additional sizes."),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ weight: "lg", color: "primary" }, "Large button"),
@@ -99,7 +99,7 @@ export const button: IAttrContent = {
 			},
 		}),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ weight: "sm", color: "primary" }, "Small button"),
@@ -131,7 +131,7 @@ export const button: IAttrContent = {
 			"Make buttons look inactive by adding the {{disabled:true}} property to any {{h.button}} component. Disabled buttons have {{pointer-events: none}} applied to, preventing hover and active states from triggering."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ color: "primary", disabled: true }, "Primary button"),
@@ -152,7 +152,7 @@ export const button: IAttrContent = {
 		}),
 		new e.text("{{bsts}} handle this if you using {{b.button({href:'#'})}} component"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"),
@@ -168,7 +168,7 @@ export const button: IAttrContent = {
 		),
 		new e.text("{{bsts}} handle this automaticly."),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"),
@@ -239,7 +239,7 @@ export const button: IAttrContent = {
 			"Add {{toggle:true}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{active:true}} property. The {{aria:{pressed:'true'/}/}} add automaticly by {{bsts}} to ensure that it is conveyed appropriately to assistive technologies."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ toggle: true }, "Toggle button"),
@@ -250,7 +250,7 @@ export const button: IAttrContent = {
 		}),
 
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ href: "#", toggle: true }, "Toggle button"),
@@ -300,7 +300,7 @@ export const button: IAttrContent = {
 			showConsole: true,
 			output: () => {
 				return [
-					new h.div({ display: "flex" }, [
+					new h.div({ display: "flex", overflow: "auto" }, [
 						new h.div(
 							{
 								width: 100,

@@ -187,7 +187,8 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			showCodepen: false,
 			outputAttr: {
-				gap: 3,
+				display: "flex",
+				gap: 4,
 			},
 			output: () => {
 				return [
@@ -219,7 +220,8 @@ export const dropdowns: IAttrContent = {
 
 		new e.code({
 			outputAttr: {
-				gap: 1,
+				display: "flex",
+				gap: 2,
 			},
 			output: () => {
 				return [
@@ -253,7 +255,8 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			showCodepen: false,
 			outputAttr: {
-				gap: 3,
+				display: "flex",
+				gap: 4,
 			},
 			output: () => {
 				return [
@@ -343,7 +346,8 @@ export const dropdowns: IAttrContent = {
 		new e.text("Live preview"),
 		new e.code({
 			outputAttr: {
-				gap: 1,
+				display: "flex",
+				gap: 2,
 			},
 			output: () => {
 				return [
@@ -445,7 +449,8 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			showCodepen: false,
 			outputAttr: {
-				gap: 3,
+				display: "flex",
+				gap: 4,
 			},
 			output: () => {
 				return [
@@ -473,7 +478,8 @@ export const dropdowns: IAttrContent = {
 		new e.text("Live preview"),
 		new e.code({
 			outputAttr: {
-				gap: 1,
+				display: "flex",
+				gap: 2,
 			},
 			output: () => {
 				return [
@@ -514,7 +520,8 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			showCodepen: false,
 			outputAttr: {
-				gap: 3,
+				display: "flex",
+				gap: 4,
 			},
 			output: () => {
 				return [

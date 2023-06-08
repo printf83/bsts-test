@@ -212,7 +212,7 @@ export const check_radio: IAttrContent = {
 			"Group checkboxes or radios on the same horizontal row by adding {{.form-check-inline}} to any {{.form-check}}."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					b.form.check({ type: "checkbox", label: "1", inline: true }),
@@ -222,7 +222,7 @@ export const check_radio: IAttrContent = {
 			},
 		}),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "1", inline: true }),
@@ -338,7 +338,7 @@ export const check_radio: IAttrContent = {
 
 		new e.subtitle("Radio toggle buttons"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					...b.form.toggle({
@@ -376,7 +376,7 @@ export const check_radio: IAttrContent = {
 		new e.subtitle("Outlined styles"),
 		new e.text("Different variants of {{.btn}}, such at the various outlined styles, are supported."),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					...b.form.toggle({

@@ -604,7 +604,7 @@ strong,
 }
 
 /* gap on example code output */
-.example-output{
+/* .example-output{
     --bs-example-gap-1:0.25rem;
     --bs-example-gap-2:0.5rem;
     --bs-example-gap-3:1rem;
@@ -621,7 +621,7 @@ strong,
 .example-output.gap-4 { margin: calc(var(--bs-example-gap-4) * -1); }
 .example-output.gap-4>*:not(.modal) { margin: var(--bs-example-gap-4); }
 .example-output.gap-5 { margin: calc(var(--bs-example-gap-5) * -1); }
-.example-output.gap-5>*:not(.modal) { margin: var(--bs-example-gap-5); }
+.example-output.gap-5>*:not(.modal) { margin: var(--bs-example-gap-5); } */
 
 
 

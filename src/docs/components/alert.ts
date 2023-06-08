@@ -379,7 +379,7 @@ export const alert: IAttrContent = {
 				);
 
 				return [
-					new h.div({ display: "flex" }, [
+					new h.div({ display: "flex", overflow: "auto" }, [
 						new h.div(
 							{
 								width: 100,

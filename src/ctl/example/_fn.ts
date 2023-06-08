@@ -206,35 +206,46 @@ const attrHasClass = (attr: core.IAttr, className: string | string[]) => {
 	return false;
 };
 
-const propHasValue = (
-	prop: string | boolean | number | (string | boolean | number)[],
-	value: string | boolean | number
-) => {
-	if (prop) {
-		if (Array.isArray(prop)) {
-			return prop.indexOf(value) > -1;
-		} else {
-			return prop === value;
-		}
-	}
+// const propHasValue = (
+// 	prop: string | boolean | number | (string | boolean | number)[],
+// 	value: string | boolean | number
+// ) => {
+// 	if (prop) {
+// 		if (Array.isArray(prop)) {
+// 			return prop.indexOf(value) > -1;
+// 		} else {
+// 			return prop === value;
+// 		}
+// 	}
 
-	return false;
-};
+// 	return false;
+// };
 
-export const getRootBaseOnSource = (attr?: core.IAttr) => {
-	if (attr) {
+export const getRootBaseOnSource = (attrPreview?: core.IAttr, attrOutput?: core.IAttr) => {
+	if (attrPreview) {
 		// attr = core.mergeObject({ container: true, padding: 4 }, attr);
 		// attr.container ??= "fluid";
-		delete attr.overflow;
-		attr.padding ??= 4;
+		delete attrPreview.overflow;
+		attrPreview.padding ??= 4;
 
-		if (attr.padding === 0 || attr.padding === "0") {
-			delete attr.padding;
+		if (attrPreview.padding === 0 || attrPreview.padding === "0") {
+			delete attrPreview.padding;
 		}
 
-		return core.getHtml(new h.div(attr, new h.div({ id: "root" })));
+		if (attrOutput) {
+			attrOutput.id = "root";
+
+			return core.getHtml(new h.div(attrPreview, new h.div(attrOutput)));
+		} else {
+			return core.getHtml(new h.div(attrPreview, new h.div({ id: "root" })));
+		}
 	} else {
-		return `<div class="p-4"><div id="root"></div></div>`;
+		if (attrOutput) {
+			attrOutput.id = "root";
+			return core.getHtml(new h.div({ padding: 4 }, new h.div(attrOutput)));
+		} else {
+			return `<div class="p-4"><div id="root"></div></div>`;
+		}
 	}
 };
 
@@ -244,13 +255,13 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "sidebar-item")) {
 			result.push(`
-				#root a.sidebar-item {
+				.sidebar-item {
 					padding: 0.1875rem 0.5rem;
 					margin-top: 0.125rem;
 					margin-left: 1.25rem;
 				}
 	
-				#root a.sidebar-item.active{
+				.sidebar-item.active{
 					color: #fff !important;
 					background-color: RGBA(var(--bs-primary-rgb),var(--bs-bg-opacity,1)) !important;
 				}
@@ -259,13 +270,13 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "position-box")) {
 			result.push(`
-				#root div.position-relative {
+				.position-box div.position-relative {
 					display: block;
 					background-color: var(--bs-tertiary-bg);
 					height: 200px;
 				}
 				
-				#root div.position-relative div.position-absolute {
+				.position-box div.position-relative div.position-absolute {
 					display: inline-block;
 					width: 2rem;
 					height: 2rem;
@@ -277,7 +288,7 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "span-box")) {
 			result.push(`
-				#root span {
+				.span-box span {
 					display: inline-block;
 					background-color: var(--bs-tertiary-bg);
 					border-width: 0.5rem;
@@ -288,11 +299,11 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "flex-box")) {
 			result.push(`
-				#root div {
+				.flex-box div {
 					background-color: rgba(var(--bs-primary-rgb), 0.15);
 					border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
 				}
-				#root div .vr {
+				.flex-box div .vr {
 					background-color: rgba(var(--bs-primary-rgb), 1);
 				}
 			`);
@@ -300,7 +311,7 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "row-10")) {
 			result.push(`
-				#root div.row {
+				.row-10 div.row {
 					min-height: 10rem;
 					background-color: rgba(var(--bs-primary-rgb), 0.15);
 				}
@@ -309,7 +320,7 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "p-box")) {
 			result.push(`
-				#root div.p-3 {
+				.p-box div.p-3 {
 					background-color: rgba(var(--bs-primary-rgb), 0.15);
 					border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
 				}
@@ -318,7 +329,7 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "ratio-box")) {
 			result.push(`
-				#root div.ratio {
+				.ratio-box div.ratio {
 					display: inline-block;
 					width: 10rem;
 					color: var(--bs-secondary-color);
@@ -326,7 +337,7 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 					border: var(--bs-border-width) solid var(--bs-border-color);
 				}
 
-				#root div.ratio div {
+				.ratio-box div.ratio div {
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -336,44 +347,44 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "zindex-box")) {
 			result.push(`
-				#root div{
+				.zindex-box div{
 					background-color: var(--bs-primary);
 					border: 1px solid var(--bs-primary-border-subtle);
 					color: var(--bs-primary-text-emphasis);
 				}
 
-				#root div span{
+				.zindex-box div span{
 					position: absolute;
 					right: 5px;
 					bottom: 0;
 					color:var(--bs-body-bg);
 				}
 
-				#root div:nth-child(1) {
+				.zindex-box div:nth-child(1) {
 					top: 1.5rem;
 					left: 1.5rem;
 					z-index: 5!important;
 				}
 
-				#root div:nth-child(2) {
+				.zindex-box div:nth-child(2) {
 					top:3rem;
 					left: 3rem;
 					z-index: 4!important;
 				}
 
-				#root div:nth-child(3) {
+				.zindex-box div:nth-child(3) {
 					top: 4.5rem;
 					left: 4.5rem;
 					z-index: 3!important;
 				}
 
-				#root div:nth-child(4) {
+				.zindex-box div:nth-child(4) {
 					top: 6rem;
 					left: 6rem;
 					z-index: 2!important;
 				}
 
-				#root div:nth-child(5) {
+				.zindex-box div:nth-child(5) {
 					top: 7.5rem;
 					left: 7.5rem;
 					z-index: 1 !important;
@@ -383,11 +394,11 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "col-box")) {
 			result.push(`
-				#root div.row:not(:last-child) {
+				.col-box div.row:not(:last-child) {
 					margin-bottom: 1rem;
 				}
 
-				#root .col, #root .col-auto, #root .col-0, #root .col-1, #root .col-2, #root .col-3, #root .col-4, #root .col-5, #root .col-6, #root .col-7, #root .col-8, #root .col-9, #root .col-10, #root .col-11, #root .col-12, #root .col-sm, #root .col-sm-auto, #root .col-sm-0, #root .col-sm-1, #root .col-sm-2, #root .col-sm-3, #root .col-sm-4, #root .col-sm-5, #root .col-sm-6, #root .col-sm-7, #root .col-sm-8, #root .col-sm-9, #root .col-sm-10, #root .col-sm-11, #root .col-sm-12, #root .col-md, #root .col-md-auto, #root .col-md-0, #root .col-md-1, #root .col-md-2, #root .col-md-3, #root .col-md-4, #root .col-md-5, #root .col-md-6, #root .col-md-7, #root .col-md-8, #root .col-md-9, #root .col-md-10, #root .col-md-11, #root .col-md-12, #root .col-lg, #root .col-lg-auto, #root .col-lg-0, #root .col-lg-1, #root .col-lg-2, #root .col-lg-3, #root .col-lg-4, #root .col-lg-5, #root .col-lg-6, #root .col-lg-7, #root .col-lg-8, #root .col-lg-9, #root .col-lg-10, #root .col-lg-11, #root .col-lg-12, #root .col-xl, #root .col-xl-auto, #root .col-xl-0, #root .col-xl-1, #root .col-xl-2, #root .col-xl-3, #root .col-xl-4, #root .col-xl-5, #root .col-xl-6, #root .col-xl-7, #root .col-xl-8, #root .col-xl-9, #root .col-xl-10, #root .col-xl-11, #root .col-xl-12, #root .col-xxl, #root .col-xxl-auto, #root .col-xxl-0, #root .col-xxl-1, #root .col-xxl-2, #root .col-xxl-3, #root .col-xxl-4, #root .col-xxl-5, #root .col-xxl-6, #root .col-xxl-7, #root .col-xxl-8, #root .col-xxl-9, #root .col-xxl-10, #root .col-xxl-11, #root .col-xxl-12 {
+				.col-box .col, .col-box .col-auto, .col-box .col-0, .col-box .col-1, .col-box .col-2, .col-box .col-3, .col-box .col-4, .col-box .col-5, .col-box .col-6, .col-box .col-7, .col-box .col-8, .col-box .col-9, .col-box .col-10, .col-box .col-11, .col-box .col-12, .col-box .col-sm, .col-box .col-sm-auto, .col-box .col-sm-0, .col-box .col-sm-1, .col-box .col-sm-2, .col-box .col-sm-3, .col-box .col-sm-4, .col-box .col-sm-5, .col-box .col-sm-6, .col-box .col-sm-7, .col-box .col-sm-8, .col-box .col-sm-9, .col-box .col-sm-10, .col-box .col-sm-11, .col-box .col-sm-12, .col-box .col-md, .col-box .col-md-auto, .col-box .col-md-0, .col-box .col-md-1, .col-box .col-md-2, .col-box .col-md-3, .col-box .col-md-4, .col-box .col-md-5, .col-box .col-md-6, .col-box .col-md-7, .col-box .col-md-8, .col-box .col-md-9, .col-box .col-md-10, .col-box .col-md-11, .col-box .col-md-12, .col-box .col-lg, .col-box .col-lg-auto, .col-box .col-lg-0, .col-box .col-lg-1, .col-box .col-lg-2, .col-box .col-lg-3, .col-box .col-lg-4, .col-box .col-lg-5, .col-box .col-lg-6, .col-box .col-lg-7, .col-box .col-lg-8, .col-box .col-lg-9, .col-box .col-lg-10, .col-box .col-lg-11, .col-box .col-lg-12, .col-box .col-xl, .col-box .col-xl-auto, .col-box .col-xl-0, .col-box .col-xl-1, .col-box .col-xl-2, .col-box .col-xl-3, .col-box .col-xl-4, .col-box .col-xl-5, .col-box .col-xl-6, .col-box .col-xl-7, .col-box .col-xl-8, .col-box .col-xl-9, .col-box .col-xl-10, .col-box .col-xl-11, .col-box .col-xl-12, .col-box .col-xxl, .col-box .col-xxl-auto, .col-box .col-xxl-0, .col-box .col-xxl-1, .col-box .col-xxl-2, .col-box .col-xxl-3, .col-box .col-xxl-4, .col-box .col-xxl-5, .col-box .col-xxl-6, .col-box .col-xxl-7, .col-box .col-xxl-8, .col-box .col-xxl-9, .col-box .col-xxl-10, .col-box .col-xxl-11, .col-box .col-xxl-12 {
 					background-color: rgba(var(--bs-primary-rgb), 0.15);
 					border: 1px solid rgba(var(--bs-primary-rgb), 0.3);
 					padding-top: .75rem;
@@ -396,101 +407,101 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 			`);
 		}
 
-		if (attr.justifyContent === "around") {
-			result.push(`
-				#root {
-					justify-content: space-around !important;
-				}
-			`);
-		}
+		// if (attr.justifyContent === "around") {
+		// 	result.push(`
+		// 		#root {
+		// 			justify-content: space-around !important;
+		// 		}
+		// 	`);
+		// }
 
-		if (attr.display) {
-			if (propHasValue(attr.display, "grid")) {
-				result.push(`
-						#root {
-							display: grid !important;
-						}
-					`);
-			}
+		// if (attr.display) {
+		// 	if (propHasValue(attr.display, "grid")) {
+		// 		result.push(`
+		// 				#root {
+		// 					display: grid !important;
+		// 				}
+		// 			`);
+		// 	}
 
-			if (propHasValue(attr.display, "flex")) {
-				result.push(`
-						#root {
-							display: flex !important;
-						}
-					`);
-			}
+		// 	if (propHasValue(attr.display, "flex")) {
+		// 		result.push(`
+		// 				#root {
+		// 					display: flex !important;
+		// 				}
+		// 			`);
+		// 	}
 
-			if (propHasValue(attr.display, "md-flex")) {
-				result.push(`
-						@media (min-width: 768px) {
-							#root {
-								display: flex !important;
-							}
-						}
-					`);
-			}
-		}
+		// 	if (propHasValue(attr.display, "md-flex")) {
+		// 		result.push(`
+		// 				@media (min-width: 768px) {
+		// 					#root {
+		// 						display: flex !important;
+		// 					}
+		// 				}
+		// 			`);
+		// 	}
+		// }
 
-		if (attr.gap === 1) {
-			result.push(`
-				#root {
-					margin: calc(0.25rem * -1);
-				}
-				
-				#root > *:not(.modal) {
-					margin: 0.25rem;
-				}
-			`);
-		}
+		// if (attr.gap === 1) {
+		// 	result.push(`
+		// 		#root {
+		// 			margin: calc(0.25rem * -1);
+		// 		}
 
-		if (attr.gap === 2) {
-			result.push(`
-				#root {
-					margin: calc(0.5rem * -1);
-				}
+		// 		#root > *:not(.modal) {
+		// 			margin: 0.25rem;
+		// 		}
+		// 	`);
+		// }
 
-				#root > *:not(.modal) {
-					margin: 0.5rem;
-				}
-			`);
-		}
+		// if (attr.gap === 2) {
+		// 	result.push(`
+		// 		#root {
+		// 			margin: calc(0.5rem * -1);
+		// 		}
 
-		if (attr.gap === 3) {
-			result.push(`
-				#root {
-					margin: calc(1rem * -1);
-				}
+		// 		#root > *:not(.modal) {
+		// 			margin: 0.5rem;
+		// 		}
+		// 	`);
+		// }
 
-				#root > *:not(.modal) {
-					margin: 1rem;
-				}
-			`);
-		}
+		// if (attr.gap === 3) {
+		// 	result.push(`
+		// 		#root {
+		// 			margin: calc(1rem * -1);
+		// 		}
 
-		if (attr.gap === 4) {
-			result.push(`
-				#root {
-					margin: calc(1.5rem * -1);
-				}
+		// 		#root > *:not(.modal) {
+		// 			margin: 1rem;
+		// 		}
+		// 	`);
+		// }
 
-				#root > *:not(.modal) {
-					margin: 1.5rem;
-				}
-			`);
-		}
+		// if (attr.gap === 4) {
+		// 	result.push(`
+		// 		#root {
+		// 			margin: calc(1.5rem * -1);
+		// 		}
 
-		if (attr.gap === 5) {
-			result.push(`
-				#root {
-					margin: calc(3rem * -1);
-				}
+		// 		#root > *:not(.modal) {
+		// 			margin: 1.5rem;
+		// 		}
+		// 	`);
+		// }
 
-				#root > *:not(.modal) {
-					margin: 3rem;
-				}
-			`);
-		}
+		// if (attr.gap === 5) {
+		// 	result.push(`
+		// 		#root {
+		// 			margin: calc(3rem * -1);
+		// 		}
+
+		// 		#root > *:not(.modal) {
+		// 			margin: 3rem;
+		// 		}
+		// 	`);
+		// }
 
 		if (result && result.length > 0) {
 			return result

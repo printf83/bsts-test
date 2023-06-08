@@ -1031,7 +1031,7 @@ const convert = (attr: IBsExampleContainer) => {
 			? attr.scriptConverter(attr.output!.toString())
 			: attr.output!.toString();
 
-		let strRoot = getRootBaseOnSource(attr.previewAttr);
+		let strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
 
 		strSource = replaceExtention(renameExtention, strSource);
 

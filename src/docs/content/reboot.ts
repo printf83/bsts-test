@@ -239,7 +239,7 @@ export const reboot: IAttrContent = {
 			"All lists—{{<ul>}}, {{<ol>}}, and {{<dl>}}—have their {{margin-top}} removed and a {{margin-bottom: 1rem}}. Nested lists have no {{margin-bottom}}. Bootstrap’ve also reset the {{padding-left}} on {{<ul>}} and {{<ol>}} elements."
 		),
 		new e.code({
-			outputAttr: { class: "reset-list", gap: 3 },
+			outputAttr: { class: "reset-list", display: "flex", gap: 4 },
 			output: () => {
 				return [
 					new h.ul({

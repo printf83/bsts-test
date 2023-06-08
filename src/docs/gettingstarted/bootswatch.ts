@@ -8,7 +8,7 @@ export const bootswatch: IAttrContent = {
 	item: [
 		new e.title("Navbars"),
 		new e.code({
-			outputAttr: { gap: 2 },
+			outputAttr: { display: "flex", gap: 3 },
 			output: () => {
 				const navbarItem = (btnColor: I.B.Button["color"]) => {
 					let id = core.UUID();
@@ -60,7 +60,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.title("Buttons"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
@@ -74,7 +74,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.subtitle("Disabled"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
@@ -91,7 +91,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.subtitle("Outline"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map(
 					(i) => {
@@ -105,7 +105,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.subtitle("Sizing"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ weight: "lg" }, "Large button"),
@@ -128,7 +128,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.title("Dropdown"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
@@ -149,7 +149,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.subtitle("Split button"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
@@ -661,7 +661,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.subtitle("Range"),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return [
 					new b.button({ type: "submit" }, "Submit"),

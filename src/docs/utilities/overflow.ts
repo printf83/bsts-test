@@ -12,7 +12,7 @@ export const overflow: IAttrContent = {
 		),
 		new e.code({
 			previewAttr: { overflow: "hidden" },
-			outputAttr: { display: ["md-flex", "grid"], gap: 1 },
+			outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 			output: () => {
 				return ["auto", "hidden", "visible", "scroll"].map((i, ix) => {
 					return new h.div(
@@ -37,7 +37,7 @@ export const overflow: IAttrContent = {
 		new e.text("Adjust the {{overflow-x}} property to affect the overflow of content horizontally."),
 		new e.code({
 			previewAttr: { overflow: "hidden" },
-			outputAttr: { display: ["md-flex", "grid"], gap: 1 },
+			outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 			output: () => {
 				return ["auto", "hidden", "visible", "scroll"].map((i, ix) => {
 					return new h.div(
@@ -59,7 +59,7 @@ export const overflow: IAttrContent = {
 		new e.text("Adjust the {{overflow-y}} property to affect the overflow of content vertically."),
 		new e.code({
 			previewAttr: { overflow: "hidden" },
-			outputAttr: { display: ["md-flex", "grid"], gap: 1 },
+			outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 			output: () => {
 				return ["auto", "hidden", "visible", "scroll"].map((i, ix) => {
 					return new h.div(

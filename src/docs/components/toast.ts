@@ -179,7 +179,7 @@ export const toast: IAttrContent = {
 			],
 		}),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				const fnToast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
 					let tElem;
@@ -809,7 +809,7 @@ export const toast: IAttrContent = {
 			showConsole: true,
 			output: () => {
 				return [
-					new h.div({ display: "flex" }, [
+					new h.div({ display: "flex", overflow: "auto" }, [
 						new h.div(
 							{
 								width: 100,

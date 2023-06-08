@@ -25,7 +25,7 @@ export const object_fit: IAttrContent = {
 			"Add the {{object-fit-{value} }}class to the {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}:"
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["contain", "cover", "fill", "scale", "none"].map(
 					(i) =>
@@ -48,7 +48,7 @@ export const object_fit: IAttrContent = {
 			"Responsive variations also exist for each {{object-fit}} value using the format {{.object-fit-{breakpoint}-{value} }}, for the following breakpoint abbreviations: {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}. Classes can be combined for various effects as you need."
 		),
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				return ["sm-contain", "md-contain", "lg-contain", "xl-contain", "xxl-contain"].map(
 					(i) =>
@@ -83,7 +83,7 @@ export const object_fit: IAttrContent = {
 		}),
 
 		new e.code({
-			outputAttr: { gap: 1 },
+			outputAttr: { display: "flex", gap: 2 },
 			output: () => {
 				const videoFn = () => {
 					return ["contain", "cover", "fill", "scale", "none"].map(

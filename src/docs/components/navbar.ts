@@ -99,7 +99,7 @@ export const navbar: IAttrContent = {
 		new e.xsubtitle({ id: "brand_text" }, "Text"),
 		new e.text("Add your text within an element with the {{b.navbar.brand}} component."),
 		new e.code({
-			outputAttr: { gap: 2 },
+			outputAttr: { display: "flex", gap: 3 },
 			output: () => {
 				return [
 					new b.navbar.container(
@@ -389,7 +389,7 @@ export const navbar: IAttrContent = {
 			"Navbar themes are easier than ever thanks to Bootstrap’s combination of Sass and CSS variables. The default is Bootstrap “light navbar” for use with light background colors, but you can also apply {{theme:'dark'}} to the {{b.navbar.container}} parent for dark background colors. Then, customize with {{bgColor}} property."
 		),
 		new e.code({
-			outputAttr: { gap: 2 },
+			outputAttr: { display: "flex", gap: 3 },
 			output: () => {
 				const navbarItem = (btnColor: I.B.Button["color"]) => {
 					let id = core.UUID();

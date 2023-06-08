@@ -55,7 +55,7 @@ export const select: IAttrContent = {
 		new e.title("Sizing"),
 		new e.text("Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."),
 		new e.code({
-			outputAttr: { gap: 2 },
+			outputAttr: { display: "flex", gap: 3 },
 			output: () => {
 				return [
 					b.form.select({
