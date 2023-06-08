@@ -71,7 +71,7 @@ export const collapse: IAttrContent = {
 			)
 		),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "grid", gap: 3 },
 			output: () => {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [

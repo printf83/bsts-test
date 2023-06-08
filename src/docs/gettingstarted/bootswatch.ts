@@ -8,7 +8,7 @@ export const bootswatch: IAttrContent = {
 	item: [
 		new e.title("Navbars"),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "grid", gap: 3 },
 			output: () => {
 				const navbarItem = (btnColor: I.B.Button["color"]) => {
 					let id = core.UUID();
