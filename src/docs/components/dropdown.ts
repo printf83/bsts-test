@@ -69,7 +69,7 @@ export const dropdown: IAttrContent = {
 
 		new e.text("The best part is you can do this with any button {{color}} variant, too:"),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
@@ -96,7 +96,7 @@ export const dropdown: IAttrContent = {
 			"Bootstrap use this extra property to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
@@ -119,7 +119,7 @@ export const dropdown: IAttrContent = {
 		new e.title("Sizing"),
 		new e.text("Button dropdowns work with buttons of all sizes, including default and split dropdown buttons."),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -144,7 +144,7 @@ export const dropdown: IAttrContent = {
 		}),
 
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -261,7 +261,7 @@ export const dropdown: IAttrContent = {
 			"Trigger dropdown menus above elements by adding {{drop:'up'}} on the {{b.dropdown.container}} component."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -312,7 +312,7 @@ export const dropdown: IAttrContent = {
 			"Trigger dropdown menus at the right of the elements by adding {{drop:'end'}} on the {{b.dropdown.container}} component."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -343,7 +343,7 @@ export const dropdown: IAttrContent = {
 			"Trigger dropdown menus at the left of the elements by adding {{drop:'start'}} on the {{b.dropdown.container}} component."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -524,7 +524,7 @@ export const dropdown: IAttrContent = {
 			"Taking most of the options shown above, here’s a small kitchen sink demo of various dropdown alignment options in one place."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return [
 					{ label: "Dropdown" },
@@ -766,7 +766,7 @@ export const dropdown: IAttrContent = {
 			"Use {{menuOffset}} or {{menuReference}} property on {{b.dropdown.toggle}} to change the location of the dropdown."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),
@@ -797,7 +797,7 @@ export const dropdown: IAttrContent = {
 			"By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{menuAutoClose}} option to change this behavior of the dropdown."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let menu = new b.dropdown.menu([
 					new b.dropdown.item({ href: "#" }, "Action"),

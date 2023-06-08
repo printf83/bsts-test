@@ -179,7 +179,7 @@ export const toast: IAttrContent = {
 			],
 		}),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				const fnToast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
 					let tElem;

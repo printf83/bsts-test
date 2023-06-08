@@ -164,7 +164,7 @@ export const modal: IAttrContent = {
 		new e.text("You can use Bootstrap simple modal by calling function {{b.modal.simple}}."),
 
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return [
 					new b.button(
@@ -430,7 +430,7 @@ export const modal: IAttrContent = {
 		new e.subtitle("Vertically centered"),
 		new e.text("Set {{centered:true}} to {{b.modal.container}} to vertically center the modal."),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				let modalContent = (id: string, elem: core.IElem) => {
 					return [
@@ -727,7 +727,7 @@ export const modal: IAttrContent = {
 		),
 
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				interface EventWithRelatedTarget extends Event {
 					relatedTarget: Element;
@@ -1087,7 +1087,7 @@ export const modal: IAttrContent = {
 		new e.text("Bootstrap default modal without modifier class constitutes the “medium” size modal."),
 		new e.code({
 			showViewport: true,
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				const d = [
 					{ weight: "xl", label: "Extra large modal" },
@@ -1145,7 +1145,7 @@ export const modal: IAttrContent = {
 		}),
 		new e.code({
 			showViewport: true,
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				const d = [
 					{ fullscreen: true, label: "Full screen" },

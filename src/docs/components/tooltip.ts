@@ -135,7 +135,7 @@ export const tooltip: IAttrContent = {
 			"Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left by set the {{placement}} property. Directions are mirrored when using Bootstrap in RTL."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.tooltip(
@@ -150,7 +150,7 @@ export const tooltip: IAttrContent = {
 		}),
 		new e.text("And with custom HTML added:"),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			showHTML: false,
 			output: () => {
 				return new b.tooltip(
@@ -719,7 +719,7 @@ export const tooltip: IAttrContent = {
 		}),
 
 		new e.code({
-			outputAttr: { display: "flex", gap: 3 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 			showConsole: true,
 			output: () => {
 				return new b.tooltip(

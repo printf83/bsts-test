@@ -154,7 +154,7 @@ export const list: IAttrContent = {
 		),
 		new e.code({
 			showViewport: true,
-			outputAttr: { display: "flex", gap: 3 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 			output: () => {
 				let items = [
 					new b.list.item("An item"),
@@ -178,7 +178,7 @@ export const list: IAttrContent = {
 		),
 		new e.code({
 			showViewport: true,
-			outputAttr: { display: "flex", gap: 3 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 			output: () => {
 				let items = [
 					new b.list.item({ flex: "fill" }, "An item"),
@@ -589,7 +589,7 @@ export const list: IAttrContent = {
 		),
 
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				const btnAttach = new b.button(
 					{
@@ -674,7 +674,7 @@ export const list: IAttrContent = {
 		),
 
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				const data = ["home", "profile", "messages", "settings"];
 

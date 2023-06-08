@@ -92,7 +92,7 @@ export const badge: IAttrContent = {
 			"Set a {{bgColor}} with contrasting foreground {{textColor}} with {{nav:docs/helpers/color_background::textBgColor:<color> property}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::textColor:<color> }}and {{nav:docs/utilities/background::bgColor:<color> }}utilities for styling, which you still may use if you prefer."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge({ textBgColor: i as core.bootstrapType.textBgColor }, core.uppercaseFirst(i));
@@ -111,7 +111,7 @@ export const badge: IAttrContent = {
 		new e.title("Pill badges"),
 		new e.text("Use the {{rounded:'pill'}} property to make badges more rounded with a larger {{border-radius}}."),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 					return new b.badge(

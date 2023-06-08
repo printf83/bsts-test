@@ -45,7 +45,7 @@ export const ratio: IAttrContent = {
 			"Aspect ratios can be customized with modifier classes. By default the following ratio classes are provided:"
 		),
 		new e.code({
-			outputAttr: { class: "ratio-box", display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "ratio-box" },
 			output: () => {
 				return [
 					new h.div({ ratio: "1x1" }, new h.div("1X1")),
@@ -66,7 +66,7 @@ export const ratio: IAttrContent = {
 			"For example, to create a 2x1 aspect ratio, set {{style:{'--bs-aspect-ratio': '50%'} }}beside the {{ratio}} property."
 		),
 		new e.code({
-			outputAttr: { class: "ratio-box", display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "ratio-box" },
 			output: () => {
 				return new h.div({ ratio: true, style: { "--bs-aspect-ratio": "50%" } }, new h.div("2X1"));
 			},

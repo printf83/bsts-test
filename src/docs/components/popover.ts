@@ -88,7 +88,7 @@ export const popover: IAttrContent = {
 			"Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{placement}} to change the direction."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				return ["top", "right", "bottom", "left"].map((i) => {
 					return new b.popover(

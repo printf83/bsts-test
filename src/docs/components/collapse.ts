@@ -33,7 +33,7 @@ export const collapse: IAttrContent = {
 			"Generally, {{bsts}} recommend using a {{b.collapse.toggle}} with the {{target}} property. While not recommended from a semantic point of view, you can also use an {{b.collapse.toggle}} with the {{href}} property ({{bsts}} automaticly add {{role:'button'}} and the {{toggle:'collapse'}} because it's required by Bootstrap."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 3 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 			output: () => {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
@@ -71,7 +71,7 @@ export const collapse: IAttrContent = {
 			)
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 3 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 			output: () => {
 				return [
 					new h.div({ display: "flex", gap: 2 }, [
@@ -103,7 +103,7 @@ export const collapse: IAttrContent = {
 			"A {{b.collapse.toggle}} component can show and hide multiple elements by referencing them with a selector in its {{target}} or {{href}} property. Conversely, multiple {{b.collapse.toggle}} component can show and hide the same element if they each reference it with their {{target}} or {{href}} property."
 		),
 		new e.code({
-			outputAttr: { display: "flex", gap: 2 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
 				const toggle1 = new b.collapse.toggle(
 					{ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" },
@@ -150,7 +150,7 @@ export const collapse: IAttrContent = {
 			},
 		}),
 		// new e.code({
-		// 	outputAttr: { display: "flex", gap: 3 },
+		// 	outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 		// 	output: () => {
 		// 		return [
 		// 			new b.collapse.toggle(
@@ -532,7 +532,7 @@ export const collapse: IAttrContent = {
 		}),
 
 		new e.code({
-			outputAttr: { display: "flex", gap: 3 },
+			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 			showConsole: true,
 			output: () => {
 				return [

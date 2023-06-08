@@ -1,54 +1,77 @@
-import { b, h, t } from "@printf83/bsts";
+import { b, core, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const genCalendarHeader = () => {
+// new b.inputgroup.container([
+// 	new b.select([
+// 		new h.option({ value: "1", elem: "January" }),
+// 		new h.option({ value: "2", elem: "February" }),
+// 		new h.option({ value: "3", elem: "Mac" }),
+// 		new h.option({ value: "4", elem: "April" }),
+// 		new h.option({ value: "5", elem: "May" }),
+// 		new h.option({ value: "6", elem: "June" }),
+// 		new h.option({ value: "7", elem: "July" }),
+// 		new h.option({ value: "8", elem: "August" }),
+// 		new h.option({ value: "9", elem: "September" }),
+// 		new h.option({ value: "10", elem: "October" }),
+// 		new h.option({ value: "11", elem: "November" }),
+// 		new h.option({ value: "12", elem: "December" }),
+// 	]),
+// 	new b.select([
+// 		new h.option({ value: "2020", elem: "2020" }),
+// 		new h.option({ value: "2021", elem: "2021" }),
+// 		new h.option({ value: "2022", elem: "2022" }),
+// 		new h.option({ value: "2023", elem: "2023" }),
+// 		new h.option({ value: "2024", elem: "2024" }),
+// 		new h.option({ value: "2025", elem: "2025" }),
+// 	]),
+// ]);
+
+const genCalendarHeader = (arg: {
+	view: Date;
+	monthTitle: string[];
+	onchange: (sender: Element, view: Date) => void;
+}) => {
 	return new h.div({ display: "flex", justifyContent: "between", paddingBottom: 2 }, [
-		new b.button({ color: "transparent" }, new b.icon({ id: "arrow-left" })),
-		new h.div(
-			{ marginX: "auto" },
-			new b.inputgroup.container([
-				new b.select([
-					new h.option({ value: "1", elem: "January" }),
-					new h.option({ value: "2", elem: "February" }),
-					new h.option({ value: "3", elem: "Mac" }),
-					new h.option({ value: "4", elem: "April" }),
-					new h.option({ value: "5", elem: "May" }),
-					new h.option({ value: "6", elem: "June" }),
-					new h.option({ value: "7", elem: "July" }),
-					new h.option({ value: "8", elem: "August" }),
-					new h.option({ value: "9", elem: "September" }),
-					new h.option({ value: "10", elem: "October" }),
-					new h.option({ value: "11", elem: "November" }),
-					new h.option({ value: "12", elem: "December" }),
-				]),
-				new b.select([
-					new h.option({ value: "2020", elem: "2020" }),
-					new h.option({ value: "2021", elem: "2021" }),
-					new h.option({ value: "2022", elem: "2022" }),
-					new h.option({ value: "2023", elem: "2023" }),
-					new h.option({ value: "2024", elem: "2024" }),
-					new h.option({ value: "2025", elem: "2025" }),
-				]),
-			])
+		new b.button(
+			{
+				color: "transparent",
+				on: {
+					click: (e) => {
+						const target = e.target as Element;
+						arg.view.setMonth(arg.view.getMonth() - 1);
+						arg.onchange(target, arg.view);
+					},
+				},
+			},
+			new b.icon({ id: "arrow-left" })
 		),
-		new b.button({ color: "transparent" }, new b.icon({ id: "arrow-right" })),
+		new h.div({ marginX: "auto" }, new h.b(`${arg.monthTitle[arg.view.getMonth()]} ${arg.view.getFullYear()}`)),
+		new b.button(
+			{
+				color: "transparent",
+				on: {
+					click: (e) => {
+						const target = e.target as Element;
+						arg.view.setMonth(arg.view.getMonth() + 1);
+						arg.onchange(target, arg.view);
+					},
+				},
+			},
+			new b.icon({ id: "arrow-right" })
+		),
 	]);
 };
-const genCalendarItem = (arg?: { view?: Date; startDate?: Date; endDate?: Date; dayTitle?: string[] }) => {
-	arg ??= {};
 
-	if (arg.dayTitle && arg.dayTitle.length !== 7) {
-		arg.dayTitle = undefined;
-	}
-
-	arg.dayTitle ??= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-	arg.view ??= new Date();
-	// arg.startDate ??= arg.view;
-	// arg.endDate ??= arg.startDate ? arg.startDate : arg.view;
-	arg.startDate = new Date(arg.view.getFullYear(), arg.view.getMonth(), arg.view.getDate() - 7);
-	arg.endDate = new Date(arg.view.getFullYear(), arg.view.getMonth(), arg.view.getDate() + 7);
+const genCalendarItem = (arg: {
+	view: Date;
+	startDate?: Date;
+	endDate?: Date;
+	dayTitle: string[];
+	onchange: (sender: Element, arg: { view: Date; startDate?: Date; endDate?: Date }) => void;
+}) => {
+	arg.startDate ??= arg.view;
+	arg.endDate ??= arg.startDate ? arg.startDate : arg.view;
 
 	if (arg.startDate > arg.endDate) {
 		arg.startDate = arg.endDate;
@@ -175,8 +198,66 @@ const genCalendarItem = (arg?: { view?: Date; startDate?: Date; endDate?: Date; 
 		days
 	);
 };
-const genCalendar = (arg?: { view?: Date; startDate?: Date; endDate?: Date; dayTitle?: string[] }) => {
-	return new h.div({ class: "calendar", padding: 2 }, [genCalendarHeader(), genCalendarItem(arg)]);
+
+const genCalendar = (arg?: {
+	view?: Date;
+	startDate?: Date;
+	endDate?: Date;
+	dayTitle?: string[];
+	monthTitle?: string[];
+}) => {
+	arg ??= {};
+	arg.view ??= new Date();
+
+	if (arg.monthTitle && arg.monthTitle.length !== 12) {
+		arg.monthTitle = undefined;
+	}
+
+	arg.monthTitle ??= [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	];
+
+	if (arg.dayTitle && arg.dayTitle.length !== 7) {
+		arg.dayTitle = undefined;
+	}
+
+	arg.dayTitle ??= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+	return new h.div({ class: "calendar", padding: 2 }, [
+		genCalendarHeader({
+			view: arg.view,
+			monthTitle: arg.monthTitle,
+			onchange: (sender, view) => {
+				let calendarContainer = sender.closest(".calendar");
+				if (calendarContainer) {
+					core.replaceWith(
+						calendarContainer,
+						genCalendar({
+							dayTitle: arg?.dayTitle,
+							monthTitle: arg?.monthTitle,
+							view: view,
+						})
+					);
+				}
+			},
+		}),
+		genCalendarItem({
+			view: arg.view,
+			dayTitle: arg.dayTitle,
+			onchange: (sender, view) => {},
+		}),
+	]);
 };
 
 export const dropdowns: IAttrContent = {
@@ -188,6 +269,7 @@ export const dropdowns: IAttrContent = {
 			showCodepen: false,
 			outputAttr: {
 				display: "flex",
+				flex: "wrap",
 				gap: 4,
 			},
 			output: () => {
@@ -221,6 +303,7 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			outputAttr: {
 				display: "flex",
+				flex: "wrap",
 				gap: 2,
 			},
 			output: () => {
@@ -256,6 +339,7 @@ export const dropdowns: IAttrContent = {
 			showCodepen: false,
 			outputAttr: {
 				display: "flex",
+				flex: "wrap",
 				gap: 4,
 			},
 			output: () => {
@@ -347,6 +431,7 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			outputAttr: {
 				display: "flex",
+				flex: "wrap",
 				gap: 2,
 			},
 			output: () => {
@@ -450,6 +535,7 @@ export const dropdowns: IAttrContent = {
 			showCodepen: false,
 			outputAttr: {
 				display: "flex",
+				flex: "wrap",
 				gap: 4,
 			},
 			output: () => {
@@ -479,6 +565,7 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			outputAttr: {
 				display: "flex",
+				flex: "wrap",
 				gap: 2,
 			},
 			output: () => {
@@ -521,6 +608,7 @@ export const dropdowns: IAttrContent = {
 			showCodepen: false,
 			outputAttr: {
 				display: "flex",
+				flex: "wrap",
 				gap: 4,
 			},
 			output: () => {
