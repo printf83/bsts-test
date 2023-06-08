@@ -18,7 +18,7 @@
 
 .calendar-item li a {
     color: var(--bs-emphasis-color);
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -40,7 +40,7 @@
 
 .calendar-item li.today a {
     color: #fff !important;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .calendar-item li.prev-month a,

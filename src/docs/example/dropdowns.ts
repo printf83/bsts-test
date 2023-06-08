@@ -2,7 +2,40 @@ import { b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const genCalendar = (arg?: { view?: Date; startDate?: Date; endDate?: Date; dayTitle?: string[] }) => {
+const genCalendarHeader = () => {
+	return new h.div({ display: "flex", justifyContent: "between", paddingBottom: 2 }, [
+		new b.button({ color: "transparent" }, new b.icon({ id: "arrow-left" })),
+		new h.div(
+			{ marginX: "auto" },
+			new b.inputgroup.container([
+				new b.select([
+					new h.option({ value: "1", elem: "January" }),
+					new h.option({ value: "2", elem: "February" }),
+					new h.option({ value: "3", elem: "Mac" }),
+					new h.option({ value: "4", elem: "April" }),
+					new h.option({ value: "5", elem: "May" }),
+					new h.option({ value: "6", elem: "June" }),
+					new h.option({ value: "7", elem: "July" }),
+					new h.option({ value: "8", elem: "August" }),
+					new h.option({ value: "9", elem: "September" }),
+					new h.option({ value: "10", elem: "October" }),
+					new h.option({ value: "11", elem: "November" }),
+					new h.option({ value: "12", elem: "December" }),
+				]),
+				new b.select([
+					new h.option({ value: "2020", elem: "2020" }),
+					new h.option({ value: "2021", elem: "2021" }),
+					new h.option({ value: "2022", elem: "2022" }),
+					new h.option({ value: "2023", elem: "2023" }),
+					new h.option({ value: "2024", elem: "2024" }),
+					new h.option({ value: "2025", elem: "2025" }),
+				]),
+			])
+		),
+		new b.button({ color: "transparent" }, new b.icon({ id: "arrow-right" })),
+	]);
+};
+const genCalendarItem = (arg?: { view?: Date; startDate?: Date; endDate?: Date; dayTitle?: string[] }) => {
 	arg ??= {};
 
 	if (arg.dayTitle && arg.dayTitle.length !== 7) {
@@ -141,6 +174,9 @@ const genCalendar = (arg?: { view?: Date; startDate?: Date; endDate?: Date; dayT
 		},
 		days
 	);
+};
+const genCalendar = (arg?: { view?: Date; startDate?: Date; endDate?: Date; dayTitle?: string[] }) => {
+	return new h.div({ class: "calendar", padding: 2 }, [genCalendarHeader(), genCalendarItem(arg)]);
 };
 
 export const dropdowns: IAttrContent = {
@@ -476,44 +512,21 @@ export const dropdowns: IAttrContent = {
 
 		new e.title("Calendar"),
 		new e.code({
+			showCodepen: false,
 			outputAttr: {
-				gap: 1,
+				gap: 3,
 			},
 			output: () => {
-				return new h.div({ style: { width: "320px" } }, [
-					new h.div({ display: "flex", justifyContent: "between", paddingBottom: 2 }, [
-						new b.button({ color: "transparent" }, new b.icon({ id: "arrow-left" })),
-						new h.div(
-							{ marginX: "auto" },
-							new b.inputgroup.container([
-								new b.select([
-									new h.option({ value: "1", elem: "January" }),
-									new h.option({ value: "2", elem: "February" }),
-									new h.option({ value: "3", elem: "Mac" }),
-									new h.option({ value: "4", elem: "April" }),
-									new h.option({ value: "5", elem: "May" }),
-									new h.option({ value: "6", elem: "June" }),
-									new h.option({ value: "7", elem: "July" }),
-									new h.option({ value: "8", elem: "August" }),
-									new h.option({ value: "9", elem: "September" }),
-									new h.option({ value: "10", elem: "October" }),
-									new h.option({ value: "11", elem: "November" }),
-									new h.option({ value: "12", elem: "December" }),
-								]),
-								new b.select([
-									new h.option({ value: "2020", elem: "2020" }),
-									new h.option({ value: "2021", elem: "2021" }),
-									new h.option({ value: "2022", elem: "2022" }),
-									new h.option({ value: "2023", elem: "2023" }),
-									new h.option({ value: "2024", elem: "2024" }),
-									new h.option({ value: "2025", elem: "2025" }),
-								]),
-							])
-						),
-						new b.button({ color: "transparent" }, new b.icon({ id: "arrow-right" })),
-					]),
-					genCalendar(),
-				]);
+				return [
+					new b.dropdown.menu(
+						{ theme: "light", padding: 1, debug: true, shadow: true, style: { width: "320px" } },
+						genCalendar()
+					),
+					new b.dropdown.menu(
+						{ theme: "dark", padding: 1, debug: true, shadow: true, style: { width: "320px" } },
+						genCalendar()
+					),
+				];
 			},
 		}),
 	],
