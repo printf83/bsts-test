@@ -2,49 +2,62 @@ import { b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const genCalendar = (arg?: { date?: Date; dayTitle?: string[]; dayStart?: 1 | 2 | 3 | 4 | 5 | 6 | 7 }) => {
+const genCalendar = (arg?: { view?: Date; startDate?: Date; endDate?: Date; dayTitle?: string[] }) => {
 	arg ??= {};
 
 	if (arg.dayTitle && arg.dayTitle.length !== 7) {
 		arg.dayTitle = undefined;
 	}
 
-	arg.date ??= new Date();
 	arg.dayTitle ??= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-	arg.dayStart ??= 1;
 
-	// let today = arg.date;
+	arg.view ??= new Date();
+	// arg.startDate ??= arg.view;
+	// arg.endDate ??= arg.startDate ? arg.startDate : arg.view;
+	arg.startDate = new Date(arg.view.getFullYear(), arg.view.getMonth(), arg.view.getDate() - 7);
+	arg.endDate = new Date(arg.view.getFullYear(), arg.view.getMonth(), arg.view.getDate() + 7);
 
-	arg.date.setDate(1);
+	if (arg.startDate > arg.endDate) {
+		arg.startDate = arg.endDate;
+	}
 
-	const currentMonthData = new Date(arg.date.getFullYear(), arg.date.getMonth(), 1);
-	const nextMonthData = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 1);
-	const prevMonthData = new Date(arg.date.getFullYear(), arg.date.getMonth() - 1, 1);
+	if (arg.endDate < arg.startDate) {
+		arg.endDate = arg.startDate;
+	}
 
-	const currentMonth = {
-		year: currentMonthData.getFullYear(),
-		month: currentMonthData.getMonth(),
-	};
+	const startDate = arg.startDate;
+	const strStartDate = `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`;
+	const startTime = startDate.getTime();
 
-	const nextMonth = {
-		year: nextMonthData.getFullYear(),
-		month: nextMonthData.getMonth(),
-	};
+	const endDate = arg.endDate;
+	const strEndDate = `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDate()}`;
+	const endTime = endDate.getTime();
 
-	const prevMonth = {
-		year: prevMonthData.getFullYear(),
-		month: prevMonthData.getMonth(),
-	};
+	const today = new Date();
+	const todayYear = today.getFullYear();
+	const todayMonth = today.getMonth();
+	const todayDate = today.getDate();
+	const strToday = `${todayYear}-${todayMonth}-${todayDate}`;
 
-	const currentMonthDayCount = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0).getDate();
+	arg.view.setDate(1);
+	const current = arg.view;
+	const currentYear = current.getFullYear();
+	const currentMonth = current.getMonth();
+	const currentDayCount = new Date(currentYear, currentMonth + 1, 0).getDate();
+	const currentFirstDay = current.getDay();
+	const currentLastDay = new Date(currentYear, currentMonth + 1, 0).getDay();
 
-	const prevMonthDayCount = new Date(arg.date.getFullYear(), arg.date.getMonth(), 0).getDate();
+	const next = new Date(currentYear, currentMonth + 1, 1);
+	const nextYear = next.getFullYear();
+	const nextMonth = next.getMonth();
 
-	const currentMonthFirstDay = arg.date.getDay();
-	const currentMonthLastDay = new Date(arg.date.getFullYear(), arg.date.getMonth() + 1, 0).getDay();
+	const prev = new Date(currentYear, currentMonth - 1, 1);
+	const prevYear = prev.getFullYear();
+	const prevMonth = prev.getMonth();
+	const prevDayCount = new Date(currentYear, currentMonth, 0).getDate();
 
 	//7 - 5(Fri) = 2(Tue)
-	const nextMonthViewDayCount = 7 - currentMonthLastDay - 1;
+	const nextViewDayCount = 7 - currentLastDay - 1;
 
 	let days: t[] = [];
 
@@ -54,48 +67,63 @@ const genCalendar = (arg?: { date?: Date; dayTitle?: string[]; dayStart?: 1 | 2 
 	}
 
 	//add prev month date
-	for (let x = currentMonthFirstDay; x > 0; x--) {
-		let d = prevMonthDayCount - x + 1;
+	for (let x = currentFirstDay; x > 0; x--) {
+		let f = prevDayCount - x + 1;
+		let d = `${prevYear}-${prevMonth}-${f}`;
+		let dDate = new Date(prevYear, prevMonth, f).getTime();
+
 		days.push(
 			new h.li(
 				{
-					class: "prev-month",
-					data: { value: `${prevMonth.year}-${prevMonth.month}-${d}` },
+					class: [
+						"prev-month",
+						d === strStartDate ? "selected" : undefined,
+						d === strEndDate ? "selected" : undefined,
+						dDate > startTime && dDate < endTime ? "selected" : undefined,
+					],
+					data: { value: dDate },
 				},
-				new h.a({ href: "#" }, `${d}`)
+				new h.a({ href: "#" }, `${f}`)
 			)
 		);
 	}
 
 	//add current month date
-	for (let y = 1; y <= currentMonthDayCount; y++) {
-		if (y === new Date().getDate() && arg.date.getMonth() === new Date().getMonth()) {
-			days.push(
-				new h.li(
-					{
-						class: "today",
-						data: { value: `${currentMonth.year}-${currentMonth.month}-${y}` },
-					},
-					new h.a({ href: "a" }, `${y}`)
-				)
-			);
-		} else {
-			days.push(
-				new h.li(
-					{ data: { value: `${currentMonth.year}-${currentMonth.month}-${y}` } },
-					new h.a({ href: "#" }, `${y}`)
-				)
-			);
-		}
-	}
+	for (let y = 1; y <= currentDayCount; y++) {
+		let d = `${currentYear}-${currentMonth}-${y}`;
+		let dDate = new Date(currentYear, currentMonth, y).getTime();
 
-	//add next month date
-	for (let z = 1; z <= nextMonthViewDayCount; z++) {
 		days.push(
 			new h.li(
 				{
-					class: "next-month",
-					data: { value: `${nextMonth.year}-${nextMonth.month}-${z}` },
+					class: [
+						d === strToday ? "today" : undefined,
+						d === strStartDate ? "selected" : undefined,
+						d === strEndDate ? "selected" : undefined,
+						dDate > startTime && dDate < endTime ? "selected" : undefined,
+					],
+					data: { value: dDate },
+				},
+				new h.a({ href: "#" }, `${y}`)
+			)
+		);
+	}
+
+	//add next month date
+	for (let z = 1; z <= nextViewDayCount; z++) {
+		let d = `${nextYear}-${nextMonth}-${z}`;
+		let dDate = new Date(nextYear, nextMonth, z).getTime();
+
+		days.push(
+			new h.li(
+				{
+					class: [
+						"next-month",
+						d === strStartDate ? "selected" : undefined,
+						d === strEndDate ? "selected" : undefined,
+						dDate > startTime && dDate < endTime ? "selected" : undefined,
+					],
+					data: { value: dDate },
 				},
 				new h.a({ href: "#" }, `${z}`)
 			)
@@ -453,7 +481,7 @@ export const dropdowns: IAttrContent = {
 			},
 			output: () => {
 				return new h.div({ style: { width: "320px" } }, [
-					new h.div({ display: "flex", justifyContent: "between" }, [
+					new h.div({ display: "flex", justifyContent: "between", paddingBottom: 2 }, [
 						new b.button({ color: "transparent" }, new b.icon({ id: "arrow-left" })),
 						new h.div(
 							{ marginX: "auto" },
