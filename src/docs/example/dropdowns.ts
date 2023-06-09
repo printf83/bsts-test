@@ -2,37 +2,20 @@ import { b, core, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-// new b.inputgroup.container([
-// 	new b.select([
-// 		new h.option({ value: "1", elem: "January" }),
-// 		new h.option({ value: "2", elem: "February" }),
-// 		new h.option({ value: "3", elem: "Mac" }),
-// 		new h.option({ value: "4", elem: "April" }),
-// 		new h.option({ value: "5", elem: "May" }),
-// 		new h.option({ value: "6", elem: "June" }),
-// 		new h.option({ value: "7", elem: "July" }),
-// 		new h.option({ value: "8", elem: "August" }),
-// 		new h.option({ value: "9", elem: "September" }),
-// 		new h.option({ value: "10", elem: "October" }),
-// 		new h.option({ value: "11", elem: "November" }),
-// 		new h.option({ value: "12", elem: "December" }),
-// 	]),
-// 	new b.select([
-// 		new h.option({ value: "2020", elem: "2020" }),
-// 		new h.option({ value: "2021", elem: "2021" }),
-// 		new h.option({ value: "2022", elem: "2022" }),
-// 		new h.option({ value: "2023", elem: "2023" }),
-// 		new h.option({ value: "2024", elem: "2024" }),
-// 		new h.option({ value: "2025", elem: "2025" }),
-// 	]),
-// ]);
+const copyDate = (d?: Date) => {
+	if (d) {
+		return new Date(d.getTime());
+	} else {
+		return undefined;
+	}
+};
 
 const genCalendarHeader = (arg: {
 	view: Date;
 	monthTitle: string[];
 	onchange: (sender: Element, view: Date) => void;
 }) => {
-	return new h.div({ display: "flex", justifyContent: "between", paddingBottom: 2 }, [
+	return new h.div({ display: "flex", justifyContent: "between", alignItem: "center", paddingBottom: 2 }, [
 		new b.button(
 			{
 				color: "transparent",
@@ -40,13 +23,67 @@ const genCalendarHeader = (arg: {
 					click: (e) => {
 						const target = e.target as Element;
 						arg.view.setMonth(arg.view.getMonth() - 1);
-						arg.onchange(target, arg.view);
+						arg.onchange(target, copyDate(arg.view)!);
 					},
 				},
 			},
 			new b.icon({ id: "arrow-left" })
 		),
-		new h.div({ marginX: "auto" }, new h.b(`${arg.monthTitle[arg.view.getMonth()]} ${arg.view.getFullYear()}`)),
+		new h.div(
+			{ marginX: "auto" },
+			new b.button(
+				{
+					color: "transparent",
+					on: {
+						click: (e) => {
+							const target = e.target as Element;
+							b.modal.show(
+								b.modal.simple({
+									on: {
+										"show.bs.modal": (e) => {
+											const mdl = e.target as Element;
+											(mdl.querySelector("select[name='month']") as HTMLSelectElement).value =
+												arg.view.getMonth().toString();
+											(mdl.querySelector("input[name='year']") as HTMLInputElement).value =
+												arg.view.getFullYear().toString();
+										},
+									},
+									title: "Calendar",
+									elem: new b.inputgroup.container([
+										new b.select(
+											{
+												name: "month",
+											},
+											arg.monthTitle.map((i, ix) => {
+												return new h.option({ value: ix.toString(), elem: i });
+											})
+										),
+										new b.input({ name: "year", type: "number", min: 0, max: 9999 }),
+									]),
+									btn: ["ok", "cancel"],
+									btnFn: (e) => {
+										const mdl = (e.target as Element).closest(".modal") as Element;
+										const mdlMonth = parseInt(
+											(mdl.querySelector("select[name='month']") as HTMLSelectElement).value
+										);
+										const mdlYear = parseInt(
+											(mdl.querySelector("input[name='year']") as HTMLInputElement).value
+										);
+
+										arg.view.setMonth(mdlMonth);
+										arg.view.setFullYear(mdlYear);
+										arg.onchange(target, copyDate(arg.view)!);
+
+										b.modal.hide(mdl);
+									},
+								})
+							);
+						},
+					},
+				},
+				`${arg.monthTitle[arg.view.getMonth()]} ${arg.view.getFullYear()}`
+			)
+		),
 		new b.button(
 			{
 				color: "transparent",
@@ -54,7 +91,7 @@ const genCalendarHeader = (arg: {
 					click: (e) => {
 						const target = e.target as Element;
 						arg.view.setMonth(arg.view.getMonth() + 1);
-						arg.onchange(target, arg.view);
+						arg.onchange(target, copyDate(arg.view)!);
 					},
 				},
 			},
@@ -70,24 +107,25 @@ const genCalendarItem = (arg: {
 	dayTitle: string[];
 	onchange: (sender: Element, arg: { view: Date; startDate?: Date; endDate?: Date }) => void;
 }) => {
-	arg.startDate ??= arg.view;
-	arg.endDate ??= arg.startDate ? arg.startDate : arg.view;
+	if (arg.startDate && arg.endDate) {
+		if (arg.startDate > arg.endDate) {
+			arg.startDate = arg.endDate;
+		}
 
-	if (arg.startDate > arg.endDate) {
-		arg.startDate = arg.endDate;
+		if (arg.endDate < arg.startDate) {
+			arg.endDate = arg.startDate;
+		}
 	}
 
-	if (arg.endDate < arg.startDate) {
-		arg.endDate = arg.startDate;
-	}
+	const startDate = arg.startDate ? arg.startDate : undefined;
+	const strStartDate = startDate
+		? `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`
+		: undefined;
+	const startTime = startDate ? startDate.getTime() : undefined;
 
-	const startDate = arg.startDate;
-	const strStartDate = `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`;
-	const startTime = startDate.getTime();
-
-	const endDate = arg.endDate;
-	const strEndDate = `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDate()}`;
-	const endTime = endDate.getTime();
+	const endDate = arg.endDate ? arg.endDate : undefined;
+	const strEndDate = endDate ? `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDate()}` : undefined;
+	const endTime = endDate ? endDate.getTime() : undefined;
 
 	const today = new Date();
 	const todayYear = today.getFullYear();
@@ -132,14 +170,12 @@ const genCalendarItem = (arg: {
 			new h.li(
 				{
 					class: [
-						"prev-month",
-						d === strStartDate ? "selected" : undefined,
-						d === strEndDate ? "selected" : undefined,
-						dDate > startTime && dDate < endTime ? "selected" : undefined,
+						strStartDate && d === strStartDate ? "selected" : undefined,
+						strEndDate && d === strEndDate ? "selected" : undefined,
+						startTime && endTime && dDate > startTime && dDate < endTime ? "selected" : undefined,
 					],
-					data: { value: dDate },
 				},
-				new h.a({ href: "#" }, `${f}`)
+				`${f}`
 			)
 		);
 	}
@@ -153,10 +189,11 @@ const genCalendarItem = (arg: {
 			new h.li(
 				{
 					class: [
+						"current-month",
 						d === strToday ? "today" : undefined,
-						d === strStartDate ? "selected" : undefined,
-						d === strEndDate ? "selected" : undefined,
-						dDate > startTime && dDate < endTime ? "selected" : undefined,
+						strStartDate && d === strStartDate ? "selected" : undefined,
+						strEndDate && d === strEndDate ? "selected" : undefined,
+						startTime && endTime && dDate > startTime && dDate < endTime ? "selected" : undefined,
 					],
 					data: { value: dDate },
 				},
@@ -174,14 +211,12 @@ const genCalendarItem = (arg: {
 			new h.li(
 				{
 					class: [
-						"next-month",
-						d === strStartDate ? "selected" : undefined,
-						d === strEndDate ? "selected" : undefined,
-						dDate > startTime && dDate < endTime ? "selected" : undefined,
+						strStartDate && d === strStartDate ? "selected" : undefined,
+						strEndDate && d === strEndDate ? "selected" : undefined,
+						startTime && endTime && dDate > startTime && dDate < endTime ? "selected" : undefined,
 					],
-					data: { value: dDate },
 				},
-				new h.a({ href: "#" }, `${z}`)
+				`${z}`
 			)
 		);
 	}
@@ -236,7 +271,7 @@ const genCalendar = (arg?: {
 
 	return new h.div({ class: "calendar", padding: 2 }, [
 		genCalendarHeader({
-			view: arg.view,
+			view: copyDate(arg.view)!,
 			monthTitle: arg.monthTitle,
 			onchange: (sender, view) => {
 				let calendarContainer = sender.closest(".calendar");
@@ -246,14 +281,18 @@ const genCalendar = (arg?: {
 						genCalendar({
 							dayTitle: arg?.dayTitle,
 							monthTitle: arg?.monthTitle,
-							view: view,
+							startDate: copyDate(arg?.startDate),
+							endDate: copyDate(arg?.endDate),
+							view: copyDate(view),
 						})
 					);
 				}
 			},
 		}),
 		genCalendarItem({
-			view: arg.view,
+			startDate: copyDate(arg?.startDate),
+			endDate: copyDate(arg?.endDate),
+			view: copyDate(arg.view)!,
 			dayTitle: arg.dayTitle,
 			onchange: (sender, view) => {},
 		}),
@@ -615,11 +654,35 @@ export const dropdowns: IAttrContent = {
 				return [
 					new b.dropdown.menu(
 						{ theme: "light", padding: 1, debug: true, shadow: true, style: { width: "320px" } },
-						genCalendar()
+						genCalendar({
+							view: new Date(),
+							startDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() - 7
+							),
+							endDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() + 7
+							),
+						})
 					),
 					new b.dropdown.menu(
 						{ theme: "dark", padding: 1, debug: true, shadow: true, style: { width: "320px" } },
-						genCalendar()
+						genCalendar({
+							view: new Date(),
+							startDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() - 7
+							),
+							endDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() + 7
+							),
+						})
 					),
 				];
 			},

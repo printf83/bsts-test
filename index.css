@@ -9,42 +9,6 @@
     padding-bottom: 0.5rem;
     text-align: center;
     border-radius: 0.25rem;
-}
-
-.calendar-item li:not(.day):hover {
-    cursor: pointer;
-    background-color: rgba(var(--bs-tertiary-bg-rgb), 1)
-}
-
-.calendar-item li a {
-    color: var(--bs-emphasis-color);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.calendar-item li.today{
-    background-color: rgba(var(--bs-primary-rgb),1);
-}
-
-.calendar-item li.today:hover{
-    background-color: rgba(var(--bs-primary-rgb),0.75);
-}
-
-.calendar-item li.selected:not(.today) {
-    background-color: rgba(var(--bs-primary-rgb),0.25);
-}
-
-.calendar-item li.selected:not(.today):hover{
-    background-color: rgba(var(--bs-primary-rgb),0.15);
-}
-
-.calendar-item li.today a {
-    color: #fff !important;
-    font-weight: 600;
-}
-
-.calendar-item li.prev-month a,
-.calendar-item li.next-month a {
     color: rgba(var(--bs-body-color-rgb), 0.5);
     font-weight: inherit;
 }
@@ -52,6 +16,40 @@
 .calendar-item li.day {
     color: rgba(var(--bs-body-color-rgb), 0.75);
 }
+
+.calendar-item li.current-month:hover {
+    cursor: pointer;
+    background-color: rgba(var(--bs-tertiary-bg-rgb), 1)
+}
+
+.calendar-item li.current-month a {
+    color: var(--bs-emphasis-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.calendar-item li.current-month.today a {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.calendar-item li.current-month.today{
+    background-color: rgba(var(--bs-primary-rgb),1);
+}
+
+.calendar-item li.current-month.today:hover{
+    background-color: rgba(var(--bs-primary-rgb),0.75);
+}
+
+.calendar-item li.current-month.selected:not(.today) {
+    background-color: rgba(var(--bs-primary-rgb),0.25);
+}
+
+.calendar-item li.current-month.selected:not(.today):hover{
+    background-color: rgba(var(--bs-primary-rgb),0.15);
+}
+
+
 
 
 
@@ -603,27 +601,6 @@ strong,
     margin-top: var(--bs-gutter-y);
 }
 
-/* gap on example code output */
-/* .example-output{
-    --bs-example-gap-1:0.25rem;
-    --bs-example-gap-2:0.5rem;
-    --bs-example-gap-3:1rem;
-    --bs-example-gap-4:1.5rem;
-    --bs-example-gap-5:3rem;
-
-}
-.example-output.gap-1 { margin: calc(var(--bs-example-gap-1) * -1); }
-.example-output.gap-1>*:not(.modal){ margin: var(--bs-example-gap-1); }
-.example-output.gap-2 { margin: calc(var(--bs-example-gap-2) * -1); }
-.example-output.gap-2>*:not(.modal) { margin: var(--bs-example-gap-2); }
-.example-output.gap-3 { margin: calc(var(--bs-example-gap-3) * -1); }
-.example-output.gap-3>*:not(.modal) { margin: var(--bs-example-gap-3); }
-.example-output.gap-4 { margin: calc(var(--bs-example-gap-4) * -1); }
-.example-output.gap-4>*:not(.modal) { margin: var(--bs-example-gap-4); }
-.example-output.gap-5 { margin: calc(var(--bs-example-gap-5) * -1); }
-.example-output.gap-5>*:not(.modal) { margin: var(--bs-example-gap-5); } */
-
-
 
 .example-output .debug:not(.toast-container){
     position: static !important;
@@ -692,9 +669,7 @@ strong,
 }
 
 /* example */
-/* .example-code .list-group-item:last-of-type {
-    border-bottom: 0 !important;
-} */
+
 
 @media (max-width: 768px) {
     .example-code.card,
