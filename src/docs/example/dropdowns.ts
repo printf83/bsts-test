@@ -2,14 +2,6 @@ import { b, core, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const copyDate = (d?: Date) => {
-	if (d) {
-		return new Date(d.getTime());
-	} else {
-		return undefined;
-	}
-};
-
 const genCalendarHeader = (arg: {
 	view: Date;
 	monthTitle: string[];
@@ -23,7 +15,7 @@ const genCalendarHeader = (arg: {
 					click: (e) => {
 						const target = e.target as Element;
 						arg.view.setMonth(arg.view.getMonth() - 1);
-						arg.onchange(target, copyDate(arg.view)!);
+						arg.onchange(target, arg.view);
 					},
 				},
 			},
@@ -34,6 +26,7 @@ const genCalendarHeader = (arg: {
 			new b.button(
 				{
 					color: "transparent",
+					fontWeight: "bold",
 					on: {
 						click: (e) => {
 							const target = e.target as Element;
@@ -72,7 +65,7 @@ const genCalendarHeader = (arg: {
 
 										arg.view.setMonth(mdlMonth);
 										arg.view.setFullYear(mdlYear);
-										arg.onchange(target, copyDate(arg.view)!);
+										arg.onchange(target, arg.view);
 
 										b.modal.hide(mdl);
 									},
@@ -91,7 +84,7 @@ const genCalendarHeader = (arg: {
 					click: (e) => {
 						const target = e.target as Element;
 						arg.view.setMonth(arg.view.getMonth() + 1);
-						arg.onchange(target, copyDate(arg.view)!);
+						arg.onchange(target, arg.view);
 					},
 				},
 			},
@@ -101,13 +94,14 @@ const genCalendarHeader = (arg: {
 };
 
 const genCalendarItem = (arg: {
+	multiple?: boolean;
 	view: Date;
 	startDate?: Date;
 	endDate?: Date;
 	dayTitle: string[];
-	onchange: (sender: Element, arg: { view: Date; startDate?: Date; endDate?: Date }) => void;
+	onchange: (sender: Element, arg: { startDate?: Date; endDate?: Date }) => void;
 }) => {
-	if (arg.startDate && arg.endDate) {
+	if (arg.multiple && arg.startDate && arg.endDate) {
 		if (arg.startDate > arg.endDate) {
 			arg.startDate = arg.endDate;
 		}
@@ -115,6 +109,8 @@ const genCalendarItem = (arg: {
 		if (arg.endDate < arg.startDate) {
 			arg.endDate = arg.startDate;
 		}
+	} else if (!arg.multiple) {
+		arg.endDate = arg.startDate;
 	}
 
 	const startDate = arg.startDate ? arg.startDate : undefined;
@@ -196,6 +192,38 @@ const genCalendarItem = (arg: {
 						startTime && endTime && dDate > startTime && dDate < endTime ? "selected" : undefined,
 					],
 					data: { value: dDate },
+					on: {
+						click: (e) => {
+							const target = e.target as Element;
+							const dataValue = target.closest("li")?.getAttribute("data-value");
+							if (dataValue) {
+								const value = parseInt(dataValue);
+
+								if (arg.multiple) {
+									if (arg.startDate && arg.endDate) {
+										arg.startDate = new Date(value);
+										arg.endDate = undefined;
+									} else if (arg.startDate && !arg.endDate) {
+										const sValue = arg.startDate.getTime();
+
+										if (sValue > value) {
+											arg.startDate = new Date(value);
+											arg.endDate = new Date(sValue);
+										} else {
+											arg.endDate = new Date(value);
+										}
+									}
+								} else {
+									arg.startDate = new Date(value);
+								}
+
+								arg.onchange(target, {
+									startDate: arg.startDate,
+									endDate: arg.endDate,
+								});
+							}
+						},
+					},
 				},
 				new h.a({ href: "#" }, `${y}`)
 			)
@@ -235,13 +263,17 @@ const genCalendarItem = (arg: {
 };
 
 const genCalendar = (arg?: {
+	multiple?: boolean;
 	view?: Date;
 	startDate?: Date;
 	endDate?: Date;
 	dayTitle?: string[];
 	monthTitle?: string[];
+	onchange?: (sender: Element, arg: { startDate?: Date; endDate?: Date }) => void;
 }) => {
 	arg ??= {};
+
+	arg.multiple ??= false;
 	arg.view ??= new Date();
 
 	if (arg.monthTitle && arg.monthTitle.length !== 12) {
@@ -271,7 +303,7 @@ const genCalendar = (arg?: {
 
 	return new h.div({ class: "calendar", padding: 2 }, [
 		genCalendarHeader({
-			view: copyDate(arg.view)!,
+			view: arg.view,
 			monthTitle: arg.monthTitle,
 			onchange: (sender, view) => {
 				let calendarContainer = sender.closest(".calendar");
@@ -279,22 +311,41 @@ const genCalendar = (arg?: {
 					core.replaceWith(
 						calendarContainer,
 						genCalendar({
+							multiple: arg?.multiple,
 							dayTitle: arg?.dayTitle,
 							monthTitle: arg?.monthTitle,
-							startDate: copyDate(arg?.startDate),
-							endDate: copyDate(arg?.endDate),
-							view: copyDate(view),
+							startDate: arg?.startDate,
+							endDate: arg?.endDate,
+							view: view,
+							onchange: arg?.onchange,
 						})
 					);
 				}
 			},
 		}),
 		genCalendarItem({
-			startDate: copyDate(arg?.startDate),
-			endDate: copyDate(arg?.endDate),
-			view: copyDate(arg.view)!,
+			multiple: arg?.multiple,
+			startDate: arg?.startDate,
+			endDate: arg?.endDate,
+			view: arg.view,
 			dayTitle: arg.dayTitle,
-			onchange: (sender, view) => {},
+			onchange: (sender, detail) => {
+				let calendarContainer = sender.closest(".calendar");
+				if (calendarContainer) {
+					core.replaceWith(
+						calendarContainer,
+						genCalendar({
+							multiple: arg?.multiple,
+							dayTitle: arg?.dayTitle,
+							monthTitle: arg?.monthTitle,
+							startDate: detail?.startDate,
+							endDate: detail?.endDate,
+							view: arg?.view,
+							onchange: arg?.onchange,
+						})
+					);
+				}
+			},
 		}),
 	]);
 };
@@ -653,37 +704,87 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.menu(
-						{ theme: "light", padding: 1, debug: true, shadow: true, style: { width: "320px" } },
+						{ theme: "light", padding: 0, debug: true, shadow: true, style: { width: "320px" } },
 						genCalendar({
+							multiple: true,
 							view: new Date(),
 							startDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() - 7
+								new Date().getDate() + 17
 							),
 							endDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 7
+								new Date().getDate() + 35
 							),
 						})
 					),
 					new b.dropdown.menu(
-						{ theme: "dark", padding: 1, debug: true, shadow: true, style: { width: "320px" } },
+						{ theme: "dark", padding: 0, debug: true, shadow: true, style: { width: "320px" } },
 						genCalendar({
+							multiple: false,
 							view: new Date(),
 							startDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() - 7
-							),
-							endDate: new Date(
-								new Date().getFullYear(),
-								new Date().getMonth(),
-								new Date().getDate() + 7
+								new Date().getDate() + 3
 							),
 						})
 					),
+				];
+			},
+		}),
+
+		new e.text("Live preview"),
+		new e.code({
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				gap: 2,
+			},
+			output: () => {
+				return [
+					new b.dropdown.container([
+						new b.dropdown.toggle({ autoClose: "manual" }, "Light dropdown"),
+						new b.dropdown.menu(
+							{
+								theme: "light",
+								padding: 0,
+								autoClose: "outside",
+								style: { minWidth: "320px" },
+							},
+							genCalendar({
+								multiple: true,
+								view: new Date(),
+								startDate: new Date(
+									new Date().getFullYear(),
+									new Date().getMonth(),
+									new Date().getDate() + 17
+								),
+								endDate: new Date(
+									new Date().getFullYear(),
+									new Date().getMonth(),
+									new Date().getDate() + 35
+								),
+							})
+						),
+					]),
+					new b.dropdown.container([
+						new b.dropdown.toggle({ autoClose: "manual" }, "Dark dropdown"),
+						new b.dropdown.menu(
+							{ theme: "dark", padding: 0, style: { minWidth: "320px" } },
+							genCalendar({
+								multiple: false,
+								view: new Date(),
+								startDate: new Date(
+									new Date().getFullYear(),
+									new Date().getMonth(),
+									new Date().getDate() + 3
+								),
+							})
+						),
+					]),
 				];
 			},
 		}),

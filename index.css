@@ -24,7 +24,6 @@
 
 .calendar-item li.current-month a {
     color: var(--bs-emphasis-color);
-    font-weight: 600;
     text-decoration: none;
 }
 
@@ -41,11 +40,11 @@
     background-color: rgba(var(--bs-primary-rgb),0.75);
 }
 
-.calendar-item li.current-month.selected:not(.today) {
+.calendar-item li.selected:not(.today) {
     background-color: rgba(var(--bs-primary-rgb),0.25);
 }
 
-.calendar-item li.current-month.selected:not(.today):hover{
+.calendar-item li.selected:not(.today):hover{
     background-color: rgba(var(--bs-primary-rgb),0.15);
 }
 
