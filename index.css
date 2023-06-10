@@ -554,6 +554,11 @@ strong,
     display: block !important;
 }
 
+.example-output .debug.d-flex:not(.toast-container){
+    position: static !important;
+    display: flex !important;
+}
+
 .example-output .debug.toast-container:not(#toastPlacement) {
     position: static !important;
     display: block !important;

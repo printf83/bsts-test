@@ -857,5 +857,148 @@ export const dropdowns: IAttrContent = {
 				];
 			},
 		}),
+
+		//-----------------------
+
+		new e.subtitle("List"),
+		new e.code({
+			showCodepen: false,
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				gap: 4,
+			},
+			output: () => {
+				const menuItem = [
+					new h.nav(
+						{ col: "lg-8" },
+						new h.ul(
+							{
+								unstyle: true,
+								display: "flex",
+								flex: "column",
+								gap: 2,
+								linkNormal: "body",
+								linkHover: "primary",
+								linkHoverBg: "body-tertiary",
+							},
+							[
+								{
+									href: "#",
+									icon: "image-fill",
+									title: "Main product",
+									description: "Take a tour trough the product",
+								},
+								{
+									href: "#",
+									icon: "music-note-beamed",
+									title: "Another product",
+									description: "Explore this other product we offer",
+								},
+								{
+									href: "#",
+									icon: "question-circle",
+									title: "Support",
+									description: "Get help from our support crew",
+								},
+							].map((i) => {
+								return new h.li([
+									new h.a(
+										{
+											rounded: 2,
+											display: "flex",
+											alignItem: "start",
+											gap: 2,
+											paddingY: 2,
+											paddingX: 3,
+											lineHeight: "sm",
+											textAlign: "start",
+											textDecoration: "none",
+											href: i.href,
+										},
+										[
+											new b.icon({ id: i.icon, style: { fontSize: "1.5em" } }),
+											new h.div([
+												new h.strong({ display: "block" }, i.title),
+												new h.small(i.description),
+											]),
+										]
+									),
+								]);
+							})
+						)
+					),
+					new b.verticalrule({
+						display: ["none", "lg-inline-block"],
+						marginX: 4,
+					}),
+					new h.hr({ display: "lg-none" }),
+					new h.div(
+						{ col: "lg-auto", paddingEnd: 3 },
+						new h.ul(
+							{
+								display: "flex",
+								flex: "column",
+								gap: 2,
+								unstyle: true,
+								small: true,
+								marginBottom: 2,
+							},
+							[
+								{ href: "#", label: "Documentation" },
+								{ href: "#", label: "Use cases" },
+								{ href: "#", label: "API status" },
+								{ href: "#", label: "Partners" },
+								{ href: "#", label: "Resources" },
+							].map((i) => {
+								return new h.li(
+									new h.a(
+										{
+											href: i.href,
+											linkOffset: 2,
+											linkUnderline: true,
+											linkUnderlineOpacity: 25,
+											linkUnderlineOpacityHover: 75,
+										},
+										i.label
+									)
+								);
+							})
+						)
+					),
+				];
+
+				return [
+					new b.dropdown.menu(
+						{
+							theme: "light",
+							display: "flex",
+							flex: ["column", "lg-row"],
+							alignItem: "stretch",
+							justifyContent: "start",
+							padding: 3,
+							rounded: 3,
+							debug: true,
+							shadow: true,
+						},
+						menuItem
+					),
+					new b.dropdown.menu(
+						{
+							theme: "dark",
+							display: "flex",
+							flex: ["column", "lg-row"],
+							alignItem: "stretch",
+							justifyContent: "start",
+							padding: 3,
+							rounded: 3,
+							debug: true,
+							shadow: true,
+						},
+						menuItem
+					),
+				];
+			},
+		}),
 	],
 };
