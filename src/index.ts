@@ -100,7 +100,7 @@ const setupThemeChanges = () => {
 
 let CURRENT_THEME = getSavedTheme();
 let CURRENT_BOOTSWATCH = getSavedBootswatch();
-// let CURRENT_VERSION = "0.1.122";
+// let CURRENT_VERSION = "0.1.123";
 
 declare var PR: {
 	prettyPrint: () => void;

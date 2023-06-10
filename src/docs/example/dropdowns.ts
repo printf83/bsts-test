@@ -704,8 +704,33 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.menu(
-						{ theme: "light", padding: 0, debug: true, shadow: true, style: { width: "320px" } },
+						{ theme: "light", debug: true, shadow: true, style: { width: "320px" } },
+						new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
+					),
+					new b.dropdown.menu(
+						{ theme: "dark", debug: true, shadow: true, style: { width: "320px" } },
+						new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
+					),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Multiple"),
+		new e.code({
+			showCodepen: false,
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				gap: 4,
+			},
+			output: () => {
+				return [
+					new b.dropdown.menu(
+						{ theme: "light", debug: true, shadow: true, style: { width: "320px" } },
 						new b.calendar({
+							paddingX: 2,
 							multiple: true,
 							view: new Date(),
 							startDate: new Date(
@@ -721,14 +746,20 @@ export const dropdowns: IAttrContent = {
 						})
 					),
 					new b.dropdown.menu(
-						{ theme: "dark", padding: 0, debug: true, shadow: true, style: { width: "320px" } },
+						{ theme: "dark", debug: true, shadow: true, style: { width: "320px" } },
 						new b.calendar({
-							multiple: false,
+							paddingX: 2,
+							multiple: true,
 							view: new Date(),
 							startDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 3
+								new Date().getDate() + 17
+							),
+							endDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() + 35
 							),
 						})
 					),
@@ -736,7 +767,7 @@ export const dropdowns: IAttrContent = {
 			},
 		}),
 
-		new e.text("Live preview"),
+		new e.xsubtitle("Live preview"),
 		new e.code({
 			outputAttr: {
 				display: "flex",
@@ -746,15 +777,44 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ autoClose: "manual" }, "Light dropdown"),
+						new b.dropdown.toggle({ autoClose: "outside" }, "Light dropdown"),
 						new b.dropdown.menu(
 							{
 								theme: "light",
-								padding: 0,
-								autoClose: "outside",
+								style: { minWidth: "320px" },
+							},
+							new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
+						),
+					]),
+					new b.dropdown.container([
+						new b.dropdown.toggle({ autoClose: "outside" }, "Dark dropdown"),
+						new b.dropdown.menu(
+							{ theme: "dark", style: { minWidth: "320px" } },
+							new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
+						),
+					]),
+				];
+			},
+		}),
+
+		new e.text("Multiple"),
+		new e.code({
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				gap: 2,
+			},
+			output: () => {
+				return [
+					new b.dropdown.container([
+						new b.dropdown.toggle({ autoClose: "outside" }, "Light dropdown"),
+						new b.dropdown.menu(
+							{
+								theme: "light",
 								style: { minWidth: "320px" },
 							},
 							new b.calendar({
+								paddingX: 2,
 								multiple: true,
 								view: new Date(),
 								startDate: new Date(
@@ -771,16 +831,25 @@ export const dropdowns: IAttrContent = {
 						),
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ autoClose: "manual" }, "Dark dropdown"),
+						new b.dropdown.toggle({ autoClose: "outside" }, "Dark dropdown"),
 						new b.dropdown.menu(
-							{ theme: "dark", padding: 0, style: { minWidth: "320px" } },
+							{
+								theme: "dark",
+								style: { minWidth: "320px" },
+							},
 							new b.calendar({
-								multiple: false,
+								paddingX: 2,
+								multiple: true,
 								view: new Date(),
 								startDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() + 3
+									new Date().getDate() + 17
+								),
+								endDate: new Date(
+									new Date().getFullYear(),
+									new Date().getMonth(),
+									new Date().getDate() + 35
 								),
 							})
 						),
