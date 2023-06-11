@@ -496,12 +496,12 @@ export const dropdowns: IAttrContent = {
 							startDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 17
+								new Date().getDate() - 7
 							),
 							endDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 35
+								new Date().getDate() + 7
 							),
 						})
 					),
@@ -514,12 +514,12 @@ export const dropdowns: IAttrContent = {
 							startDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 17
+								new Date().getDate() - 7
 							),
 							endDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 35
+								new Date().getDate() + 7
 							),
 						})
 					),
@@ -580,12 +580,12 @@ export const dropdowns: IAttrContent = {
 								startDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() + 17
+									new Date().getDate() - 7
 								),
 								endDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() + 35
+									new Date().getDate() + 7
 								),
 							})
 						),
@@ -604,12 +604,12 @@ export const dropdowns: IAttrContent = {
 								startDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() + 17
+									new Date().getDate() - 7
 								),
 								endDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() + 35
+									new Date().getDate() + 7
 								),
 							})
 						),
