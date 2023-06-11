@@ -246,11 +246,15 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 			`);
 		}
 
-		if (attrHasClass(attr, "dropdown-menu-w-md-450px")) {
+		if (attrHasClass(attr, "dropdown-menu-w-md-480px")) {
 			result.push(`
+				.example-output.dropdown-menu-w-md-480px .dropdown-menu {
+					min-width: 320px !important;
+				}
+
 				@media (min-width: 992px) {
-					.dropdown-menu-w-md-450px .dropdown-menu {
-						width: 450px !important;
+					.dropdown-menu-w-md-480px .dropdown-menu {
+						width: 480px !important;
 					}
 				}
 			`);

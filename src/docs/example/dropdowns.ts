@@ -766,7 +766,7 @@ export const dropdowns: IAttrContent = {
 		new e.code({
 			showViewport: true,
 			showCodepen: false,
-			outputAttr: { class: "dropdown-menu-w-md-450px", display: "flex", flex: "wrap", gap: 4 },
+			outputAttr: { class: "dropdown-menu-w-md-480px", display: "flex", flex: "wrap", gap: 4 },
 			extention: [{ name: "MENUCOMPONENT", rename: "menuItem", output: menuItem }],
 			output: () => {
 				return [
@@ -795,7 +795,7 @@ export const dropdowns: IAttrContent = {
 		new e.text("Live preview"),
 		new e.code({
 			showViewport: true,
-			outputAttr: { class: "dropdown-menu-w-md-450px", display: "flex", flex: "wrap", gap: 2 },
+			outputAttr: { class: "dropdown-menu-w-md-480px", display: "flex", flex: "wrap", gap: 2 },
 			extention: [{ name: "MENUCOMPONENT", rename: "menuItem", output: menuItem }],
 			output: () => {
 				return [

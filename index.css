@@ -272,9 +272,13 @@ strong,
 }
 
 /* responsive-width */
+.example-output.dropdown-menu-w-md-480px .dropdown-menu {
+    min-width: 320px !important;
+}
+
 @media (min-width: 992px) {
-    .example-output.dropdown-menu-w-md-450px .dropdown-menu {
-        min-width: 450px !important;
+    .example-output.dropdown-menu-w-md-480px .dropdown-menu {
+        min-width: 480px !important;
     }
 }
 
