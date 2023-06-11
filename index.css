@@ -271,6 +271,16 @@ strong,
     list-style: initial;
 }
 
+/* responsive-width */
+@media (min-width: 992px) {
+    .example-output.dropdown-menu-w-md-450px .dropdown-menu {
+        min-width: 450px !important;
+    }
+}
+
+
+/* ratio-box */
+
 .example-output.ratio-box div.ratio{
     display: inline-block;
     width: 10rem;

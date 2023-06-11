@@ -206,21 +206,6 @@ const attrHasClass = (attr: core.IAttr, className: string | string[]) => {
 	return false;
 };
 
-// const propHasValue = (
-// 	prop: string | boolean | number | (string | boolean | number)[],
-// 	value: string | boolean | number
-// ) => {
-// 	if (prop) {
-// 		if (Array.isArray(prop)) {
-// 			return prop.indexOf(value) > -1;
-// 		} else {
-// 			return prop === value;
-// 		}
-// 	}
-
-// 	return false;
-// };
-
 export const getRootBaseOnSource = (attrPreview?: core.IAttr, attrOutput?: core.IAttr) => {
 	if (attrPreview) {
 		// attr = core.mergeObject({ container: true, padding: 4 }, attr);
@@ -252,6 +237,16 @@ export const getRootBaseOnSource = (attrPreview?: core.IAttr, attrOutput?: core.
 export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		let result: string[] = [];
+
+		if (attrHasClass(attr, "dropdown-menu-w-md-450px")) {
+			result.push(`
+				@media (min-width: 992px) {
+					.dropdown-menu-w-md-450px .dropdown-menu {
+						width: 320px !important;
+					}
+				}
+			`);
+		}
 
 		if (attrHasClass(attr, "sidebar-item")) {
 			result.push(`

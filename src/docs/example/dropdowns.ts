@@ -9,7 +9,6 @@ const menuItem = () => {
 			flex: ["column", "lg-row"],
 			alignItem: "stretch",
 			justifyContent: "start",
-			style: { minWidth: "450px" },
 		},
 		[
 			new h.nav(
@@ -455,6 +454,7 @@ export const dropdowns: IAttrContent = {
 
 		new e.title("Calendar"),
 		new e.code({
+			showConsole: true,
 			showCodepen: false,
 			outputAttr: {
 				display: "flex",
@@ -464,71 +464,42 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.menu(
-						{ theme: "light", debug: true, shadow: true, style: { width: "320px" } },
-						new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
-					),
-					new b.dropdown.menu(
-						{ theme: "dark", debug: true, shadow: true, style: { width: "320px" } },
-						new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
-					),
-				];
-			},
-		}),
-
-		//-----------------------
-
-		new e.subtitle("Multiple"),
-		new e.code({
-			showCodepen: false,
-			outputAttr: {
-				display: "flex",
-				flex: "wrap",
-				gap: 4,
-			},
-			output: () => {
-				return [
-					new b.dropdown.menu(
-						{ theme: "light", debug: true, shadow: true, style: { width: "320px" } },
+						{ theme: "light", debug: true, shadow: true, style: { minWidth: "320px" } },
 						new b.calendar({
 							paddingX: 2,
-							multiple: true,
 							view: new Date(),
-							startDate: new Date(
-								new Date().getFullYear(),
-								new Date().getMonth(),
-								new Date().getDate() - 3
-							),
-							endDate: new Date(
-								new Date().getFullYear(),
-								new Date().getMonth(),
-								new Date().getDate() + 3
-							),
+							startDate: new Date(),
+							on: {
+								"change.bs.calendar": (event) => {
+									const target = event.target as Element;
+									const detail = (event as CustomEvent).detail;
+									e.console(target, "change.bs.calendar", detail, "success");
+								},
+							},
 						})
 					),
 					new b.dropdown.menu(
-						{ theme: "dark", debug: true, shadow: true, style: { width: "320px" } },
+						{ theme: "dark", debug: true, shadow: true, style: { minWidth: "320px" } },
 						new b.calendar({
 							paddingX: 2,
-							multiple: true,
 							view: new Date(),
-							startDate: new Date(
-								new Date().getFullYear(),
-								new Date().getMonth(),
-								new Date().getDate() - 3
-							),
-							endDate: new Date(
-								new Date().getFullYear(),
-								new Date().getMonth(),
-								new Date().getDate() + 3
-							),
+							startDate: new Date(),
+							on: {
+								"change.bs.calendar": (event) => {
+									const target = event.target as Element;
+									const detail = (event as CustomEvent).detail;
+									e.console(target, "change.bs.calendar", detail, "success");
+								},
+							},
 						})
 					),
 				];
 			},
 		}),
 
-		new e.xsubtitle("Live preview"),
+		new e.text("Live preview"),
 		new e.code({
+			showConsole: true,
 			outputAttr: {
 				display: "flex",
 				flex: "wrap",
@@ -543,22 +514,112 @@ export const dropdowns: IAttrContent = {
 								theme: "light",
 								style: { minWidth: "320px" },
 							},
-							new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
+							new b.calendar({
+								paddingX: 2,
+								view: new Date(),
+								startDate: new Date(),
+								on: {
+									"change.bs.calendar": (event) => {
+										const target = event.target as Element;
+										const detail = (event as CustomEvent).detail;
+										e.console(target, "change.bs.calendar", detail, "success");
+									},
+								},
+							})
 						),
 					]),
 					new b.dropdown.container([
 						new b.dropdown.toggle({ autoClose: "outside" }, "Dark dropdown"),
 						new b.dropdown.menu(
 							{ theme: "dark", style: { minWidth: "320px" } },
-							new b.calendar({ paddingX: 2, view: new Date(), startDate: new Date() })
+							new b.calendar({
+								paddingX: 2,
+								view: new Date(),
+								startDate: new Date(),
+								on: {
+									"change.bs.calendar": (event) => {
+										const target = event.target as Element;
+										const detail = (event as CustomEvent).detail;
+										e.console(target, "change.bs.calendar", detail, "success");
+									},
+								},
+							})
 						),
 					]),
 				];
 			},
 		}),
 
-		new e.text("Multiple"),
+		//-----------------------
+
+		new e.subtitle("Multiple"),
 		new e.code({
+			showConsole: true,
+			showCodepen: false,
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				gap: 4,
+			},
+			output: () => {
+				return [
+					new b.dropdown.menu(
+						{ theme: "light", debug: true, shadow: true, style: { minWidth: "320px" } },
+						new b.calendar({
+							paddingX: 2,
+							multiple: true,
+							view: new Date(),
+							startDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() - 3
+							),
+							endDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() + 3
+							),
+							on: {
+								"change.bs.calendar": (event) => {
+									const target = event.target as Element;
+									const detail = (event as CustomEvent).detail;
+									e.console(target, "change.bs.calendar", detail, "success");
+								},
+							},
+						})
+					),
+					new b.dropdown.menu(
+						{ theme: "dark", debug: true, shadow: true, style: { minWidth: "320px" } },
+						new b.calendar({
+							paddingX: 2,
+							multiple: true,
+							view: new Date(),
+							startDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() - 3
+							),
+							endDate: new Date(
+								new Date().getFullYear(),
+								new Date().getMonth(),
+								new Date().getDate() + 3
+							),
+							on: {
+								"change.bs.calendar": (event) => {
+									const target = event.target as Element;
+									const detail = (event as CustomEvent).detail;
+									e.console(target, "change.bs.calendar", detail, "success");
+								},
+							},
+						})
+					),
+				];
+			},
+		}),
+
+		new e.text("Live preview"),
+		new e.code({
+			showConsole: true,
 			outputAttr: {
 				display: "flex",
 				flex: "wrap",
@@ -587,6 +648,13 @@ export const dropdowns: IAttrContent = {
 									new Date().getMonth(),
 									new Date().getDate() + 3
 								),
+								on: {
+									"change.bs.calendar": (event) => {
+										const target = event.target as Element;
+										const detail = (event as CustomEvent).detail;
+										e.console(target, "change.bs.calendar", detail, "success");
+									},
+								},
 							})
 						),
 					]),
@@ -611,6 +679,80 @@ export const dropdowns: IAttrContent = {
 									new Date().getMonth(),
 									new Date().getDate() + 3
 								),
+								on: {
+									"change.bs.calendar": (event) => {
+										const target = event.target as Element;
+										const detail = (event as CustomEvent).detail;
+										e.console(target, "change.bs.calendar", detail, "success");
+									},
+								},
+							})
+						),
+					]),
+				];
+			},
+		}),
+
+		new e.text("Change toggle"),
+		new e.code({
+			showConsole: true,
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				gap: 2,
+			},
+			output: () => {
+				return [
+					new b.dropdown.container([
+						new b.dropdown.toggle({ autoClose: "outside" }, "Light dropdown"),
+						new b.dropdown.menu(
+							{
+								theme: "light",
+								style: { minWidth: "320px" },
+							},
+							new b.calendar({
+								paddingX: 2,
+								multiple: true,
+								view: new Date(),
+								startDate: new Date(
+									new Date().getFullYear(),
+									new Date().getMonth(),
+									new Date().getDate() - 3
+								),
+								endDate: new Date(
+									new Date().getFullYear(),
+									new Date().getMonth(),
+									new Date().getDate() + 3
+								),
+								on: {
+									"change.bs.calendar": (event) => {
+										const target = event.target as Element;
+										const detail: { startDate: Date | undefined; endDate: Date | undefined } = (
+											event as CustomEvent
+										).detail;
+										e.console(target, "change.bs.calendar", detail, "success");
+
+										//change toggle text
+										const toggle = target.closest(".dropdown-menu")?.previousSibling as Element;
+										toggle.innerHTML = `${
+											detail.startDate
+												? detail.startDate.getDate() +
+												  "/" +
+												  detail.startDate.getMonth() +
+												  "/" +
+												  detail.startDate.getFullYear()
+												: ""
+										}${detail.endDate ? " - " : ""}${
+											detail.endDate
+												? detail.endDate.getDate() +
+												  "/" +
+												  detail.endDate.getMonth() +
+												  "/" +
+												  detail.endDate.getFullYear()
+												: ""
+										}`;
+									},
+								},
 							})
 						),
 					]),
@@ -622,24 +764,13 @@ export const dropdowns: IAttrContent = {
 
 		new e.title("List"),
 		new e.code({
+			showViewport: true,
 			showCodepen: false,
-			outputAttr: {
-				display: "flex",
-				flex: "wrap",
-				gap: 4,
-			},
+			outputAttr: { class: "dropdown-menu-w-md-450px", display: "flex", flex: "wrap", gap: 4 },
 			extention: [{ name: "MENUCOMPONENT", rename: "menuItem", output: menuItem }],
 			output: () => {
 				return [
-					new b.dropdown.menu(
-						{
-							theme: "light",
-							padding: 3,
-							debug: true,
-							shadow: true,
-						},
-						menuItem()
-					),
+					new b.dropdown.menu({ theme: "light", padding: 3, debug: true, shadow: true }, menuItem()),
 					new b.dropdown.menu(
 						{
 							theme: "dark",
@@ -655,11 +786,8 @@ export const dropdowns: IAttrContent = {
 
 		new e.text("Live preview"),
 		new e.code({
-			outputAttr: {
-				display: "flex",
-				flex: "wrap",
-				gap: 2,
-			},
+			showViewport: true,
+			outputAttr: { class: "dropdown-menu-w-md-450px", display: "flex", flex: "wrap", gap: 2 },
 			extention: [{ name: "MENUCOMPONENT", rename: "menuItem", output: menuItem }],
 			output: () => {
 				return [
