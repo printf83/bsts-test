@@ -156,20 +156,20 @@ export const list_groups: IAttrContent = {
 					]),
 					new b.list.container({ style: { maxWidth: "460px" } }, [
 						ex.c3({
-							name: "group1",
+							name: "group2",
 							checked: true,
 							type: "radio",
 							label: "First radio",
 							description: "With support text underneath to add more detail",
 						}),
 						ex.c3({
-							name: "group1",
+							name: "group2",
 							type: "radio",
 							label: "Second radio",
 							description: "Some other text goes here",
 						}),
 						ex.c3({
-							name: "group1",
+							name: "group2",
 							type: "radio",
 							label: "Third radio",
 							description: "And we end with another snippet of text",
