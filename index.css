@@ -278,6 +278,10 @@ strong,
     }
 }
 
+/*list-group-w-400px*/
+.example-output.list-group-w-400px{
+    max-width: 400px;
+}
 
 /* ratio-box */
 

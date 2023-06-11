@@ -238,11 +238,19 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		let result: string[] = [];
 
+		if (attrHasClass(attr, "list-group-w-400px")) {
+			result.push(`
+				.list-group {
+					max-width: 400px;
+				}
+			`);
+		}
+
 		if (attrHasClass(attr, "dropdown-menu-w-md-450px")) {
 			result.push(`
 				@media (min-width: 992px) {
 					.dropdown-menu-w-md-450px .dropdown-menu {
-						width: 320px !important;
+						width: 450px !important;
 					}
 				}
 			`);

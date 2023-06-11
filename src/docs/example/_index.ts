@@ -16,3 +16,6 @@ export const footers = async () => {
 export const dropdowns = async () => {
 	return (await import("./dropdowns.js")).dropdowns;
 };
+export const list_groups = async () => {
+	return (await import("./list_groups.js")).list_groups;
+};

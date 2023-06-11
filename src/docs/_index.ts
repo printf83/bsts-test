@@ -32,6 +32,9 @@ export const doc = async (value: string) => {
 		case "docs/example/dropdowns":
 			result = await example.dropdowns();
 			break;
+		case "docs/example/list_groups":
+			result = await example.list_groups();
+			break;
 
 		//--------------------------
 		case "docs/customize/color":

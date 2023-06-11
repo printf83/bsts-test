@@ -248,6 +248,7 @@ let m = {
 				{ label: "Sidebars", value: "docs/example/sidebars" },
 				{ label: "Footers", value: "docs/example/footers" },
 				{ label: "Dropdowns", value: "docs/example/dropdowns" },
+				{ label: "List groups", value: "docs/example/list_groups" },
 			],
 		},
 	] as main.IAttrItemMenu[],
@@ -604,9 +605,6 @@ const mainContainer = main.Container({
 		{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 	],
 	currentTheme: CURRENT_THEME as main.IBsMainContainer["currentTheme"],
-
-	// itemVersion: [{ value: CURRENT_VERSION, label: `Latest (${CURRENT_VERSION})` }],
-	// currentVersion: CURRENT_VERSION,
 
 	itemBootswatch: [
 		{

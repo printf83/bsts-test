@@ -770,7 +770,15 @@ export const dropdowns: IAttrContent = {
 			extention: [{ name: "MENUCOMPONENT", rename: "menuItem", output: menuItem }],
 			output: () => {
 				return [
-					new b.dropdown.menu({ theme: "light", padding: 3, debug: true, shadow: true }, menuItem()),
+					new b.dropdown.menu(
+						{
+							theme: "light",
+							padding: 3,
+							debug: true,
+							shadow: true,
+						},
+						menuItem()
+					),
 					new b.dropdown.menu(
 						{
 							theme: "dark",
