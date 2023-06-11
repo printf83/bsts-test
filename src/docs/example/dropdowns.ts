@@ -879,7 +879,7 @@ export const dropdowns: IAttrContent = {
 								flex: "column",
 								gap: 2,
 								linkNormal: "body",
-								linkHover: "primary",
+								linkHover: "link",
 								linkHoverBg: "body-tertiary",
 							},
 							[
@@ -919,7 +919,7 @@ export const dropdowns: IAttrContent = {
 										[
 											new b.icon({ id: i.icon, style: { fontSize: "1.5em" } }),
 											new h.div([
-												new h.strong({ display: "block" }, i.title),
+												new h.b({ display: "block" }, i.title),
 												new h.small(i.description),
 											]),
 										]
@@ -929,7 +929,8 @@ export const dropdowns: IAttrContent = {
 						)
 					),
 					new b.verticalrule({
-						display: ["none", "lg-inline-block"],
+						display: ["none", "lg-block"],
+						opacity: 25,
 						marginX: 4,
 					}),
 					new h.hr({ display: "lg-none" }),

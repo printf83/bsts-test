@@ -225,19 +225,6 @@
     opacity: 0;
 }
 
-/*clipboard icon hover*/
-.primary-on-hover:hover{
-    color:var(--bs-primary);
-    border-color: var(--bs-primary);
-    background-color: transparent;
-}
-
-.primary-on-hover:hover > * {
-    color: var(--bs-primary);
-    border-color: var(--bs-primary);
-    background-color: transparent;
-}
-
 /* simple-list-example */
 #simple-list-example a.active{
     background-color: var(--bs-secondary-bg);
@@ -873,14 +860,14 @@ strong,
     .bs-toc-toggle:focus,
     .bs-toc-toggle:active,
     .bs-toc-toggle[aria-expanded="true"] {
-        color: var(--bs-primary);
+        color: var(--bs-link-color);
         background-color: var(--bs-body-bg);
-        border-color: var(--bs-primary)
+        border-color: var(--bs-link-color)
     }
 
     .bs-toc-toggle:focus,
     .bs-toc-toggle[aria-expanded="true"] {
-        box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.25)
+        box-shadow: 0 0 0 3px rgba(var(--bs-link-color-rgb), 0.25)
     }
 }
 

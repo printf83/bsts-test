@@ -12,7 +12,7 @@ import {
 	replaceExtention,
 } from "./_fn.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.124/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.125/+esm";
 const BSCDNCSS = [
 	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
@@ -324,7 +324,7 @@ const itemCode = (arg: {
 										new h.a(
 											{
 												color: "secondary",
-												class: "primary-on-hover",
+												linkHover: "link",
 												on: { click: arg.onedit },
 											},
 											b.icon.bi("lightning-charge-fill")
@@ -351,7 +351,7 @@ const itemCode = (arg: {
 										new h.a(
 											{
 												color: "secondary",
-												class: "primary-on-hover",
+												linkHover: "link",
 												on: {
 													click: (e) => {
 														const target = e.target as Element;
@@ -404,7 +404,7 @@ const itemCode = (arg: {
 										new h.a(
 											{
 												color: "secondary",
-												class: "primary-on-hover",
+												linkHover: "link",
 												on: { click: itemCodeCopy },
 											},
 											b.icon.bi("clipboard")
@@ -435,7 +435,7 @@ const itemCode = (arg: {
 									{
 										href: "#",
 										color: "secondary",
-										class: "primary-on-hover",
+										linkHover: "link",
 										on: { click: arg.onedit },
 									},
 									b.icon.bi("lightning-charge-fill")
@@ -449,7 +449,7 @@ const itemCode = (arg: {
 									{
 										href: "#",
 										color: "secondary",
-										class: "primary-on-hover",
+										linkHover: "link",
 										on: { click: itemCodeCopy },
 									},
 									b.icon.bi("clipboard")
@@ -641,7 +641,7 @@ const itemConsole = () => {
 							new h.a(
 								{
 									color: "secondary",
-									class: "primary-on-hover",
+									linkHover: "link",
 									on: { click: clearConsoleLog },
 								},
 								b.icon.bi("trash3")

@@ -76,9 +76,8 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 			{ content: "Copy to clipboard" },
 			new h.a(
 				{
-					color: "secondary",
-					textColor: "body-secondary",
-					class: "primary-on-hover",
+					color: "body-secondary",
+					linkHover: "link",
 					on: { click: itemCodeCopy },
 				},
 				b.icon.bi("clipboard")
@@ -107,7 +106,8 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 											textDecoration: "none",
 											href: attr.source,
 											target: "_blank",
-											class: "primary-on-hover",
+											color: "secondary",
+											linkHover: "link",
 											monospace: true,
 											textColor: "body-secondary",
 										},

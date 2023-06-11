@@ -25,8 +25,12 @@ const convert = (attr: IBsExamplePagetitle) => {
 			new h.div({ marginBottom: [3, "md-0"], display: "flex" }, [
 				new h.a(
 					{
-						class: "primary-on-hover btn btn-sm btn-outline-secondary",
-						paddingY: 1,
+						class: "btn btn-sm",
+						focusRing: true,
+						linkNormal: "secondary",
+						linkBorder: "secondary",
+						linkHover: "link",
+						linkHoverBorder: "link",
 						href: "#",
 						loadingPlaceholder: true,
 					},
@@ -64,8 +68,12 @@ const convert = (attr: IBsExamplePagetitle) => {
 				attr.sourceUrl
 					? new h.a(
 							{
-								class: "primary-on-hover btn btn-sm btn-outline-secondary",
-								paddingY: 1,
+								class: "btn btn-sm",
+								focusRing: true,
+								linkNormal: "secondary",
+								linkBorder: "secondary",
+								linkHover: "link",
+								linkHoverBorder: "link",
 								href: attr.sourceUrl,
 								title: `View and edit this file on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`,
 								target: "_blank",
