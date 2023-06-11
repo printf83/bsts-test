@@ -496,12 +496,12 @@ export const dropdowns: IAttrContent = {
 							startDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() - 7
+								new Date().getDate() - 3
 							),
 							endDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 7
+								new Date().getDate() + 3
 							),
 						})
 					),
@@ -514,12 +514,12 @@ export const dropdowns: IAttrContent = {
 							startDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() - 7
+								new Date().getDate() - 3
 							),
 							endDate: new Date(
 								new Date().getFullYear(),
 								new Date().getMonth(),
-								new Date().getDate() + 7
+								new Date().getDate() + 3
 							),
 						})
 					),
@@ -580,12 +580,12 @@ export const dropdowns: IAttrContent = {
 								startDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() - 7
+									new Date().getDate() - 3
 								),
 								endDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() + 7
+									new Date().getDate() + 3
 								),
 							})
 						),
@@ -604,12 +604,12 @@ export const dropdowns: IAttrContent = {
 								startDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() - 7
+									new Date().getDate() - 3
 								),
 								endDate: new Date(
 									new Date().getFullYear(),
 									new Date().getMonth(),
-									new Date().getDate() + 7
+									new Date().getDate() + 3
 								),
 							})
 						),
@@ -620,7 +620,7 @@ export const dropdowns: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("List"),
+		new e.title("List"),
 		new e.code({
 			showCodepen: false,
 			outputAttr: {
@@ -635,7 +635,6 @@ export const dropdowns: IAttrContent = {
 						{
 							theme: "light",
 							padding: 3,
-							rounded: 3,
 							debug: true,
 							shadow: true,
 						},
@@ -645,7 +644,6 @@ export const dropdowns: IAttrContent = {
 						{
 							theme: "dark",
 							padding: 3,
-							rounded: 3,
 							debug: true,
 							shadow: true,
 						},
@@ -671,7 +669,6 @@ export const dropdowns: IAttrContent = {
 							{
 								theme: "light",
 								padding: 3,
-								rounded: 3,
 							},
 							menuItem()
 						),
@@ -682,7 +679,6 @@ export const dropdowns: IAttrContent = {
 							{
 								theme: "dark",
 								padding: 3,
-								rounded: 3,
 							},
 							menuItem()
 						),
