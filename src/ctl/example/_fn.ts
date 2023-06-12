@@ -238,6 +238,66 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		let result: string[] = [];
 
+		if (attrHasClass(attr, "list-group-item-check-2")) {
+			result.push(`
+				.list-group-item-check-2 label.list-group-item{
+					cursor: pointer;
+					border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+				}
+
+				.list-group-item-check-2 input {
+					z-index: 2;
+					margin-top: -0.5em;
+				}
+
+				.list-group-item-check-2 input:checked + label.list-group-item {
+					background-color: var(--bs-body);
+					border-color: var(--bs-primary);
+					box-shadow: 0 0 0 2px var(--bs-primary);
+				}
+
+				.list-group-item-check-2 input:disabled + label.list-group-item {
+					pointer-events: none;
+					filter: none;
+					opacity: .5;
+				}
+			`);
+		}
+
+		if (attrHasClass(attr, "list-group-item-check")) {
+			result.push(`
+				.list-group-item-check input.list-group-item{
+					position: absolute;
+					clip: rect(0, 0, 0, 0);
+				}
+
+				.list-group-item-check label.list-group-item{
+					cursor: pointer;
+					border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+				}
+
+				.list-group-item-check input:checked + label.list-group-item {
+					color: #fff;
+					background-color: var(--bs-primary);
+					border-color: var(--bs-primary);
+				}
+
+				.list-group-item-check input:disabled + label.list-group-item {
+					pointer-events: none;
+					filter: none;
+					opacity: .5;
+				}
+			`);
+		}
+
+		if (attrHasClass(attr, "todo-list")) {
+			result.push(`
+				.todo-list .form-check-input:checked + span.form-cheked-content {
+					opacity: 0.5;
+				}
+			`);
+		}
+
 		if (attrHasClass(attr, "list-group-w-400px")) {
 			result.push(`
 				.list-group {
@@ -413,102 +473,6 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 				}
 			`);
 		}
-
-		// if (attr.justifyContent === "around") {
-		// 	result.push(`
-		// 		#root {
-		// 			justify-content: space-around !important;
-		// 		}
-		// 	`);
-		// }
-
-		// if (attr.display) {
-		// 	if (propHasValue(attr.display, "grid")) {
-		// 		result.push(`
-		// 				#root {
-		// 					display: grid !important;
-		// 				}
-		// 			`);
-		// 	}
-
-		// 	if (propHasValue(attr.display, "flex")) {
-		// 		result.push(`
-		// 				#root {
-		// 					display: flex !important;
-		// 				}
-		// 			`);
-		// 	}
-
-		// 	if (propHasValue(attr.display, "md-flex")) {
-		// 		result.push(`
-		// 				@media (min-width: 768px) {
-		// 					#root {
-		// 						display: flex !important;
-		// 					}
-		// 				}
-		// 			`);
-		// 	}
-		// }
-
-		// if (attr.gap === 1) {
-		// 	result.push(`
-		// 		#root {
-		// 			margin: calc(0.25rem * -1);
-		// 		}
-
-		// 		#root > *:not(.modal) {
-		// 			margin: 0.25rem;
-		// 		}
-		// 	`);
-		// }
-
-		// if (attr.gap === 2) {
-		// 	result.push(`
-		// 		#root {
-		// 			margin: calc(0.5rem * -1);
-		// 		}
-
-		// 		#root > *:not(.modal) {
-		// 			margin: 0.5rem;
-		// 		}
-		// 	`);
-		// }
-
-		// if (attr.gap === 3) {
-		// 	result.push(`
-		// 		#root {
-		// 			margin: calc(1rem * -1);
-		// 		}
-
-		// 		#root > *:not(.modal) {
-		// 			margin: 1rem;
-		// 		}
-		// 	`);
-		// }
-
-		// if (attr.gap === 4) {
-		// 	result.push(`
-		// 		#root {
-		// 			margin: calc(1.5rem * -1);
-		// 		}
-
-		// 		#root > *:not(.modal) {
-		// 			margin: 1.5rem;
-		// 		}
-		// 	`);
-		// }
-
-		// if (attr.gap === 5) {
-		// 	result.push(`
-		// 		#root {
-		// 			margin: calc(3rem * -1);
-		// 		}
-
-		// 		#root > *:not(.modal) {
-		// 			margin: 3rem;
-		// 		}
-		// 	`);
-		// }
 
 		if (result && result.length > 0) {
 			return result

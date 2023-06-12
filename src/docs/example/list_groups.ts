@@ -1,4 +1,4 @@
-import { b, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -23,8 +23,7 @@ const ex = {
 	},
 	c2: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; name?: string }) => {
 		return new h.label({ class: "list-group-item", display: "flex", gap: 2 }, [
-			new h.input({
-				class: "form-check-input",
+			new b.input({
 				flex: "shrink-0",
 				type: arg.type,
 				checked: arg.checked,
@@ -33,15 +32,113 @@ const ex = {
 			new h.span([arg.label, new h.small({ display: "block", textColor: "body-secondary" }, arg.description)]),
 		]);
 	},
-	c3: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; name?: string }) => {
-		return new b.list.item(
-			b.form.check({
-				label: arg.label,
-				description: arg.description,
+	c3: (arg: {
+		icon: string;
+		label: string;
+		description: string;
+		checked?: boolean;
+		name?: string;
+		isadd?: boolean;
+	}) => {
+		return new h.label(
+			{
+				class: "list-group-item",
+				display: "flex",
+				gap: 3,
+				bgColor: arg.isadd ? "body-tertiary" : undefined,
+			},
+			[
+				new b.input({
+					flex: "shrink-0",
+					type: "checkbox",
+					checked: arg.checked,
+					disabled: arg.isadd ? true : undefined,
+					pointerEvent: arg.isadd ? "none" : undefined,
+					style: {
+						fontSize: "1.375em",
+						filter: arg.isadd ? "none" : undefined,
+						opacity: arg.isadd ? "0.5" : undefined,
+					},
+				}),
+				new h.span({ paddingTop: 1, class: "form-cheked-content" }, [
+					new h.b(arg.label),
+					new h.small(
+						{ display: "block", textColor: "body-secondary" },
+						new b.caption({ icon: arg.icon }, arg.description)
+					),
+				]),
+			]
+		);
+	},
+	c4: (arg: {
+		type: "checkbox" | "radio";
+		label: string;
+		description: string;
+		checked?: boolean;
+		disabled?: boolean;
+		name?: string;
+	}) => {
+		const id = core.UUID();
+		return [
+			new b.input({
+				id: id,
+				class: "list-group-item",
 				type: arg.type,
 				checked: arg.checked,
 				name: arg.name,
-			})
+				disabled: arg.disabled,
+				pointerEvent: "none",
+			}),
+			new h.label(
+				{
+					for: id,
+					class: "list-group-item",
+					rounded: 3,
+					paddingY: 3,
+				},
+				[arg.label, new h.span({ display: "block", small: true, opacity: 50 }, arg.description)]
+			),
+		];
+	},
+	c5: (arg: {
+		type: "checkbox" | "radio";
+		label: string;
+		description: string;
+		checked?: boolean;
+		disabled?: boolean;
+		name?: string;
+	}) => {
+		const id = core.UUID();
+		return new h.div(
+			{ class: "list-group", display: "grid", gap: 2, border: false },
+			new h.div({ position: "relative" }, [
+				new b.input({
+					id: id,
+					type: arg.type,
+					checked: arg.checked,
+					name: arg.name,
+					disabled: arg.disabled,
+					position: "absolute",
+					zIndex: 2,
+					top: 50,
+					end: 0,
+					marginEnd: 3,
+					fontSize: 5,
+				}),
+				new h.label(
+					{
+						for: id,
+						class: "list-group-item",
+						rounded: 3,
+						paddingY: 3,
+						paddingEnd: 5,
+					},
+					[
+						new h.b({ fontWeight: "semibold" }, arg.label),
+						new h.span({ display: "block", small: true, opacity: 75 }, arg.description),
+					]
+				),
+			])
 		);
 	},
 };
@@ -130,49 +227,39 @@ export const list_groups: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Using {{form.check}}"),
+
+		//-----------------------
+
+		new e.title("Todo list"),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { class: "todo-list" },
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
 				return [
-					new b.list.container({ style: { maxWidth: "460px" } }, [
+					new h.div({ class: "list-group", style: { maxWidth: "460px" } }, [
 						ex.c3({
 							checked: true,
-							type: "checkbox",
-							label: "First checkbox",
-							description: "With support text underneath to add more detail",
+							icon: "calendar-event",
+							label: "Finish sales report",
+							description: "1:00-2:00pm",
 						}),
 						ex.c3({
-							type: "checkbox",
-							label: "Second checkbox",
-							description: "Some other text goes here",
+							checked: false,
+							icon: "calendar-event",
+							label: "Weekly All Hands",
+							description: "2:00-2:30pm",
 						}),
 						ex.c3({
-							type: "checkbox",
-							label: "Third checkbox",
-							description: "And we end with another snippet of text",
-						}),
-					]),
-					new b.list.container({ style: { maxWidth: "460px" } }, [
-						ex.c3({
-							name: "group2",
-							checked: true,
-							type: "radio",
-							label: "First radio",
-							description: "With support text underneath to add more detail",
+							checked: false,
+							icon: "alarm",
+							label: "Out of office",
+							description: "Tomorrow",
 						}),
 						ex.c3({
-							name: "group2",
-							type: "radio",
-							label: "Second radio",
-							description: "Some other text goes here",
-						}),
-						ex.c3({
-							name: "group2",
-							type: "radio",
-							label: "Third radio",
-							description: "And we end with another snippet of text",
+							isadd: true,
+							icon: "list-check",
+							label: "Add new task",
+							description: "Choose list...",
 						}),
 					]),
 				];
@@ -181,39 +268,141 @@ export const list_groups: IAttrContent = {
 
 		//-----------------------
 
-		new e.title(""),
-		new e.text(""),
+		new e.title("Checkable list"),
 		new e.code({
+			outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
+			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
-				return [];
+				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+					...ex.c4({
+						checked: true,
+						type: "checkbox",
+						label: "First checkbox",
+						description: "With support text underneath to add more detail",
+					}),
+					...ex.c4({
+						type: "checkbox",
+						label: "Second checkbox",
+						description: "Some other text goes here",
+					}),
+					...ex.c4({
+						type: "checkbox",
+						label: "Third checkbox",
+						description: "And we end with another snippet of text",
+					}),
+					...ex.c4({
+						type: "checkbox",
+						disabled: true,
+						label: "Fourth disabled checkbox",
+						description: "This option is disabled",
+					}),
+				]);
+			},
+		}),
+
+		new e.text("Radio"),
+		new e.code({
+			outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
+			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
+			output: () => {
+				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+					...ex.c4({
+						checked: true,
+						type: "radio",
+						name: "group2",
+						label: "First radio",
+						description: "With support text underneath to add more detail",
+					}),
+					...ex.c4({
+						type: "radio",
+						name: "group2",
+						label: "Second radio",
+						description: "Some other text goes here",
+					}),
+					...ex.c4({
+						type: "radio",
+						name: "group2",
+						label: "Third radio",
+						description: "And we end with another snippet of text",
+					}),
+					...ex.c4({
+						type: "radio",
+						disabled: true,
+						name: "group2",
+						label: "Fourth disabled radio",
+						description: "This option is disabled",
+					}),
+				]);
 			},
 		}),
 
 		//-----------------------
 
-		new e.subtitle(""),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			code: `
-				`,
+		new e.title("Checkable list 2"),
+		new e.code({
+			outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
+			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
+			output: () => {
+				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+					ex.c5({
+						checked: true,
+						type: "checkbox",
+						label: "First checkbox",
+						description: "With support text underneath to add more detail",
+					}),
+					ex.c5({
+						type: "checkbox",
+						label: "Second checkbox",
+						description: "Some other text goes here",
+					}),
+					ex.c5({
+						type: "checkbox",
+						label: "Third checkbox",
+						description: "And we end with another snippet of text",
+					}),
+					ex.c5({
+						type: "checkbox",
+						disabled: true,
+						label: "Fourth disabled checkbox",
+						description: "This option is disabled",
+					}),
+				]);
+			},
 		}),
-
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.text(""),
-
-		//-----------------------
-
-		new e.subtitle("Sass variables"),
-		new e.text(""),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
-			code: `
-			`,
+		new e.text("Radio"),
+		new e.code({
+			outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
+			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
+			output: () => {
+				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+					ex.c5({
+						checked: true,
+						type: "radio",
+						name: "group3",
+						label: "First radio",
+						description: "With support text underneath to add more detail",
+					}),
+					ex.c5({
+						type: "radio",
+						name: "group3",
+						label: "Second radio",
+						description: "Some other text goes here",
+					}),
+					ex.c5({
+						type: "radio",
+						name: "group3",
+						label: "Third radio",
+						description: "And we end with another snippet of text",
+					}),
+					ex.c5({
+						type: "radio",
+						disabled: true,
+						name: "group3",
+						label: "Fourth disabled radio",
+						description: "This option is disabled",
+					}),
+				]);
+			},
 		}),
 	],
 };

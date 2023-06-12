@@ -114,6 +114,57 @@
     margin-left: -2rem;
 }
 
+/* list-group-item-check-2*/
+.example-output.list-group-item-check-2 label.list-group-item{
+    cursor: pointer;
+    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+}
+
+.example-output.list-group-item-check-2 input {
+    z-index: 2;
+    margin-top: -0.5em;
+}
+
+.example-output.list-group-item-check-2 input:checked + label.list-group-item {
+    background-color: var(--bs-body);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 2px var(--bs-primary);
+}
+
+.example-output.list-group-item-check-2 input:disabled + label.list-group-item {
+    pointer-events: none;
+    filter: none;
+    opacity: .5;
+}
+
+/* list-group-item-check */
+.example-output.list-group-item-check input.list-group-item{
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+.example-output.list-group-item-check label.list-group-item{
+    cursor: pointer;
+    border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+}
+
+.example-output.list-group-item-check input:checked + label.list-group-item {
+    color: #fff;
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.example-output.list-group-item-check input:disabled + label.list-group-item {
+    pointer-events: none;
+    filter: none;
+    opacity: .5;
+}
+
+/*todo-list*/
+.example-output.todo-list .form-check-input:checked + span.form-cheked-content {
+    opacity: 0.5;
+}
+
 /*zoom*/
 .example-output.zoom-25 {
     width: 100vw;
