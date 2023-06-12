@@ -458,7 +458,7 @@ export const card: IAttrContent = {
 			output: () => {
 				return new b.card.container({ textBgColor: "dark" }, [
 					new b.card.img({
-						src: "https://picsum.photos/seed/bsts_0/676/238.webp",
+						src: "https://picsum.photos/seed/bsts_0/450/200.webp",
 						alt: "Card image",
 					}),
 					new b.card.imgoverlay([
