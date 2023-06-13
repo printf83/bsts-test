@@ -97,10 +97,9 @@ const ex = {
 				disabled: arg.disabled,
 				pointerEvent: "none",
 			}),
-			new h.label(
+			new b.list.itemLabel(
 				{
 					for: id,
-					class: "list-group-item",
 					rounded: 3,
 					paddingY: 3,
 				},
@@ -133,10 +132,9 @@ const ex = {
 					marginEnd: 3,
 					fontSize: 5,
 				}),
-				new h.label(
+				new b.list.itemLabel(
 					{
 						for: id,
-						class: "list-group-item",
 						rounded: 3,
 						paddingY: 3,
 						paddingEnd: 5,
