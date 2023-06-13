@@ -19,3 +19,6 @@ export const dropdowns = async () => {
 export const list_groups = async () => {
 	return (await import("./list_groups.js")).list_groups;
 };
+export const modals = async () => {
+	return (await import("./modals.js")).modals;
+};

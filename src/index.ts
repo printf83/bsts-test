@@ -249,6 +249,7 @@ let m = {
 				{ label: "Footers", value: "docs/example/footers" },
 				{ label: "Dropdowns", value: "docs/example/dropdowns" },
 				{ label: "List groups", value: "docs/example/list_groups" },
+				{ label: "Modals", value: "docs/example/modals" },
 			],
 		},
 	] as main.IAttrItemMenu[],

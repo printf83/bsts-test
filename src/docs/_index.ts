@@ -35,6 +35,9 @@ export const doc = async (value: string) => {
 		case "docs/example/list_groups":
 			result = await example.list_groups();
 			break;
+		case "docs/example/modals":
+			result = await example.modals();
+			break;
 
 		//--------------------------
 		case "docs/customize/color":
