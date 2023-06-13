@@ -224,7 +224,7 @@ export const input_group: IAttrContent = {
 						type: "text",
 						aria: { label: "Text input with dropdown button" },
 						before: [
-							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.button({ color: "secondary", outline: true }, "Dropdown"),
 							new b.dropdown.menu(dropdownItem),
 						],
 					}),
@@ -233,7 +233,7 @@ export const input_group: IAttrContent = {
 						type: "text",
 						aria: { label: "Text input with dropdown button" },
 						after: [
-							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.button({ color: "secondary", outline: true }, "Dropdown"),
 							new b.dropdown.menu({ positionView: "end" }, dropdownItem),
 						],
 					}),
@@ -241,11 +241,11 @@ export const input_group: IAttrContent = {
 						type: "text",
 						aria: { label: "Text input with dropdown button" },
 						before: [
-							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.button({ color: "secondary", outline: true }, "Dropdown"),
 							new b.dropdown.menu(dropdownItem),
 						],
 						after: [
-							new b.dropdown.toggle({ color: "secondary", outline: true }, "Dropdown"),
+							new b.dropdown.button({ color: "secondary", outline: true }, "Dropdown"),
 							new b.dropdown.menu({ positionView: "end" }, dropdownItem),
 						],
 					}),
@@ -273,7 +273,7 @@ export const input_group: IAttrContent = {
 						aria: { label: "Text input with segmented dropdown button" },
 						before: [
 							new b.button({ color: "secondary", outline: true }, "Action"),
-							new b.dropdown.toggle({ color: "secondary", outline: true, split: true }),
+							new b.dropdown.button({ color: "secondary", outline: true, split: true }),
 							new b.dropdown.menu(dropdownItem),
 						],
 					}),
@@ -282,7 +282,7 @@ export const input_group: IAttrContent = {
 						aria: { label: "Text input with segmented dropdown button" },
 						after: [
 							new b.button({ color: "secondary", outline: true }, "Action"),
-							new b.dropdown.toggle({ color: "secondary", outline: true, split: true }),
+							new b.dropdown.button({ color: "secondary", outline: true, split: true }),
 							new b.dropdown.menu({ positionView: "end" }, dropdownItem),
 						],
 					}),

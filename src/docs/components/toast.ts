@@ -149,7 +149,7 @@ export const toast: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Simple toast"),
-		new e.text("You can use Bootstrap simple toast by calling {{b.toast.simple}} function."),
+		new e.text("You can use Bootstrap simple toast by calling {{b.toast.create}} function."),
 		new e.table({
 			item: [
 				["Option", "Type", "Default", "Description"],
@@ -181,7 +181,7 @@ export const toast: IAttrContent = {
 		new e.code({
 			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
-				const fnToast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
+				const fnToast = (color: I.B.Toast.Create["color"], elem: core.IElem, icon?: string) => {
 					let tElem;
 
 					switch (color) {
@@ -258,7 +258,7 @@ export const toast: IAttrContent = {
 							});
 					}
 					b.toast.show(
-						b.toast.simple({
+						b.toast.create({
 							color: color,
 							elem: tElem,
 
@@ -273,7 +273,7 @@ export const toast: IAttrContent = {
 							color: i as I.B.Button["color"],
 							on: {
 								click: (_e) => {
-									fnToast(i as I.B.Toast.Simple["color"], `This is {{b::${i} }}toast.`);
+									fnToast(i as I.B.Toast.Create["color"], `This is {{b::${i} }}toast.`);
 								},
 							},
 						},
@@ -414,7 +414,7 @@ export const toast: IAttrContent = {
 						on: {
 							click: () => {
 								b.toast.show(
-									b.toast.simple({
+									b.toast.create({
 										delay: 30000,
 										animation: false,
 										elem: "Toast without animation",

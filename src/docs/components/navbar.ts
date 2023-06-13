@@ -61,7 +61,7 @@ export const navbar: IAttrContent = {
 								new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
 								new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
 								new b.navbar.item({ dropdown: true }, [
-									new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+									new b.dropdown.button({ navItem: true }, "Dropdown"),
 									new b.dropdown.menu([
 										new b.dropdown.item({ href: "#" }, "Action"),
 										new b.dropdown.item({ href: "#" }, "Another action"),
@@ -236,7 +236,7 @@ export const navbar: IAttrContent = {
 								new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
 								new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
 								new b.navbar.item({ dropdown: true }, [
-									new b.dropdown.toggle({ navItem: true, href: "#" }, "Dropdown link"),
+									new b.dropdown.button({ navItem: true, href: "#" }, "Dropdown link"),
 									new b.dropdown.menu([
 										new b.dropdown.item({ href: "#" }, "Action"),
 										new b.dropdown.item({ href: "#" }, "Another action"),
@@ -546,7 +546,7 @@ export const navbar: IAttrContent = {
 									new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
 									new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
 									new b.navbar.item({ dropdown: true }, [
-										new b.dropdown.toggle({ navItem: true }, "Link"),
+										new b.dropdown.button({ navItem: true }, "Link"),
 										new b.dropdown.menu([
 											new b.dropdown.item({ href: "#" }, "Action"),
 											new b.dropdown.item({ href: "#" }, "Another action"),
@@ -798,7 +798,7 @@ export const navbar: IAttrContent = {
 											new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
 											new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
 											new b.navbar.item({ dropdown: true }, [
-												new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+												new b.dropdown.button({ navItem: true }, "Dropdown"),
 												new b.dropdown.menu([
 													new b.dropdown.item({ href: "#" }, "Action"),
 													new b.dropdown.item({ href: "#" }, "Another action"),
@@ -895,7 +895,7 @@ export const navbar: IAttrContent = {
 												new b.navbar.link({ href: "#" }, "Link")
 											),
 											new b.navbar.item({ dropdown: true, paddingTop: "lg-1" }, [
-												new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+												new b.dropdown.button({ navItem: true }, "Dropdown"),
 												new b.dropdown.menu([
 													new b.dropdown.item({ href: "#" }, "Action"),
 													new b.dropdown.item({ href: "#" }, "Another action"),
@@ -957,7 +957,7 @@ export const navbar: IAttrContent = {
 											new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
 											new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
 											new b.navbar.item({ dropdown: true }, [
-												new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+												new b.dropdown.button({ navItem: true }, "Dropdown"),
 												new b.dropdown.menu([
 													new b.dropdown.item({ href: "#" }, "Action"),
 													new b.dropdown.item({ href: "#" }, "Another action"),

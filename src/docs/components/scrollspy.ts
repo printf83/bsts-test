@@ -33,7 +33,7 @@ export const scrollspy: IAttrContent = {
 					new b.nav.header.item(new b.nav.header.link({ href: "#scrollspyHeading1" }, "First")),
 					new b.nav.header.item(new b.nav.header.link({ href: "#scrollspyHeading2" }, "Second")),
 					new b.nav.header.item({ dropdown: true }, [
-						new b.dropdown.toggle({ navItem: true, href: "#" }, "Dropdown"),
+						new b.dropdown.button({ navItem: true, href: "#" }, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#scrollspyHeading3" }, "Third"),
 							new b.dropdown.item({ href: "#scrollspyHeading4" }, "Fourth"),

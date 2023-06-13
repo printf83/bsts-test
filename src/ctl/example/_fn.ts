@@ -1,8 +1,8 @@
 import { core, b, I, h } from "@printf83/bsts";
 
-export const toast = (color: I.B.Toast.Simple["color"], elem: core.IElem, icon?: string) => {
+export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem, icon?: string) => {
 	b.toast.show(
-		b.toast.simple({
+		b.toast.create({
 			title: document.title,
 			color: color,
 			elem: elem,

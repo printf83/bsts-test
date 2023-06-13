@@ -623,7 +623,7 @@ export const list: IAttrContent = {
 								});
 
 								b.toast.show(
-									b.toast.simple({
+									b.toast.create({
 										title: document.title,
 										color: "success",
 										elem: "Tab trigger attached",

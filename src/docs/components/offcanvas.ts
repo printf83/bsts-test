@@ -68,11 +68,11 @@ export const offcanvas: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 },
 						"Link with href"
 					),
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#offcanvasExample", controlfor: "offcanvasExample" },
 						"Button with data-bs-target"
 					),
@@ -86,7 +86,7 @@ export const offcanvas: IAttrContent = {
 								"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
 							),
 							new b.dropdown.container({ marginTop: 3 }, [
-								new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+								new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
 								new b.dropdown.menu([
 									new b.dropdown.item({ href: "#" }, "Action"),
 									new b.dropdown.item({ href: "#" }, "Another action"),
@@ -108,7 +108,7 @@ export const offcanvas: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#offcanvasScrolling", controlfor: "offcanvasScrolling" },
 						"Enable body scrolling"
 					),
@@ -145,7 +145,7 @@ export const offcanvas: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#offcanvasWithBothOptions", controlfor: "offcanvasWithBothOptions" },
 						"Enable both scrolling & backdrop"
 					),
@@ -180,7 +180,7 @@ export const offcanvas: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#staticBackdrop", controlfor: "staticBackdrop" },
 						"Toggle static offcanvas"
 					),
@@ -243,7 +243,7 @@ export const offcanvas: IAttrContent = {
 			showViewport: true,
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{
 							target: "#offcanvasResponsive",
 							controlfor: "offcanvasResponsive",
@@ -305,7 +305,7 @@ export const offcanvas: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#offcanvasTop", controlfor: "offcanvasTop" },
 						"Toggle top offcanvas"
 					),
@@ -329,7 +329,7 @@ export const offcanvas: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#offcanvasEnd", controlfor: "offcanvasEnd" },
 						"Toggle end offcanvas"
 					),
@@ -353,7 +353,7 @@ export const offcanvas: IAttrContent = {
 		new e.code({
 			output: () => {
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#offcanvasBottom", controlfor: "offcanvasBottom" },
 						"Toggle bottom offcanvas"
 					),
@@ -663,7 +663,7 @@ export const offcanvas: IAttrContent = {
 					{
 						on: {
 							click: (event) => {
-								b.offcanvas.toggles("#example-offcanvas", event.target as HTMLElement);
+								b.offcanvas.toggle("#example-offcanvas", event.target as HTMLElement);
 							},
 						},
 					},
@@ -761,7 +761,7 @@ export const offcanvas: IAttrContent = {
 				}
 
 				return [
-					new b.offcanvas.toggle(
+					new b.offcanvas.button(
 						{ target: "#offcanvasEventExample", controlfor: "offcanvasEventExample" },
 						"Show offcanvas event"
 					),
@@ -815,7 +815,7 @@ export const offcanvas: IAttrContent = {
 									"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
 								),
 								new b.dropdown.container({ marginTop: 3 }, [
-									new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+									new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
 									new b.dropdown.menu([
 										new b.dropdown.item({ href: "#" }, "Action"),
 										new b.dropdown.item({ href: "#" }, "Another action"),

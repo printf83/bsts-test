@@ -62,7 +62,7 @@ const ex = {
 						drop: "up",
 					},
 					[
-						new b.dropdown.toggleLink(
+						new b.dropdown.buttonLink(
 							{
 								href: "#",
 								textColor: "white",
@@ -142,7 +142,7 @@ const ex = {
 						drop: "up",
 					},
 					[
-						new b.dropdown.toggleLink(
+						new b.dropdown.buttonLink(
 							{
 								href: "#",
 								textColor: "body-emphasis",
@@ -239,7 +239,7 @@ const ex = {
 						rounded: false,
 					},
 					[
-						new b.dropdown.toggleLink(
+						new b.dropdown.buttonLink(
 							{
 								href: "#",
 								textColor: "body-emphasis",
@@ -329,7 +329,7 @@ const ex = {
 					arg.link?.map((i) => {
 						let id = core.UUID();
 						return new h.li({ marginBottom: 1 }, [
-							new b.collapse.toggle(
+							new b.collapse.button(
 								{
 									href: `#${id}`,
 									class: "btn",
@@ -375,7 +375,7 @@ const ex = {
 				new h.ul(
 					{ unstyle: true, paddingStart: 0 },
 					new h.li({ marginBottom: 1 }, [
-						new b.collapse.toggle(
+						new b.collapse.button(
 							{ href: `#usermenu`, class: "btn", icon: true, defColor: false },
 							"Account"
 						),

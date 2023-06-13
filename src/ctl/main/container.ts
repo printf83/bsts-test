@@ -220,7 +220,7 @@ const genTheme = (
 					]
 				),
 				new b.navbar.item({ dropdown: true }, [
-					new b.dropdown.toggle(
+					new b.dropdown.button(
 						{
 							id: "bs-theme",
 							color: "link",
@@ -289,7 +289,7 @@ const genBootswatch = (
 				]
 			),
 			new b.navbar.item({ dropdown: true }, [
-				new b.dropdown.toggle(
+				new b.dropdown.button(
 					{
 						id: "bs-bootswatch",
 						color: "link",
@@ -362,7 +362,7 @@ const genVersion = (
 				]
 			),
 			new b.navbar.item({ dropdown: true }, [
-				new b.dropdown.toggle(
+				new b.dropdown.button(
 					{
 						id: "bs-version",
 						color: "link",
@@ -634,7 +634,7 @@ const genToc = (content?: IAttrContent) => {
 					textColor: "body-secondary",
 				},
 				[
-					new b.collapse.toggle(
+					new b.collapse.button(
 						{
 							color: "link",
 							padding: "md-0",

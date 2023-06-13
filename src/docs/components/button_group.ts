@@ -210,7 +210,7 @@ export const button_group: IAttrContent = {
 					new b.button("2"),
 
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
@@ -240,7 +240,7 @@ export const button_group: IAttrContent = {
 					new b.button("Button"),
 					new b.button("Button"),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
@@ -249,21 +249,21 @@ export const button_group: IAttrContent = {
 					new b.button("Button"),
 					new b.button("Button"),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 						]),
 					]),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 						]),
 					]),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),

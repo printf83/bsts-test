@@ -26,7 +26,7 @@ export const bootswatch: IAttrContent = {
 								new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
 								new b.navbar.item(new b.navbar.link({ href: "#" }, "About")),
 								new b.navbar.item({ dropdown: true }, [
-									new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+									new b.dropdown.button({ navItem: true }, "Dropdown"),
 									new b.dropdown.menu([
 										new b.dropdown.item({ href: "#" }, "Action"),
 										new b.dropdown.item({ href: "#" }, "Another action"),
@@ -132,7 +132,7 @@ export const bootswatch: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
-						new b.dropdown.toggle({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
+						new b.dropdown.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -154,7 +154,7 @@ export const bootswatch: IAttrContent = {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
 						new b.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
-						new b.dropdown.toggle({ color: i as core.bootstrapType.color, split: true }),
+						new b.dropdown.button({ color: i as core.bootstrapType.color, split: true }),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -247,7 +247,7 @@ export const bootswatch: IAttrContent = {
 					new b.button("Button"),
 					new b.button("Button"),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
@@ -256,21 +256,21 @@ export const bootswatch: IAttrContent = {
 					new b.button("Button"),
 					new b.button("Button"),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 						]),
 					]),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
 						]),
 					]),
 					new b.btngroup([
-						new b.dropdown.toggle({}, "Dropdown"),
+						new b.dropdown.button({}, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
 							new b.dropdown.item({ href: "#" }, "Dropdown link 2"),

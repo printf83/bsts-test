@@ -4,7 +4,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 
 const ex = {
 	c1: (arg: { img: string; title: string; details: string; date: string; href: string }) => {
-		return new b.tabList.item({ action: true, display: "flex", gap: 3, paddingY: 3, href: arg.href }, [
+		return new b.list.itemLink({ action: true, display: "flex", gap: 3, paddingY: 3, href: arg.href }, [
 			new h.img({
 				rounded: "circle",
 				flex: "shrink-0",
@@ -22,15 +22,24 @@ const ex = {
 		]);
 	},
 	c2: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; name?: string }) => {
-		return new h.label({ class: "list-group-item", display: "flex", gap: 2 }, [
-			new b.input({
-				flex: "shrink-0",
-				type: arg.type,
-				checked: arg.checked,
-				name: arg.name,
-			}),
-			new h.span([arg.label, new h.small({ display: "block", textColor: "body-secondary" }, arg.description)]),
-		]);
+		return new b.list.itemLabel(
+			{
+				display: "flex",
+				gap: 2,
+			},
+			[
+				new b.input({
+					flex: "shrink-0",
+					type: arg.type,
+					checked: arg.checked,
+					name: arg.name,
+				}),
+				new h.span([
+					arg.label,
+					new h.small({ display: "block", textColor: "body-secondary" }, arg.description),
+				]),
+			]
+		);
 	},
 	c3: (arg: {
 		icon: string;
@@ -40,9 +49,8 @@ const ex = {
 		name?: string;
 		isadd?: boolean;
 	}) => {
-		return new h.label(
+		return new b.list.itemLabel(
 			{
-				class: "list-group-item",
 				display: "flex",
 				gap: 3,
 				bgColor: arg.isadd ? "body-tertiary" : undefined,
@@ -109,8 +117,8 @@ const ex = {
 		name?: string;
 	}) => {
 		const id = core.UUID();
-		return new h.div(
-			{ class: "list-group", display: "grid", gap: 2, border: false },
+		return new b.list.itemDiv(
+			{ display: "grid", gap: 2, border: false },
 			new h.div({ position: "relative" }, [
 				new b.input({
 					id: id,
@@ -150,7 +158,7 @@ export const list_groups: IAttrContent = {
 		new e.code({
 			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 			output: () => {
-				return new b.tabList.container({ style: { maxWidth: "460px" } }, [
+				return new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
 					ex.c1({
 						href: "#",
 						img: "https://picsum.photos/seed/bsts_0/32/32.webp",
@@ -185,7 +193,7 @@ export const list_groups: IAttrContent = {
 			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 			output: () => {
 				return [
-					new h.div({ class: "list-group", style: { maxWidth: "460px" } }, [
+					new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
 						ex.c2({
 							checked: true,
 							type: "checkbox",
@@ -236,7 +244,7 @@ export const list_groups: IAttrContent = {
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {
 				return [
-					new h.div({ class: "list-group", style: { maxWidth: "460px" } }, [
+					new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
 						ex.c3({
 							checked: true,
 							icon: "calendar-event",
@@ -273,7 +281,7 @@ export const list_groups: IAttrContent = {
 			outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
-				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
 					...ex.c4({
 						checked: true,
 						type: "checkbox",
@@ -305,7 +313,7 @@ export const list_groups: IAttrContent = {
 			outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
 			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 			output: () => {
-				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
 					...ex.c4({
 						checked: true,
 						type: "radio",
@@ -343,7 +351,7 @@ export const list_groups: IAttrContent = {
 			outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
-				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
 					ex.c5({
 						checked: true,
 						type: "checkbox",
@@ -374,7 +382,7 @@ export const list_groups: IAttrContent = {
 			outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
 			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 			output: () => {
-				return new h.div({ class: "list-group", display: "grid", gap: 2, border: false }, [
+				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
 					ex.c5({
 						checked: true,
 						type: "radio",

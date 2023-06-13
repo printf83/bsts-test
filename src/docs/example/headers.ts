@@ -297,7 +297,7 @@ const ex = {
 								class: "dropdown",
 							},
 							[
-								new b.dropdown.toggleLink(
+								new b.dropdown.buttonLink(
 									{
 										href: "#",
 										color: "body-emphasis",
@@ -343,7 +343,7 @@ const ex = {
 
 				[
 					new h.div({ class: "dropdown" }, [
-						new b.dropdown.toggleLink(
+						new b.dropdown.buttonLink(
 							{
 								href: "#",
 								color: "body-emphasis",
@@ -377,7 +377,7 @@ const ex = {
 							new b.input({ type: "search", placeholder: "Search..." })
 						),
 						new h.div({ flex: "shrink-0", class: "dropdown" }, [
-							new b.dropdown.toggleLink(
+							new b.dropdown.buttonLink(
 								{
 									href: "#",
 									color: "body-emphasis",

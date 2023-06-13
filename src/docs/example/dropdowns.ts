@@ -158,7 +158,7 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle("Light dropdown"),
+						new b.dropdown.button("Light dropdown"),
 						new b.dropdown.menu({ customStyle: 1, theme: "light" }, [
 							new b.dropdown.item({ href: "#", active: true }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -168,7 +168,7 @@ export const dropdowns: IAttrContent = {
 						]),
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle("Dark dropdown"),
+						new b.dropdown.button("Dark dropdown"),
 						new b.dropdown.menu({ customStyle: 1, theme: "dark" }, [
 							new b.dropdown.item({ href: "#", active: true }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -286,7 +286,7 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle("Light dropdown"),
+						new b.dropdown.button("Light dropdown"),
 						new b.dropdown.menu({ theme: "light", paddingTop: 0 }, [
 							new h.form(
 								{
@@ -330,7 +330,7 @@ export const dropdowns: IAttrContent = {
 						]),
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle("Dark dropdown"),
+						new b.dropdown.button("Dark dropdown"),
 						new b.dropdown.menu({ theme: "dark", paddingTop: 0 }, [
 							new h.form(
 								{
@@ -420,7 +420,7 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle("Light dropdown"),
+						new b.dropdown.button("Light dropdown"),
 						new b.dropdown.menu({ theme: "light" }, [
 							new b.dropdown.item({ href: "#" }, new b.caption({ icon: "files" }, "Documents")),
 							new b.dropdown.item({ href: "#" }, new b.caption({ icon: "image-fill" }, "Photos")),
@@ -435,7 +435,7 @@ export const dropdowns: IAttrContent = {
 						]),
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle("Dark dropdown"),
+						new b.dropdown.button("Dark dropdown"),
 						new b.dropdown.menu({ theme: "dark" }, [
 							new b.dropdown.item({ href: "#" }, new b.caption({ icon: "files" }, "Documents")),
 							new b.dropdown.item({ href: "#" }, new b.caption({ icon: "image-fill" }, "Photos")),
@@ -508,7 +508,7 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ autoClose: "outside" }, "Light dropdown"),
+						new b.dropdown.button({ autoClose: "outside" }, "Light dropdown"),
 						new b.dropdown.menu(
 							{
 								theme: "light",
@@ -529,7 +529,7 @@ export const dropdowns: IAttrContent = {
 						),
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ autoClose: "outside" }, "Dark dropdown"),
+						new b.dropdown.button({ autoClose: "outside" }, "Dark dropdown"),
 						new b.dropdown.menu(
 							{ theme: "dark", style: { minWidth: "320px" } },
 							new b.calendar({
@@ -628,7 +628,7 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ autoClose: "outside" }, "Light dropdown"),
+						new b.dropdown.button({ autoClose: "outside" }, "Light dropdown"),
 						new b.dropdown.menu(
 							{
 								theme: "light",
@@ -659,7 +659,7 @@ export const dropdowns: IAttrContent = {
 						),
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ autoClose: "outside" }, "Dark dropdown"),
+						new b.dropdown.button({ autoClose: "outside" }, "Dark dropdown"),
 						new b.dropdown.menu(
 							{
 								theme: "dark",
@@ -704,7 +704,7 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ autoClose: "outside" }, "Light dropdown"),
+						new b.dropdown.button({ autoClose: "outside" }, "Light dropdown"),
 						new b.dropdown.menu(
 							{
 								theme: "light",
@@ -800,7 +800,7 @@ export const dropdowns: IAttrContent = {
 			output: () => {
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle("Light dropdown"),
+						new b.dropdown.button("Light dropdown"),
 						new b.dropdown.menu(
 							{
 								theme: "light",
@@ -810,7 +810,7 @@ export const dropdowns: IAttrContent = {
 						),
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle("Dark dropdown"),
+						new b.dropdown.button("Dark dropdown"),
 						new b.dropdown.menu(
 							{
 								theme: "dark",

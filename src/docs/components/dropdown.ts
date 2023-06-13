@@ -9,7 +9,7 @@ export const dropdown: IAttrContent = {
 	item: [
 		new e.title("Overview"),
 		new e.text(
-			"Dropdowns are toggleable ({{b.dropdown.toggle}}), contextual overlays for displaying lists of links and more using {{b.dropdown.menu}}. They’re made interactive with the included Bootstrap dropdown JavaScript plugin. They’re toggled by clicking, not by hovering; this is {{https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/::an intentional design decision}}."
+			"Dropdowns are toggleable ({{b.dropdown.button}}), contextual overlays for displaying lists of links and more using {{b.dropdown.menu}}. They’re made interactive with the included Bootstrap dropdown JavaScript plugin. They’re toggled by clicking, not by hovering; this is {{https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/::an intentional design decision}}."
 		),
 		new e.text(
 			"Dropdowns are built on a third party library, {{https://popper.js.org/::Popper}}, which provides dynamic positioning and viewport detection. Be sure to include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before Bootstrap’s JavaScript or use {{bootstrap.bundle.min.js}} / {{bootstrap.bundle.js}} which contains Popper. Popper isn’t used to position dropdowns in navbars though as dynamic positioning isn’t required."
@@ -32,17 +32,17 @@ export const dropdown: IAttrContent = {
 
 		new e.title("Examples"),
 		new e.text(
-			"Wrap the dropdown’s toggle (your button or link) and the dropdown menu within {{class:'dropdown'}}, or another component that declares {{position: relative}}. Ideally, you should use a {{b.dropdown.toggle}} element as the dropdown trigger. The examples shown here use {{b.dropdown.item}} component where appropriate, but custom markup is supported."
+			"Wrap the dropdown’s toggle (your button or link) and the dropdown menu within {{class:'dropdown'}}, or another component that declares {{position: relative}}. Ideally, you should use a {{b.dropdown.button}} element as the dropdown trigger. The examples shown here use {{b.dropdown.item}} component where appropriate, but custom markup is supported."
 		),
 
 		//-----------------------
 
 		new e.subtitle("Single button"),
-		new e.text("Use {{b.dropdown.toggle}} like this to toggle the {{b.dropdown.menu}} component:"),
+		new e.text("Use {{b.dropdown.button}} like this to toggle the {{b.dropdown.menu}} component:"),
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+					new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
 					new b.dropdown.menu([
 						new b.dropdown.item({ href: "#" }, "Action"),
 						new b.dropdown.item({ href: "#" }, "Another action"),
@@ -52,12 +52,12 @@ export const dropdown: IAttrContent = {
 			},
 		}),
 		new e.text(
-			"While {{b.dropdown.toggle}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{b.dropdown.toggle(href:'')}} component that create {{h.a}} component. {{bsts}} automaticly add {{role='button'}} property which recomended by Bootstrap to appropriately convey control’s purpose to assistive technologies such as screen readers."
+			"While {{b.dropdown.button}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{b.dropdown.button(href:'')}} component that create {{h.a}} component. {{bsts}} automaticly add {{role='button'}} property which recomended by Bootstrap to appropriately convey control’s purpose to assistive technologies such as screen readers."
 		),
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ color: "secondary", href: "#" }, "Dropdown link"),
+					new b.dropdown.button({ color: "secondary", href: "#" }, "Dropdown link"),
 					new b.dropdown.menu([
 						new b.dropdown.item({ href: "#" }, "Action"),
 						new b.dropdown.item({ href: "#" }, "Another action"),
@@ -73,7 +73,7 @@ export const dropdown: IAttrContent = {
 			output: () => {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
-						new b.dropdown.toggle({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
+						new b.dropdown.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -90,7 +90,7 @@ export const dropdown: IAttrContent = {
 
 		new e.subtitle("Split button"),
 		new e.text(
-			"Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of {{b.dropdown.toggle({split:true})}} for proper spacing around the dropdown caret."
+			"Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of {{b.dropdown.button({split:true})}} for proper spacing around the dropdown caret."
 		),
 		new e.text(
 			"Bootstrap use this extra property to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
@@ -101,7 +101,7 @@ export const dropdown: IAttrContent = {
 				return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 					return new b.dropdown.container([
 						new b.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
-						new b.dropdown.toggle({ color: i as core.bootstrapType.color, split: true }),
+						new b.dropdown.button({ color: i as core.bootstrapType.color, split: true }),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -131,12 +131,12 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", weight: "lg" }, "Large button "),
+						new b.dropdown.button({ color: "secondary", weight: "lg" }, "Large button "),
 						menu,
 					]),
 					new b.dropdown.container([
 						new b.button({ color: "secondary", weight: "lg" }, "Large split button"),
-						new b.dropdown.toggle({ color: "secondary", weight: "lg", split: true }),
+						new b.dropdown.button({ color: "secondary", weight: "lg", split: true }),
 						menu,
 					]),
 				];
@@ -156,12 +156,12 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", weight: "sm" }, "Small button "),
+						new b.dropdown.button({ color: "secondary", weight: "sm" }, "Small button "),
 						menu,
 					]),
 					new b.dropdown.container([
 						new b.button({ color: "secondary", weight: "sm" }, "Small split button"),
-						new b.dropdown.toggle({ color: "secondary", weight: "sm", split: true }),
+						new b.dropdown.button({ color: "secondary", weight: "sm", split: true }),
 						menu,
 					]),
 				];
@@ -181,7 +181,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+					new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
 					new b.dropdown.menu({ theme: "dark" }, [
 						new b.dropdown.item({ href: "#" }, "Action"),
 						new b.dropdown.item({ href: "#" }, "Another action"),
@@ -210,7 +210,7 @@ export const dropdown: IAttrContent = {
 							{ id: "navbarNavDarkDropdown" },
 							new b.navbar.itemcontainer([
 								new b.navbar.item({ dropdown: true }, [
-									new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+									new b.dropdown.button({ navItem: true }, "Dropdown"),
 									new b.dropdown.menu([
 										new b.dropdown.item({ href: "#" }, "Action"),
 										new b.dropdown.item({ href: "#" }, "Another action"),
@@ -244,7 +244,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.dropdown.container({ drop: "down-center" }, [
-					new b.dropdown.toggle({ color: "secondary" }, "Centered dropdown"),
+					new b.dropdown.button({ color: "secondary" }, "Centered dropdown"),
 					new b.dropdown.menu([
 						new b.dropdown.item({ href: "#" }, "Action"),
 						new b.dropdown.item({ href: "#" }, "Action two"),
@@ -273,12 +273,12 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container({ drop: "up" }, [
-						new b.dropdown.toggle({ color: "secondary" }, "Dropup "),
+						new b.dropdown.button({ color: "secondary" }, "Dropup "),
 						menu,
 					]),
 					new b.dropdown.container({ drop: "up" }, [
 						new b.button({ color: "secondary" }, "Split dropup"),
-						new b.dropdown.toggle({ color: "secondary", split: true }),
+						new b.dropdown.button({ color: "secondary", split: true }),
 						menu,
 					]),
 				];
@@ -295,7 +295,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.dropdown.container({ drop: "up-center" }, [
-					new b.dropdown.toggle({ color: "secondary" }, "Centered dropup"),
+					new b.dropdown.button({ color: "secondary" }, "Centered dropup"),
 					new b.dropdown.menu([
 						new b.dropdown.item({ href: "#" }, "Action"),
 						new b.dropdown.item({ href: "#" }, "Action two"),
@@ -324,12 +324,12 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container({ drop: "end" }, [
-						new b.dropdown.toggle({ color: "secondary" }, "Dropend "),
+						new b.dropdown.button({ color: "secondary" }, "Dropend "),
 						menu,
 					]),
 					new b.dropdown.container({ drop: "end" }, [
 						new b.button({ color: "secondary" }, "Split dropend"),
-						new b.dropdown.toggle({ color: "secondary", split: true }),
+						new b.dropdown.button({ color: "secondary", split: true }),
 						menu,
 					]),
 				];
@@ -355,12 +355,12 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container({ drop: "start" }, [
-						new b.dropdown.toggle({ color: "secondary" }, " Dropstart"),
+						new b.dropdown.button({ color: "secondary" }, " Dropstart"),
 						menu,
 					]),
 					new b.dropdown.container({ drop: "start" }, [
 						//the order is split -> menu -> button
-						new b.dropdown.toggle({ color: "secondary", split: true }),
+						new b.dropdown.button({ color: "secondary", split: true }),
 						menu,
 						new b.button({ color: "secondary" }, "Split dropstart"),
 					]),
@@ -375,7 +375,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+					new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
 					new b.dropdown.menu([
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
@@ -465,7 +465,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ color: "secondary" }, "Right-aligned menu example"),
+					new b.dropdown.button({ color: "secondary" }, "Right-aligned menu example"),
 					new b.dropdown.menu({ positionView: "end" }, [
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
@@ -488,7 +488,7 @@ export const dropdown: IAttrContent = {
 			showViewport: true,
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ color: "secondary" }, "Left-aligned but right aligned when large screen"),
+					new b.dropdown.button({ color: "secondary" }, "Left-aligned but right aligned when large screen"),
 					new b.dropdown.menu({ positionView: "lg-end", positioning: "static" }, [
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
@@ -504,7 +504,7 @@ export const dropdown: IAttrContent = {
 			showViewport: true,
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ color: "secondary" }, "Right-aligned but left aligned when large screen"),
+					new b.dropdown.button({ color: "secondary" }, "Right-aligned but left aligned when large screen"),
 					new b.dropdown.menu({ positionView: ["end", "lg-start"], positioning: "static" }, [
 						new b.dropdown.item("Action"),
 						new b.dropdown.item("Another action"),
@@ -536,7 +536,7 @@ export const dropdown: IAttrContent = {
 					{ label: "Dropup", drop: "up" },
 				].map((i) => {
 					return new b.dropdown.container({ drop: i.drop as I.B.Dropdown.Drop }, [
-						new b.dropdown.toggle({ color: "secondary" }, i.label),
+						new b.dropdown.button({ color: "secondary" }, i.label),
 						new b.dropdown.menu(
 							{
 								positionView: i.positionView as
@@ -671,7 +671,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new h.div({ class: "dropdown" }, [
-					new b.dropdown.toggle({ autoClose: "outside" }, "Dropdown form"),
+					new b.dropdown.button({ autoClose: "outside" }, "Dropdown form"),
 					new b.dropdown.menu(
 						new h.form(
 							{
@@ -717,7 +717,7 @@ export const dropdown: IAttrContent = {
 		new e.code({
 			output: () => {
 				return new b.dropdown.container([
-					new b.dropdown.toggle({ autoClose: "outside" }, "Dropdown form"),
+					new b.dropdown.button({ autoClose: "outside" }, "Dropdown form"),
 					new b.dropdown.menu(
 						{ style: { width: "18rem" } },
 						new h.form(
@@ -763,7 +763,7 @@ export const dropdown: IAttrContent = {
 
 		new e.title("Dropdown options"),
 		new e.text(
-			"Use {{menuOffset}} or {{menuReference}} property on {{b.dropdown.toggle}} to change the location of the dropdown."
+			"Use {{menuOffset}} or {{menuReference}} property on {{b.dropdown.button}} to change the location of the dropdown."
 		),
 		new e.code({
 			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -778,12 +778,12 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", viewOffset: "10,20" }, "Offset "),
+						new b.dropdown.button({ color: "secondary", viewOffset: "10,20" }, "Offset "),
 						menu,
 					]),
 					new b.dropdown.container([
 						new b.button({ color: "secondary" }, "Reference"),
-						new b.dropdown.toggle({ color: "secondary", split: true, reference: "parent" }),
+						new b.dropdown.button({ color: "secondary", split: true, reference: "parent" }),
 						menu,
 					]),
 				];
@@ -809,19 +809,19 @@ export const dropdown: IAttrContent = {
 
 				return [
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary" }, "Default dropdown "),
+						new b.dropdown.button({ color: "secondary" }, "Default dropdown "),
 						menu,
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", autoClose: "inside" }, "Clickable inside "),
+						new b.dropdown.button({ color: "secondary", autoClose: "inside" }, "Clickable inside "),
 						menu,
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", autoClose: "outside" }, "Clickable outside "),
+						new b.dropdown.button({ color: "secondary", autoClose: "outside" }, "Clickable outside "),
 						menu,
 					]),
 					new b.dropdown.container([
-						new b.dropdown.toggle({ color: "secondary", autoClose: "manual" }, "Manual close "),
+						new b.dropdown.button({ color: "secondary", autoClose: "manual" }, "Manual close "),
 						menu,
 					]),
 				];
@@ -1226,7 +1226,7 @@ export const dropdown: IAttrContent = {
 				);
 
 				const dropdownContainer = new b.dropdown.container([
-					new b.dropdown.toggle("Dropdown button"),
+					new b.dropdown.button("Dropdown button"),
 					dropdownMenu,
 				]);
 
@@ -1310,7 +1310,7 @@ export const dropdown: IAttrContent = {
 					{
 						on: {
 							click: () => {
-								b.dropdown.toggles("#example-dropdown");
+								b.dropdown.toggle("#example-dropdown");
 							},
 						},
 					},
@@ -1440,7 +1440,7 @@ export const dropdown: IAttrContent = {
 						},
 					},
 					[
-						new b.dropdown.toggle({ color: "secondary" }, "Dropdown button"),
+						new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),

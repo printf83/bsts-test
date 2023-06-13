@@ -329,7 +329,7 @@ export const nav: IAttrContent = {
 				return new b.nav.header.container({ type: "tab" }, [
 					new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
 					new b.nav.header.item({ dropdown: true }, [
-						new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+						new b.dropdown.button({ navItem: true }, "Dropdown"),
 						new b.dropdown.menu([
 							new b.dropdown.item({ href: "#" }, "Action"),
 							new b.dropdown.item({ href: "#" }, "Another action"),
@@ -354,7 +354,7 @@ export const nav: IAttrContent = {
 						{
 							dropdown: true,
 							elem: [
-								new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+								new b.dropdown.button({ navItem: true }, "Dropdown"),
 								new b.dropdown.menu([
 									new b.dropdown.item({ href: "#" }, "Action"),
 									new b.dropdown.item({ href: "#" }, "Another action"),
@@ -383,7 +383,7 @@ export const nav: IAttrContent = {
 						{
 							dropdown: true,
 							elem: [
-								new b.dropdown.toggle({ navItem: true }, "Dropdown"),
+								new b.dropdown.button({ navItem: true }, "Dropdown"),
 								new b.dropdown.menu([
 									new b.dropdown.item({ href: "#" }, "Action"),
 									new b.dropdown.item({ href: "#" }, "Another action"),
@@ -1021,7 +1021,7 @@ export const nav: IAttrContent = {
 					})
 				);
 
-				const modal = b.modal.simple({
+				const modal = b.modal.create({
 					id: "modal-tab-example",
 					title: "Modal title",
 					attrBody: { padding: 0 },
