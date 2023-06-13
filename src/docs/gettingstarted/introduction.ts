@@ -1,6 +1,6 @@
 import { h, b } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index";
-import { IAttrContent } from "../../ctl/main/container";
+import * as e from "../../ctl/example/_index.js";
+import { IAttrContent } from "../../ctl/main/container.js";
 
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.1.127/+esm";
 const BSCDNCSS = [

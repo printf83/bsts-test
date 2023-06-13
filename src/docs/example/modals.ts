@@ -1,6 +1,7 @@
-import { I, b, h } from "@printf83/bsts";
+import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
+import Chart from "chart.js/auto";
 
 export const modals: IAttrContent = {
 	title: "Modals",
@@ -428,12 +429,67 @@ export const modals: IAttrContent = {
 
 		new e.title("Sign up form"),
 		new e.code({
-			previewAttr: { bgColor: "body-tertiary" },
 			showCodepen: false,
+			outputAttr: { display: "flex", gap: 3, flex: "wrap" },
 			output: () => {
-				return new b.modal.container({ debug: true, contentAttr: { rounded: 4 } }, [
-					new b.modal.body({ padding: 5 }, []),
-				]);
+				const item = (arg: { data: number[] }) => {
+					return new b.card.container(
+						{ style: { maxWidth: "150px" } },
+						new b.card.body(
+							new h.canvas({
+								ratio: "4x3",
+								on: {
+									build: (event) => {
+										const target = event.target as HTMLCanvasElement;
+										new Chart(target, {
+											type: "line",
+											data: {
+												labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+												datasets: [
+													{
+														label: "# of Votes",
+														data: arg.data,
+														borderWidth: 1,
+														tension: 0.5,
+													},
+												],
+											},
+											options: {
+												plugins: {
+													legend: {
+														display: false,
+													},
+												},
+												scales: {
+													x: { display: false },
+													y: {
+														display: false,
+														beginAtZero: true,
+													},
+												},
+											},
+										});
+									},
+								},
+							})
+						)
+					);
+				};
+				return new Array(15).fill("").map(() => {
+					return item({
+						data: [
+							core.rndBetween(1, 20),
+							core.rndBetween(1, 20),
+							core.rndBetween(1, 20),
+							core.rndBetween(1, 20),
+							core.rndBetween(1, 20),
+							core.rndBetween(1, 20),
+						],
+					});
+				});
+				// return new b.modal.container({ debug: true}, [
+				// 	new b.modal.body({ padding: 5 }, []),
+				// ]);
 			},
 		}),
 	],
