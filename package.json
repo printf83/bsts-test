@@ -1,6 +1,6 @@
 {
 	"name": "@printf83/bsts-test",
-	"version": "0.1.126",
+	"version": "0.1.127",
 	"description": "Bootstrap TS builder - Documentation",
 	"keywords": [
 		"documentation",
@@ -38,7 +38,7 @@
 		"deploy": "npm run webpack"
 	},
 	"devDependencies": {
-		"@printf83/bsts": "^0.1.126",
+		"@printf83/bsts": "^0.1.127",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
 		"compression-webpack-plugin": "^10.0.0",
