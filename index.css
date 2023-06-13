@@ -676,6 +676,33 @@ strong,
     transform: rotate(-5deg) scale(1.1);
 }
 
+/* bs-bootswatch-menu */
+.bs-bootswatch-menu a{
+    border-radius: var(--bs-dropdown-border-radius);
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    font-weight: 400;
+    color: var(--bs-dropdown-link-color);
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.bs-bootswatch-menu a:hover,
+.bs-bootswatch-menu a:focus{
+    cursor: pointer;
+    color: var(--bs-dropdown-link-hover-color);
+    background-color: var(--bs-dropdown-link-hover-bg);
+}
+
+.bs-bootswatch-menu a.active{
+    color: var(--bs-dropdown-link-active-color);
+    text-decoration: none;
+    background-color: var(--bs-dropdown-link-active-bg);
+}
+
+
 /* example */
 
 

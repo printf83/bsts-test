@@ -40,13 +40,13 @@ const changeBootswatch = (value: string) => {
 	let bsBootswatchMenu = bsBootswatch.nextSibling as Element;
 	let bsBootswatchLabel = document.getElementById("bs-bootswatch-label") as Element;
 
-	let lastActive = bsBootswatchMenu.querySelectorAll(".dropdown-item.active")[0];
+	let lastActive = bsBootswatchMenu.querySelectorAll("a.active")[0];
 	if (lastActive) {
 		lastActive.classList.remove("active");
 		lastActive.removeAttribute("aria-current");
 	}
 
-	let newActive = bsBootswatchMenu.querySelectorAll(`.dropdown-item[data-value='${value}']`)[0];
+	let newActive = bsBootswatchMenu.querySelectorAll(`a[data-value='${value}']`)[0];
 	if (newActive) {
 		newActive.classList.add("active");
 		newActive.setAttribute("aria-current", "true");
@@ -310,26 +310,30 @@ const genBootswatch = (
 					{
 						positionView: "end",
 						customStyle: 1,
-						row: true,
 						style: { minWidth: "20rem" },
 					},
-					navbarItemBootswatch.map((i) => {
-						return new b.dropdown.item(
-							{
-								col: true,
-								display: "inline-block",
-								style: { width: "33.333%" },
-								on: {
-									click: (_e) => {
-										changeBootswatch(i.value);
+					new h.div(
+						{
+							class: "bs-bootswatch-menu",
+							display: "grid",
+							gap: 1,
+							style: { "grid-template-columns": "1fr 1fr 1fr" },
+						},
+						navbarItemBootswatch.map((i) => {
+							return new h.a(
+								{
+									on: {
+										click: (_e) => {
+											changeBootswatch(i.value);
+										},
 									},
+									class: [i.value === currentBootswatch ? "active" : undefined],
+									data: { value: i.value },
 								},
-								active: i.value === currentBootswatch,
-								data: { value: i.value },
-							},
-							i.label
-						);
-					})
+								i.label
+							);
+						})
+					)
 				),
 			]),
 		];
@@ -337,6 +341,77 @@ const genBootswatch = (
 		return [];
 	}
 };
+// const genBootswatch = (
+// 	textColor: core.bootstrapType.textColor,
+// 	navbarItemBootswatch?: IAttrItemBootswatch[],
+// 	currentBootswatch?: string
+// ) => {
+// 	if (navbarItemBootswatch) {
+// 		return [
+// 			new b.navbar.item(
+// 				{
+// 					paddingY: [2, "lg-1"],
+// 					col: [12, "lg-auto"],
+// 				},
+// 				[
+// 					new b.verticalrule({
+// 						display: ["none", "lg-flex"],
+// 						height: 100,
+// 						marginX: "lg-2",
+// 						textColor: textColor,
+// 					}),
+// 					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+// 				]
+// 			),
+// 			new b.navbar.item({ dropdown: true }, [
+// 				new b.dropdown.button(
+// 					{
+// 						id: "bs-bootswatch",
+// 						color: "link",
+// 						class: "nav-link",
+// 						paddingY: 2,
+// 						paddingX: [0, "lg-2"],
+// 						textColor: textColor,
+// 					},
+// 					[
+// 						new h.span({ marginEnd: 2 }, new b.icon({ type: "solid", id: "swatchbook" })),
+// 						new h.span(
+// 							{ id: "bs-bootswatch-label" },
+// 							`${core.uppercaseFirst(currentBootswatch ? currentBootswatch : "Default")}`
+// 						),
+// 					]
+// 				),
+// 				new b.dropdown.menu(
+// 					{
+// 						positionView: "end",
+// 						customStyle: 1,
+// 						row: true,
+// 						style: { minWidth: "20rem" },
+// 					},
+// 					navbarItemBootswatch.map((i) => {
+// 						return new b.dropdown.item(
+// 							{
+// 								col: true,
+// 								display: "inline-block",
+// 								style: { width: "33.333%" },
+// 								on: {
+// 									click: (_e) => {
+// 										changeBootswatch(i.value);
+// 									},
+// 								},
+// 								active: i.value === currentBootswatch,
+// 								data: { value: i.value },
+// 							},
+// 							i.label
+// 						);
+// 					})
+// 				),
+// 			]),
+// 		];
+// 	} else {
+// 		return [];
+// 	}
+// };
 
 const genVersion = (
 	textColor: core.bootstrapType.textColor,
