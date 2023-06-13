@@ -427,7 +427,7 @@ export const modals: IAttrContent = {
 
 		//-----------------------
 
-		new e.title("Sign up form"),
+		new e.title("Testing"),
 		new e.code({
 			showCodepen: false,
 			outputAttr: { display: "flex", gap: 3, flex: "wrap" },
