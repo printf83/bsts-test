@@ -1,4 +1,4 @@
-import { b, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -30,7 +30,14 @@ export const modals: IAttrContent = {
 						},
 						[
 							new b.button({ color: "primary", weight: "lg" }, "Save changes"),
-							new b.button({ dismiss: "modal", color: "secondary", weight: "lg" }, "Close"),
+							new b.button(
+								{
+									dismiss: "modal",
+									color: "secondary",
+									weight: "lg",
+								},
+								"Close"
+							),
 						]
 					),
 				]);
@@ -39,7 +46,20 @@ export const modals: IAttrContent = {
 
 		new e.code({
 			output: () => {
-				return [];
+				return new h.div(
+					{
+						id: "abcTestNode",
+						on: {
+							build: (event) => {
+								const target = event.target as Element;
+								setTimeout(() => {
+									core.replaceWith(target, new h.div({ id: "defTestNode" }, "Element changed"));
+								}, 5000);
+							},
+						},
+					},
+					"This element will change after 5 second"
+				);
 			},
 		}),
 
