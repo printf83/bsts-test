@@ -568,35 +568,6 @@ export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExt
 		});
 	}
 
-	// const libListA = [" b.", " h.", " t.", " s(", " I.", "(b.", "(h.", "(t.", "(s(", "(I.", "...b."];
-	// const libListB = ["b", "h", "t", "s", "I", "b", "h", "t", "s", "I", "b"];
-
-	// if (strCode) {
-	// 	libListA.forEach((i, ix) => {
-	// 		if (strCode.indexOf(i) > -1) {
-	// 			libImported.push(libListB[ix]);
-	// 		}
-	// 	});
-	// }
-
-	// if (strManager) {
-	// 	libListA.forEach((i, ix) => {
-	// 		if (strManager.indexOf(i) > -1) {
-	// 			libImported.push(libListB[ix]);
-	// 		}
-	// 	});
-	// }
-
-	// if (strExtention && strExtention.length > 0) {
-	// 	strExtention.forEach((j) => {
-	// 		libListA.forEach((i, ix) => {
-	// 			if (j.indexOf(i) > -1) {
-	// 				libImported.push(libListB[ix]);
-	// 			}
-	// 		});
-	// 	});
-	// }
-
 	return libImported
 		.filter(function (item, pos) {
 			return libImported.indexOf(item) == pos;

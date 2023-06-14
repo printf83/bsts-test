@@ -556,7 +556,7 @@ const itemCode = (arg: {
 												console.warn("Timer tmr1 expired");
 											}
 										},
-										300,
+										100,
 										tmr8
 									);
 							  }
@@ -586,7 +586,7 @@ const itemCode = (arg: {
 												console.warn("Timer tmr9 expired");
 											}
 										},
-										300,
+										100,
 										tmr9
 									);
 							  },
@@ -973,7 +973,8 @@ const convert = (attr: IBsExampleContainer) => {
 	attr.scriptConverter ??= (str: string) => {
 		return str
 			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_0__\./gm, "")
-			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__\./gm, "e.");
+			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__\./gm, "e.")
+			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_2__\[\"default\"\]\(/gm, "Chart(");
 	};
 
 	let e: t[] = [];
