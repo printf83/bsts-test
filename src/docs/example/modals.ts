@@ -430,63 +430,93 @@ export const modals: IAttrContent = {
 		new e.title("Testing"),
 		new e.code({
 			showCodepen: false,
-			outputAttr: { display: "flex", gap: 3, flex: "wrap" },
 			output: () => {
 				const item = (arg: { data: number[] }) => {
 					return new b.card.container(
-						{ style: { maxWidth: "150px" } },
+						{ style: { maxWidth: "120px" } },
 						new b.card.body(
 							new h.canvas({
 								ratio: "4x3",
 								on: {
 									build: (event) => {
 										const target = event.target as HTMLCanvasElement;
-										new Chart(target, {
-											type: "line",
-											data: {
-												labels: Array(arg.data.length).fill(""),
-												datasets: [
-													{
-														data: arg.data,
-														borderWidth: 2,
-														pointRadius: 0,
-														tension: 0.5,
+
+										//dialog show after 300 ms
+										setTimeout(
+											(target) => {
+												new Chart(target, {
+													type: "line",
+													data: {
+														labels: Array(arg.data.length).fill(""),
+														datasets: [
+															{
+																data: arg.data,
+																borderWidth: 2,
+																pointRadius: 0,
+																tension: 0.5,
+															},
+														],
 													},
-												],
+													options: {
+														plugins: {
+															legend: {
+																display: false,
+															},
+														},
+														scales: {
+															x: { display: false },
+															y: {
+																display: false,
+																beginAtZero: true,
+															},
+														},
+													},
+												});
 											},
-											options: {
-												plugins: {
-													legend: {
-														display: false,
-													},
-												},
-												scales: {
-													x: { display: false },
-													y: {
-														display: false,
-														beginAtZero: true,
-													},
-												},
-											},
-										});
+											300,
+											target
+										);
 									},
 								},
 							})
 						)
 					);
 				};
-				return new Array(15).fill("").map(() => {
-					return item({
-						data: Array(core.rndBetween(5, 20))
-							.fill("")
-							.map((d) => {
-								return core.rndBetween(1, 20);
-							}),
-					});
-				});
-				// return new b.modal.container({ debug: true}, [
-				// 	new b.modal.body({ padding: 5 }, []),
-				// ]);
+
+				return new b.button(
+					{
+						on: {
+							click: () => {
+								b.modal.show(
+									b.modal.create({
+										customStyle: "android",
+										title: "Chatjs example",
+										elem: new h.div(
+											{
+												display: "flex",
+												gap: 3,
+												justifyContent: "center",
+												flex: "wrap",
+												marginTop: 3,
+											},
+											new Array(15).fill("").map(() => {
+												return item({
+													data: Array(core.rndBetween(5, 20))
+														.fill("")
+														.map(() => {
+															return core.rndBetween(1, 20);
+														}),
+												});
+											})
+										),
+										btn: ["ok", "cancel"],
+									})
+								);
+							},
+						},
+					},
+					"Test"
+				);
 			},
 		}),
 	],
