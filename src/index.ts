@@ -395,57 +395,76 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 
 	//set loading
 	setLoading(contentbody);
-	setTimeout(() => {
-		getData(docId, (docData) => {
-			//keep current page in cookie
-			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-			//remove active popup
-			core.removeAllActivePopup();
+	const tmr1 = core.UUID();
+	setTimeout(
+		(dTmr1) => {
+			if (dTmr1 === tmr1) {
+				getData(docId, (docData) => {
+					//keep current page in cookie
+					cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-			//generate content
-			contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+					//remove active popup
+					core.removeAllActivePopup();
 
-			//reset loading
-			resetLoading(contentbody);
+					//generate content
+					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 
-			//rename page title
-			let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-			const { origin, pathname } = window.location;
-			document.title = strPagetitle;
+					//reset loading
+					resetLoading(contentbody);
 
-			//set history
-			if (state === "push") {
-				window.history.pushState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
-			} else if (state === "replace") {
-				window.history.replaceState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
+					//rename page title
+					let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+					let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+					const { origin, pathname } = window.location;
+					document.title = strPagetitle;
+
+					//set history
+					if (state === "push") {
+						window.history.pushState(
+							{
+								docId: docId,
+								anchorId: anchorId,
+								isfirsttime: isfirsttime,
+							} satisfies IWindowState,
+							strPagetitle,
+							`${origin}${pathname}?d=${value}`
+						);
+					} else if (state === "replace") {
+						window.history.replaceState(
+							{
+								docId: docId,
+								anchorId: anchorId,
+								isfirsttime: isfirsttime,
+							} satisfies IWindowState,
+							strPagetitle,
+							`${origin}${pathname}?d=${value}`
+						);
+					}
+
+					core.init(contentbody);
+					focusToAnchor(anchorId, isfirsttime);
+
+					const tmr2 = core.UUID();
+					setTimeout(
+						(dTmr2) => {
+							if (dTmr2 === tmr2) {
+								PR.prettyPrint();
+							} else {
+								console.warn("Timer tmr2 expired");
+							}
+						},
+						300,
+						tmr2
+					);
+				});
+			} else {
+				console.warn("Timer tmr1 expired");
 			}
-
-			core.init(contentbody);
-			focusToAnchor(anchorId, isfirsttime);
-
-			setTimeout(() => {
-				PR.prettyPrint();
-			}, 10);
-		});
-	}, 0);
+		},
+		0,
+		tmr1
+	);
 };
 
 const setupBSNavigate = () => {
@@ -521,17 +540,26 @@ const runMemoryTest = (count: number, max?: number) => {
 	let docId = mDB[core.rndBetween(0, mDB.length - 1)];
 
 	if (count > 0) {
-		setTimeout(() => {
-			getData(docId, (docData) => {
-				let contentbody = document.getElementById("bs-main") as Element;
-				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-				highlightCurrentMenu(docId);
-				core.init(contentbody);
+		const tmr3 = core.UUID();
+		setTimeout(
+			(dTmr3) => {
+				if (dTmr3 === tmr3) {
+					getData(docId, (docData) => {
+						let contentbody = document.getElementById("bs-main") as Element;
+						contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+						highlightCurrentMenu(docId);
+						core.init(contentbody);
 
-				document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
-				runMemoryTest(count - 1, max);
-			});
-		}, 0);
+						document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
+						runMemoryTest(count - 1, max);
+					});
+				} else {
+					console.warn("Timer tmr3 expired");
+				}
+			},
+			0,
+			tmr3
+		);
 	} else {
 		highlightCurrentMenu(docId);
 		onMenuChange(docId);

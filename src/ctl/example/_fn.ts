@@ -159,24 +159,36 @@ export const codePen = (data: ICodePen) => {
 			)
 		);
 
+		const tmr1 = core.UUID();
 		setTimeout(
-			(id) => {
-				const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
-				form.submit();
+			(id, dTmr1) => {
+				if (dTmr1 === tmr1) {
+					const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+					form.submit();
 
-				setTimeout(
-					(id) => {
-						const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
-						if (form) {
-							core.removeElement(form);
-						}
-					},
-					3000,
-					id
-				);
+					const tmr2 = core.UUID();
+					setTimeout(
+						(id, dTmr2) => {
+							if (dTmr2 === tmr2) {
+								const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
+								if (form) {
+									core.removeElement(form);
+								}
+							} else {
+								// console.wran("Timer tmr2 expired");
+							}
+						},
+						3000,
+						id,
+						tmr2
+					);
+				} else {
+					// console.wran("Timer tmr2 expired");
+				}
 			},
 			300,
-			id
+			id,
+			tmr1
 		);
 	}
 };

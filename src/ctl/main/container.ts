@@ -3,12 +3,18 @@ import * as e from "../example/_index.js";
 
 const dispatchCustomEvent = (root: Element | null, eventName: string, value: string) => {
 	if (root) {
+		const tmr = core.UUID();
 		setTimeout(
-			(value: string) => {
-				root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
+			(value, dTmr) => {
+				if (dTmr === tmr) {
+					root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
+				} else {
+					console.log("Timer tmr expired");
+				}
 			},
 			10,
-			value
+			value,
+			tmr
 		);
 	}
 };

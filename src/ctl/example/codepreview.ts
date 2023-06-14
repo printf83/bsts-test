@@ -7,14 +7,20 @@ function successCopyCode(iconElem?: Element) {
 		iconElem.classList.add("bi-check2");
 		iconElem.classList.add("text-success");
 
+		const tmr = core.UUID();
 		setTimeout(
-			(iconElem) => {
-				iconElem.classList.remove("text-success");
-				iconElem.classList.remove("bi-check2");
-				iconElem.classList.add("bi-clipboard");
+			(iconElem, dTmr) => {
+				if (dTmr === tmr) {
+					iconElem.classList.remove("text-success");
+					iconElem.classList.remove("bi-check2");
+					iconElem.classList.add("bi-clipboard");
+				} else {
+					console.warn("Timer tmr expired");
+				}
 			},
 			1000,
-			iconElem
+			iconElem,
+			tmr
 		);
 	}
 }
@@ -25,14 +31,20 @@ function failCopyCode(iconElem?: Element) {
 		iconElem.classList.add("bi-exclamation-triangle");
 		iconElem.classList.add("text-danger");
 
+		const tmr = core.UUID();
 		setTimeout(
-			(iconElem) => {
-				iconElem.classList.remove("text-danger");
-				iconElem.classList.remove("bi-exclamation-triangle");
-				iconElem.classList.add("bi-clipboard");
+			(iconElem, dTmr) => {
+				if (dTmr === tmr) {
+					iconElem.classList.remove("text-danger");
+					iconElem.classList.remove("bi-exclamation-triangle");
+					iconElem.classList.add("bi-clipboard");
+				} else {
+					console.warn("Timer tmr expired");
+				}
 			},
 			1000,
-			iconElem
+			iconElem,
+			tmr
 		);
 	}
 }
