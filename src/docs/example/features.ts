@@ -277,6 +277,9 @@ export const features: IAttrContent = {
 		//-----------------------
 		new e.title("Custom cards"),
 		new e.code({
+			zoom: 50,
+			outputAttr: { viewWidth: 100 },
+			previewAttr: { overflow: "auto" },
 			showViewport: true,
 			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 			output: () => {

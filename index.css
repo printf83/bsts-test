@@ -167,36 +167,38 @@
 
 /*zoom*/
 .example-output.zoom-25 {
-    width: 100vw;
-    margin-top: -12vw;
-    margin-bottom: -12vw;
-    zoom: 0.25;
-    -ms-zoom: 0.25;
-    -webkit-zoom: 0.25;
-    -moz-transform: scale(0.25);
-    -moz-transform-origin: 11vw;
-
+    transform: scale(0.25);
+    transform-origin: center left;
 }
 .example-output.zoom-50 {
-    width: 100vw;
-    margin-top: -8vw;
-    margin-bottom: -8vw;
-    zoom: 0.5;
-    -ms-zoom: 0.5;
-    -webkit-zoom: 0.5;
-    -moz-transform: scale(0.5);
-    -moz-transform-origin: -9vw;
-    
+    transform: scale(0.5);
+    transform-origin: center  left;
+
 }
 .example-output.zoom-75 {
-    width: 100vw;
-    margin-top: -4vw;
-    margin-bottom: -4vw;
-    zoom: 0.75;
-    -ms-zoom: 0.75;
-    -webkit-zoom: 0.75;
-    -moz-transform: scale(0.75);
-    -moz-transform-origin: -65vw;
+    transform: scale(0.75);
+    transform-origin: center  left;
+
+}
+.example-output.zoom-100 {
+    transform: scale(1);
+    transform-origin: center  left;
+
+}
+.example-output.zoom-125 {
+    transform: scale(1.25);
+    transform-origin: center  left;
+
+}
+.example-output.zoom-150 {
+    transform: scale(1.5);
+    transform-origin: center  left;
+
+}
+.example-output.zoom-200 {
+    transform: scale(2);
+    transform-origin: center  left;
+
 }
 
 

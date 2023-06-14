@@ -47,7 +47,7 @@ export interface IBsExampleContainer extends core.IAttr {
 
 	previewAttr?: core.IAttr;
 	outputAttr?: core.IAttr;
-	zoom?: 25 | 50 | 75 | 100;
+	zoom?: 25 | 50 | 75 | 100 | 125 | 150 | 200;
 }
 
 declare var PR: {
@@ -612,7 +612,7 @@ const itemCode = (arg: {
 };
 
 const itemOutput = (
-	zoom: 25 | 50 | 75 | 100 | undefined,
+	zoom: 25 | 50 | 75 | 100 | 125 | 150 | 200 | undefined,
 	previewAttr: core.IAttr | undefined,
 	outputAttr: core.IAttr | undefined,
 	str: string
@@ -854,6 +854,30 @@ const itemZoom = (zoom: number) => {
 														break;
 													case "75":
 														exampleOutput.classList.remove("zoom-75");
+														exampleOutput.classList.add("zoom-100");
+														target.setAttribute("data-bs-zoom", "100");
+														target.innerHTML = "100%";
+														break;
+													case "100":
+														exampleOutput.classList.remove("zoom-100");
+														exampleOutput.classList.add("zoom-125");
+														target.setAttribute("data-bs-zoom", "125");
+														target.innerHTML = "125%";
+														break;
+													case "125":
+														exampleOutput.classList.remove("zoom-125");
+														exampleOutput.classList.add("zoom-150");
+														target.setAttribute("data-bs-zoom", "150");
+														target.innerHTML = "150%";
+														break;
+													case "150":
+														exampleOutput.classList.remove("zoom-150");
+														exampleOutput.classList.add("zoom-200");
+														target.setAttribute("data-bs-zoom", "200");
+														target.innerHTML = "200%";
+														break;
+													case "200":
+														exampleOutput.classList.remove("zoom-200");
 														exampleOutput.classList.add("zoom-25");
 														target.setAttribute("data-bs-zoom", "25");
 														target.innerHTML = "25%";
