@@ -961,30 +961,22 @@ export const modal: IAttrContent = {
 									const target = event.target as Element;
 									const body = target.querySelector(".modal-body") as HTMLDivElement;
 
-									const tmr = core.UUID();
 									setTimeout(
-										(target, body, dTmr) => {
-											if (dTmr === tmr) {
-												core.replaceChild(body, [
-													new h.p(
-														{ style: { height: "100vh" } },
-														"This is some placeholder content to show the scrolling behavior for modals. Bootstrap use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
-													),
-													new h.p(
-														"This content should appear at the bottom after you scroll."
-													),
-												]);
+										(target, body) => {
+											core.replaceChild(body, [
+												new h.p(
+													{ style: { height: "100vh" } },
+													"This is some placeholder content to show the scrolling behavior for modals. Bootstrap use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+												),
+												new h.p("This content should appear at the bottom after you scroll."),
+											]);
 
-												// readjust the modal’s position
-												b.modal.handleUpdate(target);
-											} else {
-												console.warn("Timer tmr expired");
-											}
+											// readjust the modal’s position
+											b.modal.handleUpdate(target);
 										},
 										5000,
 										target,
 										body,
-										tmr
 									);
 								},
 							},

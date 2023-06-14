@@ -61,18 +61,9 @@ const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
 
 	if (autoPrettyPrint) {
-		const tmr1 = core.UUID();
-		setTimeout(
-			(dTmr1) => {
-				if (dTmr1 === tmr1) {
-					PR.prettyPrint();
-				} else {
-					console.warn("Timer tmr1 expired");
-				}
-			},
-			300,
-			tmr1
-		);
+		setTimeout(() => {
+			PR.prettyPrint();
+		}, 300);
 	}
 };
 
@@ -82,20 +73,14 @@ function successCopyCode(iconElem?: Element) {
 		iconElem.classList.add("bi-check2");
 		iconElem.classList.add("text-success");
 
-		const tmr2 = core.UUID();
 		setTimeout(
-			(iconElem, dTmr2) => {
-				if (dTmr2 === tmr2) {
-					iconElem.classList.remove("text-success");
-					iconElem.classList.remove("bi-check2");
-					iconElem.classList.add("bi-clipboard");
-				} else {
-					console.warn("Timer tmr2 expired");
-				}
+			(iconElem) => {
+				iconElem.classList.remove("text-success");
+				iconElem.classList.remove("bi-check2");
+				iconElem.classList.add("bi-clipboard");
 			},
 			1000,
-			iconElem,
-			tmr2
+			iconElem
 		);
 	}
 }
@@ -106,20 +91,14 @@ function failCopyCode(iconElem?: Element) {
 		iconElem.classList.add("bi-exclamation-triangle");
 		iconElem.classList.add("text-danger");
 
-		const tmr3 = core.UUID();
 		setTimeout(
-			(iconElem, dTmr3) => {
-				if (dTmr3 === tmr3) {
-					iconElem.classList.remove("text-danger");
-					iconElem.classList.remove("bi-exclamation-triangle");
-					iconElem.classList.add("bi-clipboard");
-				} else {
-					console.warn("Timer tmr3 expired");
-				}
+			(iconElem) => {
+				iconElem.classList.remove("text-danger");
+				iconElem.classList.remove("bi-exclamation-triangle");
+				iconElem.classList.add("bi-clipboard");
 			},
 			1000,
-			iconElem,
-			tmr3
+			iconElem
 		);
 	}
 }
@@ -142,26 +121,23 @@ function itemCodeCopy(e: Event) {
 					//try raiseEvent listgroupitem
 					nextListGroupItem.dispatchEvent(new CustomEvent("load.bs.collapse"));
 
-					const tmr4 = core.UUID();
 					setTimeout(
-						(dTmr4) => {
-							if (dTmr4 === tmr4) {
-								preTag = nextListGroupItem.getElementsByTagName("pre");
-								const text = preTag[0].innerText;
-								navigator.clipboard.writeText(text).then(
-									() => {
-										successCopyCode(iconElem);
-									},
-									() => {
-										failCopyCode(iconElem);
-									}
-								);
-							} else {
-								console.warn("Timer tmr4 expired");
-							}
+						(iconElem, preTag, nextListGroupItem) => {
+							preTag = nextListGroupItem.getElementsByTagName("pre");
+							const text = preTag[0].innerText;
+							navigator.clipboard.writeText(text).then(
+								() => {
+									successCopyCode(iconElem);
+								},
+								() => {
+									failCopyCode(iconElem);
+								}
+							);
 						},
-						100,
-						tmr4
+						300,
+						iconElem,
+						preTag,
+						nextListGroupItem
 					);
 				} else {
 					const text = preTag[0].innerText;
@@ -194,20 +170,14 @@ function successClearConsoleLog(iconElem?: Element) {
 		iconElem.classList.add("bi-check2");
 		iconElem.classList.add("text-success");
 
-		const tmr5 = core.UUID();
 		setTimeout(
-			(iconElem, dTmr5) => {
-				if (dTmr5 === tmr5) {
-					iconElem.classList.remove("text-success");
-					iconElem.classList.remove("bi-check2");
-					iconElem.classList.add("bi-trash3");
-				} else {
-					console.warn("Timer tmr5 expired");
-				}
+			(iconElem) => {
+				iconElem.classList.remove("text-success");
+				iconElem.classList.remove("bi-check2");
+				iconElem.classList.add("bi-trash3");
 			},
 			1000,
-			iconElem,
-			tmr5
+			iconElem
 		);
 	}
 }
@@ -274,21 +244,15 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 						noti.setAttribute("bs-hash", hash);
 						noti.classList.add("active");
 
-						const tmr6 = core.UUID();
 						setTimeout(
-							(noti: Element, hash: string, dTmr6) => {
-								if (dTmr6 === tmr6) {
-									if (noti.getAttribute("bs-hash") === hash) {
-										noti.classList.remove("active");
-									}
-								} else {
-									console.warn("Timer tmr6 expired");
+							(noti: Element, hash: string) => {
+								if (noti.getAttribute("bs-hash") === hash) {
+									noti.classList.remove("active");
 								}
 							},
 							5000,
 							noti,
-							hash,
-							tmr6
+							hash
 						);
 					}
 				}
@@ -409,20 +373,14 @@ const itemCode = (arg: {
 															iconElem.classList.add("bi-check2");
 															iconElem.classList.add("text-success");
 
-															const tmr7 = core.UUID();
 															setTimeout(
-																(iconElem, dTmr7) => {
-																	if (dTmr7 === tmr7) {
-																		iconElem.classList.remove("text-success");
-																		iconElem.classList.remove("bi-check2");
-																		iconElem.classList.add("arrow-clockwise");
-																	} else {
-																		console.warn("Timer tmr7 expired");
-																	}
+																(iconElem) => {
+																	iconElem.classList.remove("text-success");
+																	iconElem.classList.remove("bi-check2");
+																	iconElem.classList.add("arrow-clockwise");
 																},
 																1000,
-																iconElem,
-																tmr7
+																iconElem
 															);
 														}
 													},
@@ -547,18 +505,9 @@ const itemCode = (arg: {
 
 									core.replaceChild(target, arg.elem);
 
-									const tmr8 = core.UUID();
-									setTimeout(
-										(dTmr8) => {
-											if (dTmr8 === tmr8) {
-												PR.prettyPrint();
-											} else {
-												console.warn("Timer tmr1 expired");
-											}
-										},
-										100,
-										tmr8
-									);
+									setTimeout(() => {
+										PR.prettyPrint();
+									}, 300);
 							  }
 							: !arg.islast && arg.allowrefresh
 							? (e) => {
@@ -577,18 +526,9 @@ const itemCode = (arg: {
 									const target = e.target as Element;
 									core.replaceChild(target, arg.elem);
 
-									const tmr9 = core.UUID();
-									setTimeout(
-										(dTmr9) => {
-											if (dTmr9 === tmr9) {
-												PR.prettyPrint();
-											} else {
-												console.warn("Timer tmr9 expired");
-											}
-										},
-										100,
-										tmr9
-									);
+									setTimeout(() => {
+										PR.prettyPrint();
+									}, 100);
 							  },
 					"hidden.bs.collapse": arg.islast
 						? (e) => {
