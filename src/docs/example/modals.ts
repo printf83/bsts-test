@@ -12,7 +12,7 @@ export const modals: IAttrContent = {
 			previewAttr: { bgColor: "body-tertiary" },
 			showCodepen: false,
 			output: () => {
-				return new b.modal.container({ debug: true, contentAttr: { rounded: 4 } }, [
+				return new b.modal.container({ debug: true, view: "end", contentAttr: { rounded: 4 } }, [
 					new b.modal.header({ close: true, borderNone: "bottom" }, new b.modal.title("Modal title")),
 					new b.modal.body(
 						{ paddingY: 0 },
@@ -73,7 +73,7 @@ export const modals: IAttrContent = {
 							on: {
 								click: (_event) => {
 									b.modal.show(
-										new b.modal.container({ contentAttr: { rounded: 4 } }, [
+										new b.modal.container({ view: "end", contentAttr: { rounded: 4 } }, [
 											new b.modal.header(
 												{ close: true, borderNone: "bottom" },
 												new b.modal.title("Modal title")
@@ -420,7 +420,7 @@ export const modals: IAttrContent = {
 							},
 						},
 					},
-					"Show dialog"
+					"What's new"
 				);
 			},
 		}),

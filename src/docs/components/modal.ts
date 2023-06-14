@@ -464,7 +464,7 @@ export const modal: IAttrContent = {
 						{
 							id: "verticalCenterModal",
 							labelledby: "verticalCenterModalLabel",
-							centered: true, //set centered
+							view: "center", //set centered
 						},
 						modalContent("verticalCenterModal", new h.p("This is a vertically centered modal."))
 					),
@@ -474,7 +474,7 @@ export const modal: IAttrContent = {
 						{
 							id: "verticalCenterScrollableModal",
 							labelledby: "verticalCenterScrollableModalLabel",
-							centered: true,
+							view: "center",
 						},
 						modalContent("verticalCenterScrollableModal", [
 							new h.p(
@@ -828,7 +828,7 @@ export const modal: IAttrContent = {
 						{
 							id: id,
 							labelledby: `${id}Label`,
-							centered: true,
+							view: "center",
 						},
 						[
 							new b.modal.header({ close: true }, new b.modal.title({ id: `${id}Label` }, title)),
@@ -938,7 +938,7 @@ export const modal: IAttrContent = {
 						{
 							id: "dynamicHeightModal",
 							labelledby: "dynamicHeightModalLabel",
-							centered: true,
+							view: "center",
 							on: {
 								"show.bs.modal": (event) => {
 									const target = event.target as Element;
@@ -976,7 +976,7 @@ export const modal: IAttrContent = {
 										},
 										5000,
 										target,
-										body,
+										body
 									);
 								},
 							},
@@ -1025,7 +1025,7 @@ export const modal: IAttrContent = {
 						{
 							id: "youtubeModal",
 							labelledby: "youtubeModalLabel",
-							centered: true,
+							view: "center",
 							weight: "lg",
 							on: {
 								"shown.bs.modal": (event) => {
