@@ -548,7 +548,7 @@ const mainContainer = main.Container({
 	name: "Bootstrap TS",
 	bgColor: "primary",
 	textColor: "light",
-	icon: { class: "animate-icon", id: "heart-pulse", fontSize: 4 },
+	icon: new h.div({ class: "animated-icon", fontSize: 3 }, new b.icon({ id: "hexagon-fill" })),
 	on: {
 		"bs-menu-change": (e) => {
 			onMenuChange((<CustomEvent>e).detail);
@@ -569,7 +569,7 @@ const mainContainer = main.Container({
 	itemOutsideLink: [
 		{
 			href: "#",
-			icon: { id: "cpu-fill" },
+			icon: { id: "cpu" },
 			label: "Memory test",
 			onclick: (_event) => {
 				b.modal.show(

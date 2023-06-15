@@ -673,7 +673,7 @@ strong,
 }
 
 /* animate icon */
-.animate-icon:hover{
+.animated-icon:hover{
     transition: transform 0.2s ease-in-out;
     transform: rotate(-5deg) scale(1.1);
 }
