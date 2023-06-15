@@ -742,16 +742,6 @@ export const offcanvas: IAttrContent = {
 			],
 		}),
 
-		// new e.codepreview({
-		// 	type: "js",
-		// 	code: `
-		// 		const myOffcanvas = document.getElementById('myOffcanvas')
-		// 		myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
-		// 		// do something...
-		// 		})
-		// 	`,
-		// }),
-
 		new e.code({
 			showConsole: true,
 			output: () => {

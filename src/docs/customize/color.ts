@@ -60,7 +60,6 @@ const colorpickerBg = (variableName: string | string[]) => {
 	return new h.div({ class: "swatch", rounded: true, border: true, style: { backgroundColor: value } }, [
 		new b.input({
 			type: "color",
-			// data: { "bs-var": v },
 			value: value,
 			on: {
 				input: (e) => {
@@ -92,7 +91,6 @@ const colorpickerBorder = (variableName: string | string[]) => {
 		[
 			new b.input({
 				type: "color",
-				// data: { "bs-var": v },
 				value: value,
 				on: {
 					input: (e) => {
@@ -136,7 +134,6 @@ const colorpickerText = (variableName: string | string[]) => {
 		),
 		new b.input({
 			type: "color",
-			// data: { "bs-var": v },
 			zIndex: 1,
 			value: value,
 			on: {
@@ -165,17 +162,6 @@ export const color: IAttrContent = {
 	description:
 		"Bootstrap is supported by an extensive color system that themes our styles and components. This enables more comprehensive customization and extension for any project.",
 	item: [
-		// new e.item({ row: true }, [
-		// 	new h.div({ col: 6, theme: "light" }, [
-		// 		new h.div({ col: true, id: "color_template_light--bs-body-color", bgColor: "body" }, "A"),
-		// 		new h.div({ col: true, id: "color_template_light--bs-body-color-rgb", bgColor: "body" }, "A"),
-		// 	]),
-		// 	new h.div({ col: 6, theme: "dark" }, [
-		// 		new h.div({ col: true, id: "color_template_dark--bs-body-color", bgColor: "body" }, "A"),
-		// 		new h.div({ col: true, id: "color_template_dark--bs-body-color-rgb", bgColor: "body" }, "A"),
-		// 	]),
-		// ]),
-
 		new e.title("Colors"),
 		new e.text(
 			"Bootstrap’s color palette has continued to expand and become more nuanced in v5.3.0. Bootstrap’ve added new variables for {{secondary}} and {{tertiary}} text and background colors, plus{{ {color}-bg-subtle}},{{ {color}-border-subtle}}, and{{ {color}-text-emphasis}} for our theme colors. These new colors are available through Sass and CSS variables (but not our color maps or utility classes) with the express goal of making it easier to customize across multiple colors modes like light and dark. These new variables are globally set on {{:root}} and are adapted for our new dark color mode while our original theme colors remain unchanged."
@@ -983,52 +969,5 @@ export const color: IAttrContent = {
 				);
 			},
 		}),
-		// new e.code({
-		// 	output: () => {
-		// 		return [];
-		// 	},
-		// }),
-
-		// new e.ul({
-		// 	item: [
-		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
-		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
-		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
-		// 		"aaaaaaaaaaaaaaaaaaaaaaaa",
-		// 	],
-		// }),
-		// new e.alert({ color: "info", callout: true }, ""),
-		// new e.code({
-		// 	output: () => {
-		// 		return [];
-		// 	},
-		// }),
-
-		// //-----------------------
-
-		// new e.subtitle(""),
-		// new e.text(""),
-		// new e.codepreview({
-		// 	type: "css",
-		// 	code: `
-		// 		`,
-		// }),
-
-		// //-----------------------
-
-		// new e.title("CSS"),
-		// new e.text(""),
-
-		// //-----------------------
-
-		// new e.subtitle("Sass variables"),
-		// new e.text(""),
-		// new e.codepreview({
-		// 	type: "css",
-		// 	title: "scss/_variables.scss",
-		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
-		// 	code: `
-		// 	`,
-		// }),
 	],
 };

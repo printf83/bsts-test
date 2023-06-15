@@ -149,49 +149,6 @@ export const collapse: IAttrContent = {
 				return [toggle1, toggle2, toggleBoth, rowDiv];
 			},
 		}),
-		// new e.code({
-		// 	outputAttr: { display: "flex", flex: "wrap", gap: 3 },
-		// 	output: () => {
-		// 		return [
-		// 			new b.collapse.button(
-		// 				{ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" },
-		// 				"Toggle first element"
-		// 			),
-		// 			new b.collapse.button(
-		// 				{ target: "#multiCollapseExample2", controlfor: "multiCollapseExample2" },
-		// 				"Toggle second element"
-		// 			),
-		// 			new b.collapse.button(
-		// 				{ target: ".multi-collapse", controlfor: "multiCollapseExample1 multiCollapseExample2" },
-		// 				"Toggle both element"
-		// 			),
-		// 			new h.div({ row: true }, [
-		// 				new h.div(
-		// 					{ col: 6 },
-		// 					new b.collapse.container(
-		// 						{ id: "multiCollapseExample1", class: "multi-collapse" },
-		// 						new b.card.container(
-		// 							new b.card.body(
-		// 								"Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger."
-		// 							)
-		// 						)
-		// 					)
-		// 				),
-		// 				new h.div(
-		// 					{ col: 6 },
-		// 					new b.collapse.container(
-		// 						{ id: "multiCollapseExample2", class: "multi-collapse" },
-		// 						new b.card.container(
-		// 							new b.card.body(
-		// 								"Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger."
-		// 							)
-		// 						)
-		// 					)
-		// 				),
-		// 			]),
-		// 		];
-		// 	},
-		// }),
 
 		//-----------------------
 

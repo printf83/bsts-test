@@ -72,8 +72,6 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 	switch (type) {
 		case "html":
 			source_text = source_text.replace(/\>\</g, ">\n<");
-			// source_text = source_text.replace(/\>/g, ">\n");
-			// source_text = source_text.replace(/\</g, "\n<");
 
 			return html_beautify(source_text, {
 				preserve_newlines: false,
@@ -201,8 +199,6 @@ const attrHasClass = (attr: core.IAttr, className: string | string[]) => {
 
 export const getRootBaseOnSource = (attrPreview?: core.IAttr, attrOutput?: core.IAttr) => {
 	if (attrPreview) {
-		// attr = core.mergeObject({ container: true, padding: 4 }, attr);
-		// attr.container ??= "fluid";
 		delete attrPreview.overflow;
 		attrPreview.padding ??= 4;
 

@@ -583,21 +583,6 @@ export const list: IAttrContent = {
 		new e.subtitle("Manual init"),
 		new e.text("Enable tabbable list item via JavaScript (each list item needs to be activated individually):"),
 
-		// new e.codepreview({
-		// 	type: "js",
-		// 	code: `
-		// 		const triggerTabList = document.querySelectorAll('#myTab a')
-		// 		triggerTabList.forEach(triggerEl => {
-		// 		const tabTrigger = b.tabList.init(triggerEl)
-
-		// 		triggerEl.addEventListener('click', event => {
-		// 			event.preventDefault()
-		// 			tabTrigger.show()
-		// 		})
-		// 		})
-		// 	`,
-		// }),
-
 		new e.alert(
 			{ callout: true, color: "warning" },
 			"By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."

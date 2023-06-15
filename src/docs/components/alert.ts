@@ -159,7 +159,6 @@ export const alert: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Dismissing"),
-		// new e.text("Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:"),
 
 		new e.text("Add {{dismissible:true}} to {{b.alert.container}} to dismiss the alert."),
 		new e.ul({

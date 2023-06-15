@@ -226,13 +226,9 @@ export const introduction: IAttrContent = {
 				["core", "Core function to build html using {{bsts}}"],
 				["I", "Interface if you like to use {{Typescript}}"],
 				["h", "HTML component. Example {{new h.div()}}."],
-				// ["H", "Create HTML component without {{new}} keyword"],
 				["b", "Bootstrap component. Example {{new b.button()}}."],
-				// ["B", "Create Bootstrap component without {{new}} keyword"],
 				["t", "Main class that build all HTML and Bootstrap component. Example {{new t()}}."],
-				// ["T", "Create t without {{new}} keyword."],
 				["s", "Class to allow HTML syntax and process by {{core.build}} as HTML. Example {{new s()}}."],
-				// ["S", "Create s wihthout {{new}} keyword."],
 				[
 					"$",
 					"Create bsts component wihthout {{new}} keyword. For example {{$.h.div()}}, {{$.b.button()}}, {{$.t()}} and {{$.s()}}",

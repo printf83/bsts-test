@@ -118,10 +118,7 @@ let m = {
 		{
 			label: "Customize",
 			icon: { id: "palette2", color: "danger" },
-			item: [
-				{ label: "Color", value: "docs/customize/color" },
-				// { label: "Color", value: "docs/customize/color" },
-			],
+			item: [{ label: "Color", value: "docs/customize/color" }],
 		},
 		{
 			label: "Layout",
@@ -442,7 +439,6 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 					);
 				}
 
-				// core.init(contentbody);
 				focusToAnchor(anchorId, isfirsttime);
 
 				setTimeout(() => {
@@ -534,7 +530,6 @@ const runMemoryTest = (count: number, max?: number) => {
 					let contentbody = document.getElementById("bs-main") as Element;
 					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 					highlightCurrentMenu(docId);
-					// core.init(contentbody);
 
 					document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
 					runMemoryTest(count - 1, max);

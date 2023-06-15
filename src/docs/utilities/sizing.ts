@@ -66,15 +66,6 @@ export const sizing: IAttrContent = {
 
 		new e.title("Relative to the viewport"),
 		new e.text("You can also use utilities to set the width and height relative to the viewport."),
-		// new e.codepreview({
-		// 	type: "html",
-		// 	code: `
-		// 		<div class="min-vw-100">Min-width 100vw</div>
-		// 		<div class="min-vh-100">Min-height 100vh</div>
-		// 		<div class="vw-100">Width 100vw</div>
-		// 		<div class="vh-100">Height 100vh</div>
-		// 		`,
-		// }),
 		new e.code({
 			outputAttr: { class: "flex-box", overflow: "auto", style: { maxHeight: "200px" } },
 			output: () => {

@@ -722,39 +722,6 @@ export const navbar: IAttrContent = {
 			"When you do this, Bootstrap recommend including additional JavaScript to move the focus programmatically to the container when it is opened. Otherwise, keyboard users and users of assistive technologies will likely have a hard time finding the newly revealed content - particularly if the container that was opened comes before the toggler in the document’s structure. Bootstrap also recommend making sure that the toggler has the {{aria-controls}} attribute set using {{controlfor}} property, pointing to the {{id}} of the content container. In theory, this allows assistive technology users to jump directly from the toggler to the container it controls–but support for this is currently quite patchy."
 		),
 
-		// new e.text("This is how you do it in {{bsts}}"),
-		// new e.code({
-		// 	output: () => {
-		// 		return new h.div([
-		// 			new b.collapse.container(
-		// 				{
-		// 					id: "navbarToggleExternalContent",
-		// 					tabindex: "-1",
-		// 					on: {
-		// 						"shown.bs.collapse": (_e) => {
-		// 							document.getElementById("navbarToggleExternalContent")?.focus();
-		// 						},
-		// 					},
-		// 				},
-		// 				new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [
-		// 					new h.h(5, { textColor: "body-emphasis", class: "h4" }, "Collapsed content"),
-		// 					new h.span({ textColor: "body-secondary" }, "Toggleable via the navbar brand."),
-		// 				])
-		// 			),
-		// 			new b.navbar.container(
-		// 				{ theme: "dark", bgColor: "body-tertiary", expand: "lg" },
-		// 				new b.navbar.innercontainer({ container: "fluid" }, [
-		// 					new b.navbar.toggle.collapse({
-		// 						target: "#navbarToggleExternalContent",
-		// 						controlfor: "navbarToggleExternalContent",
-		// 						label: "Toggle navigation",
-		// 					}),
-		// 				])
-		// 			),
-		// 		]);
-		// 	},
-		// }),
-
 		//-----------------------
 
 		new e.subtitle("Offcanvas"),

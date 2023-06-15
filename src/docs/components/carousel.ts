@@ -263,9 +263,7 @@ export const carousel: IAttrContent = {
 		//------------
 
 		new e.title("Dark variant"),
-		// new e.text(
-		// 	"Add {{.carousel-dark}} to the {{.carousel}} for darker controls, indicators, and captions. Controls are inverted compared to their default white fill with the {{filter}} CSS property. Captions and controls have additional Sass variables that customize the {{color}} and {{background-color}}."
-		// ),
+
 		new e.alert(
 			{ color: "warning", callout: true },
 			"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.carousel-dark}}, set {{theme:'dark'}} on the {{b.carousel.container}}, a parent wrapper, or the component itself."
@@ -338,18 +336,6 @@ export const carousel: IAttrContent = {
 				$carousel-transition:                transform $carousel-transition-duration ease-in-out; // Define transform transition first if using multiple transitions (e.g., 'transform 2s ease, opacity .5s ease-out')
 			`,
 		}),
-		// new e.text("Variables for the {{nav:docs/components/carousel#dark_variant::dark carousel}}:"),
-
-		// new e.codepreview({
-		// 	type: "css",
-		// 	title: "scss/_variables.scss",
-		// 	source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
-		// 	code: `
-		// 	    $carousel-dark-indicator-active-bg:  $black;
-		// 		$carousel-dark-caption-color:        $black;
-		// 		$carousel-dark-control-icon-filter:  invert(1) grayscale(100);
-		// 	`,
-		// }),
 
 		//-----------------------
 

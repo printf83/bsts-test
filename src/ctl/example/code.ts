@@ -897,7 +897,6 @@ const generateCodePenData = (
 		js: codeBeautify("js", strCodeResult),
 	} satisfies ICodePen;
 
-	// console.log(result);
 	return result;
 };
 
