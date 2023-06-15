@@ -548,7 +548,7 @@ const mainContainer = main.Container({
 	name: "Bootstrap TS",
 	bgColor: "primary",
 	textColor: "light",
-	icon: { class: "animate-icon", weight: "2xl", id: "bootstrap", type: "brand" },
+	icon: { class: "animate-icon", id: "heart-pulse", fontSize: 4 },
 	on: {
 		"bs-menu-change": (e) => {
 			onMenuChange((<CustomEvent>e).detail);
