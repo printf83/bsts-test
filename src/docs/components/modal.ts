@@ -926,72 +926,56 @@ export const modal: IAttrContent = {
 
 		new e.code({
 			output: () => {
-				return [
-					// Button trigger modal
-					new b.button(
-						{ color: "primary", toggle: "modal", target: "#dynamicHeightModal" },
-						"Launch dynamic height modal"
-					),
+				return new b.button(
+					{
+						color: "primary",
+						on: {
+							click: () => {
+								const ct = new Date();
 
-					// Modal
-					new b.modal.container(
-						{
-							id: "dynamicHeightModal",
-							labelledby: "dynamicHeightModalLabel",
-							view: "center",
-							on: {
-								"show.bs.modal": (event) => {
-									const target = event.target as Element;
-									const body = target.querySelector(".modal-body") as HTMLDivElement;
-									const ct = new Date();
-
-									//reset text
-									core.replaceChild(
-										body,
-										new h.p([
+								b.modal.show(
+									b.modal.create({
+										title: "Modal title",
+										view: "center",
+										elem: new h.p([
 											"This modal body content will change after ",
 											new h.b(new b.timer(ct.setSeconds(ct.getSeconds() + 6).toString())),
 											".",
-										])
-									);
-								},
-								"shown.bs.modal": (event) => {
-									const target = event.target as Element;
-									const body = target.querySelector(".modal-body") as HTMLDivElement;
+										]),
+										on: {
+											"shown.bs.modal": (event) => {
+												const target = event.target as Element;
+												const body = target.querySelector(".modal-body") as HTMLDivElement;
 
-									setTimeout(
-										(target, body) => {
-											core.replaceChild(body, [
-												new h.p(
-													{ style: { height: "100vh" } },
-													"This is some placeholder content to show the scrolling behavior for modals. Bootstrap use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
-												),
-												new h.p("This content should appear at the bottom after you scroll."),
-											]);
+												setTimeout(
+													(target, body) => {
+														core.replaceChild(body, [
+															new h.p(
+																{ style: { height: "100vh" } },
+																"This is some placeholder content to show the scrolling behavior for modals. Bootstrap use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal."
+															),
+															new h.p(
+																"This content should appear at the bottom after you scroll."
+															),
+														]);
 
-											// readjust the modal’s position
-											b.modal.handleUpdate(target);
+														// readjust the modal’s position
+														b.modal.handleUpdate(target);
+													},
+													5000,
+													target,
+													body
+												);
+											},
 										},
-										5000,
-										target,
-										body
-									);
-								},
+										btn: ["ok", "cancel"],
+									})
+								);
 							},
 						},
-						[
-							new b.modal.header(
-								{ close: true },
-								new b.modal.title({ id: "dynamicHeightModalLabel" }, "Modal title")
-							),
-							new b.modal.body(new h.p("")),
-							new b.modal.footer([
-								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
-								new b.button({ color: "primary" }, "Okay"),
-							]),
-						]
-					),
-				];
+					},
+					"Launch dynamic height modal"
+				);
 			},
 		}),
 
