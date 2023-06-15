@@ -507,7 +507,7 @@ const itemCode = (arg: {
 
 									setTimeout(() => {
 										PR.prettyPrint();
-									}, 300);
+									}, 100);
 							  }
 							: !arg.islast && arg.allowrefresh
 							? (e) => {
@@ -541,7 +541,13 @@ const itemCode = (arg: {
 									core.removeElement(preTag![0]);
 								}
 						  }
-						: undefined,
+						: (e) => {
+								const target = e.target as Element;
+								let preTag = target.getElementsByTagName("pre");
+								if (preTag && preTag.length > 0) {
+									core.removeElement(preTag![0]);
+								}
+						  },
 				},
 			},
 			new h.div({ class: "example-preview" }, "Loading...")
