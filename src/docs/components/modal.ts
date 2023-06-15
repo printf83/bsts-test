@@ -495,12 +495,66 @@ export const modal: IAttrContent = {
 			"{{nav:docs/components/tooltip::Tooltips}} and {{nav:docs/components/popover::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."
 		),
 		new e.code({
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {
+				const modalElem = [
+					new h.h(2, { fontSize: 5 }, "Popover in a modal"),
+					new h.p([
+						"This ",
+						new b.popover(
+							{
+								title: "Popover title",
+								content: "Popover body content is set in this attribute",
+							},
+							new b.button({ color: "secondary" }, "button")
+						),
+						" triggers a popover on click.",
+					]),
+					new h.hr(),
+					new h.h(2, { fontSize: 5 }, "Tooltips in a modal"),
+					new h.p([
+						new b.tooltip(
+							{
+								content: "Tooltip",
+							},
+							new h.a({ href: "#" }, "This link")
+						),
+						" and ",
+
+						new b.tooltip(
+							{
+								content: "Tooltip",
+							},
+							new h.a({ href: "#" }, "that link")
+						),
+						" have tooltips on hover.",
+					]),
+				];
+
 				return [
 					// Button trigger modal
 					new b.button(
 						{ color: "primary", toggle: "modal", target: "#tooltipPopoverModal" },
 						"Launch demo modal"
+					),
+
+					// using b.modal.create
+					new b.button(
+						{
+							color: "primary",
+							on: {
+								click: () => {
+									b.modal.show(
+										b.modal.create({
+											title: "Modal title",
+											elem: modalElem,
+											btn: ["savechanges", "close"],
+										})
+									);
+								},
+							},
+						},
+						"b.modal.create"
 					),
 
 					// Modal
@@ -509,39 +563,7 @@ export const modal: IAttrContent = {
 							{ close: true },
 							new b.modal.title({ id: "tooltipPopoverModalLabel" }, "Modal title")
 						),
-						new b.modal.body([
-							new h.h(2, { fontSize: 5 }, "Popover in a modal"),
-							new h.p([
-								"This ",
-								new b.popover(
-									{
-										title: "Popover title",
-										content: "Popover body content is set in this attribute",
-									},
-									new b.button({ color: "secondary" }, "button")
-								),
-								" triggers a popover on click.",
-							]),
-							new h.hr(),
-							new h.h(2, { fontSize: 5 }, "Tooltips in a modal"),
-							new h.p([
-								new b.tooltip(
-									{
-										content: "Tooltip",
-									},
-									new h.a({ href: "#" }, "This link")
-								),
-								" and ",
-
-								new b.tooltip(
-									{
-										content: "Tooltip",
-									},
-									new h.a({ href: "#" }, "that link")
-								),
-								" have tooltips on hover.",
-							]),
-						]),
+						new b.modal.body(modalElem),
 						new b.modal.footer([
 							new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
 							new b.button({ color: "primary" }, "Save changes"),
@@ -932,7 +954,6 @@ export const modal: IAttrContent = {
 											".",
 										])
 									);
-
 								},
 								"shown.bs.modal": (event) => {
 									const target = event.target as Element;
