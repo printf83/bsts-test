@@ -706,8 +706,9 @@ export const navbar: IAttrContent = {
 						])
 					),
 					new b.navbar.container(
-						{ theme: "dark", bgColor: "body-tertiary", expand: "lg" },
+						{ theme: "dark", bgColor: "body-tertiary" },
 						new b.navbar.innercontainer({ container: "fluid" }, [
+							new b.navbar.brand({ href: "#" }, "Navbar"),
 							new b.navbar.toggle.collapse({
 								target: "#navbarToggleExternalContent",
 								controlfor: "navbarToggleExternalContent",
