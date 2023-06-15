@@ -12,7 +12,7 @@ export const tooltip: IAttrContent = {
 		new e.ul({
 			item: [
 				"Tooltips rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
-				"Tooltips initialize by {{core.init}} function.",
+				"Tooltips initialize automaticly by {{bsts}} on {{build}}.",
 				"Tooltips with zero-length title are never displayed.",
 				"{{b.tooltip}} automaticly specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
 				"Triggering tooltips on hidden component will not work.",
@@ -36,15 +36,7 @@ export const tooltip: IAttrContent = {
 
 		new e.title("Examples"),
 		new e.subtitle("Enable tooltips"),
-		new e.text(
-			"As mentioned above, you must initialize tooltips before they can be used. One way to initialize all tooltips on a page would be to call {{core.init}} function after {{core.build}}, like so:"
-		),
-		new e.codepreview({
-			type: "js",
-			code: `
-				core.init(document.body);
-			`,
-		}),
+		new e.text("As mentioned above, {{bsts}} automaticly initialize tooltips on {{build}}. For example:"),
 		new e.codepreview({
 			type: "js",
 			code: `
@@ -57,15 +49,9 @@ export const tooltip: IAttrContent = {
 							new b.button({ weight: "lg", color: "danger" }, "Hover to toggle tooltip")
 						),
 					]));
-
-					core.init(root);
 				});
 			`,
 		}),
-
-		new e.text(
-			"{{bsts}} automaticly call {{core.init}} when you show your modal dialog using {{b.modal.show}} function."
-		),
 
 		//-----------------------
 
@@ -233,15 +219,6 @@ export const tooltip: IAttrContent = {
 		//-----------------------
 
 		new e.title("Usage"),
-		new e.text(
-			"The tooltip plugin generates content and markup on demand, and by default places tooltips after their trigger element. Trigger the tooltip via JavaScript:"
-		),
-		new e.codepreview({
-			type: "js",
-			code: `
-				core.init();
-			`,
-		}),
 		new e.alert(
 			{ color: "warning", callout: true },
 			"Tooltips automatically attempt to change positions when a parent container has {{overflow:'auto'}} or {{overflow:'scroll'}}, but still keeps the original placement’s positioning. Set the {{https://popper.js.org/docs/v2/modifiers/flip/#boundary::boundary option}} (for the flip modifier using the {{popperConfig}} option) to any Element to override the default value, {{'clippingParents'}}, such as {{document.body}}:"

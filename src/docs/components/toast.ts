@@ -20,7 +20,7 @@ export const toast: IAttrContent = {
 			item: [
 				"Toasts are opt-in for performance reasons, so {{b:you must initialize them yourself}}.",
 				"Toasts will automatically hide if you do not specify {{autohide: false}}.",
-				"{{bsts}} automaticly initialize toast using {{core.init}} function.",
+				"{{bsts}} automaticly initialize toast on {{build}}.",
 			],
 		}),
 		new e.alert(

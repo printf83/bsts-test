@@ -13,7 +13,7 @@ export const popover: IAttrContent = {
 			item: [
 				"Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
 				"Popovers require the {{nav:docs/components/popover::popover plugin}} as a dependency.",
-				"Popovers initialize by {{core.init}} function.",
+				"Popovers initialize automaticly on {{build}}.",
 				"Zero-length {{title}} and {{content}} values will never show a popover.",
 				"{{b.popover}} automaticly specify {{container:'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc). You can change this by set {{container:'.modal-body'}} when you need.",
 				"Triggering popovers on hidden component will not work.",
@@ -37,9 +37,7 @@ export const popover: IAttrContent = {
 
 		new e.title("Examples"),
 		new e.subtitle("Enable popovers"),
-		new e.text(
-			"As mentioned above, you must initialize popovers before they can be used. One way to initialize all popovers on a page would be to call {{core.init}} function after {{core.build}}, like so:"
-		),
+		new e.text("As mentioned above, {{bsts}} automaticly initialize popovers on {{build}}. For example:"),
 		new e.codepreview({
 			type: "js",
 			code: `
@@ -52,15 +50,9 @@ export const popover: IAttrContent = {
 							new b.button({ weight: "lg", color: "danger" }, "Click to toggle popover")
 						),
 					]));
-
-					core.init(root);
 				});
 			`,
 		}),
-
-		new e.text(
-			"{{bsts}} automaticly call {{core.init}} when you show your modal dialog using {{b.modal.show}} function."
-		),
 
 		//-----------------------
 
@@ -276,13 +268,6 @@ export const popover: IAttrContent = {
 		//-----------------------
 
 		new e.title("Usage"),
-		new e.text("Enable popovers via JavaScript:"),
-		new e.codepreview({
-			type: "js",
-			code: `
-				core.init();
-			`,
-		}),
 		new e.alert({ color: "warning", callout: true }, [
 			new h.p(
 				"{{b::Keep popovers accessible to keyboard and assistive technology users}} by only adding them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). While other HTML elements can be made focusable by adding {{tabindex='0'}}, this can create annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce popovers in this situation. Additionally, do not rely solely on {{hover}} as the trigger for your popovers as this will make them impossible to trigger for keyboard users."

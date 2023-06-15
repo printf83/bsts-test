@@ -7,7 +7,6 @@ import {
 	getCSSBaseOnSource,
 	getRootBaseOnSource,
 	getLibBaseOnSource,
-	isRequiredCoreInit,
 	replaceEConsole,
 	replaceExtention,
 } from "./_fn.js";
@@ -844,7 +843,6 @@ const itemZoom = (zoom: number) => {
 };
 
 const generateCodePenData = (
-	reqInit: boolean,
 	strLib: string,
 	strCode: string,
 	strManager?: string,
@@ -876,9 +874,7 @@ const generateCodePenData = (
 			strCode +
 			';\ncore.documentReady(() => {	core.replaceChild(document.getElementById("root"), ' +
 			(strManager ? "MANAGER(SOURCE())" : "SOURCE()") +
-			");\n" +
-			(reqInit ? "core.init(root);\n" : "") +
-			"});";
+			");";
 	}
 
 	const result = {
@@ -1081,7 +1077,6 @@ const convert = (attr: IBsExampleContainer) => {
 					? () => {
 							codePen(
 								generateCodePenData(
-									isRequiredCoreInit(strSource, strManager, strExtention),
 									getLibBaseOnSource(strSource, strManager, strExtention),
 									strSource,
 									strManager,
