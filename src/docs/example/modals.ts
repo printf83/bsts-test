@@ -491,6 +491,7 @@ export const modals: IAttrContent = {
 									b.modal.create({
 										customStyle: "android",
 										title: "Chatjs example",
+										scrollable: true,
 										elem: new h.div(
 											{
 												display: "flex",

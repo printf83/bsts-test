@@ -955,7 +955,7 @@ export const modal: IAttrContent = {
 										])
 									);
 
-									core.init(body);
+									// core.init(body);
 								},
 								"shown.bs.modal": (event) => {
 									const target = event.target as Element;
