@@ -872,9 +872,9 @@ const generateCodePenData = (
 			(strManager ? "const MANAGER = " + strManager + ";\n" : "") +
 			"const SOURCE = " +
 			strCode +
-			';\ncore.documentReady(() => {	core.replaceChild(document.getElementById("root"), ' +
+			';\ncore.documentReady(() => {\ncore.replaceChild(document.getElementById("root"), ' +
 			(strManager ? "MANAGER(SOURCE())" : "SOURCE()") +
-			");";
+			");\n});";
 	}
 
 	const result = {
