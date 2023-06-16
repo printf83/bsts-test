@@ -2556,7 +2556,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   bstsConsole: () => (/* binding */ bstsConsole)\n/* harmony export */ });\nconst DEBUG = true;\nconst bstsConsole = {\n    log: (...data) => {\n        if (DEBUG)\n            console.log(...data);\n    },\n    warn: (...data) => {\n        console.warn(...data);\n    },\n    error: (...data) => {\n        console.error(...data);\n    },\n};\n\n\n//# sourceURL=webpack://@printf83/bsts-test/../bsts/lib/core/console.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   bstsConsole: () => (/* binding */ bstsConsole)\n/* harmony export */ });\nconst DEBUG = false;\nconst bstsConsole = {\n    log: (...data) => {\n        if (DEBUG)\n            console.log(...data);\n    },\n    warn: (...data) => {\n        console.warn(...data);\n    },\n    error: (...data) => {\n        console.error(...data);\n    },\n};\n\n\n//# sourceURL=webpack://@printf83/bsts-test/../bsts/lib/core/console.js?");
 
 /***/ }),
 
