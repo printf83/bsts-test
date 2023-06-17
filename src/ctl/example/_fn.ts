@@ -162,10 +162,9 @@ export const codePen = (data: ICodePen) => {
 
 		requestIdleCallback(() => {
 			if (form) {
-				core.removeElement(form);
+				form.remove();
 			}
-		})
-		
+		});
 	}
 };
 

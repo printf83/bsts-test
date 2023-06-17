@@ -193,7 +193,11 @@ function clearConsoleLog(e: Event) {
 		const nextListGroupItem = listGroupItem.nextElementSibling;
 		if (nextListGroupItem) {
 			const exampleConsole = nextListGroupItem.getElementsByClassName("example-console")[0];
-			core.removeChildElement(exampleConsole);
+			
+			while (exampleConsole.firstChild) {
+				exampleConsole.firstChild.remove()
+			}
+			
 			successClearConsoleLog(iconElem);
 		}
 	}
@@ -537,14 +541,14 @@ const itemCode = (arg: {
 								);
 								let preTag = target.getElementsByTagName("pre");
 								if (preTag && preTag.length > 0) {
-									core.removeElement(preTag![0]);
+									preTag![0].remove();
 								}
 						  }
 						: (e) => {
 								const target = e.target as Element;
 								let preTag = target.getElementsByTagName("pre");
 								if (preTag && preTag.length > 0) {
-									core.removeElement(preTag![0]);
+									preTag![0].remove();
 								}
 						  },
 				},

@@ -615,7 +615,7 @@ export const list: IAttrContent = {
 									})
 								);
 
-								core.removeElement(target.closest(".row") as Element);
+								target.closest(".row")?.remove();
 							},
 						},
 					},

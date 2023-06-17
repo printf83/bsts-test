@@ -944,6 +944,7 @@ export const modal: IAttrContent = {
 													time: ct.setSeconds(ct.getSeconds() + 6),
 													callback: (target: Element) => {
 														const body = target.closest(".modal-body") as HTMLDivElement;
+														const modal = body.closest(".modal") as Element;
 
 														core.replaceChild(body, [
 															new h.p(
@@ -956,7 +957,7 @@ export const modal: IAttrContent = {
 														]);
 
 														// readjust the modal’s position
-														b.modal.handleUpdate(target);
+														b.modal.handleUpdate(modal);
 													},
 												})
 											),
