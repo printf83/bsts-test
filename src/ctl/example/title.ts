@@ -24,7 +24,7 @@ const convert = (attr: core.IAttr) => {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: (string | t | s)[] = [];
+		let tElem: (number | string | t | s)[] = [];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {

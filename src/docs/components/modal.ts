@@ -939,16 +939,12 @@ export const modal: IAttrContent = {
 										view: "center",
 										elem: new h.p([
 											"This modal body content will change after ",
-											new h.b(new b.timer(ct.setSeconds(ct.getSeconds() + 6).toString())),
-											".",
-										]),
-										on: {
-											"shown.bs.modal": (event) => {
-												const target = event.target as Element;
-												const body = target.querySelector(".modal-body") as HTMLDivElement;
+											new h.b(
+												new b.timer({
+													time: ct.setSeconds(ct.getSeconds() + 6),
+													callback: (target: Element) => {
+														const body = target.closest(".modal-body") as HTMLDivElement;
 
-												setTimeout(
-													(target, body) => {
 														core.replaceChild(body, [
 															new h.p(
 																{ style: { height: "100vh" } },
@@ -962,12 +958,10 @@ export const modal: IAttrContent = {
 														// readjust the modal’s position
 														b.modal.handleUpdate(target);
 													},
-													5000,
-													target,
-													body
-												);
-											},
-										},
+												})
+											),
+											".",
+										]),
 										btn: ["ok", "cancel"],
 									})
 								);

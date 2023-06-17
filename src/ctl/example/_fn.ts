@@ -160,15 +160,12 @@ export const codePen = (data: ICodePen) => {
 		const form = document.getElementById(`codepen-form-${id}`) as HTMLFormElement;
 		form.submit();
 
-		setTimeout(
-			(form) => {
-				if (form) {
-					core.removeElement(form);
-				}
-			},
-			3000,
-			form
-		);
+		requestIdleCallback(() => {
+			if (form) {
+				core.removeElement(form);
+			}
+		})
+		
 	}
 };
 

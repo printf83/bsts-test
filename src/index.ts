@@ -395,60 +395,56 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 
 	//show the loading before download new documentation
 
-	setTimeout(
-		(docId) => {
-			getData(docId, (docData) => {
-				//keep current page in cookie
-				cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+	requestIdleCallback(() => {
+		getData(docId, (docData) => {
+			//keep current page in cookie
+			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-				//remove active popup
-				core.removeAllActivePopup();
+			//remove active popup
+			core.removeAllActivePopup();
 
-				//generate content
-				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+			//generate content
+			contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 
-				//reset loading
-				resetLoading(contentbody);
+			//reset loading
+			resetLoading(contentbody);
 
-				//rename page title
-				let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-				let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-				const { origin, pathname } = window.location;
-				document.title = strPagetitle;
+			//rename page title
+			let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+			let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+			const { origin, pathname } = window.location;
+			document.title = strPagetitle;
 
-				//set history
-				if (state === "push") {
-					window.history.pushState(
-						{
-							docId: docId,
-							anchorId: anchorId,
-							isfirsttime: isfirsttime,
-						} satisfies IWindowState,
-						strPagetitle,
-						`${origin}${pathname}?d=${value}`
-					);
-				} else if (state === "replace") {
-					window.history.replaceState(
-						{
-							docId: docId,
-							anchorId: anchorId,
-							isfirsttime: isfirsttime,
-						} satisfies IWindowState,
-						strPagetitle,
-						`${origin}${pathname}?d=${value}`
-					);
-				}
+			//set history
+			if (state === "push") {
+				window.history.pushState(
+					{
+						docId: docId,
+						anchorId: anchorId,
+						isfirsttime: isfirsttime,
+					} satisfies IWindowState,
+					strPagetitle,
+					`${origin}${pathname}?d=${value}`
+				);
+			} else if (state === "replace") {
+				window.history.replaceState(
+					{
+						docId: docId,
+						anchorId: anchorId,
+						isfirsttime: isfirsttime,
+					} satisfies IWindowState,
+					strPagetitle,
+					`${origin}${pathname}?d=${value}`
+				);
+			}
 
-				focusToAnchor(anchorId, isfirsttime);
+			focusToAnchor(anchorId, isfirsttime);
 
-				setTimeout(() => {
-					PR.prettyPrint();
-				}, 300);
+			requestIdleCallback(() => {
+				PR.prettyPrint();
 			});
-		},
-		0,
-		docId
-	);
+		});
+	});
 };
 
 const setupBSNavigate = () => {
@@ -524,20 +520,16 @@ const runMemoryTest = (count: number, max?: number) => {
 	let docId = mDB[core.rndBetween(0, mDB.length - 1)];
 
 	if (count > 0) {
-		setTimeout(
-			(docId) => {
-				getData(docId, (docData) => {
-					let contentbody = document.getElementById("bs-main") as Element;
-					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-					highlightCurrentMenu(docId);
+		requestIdleCallback(() => {
+			getData(docId, (docData) => {
+				let contentbody = document.getElementById("bs-main") as Element;
+				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+				highlightCurrentMenu(docId);
 
-					document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
-					runMemoryTest(count - 1, max);
-				});
-			},
-			0,
-			docId
-		);
+				document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
+				runMemoryTest(count - 1, max);
+			});
+		});
 	} else {
 		highlightCurrentMenu(docId);
 		onMenuChange(docId);
