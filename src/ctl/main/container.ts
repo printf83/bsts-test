@@ -3,9 +3,12 @@ import * as e from "../example/_index.js";
 
 const dispatchCustomEvent = (root: Element | null, eventName: string, value: string) => {
 	if (root) {
-		requestIdleCallback(() => {
-			root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
-		});
+		requestIdleCallback(
+			() => {
+				root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
+			},
+			{ timeout: 300 }
+		);
 	}
 };
 

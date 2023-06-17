@@ -400,76 +400,82 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 
 	//show the loading before download new documentation
 
-	requestIdleCallback(() => {
-		const PERFORMANCE_GETDATA = performance.now();
-		getData(docId, (docData) => {
-			PERFORMANCEINFO.download = performance.now() - PERFORMANCE_GETDATA;
+	requestIdleCallback(
+		() => {
+			const PERFORMANCE_GETDATA = performance.now();
+			getData(docId, (docData) => {
+				PERFORMANCEINFO.download = performance.now() - PERFORMANCE_GETDATA;
 
-			//keep current page in cookie
-			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+				//keep current page in cookie
+				cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-			//remove active popup
-			core.removeAllActivePopup();
+				//remove active popup
+				core.removeAllActivePopup();
 
-			//generate content
+				//generate content
 
-			const PERFORMANCE_BUILD = performance.now();
-			contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-			PERFORMANCEINFO.build = performance.now() - PERFORMANCE_BUILD;
+				const PERFORMANCE_BUILD = performance.now();
+				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+				PERFORMANCEINFO.build = performance.now() - PERFORMANCE_BUILD;
 
-			//reset loading
-			resetLoading(contentbody);
+				//reset loading
+				resetLoading(contentbody);
 
-			//rename page title
-			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-			const { origin, pathname } = window.location;
-			document.title = strPagetitle;
-			PERFORMANCEINFO.title = pagetitle ? pagetitle : "Bootstrap TS";
+				//rename page title
+				const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+				const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+				const { origin, pathname } = window.location;
+				document.title = strPagetitle;
+				PERFORMANCEINFO.title = pagetitle ? pagetitle : "Bootstrap TS";
 
-			//set history
-			if (state === "push") {
-				window.history.pushState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
-			} else if (state === "replace") {
-				window.history.replaceState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
-			}
-
-			focusToAnchor(anchorId, isfirsttime);
-
-			requestIdleCallback(() => {
-				PR.prettyPrint();
-
-				//REPORT PERFORMANCE
-				if (DEBUG) {
-					const tagCount = contentbody.getElementsByTagName("*").length;
-
-					console.info(
-						`${PERFORMANCEINFO.title} page has ${tagCount} tag in it. It took ${PERFORMANCEINFO.download}ms to download and ${PERFORMANCEINFO.build}ms to build.`
+				//set history
+				if (state === "push") {
+					window.history.pushState(
+						{
+							docId: docId,
+							anchorId: anchorId,
+							isfirsttime: isfirsttime,
+						} satisfies IWindowState,
+						strPagetitle,
+						`${origin}${pathname}?d=${value}`
+					);
+				} else if (state === "replace") {
+					window.history.replaceState(
+						{
+							docId: docId,
+							anchorId: anchorId,
+							isfirsttime: isfirsttime,
+						} satisfies IWindowState,
+						strPagetitle,
+						`${origin}${pathname}?d=${value}`
 					);
 				}
 
-				if (typeof callback === "function") {
-					callback();
-				}
+				focusToAnchor(anchorId, isfirsttime);
+
+				requestIdleCallback(
+					() => {
+						PR.prettyPrint();
+
+						//REPORT PERFORMANCE
+						if (DEBUG) {
+							const tagCount = contentbody.getElementsByTagName("*").length;
+
+							console.info(
+								`${PERFORMANCEINFO.title} page has ${tagCount} tag in it. It took ${PERFORMANCEINFO.download}ms to download and ${PERFORMANCEINFO.build}ms to build.`
+							);
+						}
+
+						if (typeof callback === "function") {
+							callback();
+						}
+					},
+					{ timeout: 300 }
+				);
 			});
-		});
-	});
+		},
+		{ timeout: 300 }
+	);
 };
 
 const setupBSNavigate = () => {
@@ -547,32 +553,35 @@ const runMemoryTest = (count: number, callback: Function, max?: number) => {
 	let docId = mDB[core.rndBetween(0, mDB.length - 1)];
 
 	if (count > 0) {
-		requestIdleCallback(() => {
-			getData(docId, (docData) => {
-				let contentbody = document.getElementById("bs-main") as Element;
-				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-				highlightCurrentMenu(docId);
+		requestIdleCallback(
+			() => {
+				getData(docId, (docData) => {
+					let contentbody = document.getElementById("bs-main") as Element;
+					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+					highlightCurrentMenu(docId);
 
-				document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
+					document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
 
-				const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+					const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 
-				if (MEMORYLEAKTEST_COUNTTAG) {
-					const tagCount = contentbody.getElementsByTagName("*").length;
-					if (tagCount > MOSTTAG.count) {
-						MOSTTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
-						MOSTTAG.count = tagCount;
+					if (MEMORYLEAKTEST_COUNTTAG) {
+						const tagCount = contentbody.getElementsByTagName("*").length;
+						if (tagCount > MOSTTAG.count) {
+							MOSTTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+							MOSTTAG.count = tagCount;
+						}
+
+						if (tagCount < LESSTAG.count) {
+							LESSTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+							LESSTAG.count = tagCount;
+						}
 					}
 
-					if (tagCount < LESSTAG.count) {
-						LESSTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
-						LESSTAG.count = tagCount;
-					}
-				}
-
-				runMemoryTest(count - 1, callback, max);
-			});
-		});
+					runMemoryTest(count - 1, callback, max);
+				});
+			},
+			{ timeout: 300 }
+		);
 	} else {
 		highlightCurrentMenu(docId);
 		callback(docId);

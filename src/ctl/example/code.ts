@@ -60,9 +60,12 @@ const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
 
 	if (autoPrettyPrint) {
-		requestIdleCallback(() => {
-			PR.prettyPrint();
-		});
+		requestIdleCallback(
+			() => {
+				PR.prettyPrint();
+			},
+			{ timeout: 300 }
+		);
 	}
 };
 
@@ -508,9 +511,12 @@ const itemCode = (arg: {
 
 									core.replaceChild(target, arg.elem);
 
-									requestIdleCallback(() => {
-										PR.prettyPrint();
-									});
+									requestIdleCallback(
+										() => {
+											PR.prettyPrint();
+										},
+										{ timeout: 300 }
+									);
 							  }
 							: !arg.islast && arg.allowrefresh
 							? (e) => {
@@ -529,9 +535,12 @@ const itemCode = (arg: {
 									const target = e.target as Element;
 									core.replaceChild(target, arg.elem);
 
-									requestIdleCallback(() => {
-										PR.prettyPrint();
-									});
+									requestIdleCallback(
+										() => {
+											PR.prettyPrint();
+										},
+										{ timeout: 300 }
+									);
 							  },
 					"hidden.bs.collapse": arg.islast
 						? (e) => {
