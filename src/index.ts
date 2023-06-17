@@ -2,6 +2,9 @@ import { b, core, h } from "@printf83/bsts";
 import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 
+const DEBUG = false;
+const MEMORYLEAKTEST_COUNTTAG = false;
+
 const cookie = {
 	set: (name: string, value: string, expiredInDays?: number, path?: string) => {
 		expiredInDays ??= 7;
@@ -375,7 +378,9 @@ const resetLoading = (contentbody: Element) => {
 	}
 };
 
-const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "replace") => {
+const PERFORMANCEINFO: { title?: string; download?: number; build?: number } = {};
+
+const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "replace", callback?: Function) => {
 	isfirsttime ??= false;
 	state ??= "push";
 
@@ -396,7 +401,10 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 	//show the loading before download new documentation
 
 	requestIdleCallback(() => {
+		const PERFORMANCE_GETDATA = performance.now();
 		getData(docId, (docData) => {
+			PERFORMANCEINFO.download = performance.now() - PERFORMANCE_GETDATA;
+
 			//keep current page in cookie
 			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
@@ -404,16 +412,20 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 			core.removeAllActivePopup();
 
 			//generate content
+
+			const PERFORMANCE_BUILD = performance.now();
 			contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+			PERFORMANCEINFO.build = performance.now() - PERFORMANCE_BUILD;
 
 			//reset loading
 			resetLoading(contentbody);
 
 			//rename page title
-			let pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			let strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+			const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
 			const { origin, pathname } = window.location;
 			document.title = strPagetitle;
+			PERFORMANCEINFO.title = pagetitle ? pagetitle : "Bootstrap TS";
 
 			//set history
 			if (state === "push") {
@@ -442,6 +454,19 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 
 			requestIdleCallback(() => {
 				PR.prettyPrint();
+
+				//REPORT PERFORMANCE
+				if (DEBUG) {
+					const tagCount = contentbody.getElementsByTagName("*").length;
+
+					console.info(
+						`${PERFORMANCEINFO.title} page has ${tagCount} tag in it. It took ${PERFORMANCEINFO.download}ms to download and ${PERFORMANCEINFO.build}ms to build.`
+					);
+				}
+
+				if (typeof callback === "function") {
+					callback();
+				}
 			});
 		});
 	});
@@ -513,7 +538,9 @@ const docDB = () => {
 	}
 };
 
-const runMemoryTest = (count: number, max?: number) => {
+const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
+const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
+const runMemoryTest = (count: number, callback: Function, max?: number) => {
 	max ??= count;
 
 	let mDB = docDB();
@@ -527,13 +554,61 @@ const runMemoryTest = (count: number, max?: number) => {
 				highlightCurrentMenu(docId);
 
 				document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
-				runMemoryTest(count - 1, max);
+
+				const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+
+				if (MEMORYLEAKTEST_COUNTTAG) {
+					const tagCount = contentbody.getElementsByTagName("*").length;
+					if (tagCount > MOSTTAG.count) {
+						MOSTTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+						MOSTTAG.count = tagCount;
+					}
+
+					if (tagCount < LESSTAG.count) {
+						LESSTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+						LESSTAG.count = tagCount;
+					}
+				}
+
+				runMemoryTest(count - 1, callback, max);
 			});
 		});
 	} else {
 		highlightCurrentMenu(docId);
-		onMenuChange(docId);
+		callback(docId);
 	}
+};
+
+const startMemoryTest = (count: number) => {
+	const STARTMEMORYTEST = performance.now();
+	runMemoryTest(count, (docId: string) => {
+		const ENDMEMORYTEST = performance.now();
+
+		highlightCurrentMenu(docId);
+		onMenuChange(docId, false, "push", () => {
+			b.modal.show(
+				b.modal.create({
+					title: "Memory test infomation",
+					elem: new b.msg({
+						icon: new b.icon({ id: "info-circle-fill", color: "primary" }),
+						elem: [
+							new h.p("Memory test complete :"),
+							MEMORYLEAKTEST_COUNTTAG
+								? new h.p(`
+							No of page : {{b::${count}}}{{br}}
+							Duration : {{b::${~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000)} seconds}}{{br}}
+							Less Element : {{b::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
+							Most Element : {{b::${MOSTTAG.title} (${MOSTTAG.count} element)}}`)
+								: new h.p(`
+							No of page : {{b::${count}}}{{br}}
+							Duration : {{b::${~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000)} seconds}}`),
+						],
+					}),
+					btn: "ok",
+				})
+			);
+		});
+	});
 };
 
 const mainContainer = main.Container({
@@ -576,10 +651,17 @@ const mainContainer = main.Container({
 										{
 											href: "#",
 											action: true,
-											data: { "bs-toggle": "modal" },
+											data: {
+												counter: i,
+											},
 											on: {
-												click: (_event) => {
-													runMemoryTest(i);
+												click: (event) => {
+													const target = event.target as Element;
+
+													const counter = parseInt(target.getAttribute("data-counter")!);
+
+													b.modal.hide(target);
+													startMemoryTest(counter);
 												},
 											},
 										},

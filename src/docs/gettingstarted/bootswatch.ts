@@ -581,7 +581,7 @@ export const bootswatch: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Checkbox"),
+		new e.subtitle({ id: "checkbox2" }, "Checkbox"),
 		new e.code({
 			output: () => {
 				return [
@@ -659,7 +659,7 @@ export const bootswatch: IAttrContent = {
 
 		//-----------------------
 
-		new e.subtitle("Range"),
+		new e.subtitle("Button"),
 		new e.code({
 			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 			output: () => {

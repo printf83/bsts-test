@@ -596,6 +596,13 @@ const genToc = (content?: IAttrContent) => {
 			}
 		});
 
+		//detect same id
+		const listOfHref = t.map((i) => i.item.href);
+		const duplicateItem = listOfHref.filter((i, ix) => listOfHref.indexOf(i) !== ix);
+		if (duplicateItem && duplicateItem.length > 0) {
+			console.warn(`Found ${duplicateItem.length} anchor in ${content.title}.`, duplicateItem);
+		}
+
 		//arrange title
 		let u: IAttrTocItem[] = [];
 		if (t && t.length > 0) {
