@@ -9,11 +9,11 @@ export const colors: IAttrContent = {
 	item: [
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+			"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 		),
 		new e.title("Colors"),
 		new e.text(
-			"Colorize text with color utilities. If you want to colorize links, you can use the {{nav:docs/helpers/colored_links::.link-* helper classes}} which have {{:hover}} and {{:focus}} states."
+			"Colorize text with color utilities. If you want to colorize links, you can use the {{nav:docs/helpers/colored_links::linkColor helper property}} which have {{:hover}} and {{:focus}} states."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
@@ -100,7 +100,9 @@ export const colors: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Example"),
-		new e.text("To change that opacity, override {{--bs-text-opacity}} via custom styles or inline styles."),
+		new e.text(
+			"To change that opacity, override {{style: { '--bs-text-opacity': '.5' } }} via custom styles or inline styles."
+		),
 		new e.code({
 			output: () => {
 				return [
@@ -112,7 +114,7 @@ export const colors: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Or, choose from any of the {{.text-opacity}} utilities:"),
+		new e.text("Or, choose from any of the {{textOpacity}} property:"),
 		new e.code({
 			output: () => {
 				return [undefined, 75, 50, 25].map((i) => {
