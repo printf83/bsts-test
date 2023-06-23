@@ -4,19 +4,19 @@ import { IAttrContent } from "../../ctl/main/container.js";
 
 export const background: IAttrContent = {
 	title: "Background",
-	description: "Convey meaning through {{background-color}} and add decoration with gradients.",
+	description: "Convey meaning through {{bgColor}} and add decoration with gradients.",
 	item: [
 		new e.alert(
 			{ color: "info", callout: true },
-			"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{.visually-hidden}} class."
+			"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 		),
 		new e.title("Background color"),
 		new e.text(
-			"Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::color}}, so in some cases you’ll want to use {{.text-*}} {{nav:docs/utilities/colors::color utilities}}."
+			"Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::textColor}}, so in some cases you’ll want to use {{textColor}} {{nav:docs/utilities/colors::color utilities}}."
 		),
 		new e.alert(
 			{ color: "info", callout: true },
-			" Background utilities like {{.bg-*}} that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{.bg-*-subtle}} utility will. This will be resolved in v6. "
+			" Background utilities like {{bgColor}} property that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{bgColor:'*-subtle'}} utility will. This will be resolved in v6. "
 		),
 		new e.code({
 			output: () => {
@@ -48,7 +48,7 @@ export const background: IAttrContent = {
 				return data.map((i) => {
 					return new h.div(
 						{ padding: 3, marginBottom: 2, bgColor: i.bgColor, textColor: i.textColor },
-						`.bg-${i.bgColor}`
+						`bgColor:'${i.bgColor}'`
 					);
 				});
 			},
@@ -58,7 +58,7 @@ export const background: IAttrContent = {
 
 		new e.title("Background gradient"),
 		new e.text(
-			"By adding a {{.bg-gradient}} class, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom."
+			"By adding a {{bgGradient:true}} property, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom."
 		),
 		new e.text("Do you need a gradient in your custom CSS? Just add {{background-image: var(--bs-gradient);}}."),
 		new e.code({
@@ -91,7 +91,7 @@ export const background: IAttrContent = {
 				return data.map((i) => {
 					return new h.div(
 						{ padding: 3, marginBottom: 2, bgColor: i.bgColor, textColor: i.textColor, bgGradient: true },
-						`.bg-${i.bgColor}.bg-gradient`
+						`bgColor: '${i.bgColor}', bgGradient: true`
 					);
 				});
 			},
@@ -101,13 +101,13 @@ export const background: IAttrContent = {
 
 		new e.title("Opacity"),
 		new e.text(
-			"As of v5.1.0, {{background-color}} utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
+			"As of v5.1.0, {{bgColor}} property are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
 		),
 
 		//-----------------------
 
 		new e.subtitle("How it works"),
-		new e.text("Consider Bootstrap default {{.bg-success}} utility."),
+		new e.text("Consider Bootstrap default {{bgColor:'success'}} property."),
 		new e.codepreview({
 			type: "css",
 			code: `
@@ -124,7 +124,9 @@ export const background: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Example"),
-		new e.text("To change that opacity, override {{--bs-bg-opacity}} via custom styles or inline styles."),
+		new e.text(
+			"To change that opacity, override {{style: { '--bs-bg-opacity': '.5' } }} via custom styles or inline styles."
+		),
 		new e.code({
 			output: () => {
 				return [
@@ -139,7 +141,7 @@ export const background: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Or, choose from any of the {{.bg-opacity}} utilities:"),
+		new e.text("Or, choose from any of the {{bgOpacity}} property:"),
 		new e.code({
 			output: () => {
 				return [undefined, 75, 50, 25, 10].map((i) => {
