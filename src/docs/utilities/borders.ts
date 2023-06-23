@@ -90,7 +90,7 @@ export const borders: IAttrContent = {
 			},
 		}),
 
-		new e.text("Or modify the default {{border-color}} of a component:"),
+		new e.text("Or modify the default {{borderColor}} of a property:"),
 
 		new e.code({
 			output: () => {
@@ -159,7 +159,9 @@ export const borders: IAttrContent = {
 		//-----------------------
 
 		new e.subtitle("Example"),
-		new e.text("To change that opacity, override {{--bs-border-opacity}} via custom styles or inline styles."),
+		new e.text(
+			"To change that opacity, override {{style: { '--bs-border-opacity': '.5' } }} via custom styles or inline styles."
+		),
 		new e.code({
 			output: () => {
 				return [
@@ -174,7 +176,7 @@ export const borders: IAttrContent = {
 				];
 			},
 		}),
-		new e.text("Or, choose from any of the {{.border-opacity}} utilities:"),
+		new e.text("Or, choose from any of the {{borderOpacity}} property:"),
 		new e.code({
 			output: () => {
 				return [undefined, 75, 50, 25, 10].map((i, ix) => {
