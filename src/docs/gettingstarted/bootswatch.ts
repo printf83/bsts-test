@@ -105,7 +105,12 @@ export const bootswatch: IAttrContent = {
 
 		new e.subtitle("Sizing"),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				alignItem: "center",
+				gap: 2,
+			},
 			output: () => {
 				return [
 					new b.button({ weight: "lg" }, "Large button"),
@@ -775,6 +780,230 @@ export const bootswatch: IAttrContent = {
 						type: "password",
 					}),
 				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Navs"),
+		new e.subtitle("Tabs"),
+		new e.code({
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				return b.nav.tab({
+					item: [
+						{ label: "Home", active: true, elem: content("Home") },
+						{ label: "Profile", elem: content("Profile") },
+						{ label: "Contact", elem: content("Contact") },
+						{ label: "Disabled", disabled: true, elem: content("Disabled") },
+					],
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Pills"),
+		new e.code({
+			output: () => {
+				const content = (title: string) =>
+					`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+
+				return b.nav.tab({
+					type: "pill",
+					item: [
+						{ label: "Home", active: true, elem: content("Home") },
+						{ label: "Profile", elem: content("Profile") },
+						{ label: "Contact", elem: content("Contact") },
+						{ label: "Disabled", disabled: true, elem: content("Disabled") },
+					],
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Breadcrumbs"),
+		new e.code({
+			outputAttr: { display: "flex", flex: "column", gap: 2 },
+			output: () => {
+				return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map((i) => {
+					return new b.breadcrumb.container(
+						{ label: "breadcrumb" },
+						i.map((j, jx) => {
+							return new b.breadcrumb.item({ active: jx === i.length - 1, href: "#" }, j);
+						})
+					);
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Pagination"),
+		new e.code({
+			outputAttr: { display: "flex", flex: "column", gap: 2 },
+			output: () => {
+				return [
+					new b.pagination.container({
+						total: 1284,
+						limit: 10,
+						maxBtnCount: 3,
+						nextPrev: false,
+					}),
+					new b.pagination.container({
+						weight: "lg",
+						total: 1284,
+						limit: 10,
+						maxBtnCount: 3,
+						firstLast: false,
+					}),
+					new b.pagination.container({
+						weight: "sm",
+						total: 1284,
+						limit: 10,
+						maxBtnCount: 5,
+					}),
+				];
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Indicators"),
+		new e.subtitle("Alerts"),
+		new e.code({
+			output: () => {
+				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+					return new b.alert.container(
+						{ dismissible: true, color: i as core.bootstrapType.color },
+						`A simple ${i} alert—check it out!`
+					);
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.subtitle("Badges"),
+		new e.code({
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+			output: () => {
+				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+					return new b.badge({ textBgColor: i as core.bootstrapType.textBgColor }, core.uppercaseFirst(i));
+				});
+			},
+		}),
+
+		new e.xsubtitle("Rounded pill"),
+		new e.code({
+			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+			output: () => {
+				return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+					return new b.badge(
+						{
+							textBgColor: i as core.bootstrapType.textBgColor,
+							rounded: "pill",
+						},
+						core.uppercaseFirst(i)
+					);
+				});
+			},
+		}),
+
+		//-----------------------
+
+		new e.title("Progress"),
+		new e.subtitle("Basic"),
+		new e.code({
+			output: () => {
+				return new b.progress.container({
+					value: 25,
+				});
+			},
+		}),
+
+		new e.subtitle("Contextual alternatives"),
+		new e.code({
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
+			output: () => {
+				return ["success", "info", "warning", "danger"].map((i, ix) => {
+					let val = [25, 50, 75, 100][ix];
+					return new b.progress.container(
+						{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+						new b.progress.bar({
+							color: i as I.B.Progress.Bar["color"],
+							style: { width: `${val}%` },
+						})
+					);
+				});
+			},
+		}),
+
+		new e.subtitle("Multiple bars"),
+		new e.code({
+			output: () => {
+				return new b.progress.stacked([
+					new b.progress.container({
+						label: "Segment one",
+						value: 15,
+						min: 0,
+						max: 100,
+						stacked: true,
+					}),
+					new b.progress.container({
+						label: "Segment two",
+						value: 30,
+						min: 0,
+						max: 100,
+						stacked: true,
+						color: "success",
+					}),
+					new b.progress.container({
+						label: "Segment three",
+						value: 20,
+						min: 0,
+						max: 100,
+						stacked: true,
+						color: "info",
+					}),
+				]);
+			},
+		}),
+
+		new e.subtitle("Striped"),
+		new e.code({
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
+			output: () => {
+				return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
+					let val = [10, 25, 50, 75, 100][ix];
+					return new b.progress.container(
+						{
+							label: `${i ? core.uppercaseFirst(i) : "Default"} striped example`,
+							value: val,
+							min: 0,
+							max: 100,
+						},
+						new b.progress.bar({
+							striped: true,
+							textBgColor: i as I.B.Progress.Bar["textBgColor"],
+							style: { width: `${val}%` },
+						})
+					);
+				});
+			},
+		}),
+
+		new e.subtitle("Animated"),
+		new e.code({
+			output: () => {
+				return new b.progress.container({
+					value: 75,
+					striped: true,
+					animated: true,
+				});
 			},
 		}),
 	],

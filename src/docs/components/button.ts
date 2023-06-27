@@ -90,7 +90,11 @@ export const button: IAttrContent = {
 		new e.title("Sizes"),
 		new e.text("Fancy larger or smaller buttons? Add {{weight:'lg'|'sm'}} for additional sizes."),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				gap: 2,
+			},
 			output: () => {
 				return [
 					new b.button({ weight: "lg", color: "primary" }, "Large button"),

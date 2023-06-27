@@ -178,7 +178,12 @@ export const button_group: IAttrContent = {
 			"Instead of applying button sizing classes to every button in a group, just add {{weight:<weight>}} to each {{b.btngroup}}, including each one when nesting multiple groups."
 		),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: {
+				display: "flex",
+				flex: "wrap",
+				alignItem: "center",
+				gap: 3,
+			},
 			output: () => {
 				return [
 					new b.btngroup(

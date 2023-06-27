@@ -27,7 +27,7 @@ export const progress: IAttrContent = {
 		}),
 		new e.text("Put that all together, and you have the following examples."),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return [0, 25, 50, 75, 100].map((i) => {
 					return new b.progress.container(
@@ -40,7 +40,7 @@ export const progress: IAttrContent = {
 
 		new e.text("Or without {{b.progress.bar}}."),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return [0, 25, 50, 75, 100].map((i) => {
 					return new b.progress.container({
@@ -84,7 +84,7 @@ export const progress: IAttrContent = {
 		),
 
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return [
 					new b.progress.container(
@@ -100,7 +100,7 @@ export const progress: IAttrContent = {
 		}),
 		new e.text("Or without {{b.progress.bar}}."),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return [
 					new b.progress.container({
@@ -188,7 +188,7 @@ export const progress: IAttrContent = {
 		new e.title("Backgrounds"),
 		new e.text("Use background utility classes to change the appearance of individual progress bars."),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -204,7 +204,7 @@ export const progress: IAttrContent = {
 		}),
 		new e.text("Or without {{b.progress.bar}}."),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -226,7 +226,7 @@ export const progress: IAttrContent = {
 			"If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{textColor}}, so the labels remain readable and have sufficient contrast."
 		),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -248,7 +248,7 @@ export const progress: IAttrContent = {
 		new e.text("Or without {{b.progress.bar}}."),
 
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -267,7 +267,7 @@ export const progress: IAttrContent = {
 			"Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} property. Without {{b.progress.bar}} the {{textBgColor}} will be used."
 		),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return ["success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [25, 50, 75, 100][ix];
@@ -365,7 +365,7 @@ export const progress: IAttrContent = {
 			"Add {{striped:true}} to any {{b.progress.bar}} to apply a stripe via CSS gradient over the progress bar’s background color."
 		),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [10, 25, 50, 75, 100][ix];
@@ -387,7 +387,7 @@ export const progress: IAttrContent = {
 		}),
 		new e.text("Or without {{b.progress.bar}}."),
 		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
 					let val = [10, 25, 50, 75, 100][ix];
