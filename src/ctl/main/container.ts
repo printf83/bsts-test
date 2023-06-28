@@ -817,7 +817,7 @@ const convert = (attr: IBsMainContainer) => {
 				sticky: "top",
 				bgColor: attr.bgColor || "primary",
 				bgGradient: true,
-				shadow: "sm",
+				shadow: true,
 				padding: 2,
 			},
 			[

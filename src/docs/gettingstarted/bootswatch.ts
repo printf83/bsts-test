@@ -827,7 +827,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.title("Breadcrumbs"),
 		new e.code({
-			outputAttr: { display: "flex", flex: "column", gap: 2 },
+			outputAttr: { display: "flex", flex: "column", gap: 3 },
 			output: () => {
 				return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map((i) => {
 					return new b.breadcrumb.container(
@@ -844,7 +844,7 @@ export const bootswatch: IAttrContent = {
 
 		new e.title("Pagination"),
 		new e.code({
-			outputAttr: { display: "flex", flex: "column", gap: 2 },
+			outputAttr: { display: "flex", flex: "column", gap: 3, overflowX: "auto" },
 			output: () => {
 				return [
 					new b.pagination.container({
