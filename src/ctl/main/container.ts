@@ -221,9 +221,8 @@ const genTheme = (
 				new b.navbar.item({ dropdown: true }, [
 					new b.dropdown.button(
 						{
+							navItem: true,
 							id: "bs-theme",
-							color: "link",
-							class: "nav-link",
 							paddingY: 2,
 							paddingX: [0, "lg-2"],
 							display: "flex",
@@ -290,9 +289,8 @@ const genBootswatch = (
 			new b.navbar.item({ dropdown: true }, [
 				new b.dropdown.button(
 					{
+						navItem: true,
 						id: "bs-bootswatch",
-						color: "link",
-						class: "nav-link",
 						paddingY: 2,
 						paddingX: [0, "lg-2"],
 						textColor: textColor,
@@ -367,9 +365,8 @@ const genVersion = (
 			new b.navbar.item({ dropdown: true }, [
 				new b.dropdown.button(
 					{
+						navItem: true,
 						id: "bs-version",
-						color: "link",
-						class: "nav-link",
 						paddingY: 2,
 						paddingX: [0, "lg-2"],
 						textColor: textColor,
