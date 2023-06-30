@@ -249,6 +249,7 @@ let m = {
 				{ label: "Dropdowns", value: "docs/example/dropdowns" },
 				{ label: "List groups", value: "docs/example/list_groups" },
 				{ label: "Modals", value: "docs/example/modals" },
+				{ label: "Test", value: "docs/example/test" },
 			],
 		},
 	] as main.IAttrItemMenu[],
@@ -401,9 +402,9 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 	//show the loading before download new documentation
 
 	core.requestIdleCallback(() => {
-		const PERFORMANCE_GETDATA = performance.now();
+		const PERFORMANCE_GETDATA = DEBUG ? performance.now() : 0;
 		getData(docId, (docData) => {
-			PERFORMANCEINFO.download = performance.now() - PERFORMANCE_GETDATA;
+			PERFORMANCEINFO.download = DEBUG ? performance.now() - PERFORMANCE_GETDATA : 0;
 
 			//keep current page in cookie
 			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
@@ -413,9 +414,9 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 
 			//generate content
 
-			const PERFORMANCE_BUILD = performance.now();
+			const PERFORMANCE_BUILD = DEBUG ? performance.now() : 0;
 			contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-			PERFORMANCEINFO.build = performance.now() - PERFORMANCE_BUILD;
+			PERFORMANCEINFO.build = DEBUG ? performance.now() - PERFORMANCE_BUILD : 0;
 
 			//reset loading
 			resetLoading(contentbody);
@@ -643,10 +644,10 @@ const mainContainer = main.Container({
 					new b.modal.container(
 						new b.modal.body([
 							new h.p(
-								"Open random page to detect memory leak. Please open Memory Monitor Program on your device and compare the memory diffrence before start memory leak test and after the test complete. You should have back your memory when the test complete."
+								"Open random page to detect memory leak. Please open {{Memory Monitor Program}} on your device and compare the memory diffrence before start memory leak test and after the test complete. You should have back your memory when the test complete."
 							),
 							new b.tabList.container(
-								[10, 100, 1000, 5000, 10000].map((i) => {
+								[10, 30, 50, 100, 300, 500, 1000, 3000, 5000, 10000].map((i) => {
 									return new b.tabList.item(
 										{
 											href: "#",
