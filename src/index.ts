@@ -305,8 +305,8 @@ const genMenuWithBookmark = () => {
 
 	if (bm && bm.length > 0) {
 		result.push({
-			icon: new b.icon({ id: "bookmark-fill", color: "success" }),
-			label: "Bookmark",
+			icon: new b.icon({ id: "pin-fill", color: "secondary" }),
+			label: "Pinned",
 			item: bm,
 		});
 	}

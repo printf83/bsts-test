@@ -46,28 +46,19 @@ const convert = (attr: IBsExamplePagetitle) => {
 
 		attr.marginBottom = 3;
 	}
-
+	//is update
 	if (attr.sourceUrl || attr.addedVersion) {
 		tElem.push(
-			new h.div({ marginBottom: [3, "md-0"], display: "flex", gap: 2 }, [
+			new b.btngroup({ marginBottom: [3, "md-0"] }, [
 				attr.addedVersion
-					? new h.small(
+					? new h.a(
 							{
-								display: "inline-flex",
-								paddingX: 2,
-								paddingY: 1,
-								verticalAlign: "baseline",
-								fontWeight: "semibold",
-								textColor: "success",
-								bgColor: "success",
-								bgOpacity: 10,
-								roundedSize: 2,
-								marginEnd: 2,
-								border: true,
-								borderColor: "success",
-								borderOpacity: 10,
+								class: "btn btn-sm btn-outline-success",
+								linkNormal: "success",
+								linkBorder: "success",
+								pointerEvent: "none",
 							},
-							new h.span(`Added in v${attr.addedVersion}`)
+							`Added in v${attr.addedVersion}`
 					  )
 					: "",
 				attr.sourceUrl
@@ -87,18 +78,36 @@ const convert = (attr: IBsExamplePagetitle) => {
 					  )
 					: "",
 				attr.docId
-					? new b.button(
+					? new h.a(
 							{
-								weight: "sm",
-								color: "success",
-								outline: true,
-								toggle: "button",
-								active: attr.bookmark,
-								marginStart: "auto",
+								class: ["btn", "btn-sm", attr.bookmark ? "active" : undefined],
+								focusRing: true,
+								linkNormal: "secondary",
+								linkBorder: "secondary",
+								linkHover: "link",
+								linkHoverBorder: "link",
 								title: `Add to bookmark`,
 								on: {
 									click: (e: Event) => {
 										const target = (e.target as Element).closest(".btn") as Element;
+										const icon = target.firstChild?.firstChild as Element;
+
+										if (target.classList.contains("active")) {
+											target.classList.remove("active");
+											target.removeAttribute("aria-pressed");
+											icon.classList.remove("text-primary");
+											icon.classList.remove("bi-pin-fill");
+											icon.classList.add("text-secondary");
+											icon.classList.add("bi-pin");
+										} else {
+											target.classList.add("active");
+											target.setAttribute("aria-pressed", "true");
+											icon.classList.remove("text-secondary");
+											icon.classList.remove("bi-pin");
+											icon.classList.add("text-primary");
+											icon.classList.add("bi-pin-fill");
+										}
+
 										const container = target.closest(".example-pagetitle");
 										if (container) {
 											container.dispatchEvent(
@@ -110,7 +119,11 @@ const convert = (attr: IBsExamplePagetitle) => {
 									},
 								},
 							},
-							new b.icon({ handleBubble: false, id: "bookmark-fill" })
+							new b.icon({
+								handleBubble: false,
+								id: attr.bookmark ? "pin-fill" : "pin",
+								color: attr.bookmark ? "primary" : "secondary",
+							})
 					  )
 					: "",
 			])
