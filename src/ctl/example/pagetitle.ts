@@ -91,7 +91,6 @@ const convert = (attr: IBsExamplePagetitle) => {
 								on: {
 									click: (e: Event) => {
 										const target = (e.target as Element).closest(".btn") as Element;
-										const icon = target.firstChild?.firstChild as Element;
 
 										if (target.classList.contains("active")) {
 											target.removeAttribute("aria-pressed");
