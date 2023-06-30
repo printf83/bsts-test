@@ -1,6 +1,8 @@
-import { core, h, t } from "@printf83/bsts";
+import { core, h, t, b } from "@printf83/bsts";
 
 export interface IBsExamplePagetitle extends core.IAttr {
+	bookmark?: boolean;
+	docId?: string;
 	loading?: boolean;
 	sourceUrl?: string;
 	sourceWeb?: string;
@@ -15,6 +17,9 @@ const convert = (attr: IBsExamplePagetitle) => {
 			flex: "md-row-reverse",
 			alignItem: "center",
 			justifyContent: "between",
+			data: {
+				"bs-docid": attr.docId,
+			},
 		},
 		attr
 	);
@@ -44,7 +49,7 @@ const convert = (attr: IBsExamplePagetitle) => {
 
 	if (attr.sourceUrl || attr.addedVersion) {
 		tElem.push(
-			new h.div({ marginBottom: [3, "md-0"], display: "flex" }, [
+			new h.div({ marginBottom: [3, "md-0"], display: "flex", gap: 2 }, [
 				attr.addedVersion
 					? new h.small(
 							{
@@ -81,6 +86,33 @@ const convert = (attr: IBsExamplePagetitle) => {
 							`View on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`
 					  )
 					: "",
+				attr.docId
+					? new b.button(
+							{
+								weight: "sm",
+								color: "success",
+								outline: true,
+								toggle: "button",
+								active: attr.bookmark,
+								marginStart: "auto",
+								title: `Add to bookmark`,
+								on: {
+									click: (e: Event) => {
+										const target = (e.target as Element).closest(".btn") as Element;
+										const container = target.closest(".example-pagetitle");
+										if (container) {
+											container.dispatchEvent(
+												new CustomEvent("toggle.bs.bookmark", {
+													detail: target.classList.contains("active"),
+												})
+											);
+										}
+									},
+								},
+							},
+							new b.icon({ handleBubble: false, id: "bookmark-fill" })
+					  )
+					: "",
 			])
 		);
 	}
@@ -106,6 +138,8 @@ const convert = (attr: IBsExamplePagetitle) => {
 		attr.elem = tElem;
 	}
 
+	delete attr.bookmark;
+	delete attr.docId;
 	delete attr.loading;
 	delete attr.sourceUrl;
 	delete attr.sourceWeb;

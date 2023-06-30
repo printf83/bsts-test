@@ -1,6 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
+import { updateMenu } from "./ctl/main/container.js";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;
@@ -255,6 +256,75 @@ let m = {
 	] as main.IAttrItemMenu[],
 };
 
+const getSavedBookmark = () => {
+	let bookmarkCookie = cookie.get("saved_bookmark");
+	if (bookmarkCookie) {
+		return JSON.parse(bookmarkCookie) as main.IAttrItemSubMenu[];
+	} else {
+		return [];
+	}
+};
+
+let bm: main.IAttrItemSubMenu[] = getSavedBookmark();
+
+const isInBookmark = (value: string) => {
+	if (bm && bm.length > 0) {
+		return bm.filter((i) => i.value === value).length > 0;
+	} else {
+		return false;
+	}
+};
+
+const addToBookmark = (value: string) => {
+	let label = document.getElementById("bs-menu")?.querySelector(`a[data-value="${value}"]`)?.textContent;
+	if (label) {
+		bm.push({
+			label: label,
+			value: value,
+		});
+	}
+};
+
+const removeFromBookmark = (value: string) => {
+	bm = bm.filter((i) => i.value !== value);
+};
+
+const onBookmarkChange = (value: string) => {
+	if (isInBookmark(value)) {
+		removeFromBookmark(value);
+	} else {
+		addToBookmark(value);
+	}
+
+	cookie.set("saved_bookmark", JSON.stringify(bm));
+	updateMenu(genMenuWithBookmark(), cookie.get("current_page") || "docs/gettingstarted/introduction");
+};
+
+const genMenuWithBookmark = () => {
+	let result: main.IAttrItemMenu[] = [];
+
+	if (bm && bm.length > 0) {
+		result.push({
+			icon: new b.icon({ id: "bookmark-fill", color: "success" }),
+			label: "Bookmark",
+			item: bm,
+		});
+	}
+
+	for (const doc of Object.values(m.doc)) {
+		let item = doc.item.filter((i) => !isInBookmark(i.value));
+		if (item && item.length > 0) {
+			result.push({
+				icon: doc.icon,
+				label: doc.label,
+				item: item,
+			});
+		}
+	}
+
+	return result && result.length > 0 ? result : m.doc;
+};
+
 const dataNotFound = (value: string) => {
 	return {
 		title: "Oooopppsss!",
@@ -275,6 +345,8 @@ const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 	if (tValue.length === 3 && tValue[0] === "docs") {
 		getDataPromise(value, (c) => {
 			if (c) {
+				c.docId = value;
+				c.bookmark = bm.filter((i) => i.value === value).length > 0;
 				c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${value}.ts`;
 				c.sourceWeb = "Github";
 				callback(c);
@@ -627,9 +699,12 @@ const mainContainer = main.Container({
 		"bs-bootswatch-change": (e) => {
 			onBootswatchChange((<CustomEvent>e).detail);
 		},
+		"bs-bookmark-change": (e) => {
+			onBookmarkChange((<CustomEvent>e).detail);
+		},
 	},
 
-	itemMenu: m.doc,
+	itemMenu: genMenuWithBookmark(),
 
 	itemInsideLink: [{ value: "doc", label: "Docs" }],
 	currentInsideLink: "doc",

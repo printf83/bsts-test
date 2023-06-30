@@ -163,6 +163,9 @@ export interface IAttrTocItem {
 export interface IAttrContent {
 	loading?: boolean;
 
+	bookmark?: boolean;
+	docId?: string;
+
 	title?: string;
 	sourceUrl?: string;
 	sourceWeb?: string;
@@ -541,6 +544,18 @@ const genIntro = (content?: IAttrContent) => {
 								sourceWeb: content.sourceWeb,
 								sourceUrl: content.sourceUrl,
 								addedVersion: content.addedVersion,
+								bookmark: content.bookmark,
+								docId: content.docId,
+								on: {
+									"toggle.bs.bookmark": (event: Event) => {
+										const target = event.target as Element;
+										const docId = target.getAttribute("data-bs-docid");
+										if (docId) {
+											const root = target.closest(".bs-main-root");
+											dispatchCustomEvent(root, "bs-bookmark-change", docId);
+										}
+									},
+								},
 							},
 							content.title ? content.title : ""
 					  )
@@ -1048,3 +1063,27 @@ export class container extends h.div {
 }
 
 export const Container = (Attr?: IBsMainContainer) => core.genTagClass<container, IBsMainContainer>(container, Attr);
+
+export const updateMenu = (itemMenu: IAttrItemMenu[], currentMenu: string) => {
+	const bsMenu = document.getElementById("bs-menu") as Element;
+	core.replaceWith(
+		bsMenu,
+		new h.nav({ id: "bs-menu", class: "bs-links", width: 100, label: "Docs navication" }, [
+			new h.ul(
+				{
+					class: "bs-links-nav",
+					unstyle: true,
+					marginBottom: 0,
+					paddingBottom: [3, "md-2"],
+					paddingEnd: "lg-2",
+					data: {
+						"bs-dismiss": "offcanvas",
+						"bs-target": "#bsSidebar",
+					},
+				},
+
+				genMenu(itemMenu, currentMenu)
+			),
+		])
+	);
+};
