@@ -82,10 +82,11 @@ const convert = (attr: IBsExamplePagetitle) => {
 							{
 								class: ["btn", "btn-sm", attr.bookmark ? "active" : undefined],
 								focusRing: true,
-								linkNormal: "secondary",
-								linkBorder: "secondary",
-								linkHover: "link",
-								linkHoverBorder: "link",
+								linkNormal: attr.bookmark ? "link" : "secondary",
+								linkBorder: attr.bookmark ? "link" : "secondary",
+								linkHover: attr.bookmark ? "secondary" : "link",
+								linkHoverBorder: attr.bookmark ? "secondary" : "link",
+
 								title: `Add to bookmark`,
 								on: {
 									click: (e: Event) => {
@@ -93,19 +94,31 @@ const convert = (attr: IBsExamplePagetitle) => {
 										const icon = target.firstChild?.firstChild as Element;
 
 										if (target.classList.contains("active")) {
-											target.classList.remove("active");
 											target.removeAttribute("aria-pressed");
-											icon.classList.remove("text-primary");
-											icon.classList.remove("bi-pin-fill");
-											icon.classList.add("text-secondary");
-											icon.classList.add("bi-pin");
+											target.classList.remove("active");
+
+											target.classList.remove("link-normal-link");
+											target.classList.remove("link-border-link");
+											target.classList.remove("link-hover-secondary");
+											target.classList.remove("link-hover-border-secondary");
+
+											target.classList.add("link-normal-secondary");
+											target.classList.add("link-border-secondary");
+											target.classList.add("link-hover-link");
+											target.classList.add("link-hover-border-link");
 										} else {
-											target.classList.add("active");
 											target.setAttribute("aria-pressed", "true");
-											icon.classList.remove("text-secondary");
-											icon.classList.remove("bi-pin");
-											icon.classList.add("text-primary");
-											icon.classList.add("bi-pin-fill");
+											target.classList.add("active");
+
+											target.classList.remove("link-normal-secondary");
+											target.classList.remove("link-border-secondary");
+											target.classList.remove("link-hover-link");
+											target.classList.remove("link-hover-border-link");
+
+											target.classList.add("link-normal-link");
+											target.classList.add("link-border-link");
+											target.classList.add("link-hover-secondary");
+											target.classList.add("link-hover-border-secondary");
 										}
 
 										const container = target.closest(".example-pagetitle");
@@ -121,8 +134,7 @@ const convert = (attr: IBsExamplePagetitle) => {
 							},
 							new b.icon({
 								handleBubble: false,
-								id: attr.bookmark ? "pin-fill" : "pin",
-								color: attr.bookmark ? "primary" : "secondary",
+								id: "pin-fill",
 							})
 					  )
 					: "",
