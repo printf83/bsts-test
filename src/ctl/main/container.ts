@@ -607,6 +607,26 @@ const genToc = (content?: IAttrContent) => {
 							item: item,
 						});
 					}
+				} else if (core.isTag<e.section>(i) && i.tag === "section") {
+					if (i.attr?.id && i.attr?.data?.title) {
+						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
+						let deep = 0;
+						switch (i.attr?.data?.type as string) {
+							case "title":
+								deep = 0;
+								break;
+							case "subtitle":
+								deep = 1;
+								break;
+							case "xsubtitle":
+								deep = 2;
+								break;
+						}
+						t.push({
+							deep: deep,
+							item: item,
+						});
+					}
 				}
 			});
 
