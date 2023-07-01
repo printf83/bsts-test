@@ -1,46 +1,17 @@
 import { core, t, h, s } from "@printf83/bsts";
-import { title } from "./title.js";
-import { subtitle } from "./subtitle.js";
-import { xsubtitle } from "./xsubtitle.js";
 
-export type IBsExampleSectionType = "title" | "subtitle" | "xsubtitle";
-
-export interface IBsExampleSection extends core.IAttr {
-	type?: IBsExampleSectionType;
-	title?: string;
-}
-
-const genIDFromTitle = (title?: string) => {
-	if (title) {
-		return title.toLowerCase().replace(/[\W_]+/g, "_");
-	} else {
-		return core.UUID();
-	}
+const genIDFromText = (text: string) => {
+	return text.toLowerCase().replace(/[\W_]+/g, "_");
 };
 
-const convert = (attr: IBsExampleSection) => {
-	attr.title ??= "Title";
-	// let id = attr.id || genIDFromTitle(attr.title);
-	attr.id ??= "section-" + genIDFromTitle(attr.title);
-	attr.type ??= "title";
-	attr.class = core.mergeClass(attr.class, "example-section");
-
-	let titleElem: core.IElem;
-
-	switch (attr.type) {
-		case "title":
-			titleElem = new title(attr.title);
-			break;
-		case "subtitle":
-			titleElem = new subtitle(attr.title);
-			break;
-		case "xsubtitle":
-			titleElem = new xsubtitle(attr.title);
-			break;
-		default:
-			titleElem = new title(attr.title);
+const hasClass = (className: string, attrClass: string | undefined | (string | undefined)[]) => {
+	if (attrClass) {
+		return attrClass.indexOf(className) > -1;
+	} else {
+		return false;
 	}
-
+};
+const convert = (attr: core.IAttr) => {
 	let tElem: string | number | t | s | (string | number | t | s)[] | undefined = attr.elem;
 
 	if (tElem) {
@@ -51,29 +22,72 @@ const convert = (attr: IBsExampleSection) => {
 		tElem = [];
 	}
 
-	tElem.unshift(titleElem);
+	//get info from elem
 
-	attr.elem = tElem;
+	if (tElem && tElem.length > 0) {
+		const firstElem = tElem[0] as t;
+		if (firstElem) {
+			let titleType: undefined | "title" | "subtitle" | "xsubtitle" = undefined;
 
-	delete attr.type;
+			if (hasClass("example-title", firstElem.attr?.class)) {
+				titleType = "title";
+			} else if (hasClass("example-subtitle", firstElem.attr?.class)) {
+				titleType = "subtitle";
+			} else if (hasClass("example-xsubtitle", firstElem.attr?.class)) {
+				titleType = "xsubtitle";
+			}
+
+			let titleText: string | undefined = undefined;
+			if (titleType) {
+				if (typeof firstElem.elem === "string") {
+					titleText = firstElem.elem;
+				} else {
+					if (Array.isArray(firstElem.elem)) {
+						if (firstElem.elem.length > 0) {
+							if (typeof firstElem.elem[0] === "string") {
+								titleText = firstElem.elem[0];
+							} else {
+								titleType = undefined;
+							}
+						} else {
+							titleType = undefined;
+						}
+					} else {
+						titleType = undefined;
+					}
+				}
+			}
+
+			if (titleType && titleText) {
+				attr = core.mergeObject(
+					{
+						class: "example-section",
+						id: "sec_" + genIDFromText(titleText),
+						data: {
+							title: titleText,
+							type: titleType,
+						},
+					},
+					attr
+				);
+			}
+		}
+	} else {
+		attr = core.mergeObject({ class: "example-section" }, attr);
+	}
 
 	return attr;
 };
 
 export class section extends h.section {
 	constructor();
-	constructor(type: IBsExampleSectionType, title: string, elem: core.IElem);
-	constructor(attr: IBsExampleSection);
+	constructor(attr: core.IAttr);
 	constructor(elem: core.IElem);
-	constructor(attr: IBsExampleSection, elem: core.IElem);
+	constructor(attr: core.IAttr, elem: core.IElem);
 	constructor(...arg: any[]) {
-		if (arg.length === 3) {
-			super(convert({ type: arg[0], title: arg[1], elem: arg[2] }));
-		} else {
-			super(convert(core.bsConstArg("elem", arg)));
-		}
+		super(convert(core.bsConstArg("elem", arg)));
 	}
 }
 
-export const Section = (AttrOrElem?: IBsExampleSection | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<section, IBsExampleSection>(section, AttrOrElem, Elem);
+export const Section = (AttrOrElem?: core.IAttr | core.IElem, Elem?: core.IElem) =>
+	core.genTagClass<section, core.IAttr>(section, AttrOrElem, Elem);

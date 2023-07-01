@@ -5,7 +5,7 @@ import { Item, item } from "./item.js";
 import { Pagetitle, pagetitle } from "./pagetitle.js";
 import { Subtitle, subtitle } from "./subtitle.js";
 import { Xsubtitle, xsubtitle } from "./xsubtitle.js";
-import { Section, section, IBsExampleSectionType, IBsExampleSection } from "./section.js";
+import { Section, section } from "./section.js";
 import { Text, text } from "./text.js";
 import { Title, title } from "./title.js";
 import { Table, table } from "./table.js";
@@ -37,8 +37,6 @@ export {
 	IBsExampleCodepreview,
 	IBsExampleContainer,
 	IBsExampleExt,
-	IBsExampleSectionType,
-	IBsExampleSection,
 };
 
 export {
