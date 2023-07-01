@@ -325,19 +325,14 @@ const itemCode = (arg: {
 										paddingStart: 4,
 										paddingEnd: arg.allowcopy || arg.allowrefresh ? 2 : 4,
 									},
-									new b.tooltip(
+									new h.a(
 										{
-											content: "Edit on CodePen",
-											trigger: "hover",
+											color: "secondary",
+											linkHover: "link",
+											title: "Edit on CodePen",
+											on: { click: arg.onedit },
 										},
-										new h.a(
-											{
-												color: "secondary",
-												linkHover: "link",
-												on: { click: arg.onedit },
-											},
-											b.icon.bi("lightning-charge-fill")
-										)
+										b.icon.bi("lightning-charge-fill")
 									)
 								)
 						  )
@@ -352,45 +347,40 @@ const itemCode = (arg: {
 										paddingStart: 4,
 										paddingEnd: arg.onedit || arg.allowcopy ? 2 : 4,
 									},
-									new b.tooltip(
+									new h.a(
 										{
-											content: "Refresh code",
-											trigger: "hover",
-										},
-										new h.a(
-											{
-												color: "secondary",
-												linkHover: "link",
-												on: {
-													click: (e) => {
-														const target = e.target as Element;
-														const iconElem = target.closest(".bi") as Element;
-														const container = target.closest(".list-group-item")
-															?.nextSibling as Element;
+											color: "secondary",
+											title: "Refresh code",
+											linkHover: "link",
+											on: {
+												click: (e) => {
+													const target = e.target as Element;
+													const iconElem = target.closest(".bi") as Element;
+													const container = target.closest(".list-group-item")
+														?.nextSibling as Element;
 
-														container.setAttribute("data-loaded", "true");
-														getOutputHTML(container);
+													container.setAttribute("data-loaded", "true");
+													getOutputHTML(container);
 
-														if (iconElem) {
-															iconElem.classList.remove("arrow-clockwise");
-															iconElem.classList.add("bi-check2");
-															iconElem.classList.add("text-success");
+													if (iconElem) {
+														iconElem.classList.remove("arrow-clockwise");
+														iconElem.classList.add("bi-check2");
+														iconElem.classList.add("text-success");
 
-															setTimeout(
-																(iconElem) => {
-																	iconElem.classList.remove("text-success");
-																	iconElem.classList.remove("bi-check2");
-																	iconElem.classList.add("arrow-clockwise");
-																},
-																1000,
-																iconElem
-															);
-														}
-													},
+														setTimeout(
+															(iconElem) => {
+																iconElem.classList.remove("text-success");
+																iconElem.classList.remove("bi-check2");
+																iconElem.classList.add("arrow-clockwise");
+															},
+															1000,
+															iconElem
+														);
+													}
 												},
 											},
-											b.icon.bi("arrow-clockwise")
-										)
+										},
+										b.icon.bi("arrow-clockwise")
 									)
 								)
 						  )
@@ -405,19 +395,14 @@ const itemCode = (arg: {
 										paddingEnd: 4,
 										paddingStart: arg.onedit || arg.allowrefresh ? 2 : 4,
 									},
-									new b.tooltip(
+									new h.a(
 										{
-											content: "Copy to clipboard",
-											trigger: "hover",
+											color: "secondary",
+											linkHover: "link",
+											title: "Copy to clipboard",
+											on: { click: itemCodeCopy },
 										},
-										new h.a(
-											{
-												color: "secondary",
-												linkHover: "link",
-												on: { click: itemCodeCopy },
-											},
-											b.icon.bi("clipboard")
-										)
+										b.icon.bi("clipboard")
 									)
 								)
 						  )
@@ -434,35 +419,28 @@ const itemCode = (arg: {
 			arg.elem.unshift(
 				new h.div({ position: "absolute", end: 0, marginEnd: 3 }, [
 					arg.onedit
-						? new b.tooltip(
+						? new h.a(
 								{
+									href: "#",
+									color: "secondary",
+									linkHover: "link",
 									marginEnd: arg.allowcopy ? 2 : 0,
-									content: "Edit on CodePen",
-									trigger: "hover",
+									title: "Edit on CodePen",
+									on: { click: arg.onedit },
 								},
-								new h.a(
-									{
-										href: "#",
-										color: "secondary",
-										linkHover: "link",
-										on: { click: arg.onedit },
-									},
-									b.icon.bi("lightning-charge-fill")
-								)
+								b.icon.bi("lightning-charge-fill")
 						  )
 						: "",
 					arg.allowcopy
-						? new b.tooltip(
-								{ content: "Copy to clipboard", trigger: "hover" },
-								new h.a(
-									{
-										href: "#",
-										color: "secondary",
-										linkHover: "link",
-										on: { click: itemCodeCopy },
-									},
-									b.icon.bi("clipboard")
-								)
+						? new h.a(
+								{
+									href: "#",
+									color: "secondary",
+									linkHover: "link",
+									title: "Copy to clipboard",
+									on: { click: itemCodeCopy },
+								},
+								b.icon.bi("clipboard")
 						  )
 						: "",
 				])
@@ -648,19 +626,14 @@ const itemConsole = () => {
 					{ display: "flex" },
 					new h.div(
 						{ paddingTop: 2, paddingEnd: 4, paddingStart: 2 },
-						new b.tooltip(
+						new h.a(
 							{
-								content: "Cleanup console",
-								trigger: "hover",
+								color: "secondary",
+								linkHover: "link",
+								title: "Cleanup console",
+								on: { click: clearConsoleLog },
 							},
-							new h.a(
-								{
-									color: "secondary",
-									linkHover: "link",
-									on: { click: clearConsoleLog },
-								},
-								b.icon.bi("trash3")
-							)
+							b.icon.bi("trash3")
 						)
 					)
 				),

@@ -8,12 +8,15 @@ export const test: IAttrContent = {
 	description: "This is testing page to test our library one by one",
 	item: () => {
 		return [
-			new e.title("Tooltip"),
-			new e.code({
-				output: () => {
-					return new b.button("Hello");
-				},
-			}),
+			new e.section(
+				"title",
+				"Tooltip",
+				new e.code({
+					output: () => {
+						return new b.button("Hello");
+					},
+				})
+			),
 
 			//-----------------------
 

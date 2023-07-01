@@ -72,16 +72,14 @@ export interface IBsExampleCodepreview extends core.IAttr {
 
 const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 	if (attr.code) {
-		const copyButton = new b.tooltip(
-			{ content: "Copy to clipboard" },
-			new h.a(
-				{
-					color: "body-secondary",
-					linkHover: "link",
-					on: { click: itemCodeCopy },
-				},
-				b.icon.bi("clipboard")
-			)
+		const copyButton = new h.a(
+			{
+				color: "body-secondary",
+				linkHover: "link",
+				title: "Copy to clipboard",
+				on: { click: itemCodeCopy },
+			},
+			b.icon.bi("clipboard")
 		);
 
 		const cardTitle = attr.title
