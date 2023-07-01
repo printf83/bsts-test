@@ -91,6 +91,7 @@ const convert = (attr: IBsExamplePagetitle) => {
 								on: {
 									click: (e: Event) => {
 										const target = (e.target as Element).closest(".btn") as Element;
+										const icon = target.querySelector("i.bi") as Element;
 
 										if (target.classList.contains("active")) {
 											target.removeAttribute("aria-pressed");
@@ -105,6 +106,9 @@ const convert = (attr: IBsExamplePagetitle) => {
 											target.classList.add("link-border-secondary");
 											target.classList.add("link-hover-link");
 											target.classList.add("link-hover-border-link");
+
+											icon.classList.remove("bi-pin-fill");
+											icon.classList.add("bi-pin-angle-fill");
 										} else {
 											target.setAttribute("aria-pressed", "true");
 											target.classList.add("active");
@@ -118,6 +122,9 @@ const convert = (attr: IBsExamplePagetitle) => {
 											target.classList.add("link-border-link");
 											target.classList.add("link-hover-secondary");
 											target.classList.add("link-hover-border-secondary");
+
+											icon.classList.remove("bi-pin-angle-fill");
+											icon.classList.add("bi-pin-fill");
 										}
 
 										const container = target.closest(".example-pagetitle");
@@ -133,7 +140,7 @@ const convert = (attr: IBsExamplePagetitle) => {
 							},
 							new b.icon({
 								handleBubble: false,
-								id: "pin-fill",
+								id: attr.bookmark ? "pin-fill" : "pin-angle-fill",
 							})
 					  )
 					: "",
