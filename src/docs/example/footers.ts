@@ -227,182 +227,184 @@ const ex = {
 export const footers: IAttrContent = {
 	title: "Footers",
 	description: "Finish every page strong with an awesome footer, big or small.",
-	item: [
-		new e.title("Example footer 1"),
-		new e.code({
-			showViewport: true,
-			outputAttr: { class: "nav-custom-4" },
-			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
-			output: () => {
-				return ex.c1({
-					copyright: "© 2023 Company, Inc",
-					icon: "fab bootstrap",
-					link: [
-						{ href: "#", elem: "Home" },
-						{ href: "#", elem: "Features" },
-						{ href: "#", elem: "Pricing" },
-						{ href: "#", elem: "FAQs" },
-						{ href: "#", elem: "About" },
-					],
-				});
-			},
-		}),
+	item: () => {
+		return [
+			new e.title("Example footer 1"),
+			new e.code({
+				showViewport: true,
+				outputAttr: { class: "nav-custom-4" },
+				extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
+				output: () => {
+					return ex.c1({
+						copyright: "© 2023 Company, Inc",
+						icon: "fab bootstrap",
+						link: [
+							{ href: "#", elem: "Home" },
+							{ href: "#", elem: "Features" },
+							{ href: "#", elem: "Pricing" },
+							{ href: "#", elem: "FAQs" },
+							{ href: "#", elem: "About" },
+						],
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Example footer 2"),
-		new e.code({
-			showViewport: true,
-			outputAttr: { class: "nav-custom-4" },
-			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
-			output: () => {
-				return ex.c2({
-					copyright: "© 2023 Company, Inc",
-					icon: "fab bootstrap",
-					link: [
-						{ href: "#", icon: "fab twitter" },
-						{ href: "#", icon: "fab instagram" },
-						{ href: "#", icon: "fab facebook" },
-					],
-				});
-			},
-		}),
+			new e.title("Example footer 2"),
+			new e.code({
+				showViewport: true,
+				outputAttr: { class: "nav-custom-4" },
+				extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
+				output: () => {
+					return ex.c2({
+						copyright: "© 2023 Company, Inc",
+						icon: "fab bootstrap",
+						link: [
+							{ href: "#", icon: "fab twitter" },
+							{ href: "#", icon: "fab instagram" },
+							{ href: "#", icon: "fab facebook" },
+						],
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Example footer 3"),
-		new e.code({
-			outputAttr: { class: "nav-custom-4" },
-			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
-			output: () => {
-				return ex.c3({
-					copyright: "© 2023 Company, Inc",
-					link: [
-						{ href: "#", elem: "Home" },
-						{ href: "#", elem: "Features" },
-						{ href: "#", elem: "Pricing" },
-						{ href: "#", elem: "FAQs" },
-						{ href: "#", elem: "About" },
-					],
-				});
-			},
-		}),
+			new e.title("Example footer 3"),
+			new e.code({
+				outputAttr: { class: "nav-custom-4" },
+				extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
+				output: () => {
+					return ex.c3({
+						copyright: "© 2023 Company, Inc",
+						link: [
+							{ href: "#", elem: "Home" },
+							{ href: "#", elem: "Features" },
+							{ href: "#", elem: "Pricing" },
+							{ href: "#", elem: "FAQs" },
+							{ href: "#", elem: "About" },
+						],
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Example footer 4"),
-		new e.code({
-			showViewport: true,
-			outputAttr: { class: "nav-custom-4" },
-			extention: [
-				{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
-				{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 },
-			],
-			output: () => {
-				return ex.c4({
-					copyright: "© 2023",
-					icon: "fab bootstrap",
-					link: [
-						undefined,
-						ex.c4Section({
-							title: "Section",
-							link: [
-								{ href: "#", elem: "Home" },
-								{ href: "#", elem: "Features" },
-								{ href: "#", elem: "Pricing" },
-								{ href: "#", elem: "FAQs" },
-								{ href: "#", elem: "About" },
-							],
-						}),
-						ex.c4Section({
-							title: "Section",
-							link: [
-								{ href: "#", elem: "Home" },
-								{ href: "#", elem: "Features" },
-								{ href: "#", elem: "Pricing" },
-								{ href: "#", elem: "FAQs" },
-								{ href: "#", elem: "About" },
-							],
-						}),
-						ex.c4Section({
-							title: "Section",
-							link: [
-								{ href: "#", elem: "Home" },
-								{ href: "#", elem: "Features" },
-								{ href: "#", elem: "Pricing" },
-								{ href: "#", elem: "FAQs" },
-								{ href: "#", elem: "About" },
-							],
-						}),
-					],
-				});
-			},
-		}),
+			new e.title("Example footer 4"),
+			new e.code({
+				showViewport: true,
+				outputAttr: { class: "nav-custom-4" },
+				extention: [
+					{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
+					{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 },
+				],
+				output: () => {
+					return ex.c4({
+						copyright: "© 2023",
+						icon: "fab bootstrap",
+						link: [
+							undefined,
+							ex.c4Section({
+								title: "Section",
+								link: [
+									{ href: "#", elem: "Home" },
+									{ href: "#", elem: "Features" },
+									{ href: "#", elem: "Pricing" },
+									{ href: "#", elem: "FAQs" },
+									{ href: "#", elem: "About" },
+								],
+							}),
+							ex.c4Section({
+								title: "Section",
+								link: [
+									{ href: "#", elem: "Home" },
+									{ href: "#", elem: "Features" },
+									{ href: "#", elem: "Pricing" },
+									{ href: "#", elem: "FAQs" },
+									{ href: "#", elem: "About" },
+								],
+							}),
+							ex.c4Section({
+								title: "Section",
+								link: [
+									{ href: "#", elem: "Home" },
+									{ href: "#", elem: "Features" },
+									{ href: "#", elem: "Pricing" },
+									{ href: "#", elem: "FAQs" },
+									{ href: "#", elem: "About" },
+								],
+							}),
+						],
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Example footer 5"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			outputAttr: { class: "nav-custom-4" },
-			extention: [
-				{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
-				{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 },
-			],
-			output: () => {
-				return ex.c5({
-					copyright: "© 2023 Company, Inc. All rights reserved.",
-					linkicon: [
-						{ href: "#", icon: "fab twitter" },
-						{ href: "#", icon: "fab instagram" },
-						{ href: "#", icon: "fab facebook" },
-					],
-					link: [
-						ex.c4Section({
-							title: "Section",
-							link: [
-								{ href: "#", elem: "Home" },
-								{ href: "#", elem: "Features" },
-								{ href: "#", elem: "Pricing" },
-								{ href: "#", elem: "FAQs" },
-								{ href: "#", elem: "About" },
-							],
-						}),
-						ex.c4Section({
-							title: "Section",
-							link: [
-								{ href: "#", elem: "Home" },
-								{ href: "#", elem: "Features" },
-								{ href: "#", elem: "Pricing" },
-								{ href: "#", elem: "FAQs" },
-								{ href: "#", elem: "About" },
-							],
-						}),
-						ex.c4Section({
-							title: "Section",
-							link: [
-								{ href: "#", elem: "Home" },
-								{ href: "#", elem: "Features" },
-								{ href: "#", elem: "Pricing" },
-								{ href: "#", elem: "FAQs" },
-								{ href: "#", elem: "About" },
-							],
-						}),
-					],
-					onsubscribe: (event) => {
-						event.preventDefault();
-						const target = event.target as Element;
-						if (target) {
-							const input = target.querySelector("input[name='subcribe']") as HTMLInputElement;
-							if (input) {
-								const email = (input as HTMLInputElement).value;
-								e.console(target, "onsubscribe", { email: email }, "info");
+			new e.title("Example footer 5"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				outputAttr: { class: "nav-custom-4" },
+				extention: [
+					{ name: "COMPONENTSECTION", rename: "ex.c4Section", output: ex.c4Section },
+					{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 },
+				],
+				output: () => {
+					return ex.c5({
+						copyright: "© 2023 Company, Inc. All rights reserved.",
+						linkicon: [
+							{ href: "#", icon: "fab twitter" },
+							{ href: "#", icon: "fab instagram" },
+							{ href: "#", icon: "fab facebook" },
+						],
+						link: [
+							ex.c4Section({
+								title: "Section",
+								link: [
+									{ href: "#", elem: "Home" },
+									{ href: "#", elem: "Features" },
+									{ href: "#", elem: "Pricing" },
+									{ href: "#", elem: "FAQs" },
+									{ href: "#", elem: "About" },
+								],
+							}),
+							ex.c4Section({
+								title: "Section",
+								link: [
+									{ href: "#", elem: "Home" },
+									{ href: "#", elem: "Features" },
+									{ href: "#", elem: "Pricing" },
+									{ href: "#", elem: "FAQs" },
+									{ href: "#", elem: "About" },
+								],
+							}),
+							ex.c4Section({
+								title: "Section",
+								link: [
+									{ href: "#", elem: "Home" },
+									{ href: "#", elem: "Features" },
+									{ href: "#", elem: "Pricing" },
+									{ href: "#", elem: "FAQs" },
+									{ href: "#", elem: "About" },
+								],
+							}),
+						],
+						onsubscribe: (event) => {
+							event.preventDefault();
+							const target = event.target as Element;
+							if (target) {
+								const input = target.querySelector("input[name='subcribe']") as HTMLInputElement;
+								if (input) {
+									const email = (input as HTMLInputElement).value;
+									e.console(target, "onsubscribe", { email: email }, "info");
+								}
 							}
-						}
-					},
-				});
-			},
-		}),
-	],
+						},
+					});
+				},
+			}),
+		];
+	},
 };

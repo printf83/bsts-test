@@ -173,7 +173,7 @@ export interface IAttrContent {
 
 	description?: string;
 
-	item?: core.IElem;
+	item?: () => core.IElem;
 }
 
 export interface IAttrFooterItem {
@@ -574,158 +574,163 @@ interface IAttrTocTemp {
 }
 
 const genToc = (content?: IAttrContent) => {
-	if (content && content.item && Array.isArray(content.item)) {
-		let t: IAttrTocTemp[] = [];
+	if (content && typeof content.item === "function") {
+		let contentItem = content.item();
+		if (contentItem && Array.isArray(contentItem)) {
+			let t: IAttrTocTemp[] = [];
 
-		//get title
-		content.item.forEach((i) => {
-			if (core.isTag<e.title>(i) && i.tag === "h2") {
-				if (i.attr?.id && i.attr?.data?.text) {
-					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-					t.push({
-						deep: 0,
-						item: item,
-					});
-				}
-			} else if (core.isTag<e.subtitle>(i) && i.tag === "h3") {
-				if (i.attr?.id && i.attr?.data?.text) {
-					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-
-					t.push({
-						deep: 1,
-						item: item,
-					});
-				}
-			} else if (core.isTag<e.subtitle>(i) && i.tag === "h4") {
-				if (i.attr?.id && i.attr?.data?.text) {
-					let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-
-					t.push({
-						deep: 2,
-						item: item,
-					});
-				}
-			}
-		});
-
-		//detect same id
-		const listOfHref = t.map((i) => i.item.href);
-		const duplicateItem = listOfHref.filter((i, ix) => listOfHref.indexOf(i) !== ix);
-		if (duplicateItem && duplicateItem.length > 0) {
-			console.warn(`Found ${duplicateItem.length} anchor in ${content.title}.`, duplicateItem);
-		}
-
-		//arrange title
-		let u: IAttrTocItem[] = [];
-		if (t && t.length > 0) {
-			t.forEach((i) => {
-				if (i.deep === 0) {
-					u.push(i.item);
-				} else if (i.deep === 1) {
-					if (!u[u.length - 1].item) {
-						u[u.length - 1].item = [];
+			//get title
+			contentItem.forEach((i) => {
+				if (core.isTag<e.title>(i) && i.tag === "h2") {
+					if (i.attr?.id && i.attr?.data?.text) {
+						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
+						t.push({
+							deep: 0,
+							item: item,
+						});
 					}
+				} else if (core.isTag<e.subtitle>(i) && i.tag === "h3") {
+					if (i.attr?.id && i.attr?.data?.text) {
+						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
-					u[u.length - 1].item!.push(i.item);
-				} else if (i.deep === 2) {
-					let y = u.length - 1;
-					let x = u[y].item!.length - 1;
-
-					if (!u[y].item![x].item) {
-						u[y].item![x].item = [];
+						t.push({
+							deep: 1,
+							item: item,
+						});
 					}
+				} else if (core.isTag<e.subtitle>(i) && i.tag === "h4") {
+					if (i.attr?.id && i.attr?.data?.text) {
+						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
-					u[y].item![x].item!.push(i.item);
+						t.push({
+							deep: 2,
+							item: item,
+						});
+					}
 				}
 			});
-		}
 
-		//process toc
-		if (u.length > 1) {
-			return new h.div(
-				{
-					class: "bs-toc",
-					marginTop: 3,
-					marginBottom: [5, "lg-5"],
-					marginStart: [0, "md-3", "lg-0"],
-					marginY: "lg-0",
-					paddingStart: "xl-3",
-					textColor: "body-secondary",
-				},
-				[
-					new b.collapse.button(
-						{
-							color: "link",
-							padding: "md-0",
-							marginBottom: [2, "md-0"],
+			//detect same id
+			const listOfHref = t.map((i) => i.item.href);
+			const duplicateItem = listOfHref.filter((i, ix) => listOfHref.indexOf(i) !== ix);
+			if (duplicateItem && duplicateItem.length > 0) {
+				console.warn(`Found ${duplicateItem.length} anchor in ${content.title}.`, duplicateItem);
+			}
 
-							textDecoration: "none",
-							class: "bs-toc-toggle",
-							display: "md-none",
-							target: "#tocContents",
-							controlfor: "tocContents",
-						},
-						[
-							"On this page",
-							new b.icon({
-								id: "chevron-expand",
+			//arrange title
+			let u: IAttrTocItem[] = [];
+			if (t && t.length > 0) {
+				t.forEach((i) => {
+					if (i.deep === 0) {
+						u.push(i.item);
+					} else if (i.deep === 1) {
+						if (!u[u.length - 1].item) {
+							u[u.length - 1].item = [];
+						}
+
+						u[u.length - 1].item!.push(i.item);
+					} else if (i.deep === 2) {
+						let y = u.length - 1;
+						let x = u[y].item!.length - 1;
+
+						if (!u[y].item![x].item) {
+							u[y].item![x].item = [];
+						}
+
+						u[y].item![x].item!.push(i.item);
+					}
+				});
+			}
+
+			//process toc
+			if (u.length > 1) {
+				return new h.div(
+					{
+						class: "bs-toc",
+						marginTop: 3,
+						marginBottom: [5, "lg-5"],
+						marginStart: [0, "md-3", "lg-0"],
+						marginY: "lg-0",
+						paddingStart: "xl-3",
+						textColor: "body-secondary",
+					},
+					[
+						new b.collapse.button(
+							{
+								color: "link",
+								padding: "md-0",
+								marginBottom: [2, "md-0"],
+
+								textDecoration: "none",
+								class: "bs-toc-toggle",
 								display: "md-none",
-								marginStart: 2,
-								aria: { hidden: "true" },
-							}),
-						]
-					),
-					new h.h(5, { display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
-					new h.hr({ display: ["none", "md-block"], marginY: 2 }),
-					new b.collapse.container(
-						{
-							id: "tocContents",
-							class: "bs-toc-collapse",
-						},
-						new h.nav(
-							{ id: "TableOfContents" },
-							new h.ul(
-								{
-									marginStart: [3, "md-0"],
-								},
-								content.loading
-									? u.map((_i) => {
-											return new h.li(
-												{ loadingPlaceholderAnimation: "wave" },
-												core.placeholder(1, 3, 1, 3)
-											);
-									  })
-									: u.map((i) => {
-											return new h.li([
-												new h.a({ href: i.href }, i.label),
-												i.item
-													? new h.ul(
-															i.item.map((j) => {
-																return new h.li([
-																	new h.a({ href: j.href }, j.label),
-																	j.item
-																		? new h.ul(
-																				j.item.map((k) => {
-																					return new h.li(
-																						new h.a(
-																							{ href: k.href },
-																							k.label
-																						)
-																					);
-																				})
-																		  )
-																		: "",
-																]);
-															})
-													  )
-													: "",
-											]);
-									  })
+								target: "#tocContents",
+								controlfor: "tocContents",
+							},
+							[
+								"On this page",
+								new b.icon({
+									id: "chevron-expand",
+									display: "md-none",
+									marginStart: 2,
+									aria: { hidden: "true" },
+								}),
+							]
+						),
+						new h.h(5, { display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
+						new h.hr({ display: ["none", "md-block"], marginY: 2 }),
+						new b.collapse.container(
+							{
+								id: "tocContents",
+								class: "bs-toc-collapse",
+							},
+							new h.nav(
+								{ id: "TableOfContents" },
+								new h.ul(
+									{
+										marginStart: [3, "md-0"],
+									},
+									content.loading
+										? u.map((_i) => {
+												return new h.li(
+													{ loadingPlaceholderAnimation: "wave" },
+													core.placeholder(1, 3, 1, 3)
+												);
+										  })
+										: u.map((i) => {
+												return new h.li([
+													new h.a({ href: i.href }, i.label),
+													i.item
+														? new h.ul(
+																i.item.map((j) => {
+																	return new h.li([
+																		new h.a({ href: j.href }, j.label),
+																		j.item
+																			? new h.ul(
+																					j.item.map((k) => {
+																						return new h.li(
+																							new h.a(
+																								{ href: k.href },
+																								k.label
+																							)
+																						);
+																					})
+																			  )
+																			: "",
+																	]);
+																})
+														  )
+														: "",
+												]);
+										  })
+								)
 							)
-						)
-					),
-				]
-			);
+						),
+					]
+				);
+			} else {
+				return "";
+			}
 		} else {
 			return "";
 		}
@@ -744,7 +749,7 @@ const genContent = (content?: IAttrContent) => {
 				paddingStart: "lg-2",
 				rootMargin: "0px 0px -40%",
 			},
-			content.item
+			content.item()
 		);
 	} else {
 		return "";
@@ -771,20 +776,22 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 
 export const genMainContent = (content?: IAttrContent) => {
 	if (content?.loading) {
-		content.item = Array(core.rndBetween(3, 10))
-			.fill("")
-			.map((i) => {
-				return [
-					new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
-					...Array(core.rndBetween(1, 3))
-						.fill("")
-						.map(() => {
-							return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
-						}),
-					new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
-				];
-			})
-			.flat();
+		content.item = () => {
+			return Array(core.rndBetween(3, 10))
+				.fill("")
+				.map((i) => {
+					return [
+						new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
+						...Array(core.rndBetween(1, 3))
+							.fill("")
+							.map(() => {
+								return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
+							}),
+						new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
+					];
+				})
+				.flat();
+		};
 
 		return [genIntro(content), genToc(content), genContent(content)];
 	} else {

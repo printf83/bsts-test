@@ -475,295 +475,297 @@ const ex = {
 export const sidebars: IAttrContent = {
 	title: "Sidebars",
 	description: "Common navigation patterns ideal for offcanvas or multi-column layouts.",
-	item: [
-		new e.title("Dark"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0, overflow: "hidden" },
-			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
-			output: () => {
-				return ex.c1({
-					icon: "fab bootstrap",
-					title: "Sidebar",
-					userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
-					userName: "@printf83",
-					link: [
-						{ active: true, href: "#", icon: "house", label: "Home" },
-						{ href: "#", icon: "speedometer2", label: "Dashboard" },
-						{ href: "#", icon: "table", label: "Orders" },
-						{ href: "#", icon: "grid", label: "Products" },
-						{ href: "#", icon: "person-circle", label: "Customers" },
-					],
-					menu: [
-						new b.dropdown.item({ href: "#" }, "New project..."),
-						new b.dropdown.item({ href: "#" }, "Setting"),
-						new b.dropdown.item({ href: "#" }, "Profile"),
-						new b.dropdown.divider(),
-						new b.dropdown.item({ href: "#" }, "Sign out"),
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
+	item: () => {
+		return [
+			new e.title("Dark"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0, overflow: "hidden" },
+				extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
+				output: () => {
+					return ex.c1({
+						icon: "fab bootstrap",
+						title: "Sidebar",
+						userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
+						userName: "@printf83",
+						link: [
+							{ active: true, href: "#", icon: "house", label: "Home" },
+							{ href: "#", icon: "speedometer2", label: "Dashboard" },
+							{ href: "#", icon: "table", label: "Orders" },
+							{ href: "#", icon: "grid", label: "Products" },
+							{ href: "#", icon: "person-circle", label: "Customers" },
+						],
+						menu: [
+							new b.dropdown.item({ href: "#" }, "New project..."),
+							new b.dropdown.item({ href: "#" }, "Setting"),
+							new b.dropdown.item({ href: "#" }, "Profile"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Sign out"),
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
+						},
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Light"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0, overflow: "hidden" },
+				extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
+				output: () => {
+					return ex.c2({
+						icon: "fab bootstrap",
+						title: "Sidebar",
+						userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
+						userName: "@printf83",
+						link: [
+							{ active: true, href: "#", icon: "house", label: "Home" },
+							{ href: "#", icon: "speedometer2", label: "Dashboard" },
+							{ href: "#", icon: "table", label: "Orders" },
+							{ href: "#", icon: "grid", label: "Products" },
+							{ href: "#", icon: "person-circle", label: "Customers" },
+						],
+						menu: [
+							new b.dropdown.item({ href: "#" }, "New project..."),
+							new b.dropdown.item({ href: "#" }, "Setting"),
+							new b.dropdown.item({ href: "#" }, "Profile"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Sign out"),
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
+						},
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Compact"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0, overflow: "hidden" },
+				extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
+				output: () => {
+					return ex.c3({
+						icon: "fab bootstrap",
+						userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
+						link: [
+							{ active: true, href: "#", icon: "house", label: "Home" },
+							{ href: "#", icon: "speedometer2", label: "Dashboard" },
+							{ href: "#", icon: "table", label: "Orders" },
+							{ href: "#", icon: "grid", label: "Products" },
+							{ href: "#", icon: "person-circle", label: "Customers" },
+						],
+						menu: [
+							new b.dropdown.item({ href: "#" }, "New project..."),
+							new b.dropdown.item({ href: "#" }, "Setting"),
+							new b.dropdown.item({ href: "#" }, "Profile"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Sign out"),
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
+						},
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Collapsible"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0, overflow: "hidden" },
+				outputAttr: { class: ["sidebar-item"] },
+				extention: [
+					{ name: "CLICKEVENT", rename: "ex.c4ClickEvent", output: ex.c4ClickEvent },
+					{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 },
+				],
+				output: () => {
+					return ex.c4({
+						icon: "fab bootstrap",
+						title: "Collapsible",
+						link: [
 							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
+								label: "Home",
+								item: [
+									{ href: "#", label: "Overview" },
+									{ href: "#", label: "Updates" },
+									{ href: "#", label: "Reports" },
+								],
 							},
-							"info"
-						);
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Light"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0, overflow: "hidden" },
-			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
-			output: () => {
-				return ex.c2({
-					icon: "fab bootstrap",
-					title: "Sidebar",
-					userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
-					userName: "@printf83",
-					link: [
-						{ active: true, href: "#", icon: "house", label: "Home" },
-						{ href: "#", icon: "speedometer2", label: "Dashboard" },
-						{ href: "#", icon: "table", label: "Orders" },
-						{ href: "#", icon: "grid", label: "Products" },
-						{ href: "#", icon: "person-circle", label: "Customers" },
-					],
-					menu: [
-						new b.dropdown.item({ href: "#" }, "New project..."),
-						new b.dropdown.item({ href: "#" }, "Setting"),
-						new b.dropdown.item({ href: "#" }, "Profile"),
-						new b.dropdown.divider(),
-						new b.dropdown.item({ href: "#" }, "Sign out"),
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
 							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
+								label: "Dashboard",
+								item: [
+									{ href: "#", label: "Overview" },
+									{ href: "#", label: "Weekly" },
+									{ href: "#", label: "Monthly" },
+									{ href: "#", label: "Annually" },
+								],
 							},
-							"info"
-						);
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Compact"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0, overflow: "hidden" },
-			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
-			output: () => {
-				return ex.c3({
-					icon: "fab bootstrap",
-					userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
-					link: [
-						{ active: true, href: "#", icon: "house", label: "Home" },
-						{ href: "#", icon: "speedometer2", label: "Dashboard" },
-						{ href: "#", icon: "table", label: "Orders" },
-						{ href: "#", icon: "grid", label: "Products" },
-						{ href: "#", icon: "person-circle", label: "Customers" },
-					],
-					menu: [
-						new b.dropdown.item({ href: "#" }, "New project..."),
-						new b.dropdown.item({ href: "#" }, "Setting"),
-						new b.dropdown.item({ href: "#" }, "Profile"),
-						new b.dropdown.divider(),
-						new b.dropdown.item({ href: "#" }, "Sign out"),
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
 							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
+								label: "Orders",
+								item: [
+									{ href: "#", label: "New" },
+									{ href: "#", label: "Processed" },
+									{ href: "#", label: "Shipped" },
+									{ href: "#", label: "Returned" },
+								],
 							},
-							"info"
-						);
-					},
-				});
-			},
-		}),
+						],
+						menu: [
+							{ href: "#", label: "New..." },
+							{ href: "#", label: "Profile" },
+							{ href: "#", label: "Setting" },
+							{ href: "#", label: "Sign out" },
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: detail.relatedTarget ? core.elemInfo(detail.relatedTarget) : "null",
+								},
+								"info"
+							);
+						},
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Collapsible"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0, overflow: "hidden" },
-			outputAttr: { class: ["sidebar-item"] },
-			extention: [
-				{ name: "CLICKEVENT", rename: "ex.c4ClickEvent", output: ex.c4ClickEvent },
-				{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 },
-			],
-			output: () => {
-				return ex.c4({
-					icon: "fab bootstrap",
-					title: "Collapsible",
-					link: [
-						{
-							label: "Home",
-							item: [
-								{ href: "#", label: "Overview" },
-								{ href: "#", label: "Updates" },
-								{ href: "#", label: "Reports" },
-							],
-						},
-						{
-							label: "Dashboard",
-							item: [
-								{ href: "#", label: "Overview" },
-								{ href: "#", label: "Weekly" },
-								{ href: "#", label: "Monthly" },
-								{ href: "#", label: "Annually" },
-							],
-						},
-						{
-							label: "Orders",
-							item: [
-								{ href: "#", label: "New" },
-								{ href: "#", label: "Processed" },
-								{ href: "#", label: "Shipped" },
-								{ href: "#", label: "Returned" },
-							],
-						},
-					],
-					menu: [
-						{ href: "#", label: "New..." },
-						{ href: "#", label: "Profile" },
-						{ href: "#", label: "Setting" },
-						{ href: "#", label: "Sign out" },
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
+			new e.title("List group"),
+			new e.code({
+				showViewport: true,
+				previewAttr: { padding: 0, overflow: "hidden" },
+				extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
+				output: () => {
+					return ex.c5({
+						icon: "fab bootstrap",
+						title: "List group",
+						item: [
 							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: detail.relatedTarget ? core.elemInfo(detail.relatedTarget) : "null",
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Wed",
 							},
-							"info"
-						);
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("List group"),
-		new e.code({
-			showViewport: true,
-			previewAttr: { padding: 0, overflow: "hidden" },
-			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
-			output: () => {
-				return ex.c5({
-					icon: "fab bootstrap",
-					title: "List group",
-					item: [
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Wed",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Tues",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Mon",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Wed",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Tues",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Mon",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Wed",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Tues",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Mon",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Wed",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Tues",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Mon",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Wed",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Tues",
-						},
-						{
-							title: "List group item heading",
-							description: "Some placeholder content in a paragraph below the heading and date.",
-							date: "Mon",
-						},
-					],
-				});
-			},
-		}),
-	],
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Tues",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Mon",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Wed",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Tues",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Mon",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Wed",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Tues",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Mon",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Wed",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Tues",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Mon",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Wed",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Tues",
+							},
+							{
+								title: "List group item heading",
+								description: "Some placeholder content in a paragraph below the heading and date.",
+								date: "Mon",
+							},
+						],
+					});
+				},
+			}),
+		];
+	},
 };

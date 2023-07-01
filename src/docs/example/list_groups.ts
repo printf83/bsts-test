@@ -151,264 +151,266 @@ const ex = {
 export const list_groups: IAttrContent = {
 	title: "List groups",
 	description: "Extend list groups with utilities and custom styles for any content.",
-	item: [
-		new e.title("List with icon"),
-		new e.code({
-			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
-			output: () => {
-				return new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
-					ex.c1({
-						href: "#",
-						img: "https://picsum.photos/seed/bsts_0/32/32.webp",
-						title: "List group item heading",
-						details: "Some placeholder content in a paragraph.",
-						date: "now",
-					}),
-					ex.c1({
-						href: "#",
-						img: "https://picsum.photos/seed/bsts_1/32/32.webp",
-						title: "Another title here",
-						details:
-							"Some placeholder content in a paragraph that gose a little longer so it wraps to a new line.",
-						date: "3d",
-					}),
-					ex.c1({
-						href: "#",
-						img: "https://picsum.photos/seed/bsts_2/32/32.webp",
-						title: "Third heading",
-						details: "Some placeholder content in a paragraph.",
-						date: "1w",
-					}),
-				]);
-			},
-		}),
+	item: () => {
+		return [
+			new e.title("List with icon"),
+			new e.code({
+				extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
+				output: () => {
+					return new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
+						ex.c1({
+							href: "#",
+							img: "https://picsum.photos/seed/bsts_0/32/32.webp",
+							title: "List group item heading",
+							details: "Some placeholder content in a paragraph.",
+							date: "now",
+						}),
+						ex.c1({
+							href: "#",
+							img: "https://picsum.photos/seed/bsts_1/32/32.webp",
+							title: "Another title here",
+							details:
+								"Some placeholder content in a paragraph that gose a little longer so it wraps to a new line.",
+							date: "3d",
+						}),
+						ex.c1({
+							href: "#",
+							img: "https://picsum.photos/seed/bsts_2/32/32.webp",
+							title: "Third heading",
+							details: "Some placeholder content in a paragraph.",
+							date: "1w",
+						}),
+					]);
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Checkbox and radio"),
-		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
-			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
-			output: () => {
-				return [
-					new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
-						ex.c2({
+			new e.title("Checkbox and radio"),
+			new e.code({
+				outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+				extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
+				output: () => {
+					return [
+						new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
+							ex.c2({
+								checked: true,
+								type: "checkbox",
+								label: "First checkbox",
+								description: "With support text underneath to add more detail",
+							}),
+							ex.c2({
+								type: "checkbox",
+								label: "Second checkbox",
+								description: "Some other text goes here",
+							}),
+							ex.c2({
+								type: "checkbox",
+								label: "Third checkbox",
+								description: "And we end with another snippet of text",
+							}),
+						]),
+						new b.list.container({ style: { maxWidth: "460px" } }, [
+							ex.c2({
+								name: "group1",
+								checked: true,
+								type: "radio",
+								label: "First radio",
+								description: "With support text underneath to add more detail",
+							}),
+							ex.c2({
+								name: "group1",
+								type: "radio",
+								label: "Second radio",
+								description: "Some other text goes here",
+							}),
+							ex.c2({
+								name: "group1",
+								type: "radio",
+								label: "Third radio",
+								description: "And we end with another snippet of text",
+							}),
+						]),
+					];
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Todo list"),
+			new e.code({
+				outputAttr: { class: "todo-list" },
+				extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
+				output: () => {
+					return [
+						new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
+							ex.c3({
+								checked: true,
+								icon: "calendar-event",
+								label: "Finish sales report",
+								description: "1:00-2:00pm",
+							}),
+							ex.c3({
+								checked: false,
+								icon: "calendar-event",
+								label: "Weekly All Hands",
+								description: "2:00-2:30pm",
+							}),
+							ex.c3({
+								checked: false,
+								icon: "alarm",
+								label: "Out of office",
+								description: "Tomorrow",
+							}),
+							ex.c3({
+								isadd: true,
+								icon: "list-check",
+								label: "Add new task",
+								description: "Choose list...",
+							}),
+						]),
+					];
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Checkable list"),
+			new e.code({
+				outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
+				extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
+				output: () => {
+					return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+						...ex.c4({
 							checked: true,
 							type: "checkbox",
 							label: "First checkbox",
 							description: "With support text underneath to add more detail",
 						}),
-						ex.c2({
+						...ex.c4({
 							type: "checkbox",
 							label: "Second checkbox",
 							description: "Some other text goes here",
 						}),
-						ex.c2({
+						...ex.c4({
 							type: "checkbox",
 							label: "Third checkbox",
 							description: "And we end with another snippet of text",
 						}),
-					]),
-					new b.list.container({ style: { maxWidth: "460px" } }, [
-						ex.c2({
-							name: "group1",
+						...ex.c4({
+							type: "checkbox",
+							disabled: true,
+							label: "Fourth disabled checkbox",
+							description: "This option is disabled",
+						}),
+					]);
+				},
+			}),
+
+			new e.text("Radio"),
+			new e.code({
+				outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
+				extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
+				output: () => {
+					return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+						...ex.c4({
 							checked: true,
 							type: "radio",
+							name: "group2",
 							label: "First radio",
 							description: "With support text underneath to add more detail",
 						}),
-						ex.c2({
-							name: "group1",
+						...ex.c4({
 							type: "radio",
+							name: "group2",
 							label: "Second radio",
 							description: "Some other text goes here",
 						}),
-						ex.c2({
-							name: "group1",
+						...ex.c4({
 							type: "radio",
+							name: "group2",
 							label: "Third radio",
 							description: "And we end with another snippet of text",
 						}),
-					]),
-				];
-			},
-		}),
+						...ex.c4({
+							type: "radio",
+							disabled: true,
+							name: "group2",
+							label: "Fourth disabled radio",
+							description: "This option is disabled",
+						}),
+					]);
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Todo list"),
-		new e.code({
-			outputAttr: { class: "todo-list" },
-			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
-			output: () => {
-				return [
-					new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
-						ex.c3({
+			new e.title("Checkable list 2"),
+			new e.code({
+				outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
+				extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
+				output: () => {
+					return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+						ex.c5({
 							checked: true,
-							icon: "calendar-event",
-							label: "Finish sales report",
-							description: "1:00-2:00pm",
+							type: "checkbox",
+							label: "First checkbox",
+							description: "With support text underneath to add more detail",
 						}),
-						ex.c3({
-							checked: false,
-							icon: "calendar-event",
-							label: "Weekly All Hands",
-							description: "2:00-2:30pm",
+						ex.c5({
+							type: "checkbox",
+							label: "Second checkbox",
+							description: "Some other text goes here",
 						}),
-						ex.c3({
-							checked: false,
-							icon: "alarm",
-							label: "Out of office",
-							description: "Tomorrow",
+						ex.c5({
+							type: "checkbox",
+							label: "Third checkbox",
+							description: "And we end with another snippet of text",
 						}),
-						ex.c3({
-							isadd: true,
-							icon: "list-check",
-							label: "Add new task",
-							description: "Choose list...",
+						ex.c5({
+							type: "checkbox",
+							disabled: true,
+							label: "Fourth disabled checkbox",
+							description: "This option is disabled",
 						}),
-					]),
-				];
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Checkable list"),
-		new e.code({
-			outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
-			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
-			output: () => {
-				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
-					...ex.c4({
-						checked: true,
-						type: "checkbox",
-						label: "First checkbox",
-						description: "With support text underneath to add more detail",
-					}),
-					...ex.c4({
-						type: "checkbox",
-						label: "Second checkbox",
-						description: "Some other text goes here",
-					}),
-					...ex.c4({
-						type: "checkbox",
-						label: "Third checkbox",
-						description: "And we end with another snippet of text",
-					}),
-					...ex.c4({
-						type: "checkbox",
-						disabled: true,
-						label: "Fourth disabled checkbox",
-						description: "This option is disabled",
-					}),
-				]);
-			},
-		}),
-
-		new e.text("Radio"),
-		new e.code({
-			outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
-			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
-			output: () => {
-				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
-					...ex.c4({
-						checked: true,
-						type: "radio",
-						name: "group2",
-						label: "First radio",
-						description: "With support text underneath to add more detail",
-					}),
-					...ex.c4({
-						type: "radio",
-						name: "group2",
-						label: "Second radio",
-						description: "Some other text goes here",
-					}),
-					...ex.c4({
-						type: "radio",
-						name: "group2",
-						label: "Third radio",
-						description: "And we end with another snippet of text",
-					}),
-					...ex.c4({
-						type: "radio",
-						disabled: true,
-						name: "group2",
-						label: "Fourth disabled radio",
-						description: "This option is disabled",
-					}),
-				]);
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Checkable list 2"),
-		new e.code({
-			outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
-			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
-			output: () => {
-				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
-					ex.c5({
-						checked: true,
-						type: "checkbox",
-						label: "First checkbox",
-						description: "With support text underneath to add more detail",
-					}),
-					ex.c5({
-						type: "checkbox",
-						label: "Second checkbox",
-						description: "Some other text goes here",
-					}),
-					ex.c5({
-						type: "checkbox",
-						label: "Third checkbox",
-						description: "And we end with another snippet of text",
-					}),
-					ex.c5({
-						type: "checkbox",
-						disabled: true,
-						label: "Fourth disabled checkbox",
-						description: "This option is disabled",
-					}),
-				]);
-			},
-		}),
-		new e.text("Radio"),
-		new e.code({
-			outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
-			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
-			output: () => {
-				return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
-					ex.c5({
-						checked: true,
-						type: "radio",
-						name: "group3",
-						label: "First radio",
-						description: "With support text underneath to add more detail",
-					}),
-					ex.c5({
-						type: "radio",
-						name: "group3",
-						label: "Second radio",
-						description: "Some other text goes here",
-					}),
-					ex.c5({
-						type: "radio",
-						name: "group3",
-						label: "Third radio",
-						description: "And we end with another snippet of text",
-					}),
-					ex.c5({
-						type: "radio",
-						disabled: true,
-						name: "group3",
-						label: "Fourth disabled radio",
-						description: "This option is disabled",
-					}),
-				]);
-			},
-		}),
-	],
+					]);
+				},
+			}),
+			new e.text("Radio"),
+			new e.code({
+				outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
+				extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
+				output: () => {
+					return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+						ex.c5({
+							checked: true,
+							type: "radio",
+							name: "group3",
+							label: "First radio",
+							description: "With support text underneath to add more detail",
+						}),
+						ex.c5({
+							type: "radio",
+							name: "group3",
+							label: "Second radio",
+							description: "Some other text goes here",
+						}),
+						ex.c5({
+							type: "radio",
+							name: "group3",
+							label: "Third radio",
+							description: "And we end with another snippet of text",
+						}),
+						ex.c5({
+							type: "radio",
+							disabled: true,
+							name: "group3",
+							label: "Fourth disabled radio",
+							description: "This option is disabled",
+						}),
+					]);
+				},
+			}),
+		];
+	},
 };

@@ -588,329 +588,31 @@ const ex = {
 export const headers: IAttrContent = {
 	title: "Headers",
 	description: "Display your branding, navigation, search, and more with these header components",
-	item: [
-		new e.title("Example header 1"),
-		new e.code({
-			showViewport: true,
-			showConsole: true,
-			previewAttr: { padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
-			output: () => {
-				return ex.c1({
-					icon: "fab bootstrap",
-					title: "Simple header",
-					link: [
-						{ active: true, href: "#", elem: "Home" },
-						{ href: "#", elem: "Features" },
-						{ href: "#", elem: "Pricing" },
-						{ href: "#", elem: "FAQs" },
-						{ href: "#", elem: "About" },
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
-							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
-							},
-							"info"
-						);
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Example header 2"),
-		new e.code({
-			showConsole: true,
-			previewAttr: { padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
-			output: () => {
-				return ex.c2({
-					link: [
-						{ active: true, href: "#", elem: "Home" },
-						{ href: "#", elem: "Features" },
-						{ href: "#", elem: "Pricing" },
-						{ href: "#", elem: "FAQs" },
-						{ href: "#", elem: "About" },
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
-							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
-							},
-							"info"
-						);
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Example header 3"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
-			output: () => {
-				return ex.c3({
-					icon: "fab bootstrap",
-					link: [
-						{ active: true, href: "#", elem: "Home" },
-						{ href: "#", elem: "Features" },
-						{ href: "#", elem: "Pricing" },
-						{ href: "#", elem: "FAQs" },
-						{ href: "#", elem: "About" },
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
-							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
-							},
-							"info"
-						);
-					},
-					onlogin: (event) => {
-						//do login
-						const target = event.target as Element;
-						e.console(target, "onlogin", core.elemInfo(target), "secondary");
-					},
-					onsignup: (event) => {
-						//do sign up
-						const target = event.target as Element;
-						e.console(target, "onsignup", core.elemInfo(target), "warning");
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Example header 4"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { bgColor: "dark", padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
-			output: () => {
-				return ex.c4({
-					icon: "fab bootstrap",
-					link: [
-						{ active: true, href: "#", elem: "Home" },
-						{ href: "#", elem: "Features" },
-						{ href: "#", elem: "FAQs" },
-						{ href: "#", elem: "About" },
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
-							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
-							},
-							"info"
-						);
-					},
-					onlogin: (event) => {
-						//do login
-						const target = event.target as Element;
-						e.console(target, "onlogin", core.elemInfo(target), "secondary");
-					},
-					onsignup: (event) => {
-						//do sign up
-						const target = event.target as Element;
-						e.console(target, "onsignup", core.elemInfo(target), "warning");
-					},
-					onsearch: (event) => {
-						//do search
-						event.preventDefault();
-						const target = event.target as Element;
-						const input = target.getElementsByTagName("input")[0];
-						e.console(
-							target,
-							"onsearch",
-							{
-								input: core.elemInfo(input),
-								value: input.value,
-							},
-							"success"
-						);
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Example header 5"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
-			output: () => {
-				return ex.c5({
-					img: "https://picsum.photos/seed/bsts_0/32/32.webp",
-					icon: "fab bootstrap",
-					link: [
-						{ active: true, href: "#", elem: "Overview" },
-						{ href: "#", elem: "Inventory" },
-						{ href: "#", elem: "Customers" },
-						{ href: "#", elem: "Products" },
-					],
-					menu: [
-						new b.dropdown.item({ href: "#" }, "New project..."),
-						new b.dropdown.item({ href: "#" }, "Setting"),
-						new b.dropdown.item({ href: "#" }, "Profile"),
-						new b.dropdown.divider(),
-						new b.dropdown.item({ href: "#" }, "Sign out"),
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
-							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
-							},
-							"info"
-						);
-					},
-					onsearch: (event) => {
-						//do search
-						event.preventDefault();
-						const target = event.target as Element;
-						const input = target.getElementsByTagName("input")[0];
-						e.console(
-							target,
-							"onsearch",
-							{
-								input: core.elemInfo(input),
-								value: input.value,
-							},
-							"success"
-						);
-					},
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Example header 6"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0 },
-			extention: [
-				{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 },
-				{ name: "COMPONENTHEADER", rename: "ex.c6Header", output: ex.c6Header },
-				{ name: "COMPONENTBODY", rename: "ex.c6Body", output: ex.c6Body },
-			],
-
-			output: () => {
-				return ex.c6({
-					img: "https://picsum.photos/seed/bsts_0/32/32.webp",
-					icon: "fab bootstrap",
-					link: [
-						new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
-						new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
-						new b.dropdown.item({ href: "#", handleActive: true }, "Customers"),
-						new b.dropdown.item({ href: "#", handleActive: true }, "Products"),
-						new b.dropdown.divider(),
-						new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
-						new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
-					],
-					menu: [
-						new b.dropdown.item({ href: "#" }, "New project..."),
-						new b.dropdown.item({ href: "#" }, "Setting"),
-						new b.dropdown.item({ href: "#" }, "Profile"),
-						new b.dropdown.divider(),
-						new b.dropdown.item({ href: "#" }, "Sign out"),
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
-							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
-							},
-							"info"
-						);
-					},
-					onsearch: (event) => {
-						//do search
-						event.preventDefault();
-						const target = event.target as Element;
-						const input = target.getElementsByTagName("input")[0];
-						e.console(
-							target,
-							"onsearch",
-							{
-								input: core.elemInfo(input),
-								value: input.value,
-							},
-							"success"
-						);
-					},
-					side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
-					main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Example header 7"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0 },
-			extention: [
-				{ name: "COMPONENTNAV", rename: "ex.c7Nav", output: ex.c7Nav },
-				{ name: "COMPONENTHEADER", rename: "ex.c7Header", output: ex.c7Header },
-			],
-			output: () => {
-				return [
-					ex.c7Nav({
-						startMenu: [
+	item: () => {
+		return [
+			new e.title("Example header 1"),
+			new e.code({
+				showViewport: true,
+				showConsole: true,
+				previewAttr: { padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
+				output: () => {
+					return ex.c1({
+						icon: "fab bootstrap",
+						title: "Simple header",
+						link: [
 							{ active: true, href: "#", elem: "Home" },
 							{ href: "#", elem: "Features" },
 							{ href: "#", elem: "Pricing" },
 							{ href: "#", elem: "FAQs" },
 							{ href: "#", elem: "About" },
 						],
-						onstarmenuchange: (event) => {
+						onlinkchange: (event) => {
 							const target = event.target as Element;
 							const detail = (event as CustomEvent).detail;
 							e.console(
 								target,
-								"onstarmenuchange",
+								"onlinkchange",
 								{
 									target: core.elemInfo(detail.target),
 									relatedTarget: core.elemInfo(detail.relatedTarget),
@@ -918,32 +620,128 @@ export const headers: IAttrContent = {
 								"info"
 							);
 						},
-						endMenu: [
-							{
-								on: {
-									click: (event) => {
-										//do login
-										const target = event.target as Element;
-										e.console(target, "login", core.elemInfo(target), "secondary");
-									},
-								},
-								elem: "Login",
-							},
-							{
-								on: {
-									click: (event) => {
-										//do signup
-										const target = event.target as Element;
-										e.console(target, "signup", core.elemInfo(target), "secondary");
-									},
-								},
-								elem: "Sign up",
-							},
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Example header 2"),
+			new e.code({
+				showConsole: true,
+				previewAttr: { padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
+				output: () => {
+					return ex.c2({
+						link: [
+							{ active: true, href: "#", elem: "Home" },
+							{ href: "#", elem: "Features" },
+							{ href: "#", elem: "Pricing" },
+							{ href: "#", elem: "FAQs" },
+							{ href: "#", elem: "About" },
 						],
-					}),
-					ex.c7Header({
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
+						},
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Example header 3"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
+				output: () => {
+					return ex.c3({
 						icon: "fab bootstrap",
-						title: "Double header",
+						link: [
+							{ active: true, href: "#", elem: "Home" },
+							{ href: "#", elem: "Features" },
+							{ href: "#", elem: "Pricing" },
+							{ href: "#", elem: "FAQs" },
+							{ href: "#", elem: "About" },
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
+						},
+						onlogin: (event) => {
+							//do login
+							const target = event.target as Element;
+							e.console(target, "onlogin", core.elemInfo(target), "secondary");
+						},
+						onsignup: (event) => {
+							//do sign up
+							const target = event.target as Element;
+							e.console(target, "onsignup", core.elemInfo(target), "warning");
+						},
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Example header 4"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { bgColor: "dark", padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
+				output: () => {
+					return ex.c4({
+						icon: "fab bootstrap",
+						link: [
+							{ active: true, href: "#", elem: "Home" },
+							{ href: "#", elem: "Features" },
+							{ href: "#", elem: "FAQs" },
+							{ href: "#", elem: "About" },
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
+						},
+						onlogin: (event) => {
+							//do login
+							const target = event.target as Element;
+							e.console(target, "onlogin", core.elemInfo(target), "secondary");
+						},
+						onsignup: (event) => {
+							//do sign up
+							const target = event.target as Element;
+							e.console(target, "onsignup", core.elemInfo(target), "warning");
+						},
 						onsearch: (event) => {
 							//do search
 							event.preventDefault();
@@ -959,90 +757,294 @@ export const headers: IAttrContent = {
 								"success"
 							);
 						},
-					}),
-				];
-			},
-		}),
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Example header 8"),
-		new e.code({
-			showConsole: true,
-			showViewport: true,
-			previewAttr: { padding: 0, overflow: "hidden" },
-			extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
-			output: () => {
-				return ex.c8({
-					icon: "fab bootstrap",
-					link: [
-						{
-							active: true,
-							href: "#",
-							icon: "house",
-							label: "Home",
+			new e.title("Example header 5"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
+				output: () => {
+					return ex.c5({
+						img: "https://picsum.photos/seed/bsts_0/32/32.webp",
+						icon: "fab bootstrap",
+						link: [
+							{ active: true, href: "#", elem: "Overview" },
+							{ href: "#", elem: "Inventory" },
+							{ href: "#", elem: "Customers" },
+							{ href: "#", elem: "Products" },
+						],
+						menu: [
+							new b.dropdown.item({ href: "#" }, "New project..."),
+							new b.dropdown.item({ href: "#" }, "Setting"),
+							new b.dropdown.item({ href: "#" }, "Profile"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Sign out"),
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
 						},
-						{
-							href: "#",
-							icon: "speedometer2",
-							label: "Dashboard",
+						onsearch: (event) => {
+							//do search
+							event.preventDefault();
+							const target = event.target as Element;
+							const input = target.getElementsByTagName("input")[0];
+							e.console(
+								target,
+								"onsearch",
+								{
+									input: core.elemInfo(input),
+									value: input.value,
+								},
+								"success"
+							);
 						},
-						{
-							href: "#",
-							icon: "table",
-							label: "Order",
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Example header 6"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0 },
+				extention: [
+					{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 },
+					{ name: "COMPONENTHEADER", rename: "ex.c6Header", output: ex.c6Header },
+					{ name: "COMPONENTBODY", rename: "ex.c6Body", output: ex.c6Body },
+				],
+
+				output: () => {
+					return ex.c6({
+						img: "https://picsum.photos/seed/bsts_0/32/32.webp",
+						icon: "fab bootstrap",
+						link: [
+							new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
+							new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
+							new b.dropdown.item({ href: "#", handleActive: true }, "Customers"),
+							new b.dropdown.item({ href: "#", handleActive: true }, "Products"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
+							new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
+						],
+						menu: [
+							new b.dropdown.item({ href: "#" }, "New project..."),
+							new b.dropdown.item({ href: "#" }, "Setting"),
+							new b.dropdown.item({ href: "#" }, "Profile"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Sign out"),
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
 						},
-						{
-							href: "#",
-							icon: "grid",
-							label: "Products",
+						onsearch: (event) => {
+							//do search
+							event.preventDefault();
+							const target = event.target as Element;
+							const input = target.getElementsByTagName("input")[0];
+							e.console(
+								target,
+								"onsearch",
+								{
+									input: core.elemInfo(input),
+									value: input.value,
+								},
+								"success"
+							);
 						},
-						{
-							href: "#",
-							icon: "person-circle",
-							label: "Customers",
-						},
-					],
-					onlinkchange: (event) => {
-						const target = event.target as Element;
-						const detail = (event as CustomEvent).detail;
-						e.console(
-							target,
-							"onlinkchange",
-							{
-								target: core.elemInfo(detail.target),
-								relatedTarget: core.elemInfo(detail.relatedTarget),
+						side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
+						main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Example header 7"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0 },
+				extention: [
+					{ name: "COMPONENTNAV", rename: "ex.c7Nav", output: ex.c7Nav },
+					{ name: "COMPONENTHEADER", rename: "ex.c7Header", output: ex.c7Header },
+				],
+				output: () => {
+					return [
+						ex.c7Nav({
+							startMenu: [
+								{ active: true, href: "#", elem: "Home" },
+								{ href: "#", elem: "Features" },
+								{ href: "#", elem: "Pricing" },
+								{ href: "#", elem: "FAQs" },
+								{ href: "#", elem: "About" },
+							],
+							onstarmenuchange: (event) => {
+								const target = event.target as Element;
+								const detail = (event as CustomEvent).detail;
+								e.console(
+									target,
+									"onstarmenuchange",
+									{
+										target: core.elemInfo(detail.target),
+										relatedTarget: core.elemInfo(detail.relatedTarget),
+									},
+									"info"
+								);
 							},
-							"info"
-						);
-					},
-					onlogin: (event) => {
-						//do login
-						const target = event.target as Element;
-						e.console(target, "onlogin", core.elemInfo(target), "secondary");
-					},
-					onsignup: (event) => {
-						//do sign up
-						const target = event.target as Element;
-						e.console(target, "onsignup", core.elemInfo(target), "warning");
-					},
-					onsearch: (event) => {
-						//do search
-						event.preventDefault();
-						const target = event.target as Element;
-						const input = target.getElementsByTagName("input")[0];
-						e.console(
-							target,
-							"onsearch",
-							{
-								input: core.elemInfo(input),
-								value: input.value,
+							endMenu: [
+								{
+									on: {
+										click: (event) => {
+											//do login
+											const target = event.target as Element;
+											e.console(target, "login", core.elemInfo(target), "secondary");
+										},
+									},
+									elem: "Login",
+								},
+								{
+									on: {
+										click: (event) => {
+											//do signup
+											const target = event.target as Element;
+											e.console(target, "signup", core.elemInfo(target), "secondary");
+										},
+									},
+									elem: "Sign up",
+								},
+							],
+						}),
+						ex.c7Header({
+							icon: "fab bootstrap",
+							title: "Double header",
+							onsearch: (event) => {
+								//do search
+								event.preventDefault();
+								const target = event.target as Element;
+								const input = target.getElementsByTagName("input")[0];
+								e.console(
+									target,
+									"onsearch",
+									{
+										input: core.elemInfo(input),
+										value: input.value,
+									},
+									"success"
+								);
 							},
-							"success"
-						);
-					},
-				});
-			},
-		}),
-	],
+						}),
+					];
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Example header 8"),
+			new e.code({
+				showConsole: true,
+				showViewport: true,
+				previewAttr: { padding: 0, overflow: "hidden" },
+				extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
+				output: () => {
+					return ex.c8({
+						icon: "fab bootstrap",
+						link: [
+							{
+								active: true,
+								href: "#",
+								icon: "house",
+								label: "Home",
+							},
+							{
+								href: "#",
+								icon: "speedometer2",
+								label: "Dashboard",
+							},
+							{
+								href: "#",
+								icon: "table",
+								label: "Order",
+							},
+							{
+								href: "#",
+								icon: "grid",
+								label: "Products",
+							},
+							{
+								href: "#",
+								icon: "person-circle",
+								label: "Customers",
+							},
+						],
+						onlinkchange: (event) => {
+							const target = event.target as Element;
+							const detail = (event as CustomEvent).detail;
+							e.console(
+								target,
+								"onlinkchange",
+								{
+									target: core.elemInfo(detail.target),
+									relatedTarget: core.elemInfo(detail.relatedTarget),
+								},
+								"info"
+							);
+						},
+						onlogin: (event) => {
+							//do login
+							const target = event.target as Element;
+							e.console(target, "onlogin", core.elemInfo(target), "secondary");
+						},
+						onsignup: (event) => {
+							//do sign up
+							const target = event.target as Element;
+							e.console(target, "onsignup", core.elemInfo(target), "warning");
+						},
+						onsearch: (event) => {
+							//do search
+							event.preventDefault();
+							const target = event.target as Element;
+							const input = target.getElementsByTagName("input")[0];
+							e.console(
+								target,
+								"onsearch",
+								{
+									input: core.elemInfo(input),
+									value: input.value,
+								},
+								"success"
+							);
+						},
+					});
+				},
+			}),
+		];
+	},
 };

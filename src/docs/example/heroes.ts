@@ -253,142 +253,144 @@ const ex = {
 export const heroes: IAttrContent = {
 	title: "Heroes",
 	description: "Set the stage on your homepage with heroes that feature clear calls to action.",
-	item: [
-		new e.title("Centered hero"),
-		new e.code({
-			showViewport: true,
-			previewAttr: { padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
-			output: () => {
-				return ex.c1({
-					icon: "fab bootstrap",
-					title: "Centered hero",
-					description:
-						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-					elem: [
-						new b.button({ weight: "lg", color: "primary" }, "Primary button"),
-						new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
-					],
-				});
-			},
-		}),
+	item: () => {
+		return [
+			new e.title("Centered hero"),
+			new e.code({
+				showViewport: true,
+				previewAttr: { padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
+				output: () => {
+					return ex.c1({
+						icon: "fab bootstrap",
+						title: "Centered hero",
+						description:
+							"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+						elem: [
+							new b.button({ weight: "lg", color: "primary" }, "Primary button"),
+							new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
+						],
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Centered screenshot"),
-		new e.code({
-			showViewport: true,
-			previewAttr: { padding: 0, overflow: "hidden" },
-			extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
-			output: () => {
-				return ex.c2({
-					title: "Centered screenshot",
-					description:
-						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-					elem: [
-						new b.button({ weight: "lg", color: "primary" }, "Primary button"),
-						new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
-					],
-					img: "https://picsum.photos/seed/bsts_0/622/393.webp",
-				});
-			},
-		}),
+			new e.title("Centered screenshot"),
+			new e.code({
+				showViewport: true,
+				previewAttr: { padding: 0, overflow: "hidden" },
+				extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
+				output: () => {
+					return ex.c2({
+						title: "Centered screenshot",
+						description:
+							"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+						elem: [
+							new b.button({ weight: "lg", color: "primary" }, "Primary button"),
+							new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
+						],
+						img: "https://picsum.photos/seed/bsts_0/622/393.webp",
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Responsive left-aligned hero with image"),
-		new e.code({
-			showViewport: true,
-			previewAttr: { padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
-			output: () => {
-				return ex.c3({
-					title: "Responsive left-aligned hero with image",
-					description:
-						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-					elem: [
-						new b.button({ weight: "lg", color: "primary" }, "Primary"),
-						new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
-					],
-					img: "https://picsum.photos/seed/bsts_0/432/308.webp",
-				});
-			},
-		}),
+			new e.title("Responsive left-aligned hero with image"),
+			new e.code({
+				showViewport: true,
+				previewAttr: { padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
+				output: () => {
+					return ex.c3({
+						title: "Responsive left-aligned hero with image",
+						description:
+							"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+						elem: [
+							new b.button({ weight: "lg", color: "primary" }, "Primary"),
+							new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
+						],
+						img: "https://picsum.photos/seed/bsts_0/432/308.webp",
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Vertically centered hero sign-up form"),
-		new e.code({
-			showViewport: true,
-			showConsole: true,
-			previewAttr: { padding: 0 },
-			extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
-			output: () => {
-				return ex.c4({
-					title: "Vertically centered hero sign-up form",
-					description:
-						"Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.",
-					onsignup: (event) => {
-						//do signup
-						event.preventDefault();
-						const form = event.target as HTMLFormElement;
-						const email = form.querySelector("input[name='email']") as HTMLInputElement;
-						const password = form.querySelector("input[name='password']") as HTMLInputElement;
-						const remember = form.querySelector("input[name='remember']") as HTMLInputElement;
+			new e.title("Vertically centered hero sign-up form"),
+			new e.code({
+				showViewport: true,
+				showConsole: true,
+				previewAttr: { padding: 0 },
+				extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
+				output: () => {
+					return ex.c4({
+						title: "Vertically centered hero sign-up form",
+						description:
+							"Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.",
+						onsignup: (event) => {
+							//do signup
+							event.preventDefault();
+							const form = event.target as HTMLFormElement;
+							const email = form.querySelector("input[name='email']") as HTMLInputElement;
+							const password = form.querySelector("input[name='password']") as HTMLInputElement;
+							const remember = form.querySelector("input[name='remember']") as HTMLInputElement;
 
-						e.console(
-							form,
-							"signup",
-							{
-								email: email.value,
-								password: password.value,
-								remember: remember.checked,
-							},
-							"info"
-						);
-					},
-				});
-			},
-		}),
+							e.console(
+								form,
+								"signup",
+								{
+									email: email.value,
+									password: password.value,
+									remember: remember.checked,
+								},
+								"info"
+							);
+						},
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Border hero with cropped image and shadows"),
-		new e.code({
-			showViewport: true,
-			extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
-			output: () => {
-				return ex.c5({
-					img: "https://picsum.photos/seed/bsts_0/432/308.webp",
-					title: "Border hero with cropped image and shadows",
-					description:
-						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-					elem: [
-						new b.button({ weight: "lg", color: "primary" }, "Primary"),
-						new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
-					],
-				});
-			},
-		}),
+			new e.title("Border hero with cropped image and shadows"),
+			new e.code({
+				showViewport: true,
+				extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
+				output: () => {
+					return ex.c5({
+						img: "https://picsum.photos/seed/bsts_0/432/308.webp",
+						title: "Border hero with cropped image and shadows",
+						description:
+							"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+						elem: [
+							new b.button({ weight: "lg", color: "primary" }, "Primary"),
+							new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
+						],
+					});
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Dark color hero"),
-		new e.code({
-			showViewport: true,
-			previewAttr: { padding: 0, bgColor: "dark", overflow: "hidden" },
-			extention: [{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 }],
-			output: () => {
-				return ex.c6({
-					title: "Dark color hero",
-					description:
-						"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-					elem: [
-						new b.button({ weight: "lg", color: "info", outline: true }, "Custom button"),
-						new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
-					],
-				});
-			},
-		}),
-	],
+			new e.title("Dark color hero"),
+			new e.code({
+				showViewport: true,
+				previewAttr: { padding: 0, bgColor: "dark", overflow: "hidden" },
+				extention: [{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 }],
+				output: () => {
+					return ex.c6({
+						title: "Dark color hero",
+						description:
+							"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+						elem: [
+							new b.button({ weight: "lg", color: "info", outline: true }, "Custom button"),
+							new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
+						],
+					});
+				},
+			}),
+		];
+	},
 };

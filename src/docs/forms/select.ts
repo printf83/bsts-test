@@ -5,62 +5,41 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const select: IAttrContent = {
 	title: "Select",
 	description: "Customize the native {{<select>}}s with custom CSS that changes the element’s initial appearance.",
-	item: [
-		new e.title("Default"),
-		new e.text(
-			"Custom {{<select>}} menus need only a custom class, {{.form-select}} to trigger the custom styles. Custom styles are limited to the {{<select>}}’s initial appearance and cannot modify the {{<option>}}s due to browser limitations."
-		),
-		new e.code({
-			output: () => {
-				return new b.select({ label: "Default select example" }, [
-					new h.option({ selected: true }, "Open this select menu"),
-					new h.option({ value: "1" }, "One"),
-					new h.option({ value: "2" }, "Two"),
-					new h.option({ value: "3" }, "Three"),
-				]);
-			},
-		}),
-		new e.text("Using {{item}} to setup option"),
-		new e.code({
-			output: () => {
-				return new b.select({
-					label: "Default select example using item",
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
-			},
-		}),
-		new e.text("Using {{b.form.select}}"),
-		new e.code({
-			output: () => {
-				return b.form.select({
-					label: "Default select example using b.form.select",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
-			},
-		}),
-
-		//-----------------------
-
-		new e.title("Sizing"),
-		new e.text("Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."),
-		new e.code({
-			outputAttr: { display: "flex", flex: "wrap", gap: 3 },
-			output: () => {
-				return [
-					b.form.select({
-						weight: "lg",
-						label: ".form-select-lg example",
+	item: () => {
+		return [
+			new e.title("Default"),
+			new e.text(
+				"Custom {{<select>}} menus need only a custom class, {{.form-select}} to trigger the custom styles. Custom styles are limited to the {{<select>}}’s initial appearance and cannot modify the {{<option>}}s due to browser limitations."
+			),
+			new e.code({
+				output: () => {
+					return new b.select({ label: "Default select example" }, [
+						new h.option({ selected: true }, "Open this select menu"),
+						new h.option({ value: "1" }, "One"),
+						new h.option({ value: "2" }, "Two"),
+						new h.option({ value: "3" }, "Three"),
+					]);
+				},
+			}),
+			new e.text("Using {{item}} to setup option"),
+			new e.code({
+				output: () => {
+					return new b.select({
+						label: "Default select example using item",
+						item: [
+							{ selected: true, elem: "Open this select menu" },
+							{ value: "1", elem: "One" },
+							{ value: "2", elem: "Two" },
+							{ value: "3", elem: "Three" },
+						],
+					});
+				},
+			}),
+			new e.text("Using {{b.form.select}}"),
+			new e.code({
+				output: () => {
+					return b.form.select({
+						label: "Default select example using b.form.select",
 						hideLabel: true,
 						item: [
 							{ selected: true, elem: "Open this select menu" },
@@ -68,10 +47,50 @@ export const select: IAttrContent = {
 							{ value: "2", elem: "Two" },
 							{ value: "3", elem: "Three" },
 						],
-					}),
-					b.form.select({
-						weight: "sm",
-						label: ".form-select-sm example",
+					});
+				},
+			}),
+
+			//-----------------------
+
+			new e.title("Sizing"),
+			new e.text("Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."),
+			new e.code({
+				outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+				output: () => {
+					return [
+						b.form.select({
+							weight: "lg",
+							label: ".form-select-lg example",
+							hideLabel: true,
+							item: [
+								{ selected: true, elem: "Open this select menu" },
+								{ value: "1", elem: "One" },
+								{ value: "2", elem: "Two" },
+								{ value: "3", elem: "Three" },
+							],
+						}),
+						b.form.select({
+							weight: "sm",
+							label: ".form-select-sm example",
+							hideLabel: true,
+							item: [
+								{ selected: true, elem: "Open this select menu" },
+								{ value: "1", elem: "One" },
+								{ value: "2", elem: "Two" },
+								{ value: "3", elem: "Three" },
+							],
+						}),
+					];
+				},
+			}),
+
+			new e.text("The {{multiple}} attribute is also supported:"),
+			new e.code({
+				output: () => {
+					return b.form.select({
+						multiple: true,
+						label: "Multiple select example",
 						hideLabel: true,
 						item: [
 							{ selected: true, elem: "Open this select menu" },
@@ -79,76 +98,58 @@ export const select: IAttrContent = {
 							{ value: "2", elem: "Two" },
 							{ value: "3", elem: "Three" },
 						],
-					}),
-				];
-			},
-		}),
+					});
+				},
+			}),
 
-		new e.text("The {{multiple}} attribute is also supported:"),
-		new e.code({
-			output: () => {
-				return b.form.select({
-					multiple: true,
-					label: "Multiple select example",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
-			},
-		}),
+			new e.text("As is the {{size}} attribute:"),
+			new e.code({
+				output: () => {
+					return b.form.select({
+						size: 3,
+						label: "Size 3 select example",
+						hideLabel: true,
+						item: [
+							{ selected: true, elem: "Open this select menu" },
+							{ value: "1", elem: "One" },
+							{ value: "2", elem: "Two" },
+							{ value: "3", elem: "Three" },
+						],
+					});
+				},
+			}),
 
-		new e.text("As is the {{size}} attribute:"),
-		new e.code({
-			output: () => {
-				return b.form.select({
-					size: 3,
-					label: "Size 3 select example",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
-			},
-		}),
+			//-----------------------
 
-		//-----------------------
+			new e.title("Disabled"),
+			new e.text(
+				"Add the {{disabled}} boolean attribute on a select to give it a grayed out appearance and remove pointer events."
+			),
+			new e.code({
+				output: () => {
+					return b.form.select({
+						disabled: true,
+						label: "Disabled select example",
+						hideLabel: true,
+						item: [
+							{ selected: true, elem: "Open this select menu" },
+							{ value: "1", elem: "One" },
+							{ value: "2", elem: "Two" },
+							{ value: "3", elem: "Three" },
+						],
+					});
+				},
+			}),
 
-		new e.title("Disabled"),
-		new e.text(
-			"Add the {{disabled}} boolean attribute on a select to give it a grayed out appearance and remove pointer events."
-		),
-		new e.code({
-			output: () => {
-				return b.form.select({
-					disabled: true,
-					label: "Disabled select example",
-					hideLabel: true,
-					item: [
-						{ selected: true, elem: "Open this select menu" },
-						{ value: "1", elem: "One" },
-						{ value: "2", elem: "Two" },
-						{ value: "3", elem: "Three" },
-					],
-				});
-			},
-		}),
+			//-----------------------
 
-		//-----------------------
-
-		new e.title("CSS"),
-		new e.subtitle("Sass variables"),
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
-			code: `
+			new e.title("CSS"),
+			new e.subtitle("Sass variables"),
+			new e.codepreview({
+				type: "css",
+				title: "scss/_variables.scss",
+				source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+				code: `
 				$form-select-padding-y:             $input-padding-y;
 				$form-select-padding-x:             $input-padding-x;
 				$form-select-font-family:           $input-font-family;
@@ -191,6 +192,7 @@ export const select: IAttrContent = {
 
 				$form-select-transition:          $input-transition;
 			`,
-		}),
-	],
+			}),
+		];
+	},
 };

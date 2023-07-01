@@ -5,55 +5,56 @@ import { IAttrContent } from "../../ctl/main/container.js";
 export const close_button: IAttrContent = {
 	title: "Close button",
 	description: "A generic close button for dismissing content like modals and alerts.",
-	item: [
-		new e.title("Examples"),
-		new e.text(
-			"Provide an option to dismiss or close a component with {{b.btnclose}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as {{bsts}} done with {{label}}."
-		),
-		new e.code({
-			output: () => {
-				return new b.btnclose();
-			},
-		}),
+	item: () => {
+		return [
+			new e.title("Examples"),
+			new e.text(
+				"Provide an option to dismiss or close a component with {{b.btnclose}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as {{bsts}} done with {{label}}."
+			),
+			new e.code({
+				output: () => {
+					return new b.btnclose();
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Disabled state"),
-		new e.text(
-			"Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
-		),
-		new e.code({
-			output: () => {
-				return new b.btnclose({ disabled: true });
-			},
-		}),
+			new e.title("Disabled state"),
+			new e.text(
+				"Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
+			),
+			new e.code({
+				output: () => {
+					return new b.btnclose({ disabled: true });
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("Dark variant"),
-		new e.text(
-			"Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."
-		),
-		new e.code({
-			previewAttr: { bgColor: "dark" },
-			output: () => {
-				return new h.div({ theme: "dark" }, [new b.btnclose(), new b.btnclose({ disabled: true })]);
-			},
-		}),
+			new e.title("Dark variant"),
+			new e.text(
+				"Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."
+			),
+			new e.code({
+				previewAttr: { bgColor: "dark" },
+				output: () => {
+					return new h.div({ theme: "dark" }, [new b.btnclose(), new b.btnclose({ disabled: true })]);
+				},
+			}),
 
-		//-----------------------
+			//-----------------------
 
-		new e.title("CSS"),
-		new e.subtitle("Variables"),
-		new e.text(
-			"As part of Bootstrap’s evolving CSS variables approach, close button now use local CSS variables on {{.btn-close}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-		),
+			new e.title("CSS"),
+			new e.subtitle("Variables"),
+			new e.text(
+				"As part of Bootstrap’s evolving CSS variables approach, close button now use local CSS variables on {{.btn-close}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+			),
 
-		new e.codepreview({
-			type: "css",
-			title: "scss/_close.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_close.scss",
-			code: `
+			new e.codepreview({
+				type: "css",
+				title: "scss/_close.scss",
+				source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_close.scss",
+				code: `
 			    --#{$prefix}btn-close-color: #{$btn-close-color};
 				--#{$prefix}btn-close-bg: #{ escape-svg($btn-close-bg) };
 				--#{$prefix}btn-close-opacity: #{$btn-close-opacity};
@@ -63,15 +64,15 @@ export const close_button: IAttrContent = {
 				--#{$prefix}btn-close-disabled-opacity: #{$btn-close-disabled-opacity};
 				--#{$prefix}btn-close-white-filter: #{$btn-close-white-filter};
 			`,
-		}),
+			}),
 
-		new e.subtitle("Sass variables"),
+			new e.subtitle("Sass variables"),
 
-		new e.codepreview({
-			type: "css",
-			title: "scss/_variables.scss",
-			source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
-			code: `
+			new e.codepreview({
+				type: "css",
+				title: "scss/_variables.scss",
+				source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+				code: `
 				$btn-close-width:            1em;
 				$btn-close-height:           $btn-close-width;
 				$btn-close-padding-x:        .25em;
@@ -85,6 +86,7 @@ export const close_button: IAttrContent = {
 				$btn-close-disabled-opacity: .25;
 				$btn-close-white-filter:     invert(1) grayscale(100%) brightness(200%);
 			`,
-		}),
-	],
+			}),
+		];
+	},
 };
