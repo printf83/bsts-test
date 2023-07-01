@@ -17,7 +17,7 @@ export const test: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Tooltip 2"),
@@ -28,7 +28,7 @@ export const test: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Chart"),

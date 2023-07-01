@@ -59,7 +59,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Buttons"),
@@ -83,7 +83,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Disabled"),
@@ -110,7 +110,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Outline"),
@@ -137,7 +137,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Sizing"),
@@ -158,7 +158,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Block"),
@@ -169,7 +169,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Dropdown"),
@@ -192,7 +192,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Split button"),
@@ -216,7 +216,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Button group"),
@@ -231,7 +231,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Checkbox"),
@@ -251,7 +251,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Radio"),
@@ -277,7 +277,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Toolbar"),
@@ -301,7 +301,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Vertical"),
@@ -345,7 +345,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Typography"),
@@ -356,7 +356,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.code({
@@ -372,7 +372,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Lead paragraph"),
@@ -386,7 +386,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Body text"),
@@ -408,7 +408,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Text color"),
@@ -457,7 +457,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Blockquote"),
@@ -502,7 +502,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Table"),
@@ -542,7 +542,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Forms"),
@@ -577,7 +577,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Select"),
@@ -623,7 +623,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Textarea"),
@@ -636,7 +636,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("File input"),
@@ -650,7 +650,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Radio buttons"),
@@ -679,7 +679,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle({ id: "checkbox2" }, "Checkbox"),
@@ -706,7 +706,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Switch"),
@@ -732,7 +732,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Range"),
@@ -763,7 +763,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Button"),
@@ -779,7 +779,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Disable & readonly"),
@@ -802,7 +802,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Validation"),
@@ -827,7 +827,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Weight"),
@@ -854,7 +854,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Input addon"),
@@ -875,7 +875,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Floating label"),
@@ -896,7 +896,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Navs"),
@@ -918,7 +918,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Pills"),
@@ -940,7 +940,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Breadcrumbs"),
@@ -959,7 +959,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Pagination"),
@@ -991,9 +991,11 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.title("Indicators"),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Alerts"),
@@ -1011,7 +1013,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Badges"),
@@ -1048,7 +1050,7 @@ export const bootswatch: IAttrContent = {
 				}),
 			]),
 
-			//-----------------------
+			//----------------------
 
 			new e.section([
 				new e.title("Progress"),
