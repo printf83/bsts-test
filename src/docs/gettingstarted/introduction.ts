@@ -94,7 +94,7 @@ export const introduction: IAttrContent = {
 										head: e.codeBeautify(
 											"html",
 											`<meta charset="utf-8">
-									<meta name="viewport" content="width=device-width, initial-scale=1">`
+											<meta name="viewport" content="width=device-width, initial-scale=1">`
 										),
 
 										html: e.codeBeautify("html", `<div id="root"></div>`),
@@ -103,24 +103,24 @@ export const introduction: IAttrContent = {
 										js: e.codeBeautify(
 											"js",
 											`
-									import {core, h, b} from '${BSTSCDN}';
+											import {core, h, b} from '${BSTSCDN}';
 
-									const Component1 = new h.p("Hello world");
-									const Component2 = new b.button({ color: "primary" }, "Button");
-									const Component3 = new h.div({ row: true }, [
-										new h.div({ col:4 }, ".col-4"),
-										new h.div({ col:4 }, ".col-4"),
-										new h.div({ col:4 }, ".col-4"),
-									]);
-									
-									core.documentReady(() => {
-										core.replaceChild(document.getElementById("root"), [
-											Component1, 
-											Component2, 
-											Component3
-										]);
-									});
-								`
+											const Component1 = new h.p("Hello world");
+											const Component2 = new b.button({ color: "primary" }, "Button");
+											const Component3 = new h.div({ row: true }, [
+												new h.div({ col:4 }, ".col-4"),
+												new h.div({ col:4 }, ".col-4"),
+												new h.div({ col:4 }, ".col-4"),
+											]);
+											
+											core.documentReady(() => {
+												core.replaceChild(document.getElementById("root"), [
+													Component1, 
+													Component2, 
+													Component3
+												]);
+											});
+										`
 										),
 									} satisfies e.ICodePen);
 								},
@@ -139,22 +139,22 @@ export const introduction: IAttrContent = {
 								marginStart: "md-0",
 								type: "html",
 								code: `
-							<!doctype html>
-							<html lang="en">
-							<head>
-								<meta charset="utf-8">
-								<meta name="viewport" content="width=device-width, initial-scale=1">
-								<link rel="stylesheet" href="${BSCDNCSS[0]}">
-								<link rel="stylesheet" href="${BSCDNCSS[1]}">
-								<link rel="stylesheet" href="${BSCDNCSS[2]}">
-								<title>Bootstrap TS demo</title>
-							</head>
-							<body>
-								<div id="root"></div>
-								<script src="${BSCDNJS[0]}"></script>
-							</body>
-							</html>
-							`,
+									<!doctype html>
+									<html lang="en">
+									<head>
+										<meta charset="utf-8">
+										<meta name="viewport" content="width=device-width, initial-scale=1">
+										<link rel="stylesheet" href="${BSCDNCSS[0]}">
+										<link rel="stylesheet" href="${BSCDNCSS[1]}">
+										<link rel="stylesheet" href="${BSCDNCSS[2]}">
+										<title>Bootstrap TS demo</title>
+									</head>
+									<body>
+										<div id="root"></div>
+										<script src="${BSCDNJS[0]}"></script>
+									</body>
+									</html>
+									`,
 							}),
 						]),
 						new h.div([
@@ -164,24 +164,24 @@ export const introduction: IAttrContent = {
 								marginStart: "md-0",
 								type: "js",
 								code: `
-							import {core, h, b} from '${BSTSCDN}';
-							
-							const Component1 = new h.p("Hello world");
-							const Component2 = new b.button({ color: "primary" }, "Button");
-							const Component3 = new h.div({ row: true }, [
-								new h.div({ col:4 }, ".col-4"),
-								new h.div({ col:4 }, ".col-4"),
-								new h.div({ col:4 }, ".col-4"),
-							]);
-							
-							core.documentReady(() => {
-								core.replaceChild(document.getElementById("root"), [
-									Component1, 
-									Component2, 
-									Component3
-								]);
-							});
-							`,
+									import {core, h, b} from '${BSTSCDN}';
+									
+									const Component1 = new h.p("Hello world");
+									const Component2 = new b.button({ color: "primary" }, "Button");
+									const Component3 = new h.div({ row: true }, [
+										new h.div({ col:4 }, ".col-4"),
+										new h.div({ col:4 }, ".col-4"),
+										new h.div({ col:4 }, ".col-4"),
+									]);
+									
+									core.documentReady(() => {
+										core.replaceChild(document.getElementById("root"), [
+											Component1, 
+											Component2, 
+											Component3
+										]);
+									});
+									`,
 							}),
 						]),
 						new h.div([
@@ -191,25 +191,25 @@ export const introduction: IAttrContent = {
 								marginStart: "md-0",
 								type: "html",
 								code: `
-							<!doctype html>
-							<html lang="en">
-							<head>
-								<meta charset="utf-8">
-								<meta name="viewport" content="width=device-width, initial-scale=1">
-								<link rel="stylesheet" href="${BSCDNCSS[0]}">
-								<link rel="stylesheet" href="${BSCDNCSS[1]}">
-								<link rel="stylesheet" href="${BSCDNCSS[2]}">
-								<title>Bootstrap TS demo</title>
-							</head>
-							<body>
-								<div id="root"></div>
-								<script src="${BSCDNJS[0]}"></script>
+									<!doctype html>
+									<html lang="en">
+									<head>
+										<meta charset="utf-8">
+										<meta name="viewport" content="width=device-width, initial-scale=1">
+										<link rel="stylesheet" href="${BSCDNCSS[0]}">
+										<link rel="stylesheet" href="${BSCDNCSS[1]}">
+										<link rel="stylesheet" href="${BSCDNCSS[2]}">
+										<title>Bootstrap TS demo</title>
+									</head>
+									<body>
+										<div id="root"></div>
+										<script src="${BSCDNJS[0]}"></script>
 
-								<!--- put your script here ---->
-								<script src="index.js" type="module"></script>
-							</body>
-							</html>
-							`,
+										<!--- put your script here ---->
+										<script src="index.js" type="module"></script>
+									</body>
+									</html>
+									`,
 							}),
 						]),
 						new h.div(
@@ -248,35 +248,35 @@ export const introduction: IAttrContent = {
 				new e.codepreview({
 					type: "js",
 					code: `
-				import {core, h, b} from "${BSTSCDN}";
+						import {core, h, b} from "${BSTSCDN}";
 
-				const Component1 = new h.p("Hello world");
-				const Component2 = new b.button({ color: "primary" }, "Button");
+						const Component1 = new h.p("Hello world");
+						const Component2 = new b.button({ color: "primary" }, "Button");
 
-				core.documentReady(() => {
-					core.replaceChild(document.getElementById("root"), [
-						Component1,
-						Component2,
-					]);
-				});
-				`,
+						core.documentReady(() => {
+							core.replaceChild(document.getElementById("root"), [
+								Component1,
+								Component2,
+							]);
+						});
+						`,
 				}),
 				new e.text("Example usage without {{new}} keyword."),
 				new e.codepreview({
 					type: "js",
 					code: `
-				import {core, $} from "${BSTSCDN}";
+						import {core, $} from "${BSTSCDN}";
 
-				const Component1 = $.h.p("Hello world");
-				const Component2 = $.b.button({ color: "primary" }, "Button");
+						const Component1 = $.h.p("Hello world");
+						const Component2 = $.b.button({ color: "primary" }, "Button");
 
-				core.documentReady(() => {
-					core.replaceChild(document.getElementById("root"), [
-						Component1,
-						Component2,
-					]);
-				});
-				`,
+						core.documentReady(() => {
+							core.replaceChild(document.getElementById("root"), [
+								Component1,
+								Component2,
+							]);
+						});
+						`,
 				}),
 
 				new e.text(
@@ -351,11 +351,11 @@ export const introduction: IAttrContent = {
 				new e.codepreview({
 					type: "html",
 					code: `
-				<!doctype html>
-				<html lang="en">
-				...
-				</html>
-				`,
+						<!doctype html>
+						<html lang="en">
+						...
+						</html>
+						`,
 				}),
 			]),
 
@@ -369,8 +369,8 @@ export const introduction: IAttrContent = {
 				new e.codepreview({
 					type: "html",
 					code: `
-				<meta name="viewport" content="width=device-width, initial-scale=1">
-				`,
+						<meta name="viewport" content="width=device-width, initial-scale=1">
+						`,
 				}),
 				new e.text(
 					"You can see an example of this in action in the {{nav:docs/gettingstarted/introduction#quick_start::quick start}}."
@@ -388,10 +388,10 @@ export const introduction: IAttrContent = {
 				new e.codepreview({
 					type: "css",
 					code: `
-				.selector-for-some-widget {
-				box-sizing: content-box;
-				}
-				`,
+						.selector-for-some-widget {
+						box-sizing: content-box;
+						}
+						`,
 				}),
 				new e.text(
 					"With the above snippet, nested elements—including generated content via {{/://:/before}} and {{/://:/after}}—will all inherit the specified {{box-sizing}} for that {{.selector-for-some-widget}}."
