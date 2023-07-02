@@ -325,7 +325,10 @@ export const carousel: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass variables"),
@@ -369,8 +372,9 @@ export const carousel: IAttrContent = {
 				}),
 			]),
 
+			new e.section([new e.title("Usage")]),
+
 			//----------------------
-			new e.title("Usage"),
 
 			new e.section([
 				new e.subtitle("Via data attributes"),

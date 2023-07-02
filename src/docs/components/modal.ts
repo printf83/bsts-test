@@ -71,7 +71,10 @@ export const modal: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("Examples"),
+
+			new e.section([new e.title("Examples")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Modal components"),
@@ -1271,7 +1274,10 @@ export const modal: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

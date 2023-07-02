@@ -43,14 +43,9 @@ const convert = (attr: core.IAttr) => {
 		);
 
 		attr.elem = tElem;
-
-		attr = core.mergeObject(
-			{
-				data: { text: strElem },
-			},
-			attr
-		);
 	}
+
+	delete attr.id;
 
 	return attr;
 };

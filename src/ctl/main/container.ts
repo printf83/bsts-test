@@ -581,33 +581,55 @@ const genToc = (content?: IAttrContent) => {
 
 			//get title
 			contentItem.forEach((i) => {
-				if (core.isTag<e.title>(i) && i.tag === "h2") {
-					if (i.attr?.id && i.attr?.data?.text) {
-						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-						t.push({
-							deep: 0,
-							item: item,
-						});
-					}
-				} else if (core.isTag<e.subtitle>(i) && i.tag === "h3") {
-					if (i.attr?.id && i.attr?.data?.text) {
-						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
+				// if (core.isTag<e.title>(i) && i.tag === "h2") {
+				// 	if (i.attr?.id && i.attr?.data?.text) {
+				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
+				// 		t.push({
+				// 			deep: 0,
+				// 			item: item,
+				// 		});
+				// 	}
+				// } else if (core.isTag<e.subtitle>(i) && i.tag === "h3") {
+				// 	if (i.attr?.id && i.attr?.data?.text) {
+				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
-						t.push({
-							deep: 1,
-							item: item,
-						});
-					}
-				} else if (core.isTag<e.subtitle>(i) && i.tag === "h4") {
-					if (i.attr?.id && i.attr?.data?.text) {
-						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
+				// 		t.push({
+				// 			deep: 1,
+				// 			item: item,
+				// 		});
+				// 	}
+				// } else if (core.isTag<e.subtitle>(i) && i.tag === "h4") {
+				// 	if (i.attr?.id && i.attr?.data?.text) {
+				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
 
-						t.push({
-							deep: 2,
-							item: item,
-						});
-					}
-				} else if (core.isTag<e.section>(i) && i.tag === "section") {
+				// 		t.push({
+				// 			deep: 2,
+				// 			item: item,
+				// 		});
+				// 	}
+				// } else if (core.isTag<e.section>(i) && i.tag === "section") {
+				// 	if (i.attr?.id && i.attr?.data?.title) {
+				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
+				// 		let deep = 0;
+				// 		switch (i.attr?.data?.type as string) {
+				// 			case "title":
+				// 				deep = 0;
+				// 				break;
+				// 			case "subtitle":
+				// 				deep = 1;
+				// 				break;
+				// 			case "xsubtitle":
+				// 				deep = 2;
+				// 				break;
+				// 		}
+				// 		t.push({
+				// 			deep: deep,
+				// 			item: item,
+				// 		});
+				// 	}
+				// }
+
+				if (core.isTag<e.section>(i) && i.tag === "section") {
 					if (i.attr?.id && i.attr?.data?.title) {
 						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
 						let deep = 0;
@@ -627,6 +649,8 @@ const genToc = (content?: IAttrContent) => {
 							item: item,
 						});
 					}
+				} else {
+					console.warn(`${content.title} section problem`);
 				}
 			});
 

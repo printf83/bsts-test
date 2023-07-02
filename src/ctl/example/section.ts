@@ -62,7 +62,7 @@ const convert = (attr: core.IAttr) => {
 				attr = core.mergeObject(
 					{
 						class: "example-section",
-						id: "sec_" + genIDFromText(titleText),
+						id: genIDFromText(titleText),
 						data: {
 							title: titleText,
 							type: titleType,

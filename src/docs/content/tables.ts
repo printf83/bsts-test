@@ -234,7 +234,9 @@ export const tables: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Accented tables"),
+			new e.section([new e.title("Accented tables")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Striped rows"),
@@ -410,7 +412,10 @@ export const tables: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("Table borders"),
+
+			new e.section([new e.title("Table borders")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Bordered tables"),
@@ -651,7 +656,10 @@ export const tables: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("Anatomy"),
+
+			new e.section([new e.title("Anatomy")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Table head"),
@@ -881,7 +889,10 @@ export const tables: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass variables"),

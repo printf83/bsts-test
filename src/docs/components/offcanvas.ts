@@ -31,7 +31,10 @@ export const offcanvas: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("Examples"),
+
+			new e.section([new e.title("Examples")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Offcanvas components"),
@@ -409,8 +412,10 @@ export const offcanvas: IAttrContent = {
 			]),
 
 			//----------------------
-			
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),
@@ -487,7 +492,10 @@ export const offcanvas: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.subtitle("Via data attributes"),
+
+			new e.section([new e.subtitle("Via data attributes")]),
+
+			//----------------------
 
 			new e.section([
 				new e.xsubtitle("Toggle"),

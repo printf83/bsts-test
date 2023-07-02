@@ -99,7 +99,7 @@ export const card: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
+			new e.section({ id: "contenttype_images" }, [
 				new e.subtitle({ id: "contenttype_images" }, "Images"),
 				new e.text(
 					"{{location:top}} places an image ({{b.card.img}}) to the top of the card. With {{b.card.text}}, text can be added to the card. Text within {{b.card.text}} can also be styled with the standard HTML tags using {{s}}."
@@ -926,7 +926,10 @@ export const card: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

@@ -459,7 +459,9 @@ export const check_radio: IAttrContent = {
 
 			//----------------------
 
-			new e.title("CSS"),
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass variables"),

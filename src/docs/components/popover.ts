@@ -37,7 +37,10 @@ export const popover: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("Examples"),
+
+			new e.section([new e.title("Examples")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Enable popovers"),
@@ -220,7 +223,9 @@ export const popover: IAttrContent = {
 
 			//----------------------
 
-			new e.title("CSS"),
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

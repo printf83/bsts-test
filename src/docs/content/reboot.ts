@@ -642,7 +642,9 @@ export const reboot: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Misc elements"),
+			new e.section([new e.title("Misc elements")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Address"),

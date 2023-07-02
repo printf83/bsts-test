@@ -8,9 +8,11 @@ export const focus_ring: IAttrContent = {
 		"Utility classes that allows you to add and modify custom focus ring styles to elements and components.",
 	item: () => {
 		return [
-			new e.text(
-				"The {{.focus-ring}} helper removes the default {{outline}} on {{:focus}}, replacing it with a {{box-shadow}} that can be more broadly customized. The new shadow is made up of a series of CSS variables, inherited from the {{:root}} level, that can be modified for any element or component."
-			),
+			new e.section([
+				new e.text(
+					"The {{.focus-ring}} helper removes the default {{outline}} on {{:focus}}, replacing it with a {{box-shadow}} that can be more broadly customized. The new shadow is made up of a series of CSS variables, inherited from the {{:root}} level, that can be modified for any element or component."
+				),
+			]),
 
 			//----------------------
 

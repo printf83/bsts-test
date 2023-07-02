@@ -104,7 +104,7 @@ export const navbar: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
+			new e.section({ id: "brand_text" }, [
 				new e.xsubtitle({ id: "brand_text" }, "Text"),
 				new e.text("Add your text within an element with the {{b.navbar.brand}} component."),
 				new e.code({
@@ -1032,7 +1032,10 @@ export const navbar: IAttrContent = {
 			]),
 
 			//----------------------
-				new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

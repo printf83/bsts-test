@@ -167,7 +167,11 @@ export const accordion: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
+
 			new e.section([
 				new e.subtitle("Variables"),
 				new e.text(

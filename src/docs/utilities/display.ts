@@ -157,7 +157,9 @@ export const display: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Sass"),
+			new e.section([new e.title("Sass")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Utilities API "),

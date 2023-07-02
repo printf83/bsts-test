@@ -57,7 +57,10 @@ export const progress: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("Bar sizing"),
+
+			new e.section([new e.title("Bar sizing")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Width"),
@@ -460,7 +463,9 @@ export const progress: IAttrContent = {
 
 			//----------------------
 
-			new e.title("CSS"),
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

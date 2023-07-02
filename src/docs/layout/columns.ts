@@ -8,10 +8,15 @@ export const columns: IAttrContent = {
 		"Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to Bootstrap flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.",
 	item: () => {
 		return [
-			new e.alert(
-				{ color: "info", callout: true },
-				"{{b::Heads up! }}Be sure to {{nav:docs/layout/grid::read the Grid page}} first before diving into how to modify and customize your grid columns. "
-			),
+			new e.section([
+				new e.alert(
+					{ color: "info", callout: true },
+					"{{b::Heads up! }}Be sure to {{nav:docs/layout/grid::read the Grid page}} first before diving into how to modify and customize your grid columns. "
+				),
+			]),
+
+			//----------------------
+
 			new e.section([
 				new e.title("How they work"),
 				new e.ul({
@@ -212,7 +217,9 @@ export const columns: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Reordering"),
+			new e.section([new e.title("Reordering")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Order classes"),

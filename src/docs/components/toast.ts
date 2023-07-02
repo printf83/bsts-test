@@ -35,7 +35,9 @@ export const toast: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Examples"),
+			new e.section([new e.title("Examples")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Basic"),
@@ -712,7 +714,9 @@ export const toast: IAttrContent = {
 
 			//----------------------
 
-			new e.title("CSS"),
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),
@@ -774,9 +778,8 @@ export const toast: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Usage"),
-
 			new e.section([
+				new e.title("Usage"),
 				new e.text("Initialize toasts via JavaScript:"),
 
 				new e.codepreview({

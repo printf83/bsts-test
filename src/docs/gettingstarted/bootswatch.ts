@@ -681,7 +681,7 @@ export const bootswatch: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
+			new e.section({ id: "checkbox2" }, [
 				new e.subtitle({ id: "checkbox2" }, "Checkbox"),
 				new e.code({
 					output: () => {
@@ -993,7 +993,7 @@ export const bootswatch: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Indicators"),
+			new e.section([new e.title("Indicators")]),
 
 			//----------------------
 

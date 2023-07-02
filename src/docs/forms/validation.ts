@@ -8,10 +8,12 @@ export const validation: IAttrContent = {
 		"Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.",
 	item: () => {
 		return [
-			new e.alert(
-				{ color: "warning", callout: true },
-				"Bootstrap are aware that currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap work on a solution, Bootstrap’d recommend either using the server-side option or the default browser validation method."
-			),
+			new e.section([
+				new e.alert(
+					{ color: "warning", callout: true },
+					"Bootstrap are aware that currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While Bootstrap work on a solution, Bootstrap’d recommend either using the server-side option or the default browser validation method."
+				),
+			]),
 
 			//----------------------
 
@@ -655,7 +657,10 @@ export const validation: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

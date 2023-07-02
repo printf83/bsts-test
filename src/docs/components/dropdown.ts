@@ -602,7 +602,10 @@ export const dropdown: IAttrContent = {
 			]),
 
 			//----------------------
-				new e.title("Menu content"),
+
+			new e.section([new e.title("Menu content")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Headers"),
@@ -891,7 +894,10 @@ export const dropdown: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

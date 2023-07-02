@@ -7,16 +7,18 @@ export const icon_link: IAttrContent = {
 	description: "Quickly create stylized hyperlinks with Bootstrap Icons or other icons.",
 	item: () => {
 		return [
-			new e.text(
-				"The icon link helper component modifies Bootstrap default link styles to enhance their appearance and quickly align any pairing of icon and text. Alignment is set via inline flexbox styling and a default {{gap}} value. Bootstrap stylize the underline with a custom offset and color. Icons are automatically sized to {{1em}} to best match their associated text’s {{font-size}}."
-			),
-			new e.text(
-				"Icon links assume {{https://icons.getbootstrap.com/::Bootstrap Icons}} are being used, but you can use any icon or image you like."
-			),
-			new e.alert(
-				{ color: "info", callout: true },
-				"When icons are purely decorative, they should be hidden from assistive technologies using {{aria-hidden='true'}}, as Bootstrap done in Bootstrap examples. For icons that convey meaning, provide an appropriate text alternative by adding {{role='img'}} and an appropriate {{aria-label='...'}} to the SVGs."
-			),
+			new e.section([
+				new e.text(
+					"The icon link helper component modifies Bootstrap default link styles to enhance their appearance and quickly align any pairing of icon and text. Alignment is set via inline flexbox styling and a default {{gap}} value. Bootstrap stylize the underline with a custom offset and color. Icons are automatically sized to {{1em}} to best match their associated text’s {{font-size}}."
+				),
+				new e.text(
+					"Icon links assume {{https://icons.getbootstrap.com/::Bootstrap Icons}} are being used, but you can use any icon or image you like."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					"When icons are purely decorative, they should be hidden from assistive technologies using {{aria-hidden='true'}}, as Bootstrap done in Bootstrap examples. For icons that convey meaning, provide an appropriate text alternative by adding {{role='img'}} and an appropriate {{aria-label='...'}} to the SVGs."
+				),
+			]),
 
 			//----------------------
 

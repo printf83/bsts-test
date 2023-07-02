@@ -16,10 +16,14 @@ export const introduction: IAttrContent = {
 		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
 	item: () => {
 		return [
-			new e.alert({ color: "warning", callout: true }, [
-				new b.alert.header(3, "Disclaimer"),
-				"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
+			new e.section([
+				new e.alert({ color: "warning", callout: true }, [
+					new b.alert.header(3, "Disclaimer"),
+					"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
+				]),
 			]),
+
+			//----------------------
 
 			new e.section([
 				new e.title("Current version"),

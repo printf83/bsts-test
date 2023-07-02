@@ -37,7 +37,9 @@ export const tooltip: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Examples"),
+			new e.section([new e.title("Examples")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Enable tooltips"),
@@ -176,7 +178,10 @@ export const tooltip: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("CSS"),
+
+			new e.section([new e.title("CSS")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Variables"),

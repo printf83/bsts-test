@@ -8,13 +8,15 @@ export const stacks: IAttrContent = {
 		"Shorthand helpers that build on top of Bootstrap flexbox utilities to make component layout faster and easier than ever.",
 	item: () => {
 		return [
-			new e.text(
-				"Stacks offer a shortcut for applying a number of flexbox properties to quickly and easily create layouts in Bootstrap. All credit for the concept and implementation goes to the open source {{https://almonk.github.io/pylon/::Pylon project}}."
-			),
-			new e.alert(
-				{ color: "info", callout: true },
-				"{{b::Heads up! }}Support for gap utilities with flexbox was recently added to Safari, so consider verifying your intended browser support. Grid layout should have no issues. {{https://caniuse.com/flexbox-gap::Read more}}."
-			),
+			new e.section([
+				new e.text(
+					"Stacks offer a shortcut for applying a number of flexbox properties to quickly and easily create layouts in Bootstrap. All credit for the concept and implementation goes to the open source {{https://almonk.github.io/pylon/::Pylon project}}."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					"{{b::Heads up! }}Support for gap utilities with flexbox was recently added to Safari, so consider verifying your intended browser support. Grid layout should have no issues. {{https://caniuse.com/flexbox-gap::Read more}}."
+				),
+			]),
 
 			//----------------------
 

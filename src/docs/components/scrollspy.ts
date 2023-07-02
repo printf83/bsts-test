@@ -24,7 +24,10 @@ export const scrollspy: IAttrContent = {
 			]),
 
 			//----------------------
-			new e.title("Examples"),
+
+			new e.section([new e.title("Examples")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Navbar"),
@@ -321,7 +324,9 @@ export const scrollspy: IAttrContent = {
 
 			//----------------------
 
-			new e.title("Usage"),
+			new e.section([new e.title("Usage")]),
+
+			//----------------------
 
 			new e.section([
 				new e.subtitle("Via data attributes"),
