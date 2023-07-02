@@ -27,18 +27,18 @@ const convert = (attr: core.IAttr) => {
 	if (tElem && tElem.length > 0) {
 		const firstElem = tElem[0] as t;
 		if (firstElem) {
-			let titleType: undefined | "title" | "subtitle" | "xsubtitle" = undefined;
+			let titleDeep: undefined | 0 | 1 | 2 = undefined;
 
 			if (hasClass("example-title", firstElem.attr?.class)) {
-				titleType = "title";
+				titleDeep = 0;
 			} else if (hasClass("example-subtitle", firstElem.attr?.class)) {
-				titleType = "subtitle";
+				titleDeep = 1;
 			} else if (hasClass("example-xsubtitle", firstElem.attr?.class)) {
-				titleType = "xsubtitle";
+				titleDeep = 2;
 			}
 
 			let titleText: string | undefined = undefined;
-			if (titleType) {
+			if (titleDeep !== undefined) {
 				if (typeof firstElem.elem === "string") {
 					titleText = firstElem.elem;
 				} else {
@@ -47,25 +47,25 @@ const convert = (attr: core.IAttr) => {
 							if (typeof firstElem.elem[0] === "string") {
 								titleText = firstElem.elem[0];
 							} else {
-								titleType = undefined;
+								titleDeep = undefined;
 							}
 						} else {
-							titleType = undefined;
+							titleDeep = undefined;
 						}
 					} else {
-						titleType = undefined;
+						titleDeep = undefined;
 					}
 				}
 			}
 
-			if (titleType && titleText) {
+			if (titleDeep !== undefined && titleText !== undefined) {
 				attr = core.mergeObject(
 					{
 						class: "example-section",
 						id: genIDFromText(titleText),
 						data: {
 							title: titleText,
-							type: titleType,
+							deep: titleDeep,
 						},
 					},
 					attr

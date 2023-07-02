@@ -27,7 +27,6 @@ export const introduction: IAttrContent = {
 
 			new e.section([
 				new e.title("Current version"),
-
 				new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [
 					new b.tooltip(
 						{ content: "@printf83/bsts" },

@@ -493,7 +493,9 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 						small: true,
 					},
 					i.item.map((j) => {
-						let active = j.value === currentMenu ? true : false;
+						let itemValue = j.value;
+						let itemLabel = j.label;
+						let active = itemValue === currentMenu ? true : false;
 
 						return new h.li(
 							new h.a(
@@ -504,15 +506,15 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 									href: "#",
 									aria: { current: active ? "page" : undefined },
 									data: {
-										value: j.value,
+										value: itemValue,
 									},
 									on: {
 										click: (_e) => {
-											changeMenu(j.value);
+											changeMenu(itemValue);
 										},
 									},
 								},
-								j.label
+								itemLabel
 							)
 						);
 					})
@@ -581,69 +583,11 @@ const genToc = (content?: IAttrContent) => {
 
 			//get title
 			contentItem.forEach((i) => {
-				// if (core.isTag<e.title>(i) && i.tag === "h2") {
-				// 	if (i.attr?.id && i.attr?.data?.text) {
-				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-				// 		t.push({
-				// 			deep: 0,
-				// 			item: item,
-				// 		});
-				// 	}
-				// } else if (core.isTag<e.subtitle>(i) && i.tag === "h3") {
-				// 	if (i.attr?.id && i.attr?.data?.text) {
-				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-
-				// 		t.push({
-				// 			deep: 1,
-				// 			item: item,
-				// 		});
-				// 	}
-				// } else if (core.isTag<e.subtitle>(i) && i.tag === "h4") {
-				// 	if (i.attr?.id && i.attr?.data?.text) {
-				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.text as string };
-
-				// 		t.push({
-				// 			deep: 2,
-				// 			item: item,
-				// 		});
-				// 	}
-				// } else if (core.isTag<e.section>(i) && i.tag === "section") {
-				// 	if (i.attr?.id && i.attr?.data?.title) {
-				// 		let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
-				// 		let deep = 0;
-				// 		switch (i.attr?.data?.type as string) {
-				// 			case "title":
-				// 				deep = 0;
-				// 				break;
-				// 			case "subtitle":
-				// 				deep = 1;
-				// 				break;
-				// 			case "xsubtitle":
-				// 				deep = 2;
-				// 				break;
-				// 		}
-				// 		t.push({
-				// 			deep: deep,
-				// 			item: item,
-				// 		});
-				// 	}
-				// }
-
 				if (core.isTag<e.section>(i) && i.tag === "section") {
 					if (i.attr?.id && i.attr?.data?.title) {
 						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
-						let deep = 0;
-						switch (i.attr?.data?.type as string) {
-							case "title":
-								deep = 0;
-								break;
-							case "subtitle":
-								deep = 1;
-								break;
-							case "xsubtitle":
-								deep = 2;
-								break;
-						}
+						let deep = i.attr?.data?.type ? parseInt(i.attr?.data?.type as string) : 0;
+
 						t.push({
 							deep: deep,
 							item: item,
@@ -729,7 +673,7 @@ const genToc = (content?: IAttrContent) => {
 								class: "bs-toc-collapse",
 							},
 							new h.nav(
-								{ id: "TableOfContents" },
+								{ id: "bs-toc" },
 								new h.ul(
 									{
 										marginStart: [3, "md-0"],
@@ -787,7 +731,7 @@ const genContent = (content?: IAttrContent) => {
 	if (content && content.item) {
 		return new b.scrollspy(
 			{
-				target: "#TableOfContents",
+				target: "#bs-toc",
 				smooth: true,
 				class: "bs-content",
 				paddingStart: "lg-2",
