@@ -965,39 +965,67 @@ const showSearchDialog = () => {
 	b.modal.show(
 		new b.modal.container(
 			{
+				contentAttr: { overflow: "hidden" },
 				on: {
 					"shown.bs.modal": (_event) => {
 						let searchInput = document.getElementById("doc-search-input") as HTMLDivElement;
 						let searchStatus = document.getElementById("doc-search-status") as HTMLDivElement;
 						if (searchStatus && searchInput) {
 							searchInput.focus();
-							searchStatus.innerText = `Indexing...`;
 
 							const startTime = performance.now();
 							indexDocMenu(0, () => {
-								searchStatus.innerText = `Indexing complete in ${genDurationText(
-									~~((performance.now() - startTime) / 1000)
-								)}`;
+								console.log(
+									`Indexing complete in ${genDurationText(
+										~~((performance.now() - startTime) / 1000)
+									)}`
+								);
 
-								// console.log(_docIndexDB);
+								console.log(_docIndexDB);
+
+								core.replaceChild(
+									searchStatus,
+									new b.icon({ id: "hexagon-fill", fontSize: 4, color: "primary" })
+								);
 							});
 						}
 					},
 				},
 			},
 			[
-				new b.modal.body([
-					new h.div({ display: "grid", gap: 3 }, [
+				new b.modal.body({ padding: 0 }, [
+					new h.div({ bgColor: "body-tertiary", padding: 3, display: "grid", gap: 3 }, [
 						b.form.input({ id: "doc-search-input", type: "search", weight: "lg", placeholder: "Search" }),
+						new h.div({ id: "doc-search-result" }, "No recent searches"),
 					]),
 
 					new h.div(
 						{
-							marginTop: 3,
+							small: true,
+							shadow: true,
+							paddingX: 3,
+							paddingY: 1,
 							display: "flex",
 							justifyContent: "between",
 						},
-						[new h.div({ id: "doc-search-status" }, "...")]
+						[
+							new h.div({ display: "flex", gap: 2, alignItem: "center" }, [
+								new h.kbd(new b.icon("arrow-return-left")),
+								" to select ",
+								new h.kbd(new b.icon("arrow-up")),
+								new h.kbd(new b.icon("arrow-down")),
+								" to navigate ",
+								new h.kbd("ESC"),
+								" to close ",
+							]),
+							new h.div({ display: "flex", gap: 2, alignItem: "center" }, [
+								"Search by",
+								new h.div(
+									{ id: "doc-search-status" },
+									new b.icon({ id: "hexagon-fill", fontSize: 4, color: "secondary" })
+								),
+							]),
+						]
 					),
 				]),
 			]
