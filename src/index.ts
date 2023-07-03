@@ -671,7 +671,7 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 							(((currentTime - startTime) / currentProgress) * (100 - currentProgress)) /
 							1000
 						);
-						progressEstimate.innerText = `${genDurationText(estimateTime)}`;
+						progressEstimate.innerText = `${genDurationText(estimateTime + 1)}`;
 					}
 
 					if (MEMORYLEAKTEST_COUNTTAG) {
