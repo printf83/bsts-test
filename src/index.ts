@@ -665,19 +665,13 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 					const currentTime = performance.now();
 					if (currentTime > lastEstimate + 1000) {
 						lastEstimate = currentTime;
-						const speed = (currentTime - startTime) / currentProgress;
 
-						progressSpeed.innerText = `${~~((currentTime - startTime) / (max! - count))}`;
-
-						const estimateTime = ~~((speed * (100 - currentProgress)) / 1000);
-
-						if (estimateTime > 60) {
-							progressEstimate.innerText = `${~~(estimateTime / 60)} minutes ${
-								estimateTime % 60
-							} seconds`;
-						} else {
-							progressEstimate.innerText = `${estimateTime} seconds`;
-						}
+						progressSpeed.innerText = `${~~(((max! - count) / (currentTime - startTime)) * 1000)}`;
+						const estimateTime = ~~(
+							(((currentTime - startTime) / currentProgress) * (100 - currentProgress)) /
+							1000
+						);
+						progressEstimate.innerText = `${genDurationText(estimateTime)}`;
 					}
 
 					if (MEMORYLEAKTEST_COUNTTAG) {
@@ -704,6 +698,20 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 	}
 };
 
+const genDurationText = (second: number) => {
+	if (second > 60) {
+		if (second % 60 === 0) {
+			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""}`;
+		} else {
+			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""} ${second % 60} second${
+				second % 60 > 1 ? "s" : ""
+			}`;
+		}
+	} else {
+		return `${second} second${second > 1 ? "s" : ""}`;
+	}
+};
+
 const startMemoryTest = (testId: string, count: number) => {
 	const progressTotal = document.getElementById(`${testId}-total`);
 	if (progressTotal) {
@@ -716,22 +724,31 @@ const startMemoryTest = (testId: string, count: number) => {
 
 		highlightCurrentMenu(docId);
 		onMenuChange(docId, false, "push", () => {
+			let result: string = "";
+
+			let loadSpeed = ~~((docCount / (ENDMEMORYTEST - STARTMEMORYTEST)) * 1000);
+			let durationSecond = ~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000);
+
+			if (MEMORYLEAKTEST_COUNTTAG) {
+				result = `
+					Page count : {{b::${docCount}}} page{{br}}
+					Load speed : ±{{b::${loadSpeed}}} page/sec{{br}}
+					Duration : {{b::${genDurationText(durationSecond)}}}{{br}}
+					Less element : {{b::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
+					Most element : {{b::${MOSTTAG.title} (${MOSTTAG.count} element)}}`;
+			} else {
+				result = `
+					Page count : {{b::${docCount}}} page{{br}}
+					Load speed : ±{{b::${loadSpeed}}} page/sec{{br}}
+					Duration : {{b::${genDurationText(durationSecond)}}}`;
+			}
+
 			b.modal.show(
 				b.modal.create({
 					title: "Memory test complete",
 					elem: new b.msg({
 						icon: new b.icon({ id: "info-circle-fill", color: "primary" }),
-						elem: [
-							MEMORYLEAKTEST_COUNTTAG
-								? new h.p(`
-							No of page : {{b::${docCount}}}{{br}}
-							Duration : {{b::${~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000)} seconds}}{{br}}
-							Less Element : {{b::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
-							Most Element : {{b::${MOSTTAG.title} (${MOSTTAG.count} element)}}`)
-								: new h.p(`
-							No of page : {{b::${docCount}}}{{br}}
-							Duration : {{b::${~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000)} seconds}}`),
-						],
+						elem: result,
 					}),
 					btn: "ok",
 				})
@@ -844,7 +861,7 @@ const mainContainer = () => {
 									new h.small(["Current page : ", new h.b({ id: `${testId}-page` }, "...")]),
 									new h.br(),
 									new h.small([
-										"Page load speed : ",
+										"Page load speed : ±",
 										new h.b({ id: `${testId}-speed` }, "Calculating..."),
 										" page/sec",
 									]),
