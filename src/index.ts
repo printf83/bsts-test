@@ -99,7 +99,7 @@ const onBootswatchChange = (value: string) => {
 };
 
 const setupBootswatch = () => {
-	onBootswatchChange(CURRENT_BOOTSWATCH);
+	onBootswatchChange(getSavedBootswatch());
 };
 
 const setupThemeChanges = () => {
@@ -109,9 +109,6 @@ const setupThemeChanges = () => {
 		}
 	});
 };
-
-let CURRENT_THEME = getSavedTheme();
-let CURRENT_BOOTSWATCH = getSavedBootswatch();
 
 let m = {
 	doc: [
@@ -449,6 +446,7 @@ const setLoading = (contentbody: Element) => {
 		});
 	}
 };
+
 const resetLoading = (contentbody: Element) => {
 	if (contentbody.classList.contains("loading")) {
 		contentbody.classList.remove("loading");
@@ -537,7 +535,9 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 					const tagCount = contentbody.getElementsByTagName("*").length;
 
 					console.info(
-						`${PERFORMANCEINFO.title} page has ${tagCount} tag in it. It took ${PERFORMANCEINFO.download}ms to download and ${PERFORMANCEINFO.build}ms to build.`
+						`${
+							PERFORMANCEINFO.title
+						} page has ${tagCount} tag in it. It took ${~~PERFORMANCEINFO.download!}ms to download and ${~~PERFORMANCEINFO.build!}ms to build.`
 					);
 				}
 
@@ -605,7 +605,7 @@ const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 		if (anchorNode) {
 			let anchorElem = anchorNode[0] as Element;
 			let elemPosition = anchorElem.getBoundingClientRect().top;
-			let offsetElemPosition = elemPosition + window.pageYOffset - 60;
+			let offsetElemPosition = elemPosition + window.scrollY - 60;
 			window.scrollTo(0, offsetElemPosition);
 		}
 	} else {
@@ -634,7 +634,8 @@ const docDB = () => {
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
-const runMemoryTest = (testId: string, count: number, callback: Function, max?: number) => {
+let lastEstimate = 0;
+const runMemoryTest = (startTime: number, testId: string, count: number, callback: Function, max?: number) => {
 	max ??= count;
 
 	let mDB = docDB();
@@ -644,32 +645,40 @@ const runMemoryTest = (testId: string, count: number, callback: Function, max?: 
 		core.requestIdleCallback(() => {
 			getData(docId, (docData) => {
 				const progressBar = document.getElementById(`${testId}-bar`);
-				const progressDetail = document.getElementById(`${testId}-detail`);
+				const progressPage = document.getElementById(`${testId}-page`);
+				const progressCount = document.getElementById(`${testId}-count`);
+				const progressSpeed = document.getElementById(`${testId}-speed`);
+				const progressEstimate = document.getElementById(`${testId}-estimate`);
 
-				if (progressBar && progressDetail) {
+				if (progressBar && progressCount && progressPage && progressEstimate && progressSpeed) {
 					let contentbody = document.getElementById("bs-main") as Element;
 					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 					highlightCurrentMenu(docId);
 					const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 
-					core.replaceWith(
-						progressBar,
-						new b.progress.container({
-							id: `${testId}-bar`,
-							value: ((max! - count) / max!) * 100,
-						})
-					);
+					const currentProgress = ((max! - count) / max!) * 100;
 
-					core.replaceWith(
-						progressDetail,
-						new h.small(
-							{
-								textColor: "secondary",
-								id: `${testId}-detail`,
-							},
-							`[${max! - count} / ${max}] Load ${pagetitle}`
-						)
-					);
+					progressBar.setAttribute("style", `width:${currentProgress}%;`);
+					progressPage.innerText = pagetitle ? pagetitle : "...";
+					progressCount.innerText = (max! - count).toString();
+
+					const currentTime = performance.now();
+					if (currentTime > lastEstimate + 1000) {
+						lastEstimate = currentTime;
+						const speed = (currentTime - startTime) / currentProgress;
+
+						progressSpeed.innerText = `${~~((currentTime - startTime) / (max! - count))}`;
+
+						const estimateTime = ~~((speed * (100 - currentProgress)) / 1000);
+
+						if (estimateTime > 60) {
+							progressEstimate.innerText = `${~~(estimateTime / 60)} minutes ${
+								estimateTime % 60
+							} seconds`;
+						} else {
+							progressEstimate.innerText = `${estimateTime} seconds`;
+						}
+					}
 
 					if (MEMORYLEAKTEST_COUNTTAG) {
 						const tagCount = contentbody.getElementsByTagName("*").length;
@@ -684,7 +693,7 @@ const runMemoryTest = (testId: string, count: number, callback: Function, max?: 
 						}
 					}
 
-					runMemoryTest(testId, count - 1, callback, max);
+					runMemoryTest(startTime, testId, count - 1, callback, max);
 				} else {
 					callback(max! - count, docId);
 				}
@@ -696,19 +705,23 @@ const runMemoryTest = (testId: string, count: number, callback: Function, max?: 
 };
 
 const startMemoryTest = (testId: string, count: number) => {
+	const progressTotal = document.getElementById(`${testId}-total`);
+	if (progressTotal) {
+		progressTotal.innerText = count.toString();
+	}
+
 	const STARTMEMORYTEST = performance.now();
-	runMemoryTest(testId, count, (docCount: number, docId: string) => {
+	runMemoryTest(performance.now(), testId, count, (docCount: number, docId: string) => {
 		const ENDMEMORYTEST = performance.now();
 
 		highlightCurrentMenu(docId);
 		onMenuChange(docId, false, "push", () => {
 			b.modal.show(
 				b.modal.create({
-					title: "Memory test infomation",
+					title: "Memory test complete",
 					elem: new b.msg({
 						icon: new b.icon({ id: "info-circle-fill", color: "primary" }),
 						elem: [
-							new h.p("Memory test complete :"),
 							MEMORYLEAKTEST_COUNTTAG
 								? new h.p(`
 							No of page : {{b::${docCount}}}{{br}}
@@ -727,215 +740,250 @@ const startMemoryTest = (testId: string, count: number) => {
 	});
 };
 
-const mainContainer = main.Container({
-	name: "Bootstrap TS",
-	bgColor: "primary",
-	textColor: "light",
-	icon: new h.div({ class: "animated-icon", fontSize: 3 }, new b.icon({ id: "hexagon-fill" })),
-	on: {
-		"bs-menu-change": (e) => {
-			onMenuChange((<CustomEvent>e).detail);
-		},
-		"bs-theme-change": (e) => {
-			onThemeChange((<CustomEvent>e).detail);
-		},
-		"bs-bootswatch-change": (e) => {
-			onBootswatchChange((<CustomEvent>e).detail);
-		},
-		"bs-bookmark-change": (e) => {
-			onBookmarkChange((<CustomEvent>e).detail);
-		},
-	},
-
-	itemMenu: genMenuWithBookmark(),
-
-	itemInsideLink: [{ value: "doc", label: "Docs" }],
-	currentInsideLink: "doc",
-
-	itemOutsideLink: [
-		{
-			href: "#",
-			icon: { id: "cpu" },
-			label: "Memory test",
-			onclick: (_event) => {
-				const testId = core.UUID();
-				b.modal.show(
-					new b.modal.container(
-						new b.modal.body([
-							new h.p(
-								"Open random page to detect memory leak. Please open {{Memory Monitor Program}} on your device and compare the memory diffrence before start memory leak test and after the test complete. You should have back your memory when the test complete."
-							),
-
-							new h.p({ display: "none", marginBottom: 0 }, [
-								new h.small({ textColor: "secondary", id: `${testId}-detail` }),
-								new b.progress.container({ id: `${testId}-bar` }),
-								new h.small(
-									new b.caption(
-										{ marginTop: 2, icon: "info-circle-fill", textColor: "secondary" },
-										"Click outside the dialog to stop the test."
-									)
-								),
-							]),
-
-							new h.p({ marginBottom: 0 }, [
-								new h.div(
-									{
-										display: "grid",
-										gap: 2,
-										style: { "grid-template-columns": "1fr 1fr 1fr" },
-									},
-									[10, 30, 50, 100, 300, 500, 1000, 3000, 5000].map((i) => {
-										return new h.a(
-											{
-												class: "btn btn-outline-secondary",
-												href: "#",
-												data: {
-													counter: i,
-												},
-												on: {
-													click: (event) => {
-														const target = event.target as Element;
-														const counter = parseInt(target.getAttribute("data-counter")!);
-
-														target
-															.closest("p")
-															?.previousElementSibling?.classList.remove("d-none");
-														target.closest("p")?.classList.add("d-none");
-
-														startMemoryTest(testId, counter);
-													},
-												},
-											},
-											`${i}`
-										);
-									})
-								),
-								new h.small(
-									new b.caption(
-										{ marginTop: 2, icon: "info-circle-fill", textColor: "secondary" },
-										"Click outside the dialog to cancel the test."
-									)
-								),
-							]),
-						])
-					)
-				);
+const mainContainer = () => {
+	return main.Container({
+		name: "Bootstrap TS",
+		bgColor: "primary",
+		textColor: "light",
+		icon: new h.div({ class: "animated-icon", fontSize: 3 }, new b.icon({ id: "hexagon-fill" })),
+		on: {
+			"bs-menu-change": (e) => {
+				onMenuChange((<CustomEvent>e).detail);
+			},
+			"bs-theme-change": (e) => {
+				onThemeChange((<CustomEvent>e).detail);
+			},
+			"bs-bootswatch-change": (e) => {
+				onBootswatchChange((<CustomEvent>e).detail);
+			},
+			"bs-bookmark-change": (e) => {
+				onBookmarkChange((<CustomEvent>e).detail);
 			},
 		},
-		{ href: "https://github.com/printf83/bsts", icon: { id: "github" }, label: "Github" },
-		{ href: "https://twitter.com/printf83", icon: { id: "twitter" }, label: "Twitter" },
-		{ href: "https://getbootstrap.com/", icon: { id: "bootstrap", type: "brand" }, label: "Bootstrap" },
-	],
+		itemMenu: genMenuWithBookmark(),
+		itemInsideLink: [{ value: "doc", label: "Docs" }],
+		currentInsideLink: "doc",
+		itemOutsideLink: [
+			{
+				href: "#",
+				icon: { id: "cpu" },
+				label: "Memory test",
+				onclick: (_event) => {
+					const testId = core.UUID();
 
-	itemTheme: [
-		{ value: "light", icon: { id: "sun-fill" }, label: "Light" },
-		{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
-		{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
-	],
-	currentTheme: CURRENT_THEME as main.IBsMainContainer["currentTheme"],
+					const offcanvas = document.getElementById("bsNavbar") as Element;
+					b.offcanvas.toggle(offcanvas);
 
-	itemBootswatch: [
-		{
-			value: "default",
-			label: "Default",
-		},
-		{ value: "cerulean", label: "Cerulean" },
-		{ value: "cosmo", label: "Cosmo" },
-		{ value: "cyborg", label: "Cyborg" },
-		{ value: "darkly", label: "Darkly" },
-		{ value: "flatly", label: "Flatly" },
-		{ value: "journal", label: "Journal" },
-		{ value: "litera", label: "Litera" },
-		{ value: "lumen", label: "Lumen" },
-		{ value: "lux", label: "Lux" },
-		{ value: "materia", label: "Materia" },
-		{ value: "minty", label: "Minty" },
-		{ value: "morph", label: "Morph" },
-		{ value: "pulse", label: "Pulse" },
-		{ value: "quartz", label: "Quartz" },
-		{ value: "sandstone", label: "Sandstone" },
-		{ value: "simplex", label: "Simplex" },
-		{ value: "sketchy", label: "Sketchy" },
-		{ value: "slate", label: "Slate" },
-		{ value: "solar", label: "Solar" },
-		{ value: "spacelab", label: "Spacelab" },
-		{ value: "superhero", label: "Superhero" },
-		{ value: "united", label: "United" },
-		{ value: "vapor", label: "Vapor" },
-		{ value: "yeti", label: "Yeti" },
-		{ value: "zephyr", label: "Zephyr" },
-	],
-	currentBootswatch: CURRENT_BOOTSWATCH,
-	content: {
-		loading: true,
-		item: () => {
-			return Array(core.rndBetween(3, 10))
-				.fill("")
-				.map(() => {
-					return new e.section([
-						new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
-						...Array(core.rndBetween(1, 3))
-							.fill("")
-							.map(() => {
-								return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
-							}),
-						new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
-					]);
-				})
-				.flat();
-		},
-	} as main.IAttrContent,
-	itemFooter: [
-		{
-			title: "Links",
-			item: [
-				{ href: "https://getbootstrap.com/", label: "Home" },
-				{ href: "https://getbootstrap.com/docs/5.3/", label: "Docs" },
-				{ href: "https://getbootstrap.com/docs/5.3/examples/", label: "Examples" },
-				{ href: "https://icons.getbootstrap.com/", label: "Icons" },
-				{ href: "https://themes.getbootstrap.com/", label: "Themes" },
-				{ href: "https://blog.getbootstrap.com/", label: "Blog" },
-				{ href: "https://cottonbureau.com/people/bootstrap", label: "Swag Store" },
-			],
-		},
-		{
-			title: "Guides",
-			item: [
-				{ href: "https://getbootstrap.com/docs/5.3/getting-started/", label: "Getting started" },
-				{ href: "https://getbootstrap.com/docs/5.3/examples/starter-template/", label: "Starter template" },
-				{ href: "https://getbootstrap.com/docs/5.3/getting-started/webpack/", label: "Webpack" },
-				{ href: "https://getbootstrap.com/docs/5.3/getting-started/parcel/", label: "Parcel" },
-				{ href: "https://getbootstrap.com/docs/5.3/getting-started/vite/", label: "Vite" },
-			],
-		},
-		{
-			title: "Projects",
-			item: [
-				{ href: "https://github.com/twbs/bootstrap", label: "Bootstrap 5" },
-				{ href: "https://github.com/twbs/bootstrap/tree/v4-dev", label: "Bootstrap 4" },
-				{ href: "https://github.com/twbs/icons", label: "Icons" },
-				{ href: "https://github.com/twbs/rfs", label: "RFS" },
-				{ href: "https://github.com/twbs/examples/", label: "npm starter" },
-			],
-		},
-		{
-			title: "Community",
-			item: [
-				{ href: "#", label: "Issues" },
-				{ href: "#", label: "Discussions" },
-				{ href: "#", label: "Corporate sponsors" },
-				{ href: "#", label: "Open Collective" },
-				{ href: "#", label: "Stack Overflow" },
-			],
-		},
-	],
-});
+					b.modal.show(
+						new b.modal.container([
+							new b.modal.body({ id: "memory-test-msg" }, [
+								new h.p(
+									"Please select one of the buttons below to open a specified number of pages for the purpose of detecting potential memory leaks. To facilitate this process, you can utilize either the {{Memory Monitor Program}} on your device or the {{Developer Tools}} available in your browser. Before commencing the memory leak test, please make a note of the current memory usage. Upon completion of the test, kindly compare the memory difference. It is anticipated that the memory should revert back to its original state once the test is finalized."
+								),
+
+								new h.p([
+									new h.div(
+										{
+											display: "grid",
+											gap: 2,
+											style: { "grid-template-columns": "1fr 1fr 1fr" },
+										},
+										[10, 30, 50, 100, 300, 500, 1000, 3000, 5000].map((i) => {
+											return new h.a(
+												{
+													class: "btn btn-outline-secondary",
+													href: "#",
+													data: {
+														counter: i,
+													},
+													on: {
+														click: (event) => {
+															const target = event.target as Element;
+															const counter = parseInt(
+																target.getAttribute("data-counter")!
+															);
+
+															document
+																.getElementById("memory-test-progress")
+																?.classList.remove("d-none");
+															document
+																.getElementById("memory-test-msg")
+																?.classList.add("d-none");
+
+															startMemoryTest(testId, counter);
+														},
+													},
+												},
+												`${i}`
+											);
+										})
+									),
+								]),
+
+								new h.small(
+									new b.caption(
+										{ icon: "info-circle-fill", textColor: "secondary" },
+										"To cancel the test, simply click outside the dialog."
+									)
+								),
+							]),
+
+							new b.modal.body({ id: "memory-test-progress", display: "none" }, [
+								new h.p(
+									"Memory Test in Progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."
+								),
+
+								new h.div({ textColor: "secondary", lineHeight: "sm" }, [
+									new h.small([
+										"Counter : ",
+										new h.b({ id: `${testId}-count` }, "..."),
+										" / ",
+										new h.b({ id: `${testId}-total` }, "..."),
+									]),
+									new h.br(),
+									new h.small(["Current page : ", new h.b({ id: `${testId}-page` }, "...")]),
+									new h.br(),
+									new h.small([
+										"Page load speed : ",
+										new h.b({ id: `${testId}-speed` }, "Calculating..."),
+										" page/sec",
+									]),
+									new h.br(),
+									new h.small([
+										"Estimated time remaining : ",
+										new h.b({ id: `${testId}-estimate` }, "Calculating..."),
+									]),
+									new h.div(
+										{ marginTop: 2 },
+										new b.progress.container(
+											new b.progress.bar({
+												id: `${testId}-bar`,
+												striped: true,
+											})
+										)
+									),
+								]),
+							]),
+						])
+					);
+				},
+			},
+			{ href: "https://github.com/printf83/bsts", icon: { id: "github" }, label: "Github" },
+			{ href: "https://twitter.com/printf83", icon: { id: "twitter" }, label: "Twitter" },
+			{ href: "https://getbootstrap.com/", icon: { id: "bootstrap", type: "brand" }, label: "Bootstrap" },
+		],
+		itemTheme: [
+			{ value: "light", icon: { id: "sun-fill" }, label: "Light" },
+			{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
+			{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
+		],
+		currentTheme: getSavedTheme() as main.IBsMainContainer["currentTheme"],
+		itemBootswatch: [
+			{
+				value: "default",
+				label: "Default",
+			},
+			{ value: "cerulean", label: "Cerulean" },
+			{ value: "cosmo", label: "Cosmo" },
+			{ value: "cyborg", label: "Cyborg" },
+			{ value: "darkly", label: "Darkly" },
+			{ value: "flatly", label: "Flatly" },
+			{ value: "journal", label: "Journal" },
+			{ value: "litera", label: "Litera" },
+			{ value: "lumen", label: "Lumen" },
+			{ value: "lux", label: "Lux" },
+			{ value: "materia", label: "Materia" },
+			{ value: "minty", label: "Minty" },
+			{ value: "morph", label: "Morph" },
+			{ value: "pulse", label: "Pulse" },
+			{ value: "quartz", label: "Quartz" },
+			{ value: "sandstone", label: "Sandstone" },
+			{ value: "simplex", label: "Simplex" },
+			{ value: "sketchy", label: "Sketchy" },
+			{ value: "slate", label: "Slate" },
+			{ value: "solar", label: "Solar" },
+			{ value: "spacelab", label: "Spacelab" },
+			{ value: "superhero", label: "Superhero" },
+			{ value: "united", label: "United" },
+			{ value: "vapor", label: "Vapor" },
+			{ value: "yeti", label: "Yeti" },
+			{ value: "zephyr", label: "Zephyr" },
+		],
+		currentBootswatch: getSavedBootswatch(),
+		content: {
+			loading: true,
+			item: () => {
+				return Array(core.rndBetween(3, 10))
+					.fill("")
+					.map(() => {
+						return new e.section([
+							new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
+							...Array(core.rndBetween(1, 3))
+								.fill("")
+								.map(() => {
+									return new e.text(
+										{ loadingPlaceholderAnimation: "wave" },
+										core.placeholder(10, 20)
+									);
+								}),
+							new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
+						]);
+					})
+					.flat();
+			},
+		} as main.IAttrContent,
+		itemFooter: [
+			{
+				title: "Links",
+				item: [
+					{ href: "https://getbootstrap.com/", label: "Home" },
+					{ href: "https://getbootstrap.com/docs/5.3/", label: "Docs" },
+					{ href: "https://getbootstrap.com/docs/5.3/examples/", label: "Examples" },
+					{ href: "https://icons.getbootstrap.com/", label: "Icons" },
+					{ href: "https://themes.getbootstrap.com/", label: "Themes" },
+					{ href: "https://blog.getbootstrap.com/", label: "Blog" },
+					{ href: "https://cottonbureau.com/people/bootstrap", label: "Swag Store" },
+				],
+			},
+			{
+				title: "Guides",
+				item: [
+					{ href: "https://getbootstrap.com/docs/5.3/getting-started/", label: "Getting started" },
+					{ href: "https://getbootstrap.com/docs/5.3/examples/starter-template/", label: "Starter template" },
+					{ href: "https://getbootstrap.com/docs/5.3/getting-started/webpack/", label: "Webpack" },
+					{ href: "https://getbootstrap.com/docs/5.3/getting-started/parcel/", label: "Parcel" },
+					{ href: "https://getbootstrap.com/docs/5.3/getting-started/vite/", label: "Vite" },
+				],
+			},
+			{
+				title: "Projects",
+				item: [
+					{ href: "https://github.com/twbs/bootstrap", label: "Bootstrap 5" },
+					{ href: "https://github.com/twbs/bootstrap/tree/v4-dev", label: "Bootstrap 4" },
+					{ href: "https://github.com/twbs/icons", label: "Icons" },
+					{ href: "https://github.com/twbs/rfs", label: "RFS" },
+					{ href: "https://github.com/twbs/examples/", label: "npm starter" },
+				],
+			},
+			{
+				title: "Community",
+				item: [
+					{ href: "#", label: "Issues" },
+					{ href: "#", label: "Discussions" },
+					{ href: "#", label: "Corporate sponsors" },
+					{ href: "#", label: "Open Collective" },
+					{ href: "#", label: "Stack Overflow" },
+				],
+			},
+		],
+	});
+};
 
 core.documentReady(() => {
 	onThemeChange(getSavedTheme());
 
 	let body = document.getElementById("main") as Element;
-	core.replaceChild(body, mainContainer);
+	core.replaceChild(body, mainContainer());
 
 	loadDefaultDoc();
 	setupWindowPopState();

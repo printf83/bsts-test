@@ -1340,7 +1340,7 @@ export const nav: IAttrContent = {
 						}
 
 						const content = (title: string) =>
-							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
+							`This is some placeholder content the {{b::${title} tab's}} associated content.`;
 
 						const d = [
 							{ label: "Home", id: "home", active: true },
