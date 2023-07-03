@@ -635,11 +635,34 @@ const docDB = () => {
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
 let lastEstimate = 0;
-const runMemoryTest = (startTime: number, testId: string, count: number, callback: Function, max?: number) => {
+
+const genDurationText = (second: number) => {
+	if (second > 60) {
+		if (second % 60 === 0) {
+			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""}`;
+		} else {
+			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""} ${second % 60} second${
+				second % 60 > 1 ? "s" : ""
+			}`;
+		}
+	} else {
+		return `${second} second${second > 1 ? "s" : ""}`;
+	}
+};
+
+const runMemoryTest = (
+	startTime: number,
+	testId: string,
+	count: number,
+	callback: Function,
+	random?: boolean,
+	max?: number
+) => {
 	max ??= count;
 
 	let mDB = docDB();
-	let docId = mDB[core.rndBetween(0, mDB.length - 1)];
+	let mDBLength = mDB.length;
+	let docId = random ? mDB[core.rndBetween(0, mDBLength - 1)] : mDB[(max - count) % mDB.length];
 
 	if (count > 0) {
 		core.requestIdleCallback(() => {
@@ -687,7 +710,7 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 						}
 					}
 
-					runMemoryTest(startTime, testId, count - 1, callback, max);
+					runMemoryTest(startTime, testId, count - 1, callback, random, max);
 				} else {
 					callback(max! - count, docId);
 				}
@@ -698,64 +721,173 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 	}
 };
 
-const genDurationText = (second: number) => {
-	if (second > 60) {
-		if (second % 60 === 0) {
-			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""}`;
-		} else {
-			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""} ${second % 60} second${
-				second % 60 > 1 ? "s" : ""
-			}`;
-		}
-	} else {
-		return `${second} second${second > 1 ? "s" : ""}`;
-	}
-};
-
-const startMemoryTest = (testId: string, count: number) => {
+const startMemoryTest = (sender: Element, testId: string, count: number, random: boolean) => {
 	const progressTotal = document.getElementById(`${testId}-total`);
 	if (progressTotal) {
 		progressTotal.innerText = count.toString();
 	}
 
 	const STARTMEMORYTEST = performance.now();
-	runMemoryTest(performance.now(), testId, count, (docCount: number, docId: string) => {
-		const ENDMEMORYTEST = performance.now();
+	runMemoryTest(
+		performance.now(),
+		testId,
+		count,
+		(docCount: number, docId: string) => {
+			const ENDMEMORYTEST = performance.now();
 
-		highlightCurrentMenu(docId);
-		onMenuChange(docId, false, "push", () => {
-			let result: string = "";
-
-			let loadSpeed = ~~((docCount / (ENDMEMORYTEST - STARTMEMORYTEST)) * 1000);
-			let durationSecond = ~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000);
-
-			if (MEMORYLEAKTEST_COUNTTAG) {
-				result = `
-					Page count : {{b::${docCount}}} page{{br}}
-					Load speed : ±{{b::${loadSpeed}}} page/sec{{br}}
-					Duration : {{b::${genDurationText(durationSecond)}}}{{br}}
-					Less element : {{b::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
-					Most element : {{b::${MOSTTAG.title} (${MOSTTAG.count} element)}}`;
-			} else {
-				result = `
-					Page count : {{b::${docCount}}} page{{br}}
-					Load speed : ±{{b::${loadSpeed}}} page/sec{{br}}
-					Duration : {{b::${genDurationText(durationSecond)}}}`;
+			if (sender) {
+				const mdl = sender.closest(".modal-dialog") as Element;
+				if (mdl) {
+					console.log(mdl);
+					b.modal.hide(mdl);
+				}
 			}
 
-			b.modal.show(
-				b.modal.create({
-					title: "Memory test complete",
-					elem: new b.msg({
-						icon: new b.icon({ id: "info-circle-fill", color: "primary" }),
-						elem: result,
-					}),
-					btn: "ok",
-				})
-			);
-		});
-	});
+			highlightCurrentMenu(docId);
+			onMenuChange(docId, false, "push", () => {
+				let result: string = "";
+
+				let loadSpeed = ~~((docCount / (ENDMEMORYTEST - STARTMEMORYTEST)) * 1000);
+				let durationSecond = ~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000);
+
+				if (MEMORYLEAKTEST_COUNTTAG) {
+					result = `
+					Page count : {{s::${docCount}}} page{{br}}
+					Load speed : ±{{s::${loadSpeed}}} page/sec{{br}}
+					Duration : {{s::${genDurationText(durationSecond)}}}{{br}}
+					Less element : {{s::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
+					Most element : {{s::${MOSTTAG.title} (${MOSTTAG.count} element)}}`;
+				} else {
+					result = `
+					Page count : {{s::${docCount}}} page{{br}}
+					Load speed : ±{{s::${loadSpeed}}} page/sec{{br}}
+					Duration : {{s::${genDurationText(durationSecond)}}}`;
+				}
+
+				b.modal.show(
+					b.modal.create({
+						title: "Memory test complete",
+						elem: new b.msg({
+							icon: new b.icon({ id: "info-circle-fill", color: "primary" }),
+							elem: result,
+						}),
+						btn: "ok",
+					})
+				);
+			});
+		},
+		random
+	);
 };
+
+const showMemoryTestDialog = () => {
+	const testId = core.UUID();
+
+	const offcanvas = document.getElementById("bsNavbar") as Element;
+	b.offcanvas.hide(offcanvas);
+
+	b.modal.show(
+		new b.modal.container([
+			new b.modal.body({ id: "memory-test-msg" }, [
+				new h.p(
+					"Please select one of the buttons below to open a specified number of pages for the purpose of detecting potential memory leaks. To facilitate this process, you can utilize either the {{Memory Monitor Program}} on your device or the {{Developer Tools}} available in your browser. Before commencing the memory leak test, please make a note of the current memory usage. Upon completion of the test, kindly compare the memory difference. It is anticipated that the memory should revert back to its original state once the test is finalized."
+				),
+
+				new h.p([
+					b.form.check({
+						container: { marginBottom: 3 },
+						type: "checkbox",
+						switch: true,
+						label: "Random page",
+						checked: true,
+						id: "memory-test-random",
+					}),
+					new h.div(
+						{
+							display: "grid",
+							gap: 2,
+							style: { "grid-template-columns": "1fr 1fr 1fr" },
+						},
+						[10, 30, 50, 100, 300, 500, 1000, 3000, 5000].map((i) => {
+							return new b.button(
+								{
+									outline: true,
+									color: i === 500 ? "primary" : "secondary",
+									data: {
+										counter: i,
+									},
+									on: {
+										click: (event) => {
+											const target = event.target as Element;
+											const counter = parseInt(target.getAttribute("data-counter")!);
+
+											document.getElementById("memory-test-progress")?.classList.remove("d-none");
+											document.getElementById("memory-test-msg")?.classList.add("d-none");
+
+											startMemoryTest(
+												target,
+												testId,
+												counter,
+												(document.getElementById("memory-test-random") as HTMLInputElement)
+													.checked
+											);
+										},
+									},
+								},
+								`${i}`
+							);
+						})
+					),
+				]),
+
+				new h.small(
+					new b.caption(
+						{ icon: "info-circle-fill", textColor: "secondary" },
+						"To cancel the test, simply click outside the dialog."
+					)
+				),
+			]),
+
+			new b.modal.body({ id: "memory-test-progress", display: "none" }, [
+				new h.p(
+					"Memory Test in Progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."
+				),
+
+				new h.div({ textColor: "secondary", lineHeight: "sm" }, [
+					new h.small([
+						"Counter : ",
+						new h.strong({ id: `${testId}-count` }, "..."),
+						" / ",
+						new h.strong({ id: `${testId}-total` }, "..."),
+					]),
+					new h.br(),
+					new h.small(["Current page : ", new h.strong({ id: `${testId}-page` }, "...")]),
+					new h.br(),
+					new h.small([
+						"Page load speed : ±",
+						new h.strong({ id: `${testId}-speed` }, "Calculating..."),
+						" page/sec",
+					]),
+					new h.br(),
+					new h.small([
+						"Estimated time remaining : ",
+						new h.strong({ id: `${testId}-estimate` }, "Calculating..."),
+					]),
+					new h.div(
+						{ marginTop: 2 },
+						new b.progress.container(
+							new b.progress.bar({
+								id: `${testId}-bar`,
+							})
+						)
+					),
+				]),
+			]),
+		])
+	);
+};
+
+const showSearchDialog = () => {};
 
 const mainContainer = () => {
 	return main.Container({
@@ -783,106 +915,18 @@ const mainContainer = () => {
 		itemOutsideLink: [
 			{
 				href: "#",
+				icon: { id: "search" },
+				label: "Search",
+				onclick: (_event) => {
+					showSearchDialog();
+				},
+			},
+			{
+				href: "#",
 				icon: { id: "cpu" },
 				label: "Memory test",
 				onclick: (_event) => {
-					const testId = core.UUID();
-
-					const offcanvas = document.getElementById("bsNavbar") as Element;
-					b.offcanvas.toggle(offcanvas);
-
-					b.modal.show(
-						new b.modal.container([
-							new b.modal.body({ id: "memory-test-msg" }, [
-								new h.p(
-									"Please select one of the buttons below to open a specified number of pages for the purpose of detecting potential memory leaks. To facilitate this process, you can utilize either the {{Memory Monitor Program}} on your device or the {{Developer Tools}} available in your browser. Before commencing the memory leak test, please make a note of the current memory usage. Upon completion of the test, kindly compare the memory difference. It is anticipated that the memory should revert back to its original state once the test is finalized."
-								),
-
-								new h.p([
-									new h.div(
-										{
-											display: "grid",
-											gap: 2,
-											style: { "grid-template-columns": "1fr 1fr 1fr" },
-										},
-										[10, 30, 50, 100, 300, 500, 1000, 3000, 5000].map((i) => {
-											return new h.a(
-												{
-													class: "btn btn-outline-secondary",
-													href: "#",
-													data: {
-														counter: i,
-													},
-													on: {
-														click: (event) => {
-															const target = event.target as Element;
-															const counter = parseInt(
-																target.getAttribute("data-counter")!
-															);
-
-															document
-																.getElementById("memory-test-progress")
-																?.classList.remove("d-none");
-															document
-																.getElementById("memory-test-msg")
-																?.classList.add("d-none");
-
-															startMemoryTest(testId, counter);
-														},
-													},
-												},
-												`${i}`
-											);
-										})
-									),
-								]),
-
-								new h.small(
-									new b.caption(
-										{ icon: "info-circle-fill", textColor: "secondary" },
-										"To cancel the test, simply click outside the dialog."
-									)
-								),
-							]),
-
-							new b.modal.body({ id: "memory-test-progress", display: "none" }, [
-								new h.p(
-									"Memory Test in Progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."
-								),
-
-								new h.div({ textColor: "secondary", lineHeight: "sm" }, [
-									new h.small([
-										"Counter : ",
-										new h.b({ id: `${testId}-count` }, "..."),
-										" / ",
-										new h.b({ id: `${testId}-total` }, "..."),
-									]),
-									new h.br(),
-									new h.small(["Current page : ", new h.b({ id: `${testId}-page` }, "...")]),
-									new h.br(),
-									new h.small([
-										"Page load speed : ±",
-										new h.b({ id: `${testId}-speed` }, "Calculating..."),
-										" page/sec",
-									]),
-									new h.br(),
-									new h.small([
-										"Estimated time remaining : ",
-										new h.b({ id: `${testId}-estimate` }, "Calculating..."),
-									]),
-									new h.div(
-										{ marginTop: 2 },
-										new b.progress.container(
-											new b.progress.bar({
-												id: `${testId}-bar`,
-												striped: true,
-											})
-										)
-									),
-								]),
-							]),
-						])
-					);
+					showMemoryTestDialog();
 				},
 			},
 			{ href: "https://github.com/printf83/bsts", icon: { id: "github" }, label: "Github" },
