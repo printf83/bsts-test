@@ -783,9 +783,6 @@ const startMemoryTest = (sender: Element, testId: string, count: number, random:
 const showMemoryTestDialog = () => {
 	const testId = core.UUID();
 
-	const offcanvas = document.getElementById("bsNavbar") as Element;
-	b.offcanvas.hide(offcanvas);
-
 	b.modal.show(
 		new b.modal.container([
 			new b.modal.body({ id: "memory-test-msg" }, [
@@ -887,7 +884,94 @@ const showMemoryTestDialog = () => {
 	);
 };
 
-const showSearchDialog = () => {};
+interface pageIndex {
+	category?: string | null;
+
+	page?: string | null;
+	pageId: string;
+
+	section?: string | null;
+	sectionId?: string | null;
+
+	text?: string | null;
+}
+
+let _docIndexDB: pageIndex[] = [];
+let _docIndexDBStatus: number = -1;
+
+const isDocItemIndexed = (pageId: string) => {
+	if (_docIndexDB && _docIndexDB.length > 0) {
+		return _docIndexDB.filter((i) => i.pageId === pageId).length > 0;
+	} else {
+		return false;
+	}
+};
+
+const indexDocMenu = (index: number, callback: () => void) => {
+	if (index < m.doc.length) {
+		_docIndexDBStatus = 0;
+		indexDocItem(0, m.doc[index].label, m.doc[index].item, () => {
+			indexDocMenu(index + 1, callback);
+		});
+	} else {
+		_docIndexDBStatus = 1;
+		callback();
+	}
+};
+
+const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMenu[], callback: () => void) => {
+	if (index < item.length) {
+		if (!isDocItemIndexed(item[index].value)) {
+			getData(item[index].value, (data) => {
+				if (data && data.item) {
+					let contentItem = data.item();
+					if (contentItem) {
+						let n = core.getNode(contentItem);
+
+						if (n) {
+							if (!Array.isArray(n)) {
+								n = [n];
+							}
+
+							if (n.length > 0) {
+								n.forEach((i) => {
+									_docIndexDB.push({
+										category: category,
+
+										page: item[index].label,
+										pageId: item[index].value,
+
+										section: i.getAttribute("data-title"),
+										sectionId: i.id,
+
+										text: i.textContent,
+									});
+								});
+							}
+						}
+					}
+				}
+
+				core.requestIdleCallback(() => {
+					indexDocItem(index + 1, category, item, callback);
+				}, 300);
+			});
+		} else {
+			indexDocItem(index + 1, category, item, callback);
+		}
+	} else {
+		callback();
+	}
+};
+
+const showSearchDialog = () => {
+	console.log("Start indexing all page");
+	const startTime = performance.now();
+	indexDocMenu(0, () => {
+		console.log(`Indexing complete in ${genDurationText(~~((performance.now() - startTime) / 1000))}`);
+		console.log(_docIndexDB);
+	});
+};
 
 const mainContainer = () => {
 	return main.Container({
@@ -918,6 +1002,8 @@ const mainContainer = () => {
 				icon: { id: "search" },
 				label: "Search",
 				onclick: (_event) => {
+					const offcanvas = document.getElementById("bsNavbar") as Element;
+					b.offcanvas.hide(offcanvas);
 					showSearchDialog();
 				},
 			},
@@ -926,6 +1012,8 @@ const mainContainer = () => {
 				icon: { id: "cpu" },
 				label: "Memory test",
 				onclick: (_event) => {
+					const offcanvas = document.getElementById("bsNavbar") as Element;
+					b.offcanvas.hide(offcanvas);
 					showMemoryTestDialog();
 				},
 			},
