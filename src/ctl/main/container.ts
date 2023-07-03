@@ -763,28 +763,7 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 };
 
 export const genMainContent = (content?: IAttrContent) => {
-	if (content?.loading) {
-		content.item = () => {
-			return Array(core.rndBetween(3, 10))
-				.fill("")
-				.map((i) => {
-					return [
-						new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
-						...Array(core.rndBetween(1, 3))
-							.fill("")
-							.map(() => {
-								return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
-							}),
-						new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
-					];
-				})
-				.flat();
-		};
-
-		return [genIntro(content), genToc(content), genContent(content)];
-	} else {
-		return [genIntro(content), genToc(content), genContent(content)];
-	}
+	return [genIntro(content), genToc(content), genContent(content)];
 };
 
 export interface IBsMainContainer extends core.IAttr {

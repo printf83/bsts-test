@@ -2,19 +2,27 @@ import { b, core, h } from "@printf83/bsts";
 import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 import { updateMenu } from "./ctl/main/container.js";
+import * as e from "./ctl/example/_index.js";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;
 
+declare var PR: {
+	prettyPrint: () => void;
+};
+
 const cookie = {
 	set: (name: string, value: string, expiredInDays?: number, path?: string) => {
 		expiredInDays ??= 7;
-		path ??= window.location.hostname;
 
 		let date = new Date();
 		date.setTime(date.getTime() + expiredInDays * 24 * 60 * 60 * 1000);
-		const expires = `expires=${date.toUTCString()}`;
-		document.cookie = `${name}=${value};${expires};SameSite=Strict;path=${path}`;
+		const optExpires = `expires=${date.toUTCString()};`;
+		const optSamesite = `samesite=strict;`;
+		const optPath = `path=${path || window.location.hostname};`;
+		const optValue = `${name}=${value};`;
+
+		document.cookie = `${optValue}${optExpires}${optSamesite}${optPath}`;
 	},
 	delete: (name: string) => {
 		cookie.set(name, "", -1);
@@ -104,10 +112,6 @@ const setupThemeChanges = () => {
 
 let CURRENT_THEME = getSavedTheme();
 let CURRENT_BOOTSWATCH = getSavedBootswatch();
-
-declare var PR: {
-	prettyPrint: () => void;
-};
 
 let m = {
 	doc: [
@@ -578,6 +582,23 @@ const setupWindowPopState = () => {
 	};
 };
 
+const highlightCurrentMenu = (value?: string) => {
+	let bsMenu = document.getElementById("bs-menu") as Element;
+	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
+	if (lastActive) {
+		lastActive.classList.remove("active");
+		lastActive.removeAttribute("aria-current");
+	}
+
+	if (value) {
+		let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
+		if (newActive) {
+			newActive.classList.add("active");
+			newActive.setAttribute("aria-current", "page");
+		}
+	}
+};
+
 const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 	if (anchorId) {
 		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
@@ -613,7 +634,7 @@ const docDB = () => {
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
-const runMemoryTest = (count: number, callback: Function, max?: number) => {
+const runMemoryTest = (testId: string, count: number, callback: Function, max?: number) => {
 	max ??= count;
 
 	let mDB = docDB();
@@ -622,39 +643,61 @@ const runMemoryTest = (count: number, callback: Function, max?: number) => {
 	if (count > 0) {
 		core.requestIdleCallback(() => {
 			getData(docId, (docData) => {
-				let contentbody = document.getElementById("bs-main") as Element;
-				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-				highlightCurrentMenu(docId);
+				const progressBar = document.getElementById(`${testId}-bar`);
+				const progressDetail = document.getElementById(`${testId}-detail`);
 
-				document.title = `${Math.floor(((max! - count) / max!) * 100)}% complete`;
+				if (progressBar && progressDetail) {
+					let contentbody = document.getElementById("bs-main") as Element;
+					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+					highlightCurrentMenu(docId);
+					const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 
-				const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+					core.replaceWith(
+						progressBar,
+						new b.progress.container({
+							id: `${testId}-bar`,
+							value: ((max! - count) / max!) * 100,
+						})
+					);
 
-				if (MEMORYLEAKTEST_COUNTTAG) {
-					const tagCount = contentbody.getElementsByTagName("*").length;
-					if (tagCount > MOSTTAG.count) {
-						MOSTTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
-						MOSTTAG.count = tagCount;
+					core.replaceWith(
+						progressDetail,
+						new h.small(
+							{
+								textColor: "secondary",
+								id: `${testId}-detail`,
+							},
+							`[${max! - count} / ${max}] Load ${pagetitle}`
+						)
+					);
+
+					if (MEMORYLEAKTEST_COUNTTAG) {
+						const tagCount = contentbody.getElementsByTagName("*").length;
+						if (tagCount > MOSTTAG.count) {
+							MOSTTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+							MOSTTAG.count = tagCount;
+						}
+
+						if (tagCount < LESSTAG.count) {
+							LESSTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+							LESSTAG.count = tagCount;
+						}
 					}
 
-					if (tagCount < LESSTAG.count) {
-						LESSTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
-						LESSTAG.count = tagCount;
-					}
+					runMemoryTest(testId, count - 1, callback, max);
+				} else {
+					callback(max! - count, docId);
 				}
-
-				runMemoryTest(count - 1, callback, max);
 			});
 		}, 300);
 	} else {
-		highlightCurrentMenu(docId);
-		callback(docId);
+		callback(max! - count, docId);
 	}
 };
 
-const startMemoryTest = (count: number) => {
+const startMemoryTest = (testId: string, count: number) => {
 	const STARTMEMORYTEST = performance.now();
-	runMemoryTest(count, (docId: string) => {
+	runMemoryTest(testId, count, (docCount: number, docId: string) => {
 		const ENDMEMORYTEST = performance.now();
 
 		highlightCurrentMenu(docId);
@@ -668,12 +711,12 @@ const startMemoryTest = (count: number) => {
 							new h.p("Memory test complete :"),
 							MEMORYLEAKTEST_COUNTTAG
 								? new h.p(`
-							No of page : {{b::${count}}}{{br}}
+							No of page : {{b::${docCount}}}{{br}}
 							Duration : {{b::${~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000)} seconds}}{{br}}
 							Less Element : {{b::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
 							Most Element : {{b::${MOSTTAG.title} (${MOSTTAG.count} element)}}`)
 								: new h.p(`
-							No of page : {{b::${count}}}{{br}}
+							No of page : {{b::${docCount}}}{{br}}
 							Duration : {{b::${~~((ENDMEMORYTEST - STARTMEMORYTEST) / 1000)} seconds}}`),
 						],
 					}),
@@ -715,36 +758,65 @@ const mainContainer = main.Container({
 			icon: { id: "cpu" },
 			label: "Memory test",
 			onclick: (_event) => {
+				const testId = core.UUID();
 				b.modal.show(
 					new b.modal.container(
 						new b.modal.body([
 							new h.p(
 								"Open random page to detect memory leak. Please open {{Memory Monitor Program}} on your device and compare the memory diffrence before start memory leak test and after the test complete. You should have back your memory when the test complete."
 							),
-							new b.tabList.container(
-								[10, 30, 50, 100, 300, 500, 1000, 3000, 5000, 10000].map((i) => {
-									return new b.tabList.item(
-										{
-											href: "#",
-											action: true,
-											data: {
-												counter: i,
-											},
-											on: {
-												click: (event) => {
-													const target = event.target as Element;
 
-													const counter = parseInt(target.getAttribute("data-counter")!);
+							new h.p({ display: "none", marginBottom: 0 }, [
+								new h.small({ textColor: "secondary", id: `${testId}-detail` }),
+								new b.progress.container({ id: `${testId}-bar` }),
+								new h.small(
+									new b.caption(
+										{ marginTop: 2, icon: "info-circle-fill", textColor: "secondary" },
+										"Click outside the dialog to stop the test."
+									)
+								),
+							]),
 
-													b.modal.hide(target);
-													startMemoryTest(counter);
+							new h.p({ marginBottom: 0 }, [
+								new h.div(
+									{
+										display: "grid",
+										gap: 2,
+										style: { "grid-template-columns": "1fr 1fr 1fr" },
+									},
+									[10, 30, 50, 100, 300, 500, 1000, 3000, 5000].map((i) => {
+										return new h.a(
+											{
+												class: "btn btn-outline-secondary",
+												href: "#",
+												data: {
+													counter: i,
+												},
+												on: {
+													click: (event) => {
+														const target = event.target as Element;
+														const counter = parseInt(target.getAttribute("data-counter")!);
+
+														target
+															.closest("p")
+															?.previousElementSibling?.classList.remove("d-none");
+														target.closest("p")?.classList.add("d-none");
+
+														startMemoryTest(testId, counter);
+													},
 												},
 											},
-										},
-										`Open ${i} random page`
-									);
-								})
-							),
+											`${i}`
+										);
+									})
+								),
+								new h.small(
+									new b.caption(
+										{ marginTop: 2, icon: "info-circle-fill", textColor: "secondary" },
+										"Click outside the dialog to cancel the test."
+									)
+								),
+							]),
 						])
 					)
 				);
@@ -796,6 +868,22 @@ const mainContainer = main.Container({
 	currentBootswatch: CURRENT_BOOTSWATCH,
 	content: {
 		loading: true,
+		item: () => {
+			return Array(core.rndBetween(3, 10))
+				.fill("")
+				.map(() => {
+					return new e.section([
+						new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
+						...Array(core.rndBetween(1, 3))
+							.fill("")
+							.map(() => {
+								return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
+							}),
+						new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
+					]);
+				})
+				.flat();
+		},
 	} as main.IAttrContent,
 	itemFooter: [
 		{
@@ -842,23 +930,6 @@ const mainContainer = main.Container({
 		},
 	],
 });
-
-const highlightCurrentMenu = (value?: string) => {
-	let bsMenu = document.getElementById("bs-menu") as Element;
-	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
-	if (lastActive) {
-		lastActive.classList.remove("active");
-		lastActive.removeAttribute("aria-current");
-	}
-
-	if (value) {
-		let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
-		if (newActive) {
-			newActive.classList.add("active");
-			newActive.setAttribute("aria-current", "page");
-		}
-	}
-};
 
 core.documentReady(() => {
 	onThemeChange(getSavedTheme());

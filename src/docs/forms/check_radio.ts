@@ -138,7 +138,7 @@ export const check_radio: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
+			new e.section({ id: "radio_disabled" }, [
 				new e.subtitle({ id: "radio_disabled" }, "Disabled"),
 				new e.text(
 					"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."

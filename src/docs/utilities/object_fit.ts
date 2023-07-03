@@ -54,6 +54,7 @@ export const object_fit: IAttrContent = {
 					"Responsive variations also exist for each {{object-fit}} value using the format {{.object-fit-{breakpoint}-{value} }}, for the following breakpoint abbreviations: {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}. Classes can be combined for various effects as you need."
 				),
 				new e.code({
+					showViewport: true,
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["sm-contain", "md-contain", "lg-contain", "xl-contain", "xxl-contain"].map(
