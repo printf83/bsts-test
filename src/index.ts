@@ -897,7 +897,6 @@ interface pageIndex {
 }
 
 let _docIndexDB: pageIndex[] = [];
-let _docIndexDBStatus: number = -1;
 
 const isDocItemIndexed = (pageId: string) => {
 	if (_docIndexDB && _docIndexDB.length > 0) {
@@ -909,12 +908,10 @@ const isDocItemIndexed = (pageId: string) => {
 
 const indexDocMenu = (index: number, callback: () => void) => {
 	if (index < m.doc.length) {
-		_docIndexDBStatus = 0;
 		indexDocItem(0, m.doc[index].label, m.doc[index].item, () => {
 			indexDocMenu(index + 1, callback);
 		});
 	} else {
-		_docIndexDBStatus = 1;
 		callback();
 	}
 };
@@ -965,12 +962,47 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 };
 
 const showSearchDialog = () => {
-	console.log("Start indexing all page");
-	const startTime = performance.now();
-	indexDocMenu(0, () => {
-		console.log(`Indexing complete in ${genDurationText(~~((performance.now() - startTime) / 1000))}`);
-		console.log(_docIndexDB);
-	});
+	b.modal.show(
+		new b.modal.container(
+			{
+				on: {
+					"shown.bs.modal": (_event) => {
+						let searchInput = document.getElementById("doc-search-input") as HTMLDivElement;
+						let searchStatus = document.getElementById("doc-search-status") as HTMLDivElement;
+						if (searchStatus && searchInput) {
+							searchInput.focus();
+							searchStatus.innerText = `Indexing...`;
+
+							const startTime = performance.now();
+							indexDocMenu(0, () => {
+								searchStatus.innerText = `Indexing complete in ${genDurationText(
+									~~((performance.now() - startTime) / 1000)
+								)}`;
+
+								// console.log(_docIndexDB);
+							});
+						}
+					},
+				},
+			},
+			[
+				new b.modal.body([
+					new h.div({ display: "grid", gap: 3 }, [
+						b.form.input({ id: "doc-search-input", type: "search", weight: "lg", placeholder: "Search" }),
+					]),
+
+					new h.div(
+						{
+							marginTop: 3,
+							display: "flex",
+							justifyContent: "between",
+						},
+						[new h.div({ id: "doc-search-status" }, "...")]
+					),
+				]),
+			]
+		)
+	);
 };
 
 const mainContainer = () => {
