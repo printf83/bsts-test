@@ -939,6 +939,12 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 										textContent = textContent.replace(/SOURCELoading\.\.\./g, "");
 										textContent = textContent.replace(/CSSLoading\.\.\./g, "");
 										textContent = textContent.replace(/MANAGERLoading\.\.\./g, "");
+										textContent = textContent.replace(/VIEW PORTXSSMMDLGXLXXL/g, "");
+										textContent = textContent.replace(/ZOOM25\%/g, "");
+										textContent = textContent.replace(/ZOOM50\%/g, "");
+										textContent = textContent.replace(/ZOOM75\%/g, "");
+										textContent = textContent.replace(/ZOOM100\%/g, "");
+										textContent = textContent.replace(/CONSOLE/g, "");
 										textContent = textContent.replace(/Loading\.\.\./g, "");
 										textContent = textContent.replace(/  |\r\n|\n|\r/gm, "");
 									}
