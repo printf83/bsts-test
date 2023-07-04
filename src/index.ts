@@ -1000,47 +1000,56 @@ const searchTitle = (value: string, i: pageIndex) => {
 	return false;
 };
 
+const searchText = (value: string, i: pageIndex) => {
+	if (i.text) {
+		let match = new RegExp(value, "gmi").exec(i.text);
+		if (match) {
+			let text = i.text.substring(match.index - 10, match.index + value.length + 10);
+
+			let st = new RegExp(value, "gmi").exec(text);
+			if (st) {
+				text = `${text.substring(0, st?.index)}{{m::${text.substring(
+					st?.index,
+					st?.index + value.length
+				)}}}${text.substring(st?.index! + value.length)}`;
+			} else {
+				text = text;
+			}
+
+			return {
+				category: i.category,
+				page: i.page,
+				pageId: i.pageId,
+				section: i.section,
+				sectionId: i.sectionId,
+				text: text,
+			};
+		}
+	}
+
+	return undefined;
+};
+
 const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 	if (value) {
 		core.requestIdleCallback(() => {
 			let filtered = _docIndexDB
 				.map((i) => {
 					if (value.length >= 4 && i.text) {
-						//search inside text
-						let match = new RegExp(value, "gmi").exec(i.text);
-						if (match) {
-							let text = i.text.substring(match.index - 10, match.index + value.length + 10);
-
-							let st = new RegExp(value, "gmi").exec(text);
-							if (st) {
-								text = `${text.substring(0, st?.index)}{{m::${text.substring(
-									st?.index,
-									st?.index + value.length
-								)}}}${text.substring(st?.index! + value.length)}`;
-							} else {
-								text = text;
-							}
-
+						return searchText(value, i);
+					} else {
+						if (searchTitle(value, i)) {
 							return {
 								category: i.category,
 								page: i.page,
 								pageId: i.pageId,
 								section: i.section,
 								sectionId: i.sectionId,
-								text: text,
+								text: null,
 							};
 						} else {
-							return undefined;
+							return searchText(value, i);
 						}
-					} else if (searchTitle(value, i)) {
-						return {
-							category: i.category,
-							page: i.page,
-							pageId: i.pageId,
-							section: i.section,
-							sectionId: i.sectionId,
-							text: null,
-						};
 					}
 				})
 				.filter(Boolean) as pageIndex[];
