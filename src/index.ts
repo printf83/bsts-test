@@ -961,6 +961,49 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 	}
 };
 
+const doSearch = (value: string, callback: (result: pageIndex[]) => void) => {
+	if (value) {
+		callback(
+			_docIndexDB
+				.map((i) => {
+					let found = i.text?.match(new RegExp(value, "gm"));
+					if (found) {
+						return i;
+					} else {
+						return undefined;
+					}
+				})
+				.filter(Boolean) as pageIndex[]
+		);
+	} else {
+		callback([]);
+	}
+};
+
+const searchIndex = (searchId: string, value: string) => {
+	doSearch(value, (result: pageIndex[]) => {
+		const currentSearchId = document.getElementById("doc-search-input")?.getAttribute("data-searchId");
+		if (searchId === currentSearchId) {
+			const searchResultContainer = document.getElementById("doc-search-result") as HTMLDivElement;
+
+			if (result && result.length > 0) {
+				core.replaceChild(
+					searchResultContainer,
+					new h.div(
+						{ textAlign: "center", textColor: "secondary", margin: "5" },
+						`Found ${result.length} result`
+					)
+				);
+			} else {
+				core.replaceChild(
+					searchResultContainer,
+					new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No result")
+				);
+			}
+		}
+	});
+};
+
 const showSearchDialog = () => {
 	b.modal.show(
 		new b.modal.container(
@@ -995,8 +1038,24 @@ const showSearchDialog = () => {
 			[
 				new b.modal.body({ padding: 0 }, [
 					new h.div({ bgColor: "body-tertiary", padding: 3, display: "grid", gap: 3 }, [
-						b.form.input({ id: "doc-search-input", type: "search", weight: "lg", placeholder: "Search" }),
-						new h.div({ id: "doc-search-result" }, "No recent searches"),
+						b.form.input({
+							id: "doc-search-input",
+							type: "search",
+							weight: "lg",
+							placeholder: "Search",
+							on: {
+								keyup: (event) => {
+									const searchId = core.UUID();
+									const target = event.target as HTMLInputElement;
+									target.setAttribute("data-searchId", searchId);
+									searchIndex(searchId, target.value);
+								},
+							},
+						}),
+						new h.div(
+							{ id: "doc-search-result" },
+							new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")
+						),
 					]),
 
 					new h.div(
@@ -1006,10 +1065,10 @@ const showSearchDialog = () => {
 							paddingX: 3,
 							paddingY: 1,
 							display: "flex",
-							justifyContent: "between",
+							justifyContent: ["end", "sm-between"],
 						},
 						[
-							new h.div({ display: "flex", gap: 2, alignItem: "center" }, [
+							new h.div({ display: ["none", "sm-flex"], gap: 2, alignItem: "center" }, [
 								new h.kbd(new b.icon("arrow-return-left")),
 								" to select ",
 								new h.kbd(new b.icon("arrow-up")),
