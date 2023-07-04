@@ -1,4 +1,4 @@
-import { core, b, h, t, I, s } from "@printf83/bsts";
+import { core, b, h, t, I } from "@printf83/bsts";
 import * as e from "../example/_index.js";
 
 const dispatchCustomEvent = (root: Element | null, eventName: string, value?: string) => {
@@ -886,9 +886,7 @@ const convert = (attr: IBsMainContainer) => {
 											[
 												new h.kbd(
 													{ class: "bs-search-button-key" },
-													new s(
-														`<svg width="15" height="15"><path d="M4.505 4.496h2M5.505 5.496v5M8.216 4.496l.055 5.993M10 7.5c.333.333.5.667.5 1v2M12.326 4.5v5.996M8.384 4.496c1.674 0 2.116 0 2.116 1.5s-.442 1.5-2.116 1.5M3.205 9.303c-.09.448-.277 1.21-1.241 1.203C1 10.5.5 9.513.5 8V7c0-1.57.5-2.5 1.464-2.494.964.006 1.134.598 1.24 1.342M12.553 10.5h1.953" stroke-width="1.2" stroke="currentColor" fill="none" stroke-linecap="square"></path></svg>`
-													)
+													new h.span({ style: { fontSize: "0.75em" } }, "CTRL")
 												),
 												new h.kbd({ class: "bs-search-button-key" }, "K"),
 											]

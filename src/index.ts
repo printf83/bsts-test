@@ -1,4 +1,4 @@
-import { b, core, h, s } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 import { updateMenu } from "./ctl/main/container.js";
@@ -932,6 +932,15 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 
 							if (n.length > 0) {
 								n.forEach((i) => {
+									let textContent = i.textContent || undefined;
+									if (textContent) {
+										textContent = textContent.replace(/HTMLLoading\.\.\./g, "");
+										textContent = textContent.replace(/SOURCELoading\.\.\./g, "");
+										textContent = textContent.replace(/CSSLoading\.\.\./g, "");
+										textContent = textContent.replace(/MANAGERLoading\.\.\./g, "");
+										textContent = textContent.replace(/  |\r\n|\n|\r/gm, "");
+									}
+
 									_docIndexDB.push({
 										category: category,
 
@@ -941,7 +950,7 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 										section: i.getAttribute("data-title") || undefined,
 										sectionId: i.id,
 
-										text: i.textContent || undefined,
+										text: textContent,
 									});
 								});
 							}
@@ -1000,13 +1009,13 @@ const searchTitle = (value: string, i: pageIndex) => {
 	return false;
 };
 
-const searchText = (value: string, i: pageIndex) => {
+const searchText = (value: string, valueRegEx: string, i: pageIndex) => {
 	if (i.text) {
-		let match = new RegExp(value, "gmi").exec(i.text);
+		let match = new RegExp(valueRegEx, "gmi").exec(i.text);
 		if (match) {
 			let text = i.text.substring(match.index - 10, match.index + value.length + 10);
 
-			let st = new RegExp(value, "gmi").exec(text);
+			let st = new RegExp(valueRegEx, "gmi").exec(text);
 			if (st) {
 				text = `${text.substring(0, st?.index)}{{m::${text.substring(
 					st?.index,
@@ -1033,25 +1042,10 @@ const searchText = (value: string, i: pageIndex) => {
 const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 	if (value) {
 		core.requestIdleCallback(() => {
+			let valRegEx = value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+
 			let filtered = _docIndexDB
 				.map((i) => {
-					// if (value.length >= 4 && i.text) {
-					// 	return searchText(value, i);
-					// } else {
-					// 	if (searchTitle(value, i)) {
-					// 		return {
-					// 			category: i.category,
-					// 			page: i.page,
-					// 			pageId: i.pageId,
-					// 			section: i.section,
-					// 			sectionId: i.sectionId,
-					// 			text: null,
-					// 		};
-					// 	} else {
-					// 		return searchText(value, i);
-					// 	}
-					// }
-
 					if (searchTitle(value, i)) {
 						return {
 							category: i.category,
@@ -1062,7 +1056,7 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 							text: null,
 						};
 					} else {
-						return searchText(value, i);
+						return searchText(value, valRegEx, i);
 					}
 				})
 				.filter(Boolean) as pageIndex[];
@@ -1224,6 +1218,19 @@ const showSearchDialog = () => {
 											gap: 2,
 											alignItem: "center",
 											lineHeight: 1,
+											on: {
+												click: (event) => {
+													b.modal.show(
+														b.modal.create({
+															elem: b.form.textarea({
+																label: "indexDB",
+																value: JSON.stringify(_docIndexDB),
+															}),
+															btn: "ok",
+														})
+													);
+												},
+											},
 										},
 										[
 											"Search by ",
@@ -1238,15 +1245,15 @@ const showSearchDialog = () => {
 			},
 			[
 				new b.modal.header(
-					{ padding: 3, paddingBottom: 0, bgColor: "body-tertiary", borderNone: "bottom" },
+					{ padding: 3, bgColor: "body-tertiary", borderNone: "bottom" },
 					new h.div({ display: "flex", gap: 3, width: 100 }, [
 						b.form.input({
 							container: { width: 100 },
 							id: "doc-search-input",
+							maxlength: 100,
 							type: "search",
 							weight: "lg",
 							placeholder: "Search",
-							autocomplete: "on",
 							on: {
 								keyup: (event) => {
 									const searchId = core.UUID();
@@ -1263,6 +1270,7 @@ const showSearchDialog = () => {
 					{
 						id: "doc-search-result",
 						padding: 3,
+						paddingTop: 0,
 						bgColor: "body-tertiary",
 						zIndex: 0,
 						display: "grid",
@@ -1289,9 +1297,7 @@ const showSearchDialog = () => {
 							" to navigate ",
 							new h.kbd(
 								{ padding: 1, lineHeight: 1 },
-								new s(
-									`<svg width="15" height="15" aria-label="Escape key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956"></path></g></svg>`
-								)
+								new h.span({ style: { fontSize: "0.85em" } }, "ESC")
 							),
 							" to close ",
 						]),

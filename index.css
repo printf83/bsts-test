@@ -63,7 +63,7 @@
 .bs-search-button:active,
 .bs-search-button:focus,
 .bs-search-button:hover {
-    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.15);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-light-rgb), 0.15);
 }
 
 .bs-search-button:active .bs-search-icon,
