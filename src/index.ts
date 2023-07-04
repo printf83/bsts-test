@@ -981,7 +981,7 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 				if (i.text) {
 					let match = new RegExp(value, "gmi").exec(i.text);
 					if (match) {
-						let text = i.text.substring(match.index - 10, match.index + 10);
+						let text = i.text.substring(match.index - 10, match.index + value.length + 10);
 
 						let st = new RegExp(value, "gmi").exec(text);
 						if (st) {
@@ -1070,7 +1070,6 @@ const searchIndex = (searchId: string, value: string) => {
 						return new h.div(
 							{
 								fontSize: 6,
-								marginTop: 3,
 								data: {
 									pageId: i.pageId,
 								},
@@ -1078,6 +1077,7 @@ const searchIndex = (searchId: string, value: string) => {
 							[
 								new h.small({ textColor: "primary", fontWeight: "semibold" }, i.title),
 								new b.list.containerDiv(
+									{ marginBottom: 3 },
 									i.item.map((j) => {
 										return new b.list.itemLink(
 											{
@@ -1089,10 +1089,23 @@ const searchIndex = (searchId: string, value: string) => {
 												},
 											},
 											[
-												new h.div({ fontWeight: "semibold" }, j.text ? j.text : ""),
 												new h.div(
-													{ textColor: "secondary", small: true },
-													j.section ? j.section : ""
+													{
+														display: "flex",
+														alignItem: "center",
+														justifyContent: "start",
+														gap: 3,
+													},
+													[
+														new h.div({ fontSize: 4 }, new b.icon("list")),
+														new h.div([
+															new h.div({ fontWeight: "semibold" }, j.text ? j.text : ""),
+															new h.div(
+																{ textColor: "secondary", small: true },
+																j.section ? j.section : ""
+															),
+														]),
+													]
 												),
 											]
 										);
@@ -1116,6 +1129,8 @@ const showSearchDialog = () => {
 	b.modal.show(
 		new b.modal.container(
 			{
+				fullscreen: "sm",
+				scrollable: true,
 				contentAttr: { overflow: "hidden" },
 				on: {
 					"shown.bs.modal": (_event) => {
@@ -1135,57 +1150,55 @@ const showSearchDialog = () => {
 				},
 			},
 			[
-				new b.modal.body({ padding: 0 }, [
-					new h.div({ bgColor: "body-tertiary", padding: 3, display: "grid", gap: 3 }, [
-						b.form.input({
-							id: "doc-search-input",
-							type: "search",
-							weight: "lg",
-							placeholder: "Search",
-							on: {
-								keyup: (event) => {
-									const searchId = core.UUID();
-									const target = event.target as HTMLInputElement;
-									target.setAttribute("data-searchId", searchId);
-									searchIndex(searchId, target.value);
-								},
+				new b.modal.header(
+					{ padding: 3, bgColor: "body-tertiary", borderNone: "bottom" },
+					b.form.input({
+						container: { width: 100 },
+						id: "doc-search-input",
+						type: "search",
+						weight: "lg",
+						placeholder: "Search",
+						on: {
+							keyup: (event) => {
+								const searchId = core.UUID();
+								const target = event.target as HTMLInputElement;
+								target.setAttribute("data-searchId", searchId);
+								searchIndex(searchId, target.value);
 							},
-						}),
-						new h.div(
-							{ id: "doc-search-result", overflowX: "auto", style: { maxHeight: "calc(100vh - 200px)" } },
-							new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")
-						),
-					]),
-
-					new h.div(
-						{
-							small: true,
-							shadow: true,
-							paddingX: 3,
-							paddingY: 1,
-							display: "flex",
-							justifyContent: ["end", "sm-between"],
 						},
-						[
-							new h.div({ display: ["none", "sm-flex"], gap: 2, alignItem: "center" }, [
-								new h.kbd(new b.icon("arrow-return-left")),
-								" to select ",
-								new h.kbd(new b.icon("arrow-up")),
-								new h.kbd(new b.icon("arrow-down")),
-								" to navigate ",
-								new h.kbd("ESC"),
-								" to close ",
-							]),
-							new h.div({ display: "flex", gap: 2, alignItem: "center" }, [
-								"Search by",
-								new h.div(
-									{ id: "doc-search-status" },
-									new b.icon({ id: "hexagon-fill", fontSize: 4, color: "secondary" })
-								),
-							]),
-						]
-					),
+					})
+				),
+				new b.modal.body({ id: "doc-search-result", padding: 0, paddingX: 3, bgColor: "body-tertiary" }, [
+					new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search"),
 				]),
+				new b.modal.footer(
+					{
+						small: true,
+						shadow: true,
+						paddingX: 3,
+						paddingY: 1,
+						display: "flex",
+						justifyContent: ["end", "sm-between"],
+					},
+					[
+						new h.div({ display: ["none", "sm-flex"], gap: 2, alignItem: "center" }, [
+							new h.kbd(new b.icon("arrow-return-left")),
+							" to select ",
+							new h.kbd(new b.icon("arrow-up")),
+							new h.kbd(new b.icon("arrow-down")),
+							" to navigate ",
+							new h.kbd("ESC"),
+							" to close ",
+						]),
+						new h.div({ display: "flex", gap: 2, alignItem: "center" }, [
+							"Search by",
+							new h.div(
+								{ id: "doc-search-status" },
+								new b.icon({ id: "hexagon-fill", fontSize: 4, color: "secondary" })
+							),
+						]),
+					]
+				),
 			]
 		)
 	);

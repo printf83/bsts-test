@@ -1,5 +1,10 @@
 
 
+/*mark on search dialog*/
+#doc-search-result mark{
+    padding: 0;
+}
+
 /* loading */
 
 .bs-main.loading .page-title-text,
