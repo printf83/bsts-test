@@ -1,11 +1,18 @@
 import { core, b, h, t, I } from "@printf83/bsts";
 import * as e from "../example/_index.js";
+import { elements } from "chart.js";
 
-const dispatchCustomEvent = (root: Element | null, eventName: string, value: string) => {
+const dispatchCustomEvent = (root: Element | null, eventName: string, value?: string) => {
 	if (root) {
-		core.requestIdleCallback(() => {
-			root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
-		}, 300);
+		if (value) {
+			core.requestIdleCallback(() => {
+				root.dispatchEvent(new CustomEvent(eventName, { detail: value }));
+			}, 300);
+		} else {
+			core.requestIdleCallback(() => {
+				root.dispatchEvent(new CustomEvent(eventName));
+			}, 300);
+		}
 	}
 };
 
@@ -838,7 +845,54 @@ const convert = (attr: IBsMainContainer) => {
 							},
 							attr.icon ? new b.icon(attr.icon) : b.icon.brand("bootstrap", { weight: "xl" })
 						),
+
 						new h.div({ display: "flex" }, [
+							new h.div(
+								{
+									class: "bs-search",
+									on: {
+										click: (event) => {
+											let root = (event.target as Element).closest(".bs-main-root");
+											dispatchCustomEvent(root, "bs-search-click");
+										},
+									},
+								},
+								new h.button(
+									{
+										type: "button",
+										class: "bs-search bs-search-button",
+										aria: { label: "Search" },
+										display: "flex",
+										justifyContent: "between",
+										alignItem: "center",
+										focusRing: true,
+									},
+									[
+										new h.span(
+											{
+												class: "bs-search-button-container",
+											},
+											[
+												new b.icon({ class: "bs-search-icon", id: "search", marginStart: 1 }),
+												new h.span(
+													{ class: "bs-search-button-placeholder", marginStart: 2 },
+													"Search"
+												),
+											]
+										),
+										new h.span(
+											{
+												class: "bs-search-button-keys",
+											},
+											[
+												new h.kbd({ class: "bs-search-button-key" }, "Ctrl"),
+												new h.kbd({ class: "bs-search-button-key" }, "K"),
+											]
+										),
+									]
+								)
+							),
+
 							new b.navbar.toggle.offcanvas(
 								{
 									class: "bs-noshadow",

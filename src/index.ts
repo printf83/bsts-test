@@ -976,64 +976,66 @@ interface searchItem {
 
 const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 	if (value) {
-		let filtered = _docIndexDB
-			.map((i) => {
-				if (i.text) {
-					let match = new RegExp(value, "gmi").exec(i.text);
-					if (match) {
-						let text = i.text.substring(match.index - 10, match.index + value.length + 10);
+		core.requestIdleCallback(() => {
+			let filtered = _docIndexDB
+				.map((i) => {
+					if (i.text) {
+						let match = new RegExp(value, "gmi").exec(i.text);
+						if (match) {
+							let text = i.text.substring(match.index - 10, match.index + value.length + 10);
 
-						let st = new RegExp(value, "gmi").exec(text);
-						if (st) {
-							text = `${text.substring(0, st?.index)}{{m::${text.substring(
-								st?.index,
-								st?.index + value.length
-							)}}}${text.substring(st?.index! + value.length)}`;
+							let st = new RegExp(value, "gmi").exec(text);
+							if (st) {
+								text = `${text.substring(0, st?.index)}{{m::${text.substring(
+									st?.index,
+									st?.index + value.length
+								)}}}${text.substring(st?.index! + value.length)}`;
+							} else {
+								text = text;
+							}
+
+							return {
+								category: i.category,
+								page: i.page,
+								pageId: i.pageId,
+								section: i.section,
+								sectionId: i.sectionId,
+								text: text,
+							};
 						} else {
-							text = text;
+							return undefined;
 						}
-
-						return {
-							category: i.category,
-							page: i.page,
-							pageId: i.pageId,
-							section: i.section,
-							sectionId: i.sectionId,
-							text: text,
-						};
 					} else {
 						return undefined;
 					}
-				} else {
-					return undefined;
-				}
-			})
-			.filter(Boolean) as pageIndex[];
+				})
+				.filter(Boolean) as pageIndex[];
 
-		if (filtered) {
-			let lastPageId = "";
-			let result: searchGroup[] = [];
-			filtered.forEach((i) => {
-				if (lastPageId !== i.pageId) {
-					lastPageId = i.pageId;
-					result.push({
-						title: `${i.category} - ${i.page}`,
-						pageId: i.pageId,
-						item: [],
+			if (filtered) {
+				let lastPageId = "";
+				let result: searchGroup[] = [];
+				filtered.forEach((i) => {
+					if (lastPageId !== i.pageId) {
+						lastPageId = i.pageId;
+						result.push({
+							title: `${i.category} - ${i.page}`,
+							pageId: i.pageId,
+							item: [],
+						});
+					}
+
+					result[result.length - 1].item.push({
+						section: i.section,
+						sectionId: i.sectionId,
+						text: i.text,
 					});
-				}
-
-				result[result.length - 1].item.push({
-					section: i.section,
-					sectionId: i.sectionId,
-					text: i.text,
 				});
-			});
 
-			callback(result);
-		} else {
-			callback([]);
-		}
+				callback(result);
+			} else {
+				callback([]);
+			}
+		}, 300);
 	} else {
 		callback([]);
 	}
@@ -1077,10 +1079,13 @@ const searchIndex = (searchId: string, value: string) => {
 							[
 								new h.small({ textColor: "primary", fontWeight: "semibold" }, i.title),
 								new b.list.containerDiv(
-									{ marginBottom: 3 },
+									{
+										marginBottom: 3,
+									},
 									i.item.map((j) => {
 										return new b.list.itemLink(
 											{
+												action: true,
 												small: true,
 												href: "#",
 												data: { sectionId: j.sectionId },
@@ -1152,29 +1157,35 @@ const showSearchDialog = () => {
 			[
 				new b.modal.header(
 					{ padding: 3, bgColor: "body-tertiary", borderNone: "bottom" },
-					b.form.input({
-						container: { width: 100 },
-						id: "doc-search-input",
-						type: "search",
-						weight: "lg",
-						placeholder: "Search",
-						on: {
-							keyup: (event) => {
-								const searchId = core.UUID();
-								const target = event.target as HTMLInputElement;
-								target.setAttribute("data-searchId", searchId);
-								searchIndex(searchId, target.value);
+					new h.div({ display: "flex", gap: 3, width: 100 }, [
+						b.form.input({
+							container: { width: 100 },
+							id: "doc-search-input",
+							type: "search",
+							weight: "lg",
+							placeholder: "Search",
+							autocomplete: "on",
+							on: {
+								keyup: (event) => {
+									const searchId = core.UUID();
+									const target = event.target as HTMLInputElement;
+									target.setAttribute("data-searchId", searchId);
+									searchIndex(searchId, target.value);
+								},
 							},
-						},
-					})
+						}),
+						new b.button({ toggle: "modal", display: ["block", "sm-none"], weight: "lg" }, "Close"),
+					])
 				),
-				new b.modal.body({ id: "doc-search-result", padding: 0, paddingX: 3, bgColor: "body-tertiary" }, [
-					new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search"),
-				]),
+				new b.modal.body(
+					{ id: "doc-search-result", padding: 0, paddingX: 3, bgColor: "body-tertiary", zIndex: 0 },
+					[new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")]
+				),
 				new b.modal.footer(
 					{
 						small: true,
 						shadow: true,
+						zIndex: 1,
 						paddingX: 3,
 						paddingY: 1,
 						display: "flex",
@@ -1223,21 +1234,24 @@ const mainContainer = () => {
 			"bs-bookmark-change": (e) => {
 				onBookmarkChange((<CustomEvent>e).detail);
 			},
+			"bs-search-click": (_e) => {
+				showSearchDialog();
+			},
 		},
 		itemMenu: genMenuWithBookmark(),
 		itemInsideLink: [{ value: "doc", label: "Docs" }],
 		currentInsideLink: "doc",
 		itemOutsideLink: [
-			{
-				href: "#",
-				icon: { id: "search" },
-				label: "Search",
-				onclick: (_event) => {
-					const offcanvas = document.getElementById("bsNavbar") as Element;
-					b.offcanvas.hide(offcanvas);
-					showSearchDialog();
-				},
-			},
+			// {
+			// 	href: "#",
+			// 	icon: { id: "search" },
+			// 	label: "Search",
+			// 	onclick: (_event) => {
+			// 		const offcanvas = document.getElementById("bsNavbar") as Element;
+			// 		b.offcanvas.hide(offcanvas);
+			// 		showSearchDialog();
+			// 	},
+			// },
 			{
 				href: "#",
 				icon: { id: "cpu" },

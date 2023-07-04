@@ -1,5 +1,123 @@
 
 
+/* search button on navbar */
+/* :root {
+    --docsearch-primary-color: var(--bd-violet);
+    --docsearch-logo-color: var(--bd-violet)
+}
+
+[data-bs-theme="dark"] {
+    --docsearch-text-color: #f5f6f7;
+    --docsearch-container-background: rgba(9, 10, 17, .8);
+    --docsearch-modal-background: #15172a;
+    --docsearch-modal-shadow: inset 1px 1px 0 0 #2c2e40, 0 3px 8px 0 #000309;
+    --docsearch-searchbox-background: #090a11;
+    --docsearch-searchbox-focus-background: #000;
+    --docsearch-hit-color: #bec3c9;
+    --docsearch-hit-shadow: none;
+    --docsearch-hit-background: #090a11;
+    --docsearch-key-gradient: linear-gradient(-26.5deg, #565872, #31355b);
+    --docsearch-key-shadow: inset 0 -2px 0 0 #282d55, inset 0 0 1px 1px #51577d, 0 2px 2px 0 rgba(3, 4, 9, .3);
+    --docsearch-footer-background: #1e2136;
+    --docsearch-footer-shadow: inset 0 1px 0 0 rgba(73, 76, 106, .5), 0 -4px 8px 0 rgba(0, 0, 0, .2);
+    --docsearch-muted-color: #7f8497
+} */
+
+.bs-search {
+    position: relative
+}
+
+@media (min-width: 992px) {
+    .bs-search {
+        position: absolute;
+        top: 0.3rem;
+        left: 43%;
+        width: 200px;
+        margin-left: -100px
+    }
+}
+
+@media (min-width: 1200px) {
+    .bs-search {
+        width: 280px;
+        margin-left: -140px
+    }
+}
+
+.bs-search-button {
+    /* --docsearch-searchbox-background: rgba(0, 0, 0, 0.1);
+    --docsearch-searchbox-color: #fff;
+    --docsearch-searchbox-focus-background: rgba(0, 0, 0, 0.25);
+    --docsearch-searchbox-shadow: 0 0 0 0.25rem rgba(255, 228, 132, 0.4);
+    --docsearch-text-color: #fff;
+    --docsearch-muted-color: rgba(255, 255, 255, 0.65); */
+    width: 100%;
+    height: 38px;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: .375rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    color:#fff
+}
+
+.bs-search-button .bs-search-icon {
+    opacity: .65
+}
+
+/* .bs-search-button:active,
+.bs-search-button:focus,
+.bs-search-button:hover {
+    border-color: #ffe484
+} */
+
+.bs-search-button:active .bs-search-icon,
+.bs-search-button:focus .bs-search-icon,
+.bs-search-button:hover .bs-search-icon {
+    opacity: 1
+}
+
+@media (max-width: 991.98px) {
+
+    .bs-search-button,
+    .bs-search-button:hover,
+    .bs-search-button:focus {
+        background: transparent;
+        border: 0;
+        box-shadow: none
+    }
+
+    /* .bs-search-button:focus {
+        box-shadow: var(--docsearch-searchbox-shadow)
+    } */
+}
+
+@media (max-width: 991.98px) {
+
+    .bs-search-button-keys,
+    .bs-search-button-placeholder {
+        display: none
+    }
+}
+
+.bs-search-button-keys {
+    min-width: 0;
+    padding: .125rem .25rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: .25rem
+}
+
+.bs-search-button-key {
+    top: 0;
+    width: auto;
+    height: 1.25rem;
+    padding-right: .125rem;
+    padding-left: .125rem;
+    margin-right: 0;
+    font-size: .875rem;
+    background: none;
+    box-shadow: none
+}
+
 /*mark on search dialog*/
 #doc-search-result mark{
     padding: 0;
