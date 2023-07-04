@@ -3,6 +3,7 @@ import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 import { updateMenu } from "./ctl/main/container.js";
 import * as e from "./ctl/example/_index.js";
+import { P } from "@printf83/bsts/lib/types/html/p.js";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;
@@ -1196,6 +1197,8 @@ const searchIndex = (searchId: string, value: string) => {
 	});
 };
 
+let lastSearchText = "";
+
 const showSearchDialog = () => {
 	b.modal.show(
 		new b.modal.container(
@@ -1257,10 +1260,71 @@ const showSearchDialog = () => {
 							placeholder: "Search",
 							on: {
 								keyup: (event) => {
-									const searchId = core.UUID();
 									const target = event.target as HTMLInputElement;
-									target.setAttribute("data-searchId", searchId);
-									searchIndex(searchId, target.value);
+
+									if (target.value !== lastSearchText) {
+										lastSearchText = target.value;
+										const searchId = core.UUID();
+										target.setAttribute("data-searchId", searchId);
+										searchIndex(searchId, lastSearchText);
+									}
+								},
+								keydown: (event) => {
+									const ev = event as KeyboardEvent;
+
+									if (ev.key == "Enter" || ev.key == "ArrowDown" || ev.key == "ArrowUp") {
+										event.stopPropagation();
+										event.preventDefault();
+
+										const docSearchResult = document.getElementById("doc-search-result");
+										if (docSearchResult) {
+											const docSearchItem = docSearchResult.querySelectorAll("a.list-group-item");
+											if (docSearchItem && docSearchItem.length > 0) {
+												let currentActive = docSearchResult.querySelector(
+													"a.list-group-item.active"
+												) as Element;
+
+												//active
+												let activeIndex = -1;
+												if (currentActive) {
+													activeIndex = Array.from(docSearchItem).indexOf(currentActive);
+
+													//do action
+													if (currentActive) {
+														if (ev.key == "Enter") {
+															currentActive.dispatchEvent(new Event("click"));
+														} else if (ev.key == "ArrowDown") {
+															currentActive.classList.remove("active");
+															if (activeIndex + 1 > docSearchItem.length - 1) {
+																docSearchItem[0].classList.add("active");
+															} else {
+																docSearchItem[activeIndex + 1].classList.add("active");
+															}
+														} else if (ev.key == "ArrowUp") {
+															currentActive.classList.remove("active");
+															if (activeIndex - 1 < 0) {
+																docSearchItem[docSearchItem.length - 1].classList.add(
+																	"active"
+																);
+															} else {
+																docSearchItem[activeIndex - 1].classList.add("active");
+															}
+														}
+													}
+												} else {
+													docSearchItem[0].classList.add("active");
+													currentActive = docSearchResult.querySelector(
+														"a.list-group-item.active"
+													) as Element;
+													activeIndex = 0;
+
+													if (ev.key == "Enter") {
+														currentActive?.dispatchEvent(new Event("click"));
+													}
+												}
+											}
+										}
+									}
 								},
 							},
 						}),
@@ -1472,7 +1536,10 @@ const mainContainer = () => {
 };
 
 const searchShortcutHandler = (event: KeyboardEvent) => {
-	if (event.ctrlKey && (event.key === "k" || event.key === "K")) {
+	if (event.ctrlKey && event.key == "k") {
+		event.stopPropagation();
+		event.preventDefault();
+
 		showSearchDialog();
 	}
 };
