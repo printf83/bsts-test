@@ -938,6 +938,7 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 										textContent = textContent.replace(/SOURCELoading\.\.\./g, "");
 										textContent = textContent.replace(/CSSLoading\.\.\./g, "");
 										textContent = textContent.replace(/MANAGERLoading\.\.\./g, "");
+										textContent = textContent.replace(/Loading\.\.\./g, "");
 										textContent = textContent.replace(/  |\r\n|\n|\r/gm, "");
 									}
 
