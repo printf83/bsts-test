@@ -57,7 +57,8 @@
 
 .bs-search-button .bs-search-icon,
 .bs-search-button .bs-search-button-placeholder {
-    opacity: .65
+    opacity: .65;
+    color: rgba(var(--bs-light-rgb), var(--bs-text-opacity));
 }
 
 .bs-search-button:active,
