@@ -987,7 +987,7 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 						if (st) {
 							text = `${text.substring(0, st?.index)}{{m::${text.substring(
 								st?.index,
-								st?.index + value.length - 1
+								st?.index + value.length
 							)}}}${text.substring(st?.index! + value.length)}`;
 						} else {
 							text = text;
