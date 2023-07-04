@@ -1035,21 +1035,34 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 		core.requestIdleCallback(() => {
 			let filtered = _docIndexDB
 				.map((i) => {
-					if (value.length >= 4 && i.text) {
-						return searchText(value, i);
+					// if (value.length >= 4 && i.text) {
+					// 	return searchText(value, i);
+					// } else {
+					// 	if (searchTitle(value, i)) {
+					// 		return {
+					// 			category: i.category,
+					// 			page: i.page,
+					// 			pageId: i.pageId,
+					// 			section: i.section,
+					// 			sectionId: i.sectionId,
+					// 			text: null,
+					// 		};
+					// 	} else {
+					// 		return searchText(value, i);
+					// 	}
+					// }
+
+					if (searchTitle(value, i)) {
+						return {
+							category: i.category,
+							page: i.page,
+							pageId: i.pageId,
+							section: i.section,
+							sectionId: i.sectionId,
+							text: null,
+						};
 					} else {
-						if (searchTitle(value, i)) {
-							return {
-								category: i.category,
-								page: i.page,
-								pageId: i.pageId,
-								section: i.section,
-								sectionId: i.sectionId,
-								text: null,
-							};
-						} else {
-							return searchText(value, i);
-						}
+						return searchText(value, i);
 					}
 				})
 				.filter(Boolean) as pageIndex[];
