@@ -885,15 +885,15 @@ const showMemoryTestDialog = () => {
 };
 
 interface pageIndex {
-	category?: string | null;
+	category: string;
 
-	page?: string | null;
+	page: string;
 	pageId: string;
 
 	section?: string | null;
-	sectionId?: string | null;
+	sectionId?: string;
 
-	text?: string | null;
+	text: string | null;
 }
 
 let _docIndexDB: pageIndex[] = [];
@@ -961,38 +961,146 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 	}
 };
 
-const doSearch = (value: string, callback: (result: pageIndex[]) => void) => {
+interface searchGroup {
+	title: string;
+	pageId: string;
+	item: searchItem[];
+}
+
+interface searchItem {
+	section?: string | null;
+	sectionId?: string;
+
+	text: string | null;
+}
+
+const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 	if (value) {
-		callback(
-			_docIndexDB
-				.map((i) => {
-					let found = i.text?.match(new RegExp(value, "gm"));
-					if (found) {
-						return i;
+		let filtered = _docIndexDB
+			.map((i) => {
+				if (i.text) {
+					let match = new RegExp(value, "gmi").exec(i.text);
+					if (match) {
+						let text = i.text.substring(match.index - 10, match.index + 10);
+
+						let st = new RegExp(value, "gmi").exec(text);
+						if (st) {
+							text = `${text.substring(0, st?.index)}{{m::${text.substring(
+								st?.index,
+								st?.index + value.length
+							)}}}${text.substring(st?.index! + value.length)}`;
+						} else {
+							text = text;
+						}
+
+						return {
+							category: i.category,
+							page: i.page,
+							pageId: i.pageId,
+							section: i.section,
+							sectionId: i.sectionId,
+							text: text,
+						};
 					} else {
 						return undefined;
 					}
-				})
-				.filter(Boolean) as pageIndex[]
-		);
+				} else {
+					return undefined;
+				}
+			})
+			.filter(Boolean) as pageIndex[];
+
+		if (filtered) {
+			let lastPageId = "";
+			let result: searchGroup[] = [];
+			filtered.forEach((i) => {
+				if (lastPageId !== i.pageId) {
+					lastPageId = i.pageId;
+					result.push({
+						title: `${i.category} - ${i.page}`,
+						pageId: i.pageId,
+						item: [],
+					});
+				}
+
+				result[result.length - 1].item.push({
+					section: i.section,
+					sectionId: i.sectionId,
+					text: i.text,
+				});
+			});
+
+			callback(result);
+		} else {
+			callback([]);
+		}
 	} else {
 		callback([]);
 	}
 };
 
+const searchIndexOnClick = (event: Event) => {
+	const target = event.target as Element;
+	const listItem = target.closest("a[data-sectionId]");
+	if (listItem) {
+		const listGroup = listItem.closest("div[data-pageId]");
+		if (listGroup) {
+			const sectionId = listItem.getAttribute("data-sectionId");
+			const pageId = listGroup.getAttribute("data-pageId");
+			const value = `${pageId}${sectionId ? "#" : ""}${sectionId}`;
+
+			highlightCurrentMenu(value);
+			onMenuChange(value);
+		}
+	}
+};
+
 const searchIndex = (searchId: string, value: string) => {
-	doSearch(value, (result: pageIndex[]) => {
+	doSearch(value, (result) => {
 		const currentSearchId = document.getElementById("doc-search-input")?.getAttribute("data-searchId");
 		if (searchId === currentSearchId) {
 			const searchResultContainer = document.getElementById("doc-search-result") as HTMLDivElement;
 
 			if (result && result.length > 0) {
+				console.log(result);
+
 				core.replaceChild(
 					searchResultContainer,
-					new h.div(
-						{ textAlign: "center", textColor: "secondary", margin: "5" },
-						`Found ${result.length} result`
-					)
+					result.map((i) => {
+						return new h.div(
+							{
+								fontSize: 6,
+								marginTop: 3,
+								data: {
+									pageId: i.pageId,
+								},
+							},
+							[
+								new h.small({ textColor: "primary", fontWeight: "semibold" }, i.title),
+								new b.list.containerDiv(
+									i.item.map((j) => {
+										return new b.list.itemLink(
+											{
+												small: true,
+												href: "#",
+												data: { sectionId: j.sectionId },
+												on: {
+													click: searchIndexOnClick,
+												},
+											},
+											[
+												new h.div({ fontWeight: "semibold" }, j.text ? j.text : ""),
+												new h.div(
+													{ textColor: "secondary", small: true },
+													j.section ? j.section : ""
+												),
+											]
+										);
+									})
+								),
+							]
+						);
+					})
 				);
 			} else {
 				core.replaceChild(
@@ -1016,16 +1124,7 @@ const showSearchDialog = () => {
 						if (searchStatus && searchInput) {
 							searchInput.focus();
 
-							const startTime = performance.now();
 							indexDocMenu(0, () => {
-								console.log(
-									`Indexing complete in ${genDurationText(
-										~~((performance.now() - startTime) / 1000)
-									)}`
-								);
-
-								console.log(_docIndexDB);
-
 								core.replaceChild(
 									searchStatus,
 									new b.icon({ id: "hexagon-fill", fontSize: 4, color: "primary" })
@@ -1053,7 +1152,7 @@ const showSearchDialog = () => {
 							},
 						}),
 						new h.div(
-							{ id: "doc-search-result" },
+							{ id: "doc-search-result", overflowX: "auto", style: { maxHeight: "calc(100vh - 200px)" } },
 							new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")
 						),
 					]),
