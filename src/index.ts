@@ -1,4 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, s } from "@printf83/bsts";
 import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 import { updateMenu } from "./ctl/main/container.js";
@@ -890,10 +890,10 @@ interface pageIndex {
 	page: string;
 	pageId: string;
 
-	section?: string | null;
+	section?: string | undefined;
 	sectionId?: string;
 
-	text: string | null;
+	text: string | undefined;
 }
 
 let _docIndexDB: pageIndex[] = [];
@@ -938,10 +938,10 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 										page: item[index].label,
 										pageId: item[index].value,
 
-										section: i.getAttribute("data-title"),
+										section: i.getAttribute("data-title") || undefined,
 										sectionId: i.id,
 
-										text: i.textContent,
+										text: i.textContent || undefined,
 									});
 								});
 							}
@@ -962,24 +962,51 @@ const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMe
 };
 
 interface searchGroup {
-	title: string;
+	category: string;
+	page: string;
 	pageId: string;
 	item: searchItem[];
 }
 
 interface searchItem {
-	section?: string | null;
+	section?: string | undefined;
 	sectionId?: string;
 
-	text: string | null;
+	text: string | undefined;
 }
+
+const searchTitle = (value: string, i: pageIndex) => {
+	if (i.category) {
+		let match = new RegExp(value, "gmi").exec(i.category);
+		if (match) {
+			return true;
+		}
+	}
+
+	if (i.page) {
+		let match = new RegExp(value, "gmi").exec(i.page);
+		if (match) {
+			return true;
+		}
+	}
+
+	if (i.section) {
+		let match = new RegExp(value, "gmi").exec(i.section);
+		if (match) {
+			return true;
+		}
+	}
+
+	return false;
+};
 
 const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 	if (value) {
 		core.requestIdleCallback(() => {
 			let filtered = _docIndexDB
 				.map((i) => {
-					if (i.text) {
+					if (value.length >= 4 && i.text) {
+						//search inside text
 						let match = new RegExp(value, "gmi").exec(i.text);
 						if (match) {
 							let text = i.text.substring(match.index - 10, match.index + value.length + 10);
@@ -1005,8 +1032,15 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 						} else {
 							return undefined;
 						}
-					} else {
-						return undefined;
+					} else if (searchTitle(value, i)) {
+						return {
+							category: i.category,
+							page: i.page,
+							pageId: i.pageId,
+							section: i.section,
+							sectionId: i.sectionId,
+							text: null,
+						};
 					}
 				})
 				.filter(Boolean) as pageIndex[];
@@ -1018,7 +1052,8 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 					if (lastPageId !== i.pageId) {
 						lastPageId = i.pageId;
 						result.push({
-							title: `${i.category} - ${i.page}`,
+							category: i.category,
+							page: i.page,
 							pageId: i.pageId,
 							item: [],
 						});
@@ -1057,6 +1092,32 @@ const searchIndexOnClick = (event: Event) => {
 	}
 };
 
+const genSearchItem = (page: string | undefined, section: string | undefined, text: string | undefined) => {
+	if (text) {
+		if (section) {
+			return [
+				new h.div({ fontSize: 4 }, new b.icon("list")),
+				new h.div([
+					new h.div({ fontWeight: "semibold" }, text),
+					new h.div({ textColor: "secondary", small: true }, section),
+				]),
+			];
+		} else {
+			return [
+				new h.div({ fontSize: 4 }, new b.icon("list")),
+				new h.div([new h.div({ fontWeight: "semibold" }, text)]),
+			];
+		}
+	} else {
+		if (section) {
+			return [new h.div({ fontSize: 4 }, new b.icon("file-text")), new h.div([new h.div(section)])];
+		} else if (page) {
+			return [new h.div({ fontSize: 4 }, new b.icon("file-text")), new h.div([new h.div(page)])];
+		} else {
+			return [];
+		}
+	}
+};
 const searchIndex = (searchId: string, value: string) => {
 	doSearch(value, (result) => {
 		const currentSearchId = document.getElementById("doc-search-input")?.getAttribute("data-searchId");
@@ -1077,11 +1138,8 @@ const searchIndex = (searchId: string, value: string) => {
 								},
 							},
 							[
-								new h.small({ textColor: "primary", fontWeight: "semibold" }, i.title),
+								new h.small({ textColor: "primary", fontWeight: "semibold" }, i.page),
 								new b.list.containerDiv(
-									{
-										marginBottom: 3,
-									},
 									i.item.map((j) => {
 										return new b.list.itemLink(
 											{
@@ -1101,16 +1159,7 @@ const searchIndex = (searchId: string, value: string) => {
 														justifyContent: "start",
 														gap: 3,
 													},
-													[
-														new h.div({ fontSize: 4 }, new b.icon("list")),
-														new h.div([
-															new h.div({ fontWeight: "semibold" }, j.text ? j.text : ""),
-															new h.div(
-																{ textColor: "secondary", small: true },
-																j.section ? j.section : ""
-															),
-														]),
-													]
+													genSearchItem(i.page, j.section, j.text)
 												),
 											]
 										);
@@ -1145,10 +1194,21 @@ const showSearchDialog = () => {
 							searchInput.focus();
 
 							indexDocMenu(0, () => {
-								core.replaceChild(
-									searchStatus,
-									new b.icon({ id: "hexagon-fill", fontSize: 4, color: "primary" })
-								);
+								core.replaceWith(searchStatus, [
+									new h.div(
+										{
+											id: "doc-search-status",
+											display: "flex",
+											gap: 2,
+											alignItem: "center",
+											lineHeight: 1,
+										},
+										[
+											"Search by ",
+											new b.icon({ id: "hexagon-fill", fontSize: 5, color: "primary" }),
+										]
+									),
+								]);
 							});
 						}
 					},
@@ -1156,7 +1216,7 @@ const showSearchDialog = () => {
 			},
 			[
 				new b.modal.header(
-					{ padding: 3, bgColor: "body-tertiary", borderNone: "bottom" },
+					{ padding: 3, paddingBottom: 0, bgColor: "body-tertiary", borderNone: "bottom" },
 					new h.div({ display: "flex", gap: 3, width: 100 }, [
 						b.form.input({
 							container: { width: 100 },
@@ -1178,7 +1238,14 @@ const showSearchDialog = () => {
 					])
 				),
 				new b.modal.body(
-					{ id: "doc-search-result", padding: 0, paddingX: 3, bgColor: "body-tertiary", zIndex: 0 },
+					{
+						id: "doc-search-result",
+						padding: 3,
+						bgColor: "body-tertiary",
+						zIndex: 0,
+						display: "grid",
+						gap: 3,
+					},
 					[new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")]
 				),
 				new b.modal.footer(
@@ -1193,21 +1260,23 @@ const showSearchDialog = () => {
 					},
 					[
 						new h.div({ display: ["none", "sm-flex"], gap: 2, alignItem: "center" }, [
-							new h.kbd(new b.icon("arrow-return-left")),
+							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-return-left")),
 							" to select ",
-							new h.kbd(new b.icon("arrow-up")),
-							new h.kbd(new b.icon("arrow-down")),
+							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-up")),
+							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-down")),
 							" to navigate ",
-							new h.kbd("ESC"),
+							new h.kbd(
+								{ padding: 1, lineHeight: 1 },
+								new s(
+									`<svg width="15" height="15" aria-label="Escape key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956"></path></g></svg>`
+								)
+							),
 							" to close ",
 						]),
-						new h.div({ display: "flex", gap: 2, alignItem: "center" }, [
-							"Search by",
-							new h.div(
-								{ id: "doc-search-status" },
-								new b.icon({ id: "hexagon-fill", fontSize: 4, color: "secondary" })
-							),
-						]),
+						new h.div(
+							{ id: "doc-search-status", display: "flex", gap: 2, alignItem: "center", lineHeight: 1 },
+							["Indexing ", new b.spinner({ small: true })]
+						),
 					]
 				),
 			]

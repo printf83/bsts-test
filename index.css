@@ -24,14 +24,16 @@
 } */
 
 .bs-search {
-    position: relative
+    position: relative;
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
 }
 
 @media (min-width: 992px) {
     .bs-search {
         position: absolute;
-        top: 0.3rem;
-        left: 43%;
+        top: 0.5rem;
+        left: 50%;
         width: 200px;
         margin-left: -100px
     }
@@ -45,34 +47,32 @@
 }
 
 .bs-search-button {
-    /* --docsearch-searchbox-background: rgba(0, 0, 0, 0.1);
-    --docsearch-searchbox-color: #fff;
-    --docsearch-searchbox-focus-background: rgba(0, 0, 0, 0.25);
-    --docsearch-searchbox-shadow: 0 0 0 0.25rem rgba(255, 228, 132, 0.4);
-    --docsearch-text-color: #fff;
-    --docsearch-muted-color: rgba(255, 255, 255, 0.65); */
     width: 100%;
-    height: 38px;
     margin: 0;
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: .375rem;
     background-color: rgba(0, 0, 0, 0.1);
-    color:#fff
+    padding: 0.35rem 0.35rem;
 }
 
-.bs-search-button .bs-search-icon {
+.bs-search-button .bs-search-icon,
+.bs-search-button .bs-search-button-placeholder {
     opacity: .65
 }
 
-/* .bs-search-button:active,
+.bs-search-button:active,
 .bs-search-button:focus,
 .bs-search-button:hover {
-    border-color: #ffe484
-} */
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.15);
+}
 
 .bs-search-button:active .bs-search-icon,
 .bs-search-button:focus .bs-search-icon,
-.bs-search-button:hover .bs-search-icon {
+.bs-search-button:hover .bs-search-icon,
+.bs-search-button:active .bs-search-button-placeholder,
+.bs-search-button:focus .bs-search-button-placeholder,
+.bs-search-button:hover .bs-search-button-placeholder,
+.bs-search-button:hover .bs-search-button-key {
     opacity: 1
 }
 
@@ -115,7 +115,9 @@
     margin-right: 0;
     font-size: .875rem;
     background: none;
-    box-shadow: none
+    box-shadow: none;
+    opacity: .65;
+    color: #fff
 }
 
 /*mark on search dialog*/
