@@ -1464,12 +1464,22 @@ const mainContainer = () => {
 	});
 };
 
+const searchShortcutHandler = (event: KeyboardEvent) => {
+	if (event.ctrlKey && (event.key === "k" || event.key === "K")) {
+		showSearchDialog();
+	}
+};
+const setupSearchShortcut = () => {
+	document.addEventListener("keydown", searchShortcutHandler);
+};
+
 core.documentReady(() => {
 	onThemeChange(getSavedTheme());
 
 	let body = document.getElementById("main") as Element;
 	core.replaceChild(body, mainContainer());
 
+	setupSearchShortcut();
 	loadDefaultDoc();
 	setupWindowPopState();
 	setupBSNavigate();
