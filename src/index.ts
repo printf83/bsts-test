@@ -1186,8 +1186,6 @@ const searchIndex = (searchId: string, value: string) => {
 			const searchResultContainer = document.getElementById("doc-search-result") as HTMLDivElement;
 
 			if (result && result.length > 0) {
-				console.log(result);
-
 				core.replaceChild(
 					searchResultContainer,
 					result.map((i) => {
@@ -1275,7 +1273,8 @@ const showSearchDialog = () => {
 															b.modal.show(
 																b.modal.create({
 																	elem: b.form.textarea({
-																		label: "indexDB",
+																		label: "docIndexDB",
+																		rows: 10,
 																		value: JSON.stringify(_docIndexDB),
 																	}),
 																	btn: "ok",
