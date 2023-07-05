@@ -592,8 +592,7 @@ const genToc = (content?: IAttrContent) => {
 				if (core.isTag<e.section>(i) && i.tag === "section") {
 					if (i.attr?.id && i.attr?.data?.title) {
 						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
-						let deep = i.attr?.data?.type ? parseInt(i.attr?.data?.type as string) : 0;
-
+						let deep = i.attr?.data?.deep ? parseInt(i.attr?.data?.deep as string) : 0;
 						t.push({
 							deep: deep,
 							item: item,
