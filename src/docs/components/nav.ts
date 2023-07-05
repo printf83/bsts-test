@@ -594,10 +594,10 @@ export const nav: IAttrContent = {
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
 						const d = [
-							{ label: "Home", id: "home", active: true },
-							{ label: "Profile", id: "profile" },
-							{ label: "Contact", id: "contact" },
-							{ label: "Disabled", id: "disabled", disabled: true },
+							{ label: "Home", id: "home2", active: true },
+							{ label: "Profile", id: "profile2" },
+							{ label: "Contact", id: "contact2" },
+							{ label: "Disabled", id: "disabled2", disabled: true },
 						];
 
 						return [
@@ -641,10 +641,10 @@ export const nav: IAttrContent = {
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
 						const d = [
-							{ label: "Home", id: "home", active: true },
-							{ label: "Profile", id: "profile" },
-							{ label: "Contact", id: "contact" },
-							{ label: "Disabled", id: "disabled", disabled: true },
+							{ label: "Home", id: "home3", active: true },
+							{ label: "Profile", id: "profile3" },
+							{ label: "Contact", id: "contact3" },
+							{ label: "Disabled", id: "disabled3", disabled: true },
 						];
 
 						return [
@@ -768,9 +768,9 @@ export const nav: IAttrContent = {
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
 
 						const d = [
-							{ label: "Home", id: "home", active: true },
-							{ label: "Profile", id: "profile" },
-							{ label: "Contact", id: "contact" },
+							{ label: "Home", id: "home4", active: true },
+							{ label: "Profile", id: "profile4" },
+							{ label: "Contact", id: "contact4" },
 						];
 
 						return [
@@ -1343,10 +1343,10 @@ export const nav: IAttrContent = {
 							`This is some placeholder content the {{b::${title} tab's}} associated content.`;
 
 						const d = [
-							{ label: "Home", id: "home", active: true },
-							{ label: "Profile", id: "profile" },
-							{ label: "Messages", id: "messages" },
-							{ label: "Settings", id: "settings" },
+							{ label: "Home", id: "home5", active: true },
+							{ label: "Profile", id: "profile5" },
+							{ label: "Messages", id: "messages5" },
+							{ label: "Settings", id: "settings5" },
 						];
 
 						return [

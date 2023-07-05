@@ -20,10 +20,14 @@ export const test: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Tooltip 2"),
+				new e.title("Duplicate ID"),
 				new e.code({
 					output: () => {
-						return new b.button("Hello");
+						return [
+							new b.button({ id: "chart" }, "chart"),
+							new b.button({ id: "duplicate_id" }, "duplicate_id"),
+							new b.button({ id: "tooltip" }, "tooltip"),
+						];
 					},
 				}),
 			]),

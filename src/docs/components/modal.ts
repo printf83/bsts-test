@@ -774,15 +774,15 @@ export const modal: IAttrContent = {
 						return [
 							// Button trigger modal
 							new b.button(
-								{ color: "primary", toggle: "modal", target: "#gridModal" },
+								{ color: "primary", toggle: "modal", target: "#gridModal2" },
 								"Launch demo modal"
 							),
 
 							// Modal
-							new b.modal.container({ id: "gridModal", labelledby: "gridModalLabel" }, [
+							new b.modal.container({ id: "gridModal2", labelledby: "gridModalLabel2" }, [
 								new b.modal.header(
 									{ close: true },
-									new b.modal.title({ id: "gridModalLabel" }, "Modal title")
+									new b.modal.title({ id: "gridModalLabel2" }, "Modal title")
 								),
 								new b.modal.body(
 									{ class: "bs-highlight-col" },

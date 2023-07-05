@@ -783,18 +783,18 @@ export const dropdown: IAttrContent = {
 									},
 									[
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormEmail2" }, "Email address"),
+											new b.label({ for: "exampleDropdownFormEmail3" }, "Email address"),
 											new b.input({
 												type: "email",
-												id: "exampleDropdownFormEmail2",
+												id: "exampleDropdownFormEmail3",
 												placeholder: "email@example.com",
 											}),
 										]),
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormPassword2" }, "Password"),
+											new b.label({ for: "exampleDropdownFormPassword3" }, "Password"),
 											new b.input({
 												type: "email",
-												id: "exampleDropdownFormPassword2",
+												id: "exampleDropdownFormPassword3",
 												placeholder: "email@example.com",
 											}),
 										]),
@@ -802,10 +802,10 @@ export const dropdown: IAttrContent = {
 											new h.div({ class: "form-check" }, [
 												new b.input({
 													type: "checkbox",
-													id: "dropdownCheck2",
+													id: "dropdownCheck3",
 													placeholder: "email@example.com",
 												}),
-												new b.label({ for: "dropdownCheck2" }, "Remember me"),
+												new b.label({ for: "dropdownCheck3" }, "Remember me"),
 											]),
 										]),
 										new b.button({ type: "submit" }, "Sign in"),

@@ -644,12 +644,28 @@ const genDurationText = (second: number) => {
 	}
 };
 
+const getDuplicateID = () => {
+	const duplicateIds = Array.from(document.querySelectorAll("[id]"))
+		.map((v: Element) => v.id)
+		.reduce((acc: { [key: string]: number }, v: string) => {
+			acc[v] = (acc[v] || 0) + 1;
+			return acc;
+		}, {});
+
+	const duplicates = Object.entries(duplicateIds)
+		.filter(([_key, value]: [string, number]) => value > 1)
+		.map(([key, _value]: [string, number]) => key);
+
+	return duplicates;
+};
+
 const runMemoryTest = (
 	startTime: number,
 	testId: string,
 	count: number,
 	callback: Function,
 	random?: boolean,
+	checkduplicateid?: boolean,
 	max?: number
 ) => {
 	max ??= count;
@@ -668,13 +684,26 @@ const runMemoryTest = (
 				const progressEstimate = document.getElementById(`${testId}-estimate`);
 
 				if (progressBar && progressCount && progressPage && progressEstimate && progressSpeed) {
+					//show content
 					let contentbody = document.getElementById("bs-main") as Element;
 					contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
 					highlightCurrentMenu(docId);
 					const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 
-					const currentProgress = ((max! - count) / max!) * 100;
+					//get duplicate id
+					if (checkduplicateid) {
+						const duplicateID = getDuplicateID();
+						const duplicateIDCount = duplicateID.length;
+						if (duplicateIDCount > 0) {
+							console.warn(
+								`${pagetitle} have ${duplicateIDCount} duplicate key${duplicateIDCount > 1 ? "s" : ""}`,
+								duplicateID
+							);
+						}
+					}
 
+					//update progress
+					const currentProgress = ((max! - count) / max!) * 100;
 					progressBar.setAttribute("style", `width:${currentProgress}%;`);
 					progressPage.innerText = pagetitle ? pagetitle : "...";
 					progressCount.innerText = (max! - count).toString();
@@ -704,7 +733,7 @@ const runMemoryTest = (
 						}
 					}
 
-					runMemoryTest(startTime, testId, count - 1, callback, random, max);
+					runMemoryTest(startTime, testId, count - 1, callback, random, checkduplicateid, max);
 				} else {
 					callback(max! - count, docId);
 				}
@@ -715,7 +744,13 @@ const runMemoryTest = (
 	}
 };
 
-const startMemoryTest = (sender: Element, testId: string, count: number, random: boolean) => {
+const startMemoryTest = (
+	sender: Element,
+	testId: string,
+	count: number,
+	random: boolean,
+	checkduplicateid: boolean
+) => {
 	const progressTotal = document.getElementById(`${testId}-total`);
 	if (progressTotal) {
 		progressTotal.innerText = count.toString();
@@ -769,7 +804,8 @@ const startMemoryTest = (sender: Element, testId: string, count: number, random:
 				);
 			});
 		},
-		random
+		random,
+		checkduplicateid
 	);
 };
 
@@ -785,12 +821,19 @@ const showMemoryTestDialog = () => {
 
 				new h.p([
 					b.form.check({
-						container: { marginBottom: 3 },
 						type: "checkbox",
 						switch: true,
 						label: "Random page",
-						checked: true,
+						checked: false,
 						id: "memory-test-random",
+					}),
+					b.form.check({
+						container: { marginBottom: 3 },
+						type: "checkbox",
+						switch: true,
+						label: "Check duplicate id",
+						checked: true,
+						id: "memory-test-duplicateid",
 					}),
 					new h.div(
 						{
@@ -802,7 +845,7 @@ const showMemoryTestDialog = () => {
 							return new b.button(
 								{
 									outline: true,
-									color: i === 500 ? "primary" : "secondary",
+									color: i === 100 ? "primary" : "secondary",
 									data: {
 										counter: i,
 									},
@@ -819,6 +862,8 @@ const showMemoryTestDialog = () => {
 												testId,
 												counter,
 												(document.getElementById("memory-test-random") as HTMLInputElement)
+													.checked,
+												(document.getElementById("memory-test-duplicateid") as HTMLInputElement)
 													.checked
 											);
 										},

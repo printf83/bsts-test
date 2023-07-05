@@ -512,13 +512,15 @@ const genMenu = (itemMenu?: IAttrItemMenu[], currentMenu?: string) => {
 									class: ["bs-links-link", active ? "active" : undefined],
 									display: "inline-block",
 									rounded: true,
-									href: "#",
+									href: `?d=${itemValue}`,
 									aria: { current: active ? "page" : undefined },
 									data: {
 										value: itemValue,
 									},
 									on: {
-										click: (_e) => {
+										click: (event) => {
+											event.preventDefault();
+											event.stopPropagation();
 											changeMenu(itemValue);
 										},
 									},
