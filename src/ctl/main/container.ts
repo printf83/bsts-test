@@ -737,6 +737,7 @@ const genContent = (content?: IAttrContent) => {
 	if (content && content.item) {
 		return new b.scrollspy(
 			{
+				id: "bs-content-scrollspy",
 				target: "#bs-toc",
 				smooth: true,
 				class: "bs-content",
@@ -1007,11 +1008,28 @@ const convert = (attr: IBsMainContainer) => {
 					]
 				),
 			]),
-			new h.main({ order: 1, class: "bs-main", id: "bs-main" }, [
-				genIntro(attr.content),
-				genToc(attr.content),
-				genContent(attr.content),
-			]),
+			new h.main(
+				{
+					order: 1,
+					class: "bs-main",
+					id: "bs-main",
+					on: {
+						build: (event) => {
+							const target = event.target as Element;
+							core.observeResizeObserver(target, (r) => {
+								if (r && r.length > 0) {
+									b.scrollspy.refresh("#bs-content-scrollspy");
+								}
+							});
+						},
+						destroy: (event) => {
+							const target = event.target as Element;
+							core.disconnectResizeObserver(target);
+						},
+					},
+				},
+				[genIntro(attr.content), genToc(attr.content), genContent(attr.content)]
+			),
 		]),
 		new h.footer(
 			{ class: "bs-footer", paddingY: [4, "md-5"], marginTop: 5, bgColor: "body-tertiary" },

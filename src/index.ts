@@ -3,7 +3,6 @@ import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 import { updateMenu } from "./ctl/main/container.js";
 import * as e from "./ctl/example/_index.js";
-import { P } from "@printf83/bsts/lib/types/html/p.js";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;
