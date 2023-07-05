@@ -832,7 +832,7 @@ const showMemoryTestDialog = () => {
 						type: "checkbox",
 						switch: true,
 						label: "Check duplicate id",
-						checked: true,
+						checked: false,
 						id: "memory-test-duplicateid",
 					}),
 					new h.div(
@@ -1252,7 +1252,7 @@ const showSearchDialog = () => {
 				contentAttr: { overflow: "hidden" },
 				on: {
 					"shown.bs.modal": (_event) => {
-						let searchInput = document.getElementById("doc-search-input") as HTMLDivElement;
+						let searchInput = document.getElementById("doc-search-input") as HTMLInputElement;
 						if (searchInput) {
 							if (!indexingInProgress) {
 								indexingInProgress = true;
@@ -1295,6 +1295,7 @@ const showSearchDialog = () => {
 							}
 
 							searchInput.focus();
+							searchInput.setSelectionRange(-1, -1);
 
 							if (lastSearchText) {
 								const searchId = core.UUID();

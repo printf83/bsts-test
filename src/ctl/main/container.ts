@@ -797,31 +797,25 @@ export const genMain = (content?: IAttrContent) => {
 						const id = core.UUID();
 						target.setAttribute("data-build-id", id);
 
-						setTimeout(
-							(id: string) => {
-								const target = document.getElementById("bs-main");
-								if (target) {
-									if (target.getAttribute("data-build-id") === id) {
-										target.removeAttribute("data-build-id");
+						core.requestIdleCallback(() => {
+							const target = document.getElementById("bs-main");
+							const bstoc = document.getElementById("bs-toc");
 
-										core.observeResizeObserver(target, (r) => {
-											if (r && r.length > 0) {
-												b.scrollspy.refresh("#bs-main");
-											}
-										});
-
-										b.scrollspy.init("#bs-main");
-									}
+							if (target && bstoc) {
+								if (target.getAttribute("data-build-id") === id) {
+									target.removeAttribute("data-build-id");
+									b.scrollspy.init(target, {
+										target: "#bs-toc",
+										smoothScroll: true,
+										rootMargin: "0px 0px -40%",
+									});
 								}
-							},
-							500,
-							id
-						);
+							}
+						}, 300);
 					}
 				},
 				destroy: (event) => {
 					const target = event.target as Element;
-					core.disconnectResizeObserver(target);
 					b.scrollspy.dispose(target);
 				},
 			},
