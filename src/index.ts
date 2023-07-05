@@ -489,7 +489,7 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 			//generate content
 
 			const PERFORMANCE_BUILD = DEBUG ? performance.now() : 0;
-			contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+			contentbody = core.replaceWith(contentbody, main.genMain(docData))!;
 			PERFORMANCEINFO.build = DEBUG ? performance.now() - PERFORMANCE_BUILD : 0;
 
 			//reset loading
@@ -738,7 +738,6 @@ const startMemoryTest = (sender: Element, testId: string, count: number, random:
 			if (sender) {
 				const mdl = sender.closest(".modal-dialog") as Element;
 				if (mdl) {
-					console.log(mdl);
 					b.modal.hide(mdl);
 				}
 			}

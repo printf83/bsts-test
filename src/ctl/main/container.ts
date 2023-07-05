@@ -735,14 +735,14 @@ const genToc = (content?: IAttrContent) => {
 
 const genContent = (content?: IAttrContent) => {
 	if (content && content.item) {
-		return new b.scrollspy(
+		return new h.div(
 			{
-				id: "bs-content-scrollspy",
-				target: "#bs-toc",
-				smooth: true,
+				// id: "bs-content-scrollspy",
+				// target: "#bs-toc",
+				// smooth: true,
 				class: "bs-content",
 				paddingStart: "lg-2",
-				rootMargin: "0px 0px -40%",
+				// rootMargin: "0px 0px -40%",
 			},
 			content.item()
 		);
@@ -771,6 +771,59 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 
 export const genMainContent = (content?: IAttrContent) => {
 	return [genIntro(content), genToc(content), genContent(content)];
+};
+
+export const genMain = (content?: IAttrContent) => {
+	return new h.main(
+		{
+			order: 1,
+			class: "bs-main",
+			id: "bs-main",
+			data: {
+				"bs-target": "#bs-toc",
+				"bs-smooth-scroll": "true",
+				"bs-root-margin": "0px 0px -40%",
+			},
+			tabindex: 0,
+			on: {
+				build: (_event) => {
+					const target = document.getElementById("bs-main");
+
+					if (target) {
+						const id = core.UUID();
+						target.setAttribute("data-build-id", id);
+
+						setTimeout(
+							(id: string) => {
+								const target = document.getElementById("bs-main");
+								if (target) {
+									if (target.getAttribute("data-build-id") === id) {
+										target.removeAttribute("data-build-id");
+
+										core.observeResizeObserver(target, (r) => {
+											if (r && r.length > 0) {
+												b.scrollspy.refresh("#bs-main");
+											}
+										});
+
+										b.scrollspy.init("#bs-main");
+									}
+								}
+							},
+							500,
+							id
+						);
+					}
+				},
+				destroy: (event) => {
+					const target = event.target as Element;
+					core.disconnectResizeObserver(target);
+					b.scrollspy.dispose(target);
+				},
+			},
+		},
+		[genIntro(content), genToc(content), genContent(content)]
+	);
 };
 
 export interface IBsMainContainer extends core.IAttr {
@@ -1008,28 +1061,59 @@ const convert = (attr: IBsMainContainer) => {
 					]
 				),
 			]),
-			new h.main(
-				{
-					order: 1,
-					class: "bs-main",
-					id: "bs-main",
-					on: {
-						build: (event) => {
-							const target = event.target as Element;
-							core.observeResizeObserver(target, (r) => {
-								if (r && r.length > 0) {
-									b.scrollspy.refresh("#bs-content-scrollspy");
-								}
-							});
-						},
-						destroy: (event) => {
-							const target = event.target as Element;
-							core.disconnectResizeObserver(target);
-						},
-					},
-				},
-				[genIntro(attr.content), genToc(attr.content), genContent(attr.content)]
-			),
+			// new h.main(
+			// 	{
+			// 		order: 1,
+			// 		class: "bs-main",
+			// 		id: "bs-main",
+			// 		data: {
+			// 			"bs-target": "#bs-toc",
+			// 			"bs-smooth-scroll": "true",
+			// 			"bs-root-margin": "0px 0px -40%",
+			// 		},
+			// 		tabindex: 0,
+			// 		on: {
+			// 			build: (event) => {
+			// 				const target = event.target as Element;
+			// 				const id = core.UUID();
+			// 				target.setAttribute("data-build-id", id);
+
+			// 				setTimeout(
+			// 					(id: string, target: Element) => {
+			// 						if (target.getAttribute("data-build-id") === id) {
+			// 							target.removeAttribute("data-build-id");
+
+			// 							core.observeResizeObserver(target, (r) => {
+			// 								if (r && r.length > 0) {
+			// 									console.log("Scrollspy refresh");
+			// 									b.scrollspy.refresh("#bs-main");
+			// 								}
+			// 							});
+
+			// 							console.log("Setup scrollspy");
+			// 							b.scrollspy.init("#bs-main");
+			// 						} else {
+			// 							console.log("Expired");
+			// 						}
+			// 					},
+			// 					1000,
+			// 					id,
+			// 					target
+			// 				);
+			// 			},
+			// 			destroy: (event) => {
+			// 				const target = event.target as Element;
+
+			// 				console.log("Remove scrollspy");
+
+			// 				core.disconnectResizeObserver(target);
+			// 				b.scrollspy.dispose(target);
+			// 			},
+			// 		},
+			// 	},
+			// 	[genIntro(attr.content), genToc(attr.content), genContent(attr.content)]
+			// ),
+			genMain(attr.content),
 		]),
 		new h.footer(
 			{ class: "bs-footer", paddingY: [4, "md-5"], marginTop: 5, bgColor: "body-tertiary" },

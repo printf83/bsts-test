@@ -1,6 +1,7 @@
 import {
 	container,
 	genMainContent,
+	genMain,
 	IBsMainContainer,
 	IAttrContent,
 	IAttrFooter,
@@ -20,6 +21,7 @@ export { Container };
 export {
 	container,
 	genMainContent,
+	genMain,
 	IBsMainContainer,
 	IAttrContent,
 	IAttrFooter,
