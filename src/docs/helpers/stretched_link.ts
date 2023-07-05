@@ -19,6 +19,7 @@ export const stretched_link: IAttrContent = {
 				),
 
 				new e.code({
+					showConsole: true,
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
 							new b.card.img({
@@ -31,7 +32,19 @@ export const stretched_link: IAttrContent = {
 								new b.card.text(
 									"Some quick example text to build on the card title and make up the bulk of the card's content."
 								),
-								new b.button({ href: "#", stretched: true }, "Go somewhere"),
+								new b.button(
+									{
+										href: "#",
+										stretched: true,
+										on: {
+											click: (event) => {
+												const target = event.target as Element;
+												e.console(target, "click", "Go somewhere button clicked");
+											},
+										},
+									},
+									"Go somewhere"
+								),
 							]),
 						]);
 					},
@@ -41,6 +54,7 @@ export const stretched_link: IAttrContent = {
 					"Most custom components do not have {{position: relative}} by default, so Bootstrap need to add the {{.position-relative}} here to prevent the link from stretching outside the parent element."
 				),
 				new e.code({
+					showConsole: true,
 					output: () => {
 						return new h.div({ display: "flex", position: "relative" }, [
 							new h.img({
@@ -54,12 +68,25 @@ export const stretched_link: IAttrContent = {
 								new h.p(
 									"This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."
 								),
-								new h.a({ href: "#", stretched: true }, "Go somewhere"),
+								new h.a(
+									{
+										href: "#",
+										stretched: true,
+										on: {
+											click: (event) => {
+												const target = event.target as Element;
+												e.console(target, "click", "Go somewhere link clicked");
+											},
+										},
+									},
+									"Go somewhere"
+								),
 							]),
 						]);
 					},
 				}),
 				new e.code({
+					showConsole: true,
 					output: () => {
 						return new h.div({ row: true, gutter: 0, bgColor: "body-secondary", position: "relative" }, [
 							new h.div(
@@ -75,7 +102,19 @@ export const stretched_link: IAttrContent = {
 								new h.p(
 									"Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."
 								),
-								new h.a({ href: "#", stretched: true }, "Go somewhere"),
+								new h.a(
+									{
+										href: "#",
+										stretched: true,
+										on: {
+											click: (event) => {
+												const target = event.target as Element;
+												e.console(target, "click", "Go somewhere link clicked");
+											},
+										},
+									},
+									"Go somewhere"
+								),
 							]),
 						]);
 					},
@@ -98,6 +137,7 @@ export const stretched_link: IAttrContent = {
 					],
 				}),
 				new e.code({
+					showConsole: true,
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
 							new b.card.img({
@@ -117,6 +157,12 @@ export const stretched_link: IAttrContent = {
 											stretched: true,
 											textColor: "danger",
 											style: { position: "relative" },
+											on: {
+												click: (event) => {
+													const target = event.target as Element;
+													e.console(target, "click", "Link 1 clicked");
+												},
+											},
 										},
 										"Stretched link will not work here, because {{position: relative}} is added to the link"
 									)
@@ -128,7 +174,20 @@ export const stretched_link: IAttrContent = {
 									},
 									[
 										"This ",
-										new h.a({ href: "#", textColor: "warning", stretched: true }, "stretched link"),
+										new h.a(
+											{
+												href: "#",
+												textColor: "warning",
+												stretched: true,
+												on: {
+													click: (event) => {
+														const target = event.target as Element;
+														e.console(target, "click", "Link 2 clicked");
+													},
+												},
+											},
+											"stretched link"
+										),
 										" will only be spread over the {{p}}-tag, because a transform is applied to it.",
 									]
 								),
