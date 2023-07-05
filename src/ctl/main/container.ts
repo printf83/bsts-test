@@ -234,6 +234,7 @@ const genTheme = (
 							display: "flex",
 							alignItem: "center",
 							textColor: textColor,
+							label: "Toggle theme",
 						},
 						new b.caption(
 							{
@@ -300,6 +301,7 @@ const genBootswatch = (
 						paddingY: 2,
 						paddingX: [0, "lg-2"],
 						textColor: textColor,
+						label: "Bootswatch theme",
 					},
 					[
 						new h.span({ marginEnd: 2 }, new b.icon({ type: "solid", id: "swatchbook" })),
@@ -426,6 +428,7 @@ const genOutsideLink = (
 									textColor: textColor,
 									href: i.href,
 									target: i.onclick ? undefined : "_blank",
+									aria: { label: i.label },
 									on: { click: i.onclick },
 								},
 								new b.caption({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
@@ -894,6 +897,11 @@ const convert = (attr: IBsMainContainer) => {
 								fontSize: 6,
 								padding: 0,
 								textColor: attr.textColor || "light",
+								on: {
+									click: () => {
+										window.scrollTo(0, 0);
+									},
+								},
 							},
 							attr.icon ? new b.icon(attr.icon) : b.icon.brand("bootstrap", { weight: "xl" })
 						),
@@ -1131,7 +1139,7 @@ const convert = (attr: IBsMainContainer) => {
 								label: attr.name || "Bootstrap",
 								on: {
 									click: () => {
-										window.scroll(0, 0);
+										window.scrollTo(0, 0);
 									},
 								},
 							},
