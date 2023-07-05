@@ -447,12 +447,6 @@ const setLoading = (contentbody: Element) => {
 	}
 };
 
-const resetLoading = (contentbody: Element) => {
-	if (contentbody.classList.contains("loading")) {
-		contentbody.classList.remove("loading");
-	}
-};
-
 const PERFORMANCEINFO: { title?: string; download?: number; build?: number } = {};
 
 const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "replace", callback?: Function) => {
@@ -493,7 +487,7 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 			PERFORMANCEINFO.build = DEBUG ? performance.now() - PERFORMANCE_BUILD : 0;
 
 			//reset loading
-			resetLoading(contentbody);
+			// resetLoading(contentbody);
 
 			//rename page title
 			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
@@ -1202,6 +1196,7 @@ const searchIndex = (searchId: string, value: string) => {
 };
 
 let lastSearchText = "";
+let indexingInProgress = false;
 
 const showSearchDialog = () => {
 	b.modal.show(
@@ -1213,40 +1208,54 @@ const showSearchDialog = () => {
 				on: {
 					"shown.bs.modal": (_event) => {
 						let searchInput = document.getElementById("doc-search-input") as HTMLDivElement;
-						let searchStatus = document.getElementById("doc-search-status") as HTMLDivElement;
-						if (searchStatus && searchInput) {
+						if (searchInput) {
+							if (!indexingInProgress) {
+								indexingInProgress = true;
+
+								indexDocMenu(0, () => {
+									indexingInProgress = false;
+
+									let searchStatus = document.getElementById("doc-search-status");
+									if (searchStatus) {
+										core.replaceWith(searchStatus, [
+											new h.div(
+												{
+													id: "doc-search-status",
+													display: "flex",
+													gap: 2,
+													alignItem: "center",
+													lineHeight: 1,
+													on: {
+														click: (event) => {
+															b.modal.show(
+																b.modal.create({
+																	elem: b.form.textarea({
+																		label: "indexDB",
+																		value: JSON.stringify(_docIndexDB),
+																	}),
+																	btn: "ok",
+																})
+															);
+														},
+													},
+												},
+												[
+													"Search by ",
+													new b.icon({ id: "hexagon-fill", fontSize: 5, color: "primary" }),
+												]
+											),
+										]);
+									}
+								});
+							}
+
 							searchInput.focus();
 
-							indexDocMenu(0, () => {
-								core.replaceWith(searchStatus, [
-									new h.div(
-										{
-											id: "doc-search-status",
-											display: "flex",
-											gap: 2,
-											alignItem: "center",
-											lineHeight: 1,
-											on: {
-												click: (event) => {
-													b.modal.show(
-														b.modal.create({
-															elem: b.form.textarea({
-																label: "indexDB",
-																value: JSON.stringify(_docIndexDB),
-															}),
-															btn: "ok",
-														})
-													);
-												},
-											},
-										},
-										[
-											"Search by ",
-											new b.icon({ id: "hexagon-fill", fontSize: 5, color: "primary" }),
-										]
-									),
-								]);
-							});
+							if (lastSearchText) {
+								const searchId = core.UUID();
+								searchInput.setAttribute("data-searchId", searchId);
+								searchIndex(searchId, lastSearchText);
+							}
 						}
 					},
 				},
@@ -1262,6 +1271,7 @@ const showSearchDialog = () => {
 							type: "search",
 							weight: "lg",
 							placeholder: "Search",
+							value: lastSearchText,
 							on: {
 								keyup: (event) => {
 									const target = event.target as HTMLInputElement;
