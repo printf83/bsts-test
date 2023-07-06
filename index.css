@@ -236,6 +236,7 @@
     font-weight: 600;
 }
 
+
 .ms-n4{
     margin-left: -2rem;
 }
@@ -880,6 +881,13 @@ strong,
 
 .anchor-link::after {
     content: "#";
+}
+
+/* navbar */
+@media (max-width: 991.98px) {
+    .bs-navbar-toggle {
+        width: 4.25rem;
+    }
 }
 
 /* sidebar */

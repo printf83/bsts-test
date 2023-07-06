@@ -902,7 +902,7 @@ const convert = (attr: IBsMainContainer) => {
 							attr.icon ? new b.icon(attr.icon) : b.icon.brand("bootstrap", { weight: "xl" })
 						),
 
-						new h.div({ display: "flex" }, [
+						new h.div({ display: "flex", class: "bs-navbar-toggle" }, [
 							new h.div(
 								{
 									class: "bs-search",
