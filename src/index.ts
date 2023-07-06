@@ -252,6 +252,7 @@ let m = {
 				{ label: "List groups", value: "docs/example/list_groups" },
 				{ label: "Modals", value: "docs/example/modals" },
 				{ label: "Badges", value: "docs/example/badges" },
+				{ label: "Breadcrumbs", value: "docs/example/breadcrumbs" },
 				{ label: "Test", value: "docs/example/test" },
 			],
 		},

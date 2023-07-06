@@ -41,6 +41,9 @@ export const doc = async (value: string) => {
 		case "docs/example/badges":
 			result = await example.badges();
 			break;
+		case "docs/example/breadcrumbs":
+			result = await example.breadcrumbs();
+			break;
 		case "docs/example/test":
 			result = await example.test();
 			break;

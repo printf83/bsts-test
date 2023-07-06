@@ -25,6 +25,9 @@ export const modals = async () => {
 export const badges = async () => {
 	return (await import("./badges.js")).badges;
 };
+export const breadcrumbs = async () => {
+	return (await import("./breadcrumbs.js")).breadcrumbs;
+};
 export const test = async () => {
 	return (await import("./test.js")).test;
 };
