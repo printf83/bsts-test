@@ -599,7 +599,7 @@ export const headers: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 					output: () => {
 						return ex.c1({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							title: "Simple header",
 							link: [
 								{ active: true, href: "#", elem: "Home" },
@@ -672,7 +672,7 @@ export const headers: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 					output: () => {
 						return ex.c3({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
 								{ active: true, href: "#", elem: "Home" },
 								{ href: "#", elem: "Features" },
@@ -719,7 +719,7 @@ export const headers: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 					output: () => {
 						return ex.c4({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
 								{ active: true, href: "#", elem: "Home" },
 								{ href: "#", elem: "Features" },
@@ -781,7 +781,7 @@ export const headers: IAttrContent = {
 					output: () => {
 						return ex.c5({
 							img: "https://picsum.photos/seed/bsts_0/32/32.webp",
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
 								{ active: true, href: "#", elem: "Overview" },
 								{ href: "#", elem: "Inventory" },
@@ -845,7 +845,7 @@ export const headers: IAttrContent = {
 					output: () => {
 						return ex.c6({
 							img: "https://picsum.photos/seed/bsts_0/32/32.webp",
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
 								new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
@@ -956,7 +956,7 @@ export const headers: IAttrContent = {
 								],
 							}),
 							ex.c7Header({
-								icon: "fab bootstrap",
+								icon: "hexagon-fill",
 								title: "Double header",
 								onsearch: (event) => {
 									//do search
@@ -990,7 +990,7 @@ export const headers: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c8", output: ex.c8 }],
 					output: () => {
 						return ex.c8({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
 								{
 									active: true,

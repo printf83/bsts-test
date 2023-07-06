@@ -32,7 +32,7 @@ export const introduction: IAttrContent = {
 						{ content: "@printf83/bsts" },
 						new h.a(
 							{ href: "https://github.com/printf83/bsts", target: "_blank" },
-							new b.pill({ icon: "fab github", color: "danger", weight: "lg" }, "v0.1.140")
+							new b.pill({ icon: "github", color: "danger", weight: "lg" }, "v0.1.140")
 						)
 					),
 				]),
@@ -47,30 +47,30 @@ export const introduction: IAttrContent = {
 						{ content: "Bootstrap" },
 						new h.a(
 							{ href: "https://getbootstrap.com/", target: "_blank" },
-							new b.pill({ icon: "fab bootstrap", color: "primary" }, "v5.3.0")
+							new b.pill({ icon: "bootstrap", color: "primary" }, "v5.3")
 						)
 					),
 					new b.tooltip(
 						{ content: "Bootstrap Icon" },
 						new h.a(
 							{ href: "https://icons.getbootstrap.com/", target: "_blank" },
-							new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10.3")
+							new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10")
 						)
 					),
 					new b.tooltip(
 						{ content: "Bootswatch" },
 						new h.a(
 							{ href: "https://bootswatch.com/", target: "_blank" },
-							new b.pill({ icon: "fas swatchbook", color: "success" }, "v5.3.0")
+							new b.pill({ icon: "palette2", color: "success" }, "v5.3")
 						)
 					),
-					new b.tooltip(
-						{ content: "FontAwesome" },
-						new h.a(
-							{ href: "https://fontawesome.com/", target: "_blank" },
-							new b.pill({ icon: "fab font-awesome", color: "info" }, "v6.3.0")
-						)
-					),
+					// new b.tooltip(
+					// 	{ content: "FontAwesome" },
+					// 	new h.a(
+					// 		{ href: "https://fontawesome.com/", target: "_blank" },
+					// 		new b.pill({ icon: "fab font-awesome", color: "info" }, "v6.3.0")
+					// 	)
+					// ),
 				]),
 			]),
 

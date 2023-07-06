@@ -238,7 +238,7 @@ export const footers: IAttrContent = {
 					output: () => {
 						return ex.c1({
 							copyright: "© 2023 Company, Inc",
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
 								{ href: "#", elem: "Home" },
 								{ href: "#", elem: "Features" },
@@ -262,11 +262,11 @@ export const footers: IAttrContent = {
 					output: () => {
 						return ex.c2({
 							copyright: "© 2023 Company, Inc",
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
-								{ href: "#", icon: "fab twitter" },
-								{ href: "#", icon: "fab instagram" },
-								{ href: "#", icon: "fab facebook" },
+								{ href: "#", icon: "twitter" },
+								{ href: "#", icon: "instagram" },
+								{ href: "#", icon: "facebook" },
 							],
 						});
 					},
@@ -309,7 +309,7 @@ export const footers: IAttrContent = {
 					output: () => {
 						return ex.c4({
 							copyright: "© 2023",
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							link: [
 								undefined,
 								ex.c4Section({
@@ -364,9 +364,9 @@ export const footers: IAttrContent = {
 						return ex.c5({
 							copyright: "© 2023 Company, Inc. All rights reserved.",
 							linkicon: [
-								{ href: "#", icon: "fab twitter" },
-								{ href: "#", icon: "fab instagram" },
-								{ href: "#", icon: "fab facebook" },
+								{ href: "#", icon: "twitter" },
+								{ href: "#", icon: "instagram" },
+								{ href: "#", icon: "facebook" },
 							],
 							link: [
 								ex.c4Section({

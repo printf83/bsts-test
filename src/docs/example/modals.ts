@@ -492,15 +492,15 @@ export const modals: IAttrContent = {
 									new h.div({ display: "grid", gap: 2 }, [
 										new b.button(
 											{ outline: true, color: "info" },
-											new b.caption({ icon: "fab twitter" }, "Sign up with Twitter")
+											new b.caption({ icon: "twitter" }, "Sign up with Twitter")
 										),
 										new b.button(
 											{ outline: true, color: "primary" },
-											new b.caption({ icon: "fab facebook" }, "Sign up with Facebook")
+											new b.caption({ icon: "facebook" }, "Sign up with Facebook")
 										),
 										new b.button(
 											{ outline: true, color: "secondary" },
-											new b.caption({ icon: "fab github" }, "Sign up with Github")
+											new b.caption({ icon: "github" }, "Sign up with Github")
 										),
 									]),
 								]),
@@ -569,21 +569,21 @@ export const modals: IAttrContent = {
 																new b.button(
 																	{ outline: true, color: "info" },
 																	new b.caption(
-																		{ icon: "fab twitter" },
+																		{ icon: "twitter" },
 																		"Sign up with Twitter"
 																	)
 																),
 																new b.button(
 																	{ outline: true, color: "primary" },
 																	new b.caption(
-																		{ icon: "fab facebook" },
+																		{ icon: "facebook" },
 																		"Sign up with Facebook"
 																	)
 																),
 																new b.button(
 																	{ outline: true, color: "secondary" },
 																	new b.caption(
-																		{ icon: "fab github" },
+																		{ icon: "github" },
 																		"Sign up with Github"
 																	)
 																),

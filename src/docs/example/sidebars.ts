@@ -486,7 +486,7 @@ export const sidebars: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 					output: () => {
 						return ex.c1({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							title: "Sidebar",
 							userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 							userName: "@printf83",
@@ -533,7 +533,7 @@ export const sidebars: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 					output: () => {
 						return ex.c2({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							title: "Sidebar",
 							userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 							userName: "@printf83",
@@ -580,7 +580,7 @@ export const sidebars: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 					output: () => {
 						return ex.c3({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 							link: [
 								{ active: true, href: "#", icon: "house", label: "Home" },
@@ -629,7 +629,7 @@ export const sidebars: IAttrContent = {
 					],
 					output: () => {
 						return ex.c4({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							title: "Collapsible",
 							link: [
 								{
@@ -695,7 +695,7 @@ export const sidebars: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 					output: () => {
 						return ex.c5({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							title: "List group",
 							item: [
 								{

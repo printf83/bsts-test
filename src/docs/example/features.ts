@@ -343,7 +343,7 @@ export const features: IAttrContent = {
 							},
 							[
 								ex.c4({
-									icon: "fab bootstrap",
+									icon: "hexagon-fill",
 									title: "Featured title",
 									description: "Paragraph of text beneath the heading to explain the heading.",
 								}),

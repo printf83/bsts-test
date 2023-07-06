@@ -263,7 +263,7 @@ export const heroes: IAttrContent = {
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 					output: () => {
 						return ex.c1({
-							icon: "fab bootstrap",
+							icon: "hexagon-fill",
 							title: "Centered hero",
 							description:
 								"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",

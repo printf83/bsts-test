@@ -900,16 +900,9 @@ const showMemoryTestDialog = () => {
 					new h.br(),
 					new h.small(["Current page : ", new h.strong({ id: `${testId}-page` }, "...")]),
 					new h.br(),
-					new h.small([
-						"Page load speed : ±",
-						new h.strong({ id: `${testId}-speed` }, "Calculating..."),
-						" page/sec",
-					]),
+					new h.small(["Page load speed : ±", new h.strong({ id: `${testId}-speed` }, "..."), " page/sec"]),
 					new h.br(),
-					new h.small([
-						"Estimated time remaining : ",
-						new h.strong({ id: `${testId}-estimate` }, "Calculating..."),
-					]),
+					new h.small(["Estimated time remaining : ", new h.strong({ id: `${testId}-estimate` }, "...")]),
 					new h.div(
 						{ marginTop: 2 },
 						new b.progress.container(
@@ -1492,7 +1485,7 @@ const mainContainer = () => {
 			},
 			{ href: "https://github.com/printf83/bsts", icon: { id: "github" }, label: "Github" },
 			{ href: "https://twitter.com/printf83", icon: { id: "twitter" }, label: "Twitter" },
-			{ href: "https://getbootstrap.com/", icon: { id: "bootstrap", type: "brand" }, label: "Bootstrap" },
+			{ href: "https://getbootstrap.com/", icon: { id: "bootstrap" }, label: "Bootstrap" },
 		],
 		itemTheme: [
 			{ value: "light", icon: { id: "sun-fill" }, label: "Light" },
