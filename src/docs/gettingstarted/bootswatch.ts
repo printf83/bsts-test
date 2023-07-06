@@ -172,54 +172,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Dropdown"),
-				new e.code({
-					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
-					output: () => {
-						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-							return new b.dropdown.container([
-								new b.dropdown.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Action"),
-									new b.dropdown.item({ href: "#" }, "Another action"),
-									new b.dropdown.item({ href: "#" }, "Something else here"),
-									new b.dropdown.divider(),
-									new b.dropdown.item({ href: "#" }, "Separated link"),
-								]),
-							]);
-						});
-					},
-				}),
-			]),
-
-			//----------------------
-
-			new e.section([
-				new e.subtitle("Split button"),
-				new e.code({
-					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
-					output: () => {
-						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-							return new b.dropdown.container([
-								new b.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
-								new b.dropdown.button({ color: i as core.bootstrapType.color, split: true }),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Action"),
-									new b.dropdown.item({ href: "#" }, "Another action"),
-									new b.dropdown.item({ href: "#" }, "Something else here"),
-									new b.dropdown.divider(),
-									new b.dropdown.item({ href: "#" }, "Separated link"),
-								]),
-							]);
-						});
-					},
-				}),
-			]),
-
-			//----------------------
-
-			new e.section([
-				new e.title("Button group"),
+				new e.subtitle("Button group"),
 				new e.code({
 					output: () => {
 						return new b.btngroup({ label: "Basic example", role: "group" }, [
@@ -304,7 +257,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Vertical"),
+				new e.xsubtitle("Vertical"),
 				new e.code({
 					output: () => {
 						return new b.btngroup({ label: "Vertical button group", vertical: true }, [
@@ -348,6 +301,53 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
+				new e.title("Dropdown"),
+				new e.code({
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					output: () => {
+						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
+							return new b.dropdown.container([
+								new b.dropdown.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Action"),
+									new b.dropdown.item({ href: "#" }, "Another action"),
+									new b.dropdown.item({ href: "#" }, "Something else here"),
+									new b.dropdown.divider(),
+									new b.dropdown.item({ href: "#" }, "Separated link"),
+								]),
+							]);
+						});
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Split button"),
+				new e.code({
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					output: () => {
+						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
+							return new b.dropdown.container([
+								new b.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
+								new b.dropdown.button({ color: i as core.bootstrapType.color, split: true }),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Action"),
+									new b.dropdown.item({ href: "#" }, "Another action"),
+									new b.dropdown.item({ href: "#" }, "Something else here"),
+									new b.dropdown.divider(),
+									new b.dropdown.item({ href: "#" }, "Separated link"),
+								]),
+							]);
+						});
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
 				new e.title("Typography"),
 				new e.code({
 					output: () => {
@@ -359,6 +359,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
+				new e.subtitle("With secondary text"),
 				new e.code({
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map(
@@ -389,7 +390,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Body text"),
+				new e.subtitle("Body text"),
 				new e.code({
 					output: () => {
 						return [
@@ -411,7 +412,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Text color"),
+				new e.subtitle("Text color"),
 				new e.code({
 					output: () => {
 						const data: {
@@ -460,7 +461,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Blockquote"),
+				new e.subtitle("Blockquote"),
 				new e.code({
 					output: () => {
 						return new h.figure([
@@ -946,7 +947,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Breadcrumbs"),
+				new e.subtitle("Breadcrumbs"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
@@ -965,7 +966,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Pagination"),
+				new e.subtitle("Pagination"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "column", gap: 3, overflowX: "auto" },
 					output: () => {
@@ -1008,6 +1009,24 @@ export const bootswatch: IAttrContent = {
 							(i) => {
 								return new b.alert.container(
 									{ dismissible: true, color: i as core.bootstrapType.color },
+									`A simple ${i} alert—check it out!`
+								);
+							}
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Callout"),
+				new e.code({
+					output: () => {
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
+							(i) => {
+								return new b.alert.container(
+									{ callout: true, color: i as core.bootstrapType.color },
 									`A simple ${i} alert—check it out!`
 								);
 							}
@@ -1193,7 +1212,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Badge"),
+				new e.subtitle("With badge"),
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
@@ -1251,7 +1270,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Active"),
+				new e.subtitle("Active action"),
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
@@ -1299,8 +1318,12 @@ export const bootswatch: IAttrContent = {
 
 			//----------------------
 
+			new e.section([new e.title("Containers")]),
+
+			//----------------------
+
 			new e.section([
-				new e.title("Card"),
+				new e.subtitle("Card"),
 				new e.code({
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
@@ -1330,7 +1353,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Outline"),
+				new e.xsubtitle("Card outline"),
 				new e.code({
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
@@ -1360,7 +1383,7 @@ export const bootswatch: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Kitchen sink"),
+				new e.xsubtitle("Kitchen sink"),
 				new e.code({
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
@@ -1431,6 +1454,134 @@ export const bootswatch: IAttrContent = {
 								},
 							],
 						});
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([new e.title("Dialogs")]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Modal"),
+				new e.code({
+					previewAttr: { bgColor: "body-tertiary" },
+					showCodepen: false,
+					output: () => {
+						return new b.modal.container({ debug: true }, [
+							new b.modal.header({ close: true }, new b.modal.title("Modal title")),
+							new b.modal.body(new h.p("Modal body text gose here")),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Save changes"),
+							]),
+						]);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Offcanvas"),
+				new e.code({
+					output: () => {
+						return [
+							new b.offcanvas.button(
+								{ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 },
+								"Link with href"
+							),
+							new b.offcanvas.button(
+								{ target: "#offcanvasExample", controlfor: "offcanvasExample" },
+								"Button with data-bs-target"
+							),
+							new b.offcanvas.container({ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" }, [
+								new b.offcanvas.header([
+									new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"),
+									new b.offcanvas.btnclose(),
+								]),
+								new b.offcanvas.body([
+									new h.div(
+										"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+									),
+									new b.dropdown.container({ marginTop: 3 }, [
+										new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
+										new b.dropdown.menu([
+											new b.dropdown.item({ href: "#" }, "Action"),
+											new b.dropdown.item({ href: "#" }, "Another action"),
+											new b.dropdown.item({ href: "#" }, "Something else here"),
+										]),
+									]),
+								]),
+							]),
+						];
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Popovers"),
+				new e.code({
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					output: () => {
+						return ["top", "right", "bottom", "left"].map((i) => {
+							return new b.popover(
+								{
+									placement: i as I.B.Popover["placement"],
+									content: `${core.uppercaseFirst(i)} popover`,
+								},
+								new b.button({ color: "secondary" }, `Popover on ${i}`)
+							);
+						});
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Tooltips"),
+				new e.code({
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					output: () => {
+						return ["top", "right", "bottom", "left"].map((i) => {
+							return new b.tooltip(
+								{
+									placement: i as I.B.Tooltip["placement"],
+									content: `Tooltip on ${i}`,
+								},
+								new b.button({ color: "secondary" }, `Tooltip on ${i}`)
+							);
+						});
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Toasts"),
+				new e.code({
+					showCodepen: false,
+					output: () => {
+						return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+							new b.toast.header([
+								new h.div({
+									bgColor: "primary",
+									rounded: true,
+									marginEnd: 2,
+									style: { width: "20px", height: "20px" },
+								}),
+								new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+								new h.small("11 mins ago"),
+								new b.toast.btnclose(),
+							]),
+							new b.toast.body("Hello, world! This is a toast message."),
+						]);
 					},
 				}),
 			]),
