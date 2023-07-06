@@ -96,7 +96,7 @@
 
     .bs-search-button-keys,
     .bs-search-button-placeholder {
-        display: none
+        display: none !important
     }
 }
 
