@@ -114,7 +114,7 @@ let m = {
 	doc: [
 		{
 			label: "Getting started",
-			icon: { id: "book-half", color: "primary" },
+			icon: { id: "book-half", textColor: "primary" },
 			item: [
 				{ label: "Introduction", value: "docs/gettingstarted/introduction" },
 				{ label: "Bootswatch", value: "docs/gettingstarted/bootswatch" },
@@ -122,12 +122,12 @@ let m = {
 		},
 		{
 			label: "Customize",
-			icon: { id: "palette2", color: "danger" },
+			icon: { id: "palette2", textColor: "danger" },
 			item: [{ label: "Color", value: "docs/customize/color" }],
 		},
 		{
 			label: "Layout",
-			icon: { id: "grid-fill", color: "success" },
+			icon: { id: "grid-fill", textColor: "success" },
 			item: [
 				{ label: "Breakpoints", value: "docs/layout/breakpoints" },
 				{ label: "Containers", value: "docs/layout/containers" },
@@ -141,7 +141,7 @@ let m = {
 		},
 		{
 			label: "Content",
-			icon: { id: "file-earmark-richtext", color: "secondary" },
+			icon: { id: "file-earmark-richtext", textColor: "secondary" },
 			item: [
 				{ label: "Reboot", value: "docs/content/reboot" },
 				{ label: "Typography", value: "docs/content/typography" },
@@ -152,7 +152,7 @@ let m = {
 		},
 		{
 			label: "Forms",
-			icon: { id: "ui-radios", color: "primary" },
+			icon: { id: "ui-radios", textColor: "primary" },
 			item: [
 				{ label: "Overview", value: "docs/forms/overview" },
 				{ label: "Form control", value: "docs/forms/control" },
@@ -167,7 +167,7 @@ let m = {
 		},
 		{
 			label: "Component",
-			icon: { id: "menu-button-wide-fill", color: "info" },
+			icon: { id: "menu-button-wide-fill", textColor: "info" },
 			item: [
 				{ label: "Accordion", value: "docs/components/accordion" },
 				{ label: "Alert", value: "docs/components/alert" },
@@ -197,7 +197,7 @@ let m = {
 		},
 		{
 			label: "Helpers",
-			icon: { id: "magic", color: "warning" },
+			icon: { id: "magic", textColor: "warning" },
 			item: [
 				{ label: "Clearfix", value: "docs/helpers/clearfix" },
 				{ label: "Color & background", value: "docs/helpers/color_background" },
@@ -215,7 +215,7 @@ let m = {
 		},
 		{
 			label: "Utilities",
-			icon: { id: "braces-asterisk", color: "danger" },
+			icon: { id: "braces-asterisk", textColor: "danger" },
 			item: [
 				{ label: "API", value: "docs/utilities/api" },
 				{ label: "Background", value: "docs/utilities/background" },
@@ -241,7 +241,7 @@ let m = {
 		},
 		{
 			label: "Example",
-			icon: { id: "code", color: "success" },
+			icon: { id: "code", textColor: "success" },
 			item: [
 				{ label: "Headers", value: "docs/example/headers" },
 				{ label: "Heroes", value: "docs/example/heroes" },
@@ -308,7 +308,7 @@ const genMenuWithBookmark = () => {
 
 	if (bm && bm.length > 0) {
 		result.push({
-			icon: new b.icon({ id: "pin-fill", color: "secondary" }),
+			icon: new b.icon({ id: "pin-fill", textColor: "secondary" }),
 			label: "Pinned",
 			item: bm,
 		});
@@ -798,7 +798,7 @@ const startMemoryTest = (
 					b.modal.create({
 						title: "Memory test complete",
 						elem: new b.msg({
-							icon: new b.icon({ id: "info-circle-fill", color: "primary" }),
+							icon: new b.icon({ id: "info-circle-fill", textColor: "primary" }),
 							elem: result,
 						}),
 						btn: "ok",
@@ -1280,7 +1280,11 @@ const showSearchDialog = () => {
 												},
 												[
 													"Search by ",
-													new b.icon({ id: "hexagon-fill", fontSize: 5, color: "primary" }),
+													new b.icon({
+														id: "hexagon-fill",
+														fontSize: 5,
+														textColor: "primary",
+													}),
 												]
 											),
 										]);
@@ -1306,7 +1310,7 @@ const showSearchDialog = () => {
 					new h.div({ display: "flex", gap: 3, width: 100 }, [
 						new h.div(
 							{ position: "absolute", padding: 1, paddingStart: 3 },
-							new b.icon({ id: "search", fontSize: 4, color: "secondary" })
+							new b.icon({ id: "search", fontSize: 4, textColor: "secondary" })
 						),
 						b.form.input({
 							container: { width: 100 },

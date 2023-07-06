@@ -372,7 +372,7 @@ export const modals: IAttrContent = {
 												fontSize: 1,
 												h: 1,
 												fontWeight: "bold",
-												color: i.iconColor as I.B.Icon["color"],
+												textColor: i.iconColor as I.B.Icon["textColor"],
 											}),
 											new h.div([new h.h(5, { marginBottom: 0 }, i.title), i.description]),
 										]);
@@ -433,7 +433,7 @@ export const modals: IAttrContent = {
 																	fontSize: 1,
 																	h: 1,
 																	fontWeight: "bold",
-																	color: i.iconColor as I.B.Icon["color"],
+																	textColor: i.iconColor as I.B.Icon["textColor"],
 																}),
 																new h.div([
 																	new h.h(5, { marginBottom: 0 }, i.title),

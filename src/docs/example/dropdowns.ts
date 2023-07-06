@@ -223,28 +223,28 @@ export const dropdowns: IAttrContent = {
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "success" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "success" }) },
 											"Action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "primary" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "primary" }) },
 											"Another action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "danger" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "danger" }) },
 											"Something else here"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "info" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "info" }) },
 											"Separated link"
 										)
 									),
@@ -270,28 +270,28 @@ export const dropdowns: IAttrContent = {
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "success" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "success" }) },
 											"Action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "primary" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "primary" }) },
 											"Another action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "danger" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "danger" }) },
 											"Something else here"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "info" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "info" }) },
 											"Separated link"
 										)
 									),
@@ -329,28 +329,28 @@ export const dropdowns: IAttrContent = {
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "success" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "success" }) },
 											"Action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "primary" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "primary" }) },
 											"Another action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "danger" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "danger" }) },
 											"Something else here"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "info" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "info" }) },
 											"Separated link"
 										)
 									),
@@ -376,28 +376,28 @@ export const dropdowns: IAttrContent = {
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "success" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "success" }) },
 											"Action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "primary" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "primary" }) },
 											"Another action"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "danger" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "danger" }) },
 											"Something else here"
 										)
 									),
 									new b.dropdown.item(
 										{ href: "#" },
 										new b.caption(
-											{ icon: new b.icon({ id: "record-fill", color: "info" }) },
+											{ icon: new b.icon({ id: "record-fill", textColor: "info" }) },
 											"Separated link"
 										)
 									),

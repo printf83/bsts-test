@@ -267,7 +267,7 @@ export const modal: IAttrContent = {
 											const mdl = b.modal.create({
 												title: document.title,
 												elem: new b.msg(
-													{ type: "bi", id: "info-circle-fill", color: "primary" },
+													{ id: "info-circle-fill", textColor: "primary" },
 													"Hello world. Open {{nav:docs/forms/select#disabled::Forms select}} document from msgbox then show {{#disabled}} section"
 												),
 												//easy button wihtout btnFn will act as close button
@@ -290,7 +290,7 @@ export const modal: IAttrContent = {
 												title: document.title,
 												backdrop: "static",
 												elem: new b.msg(
-													{ type: "bi", id: "question-circle-fill", color: "success" },
+													{ id: "question-circle-fill", textColor: "success" },
 													"Do you like javascript?"
 												),
 												btn: ["yes", "no", "cancel"], //easy button setup

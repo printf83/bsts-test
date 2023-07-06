@@ -143,7 +143,7 @@ export const navbar: IAttrContent = {
 							{ bgColor: "body-tertiary" },
 							new b.navbar.innercontainer(
 								{ container: "fluid" },
-								new b.navbar.brand({ href: "#" }, b.icon.brand("bootstrap", { textColor: "primary" }))
+								new b.navbar.brand({ href: "#" }, new b.icon({ textColor: "primary", id: "bootstrap" }))
 							)
 						);
 					},
@@ -166,7 +166,7 @@ export const navbar: IAttrContent = {
 								new b.navbar.brand(
 									{ href: "#" },
 									new b.caption(
-										{ icon: b.icon.brand("bootstrap", { textColor: "primary" }) },
+										{ icon: new b.icon({ textColor: "primary", id: "bootstrap" }) },
 										"Bootstrap"
 									)
 								)
@@ -764,7 +764,7 @@ export const navbar: IAttrContent = {
 							new b.collapse.container(
 								{ id: "navbarToggleExternalContent" },
 								new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [
-									new h.h(5, { textColor: "body-emphasis", class: "h4" }, "Collapsed content"),
+									new h.h(5, { textColor: "body-emphasis", h: 4 }, "Collapsed content"),
 									new h.span({ textColor: "body-secondary" }, "Toggleable via the navbar brand."),
 								])
 							),

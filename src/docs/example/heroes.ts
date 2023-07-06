@@ -5,7 +5,7 @@ import { IAttrContent } from "../../ctl/main/container.js";
 const ex = {
 	c1: (arg: { icon: string; title: string; description: string; elem?: core.IElem }) => {
 		return new h.div({ paddingX: 4, paddingY: 5, marginY: 5, textAlign: "center" }, [
-			new h.h(1, new b.icon({ id: arg.icon, weight: "2xl", fontDisplay: 1 })),
+			new h.h(1, new b.icon({ id: arg.icon, fontSize: 1, fontDisplay: 1 })),
 			new h.h(1, { fontDisplay: 5, fontWeight: "bold", textColor: "body-emphasis" }, arg.title),
 			new h.div({ col: "lg-6", marginX: "auto" }, [
 				new h.p({ lead: true, marginBottom: 4 }, arg.description),

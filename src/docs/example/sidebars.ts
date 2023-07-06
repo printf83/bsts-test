@@ -38,7 +38,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "white",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
 				),
 				new h.hr(),
 				new b.nav.header.container({
@@ -117,7 +117,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "body-emphasis",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
 				),
 				new h.hr(),
 				new b.nav.header.container({
@@ -322,7 +322,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "body-emphasis",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
 				),
 				new h.hr(),
 				new h.ul(
@@ -446,7 +446,7 @@ const ex = {
 						padding: 3,
 						border: "bottom",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon, weight: "lg" }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
 				),
 				new b.tabList.container(
 					{ flush: true, overflowY: "auto" },

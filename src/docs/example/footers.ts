@@ -143,7 +143,7 @@ const ex = {
 							marginBottom: 3,
 							textDecoration: "none",
 						},
-						new b.icon({ id: arg.icon, fontSize: 1, color: "body" })
+						new b.icon({ id: arg.icon, fontSize: 1, textColor: "body" })
 					),
 					new h.p({ textColor: "body-secondary" }, arg.copyright),
 				]),

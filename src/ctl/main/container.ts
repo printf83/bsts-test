@@ -899,7 +899,7 @@ const convert = (attr: IBsMainContainer) => {
 									},
 								},
 							},
-							attr.icon ? new b.icon(attr.icon) : b.icon.brand("bootstrap", { weight: "xl" })
+							attr.icon ? new b.icon(attr.icon) : new b.icon({ id: "bootstrap", fontSize: 3 })
 						),
 
 						new h.div({ display: "flex", class: "bs-navbar-toggle" }, [
@@ -1140,7 +1140,7 @@ const convert = (attr: IBsMainContainer) => {
 								},
 							},
 							[
-								attr.icon ? new b.icon(attr.icon) : b.icon.brand("bootstrap", { weight: "xl" }),
+								attr.icon ? new b.icon(attr.icon) : new b.icon({ id: "bootstrap", fontSize: 3 }),
 								new h.span({ fontSize: 5, marginStart: 2 }, attr.name || "Bootstrap"),
 							]
 						),
