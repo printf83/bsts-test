@@ -92,7 +92,7 @@ const onBootswatchChange = (value: string) => {
 			bootstrapCssLink.disabled = false;
 			bootstrapCssLink.setAttribute(
 				"href",
-				`https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/${value}/bootstrap.min.css`
+				`https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`
 			);
 		}
 	}

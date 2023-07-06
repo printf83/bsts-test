@@ -194,9 +194,10 @@ const ex = {
 						marginEnd: "md-auto",
 						textDecoration: "none",
 						textColor: "body-emphasis",
-						padding: 3,
+						paddingX: 4,
+						paddingY: 3,
 					},
-					new b.icon({ id: arg.icon, weight: "2xl" })
+					new b.icon({ id: arg.icon, h: 4 })
 				),
 				new h.div(
 					{ marginBottom: "auto" },

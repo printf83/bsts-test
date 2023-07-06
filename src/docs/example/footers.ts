@@ -28,7 +28,7 @@ const ex = {
 						linkColor: "body-emphasis",
 						textDecoration: "none",
 					},
-					new b.icon({ id: arg.icon, weight: "2xl" })
+					new b.icon({ id: arg.icon, fontSize: 2 })
 				),
 				new b.nav.header.container({
 					col: "md-4",
@@ -62,7 +62,7 @@ const ex = {
 							textDecoration: "none",
 							lineHeight: 1,
 						},
-						new b.icon({ id: arg.icon, weight: "xl" })
+						new b.icon({ id: arg.icon, fontSize: 2 })
 					),
 					new h.span({ marginBottom: [3, "md-0"], textColor: "body-secondary" }, arg.copyright),
 				]),
@@ -77,7 +77,7 @@ const ex = {
 							{ marginStart: 3 },
 							new h.a(
 								{ href: i.href },
-								new b.icon({ id: i.icon, weight: "xl", textColor: "body-secondary" })
+								new b.icon({ id: i.icon, fontSize: 2, textColor: "body-secondary" })
 							)
 						);
 					}),
@@ -143,7 +143,7 @@ const ex = {
 							marginBottom: 3,
 							textDecoration: "none",
 						},
-						new b.icon({ id: arg.icon, weight: "2xl", color: "body" })
+						new b.icon({ id: arg.icon, fontSize: 1, color: "body" })
 					),
 					new h.p({ textColor: "body-secondary" }, arg.copyright),
 				]),
@@ -197,6 +197,7 @@ const ex = {
 				new h.div(
 					{
 						display: "flex",
+						alignItem: "center",
 						flex: ["column", "sm-row"],
 						justifyContent: "between",
 						paddingY: 4,
@@ -204,7 +205,7 @@ const ex = {
 						border: "top",
 					},
 					[
-						new h.p(arg.copyright),
+						new h.p({ marginBottom: 0 }, arg.copyright),
 						new h.ul({
 							display: "flex",
 							item: arg.linkicon.map((i) => {
@@ -212,7 +213,7 @@ const ex = {
 									{ marginStart: 3 },
 									new h.a(
 										{ href: i.href },
-										new b.icon({ id: i.icon, weight: "xl", textColor: "body" })
+										new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })
 									)
 								);
 							}),

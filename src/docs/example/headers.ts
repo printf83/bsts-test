@@ -28,8 +28,8 @@ const ex = {
 						},
 						new b.caption(
 							{
-								icon: new b.icon({ id: arg.icon, h: 2, marginBottom: 0 }),
-								h: 4,
+								icon: new b.icon({ id: arg.icon, marginBottom: 0 }),
+								fontSize: 4,
 							},
 							arg.title
 						)
@@ -103,9 +103,9 @@ const ex = {
 								display: "inline-flex",
 								linkColor: "body-emphasis",
 								textDecoration: "none",
-								h: 2,
+								marginBottom: [3, "md-0"],
 							},
-							new b.icon(arg.icon)
+							new b.icon({ id: arg.icon, fontSize: 4 })
 						)
 					),
 
@@ -168,10 +168,9 @@ const ex = {
 								marginBottom: [2, "lg-0"],
 								textColor: "white",
 								textDecoration: "none",
-								h: 2,
 								marginEnd: 2,
 							},
-							new b.icon(arg.icon)
+							new b.icon({ id: arg.icon, fontSize: 4 })
 						),
 
 						new b.nav.header.container({
@@ -253,10 +252,9 @@ const ex = {
 								marginBottom: [2, "lg-0"],
 								linkColor: "body-emphasis",
 								textDecoration: "none",
-								h: 2,
 								marginEnd: 2,
 							},
-							new b.icon(arg.icon)
+							new b.icon({ id: arg.icon, fontSize: 4 })
 						),
 
 						new b.nav.header.container({
@@ -352,7 +350,7 @@ const ex = {
 								col: "lg-4",
 								marginBottom: [2, "lg-0"],
 							},
-							new b.icon({ id: arg.icon, h: 2, marginBottom: 0 })
+							new b.icon({ id: arg.icon, fontSize: 2 })
 						),
 						new b.dropdown.menu(
 							{
@@ -472,8 +470,8 @@ const ex = {
 					},
 					new b.caption(
 						{
-							icon: new b.icon({ id: arg.icon, h: 2, marginBottom: 0 }),
-							h: 4,
+							icon: new b.icon({ id: arg.icon }),
+							fontSize: 4,
 						},
 						arg.title
 					)
@@ -523,7 +521,7 @@ const ex = {
 									linkColor: "light",
 									textDecoration: "none",
 								},
-								new b.icon({ id: arg.icon, h: 2, marginBottom: 0 })
+								new b.icon({ id: arg.icon, fontSize: 1 })
 							),
 							new b.nav.header.container({
 								col: [12, "lg-auto"],

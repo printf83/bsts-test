@@ -304,7 +304,7 @@ const genBootswatch = (
 						label: "Bootswatch theme",
 					},
 					[
-						new h.span({ marginEnd: 2 }, new b.icon({ type: "solid", id: "swatchbook" })),
+						new h.span({ marginEnd: 2 }, new b.icon("palette2")),
 						new h.span(
 							{ id: "bs-bootswatch-label" },
 							`${core.uppercaseFirst(currentBootswatch ? currentBootswatch : "Default")}`
