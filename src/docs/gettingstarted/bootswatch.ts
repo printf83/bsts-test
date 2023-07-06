@@ -898,8 +898,11 @@ export const bootswatch: IAttrContent = {
 
 			//----------------------
 
+			new e.section([new e.title("Navs")]),
+
+			//----------------------
+
 			new e.section([
-				new e.title("Navs"),
 				new e.subtitle("Tabs"),
 				new e.code({
 					output: () => {
@@ -1030,7 +1033,11 @@ export const bootswatch: IAttrContent = {
 						);
 					},
 				}),
+			]),
 
+			//----------------------
+
+			new e.section([
 				new e.xsubtitle("Rounded pill"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -1052,8 +1059,11 @@ export const bootswatch: IAttrContent = {
 
 			//----------------------
 
+			new e.section([new e.title("Progress")]),
+
+			//----------------------
+
 			new e.section([
-				new e.title("Progress"),
 				new e.subtitle("Basic"),
 				new e.code({
 					output: () => {
@@ -1062,7 +1072,11 @@ export const bootswatch: IAttrContent = {
 						});
 					},
 				}),
+			]),
 
+			//----------------------
+
+			new e.section([
 				new e.subtitle("Contextual alternatives"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -1079,7 +1093,11 @@ export const bootswatch: IAttrContent = {
 						});
 					},
 				}),
+			]),
 
+			//----------------------
+
+			new e.section([
 				new e.subtitle("Multiple bars"),
 				new e.code({
 					output: () => {
@@ -1110,7 +1128,11 @@ export const bootswatch: IAttrContent = {
 						]);
 					},
 				}),
+			]),
 
+			//----------------------
+
+			new e.section([
 				new e.subtitle("Striped"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -1133,7 +1155,11 @@ export const bootswatch: IAttrContent = {
 						});
 					},
 				}),
+			]),
 
+			//----------------------
+
+			new e.section([
 				new e.subtitle("Animated"),
 				new e.code({
 					output: () => {
@@ -1145,6 +1171,271 @@ export const bootswatch: IAttrContent = {
 					},
 				}),
 			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("List groups"),
+				new e.code({
+					outputAttr: { class: "list-group-w-400px" },
+					output: () => {
+						return new b.list.container([
+							new b.list.item("An item"),
+							new b.list.item("A second item"),
+							new b.list.item("A third item"),
+							new b.list.item("A fourth item"),
+							new b.list.item("And a fifth one"),
+						]);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Badge"),
+				new e.code({
+					outputAttr: { class: "list-group-w-400px" },
+					output: () => {
+						return new b.list.container(
+							[
+								{ label: "A list item", counter: 14 },
+								{ label: "A second list item", counter: 2 },
+								{ label: "A third list item", counter: 1 },
+							].map((i) => {
+								return new b.list.item(
+									{ display: "flex", justifyContent: "between", alignItem: "center" },
+									[
+										i.label,
+										new b.badge({ bgColor: "primary", rounded: "pill" }, i.counter.toString()),
+									]
+								);
+							})
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Color"),
+				new e.code({
+					outputAttr: { class: "list-group-w-400px" },
+					output: () => {
+						return new b.list.container(
+							["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
+								(i) => {
+									return new b.list.item(
+										{
+											color: i as I.B.List.Item["color"],
+											display: "flex",
+											justifyContent: "between",
+											alignItem: "center",
+										},
+										[
+											core.uppercaseFirst(i),
+											new b.badge(
+												{ textBgColor: i as core.bootstrapType.textBgColor, rounded: "pill" },
+												core.rndBetween(1, 20).toString()
+											),
+										]
+									);
+								}
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Active"),
+				new e.code({
+					outputAttr: { class: "list-group-w-400px" },
+					output: () => {
+						return new b.list.container(
+							["An item", "A second item", "A third item", "A fourth item", "And a fifth one"].map(
+								(i, ix) => {
+									return new b.list.item({ action: true, handleActive: true, active: ix === 0 }, i);
+								}
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Custom content"),
+				new e.code({
+					outputAttr: { class: "list-group-w-400px" },
+					output: () => {
+						return new b.tabList.container(
+							{ style: { maxWidth: "400px" } },
+							[
+								{ label: "And some small print", active: true },
+								{ label: "And some muted small print" },
+								{ label: "And some muted small print" },
+							].map((i) => {
+								return new b.tabList.item({ href: "#", action: true, active: i.active }, [
+									new h.div({ display: "flex", width: 100, justifyContent: "between" }, [
+										new h.h(5, { marginBottom: 1 }, "List group item heading"),
+										new h.small(
+											{ textColor: !i.active ? "body-secondary" : undefined },
+											"3 days ago"
+										),
+									]),
+									new h.p({ marginBottom: 1 }, "Some placeholder content in a paragraph."),
+									new h.small({ textColor: !i.active ? "body-secondary" : undefined }, i.label),
+								]);
+							})
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Card"),
+				new e.code({
+					output: () => {
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
+							(i, ix) => {
+								return new b.card.container(
+									{
+										textBgColor: i as core.bootstrapType.textBgColor,
+										marginTop: ix !== 0 ? 3 : undefined,
+										style: { width: "18rem" },
+									},
+									[
+										new b.card.header("Header"),
+										new b.card.body([
+											new b.card.title(`${core.uppercaseFirst(i)} card title`),
+											new b.card.text(
+												"Some quick example text to build on the card title and make up the bulk of the card's content."
+											),
+										]),
+									]
+								);
+							}
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Outline"),
+				new e.code({
+					output: () => {
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
+							(i, ix) => {
+								return new b.card.container(
+									{
+										borderColor: i as core.bootstrapType.borderColor,
+										marginTop: ix !== 0 ? 3 : undefined,
+										style: { width: "18rem" },
+									},
+									[
+										new b.card.header("Header"),
+										new b.card.body({ textColor: i as core.bootstrapType.textColor }, [
+											new b.card.title(`${core.uppercaseFirst(i)} card title`),
+											new b.card.text(
+												"Some quick example text to build on the card title and make up the bulk of the card's content."
+											),
+										]),
+									]
+								);
+							}
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Kitchen sink"),
+				new e.code({
+					output: () => {
+						return new b.card.container({ style: { width: "18rem" } }, [
+							new b.card.header("Header"),
+
+							new b.card.body([new b.card.title("Card title"), new b.card.subtitle("Card subtitle.")]),
+							new b.card.img({
+								src: "https://picsum.photos/seed/bsts_0/286/180.webp",
+								alt: "Image cap",
+							}),
+							new b.card.body([
+								new b.card.text(
+									"Some quick example text to build on the card title and make up the bulk of the card's content."
+								),
+							]),
+							new b.list.container({ flush: true }, [
+								new b.list.item("An item"),
+								new b.list.item("A second item"),
+								new b.list.item("A third item"),
+							]),
+							new b.card.body([
+								new b.card.link({ href: "#" }, "Card link"),
+								new b.card.link({ href: "#" }, "Another link"),
+							]),
+							new b.card.footer("2 days ago"),
+						]);
+					},
+				}),
+
+				new e.code({
+					output: () => {
+						return new b.card.container(
+							{ style: { width: "18rem" } },
+							new b.card.body([
+								new b.card.title("Card title"),
+								new b.card.subtitle("Card subtitle"),
+								new b.card.text(
+									"Some quick example text to build on the card title and make up the bulk of the card's content."
+								),
+								new b.card.link({ href: "#" }, "Card link"),
+								new b.card.link({ href: "#" }, "Another link"),
+							])
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.subtitle("Accordion"),
+				new e.code({
+					output: () => {
+						return new b.accordion.container({
+							item: [
+								{
+									title: "Accordion Item #1",
+									elem: "{{b::This is the first item's accordion body}}. It is shown by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+									show: true,
+								},
+								{
+									title: "Accordion Item #2",
+									elem: "{{b::This is the second item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+								},
+								{
+									title: "Accordion Item #3",
+									elem: "{{b::This is the third item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+								},
+							],
+						});
+					},
+				}),
+			]),
+
+			//----------------------
 		];
 	},
 };
