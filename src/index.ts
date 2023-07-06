@@ -1310,13 +1310,18 @@ const showSearchDialog = () => {
 				new b.modal.header(
 					{ padding: 3, bgColor: "body-tertiary", borderNone: "bottom" },
 					new h.div({ display: "flex", gap: 3, width: 100 }, [
+						new h.div(
+							{ position: "absolute", padding: 1, paddingStart: 3 },
+							new b.icon({ id: "search", fontSize: 4, color: "secondary" })
+						),
 						b.form.input({
 							container: { width: 100 },
 							id: "doc-search-input",
 							maxlength: 100,
 							type: "search",
 							weight: "lg",
-							placeholder: "Search",
+							placeholder: "Search docs",
+							paddingStart: 5,
 							value: lastSearchText,
 							on: {
 								keyup: (event) => {
