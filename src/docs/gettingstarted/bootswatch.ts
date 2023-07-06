@@ -7,6 +7,58 @@ export const bootswatch: IAttrContent = {
 	description: "Free themes for Bootstrap from Bootswatch",
 	item: () => {
 		return [
+			// new e.section(
+			// 	new h.div(
+			// 		{ gap: 3, display: "flex", flex: "wrap", justifyContent: "evenly" },
+			// 		[
+			// 			{ value: "cerulean", label: "Cerulean" },
+			// 			{ value: "cosmo", label: "Cosmo" },
+			// 			{ value: "cyborg", label: "Cyborg" },
+			// 			{ value: "darkly", label: "Darkly" },
+			// 			{ value: "flatly", label: "Flatly" },
+			// 			{ value: "journal", label: "Journal" },
+			// 			{ value: "litera", label: "Litera" },
+			// 			{ value: "lumen", label: "Lumen" },
+			// 			{ value: "lux", label: "Lux" },
+			// 			{ value: "materia", label: "Materia" },
+			// 			{ value: "minty", label: "Minty" },
+			// 			{ value: "morph", label: "Morph" },
+			// 			{ value: "pulse", label: "Pulse" },
+			// 			{ value: "quartz", label: "Quartz" },
+			// 			{ value: "sandstone", label: "Sandstone" },
+			// 			{ value: "simplex", label: "Simplex" },
+			// 			{ value: "sketchy", label: "Sketchy" },
+			// 			{ value: "slate", label: "Slate" },
+			// 			{ value: "solar", label: "Solar" },
+			// 			{ value: "spacelab", label: "Spacelab" },
+			// 			{ value: "superhero", label: "Superhero" },
+			// 			{ value: "united", label: "United" },
+			// 			{ value: "vapor", label: "Vapor" },
+			// 			{ value: "yeti", label: "Yeti" },
+			// 			{ value: "zephyr", label: "Zephyr" },
+			// 		].map((i) => {
+			// 			return new b.img({
+			// 				src: `https://bootswatch.com/${i.value}/thumbnail.png`,
+			// 				thumbnail: true,
+			// 				col: ["lg-2", "md-3", "sm-4"],
+			// 				data: {
+			// 					value: i.value,
+			// 				},
+			// 				on: {
+			// 					click: (event) => {
+			// 						const target = event.target as Element;
+			// 						let value = target.getAttribute("data-value");
+			// 						let root = target.closest(".bs-main-root") as Element;
+			// 						root.dispatchEvent(new CustomEvent("bs-bootswatch-change", { detail: value }));
+			// 					},
+			// 				},
+			// 			});
+			// 		})
+			// 	)
+			// ),
+
+			//----------------------
+
 			new e.section([
 				new e.title("Navbars"),
 				new e.code({
