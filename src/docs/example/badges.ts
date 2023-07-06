@@ -8,7 +8,7 @@ export const badges: IAttrContent = {
 	item: () => {
 		return [
 			new e.section([
-				new e.title("textBgColor"),
+				new e.title("Style 1"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -27,7 +27,7 @@ export const badges: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("bgColor and textColor"),
+				new e.title("Style 2"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -50,7 +50,7 @@ export const badges: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("bgColor, textColor and borderColor"),
+				new e.title("Style 3"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
