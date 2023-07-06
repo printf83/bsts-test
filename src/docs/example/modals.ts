@@ -8,7 +8,7 @@ export const modals: IAttrContent = {
 	item: () => {
 		return [
 			new e.section([
-				new e.title("IOS Style"),
+				new e.title("Style 1"),
 				new e.code({
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
@@ -53,7 +53,7 @@ export const modals: IAttrContent = {
 					output: () => {
 						return b.modal.create({
 							debug: true,
-							customStyle: "ios",
+							customStyle: 1,
 							title: "Modal title",
 							elem: new h.p(
 								"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
@@ -122,7 +122,7 @@ export const modals: IAttrContent = {
 										click: (_event) => {
 											b.modal.show(
 												b.modal.create({
-													customStyle: "ios",
+													customStyle: 1,
 													title: "Modal title",
 													elem: new h.p(
 														"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
@@ -144,7 +144,7 @@ export const modals: IAttrContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Android Style"),
+				new e.title("Style 2"),
 				new e.code({
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
@@ -218,7 +218,7 @@ export const modals: IAttrContent = {
 					output: () => {
 						return b.modal.create({
 							debug: true,
-							customStyle: "android",
+							customStyle: 2,
 							title: "Enable this setting?",
 							elem: new h.p(
 								{ marginBottom: 0 },
@@ -313,7 +313,7 @@ export const modals: IAttrContent = {
 										click: (_event) => {
 											b.modal.show(
 												b.modal.create({
-													customStyle: "android",
+													customStyle: 2,
 													title: "Enable this setting?",
 													elem: new h.p(
 														{ marginBottom: 0 },

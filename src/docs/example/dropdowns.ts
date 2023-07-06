@@ -115,7 +115,7 @@ export const dropdowns: IAttrContent = {
 	item: () => {
 		return [
 			new e.section([
-				new e.title("Custom style"),
+				new e.title("Style : 1"),
 				new e.code({
 					showCodepen: false,
 					outputAttr: {

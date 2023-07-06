@@ -97,7 +97,7 @@ export const test: IAttrContent = {
 									click: () => {
 										b.modal.show(
 											b.modal.create({
-												customStyle: "android",
+												customStyle: 2,
 												title: "Chatjs example",
 												scrollable: true,
 												elem: new h.div(

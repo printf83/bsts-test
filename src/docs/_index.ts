@@ -38,6 +38,9 @@ export const doc = async (value: string) => {
 		case "docs/example/modals":
 			result = await example.modals();
 			break;
+		case "docs/example/badges":
+			result = await example.badges();
+			break;
 		case "docs/example/test":
 			result = await example.test();
 			break;

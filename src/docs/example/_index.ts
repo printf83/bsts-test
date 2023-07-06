@@ -22,6 +22,9 @@ export const list_groups = async () => {
 export const modals = async () => {
 	return (await import("./modals.js")).modals;
 };
+export const badges = async () => {
+	return (await import("./badges.js")).badges;
+};
 export const test = async () => {
 	return (await import("./test.js")).test;
 };

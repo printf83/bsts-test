@@ -251,6 +251,7 @@ let m = {
 				{ label: "Dropdowns", value: "docs/example/dropdowns" },
 				{ label: "List groups", value: "docs/example/list_groups" },
 				{ label: "Modals", value: "docs/example/modals" },
+				{ label: "Badges", value: "docs/example/badges" },
 				{ label: "Test", value: "docs/example/test" },
 			],
 		},
