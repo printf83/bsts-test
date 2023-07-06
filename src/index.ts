@@ -1475,7 +1475,7 @@ const mainContainer = () => {
 			// },
 			{
 				href: "#",
-				icon: { id: "cpu" },
+				icon: { id: "speedometer" },
 				label: "Memory test",
 				onclick: (_event) => {
 					const offcanvas = document.getElementById("bsNavbar") as Element;
