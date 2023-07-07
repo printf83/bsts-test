@@ -92,13 +92,7 @@
     } */
 }
 
-@media (max-width: 991.98px) {
 
-    .bs-search-button-keys,
-    .bs-search-button-placeholder {
-        display: none !important
-    }
-}
 
 .bs-search-button-keys {
     min-width: 0;
@@ -122,6 +116,14 @@
     box-shadow: none;
     opacity: .65;
     color: #fff
+}
+
+@media (max-width: 991.98px) {
+
+    .bs-search-button-keys,
+    .bs-search-button-placeholder {
+        display: none !important
+    }
 }
 
 /*mark on search dialog*/
