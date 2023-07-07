@@ -1309,8 +1309,16 @@ const showSearchDialog = () => {
 					{ padding: 3, bgColor: "body-tertiary", borderNone: "bottom" },
 					new h.div({ display: "flex", gap: 3, width: 100 }, [
 						new h.div(
-							{ position: "absolute", padding: 1, paddingStart: 3 },
-							new b.icon({ id: "search", fontSize: 4, textColor: "secondary" })
+							{
+								position: "absolute",
+								border: false,
+								class: "form-control form-control-lg",
+								style: {
+									width: "auto",
+									backgroundColor: "transparent",
+								},
+							},
+							new b.icon({ id: "search", textColor: "secondary" })
 						),
 						b.form.input({
 							container: { width: 100 },
