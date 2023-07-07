@@ -1,4 +1,4 @@
-import { b, h, core } from "@printf83/bsts";
+import { b, h, core, I } from "@printf83/bsts";
 import { IAttrContent } from "../../ctl/main/container.js";
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
@@ -8,11 +8,65 @@ export const test: IAttrContent = {
 	description: "This is testing page to test our library one by one",
 	item: () => {
 		return [
+			// new e.section([
+			// 	new e.title("Tooltip"),
+			// 	new e.code({
+			// 		output: () => {
+			// 			return new b.button("Hello");
+			// 		},
+			// 	}),
+			// ]),
+
+			//----------------------
+
 			new e.section([
-				new e.title("Tooltip"),
+				new e.title("Animation"),
 				new e.code({
+					outputAttr: { display: "flex", gap: 3, flex: "wrap" },
 					output: () => {
-						return new b.button("Hello");
+						return [
+							"rotation",
+							"sidetoside",
+							"zoom-in",
+							"zoom-out",
+							"spin",
+							"pulse",
+							"shake",
+							"barrel-roll",
+							"floater",
+							"wiggle",
+							"pound",
+							"heartbeat",
+							"roller-right",
+							"roller-left",
+							"slide-down",
+							"slide-up",
+							"slide-left",
+							"slide-right",
+							"fade-in",
+							"fade-out",
+							"rotate-in-right",
+							"rotate-in-left",
+							"rotate-in",
+							"bounce-in",
+						].map(
+							(i) =>
+								new h.div(
+									{ padding: 2, border: true, rounded: 2 },
+									new b.msg({
+										icon: new b.icon(
+											{
+												animate: i as I.B.Icon["animate"],
+												animateRepeat: "infinite",
+												fontSize: 1,
+											},
+											"star"
+										),
+										iconPosition: "top",
+										elem: i,
+									})
+								)
+						);
 					},
 				}),
 			]),
@@ -22,6 +76,7 @@ export const test: IAttrContent = {
 			new e.section([
 				new e.title("Duplicate ID"),
 				new e.code({
+					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
 							new b.button({ id: "chart" }, "chart"),
