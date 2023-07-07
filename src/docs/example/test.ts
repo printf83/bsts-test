@@ -54,6 +54,7 @@ export const test: IAttrContent = {
 								new h.div(
 									{ padding: 2, border: true, rounded: 2 },
 									new b.msg({
+										textAlign: "center",
 										icon: new b.icon(
 											{
 												animate: i as I.B.Icon["animate"],
