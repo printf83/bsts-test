@@ -61,10 +61,68 @@ export const test: IAttrContent = {
 												animateRepeat: "infinite",
 												fontSize: 1,
 											},
-											"star"
+											"asterisk"
 										),
 										iconPosition: "top",
 										elem: i,
+									})
+								)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Rotate"),
+				new e.code({
+					outputAttr: { display: "flex", gap: 3, flex: "wrap" },
+					output: () => {
+						return [undefined, 45, 90, 135, 180, 225, 270, 315].map(
+							(i) =>
+								new h.div(
+									{ padding: 2, border: true, rounded: 2 },
+									new b.msg({
+										textAlign: "center",
+										icon: new b.icon(
+											{
+												rotate: i as core.bstsType.rotate,
+												fontSize: 1,
+											},
+											"at"
+										),
+										iconPosition: "top",
+										elem: i ? i : "normal",
+									})
+								)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Flip"),
+				new e.code({
+					outputAttr: { display: "flex", gap: 3, flex: "wrap" },
+					output: () => {
+						return [undefined, "vertical", "horizontal", "both"].map(
+							(i) =>
+								new h.div(
+									{ padding: 2, border: true, rounded: 2 },
+									new b.msg({
+										textAlign: "center",
+										icon: new b.icon(
+											{
+												flip: i as I.B.Icon["flip"],
+												fontSize: 1,
+											},
+											"at"
+										),
+										iconPosition: "top",
+										elem: i ? i : "normal",
 									})
 								)
 						);
