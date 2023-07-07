@@ -841,7 +841,7 @@ const showMemoryTestDialog = () => {
 						{
 							display: "grid",
 							gap: 2,
-							style: { "grid-template-columns": "1fr 1fr 1fr" },
+							gridTemplateColumns: "1fr 1fr 1fr",
 						},
 						[10, 30, 50, 100, 300, 500, 1000, 3000, 5000].map((i) => {
 							return new b.button(

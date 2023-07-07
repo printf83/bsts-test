@@ -336,7 +336,7 @@ const ex = {
 					display: "grid",
 					gap: 3,
 					alignItem: "center",
-					style: { "grid-template-columns": "1fr 2fr" },
+					gridTemplateColumns: "1fr 2fr",
 				},
 
 				[
@@ -403,7 +403,7 @@ const ex = {
 	c6Body: (arg: { side?: core.IElem; main?: core.IElem }) => {
 		return new h.div(
 			{ container: "fluid", paddingBottom: 3 },
-			new h.div({ display: "grid", gap: 3, style: { "grid-template-columns": "1fr 2fr" } }, [
+			new h.div({ display: "grid", gap: 3, gridTemplateColumns: "1fr 2fr" }, [
 				new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""),
 				new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : ""),
 			])

@@ -110,7 +110,7 @@ export const breadcrumbs: IAttrContent = {
 								rounded: 3,
 								border: true,
 								display: "grid",
-								style: { "grid-template-columns": "1fr 1fr 1fr" },
+								gridTemplateColumns: "1fr 1fr 1fr",
 								textAlign: "center",
 								padding: 3,
 								divider: "''",
