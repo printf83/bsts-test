@@ -321,8 +321,8 @@ const genBootswatch = (
 						{
 							class: "bs-bootswatch-menu",
 							display: "grid",
+							gridTemplateColumns: "1fr 1fr 1fr",
 							gap: 1,
-							style: { "grid-template-columns": "1fr 1fr 1fr" },
 						},
 						navbarItemBootswatch.map((i) => {
 							return new h.a(
