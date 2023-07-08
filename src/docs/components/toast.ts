@@ -90,7 +90,7 @@ export const toast: IAttrContent = {
 										click: (_e) => {
 											//trigger live toast demo
 											const toastLiveExample = document.getElementById("liveToast");
-											const toastBootstrap = window.bootstrap.Toast.getOrCreateInstance(
+											const toastBootstrap = b.toast.getOrCreateInstance(
 												toastLiveExample as Element
 											);
 											toastBootstrap.show();
