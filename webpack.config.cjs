@@ -12,16 +12,13 @@ module.exports = {
 				use: [
 					{
 						loader: "ts-loader",
-						options: {
-							transpileOnly: true,
-						},
 					},
 				],
-				exclude: /node_modules/,
 			},
 		],
 	},
 	resolve: {
+		modules: ["node_modules"],
 		extensions: [".ts", ".js"],
 	},
 	output: {
