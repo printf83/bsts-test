@@ -52,9 +52,17 @@ export const test: IAttrContent = {
 						].map(
 							(i) =>
 								new h.div(
-									{ padding: 2, border: true, rounded: 2 },
-									new b.msg({
-										textAlign: "center",
+									{
+										display: "flex",
+										justifyContent: "center",
+										alignItem: "center",
+										overflow: "hidden",
+										padding: 2,
+										border: true,
+										rounded: 2,
+										col: [6, "md-4", "lg-3", "xl-2"],
+									},
+									new b.caption({
 										icon: new b.icon(
 											{
 												animate: i as I.B.Icon["animate"],
@@ -82,9 +90,16 @@ export const test: IAttrContent = {
 						return [undefined, 45, 90, 135, 180, 225, 270, 315].map(
 							(i) =>
 								new h.div(
-									{ padding: 2, border: true, rounded: 2 },
-									new b.msg({
-										textAlign: "center",
+									{
+										display: "flex",
+										justifyContent: "center",
+										alignItem: "center",
+										padding: 2,
+										border: true,
+										rounded: 2,
+										col: [6, "md-4", "lg-3", "xl-2"],
+									},
+									new b.caption({
 										icon: new b.icon(
 											{
 												rotate: i as core.bstsType.rotate,
@@ -111,9 +126,16 @@ export const test: IAttrContent = {
 						return [undefined, "vertical", "horizontal", "both"].map(
 							(i) =>
 								new h.div(
-									{ padding: 2, border: true, rounded: 2 },
-									new b.msg({
-										textAlign: "center",
+									{
+										display: "flex",
+										justifyContent: "center",
+										alignItem: "center",
+										padding: 2,
+										border: true,
+										rounded: 2,
+										col: [6, "md-4", "lg-3", "xl-2"],
+									},
+									new b.caption({
 										icon: new b.icon(
 											{
 												flip: i as I.B.Icon["flip"],
