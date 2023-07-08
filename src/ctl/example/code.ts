@@ -13,11 +13,9 @@ import {
 
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.0/+esm";
 const BSCDNCSS = [
-	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
 ];
-const BSCDNJS = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"];
 
 export interface IBsExampleExt {
 	name?: string;
@@ -872,7 +870,6 @@ const generateCodePenData = (
 
 		html: codeBeautify("html", strRoot ? strRoot : `<div class="p-4"><div id="root"></div></div>`),
 
-		js_external: BSCDNJS,
 		js: codeBeautify("js", strCodeResult),
 	} satisfies ICodePen;
 
