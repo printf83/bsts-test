@@ -160,9 +160,9 @@ export const test: IAttrContent = {
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
-							new b.button({ id: "chart" }, "chart"),
-							new b.button({ id: "duplicate_id" }, "duplicate_id"),
-							new b.button({ id: "tooltip" }, "tooltip"),
+							// new b.button({ id: "chart" }, "chart"),
+							// new b.button({ id: "duplicate_id" }, "duplicate_id"),
+							// new b.button({ id: "tooltip" }, "tooltip"),
 						];
 					},
 				}),
@@ -173,7 +173,6 @@ export const test: IAttrContent = {
 			new e.section([
 				new e.title("Chart"),
 				new e.code({
-					showCodepen: false,
 					output: () => {
 						const item = (arg: { data: number[] }) => {
 							return new b.card.container(

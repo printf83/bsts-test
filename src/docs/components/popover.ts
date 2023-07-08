@@ -1,6 +1,7 @@
 import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
+import { Tooltip } from "bootstrap";
 
 export const popover: IAttrContent = {
 	title: "Popovers",
@@ -522,7 +523,7 @@ export const popover: IAttrContent = {
 				new e.code({
 					showConsole: true,
 					output: () => {
-						const myDefaultAllowList = window.bootstrap.Tooltip.Default.allowList;
+						const myDefaultAllowList = Tooltip.Default.allowList;
 						myDefaultAllowList.img = ["src", "alt"];
 
 						return [
@@ -548,7 +549,7 @@ export const popover: IAttrContent = {
 												title: "Popover title",
 												content: "And here's some amazing content. It's very engaging. Right?",
 												on: {
-													"hidden.bs.popover": (eent) => {
+													"hidden.bs.popover": (event) => {
 														b.popover.setContent("#example-popover", {
 															".popover-header": "Popover title",
 															".popover-body":

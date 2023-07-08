@@ -1,4 +1,6 @@
 import { core, b, I, h } from "@printf83/bsts";
+import js_beautify from "js-beautify";
+import { css_beautify, html_beautify } from "js-beautify";
 
 export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem, icon?: string) => {
 	b.toast.show(
@@ -50,24 +52,6 @@ export const console = (elem: Element, title?: string, msg?: string | object, co
 
 export type codeBeautifyType = "js" | "ts" | "html" | "css";
 
-declare var js_beautify: {
-	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
-	js: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
-	js_beautify: (js_source_text: string, options?: js_beautify.JSBeautifyOptions) => string;
-};
-
-declare var css_beautify: {
-	(js_source_text: string, options?: js_beautify.CSSBeautifyOptions): string;
-	css: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
-	css_beautify: (js_source_text: string, options?: js_beautify.CSSBeautifyOptions) => string;
-};
-
-declare var html_beautify: {
-	(js_source_text: string, options?: js_beautify.JSBeautifyOptions): string;
-	html: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
-	html_beautify: (js_source_text: string, options?: js_beautify.HTMLBeautifyOptions) => string;
-};
-
 export const codeBeautify = (type: codeBeautifyType | undefined, source_text: string): string => {
 	switch (type) {
 		case "html":
@@ -77,7 +61,6 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 				preserve_newlines: false,
 				end_with_newline: true,
 				indent_size: 4,
-				brace_style: "preserve-inline",
 			}) as string;
 
 		case "css":
