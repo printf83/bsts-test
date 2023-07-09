@@ -1,6 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import * as e from "../../ctl/example/_index";
+import { IAttrContent } from "../../ctl/main/container";
 
 export const bootswatch: IAttrContent = {
 	title: "Bootswatch",

@@ -1,60 +1,60 @@
 export const api = async () => {
-	return (await import("./api.js")).api;
+	return (await import("./api")).api;
 };
 export const background = async () => {
-	return (await import("./background.js")).background;
+	return (await import("./background")).background;
 };
 export const colors = async () => {
-	return (await import("./colors.js")).colors;
+	return (await import("./colors")).colors;
 };
 export const borders = async () => {
-	return (await import("./borders.js")).borders;
+	return (await import("./borders")).borders;
 };
 export const display = async () => {
-	return (await import("./display.js")).display;
+	return (await import("./display")).display;
 };
 export const flex = async () => {
-	return (await import("./flex.js")).flex;
+	return (await import("./flex")).flex;
 };
 export const float = async () => {
-	return (await import("./float.js")).float;
+	return (await import("./float")).float;
 };
 export const interactions = async () => {
-	return (await import("./interactions.js")).interactions;
+	return (await import("./interactions")).interactions;
 };
 export const link = async () => {
-	return (await import("./link.js")).link;
+	return (await import("./link")).link;
 };
 export const object_fit = async () => {
-	return (await import("./object_fit.js")).object_fit;
+	return (await import("./object_fit")).object_fit;
 };
 export const opacity = async () => {
-	return (await import("./opacity.js")).opacity;
+	return (await import("./opacity")).opacity;
 };
 export const overflow = async () => {
-	return (await import("./overflow.js")).overflow;
+	return (await import("./overflow")).overflow;
 };
 export const position = async () => {
-	return (await import("./position.js")).position;
+	return (await import("./position")).position;
 };
 export const shadow = async () => {
-	return (await import("./shadow.js")).shadow;
+	return (await import("./shadow")).shadow;
 };
 export const sizing = async () => {
-	return (await import("./sizing.js")).sizing;
+	return (await import("./sizing")).sizing;
 };
 export const spacing = async () => {
-	return (await import("./spacing.js")).spacing;
+	return (await import("./spacing")).spacing;
 };
 export const text = async () => {
-	return (await import("./text.js")).text;
+	return (await import("./text")).text;
 };
 export const vertical_align = async () => {
-	return (await import("./vertical_align.js")).vertical_align;
+	return (await import("./vertical_align")).vertical_align;
 };
 export const visibility = async () => {
-	return (await import("./visibility.js")).visibility;
+	return (await import("./visibility")).visibility;
 };
 export const zindex = async () => {
-	return (await import("./zindex.js")).zindex;
+	return (await import("./zindex")).zindex;
 };

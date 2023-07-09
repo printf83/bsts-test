@@ -1,6 +1,6 @@
 import { h, b, s, core, I } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import * as e from "../../ctl/example/_index";
+import { IAttrContent } from "../../ctl/main/container";
 import { Tooltip } from "bootstrap";
 
 export const tooltip: IAttrContent = {

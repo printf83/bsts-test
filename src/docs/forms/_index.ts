@@ -1,27 +1,27 @@
 export const check_radio = async () => {
-	return (await import("./check_radio.js")).check_radio;
+	return (await import("./check_radio")).check_radio;
 };
 export const control = async () => {
-	return (await import("./control.js")).control;
+	return (await import("./control")).control;
 };
 export const floating_label = async () => {
-	return (await import("./floating_label.js")).floating_label;
+	return (await import("./floating_label")).floating_label;
 };
 export const input_group = async () => {
-	return (await import("./input_group.js")).input_group;
+	return (await import("./input_group")).input_group;
 };
 export const layout = async () => {
-	return (await import("./layout.js")).layout;
+	return (await import("./layout")).layout;
 };
 export const overview = async () => {
-	return (await import("./overview.js")).overview;
+	return (await import("./overview")).overview;
 };
 export const range = async () => {
-	return (await import("./range.js")).range;
+	return (await import("./range")).range;
 };
 export const select = async () => {
-	return (await import("./select.js")).select;
+	return (await import("./select")).select;
 };
 export const validation = async () => {
-	return (await import("./validation.js")).validation;
+	return (await import("./validation")).validation;
 };

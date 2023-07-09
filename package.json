@@ -5,8 +5,6 @@
 	"keywords": [
 		"documentation",
 		"bootstrap 5",
-		"api",
-		"sdk",
 		"typescript"
 	],
 	"author": "Hamzah A <printf83@gmail.com>",
@@ -19,27 +17,16 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
 	},
-	"main": "./lib/index.js",
-	"types": "./lib/types/index.d.ts",
-	"type": "module",
-	"files": [
-		"lib/**/*"
-	],
 	"scripts": {
-		"clean": "rm -rf ./lib && rm -rf ./dist",
-		"clean:win": "rmdir /s /q lib && rmdir /s /q dist",
-		"build": "tsc -p ./configs/tsconfig.esm.json",
-		"rebuild": "npm run clean && npm run build && npm run webpack",
-		"rebuild:win": "npm run clean:win && npm run build  && npm run webpack",
-		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",
 		"link": "npm link @printf83/bsts",
-		"webpack:debug": "webpack -w",
-		"webpack": "webpack",
-		"predeploy": "npm run clean && npm run build",
-		"deploy": "npm run webpack"
+		"clean": "rm -rf ./build && rm -rf ./dist",
+		"clean:win": "rmdir /s /q build && rmdir /s /q dist",
+		"build": "npx webpack",
+		"rebuild": "npm run clean && npm run build",
+		"rebuild:win": "npm run clean:win && npm run build",
+		"debug": "npx webpack -w"
 	},
 	"devDependencies": {
-		"@printf83/bsts": "^0.2.1",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
 		"compression-webpack-plugin": "^10.0.0",
@@ -49,6 +36,7 @@
 		"webpack-cli": "^5.1.4"
 	},
 	"dependencies": {
+		"@printf83/bsts": "^0.2.1",
 		"bootstrap": "^5.3.0",
 		"chart.js": "^4.3.0",
 		"js-beautify": "^1.14.8"

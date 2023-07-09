@@ -1,6 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import * as e from "../../ctl/example/_index";
+import { IAttrContent } from "../../ctl/main/container";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
@@ -334,7 +334,7 @@ const ex = {
 				{
 					container: "fluid",
 					display: "grid",
-					gridTemplateColumns: "1fr 2fr" ,
+					gridTemplateColumns: "1fr 2fr",
 					gap: 3,
 					alignItem: "center",
 				},
@@ -403,7 +403,7 @@ const ex = {
 	c6Body: (arg: { side?: core.IElem; main?: core.IElem }) => {
 		return new h.div(
 			{ container: "fluid", paddingBottom: 3 },
-			new h.div({ display: "grid",gridTemplateColumns: "1fr 2fr", gap: 3 }, [
+			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [
 				new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""),
 				new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : ""),
 			])

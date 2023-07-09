@@ -1,18 +1,18 @@
-import { Code, code, IBsExampleContainer, IBsExampleExt } from "./code.js";
-import { Codepreview, codepreview, IBsExampleCodepreview } from "./codepreview.js";
-import { Description, description } from "./description.js";
-import { Item, item } from "./item.js";
-import { Pagetitle, pagetitle } from "./pagetitle.js";
-import { Subtitle, subtitle } from "./subtitle.js";
-import { Xsubtitle, xsubtitle } from "./xsubtitle.js";
-import { Section, section } from "./section.js";
-import { Text, text } from "./text.js";
-import { Title, title } from "./title.js";
-import { Table, table } from "./table.js";
-import { Ol, ol } from "./ol.js";
-import { Ul, ul } from "./ul.js";
-import { Alert, alert } from "./alert.js";
-import { toast, console, codePen as codePen, ICodePen, codeBeautify } from "./_fn.js";
+import { Code, code, IBsExampleContainer, IBsExampleExt } from "./code";
+import { Codepreview, codepreview, IBsExampleCodepreview } from "./codepreview";
+import { Description, description } from "./description";
+import { Item, item } from "./item";
+import { Pagetitle, pagetitle } from "./pagetitle";
+import { Subtitle, subtitle } from "./subtitle";
+import { Xsubtitle, xsubtitle } from "./xsubtitle";
+import { Section, section } from "./section";
+import { Text, text } from "./text";
+import { Title, title } from "./title";
+import { Table, table } from "./table";
+import { Ol, ol } from "./ol";
+import { Ul, ul } from "./ul";
+import { Alert, alert } from "./alert";
+import { toast, console, codePen as codePen, ICodePen, codeBeautify } from "./_fn";
 
 export {
 	code,

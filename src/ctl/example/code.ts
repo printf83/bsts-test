@@ -1,5 +1,5 @@
 import { b, h, t, core } from "@printf83/bsts";
-import { preview } from "./preview.js";
+import { preview } from "./preview";
 import {
 	ICodePen,
 	codeBeautify,
@@ -9,7 +9,7 @@ import {
 	getLibBaseOnSource,
 	replaceEConsole,
 	replaceExtention,
-} from "./_fn.js";
+} from "./_fn";
 
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.0/+esm";
 const BSCDNCSS = [

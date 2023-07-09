@@ -3,17 +3,14 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
 	mode: "development",
-	entry: "./lib/index.js",
+	entry: "./src/index.ts",
 	plugins: [new CompressionPlugin({ exclude: /\/docs/ })],
 	module: {
 		rules: [
 			{
-				test: /\.ts?$/,
-				use: [
-					{
-						loader: "ts-loader",
-					},
-				],
+				test: /\.tsx?/,
+				use: "ts-loader",
+				exclude: /node_modules/,
 			},
 		],
 	},

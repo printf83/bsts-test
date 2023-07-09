@@ -1,6 +1,6 @@
 import { b, core } from "@printf83/bsts";
-import { IAttrContent } from "../../ctl/main/container.js";
-import * as e from "../../ctl/example/_index.js";
+import { IAttrContent } from "../../ctl/main/container";
+import * as e from "../../ctl/example/_index";
 
 export const accordion: IAttrContent = {
 	title: "Accordion",
