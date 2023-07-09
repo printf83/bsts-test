@@ -62,13 +62,6 @@ export const introduction: IAttrContent = {
 							new b.pill({ icon: "palette2", color: "success" }, "v5.3")
 						)
 					),
-					// new b.tooltip(
-					// 	{ content: "FontAwesome" },
-					// 	new h.a(
-					// 		{ href: "https://fontawesome.com/", target: "_blank" },
-					// 		new b.pill({ icon: "fab font-awesome", color: "info" }, "v6.3.0")
-					// 	)
-					// ),
 				]),
 			]),
 
