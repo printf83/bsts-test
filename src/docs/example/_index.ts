@@ -1,33 +1,33 @@
-export const headers = async () => {
-	return (await import("./headers")).headers;
+export const headers = () => {
+	return import("./headers.js");
 };
-export const heroes = async () => {
-	return (await import("./heroes")).heroes;
+export const heroes = () => {
+	return import("./heroes.js");
 };
-export const features = async () => {
-	return (await import("./features")).features;
+export const features = () => {
+	return import("./features.js");
 };
-export const sidebars = async () => {
-	return (await import("./sidebars")).sidebars;
+export const sidebars = () => {
+	return import("./sidebars.js");
 };
-export const footers = async () => {
-	return (await import("./footers")).footers;
+export const footers = () => {
+	return import("./footers.js");
 };
-export const dropdowns = async () => {
-	return (await import("./dropdowns")).dropdowns;
+export const dropdowns = () => {
+	return import("./dropdowns.js");
 };
-export const list_groups = async () => {
-	return (await import("./list_groups")).list_groups;
+export const list_groups = () => {
+	return import("./list_groups.js");
 };
-export const modals = async () => {
-	return (await import("./modals")).modals;
+export const modals = () => {
+	return import("./modals.js");
 };
-export const badges = async () => {
-	return (await import("./badges")).badges;
+export const badges = () => {
+	return import("./badges.js");
 };
-export const breadcrumbs = async () => {
-	return (await import("./breadcrumbs")).breadcrumbs;
+export const breadcrumbs = () => {
+	return import("./breadcrumbs.js");
 };
-export const test = async () => {
-	return (await import("./test")).test;
+export const test = () => {
+	return import("./test.js");
 };

@@ -1,6 +1,6 @@
 import { b } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index";
-import { IAttrContent } from "../../ctl/main/container";
+import * as e from "../../ctl/example/_index.js";
+import { IAttrContent } from "../../ctl/main/container.js";
 
 export const breadcrumbs: IAttrContent = {
 	title: "Breadcrumbs",

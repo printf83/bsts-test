@@ -1,8 +1,8 @@
 import { b, core, h } from "@printf83/bsts";
-import { doc } from "./docs/_index";
-import * as main from "./ctl/main/_index";
-import { updateMenu } from "./ctl/main/container";
-import * as e from "./ctl/example/_index";
+import { doc } from "./docs/_index.js";
+import * as main from "./ctl/main/_index.js";
+import { updateMenu } from "./ctl/main/container.js";
+import * as e from "./ctl/example/_index.js";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;
@@ -337,16 +337,16 @@ const dataNotFound = (value: string) => {
 	} as main.IAttrContent;
 };
 
-const getDataPromise = async (value: string, callback: (arg: main.IAttrContent | null) => void) => {
-	doc(value).then((d) => {
-		callback(d);
-	});
-};
+// const getDataPromise = async (value: string, callback: (arg: main.IAttrContent | null) => void) => {
+// 	doc(value).then((d) => {
+// 		callback(d);
+// 	});
+// };
 
 const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 	let tValue = value.split("/");
 	if (tValue.length === 3 && tValue[0] === "docs") {
-		getDataPromise(value, (c) => {
+		doc(value, (c) => {
 			if (c) {
 				c.docId = value;
 				c.bookmark = bm.filter((i) => i.value === value).length > 0;
@@ -357,6 +357,17 @@ const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 				callback(dataNotFound(value));
 			}
 		});
+		// getDataPromise(value, (c) => {
+		// 	if (c) {
+		// 		c.docId = value;
+		// 		c.bookmark = bm.filter((i) => i.value === value).length > 0;
+		// 		c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${value}.ts`;
+		// 		c.sourceWeb = "Github";
+		// 		callback(c);
+		// 	} else {
+		// 		callback(dataNotFound(value));
+		// 	}
+		// });
 	} else {
 		callback(dataNotFound(value));
 	}

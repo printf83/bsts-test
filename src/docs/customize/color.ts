@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index";
-import { IAttrContent } from "../../ctl/main/container";
+import * as e from "../../ctl/example/_index.js";
+import { IAttrContent } from "../../ctl/main/container.js";
 
 const hexToRGB = (hex: string) => {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;

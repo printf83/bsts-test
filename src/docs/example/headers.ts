@@ -1,6 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index";
-import { IAttrContent } from "../../ctl/main/container";
+import * as e from "../../ctl/example/_index.js";
+import { IAttrContent } from "../../ctl/main/container.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {

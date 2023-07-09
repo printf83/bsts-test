@@ -1,24 +1,24 @@
-export const breakpoints = async () => {
-	return (await import("./breakpoints")).breakpoints;
+export const breakpoints = () => {
+	return import("./breakpoints.js");
 };
-export const containers = async () => {
-	return (await import("./containers")).containers;
+export const containers = () => {
+	return import("./containers.js");
 };
-export const grid = async () => {
-	return (await import("./grid")).grid;
+export const grid = () => {
+	return import("./grid.js");
 };
-export const columns = async () => {
-	return (await import("./columns")).columns;
+export const columns = () => {
+	return import("./columns.js");
 };
-export const gutters = async () => {
-	return (await import("./gutters")).gutters;
+export const gutters = () => {
+	return import("./gutters.js");
 };
-export const utilities = async () => {
-	return (await import("./utilities")).utilities;
+export const utilities = () => {
+	return import("./utilities.js");
 };
-export const zindex = async () => {
-	return (await import("./zindex")).zindex;
+export const zindex = () => {
+	return import("./zindex.js");
 };
-export const cssgrid = async () => {
-	return (await import("./cssgrid")).cssgrid;
+export const cssgrid = () => {
+	return import("./cssgrid.js");
 };

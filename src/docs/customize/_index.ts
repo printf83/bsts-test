@@ -1,3 +1,3 @@
-export const color = async () => {
-	return (await import("./color")).color;
+export const color = () => {
+	return import("./color.js");
 };

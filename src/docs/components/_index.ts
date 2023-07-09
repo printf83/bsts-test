@@ -1,72 +1,72 @@
-export const accordion = async () => {
-	return (await import("./accordion")).accordion;
+export const accordion = () => {
+	return import("./accordion.js");
 };
-export const alert = async () => {
-	return (await import("./alert")).alert;
+export const alert = () => {
+	return import("./alert.js");
 };
-export const badge = async () => {
-	return (await import("./badge")).badge;
+export const badge = () => {
+	return import("./badge.js");
 };
-export const breadcrumb = async () => {
-	return (await import("./breadcrumb")).breadcrumb;
+export const breadcrumb = () => {
+	return import("./breadcrumb.js");
 };
-export const button_group = async () => {
-	return (await import("./button_group")).button_group;
+export const button_group = () => {
+	return import("./button_group.js");
 };
-export const button = async () => {
-	return (await import("./button")).button;
+export const button = () => {
+	return import("./button.js");
 };
-export const card = async () => {
-	return (await import("./card")).card;
+export const card = () => {
+	return import("./card.js");
 };
-export const carousel = async () => {
-	return (await import("./carousel")).carousel;
+export const carousel = () => {
+	return import("./carousel.js");
 };
-export const close_button = async () => {
-	return (await import("./close_button")).close_button;
+export const close_button = () => {
+	return import("./close_button.js");
 };
-export const collapse = async () => {
-	return (await import("./collapse")).collapse;
+export const collapse = () => {
+	return import("./collapse.js");
 };
-export const dropdown = async () => {
-	return (await import("./dropdown")).dropdown;
+export const dropdown = () => {
+	return import("./dropdown.js");
 };
-export const list = async () => {
-	return (await import("./list")).list;
+export const list = () => {
+	return import("./list.js");
 };
-export const modal = async () => {
-	return (await import("./modal")).modal;
+export const modal = () => {
+	return import("./modal.js");
 };
-export const nav = async () => {
-	return (await import("./nav")).nav;
+export const nav = () => {
+	return import("./nav.js");
 };
-export const navbar = async () => {
-	return (await import("./navbar")).navbar;
+export const navbar = () => {
+	return import("./navbar.js");
 };
-export const offcanvas = async () => {
-	return (await import("./offcanvas")).offcanvas;
+export const offcanvas = () => {
+	return import("./offcanvas.js");
 };
-export const pagination = async () => {
-	return (await import("./pagination")).pagination;
+export const pagination = () => {
+	return import("./pagination.js");
 };
-export const placeholder = async () => {
-	return (await import("./placeholder")).placeholder;
+export const placeholder = () => {
+	return import("./placeholder.js");
 };
-export const popover = async () => {
-	return (await import("./popover")).popover;
+export const popover = () => {
+	return import("./popover.js");
 };
-export const progress = async () => {
-	return (await import("./progress")).progress;
+export const progress = () => {
+	return import("./progress.js");
 };
-export const scrollspy = async () => {
-	return (await import("./scrollspy")).scrollspy;
+export const scrollspy = () => {
+	return import("./scrollspy.js");
 };
-export const spinner = async () => {
-	return (await import("./spinner")).spinner;
+export const spinner = () => {
+	return import("./spinner.js");
 };
-export const toast = async () => {
-	return (await import("./toast")).toast;
+export const toast = () => {
+	return import("./toast.js");
 };
-export const tooltip = async () => {
-	return (await import("./tooltip")).tooltip;
+export const tooltip = () => {
+	return import("./tooltip.js");
 };
