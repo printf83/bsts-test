@@ -14,7 +14,7 @@ import {
 	IAttrItemVersion,
 	IAttrTocItem,
 	Container,
-} from "./container";
+} from "./container.js";
 
 export { Container };
 

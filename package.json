@@ -17,14 +17,15 @@
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
 	},
+	"type": "module",
 	"scripts": {
 		"link": "npm link @printf83/bsts",
 		"clean": "rm -rf ./build && rm -rf ./dist",
 		"clean:win": "rmdir /s /q build && rmdir /s /q dist",
-		"build": "npx webpack",
+		"build": "npx webpack --stats-error-details",
 		"rebuild": "npm run clean && npm run build",
 		"rebuild:win": "npm run clean:win && npm run build",
-		"debug": "npx webpack -w"
+		"debug": "npx webpack -w --stats-error-details"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",

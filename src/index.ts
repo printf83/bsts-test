@@ -1,8 +1,8 @@
 import { b, core, h } from "@printf83/bsts";
-import { doc } from "./docs/_index";
-import * as main from "./ctl/main/_index";
-import { updateMenu } from "./ctl/main/container";
-import * as e from "./ctl/example/_index";
+import { doc } from "./docs/_index.js";
+import * as main from "./ctl/main/_index.js";
+import { updateMenu } from "./ctl/main/container.js";
+import * as e from "./ctl/example/_index.js";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;

@@ -1,13 +1,13 @@
-import * as gettingstarted from "./gettingstarted/_index";
-import * as forms from "./forms/_index";
-import * as components from "./components/_index";
-import * as utilities from "./utilities/_index";
-import * as helpers from "./helpers/_index";
-import * as content from "./content/_index";
-import * as layout from "./layout/_index";
-import * as customize from "./customize/_index";
-import * as example from "./example/_index";
-import { IAttrContent } from "../ctl/main/container";
+import * as gettingstarted from "./gettingstarted/_index.js";
+import * as forms from "./forms/_index.js";
+import * as components from "./components/_index.js";
+import * as utilities from "./utilities/_index.js";
+import * as helpers from "./helpers/_index.js";
+import * as content from "./content/_index.js";
+import * as layout from "./layout/_index.js";
+import * as customize from "./customize/_index.js";
+import * as example from "./example/_index.js";
+import { IAttrContent } from "../ctl/main/container.js";
 
 export const doc = async (value: string, callback: (result: IAttrContent | null) => void) => {
 	let result: IAttrContent;
