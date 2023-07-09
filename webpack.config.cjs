@@ -2,7 +2,7 @@ const path = require("path");
 const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-	mode: "development",
+	mode: "production",
 	entry: "./src/index.ts",
 	plugins: [new CompressionPlugin({ exclude: /\/docs/ })],
 	module: {
