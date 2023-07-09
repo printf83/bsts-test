@@ -1,60 +1,60 @@
-export const api = async () => {
-	return (await import("./api")).api;
+export const api = () => {
+	return import("./api");
 };
-export const background = async () => {
-	return (await import("./background")).background;
+export const background = () => {
+	return import("./background");
 };
-export const colors = async () => {
-	return (await import("./colors")).colors;
+export const colors = () => {
+	return import("./colors");
 };
-export const borders = async () => {
-	return (await import("./borders")).borders;
+export const borders = () => {
+	return import("./borders");
 };
-export const display = async () => {
-	return (await import("./display")).display;
+export const display = () => {
+	return import("./display");
 };
-export const flex = async () => {
-	return (await import("./flex")).flex;
+export const flex = () => {
+	return import("./flex");
 };
-export const float = async () => {
-	return (await import("./float")).float;
+export const float = () => {
+	return import("./float");
 };
-export const interactions = async () => {
-	return (await import("./interactions")).interactions;
+export const interactions = () => {
+	return import("./interactions");
 };
-export const link = async () => {
-	return (await import("./link")).link;
+export const link = () => {
+	return import("./link");
 };
-export const object_fit = async () => {
-	return (await import("./object_fit")).object_fit;
+export const object_fit = () => {
+	return import("./object_fit");
 };
-export const opacity = async () => {
-	return (await import("./opacity")).opacity;
+export const opacity = () => {
+	return import("./opacity");
 };
-export const overflow = async () => {
-	return (await import("./overflow")).overflow;
+export const overflow = () => {
+	return import("./overflow");
 };
-export const position = async () => {
-	return (await import("./position")).position;
+export const position = () => {
+	return import("./position");
 };
-export const shadow = async () => {
-	return (await import("./shadow")).shadow;
+export const shadow = () => {
+	return import("./shadow");
 };
-export const sizing = async () => {
-	return (await import("./sizing")).sizing;
+export const sizing = () => {
+	return import("./sizing");
 };
-export const spacing = async () => {
-	return (await import("./spacing")).spacing;
+export const spacing = () => {
+	return import("./spacing");
 };
-export const text = async () => {
-	return (await import("./text")).text;
+export const text = () => {
+	return import("./text");
 };
-export const vertical_align = async () => {
-	return (await import("./vertical_align")).vertical_align;
+export const vertical_align = () => {
+	return import("./vertical_align");
 };
-export const visibility = async () => {
-	return (await import("./visibility")).visibility;
+export const visibility = () => {
+	return import("./visibility");
 };
-export const zindex = async () => {
-	return (await import("./zindex")).zindex;
+export const zindex = () => {
+	return import("./zindex");
 };

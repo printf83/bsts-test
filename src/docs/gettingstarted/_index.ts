@@ -1,7 +1,7 @@
-export const introduction = async () => {
-	return (await import("./introduction")).introduction;
+export const introduction = () => {
+	return import("./introduction");
 };
 
-export const bootswatch = async () => {
-	return (await import("./bootswatch")).bootswatch;
+export const bootswatch = () => {
+	return import("./bootswatch");
 };

@@ -1,27 +1,27 @@
-export const check_radio = async () => {
-	return (await import("./check_radio")).check_radio;
+export const check_radio = () => {
+	return import("./check_radio");
 };
-export const control = async () => {
-	return (await import("./control")).control;
+export const control = () => {
+	return import("./control");
 };
-export const floating_label = async () => {
-	return (await import("./floating_label")).floating_label;
+export const floating_label = () => {
+	return import("./floating_label");
 };
-export const input_group = async () => {
-	return (await import("./input_group")).input_group;
+export const input_group = () => {
+	return import("./input_group");
 };
-export const layout = async () => {
-	return (await import("./layout")).layout;
+export const layout = () => {
+	return import("./layout");
 };
-export const overview = async () => {
-	return (await import("./overview")).overview;
+export const overview = () => {
+	return import("./overview");
 };
-export const range = async () => {
-	return (await import("./range")).range;
+export const range = () => {
+	return import("./range");
 };
-export const select = async () => {
-	return (await import("./select")).select;
+export const select = () => {
+	return import("./select");
 };
-export const validation = async () => {
-	return (await import("./validation")).validation;
+export const validation = () => {
+	return import("./validation");
 };

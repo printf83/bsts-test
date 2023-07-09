@@ -1,15 +1,15 @@
-export const reboot = async () => {
-	return (await import("./reboot")).reboot;
+export const reboot = () => {
+	return import("./reboot");
 };
-export const typography = async () => {
-	return (await import("./typography")).typography;
+export const typography = () => {
+	return import("./typography");
 };
-export const images = async () => {
-	return (await import("./images")).images;
+export const images = () => {
+	return import("./images");
 };
-export const tables = async () => {
-	return (await import("./tables")).tables;
+export const tables = () => {
+	return import("./tables");
 };
-export const figures = async () => {
-	return (await import("./figures")).figures;
+export const figures = () => {
+	return import("./figures");
 };
