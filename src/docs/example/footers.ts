@@ -1,6 +1,6 @@
 import { I, b, h, t } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import * as e from "../../ctl/example/_index";
+import { IAttrContent } from "../../ctl/main/container";
 
 const ex = {
 	c1: (arg: { copyright: string; icon: string; link: I.B.Nav.Header.Link[] }) => {

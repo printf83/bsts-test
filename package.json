@@ -28,7 +28,7 @@
 	"scripts": {
 		"clean": "rm -rf ./lib && rm -rf ./dist",
 		"clean:win": "rmdir /s /q lib && rmdir /s /q dist",
-		"build": "tsc -p ./configs/tsconfig.esm.json",
+		"build": "tsc",
 		"rebuild": "npm run clean && npm run build && npm run webpack",
 		"rebuild:win": "npm run clean:win && npm run build  && npm run webpack",
 		"debug": "tsc -p ./configs/tsconfig.esm.json --watch",

@@ -1,5 +1,5 @@
 import { core, h } from "@printf83/bsts";
-import { codeBeautify, codeBeautifyType } from "./_fn.js";
+import { codeBeautify, codeBeautifyType } from "./_fn";
 
 export interface IBsExampleCode extends core.IAttr {
 	type?: codeBeautifyType;

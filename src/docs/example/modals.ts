@@ -1,6 +1,6 @@
 import { I, b, h } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import * as e from "../../ctl/example/_index";
+import { IAttrContent } from "../../ctl/main/container";
 
 export const modals: IAttrContent = {
 	title: "Modals",

@@ -1,5 +1,5 @@
 import { core, b, h, t, I } from "@printf83/bsts";
-import * as e from "../example/_index.js";
+import * as e from "../example/_index";
 
 const dispatchCustomEvent = (root: Element | null, eventName: string, value?: string) => {
 	if (root) {

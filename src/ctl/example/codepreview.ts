@@ -1,5 +1,5 @@
 import { core, b, h } from "@printf83/bsts";
-import { preview } from "./preview.js";
+import { preview } from "./preview";
 
 function successCopyCode(iconElem?: Element) {
 	if (iconElem) {

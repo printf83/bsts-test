@@ -1,6 +1,6 @@
 import { h, b, core } from "@printf83/bsts";
-import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import * as e from "../../ctl/example/_index";
+import { IAttrContent } from "../../ctl/main/container";
 
 export const offcanvas: IAttrContent = {
 	title: "Offcanvas",
