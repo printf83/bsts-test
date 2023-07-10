@@ -1,4 +1,4 @@
-import { b, h, core } from "@printf83/bsts";
+import { b, h, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -22,7 +22,7 @@ export const alert: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.alert.container(
-									{ color: i as core.bootstrapType.color },
+									{ color: i as I.B.Alert.Container["color"] },
 									`A simple ${i} alert—check it out!`
 								);
 							}
@@ -48,7 +48,7 @@ export const alert: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.alert.container(
-									{ color: i as core.bootstrapType.color, callout: true },
+									{ color: i as I.B.Alert.Container["color"], callout: true },
 									`A simple ${i} callout—check it out!`
 								);
 							}
@@ -106,7 +106,7 @@ export const alert: IAttrContent = {
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
-								return new b.alert.container({ color: i as core.bootstrapType.color }, [
+								return new b.alert.container({ color: i as I.B.Alert.Container["color"] }, [
 									`A simple ${i} alert with `,
 									new b.alert.link({ href: "#" }, "an example link"),
 									".",
@@ -169,7 +169,7 @@ export const alert: IAttrContent = {
 							{ color: "warning", icon: b.icon.bi("exclamation-triangle-fill", { fontSize: 5 }) },
 							{ color: "danger", icon: b.icon.bi("x-circle-fill", { fontSize: 5 }) },
 						].map((i) => {
-							return new b.alert.container({ color: i.color as core.bootstrapType.color }, [
+							return new b.alert.container({ color: i.color as I.B.Alert.Container["color"] }, [
 								new b.caption({ gap: 3, icon: i.icon }, `An example ${i.color} alert with an icon`),
 							]);
 						});

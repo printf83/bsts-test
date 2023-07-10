@@ -1,4 +1,4 @@
-import { core, b, h } from "@printf83/bsts";
+import { core, b, h, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -252,7 +252,7 @@ export const list: IAttrContent = {
 								"dark",
 							].map((i) => {
 								return new b.list.item(
-									{ color: i as core.bootstrapType.color },
+									{ color: i as I.B.List.Item["color"] },
 									`A simple ${i ? i : "default"} list group item`
 								);
 							})
@@ -284,7 +284,7 @@ export const list: IAttrContent = {
 								"dark",
 							].map((i) => {
 								return new b.tabList.item(
-									{ href: "#", action: true, color: i as core.bootstrapType.color },
+									{ href: "#", action: true, color: i as I.B.TabList.Item["color"] },
 									`A simple ${i ? i : "default"} list group item`
 								);
 							})

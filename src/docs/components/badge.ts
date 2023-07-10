@@ -110,7 +110,7 @@ export const badge: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.badge(
-									{ textBgColor: i as core.bootstrapType.textBgColor },
+									{ textBgColor: i as core.IAttr["textBgColor"] },
 									core.uppercaseFirst(i)
 								);
 							}
@@ -138,7 +138,7 @@ export const badge: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.badge(
-									{ textBgColor: i as core.bootstrapType.textBgColor, rounded: "pill" },
+									{ textBgColor: i as core.IAttr["textBgColor"], rounded: "pill" },
 									core.uppercaseFirst(i)
 								);
 							}

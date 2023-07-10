@@ -359,7 +359,10 @@ export const bootswatch: IAttrContent = {
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 							return new b.dropdown.container([
-								new b.dropdown.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
+								new b.dropdown.button(
+									{ color: i as I.B.Dropdown.Button["color"] },
+									core.uppercaseFirst(i)
+								),
 								new b.dropdown.menu([
 									new b.dropdown.item({ href: "#" }, "Action"),
 									new b.dropdown.item({ href: "#" }, "Another action"),
@@ -382,8 +385,8 @@ export const bootswatch: IAttrContent = {
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 							return new b.dropdown.container([
-								new b.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
-								new b.dropdown.button({ color: i as core.bootstrapType.color, split: true }),
+								new b.button({ color: i as I.B.Dropdown.Button["color"] }, core.uppercaseFirst(i)),
+								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"], split: true }),
 								new b.dropdown.menu([
 									new b.dropdown.item({ href: "#" }, "Action"),
 									new b.dropdown.item({ href: "#" }, "Another action"),
@@ -1060,7 +1063,7 @@ export const bootswatch: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.alert.container(
-									{ dismissible: true, color: i as core.bootstrapType.color },
+									{ dismissible: true, color: i as I.B.Alert.Container["color"] },
 									`A simple ${i} alert—check it out!`
 								);
 							}
@@ -1078,7 +1081,7 @@ export const bootswatch: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.alert.container(
-									{ callout: true, color: i as core.bootstrapType.color },
+									{ callout: true, color: i as I.B.Alert.Container["color"] },
 									`A simple ${i} alert—check it out!`
 								);
 							}
@@ -1097,7 +1100,7 @@ export const bootswatch: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.badge(
-									{ textBgColor: i as core.bootstrapType.textBgColor },
+									{ textBgColor: i as core.Class["textBgColor"] },
 									core.uppercaseFirst(i)
 								);
 							}
@@ -1117,7 +1120,7 @@ export const bootswatch: IAttrContent = {
 							(i) => {
 								return new b.badge(
 									{
-										textBgColor: i as core.bootstrapType.textBgColor,
+										textBgColor: i as core.Class["textBgColor"],
 										rounded: "pill",
 									},
 									core.uppercaseFirst(i)
@@ -1307,7 +1310,7 @@ export const bootswatch: IAttrContent = {
 										[
 											core.uppercaseFirst(i),
 											new b.badge(
-												{ textBgColor: i as core.bootstrapType.textBgColor, rounded: "pill" },
+												{ textBgColor: i as core.Class["textBgColor"], rounded: "pill" },
 												core.rndBetween(1, 20).toString()
 											),
 										]
@@ -1382,7 +1385,7 @@ export const bootswatch: IAttrContent = {
 							(i, ix) => {
 								return new b.card.container(
 									{
-										textBgColor: i as core.bootstrapType.textBgColor,
+										textBgColor: i as core.Class["textBgColor"],
 										marginTop: ix !== 0 ? 3 : undefined,
 										style: { width: "18rem" },
 									},
@@ -1412,13 +1415,13 @@ export const bootswatch: IAttrContent = {
 							(i, ix) => {
 								return new b.card.container(
 									{
-										borderColor: i as core.bootstrapType.borderColor,
+										borderColor: i as core.Class["borderColor"],
 										marginTop: ix !== 0 ? 3 : undefined,
 										style: { width: "18rem" },
 									},
 									[
 										new b.card.header("Header"),
-										new b.card.body({ textColor: i as core.bootstrapType.textColor }, [
+										new b.card.body({ textColor: i as core.Class["textColor"] }, [
 											new b.card.title(`${core.uppercaseFirst(i)} card title`),
 											new b.card.text(
 												"Some quick example text to build on the card title and make up the bulk of the card's content."

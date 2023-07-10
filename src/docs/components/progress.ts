@@ -270,7 +270,7 @@ export const progress: IAttrContent = {
 								value: val,
 								min: 0,
 								max: 100,
-								color: i as core.bootstrapType.textBgColor,
+								color: i as I.B.Progress.Container["color"],
 								text: "percent",
 							});
 						});
@@ -414,7 +414,7 @@ export const progress: IAttrContent = {
 								min: 0,
 								max: 100,
 								striped: true,
-								color: i as core.bootstrapType.textBgColor,
+								color: i as I.B.Progress.Container["color"],
 							});
 						});
 					},

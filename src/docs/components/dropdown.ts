@@ -81,7 +81,10 @@ export const dropdown: IAttrContent = {
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 							return new b.dropdown.container([
-								new b.dropdown.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
+								new b.dropdown.button(
+									{ color: i as I.B.Dropdown.Button["color"] },
+									core.uppercaseFirst(i)
+								),
 								new b.dropdown.menu([
 									new b.dropdown.item({ href: "#" }, "Action"),
 									new b.dropdown.item({ href: "#" }, "Another action"),
@@ -110,8 +113,8 @@ export const dropdown: IAttrContent = {
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 							return new b.dropdown.container([
-								new b.button({ color: i as core.bootstrapType.color }, core.uppercaseFirst(i)),
-								new b.dropdown.button({ color: i as core.bootstrapType.color, split: true }),
+								new b.button({ color: i as I.B.Button["color"] }, core.uppercaseFirst(i)),
+								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"], split: true }),
 								new b.dropdown.menu([
 									new b.dropdown.item({ href: "#" }, "Action"),
 									new b.dropdown.item({ href: "#" }, "Another action"),

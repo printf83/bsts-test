@@ -1,4 +1,4 @@
-import { b, core } from "@printf83/bsts";
+import { I, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
@@ -15,7 +15,7 @@ export const badges: IAttrContent = {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 							(i) => {
 								return new b.badge(
-									{ textBgColor: i as core.bootstrapType.textBgColor, rounded: "pill" },
+									{ textBgColor: i as core.Class["textBgColor"], rounded: "pill" },
 									core.uppercaseFirst(i)
 								);
 							}
@@ -35,8 +35,8 @@ export const badges: IAttrContent = {
 							(i) => {
 								return new b.badge(
 									{
-										bgColor: `${i}-subtle` as core.bootstrapType.bgColor,
-										textColor: `${i}-emphasis` as core.bootstrapType.textColor,
+										bgColor: `${i}-subtle` as core.Class["bgColor"],
+										textColor: `${i}-emphasis` as core.Class["textColor"],
 										rounded: "pill",
 									},
 									core.uppercaseFirst(i)
@@ -58,10 +58,10 @@ export const badges: IAttrContent = {
 							(i) => {
 								return new b.badge(
 									{
-										bgColor: `${i}-subtle` as core.bootstrapType.bgColor,
-										textColor: `${i}-emphasis` as core.bootstrapType.textColor,
+										bgColor: `${i}-subtle` as core.Class["bgColor"],
+										textColor: `${i}-emphasis` as core.Class["textColor"],
 										border: true,
-										borderColor: `${i}-subtle` as core.bootstrapType.borderColor,
+										borderColor: `${i}-subtle` as core.Class["borderColor"],
 										rounded: "pill",
 									},
 									core.uppercaseFirst(i)
@@ -83,10 +83,10 @@ export const badges: IAttrContent = {
 							(i, ix) => {
 								return new b.badge(
 									{
-										bgColor: `${i}-subtle` as core.bootstrapType.bgColor,
-										textColor: `${i}-emphasis` as core.bootstrapType.textColor,
+										bgColor: `${i}-subtle` as core.Class["bgColor"],
+										textColor: `${i}-emphasis` as core.Class["textColor"],
 										border: true,
-										borderColor: `${i}-subtle` as core.bootstrapType.borderColor,
+										borderColor: `${i}-subtle` as core.Class["borderColor"],
 										rounded: "pill",
 										display: "flex",
 										alignItem: "center",
@@ -119,10 +119,10 @@ export const badges: IAttrContent = {
 							(i, ix) => {
 								return new b.badge(
 									{
-										bgColor: `${i}-subtle` as core.bootstrapType.bgColor,
-										textColor: `${i}-emphasis` as core.bootstrapType.textColor,
+										bgColor: `${i}-subtle` as core.Class["bgColor"],
+										textColor: `${i}-emphasis` as core.Class["textColor"],
 										border: true,
-										borderColor: `${i}-subtle` as core.bootstrapType.borderColor,
+										borderColor: `${i}-subtle` as core.Class["borderColor"],
 										rounded: "pill",
 										display: "flex",
 										alignItem: "center",
@@ -160,10 +160,10 @@ export const badges: IAttrContent = {
 							(i, ix) => {
 								return new b.badge(
 									{
-										bgColor: `${i}-subtle` as core.bootstrapType.bgColor,
-										textColor: `${i}-emphasis` as core.bootstrapType.textColor,
+										bgColor: `${i}-subtle` as core.Class["bgColor"],
+										textColor: `${i}-emphasis` as core.Class["textColor"],
 										border: true,
-										borderColor: `${i}-subtle` as core.bootstrapType.borderColor,
+										borderColor: `${i}-subtle` as core.Class["borderColor"],
 										rounded: "pill",
 										display: "flex",
 										alignItem: "center",
