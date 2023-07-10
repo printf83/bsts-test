@@ -325,8 +325,8 @@ const itemCode = (arg: {
 									},
 									new h.a(
 										{
-											color: "secondary",
-											linkHover: "link",
+											textColor: "body-secondary",
+											textColorHover: "primary",
 											title: "Edit on CodePen",
 											on: { click: arg.onedit },
 										},
@@ -347,9 +347,9 @@ const itemCode = (arg: {
 									},
 									new h.a(
 										{
-											color: "secondary",
+											textColor: "body-secondary",
+											textColorHover: "primary",
 											title: "Refresh code",
-											linkHover: "link",
 											on: {
 												click: (e) => {
 													const target = e.target as Element;
@@ -395,8 +395,8 @@ const itemCode = (arg: {
 									},
 									new h.a(
 										{
-											color: "secondary",
-											linkHover: "link",
+											textColor: "body-secondary",
+											textColorHover: "primary",
 											title: "Copy to clipboard",
 											on: { click: itemCodeCopy },
 										},
@@ -420,8 +420,8 @@ const itemCode = (arg: {
 						? new h.a(
 								{
 									href: "#",
-									color: "secondary",
-									linkHover: "link",
+									textColor: "body-secondary",
+									textColorHover: "primary",
 									marginEnd: arg.allowcopy ? 2 : 0,
 									title: "Edit on CodePen",
 									on: { click: arg.onedit },
@@ -433,8 +433,8 @@ const itemCode = (arg: {
 						? new h.a(
 								{
 									href: "#",
-									color: "secondary",
-									linkHover: "link",
+									textColor: "body-secondary",
+									textColorHover: "primary",
 									title: "Copy to clipboard",
 									on: { click: itemCodeCopy },
 								},
@@ -626,8 +626,8 @@ const itemConsole = () => {
 						{ paddingTop: 2, paddingEnd: 4, paddingStart: 2 },
 						new h.a(
 							{
-								color: "secondary",
-								linkHover: "link",
+								textColor: "body-secondary",
+								textColorHover: "primary",
 								title: "Cleanup console",
 								on: { click: clearConsoleLog },
 							},

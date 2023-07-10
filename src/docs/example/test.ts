@@ -8,6 +8,34 @@ export const test: IAttrContent = {
 	description: "This is testing page to test our library one by one",
 	item: () => {
 		return [
+			//----------------------
+
+			new e.section([
+				new e.title("Extended color"),
+				new e.code({
+					outputAttr: { display: "flex", gap: 2 },
+					output: () => {
+						return [
+							new h.div(
+								{
+									textColor: "primary",
+									textColorHover: "success",
+									bgColorHover: "secondary-subtle",
+									borderColorHover: "success-subtle",
+									padding: 3,
+									rounded: 2,
+								},
+								"Test"
+							),
+							// new b.button({ id: "duplicate_id" }, "duplicate_id"),
+							// new b.button({ id: "tooltip" }, "tooltip"),
+						];
+					},
+				}),
+			]),
+
+			//----------------------
+
 			new e.section([
 				new e.title("Animation"),
 				new e.code({

@@ -19,9 +19,6 @@ const menuItem = () => {
 						display: "flex",
 						flex: "column",
 						gap: 2,
-						linkNormal: "body",
-						linkHover: "link",
-						linkHoverBg: "body-tertiary",
 					},
 					[
 						{
@@ -56,6 +53,9 @@ const menuItem = () => {
 									textAlign: "start",
 									textDecoration: "none",
 									href: i.href,
+									textColor: "body",
+									textColorHover: "primary",
+									bgColorHover: "body-tertiary",
 								},
 								[
 									new b.icon({ id: i.icon, style: { fontSize: "1.5em" } }),

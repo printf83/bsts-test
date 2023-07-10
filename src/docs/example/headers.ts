@@ -113,8 +113,8 @@ const ex = {
 						col: [12, "md-auto"],
 						marginBottom: [2, "md-0"],
 						justifyContent: "center",
-						linkNormal: "body-emphasis",
-						linkActive: "secondary",
+						textColor: "body-emphasis",
+						textColorActive: "secondary",
 						link: arg.link
 							? arg.link.map((i) => {
 									i.paddingX = 2;
@@ -147,8 +147,8 @@ const ex = {
 			{
 				padding: 3,
 				theme: "dark",
-				linkNormal: "body-emphasis",
-				linkActive: "secondary",
+				textColor: "body-emphasis",
+				textColorActive: "secondary",
 			},
 			new h.div(
 				{ container: true },
@@ -262,8 +262,8 @@ const ex = {
 							marginBottom: [2, "md-0"],
 							marginEnd: "lg-auto",
 							justifyContent: "center",
-							linkNormal: "body-emphasis",
-							linkActive: "secondary",
+							textColor: "body-emphasis",
+							textColorActive: "secondary",
 							link: arg.link
 								? arg.link.map((i) => {
 										i.handleActive = true;
@@ -433,8 +433,8 @@ const ex = {
 					container: true,
 					display: "flex",
 					flex: "wrap",
-					linkNormal: "body-emphasis",
-					linkActive: "secondary",
+					textColor: "body-emphasis",
+					textColorActive: "secondary",
 				},
 				[
 					new b.nav.header.container({
@@ -528,8 +528,8 @@ const ex = {
 								marginY: [2, "md-0"],
 								small: true,
 								justifyContent: "center",
-								linkNormal: "body-emphasis",
-								linkActive: "secondary",
+								textColor: "body-emphasis",
+								textColorActive: "secondary",
 								link: arg.link.map((i) => {
 									let result: I.B.Nav.Header.Link = {
 										active: i.active,

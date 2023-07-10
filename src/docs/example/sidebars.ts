@@ -124,8 +124,8 @@ const ex = {
 					type: "pill",
 					flex: "column",
 					marginBottom: "auto",
-					linkNormal: "body",
-					linkActive: "white",
+					textColor: "body",
+					textColorActive:"white",
 					on: { "change.bs.nav": arg.onlinkchange },
 					link: arg.link?.map((i) => {
 						return {

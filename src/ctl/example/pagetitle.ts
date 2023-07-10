@@ -32,10 +32,10 @@ const convert = (attr: IBsExamplePagetitle) => {
 					{
 						class: "btn btn-sm",
 						focusRing: true,
-						linkNormal: "secondary",
-						linkBorder: "secondary",
-						linkHover: "link",
-						linkHoverBorder: "link",
+						textColor: "secondary",
+						borderColor: "secondary",
+						textColorHover: "primary",
+						borderColorHover: "primary",
 						href: "#",
 						loadingPlaceholder: true,
 					},
@@ -54,8 +54,8 @@ const convert = (attr: IBsExamplePagetitle) => {
 					? new h.a(
 							{
 								class: "btn btn-sm btn-outline-success",
-								linkNormal: "success",
-								linkBorder: "success",
+								textColor: "success",
+								borderColor: "success",
 								pointerEvent: "none",
 							},
 							`Added in v${attr.addedVersion}`
@@ -66,10 +66,10 @@ const convert = (attr: IBsExamplePagetitle) => {
 							{
 								class: "btn btn-sm",
 								focusRing: true,
-								linkNormal: "secondary",
-								linkBorder: "secondary",
-								linkHover: "link",
-								linkHoverBorder: "link",
+								textColor: "secondary",
+								borderColor: "secondary",
+								textColorHover: "primary",
+								borderColorHover: "primary",
 								href: attr.sourceUrl,
 								title: `View and edit this file on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`,
 								target: "_blank",
@@ -82,10 +82,10 @@ const convert = (attr: IBsExamplePagetitle) => {
 							{
 								class: ["btn", "btn-sm", attr.bookmark ? "active" : undefined],
 								focusRing: true,
-								linkNormal: attr.bookmark ? "link" : "secondary",
-								linkBorder: attr.bookmark ? "link" : "secondary",
-								linkHover: attr.bookmark ? "secondary" : "link",
-								linkHoverBorder: attr.bookmark ? "secondary" : "link",
+								textColor: attr.bookmark ? "primary" : "secondary",
+								borderColor: attr.bookmark ? "primary" : "secondary",
+								textColorHover: attr.bookmark ? "secondary" : "primary",
+								borderColorHover: attr.bookmark ? "secondary" : "primary",
 
 								title: `Add to bookmark`,
 								on: {

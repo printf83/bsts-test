@@ -33,8 +33,8 @@ const ex = {
 				new b.nav.header.container({
 					col: "md-4",
 					justifyContent: "end",
-					linkActive: "secondary",
-					linkNormal: "body-emphasis",
+					textColor: "body-emphasis",
+					textColorActive: "secondary",
 					link: arg.link,
 				}),
 			]
@@ -71,7 +71,7 @@ const ex = {
 					col: "md-4",
 					justifyContent: "end",
 					display: "flex",
-					linkNormal: "secondary",
+					textColor: "secondary",
 					item: arg.link.map((i) => {
 						return new h.li(
 							{ marginStart: 3 },
@@ -98,7 +98,7 @@ const ex = {
 					paddingBottom: 3,
 					marginBottom: 3,
 					justifyContent: "center",
-					linkNormal: "secondary",
+					textColor: "secondary",
 					link: arg.link,
 				}),
 				new h.p({ textAlign: "center", textColor: "body-secondary" }, arg.copyright),
@@ -110,7 +110,7 @@ const ex = {
 			new h.h(5, arg.title),
 			new b.nav.header.container({
 				flex: "column",
-				linkNormal: "secondary",
+				textColor: "secondary",
 				elem: arg.link.map((i) => {
 					return new b.nav.header.item(
 						{ marginBottom: 2 },

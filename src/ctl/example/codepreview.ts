@@ -74,8 +74,8 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 	if (attr.code) {
 		const copyButton = new h.a(
 			{
-				color: "body-secondary",
-				linkHover: "link",
+				textColor: "body-secondary",
+				textColorHover: "primary",
 				title: "Copy to clipboard",
 				on: { click: itemCodeCopy },
 			},
@@ -104,10 +104,9 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 											textDecoration: "none",
 											href: attr.source,
 											target: "_blank",
-											color: "secondary",
-											linkHover: "link",
-											monospace: true,
 											textColor: "body-secondary",
+											textColorHover: "primary",
+											monospace: true,
 										},
 										new h.small(attr.title)
 								  )
