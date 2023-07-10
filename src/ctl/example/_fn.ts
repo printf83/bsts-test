@@ -181,9 +181,9 @@ export const getRootBaseOnSource = (attrPreview?: core.IAttr, attrOutput?: core.
 		delete attrPreview.overflow;
 		attrPreview.padding ??= 4;
 
-		// if (attrPreview.padding === 0 || attrPreview.padding === "0") {
-		// 	delete attrPreview.padding;
-		// }
+		if (attrPreview.padding === 0 || attrPreview.padding === "0") {
+			delete attrPreview.padding;
+		}
 
 		if (attrOutput) {
 			attrOutput.id = "root";

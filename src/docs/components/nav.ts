@@ -1125,6 +1125,7 @@ export const nav: IAttrContent = {
 
 				new e.code({
 					showConsole: true,
+					outputAttr: { overflowX: "auto" },
 					output: () => {
 						const showTabPaneEventHandler = (event: Event) => {
 							event.preventDefault();

@@ -64,6 +64,11 @@ export const doc = async (value: string, callback: (result: IAttrContent | null)
 				callback(res.breadcrumbs);
 			});
 			break;
+		case "docs/example/buttons":
+			example.buttons().then((res) => {
+				callback(res.buttons);
+			});
+			break;
 		case "docs/example/test":
 			example.test().then((res) => {
 				callback(res.test);

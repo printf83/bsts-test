@@ -24,10 +24,10 @@
 		"clean": "npx node scripts/clean.cjs",
 		"copy.static": "npx node scripts/copy.cjs",
 		"build.ts": "npx tsc",
-		"build": "npx webpack && npm run copy.static",
+		"build": "npx webpack --stats-error-details && npm run copy.static",
 		"rebuild": "npm run clean && npm run build",
 		"debug.ts": "npx tsc -w",
-		"debug": "npx webpack -w",
+		"debug": "npx webpack -w --stats-error-details",
 		"predeploy": "npm run rebuild",
 		"deploy": "npx gh-pages -d dist"
 	},

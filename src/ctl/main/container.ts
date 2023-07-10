@@ -741,12 +741,8 @@ const genContent = (content?: IAttrContent) => {
 	if (content && content.item) {
 		return new h.div(
 			{
-				// id: "bs-content-scrollspy",
-				// target: "#bs-toc",
-				// smooth: true,
 				class: "bs-content",
 				paddingStart: "lg-2",
-				// rootMargin: "0px 0px -40%",
 			},
 			content.item()
 		);
@@ -763,7 +759,7 @@ const genFooter = (itemFooter?: IAttrFooter[]) => {
 				new h.ul(
 					{ unstyle: true },
 					i.item.map((j) => {
-						return new h.li({ marginBottom: 2 }, new h.a({ href: j.href }, j.label));
+						return new h.li({ marginBottom: 2 }, new h.a({ href: j.href, target: "_blank" }, j.label));
 					})
 				),
 			]);
@@ -1064,58 +1060,7 @@ const convert = (attr: IBsMainContainer) => {
 					]
 				),
 			]),
-			// new h.main(
-			// 	{
-			// 		order: 1,
-			// 		class: "bs-main",
-			// 		id: "bs-main",
-			// 		data: {
-			// 			"bs-target": "#bs-toc",
-			// 			"bs-smooth-scroll": "true",
-			// 			"bs-root-margin": "0px 0px -40%",
-			// 		},
-			// 		tabindex: 0,
-			// 		on: {
-			// 			build: (event) => {
-			// 				const target = event.target as Element;
-			// 				const id = core.UUID();
-			// 				target.setAttribute("data-build-id", id);
-
-			// 				setTimeout(
-			// 					(id: string, target: Element) => {
-			// 						if (target.getAttribute("data-build-id") === id) {
-			// 							target.removeAttribute("data-build-id");
-
-			// 							core.observeResizeObserver(target, (r) => {
-			// 								if (r && r.length > 0) {
-			// 									console.log("Scrollspy refresh");
-			// 									b.scrollspy.refresh("#bs-main");
-			// 								}
-			// 							});
-
-			// 							console.log("Setup scrollspy");
-			// 							b.scrollspy.init("#bs-main");
-			// 						} else {
-			// 							console.log("Expired");
-			// 						}
-			// 					},
-			// 					1000,
-			// 					id,
-			// 					target
-			// 				);
-			// 			},
-			// 			destroy: (event) => {
-			// 				const target = event.target as Element;
-
-			// 				console.log("Remove scrollspy");
-
-			// 				core.disconnectResizeObserver(target);
-			// 				b.scrollspy.dispose(target);
-			// 			},
-			// 		},
-			// 	},
-			// 	[genIntro(attr.content), genToc(attr.content), genContent(attr.content)]
-			// ),
+			
 			genMain(attr.content),
 		]),
 		new h.footer(

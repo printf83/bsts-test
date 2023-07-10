@@ -150,10 +150,7 @@ export const alert: IAttrContent = {
 					output: () => {
 						return new b.alert.container(
 							{ color: "info" },
-							new b.caption(
-								{ gap: 3, icon: b.icon.bi("info-circle-fill", { fontSize: 5 }) },
-								" An example alert with an icon"
-							)
+							new b.msg({ icon: "info-circle-fill" }, "An example alert with an icon")
 						);
 					},
 				}),
@@ -164,13 +161,13 @@ export const alert: IAttrContent = {
 				new e.code({
 					output: () => {
 						return [
-							{ color: "info", icon: b.icon.bi("info-circle-fill", { fontSize: 5 }) },
-							{ color: "success", icon: b.icon.bi("check-circle-fill", { fontSize: 5 }) },
-							{ color: "warning", icon: b.icon.bi("exclamation-triangle-fill", { fontSize: 5 }) },
-							{ color: "danger", icon: b.icon.bi("x-circle-fill", { fontSize: 5 }) },
+							{ color: "info", icon: "info-circle-fill" },
+							{ color: "success", icon: "check-circle-fill" },
+							{ color: "warning", icon: "exclamation-triangle-fill" },
+							{ color: "danger", icon: "x-circle-fill" },
 						].map((i) => {
 							return new b.alert.container({ color: i.color as I.B.Alert.Container["color"] }, [
-								new b.caption({ gap: 3, icon: i.icon }, `An example ${i.color} alert with an icon`),
+								new b.msg({ icon: i.icon }, `An example ${i.color} alert with an icon`),
 							]);
 						});
 					},

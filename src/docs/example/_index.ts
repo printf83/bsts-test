@@ -28,6 +28,9 @@ export const badges = () => {
 export const breadcrumbs = () => {
 	return import("./breadcrumbs.js");
 };
+export const buttons = () => {
+	return import("./buttons.js");
+};
 export const test = () => {
 	return import("./test.js");
 };

@@ -6,110 +6,6 @@ import * as e from "./ctl/example/_index.js";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;
-
-declare var PR: {
-	prettyPrint: () => void;
-};
-
-const cookie = {
-	set: (name: string, value: string, expiredInDays?: number, path?: string) => {
-		expiredInDays ??= 7;
-
-		let date = new Date();
-		date.setTime(date.getTime() + expiredInDays * 24 * 60 * 60 * 1000);
-		const optExpires = `expires=${date.toUTCString()};`;
-		const optSamesite = `samesite=strict;`;
-		const optPath = `path=${path || window.location.hostname};`;
-		const optValue = `${name}=${value};`;
-
-		document.cookie = `${optValue}${optExpires}${optSamesite}${optPath}`;
-	},
-	delete: (name: string) => {
-		cookie.set(name, "", -1);
-	},
-	get: (name: string) => {
-		name = `${name}=`;
-		const cDecoded = decodeURIComponent(document.cookie);
-		const cArr = cDecoded.split("; ");
-		let res: string | null = null;
-		cArr.forEach((val) => {
-			if (val.indexOf(name) === 0) res = val.substring(name.length);
-		});
-		return res;
-	},
-};
-
-const getSavedTheme = () => {
-	let themeCookie = cookie.get("current_theme");
-	if (themeCookie) {
-		return themeCookie;
-	} else {
-		return "auto";
-	}
-};
-
-const onThemeChange = (value: string) => {
-	const ICONFORMAT = "png";
-	cookie.set("current_theme", value);
-	const faviconEl = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
-
-	if (value === "auto") {
-		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "dark");
-			faviconEl.setAttribute("href", `favicon-light.${ICONFORMAT}`);
-		} else {
-			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "light");
-			faviconEl.setAttribute("href", `favicon.${ICONFORMAT}`);
-		}
-	} else {
-		document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
-		if (value === "dark") {
-			faviconEl.setAttribute("href", `favicon-light.${ICONFORMAT}`);
-		} else {
-			faviconEl.setAttribute("href", `favicon.${ICONFORMAT}`);
-		}
-	}
-};
-
-const getSavedBootswatch = () => {
-	let bootswatchCookie = cookie.get("current_bootswatch");
-	if (bootswatchCookie) {
-		return bootswatchCookie;
-	} else {
-		return "default";
-	}
-};
-
-const onBootswatchChange = (value: string) => {
-	cookie.set("current_bootswatch", value);
-	const bootstrapCssLink = document.getElementById("bootswatchCssLink") as HTMLLinkElement;
-
-	if (bootstrapCssLink) {
-		if (value === "default") {
-			bootstrapCssLink.disabled = true;
-			bootstrapCssLink.setAttribute("href", "");
-		} else {
-			bootstrapCssLink.disabled = false;
-			bootstrapCssLink.setAttribute(
-				"href",
-				`https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`
-			);
-		}
-	}
-};
-
-const setupBootswatch = () => {
-	onBootswatchChange(getSavedBootswatch());
-};
-
-const setupThemeChanges = () => {
-	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-		if (getSavedTheme() === "auto") {
-			onThemeChange("auto");
-		}
-	});
-};
-
 let m = {
 	doc: [
 		{
@@ -253,10 +149,114 @@ let m = {
 				{ label: "Modals", value: "docs/example/modals" },
 				{ label: "Badges", value: "docs/example/badges" },
 				{ label: "Breadcrumbs", value: "docs/example/breadcrumbs" },
+				{ label: "Buttons", value: "docs/example/buttons" },
 				{ label: "Test", value: "docs/example/test" },
 			],
 		},
 	] as main.IAttrItemMenu[],
+};
+
+declare var PR: {
+	prettyPrint: () => void;
+};
+
+const cookie = {
+	set: (name: string, value: string, expiredInDays?: number, path?: string) => {
+		expiredInDays ??= 7;
+
+		let date = new Date();
+		date.setTime(date.getTime() + expiredInDays * 24 * 60 * 60 * 1000);
+		const optExpires = `expires=${date.toUTCString()};`;
+		const optSamesite = `samesite=strict;`;
+		const optPath = `path=${path || window.location.hostname};`;
+		const optValue = `${name}=${value};`;
+
+		document.cookie = `${optValue}${optExpires}${optSamesite}${optPath}`;
+	},
+	delete: (name: string) => {
+		cookie.set(name, "", -1);
+	},
+	get: (name: string) => {
+		name = `${name}=`;
+		const cDecoded = decodeURIComponent(document.cookie);
+		const cArr = cDecoded.split("; ");
+		let res: string | null = null;
+		cArr.forEach((val) => {
+			if (val.indexOf(name) === 0) res = val.substring(name.length);
+		});
+		return res;
+	},
+};
+
+const getSavedTheme = () => {
+	let themeCookie = cookie.get("current_theme");
+	if (themeCookie) {
+		return themeCookie;
+	} else {
+		return "auto";
+	}
+};
+
+const onThemeChange = (value: string) => {
+	const ICONFORMAT = "png";
+	cookie.set("current_theme", value);
+	const faviconEl = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
+
+	if (value === "auto") {
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "dark");
+			faviconEl.setAttribute("href", `favicon-light.${ICONFORMAT}`);
+		} else {
+			document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", "light");
+			faviconEl.setAttribute("href", `favicon.${ICONFORMAT}`);
+		}
+	} else {
+		document.getElementsByTagName("HTML")[0].setAttribute("data-bs-theme", value);
+		if (value === "dark") {
+			faviconEl.setAttribute("href", `favicon-light.${ICONFORMAT}`);
+		} else {
+			faviconEl.setAttribute("href", `favicon.${ICONFORMAT}`);
+		}
+	}
+};
+
+const getSavedBootswatch = () => {
+	let bootswatchCookie = cookie.get("current_bootswatch");
+	if (bootswatchCookie) {
+		return bootswatchCookie;
+	} else {
+		return "default";
+	}
+};
+
+const onBootswatchChange = (value: string) => {
+	cookie.set("current_bootswatch", value);
+	const bootstrapCssLink = document.getElementById("bootswatchCssLink") as HTMLLinkElement;
+
+	if (bootstrapCssLink) {
+		if (value === "default") {
+			bootstrapCssLink.disabled = true;
+			bootstrapCssLink.setAttribute("href", "");
+		} else {
+			bootstrapCssLink.disabled = false;
+			bootstrapCssLink.setAttribute(
+				"href",
+				`https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`
+			);
+		}
+	}
+};
+
+const setupBootswatch = () => {
+	onBootswatchChange(getSavedBootswatch());
+};
+
+const setupThemeChanges = () => {
+	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+		if (getSavedTheme() === "auto") {
+			onThemeChange("auto");
+		}
+	});
 };
 
 const getSavedBookmark = () => {
@@ -337,12 +337,6 @@ const dataNotFound = (value: string) => {
 	} as main.IAttrContent;
 };
 
-// const getDataPromise = async (value: string, callback: (arg: main.IAttrContent | null) => void) => {
-// 	doc(value).then((d) => {
-// 		callback(d);
-// 	});
-// };
-
 const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 	let tValue = value.split("/");
 	if (tValue.length === 3 && tValue[0] === "docs") {
@@ -357,17 +351,7 @@ const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 				callback(dataNotFound(value));
 			}
 		});
-		// getDataPromise(value, (c) => {
-		// 	if (c) {
-		// 		c.docId = value;
-		// 		c.bookmark = bm.filter((i) => i.value === value).length > 0;
-		// 		c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${value}.ts`;
-		// 		c.sourceWeb = "Github";
-		// 		callback(c);
-		// 	} else {
-		// 		callback(dataNotFound(value));
-		// 	}
-		// });
+
 	} else {
 		callback(dataNotFound(value));
 	}
@@ -481,7 +465,6 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 	setLoading(contentbody);
 
 	//show the loading before download new documentation
-
 	core.requestIdleCallback(() => {
 		const PERFORMANCE_GETDATA = DEBUG ? performance.now() : 0;
 		getData(docId, (docData) => {
@@ -498,9 +481,6 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 			const PERFORMANCE_BUILD = DEBUG ? performance.now() : 0;
 			contentbody = core.replaceWith(contentbody, main.genMain(docData))!;
 			PERFORMANCEINFO.build = DEBUG ? performance.now() - PERFORMANCE_BUILD : 0;
-
-			//reset loading
-			// resetLoading(contentbody);
 
 			//rename page title
 			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
@@ -809,7 +789,7 @@ const startMemoryTest = (
 					b.modal.create({
 						title: "Memory test complete",
 						elem: new b.msg({
-							icon: new b.icon({ id: "info-circle-fill", textColor: "primary" }),
+							icon: new b.icon({ id: "info-circle-fill", textColor: "primary", fontSize: 1 }),
 							elem: result,
 						}),
 						btn: "ok",
@@ -1486,16 +1466,6 @@ const mainContainer = () => {
 		itemInsideLink: [{ value: "doc", label: "Docs" }],
 		currentInsideLink: "doc",
 		itemOutsideLink: [
-			// {
-			// 	href: "#",
-			// 	icon: { id: "search" },
-			// 	label: "Search",
-			// 	onclick: (_event) => {
-			// 		const offcanvas = document.getElementById("bsNavbar") as Element;
-			// 		b.offcanvas.hide(offcanvas);
-			// 		showSearchDialog();
-			// 	},
-			// },
 			{
 				href: "#",
 				icon: { id: "speedometer" },
