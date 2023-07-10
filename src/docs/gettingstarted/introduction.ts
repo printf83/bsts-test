@@ -2,7 +2,7 @@ import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IAttrContent } from "../../ctl/main/container.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.0/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.4/+esm";
 const BSCDNCSS = [
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
@@ -30,7 +30,7 @@ export const introduction: IAttrContent = {
 						{ content: "@printf83/bsts" },
 						new h.a(
 							{ href: "https://github.com/printf83/bsts", target: "_blank" },
-							new b.pill({ icon: "github", color: "danger", weight: "lg" }, "v0.2.0")
+							new b.pill({ icon: "github", color: "danger", weight: "lg" }, "v0.2.4")
 						)
 					),
 				]),
