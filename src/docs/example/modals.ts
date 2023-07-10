@@ -74,42 +74,52 @@ export const modals: IAttrContent = {
 									on: {
 										click: (_event) => {
 											b.modal.show(
-												new b.modal.container({ view: "end", contentAttr: { rounded: 4 } }, [
-													new b.modal.header(
-														{ close: true, borderNone: "bottom" },
-														new b.modal.title("Modal title")
-													),
-													new b.modal.body(
-														{ paddingY: 0 },
-														new h.p(
-															"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
-														)
-													),
-													new b.modal.footer(
-														{
-															flex: "column",
-															alignItem: "stretch",
-															width: 100,
-															gap: 2,
-															paddingBottom: 3,
-															borderNone: "top",
+												new b.modal.container(
+													{
+														view: "end",
+														animate: "slide-up",
+														animateDuration: "300ms",
+														contentAttr: {
+															rounded: 4,
 														},
-														[
-															new b.button(
-																{ color: "primary", weight: "lg" },
-																"Save changes"
-															),
-															new b.button(
-																{
-																	dismiss: "modal",
-																	color: "secondary",
-																	weight: "lg",
-																},
-																"Close"
-															),
-														]
-													),
-												])
+													},
+													[
+														new b.modal.header(
+															{ close: true, borderNone: "bottom" },
+															new b.modal.title("Modal title")
+														),
+														new b.modal.body(
+															{ paddingY: 0 },
+															new h.p(
+																"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
+															)
+														),
+														new b.modal.footer(
+															{
+																flex: "column",
+																alignItem: "stretch",
+																width: 100,
+																gap: 2,
+																paddingBottom: 3,
+																borderNone: "top",
+															},
+															[
+																new b.button(
+																	{ color: "primary", weight: "lg" },
+																	"Save changes"
+																),
+																new b.button(
+																	{
+																		dismiss: "modal",
+																		color: "secondary",
+																		weight: "lg",
+																	},
+																	"Close"
+																),
+															]
+														),
+													]
+												)
 											);
 										},
 									},
