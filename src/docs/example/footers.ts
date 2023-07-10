@@ -25,7 +25,8 @@ const ex = {
 						justifyContent: "center",
 						marginBottom: [3, "md-0"],
 						marginEnd: "md-auto",
-						linkColor: "body-emphasis",
+						textColor: "body-tertiary",
+						textColorHover: "body-emphasis",
 						textDecoration: "none",
 					},
 					new b.icon({ id: arg.icon, fontSize: 2 })
@@ -33,9 +34,13 @@ const ex = {
 				new b.nav.header.container({
 					col: "md-4",
 					justifyContent: "end",
-					textColor: "body-emphasis",
-					textColorActive: "secondary",
-					link: arg.link,
+					link: arg.link
+						? arg.link.map((i) => {
+								i.textColor = "body-tertiary";
+								i.textColorHover = "body-emphasis";
+								return i;
+						  })
+						: undefined,
 				}),
 			]
 		);
@@ -58,26 +63,26 @@ const ex = {
 							href: "#",
 							marginBottom: [3, "md-0"],
 							marginEnd: 2,
-							textColor: "body-secondary",
+							textColor: "body-tertiary",
+							textColorHover: "body-emphasis",
 							textDecoration: "none",
 							lineHeight: 1,
 						},
 						new b.icon({ id: arg.icon, fontSize: 2 })
 					),
-					new h.span({ marginBottom: [3, "md-0"], textColor: "body-secondary" }, arg.copyright),
+					new h.span({ marginBottom: [3, "md-0"], textColor: "body-tertiary" }, arg.copyright),
 				]),
 
 				new h.ul({
 					col: "md-4",
 					justifyContent: "end",
 					display: "flex",
-					textColor: "secondary",
 					item: arg.link.map((i) => {
 						return new h.li(
 							{ marginStart: 3 },
 							new h.a(
-								{ href: i.href },
-								new b.icon({ id: i.icon, fontSize: 2, textColor: "body-secondary" })
+								{ href: i.href, textColor: "body-tertiary", textColorHover: "body-emphasis" },
+								new b.icon({ id: i.icon, fontSize: 2 })
 							)
 						);
 					}),
@@ -101,7 +106,7 @@ const ex = {
 					textColor: "secondary",
 					link: arg.link,
 				}),
-				new h.p({ textAlign: "center", textColor: "body-secondary" }, arg.copyright),
+				new h.p({ textAlign: "center", textColor: "body-tertiary" }, arg.copyright),
 			]
 		);
 	},
@@ -110,11 +115,12 @@ const ex = {
 			new h.h(5, arg.title),
 			new b.nav.header.container({
 				flex: "column",
-				textColor: "secondary",
 				elem: arg.link.map((i) => {
 					return new b.nav.header.item(
 						{ marginBottom: 2 },
 						new b.nav.header.link({
+							textColor: "secondary",
+							textColorHover: "primary-emphasis",
 							href: i.href,
 							elem: i.elem,
 							padding: 0,
@@ -145,7 +151,7 @@ const ex = {
 						},
 						new b.icon({ id: arg.icon, fontSize: 1, textColor: "body" })
 					),
-					new h.p({ textColor: "body-secondary" }, arg.copyright),
+					new h.p({ textColor: "body-tertiary" }, arg.copyright),
 				]),
 				...arg.link.map((i) => {
 					return new h.div({ col: true, marginBottom: 3 }, i ? i : "");

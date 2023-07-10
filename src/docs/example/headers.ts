@@ -101,7 +101,7 @@ const ex = {
 							{
 								href: "#",
 								display: "inline-flex",
-								linkColor: "body-emphasis",
+								textColor: "body-emphasis",
 								textDecoration: "none",
 								marginBottom: [3, "md-0"],
 							},
@@ -113,10 +113,9 @@ const ex = {
 						col: [12, "md-auto"],
 						marginBottom: [2, "md-0"],
 						justifyContent: "center",
-						textColor: "body-emphasis",
-						textColorActive: "secondary",
 						link: arg.link
 							? arg.link.map((i) => {
+									i.textColorActive = "body-tertiary";
 									i.paddingX = 2;
 									i.handleActive = true;
 									return i;
@@ -147,8 +146,6 @@ const ex = {
 			{
 				padding: 3,
 				theme: "dark",
-				textColor: "body-emphasis",
-				textColorActive: "secondary",
 			},
 			new h.div(
 				{ container: true },
@@ -166,7 +163,7 @@ const ex = {
 								display: "flex",
 								alignItem: "center",
 								marginBottom: [2, "lg-0"],
-								textColor: "white",
+								textColor: "body-emphasis",
 								textDecoration: "none",
 								marginEnd: 2,
 							},
@@ -180,6 +177,9 @@ const ex = {
 							justifyContent: "center",
 							link: arg.link
 								? arg.link.map((i) => {
+										i.textColorActive = "body-tertiary";
+										i.textColor = "body-emphasis";
+										i.textColorHover = "primary-emphasis";
 										i.handleActive = true;
 										i.paddingX = 2;
 										return i;
@@ -250,7 +250,7 @@ const ex = {
 								display: "flex",
 								alignItem: "center",
 								marginBottom: [2, "lg-0"],
-								linkColor: "body-emphasis",
+								textColor: "body-emphasis",
 								textDecoration: "none",
 								marginEnd: 2,
 							},
@@ -262,10 +262,11 @@ const ex = {
 							marginBottom: [2, "md-0"],
 							marginEnd: "lg-auto",
 							justifyContent: "center",
-							textColor: "body-emphasis",
-							textColorActive: "secondary",
 							link: arg.link
 								? arg.link.map((i) => {
+										i.textColorActive = "body-tertiary";
+										i.textColor = "body-emphasis";
+										i.textColorHover = "primary-emphasis";
 										i.handleActive = true;
 										i.paddingX = 2;
 										return i;
@@ -433,13 +434,14 @@ const ex = {
 					container: true,
 					display: "flex",
 					flex: "wrap",
-					textColor: "body-emphasis",
-					textColorActive: "secondary",
 				},
 				[
 					new b.nav.header.container({
 						marginEnd: "auto",
 						link: arg.startMenu?.map((i) => {
+							i.textColor = "body-emphasis";
+							i.textColorActive = "body-tertiary";
+							i.textColorHover = "primary-emphasis";
 							i.handleActive = true;
 							return i;
 						}),
@@ -447,6 +449,9 @@ const ex = {
 					}),
 					new b.nav.header.container({
 						link: arg.endMenu?.map((i) => {
+							i.textColor = "body-emphasis";
+							i.textColorActive = "body-tertiary";
+							i.textColorHover = "primary-emphasis";
 							return i;
 						}),
 					}),
@@ -518,7 +523,7 @@ const ex = {
 									alignItem: "center",
 									marginY: [2, "lg-0"],
 									marginEnd: "lg-auto",
-									linkColor: "light",
+									textColor: "body-emphasis",
 									textDecoration: "none",
 								},
 								new b.icon({ id: arg.icon, fontSize: 1 })
@@ -528,15 +533,20 @@ const ex = {
 								marginY: [2, "md-0"],
 								small: true,
 								justifyContent: "center",
-								textColor: "body-emphasis",
-								textColorActive: "secondary",
+
 								link: arg.link.map((i) => {
 									let result: I.B.Nav.Header.Link = {
+										textColor: "body-emphasis",
+										textColorActive: "body-tertiary",
+										textColorHover: "primary-emphasis",
 										active: i.active,
 										handleActive: true,
 										href: i.href,
 										elem: new b.caption(
-											{ icon: new b.icon({ id: i.icon, h: 2 }), iconPosition: "top" },
+											{
+												icon: new b.icon({ id: i.icon, fontSize: 4 }),
+												iconPosition: "top",
+											},
 											i.label
 										),
 									};

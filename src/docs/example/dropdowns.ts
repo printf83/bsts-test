@@ -434,7 +434,14 @@ export const dropdowns: IAttrContent = {
 									new b.dropdown.item({ href: "#" }, new b.caption({ icon: "joystick" }, "Games")),
 									new b.dropdown.divider(),
 									new b.dropdown.item(
-										{ href: "#", color: "danger" },
+										{
+											href: "#",
+											color: "danger",
+											bgColorActive: "danger",
+											bgColorFocus: "danger",
+											textColorActive: "light",
+											textColorFocus: "light",
+										},
 										new b.caption({ icon: "trash" }, "Trash")
 									),
 								]
@@ -451,7 +458,17 @@ export const dropdowns: IAttrContent = {
 									),
 									new b.dropdown.item({ href: "#" }, new b.caption({ icon: "joystick" }, "Games")),
 									new b.dropdown.divider(),
-									new b.dropdown.item({ href: "#" }, new b.caption({ icon: "trash" }, "Trash")),
+									new b.dropdown.item(
+										{
+											href: "#",
+											color: "danger",
+											bgColorActive: "danger",
+											bgColorFocus: "danger",
+											textColorActive: "light",
+											textColorFocus: "light",
+										},
+										new b.caption({ icon: "trash" }, "Trash")
+									),
 								]
 							),
 						];
