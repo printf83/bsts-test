@@ -351,7 +351,6 @@ const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
 				callback(dataNotFound(value));
 			}
 		});
-
 	} else {
 		callback(dataNotFound(value));
 	}
@@ -802,6 +801,24 @@ const startMemoryTest = (
 	);
 };
 
+const downloadResource = (index: number, item: main.IAttrItemSubMenu[], testId: string, callback: () => void) => {
+	let count = item.length - 1;
+	if (index <= count) {
+		getData(item[index].value, (_data) => {
+			const progressBar = document.getElementById(`${testId}-bar-download`);
+			if (progressBar) {
+				const currentProgress = (index / count) * 100;
+				progressBar.setAttribute("style", `width:${currentProgress}%;`);
+
+				core.requestIdleCallback(() => {
+					downloadResource(index + 1, item, testId, callback);
+				}, 300);
+			}
+		});
+	} else {
+		callback();
+	}
+};
 const showMemoryTestDialog = () => {
 	const testId = core.UUID();
 
@@ -821,12 +838,19 @@ const showMemoryTestDialog = () => {
 						id: "memory-test-random",
 					}),
 					b.form.check({
-						container: { marginBottom: 3 },
 						type: "checkbox",
 						switch: true,
 						label: "Check duplicate id",
 						checked: false,
 						id: "memory-test-duplicateid",
+					}),
+					b.form.check({
+						container: { marginBottom: 3 },
+						type: "checkbox",
+						switch: true,
+						label: "Download resouce first",
+						checked: true,
+						id: "memory-test-downloadfirst",
 					}),
 					new h.div(
 						{
@@ -847,18 +871,61 @@ const showMemoryTestDialog = () => {
 											const target = event.target as Element;
 											const counter = parseInt(target.getAttribute("data-counter")!);
 
-											document.getElementById("memory-test-progress")?.classList.remove("d-none");
 											document.getElementById("memory-test-msg")?.classList.add("d-none");
 
-											startMemoryTest(
-												target,
-												testId,
-												counter,
-												(document.getElementById("memory-test-random") as HTMLInputElement)
-													.checked,
-												(document.getElementById("memory-test-duplicateid") as HTMLInputElement)
-													.checked
-											);
+											if (
+												(
+													document.getElementById(
+														"memory-test-downloadfirst"
+													) as HTMLInputElement
+												).checked
+											) {
+												document
+													.getElementById("memory-test-download")
+													?.classList.remove("d-none");
+
+												downloadResource(0, m.doc.map((i) => i.item).flat(), testId, () => {
+													document
+														.getElementById("memory-test-download")
+														?.classList.add("d-none");
+
+													document
+														.getElementById("memory-test-progress")
+														?.classList.remove("d-none");
+
+													startMemoryTest(
+														target,
+														testId,
+														counter,
+														(
+															document.getElementById(
+																"memory-test-random"
+															) as HTMLInputElement
+														).checked,
+														(
+															document.getElementById(
+																"memory-test-duplicateid"
+															) as HTMLInputElement
+														).checked
+													);
+												});
+											} else {
+												document
+													.getElementById("memory-test-progress")
+													?.classList.remove("d-none");
+												startMemoryTest(
+													target,
+													testId,
+													counter,
+													(document.getElementById("memory-test-random") as HTMLInputElement)
+														.checked,
+													(
+														document.getElementById(
+															"memory-test-duplicateid"
+														) as HTMLInputElement
+													).checked
+												);
+											}
 										},
 									},
 								},
@@ -875,10 +942,22 @@ const showMemoryTestDialog = () => {
 					)
 				),
 			]),
-
+			new b.modal.body({ id: "memory-test-download", display: "none" }, [
+				new h.p(
+					"Download resource in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the process."
+				),
+				new h.div(
+					{ marginTop: 2 },
+					new b.progress.container(
+						new b.progress.bar({
+							id: `${testId}-bar-download`,
+						})
+					)
+				),
+			]),
 			new b.modal.body({ id: "memory-test-progress", display: "none" }, [
 				new h.p(
-					"Memory Test in Progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."
+					"Memory test in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."
 				),
 
 				new h.div({ textColor: "secondary", lineHeight: "sm" }, [
