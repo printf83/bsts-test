@@ -1060,7 +1060,7 @@ const convert = (attr: IBsMainContainer) => {
 					]
 				),
 			]),
-			
+
 			genMain(attr.content),
 		]),
 		new h.footer(
