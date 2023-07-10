@@ -77,7 +77,7 @@ export const modals: IAttrContent = {
 												new b.modal.container(
 													{
 														view: "end",
-														animate: "slide-up",
+														animate: "slide-in-bottom",
 														animateDuration: "300ms",
 														contentAttr: {
 															rounded: 4,

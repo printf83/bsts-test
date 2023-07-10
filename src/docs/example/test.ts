@@ -39,7 +39,7 @@ export const test: IAttrContent = {
 			new e.section([
 				new e.title("Animation"),
 				new e.code({
-					outputAttr: { display: "flex", gap: 3, flex: "wrap" },
+					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					output: () => {
 						return [
 							"rotation",
@@ -54,18 +54,28 @@ export const test: IAttrContent = {
 							"wiggle",
 							"pound",
 							"heartbeat",
-							"roller-right",
-							"roller-left",
-							"slide-down",
-							"slide-up",
-							"slide-left",
-							"slide-right",
+							"roller-in-right",
+							"roller-in-left",
+							"roller-out-right",
+							"roller-out-left",
+							"slide-in-bottom",
+							"slide-in-top",
+							"slide-in-left",
+							"slide-in-right",
+							"slide-out-bottom",
+							"slide-out-top",
+							"slide-out-left",
+							"slide-out-right",
 							"fade-in",
 							"fade-out",
 							"rotate-in-right",
 							"rotate-in-left",
 							"rotate-in",
+							"rotate-out-right",
+							"rotate-out-left",
+							"rotate-out",
 							"bounce-in",
+							"bounce-out",
 						].map(
 							(i) =>
 								new h.div(
@@ -77,7 +87,7 @@ export const test: IAttrContent = {
 										padding: 2,
 										border: true,
 										rounded: 2,
-										col: [6, "md-4", "lg-3", "xl-2"],
+										style: { width: "8rem" },
 									},
 									new b.caption({
 										icon: new b.icon(
@@ -114,7 +124,7 @@ export const test: IAttrContent = {
 										padding: 2,
 										border: true,
 										rounded: 2,
-										col: [6, "md-4", "lg-3", "xl-2"],
+										style: { width: "8rem" },
 									},
 									new b.caption({
 										icon: new b.icon(
@@ -150,7 +160,7 @@ export const test: IAttrContent = {
 										padding: 2,
 										border: true,
 										rounded: 2,
-										col: [6, "md-4", "lg-3", "xl-2"],
+										style: { width: "8rem" },
 									},
 									new b.caption({
 										icon: new b.icon(
