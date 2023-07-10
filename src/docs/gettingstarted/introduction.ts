@@ -11,7 +11,7 @@ const BSCDNCSS = [
 export const introduction: IAttrContent = {
 	title: "Get started with Bootstrap",
 	description:
-		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
+		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in 5 minutes.",
 	item: () => {
 		return [
 			new e.section([

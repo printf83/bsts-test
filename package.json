@@ -1,6 +1,10 @@
 {
-	"name": "@printf83/bsts-test",
+	"name": "bsts-test",
 	"version": "0.2.2",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/printf83/bsts-test.git"
+	},
 	"description": "Bootstrap TS builder - Documentation",
 	"keywords": [
 		"documentation",
@@ -13,11 +17,8 @@
 		"url": "https://github.com/printf83/bsts-test/issues"
 	},
 	"homepage": "https://github.com/printf83/bsts-test#readme",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/printf83/bsts-test.git"
-	},
 	"type": "module",
+	"main":"dist/index.html",
 	"scripts": {
 		"link": "npm link @printf83/bsts",
 		"clean": "rm -rf ./build && rm -rf ./dist",
@@ -27,11 +28,15 @@
 		"rebuild": "npm run clean && npm run build",
 		"rebuild.win": "npm run clean.win && npm run build",
 		"debug.ts": "npx tsc -w",
-		"debug": "npx webpack -w"
+		"debug": "npx webpack -w",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
+		"copy-webpack-plugin": "^11.0.0",
+		"gh-pages": "^5.0.0",
 		"ts-loader": "^9.4.4",
 		"typescript": "^5.1.6",
 		"webpack": "^5.88.1",
