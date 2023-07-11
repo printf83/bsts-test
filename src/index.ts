@@ -3,6 +3,7 @@ import { doc } from "./docs/_index.js";
 import * as main from "./ctl/main/_index.js";
 import { updateMenu } from "./ctl/main/container.js";
 import * as e from "./ctl/example/_index.js";
+import Chart from "chart.js/auto";
 
 const DEBUG = false;
 const MEMORYLEAKTEST_COUNTTAG = false;
@@ -610,6 +611,8 @@ const docDB = () => {
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
 let lastEstimateTest = 0;
+let lastTestTime = 0;
+let highestTestTime = 100;
 
 const genDurationText = (second: number) => {
 	if (second > 60) {
@@ -638,7 +641,7 @@ const getDuplicateID = () => {
 	return duplicates;
 };
 
-const runMemoryTest = (startTime: number, testId: string, count: number, callback: Function, random?: boolean, checkduplicateid?: boolean, max?: number) => {
+const runMemoryTest = (startTime: number, chart: Chart, testId: string, count: number, callback: Function, random?: boolean, checkduplicateid?: boolean, max?: number) => {
 	max ??= count;
 
 	let mDB = docDB();
@@ -670,13 +673,29 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 						}
 					}
 
+					//update chart
+					const currentTime = performance.now();
+					const currentTestTime = currentTime - lastTestTime;
+					if (highestTestTime < currentTestTime) {
+						highestTestTime = currentTestTime;
+						// chart.scales["y"].max = ~~highestTestTime;
+					}
+
+					chart.data.labels?.shift();
+					chart.data.labels?.push("");
+					chart.data.datasets.forEach((dataset) => {
+						dataset.data.shift();
+						dataset.data.push(currentTestTime);
+					});
+					chart.update("none");
+					lastTestTime = currentTime;
+
 					//update progress
 					const currentProgress = ((max! - count) / max!) * 100;
 					progressBar.setAttribute("style", `width:${currentProgress}%;`);
 					progressPage.innerText = pagetitle ? pagetitle : "...";
 					progressCount.innerText = (max! - count).toString();
 
-					const currentTime = performance.now();
 					if (currentTime > lastEstimateTest + 1000) {
 						lastEstimateTest = currentTime;
 
@@ -698,7 +717,7 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 						}
 					}
 
-					runMemoryTest(startTime, testId, count - 1, callback, random, checkduplicateid, max);
+					runMemoryTest(startTime, chart, testId, count - 1, callback, random, checkduplicateid, max);
 				} else {
 					callback(max! - count, docId);
 				}
@@ -710,18 +729,61 @@ const runMemoryTest = (startTime: number, testId: string, count: number, callbac
 };
 
 const startMemoryTest = (sender: Element, testId: string, count: number, random: boolean, checkduplicateid: boolean) => {
+	//add chart
+	const chartContainer = document.getElementById(`${testId}-chart`);
+	const chart = new Chart(chartContainer as HTMLCanvasElement, {
+		type: "line",
+		data: {
+			labels: Array(30).fill(""),
+			datasets: [
+				{
+					data: Array(30).fill(0),
+					borderWidth: 2,
+					pointRadius: 0,
+					tension: 0.5,
+				},
+			],
+		},
+		options: {
+			plugins: {
+				legend: {
+					display: false,
+				},
+			},
+			scales: {
+				y: {
+					display: true,
+					min: 0,
+					// max: 100,
+					title: {
+						display: false,
+						text: "Speed (ms)",
+					},
+				},
+				x: {
+					display: false,
+				},
+			},
+		},
+	});
+
+	//update total
 	const progressTotal = document.getElementById(`${testId}-total`);
 	if (progressTotal) {
 		progressTotal.innerText = count.toString();
 	}
 
 	const STARTMEMORYTEST = performance.now();
+	lastTestTime = STARTMEMORYTEST;
+
 	runMemoryTest(
 		performance.now(),
+		chart,
 		testId,
 		count,
 		(docCount: number, docId: string) => {
 			const ENDMEMORYTEST = performance.now();
+			chart.destroy();
 
 			if (sender) {
 				const mdl = sender.closest(".modal-dialog") as Element;
@@ -769,7 +831,63 @@ const startMemoryTest = (sender: Element, testId: string, count: number, random:
 };
 
 let lastEstimateDownload = 0;
-const downloadResource = (index: number, item: main.IAttrItemSubMenu[], startTime: number, testId: string, callback: () => void) => {
+let lastDownloadTime = 0;
+let highestDownloadTime = 0;
+
+const startDownloadResource = (testId: string, callback: () => void) => {
+	//add chart
+	const chartContainer = document.getElementById(`${testId}-chart-download`);
+	const chart = new Chart(chartContainer as HTMLCanvasElement, {
+		type: "line",
+		data: {
+			labels: Array(30).fill(""),
+			datasets: [
+				{
+					data: Array(30).fill(0),
+					borderWidth: 2,
+					pointRadius: 0,
+					tension: 0.5,
+				},
+			],
+		},
+		options: {
+			plugins: {
+				legend: {
+					display: false,
+				},
+			},
+			scales: {
+				y: {
+					display: true,
+					min: 0,
+					title: {
+						display: false,
+						text: "Speed (ms)",
+					},
+				},
+				x: {
+					display: false,
+				},
+			},
+		},
+	});
+
+	const item = m.doc.map((i) => i.item).flat();
+	const progressTotal = document.getElementById(`${testId}-total-download`);
+	if (progressTotal) {
+		progressTotal.innerText = item.length.toString();
+	}
+
+	lastDownloadTime = performance.now();
+	lastEstimateDownload = lastDownloadTime;
+
+	downloadResource(0, item, lastDownloadTime, chart, testId, () => {
+		chart.destroy();
+		callback();
+	});
+};
+
+const downloadResource = (index: number, item: main.IAttrItemSubMenu[], startTime: number, chart: Chart, testId: string, callback: () => void) => {
 	let count = item.length - 1;
 	if (index <= count) {
 		getData(item[index].value, (_data) => {
@@ -780,12 +898,28 @@ const downloadResource = (index: number, item: main.IAttrItemSubMenu[], startTim
 			const progressEstimate = document.getElementById(`${testId}-estimate-download`);
 
 			if (progressBar && progressCount && progressPage && progressEstimate && progressSpeed) {
+				//update chart
+				const currentTime = performance.now();
+				const currentTestTime = currentTime - lastDownloadTime;
+				if (highestDownloadTime < currentTestTime) {
+					highestDownloadTime = currentTestTime;
+				}
+
+				chart.data.labels?.shift();
+				chart.data.labels?.push("");
+				chart.data.datasets.forEach((dataset) => {
+					dataset.data.shift();
+					dataset.data.push(currentTestTime);
+				});
+				chart.update("none");
+				lastDownloadTime = currentTime;
+
+				//update progress
 				const currentProgress = (index / count) * 100;
 				progressBar.setAttribute("style", `width:${currentProgress}%;`);
 				progressPage.innerText = item[index].label ? item[index].label : "...";
 				progressCount.innerText = (index + 1).toString();
 
-				const currentTime = performance.now();
 				if (currentTime > lastEstimateDownload + 1000) {
 					lastEstimateDownload = currentTime;
 
@@ -795,7 +929,7 @@ const downloadResource = (index: number, item: main.IAttrItemSubMenu[], startTim
 				}
 
 				core.requestIdleCallback(() => {
-					downloadResource(index + 1, item, startTime, testId, callback);
+					downloadResource(index + 1, item, startTime, chart, testId, callback);
 				}, 300);
 			}
 		});
@@ -803,6 +937,7 @@ const downloadResource = (index: number, item: main.IAttrItemSubMenu[], startTim
 		callback();
 	}
 };
+
 const showMemoryTestDialog = () => {
 	const testId = core.UUID();
 
@@ -859,16 +994,9 @@ const showMemoryTestDialog = () => {
 
 											if ((document.getElementById("memory-test-downloadfirst") as HTMLInputElement).checked) {
 												document.getElementById("memory-test-download")?.classList.remove("d-none");
-												const item = m.doc.map((i) => i.item).flat();
-												const progressTotal = document.getElementById(`${testId}-total-download`);
-												if (progressTotal) {
-													progressTotal.innerText = item.length.toString();
-												}
-
-												downloadResource(0, item, performance.now(), testId, () => {
+												startDownloadResource(testId, () => {
 													document.getElementById("memory-test-download")?.classList.add("d-none");
 													document.getElementById("memory-test-progress")?.classList.remove("d-none");
-
 													startMemoryTest(target, testId, counter, (document.getElementById("memory-test-random") as HTMLInputElement).checked, (document.getElementById("memory-test-duplicateid") as HTMLInputElement).checked);
 												});
 											} else {
@@ -887,7 +1015,17 @@ const showMemoryTestDialog = () => {
 				new h.small(new b.caption({ icon: "info-circle-fill", textColor: "secondary" }, "To cancel the test, simply click outside the dialog.")),
 			]),
 			new b.modal.body({ id: "memory-test-download", display: "none" }, [
-				new h.p("Download resource in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the process."),
+				new h.p("{{b::Download resource in progress}}. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the process."),
+
+				new b.card.container(
+					new b.card.body(
+						new h.canvas({
+							id: `${testId}-chart-download`,
+							ratio: "16x9",
+						})
+					)
+				),
+
 				new h.div({ textColor: "secondary", lineHeight: "sm" }, [
 					new h.small(["Counter : ", new h.strong({ id: `${testId}-count-download` }, "..."), " / ", new h.strong({ id: `${testId}-total-download` }, "...")]),
 					new h.br(),
@@ -907,7 +1045,16 @@ const showMemoryTestDialog = () => {
 				]),
 			]),
 			new b.modal.body({ id: "memory-test-progress", display: "none" }, [
-				new h.p("Memory test in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."),
+				new h.p("{{b::Memory test in progress}}. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."),
+
+				new b.card.container(
+					new b.card.body(
+						new h.canvas({
+							id: `${testId}-chart`,
+							ratio: "16x9",
+						})
+					)
+				),
 
 				new h.div({ textColor: "secondary", lineHeight: "sm" }, [
 					new h.small(["Counter : ", new h.strong({ id: `${testId}-count` }, "..."), " / ", new h.strong({ id: `${testId}-total` }, "...")]),

@@ -16,19 +16,25 @@ export const test: IAttrContent = {
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
-							new h.div(
+							new h.a(
 								{
+									href: "#",
+									textDecoration: "none",
 									textColor: "primary",
-									textColorHover: "success",
-									bgColorHover: "secondary-subtle",
-									borderColorHover: "success-subtle",
-									padding: 3,
+									borderColor: "primary",
+									textColorHover: "success-emphasis",
+									bgColorHover: "success-subtle",
+									borderColorHover: "success",
+									textColorFocus: "danger-emphasis",
+									bgColorFocus: "danger-subtle",
+									borderColorFocus: "danger",
+									paddingX: 2,
+									paddingY: 1,
 									rounded: 2,
+									border: true,
 								},
-								"Test"
+								"Hover me!"
 							),
-							// new b.button({ id: "duplicate_id" }, "duplicate_id"),
-							// new b.button({ id: "tooltip" }, "tooltip"),
 						];
 					},
 				}),
