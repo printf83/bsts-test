@@ -239,10 +239,7 @@ const onBootswatchChange = (value: string) => {
 			bootstrapCssLink.setAttribute("href", "");
 		} else {
 			bootstrapCssLink.disabled = false;
-			bootstrapCssLink.setAttribute(
-				"href",
-				`https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`
-			);
+			bootstrapCssLink.setAttribute("href", `https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`);
 		}
 	}
 };
@@ -520,11 +517,7 @@ const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "re
 				if (DEBUG) {
 					const tagCount = contentbody.getElementsByTagName("*").length;
 
-					console.info(
-						`${
-							PERFORMANCEINFO.title
-						} page has ${tagCount} tag in it. It took ${~~PERFORMANCEINFO.download!}ms to download and ${~~PERFORMANCEINFO.build!}ms to build.`
-					);
+					console.info(`${PERFORMANCEINFO.title} page has ${tagCount} tag in it. It took ${~~PERFORMANCEINFO.download!}ms to download and ${~~PERFORMANCEINFO.build!}ms to build.`);
 				}
 
 				if (typeof callback === "function") {
@@ -558,11 +551,7 @@ const setupWindowPopState = () => {
 		if (e.state) {
 			const state: IWindowState = e.state as IWindowState;
 
-			onMenuChange(
-				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
-				true,
-				"replace"
-			);
+			onMenuChange(`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`, true, "replace");
 			highlightCurrentMenu(state.docId);
 		}
 	};
@@ -620,16 +609,14 @@ const docDB = () => {
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
-let lastEstimate = 0;
+let lastEstimateTest = 0;
 
 const genDurationText = (second: number) => {
 	if (second > 60) {
 		if (second % 60 === 0) {
 			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""}`;
 		} else {
-			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""} ${second % 60} second${
-				second % 60 > 1 ? "s" : ""
-			}`;
+			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""} ${second % 60} second${second % 60 > 1 ? "s" : ""}`;
 		}
 	} else {
 		return `${second} second${second > 1 ? "s" : ""}`;
@@ -651,15 +638,7 @@ const getDuplicateID = () => {
 	return duplicates;
 };
 
-const runMemoryTest = (
-	startTime: number,
-	testId: string,
-	count: number,
-	callback: Function,
-	random?: boolean,
-	checkduplicateid?: boolean,
-	max?: number
-) => {
+const runMemoryTest = (startTime: number, testId: string, count: number, callback: Function, random?: boolean, checkduplicateid?: boolean, max?: number) => {
 	max ??= count;
 
 	let mDB = docDB();
@@ -687,10 +666,7 @@ const runMemoryTest = (
 						const duplicateID = getDuplicateID();
 						const duplicateIDCount = duplicateID.length;
 						if (duplicateIDCount > 0) {
-							console.warn(
-								`${pagetitle} have ${duplicateIDCount} duplicate key${duplicateIDCount > 1 ? "s" : ""}`,
-								duplicateID
-							);
+							console.warn(`${pagetitle} have ${duplicateIDCount} duplicate key${duplicateIDCount > 1 ? "s" : ""}`, duplicateID);
 						}
 					}
 
@@ -701,14 +677,11 @@ const runMemoryTest = (
 					progressCount.innerText = (max! - count).toString();
 
 					const currentTime = performance.now();
-					if (currentTime > lastEstimate + 1000) {
-						lastEstimate = currentTime;
+					if (currentTime > lastEstimateTest + 1000) {
+						lastEstimateTest = currentTime;
 
 						progressSpeed.innerText = `${~~(((max! - count) / (currentTime - startTime)) * 1000)}`;
-						const estimateTime = ~~(
-							(((currentTime - startTime) / currentProgress) * (100 - currentProgress)) /
-							1000
-						);
+						const estimateTime = ~~((((currentTime - startTime) / currentProgress) * (100 - currentProgress)) / 1000);
 						progressEstimate.innerText = `${genDurationText(estimateTime + 1)}`;
 					}
 
@@ -736,13 +709,7 @@ const runMemoryTest = (
 	}
 };
 
-const startMemoryTest = (
-	sender: Element,
-	testId: string,
-	count: number,
-	random: boolean,
-	checkduplicateid: boolean
-) => {
+const startMemoryTest = (sender: Element, testId: string, count: number, random: boolean, checkduplicateid: boolean) => {
 	const progressTotal = document.getElementById(`${testId}-total`);
 	if (progressTotal) {
 		progressTotal.innerText = count.toString();
@@ -801,17 +768,34 @@ const startMemoryTest = (
 	);
 };
 
-const downloadResource = (index: number, item: main.IAttrItemSubMenu[], testId: string, callback: () => void) => {
+let lastEstimateDownload = 0;
+const downloadResource = (index: number, item: main.IAttrItemSubMenu[], startTime: number, testId: string, callback: () => void) => {
 	let count = item.length - 1;
 	if (index <= count) {
 		getData(item[index].value, (_data) => {
 			const progressBar = document.getElementById(`${testId}-bar-download`);
-			if (progressBar) {
+			const progressPage = document.getElementById(`${testId}-page-download`);
+			const progressCount = document.getElementById(`${testId}-count-download`);
+			const progressSpeed = document.getElementById(`${testId}-speed-download`);
+			const progressEstimate = document.getElementById(`${testId}-estimate-download`);
+
+			if (progressBar && progressCount && progressPage && progressEstimate && progressSpeed) {
 				const currentProgress = (index / count) * 100;
 				progressBar.setAttribute("style", `width:${currentProgress}%;`);
+				progressPage.innerText = item[index].label ? item[index].label : "...";
+				progressCount.innerText = (index + 1).toString();
+
+				const currentTime = performance.now();
+				if (currentTime > lastEstimateDownload + 1000) {
+					lastEstimateDownload = currentTime;
+
+					progressSpeed.innerText = `${~~(((index + 1) / (currentTime - startTime)) * 1000)}`;
+					const estimateTime = ~~((((currentTime - startTime) / currentProgress) * (100 - currentProgress)) / 1000);
+					progressEstimate.innerText = `${genDurationText(estimateTime + 1)}`;
+				}
 
 				core.requestIdleCallback(() => {
-					downloadResource(index + 1, item, testId, callback);
+					downloadResource(index + 1, item, startTime, testId, callback);
 				}, 300);
 			}
 		});
@@ -873,58 +857,23 @@ const showMemoryTestDialog = () => {
 
 											document.getElementById("memory-test-msg")?.classList.add("d-none");
 
-											if (
-												(
-													document.getElementById(
-														"memory-test-downloadfirst"
-													) as HTMLInputElement
-												).checked
-											) {
-												document
-													.getElementById("memory-test-download")
-													?.classList.remove("d-none");
+											if ((document.getElementById("memory-test-downloadfirst") as HTMLInputElement).checked) {
+												document.getElementById("memory-test-download")?.classList.remove("d-none");
+												const item = m.doc.map((i) => i.item).flat();
+												const progressTotal = document.getElementById(`${testId}-total-download`);
+												if (progressTotal) {
+													progressTotal.innerText = item.length.toString();
+												}
 
-												downloadResource(0, m.doc.map((i) => i.item).flat(), testId, () => {
-													document
-														.getElementById("memory-test-download")
-														?.classList.add("d-none");
+												downloadResource(0, item, performance.now(), testId, () => {
+													document.getElementById("memory-test-download")?.classList.add("d-none");
+													document.getElementById("memory-test-progress")?.classList.remove("d-none");
 
-													document
-														.getElementById("memory-test-progress")
-														?.classList.remove("d-none");
-
-													startMemoryTest(
-														target,
-														testId,
-														counter,
-														(
-															document.getElementById(
-																"memory-test-random"
-															) as HTMLInputElement
-														).checked,
-														(
-															document.getElementById(
-																"memory-test-duplicateid"
-															) as HTMLInputElement
-														).checked
-													);
+													startMemoryTest(target, testId, counter, (document.getElementById("memory-test-random") as HTMLInputElement).checked, (document.getElementById("memory-test-duplicateid") as HTMLInputElement).checked);
 												});
 											} else {
-												document
-													.getElementById("memory-test-progress")
-													?.classList.remove("d-none");
-												startMemoryTest(
-													target,
-													testId,
-													counter,
-													(document.getElementById("memory-test-random") as HTMLInputElement)
-														.checked,
-													(
-														document.getElementById(
-															"memory-test-duplicateid"
-														) as HTMLInputElement
-													).checked
-												);
+												document.getElementById("memory-test-progress")?.classList.remove("d-none");
+												startMemoryTest(target, testId, counter, (document.getElementById("memory-test-random") as HTMLInputElement).checked, (document.getElementById("memory-test-duplicateid") as HTMLInputElement).checked);
 											}
 										},
 									},
@@ -935,42 +884,37 @@ const showMemoryTestDialog = () => {
 					),
 				]),
 
-				new h.small(
-					new b.caption(
-						{ icon: "info-circle-fill", textColor: "secondary" },
-						"To cancel the test, simply click outside the dialog."
-					)
-				),
+				new h.small(new b.caption({ icon: "info-circle-fill", textColor: "secondary" }, "To cancel the test, simply click outside the dialog.")),
 			]),
 			new b.modal.body({ id: "memory-test-download", display: "none" }, [
-				new h.p(
-					"Download resource in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the process."
-				),
-				new h.div(
-					{ marginTop: 2 },
-					new b.progress.container(
-						new b.progress.bar({
-							id: `${testId}-bar-download`,
-						})
-					)
-				),
+				new h.p("Download resource in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the process."),
+				new h.div({ textColor: "secondary", lineHeight: "sm" }, [
+					new h.small(["Counter : ", new h.strong({ id: `${testId}-count-download` }, "..."), " / ", new h.strong({ id: `${testId}-total-download` }, "...")]),
+					new h.br(),
+					new h.small(["Downloading page : ", new h.strong({ id: `${testId}-page-download` }, "...")]),
+					new h.br(),
+					new h.small(["Estimate download speed : ±", new h.strong({ id: `${testId}-speed-download` }, "..."), " page/sec"]),
+					new h.br(),
+					new h.small(["Estimated time remaining : ", new h.strong({ id: `${testId}-estimate-download` }, "...")]),
+					new h.div(
+						{ marginTop: 2 },
+						new b.progress.container(
+							new b.progress.bar({
+								id: `${testId}-bar-download`,
+							})
+						)
+					),
+				]),
 			]),
 			new b.modal.body({ id: "memory-test-progress", display: "none" }, [
-				new h.p(
-					"Memory test in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."
-				),
+				new h.p("Memory test in progress. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test."),
 
 				new h.div({ textColor: "secondary", lineHeight: "sm" }, [
-					new h.small([
-						"Counter : ",
-						new h.strong({ id: `${testId}-count` }, "..."),
-						" / ",
-						new h.strong({ id: `${testId}-total` }, "..."),
-					]),
+					new h.small(["Counter : ", new h.strong({ id: `${testId}-count` }, "..."), " / ", new h.strong({ id: `${testId}-total` }, "...")]),
 					new h.br(),
-					new h.small(["Current page : ", new h.strong({ id: `${testId}-page` }, "...")]),
+					new h.small(["Load page : ", new h.strong({ id: `${testId}-page` }, "...")]),
 					new h.br(),
-					new h.small(["Page load speed : ±", new h.strong({ id: `${testId}-speed` }, "..."), " page/sec"]),
+					new h.small(["Estimate load speed : ±", new h.strong({ id: `${testId}-speed` }, "..."), " page/sec"]),
 					new h.br(),
 					new h.small(["Estimated time remaining : ", new h.strong({ id: `${testId}-estimate` }, "...")]),
 					new h.div(
@@ -1127,10 +1071,7 @@ const searchText = (value: string, valueRegEx: string, i: pageIndex) => {
 
 			let st = new RegExp(valueRegEx, "gmi").exec(text);
 			if (st) {
-				text = `${text.substring(0, st?.index)}{{m::${text.substring(
-					st?.index,
-					st?.index + value.length
-				)}}}${text.substring(st?.index! + value.length)}`;
+				text = `${text.substring(0, st?.index)}{{m::${text.substring(st?.index, st?.index + value.length)}}}${text.substring(st?.index! + value.length)}`;
 			} else {
 				text = text;
 			}
@@ -1221,18 +1162,9 @@ const searchIndexOnClick = (event: Event) => {
 const genSearchItem = (page: string | undefined, section: string | undefined, text: string | undefined) => {
 	if (text) {
 		if (section) {
-			return [
-				new h.div({ fontSize: 4 }, new b.icon("list")),
-				new h.div([
-					new h.div({ fontWeight: "semibold" }, text),
-					new h.div({ textColor: "secondary", small: true }, section),
-				]),
-			];
+			return [new h.div({ fontSize: 4 }, new b.icon("list")), new h.div([new h.div({ fontWeight: "semibold" }, text), new h.div({ textColor: "secondary", small: true }, section)])];
 		} else {
-			return [
-				new h.div({ fontSize: 4 }, new b.icon("list")),
-				new h.div([new h.div({ fontWeight: "semibold" }, text)]),
-			];
+			return [new h.div({ fontSize: 4 }, new b.icon("list")), new h.div([new h.div({ fontWeight: "semibold" }, text)])];
 		}
 	} else {
 		if (section) {
@@ -1294,10 +1226,7 @@ const searchIndex = (searchId: string, value: string) => {
 					})
 				);
 			} else {
-				core.replaceChild(
-					searchResultContainer,
-					new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No result")
-				);
+				core.replaceChild(searchResultContainer, new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No result"));
 			}
 		}
 	});
@@ -1421,9 +1350,7 @@ const showSearchDialog = () => {
 										if (docSearchResult) {
 											const docSearchItem = docSearchResult.querySelectorAll("a.list-group-item");
 											if (docSearchItem && docSearchItem.length > 0) {
-												let currentActive = docSearchResult.querySelector(
-													"a.list-group-item.active"
-												) as Element;
+												let currentActive = docSearchResult.querySelector("a.list-group-item.active") as Element;
 
 												//active
 												let activeIndex = -1;
@@ -1444,9 +1371,7 @@ const showSearchDialog = () => {
 														} else if (ev.key == "ArrowUp") {
 															currentActive.classList.remove("active");
 															if (activeIndex - 1 < 0) {
-																docSearchItem[docSearchItem.length - 1].classList.add(
-																	"active"
-																);
+																docSearchItem[docSearchItem.length - 1].classList.add("active");
 															} else {
 																docSearchItem[activeIndex - 1].classList.add("active");
 															}
@@ -1454,9 +1379,7 @@ const showSearchDialog = () => {
 													}
 												} else {
 													docSearchItem[0].classList.add("active");
-													currentActive = docSearchResult.querySelector(
-														"a.list-group-item.active"
-													) as Element;
+													currentActive = docSearchResult.querySelector("a.list-group-item.active") as Element;
 													activeIndex = 0;
 
 													if (ev.key == "Enter") {
@@ -1501,16 +1424,10 @@ const showSearchDialog = () => {
 							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-up")),
 							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-down")),
 							" to navigate ",
-							new h.kbd(
-								{ padding: 1, lineHeight: 1 },
-								new h.span({ style: { fontSize: "0.85em" } }, "ESC")
-							),
+							new h.kbd({ padding: 1, lineHeight: 1 }, new h.span({ style: { fontSize: "0.85em" } }, "ESC")),
 							" to close ",
 						]),
-						new h.div(
-							{ id: "doc-search-status", display: "flex", gap: 2, alignItem: "center", lineHeight: 1 },
-							["Indexing ", new b.spinner({ small: true })]
-						),
+						new h.div({ id: "doc-search-status", display: "flex", gap: 2, alignItem: "center", lineHeight: 1 }, ["Indexing ", new b.spinner({ small: true })]),
 					]
 				),
 			]
@@ -1608,10 +1525,7 @@ const mainContainer = () => {
 							...Array(core.rndBetween(1, 3))
 								.fill("")
 								.map(() => {
-									return new e.text(
-										{ loadingPlaceholderAnimation: "wave" },
-										core.placeholder(10, 20)
-									);
+									return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
 								}),
 							new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
 						]);
