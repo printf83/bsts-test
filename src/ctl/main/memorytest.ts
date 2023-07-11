@@ -107,7 +107,7 @@ const genTestChart = (container: HTMLCanvasElement) => {
 					min: 0,
 					title: {
 						display: false,
-						text: "Speed (ms)",
+						// text: "Speed (ms)",
 					},
 					beginAtZero: true,
 					grid: { color: getCSSVar("--bs-tertiary-bg") },
@@ -209,6 +209,15 @@ const genProgressDialog = (arg: { msg: string; testId: string; counterLabel: str
 	];
 };
 
+let speedDB: { id: string; title: string; data: number[] }[];
+const addToSpeedDB = (id: string, title: string, data: number) => {
+	let index = speedDB.findIndex((i) => i.id === id);
+	if (index > -1) {
+		speedDB[index].data.push(data);
+	} else {
+		speedDB.push({ id: id, title: title, data: [data] });
+	}
+};
 const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; count: number; random?: boolean; checkduplicateid?: boolean; counttag?: boolean; max?: number }, callback: (counter: number, docId: string) => void) => {
 	arg.max ??= arg.count;
 
@@ -263,6 +272,9 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 					dataTime = ~~((((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) / 1000);
 				}
 
+				//keep speed result
+				addToSpeedDB(docId, pagetitle ? pagetitle : "...", dataChart);
+
 				if (updateProgressInfo({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
 					lastTestTime = currentTime;
 					runMemoryTest({ startTime: arg.startTime, chart: arg.chart, testId: arg.testId, count: arg.count - 1, random: arg.random, checkduplicateid: arg.checkduplicateid, counttag: arg.counttag, max: arg.max }, callback);
@@ -292,6 +304,7 @@ const startMemoryTest = (arg: { sender: Element; testId: string; count: number; 
 
 	const chart = genTestChart(document.getElementById(`${arg.testId}-chart`) as HTMLCanvasElement);
 
+	speedDB = [];
 	lastTestTime = performance.now();
 	lastEstimateTest = lastTestTime;
 	const startTime = lastTestTime;
@@ -317,32 +330,89 @@ const startMemoryTest = (arg: { sender: Element; testId: string; count: number; 
 
 			highlightCurrentMenu(docId);
 			onMenuChange(docId, false, "push", () => {
-				let result: string = "";
+				let detailReport: core.IElem;
 
 				let loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
 				let durationSecond = ~~((endTime - startTime) / 1000);
 
-				if (arg.counttag) {
-					result = `
-					Page count : {{s::${docCount}}} page{{br}}
-					Load speed : ±{{s::${loadSpeed}}} page/sec{{br}}
-					Duration : {{s::${genDurationText(durationSecond)}}}{{br}}
-					Less element : {{s::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
-					Most element : {{s::${MOSTTAG.title} (${MOSTTAG.count} element)}}`;
-				} else {
-					result = `
-					Page count : {{s::${docCount}}} page{{br}}
-					Load speed : ±{{s::${loadSpeed}}} page/sec{{br}}
-					Duration : {{s::${genDurationText(durationSecond)}}}`;
-				}
+				detailReport = [
+					new b.card.container(
+						{ marginBottom: 2 },
+						new b.card.body([
+							new h.canvas({
+								id: `${arg.testId}-chart`,
+								ratio: "21x9",
+								on: {
+									build: (event) => {
+										const target = event.target as HTMLCanvasElement;
+
+										//dialog show after 300 ms
+										setTimeout(
+											(target) => {
+												new Chart(target, {
+													type: "bar",
+													data: {
+														labels: speedDB.map((i) => i.title),
+														datasets: [
+															{
+																data: speedDB.map((i) => {
+																	if (i.data.length > 1) {
+																		let sum = i.data.reduce((partialSum, a) => partialSum + a, 0);
+																		return sum / i.data.length;
+																	} else {
+																		return i.data[0];
+																	}
+																}),
+																borderWidth: 1.5,
+																borderColor: getCSSVar("--bs-primary"),
+																backgroundColor: getCSSVar("--bs-primary-bg-subtle"),
+															},
+														],
+													},
+													options: {
+														plugins: {
+															legend: {
+																display: false,
+															},
+														},
+														scales: {
+															x: { display: false },
+															y: {
+																display: true,
+																beginAtZero: true,
+																grid: { color: getCSSVar("--bs-tertiary-bg") },
+															},
+														},
+													},
+												});
+											},
+											300,
+											target
+										);
+									},
+								},
+							}),
+							new h.div({ textAlign: "center", textColor: "secondary", small: true }, "Process speed in milisecond (Less is better)"),
+						])
+					),
+
+					new h.div({ textColor: "secondary", lineHeight: "sm" }, [
+						new h.small([`Page count : `, new h.strong(docCount)]),
+						new h.br(),
+						new h.small([`Load speed : `, new h.strong(loadSpeed), " page/sec"]),
+						new h.br(),
+						new h.small([`Duration : `, new h.strong(genDurationText(durationSecond))]),
+						arg.counttag ? new h.br() : "",
+						arg.counttag ? new h.small([`Less element : `, new h.strong(LESSTAG.title), "(", new h.strong(LESSTAG.count), " tag)"]) : "",
+						arg.counttag ? new h.br() : "",
+						arg.counttag ? new h.small([`Most element : `, new h.strong(MOSTTAG.title), "(", new h.strong(MOSTTAG.count), " tag)"]) : "",
+					]),
+				];
 
 				b.modal.show(
 					b.modal.create({
 						title: "Memory test complete",
-						elem: new b.msg({
-							icon: new b.icon({ id: "info-circle-fill", textColor: "primary", fontSize: 1 }),
-							elem: result,
-						}),
+						elem: detailReport,
 						btn: "ok",
 					})
 				);
