@@ -176,7 +176,7 @@ const updateProgressInfo = (arg: { testId: string; chart: Chart; chartData?: num
 
 const genProgressDialog = (arg: { msg: string; testId: string; counterLabel: string; currentLabel: string; speedLabel: string; timeLabel: string; total: number }) => {
 	return [
-		new h.p(arg.msg),
+		new h.p({ marginBottom: 2 }, arg.msg),
 
 		new b.card.container(
 			{ marginBottom: 2 },

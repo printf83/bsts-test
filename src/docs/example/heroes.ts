@@ -5,15 +5,9 @@ import { IAttrContent } from "../../ctl/main/container.js";
 const ex = {
 	c1: (arg: { icon: string; title: string; description: string; elem?: core.IElem }) => {
 		return new h.div({ paddingX: 4, paddingY: 5, marginY: 5, textAlign: "center" }, [
-			new h.h(1, new b.icon({ id: arg.icon, fontSize: 1, fontDisplay: 1 })),
+			new h.h(1, new b.icon({ id: arg.icon, fontDisplay: 1 })),
 			new h.h(1, { fontDisplay: 5, fontWeight: "bold", textColor: "body-emphasis" }, arg.title),
-			new h.div({ col: "lg-6", marginX: "auto" }, [
-				new h.p({ lead: true, marginBottom: 4 }, arg.description),
-				new h.div(
-					{ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" },
-					arg.elem ? arg.elem : ""
-				),
-			]),
+			new h.div({ col: "lg-6", marginX: "auto" }, [new h.p({ lead: true, marginBottom: 4 }, arg.description), new h.div({ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" }, arg.elem ? arg.elem : "")]),
 		]);
 	},
 	c2: (arg: { title: string; description: string; elem?: core.IElem; img: string }) => {
@@ -163,10 +157,7 @@ const ex = {
 							b.form.check({ type: "checkbox", label: "Remember me", name: "remember" }),
 							new b.button({ color: "primary", weight: "lg", width: 100, type: "submit" }, "Sign up"),
 							new h.hr(),
-							new h.small(
-								{ textColor: "body-secondary" },
-								"By clicking Sign up, you agree to the terms of use."
-							),
+							new h.small({ textColor: "body-secondary" }, "By clicking Sign up, you agree to the terms of use."),
 						]
 					)
 				),
@@ -238,13 +229,7 @@ const ex = {
 			},
 			[
 				new h.h(1, { fontDisplay: 5, fontWeight: "bold" }, arg.title),
-				new h.div({ col: "lg-6", marginX: "auto" }, [
-					new h.p({ lead: true, marginBottom: 4, textColor: "secondary" }, arg.description),
-					new h.div(
-						{ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" },
-						arg.elem ? arg.elem : ""
-					),
-				]),
+				new h.div({ col: "lg-6", marginX: "auto" }, [new h.p({ lead: true, marginBottom: 4, textColor: "secondary" }, arg.description), new h.div({ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" }, arg.elem ? arg.elem : "")]),
 			]
 		);
 	},
@@ -265,12 +250,8 @@ export const heroes: IAttrContent = {
 						return ex.c1({
 							icon: "hexagon-fill",
 							title: "Centered hero",
-							description:
-								"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-							elem: [
-								new b.button({ weight: "lg", color: "primary" }, "Primary button"),
-								new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
-							],
+							description: "Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+							elem: [new b.button({ weight: "lg", color: "primary" }, "Primary button"), new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary")],
 						});
 					},
 				}),
@@ -287,12 +268,8 @@ export const heroes: IAttrContent = {
 					output: () => {
 						return ex.c2({
 							title: "Centered screenshot",
-							description:
-								"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-							elem: [
-								new b.button({ weight: "lg", color: "primary" }, "Primary button"),
-								new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
-							],
+							description: "Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+							elem: [new b.button({ weight: "lg", color: "primary" }, "Primary button"), new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary")],
 							img: "https://picsum.photos/seed/bsts_0/622/393.webp",
 						});
 					},
@@ -310,12 +287,8 @@ export const heroes: IAttrContent = {
 					output: () => {
 						return ex.c3({
 							title: "Responsive left-aligned hero with image",
-							description:
-								"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-							elem: [
-								new b.button({ weight: "lg", color: "primary" }, "Primary"),
-								new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
-							],
+							description: "Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+							elem: [new b.button({ weight: "lg", color: "primary" }, "Primary"), new b.button({ weight: "lg", color: "secondary", outline: true }, "Default")],
 							img: "https://picsum.photos/seed/bsts_0/432/308.webp",
 						});
 					},
@@ -334,8 +307,7 @@ export const heroes: IAttrContent = {
 					output: () => {
 						return ex.c4({
 							title: "Vertically centered hero sign-up form",
-							description:
-								"Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.",
+							description: "Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.",
 							onsignup: (event) => {
 								//do signup
 								event.preventDefault();
@@ -371,12 +343,8 @@ export const heroes: IAttrContent = {
 						return ex.c5({
 							img: "https://picsum.photos/seed/bsts_0/432/308.webp",
 							title: "Border hero with cropped image and shadows",
-							description:
-								"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-							elem: [
-								new b.button({ weight: "lg", color: "primary" }, "Primary"),
-								new b.button({ weight: "lg", color: "secondary", outline: true }, "Default"),
-							],
+							description: "Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+							elem: [new b.button({ weight: "lg", color: "primary" }, "Primary"), new b.button({ weight: "lg", color: "secondary", outline: true }, "Default")],
 						});
 					},
 				}),
@@ -393,12 +361,8 @@ export const heroes: IAttrContent = {
 					output: () => {
 						return ex.c6({
 							title: "Dark color hero",
-							description:
-								"Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
-							elem: [
-								new b.button({ weight: "lg", color: "info", outline: true }, "Custom button"),
-								new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary"),
-							],
+							description: "Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.",
+							elem: [new b.button({ weight: "lg", color: "info", outline: true }, "Custom button"), new b.button({ weight: "lg", color: "secondary", outline: true }, "Secondary")],
 						});
 					},
 				}),
