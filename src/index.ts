@@ -1,14 +1,16 @@
 import { b, core, h } from "@printf83/bsts";
-import * as main from "./ctl/main/_index.js";
 import { cookie } from "./ctl/main/cookie.js";
 import * as e from "./ctl/example/_index.js";
 
 import { onBootswatchChange, getSavedBootswatch } from "./ctl/main/bootswatch.js";
-import { genMenuWithBookmark, onBookmarkChange } from "./ctl/main/bookmark.js";
-import { getSavedTheme, onThemeChange } from "./ctl/main/theme.js";
-import { onMenuChange, highlightCurrentMenu, IWindowState } from "./ctl/main/menu.js";
-import { showSearchDialog } from "./ctl/main/search.js";
+import { menuWithBookmark } from "./ctl/main/bookmark.js";
+import { getSavedTheme, onThemeChange, setupThemeChanges } from "./ctl/main/theme.js";
+import { highlightMenu } from "./ctl/main/menu.js";
+import { setupSearchShortcut } from "./ctl/main/search.js";
 import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
+import { IBsMainContainer, container } from "./ctl/main/container.js";
+import { IContent, setupContentDocument } from "./ctl/main/content.js";
+import { setupState } from "./ctl/main/history.js";
 
 const loadDefaultDoc = () => {
 	const { search } = window.location;
@@ -22,45 +24,12 @@ const loadDefaultDoc = () => {
 			anchorId = tempValue[1];
 		}
 
-		onMenuChange(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, true);
-		highlightCurrentMenu(docId);
+		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+		highlightMenu(docId);
 	} else {
-		onMenuChange(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
-		highlightCurrentMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
+		setupContentDocument(cookie.get("current_page") || "docs/gettingstarted/introduction");
+		highlightMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
 	}
-};
-
-const setupBootswatch = () => {
-	onBootswatchChange(getSavedBootswatch());
-};
-
-const setupThemeChanges = () => {
-	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-		if (getSavedTheme() === "auto") {
-			onThemeChange("auto");
-		}
-	});
-};
-
-const setupWindowPopState = () => {
-	window.onpopstate = function (e) {
-		if (e.state) {
-			const state: IWindowState = e.state as IWindowState;
-			onMenuChange(`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`, true, "replace");
-			highlightCurrentMenu(state.docId);
-		}
-	};
-};
-
-const setupSearchShortcut = () => {
-	document.addEventListener("keydown", (event: KeyboardEvent) => {
-		if (event.ctrlKey && event.key == "k") {
-			event.stopPropagation();
-			event.preventDefault();
-
-			showSearchDialog();
-		}
-	});
 };
 
 const setupBSNavigate = () => {
@@ -68,37 +37,20 @@ const setupBSNavigate = () => {
 		"bs.navigate",
 		(e) => {
 			let value = (<CustomEvent>e).detail;
-			highlightCurrentMenu(value);
-			onMenuChange(value);
+			highlightMenu(value);
+			setupContentDocument(value);
 		},
 		false
 	);
 };
 
 const mainContainer = () => {
-	return main.Container({
+	return new container({
 		name: "Bootstrap TS",
 		bgColor: "primary",
 		textColor: "light",
 		icon: new h.div({ class: "animated-icon", fontSize: 3 }, new b.icon({ id: "hexagon-fill" })),
-		on: {
-			"bs-menu-change": (e) => {
-				onMenuChange((<CustomEvent>e).detail);
-			},
-			"bs-theme-change": (e) => {
-				onThemeChange((<CustomEvent>e).detail);
-			},
-			"bs-bootswatch-change": (e) => {
-				onBootswatchChange((<CustomEvent>e).detail);
-			},
-			"bs-bookmark-change": (e) => {
-				onBookmarkChange((<CustomEvent>e).detail);
-			},
-			"bs-search-click": (_e) => {
-				showSearchDialog();
-			},
-		},
-		itemMenu: genMenuWithBookmark(),
+		itemMenu: menuWithBookmark(),
 		itemInsideLink: [{ value: "doc", label: "Docs" }],
 		currentInsideLink: "doc",
 		itemOutsideLink: [
@@ -121,7 +73,7 @@ const mainContainer = () => {
 			{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
 			{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 		],
-		currentTheme: getSavedTheme() as main.IBsMainContainer["currentTheme"],
+		currentTheme: getSavedTheme() as IBsMainContainer["currentTheme"],
 		itemBootswatch: [
 			{
 				value: "default",
@@ -172,7 +124,7 @@ const mainContainer = () => {
 					})
 					.flat();
 			},
-		} as main.IAttrContent,
+		} as IContent,
 		itemFooter: [
 			{
 				title: "Links",
@@ -222,17 +174,20 @@ const mainContainer = () => {
 
 core.documentReady(() => {
 	onThemeChange(getSavedTheme());
-	let body = document.getElementById("main") as Element;
-	core.replaceChild(body, mainContainer());
+	onBootswatchChange(getSavedBootswatch());
 
 	core.requestIdleCallback(() => {
-		setupSearchShortcut();
-		setupWindowPopState();
-		setupBSNavigate();
-		setupBootswatch();
-		setupThemeChanges();
+		let body = document.getElementById("main") as Element;
+		core.replaceChild(body, mainContainer());
+
 		core.requestIdleCallback(() => {
-			loadDefaultDoc();
+			setupSearchShortcut();
+			setupState();
+			setupBSNavigate();
+			setupThemeChanges();
+			core.requestIdleCallback(() => {
+				loadDefaultDoc();
+			}, 300);
 		}, 300);
 	}, 300);
 });

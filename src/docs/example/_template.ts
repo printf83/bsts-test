@@ -1,7 +1,7 @@
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const _template: IAttrContent = {
+export const _template: IContent = {
 	title: "",
 	description: "",
 	item: () => {
@@ -10,12 +10,7 @@ export const _template: IAttrContent = {
 				new e.title(""),
 				new e.text(""),
 				new e.ul({
-					item: [
-						"aaaaaaaaaaaaaaaaaaaaaaaa",
-						"aaaaaaaaaaaaaaaaaaaaaaaa",
-						"aaaaaaaaaaaaaaaaaaaaaaaa",
-						"aaaaaaaaaaaaaaaaaaaaaaaa",
-					],
+					item: ["aaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaa"],
 				}),
 				new e.alert({ color: "info", callout: true }, ""),
 				new e.code({

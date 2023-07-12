@@ -1,10 +1,9 @@
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const zindex: IAttrContent = {
+export const zindex: IContent = {
 	title: "Z-index",
-	description:
-		"While not a part of Bootstrap’s grid system, z-indexes play an important part in how Bootstrap components overlay and interact with one another.",
+	description: "While not a part of Bootstrap’s grid system, z-indexes play an important part in how Bootstrap components overlay and interact with one another.",
 	item: () => {
 		return [
 			new e.section([
@@ -14,9 +13,7 @@ export const zindex: IAttrContent = {
 				new e.text(
 					"These higher values start at an arbitrary number, high and specific enough to ideally avoid conflicts. Bootstrap need a standard set of these across Bootstrap layered components—tooltips, popovers, navbars, dropdowns, modals—so Bootstrap can be reasonably consistent in the behaviors. There’s no reason Bootstrap couldn’t have used {{100+}} or {{500+}}."
 				),
-				new e.text(
-					"Bootstrap don’t encourage customization of these individual values; should you change one, you likely need to change them all."
-				),
+				new e.text("Bootstrap don’t encourage customization of these individual values; should you change one, you likely need to change them all."),
 
 				new e.codepreview({
 					type: "css",

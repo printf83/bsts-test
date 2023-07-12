@@ -1,11 +1,11 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.10/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.11/+esm";
 const BSCDNCSS = ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"];
 
-export const introduction: IAttrContent = {
+export const introduction: IContent = {
 	title: "Get started with Bootstrap",
 	description: "Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
 	item: () => {
@@ -18,7 +18,7 @@ export const introduction: IAttrContent = {
 
 			new e.section([
 				new e.title("Current version"),
-				new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [new b.tooltip({ content: "@printf83/bsts" }, new h.a({ href: "https://github.com/printf83/bsts", target: "_blank" }, new b.pill({ icon: "github", color: "danger", weight: "lg" }, "v0.2.10")))]),
+				new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [new b.tooltip({ content: "@printf83/bsts" }, new h.a({ href: "https://github.com/printf83/bsts", target: "_blank" }, new b.pill({ icon: "github", color: "danger", weight: "lg" }, "v0.2.11")))]),
 
 				new e.text({ textAlign: "center" }, "{{bsts}} couldn't have done without this awesome library. Thanks for your hard work on this."),
 

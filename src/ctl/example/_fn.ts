@@ -2,7 +2,7 @@ import { core, b, I, h } from "@printf83/bsts";
 import js_beautify from "js-beautify";
 import { css_beautify, html_beautify } from "js-beautify";
 
-export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem, icon?: string) => {
+export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem) => {
 	b.toast.show(
 		b.toast.create({
 			title: document.title,

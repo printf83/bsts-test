@@ -1,27 +1,22 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const layout: IAttrContent = {
+export const layout: IContent = {
 	title: "Layout",
-	description:
-		"Give your forms some structure—from inline to horizontal to custom grid implementations—with Bootstrap form layout options.",
+	description: "Give your forms some structure—from inline to horizontal to custom grid implementations—with Bootstrap form layout options.",
 	item: () => {
 		return [
 			new e.section([
 				new e.title("Forms"),
-				new e.text(
-					"Every group of form fields should reside in a {{<form>}} element. Bootstrap provides no default styling for the {{<form>}} element, but there are some powerful browser features that are provided by default."
-				),
+				new e.text("Every group of form fields should reside in a {{<form>}} element. Bootstrap provides no default styling for the {{<form>}} element, but there are some powerful browser features that are provided by default."),
 				new e.ul({
 					item: [
 						"New to browser forms? Consider reviewing {{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form::the MDN form docs}} for an overview and complete list of available attributes.",
 						"{{<button>}}s within a {{<form>}} default to {{type='submit'}}, so strive to be specific and always include a type.",
 					],
 				}),
-				new e.text(
-					"Since Bootstrap applies {{display: block}} and {{width: 100%}} to almost all Bootstrap form controls, forms will by default stack vertically. Additional classes can be used to vary this layout on a per-form basis."
-				),
+				new e.text("Since Bootstrap applies {{display: block}} and {{width: 100%}} to almost all Bootstrap form controls, forms will by default stack vertically. Additional classes can be used to vary this layout on a per-form basis."),
 			]),
 
 			//----------------------
@@ -31,20 +26,12 @@ export const layout: IAttrContent = {
 				new e.text(
 					"{{nav:docs/utilities/spacing::Margin utilities}} are the easiest way to add some structure to forms. They provide basic grouping of labels, controls, optional form text, and form validation messaging. Bootstrap recommend sticking to {{margin-bottom}} utilities, and using a single direction throughout the form for consistency."
 				),
-				new e.text(
-					"Feel free to build your forms however you like, with {{<fieldset>}}s, {{<div>}}s, or nearly any other element."
-				),
+				new e.text("Feel free to build your forms however you like, with {{<fieldset>}}s, {{<div>}}s, or nearly any other element."),
 				new e.code({
 					output: () => {
 						return [
-							new h.div({ marginBottom: 3 }, [
-								new b.label({ for: "formGroupExampleInput", class: "form-label" }, "Example label"),
-								new b.input({ id: "formGroupExampleInput", placeholder: "Example input placeholder" }),
-							]),
-							new h.div([
-								new b.label({ for: "formGroupExampleInput2", class: "form-label" }, "Another label"),
-								new b.input({ id: "formGroupExampleInput2", placeholder: "Another input placeholder" }),
-							]),
+							new h.div({ marginBottom: 3 }, [new b.label({ for: "formGroupExampleInput", class: "form-label" }, "Example label"), new b.input({ id: "formGroupExampleInput", placeholder: "Example input placeholder" })]),
+							new h.div([new b.label({ for: "formGroupExampleInput2", class: "form-label" }, "Another label"), new b.input({ id: "formGroupExampleInput2", placeholder: "Another input placeholder" })]),
 						];
 					},
 				}),
@@ -68,9 +55,7 @@ export const layout: IAttrContent = {
 
 			new e.section([
 				new e.title("Form grid"),
-				new e.text(
-					"More complex forms can be built using Bootstrap grid classes. Use these for form layouts that require multiple columns, varied widths, and additional alignment options. {{b::Requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."
-				),
+				new e.text("More complex forms can be built using Bootstrap grid classes. Use these for form layouts that require multiple columns, varied widths, and additional alignment options. {{b::Requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."),
 				new e.code({
 					output: () => {
 						return new h.div({ row: true }, [
@@ -95,9 +80,7 @@ export const layout: IAttrContent = {
 
 			new e.section([
 				new e.title("Gutters"),
-				new e.text(
-					"By adding {{nav:docs/layout/gutters::gutter modifier classes}}, you can have control over the gutter width in as well the inline as block direction. {{b::Also requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."
-				),
+				new e.text("By adding {{nav:docs/layout/gutters::gutter modifier classes}}, you can have control over the gutter width in as well the inline as block direction. {{b::Also requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."),
 				new e.code({
 					output: () => {
 						return new h.div({ row: true, gutter: 3 }, [
@@ -167,9 +150,7 @@ export const layout: IAttrContent = {
 				new e.text(
 					"Create horizontal forms with the grid by adding the {{.row}} class to form groups and using the {{.col-*-*}} classes to specify the width of your labels and controls. Be sure to add {{.col-form-label}} to your {{<label>}}s as well so they’re vertically centered with their associated form controls."
 				),
-				new e.text(
-					"At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, Bootstrap removed the {{padding-top}} on Bootstrap stacked radio inputs label to better align the text baseline."
-				),
+				new e.text("At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, Bootstrap removed the {{padding-top}} on Bootstrap stacked radio inputs label to better align the text baseline."),
 				new e.code({
 					output: () => {
 						return new h.form([
@@ -207,10 +188,7 @@ export const layout: IAttrContent = {
 									}),
 								]),
 							]),
-							new h.div(
-								{ row: true },
-								b.form.check({ container: { col: "sm-9", offset: "sm-3" }, label: "Example checkbox" })
-							),
+							new h.div({ row: true }, b.form.check({ container: { col: "sm-9", offset: "sm-3" }, label: "Example checkbox" })),
 
 							new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
 						]);
@@ -222,9 +200,7 @@ export const layout: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Horizontal form label sizing"),
-				new e.text(
-					"Be sure to use {{.col-form-label-sm}} or {{.col-form-label-lg}} to your {{<label>}}s or {{<legend>}}s to correctly follow the size of {{.form-control-lg}} and {{.form-control-sm}}."
-				),
+				new e.text("Be sure to use {{.col-form-label-sm}} or {{.col-form-label-lg}} to your {{<label>}}s or {{<legend>}}s to correctly follow the size of {{.form-control-lg}} and {{.form-control-sm}}."),
 				new e.code({
 					output: () => {
 						return [
@@ -293,9 +269,7 @@ export const layout: IAttrContent = {
 
 			new e.section([
 				new e.title("Auto-sizing"),
-				new e.text(
-					"The example below uses a flexbox utility to vertically center the contents and changes {{.col}} to {{.col-auto}} so that your columns only take up as much space as needed. Put another way, the column sizes itself based on the contents."
-				),
+				new e.text("The example below uses a flexbox utility to vertically center the contents and changes {{.col}} to {{.col-auto}} so that your columns only take up as much space as needed. Put another way, the column sizes itself based on the contents."),
 				new e.code({
 					output: () => {
 						return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [

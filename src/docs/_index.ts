@@ -7,11 +7,9 @@ import * as content from "./content/_index.js";
 import * as layout from "./layout/_index.js";
 import * as customize from "./customize/_index.js";
 import * as example from "./example/_index.js";
-import { IAttrContent } from "../ctl/main/container.js";
+import { IContent } from "../ctl/main/content.js";
 
-export const doc = async (value: string, callback: (result: IAttrContent | null) => void) => {
-	let result: IAttrContent;
-
+export const doc = (value: string, callback: (result: IContent | null) => void) => {
 	switch (value) {
 		//--------------------------
 		case "docs/example/headers":

@@ -1,8 +1,8 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const visually_hidden: IAttrContent = {
+export const visually_hidden: IContent = {
 	title: "Visually hidden",
 	description: "Use these helpers to visually hide elements but keep them accessible to assistive technologies.",
 	item: () => {
@@ -16,11 +16,7 @@ export const visually_hidden: IAttrContent = {
 						return [
 							new h.h(2, { visually: "hidden" }, "Title for screen readers"),
 							new h.a({ visually: "hidden-focusable", href: "#content" }, "Skip to main content"),
-							new h.div({ visually: "hidden-focusable" }, [
-								"A container wiht a ",
-								new h.a({ href: "#" }, "focusable element"),
-								".",
-							]),
+							new h.div({ visually: "hidden-focusable" }, ["A container wiht a ", new h.a({ href: "#" }, "focusable element"), "."]),
 						];
 					},
 				}),

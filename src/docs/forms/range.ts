@@ -1,8 +1,8 @@
 import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const range: IAttrContent = {
+export const range: IContent = {
 	title: "Range",
 	description: "Use Bootstrap custom range inputs for consistent cross-browser styling and built-in customization.",
 	item: () => {
@@ -14,10 +14,7 @@ export const range: IAttrContent = {
 				),
 				new e.code({
 					output: () => {
-						return [
-							new b.label({ for: "customRange1", class: "form-label" }, "Example range"),
-							new b.input({ type: "range", id: "customRange1" }),
-						];
+						return [new b.label({ for: "customRange1", class: "form-label" }, "Example range"), new b.input({ type: "range", id: "customRange1" })];
 					},
 				}),
 				new e.text("Using {{item}} to setup option"),
@@ -35,9 +32,7 @@ export const range: IAttrContent = {
 
 			new e.section([
 				new e.title("Disabled"),
-				new e.text(
-					"Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."
-				),
+				new e.text("Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."),
 				new e.code({
 					output: () => {
 						return b.form.input({
@@ -53,9 +48,7 @@ export const range: IAttrContent = {
 
 			new e.section([
 				new e.title("Min and max"),
-				new e.text(
-					"Range inputs have implicit values for {{min}} and {{max}}—{{0}} and {{100}}, respectively. You may specify new values for those using the {{min}} and {{max}} attributes."
-				),
+				new e.text("Range inputs have implicit values for {{min}} and {{max}}—{{0}} and {{100}}, respectively. You may specify new values for those using the {{min}} and {{max}} attributes."),
 				new e.code({
 					output: () => {
 						return b.form.input({
@@ -73,9 +66,7 @@ export const range: IAttrContent = {
 
 			new e.section([
 				new e.title("Steps"),
-				new e.text(
-					"By default, range inputs “snap” to integer values. To change this, you can specify a {{step}} value. In the example below, Bootstrap double the number of steps by using {{step='0.5'}}."
-				),
+				new e.text("By default, range inputs “snap” to integer values. To change this, you can specify a {{step}} value. In the example below, Bootstrap double the number of steps by using {{step='0.5'}}."),
 				new e.code({
 					output: () => {
 						return b.form.input({

@@ -1,31 +1,31 @@
-import * as main from "./_index.js";
 import { doc } from "../../docs/_index.js";
-import { bm } from "./bookmark.js";
+import { isInBookmark } from "./bookmark.js";
+import { IContent } from "./content.js";
 
-const dataNotFound = (value: string) => {
+const contentNotFound = (key: string) => {
 	return {
 		title: "Oooopppsss!",
-		description: `Content {{${value} }}not found`,
+		description: `Content {{${key} }}not found`,
 		sourceUrl: `https://github.com/printf83/bsts-test/blob/main/src/doc/_index.ts`,
 		sourceWeb: "Github",
-	} as main.IAttrContent;
+	} as IContent;
 };
 
-export const getData = (value: string, callback: (arg: main.IAttrContent) => void) => {
-	let tValue = value.split("/");
+export const getContent = (docId: string, callback: (arg: IContent) => void) => {
+	let tValue = docId.split("/");
 	if (tValue.length === 3 && tValue[0] === "docs") {
-		doc(value, (c) => {
+		doc(docId, (c) => {
 			if (c) {
-				c.docId = value;
-				c.bookmark = bm.filter((i) => i.value === value).length > 0;
-				c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${value}.ts`;
+				c.docId = docId;
+				c.bookmark = isInBookmark(docId);
+				c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${docId}.ts`;
 				c.sourceWeb = "Github";
 				callback(c);
 			} else {
-				callback(dataNotFound(value));
+				callback(contentNotFound(docId));
 			}
 		});
 	} else {
-		callback(dataNotFound(value));
+		callback(contentNotFound(docId));
 	}
 };

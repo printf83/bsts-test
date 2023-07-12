@@ -1,188 +1,18 @@
-import { core, h } from "@printf83/bsts";
-import * as main from "./_index.js";
-import { getData } from "./data.js";
-import { cookie } from "./cookie.js";
+import { I, b, core, h } from "@printf83/bsts";
+import { setupContentDocument } from "./content.js";
 
-const DEBUG = false;
-const PERFORMANCEINFO: { title?: string; download?: number; build?: number } = {};
-
-export const menu = {
-	doc: [
-		{
-			label: "Getting started",
-			icon: { id: "book-half", textColor: "primary" },
-			item: [
-				{ label: "Introduction", value: "docs/gettingstarted/introduction" },
-				{ label: "Bootswatch", value: "docs/gettingstarted/bootswatch" },
-			],
-		},
-		{
-			label: "Customize",
-			icon: { id: "palette2", textColor: "danger" },
-			item: [{ label: "Color", value: "docs/customize/color" }],
-		},
-		{
-			label: "Layout",
-			icon: { id: "grid-fill", textColor: "success" },
-			item: [
-				{ label: "Breakpoints", value: "docs/layout/breakpoints" },
-				{ label: "Containers", value: "docs/layout/containers" },
-				{ label: "Grid", value: "docs/layout/grid" },
-				{ label: "Columns", value: "docs/layout/columns" },
-				{ label: "Gutters", value: "docs/layout/gutters" },
-				{ label: "Utilities", value: "docs/layout/utilities" },
-				{ label: "Z-index", value: "docs/layout/zindex" },
-				{ label: "CSS Grid", value: "docs/layout/cssgrid" },
-			],
-		},
-		{
-			label: "Content",
-			icon: { id: "file-earmark-richtext", textColor: "secondary" },
-			item: [
-				{ label: "Reboot", value: "docs/content/reboot" },
-				{ label: "Typography", value: "docs/content/typography" },
-				{ label: "Images", value: "docs/content/images" },
-				{ label: "Tables", value: "docs/content/tables" },
-				{ label: "Figures", value: "docs/content/figures" },
-			],
-		},
-		{
-			label: "Forms",
-			icon: { id: "ui-radios", textColor: "primary" },
-			item: [
-				{ label: "Overview", value: "docs/forms/overview" },
-				{ label: "Form control", value: "docs/forms/control" },
-				{ label: "Select", value: "docs/forms/select" },
-				{ label: "Checks & radios", value: "docs/forms/check_radio" },
-				{ label: "Range", value: "docs/forms/range" },
-				{ label: "Input group", value: "docs/forms/input_group" },
-				{ label: "Floating labels", value: "docs/forms/floating_label" },
-				{ label: "Layout", value: "docs/forms/layout" },
-				{ label: "Validation", value: "docs/forms/validation" },
-			],
-		},
-		{
-			label: "Component",
-			icon: { id: "menu-button-wide-fill", textColor: "info" },
-			item: [
-				{ label: "Accordion", value: "docs/components/accordion" },
-				{ label: "Alert", value: "docs/components/alert" },
-				{ label: "Badge", value: "docs/components/badge" },
-				{ label: "Breadcrumb", value: "docs/components/breadcrumb" },
-				{ label: "Button", value: "docs/components/button" },
-				{ label: "Button group", value: "docs/components/button_group" },
-				{ label: "Card", value: "docs/components/card" },
-				{ label: "Carousel", value: "docs/components/carousel" },
-				{ label: "Close button", value: "docs/components/close_button" },
-				{ label: "Collapse", value: "docs/components/collapse" },
-				{ label: "Dropdowns", value: "docs/components/dropdown" },
-				{ label: "List group", value: "docs/components/list" },
-				{ label: "Modal", value: "docs/components/modal" },
-				{ label: "Navbar", value: "docs/components/navbar" },
-				{ label: "Navs & tabs", value: "docs/components/nav" },
-				{ label: "Offcanvas", value: "docs/components/offcanvas" },
-				{ label: "Pagination", value: "docs/components/pagination" },
-				{ label: "Placeholder", value: "docs/components/placeholder" },
-				{ label: "Popovers", value: "docs/components/popover" },
-				{ label: "Progress", value: "docs/components/progress" },
-				{ label: "Scrollspy", value: "docs/components/scrollspy" },
-				{ label: "Spinners", value: "docs/components/spinner" },
-				{ label: "Toasts", value: "docs/components/toast" },
-				{ label: "Tooltips", value: "docs/components/tooltip" },
-			],
-		},
-		{
-			label: "Helpers",
-			icon: { id: "magic", textColor: "warning" },
-			item: [
-				{ label: "Clearfix", value: "docs/helpers/clearfix" },
-				{ label: "Color & background", value: "docs/helpers/color_background" },
-				{ label: "Colored links", value: "docs/helpers/colored_links" },
-				{ label: "Focus ring", value: "docs/helpers/focus_ring" },
-				{ label: "Icon link", value: "docs/helpers/icon_link" },
-				{ label: "Position", value: "docs/helpers/position" },
-				{ label: "Ratio", value: "docs/helpers/ratio" },
-				{ label: "Stacks", value: "docs/helpers/stacks" },
-				{ label: "Stretched link", value: "docs/helpers/stretched_link" },
-				{ label: "Text truncation", value: "docs/helpers/text_truncation" },
-				{ label: "Vertical rule", value: "docs/helpers/vertical_rule" },
-				{ label: "Visually hidden", value: "docs/helpers/visually_hidden" },
-			],
-		},
-		{
-			label: "Utilities",
-			icon: { id: "braces-asterisk", textColor: "danger" },
-			item: [
-				{ label: "API", value: "docs/utilities/api" },
-				{ label: "Background", value: "docs/utilities/background" },
-				{ label: "Borders", value: "docs/utilities/borders" },
-				{ label: "Colors", value: "docs/utilities/colors" },
-				{ label: "Display", value: "docs/utilities/display" },
-				{ label: "Flex", value: "docs/utilities/flex" },
-				{ label: "Float", value: "docs/utilities/float" },
-				{ label: "Interactions", value: "docs/utilities/interactions" },
-				{ label: "Link", value: "docs/utilities/link" },
-				{ label: "Object fit", value: "docs/utilities/object_fit" },
-				{ label: "Opacity", value: "docs/utilities/opacity" },
-				{ label: "Overflow", value: "docs/utilities/overflow" },
-				{ label: "Position", value: "docs/utilities/position" },
-				{ label: "Shadows", value: "docs/utilities/shadow" },
-				{ label: "Sizing", value: "docs/utilities/sizing" },
-				{ label: "Spacing", value: "docs/utilities/spacing" },
-				{ label: "Text", value: "docs/utilities/text" },
-				{ label: "Vertical align", value: "docs/utilities/vertical_align" },
-				{ label: "Visibility", value: "docs/utilities/visibility" },
-				{ label: "Z-index", value: "docs/utilities/zindex" },
-			],
-		},
-		{
-			label: "Example",
-			icon: { id: "code", textColor: "success" },
-			item: [
-				{ label: "Headers", value: "docs/example/headers" },
-				{ label: "Heroes", value: "docs/example/heroes" },
-				{ label: "Features", value: "docs/example/features" },
-				{ label: "Sidebars", value: "docs/example/sidebars" },
-				{ label: "Footers", value: "docs/example/footers" },
-				{ label: "Dropdowns", value: "docs/example/dropdowns" },
-				{ label: "List groups", value: "docs/example/list_groups" },
-				{ label: "Modals", value: "docs/example/modals" },
-				{ label: "Badges", value: "docs/example/badges" },
-				{ label: "Breadcrumbs", value: "docs/example/breadcrumbs" },
-				{ label: "Buttons", value: "docs/example/buttons" },
-				{ label: "Test", value: "docs/example/test" },
-			],
-		},
-	] as main.IAttrItemMenu[],
-};
-
-declare var PR: {
-	prettyPrint: () => void;
-};
-
-export interface IWindowState {
-	docId?: string;
-	anchorId?: string;
-	isfirsttime?: boolean;
+export interface IMenu {
+	label: string;
+	icon: I.B.Icon;
+	item: IMenuItem[];
 }
 
-const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
-	if (anchorId) {
-		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
-		if (anchorNode) {
-			let anchorElem = anchorNode[0] as Element;
-			let elemPosition = anchorElem.getBoundingClientRect().top;
-			let offsetElemPosition = elemPosition + window.scrollY - 60;
-			window.scrollTo(0, offsetElemPosition);
-		}
-	} else {
-		if (!isfirsttime) {
-			window.scrollTo(0, 0);
-		}
-	}
-};
+export interface IMenuItem {
+	label: string;
+	value: string;
+}
 
-export const highlightCurrentMenu = (value?: string) => {
+export const highlightMenu = (docId?: string) => {
 	let bsMenu = document.getElementById("bs-menu") as Element;
 	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
 	if (lastActive) {
@@ -190,8 +20,8 @@ export const highlightCurrentMenu = (value?: string) => {
 		lastActive.removeAttribute("aria-current");
 	}
 
-	if (value) {
-		let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${value}']`)[0];
+	if (docId) {
+		let newActive = bsMenu.querySelectorAll(`.bs-links-link[data-value='${docId}']`)[0];
 		if (newActive) {
 			newActive.classList.add("active");
 			newActive.setAttribute("aria-current", "page");
@@ -199,155 +29,88 @@ export const highlightCurrentMenu = (value?: string) => {
 	}
 };
 
-const setLoading = (contentbody: Element) => {
-	if (!contentbody.classList.contains("loading")) {
-		contentbody.classList.add("loading");
+export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
+	if (itemMenu) {
+		return itemMenu.map((i) => {
+			return new h.li({ class: "bs-links-group", paddingY: 2 }, [
+				new h.strong(
+					{
+						class: "bs-links-heading",
+						display: "flex",
+						width: 100,
+						alignItem: "center",
+						fontWeight: "semibold",
+					},
+					new b.caption({ icon: i.icon }, i.label)
+				),
+				new h.ul(
+					{
+						unstyle: true,
+						fontWeight: "normal",
+						paddingBottom: 2,
+						small: true,
+					},
+					i.item.map((j) => {
+						let itemValue = j.value;
+						let itemLabel = j.label;
+						let active = itemValue === currentMenu ? true : false;
 
-		let a = [
-			".page-title-text",
-			".example-description",
-			".example-text",
-			".example-ul li",
-			".example-ol li",
-			".example-alert .alert",
-			".example-item",
-			".example-table .table td",
-			".example-table .table th",
-			".example-code .example-preview-container",
-			".example-code .font-monospace small",
-			".example-preview.card .card-header a.font-monospace",
-			".example-preview.card .card-body pre",
-			".example-title",
-			".example-subtitle",
-			".example-xsubtitle",
-			".bs-toc ul li",
-			".bs-toc h5",
-		];
-
-		a.forEach((selector) => {
-			let m1: number = 10;
-			let m2: number = 20;
-			let m3: 1 | 2 | 3 | 4 | 5 | 6 = 1;
-			let m4: 1 | 2 | 3 | 4 | 5 | 6 = 6;
-
-			switch (selector) {
-				case ".example-table .table td":
-				case ".example-table .table th":
-				case ".bs-toc h5":
-				case ".bs-toc ul li":
-				case ".example-xsubtitle":
-				case ".example-subtitle":
-				case ".example-title":
-				case ".example-code .font-monospace small":
-				case ".example-preview.card .card-header a.font-monospace":
-				case ".page-title-text":
-					m1 = 3;
-					m2 = 3;
-					m3 = 1;
-					m4 = 4;
-					break;
-			}
-
-			let elem = contentbody.querySelectorAll(selector);
-			if (elem) {
-				elem.forEach((i) => {
-					core.appendChild(
-						i,
-						new h.div(
-							{
-								loadingPlaceholderAnimation: "wave",
-							},
-							core.placeholder(m1, m2, m3, m4)
-						)
-					);
-				});
-			}
+						return new h.li(
+							new h.a(
+								{
+									class: ["bs-links-link", active ? "active" : undefined],
+									display: "inline-block",
+									rounded: true,
+									href: `?d=${itemValue}`,
+									aria: { current: active ? "page" : undefined },
+									data: {
+										value: itemValue,
+									},
+									on: {
+										click: (event) => {
+											event.preventDefault();
+											event.stopPropagation();
+											const target = event.target as Element;
+											const itemValue = target.getAttribute("data-value");
+											if (itemValue) {
+												highlightMenu(itemValue);
+												setupContentDocument(itemValue);
+											}
+										},
+									},
+								},
+								itemLabel
+							)
+						);
+					})
+				),
+			]);
 		});
+	} else {
+		return [];
 	}
 };
 
-export const onMenuChange = (value: string, isfirsttime?: boolean, state?: "push" | "replace", callback?: Function) => {
-	isfirsttime ??= false;
-	state ??= "push";
+export const setupMenuContainer = (itemMenu: IMenu[], currentMenu: string) => {
+	const bsMenu = document.getElementById("bs-menu") as Element;
+	core.replaceWith(
+		bsMenu,
+		new h.nav({ id: "bs-menu", class: "bs-links", width: 100, label: "Docs navication" }, [
+			new h.ul(
+				{
+					class: "bs-links-nav",
+					unstyle: true,
+					marginBottom: 0,
+					paddingBottom: [3, "md-2"],
+					paddingEnd: "lg-2",
+					data: {
+						"bs-dismiss": "offcanvas",
+						"bs-target": "#bsSidebar",
+					},
+				},
 
-	let docId: string = value;
-	let anchorId: string | undefined;
-
-	if (value.indexOf("#") > -1) {
-		let tempValue = value.split("#");
-		docId = tempValue[0];
-		anchorId = tempValue[1];
-	}
-
-	let contentbody = document.getElementById("bs-main") as Element;
-
-	//set loading
-	setLoading(contentbody);
-
-	//show the loading before download new documentation
-	core.requestIdleCallback(() => {
-		const PERFORMANCE_GETDATA = DEBUG ? performance.now() : 0;
-		getData(docId, (docData) => {
-			PERFORMANCEINFO.download = DEBUG ? performance.now() - PERFORMANCE_GETDATA : 0;
-
-			//keep current page in cookie
-			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
-
-			//remove active popup
-			core.removeAllActivePopup();
-
-			//generate content
-
-			const PERFORMANCE_BUILD = DEBUG ? performance.now() : 0;
-			contentbody = core.replaceWith(contentbody, main.genMain(docData))!;
-			PERFORMANCEINFO.build = DEBUG ? performance.now() - PERFORMANCE_BUILD : 0;
-
-			//rename page title
-			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-			const { origin, pathname } = window.location;
-			document.title = strPagetitle;
-			PERFORMANCEINFO.title = pagetitle ? pagetitle : "Bootstrap TS";
-
-			//set history
-			if (state === "push") {
-				window.history.pushState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
-			} else if (state === "replace") {
-				window.history.replaceState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
-			}
-
-			focusToAnchor(anchorId, isfirsttime);
-
-			core.requestIdleCallback(() => {
-				PR.prettyPrint();
-
-				//REPORT PERFORMANCE
-				if (DEBUG) {
-					const tagCount = contentbody.getElementsByTagName("*").length;
-
-					console.info(`${PERFORMANCEINFO.title} page has ${tagCount} tag in it. It took ${~~PERFORMANCEINFO.download!}ms to download and ${~~PERFORMANCEINFO.build!}ms to build.`);
-				}
-
-				if (typeof callback === "function") {
-					callback();
-				}
-			}, 300);
-		});
-	}, 300);
+				setupMenu(itemMenu, currentMenu)
+			),
+		])
+	);
 };

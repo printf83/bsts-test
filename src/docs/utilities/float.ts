@@ -1,8 +1,8 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const float: IAttrContent = {
+export const float: IContent = {
 	title: "Float",
 	description: "Toggle floats on any element, across any breakpoint, using Bootstrap responsive float utilities.",
 	item: () => {
@@ -14,13 +14,7 @@ export const float: IAttrContent = {
 				),
 				new e.code({
 					output: () => {
-						return [
-							new h.div({ float: "start" }, "Float start on all viewport sizes"),
-							new h.br(),
-							new h.div({ float: "end" }, "Float end on all viewport sizes"),
-							new h.br(),
-							new h.div({ float: "none" }, "Don't float on all viewport sizes"),
-						];
+						return [new h.div({ float: "start" }, "Float start on all viewport sizes"), new h.br(), new h.div({ float: "end" }, "Float end on all viewport sizes"), new h.br(), new h.div({ float: "none" }, "Don't float on all viewport sizes")];
 					},
 				}),
 			]),
@@ -64,9 +58,7 @@ export const float: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text(
-					"Float utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
-				),
+				new e.text("Float utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

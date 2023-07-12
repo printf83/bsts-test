@@ -1,8 +1,8 @@
 import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const carousel: IAttrContent = {
+export const carousel: IContent = {
 	title: "Carousel",
 	description: "A slideshow component for cycling through elements—images or slides of text—like a carousel.",
 	item: () => {
@@ -27,9 +27,7 @@ export const carousel: IAttrContent = {
 
 			new e.section([
 				new e.title("Basic examples"),
-				new e.text(
-					"Here is a basic example of a carousel with three slides. Note the previous/next controls. Bootstrap recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."
-				),
+				new e.text("Here is a basic example of a carousel with three slides. Note the previous/next controls. Bootstrap recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."),
 				new e.code({
 					output: () => {
 						return new b.carousel.container({ id: "carouselExample" }, [
@@ -44,20 +42,12 @@ export const carousel: IAttrContent = {
 							),
 							new b.carousel.inner.container(
 								[0, 1, 2, 3, 4, 5, 6].map((i, ix) => {
-									return new b.carousel.inner.item.container(
-										{ active: ix === 0 ? true : undefined },
-										[
-											new b.carousel.inner.item.img({
-												src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
-											}),
-											new b.carousel.inner.item.caption([
-												new h.h(5, `Slide #${ix + 1}`),
-												new h.p(
-													`Some representative placeholder content for the slide #${ix + 1}.`
-												),
-											]),
-										]
-									);
+									return new b.carousel.inner.item.container({ active: ix === 0 ? true : undefined }, [
+										new b.carousel.inner.item.img({
+											src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
+										}),
+										new b.carousel.inner.item.caption([new h.h(5, `Slide #${ix + 1}`), new h.p(`Some representative placeholder content for the slide #${ix + 1}.`)]),
+									]);
 								})
 							),
 							new b.carousel.inner.control.prev({ target: "#carouselExample" }),
@@ -87,10 +77,7 @@ export const carousel: IAttrContent = {
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
-									caption: [
-										new h.h(5, `Slide #${i + 1}`),
-										new h.p(`Some representative placeholder content for the slide #${i + 1}.`),
-									],
+									caption: [new h.h(5, `Slide #${i + 1}`), new h.p(`Some representative placeholder content for the slide #${i + 1}.`)],
 								};
 							}),
 						});
@@ -102,9 +89,7 @@ export const carousel: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Indicators"),
-				new e.text(
-					"You can add indicators to the carousel using {{itemIndicator:true}}, alongside the previous/next controls using {{itemControl:true}}. The indicators let users jump directly to a particular slide."
-				),
+				new e.text("You can add indicators to the carousel using {{itemIndicator:true}}, alongside the previous/next controls using {{itemControl:true}}. The indicators let users jump directly to a particular slide."),
 				new e.code({
 					output: () => {
 						return new b.carousel.container({
@@ -135,10 +120,7 @@ export const carousel: IAttrContent = {
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
-									caption: [
-										new h.h(5, `Slide #${i + 1}`),
-										new h.p(`Some representative placeholder content for the slide #${i + 1}.`),
-									],
+									caption: [new h.h(5, `Slide #${i + 1}`), new h.p(`Some representative placeholder content for the slide #${i + 1}.`)],
 								};
 							}),
 						});
@@ -177,12 +159,8 @@ export const carousel: IAttrContent = {
 				),
 				new e.text("{{bsts}} automaticly handle this."),
 				new e.alert({ color: "info", callout: true }, [
-					new h.p(
-						"For accessibility reasons, Bootstrap recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, Bootstrap recommend providing an additional button or control to explicitly pause/stop the carousel."
-					),
-					new h.p(
-						"See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."
-					),
+					new h.p("For accessibility reasons, Bootstrap recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, Bootstrap recommend providing an additional button or control to explicitly pause/stop the carousel."),
+					new h.p("See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."),
 				]),
 				new e.code({
 					output: () => {
@@ -198,12 +176,8 @@ export const carousel: IAttrContent = {
 					},
 				}),
 
-				new e.text(
-					"When the {{ride}} property is set to {{true}}, rather than {{carousel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."
-				),
-				new e.text(
-					"By default {{bsts}} set {{ride:true}} if {{itemControl:true}} and {{ride:'carousel'}} if {{itemControl:false}}. So it will only start after first user intraction."
-				),
+				new e.text("When the {{ride}} property is set to {{true}}, rather than {{carousel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."),
+				new e.text("By default {{bsts}} set {{ride:true}} if {{itemControl:true}} and {{ride:'carousel'}} if {{itemControl:false}}. So it will only start after first user intraction."),
 
 				new e.code({
 					output: () => {
@@ -224,9 +198,7 @@ export const carousel: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Individual {{.carousel-item}} interval"),
-				new e.text(
-					"Add {{interval='<milisecond>'}} to a {{b.carousel.inner.item.container}} to change the amount of time to delay between automatically cycling to the next item."
-				),
+				new e.text("Add {{interval='<milisecond>'}} to a {{b.carousel.inner.item.container}} to change the amount of time to delay between automatically cycling to the next item."),
 				new e.code({
 					output: () => {
 						return new b.carousel.container({
@@ -246,9 +218,7 @@ export const carousel: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Autoplaying carousels without controls"),
-				new e.text(
-					"Here’s a carousel with slides only. Note the presence of the .d-block and .w-100 on carousel images to prevent browser default image alignment."
-				),
+				new e.text("Here’s a carousel with slides only. Note the presence of the .d-block and .w-100 on carousel images to prevent browser default image alignment."),
 				new e.code({
 					output: () => {
 						return new b.carousel.container({
@@ -268,9 +238,7 @@ export const carousel: IAttrContent = {
 
 			new e.section([
 				new e.title("Disable touch swiping"),
-				new e.text(
-					"Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} property to {{false}}."
-				),
+				new e.text("Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} property to {{false}}."),
 				new e.code({
 					output: () => {
 						return new b.carousel.container({
@@ -304,10 +272,7 @@ export const carousel: IAttrContent = {
 							item: ["first", "second", "third", "fourth", "fifth"].map((i, ix) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${ix}/710/400.webp`,
-									caption: [
-										new h.h(5, `${core.uppercaseFirst(i)} slide label`),
-										new h.p(`Some representative placeholder content for the ${i} slide.`),
-									],
+									caption: [new h.h(5, `${core.uppercaseFirst(i)} slide label`), new h.p(`Some representative placeholder content for the ${i} slide.`)],
 								};
 							}),
 						});
@@ -332,9 +297,7 @@ export const carousel: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text(
-					"As part of Bootstrap’s evolving CSS variables approach, carousel now use local CSS variables on {{.carousel}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-				),
+				new e.text("As part of Bootstrap’s evolving CSS variables approach, carousel now use local CSS variables on {{.carousel}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
 
 				new e.codepreview({
 					type: "css",
@@ -409,42 +372,17 @@ export const carousel: IAttrContent = {
 				new e.table({
 					item: [
 						["Name", "Type", "Default", "Description"],
-						[
-							"{{interval}}",
-							"number",
-							"{{5000}}",
-							"The amount of time to delay between automatically cycling an item.",
-						],
-						[
-							"{{keyboard}}",
-							"boolean",
-							"{{true}}",
-							"Whether the carousel should react to keyboard events.",
-						],
+						["{{interval}}", "number", "{{5000}}", "The amount of time to delay between automatically cycling an item."],
+						["{{keyboard}}", "boolean", "{{true}}", "Whether the carousel should react to keyboard events."],
 						[
 							"{{pause}}",
 							"string, boolean",
 							"{{'hover'}}",
 							"If set to {{'hover'}}, pauses the cycling of the carousel on {{mouseenter}} and resumes the cycling of the carousel on {{mouseleave}}. If set to {{false}}, hovering over the carousel won’t pause it. On touch-enabled devices, when set to {{'hover'}}, cycling will pause on {{touchend}} (once the user finished interacting with the carousel) for two intervals, before automatically resuming. This is in addition to the mouse behavior.",
 						],
-						[
-							"{{ride}}",
-							"string, boolean",
-							"{{false}}",
-							"If set to {{true}}, autoplays the carousel after the user manually cycles the first item. If set to {{'carousel'}}, autoplays the carousel on load.",
-						],
-						[
-							"{{touch}}",
-							"boolean",
-							"{{true}}",
-							"Whether the carousel should support left/right swipe interactions on touchscreen devices.",
-						],
-						[
-							"{{wrap}}",
-							"boolean",
-							"{{true}}",
-							"Whether the carousel should cycle continuously or have hard stops.",
-						],
+						["{{ride}}", "string, boolean", "{{false}}", "If set to {{true}}, autoplays the carousel after the user manually cycles the first item. If set to {{'carousel'}}, autoplays the carousel on load."],
+						["{{touch}}", "boolean", "{{true}}", "Whether the carousel should support left/right swipe interactions on touchscreen devices."],
+						["{{wrap}}", "boolean", "{{true}}", "Whether the carousel should cycle continuously or have hard stops."],
 					],
 				}),
 			]),
@@ -476,31 +414,13 @@ export const carousel: IAttrContent = {
 						["Method", "Description"],
 						["{{cycle}}", "Starts cycling through the carousel items from left to right."],
 						["{{dispose}}", "Destroys an element’s carousel. (Removes stored data on the DOM element)"],
-						[
-							"{{getInstance}}",
-							"Static method which allows you to get the carousel instance associated to a DOM element. You can use it like this: {{bootstrap.Carousel.getInstance(element)}}.",
-						],
-						[
-							"{{getOrCreateInstance}}",
-							"Static method which returns a carousel instance associated to a DOM element, or creates a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Carousel.getOrCreateInstance(element)}}.",
-						],
-						[
-							"{{next}}",
-							"Cycles to the next item. {{b::Returns to the caller before the next item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
-						],
-						[
-							"{{nextWhenVisible}}",
-							"Don’t cycle carousel to next when the page, the carousel, or the carousel’s parent aren’t visible. {{b::Returns to the caller before the target item has been shown}}.",
-						],
+						["{{getInstance}}", "Static method which allows you to get the carousel instance associated to a DOM element. You can use it like this: {{bootstrap.Carousel.getInstance(element)}}."],
+						["{{getOrCreateInstance}}", "Static method which returns a carousel instance associated to a DOM element, or creates a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Carousel.getOrCreateInstance(element)}}."],
+						["{{next}}", "Cycles to the next item. {{b::Returns to the caller before the next item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs)."],
+						["{{nextWhenVisible}}", "Don’t cycle carousel to next when the page, the carousel, or the carousel’s parent aren’t visible. {{b::Returns to the caller before the target item has been shown}}."],
 						["{{pause}}", "Stops the carousel from cycling through items."],
-						[
-							"{{prev}}",
-							"Cycles to the previous item. {{b::Returns to the caller before the previous item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
-						],
-						[
-							"{{to}}",
-							"Cycles the carousel to a particular frame (0 based, similar to an array). {{b::Returns to the caller before the target item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
-						],
+						["{{prev}}", "Cycles to the previous item. {{b::Returns to the caller before the previous item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs)."],
+						["{{to}}", "Cycles the carousel to a particular frame (0 based, similar to an array). {{b::Returns to the caller before the target item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs)."],
 					],
 				}),
 
@@ -542,12 +462,7 @@ export const carousel: IAttrContent = {
 															interval: 1500,
 														});
 
-														e.console(
-															event.target as Element,
-															"b.carousel.init",
-															elem ? elem : "null",
-															elem ? "success" : "danger"
-														);
+														e.console(event.target as Element, "b.carousel.init", elem ? elem : "null", elem ? "success" : "danger");
 													},
 												},
 											},
@@ -560,12 +475,7 @@ export const carousel: IAttrContent = {
 													click: (event) => {
 														const elem = b.carousel.getInstance("#example-carousel");
 
-														e.console(
-															event.target as Element,
-															"b.carousel.getInstance",
-															elem ? elem : "null",
-															elem ? "success" : "danger"
-														);
+														e.console(event.target as Element, "b.carousel.getInstance", elem ? elem : "null", elem ? "success" : "danger");
 													},
 												},
 											},
@@ -576,15 +486,9 @@ export const carousel: IAttrContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem =
-															b.carousel.getOrCreateInstance("#example-carousel");
+														const elem = b.carousel.getOrCreateInstance("#example-carousel");
 
-														e.console(
-															event.target as Element,
-															"b.carousel.getOrCreateInstance",
-															elem,
-															elem ? "success" : "danger"
-														);
+														e.console(event.target as Element, "b.carousel.getOrCreateInstance", elem, elem ? "success" : "danger");
 													},
 												},
 											},
@@ -673,20 +577,11 @@ export const carousel: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Events"),
-				new e.text(
-					"Bootstrap’s carousel class exposes two events for hooking into carousel functionality. Both events have the following additional properties:"
-				),
+				new e.text("Bootstrap’s carousel class exposes two events for hooking into carousel functionality. Both events have the following additional properties:"),
 				new e.ul({
-					item: [
-						"{{direction}} : The direction in which the carousel is sliding (either 'left' or 'right').",
-						"{{relatedTarget}} : The DOM element that is being slid into place as the active item.",
-						"{{from}} : The index of the current item",
-						"{{to}} : The index of the next item",
-					],
+					item: ["{{direction}} : The direction in which the carousel is sliding (either 'left' or 'right').", "{{relatedTarget}} : The DOM element that is being slid into place as the active item.", "{{from}} : The index of the current item", "{{to}} : The index of the next item"],
 				}),
-				new e.text(
-					"All carousel events are fired at the carousel itself (i.e. at the {{<div class='carousel'>}})."
-				),
+				new e.text("All carousel events are fired at the carousel itself (i.e. at the {{<div class='carousel'>}})."),
 				new e.table({
 					item: [
 						["Event type", "Description"],

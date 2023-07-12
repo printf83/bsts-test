@@ -1,11 +1,10 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const check_radio: IAttrContent = {
+export const check_radio: IContent = {
 	title: "Checks and radios",
-	description:
-		"Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap completely rewritten checks component.",
+	description: "Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap completely rewritten checks component.",
 	item: () => {
 		return [
 			new e.section([
@@ -26,24 +25,15 @@ export const check_radio: IAttrContent = {
 				new e.code({
 					output: () => {
 						return [
-							new h.div({ class: "form-check" }, [
-								new b.input({ type: "checkbox", id: "flexCheckDefault" }),
-								new b.label({ for: "flexCheckDefault", class: "form-check-label" }, "Default checkbox"),
-							]),
-							new h.div({ class: "form-check" }, [
-								new b.input({ type: "checkbox", id: "flexCheckChecked", checked: true }),
-								new b.label({ for: "flexCheckChecked", class: "form-check-label" }, "Checked checkbox"),
-							]),
+							new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckDefault" }), new b.label({ for: "flexCheckDefault", class: "form-check-label" }, "Default checkbox")]),
+							new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckChecked", checked: true }), new b.label({ for: "flexCheckChecked", class: "form-check-label" }, "Checked checkbox")]),
 						];
 					},
 				}),
 				new e.text("Using {{b.form.check}}"),
 				new e.code({
 					output: () => {
-						return [
-							b.form.check({ type: "checkbox", label: "Default checkbox" }),
-							b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true }),
-						];
+						return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true })];
 					},
 				}),
 			]),
@@ -52,9 +42,7 @@ export const check_radio: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Indeterminate"),
-				new e.text(
-					"Checkboxes can utilize the {{:indeterminate}} pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it)."
-				),
+				new e.text("Checkboxes can utilize the {{:indeterminate}} pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it)."),
 				new e.code({
 					output: () => {
 						return b.form.check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
@@ -66,9 +54,7 @@ export const check_radio: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Disabled"),
-				new e.text(
-					"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
-				),
+				new e.text("Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."),
 				new e.code({
 					output: () => {
 						return [
@@ -101,10 +87,7 @@ export const check_radio: IAttrContent = {
 				new e.code({
 					output: () => {
 						return [
-							new h.div({ class: "form-check" }, [
-								new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }),
-								new b.label({ for: "flexRadioDefault", class: "form-check-label" }, "Default radio"),
-							]),
+							new h.div({ class: "form-check" }, [new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }), new b.label({ for: "flexRadioDefault", class: "form-check-label" }, "Default radio")]),
 							new h.div({ class: "form-check" }, [
 								new b.input({
 									type: "radio",
@@ -112,10 +95,7 @@ export const check_radio: IAttrContent = {
 									name: "exampeRadioGroup1",
 									checked: true,
 								}),
-								new b.label(
-									{ for: "flexRadioDefault2", class: "form-check-label" },
-									"Default checked radio"
-								),
+								new b.label({ for: "flexRadioDefault2", class: "form-check-label" }, "Default checked radio"),
 							]),
 						];
 					},
@@ -140,9 +120,7 @@ export const check_radio: IAttrContent = {
 
 			new e.section({ id: "radio_disabled" }, [
 				new e.subtitle({ id: "radio_disabled" }, "Disabled"),
-				new e.text(
-					"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
-				),
+				new e.text("Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."),
 				new e.code({
 					output: () => {
 						return [
@@ -203,15 +181,10 @@ export const check_radio: IAttrContent = {
 
 			new e.section([
 				new e.title("Default (stacked)"),
-				new e.text(
-					"By default, any number of checkboxes and radios that are immediate sibling will be vertically stacked and appropriately spaced with {{.form-check}}."
-				),
+				new e.text("By default, any number of checkboxes and radios that are immediate sibling will be vertically stacked and appropriately spaced with {{.form-check}}."),
 				new e.code({
 					output: () => {
-						return [
-							b.form.check({ type: "checkbox", label: "Default checkbox" }),
-							b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true }),
-						];
+						return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true })];
 					},
 				}),
 				new e.code({
@@ -239,17 +212,11 @@ export const check_radio: IAttrContent = {
 
 			new e.section([
 				new e.title("Inline"),
-				new e.text(
-					"Group checkboxes or radios on the same horizontal row by adding {{.form-check-inline}} to any {{.form-check}}."
-				),
+				new e.text("Group checkboxes or radios on the same horizontal row by adding {{.form-check-inline}} to any {{.form-check}}."),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [
-							b.form.check({ type: "checkbox", label: "1", inline: true }),
-							b.form.check({ type: "checkbox", label: "2", inline: true }),
-							b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true }),
-						];
+						return [b.form.check({ type: "checkbox", label: "1", inline: true }), b.form.check({ type: "checkbox", label: "2", inline: true }), b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true })];
 					},
 				}),
 				new e.code({
@@ -274,9 +241,7 @@ export const check_radio: IAttrContent = {
 
 			new e.section([
 				new e.title("Reverse"),
-				new e.text(
-					"Put your checkboxes, radios, and switches on the opposite side with the .form-check-reverse modifier class."
-				),
+				new e.text("Put your checkboxes, radios, and switches on the opposite side with the .form-check-reverse modifier class."),
 				new e.code({
 					output: () => {
 						return [
@@ -330,13 +295,8 @@ export const check_radio: IAttrContent = {
 
 			new e.section([
 				new e.title("Toggle buttons"),
-				new e.text(
-					"Create button-like checkboxes and radio buttons by using {{.btn}} styles rather than {{.form-check-label}} on the {{<label>}} elements. These toggle buttons can further be grouped in a {{nav:docs/components/button_group::button group}} if needed."
-				),
-				new e.alert(
-					{ color: "danger", callout: true },
-					"{{b::Heads up!}} The {{b.form.toggle}} function return an array. You need to flat the array before add the result into your array. For this example, Bootstrap use the {{...}} to flatten the array."
-				),
+				new e.text("Create button-like checkboxes and radio buttons by using {{.btn}} styles rather than {{.form-check-label}} on the {{<label>}} elements. These toggle buttons can further be grouped in a {{nav:docs/components/button_group::button group}} if needed."),
+				new e.alert({ color: "danger", callout: true }, "{{b::Heads up!}} The {{b.form.toggle}} function return an array. You need to flat the array before add the result into your array. For this example, Bootstrap use the {{...}} to flatten the array."),
 			]),
 
 			//----------------------

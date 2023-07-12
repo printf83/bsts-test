@@ -1,12 +1,11 @@
 import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
 
-export const popover: IAttrContent = {
+export const popover: IContent = {
 	title: "Popovers",
-	description:
-		"Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.",
+	description: "Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.",
 	item: () => {
 		return [
 			new e.section([
@@ -67,13 +66,8 @@ export const popover: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Live demo"),
-				new e.text(
-					"Bootstrap use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{title}} and body content is set via {{content}}."
-				),
-				new e.alert(
-					{ color: "warning", callout: true },
-					"When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} attribute when the element is rendered."
-				),
+				new e.text("Bootstrap use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{title}} and body content is set via {{content}}."),
+				new e.alert({ color: "warning", callout: true }, "When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} attribute when the element is rendered."),
 				new e.code({
 					output: () => {
 						return new b.popover(
@@ -91,9 +85,7 @@ export const popover: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Four directions"),
-				new e.text(
-					"Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{placement}} to change the direction."
-				),
+				new e.text("Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{placement}} to change the direction."),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -133,10 +125,7 @@ export const popover: IAttrContent = {
 					`,
 				}),
 
-				new e.alert(
-					{ color: "danger", callout: true },
-					"Setting {{parent}} currently not working correctly. But it still working only when you set {{parent:'body'}} (default)."
-				),
+				new e.alert({ color: "danger", callout: true }, "Setting {{parent}} currently not working correctly. But it still working only when you set {{parent:'body'}} (default)."),
 			]),
 
 			//----------------------
@@ -174,9 +163,7 @@ export const popover: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Dismiss on next click"),
-				new e.text(
-					"Use the {{trigger:'focus'}} to dismiss popovers on the user’s next click of an element other than the toggle element."
-				),
+				new e.text("Use the {{trigger:'focus'}} to dismiss popovers on the user’s next click of an element other than the toggle element."),
 				new e.alert(
 					{ color: "danger", callout: true },
 					"{{b::Dismissing on next click requires specific HTML for proper cross-browser and cross-platform behavior}}. You can only use {{h.a}} elements, not {{b.button}}s or {{h.button}}s, and you must include a {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex::tabindex}}.{{hr}}This not a problem in {{b.popover}} since it is a wrapper."
@@ -202,12 +189,8 @@ export const popover: IAttrContent = {
 				new e.text(
 					"Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a popover (or tooltip). As a workaround, you’ll want to trigger the popover from a wrapper {{h.div}} or {{h.span}}, ideally made keyboard-focusable using {{tabindex:'0'}}."
 				),
-				new e.text(
-					"{{b.popover}} create a wrapper using {{h.span}}. You can change the {{display:'block'}} to make it behave like {{h.div}}"
-				),
-				new e.text(
-					"For disabled popover triggers, you may also prefer {{trigger:['hover','focus']}} so that the popover appears as immediate visual feedback to your users as they may not expect to click on a disabled element."
-				),
+				new e.text("{{b.popover}} create a wrapper using {{h.span}}. You can change the {{display:'block'}} to make it behave like {{h.div}}"),
+				new e.text("For disabled popover triggers, you may also prefer {{trigger:['hover','focus']}} so that the popover appears as immediate visual feedback to your users as they may not expect to click on a disabled element."),
 
 				new e.code({
 					output: () => {
@@ -230,9 +213,7 @@ export const popover: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text(
-					"As part of Bootstrap’s evolving CSS variables approach, popover now use local CSS variables on {{.popover}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-				),
+				new e.text("As part of Bootstrap’s evolving CSS variables approach, popover now use local CSS variables on {{.popover}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
 
 				new e.codepreview({
 					type: "css",
@@ -325,25 +306,12 @@ export const popover: IAttrContent = {
 				new e.text(
 					`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data:{'bs-config':'{"delay":0, "title":123}'/}/}} and {{data:{'bs-title':'456'/}/}} property, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data:{'bs-config':''/}/}}. In addition, existing data attributes are able to house JSON values like {{data:{'bs-delay':'{"show":0,"hide":150}'/}/}}.`
 				),
-				new e.alert(
-					{ color: "warning", callout: true },
-					"Note that for security reasons the {{sanitize}}, {{sanitizeFn}}, and {{allowList}} options cannot be supplied using data attributes."
-				),
+				new e.alert({ color: "warning", callout: true }, "Note that for security reasons the {{sanitize}}, {{sanitizeFn}}, and {{allowList}} options cannot be supplied using data attributes."),
 				new e.table({
 					item: [
 						["Name", "Type", "Default", "Description"],
-						[
-							"{{autoInit}}",
-							"boolean",
-							"{{true}}",
-							"Auto add {{data:{'bs-toggle':'popover'/}/}} to the component for auto initilize.",
-						],
-						[
-							"{{allowList}}",
-							"object",
-							"{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}",
-							"Object which contains allowed attributes and tags.",
-						],
+						["{{autoInit}}", "boolean", "{{true}}", "Auto add {{data:{'bs-toggle':'popover'/}/}} to the component for auto initilize."],
+						["{{allowList}}", "object", "{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}", "Object which contains allowed attributes and tags."],
 						["{{animation}}", "boolean", "{{true}}", "Apply a CSS fade transition to the popover."],
 						[
 							"{{boundary}}",
@@ -365,36 +333,16 @@ export const popover: IAttrContent = {
 							"{{undefined}}",
 							"Add classes to the popover when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: {{'class-1 class-2'}}. You can also pass a function that should return a single string containing additional class names.",
 						],
-						[
-							"{{delay}}",
-							"number",
-							"{{0}}",
-							`Delay showing and hiding the popover (ms)—doesn’t apply to manual trigger type. If a value is supplied, delay is applied to both hide/show.`,
-						],
-						[
-							"{{hideDelay}}",
-							"number",
-							"{{0}}",
-							`Delay hiding the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide. Object structure created is: {{delay: { "hide": value } }}.`,
-						],
-						[
-							"{{showDelay}}",
-							"number",
-							"{{0}}",
-							`Delay showing the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to show. Object structure created is: {{delay: { "show": value } }}.`,
-						],
+						["{{delay}}", "number", "{{0}}", `Delay showing and hiding the popover (ms)—doesn’t apply to manual trigger type. If a value is supplied, delay is applied to both hide/show.`],
+						["{{hideDelay}}", "number", "{{0}}", `Delay hiding the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide. Object structure created is: {{delay: { "hide": value } }}.`],
+						["{{showDelay}}", "number", "{{0}}", `Delay showing the popover (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to show. Object structure created is: {{delay: { "show": value } }}.`],
 						[
 							"{{fallbackPlacements}}",
 							"string, array",
 							"{{['top', 'right', 'bottom', 'left']}}",
 							"Define fallback placements by providing a list of placements in array (in order of preference). For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements::behavior docs}}.",
 						],
-						[
-							"{{html}}",
-							"boolean",
-							"{{false}}",
-							"Allow HTML in the popover. If true, HTML tags in the popover’s {{title}} will be rendered in the popover. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks.",
-						],
+						["{{html}}", "boolean", "{{false}}", "Allow HTML in the popover. If true, HTML tags in the popover’s {{title}} will be rendered in the popover. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks."],
 						[
 							"{{viewOffset}}",
 							"array number, string",
@@ -413,18 +361,8 @@ export const popover: IAttrContent = {
 							"{{null}}",
 							"To change Bootstrap’s default Popper config, see {{https://popper.js.org/docs/v2/constructors/#options::Popper’s configuration}}. When a function is used to create the Popper configuration, it’s called with an object that contains the Bootstrap’s default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper.",
 						],
-						[
-							"{{sanitize}}",
-							"boolean",
-							"{{true}}",
-							"Enable or disable the sanitization. If activated {{'template'}}, {{'content'}} and {{'title'}} options will be sanitized.",
-						],
-						[
-							"{{sanitizeFn}}",
-							"function name in string",
-							"{{undefined}}",
-							"Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization.",
-						],
+						["{{sanitize}}", "boolean", "{{true}}", "Enable or disable the sanitization. If activated {{'template'}}, {{'content'}} and {{'title'}} options will be sanitized."],
+						["{{sanitizeFn}}", "function name in string", "{{undefined}}", "Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization."],
 						[
 							"{{selector}}",
 							"string, false",
@@ -446,10 +384,7 @@ export const popover: IAttrContent = {
 						],
 					],
 				}),
-				new e.alert({ color: "info", callout: true }, [
-					new b.alert.header(4, "Data attributes for individual popovers"),
-					"Options for individual popovers can alternatively be specified through the use of data attributes, as explained above.",
-				]),
+				new e.alert({ color: "info", callout: true }, [new b.alert.header(4, "Data attributes for individual popovers"), "Options for individual popovers can alternatively be specified through the use of data attributes, as explained above."]),
 			]),
 
 			//----------------------
@@ -482,39 +417,21 @@ export const popover: IAttrContent = {
 				new e.table({
 					item: [
 						["Method", "Description"],
-						[
-							"{{disable}}",
-							"Removes the ability for an element’s popover to be shown. The popover will only be able to be shown if it is re-enabled.",
-						],
+						["{{disable}}", "Removes the ability for an element’s popover to be shown. The popover will only be able to be shown if it is re-enabled."],
 						[
 							"{{dispose}}",
 							"Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{nav:docs/components/popovers#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
 						],
-						[
-							"{{enable}}",
-							"Gives an element’s popover the ability to be shown. {{b::Popovers are enabled by default}}.",
-						],
-						[
-							"{{getInstance}}",
-							"{{i::Static}} method which allows you to get the popover instance associated with a DOM element.",
-						],
-						[
-							"{{getOrCreateInstance}}",
-							"{{i::Static}} method which allows you to get the popover instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
-						],
-						[
-							"{{hide}}",
-							"Hides an element’s popover. {{b::Returns to the caller before the popover has actually been hidden}} (i.e. before the {{hidden.bs.popover}} event occurs). This is considered a “manual” triggering of the popover.",
-						],
+						["{{enable}}", "Gives an element’s popover the ability to be shown. {{b::Popovers are enabled by default}}."],
+						["{{getInstance}}", "{{i::Static}} method which allows you to get the popover instance associated with a DOM element."],
+						["{{getOrCreateInstance}}", "{{i::Static}} method which allows you to get the popover instance associated with a DOM element, or create a new one in case it wasn’t initialized."],
+						["{{hide}}", "Hides an element’s popover. {{b::Returns to the caller before the popover has actually been hidden}} (i.e. before the {{hidden.bs.popover}} event occurs). This is considered a “manual” triggering of the popover."],
 						["{{setContent}}", "Gives a way to change the popover’s content after its initialization."],
 						[
 							"{{show}}",
 							"Reveals an element’s popover. {{b::Returns to the caller before the popover has actually been shown}} (i.e. before the {{shown.bs.popover}} event occurs). This is considered a “manual” triggering of the popover. Popovers whose title and content are both zero-length are never displayed.",
 						],
-						[
-							"{{toggle}}",
-							"Toggles an element’s popover. {{b::Returns to the caller before the popover has actually been shown or hidden}} (i.e. before the {{shown.bs.popover}} or {{hidden.bs.popover}} event occurs). This is considered a “manual” triggering of the popover.",
-						],
+						["{{toggle}}", "Toggles an element’s popover. {{b::Returns to the caller before the popover has actually been shown or hidden}} (i.e. before the {{shown.bs.popover}} or {{hidden.bs.popover}} event occurs). This is considered a “manual” triggering of the popover."],
 						["{{toggleEnabled}}", "Toggles the ability for an element’s popover to be shown or hidden."],
 						["{{update}}", "Updates the position of an element’s popover."],
 					],
@@ -549,11 +466,10 @@ export const popover: IAttrContent = {
 												title: "Popover title",
 												content: "And here's some amazing content. It's very engaging. Right?",
 												on: {
-													"hidden.bs.popover": (event) => {
+													"hidden.bs.popover": () => {
 														b.popover.setContent("#example-popover", {
 															".popover-header": "Popover title",
-															".popover-body":
-																"And here's some amazing content. It's very engaging. Right?",
+															".popover-body": "And here's some amazing content. It's very engaging. Right?",
 														});
 													},
 												},
@@ -589,12 +505,7 @@ export const popover: IAttrContent = {
 													click: (event) => {
 														const elem = b.popover.getInstance("#example-popover");
 
-														e.console(
-															event.target as Element,
-															"b.popover.getInstance",
-															elem ? elem : "null",
-															elem ? "success" : "danger"
-														);
+														e.console(event.target as Element, "b.popover.getInstance", elem ? elem : "null", elem ? "success" : "danger");
 													},
 												},
 											},
@@ -606,12 +517,7 @@ export const popover: IAttrContent = {
 												on: {
 													click: (event) => {
 														const elem = b.popover.getOrCreateInstance("#example-popover");
-														e.console(
-															event.target as Element,
-															"b.popover.getOrCreateInstance",
-															elem,
-															elem ? "success" : "danger"
-														);
+														e.console(event.target as Element, "b.popover.getOrCreateInstance", elem, elem ? "success" : "danger");
 													},
 												},
 											},
@@ -676,8 +582,7 @@ export const popover: IAttrContent = {
 													click: () => {
 														b.popover.setContent("#example-popover", {
 															".popover-header": "Image",
-															".popover-body":
-																"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
+															".popover-body": "<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
 														});
 													},
 												},
@@ -713,10 +618,7 @@ export const popover: IAttrContent = {
 						];
 					},
 				}),
-				new e.alert(
-					{ color: "info", callout: true },
-					" The {{setContent}} method accepts an {{object}} argument, where each property-key is a valid {{string}} selector within the popover template, and each related property-value can be {{string}} | {{element}} | {{function}} | {{null}}"
-				),
+				new e.alert({ color: "info", callout: true }, " The {{setContent}} method accepts an {{object}} argument, where each property-key is a valid {{string}} selector within the popover template, and each related property-value can be {{string}} | {{element}} | {{function}} | {{null}}"),
 			]),
 
 			//----------------------
@@ -726,26 +628,11 @@ export const popover: IAttrContent = {
 				new e.table({
 					item: [
 						["Event", "Description"],
-						[
-							"{{hide.bs.popover}}",
-							"This event is fired immediately when the {{hide}} instance method has been called.",
-						],
-						[
-							"{{hidden.bs.popover}}",
-							"This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete).",
-						],
-						[
-							"{{inserted.bs.popover}}",
-							"This event is fired after the {{show.bs.popover }}event when the popover template has been added to the DOM.",
-						],
-						[
-							"{{show.bs.popover}}",
-							"This event fires immediately when the {{show}} instance method is called.",
-						],
-						[
-							"{{shown.bs.popover}}",
-							"This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete).",
-						],
+						["{{hide.bs.popover}}", "This event is fired immediately when the {{hide}} instance method has been called."],
+						["{{hidden.bs.popover}}", "This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete)."],
+						["{{inserted.bs.popover}}", "This event is fired after the {{show.bs.popover }}event when the popover template has been added to the DOM."],
+						["{{show.bs.popover}}", "This event fires immediately when the {{show}} instance method is called."],
+						["{{shown.bs.popover}}", "This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete)."],
 					],
 				}),
 
@@ -759,32 +646,17 @@ export const popover: IAttrContent = {
 								on: {
 									"shown.bs.popover": (event) => {
 										const target = event.target as Element;
-										e.console(
-											target,
-											"shown.bs.popover",
-											`Target: {{b::${core.elemInfo(target)}}}`,
-											"success"
-										);
+										e.console(target, "shown.bs.popover", `Target: {{b::${core.elemInfo(target)}}}`, "success");
 									},
 
 									"hidden.bs.popover": (event) => {
 										const target = event.target as Element;
-										e.console(
-											target,
-											"hidden.bs.popover",
-											`Target: {{b::${core.elemInfo(target)}}}`,
-											"danger"
-										);
+										e.console(target, "hidden.bs.popover", `Target: {{b::${core.elemInfo(target)}}}`, "danger");
 									},
 
 									"inserted.bs.popover": (event) => {
 										const target = event.target as Element;
-										e.console(
-											target,
-											"inserted.bs.popover",
-											`Target: {{b::${core.elemInfo(target)}}}`,
-											"info"
-										);
+										e.console(target, "inserted.bs.popover", `Target: {{b::${core.elemInfo(target)}}}`, "info");
 									},
 								},
 							},

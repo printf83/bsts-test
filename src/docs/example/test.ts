@@ -1,9 +1,9 @@
 import { b, h, core, I } from "@printf83/bsts";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
 
-export const test: IAttrContent = {
+export const test: IContent = {
 	title: "Testing memory leak",
 	description: "This is testing page to test our library one by one",
 	item: () => {

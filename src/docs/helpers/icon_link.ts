@@ -1,8 +1,8 @@
 import { b, h, s } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const icon_link: IAttrContent = {
+export const icon_link: IContent = {
 	title: "Icon link",
 	description: "Quickly create stylized hyperlinks with Bootstrap Icons or other icons.",
 	item: () => {
@@ -11,9 +11,7 @@ export const icon_link: IAttrContent = {
 				new e.text(
 					"The icon link helper component modifies Bootstrap default link styles to enhance their appearance and quickly align any pairing of icon and text. Alignment is set via inline flexbox styling and a default {{gap}} value. Bootstrap stylize the underline with a custom offset and color. Icons are automatically sized to {{1em}} to best match their associated text’s {{font-size}}."
 				),
-				new e.text(
-					"Icon links assume {{https://icons.getbootstrap.com/::Bootstrap Icons}} are being used, but you can use any icon or image you like."
-				),
+				new e.text("Icon links assume {{https://icons.getbootstrap.com/::Bootstrap Icons}} are being used, but you can use any icon or image you like."),
 				new e.alert(
 					{ color: "info", callout: true },
 					"When icons are purely decorative, they should be hidden from assistive technologies using {{aria-hidden='true'}}, as Bootstrap done in Bootstrap examples. For icons that convey meaning, provide an appropriate text alternative by adding {{role='img'}} and an appropriate {{aria-label='...'}} to the SVGs."
@@ -24,9 +22,7 @@ export const icon_link: IAttrContent = {
 
 			new e.section([
 				new e.title("Example"),
-				new e.text(
-					"Take a regular {{<a>}} element, add {{.icon-link}}, and insert an icon on either the left or right of your link text. The icon is automatically sized, placed, and colored."
-				),
+				new e.text("Take a regular {{<a>}} element, add {{.icon-link}}, and insert an icon on either the left or right of your link text. The icon is automatically sized, placed, and colored."),
 				new e.code({
 					output: () => {
 						return new h.a({ href: "#", iconLink: true }, [
@@ -68,23 +64,14 @@ export const icon_link: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
-				new e.title("Customize"),
-				new e.text(
-					"Modify the styling of an icon link with Bootstrap link CSS variables, Sass variables, utilities, or custom styles."
-				),
-			]),
+			new e.section([new e.title("Customize"), new e.text("Modify the styling of an icon link with Bootstrap link CSS variables, Sass variables, utilities, or custom styles.")]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("CSS variables"),
-				new e.text(
-					"Modify the {{--bs-link-*}} and {{--bs-icon-link-*}} CSS variables as needed to change the default appearance."
-				),
-				new e.text(
-					"Customize the hover {{transform}} by overriding the {{--bs-icon-link-transform}} CSS variable:"
-				),
+				new e.text("Modify the {{--bs-link-*}} and {{--bs-icon-link-*}} CSS variables as needed to change the default appearance."),
+				new e.text("Customize the hover {{transform}} by overriding the {{--bs-icon-link-transform}} CSS variable:"),
 				new e.code({
 					output: () => {
 						return new h.a(
@@ -128,9 +115,7 @@ export const icon_link: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Sass"),
-				new e.text(
-					"Customize the icon link Sass variables to modify all icon link styles across your Bootstrap-powered project."
-				),
+				new e.text("Customize the icon link Sass variables to modify all icon link styles across your Bootstrap-powered project."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -149,9 +134,7 @@ export const icon_link: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Utilities"),
-				new e.text(
-					"Modify icon links with any of {{nav:docs/utilities/link::Bootstrap link utilities}} for modifying underline color and offset."
-				),
+				new e.text("Modify icon links with any of {{nav:docs/utilities/link::Bootstrap link utilities}} for modifying underline color and offset."),
 				new e.code({
 					output: () => {
 						return new h.a(

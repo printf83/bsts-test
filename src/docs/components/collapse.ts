@@ -1,11 +1,10 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const collapse: IAttrContent = {
+export const collapse: IContent = {
 	title: "Collapse",
-	description:
-		"Toggle the visibility of content across your project with a few classes and Bootstrap JavaScript plugins.",
+	description: "Toggle the visibility of content across your project with a few classes and Bootstrap JavaScript plugins.",
 	item: () => {
 		return [
 			new e.section([
@@ -27,11 +26,7 @@ export const collapse: IAttrContent = {
 				new e.title("Example"),
 				new e.text("Click the buttons below to show and hide another element via class changes:"),
 				new e.ul({
-					item: [
-						"{{.collapse}} hides content",
-						"{{.collapsing}} is applied during transitions",
-						"{{.collapse.show}} shows content",
-					],
+					item: ["{{.collapse}} hides content", "{{.collapsing}} is applied during transitions", "{{.collapse.show}} shows content"],
 				}),
 				new e.text(
 					"Generally, {{bsts}} recommend using a {{b.collapse.button}} with the {{target}} property. While not recommended from a semantic point of view, you can also use an {{b.collapse.button}} with the {{href}} property ({{bsts}} automaticly add {{role:'button'}} and the {{toggle:'collapse'}} because it's required by Bootstrap."
@@ -40,24 +35,8 @@ export const collapse: IAttrContent = {
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					output: () => {
 						return [
-							new h.div({ display: "flex", gap: 2 }, [
-								new b.collapse.button(
-									{ href: "#collapseExample", controlfor: "collapseExample" },
-									"Link with href"
-								),
-								new b.collapse.button(
-									{ target: "#collapseExample", controlfor: "collapseExample" },
-									"Button with data-bs-target"
-								),
-							]),
-							new b.collapse.container(
-								{ id: "collapseExample" },
-								new b.card.container(
-									new b.card.body(
-										"Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."
-									)
-								)
-							),
+							new h.div({ display: "flex", gap: 2 }, [new b.collapse.button({ href: "#collapseExample", controlfor: "collapseExample" }, "Link with href"), new b.collapse.button({ target: "#collapseExample", controlfor: "collapseExample" }, "Button with data-bs-target")]),
+							new b.collapse.container({ id: "collapseExample" }, new b.card.container(new b.card.body("Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."))),
 						];
 					},
 				}),
@@ -70,33 +49,15 @@ export const collapse: IAttrContent = {
 				new e.text(
 					"The collapse plugin supports horizontal collapsing. Add the {{horizontal:true}} to {{b.collapse.container}} to transition the {{width}} instead of {{height}} and set a {{width}} on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use Bootstrap {{nav:docs/utilities/sizing::width utilities}}."
 				),
-				new e.text(
-					new b.alert.container(
-						{ color: "info", callout: true },
-						"Please note that while the example below has a {{min-height}} set to avoid excessive repaints in Bootstrap docs, this is not explicitly required. {{b::Only the}} {{width}} {{b::on the child element is required}}."
-					)
-				),
+				new e.text(new b.alert.container({ color: "info", callout: true }, "Please note that while the example below has a {{min-height}} set to avoid excessive repaints in Bootstrap docs, this is not explicitly required. {{b::Only the}} {{width}} {{b::on the child element is required}}.")),
 				new e.code({
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						return [
-							new h.div({ display: "flex", gap: 2 }, [
-								new b.collapse.button(
-									{ target: "#collapseWidthExample", controlfor: "collapseWidthExample" },
-									"Toggle width collapse"
-								),
-							]),
+							new h.div({ display: "flex", gap: 2 }, [new b.collapse.button({ target: "#collapseWidthExample", controlfor: "collapseWidthExample" }, "Toggle width collapse")]),
 							new h.div(
 								{ style: { minHeight: "120px" } },
-								new b.collapse.container(
-									{ id: "collapseWidthExample", horizontal: true },
-									new b.card.container(
-										{ style: { width: "300px" } },
-										new b.card.body(
-											"This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered."
-										)
-									)
-								)
+								new b.collapse.container({ id: "collapseWidthExample", horizontal: true }, new b.card.container({ style: { width: "300px" } }, new b.card.body("This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.")))
 							),
 						];
 					},
@@ -113,46 +74,23 @@ export const collapse: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						const toggle1 = new b.collapse.button(
-							{ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" },
-							"Toggle first element"
-						);
+						const toggle1 = new b.collapse.button({ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" }, "Toggle first element");
 
-						const toggle2 = new b.collapse.button(
-							{ target: "#multiCollapseExample2", controlfor: "multiCollapseExample2" },
-							"Toggle second element"
-						);
+						const toggle2 = new b.collapse.button({ target: "#multiCollapseExample2", controlfor: "multiCollapseExample2" }, "Toggle second element");
 
-						const toggleBoth = new b.collapse.button(
-							{ target: ".multi-collapse", controlfor: "multiCollapseExample1 multiCollapseExample2" },
-							"Toggle both element"
-						);
+						const toggleBoth = new b.collapse.button({ target: ".multi-collapse", controlfor: "multiCollapseExample1 multiCollapseExample2" }, "Toggle both element");
 
 						const collapse1 = new b.collapse.container(
 							{ id: "multiCollapseExample1", class: "multi-collapse" },
-							new b.card.container(
-								new b.card.body(
-									"Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger."
-								)
-							)
+							new b.card.container(new b.card.body("Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger."))
 						);
 
 						const collapse2 = new b.collapse.container(
 							{ id: "multiCollapseExample2", class: "multi-collapse" },
-							new b.card.container(
-								new b.card.body(
-									"Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger."
-								)
-							)
+							new b.card.container(new b.card.body("Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger."))
 						);
 
-						const rowDiv = new h.div(
-							{ padding: 0 },
-							new h.div({ row: true, gutter: 2 }, [
-								new h.div({ col: 6 }, collapse1),
-								new h.div({ col: 6 }, collapse2),
-							])
-						);
+						const rowDiv = new h.div({ padding: 0 }, new h.div({ row: true, gutter: 2 }, [new h.div({ col: 6 }, collapse1), new h.div({ col: 6 }, collapse2)]));
 
 						return [toggle1, toggle2, toggleBoth, rowDiv];
 					},
@@ -198,9 +136,7 @@ export const collapse: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Classes"),
-				new e.text(
-					"Collapse transition classes can be found in {{scss/_transitions.scss}} as these are shared across multiple components (collapse and accordion)."
-				),
+				new e.text("Collapse transition classes can be found in {{scss/_transitions.scss}} as these are shared across multiple components (collapse and accordion)."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_transitions.scss",
@@ -233,11 +169,7 @@ export const collapse: IAttrContent = {
 				new e.title("Usage"),
 				new e.text("The collapse plugin utilizes a few classes to handle the heavy lifting:"),
 				new e.ul({
-					item: [
-						"{{.collapse}} hides the content",
-						"{{.collapse.show}} shows the content",
-						"{{.collapsing}} is added when the transition starts, and removed when it finishes",
-					],
+					item: ["{{.collapse}} hides the content", "{{.collapse.show}} shows the content", "{{.collapsing}} is added when the transition starts, and removed when it finishes"],
 				}),
 				new e.text("These classes can be found in {{_transitions.scss}}."),
 			]),
@@ -250,9 +182,7 @@ export const collapse: IAttrContent = {
 					"Just use {{b.collapse.button}} and set {{target}} to the {{b.collapse.container}} to automatically assign control of one or more collapsible elements. The {{target}} property accepts a CSS selector to apply the collapse to. Be sure to use the {{b.collapse.container}} to the collapsible element. If you’d like it to default open, add the additional {{show}} property."
 				),
 
-				new e.text(
-					"To add accordion-like group management to a collapsible area, add set {{parent:'#selector'}} property. Refer to the {{nav:docs/components/accordion::accordion page}} for more information."
-				),
+				new e.text("To add accordion-like group management to a collapsible area, add set {{parent:'#selector'}} property. Refer to the {{nav:docs/components/accordion::accordion page}} for more information."),
 				new e.text("{{bsts}} automaticly handle this when you using {{b.accordion.container}}."),
 			]),
 
@@ -318,26 +248,11 @@ export const collapse: IAttrContent = {
 					item: [
 						["Method", "Description"],
 						["{{dispose}}", "Destroys an element’s collapse. (Removes stored data on the DOM element)"],
-						[
-							"{{getInstance}}",
-							"Static method which allows you to get the collapse instance associated to a DOM element, you can use it like this: {{bootstrap.Collapse.getInstance(element)}}.",
-						],
-						[
-							"{{getOrCreateInstance}}",
-							"Static method which returns a collapse instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Collapse.getOrCreateInstance(element)}}.",
-						],
-						[
-							"{{hide}}",
-							"Hides a collapsible element. {{b::Returns to the caller before the collapsible element has actually been hidden}} (e.g., before the {{hidden.bs.collapse}} event occurs).",
-						],
-						[
-							"{{show}}",
-							"Shows a collapsible element. {{b::Returns to the caller before the collapsible element has actually been shown}} (e.g., before the {{shown.bs.collapse}} event occurs).",
-						],
-						[
-							"{{toggle}}",
-							"Toggles a collapsible element to shown or hidden. {{b::Returns to the caller before the collapsible element has actually been shown or hidden}} (i.e. before the {{shown.bs.collapse}} or {{hidden.bs.collapse}} event occurs).",
-						],
+						["{{getInstance}}", "Static method which allows you to get the collapse instance associated to a DOM element, you can use it like this: {{bootstrap.Collapse.getInstance(element)}}."],
+						["{{getOrCreateInstance}}", "Static method which returns a collapse instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Collapse.getOrCreateInstance(element)}}."],
+						["{{hide}}", "Hides a collapsible element. {{b::Returns to the caller before the collapsible element has actually been hidden}} (e.g., before the {{hidden.bs.collapse}} event occurs)."],
+						["{{show}}", "Shows a collapsible element. {{b::Returns to the caller before the collapsible element has actually been shown}} (e.g., before the {{shown.bs.collapse}} event occurs)."],
+						["{{toggle}}", "Toggles a collapsible element to shown or hidden. {{b::Returns to the caller before the collapsible element has actually been shown or hidden}} (i.e. before the {{shown.bs.collapse}} or {{hidden.bs.collapse}} event occurs)."],
 					],
 				}),
 
@@ -360,12 +275,7 @@ export const collapse: IAttrContent = {
 								on: {
 									click: (event) => {
 										const elem = b.collapse.init("#example-collapse");
-										e.console(
-											event.target as Element,
-											"b.collapse.init",
-											elem ? elem : "null",
-											elem ? "success" : "danger"
-										);
+										e.console(event.target as Element, "b.collapse.init", elem ? elem : "null", elem ? "success" : "danger");
 									},
 								},
 							},
@@ -378,12 +288,7 @@ export const collapse: IAttrContent = {
 								on: {
 									click: (event) => {
 										const elem = b.collapse.getInstance("#example-collapse");
-										e.console(
-											event.target as Element,
-											"b.collapse.getInstance",
-											elem ? elem : "null",
-											elem ? "success" : "danger"
-										);
+										e.console(event.target as Element, "b.collapse.getInstance", elem ? elem : "null", elem ? "success" : "danger");
 									},
 								},
 							},
@@ -396,12 +301,7 @@ export const collapse: IAttrContent = {
 								on: {
 									click: (event) => {
 										const elem = b.collapse.getOrCreateInstance("#example-collapse");
-										e.console(
-											event.target as Element,
-											"b.collapse.getOrCreateInstance",
-											elem,
-											elem ? "success" : "danger"
-										);
+										e.console(event.target as Element, "b.collapse.getOrCreateInstance", elem, elem ? "success" : "danger");
 									},
 								},
 							},
@@ -453,15 +353,7 @@ export const collapse: IAttrContent = {
 							"dispose"
 						);
 
-						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
-							initButton,
-							getInstanceButton,
-							getOrCreateInstanceButton,
-							hideButton,
-							showButton,
-							toggleButton,
-							disposeButton,
-						]);
+						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, hideButton, showButton, toggleButton, disposeButton]);
 
 						const previewContainer = new h.div(
 							{
@@ -506,22 +398,10 @@ export const collapse: IAttrContent = {
 				new e.table({
 					item: [
 						["Event type", "Description"],
-						[
-							"{{hide.bs.collapse}}",
-							"This event is fired immediately when the {{hide}} method has been called.",
-						],
-						[
-							"{{hidden.bs.collapse}}",
-							"This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).",
-						],
-						[
-							"{{show.bs.collapse}}",
-							"This event fires immediately when the {{show}} instance method is called.",
-						],
-						[
-							"{{shown.bs.collapse}}",
-							"This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).",
-						],
+						["{{hide.bs.collapse}}", "This event is fired immediately when the {{hide}} method has been called."],
+						["{{hidden.bs.collapse}}", "This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete)."],
+						["{{show.bs.collapse}}", "This event fires immediately when the {{show}} instance method is called."],
+						["{{shown.bs.collapse}}", "This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete)."],
 					],
 				}),
 
@@ -530,39 +410,22 @@ export const collapse: IAttrContent = {
 					showConsole: true,
 					output: () => {
 						return [
-							new b.collapse.button(
-								{ target: "#collapseEventExample", controlfor: "collapseEventExample" },
-								"Collapse event"
-							),
+							new b.collapse.button({ target: "#collapseEventExample", controlfor: "collapseEventExample" }, "Collapse event"),
 							new b.collapse.container(
 								{
 									id: "collapseEventExample",
 									on: {
 										"hidden.bs.collapse": (event) => {
 											let target = event.target as Element;
-											e.console(
-												event.target as Element,
-												"hidden.bs.collapse",
-												`Target: {{b::${core.elemInfo(target)}}}`,
-												"danger"
-											);
+											e.console(event.target as Element, "hidden.bs.collapse", `Target: {{b::${core.elemInfo(target)}}}`, "danger");
 										},
 										"shown.bs.collapse": (event) => {
 											let target = event.target as Element;
-											e.console(
-												event.target as Element,
-												"shown.bs.collapse",
-												`Target: {{b::${core.elemInfo(target)}}}`,
-												"success"
-											);
+											e.console(event.target as Element, "shown.bs.collapse", `Target: {{b::${core.elemInfo(target)}}}`, "success");
 										},
 									},
 								},
-								new b.card.container(
-									new b.card.body(
-										"Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."
-									)
-								)
+								new b.card.container(new b.card.body("Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."))
 							),
 						];
 					},

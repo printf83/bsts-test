@@ -1,8 +1,8 @@
 import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const breadcrumbs: IAttrContent = {
+export const breadcrumbs: IContent = {
 	title: "Breadcrumbs",
 	description: "Integrate custom icons and create stepper components.",
 	item: () => {
@@ -11,14 +11,7 @@ export const breadcrumbs: IAttrContent = {
 				new e.title("Rounded padding"),
 				new e.code({
 					output: () => {
-						return new b.breadcrumb.container(
-							{ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 },
-							[
-								new b.breadcrumb.item({ href: "#" }, "Home"),
-								new b.breadcrumb.item({ href: "#" }, "Library"),
-								new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
-							]
-						);
+						return new b.breadcrumb.container({ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 }, [new b.breadcrumb.item({ href: "#" }, "Home"), new b.breadcrumb.item({ href: "#" }, "Library"), new b.breadcrumb.item({ active: true, href: "#" }, "Data")]);
 					},
 				}),
 			]),
@@ -29,30 +22,27 @@ export const breadcrumbs: IAttrContent = {
 				new e.title("With icon"),
 				new e.code({
 					output: () => {
-						return new b.breadcrumb.container(
-							{ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 },
-							[
-								new b.breadcrumb.item(
-									{
-										textDecoration: "none",
-										fontWeight: "semibold",
-										linkColor: "body-emphasis",
-										href: "#",
-									},
-									new b.icon("house-fill")
-								),
-								new b.breadcrumb.item(
-									{
-										textDecoration: "none",
-										fontWeight: "semibold",
-										linkColor: "body-emphasis",
-										href: "#",
-									},
-									"Library"
-								),
-								new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
-							]
-						);
+						return new b.breadcrumb.container({ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 }, [
+							new b.breadcrumb.item(
+								{
+									textDecoration: "none",
+									fontWeight: "semibold",
+									linkColor: "body-emphasis",
+									href: "#",
+								},
+								new b.icon("house-fill")
+							),
+							new b.breadcrumb.item(
+								{
+									textDecoration: "none",
+									fontWeight: "semibold",
+									linkColor: "body-emphasis",
+									href: "#",
+								},
+								"Library"
+							),
+							new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
+						]);
 					},
 				}),
 			]),
