@@ -1,25 +1,18 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const select: IAttrContent = {
+export const select: IContent = {
 	title: "Select",
 	description: "Customize the native {{<select>}}s with custom CSS that changes the element’s initial appearance.",
 	item: () => {
 		return [
 			new e.section([
 				new e.title("Default"),
-				new e.text(
-					"Custom {{<select>}} menus need only a custom class, {{.form-select}} to trigger the custom styles. Custom styles are limited to the {{<select>}}’s initial appearance and cannot modify the {{<option>}}s due to browser limitations."
-				),
+				new e.text("Custom {{<select>}} menus need only a custom class, {{.form-select}} to trigger the custom styles. Custom styles are limited to the {{<select>}}’s initial appearance and cannot modify the {{<option>}}s due to browser limitations."),
 				new e.code({
 					output: () => {
-						return new b.select({ label: "Default select example" }, [
-							new h.option({ selected: true }, "Open this select menu"),
-							new h.option({ value: "1" }, "One"),
-							new h.option({ value: "2" }, "Two"),
-							new h.option({ value: "3" }, "Three"),
-						]);
+						return new b.select({ label: "Default select example" }, [new h.option({ selected: true }, "Open this select menu"), new h.option({ value: "1" }, "One"), new h.option({ value: "2" }, "Two"), new h.option({ value: "3" }, "Three")]);
 					},
 				}),
 				new e.text("Using {{item}} to setup option"),
@@ -127,9 +120,7 @@ export const select: IAttrContent = {
 
 			new e.section([
 				new e.title("Disabled"),
-				new e.text(
-					"Add the {{disabled}} boolean attribute on a select to give it a grayed out appearance and remove pointer events."
-				),
+				new e.text("Add the {{disabled}} boolean attribute on a select to give it a grayed out appearance and remove pointer events."),
 				new e.code({
 					output: () => {
 						return b.form.select({

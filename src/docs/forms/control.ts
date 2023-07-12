@@ -1,18 +1,15 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const control: IAttrContent = {
+export const control: IContent = {
 	title: "Form controls",
-	description:
-		"Give textual form controls like {{<input>}}s and {{<textarea>}}s an upgrade with custom styles, sizing, focus states, and more.",
+	description: "Give textual form controls like {{<input>}}s and {{<textarea>}}s an upgrade with custom styles, sizing, focus states, and more.",
 	item: () => {
 		return [
 			new e.section([
 				new e.title("Example"),
-				new e.text(
-					"Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any customization method."
-				),
+				new e.text("Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any customization method."),
 				new e.code({
 					output: () => {
 						return [
@@ -24,13 +21,7 @@ export const control: IAttrContent = {
 									placeholder: "name@example.com",
 								}),
 							]),
-							new h.div([
-								new b.label(
-									{ for: "exampleFormControlTextarea1", class: "form-label" },
-									"Example textarea"
-								),
-								new b.textarea({ id: "exampleFormControlTextarea1" }),
-							]),
+							new h.div([new b.label({ for: "exampleFormControlTextarea1", class: "form-label" }, "Example textarea"), new b.textarea({ id: "exampleFormControlTextarea1" })]),
 						];
 					},
 				}),
@@ -88,18 +79,13 @@ export const control: IAttrContent = {
 					"Form text should be explicitly associated with the form control it relates to using the {{aria-labelledby}} (for mandatory information such as data format) or {{aria-describedby}} (for complementary information) attribute. This will ensure that assistive technologies—such as screen readers—will announce this form text when the user focuses or enters the control."
 				),
 
-				new e.text(
-					"Form text below inputs can be styled with .form-text. If a block-level element will be used, a top margin is added for easy spacing from the inputs above."
-				),
+				new e.text("Form text below inputs can be styled with .form-text. If a block-level element will be used, a top margin is added for easy spacing from the inputs above."),
 				new e.code({
 					output: () => {
 						return new h.div([
 							new b.label({ for: "inputPassword5", class: "form-label" }, "Password"),
 							new b.input({ type: "password", id: "inputPassword5", describedby: "passwordHelpBlock" }),
-							new h.div(
-								{ id: "passwordHelpBlock", class: "form-text" },
-								"Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji."
-							),
+							new h.div({ id: "passwordHelpBlock", class: "form-text" }, "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji."),
 						]);
 					},
 				}),
@@ -109,22 +95,16 @@ export const control: IAttrContent = {
 						return b.form.input({
 							label: "Password",
 							type: "password",
-							description:
-								"Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
+							description: "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
 						});
 					},
 				}),
 
-				new e.text(
-					"Inline text can use any typical inline HTML element (be it a {{<span>}}, {{<small>}}, or something else) with nothing more than the {{.form-text}} class."
-				),
+				new e.text("Inline text can use any typical inline HTML element (be it a {{<span>}}, {{<small>}}, or something else) with nothing more than the {{.form-text}} class."),
 				new e.code({
 					output: () => {
 						return new h.div({ row: true, gutter: 3, alignItem: "center" }, [
-							new h.div(
-								{ col: "auto" },
-								new b.label({ for: "inputPassword6", class: "col-form-label" }, "Password")
-							),
+							new h.div({ col: "auto" }, new b.label({ for: "inputPassword6", class: "col-form-label" }, "Password")),
 							new h.div(
 								{ col: "auto" },
 								new b.input({
@@ -133,13 +113,7 @@ export const control: IAttrContent = {
 									describedby: "passwordHelpBlock",
 								})
 							),
-							new h.div(
-								{ col: "auto" },
-								new h.span(
-									{ id: "passwordHelpInline", class: "form-text" },
-									" Must be 8-20 characters long. "
-								)
-							),
+							new h.div({ col: "auto" }, new h.span({ id: "passwordHelpInline", class: "form-text" }, " Must be 8-20 characters long. ")),
 						]);
 					},
 				}),
@@ -163,9 +137,7 @@ export const control: IAttrContent = {
 
 			new e.section([
 				new e.title("Disabled"),
-				new e.text(
-					"Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."
-				),
+				new e.text("Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."),
 				new e.code({
 					output: () => {
 						return [
@@ -190,9 +162,7 @@ export const control: IAttrContent = {
 
 			new e.section([
 				new e.title("Readonly"),
-				new e.text(
-					"Add the {{readonly}} boolean attribute on an input to prevent modification of the input’s value. {{readonly}} inputs can still be focused and selected, while {{disabled}} inputs cannot."
-				),
+				new e.text("Add the {{readonly}} boolean attribute on an input to prevent modification of the input’s value. {{readonly}} inputs can still be focused and selected, while {{disabled}} inputs cannot."),
 				new e.code({
 					output: () => {
 						return [
@@ -210,9 +180,7 @@ export const control: IAttrContent = {
 
 			new e.section([
 				new e.title("Readonly plain text"),
-				new e.text(
-					"If you want to have {{<input readonly>}} elements in your form styled as plain text, replace {{.form-control}} with {{.form-control-plaintext}} to remove the default form field styling and preserve the correct {{margin}} and {{padding}}."
-				),
+				new e.text("If you want to have {{<input readonly>}} elements in your form styled as plain text, replace {{.form-control}} with {{.form-control-plaintext}} to remove the default form field styling and preserve the correct {{margin}} and {{padding}}."),
 				new e.code({
 					output: () => {
 						return [
@@ -301,9 +269,7 @@ export const control: IAttrContent = {
 
 			new e.section([
 				new e.title("Color"),
-				new e.text(
-					"Set the {{type='color'}} and add {{.form-control-color}} to the {{<input>}}. Bootstrap use the modifier class to set fixed {{heights}} and override some inconsistencies between browsers."
-				),
+				new e.text("Set the {{type='color'}} and add {{.form-control-color}} to the {{<input>}}. Bootstrap use the modifier class to set fixed {{heights}} and override some inconsistencies between browsers."),
 				new e.text([new h.span({ class: "teal-700" }, "This teal-700")]),
 				new e.code({
 					output: () => {
@@ -404,9 +370,7 @@ export const control: IAttrContent = {
 						$form-color-width:                      3rem;
 					`,
 				}),
-				new e.text(
-					"{{$form-label-*}} and {{$form-text-*}} are for Bootstrap {{<label>}}s and {{.form-text}} component."
-				),
+				new e.text("{{$form-label-*}} and {{$form-text-*}} are for Bootstrap {{<label>}}s and {{.form-text}} component."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",

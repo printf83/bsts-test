@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; description: string; href: string }) => {
@@ -104,14 +104,8 @@ const ex = {
 											borderColor: "light",
 										})
 									),
-									new h.li(
-										{ display: "flex", marginEnd: 3, textAlign: "center" },
-										new b.caption({ icon: "geo-fill" }, arg.location)
-									),
-									new h.li(
-										{ display: "flex", textAlign: "center" },
-										new b.caption({ icon: "calendar3" }, arg.date)
-									),
+									new h.li({ display: "flex", marginEnd: 3, textAlign: "center" }, new b.caption({ icon: "geo-fill" }, arg.location)),
+									new h.li({ display: "flex", textAlign: "center" }, new b.caption({ icon: "calendar3" }, arg.date)),
 								]),
 							]
 						),
@@ -137,10 +131,7 @@ const ex = {
 					},
 					new b.icon(arg.icon)
 				),
-				new h.div([
-					new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title),
-					new h.p(arg.description),
-				]),
+				new h.div([new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title), new h.p(arg.description)]),
 			]
 		);
 	},
@@ -183,17 +174,10 @@ const ex = {
 				alignItem: "start",
 				gap: 2,
 			},
-			[
-				new h.h(3, { fontWeight: "bold" }, arg.title),
-				new h.p({ textColor: "body-secondary" }, arg.description),
-				new h.div(arg.elem),
-			]
+			[new h.h(3, { fontWeight: "bold" }, arg.title), new h.p({ textColor: "body-secondary" }, arg.description), new h.div(arg.elem)]
 		);
 	},
-	c5: (arg: {
-		main: { title: string; description: string; elem: core.IElem };
-		feature: { icon: string; title: string; description: string }[];
-	}) => {
+	c5: (arg: { main: { title: string; description: string; elem: core.IElem }; feature: { icon: string; title: string; description: string }[] }) => {
 		return new h.div({ row: true, rowCol: [1, "md-2"], alignItem: "md-center", gutter: 5, paddingY: 5 }, [
 			ex.c5Title(arg.main),
 			new h.div(
@@ -207,7 +191,7 @@ const ex = {
 	},
 };
 
-export const features: IAttrContent = {
+export const features: IContent = {
 	title: "Features",
 	description: "Explain the features, benefits, or other details in your marketing content.",
 	item: () => {
@@ -221,22 +205,19 @@ export const features: IAttrContent = {
 							ex.c1({
 								icon: "collection",
 								title: "Featured title",
-								description:
-									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								href: "",
 							}),
 							ex.c1({
 								icon: "person-circle",
 								title: "Featured title",
-								description:
-									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								href: "",
 							}),
 							ex.c1({
 								icon: "toggles2",
 								title: "Featured title",
-								description:
-									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								href: "",
 							}),
 						];
@@ -256,22 +237,19 @@ export const features: IAttrContent = {
 							ex.c2({
 								icon: "toggles2",
 								title: "Featured title",
-								description:
-									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								elem: new b.button({ href: "#" }, "Primary button"),
 							}),
 							ex.c2({
 								icon: "cpu-fill",
 								title: "Featured title",
-								description:
-									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								elem: new b.button({ href: "#" }, "Primary button"),
 							}),
 							ex.c2({
 								icon: "tools",
 								title: "Featured title",
-								description:
-									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								elem: new b.button({ href: "#" }, "Primary button"),
 							}),
 						]);
@@ -403,8 +381,7 @@ export const features: IAttrContent = {
 						return ex.c5({
 							main: {
 								title: "Left-aligned title explaining these awesome features",
-								description:
-									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								elem: new b.button({ weight: "lg" }, "Primary button"),
 							},
 							feature: [

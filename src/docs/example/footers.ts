@@ -1,6 +1,6 @@
 import { I, b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { copyright: string; icon: string; link: I.B.Nav.Header.Link[] }) => {
@@ -78,13 +78,7 @@ const ex = {
 					justifyContent: "end",
 					display: "flex",
 					item: arg.link.map((i) => {
-						return new h.li(
-							{ marginStart: 3 },
-							new h.a(
-								{ href: i.href, textColor: "body-tertiary", textColorHover: "body-emphasis" },
-								new b.icon({ id: i.icon, fontSize: 2 })
-							)
-						);
+						return new h.li({ marginStart: 3 }, new h.a({ href: i.href, textColor: "body-tertiary", textColorHover: "body-emphasis" }, new b.icon({ id: i.icon, fontSize: 2 })));
 					}),
 					unstyle: true,
 				}),
@@ -159,12 +153,7 @@ const ex = {
 			]
 		);
 	},
-	c5: (arg: {
-		copyright: string;
-		link: (undefined | t[])[];
-		linkicon: { icon: string; href: string }[];
-		onsubscribe: EventListener;
-	}) => {
+	c5: (arg: { copyright: string; link: (undefined | t[])[]; linkicon: { icon: string; href: string }[]; onsubscribe: EventListener }) => {
 		return new h.footer(
 			{
 				paddingY: 5,
@@ -215,13 +204,7 @@ const ex = {
 						new h.ul({
 							display: "flex",
 							item: arg.linkicon.map((i) => {
-								return new h.li(
-									{ marginStart: 3 },
-									new h.a(
-										{ href: i.href },
-										new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })
-									)
-								);
+								return new h.li({ marginStart: 3 }, new h.a({ href: i.href }, new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })));
 							}),
 							unstyle: true,
 						}),
@@ -231,7 +214,7 @@ const ex = {
 		);
 	},
 };
-export const footers: IAttrContent = {
+export const footers: IContent = {
 	title: "Footers",
 	description: "Finish every page strong with an awesome footer, big or small.",
 	item: () => {

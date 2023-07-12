@@ -1,8 +1,8 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const bootswatch: IAttrContent = {
+export const bootswatch: IContent = {
 	title: "Bootswatch",
 	description: "Free themes for Bootstrap from Bootswatch",
 	item: () => {
@@ -53,9 +53,7 @@ export const bootswatch: IAttrContent = {
 										if (value) {
 											let bsBootswatch = document.getElementById("bs-bootswatch") as Element;
 											let bsBootswatchMenu = bsBootswatch.nextSibling as Element;
-											let bsBootswatchLabel = document.getElementById(
-												"bs-bootswatch-label"
-											) as Element;
+											let bsBootswatchLabel = document.getElementById("bs-bootswatch-label") as Element;
 
 											let lastActive = bsBootswatchMenu.querySelectorAll("a.active")[0];
 											if (lastActive) {
@@ -63,27 +61,17 @@ export const bootswatch: IAttrContent = {
 												lastActive.removeAttribute("aria-current");
 											}
 
-											let newActive = bsBootswatchMenu.querySelectorAll(
-												`a[data-value='${value}']`
-											)[0];
+											let newActive = bsBootswatchMenu.querySelectorAll(`a[data-value='${value}']`)[0];
 											if (newActive) {
 												newActive.classList.add("active");
 												newActive.setAttribute("aria-current", "true");
 											}
 
-											core.replaceWith(
-												bsBootswatchLabel,
-												new h.span(
-													{ id: "bs-bootswatch-label" },
-													`${core.uppercaseFirst(value)}`
-												)
-											);
+											core.replaceWith(bsBootswatchLabel, new h.span({ id: "bs-bootswatch-label" }, `${core.uppercaseFirst(value)}`));
 
 											//trigger event
 											let root = target.closest(".bs-main-root") as Element;
-											root.dispatchEvent(
-												new CustomEvent("bs-bootswatch-change", { detail: value })
-											);
+											root.dispatchEvent(new CustomEvent("bs-bootswatch-change", { detail: value }));
 										}
 									},
 								},
@@ -121,12 +109,7 @@ export const bootswatch: IAttrContent = {
 										new b.navbar.item(new b.navbar.link({ href: "#" }, "About")),
 										new b.navbar.item({ dropdown: true }, [
 											new b.dropdown.button({ navItem: true }, "Dropdown"),
-											new b.dropdown.menu([
-												new b.dropdown.item({ href: "#" }, "Action"),
-												new b.dropdown.item({ href: "#" }, "Another action"),
-												new b.dropdown.divider(),
-												new b.dropdown.item({ href: "#" }, "Something else here"),
-											]),
+											new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
 										]),
 									]),
 									new h.form({ display: "flex", role: "search" }, [
@@ -142,11 +125,7 @@ export const bootswatch: IAttrContent = {
 							]);
 						};
 
-						return [
-							new b.navbar.container({ bgColor: "primary", theme: "dark" }, navbarItem("light")),
-							new b.navbar.container({ bgColor: "dark", theme: "dark" }, navbarItem("light")),
-							new b.navbar.container({ bgColor: "light", theme: "light" }, navbarItem("dark")),
-						];
+						return [new b.navbar.container({ bgColor: "primary", theme: "dark" }, navbarItem("light")), new b.navbar.container({ bgColor: "dark", theme: "dark" }, navbarItem("light")), new b.navbar.container({ bgColor: "light", theme: "light" }, navbarItem("dark"))];
 					},
 				}),
 			]),
@@ -158,17 +137,7 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [
-							"primary",
-							"secondary",
-							"success",
-							"danger",
-							"warning",
-							"info",
-							"light",
-							"dark",
-							"link",
-						].map((i) => {
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
 							return new b.button({ color: i as I.B.Button["color"] }, core.uppercaseFirst(i));
 						});
 					},
@@ -182,21 +151,8 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [
-							"primary",
-							"secondary",
-							"success",
-							"danger",
-							"warning",
-							"info",
-							"light",
-							"dark",
-							"link",
-						].map((i) => {
-							return new b.button(
-								{ color: i as I.B.Button["color"], disabled: true },
-								core.uppercaseFirst(i)
-							);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
+							return new b.button({ color: i as I.B.Button["color"], disabled: true }, core.uppercaseFirst(i));
 						});
 					},
 				}),
@@ -209,21 +165,8 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [
-							"primary",
-							"secondary",
-							"success",
-							"danger",
-							"warning",
-							"info",
-							"light",
-							"dark",
-							"link",
-						].map((i) => {
-							return new b.button(
-								{ color: i as I.B.Button["color"], outline: true },
-								core.uppercaseFirst(i)
-							);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
+							return new b.button({ color: i as I.B.Button["color"], outline: true }, core.uppercaseFirst(i));
 						});
 					},
 				}),
@@ -241,11 +184,7 @@ export const bootswatch: IAttrContent = {
 						gap: 2,
 					},
 					output: () => {
-						return [
-							new b.button({ weight: "lg" }, "Large button"),
-							new b.button("Default button"),
-							new b.button({ weight: "sm" }, "Small button"),
-						];
+						return [new b.button({ weight: "lg" }, "Large button"), new b.button("Default button"), new b.button({ weight: "sm" }, "Small button")];
 					},
 				}),
 			]),
@@ -267,11 +206,7 @@ export const bootswatch: IAttrContent = {
 				new e.subtitle("Button group"),
 				new e.code({
 					output: () => {
-						return new b.btngroup({ label: "Basic example", role: "group" }, [
-							new b.button("Left"),
-							new b.button("Middle"),
-							new b.button("Right"),
-						]);
+						return new b.btngroup({ label: "Basic example", role: "group" }, [new b.button("Left"), new b.button("Middle"), new b.button("Right")]);
 					},
 				}),
 			]),
@@ -355,36 +290,12 @@ export const bootswatch: IAttrContent = {
 						return new b.btngroup({ label: "Vertical button group", vertical: true }, [
 							new b.button("Button"),
 							new b.button("Button"),
-							new b.btngroup([
-								new b.dropdown.button({}, "Dropdown"),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
-								]),
-							]),
+							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
 							new b.button("Button"),
 							new b.button("Button"),
-							new b.btngroup([
-								new b.dropdown.button({}, "Dropdown"),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
-								]),
-							]),
-							new b.btngroup([
-								new b.dropdown.button({}, "Dropdown"),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
-								]),
-							]),
-							new b.btngroup([
-								new b.dropdown.button({}, "Dropdown"),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
-									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
-								]),
-							]),
+							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
 						]);
 					},
 				}),
@@ -399,17 +310,8 @@ export const bootswatch: IAttrContent = {
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
 							return new b.dropdown.container([
-								new b.dropdown.button(
-									{ color: i as I.B.Dropdown.Button["color"] },
-									core.uppercaseFirst(i)
-								),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Action"),
-									new b.dropdown.item({ href: "#" }, "Another action"),
-									new b.dropdown.item({ href: "#" }, "Something else here"),
-									new b.dropdown.divider(),
-									new b.dropdown.item({ href: "#" }, "Separated link"),
-								]),
+								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"] }, core.uppercaseFirst(i)),
+								new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
 							]);
 						});
 					},
@@ -427,13 +329,7 @@ export const bootswatch: IAttrContent = {
 							return new b.dropdown.container([
 								new b.button({ color: i as I.B.Dropdown.Button["color"] }, core.uppercaseFirst(i)),
 								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"], split: true }),
-								new b.dropdown.menu([
-									new b.dropdown.item({ href: "#" }, "Action"),
-									new b.dropdown.item({ href: "#" }, "Another action"),
-									new b.dropdown.item({ href: "#" }, "Something else here"),
-									new b.dropdown.divider(),
-									new b.dropdown.item({ href: "#" }, "Separated link"),
-								]),
+								new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
 							]);
 						});
 					},
@@ -457,13 +353,7 @@ export const bootswatch: IAttrContent = {
 				new e.subtitle("With secondary text"),
 				new e.code({
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map(
-							(i) =>
-								new h.h(i as I.H.HLevel, [
-									`h${i}. Heading`,
-									new h.small({ textColor: "body-secondary" }, " with faded secondary text"),
-								])
-						);
+						return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as I.H.HLevel, [`h${i}. Heading`, new h.small({ textColor: "body-secondary" }, " with faded secondary text")]));
 					},
 				}),
 			]),
@@ -474,10 +364,7 @@ export const bootswatch: IAttrContent = {
 				new e.subtitle("Lead paragraph"),
 				new e.code({
 					output: () => {
-						return new h.p(
-							{ lead: true },
-							"This is a lead paragraph. It stands out from regular paragraphs."
-						);
+						return new h.p({ lead: true }, "This is a lead paragraph. It stands out from regular paragraphs.");
 					},
 				}),
 			]),
@@ -492,9 +379,7 @@ export const bootswatch: IAttrContent = {
 							new h.p(["You can use the mark tag to ", new h.mark("highlight"), " text."]),
 							new h.p(new h.del("This line of text is meant to be treated as deleted text.")),
 							new h.p(new h.s("This line of text is meant to be treated as no longer accurate.")),
-							new h.p(
-								new h.ins("This line of text is meant to be treated as an addition to the document.")
-							),
+							new h.p(new h.ins("This line of text is meant to be treated as an addition to the document.")),
 							new h.p(new h.u("This line of text will render as underlined.")),
 							new h.p(new h.small("This line of text is meant to be treated as fine print.")),
 							new h.p(new h.strong("This line rendered as bold text.")),
@@ -544,10 +429,7 @@ export const bootswatch: IAttrContent = {
 						];
 
 						return data.map((i) => {
-							return new h.p({ bgColor: i.bgColor, textColor: i.textColor, textOpacity: i.textOpacity }, [
-								`.text-${i.textColor}`,
-								i.textOpacity ? `.text-opacity-${i.textOpacity}` : "",
-							]);
+							return new h.p({ bgColor: i.bgColor, textColor: i.textColor, textOpacity: i.textOpacity }, [`.text-${i.textColor}`, i.textOpacity ? `.text-opacity-${i.textOpacity}` : ""]);
 						});
 					},
 				}),
@@ -559,41 +441,17 @@ export const bootswatch: IAttrContent = {
 				new e.subtitle("Blockquote"),
 				new e.code({
 					output: () => {
-						return new h.figure([
-							new b.blockquote.container(
-								new h.p("A well-known quote, contained in a blockquote element.")
-							),
-							new b.blockquote.caption([
-								"Someone famous in ",
-								new h.cite({ title: "Source Title" }, "Source Title"),
-							]),
-						]);
+						return new h.figure([new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
 				}),
 				new e.code({
 					output: () => {
-						return new h.figure({ textAlign: "center" }, [
-							new b.blockquote.container(
-								new h.p("A well-known quote, contained in a blockquote element.")
-							),
-							new b.blockquote.caption([
-								"Someone famous in ",
-								new h.cite({ title: "Source Title" }, "Source Title"),
-							]),
-						]);
+						return new h.figure({ textAlign: "center" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
 				}),
 				new e.code({
 					output: () => {
-						return new h.figure({ textAlign: "end" }, [
-							new b.blockquote.container(
-								new h.p("A well-known quote, contained in a blockquote element.")
-							),
-							new b.blockquote.caption([
-								"Someone famous in ",
-								new h.cite({ title: "Source Title" }, "Source Title"),
-							]),
-						]);
+						return new h.figure({ textAlign: "end" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
 				}),
 			]),
@@ -606,31 +464,10 @@ export const bootswatch: IAttrContent = {
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
-							new b.table.thead(
-								new b.table.tr([
-									new b.table.th({ scope: "col" }, "Class"),
-									new b.table.th({ scope: "col" }, "Heading"),
-									new b.table.th({ scope: "col" }, "Heading"),
-								])
-							),
+							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Class"), new b.table.th({ scope: "col" }, "Heading"), new b.table.th({ scope: "col" }, "Heading")])),
 							new b.table.tbody(
-								[
-									undefined,
-									"primary",
-									"secondary",
-									"success",
-									"danger",
-									"warning",
-									"info",
-									"light",
-									"dark",
-								].map(
-									(i) =>
-										new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [
-											new b.table.th({ scope: "row" }, i ? core.uppercaseFirst(i) : "Default"),
-											new b.table.td("Cell"),
-											new b.table.td("Cell"),
-										])
+								[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
+									(i) => new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [new b.table.th({ scope: "row" }, i ? core.uppercaseFirst(i) : "Default"), new b.table.td("Cell"), new b.table.td("Cell")])
 								)
 							),
 						]);
@@ -866,11 +703,7 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [
-							new b.button({ type: "submit" }, "Submit"),
-							new b.button({ type: "reset" }, "Reset"),
-							new b.button({ type: "button" }, "Button"),
-						];
+						return [new b.button({ type: "submit" }, "Submit"), new b.button({ type: "reset" }, "Reset"), new b.button({ type: "button" }, "Button")];
 					},
 				}),
 			]),
@@ -1100,14 +933,9 @@ export const bootswatch: IAttrContent = {
 				new e.subtitle("Alerts"),
 				new e.code({
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i) => {
-								return new b.alert.container(
-									{ dismissible: true, color: i as I.B.Alert.Container["color"] },
-									`A simple ${i} alert—check it out!`
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+							return new b.alert.container({ dismissible: true, color: i as I.B.Alert.Container["color"] }, `A simple ${i} alert—check it out!`);
+						});
 					},
 				}),
 			]),
@@ -1118,14 +946,9 @@ export const bootswatch: IAttrContent = {
 				new e.subtitle("Callout"),
 				new e.code({
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i) => {
-								return new b.alert.container(
-									{ callout: true, color: i as I.B.Alert.Container["color"] },
-									`A simple ${i} alert—check it out!`
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+							return new b.alert.container({ callout: true, color: i as I.B.Alert.Container["color"] }, `A simple ${i} alert—check it out!`);
+						});
 					},
 				}),
 			]),
@@ -1137,14 +960,9 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i) => {
-								return new b.badge(
-									{ textBgColor: i as core.Class["textBgColor"] },
-									core.uppercaseFirst(i)
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+							return new b.badge({ textBgColor: i as core.Class["textBgColor"] }, core.uppercaseFirst(i));
+						});
 					},
 				}),
 			]),
@@ -1156,17 +974,15 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i) => {
-								return new b.badge(
-									{
-										textBgColor: i as core.Class["textBgColor"],
-										rounded: "pill",
-									},
-									core.uppercaseFirst(i)
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+							return new b.badge(
+								{
+									textBgColor: i as core.Class["textBgColor"],
+									rounded: "pill",
+								},
+								core.uppercaseFirst(i)
+							);
+						});
 					},
 				}),
 			]),
@@ -1293,13 +1109,7 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
-						return new b.list.container([
-							new b.list.item("An item"),
-							new b.list.item("A second item"),
-							new b.list.item("A third item"),
-							new b.list.item("A fourth item"),
-							new b.list.item("And a fifth one"),
-						]);
+						return new b.list.container([new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item"), new b.list.item("A fourth item"), new b.list.item("And a fifth one")]);
 					},
 				}),
 			]),
@@ -1317,13 +1127,7 @@ export const bootswatch: IAttrContent = {
 								{ label: "A second list item", counter: 2 },
 								{ label: "A third list item", counter: 1 },
 							].map((i) => {
-								return new b.list.item(
-									{ display: "flex", justifyContent: "between", alignItem: "center" },
-									[
-										i.label,
-										new b.badge({ bgColor: "primary", rounded: "pill" }, i.counter.toString()),
-									]
-								);
+								return new b.list.item({ display: "flex", justifyContent: "between", alignItem: "center" }, [i.label, new b.badge({ bgColor: "primary", rounded: "pill" }, i.counter.toString())]);
 							})
 						);
 					},
@@ -1338,25 +1142,17 @@ export const bootswatch: IAttrContent = {
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
-							["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-								(i) => {
-									return new b.list.item(
-										{
-											color: i as I.B.List.Item["color"],
-											display: "flex",
-											justifyContent: "between",
-											alignItem: "center",
-										},
-										[
-											core.uppercaseFirst(i),
-											new b.badge(
-												{ textBgColor: i as core.Class["textBgColor"], rounded: "pill" },
-												core.rndBetween(1, 20).toString()
-											),
-										]
-									);
-								}
-							)
+							["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+								return new b.list.item(
+									{
+										color: i as I.B.List.Item["color"],
+										display: "flex",
+										justifyContent: "between",
+										alignItem: "center",
+									},
+									[core.uppercaseFirst(i), new b.badge({ textBgColor: i as core.Class["textBgColor"], rounded: "pill" }, core.rndBetween(1, 20).toString())]
+								);
+							})
 						);
 					},
 				}),
@@ -1370,11 +1166,9 @@ export const bootswatch: IAttrContent = {
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
-							["An item", "A second item", "A third item", "A fourth item", "And a fifth one"].map(
-								(i, ix) => {
-									return new b.list.item({ action: true, handleActive: true, active: ix === 0 }, i);
-								}
-							)
+							["An item", "A second item", "A third item", "A fourth item", "And a fifth one"].map((i, ix) => {
+								return new b.list.item({ action: true, handleActive: true, active: ix === 0 }, i);
+							})
 						);
 					},
 				}),
@@ -1389,19 +1183,9 @@ export const bootswatch: IAttrContent = {
 					output: () => {
 						return new b.tabList.container(
 							{ style: { maxWidth: "400px" } },
-							[
-								{ label: "And some small print", active: true },
-								{ label: "And some muted small print" },
-								{ label: "And some muted small print" },
-							].map((i) => {
+							[{ label: "And some small print", active: true }, { label: "And some muted small print" }, { label: "And some muted small print" }].map((i) => {
 								return new b.tabList.item({ href: "#", action: true, active: i.active }, [
-									new h.div({ display: "flex", width: 100, justifyContent: "between" }, [
-										new h.h(5, { marginBottom: 1 }, "List group item heading"),
-										new h.small(
-											{ textColor: !i.active ? "body-secondary" : undefined },
-											"3 days ago"
-										),
-									]),
+									new h.div({ display: "flex", width: 100, justifyContent: "between" }, [new h.h(5, { marginBottom: 1 }, "List group item heading"), new h.small({ textColor: !i.active ? "body-secondary" : undefined }, "3 days ago")]),
 									new h.p({ marginBottom: 1 }, "Some placeholder content in a paragraph."),
 									new h.small({ textColor: !i.active ? "body-secondary" : undefined }, i.label),
 								]);
@@ -1421,26 +1205,16 @@ export const bootswatch: IAttrContent = {
 				new e.subtitle("Card"),
 				new e.code({
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i, ix) => {
-								return new b.card.container(
-									{
-										textBgColor: i as core.Class["textBgColor"],
-										marginTop: ix !== 0 ? 3 : undefined,
-										style: { width: "18rem" },
-									},
-									[
-										new b.card.header("Header"),
-										new b.card.body([
-											new b.card.title(`${core.uppercaseFirst(i)} card title`),
-											new b.card.text(
-												"Some quick example text to build on the card title and make up the bulk of the card's content."
-											),
-										]),
-									]
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+							return new b.card.container(
+								{
+									textBgColor: i as core.Class["textBgColor"],
+									marginTop: ix !== 0 ? 3 : undefined,
+									style: { width: "18rem" },
+								},
+								[new b.card.header("Header"), new b.card.body([new b.card.title(`${core.uppercaseFirst(i)} card title`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]
+							);
+						});
 					},
 				}),
 			]),
@@ -1451,26 +1225,16 @@ export const bootswatch: IAttrContent = {
 				new e.xsubtitle("Card outline"),
 				new e.code({
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i, ix) => {
-								return new b.card.container(
-									{
-										borderColor: i as core.Class["borderColor"],
-										marginTop: ix !== 0 ? 3 : undefined,
-										style: { width: "18rem" },
-									},
-									[
-										new b.card.header("Header"),
-										new b.card.body({ textColor: i as core.Class["textColor"] }, [
-											new b.card.title(`${core.uppercaseFirst(i)} card title`),
-											new b.card.text(
-												"Some quick example text to build on the card title and make up the bulk of the card's content."
-											),
-										]),
-									]
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+							return new b.card.container(
+								{
+									borderColor: i as core.Class["borderColor"],
+									marginTop: ix !== 0 ? 3 : undefined,
+									style: { width: "18rem" },
+								},
+								[new b.card.header("Header"), new b.card.body({ textColor: i as core.Class["textColor"] }, [new b.card.title(`${core.uppercaseFirst(i)} card title`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]
+							);
+						});
 					},
 				}),
 			]),
@@ -1489,20 +1253,9 @@ export const bootswatch: IAttrContent = {
 								src: "https://picsum.photos/seed/bsts_0/286/180.webp",
 								alt: "Image cap",
 							}),
-							new b.card.body([
-								new b.card.text(
-									"Some quick example text to build on the card title and make up the bulk of the card's content."
-								),
-							]),
-							new b.list.container({ flush: true }, [
-								new b.list.item("An item"),
-								new b.list.item("A second item"),
-								new b.list.item("A third item"),
-							]),
-							new b.card.body([
-								new b.card.link({ href: "#" }, "Card link"),
-								new b.card.link({ href: "#" }, "Another link"),
-							]),
+							new b.card.body([new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
+							new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")]),
+							new b.card.body([new b.card.link({ href: "#" }, "Card link"), new b.card.link({ href: "#" }, "Another link")]),
 							new b.card.footer("2 days ago"),
 						]);
 					},
@@ -1515,9 +1268,7 @@ export const bootswatch: IAttrContent = {
 							new b.card.body([
 								new b.card.title("Card title"),
 								new b.card.subtitle("Card subtitle"),
-								new b.card.text(
-									"Some quick example text to build on the card title and make up the bulk of the card's content."
-								),
+								new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."),
 								new b.card.link({ href: "#" }, "Card link"),
 								new b.card.link({ href: "#" }, "Another link"),
 							])
@@ -1568,10 +1319,7 @@ export const bootswatch: IAttrContent = {
 						return new b.modal.container({ debug: true }, [
 							new b.modal.header({ close: true }, new b.modal.title("Modal title")),
 							new b.modal.body(new h.p("Modal body text gose here")),
-							new b.modal.footer([
-								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
-								new b.button({ color: "primary" }, "Save changes"),
-							]),
+							new b.modal.footer([new b.button({ dismiss: "modal", color: "secondary" }, "Close"), new b.button({ color: "primary" }, "Save changes")]),
 						]);
 					},
 				}),
@@ -1584,30 +1332,15 @@ export const bootswatch: IAttrContent = {
 				new e.code({
 					output: () => {
 						return [
-							new b.offcanvas.button(
-								{ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 },
-								"Link with href"
-							),
-							new b.offcanvas.button(
-								{ target: "#offcanvasExample", controlfor: "offcanvasExample" },
-								"Button with data-bs-target"
-							),
+							new b.offcanvas.button({ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 }, "Link with href"),
+							new b.offcanvas.button({ target: "#offcanvasExample", controlfor: "offcanvasExample" }, "Button with data-bs-target"),
 							new b.offcanvas.container({ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" }, [
-								new b.offcanvas.header([
-									new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"),
-									new b.offcanvas.btnclose(),
-								]),
+								new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
 								new b.offcanvas.body([
-									new h.div(
-										"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
-									),
+									new h.div("Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."),
 									new b.dropdown.container({ marginTop: 3 }, [
 										new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
-										new b.dropdown.menu([
-											new b.dropdown.item({ href: "#" }, "Action"),
-											new b.dropdown.item({ href: "#" }, "Another action"),
-											new b.dropdown.item({ href: "#" }, "Something else here"),
-										]),
+										new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
 									]),
 								]),
 							]),

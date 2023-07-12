@@ -1,9 +1,8 @@
 import { b, h, core } from "@printf83/bsts";
-import * as main from "./_index.js";
-import { menu } from "./menu.js";
-import { getData } from "./data.js";
-import { highlightCurrentMenu } from "./menu.js";
-import { onMenuChange } from "./menu.js";
+import { getContent } from "./data.js";
+import { IMenuItem, highlightCurrentMenu } from "./menu.js";
+import { setupContentDocument } from "./content.js";
+import { menu } from "./_db.js";
 
 interface pageIndex {
 	category: string;
@@ -28,8 +27,8 @@ const isDocItemIndexed = (pageId: string) => {
 };
 
 const indexDocMenu = (index: number, callback: () => void) => {
-	if (index < menu.doc.length) {
-		indexDocItem(0, menu.doc[index].label, menu.doc[index].item, () => {
+	if (index < menu.length) {
+		indexDocItem(0, menu[index].label, menu[index].item, () => {
 			indexDocMenu(index + 1, callback);
 		});
 	} else {
@@ -37,10 +36,10 @@ const indexDocMenu = (index: number, callback: () => void) => {
 	}
 };
 
-const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMenu[], callback: () => void) => {
+const indexDocItem = (index: number, category: string, item: IMenuItem[], callback: () => void) => {
 	if (index < item.length) {
 		if (!isDocItemIndexed(item[index].value)) {
-			getData(item[index].value, (data) => {
+			getContent(item[index].value, (data) => {
 				if (data && data.item) {
 					let contentItem = data.item();
 					if (contentItem) {
@@ -228,7 +227,7 @@ const searchIndexOnClick = (event: Event) => {
 			const value = `${pageId}${sectionId ? "#" : ""}${sectionId}`;
 
 			highlightCurrentMenu(value);
-			onMenuChange(value);
+			setupContentDocument(value);
 		}
 	}
 };

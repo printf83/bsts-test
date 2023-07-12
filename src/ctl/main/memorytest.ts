@@ -1,10 +1,9 @@
 import { b, core, h } from "@printf83/bsts";
-import { menu } from "./menu.js";
-import { highlightCurrentMenu } from "./menu.js";
-import { onMenuChange } from "./menu.js";
-import * as main from "./_index.js";
-import { getData } from "./data.js";
+import { IMenuItem, highlightCurrentMenu } from "./menu.js";
+import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
+import { menu } from "./_db.js";
+import { setupContentContainerItem, setupContentDocument } from "./content.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -16,7 +15,7 @@ const docDB = () => {
 	if (_docDB.length > 0) {
 		return _docDB;
 	} else {
-		_docDB = menu.doc
+		_docDB = menu
 			.map((i) => {
 				return i.item.map((j) => {
 					return j.value;
@@ -218,6 +217,7 @@ const addToSpeedDB = (id: string, title: string, data: number) => {
 		speedDB.push({ id: id, title: title, data: [data] });
 	}
 };
+
 const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; count: number; random?: boolean; checkduplicateid?: boolean; counttag?: boolean; max?: number }, callback: (counter: number, docId: string) => void) => {
 	arg.max ??= arg.count;
 
@@ -227,10 +227,10 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 
 	if (arg.count > 0) {
 		core.requestIdleCallback(() => {
-			getData(docId, (docData) => {
+			getContent(docId, (docData) => {
 				//add to page
 				let contentbody = document.getElementById("bs-main") as Element;
-				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
+				contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
 				highlightCurrentMenu(docId);
 				const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 
@@ -329,7 +329,7 @@ const startMemoryTest = (arg: { sender: Element; testId: string; count: number; 
 			}
 
 			highlightCurrentMenu(docId);
-			onMenuChange(docId, false, "push", () => {
+			setupContentDocument(docId, false, "push", () => {
 				let detailReport: core.IElem;
 
 				let loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
@@ -422,7 +422,7 @@ const startMemoryTest = (arg: { sender: Element; testId: string; count: number; 
 };
 
 const startDownloadResource = (testId: string, callback: () => void) => {
-	const item = menu.doc.map((i) => i.item).flat();
+	const item = menu.map((i) => i.item).flat();
 
 	core.replaceChild(
 		document.getElementById("memory-test-progress") as Element,
@@ -460,7 +460,7 @@ const startDownloadResource = (testId: string, callback: () => void) => {
 const downloadResource = (
 	arg: {
 		index: number;
-		item: main.IAttrItemSubMenu[];
+		item: IMenuItem[];
 		startTime: number;
 		chart: Chart;
 		testId: string;
@@ -469,7 +469,7 @@ const downloadResource = (
 ) => {
 	let count = arg.item.length - 1;
 	if (arg.index <= count) {
-		getData(arg.item[arg.index].value, (_data) => {
+		getContent(arg.item[arg.index].value, (_data) => {
 			//calculate data
 			const currentTime = performance.now();
 			const dataChart = currentTime - lastTestTime;

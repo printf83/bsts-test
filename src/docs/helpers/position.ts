@@ -1,16 +1,14 @@
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const position: IAttrContent = {
+export const position: IContent = {
 	title: "Position",
 	description: "Use these helpers for quickly configuring the position of an element.",
 	item: () => {
 		return [
 			new e.section([
 				new e.title("Fixed top"),
-				new e.text(
-					"Position an element at the top of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."
-				),
+				new e.text("Position an element at the top of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({fixed: "top"}, "...");`,
@@ -21,9 +19,7 @@ export const position: IAttrContent = {
 
 			new e.section([
 				new e.title("Fixed bottom"),
-				new e.text(
-					"Position an element at the bottom of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."
-				),
+				new e.text("Position an element at the bottom of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({fixed: "bottom"}, "...");`,
@@ -34,9 +30,7 @@ export const position: IAttrContent = {
 
 			new e.section([
 				new e.title("Sticky top"),
-				new e.text(
-					"Position an element at the top of the viewport, from edge to edge, but only after you scroll past it."
-				),
+				new e.text("Position an element at the top of the viewport, from edge to edge, but only after you scroll past it."),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({sticky: "top"}, "...");`,
@@ -64,9 +58,7 @@ export const position: IAttrContent = {
 
 			new e.section([
 				new e.title("Sticky bottom"),
-				new e.text(
-					"Position an element at the bottom of the viewport, from edge to edge, but only after you scroll past it."
-				),
+				new e.text("Position an element at the bottom of the viewport, from edge to edge, but only after you scroll past it."),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({sticky: "bottom"}, "...");`,

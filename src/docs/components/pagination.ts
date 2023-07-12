@@ -1,11 +1,10 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const pagination: IAttrContent = {
+export const pagination: IContent = {
 	title: "Pagination",
-	description:
-		"Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages.",
+	description: "Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages.",
 	item: () => {
 		return [
 			new e.section([
@@ -33,23 +32,15 @@ export const pagination: IAttrContent = {
 
 			new e.section([
 				new e.title("Working with icons"),
-				new e.text(
-					"Looking to use an icon or symbol in place of text for some pagination links? Be sure to provide proper screen reader support with {{label}} attributes."
-				),
+				new e.text("Looking to use an icon or symbol in place of text for some pagination links? Be sure to provide proper screen reader support with {{label}} attributes."),
 				new e.code({
 					output: () => {
 						return new b.pagination.container({ label: "Page navigation example" }, [
-							new b.pagination.item(
-								{ href: "#", label: "Previous" },
-								new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-left"))
-							),
+							new b.pagination.item({ href: "#", label: "Previous" }, new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-left"))),
 							new b.pagination.item({ href: "#" }, "1"),
 							new b.pagination.item({ href: "#" }, "2"),
 							new b.pagination.item({ href: "#" }, "3"),
-							new b.pagination.item(
-								{ href: "#", label: "Next" },
-								new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-right"))
-							),
+							new b.pagination.item({ href: "#", label: "Next" }, new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-right"))),
 						]);
 					},
 				}),
@@ -59,12 +50,8 @@ export const pagination: IAttrContent = {
 
 			new e.section([
 				new e.title("Disabled and active states"),
-				new e.text(
-					"Pagination links ({{b.pagination.item}}) are customizable for different circumstances. Use {{disabled}} for links that appear un-clickable and {{active}} to indicate the current page."
-				),
-				new e.text(
-					"The {{disabled}} property not just uses {{pointer-events: none}} to fully disable the functionality of {{b.pagination.item}}s"
-				),
+				new e.text("Pagination links ({{b.pagination.item}}) are customizable for different circumstances. Use {{disabled}} for links that appear un-clickable and {{active}} to indicate the current page."),
+				new e.text("The {{disabled}} property not just uses {{pointer-events: none}} to fully disable the functionality of {{b.pagination.item}}s"),
 				new e.code({
 					output: () => {
 						return new b.pagination.container({ label: "..." }, [
@@ -76,9 +63,7 @@ export const pagination: IAttrContent = {
 						]);
 					},
 				}),
-				new e.text(
-					"{{bsts}} automaticly swap out active or disabled {{b.pagination.item}} with {{h.span}}, to remove click functionality and prevent keyboard focus while retaining intended styles."
-				),
+				new e.text("{{bsts}} automaticly swap out active or disabled {{b.pagination.item}} with {{h.span}}, to remove click functionality and prevent keyboard focus while retaining intended styles."),
 				new e.code({
 					output: () => {
 						return new b.pagination.container({ label: "..." }, [
@@ -96,25 +81,15 @@ export const pagination: IAttrContent = {
 
 			new e.section([
 				new e.title("Sizing"),
-				new e.text(
-					"Fancy larger or smaller pagination? Add {{weight:'lg'}} or {{weight:'sm'}} for additional sizes."
-				),
+				new e.text("Fancy larger or smaller pagination? Add {{weight:'lg'}} or {{weight:'sm'}} for additional sizes."),
 				new e.code({
 					output: () => {
-						return new b.pagination.container({ label: "...", weight: "lg" }, [
-							new b.pagination.item({ active: true }, "1"),
-							new b.pagination.item({ href: "#" }, "2"),
-							new b.pagination.item({ href: "#" }, "3"),
-						]);
+						return new b.pagination.container({ label: "...", weight: "lg" }, [new b.pagination.item({ active: true }, "1"), new b.pagination.item({ href: "#" }, "2"), new b.pagination.item({ href: "#" }, "3")]);
 					},
 				}),
 				new e.code({
 					output: () => {
-						return new b.pagination.container({ label: "...", weight: "sm" }, [
-							new b.pagination.item({ active: true }, "1"),
-							new b.pagination.item({ href: "#" }, "2"),
-							new b.pagination.item({ href: "#" }, "3"),
-						]);
+						return new b.pagination.container({ label: "...", weight: "sm" }, [new b.pagination.item({ active: true }, "1"), new b.pagination.item({ href: "#" }, "2"), new b.pagination.item({ href: "#" }, "3")]);
 					},
 				}),
 			]),
@@ -123,21 +98,16 @@ export const pagination: IAttrContent = {
 
 			new e.section([
 				new e.title("Alignment"),
-				new e.text(
-					"Change the alignment of pagination components with {{nav:docs/utilities/flex::flexbox utilities}}. For example, with {{justifyContent:'center'}}:"
-				),
+				new e.text("Change the alignment of pagination components with {{nav:docs/utilities/flex::flexbox utilities}}. For example, with {{justifyContent:'center'}}:"),
 				new e.code({
 					output: () => {
-						return new b.pagination.container(
-							{ label: "Page navigation example", justifyContent: "center" },
-							[
-								new b.pagination.item({ disabled: true }, "Previous"),
-								new b.pagination.item({ href: "#" }, "1"),
-								new b.pagination.item({ href: "#" }, "2"),
-								new b.pagination.item({ href: "#" }, "3"),
-								new b.pagination.item({ href: "#" }, "Next"),
-							]
-						);
+						return new b.pagination.container({ label: "Page navigation example", justifyContent: "center" }, [
+							new b.pagination.item({ disabled: true }, "Previous"),
+							new b.pagination.item({ href: "#" }, "1"),
+							new b.pagination.item({ href: "#" }, "2"),
+							new b.pagination.item({ href: "#" }, "3"),
+							new b.pagination.item({ href: "#" }, "Next"),
+						]);
 					},
 				}),
 				new e.text("Or with {{justifyContent:'end'}}:"),
@@ -162,9 +132,7 @@ export const pagination: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text(
-					"As part of Bootstrap’s evolving CSS variables approach, pagination now use local CSS variables on {{.pagination}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-				),
+				new e.text("As part of Bootstrap’s evolving CSS variables approach, pagination now use local CSS variables on {{.pagination}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
 
 				new e.codepreview({
 					type: "css",
@@ -282,12 +250,7 @@ export const pagination: IAttrContent = {
 							maxBtnCount: 5,
 							on: {
 								"change.bs.pagination": (event) => {
-									e.console(
-										event.target as Element,
-										"change.bs.pagination",
-										(event as CustomEvent).detail,
-										"success"
-									);
+									e.console(event.target as Element, "change.bs.pagination", (event as CustomEvent).detail, "success");
 								},
 							},
 						});

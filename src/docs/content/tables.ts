@@ -1,68 +1,27 @@
 import { core, I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
 const TABLEITEM = () => {
 	return [
-		new b.table.thead(
-			new b.table.tr([
-				new b.table.th({ scope: "col" }, "#"),
-				new b.table.th({ scope: "col" }, "First"),
-				new b.table.th({ scope: "col" }, "Last"),
-				new b.table.th({ scope: "col" }, "Handle"),
-			])
-		),
+		new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
 		new b.table.tbody([
-			new b.table.tr([
-				new b.table.th({ scope: "row" }, "1"),
-				new b.table.td("Mark"),
-				new b.table.td("Otto"),
-				new b.table.td("@mdo"),
-			]),
-			new b.table.tr([
-				new b.table.th({ scope: "row" }, "2"),
-				new b.table.td("Jacob"),
-				new b.table.td("Thornton"),
-				new b.table.td("@fat"),
-			]),
-			new b.table.tr([
-				new b.table.th({ scope: "row" }, "3"),
-				new b.table.td({ colspan: 2 }, "Larry the Bird"),
-				new b.table.td("@twitter"),
-			]),
+			new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+			new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+			new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
 		]),
 	];
 };
 
 const TABLEHEAD = () => {
-	return new b.table.tr([
-		new b.table.th({ scope: "col" }, "#"),
-		new b.table.th({ scope: "col" }, "First"),
-		new b.table.th({ scope: "col" }, "Last"),
-		new b.table.th({ scope: "col" }, "Handle"),
-	]);
+	return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
 };
 
 const TABLEBODY = () => {
 	return [
-		new b.table.tr([
-			new b.table.th({ scope: "row" }, "1"),
-			new b.table.td("Mark"),
-			new b.table.td("Otto"),
-			new b.table.td("@mdo"),
-		]),
-		new b.table.tr([
-			new b.table.th({ scope: "row" }, "2"),
-			new b.table.td("Jacob"),
-			new b.table.td("Thornton"),
-			new b.table.td("@fat"),
-		]),
-		new b.table.tr([
-			new b.table.th({ scope: "row" }, "3"),
-			new b.table.td("Larry"),
-			new b.table.td("the Bird"),
-			new b.table.td("@twitter"),
-		]),
+		new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+		new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+		new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
 	];
 };
 
@@ -83,21 +42,16 @@ const TABLEBIG = (row: number, col: number) => {
 						new b.table.tr(
 							Array(col)
 								.fill("")
-								.map((_j, jx) =>
-									jx === 0
-										? new b.table.th({ scope: "row" }, (ix + 1).toString())
-										: new b.table.td(`Cell#${jx + 1}`)
-								)
+								.map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(`Cell#${jx + 1}`)))
 						)
 				)
 		),
 	];
 };
 
-export const tables: IAttrContent = {
+export const tables: IContent = {
 	title: "Tables",
-	description:
-		"Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.",
+	description: "Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.",
 	item: () => {
 		return [
 			new e.section([
@@ -110,32 +64,11 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
-							new b.table.thead(
-								new b.table.tr([
-									new b.table.th({ scope: "col" }, "#"),
-									new b.table.th({ scope: "col" }, "First"),
-									new b.table.th({ scope: "col" }, "Last"),
-									new b.table.th({ scope: "col" }, "Handle"),
-								])
-							),
+							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
 							new b.table.tbody([
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "1"),
-									new b.table.td("Mark"),
-									new b.table.td("Otto"),
-									new b.table.td("@mdo"),
-								]),
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "2"),
-									new b.table.td("Jacob"),
-									new b.table.td("Thornton"),
-									new b.table.td("@fat"),
-								]),
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "3"),
-									new b.table.td({ colspan: 2 }, "Larry the Bird"),
-									new b.table.td("@twitter"),
-								]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
 							]),
 						]);
 					},
@@ -147,39 +80,15 @@ export const tables: IAttrContent = {
 			new e.section([
 				new e.title("Variants"),
 				new e.text("Use contextual classes to color tables, table rows or individual cells."),
-				new e.alert(
-					{ color: "info", callout: true },
-					"{{b::Heads up! }}Because of the more complicated CSS used to generate Bootstrap table variants, they most likely won’t see color mode adaptive styling until v6."
-				),
+				new e.alert({ color: "info", callout: true }, "{{b::Heads up! }}Because of the more complicated CSS used to generate Bootstrap table variants, they most likely won’t see color mode adaptive styling until v6."),
 				new e.code({
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
-							new b.table.thead(
-								new b.table.tr([
-									new b.table.th({ scope: "col" }, "Class"),
-									new b.table.th({ scope: "col" }, "Heading"),
-									new b.table.th({ scope: "col" }, "Heading"),
-								])
-							),
+							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Class"), new b.table.th({ scope: "col" }, "Heading"), new b.table.th({ scope: "col" }, "Heading")])),
 							new b.table.tbody(
-								[
-									undefined,
-									"primary",
-									"secondary",
-									"success",
-									"danger",
-									"warning",
-									"info",
-									"light",
-									"dark",
-								].map(
-									(i) =>
-										new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [
-											new b.table.th({ scope: "row" }, i ? core.uppercaseFirst(i) : "Default"),
-											new b.table.td("Cell"),
-											new b.table.td("Cell"),
-										])
+								[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
+									(i) => new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [new b.table.th({ scope: "row" }, i ? core.uppercaseFirst(i) : "Default"), new b.table.td("Cell"), new b.table.td("Cell")])
 								)
 							),
 						]);
@@ -190,25 +99,9 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container({ color: "primary" }, [
-							new b.table.thead(
-								new b.table.tr([
-									new b.table.th({ scope: "col" }, "Class"),
-									new b.table.th({ scope: "col" }, "Heading"),
-									new b.table.th({ scope: "col" }, "Heading"),
-								])
-							),
+							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Class"), new b.table.th({ scope: "col" }, "Heading"), new b.table.th({ scope: "col" }, "Heading")])),
 							new b.table.tbody(
-								[
-									undefined,
-									"primary",
-									"secondary",
-									"success",
-									"danger",
-									"warning",
-									"info",
-									"light",
-									"dark",
-								].map(
+								[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
 									(i) =>
 										new b.table.tr([
 											new b.table.th(
@@ -331,32 +224,11 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
-							new b.table.thead(
-								new b.table.tr([
-									new b.table.th({ scope: "col" }, "#"),
-									new b.table.th({ scope: "col" }, "First"),
-									new b.table.th({ scope: "col" }, "Last"),
-									new b.table.th({ scope: "col" }, "Handle"),
-								])
-							),
+							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
 							new b.table.tbody([
-								new b.table.tr({ active: true }, [
-									new b.table.th({ scope: "row" }, "1"),
-									new b.table.td("Mark"),
-									new b.table.td("Otto"),
-									new b.table.td("@mdo"),
-								]),
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "2"),
-									new b.table.td("Jacob"),
-									new b.table.td("Thornton"),
-									new b.table.td("@fat"),
-								]),
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "3"),
-									new b.table.td({ colspan: 2, active: true }, "Larry the Bird"),
-									new b.table.td("@twitter"),
-								]),
+								new b.table.tr({ active: true }, [new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2, active: true }, "Larry the Bird"), new b.table.td("@twitter")]),
 							]),
 						]);
 					},
@@ -427,9 +299,7 @@ export const tables: IAttrContent = {
 						return new b.table.container({ bordered: true }, TABLEITEM());
 					},
 				}),
-				new e.text(
-					"{{nav:docs/utilities/borders#border_color::Border color utilities}} can be added to change colors:"
-				),
+				new e.text("{{nav:docs/utilities/borders#border_color::Border color utilities}} can be added to change colors:"),
 				new e.code({
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
@@ -464,9 +334,7 @@ export const tables: IAttrContent = {
 
 			new e.section([
 				new e.title("Small tables"),
-				new e.text(
-					"Add {{.table-sm}} to make any {{.table}} more compact by cutting all cell {{padding}} in half."
-				),
+				new e.text("Add {{.table-sm}} to make any {{.table}} more compact by cutting all cell {{padding}} in half."),
 				new e.code({
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
@@ -487,39 +355,16 @@ export const tables: IAttrContent = {
 
 			new e.section([
 				new e.title("Table group dividers"),
-				new e.text(
-					"Add a thicker border, darker between table groups—{{<thead>}}, {{<tbody>}}, and {{<tfoot>}}—with {{.table-group-divider}}. Customize the color by changing the {{border-top-color}} (which Bootstrap don’t currently provide a utility class for at this time)."
-				),
+				new e.text("Add a thicker border, darker between table groups—{{<thead>}}, {{<tbody>}}, and {{<tfoot>}}—with {{.table-group-divider}}. Customize the color by changing the {{border-top-color}} (which Bootstrap don’t currently provide a utility class for at this time)."),
 				new e.code({
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
-							new b.table.thead(
-								new b.table.tr([
-									new b.table.th({ scope: "col" }, "#"),
-									new b.table.th({ scope: "col" }, "First"),
-									new b.table.th({ scope: "col" }, "Last"),
-									new b.table.th({ scope: "col" }, "Handle"),
-								])
-							),
+							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
 							new b.table.tbody({ divider: true }, [
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "1"),
-									new b.table.td("Mark"),
-									new b.table.td("Otto"),
-									new b.table.td("@mdo"),
-								]),
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "2"),
-									new b.table.td("Jacob"),
-									new b.table.td("Thornton"),
-									new b.table.td("@fat"),
-								]),
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "3"),
-									new b.table.td({ colspan: 2 }, "Larry the Bird"),
-									new b.table.td("@twitter"),
-								]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
 							]),
 						]);
 					},
@@ -537,44 +382,25 @@ export const tables: IAttrContent = {
 					output: () => {
 						return new b.table.responsive(
 							new b.table.container({ verticalAlign: "middle" }, [
-								new b.table.thead(
-									new b.table.tr([
-										new b.table.th({ scope: "col", width: 25 }, "Heading 1"),
-										new b.table.th({ scope: "col", width: 25 }, "Heading 2"),
-										new b.table.th({ scope: "col", width: 25 }, "Heading 3"),
-										new b.table.th({ scope: "col", width: 25 }, "Heading 4"),
-									])
-								),
+								new b.table.thead(new b.table.tr([new b.table.th({ scope: "col", width: 25 }, "Heading 1"), new b.table.th({ scope: "col", width: 25 }, "Heading 2"), new b.table.th({ scope: "col", width: 25 }, "Heading 3"), new b.table.th({ scope: "col", width: 25 }, "Heading 4")])),
 								new b.table.tbody([
 									new b.table.tr([
 										new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
 										new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
 										new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
-										new b.table.td(
-											"This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."
-										),
+										new b.table.td("This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."),
 									]),
 									new b.table.tr({ verticalAlign: "bottom" }, [
-										new b.table.td(
-											"This cell inherits {{vertical-align: bottom;}} from the table row"
-										),
-										new b.table.td(
-											"This cell inherits {{vertical-align: bottom;}} from the table row"
-										),
-										new b.table.td(
-											"This cell inherits {{vertical-align: bottom;}} from the table row"
-										),
-										new b.table.td(
-											"This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."
-										),
+										new b.table.td("This cell inherits {{vertical-align: bottom;}} from the table row"),
+										new b.table.td("This cell inherits {{vertical-align: bottom;}} from the table row"),
+										new b.table.td("This cell inherits {{vertical-align: bottom;}} from the table row"),
+										new b.table.td("This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."),
 									]),
 									new b.table.tr([
 										new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
 										new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
 										new b.table.td({ verticalAlign: "top" }, "This cell is aligned to the top."),
-										new b.table.td(
-											"This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."
-										),
+										new b.table.td("This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."),
 									]),
 								]),
 							])
@@ -592,51 +418,19 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container({ striped: "row", bordered: true }, [
-							new b.table.thead(
-								new b.table.tr([
-									new b.table.th({ scope: "col" }, "#"),
-									new b.table.th({ scope: "col" }, "First"),
-									new b.table.th({ scope: "col" }, "Last"),
-									new b.table.th({ scope: "col" }, "Handle"),
-								])
-							),
+							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
 							new b.table.tbody([
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "1"),
-									new b.table.td("Mark"),
-									new b.table.td("Otto"),
-									new b.table.td("@mdo"),
-								]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
 								new b.table.tr(
 									new b.table.td(
 										{ colspan: 4 },
 										new b.table.container({ marginBottom: 0 }, [
-											new b.table.thead(
-												new b.table.tr([
-													new b.table.th({ scope: "col" }, "Header"),
-													new b.table.th({ scope: "col" }, "Header"),
-													new b.table.th({ scope: "col" }, "Header"),
-												])
-											),
-											new b.table.tbody(
-												["A", "B", "C"].map(
-													(i) =>
-														new b.table.tr([
-															new b.table.th({ scope: "row" }, i),
-															new b.table.td("First"),
-															new b.table.td("Last"),
-														])
-												)
-											),
+											new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Header"), new b.table.th({ scope: "col" }, "Header"), new b.table.th({ scope: "col" }, "Header")])),
+											new b.table.tbody(["A", "B", "C"].map((i) => new b.table.tr([new b.table.th({ scope: "row" }, i), new b.table.td("First"), new b.table.td("Last")]))),
 										])
 									)
 								),
-								new b.table.tr([
-									new b.table.th({ scope: "row" }, "3"),
-									new b.table.td("Larry"),
-									new b.table.td("the Bird"),
-									new b.table.td("@twitter"),
-								]),
+								new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
 							]),
 						]);
 					},
@@ -650,9 +444,7 @@ export const tables: IAttrContent = {
 				new e.text(
 					"To prevent any styles from leaking to nested tables, Bootstrap use the child combinator ({{>}}) selector in Bootstrap CSS. Since Bootstrap need to target all the {{td}}s and {{th}}s in the {{thead}}, {{tbody}}, and {{tfoot}}, Bootstrap selector would look pretty long without it. As such, Bootstrap use the rather odd looking {{.table > :not(caption) > * > *}} selector to target all {{td}}s and {{th}}s of the {{.table}}, but none of any potential nested tables."
 				),
-				new e.text(
-					"Note that if you add {{<tr>}}s as direct children of a table, those {{<tr>}} will be wrapped in a {{<tbody>}} by default, thus making Bootstrap selectors work as intended."
-				),
+				new e.text("Note that if you add {{<tr>}}s as direct children of a table, those {{<tr>}} will be wrapped in a {{<tbody>}} by default, thus making Bootstrap selectors work as intended."),
 			]),
 
 			//----------------------
@@ -663,9 +455,7 @@ export const tables: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Table head"),
-				new e.text(
-					"Similar to tables and dark tables, use the modifier classes {{.table-light}} or {{.table-dark}} to make {{<thead>}}s appear light or dark gray."
-				),
+				new e.text("Similar to tables and dark tables, use the modifier classes {{.table-light}} or {{.table-dark}} to make {{<thead>}}s appear light or dark gray."),
 				new e.code({
 					outputAttr: { overflow: "auto" },
 					extention: [
@@ -673,10 +463,7 @@ export const tables: IAttrContent = {
 						{ name: "TABLEBODY", output: TABLEBODY },
 					],
 					output: () => {
-						return new b.table.container([
-							new b.table.thead({ color: "light" }, TABLEHEAD()),
-							new b.table.tbody(TABLEBODY()),
-						]);
+						return new b.table.container([new b.table.thead({ color: "light" }, TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
 					},
 				}),
 				new e.code({
@@ -686,10 +473,7 @@ export const tables: IAttrContent = {
 						{ name: "TABLEBODY", output: TABLEBODY },
 					],
 					output: () => {
-						return new b.table.container([
-							new b.table.thead({ color: "dark" }, TABLEHEAD()),
-							new b.table.tbody(TABLEBODY()),
-						]);
+						return new b.table.container([new b.table.thead({ color: "dark" }, TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
 					},
 				}),
 			]),
@@ -705,18 +489,7 @@ export const tables: IAttrContent = {
 						{ name: "TABLEBODY", output: TABLEBODY },
 					],
 					output: () => {
-						return new b.table.container([
-							new b.table.thead({ color: "light" }, TABLEHEAD()),
-							new b.table.tbody(TABLEBODY()),
-							new b.table.tfoot(
-								new b.table.tr([
-									new b.table.td("Footer"),
-									new b.table.td("Footer"),
-									new b.table.td("Footer"),
-									new b.table.td("Footer"),
-								])
-							),
-						]);
+						return new b.table.container([new b.table.thead({ color: "light" }, TABLEHEAD()), new b.table.tbody(TABLEBODY()), new b.table.tfoot(new b.table.tr([new b.table.td("Footer"), new b.table.td("Footer"), new b.table.td("Footer"), new b.table.td("Footer")]))]);
 					},
 				}),
 			]),
@@ -725,9 +498,7 @@ export const tables: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Captions"),
-				new e.text(
-					"A {{<caption>}} functions like a heading for a table. It helps users with screen readers to find a table and understand what it’s about and decide if they want to read it."
-				),
+				new e.text("A {{<caption>}} functions like a heading for a table. It helps users with screen readers to find a table and understand what it’s about and decide if they want to read it."),
 				new e.code({
 					outputAttr: { overflow: "auto" },
 					extention: [
@@ -735,11 +506,7 @@ export const tables: IAttrContent = {
 						{ name: "TABLEBODY", output: TABLEBODY },
 					],
 					output: () => {
-						return new b.table.container({ small: true }, [
-							new h.caption("List of user"),
-							new b.table.thead(TABLEHEAD()),
-							new b.table.tbody(TABLEBODY()),
-						]);
+						return new b.table.container({ small: true }, [new h.caption("List of user"), new b.table.thead(TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
 					},
 				}),
 				new e.text("You can also put the {{<caption>}} on the top of the table with {{.caption-top}}."),
@@ -750,11 +517,7 @@ export const tables: IAttrContent = {
 						{ name: "TABLEBODY", output: TABLEBODY },
 					],
 					output: () => {
-						return new b.table.container({ small: true, captionLocation: "top" }, [
-							new h.caption("List of user"),
-							new b.table.thead(TABLEHEAD()),
-							new b.table.tbody(TABLEBODY()),
-						]);
+						return new b.table.container({ small: true, captionLocation: "top" }, [new h.caption("List of user"), new b.table.thead(TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
 					},
 				}),
 			]),
@@ -792,24 +555,15 @@ export const tables: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Breakpoint specific"),
-				new e.text(
-					"Use {{.table-responsive{-sm|-md|-lg|-xl|-xxl} }}as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally."
-				),
-				new e.text(
-					"{{b::These tables may appear broken until their responsive styles apply at specific viewport widths.}}"
-				),
+				new e.text("Use {{.table-responsive{-sm|-md|-lg|-xl|-xxl} }}as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally."),
+				new e.text("{{b::These tables may appear broken until their responsive styles apply at specific viewport widths.}}"),
 
 				new e.code({
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
-						return new b.table.responsive(
-							new b.table.container({ captionLocation: "top" }, [
-								new h.caption(".table-responsive"),
-								...TABLEBIG(3, 12),
-							])
-						);
+						return new b.table.responsive(new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive"), ...TABLEBIG(3, 12)]));
 					},
 				}),
 
@@ -818,13 +572,7 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
-						return new b.table.responsive(
-							{ responsive: "sm" },
-							new b.table.container({ captionLocation: "top" }, [
-								new h.caption(".table-responsive-sm"),
-								...TABLEBIG(3, 12),
-							])
-						);
+						return new b.table.responsive({ responsive: "sm" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-sm"), ...TABLEBIG(3, 12)]));
 					},
 				}),
 
@@ -833,13 +581,7 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
-						return new b.table.responsive(
-							{ responsive: "md" },
-							new b.table.container({ captionLocation: "top" }, [
-								new h.caption(".table-responsive-md"),
-								...TABLEBIG(3, 12),
-							])
-						);
+						return new b.table.responsive({ responsive: "md" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-md"), ...TABLEBIG(3, 12)]));
 					},
 				}),
 
@@ -848,13 +590,7 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
-						return new b.table.responsive(
-							{ responsive: "lg" },
-							new b.table.container({ captionLocation: "top" }, [
-								new h.caption(".table-responsive-lg"),
-								...TABLEBIG(3, 12),
-							])
-						);
+						return new b.table.responsive({ responsive: "lg" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-lg"), ...TABLEBIG(3, 12)]));
 					},
 				}),
 
@@ -862,13 +598,7 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
-						return new b.table.responsive(
-							{ responsive: "xl" },
-							new b.table.container({ captionLocation: "top" }, [
-								new h.caption(".table-responsive-xxl"),
-								...TABLEBIG(3, 12),
-							])
-						);
+						return new b.table.responsive({ responsive: "xl" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-xxl"), ...TABLEBIG(3, 12)]));
 					},
 				}),
 
@@ -877,13 +607,7 @@ export const tables: IAttrContent = {
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
-						return new b.table.responsive(
-							{ responsive: "xxl" },
-							new b.table.container({ captionLocation: "top" }, [
-								new h.caption(".table-responsive-xxl"),
-								...TABLEBIG(3, 12),
-							])
-						);
+						return new b.table.responsive({ responsive: "xxl" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-xxl"), ...TABLEBIG(3, 12)]));
 					},
 				}),
 			]),

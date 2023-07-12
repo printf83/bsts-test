@@ -1,11 +1,10 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const containers: IAttrContent = {
+export const containers: IContent = {
 	title: "Containers",
-	description:
-		"Containers are a fundamental building block of Bootstrap that contain, pad, and align your content within a given device or viewport.",
+	description: "Containers are a fundamental building block of Bootstrap that contain, pad, and align your content within a given device or viewport.",
 	item: () => {
 		return [
 			new e.section([
@@ -15,28 +14,12 @@ export const containers: IAttrContent = {
 				),
 				new e.text("Bootstrap comes with three different containers:"),
 				new e.ul({
-					item: [
-						"{{.container}}, which sets a {{max-width}} at each responsive breakpoint",
-						"{{.container-{breakpoint} }}, which is {{width: 100%}} until the specified breakpoint",
-						"{{.container-fluid}}, which is {{width: 100%}} at all breakpoints",
-					],
+					item: ["{{.container}}, which sets a {{max-width}} at each responsive breakpoint", "{{.container-{breakpoint} }}, which is {{width: 100%}} until the specified breakpoint", "{{.container-fluid}}, which is {{width: 100%}} at all breakpoints"],
 				}),
-				new e.text(
-					"The table below illustrates how each container’s {{max-width}} compares to the original {{.container}} and {{.container-fluid}} across each breakpoint."
-				),
-				new e.text(
-					"See them in action and compare them in Bootstrap {{https://getbootstrap.com/docs/5.3/examples/grid/#containers::Grid example}}."
-				),
+				new e.text("The table below illustrates how each container’s {{max-width}} compares to the original {{.container}} and {{.container-fluid}} across each breakpoint."),
+				new e.text("See them in action and compare them in Bootstrap {{https://getbootstrap.com/docs/5.3/examples/grid/#containers::Grid example}}."),
 				new e.table({
-					responsiveHeader: [
-						"Property",
-						"Extra small (576px)",
-						"Small (≥576px)",
-						"Medium (≥768px)",
-						"Large (≥992px)",
-						"X-Large (≥1200px)",
-						"XX-Large (≥1400px)",
-					],
+					responsiveHeader: ["Property", "Extra small (576px)", "Small (≥576px)", "Medium (≥768px)", "Large (≥992px)", "X-Large (≥1200px)", "XX-Large (≥1400px)"],
 					responsiveCol: "20ch auto",
 					item: [
 						[
@@ -63,9 +46,7 @@ export const containers: IAttrContent = {
 
 			new e.section([
 				new e.title("Default container"),
-				new e.text(
-					"Bootstrap default {{.container}} class is a responsive, fixed-width container, meaning its {{max-width}} changes at each breakpoint."
-				),
+				new e.text("Bootstrap default {{.container}} class is a responsive, fixed-width container, meaning its {{max-width}} changes at each breakpoint."),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({ container: true }, "Content here")`,
@@ -95,9 +76,7 @@ export const containers: IAttrContent = {
 
 			new e.section([
 				new e.title("Fluid containers"),
-				new e.text(
-					"Use {{.container-fluid}} for a full width container, spanning the entire width of the viewport."
-				),
+				new e.text("Use {{.container-fluid}} for a full width container, spanning the entire width of the viewport."),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({container:"fluid"},"Content here");`,
@@ -108,9 +87,7 @@ export const containers: IAttrContent = {
 
 			new e.section([
 				new e.title("Sass"),
-				new e.text(
-					"As shown above, Bootstrap generates a series of predefined container classes to help you build the layouts you desire. You may customize these predefined container classes by modifying the Sass map (found in {{_variables.scss}}) that powers them:"
-				),
+				new e.text("As shown above, Bootstrap generates a series of predefined container classes to help you build the layouts you desire. You may customize these predefined container classes by modifying the Sass map (found in {{_variables.scss}}) that powers them:"),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -125,9 +102,7 @@ export const containers: IAttrContent = {
 						);
 					`,
 				}),
-				new e.text(
-					"In addition to customizing the Sass, you can also create your own containers with Bootstrap Sass mixin."
-				),
+				new e.text("In addition to customizing the Sass, you can also create your own containers with Bootstrap Sass mixin."),
 				new e.codepreview({
 					type: "css",
 					code: `
@@ -146,9 +121,7 @@ export const containers: IAttrContent = {
 						}
 					`,
 				}),
-				new e.text(
-					"For more information and examples on how to modify Bootstrap Sass maps and variables, please refer to {{nav:docs/layout/grid#sass::the Sass section of the Grid documentation}}."
-				),
+				new e.text("For more information and examples on how to modify Bootstrap Sass maps and variables, please refer to {{nav:docs/layout/grid#sass::the Sass section of the Grid documentation}}."),
 			]),
 		];
 	},

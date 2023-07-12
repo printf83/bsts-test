@@ -1,11 +1,10 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const overview: IAttrContent = {
+export const overview: IContent = {
 	title: "Forms",
-	description:
-		"Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.",
+	description: "Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.",
 	item: () => {
 		return [
 			new e.section([
@@ -26,8 +25,7 @@ export const overview: IAttrContent = {
 							{
 								data: "docs/forms/check_radio",
 								title: "Checks & radios",
-								content:
-									"Use Bootstrap custom radio buttons and checkboxes in forms for selecting input options.",
+								content: "Use Bootstrap custom radio buttons and checkboxes in forms for selecting input options.",
 							},
 							{
 								data: "docs/forms/range",
@@ -63,16 +61,11 @@ export const overview: IAttrContent = {
 										textDecoration: "none",
 										on: {
 											click: () => {
-												document.dispatchEvent(
-													new CustomEvent("bs.navigate", { detail: i.data })
-												);
+												document.dispatchEvent(new CustomEvent("bs.navigate", { detail: i.data }));
 											},
 										},
 									},
-									[
-										new h.strong({ display: "block", marginBottom: 0, h: 5 }, i.title),
-										new h.span({ textColor: "secondary" }, i.content),
-									]
+									[new h.strong({ display: "block", marginBottom: 0, h: 5 }, i.title), new h.span({ textColor: "secondary" }, i.content)]
 								)
 							);
 						})
@@ -84,34 +77,19 @@ export const overview: IAttrContent = {
 
 			new e.section([
 				new e.title("Overview"),
-				new e.text(
-					"Bootstrap’s form controls expand on {{nav:docs/content/reboot#forms::Bootstrap Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."
-				),
-				new e.text(
-					"Be sure to use an appropriate {{type}} attribute on all inputs (e.g., {{email}} for email address or {{number}} for numerical information) to take advantage of newer input controls like email verification, number selection, and more."
-				),
-				new e.text(
-					"Here’s a quick example to demonstrate Bootstrap’s form styles. Keep reading for documentation on required classes, form layout, and more."
-				),
+				new e.text("Bootstrap’s form controls expand on {{nav:docs/content/reboot#forms::Bootstrap Rebooted form styles}} with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices."),
+				new e.text("Be sure to use an appropriate {{type}} attribute on all inputs (e.g., {{email}} for email address or {{number}} for numerical information) to take advantage of newer input controls like email verification, number selection, and more."),
+				new e.text("Here’s a quick example to demonstrate Bootstrap’s form styles. Keep reading for documentation on required classes, form layout, and more."),
 				new e.code({
 					output: () => {
 						return new h.form([
 							new h.div({ marginBottom: 3 }, [
 								new b.label({ for: "exampleInputEmail1", class: "form-label" }, "Email address"),
 								new b.input({ type: "email", id: "exampleInputEmail1", describedby: "emailHelp" }),
-								new h.div(
-									{ id: "emailHelp", class: "form-text" },
-									"Bootstrap'll never share your email with anyone else."
-								),
+								new h.div({ id: "emailHelp", class: "form-text" }, "Bootstrap'll never share your email with anyone else."),
 							]),
-							new h.div({ marginBottom: 3 }, [
-								new b.label({ for: "exampleInputPassword1", class: "form-label" }, "Password"),
-								new b.input({ type: "password", id: "exampleInputPassword1" }),
-							]),
-							new h.div({ marginBottom: 3, class: "form-check" }, [
-								new b.input({ type: "checkbox", id: "exampleCheck1" }),
-								new b.label({ for: "exampleCheck1", class: "form-check-label" }, "Check me out"),
-							]),
+							new h.div({ marginBottom: 3 }, [new b.label({ for: "exampleInputPassword1", class: "form-label" }, "Password"), new b.input({ type: "password", id: "exampleInputPassword1" })]),
+							new h.div({ marginBottom: 3, class: "form-check" }, [new b.input({ type: "checkbox", id: "exampleCheck1" }), new b.label({ for: "exampleCheck1", class: "form-check-label" }, "Check me out")]),
 							new b.button({ type: "submit" }, "Submit"),
 						]);
 					},
@@ -122,9 +100,7 @@ export const overview: IAttrContent = {
 
 			new e.section([
 				new e.title("Function {{B.Form}}"),
-				new e.text(
-					"{{bsts}} create {{B.Form}} function to help you create same output as above. This function automaticly create {{id}} for related component. You still can give an {{id}} and {{B.Form}} will use it to related component."
-				),
+				new e.text("{{bsts}} create {{B.Form}} function to help you create same output as above. This function automaticly create {{id}} for related component. You still can give an {{id}} and {{B.Form}} will use it to related component."),
 				new e.text("Using {{b.form.input}} with {{id}}"),
 				new e.code({
 					output: () => {
@@ -202,9 +178,7 @@ export const overview: IAttrContent = {
 
 			new e.section([
 				new e.title("Disabled forms"),
-				new e.text(
-					"Add the {{disabled:true}} property on an {{b.input}} to prevent user interactions and make it appear lighter."
-				),
+				new e.text("Add the {{disabled:true}} property on an {{b.input}} to prevent user interactions and make it appear lighter."),
 				new e.code({
 					output: () => {
 						return new b.input({
@@ -257,16 +231,9 @@ export const overview: IAttrContent = {
 				new e.text(
 					"Ensure that all form controls have an appropriate accessible name so that their purpose can be conveyed to users of assistive technologies. The simplest way to achieve this is to use a {{label}} property on {{B.Form}}, or—in the case of buttons—to include sufficiently descriptive text as part of the {{b.button}} content."
 				),
-				new e.text(
-					"For situations where it’s not possible to include a visible {{h.label}} or {{b.label}} or appropriate text content, there are alternative ways of still providing an accessible name, such as:"
-				),
+				new e.text("For situations where it’s not possible to include a visible {{h.label}} or {{b.label}} or appropriate text content, there are alternative ways of still providing an accessible name, such as:"),
 				new e.ul({
-					item: [
-						"{{h.label}} component hidden using the {{visually:'hidden'}} property",
-						"Pointing to an existing component that can act as a label using {{labelledby}}",
-						"Providing a {{title}} attribute",
-						"Explicitly setting the accessible name on an element using {{label}}",
-					],
+					item: ["{{h.label}} component hidden using the {{visually:'hidden'}} property", "Pointing to an existing component that can act as a label using {{labelledby}}", "Providing a {{title}} attribute", "Explicitly setting the accessible name on an element using {{label}}"],
 				}),
 				new e.text(
 					"If none of these are present, assistive technologies may resort to using the {{placeholder}} attribute as a fallback for the accessible name on {{h.input}} or {{b.input}} and {{h.textarea}} or {{b.textarea}} component. The examples in this section provide a few suggested, case-specific approaches."
@@ -278,20 +245,13 @@ export const overview: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
-				new e.title("CSS"),
-				new e.text(
-					"Many form variables are set at a general level to be re-used and extended by individual form components. You’ll see these most often as {{$input-btn-*}} and {{$input-*}} variables."
-				),
-			]),
+			new e.section([new e.title("CSS"), new e.text("Many form variables are set at a general level to be re-used and extended by individual form components. You’ll see these most often as {{$input-btn-*}} and {{$input-*}} variables.")]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text(
-					"{{$input-btn-*}} variables are shared global variables between Bootstrap {{nav:docs/components/button::buttons}} and Bootstrap form components. You’ll find these frequently reassigned as values to other component-specific variables."
-				),
+				new e.text("{{$input-btn-*}} variables are shared global variables between Bootstrap {{nav:docs/components/button::buttons}} and Bootstrap form components. You’ll find these frequently reassigned as values to other component-specific variables."),
 
 				new e.codepreview({
 					type: "css",

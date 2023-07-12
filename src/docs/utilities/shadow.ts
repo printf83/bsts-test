@@ -1,8 +1,8 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const shadow: IAttrContent = {
+export const shadow: IContent = {
 	title: "Shadows",
 	description: "Add or remove shadows to elements with box-shadow utilities.",
 	item: () => {
@@ -25,18 +25,9 @@ export const shadow: IAttrContent = {
 								},
 								"No shadow"
 							),
-							new h.div(
-								{ shadow: "sm", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true },
-								"Small shadow"
-							),
-							new h.div(
-								{ shadow: true, padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true },
-								"Regular shadow"
-							),
-							new h.div(
-								{ shadow: "lg", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true },
-								"Large shadow"
-							),
+							new h.div({ shadow: "sm", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Small shadow"),
+							new h.div({ shadow: true, padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Regular shadow"),
+							new h.div({ shadow: "lg", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Large shadow"),
 						];
 					},
 				}),
@@ -67,9 +58,7 @@ export const shadow: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text(
-					"Shadow utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
-				),
+				new e.text("Shadow utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

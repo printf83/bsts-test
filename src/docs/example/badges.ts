@@ -1,8 +1,8 @@
 import { I, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const badges: IAttrContent = {
+export const badges: IContent = {
 	title: "Badges",
 	description: "Make badges work with custom inner HTML and new looks.",
 	item: () => {
