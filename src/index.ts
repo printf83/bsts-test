@@ -24,10 +24,10 @@ const loadDefaultDoc = () => {
 			anchorId = tempValue[1];
 		}
 
-		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, true);
+		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 		highlightMenu(docId);
 	} else {
-		setupContentDocument(cookie.get("current_page") || "docs/gettingstarted/introduction", true);
+		setupContentDocument(cookie.get("current_page") || "docs/gettingstarted/introduction");
 		highlightMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
 	}
 };

@@ -130,7 +130,7 @@ export const setupContentContainerItem = (content?: IContent) => {
 	return [setupIntro(content), setupTOC(content), setupContent(content)];
 };
 
-const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
+const focusToAnchor = (anchorId?: string) => {
 	if (anchorId) {
 		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
 		if (anchorNode) {
@@ -140,9 +140,7 @@ const focusToAnchor = (anchorId?: string, isfirsttime?: boolean) => {
 			window.scrollTo(0, offsetElemPosition);
 		}
 	} else {
-		if (!isfirsttime) {
-			window.scrollTo(0, 0);
-		}
+		window.scrollTo(0, 0);
 	}
 };
 
@@ -217,8 +215,7 @@ declare var PR: {
 	prettyPrint: () => void;
 };
 
-export const setupContentDocument = (value: string, isfirsttime?: boolean, state?: "push" | "replace", callback?: Function) => {
-	isfirsttime ??= false;
+export const setupContentDocument = (value: string, state?: "push" | "replace", callback?: Function) => {
 	state ??= "push";
 
 	let docId: string = value;
@@ -254,12 +251,12 @@ export const setupContentDocument = (value: string, isfirsttime?: boolean, state
 
 			//set history
 			if (state === "push") {
-				pushState({ docId: docId, anchorId: anchorId, isfirsttime: isfirsttime, pagetitle: strPagetitle, value: value });
+				pushState({ docId: docId, anchorId: anchorId, pagetitle: strPagetitle, value: value });
 			} else if (state === "replace") {
-				replaceState({ docId: docId, anchorId: anchorId, isfirsttime: isfirsttime, pagetitle: strPagetitle, value: value });
+				replaceState({ docId: docId, anchorId: anchorId, pagetitle: strPagetitle, value: value });
 			}
 
-			focusToAnchor(anchorId, isfirsttime);
+			focusToAnchor(anchorId);
 
 			core.requestIdleCallback(() => {
 				PR.prettyPrint();

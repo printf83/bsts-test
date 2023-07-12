@@ -16,7 +16,7 @@ export const toast: IContent = {
 
 				new e.text("Things to know when using the toast plugin:"),
 				new e.ul({
-					item: ["Toasts are opt-in for performance reasons, so {{b:you must initialize them yourself}}.", "Toasts will automatically hide if you do not specify {{autohide: false}}.", "{{bsts}} automaticly initialize toast on {{build}}."],
+					item: ["Toasts are opt-in for performance reasons, so {{b::you must initialize them yourself}}.", "Toasts will automatically hide if you do not specify {{autohide: false}}.", "{{bsts}} automaticly initialize toast on {{build}}."],
 				}),
 				new e.alert(
 					{ color: "info", callout: true },

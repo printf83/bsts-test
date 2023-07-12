@@ -70,8 +70,12 @@ export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
 										click: (event) => {
 											event.preventDefault();
 											event.stopPropagation();
-											highlightMenu(itemValue);
-											setupContentDocument(itemValue);
+											const target = event.target as Element;
+											const itemValue = target.getAttribute("data-value");
+											if (itemValue) {
+												highlightMenu(itemValue);
+												setupContentDocument(itemValue);
+											}
 										},
 									},
 								},

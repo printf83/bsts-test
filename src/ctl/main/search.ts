@@ -314,6 +314,7 @@ export const showSearchDialog = () => {
 			{
 				fullscreen: "sm",
 				scrollable: true,
+				view: "center",
 				contentAttr: { overflow: "hidden" },
 				on: {
 					"shown.bs.modal": (_event) => {
@@ -475,7 +476,9 @@ export const showSearchDialog = () => {
 						paddingTop: 0,
 						bgColor: "body-tertiary",
 						zIndex: 0,
-						display: "grid",
+						display: "flex",
+						flex: "column",
+						justifyContent: "start",
 						gap: 3,
 					},
 					[new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")]

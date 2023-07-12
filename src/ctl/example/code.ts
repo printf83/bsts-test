@@ -1,21 +1,9 @@
 import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
-import {
-	ICodePen,
-	codeBeautify,
-	codePen,
-	getCSSBaseOnSource,
-	getRootBaseOnSource,
-	getLibBaseOnSource,
-	replaceEConsole,
-	replaceExtention,
-} from "./_fn.js";
+import { ICodePen, codeBeautify, codePen, getCSSBaseOnSource, getRootBaseOnSource, getLibBaseOnSource, replaceEConsole, replaceExtention } from "./_fn.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.10/+esm";
-const BSCDNCSS = [
-	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
-	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
-];
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.11/+esm";
+const BSCDNCSS = ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"];
 
 export interface IBsExampleExt {
 	name?: string;
@@ -211,9 +199,7 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 		const hour = n.getHours();
 		const minute = n.getMinutes();
 		const second = n.getSeconds();
-		const strNow = `${(hour >= 12 ? hour - 12 : hour === 0 ? 12 : hour).toString().padStart(2, "0")}:${minute
-			.toString()
-			.padStart(2, "0")}:${second.toString().padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
+		const strNow = `${(hour >= 12 ? hour - 12 : hour === 0 ? 12 : hour).toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
 		core.prependChild(
 			exampleConsole,
 			new h.div(
@@ -224,11 +210,7 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 					gap: [0, "md-2"],
 					marginBottom: [3, "md-0"],
 				},
-				[
-					new h.span({ textColor: "secondary", textWrap: false }, `[${strNow}]`),
-					new h.span({ textColor: color }, `{{b::${title}}}`),
-					new h.span(`${msg}`),
-				]
+				[new h.span({ textColor: "secondary", textWrap: false }, `[${strNow}]`), new h.span({ textColor: color }, `{{b::${title}}}`), new h.span(`${msg}`)]
 			)
 		);
 
@@ -354,8 +336,7 @@ const itemCode = (arg: {
 												click: (e) => {
 													const target = e.target as Element;
 													const iconElem = target.closest(".bi") as Element;
-													const container = target.closest(".list-group-item")
-														?.nextSibling as Element;
+													const container = target.closest(".list-group-item")?.nextSibling as Element;
 
 													container.setAttribute("data-loaded", "true");
 													getOutputHTML(container);
@@ -478,9 +459,7 @@ const itemCode = (arg: {
 						arg.islast && !arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove(
-										"rounded-bottom-2"
-									);
+									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove("rounded-bottom-2");
 
 									core.replaceChild(target, arg.elem);
 
@@ -496,9 +475,7 @@ const itemCode = (arg: {
 							: arg.islast && arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove(
-										"rounded-bottom-2"
-									);
+									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove("rounded-bottom-2");
 									getOutputHTML(target);
 							  }
 							: (e) => {
@@ -512,9 +489,7 @@ const itemCode = (arg: {
 					"hidden.bs.collapse": arg.islast
 						? (e) => {
 								const target = e.target as Element;
-								(target.closest(".list-group-item")?.previousSibling as Element).classList.add(
-									"rounded-bottom-2"
-								);
+								(target.closest(".list-group-item")?.previousSibling as Element).classList.add("rounded-bottom-2");
 								let preTag = target.getElementsByTagName("pre");
 								if (preTag && preTag.length > 0) {
 									preTag![0].remove();
@@ -536,41 +511,18 @@ const itemCode = (arg: {
 	return res;
 };
 
-const itemOutput = (
-	zoom: 25 | 50 | 75 | 100 | 125 | 150 | 200 | undefined,
-	previewAttr: core.IAttr | undefined,
-	outputAttr: core.IAttr | undefined,
-	str: string
-) => {
+const itemOutput = (zoom: 25 | 50 | 75 | 100 | 125 | 150 | 200 | undefined, previewAttr: core.IAttr | undefined, outputAttr: core.IAttr | undefined, str: string) => {
 	if (previewAttr) {
 		if (outputAttr) {
-			return new b.list.item(
-				core.mergeObject({ padding: 4 }, previewAttr),
-				new h.div(
-					core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr),
-					str
-				)
-			);
+			return new b.list.item(core.mergeObject({ padding: 4 }, previewAttr), new h.div(core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr), str));
 		} else {
-			return new b.list.item(
-				core.mergeObject({ padding: 4 }, previewAttr),
-				new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str)
-			);
+			return new b.list.item(core.mergeObject({ padding: 4 }, previewAttr), new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str));
 		}
 	} else {
 		if (outputAttr) {
-			return new b.list.item(
-				{ padding: 4 },
-				new h.div(
-					core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr),
-					str
-				)
-			);
+			return new b.list.item({ padding: 4 }, new h.div(core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr), str));
 		} else {
-			return new b.list.item(
-				{ padding: 4 },
-				new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str)
-			);
+			return new b.list.item({ padding: 4 }, new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str));
 		}
 	}
 };
@@ -609,16 +561,7 @@ const itemConsole = () => {
 					new h.small("CONSOLE")
 				),
 
-				new h.div(
-					{ display: "flex" },
-					new h.div(
-						{ paddingTop: 2, paddingEnd: 2 },
-						new h.span(
-							{ class: "example-console-notification", textColor: "primary" },
-							b.icon.bi("asterisk")
-						)
-					)
-				),
+				new h.div({ display: "flex" }, new h.div({ paddingTop: 2, paddingEnd: 2 }, new h.span({ class: "example-console-notification", textColor: "primary" }, b.icon.bi("asterisk")))),
 
 				new h.div(
 					{ display: "flex" },
@@ -817,14 +760,7 @@ const itemZoom = (zoom: number) => {
 	);
 };
 
-const generateCodePenData = (
-	strLib: string,
-	strCode: string,
-	strManager?: string,
-	strExtention?: string[],
-	strCSS?: string,
-	strRoot?: string
-) => {
+const generateCodePenData = (strLib: string, strCode: string, strManager?: string, strExtention?: string[], strCSS?: string, strRoot?: string) => {
 	let strCodeResult = "";
 
 	if (strCode !== "") {
@@ -989,11 +925,7 @@ const convert = (attr: IBsExampleContainer) => {
 
 		f.forEach((i) => {
 			if (i && i.name && (i.output || i.strOutput)) {
-				let strCode = i.strOutput
-					? i.strOutput
-					: attr.scriptConverter
-					? attr.scriptConverter(i.output!.toString())
-					: i.output!.toString();
+				let strCode = i.strOutput ? i.strOutput : attr.scriptConverter ? attr.scriptConverter(i.output!.toString()) : i.output!.toString();
 
 				strCode = replaceExtention(renameExtention, strCode);
 
@@ -1013,11 +945,7 @@ const convert = (attr: IBsExampleContainer) => {
 
 	let strManager: string | undefined = undefined;
 	if ((attr.output || attr.strOutput) && attr.showScript && (attr.manager || attr.strManager) && attr.showManager) {
-		strManager = attr.strManager
-			? attr.strManager
-			: attr.scriptConverter
-			? attr.scriptConverter(attr.manager!.toString())
-			: attr.manager!.toString();
+		strManager = attr.strManager ? attr.strManager : attr.scriptConverter ? attr.scriptConverter(attr.manager!.toString()) : attr.manager!.toString();
 
 		strManager = replaceExtention(renameExtention, strManager);
 
@@ -1031,11 +959,7 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	if ((attr.output || attr.strOutput) && attr.showScript) {
-		let strSource = attr.strOutput
-			? attr.strOutput
-			: attr.scriptConverter
-			? attr.scriptConverter(attr.output!.toString())
-			: attr.output!.toString();
+		let strSource = attr.strOutput ? attr.strOutput : attr.scriptConverter ? attr.scriptConverter(attr.output!.toString()) : attr.output!.toString();
 
 		let strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
 
@@ -1049,16 +973,7 @@ const convert = (attr: IBsExampleContainer) => {
 				elem: new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
 				onedit: attr.showCodepen
 					? () => {
-							codePen(
-								generateCodePenData(
-									getLibBaseOnSource(strSource, strManager, strExtention),
-									strSource,
-									strManager,
-									strExtention,
-									strCSS,
-									strRoot
-								)
-							);
+							codePen(generateCodePenData(getLibBaseOnSource(strSource, strManager, strExtention), strSource, strManager, strExtention, strCSS, strRoot));
 					  }
 					: undefined,
 			})
