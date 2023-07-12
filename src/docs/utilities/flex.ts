@@ -291,7 +291,7 @@ export const flex: IContent = {
 							{ display: "flex", flex: "wrap" },
 							Array(14)
 								.fill("")
-								.map((i, ix) => new h.div({ padding: 2 }, `Flex item ${ix + 1}`))
+								.map((_i, ix) => new h.div({ padding: 2 }, `Flex item ${ix + 1}`))
 						);
 					},
 				}),
@@ -302,7 +302,7 @@ export const flex: IContent = {
 							{ display: "flex", flex: "wrap-reverse" },
 							Array(14)
 								.fill("")
-								.map((i, ix) => new h.div({ padding: 2 }, `Flex item ${ix + 1}`))
+								.map((_i, ix) => new h.div({ padding: 2 }, `Flex item ${ix + 1}`))
 						);
 					},
 				}),

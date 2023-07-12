@@ -1,5 +1,5 @@
 import { b, core, h } from "@printf83/bsts";
-import { IMenuItem, highlightCurrentMenu } from "./menu.js";
+import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
 import { menu } from "./_db.js";
@@ -10,24 +10,7 @@ const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number
 let lastTestTime = 0;
 let lastEstimateTest = 0;
 
-let _docDB: string[] = [];
-const docDB = () => {
-	if (_docDB.length > 0) {
-		return _docDB;
-	} else {
-		_docDB = menu
-			.map((i) => {
-				return i.item.map((j) => {
-					return j.value;
-				});
-			})
-			.flat();
-
-		return _docDB;
-	}
-};
-
-const genDurationText = (second: number) => {
+const secondToDurationText = (second: number) => {
 	if (second > 60) {
 		if (second % 60 === 0) {
 			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""}`;
@@ -39,7 +22,7 @@ const genDurationText = (second: number) => {
 	}
 };
 
-const getDuplicateID = () => {
+const checkDuplicateID = () => {
 	const duplicateIds = Array.from(document.querySelectorAll("[id]"))
 		.map((v: Element) => v.id)
 		.reduce((acc: { [key: string]: number }, v: string) => {
@@ -76,7 +59,7 @@ const getCSSVar = (variableName: string) => {
 	}
 };
 
-const genTestChart = (container: HTMLCanvasElement) => {
+const setupChart = (container: HTMLCanvasElement) => {
 	return new Chart(container, {
 		type: "line",
 		data: {
@@ -121,7 +104,7 @@ const genTestChart = (container: HTMLCanvasElement) => {
 	});
 };
 
-const updateProgressInfo = (arg: { testId: string; chart: Chart; chartData?: number; count?: number; progress?: number; current?: string | null; speed?: number; time?: number }) => {
+const updateProgress = (arg: { testId: string; chart: Chart; chartData?: number; count?: number; progress?: number; current?: string | null; speed?: number; time?: number }) => {
 	const progressBar = document.getElementById(`${arg.testId}-bar`);
 
 	if (progressBar) {
@@ -153,7 +136,7 @@ const updateProgressInfo = (arg: { testId: string; chart: Chart; chartData?: num
 		if (arg.time) {
 			const progressTime = document.getElementById(`${arg.testId}-time`);
 			if (progressTime) {
-				progressTime.innerText = genDurationText(arg.time + 1);
+				progressTime.innerText = secondToDurationText(arg.time + 1);
 			}
 		}
 
@@ -173,7 +156,7 @@ const updateProgressInfo = (arg: { testId: string; chart: Chart; chartData?: num
 	}
 };
 
-const genProgressDialog = (arg: { msg: string; testId: string; counterLabel: string; currentLabel: string; speedLabel: string; timeLabel: string; total: number }) => {
+const setupProgressUI = (arg: { msg: string; testId: string; counterLabel: string; currentLabel: string; speedLabel: string; timeLabel: string; total: number }) => {
 	return [
 		new h.p({ marginBottom: 2 }, arg.msg),
 
@@ -218,6 +201,23 @@ const addToSpeedDB = (id: string, title: string, data: number) => {
 	}
 };
 
+let _docDB: string[] = [];
+const docDB = () => {
+	if (_docDB.length > 0) {
+		return _docDB;
+	} else {
+		_docDB = menu
+			.map((i) => {
+				return i.item.map((j) => {
+					return j.value;
+				});
+			})
+			.flat();
+
+		return _docDB;
+	}
+};
+
 const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; count: number; random?: boolean; checkduplicateid?: boolean; counttag?: boolean; max?: number }, callback: (counter: number, docId: string) => void) => {
 	arg.max ??= arg.count;
 
@@ -231,12 +231,12 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 				//add to page
 				let contentbody = document.getElementById("bs-main") as Element;
 				contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
-				highlightCurrentMenu(docId);
+				highlightMenu(docId);
 				const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 
 				//get duplicate id
 				if (arg.checkduplicateid) {
-					const duplicateID = getDuplicateID();
+					const duplicateID = checkDuplicateID();
 					const duplicateIDCount = duplicateID.length;
 					if (duplicateIDCount > 0) {
 						console.warn(`${pagetitle} have ${duplicateIDCount} duplicate key${duplicateIDCount > 1 ? "s" : ""}`, duplicateID);
@@ -275,7 +275,7 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 				//keep speed result
 				addToSpeedDB(docId, pagetitle ? pagetitle : "...", dataChart);
 
-				if (updateProgressInfo({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
+				if (updateProgress({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
 					lastTestTime = currentTime;
 					runMemoryTest({ startTime: arg.startTime, chart: arg.chart, testId: arg.testId, count: arg.count - 1, random: arg.random, checkduplicateid: arg.checkduplicateid, counttag: arg.counttag, max: arg.max }, callback);
 				} else {
@@ -288,10 +288,59 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 	}
 };
 
+const runDownloadResource = (
+	arg: {
+		index: number;
+		item: IMenuItem[];
+		startTime: number;
+		chart: Chart;
+		testId: string;
+	},
+	callback: () => void
+) => {
+	let count = arg.item.length - 1;
+	if (arg.index <= count) {
+		getContent(arg.item[arg.index].value, (_data) => {
+			//calculate data
+			const currentTime = performance.now();
+			const dataChart = currentTime - lastTestTime;
+			const dataCount = arg.index + 1;
+			const dataProgress = (arg.index / count) * 100;
+			const dataCurrent = arg.item[arg.index].label ? arg.item[arg.index].label : "...";
+
+			let dataSpeed: number | undefined;
+			let dataTime: number | undefined;
+			if (currentTime > lastEstimateTest + 1000) {
+				lastEstimateTest = currentTime;
+				dataSpeed = ~~(((arg.index + 1) / (currentTime - arg.startTime)) * 1000);
+				dataTime = ~~((((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) / 1000);
+			}
+
+			if (updateProgress({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
+				lastTestTime = currentTime;
+				core.requestIdleCallback(() => {
+					runDownloadResource(
+						{
+							index: arg.index + 1,
+							item: arg.item,
+							startTime: arg.startTime,
+							chart: arg.chart,
+							testId: arg.testId,
+						},
+						callback
+					);
+				}, 300);
+			}
+		});
+	} else {
+		callback();
+	}
+};
+
 const startMemoryTest = (arg: { sender: Element; testId: string; count: number; random: boolean; checkduplicateid: boolean; counttag: boolean }) => {
 	core.replaceChild(
 		document.getElementById("memory-test-progress") as Element,
-		genProgressDialog({
+		setupProgressUI({
 			msg: "{{s::Memory test in progress}}. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test.",
 			testId: arg.testId,
 			counterLabel: "Counter",
@@ -302,7 +351,7 @@ const startMemoryTest = (arg: { sender: Element; testId: string; count: number; 
 		})
 	);
 
-	const chart = genTestChart(document.getElementById(`${arg.testId}-chart`) as HTMLCanvasElement);
+	const chart = setupChart(document.getElementById(`${arg.testId}-chart`) as HTMLCanvasElement);
 
 	speedDB = [];
 	lastTestTime = performance.now();
@@ -328,7 +377,7 @@ const startMemoryTest = (arg: { sender: Element; testId: string; count: number; 
 				}
 			}
 
-			highlightCurrentMenu(docId);
+			highlightMenu(docId);
 			setupContentDocument(docId, false, "push", () => {
 				let detailReport: core.IElem;
 
@@ -401,7 +450,7 @@ const startMemoryTest = (arg: { sender: Element; testId: string; count: number; 
 						new h.br(),
 						new h.small([`Load speed : `, new h.strong(loadSpeed), " page/sec"]),
 						new h.br(),
-						new h.small([`Duration : `, new h.strong(genDurationText(durationSecond))]),
+						new h.small([`Duration : `, new h.strong(secondToDurationText(durationSecond))]),
 						arg.counttag ? new h.br() : "",
 						arg.counttag ? new h.small([`Less element : `, new h.strong(LESSTAG.title), "(", new h.strong(LESSTAG.count), " tag)"]) : "",
 						arg.counttag ? new h.br() : "",
@@ -426,7 +475,7 @@ const startDownloadResource = (testId: string, callback: () => void) => {
 
 	core.replaceChild(
 		document.getElementById("memory-test-progress") as Element,
-		genProgressDialog({
+		setupProgressUI({
 			msg: "{{s::Download resource in progress}}. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the process.",
 			testId: testId,
 			counterLabel: "Counter",
@@ -437,12 +486,12 @@ const startDownloadResource = (testId: string, callback: () => void) => {
 		})
 	);
 
-	const chart = genTestChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement);
+	const chart = setupChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement);
 
 	lastTestTime = performance.now();
 	lastEstimateTest = lastTestTime;
 
-	downloadResource(
+	runDownloadResource(
 		{
 			index: 0,
 			item: item,
@@ -455,55 +504,6 @@ const startDownloadResource = (testId: string, callback: () => void) => {
 			callback();
 		}
 	);
-};
-
-const downloadResource = (
-	arg: {
-		index: number;
-		item: IMenuItem[];
-		startTime: number;
-		chart: Chart;
-		testId: string;
-	},
-	callback: () => void
-) => {
-	let count = arg.item.length - 1;
-	if (arg.index <= count) {
-		getContent(arg.item[arg.index].value, (_data) => {
-			//calculate data
-			const currentTime = performance.now();
-			const dataChart = currentTime - lastTestTime;
-			const dataCount = arg.index + 1;
-			const dataProgress = (arg.index / count) * 100;
-			const dataCurrent = arg.item[arg.index].label ? arg.item[arg.index].label : "...";
-
-			let dataSpeed: number | undefined;
-			let dataTime: number | undefined;
-			if (currentTime > lastEstimateTest + 1000) {
-				lastEstimateTest = currentTime;
-				dataSpeed = ~~(((arg.index + 1) / (currentTime - arg.startTime)) * 1000);
-				dataTime = ~~((((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) / 1000);
-			}
-
-			if (updateProgressInfo({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
-				lastTestTime = currentTime;
-				core.requestIdleCallback(() => {
-					downloadResource(
-						{
-							index: arg.index + 1,
-							item: arg.item,
-							startTime: arg.startTime,
-							chart: arg.chart,
-							testId: arg.testId,
-						},
-						callback
-					);
-				}, 300);
-			}
-		});
-	} else {
-		callback();
-	}
 };
 
 export const showMemoryTestDialog = () => {

@@ -1,6 +1,6 @@
 import { b, h, core } from "@printf83/bsts";
 import { getContent } from "./data.js";
-import { IMenuItem, highlightCurrentMenu } from "./menu.js";
+import { IMenuItem, highlightMenu } from "./menu.js";
 import { setupContentDocument } from "./content.js";
 import { menu } from "./_db.js";
 
@@ -226,7 +226,7 @@ const searchIndexOnClick = (event: Event) => {
 			const pageId = listGroup.getAttribute("data-pageId");
 			const value = `${pageId}${sectionId ? "#" : ""}${sectionId}`;
 
-			highlightCurrentMenu(value);
+			highlightMenu(value);
 			setupContentDocument(value);
 		}
 	}
@@ -336,7 +336,7 @@ export const showSearchDialog = () => {
 													alignItem: "center",
 													lineHeight: 1,
 													on: {
-														click: (event) => {
+														click: () => {
 															b.modal.show(
 																b.modal.create({
 																	elem: b.form.textarea({
@@ -506,4 +506,15 @@ export const showSearchDialog = () => {
 			]
 		)
 	);
+};
+
+export const setupSearchShortcut = () => {
+	document.addEventListener("keydown", (event: KeyboardEvent) => {
+		if (event.ctrlKey && event.key == "k") {
+			event.stopPropagation();
+			event.preventDefault();
+
+			showSearchDialog();
+		}
+	});
 };

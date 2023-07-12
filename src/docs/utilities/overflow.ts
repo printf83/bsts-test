@@ -14,7 +14,7 @@ export const overflow: IContent = {
 					previewAttr: { overflow: "hidden" },
 					outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 					output: () => {
-						return ["auto", "hidden", "visible", "scroll"].map((i, ix) => {
+						return ["auto", "hidden", "visible", "scroll"].map((i) => {
 							return new h.div(
 								{
 									overflow: i as core.IAttr["overflow"],
@@ -38,7 +38,7 @@ export const overflow: IContent = {
 					previewAttr: { overflow: "hidden" },
 					outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 					output: () => {
-						return ["auto", "hidden", "visible", "scroll"].map((i, ix) => {
+						return ["auto", "hidden", "visible", "scroll"].map((i) => {
 							return new h.div(
 								{
 									overflowX: i as core.IAttr["overflowX"],
@@ -62,7 +62,7 @@ export const overflow: IContent = {
 					previewAttr: { overflow: "hidden" },
 					outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 					output: () => {
-						return ["auto", "hidden", "visible", "scroll"].map((i, ix) => {
+						return ["auto", "hidden", "visible", "scroll"].map((i) => {
 							return new h.div(
 								{
 									overflowY: i as core.IAttr["overflowY"],

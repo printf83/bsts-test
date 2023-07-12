@@ -44,10 +44,10 @@ export const onBookmarkChange = (value: string) => {
 	}
 
 	cookie.set("saved_bookmark", JSON.stringify(bookmarkDB));
-	setupMenuContainer(menuWithBookmar(), cookie.get("current_page") || "docs/gettingstarted/introduction");
+	setupMenuContainer(menuWithBookmark(), cookie.get("current_page") || "docs/gettingstarted/introduction");
 };
 
-export const menuWithBookmar = () => {
+export const menuWithBookmark = () => {
 	let result: IMenu[] = [];
 
 	if (bookmarkDB && bookmarkDB.length > 0) {

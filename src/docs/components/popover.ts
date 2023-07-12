@@ -466,7 +466,7 @@ export const popover: IContent = {
 												title: "Popover title",
 												content: "And here's some amazing content. It's very engaging. Right?",
 												on: {
-													"hidden.bs.popover": (event) => {
+													"hidden.bs.popover": () => {
 														b.popover.setContent("#example-popover", {
 															".popover-header": "Popover title",
 															".popover-body": "And here's some amazing content. It's very engaging. Right?",

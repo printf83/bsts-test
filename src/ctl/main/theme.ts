@@ -35,13 +35,13 @@ export const onThemeChange = (value: string) => {
 
 export type availabelTheme = "dark" | "light" | "auto";
 
-export interface IAttrItemTheme {
+export interface ITheme {
 	value: string;
 	icon: I.B.Icon;
 	label: string;
 }
 
-const highlghtCurrentTheme = (value: string, icon: I.B.Icon) => {
+const highlghtTheme = (value: string, icon: I.B.Icon) => {
 	let bsTheme = document.getElementById("bs-theme") as Element;
 	let bsThemeMenu = bsTheme.nextSibling as Element;
 
@@ -62,7 +62,7 @@ const highlghtCurrentTheme = (value: string, icon: I.B.Icon) => {
 	onThemeChange(value);
 };
 
-export const setupTheme = (textColor: core.bootstrapType.textColor, navbarItemTheme?: IAttrItemTheme[], currentTheme?: string) => {
+export const setupTheme = (textColor: core.bootstrapType.textColor, navbarItemTheme?: ITheme[], currentTheme?: string) => {
 	if (navbarItemTheme) {
 		let indexIcon = -1;
 		navbarItemTheme.forEach((i, ix) => {
@@ -117,7 +117,7 @@ export const setupTheme = (textColor: core.bootstrapType.textColor, navbarItemTh
 								{
 									on: {
 										click: (_e) => {
-											highlghtCurrentTheme(i.value, i.icon);
+											highlghtTheme(i.value, i.icon);
 										},
 									},
 									active: i.value === currentTheme,
@@ -135,4 +135,12 @@ export const setupTheme = (textColor: core.bootstrapType.textColor, navbarItemTh
 	} else {
 		return [];
 	}
+};
+
+export const setupThemeChanges = () => {
+	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+		if (getSavedTheme() === "auto") {
+			onThemeChange("auto");
+		}
+	});
 };

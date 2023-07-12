@@ -2,10 +2,10 @@ import { core, h, b } from "@printf83/bsts";
 import * as e from "../example/_index.js";
 import { IContent } from "./content.js";
 
-interface IAttrTocItem {
+interface ITOCItem {
 	href: string;
 	label: string;
-	item?: IAttrTocItem[];
+	item?: ITOCItem[];
 }
 
 export const setupTOC = (content?: IContent) => {
@@ -14,7 +14,7 @@ export const setupTOC = (content?: IContent) => {
 		if (contentItem && Array.isArray(contentItem)) {
 			let t: {
 				deep: number;
-				item: IAttrTocItem;
+				item: ITOCItem;
 			}[] = [];
 
 			//get title
@@ -41,7 +41,7 @@ export const setupTOC = (content?: IContent) => {
 			}
 
 			//arrange title
-			let u: IAttrTocItem[] = [];
+			let u: ITOCItem[] = [];
 			if (t && t.length > 0) {
 				t.forEach((i) => {
 					if (i.deep === 0) {

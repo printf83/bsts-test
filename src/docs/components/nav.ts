@@ -1150,7 +1150,7 @@ export const nav: IContent = {
 						const showButton = new b.button(
 							{
 								on: {
-									click: (event) => {
+									click: () => {
 										const elem = document.querySelectorAll("#example-nav-tab button");
 										b.tabList.show(elem[core.rndBetween(0, elem.length - 1)]);
 									},

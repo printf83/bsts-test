@@ -4,7 +4,7 @@ import * as e from "../example/_index.js";
 import { onBookmarkChange } from "./bookmark.js";
 import { getContent } from "./data.js";
 import { cookie } from "./cookie.js";
-import { IWindowState } from "./menu.js";
+import { pushState, replaceState } from "./history.js";
 
 export interface IContent {
 	loading?: boolean;
@@ -245,36 +245,18 @@ export const setupContentDocument = (value: string, isfirsttime?: boolean, state
 			core.removeAllActivePopup();
 
 			//generate content
-
 			contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
 
 			//rename page title
 			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 			const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-			const { origin, pathname } = window.location;
 			document.title = strPagetitle;
 
 			//set history
 			if (state === "push") {
-				window.history.pushState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
+				pushState({ docId: docId, anchorId: anchorId, isfirsttime: isfirsttime, pagetitle: strPagetitle, value: value });
 			} else if (state === "replace") {
-				window.history.replaceState(
-					{
-						docId: docId,
-						anchorId: anchorId,
-						isfirsttime: isfirsttime,
-					} satisfies IWindowState,
-					strPagetitle,
-					`${origin}${pathname}?d=${value}`
-				);
+				replaceState({ docId: docId, anchorId: anchorId, isfirsttime: isfirsttime, pagetitle: strPagetitle, value: value });
 			}
 
 			focusToAnchor(anchorId, isfirsttime);

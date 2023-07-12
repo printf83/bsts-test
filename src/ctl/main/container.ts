@@ -1,6 +1,6 @@
 import { core, b, h, I } from "@printf83/bsts";
 import { IAttrItemBootswatch, genBootswatch } from "./bootswatch.js";
-import { IAttrItemTheme, availabelTheme, setupTheme } from "./theme.js";
+import { ITheme, availabelTheme, setupTheme } from "./theme.js";
 import { IAttrItemInsideLink, setupInsideLink } from "./insidelink.js";
 import { IOutsideLink, setupOutsideLink } from "./outsidelink.js";
 import { IMenu, setupMenu } from "./menu.js";
@@ -33,7 +33,7 @@ export interface IBsMainContainer extends core.IAttr {
 
 	itemMenu?: IMenu[];
 	itemInsideLink?: IAttrItemInsideLink[];
-	itemTheme?: IAttrItemTheme[];
+	itemTheme?: ITheme[];
 	itemBootswatch?: IAttrItemBootswatch[];
 	itemFooter?: IFooter[];
 

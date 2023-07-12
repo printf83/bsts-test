@@ -1,12 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
 
-export interface IWindowState {
-	docId?: string;
-	anchorId?: string;
-	isfirsttime?: boolean;
-}
-
 export interface IMenu {
 	label: string;
 	icon: I.B.Icon;
@@ -18,7 +12,7 @@ export interface IMenuItem {
 	value: string;
 }
 
-export const highlightCurrentMenu = (docId?: string) => {
+export const highlightMenu = (docId?: string) => {
 	let bsMenu = document.getElementById("bs-menu") as Element;
 	let lastActive = bsMenu.querySelectorAll(".bs-links-link.active")[0];
 	if (lastActive) {
@@ -76,7 +70,7 @@ export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
 										click: (event) => {
 											event.preventDefault();
 											event.stopPropagation();
-											highlightCurrentMenu(itemValue);
+											highlightMenu(itemValue);
 											setupContentDocument(itemValue);
 										},
 									},

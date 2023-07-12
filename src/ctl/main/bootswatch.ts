@@ -6,7 +6,7 @@ export interface IAttrItemBootswatch {
 	label: string;
 }
 
-const changeBootswatch = (value: string) => {
+export const changeBootswatch = (value: string) => {
 	let bsBootswatch = document.getElementById("bs-bootswatch") as Element;
 	let bsBootswatchMenu = bsBootswatch.nextSibling as Element;
 	let bsBootswatchLabel = document.getElementById("bs-bootswatch-label") as Element;
