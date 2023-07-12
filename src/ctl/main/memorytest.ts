@@ -4,6 +4,8 @@ import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
 import { menu } from "./_db.js";
 import { setupContentContainerItem } from "./content.js";
+import { cookie } from "./cookie.js";
+import { pushState } from "./history.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -193,6 +195,7 @@ const setupProgressUI = (arg: { msg: string; testId: string; counterLabel: strin
 				{ display: "grid", marginTop: 2 },
 				new b.button(
 					{
+						weight: "lg",
 						on: {
 							click: () => {
 								core.replaceChild(document.getElementById("memory-test-dialog") as Element, []);
@@ -233,7 +236,7 @@ const docDB = () => {
 	}
 };
 
-const runMemoryTest = (arg: { startTime: number; chart?: Chart; testId: string; count: number; random?: boolean; checkduplicateid?: boolean; counttag?: boolean; max?: number }, callback: (counter: number) => void) => {
+const runMemoryTest = (arg: { startTime: number; chart?: Chart; testId: string; count: number; random?: boolean; checkduplicateid?: boolean; counttag?: boolean; max?: number }, callback: (counter: number, docId: string) => void) => {
 	arg.max ??= arg.count;
 
 	let mDB = docDB();
@@ -294,12 +297,12 @@ const runMemoryTest = (arg: { startTime: number; chart?: Chart; testId: string; 
 					lastTestTime = currentTime;
 					runMemoryTest({ startTime: arg.startTime, chart: arg.chart, testId: arg.testId, count: arg.count - 1, random: arg.random, checkduplicateid: arg.checkduplicateid, counttag: arg.counttag, max: arg.max }, callback);
 				} else {
-					callback(arg.max! - arg.count);
+					callback(arg.max! - arg.count, docId);
 				}
 			});
 		}, 300);
 	} else {
-		callback(arg.max! - arg.count);
+		callback(arg.max! - arg.count, docId);
 	}
 };
 
@@ -354,6 +357,10 @@ const runDownloadResource = (
 	}
 };
 
+declare var PR: {
+	prettyPrint: () => void;
+};
+
 const startMemoryTest = (arg: { testId: string; count: number; random: boolean; checkduplicateid: boolean; counttag: boolean; showchart: boolean }) => {
 	const container = document.getElementById("memory-test-dialog");
 	if (container) {
@@ -388,7 +395,7 @@ const startMemoryTest = (arg: { testId: string; count: number; random: boolean; 
 				checkduplicateid: arg.checkduplicateid,
 				counttag: arg.counttag,
 			},
-			(docCount: number) => {
+			(docCount: number, docId: string) => {
 				const endTime = performance.now();
 				let detailReport: core.IElem;
 
@@ -471,20 +478,51 @@ const startMemoryTest = (arg: { testId: string; count: number; random: boolean; 
 						arg.counttag ? new h.small([`Most element : `, new h.strong(MOSTTAG.title), "(", new h.strong(MOSTTAG.count), " tag)"]) : "",
 					]),
 
-					new h.div(
-						{ display: "grid", marginTop: 3 },
+					new h.div({ display: "flex", gap: 3, marginTop: 3 }, [
 						new b.button(
 							{
+								color: "secondary",
+								outline: true,
+								flex: "fill",
+								weight: "lg",
+								on: {
+									click: () => {
+										startMemoryTest({ testId: core.UUID(), count: arg.count, checkduplicateid: arg.checkduplicateid, counttag: arg.counttag, random: arg.random, showchart: arg.showchart });
+									},
+								},
+							},
+							"Try again"
+						),
+						new b.button(
+							{
+								flex: "fill",
+								weight: "lg",
 								on: {
 									click: (event) => {
 										const target = event.target as Element;
 										b.modal.hide(target);
+
+										//keep current page in cookie
+										cookie.set("current_page", docId);
+
+										//rename page title
+										const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+										const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+										document.title = strPagetitle;
+
+										//set history
+										pushState({ docId: docId, pagetitle: strPagetitle, value: docId });
+
+										//prettyprint code
+										core.requestIdleCallback(() => {
+											PR.prettyPrint();
+										}, 300);
 									},
 								},
 							},
 							"Close"
-						)
-					),
+						),
+					]),
 				];
 
 				core.replaceChild(document.getElementById("memory-test-dialog") as Element, detailReport);
@@ -548,22 +586,16 @@ const btnStartTest = (event: Event) => {
 		startMemoryTest({ testId: core.UUID(), count: counter, random: randomtest, checkduplicateid: checkduplicateid, counttag: counttag, showchart: showchart });
 	}
 };
+
 export const showMemoryTestDialog = () => {
 	b.modal.show(
 		new b.modal.container({ backdrop: "static", view: "center", scrollable: true }, [
 			new b.modal.body({ id: "memory-test-dialog" }, [
 				new h.p(
-					"Please select one of the buttons below to open a specified number of pages for the purpose of detecting potential memory leaks. To facilitate this process, you can utilize either the {{Memory Monitor Program}} on your device or the {{Developer Tools}} available in your browser. Before commencing the memory leak test, please make a note of the current memory usage. Upon completion of the test, kindly compare the memory difference. It is anticipated that the memory should revert back to its original state once the test is finalized."
+					"{{s::Memory test}}. Please choose a button below to open a specific number of pages for detecting memory leaks. You can use either the {{Memory Monitor Program}} on your device or the {{Developer Tools}} in your browser. Before starting the memory leak test, remember the current memory usage. After the test, compare the memory difference. The memory should return to its original state after the test."
 				),
 
 				new h.p([
-					b.form.check({
-						type: "checkbox",
-						switch: true,
-						label: "Random page",
-						checked: false,
-						id: "memory-test-random",
-					}),
 					b.form.check({
 						type: "checkbox",
 						switch: true,
@@ -577,6 +609,13 @@ export const showMemoryTestDialog = () => {
 						label: "Check duplicate id",
 						checked: false,
 						id: "memory-test-duplicateid",
+					}),
+					b.form.check({
+						type: "checkbox",
+						switch: true,
+						label: "Random page",
+						checked: true,
+						id: "memory-test-random",
 					}),
 					b.form.check({
 						type: "checkbox",
@@ -620,6 +659,7 @@ export const showMemoryTestDialog = () => {
 					{ display: "grid" },
 					new b.button(
 						{
+							weight: "lg",
 							on: {
 								click: (event) => {
 									const target = event.target as Element;
