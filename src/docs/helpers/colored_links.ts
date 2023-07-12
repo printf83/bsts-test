@@ -1,8 +1,8 @@
 import { core, I, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const colored_links: IAttrContent = {
+export const colored_links: IContent = {
 	title: "Colored links",
 	description: "Colored links with hover states",
 	item: () => {
@@ -18,25 +18,7 @@ export const colored_links: IAttrContent = {
 				),
 				new e.code({
 					output: () => {
-						return [
-							"primary",
-							"secondary",
-							"success",
-							"danger",
-							"warning",
-							"info",
-							"light",
-							"dark",
-							"body-emphasis",
-						].map(
-							(i) =>
-								new h.p(
-									new h.a(
-										{ href: "#", linkColor: i as I.H.A["linkColor"] },
-										`${core.uppercaseFirst(i)} link`
-									)
-								)
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({ href: "#", linkColor: i as I.H.A["linkColor"] }, `${core.uppercaseFirst(i)} link`)));
 					},
 				}),
 				new e.alert(
@@ -49,22 +31,10 @@ export const colored_links: IAttrContent = {
 
 			new e.section([
 				new e.title("Link utilities"),
-				new e.text(
-					"Colored links can also be modified by Bootstrap {{nav:docs/utilities/link::link utilities}}."
-				),
+				new e.text("Colored links can also be modified by Bootstrap {{nav:docs/utilities/link::link utilities}}."),
 				new e.code({
 					output: () => {
-						return [
-							"primary",
-							"secondary",
-							"success",
-							"danger",
-							"warning",
-							"info",
-							"light",
-							"dark",
-							"body-emphasis",
-						].map(
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map(
 							(i) =>
 								new h.p(
 									new h.a(

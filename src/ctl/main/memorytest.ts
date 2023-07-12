@@ -1,34 +1,18 @@
 import { b, core, h } from "@printf83/bsts";
-import { menu } from "./menu.js";
-import { highlightCurrentMenu } from "./menu.js";
-import { onMenuChange } from "./menu.js";
-import * as main from "./_index.js";
-import { getData } from "./data.js";
+import { IMenuItem, highlightMenu } from "./menu.js";
+import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
+import { menu } from "./_db.js";
+import { setupContentContainerItem } from "./content.js";
+import { cookie } from "./cookie.js";
+import { pushState } from "./history.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
 let lastTestTime = 0;
 let lastEstimateTest = 0;
 
-let _docDB: string[] = [];
-const docDB = () => {
-	if (_docDB.length > 0) {
-		return _docDB;
-	} else {
-		_docDB = menu.doc
-			.map((i) => {
-				return i.item.map((j) => {
-					return j.value;
-				});
-			})
-			.flat();
-
-		return _docDB;
-	}
-};
-
-const genDurationText = (second: number) => {
+const secondToDurationText = (second: number) => {
 	if (second > 60) {
 		if (second % 60 === 0) {
 			return `${~~(second / 60)} minute${~~(second / 60) > 1 ? "s" : ""}`;
@@ -40,7 +24,7 @@ const genDurationText = (second: number) => {
 	}
 };
 
-const getDuplicateID = () => {
+const checkDuplicateID = () => {
 	const duplicateIds = Array.from(document.querySelectorAll("[id]"))
 		.map((v: Element) => v.id)
 		.reduce((acc: { [key: string]: number }, v: string) => {
@@ -77,7 +61,7 @@ const getCSSVar = (variableName: string) => {
 	}
 };
 
-const genTestChart = (container: HTMLCanvasElement) => {
+const setupChart = (container: HTMLCanvasElement) => {
 	return new Chart(container, {
 		type: "line",
 		data: {
@@ -107,7 +91,7 @@ const genTestChart = (container: HTMLCanvasElement) => {
 					min: 0,
 					title: {
 						display: false,
-						text: "Speed (ms)",
+						// text: "Speed (ms)",
 					},
 					beginAtZero: true,
 					grid: { color: getCSSVar("--bs-tertiary-bg") },
@@ -122,7 +106,7 @@ const genTestChart = (container: HTMLCanvasElement) => {
 	});
 };
 
-const updateProgressInfo = (arg: { testId: string; chart: Chart; chartData?: number; count?: number; progress?: number; current?: string | null; speed?: number; time?: number }) => {
+const updateProgress = (arg: { testId: string; chart?: Chart; chartData?: number; count?: number; progress?: number; current?: string | null; speed?: number; time?: number }) => {
 	const progressBar = document.getElementById(`${arg.testId}-bar`);
 
 	if (progressBar) {
@@ -154,11 +138,11 @@ const updateProgressInfo = (arg: { testId: string; chart: Chart; chartData?: num
 		if (arg.time) {
 			const progressTime = document.getElementById(`${arg.testId}-time`);
 			if (progressTime) {
-				progressTime.innerText = genDurationText(arg.time + 1);
+				progressTime.innerText = secondToDurationText(arg.time + 1);
 			}
 		}
 
-		if (arg.chartData) {
+		if (arg.chart && arg.chartData) {
 			arg.chart.data.labels?.shift();
 			arg.chart.data.labels?.push(arg.current);
 			arg.chart.data.datasets.forEach((dataset) => {
@@ -174,20 +158,22 @@ const updateProgressInfo = (arg: { testId: string; chart: Chart; chartData?: num
 	}
 };
 
-const genProgressDialog = (arg: { msg: string; testId: string; counterLabel: string; currentLabel: string; speedLabel: string; timeLabel: string; total: number }) => {
+const setupProgressUI = (arg: { msg: string; testId: string; counterLabel: string; currentLabel: string; speedLabel: string; timeLabel: string; stopLabel: string; total: number; showchart: boolean }) => {
 	return [
 		new h.p({ marginBottom: 2 }, arg.msg),
 
-		new b.card.container(
-			{ marginBottom: 2 },
-			new b.card.body([
-				new h.canvas({
-					id: `${arg.testId}-chart`,
-					ratio: "21x9",
-				}),
-				new h.div({ textAlign: "center", textColor: "secondary", small: true }, "Process speed in milisecond (Less is better)"),
-			])
-		),
+		arg.showchart
+			? new b.card.container(
+					{ marginBottom: 2 },
+					new b.card.body([
+						new h.canvas({
+							id: `${arg.testId}-chart`,
+							ratio: "21x9",
+						}),
+						new h.div({ textAlign: "center", textColor: "secondary", small: true }, "Process speed in milisecond (Less is better)"),
+					])
+			  )
+			: "",
 
 		new h.div({ textColor: "secondary", lineHeight: "sm" }, [
 			new h.small([`${arg.counterLabel} : `, new h.strong({ id: `${arg.testId}-count` }, "..."), " / ", new h.strong({ id: `${arg.testId}-total` }, arg.total ? arg.total.toString() : "...")]),
@@ -205,11 +191,52 @@ const genProgressDialog = (arg: { msg: string; testId: string; counterLabel: str
 					})
 				)
 			),
+			new h.div(
+				{ display: "grid", marginTop: 2 },
+				new b.button(
+					{
+						weight: "lg",
+						on: {
+							click: () => {
+								core.replaceChild(document.getElementById("memory-test-dialog") as Element, []);
+							},
+						},
+					},
+					arg.stopLabel
+				)
+			),
 		]),
 	];
 };
 
-const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; count: number; random?: boolean; checkduplicateid?: boolean; counttag?: boolean; max?: number }, callback: (counter: number, docId: string) => void) => {
+let speedDB: { id: string; title: string; data: number[] }[];
+const addToSpeedDB = (id: string, title: string, data: number) => {
+	let index = speedDB.findIndex((i) => i.id === id);
+	if (index > -1) {
+		speedDB[index].data.push(data);
+	} else {
+		speedDB.push({ id: id, title: title, data: [data] });
+	}
+};
+
+let _docDB: string[] = [];
+const docDB = () => {
+	if (_docDB.length > 0) {
+		return _docDB;
+	} else {
+		_docDB = menu
+			.map((i) => {
+				return i.item.map((j) => {
+					return j.value;
+				});
+			})
+			.flat();
+
+		return _docDB;
+	}
+};
+
+const runMemoryTest = (arg: { startTime: number; chart?: Chart; testId: string; count: number; random?: boolean; checkduplicateid?: boolean; counttag?: boolean; max?: number }, callback: (counter: number, docId: string) => void) => {
 	arg.max ??= arg.count;
 
 	let mDB = docDB();
@@ -218,16 +245,16 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 
 	if (arg.count > 0) {
 		core.requestIdleCallback(() => {
-			getData(docId, (docData) => {
+			getContent(docId, (docData) => {
 				//add to page
 				let contentbody = document.getElementById("bs-main") as Element;
-				contentbody = core.replaceChild(contentbody, main.genMainContent(docData));
-				highlightCurrentMenu(docId);
+				contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
+				highlightMenu(docId);
 				const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
 
 				//get duplicate id
 				if (arg.checkduplicateid) {
-					const duplicateID = getDuplicateID();
+					const duplicateID = checkDuplicateID();
 					const duplicateIDCount = duplicateID.length;
 					if (duplicateIDCount > 0) {
 						console.warn(`${pagetitle} have ${duplicateIDCount} duplicate key${duplicateIDCount > 1 ? "s" : ""}`, duplicateID);
@@ -263,7 +290,10 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 					dataTime = ~~((((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) / 1000);
 				}
 
-				if (updateProgressInfo({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
+				//keep speed result
+				addToSpeedDB(docId, pagetitle ? pagetitle : "...", dataChart);
+
+				if (updateProgress({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
 					lastTestTime = currentTime;
 					runMemoryTest({ startTime: arg.startTime, chart: arg.chart, testId: arg.testId, count: arg.count - 1, random: arg.random, checkduplicateid: arg.checkduplicateid, counttag: arg.counttag, max: arg.max }, callback);
 				} else {
@@ -276,130 +306,19 @@ const runMemoryTest = (arg: { startTime: number; chart: Chart; testId: string; c
 	}
 };
 
-const startMemoryTest = (arg: { sender: Element; testId: string; count: number; random: boolean; checkduplicateid: boolean; counttag: boolean }) => {
-	core.replaceChild(
-		document.getElementById("memory-test-progress") as Element,
-		genProgressDialog({
-			msg: "{{s::Memory test in progress}}. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the test.",
-			testId: arg.testId,
-			counterLabel: "Counter",
-			currentLabel: "Load page",
-			speedLabel: "Estimate load speed",
-			timeLabel: "Estimate time remaining",
-			total: arg.count,
-		})
-	);
-
-	const chart = genTestChart(document.getElementById(`${arg.testId}-chart`) as HTMLCanvasElement);
-
-	lastTestTime = performance.now();
-	lastEstimateTest = lastTestTime;
-	const startTime = lastTestTime;
-	runMemoryTest(
-		{
-			startTime: lastTestTime,
-			chart: chart,
-			testId: arg.testId,
-			count: arg.count,
-			random: arg.random,
-			checkduplicateid: arg.checkduplicateid,
-			counttag: arg.counttag,
-		},
-		(docCount: number, docId: string) => {
-			const endTime = performance.now();
-
-			if (arg.sender) {
-				const mdl = arg.sender.closest(".modal-dialog") as Element;
-				if (mdl) {
-					b.modal.hide(mdl);
-				}
-			}
-
-			highlightCurrentMenu(docId);
-			onMenuChange(docId, false, "push", () => {
-				let result: string = "";
-
-				let loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
-				let durationSecond = ~~((endTime - startTime) / 1000);
-
-				if (arg.counttag) {
-					result = `
-					Page count : {{s::${docCount}}} page{{br}}
-					Load speed : ±{{s::${loadSpeed}}} page/sec{{br}}
-					Duration : {{s::${genDurationText(durationSecond)}}}{{br}}
-					Less element : {{s::${LESSTAG.title} (${LESSTAG.count} element)}}{{br}}
-					Most element : {{s::${MOSTTAG.title} (${MOSTTAG.count} element)}}`;
-				} else {
-					result = `
-					Page count : {{s::${docCount}}} page{{br}}
-					Load speed : ±{{s::${loadSpeed}}} page/sec{{br}}
-					Duration : {{s::${genDurationText(durationSecond)}}}`;
-				}
-
-				b.modal.show(
-					b.modal.create({
-						title: "Memory test complete",
-						elem: new b.msg({
-							icon: new b.icon({ id: "info-circle-fill", textColor: "primary", fontSize: 1 }),
-							elem: result,
-						}),
-						btn: "ok",
-					})
-				);
-			});
-		}
-	);
-};
-
-const startDownloadResource = (testId: string, callback: () => void) => {
-	const item = menu.doc.map((i) => i.item).flat();
-
-	core.replaceChild(
-		document.getElementById("memory-test-progress") as Element,
-		genProgressDialog({
-			msg: "{{s::Download resource in progress}}. Kindly await its completion, or if necessary, you may click outside the dialog to interrupt the process.",
-			testId: testId,
-			counterLabel: "Counter",
-			currentLabel: "Downloading page",
-			speedLabel: "Estimate download speed",
-			timeLabel: "Estimate time remaining",
-			total: item.length,
-		})
-	);
-
-	const chart = genTestChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement);
-
-	lastTestTime = performance.now();
-	lastEstimateTest = lastTestTime;
-
-	downloadResource(
-		{
-			index: 0,
-			item: item,
-			startTime: lastTestTime,
-			chart: chart,
-			testId: testId,
-		},
-		() => {
-			chart.destroy();
-			callback();
-		}
-	);
-};
-
-const downloadResource = (
+const runDownloadResource = (
 	arg: {
 		index: number;
-		item: main.IAttrItemSubMenu[];
+		item: IMenuItem[];
 		startTime: number;
-		chart: Chart;
+		chart?: Chart;
 		testId: string;
 	},
 	callback: () => void
 ) => {
 	let count = arg.item.length - 1;
 	if (arg.index <= count) {
-		getData(arg.item[arg.index].value, (_data) => {
+		getContent(arg.item[arg.index].value, (_data) => {
 			//calculate data
 			const currentTime = performance.now();
 			const dataChart = currentTime - lastTestTime;
@@ -415,10 +334,10 @@ const downloadResource = (
 				dataTime = ~~((((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) / 1000);
 			}
 
-			if (updateProgressInfo({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
+			if (updateProgress({ testId: arg.testId, chart: arg.chart, chartData: dataChart, count: dataCount, progress: dataProgress, current: dataCurrent, speed: dataSpeed, time: dataTime })) {
 				lastTestTime = currentTime;
 				core.requestIdleCallback(() => {
-					downloadResource(
+					runDownloadResource(
 						{
 							index: arg.index + 1,
 							item: arg.item,
@@ -429,6 +348,8 @@ const downloadResource = (
 						callback
 					);
 				}, 300);
+			} else {
+				callback();
 			}
 		});
 	} else {
@@ -436,24 +357,245 @@ const downloadResource = (
 	}
 };
 
-export const showMemoryTestDialog = () => {
-	const testId = core.UUID();
+declare var PR: {
+	prettyPrint: () => void;
+};
 
+const startMemoryTest = (arg: { testId: string; count: number; random: boolean; checkduplicateid: boolean; counttag: boolean; showchart: boolean }) => {
+	const container = document.getElementById("memory-test-dialog");
+	if (container) {
+		core.replaceChild(
+			container as Element,
+			setupProgressUI({
+				msg: "{{s::Memory test in progress}}",
+				testId: arg.testId,
+				counterLabel: "Counter",
+				currentLabel: "Load page",
+				speedLabel: "Estimate load speed",
+				timeLabel: "Estimate time remaining",
+				stopLabel: "Stop",
+				total: arg.count,
+				showchart: arg.showchart,
+			})
+		);
+
+		const chart = arg.showchart ? setupChart(document.getElementById(`${arg.testId}-chart`) as HTMLCanvasElement) : undefined;
+
+		speedDB = [];
+		lastTestTime = performance.now();
+		lastEstimateTest = lastTestTime;
+		const startTime = lastTestTime;
+		runMemoryTest(
+			{
+				startTime: lastTestTime,
+				chart: chart,
+				testId: arg.testId,
+				count: arg.count,
+				random: arg.random,
+				checkduplicateid: arg.checkduplicateid,
+				counttag: arg.counttag,
+			},
+			(docCount: number, docId: string) => {
+				const endTime = performance.now();
+				let detailReport: core.IElem;
+
+				let loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
+				let durationSecond = ~~((endTime - startTime) / 1000);
+
+				chart?.destroy();
+
+				detailReport = [
+					new h.p("{{s::Memory test complete}}"),
+					new b.card.container(
+						{ marginBottom: 2 },
+						new b.card.body([
+							new h.canvas({
+								id: `${arg.testId}-chart`,
+								ratio: "21x9",
+								on: {
+									build: (event) => {
+										const target = event.target as HTMLCanvasElement;
+
+										//dialog show after 300 ms
+										setTimeout(
+											(target) => {
+												new Chart(target, {
+													type: "bar",
+													data: {
+														labels: speedDB.map((i) => i.title),
+														datasets: [
+															{
+																data: speedDB.map((i) => {
+																	if (i.data.length > 1) {
+																		let sum = i.data.reduce((partialSum, a) => partialSum + a, 0);
+																		return sum / i.data.length;
+																	} else {
+																		return i.data[0];
+																	}
+																}),
+																borderWidth: 1.5,
+																borderColor: getCSSVar("--bs-primary"),
+																backgroundColor: getCSSVar("--bs-primary-bg-subtle"),
+															},
+														],
+													},
+													options: {
+														plugins: {
+															legend: {
+																display: false,
+															},
+														},
+														scales: {
+															x: { display: false },
+															y: {
+																display: true,
+																beginAtZero: true,
+																grid: { color: getCSSVar("--bs-tertiary-bg") },
+															},
+														},
+													},
+												});
+											},
+											300,
+											target
+										);
+									},
+								},
+							}),
+							new h.div({ textAlign: "center", textColor: "secondary", small: true }, "Process speed in milisecond (Less is better)"),
+						])
+					),
+
+					new h.div({ textColor: "secondary", lineHeight: "sm" }, [
+						new h.small([`Page count : `, new h.strong(docCount)]),
+						new h.br(),
+						new h.small([`Load speed : `, new h.strong(loadSpeed), " page/sec"]),
+						new h.br(),
+						new h.small([`Duration : `, new h.strong(secondToDurationText(durationSecond))]),
+						arg.counttag ? new h.br() : "",
+						arg.counttag ? new h.small([`Less element : `, new h.strong(LESSTAG.title), "(", new h.strong(LESSTAG.count), " tag)"]) : "",
+						arg.counttag ? new h.br() : "",
+						arg.counttag ? new h.small([`Most element : `, new h.strong(MOSTTAG.title), "(", new h.strong(MOSTTAG.count), " tag)"]) : "",
+					]),
+
+					new h.div({ display: "flex", gap: 3, marginTop: 3 }, [
+						new b.button(
+							{
+								color: "secondary",
+								outline: true,
+								flex: "fill",
+								weight: "lg",
+								on: {
+									click: () => {
+										startMemoryTest({ testId: core.UUID(), count: arg.count, checkduplicateid: arg.checkduplicateid, counttag: arg.counttag, random: arg.random, showchart: arg.showchart });
+									},
+								},
+							},
+							"Try again"
+						),
+						new b.button(
+							{
+								flex: "fill",
+								weight: "lg",
+								on: {
+									click: (event) => {
+										const target = event.target as Element;
+										b.modal.hide(target);
+
+										//keep current page in cookie
+										cookie.set("current_page", docId);
+
+										//rename page title
+										const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
+										const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
+										document.title = strPagetitle;
+
+										//set history
+										pushState({ docId: docId, pagetitle: strPagetitle, value: docId });
+
+										//prettyprint code
+										core.requestIdleCallback(() => {
+											PR.prettyPrint();
+										}, 300);
+									},
+								},
+							},
+							"Close"
+						),
+					]),
+				];
+
+				core.replaceChild(document.getElementById("memory-test-dialog") as Element, detailReport);
+			}
+		);
+	}
+};
+
+const startDownloadResource = (testId: string, showchart: boolean, callback: () => void) => {
+	const item = menu.map((i) => i.item).flat();
+
+	core.replaceChild(
+		document.getElementById("memory-test-dialog") as Element,
+		setupProgressUI({
+			msg: "{{s::Download resource in progress}}",
+			testId: testId,
+			counterLabel: "Counter",
+			currentLabel: "Downloading page",
+			speedLabel: "Estimate download speed",
+			timeLabel: "Estimate time remaining",
+			stopLabel: "Skip",
+			total: item.length,
+			showchart: showchart,
+		})
+	);
+
+	const chart = showchart ? setupChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement) : undefined;
+
+	lastTestTime = performance.now();
+	lastEstimateTest = lastTestTime;
+
+	runDownloadResource(
+		{
+			index: 0,
+			item: item,
+			startTime: lastTestTime,
+			chart: chart,
+			testId: testId,
+		},
+		() => {
+			chart?.destroy();
+			callback();
+		}
+	);
+};
+
+const btnStartTest = (event: Event) => {
+	const target = event.target as Element;
+	const counter = parseInt(target.getAttribute("data-counter")!);
+	const randomtest = (document.getElementById("memory-test-random") as HTMLInputElement).checked;
+	const downloadfirst = (document.getElementById("memory-test-downloadfirst") as HTMLInputElement).checked;
+	const checkduplicateid = (document.getElementById("memory-test-duplicateid") as HTMLInputElement).checked;
+	const counttag = (document.getElementById("memory-test-counttag") as HTMLInputElement).checked;
+	const showchart = (document.getElementById("memory-test-showchart") as HTMLInputElement).checked;
+
+	if (downloadfirst) {
+		startDownloadResource(core.UUID(), showchart, () => {
+			startMemoryTest({ testId: core.UUID(), count: counter, random: randomtest, checkduplicateid: checkduplicateid, counttag: counttag, showchart: showchart });
+		});
+	} else {
+		startMemoryTest({ testId: core.UUID(), count: counter, random: randomtest, checkduplicateid: checkduplicateid, counttag: counttag, showchart: showchart });
+	}
+};
+
+export const showMemoryTestDialog = () => {
 	b.modal.show(
-		new b.modal.container([
-			new b.modal.body({ id: "memory-test-msg" }, [
+		new b.modal.container({ backdrop: "static", view: "center", scrollable: true }, [
+			new b.modal.body({ id: "memory-test-dialog" }, [
 				new h.p(
-					"Please select one of the buttons below to open a specified number of pages for the purpose of detecting potential memory leaks. To facilitate this process, you can utilize either the {{Memory Monitor Program}} on your device or the {{Developer Tools}} available in your browser. Before commencing the memory leak test, please make a note of the current memory usage. Upon completion of the test, kindly compare the memory difference. It is anticipated that the memory should revert back to its original state once the test is finalized."
+					"{{s::Memory test}}. Please choose a button below to open a specific number of pages for detecting memory leaks. You can use either the {{Memory Monitor Program}} on your device or the {{Developer Tools}} in your browser. Before starting the memory leak test, remember the current memory usage. After the test, compare the memory difference. The memory should return to its original state after the test."
 				),
 
 				new h.p([
-					b.form.check({
-						type: "checkbox",
-						switch: true,
-						label: "Random page",
-						checked: false,
-						id: "memory-test-random",
-					}),
 					b.form.check({
 						type: "checkbox",
 						switch: true,
@@ -467,6 +609,20 @@ export const showMemoryTestDialog = () => {
 						label: "Check duplicate id",
 						checked: false,
 						id: "memory-test-duplicateid",
+					}),
+					b.form.check({
+						type: "checkbox",
+						switch: true,
+						label: "Random page",
+						checked: true,
+						id: "memory-test-random",
+					}),
+					b.form.check({
+						type: "checkbox",
+						switch: true,
+						label: "Show chart",
+						checked: true,
+						id: "memory-test-showchart",
 					}),
 					b.form.check({
 						container: { marginBottom: 3 },
@@ -491,25 +647,7 @@ export const showMemoryTestDialog = () => {
 										counter: i,
 									},
 									on: {
-										click: (event) => {
-											const target = event.target as Element;
-											const counter = parseInt(target.getAttribute("data-counter")!);
-											const randomtest = (document.getElementById("memory-test-random") as HTMLInputElement).checked;
-											const downloadfirst = (document.getElementById("memory-test-downloadfirst") as HTMLInputElement).checked;
-											const checkduplicateid = (document.getElementById("memory-test-duplicateid") as HTMLInputElement).checked;
-											const counttag = (document.getElementById("memory-test-counttag") as HTMLInputElement).checked;
-
-											document.getElementById("memory-test-msg")?.classList.add("d-none");
-											document.getElementById("memory-test-progress")?.classList.remove("d-none");
-
-											if (downloadfirst) {
-												startDownloadResource(testId, () => {
-													startMemoryTest({ sender: target, testId: testId, count: counter, random: randomtest, checkduplicateid: checkduplicateid, counttag: counttag });
-												});
-											} else {
-												startMemoryTest({ sender: target, testId: testId, count: counter, random: randomtest, checkduplicateid: checkduplicateid, counttag: counttag });
-											}
-										},
+										click: btnStartTest,
 									},
 								},
 								`${i}`
@@ -517,10 +655,22 @@ export const showMemoryTestDialog = () => {
 						})
 					),
 				]),
-
-				new h.small(new b.caption({ icon: "info-circle-fill", textColor: "secondary" }, "To cancel the test, simply click outside the dialog.")),
+				new h.div(
+					{ display: "grid" },
+					new b.button(
+						{
+							weight: "lg",
+							on: {
+								click: (event) => {
+									const target = event.target as Element;
+									b.modal.hide(target);
+								},
+							},
+						},
+						"Close"
+					)
+				),
 			]),
-			new b.modal.body({ id: "memory-test-progress", display: "none" }, []),
 		])
 	);
 };

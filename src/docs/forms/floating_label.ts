@@ -1,8 +1,8 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const floating_label: IAttrContent = {
+export const floating_label: IContent = {
 	title: "Floating labels",
 	description: "Create beautifully simple form labels that float over your input fields.",
 	item: () => {
@@ -15,14 +15,8 @@ export const floating_label: IAttrContent = {
 				new e.code({
 					output: () => {
 						return [
-							new b.formfloating({ marginBottom: 3 }, [
-								new b.input({ type: "email", id: "floatingInput", placeholder: "name@example.com" }),
-								new b.label({ for: "floatingInput" }, "Email address"),
-							]),
-							new b.formfloating([
-								new b.input({ type: "password", id: "floatingPassword", placeholder: "Password" }),
-								new b.label({ for: "floatingPassword" }, "Password"),
-							]),
+							new b.formfloating({ marginBottom: 3 }, [new b.input({ type: "email", id: "floatingInput", placeholder: "name@example.com" }), new b.label({ for: "floatingInput" }, "Email address")]),
+							new b.formfloating([new b.input({ type: "password", id: "floatingPassword", placeholder: "Password" }), new b.label({ for: "floatingPassword" }, "Password")]),
 						];
 					},
 				}),
@@ -43,9 +37,7 @@ export const floating_label: IAttrContent = {
 						];
 					},
 				}),
-				new e.text(
-					"When there’s a {{value}} already defined, {{<label>}}s will automatically adjust to their floated position."
-				),
+				new e.text("When there’s a {{value}} already defined, {{<label>}}s will automatically adjust to their floated position."),
 				new e.code({
 					output: () => {
 						return b.form.floatinglabel.input({
@@ -72,9 +64,7 @@ export const floating_label: IAttrContent = {
 
 			new e.section([
 				new e.title("Textareas"),
-				new e.text(
-					"By default, {{<textarea>}}s with {{.form-control}} will be the same height as {{<input>}}s."
-				),
+				new e.text("By default, {{<textarea>}}s with {{.form-control}} will be the same height as {{<input>}}s."),
 				new e.code({
 					output: () => {
 						return b.form.floatinglabel.textarea({
@@ -82,9 +72,7 @@ export const floating_label: IAttrContent = {
 						});
 					},
 				}),
-				new e.text(
-					"To set a custom height on your {{<textarea>}}, do not use the {{rows}} attribute. Instead, set an explicit {{height}} (either inline or via custom CSS)."
-				),
+				new e.text("To set a custom height on your {{<textarea>}}, do not use the {{rows}} attribute. Instead, set an explicit {{height}} (either inline or via custom CSS)."),
 				new e.code({
 					output: () => {
 						return b.form.floatinglabel.textarea({
@@ -121,9 +109,7 @@ export const floating_label: IAttrContent = {
 
 			new e.section([
 				new e.title("Disabled"),
-				new e.text(
-					"Add the {{disabled}} boolean attribute on an input, a textarea or a select to give it a grayed out appearance, remove pointer events, and prevent focusing."
-				),
+				new e.text("Add the {{disabled}} boolean attribute on an input, a textarea or a select to give it a grayed out appearance, remove pointer events, and prevent focusing."),
 				new e.code({
 					output: () => {
 						return [
@@ -163,9 +149,7 @@ export const floating_label: IAttrContent = {
 
 			new e.section([
 				new e.title("Readonly plaintext"),
-				new e.text(
-					"Floating labels also support {{.form-control-plaintext}}, which can be helpful for toggling from an editable {{<input>}} to a plaintext value without affecting the page layout."
-				),
+				new e.text("Floating labels also support {{.form-control-plaintext}}, which can be helpful for toggling from an editable {{<input>}} to a plaintext value without affecting the page layout."),
 				new e.code({
 					output: () => {
 						return [
@@ -203,9 +187,7 @@ export const floating_label: IAttrContent = {
 					},
 				}),
 
-				new e.text(
-					"When using {{.input-group}} and {{.form-floating}} along with form validation, the {{-feedback}} should be placed outside of the {{.form-floating}}, but inside of the {{.input-group}}. This means that the feedback will need to be shown using javascript."
-				),
+				new e.text("When using {{.input-group}} and {{.form-floating}} along with form validation, the {{-feedback}} should be placed outside of the {{.form-floating}}, but inside of the {{.input-group}}. This means that the feedback will need to be shown using javascript."),
 				new e.code({
 					output: () => {
 						return b.form.floatinglabel.input({
@@ -224,9 +206,7 @@ export const floating_label: IAttrContent = {
 
 			new e.section([
 				new e.title("Layout"),
-				new e.text(
-					"When working with the Bootstrap grid system, be sure to place form elements within column classes."
-				),
+				new e.text("When working with the Bootstrap grid system, be sure to place form elements within column classes."),
 				new e.code({
 					output: () => {
 						return new h.div({ row: true, gutter: 3 }, [

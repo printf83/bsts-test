@@ -1,9 +1,8 @@
 import { b, h, core } from "@printf83/bsts";
-import * as main from "./_index.js";
-import { menu } from "./menu.js";
-import { getData } from "./data.js";
-import { highlightCurrentMenu } from "./menu.js";
-import { onMenuChange } from "./menu.js";
+import { getContent } from "./data.js";
+import { IMenuItem, highlightMenu } from "./menu.js";
+import { setupContentDocument } from "./content.js";
+import { menu } from "./_db.js";
 
 interface pageIndex {
 	category: string;
@@ -28,8 +27,8 @@ const isDocItemIndexed = (pageId: string) => {
 };
 
 const indexDocMenu = (index: number, callback: () => void) => {
-	if (index < menu.doc.length) {
-		indexDocItem(0, menu.doc[index].label, menu.doc[index].item, () => {
+	if (index < menu.length) {
+		indexDocItem(0, menu[index].label, menu[index].item, () => {
 			indexDocMenu(index + 1, callback);
 		});
 	} else {
@@ -37,10 +36,10 @@ const indexDocMenu = (index: number, callback: () => void) => {
 	}
 };
 
-const indexDocItem = (index: number, category: string, item: main.IAttrItemSubMenu[], callback: () => void) => {
+const indexDocItem = (index: number, category: string, item: IMenuItem[], callback: () => void) => {
 	if (index < item.length) {
 		if (!isDocItemIndexed(item[index].value)) {
-			getData(item[index].value, (data) => {
+			getContent(item[index].value, (data) => {
 				if (data && data.item) {
 					let contentItem = data.item();
 					if (contentItem) {
@@ -227,8 +226,8 @@ const searchIndexOnClick = (event: Event) => {
 			const pageId = listGroup.getAttribute("data-pageId");
 			const value = `${pageId}${sectionId ? "#" : ""}${sectionId}`;
 
-			highlightCurrentMenu(value);
-			onMenuChange(value);
+			highlightMenu(value);
+			setupContentDocument(value);
 		}
 	}
 };
@@ -315,6 +314,7 @@ export const showSearchDialog = () => {
 			{
 				fullscreen: "sm",
 				scrollable: true,
+				view: "center",
 				contentAttr: { overflow: "hidden" },
 				on: {
 					"shown.bs.modal": (_event) => {
@@ -337,7 +337,7 @@ export const showSearchDialog = () => {
 													alignItem: "center",
 													lineHeight: 1,
 													on: {
-														click: (event) => {
+														click: () => {
 															b.modal.show(
 																b.modal.create({
 																	elem: b.form.textarea({
@@ -476,7 +476,9 @@ export const showSearchDialog = () => {
 						paddingTop: 0,
 						bgColor: "body-tertiary",
 						zIndex: 0,
-						display: "grid",
+						display: "flex",
+						flex: "column",
+						justifyContent: "start",
 						gap: 3,
 					},
 					[new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")]
@@ -507,4 +509,15 @@ export const showSearchDialog = () => {
 			]
 		)
 	);
+};
+
+export const setupSearchShortcut = () => {
+	document.addEventListener("keydown", (event: KeyboardEvent) => {
+		if (event.ctrlKey && event.key == "k") {
+			event.stopPropagation();
+			event.preventDefault();
+
+			showSearchDialog();
+		}
+	});
 };

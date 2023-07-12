@@ -1,11 +1,10 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const spacing: IAttrContent = {
+export const spacing: IContent = {
 	title: "Spacing",
-	description:
-		"Bootstrap includes a wide range of shorthand responsive margin, padding, and gap utility classes to modify an element’s appearance.",
+	description: "Bootstrap includes a wide range of shorthand responsive margin, padding, and gap utility classes to modify an element’s appearance.",
 	item: () => {
 		return [
 			new e.section([
@@ -13,10 +12,7 @@ export const spacing: IAttrContent = {
 				new e.text(
 					"Assign responsive-friendly {{margin}} or {{padding}} values to an element or a subset of its sides with shorthand classes. Includes support for individual properties, all properties, and vertical and horizontal properties. Classes are built from a default Sass map ranging from {{.25rem}} to {{3rem}}."
 				),
-				new e.alert(
-					{ color: "info", callout: true },
-					"{{b::Using the CSS Grid layout module?}} Consider using {{nav:docs/utilities/spacing#gap::the gap utility}} instead."
-				),
+				new e.alert({ color: "info", callout: true }, "{{b::Using the CSS Grid layout module?}} Consider using {{nav:docs/utilities/spacing#gap::the gap utility}} instead."),
 			]),
 
 			//----------------------
@@ -26,9 +22,7 @@ export const spacing: IAttrContent = {
 				new e.text(
 					"Spacing utilities that apply to all breakpoints, from {{xs}} to {{xxl}}, have no breakpoint abbreviation in them. This is because those classes are applied from {{min-width: 0}} and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation."
 				),
-				new e.text(
-					"The classes are named using the format{{ {property}{sides}-{size} }}for {{xs}} and{{ {property}{sides}-{breakpoint}-{size} }}for {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}."
-				),
+				new e.text("The classes are named using the format{{ {property}{sides}-{size} }}for {{xs}} and{{ {property}{sides}-{breakpoint}-{size} }}for {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}."),
 				new e.text("Where {{i::property}} is one of:"),
 				new e.ul({
 					item: ["{{m}} - for classes that set {{margin}}", "{{p}} - for classes that set {{padding}}"],
@@ -92,16 +86,11 @@ export const spacing: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Horizontal centering"),
-				new e.text(
-					"Additionally, Bootstrap also includes an {{.mx-auto}} class for horizontally centering fixed-width block level content—that is, content that has {{display: block}} and a {{width}} set—by setting the horizontal margins to {{auto}}."
-				),
+				new e.text("Additionally, Bootstrap also includes an {{.mx-auto}} class for horizontally centering fixed-width block level content—that is, content that has {{display: block}} and a {{width}} set—by setting the horizontal margins to {{auto}}."),
 				new e.code({
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div(
-							{ marginX: "auto", padding: 2, style: { width: "200px" } },
-							"Centered element"
-						);
+						return new h.div({ marginX: "auto", padding: 2, style: { width: "200px" } }, "Centered element");
 					},
 				}),
 			]),
@@ -115,9 +104,7 @@ export const spacing: IAttrContent = {
 					"These negative margins are {{b::disabled by default}}, but can be enabled in Sass by setting {{$enable-negative-margins: true}}. Then, recompile your Sass. This features currently not supported by {{bsts}} until it enable default by Bootstrap."
 				),
 				new e.text("In CSS, {{margin}} properties can utilize negative values ({{padding}} cannot)."),
-				new e.text(
-					"The syntax is nearly the same as the default, positive margin utilities, but with the addition of {{n}} before the requested size. Here’s an example class that’s the opposite of {{.mt-1}}:"
-				),
+				new e.text("The syntax is nearly the same as the default, positive margin utilities, but with the addition of {{n}} before the requested size. Here’s an example class that’s the opposite of {{.mt-1}}:"),
 				new e.codepreview({
 					type: "css",
 					code: `
@@ -198,9 +185,7 @@ export const spacing: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("column-gap"),
-				new e.text(
-					"{{column-gap}} sets the horizontal space between children items in the specified container."
-				),
+				new e.text("{{column-gap}} sets the horizontal space between children items in the specified container."),
 				new e.codepreview({
 					type: "html",
 					code: `
@@ -222,9 +207,7 @@ export const spacing: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Maps"),
-				new e.text(
-					"Spacing utilities are declared via Sass map and then generated with Bootstrap utilities API."
-				),
+				new e.text("Spacing utilities are declared via Sass map and then generated with Bootstrap utilities API."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -247,9 +230,7 @@ export const spacing: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text(
-					"Spacing utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
-				),
+				new e.text("Spacing utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

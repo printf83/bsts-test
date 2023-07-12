@@ -1,11 +1,10 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const object_fit: IAttrContent = {
+export const object_fit: IContent = {
 	title: "Object fit",
-	description:
-		"Use the object fit utilities to modify how the content of a {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}, such as an {{<img>}} or {{<video>}}, should be resized to fit its container.",
+	description: "Use the object fit utilities to modify how the content of a {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}, such as an {{<img>}} or {{<video>}}, should be resized to fit its container.",
 	item: () => {
 		return [
 			new e.section([
@@ -13,9 +12,7 @@ export const object_fit: IAttrContent = {
 				new e.text(
 					"Change the value of the {{https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit::object-fit property}} with Bootstrap responsive {{object-fit}} utility classes. This property tells the content to fill the parent container in a variety of ways, such as preserving the aspect ratio or stretching to take up as much space as possible."
 				),
-				new e.text(
-					"Classes for the value of {{object-fit}} are named using the format {{.object-fit-{value}.}} Choose from the following values:"
-				),
+				new e.text("Classes for the value of {{object-fit}} are named using the format {{.object-fit-{value}.}} Choose from the following values:"),
 				new e.ul({
 					item: ["{{contain}}", "{{cover}}", "{{fill}}", "{{scale}} (for scale-down)", "{{none}}"],
 				}),
@@ -25,9 +22,7 @@ export const object_fit: IAttrContent = {
 
 			new e.section([
 				new e.title("Examples"),
-				new e.text(
-					"Add the {{object-fit-{value} }}class to the {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}:"
-				),
+				new e.text("Add the {{object-fit-{value} }}class to the {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}:"),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -50,9 +45,7 @@ export const object_fit: IAttrContent = {
 
 			new e.section([
 				new e.title("Responsive"),
-				new e.text(
-					"Responsive variations also exist for each {{object-fit}} value using the format {{.object-fit-{breakpoint}-{value} }}, for the following breakpoint abbreviations: {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}. Classes can be combined for various effects as you need."
-				),
+				new e.text("Responsive variations also exist for each {{object-fit}} value using the format {{.object-fit-{breakpoint}-{value} }}, for the following breakpoint abbreviations: {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}. Classes can be combined for various effects as you need."),
 				new e.code({
 					showViewport: true,
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -76,9 +69,7 @@ export const object_fit: IAttrContent = {
 
 			new e.section([
 				new e.title("Video"),
-				new e.text(
-					"The {{.object-fit-{value} }}and responsive {{.object-fit-{breakpoint}-{value} }}utilities also work on {{<video>}} elements."
-				),
+				new e.text("The {{.object-fit-{value} }}and responsive {{.object-fit-{breakpoint}-{value} }}utilities also work on {{<video>}} elements."),
 
 				new e.codepreview({
 					type: "html",
@@ -143,9 +134,7 @@ export const object_fit: IAttrContent = {
 
 			new e.section([
 				new e.title("Utilities API"),
-				new e.text(
-					"Object fit utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
-				),
+				new e.text("Object fit utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

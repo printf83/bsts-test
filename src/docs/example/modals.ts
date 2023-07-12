@@ -1,8 +1,8 @@
 import { I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const modals: IAttrContent = {
+export const modals: IContent = {
 	title: "Modals",
 	description: "Transform modals to serve any purpose, from feature tours to dialogs.",
 	item: () => {
@@ -15,12 +15,7 @@ export const modals: IAttrContent = {
 					output: () => {
 						return new b.modal.container({ debug: true, view: "end", contentAttr: { rounded: 4 } }, [
 							new b.modal.header({ close: true, borderNone: "bottom" }, new b.modal.title("Modal title")),
-							new b.modal.body(
-								{ paddingY: 0 },
-								new h.p(
-									"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
-								)
-							),
+							new b.modal.body({ paddingY: 0 }, new h.p("This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS.")),
 							new b.modal.footer(
 								{
 									flex: "column",
@@ -55,9 +50,7 @@ export const modals: IAttrContent = {
 							debug: true,
 							customStyle: 1,
 							title: "Modal title",
-							elem: new h.p(
-								"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
-							),
+							elem: new h.p("This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."),
 							btn: ["savechanges", "close"],
 							btnFn: [(_event) => {}],
 						});
@@ -84,16 +77,8 @@ export const modals: IAttrContent = {
 														},
 													},
 													[
-														new b.modal.header(
-															{ close: true, borderNone: "bottom" },
-															new b.modal.title("Modal title")
-														),
-														new b.modal.body(
-															{ paddingY: 0 },
-															new h.p(
-																"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
-															)
-														),
+														new b.modal.header({ close: true, borderNone: "bottom" }, new b.modal.title("Modal title")),
+														new b.modal.body({ paddingY: 0 }, new h.p("This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS.")),
 														new b.modal.footer(
 															{
 																flex: "column",
@@ -104,10 +89,7 @@ export const modals: IAttrContent = {
 																borderNone: "top",
 															},
 															[
-																new b.button(
-																	{ color: "primary", weight: "lg" },
-																	"Save changes"
-																),
+																new b.button({ color: "primary", weight: "lg" }, "Save changes"),
 																new b.button(
 																	{
 																		dismiss: "modal",
@@ -134,9 +116,7 @@ export const modals: IAttrContent = {
 												b.modal.create({
 													customStyle: 1,
 													title: "Modal title",
-													elem: new h.p(
-														"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
-													),
+													elem: new h.p("This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."),
 													btn: ["savechanges", "close"],
 													btnFn: [(_event) => {}],
 												})
@@ -171,12 +151,7 @@ export const modals: IAttrContent = {
 								},
 								new b.modal.title({ width: 100 }, "Enable this setting?")
 							),
-							new b.modal.body({ padding: 4, paddingTop: 0, textAlign: "center" }, [
-								new h.p(
-									{ marginBottom: 0 },
-									"You can always change your mind in your account settings."
-								),
-							]),
+							new b.modal.body({ padding: 4, paddingTop: 0, textAlign: "center" }, [new h.p({ marginBottom: 0 }, "You can always change your mind in your account settings.")]),
 							new b.modal.footer(
 								{
 									flex: ["nowrap", "grow-1"],
@@ -230,10 +205,7 @@ export const modals: IAttrContent = {
 							debug: true,
 							customStyle: 2,
 							title: "Enable this setting?",
-							elem: new h.p(
-								{ marginBottom: 0 },
-								"You can always change your mind in your account settings."
-							),
+							elem: new h.p({ marginBottom: 0 }, "You can always change your mind in your account settings."),
 							btn: ["yesenable", "nothanks"],
 							btnFn: [(_event) => {}],
 						});
@@ -262,15 +234,7 @@ export const modals: IAttrContent = {
 														},
 														new b.modal.title({ width: 100 }, "Enable this setting?")
 													),
-													new b.modal.body(
-														{ padding: 4, paddingTop: 0, textAlign: "center" },
-														[
-															new h.p(
-																{ marginBottom: 0 },
-																"You can always change your mind in your account settings."
-															),
-														]
-													),
+													new b.modal.body({ padding: 4, paddingTop: 0, textAlign: "center" }, [new h.p({ marginBottom: 0 }, "You can always change your mind in your account settings.")]),
 													new b.modal.footer(
 														{
 															flex: ["nowrap", "grow-1"],
@@ -325,10 +289,7 @@ export const modals: IAttrContent = {
 												b.modal.create({
 													customStyle: 2,
 													title: "Enable this setting?",
-													elem: new h.p(
-														{ marginBottom: 0 },
-														"You can always change your mind in your account settings."
-													),
+													elem: new h.p({ marginBottom: 0 }, "You can always change your mind in your account settings."),
 													btn: ["yesenable", "nothanks"],
 													btnFn: [(_event) => {}],
 												})
@@ -388,10 +349,7 @@ export const modals: IAttrContent = {
 										]);
 									})
 								),
-								new b.button(
-									{ weight: "lg", marginTop: 5, width: 100, dismiss: "modal" },
-									"Great, thanks!"
-								),
+								new b.button({ weight: "lg", marginTop: 5, width: 100, dismiss: "modal" }, "Great, thanks!"),
 							]),
 						]);
 					},
@@ -427,8 +385,7 @@ export const modals: IAttrContent = {
 																icon: "bookmark-star",
 																iconColor: "warning",
 																title: "Bookmarks",
-																description:
-																	"Save items you love for easy access later.",
+																description: "Save items you love for easy access later.",
 															},
 															{
 																icon: "film",
@@ -445,17 +402,11 @@ export const modals: IAttrContent = {
 																	fontWeight: "bold",
 																	textColor: i.iconColor as I.B.Icon["textColor"],
 																}),
-																new h.div([
-																	new h.h(5, { marginBottom: 0 }, i.title),
-																	i.description,
-																]),
+																new h.div([new h.h(5, { marginBottom: 0 }, i.title), i.description]),
 															]);
 														})
 													),
-													new b.button(
-														{ weight: "lg", marginTop: 5, width: 100, dismiss: "modal" },
-														"Great, thanks!"
-													),
+													new b.button({ weight: "lg", marginTop: 5, width: 100, dismiss: "modal" }, "Great, thanks!"),
 												]),
 											])
 										);
@@ -477,13 +428,7 @@ export const modals: IAttrContent = {
 					showCodepen: false,
 					output: () => {
 						return new b.modal.container({ debug: true, contentAttr: { rounded: 4, padding: 0 } }, [
-							new b.modal.header(
-								{ padding: 5, paddingBottom: 4, borderNone: "bottom", close: true },
-								new b.modal.title(
-									{ fontWeight: "bold", marginBottom: 0, fontSize: 2 },
-									"Sign up for free"
-								)
-							),
+							new b.modal.header({ padding: 5, paddingBottom: 4, borderNone: "bottom", close: true }, new b.modal.title({ fontWeight: "bold", marginBottom: 0, fontSize: 2 }, "Sign up for free")),
 							new b.modal.body({ padding: 5, paddingTop: 0 }, [
 								new h.form({ display: "grid", gap: 3 }, [
 									b.form.floatinglabel.input({
@@ -493,25 +438,13 @@ export const modals: IAttrContent = {
 									}),
 									b.form.floatinglabel.input({ type: "password", label: "Password", required: true }),
 									new b.button({ weight: "lg", type: "submit" }, "Sign up"),
-									new h.small(
-										{ textColor: "body-secondary" },
-										"By clicking Sign up, you agree to the terms of use."
-									),
+									new h.small({ textColor: "body-secondary" }, "By clicking Sign up, you agree to the terms of use."),
 									new h.hr({ marginY: 4 }),
 									new h.h(2, { fontSize: 5, fontWeight: "bold" }, "Or use a third-party"),
 									new h.div({ display: "grid", gap: 2 }, [
-										new b.button(
-											{ outline: true, color: "info" },
-											new b.caption({ icon: "twitter" }, "Sign up with Twitter")
-										),
-										new b.button(
-											{ outline: true, color: "primary" },
-											new b.caption({ icon: "facebook" }, "Sign up with Facebook")
-										),
-										new b.button(
-											{ outline: true, color: "secondary" },
-											new b.caption({ icon: "github" }, "Sign up with Github")
-										),
+										new b.button({ outline: true, color: "info" }, new b.caption({ icon: "twitter" }, "Sign up with Twitter")),
+										new b.button({ outline: true, color: "primary" }, new b.caption({ icon: "facebook" }, "Sign up with Facebook")),
+										new b.button({ outline: true, color: "secondary" }, new b.caption({ icon: "github" }, "Sign up with Github")),
 									]),
 								]),
 							]),
@@ -547,10 +480,7 @@ export const modals: IAttrContent = {
 															borderNone: "bottom",
 															close: true,
 														},
-														new b.modal.title(
-															{ fontWeight: "bold", marginBottom: 0, fontSize: 2 },
-															"Sign up for free"
-														)
+														new b.modal.title({ fontWeight: "bold", marginBottom: 0, fontSize: 2 }, "Sign up for free")
 													),
 													new b.modal.body({ padding: 5, paddingTop: 0 }, [
 														new h.form({ display: "grid", gap: 3 }, [
@@ -565,38 +495,13 @@ export const modals: IAttrContent = {
 																required: true,
 															}),
 															new b.button({ weight: "lg", type: "submit" }, "Sign up"),
-															new h.small(
-																{ textColor: "body-secondary" },
-																"By clicking Sign up, you agree to the terms of use."
-															),
+															new h.small({ textColor: "body-secondary" }, "By clicking Sign up, you agree to the terms of use."),
 															new h.hr({ marginY: 4 }),
-															new h.h(
-																2,
-																{ fontSize: 5, fontWeight: "bold" },
-																"Or use a third-party"
-															),
+															new h.h(2, { fontSize: 5, fontWeight: "bold" }, "Or use a third-party"),
 															new h.div({ display: "grid", gap: 2 }, [
-																new b.button(
-																	{ outline: true, color: "info" },
-																	new b.caption(
-																		{ icon: "twitter" },
-																		"Sign up with Twitter"
-																	)
-																),
-																new b.button(
-																	{ outline: true, color: "primary" },
-																	new b.caption(
-																		{ icon: "facebook" },
-																		"Sign up with Facebook"
-																	)
-																),
-																new b.button(
-																	{ outline: true, color: "secondary" },
-																	new b.caption(
-																		{ icon: "github" },
-																		"Sign up with Github"
-																	)
-																),
+																new b.button({ outline: true, color: "info" }, new b.caption({ icon: "twitter" }, "Sign up with Twitter")),
+																new b.button({ outline: true, color: "primary" }, new b.caption({ icon: "facebook" }, "Sign up with Facebook")),
+																new b.button({ outline: true, color: "secondary" }, new b.caption({ icon: "github" }, "Sign up with Github")),
 															]),
 														]),
 													]),

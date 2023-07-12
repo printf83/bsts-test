@@ -1,6 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
@@ -75,13 +75,7 @@ const ex = {
 			)
 		);
 	},
-	c3: (arg: {
-		icon: string;
-		link?: I.B.Nav.Header.Link[];
-		onlinkchange?: EventListener;
-		onlogin?: EventListener;
-		onsignup?: EventListener;
-	}) => {
+	c3: (arg: { icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener }) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -126,22 +120,12 @@ const ex = {
 						},
 					}),
 
-					new h.div({ col: "md-3", textAlign: "end" }, [
-						new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"),
-						new b.button({ on: { click: arg.onsignup } }, "Sign-up"),
-					]),
+					new h.div({ col: "md-3", textAlign: "end" }, [new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"), new b.button({ on: { click: arg.onsignup } }, "Sign-up")]),
 				]
 			)
 		);
 	},
-	c4: (arg: {
-		icon: string;
-		link?: I.B.Nav.Header.Link[];
-		onlinkchange?: EventListener;
-		onlogin?: EventListener;
-		onsignup?: EventListener;
-		onsearch?: EventListener;
-	}) => {
+	c4: (arg: { icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener; onsearch?: EventListener }) => {
 		return new h.header(
 			{
 				padding: 3,
@@ -220,14 +204,7 @@ const ex = {
 			)
 		);
 	},
-	c5: (arg: {
-		img: string;
-		icon: string;
-		link?: I.B.Nav.Header.Link[];
-		onlinkchange?: EventListener;
-		menu?: core.IElem;
-		onsearch?: EventListener;
-	}) => {
+	c5: (arg: { img: string; icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; menu?: core.IElem; onsearch?: EventListener }) => {
 		return new h.header(
 			{
 				padding: 3,
@@ -317,14 +294,7 @@ const ex = {
 			)
 		);
 	},
-	c6Header: (arg: {
-		img: string;
-		icon: string;
-		link?: core.IElem;
-		menu?: core.IElem;
-		onsearch?: EventListener;
-		onlinkchange?: EventListener;
-	}) => {
+	c6Header: (arg: { img: string; icon: string; link?: core.IElem; menu?: core.IElem; onsearch?: EventListener; onlinkchange?: EventListener }) => {
 		return new h.header(
 			{
 				paddingY: 3,
@@ -404,29 +374,13 @@ const ex = {
 	c6Body: (arg: { side?: core.IElem; main?: core.IElem }) => {
 		return new h.div(
 			{ container: "fluid", paddingBottom: 3 },
-			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [
-				new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""),
-				new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : ""),
-			])
+			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""), new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : "")])
 		);
 	},
-	c6: (arg: {
-		img: string;
-		icon: string;
-		link?: core.IElem;
-		menu?: core.IElem;
-		onsearch?: EventListener;
-		onlinkchange?: EventListener;
-		side?: core.IElem;
-		main?: core.IElem;
-	}) => {
+	c6: (arg: { img: string; icon: string; link?: core.IElem; menu?: core.IElem; onsearch?: EventListener; onlinkchange?: EventListener; side?: core.IElem; main?: core.IElem }) => {
 		return [ex.c6Header(arg), ex.c6Body(arg)];
 	},
-	c7Nav: (arg: {
-		startMenu?: I.B.Nav.Header.Link[];
-		endMenu?: I.B.Nav.Header.Link[];
-		onstarmenuchange?: EventListener;
-	}) => {
+	c7Nav: (arg: { startMenu?: I.B.Nav.Header.Link[]; endMenu?: I.B.Nav.Header.Link[]; onstarmenuchange?: EventListener }) => {
 		return new h.nav(
 			{ paddingY: 2, bgColor: "body-secondary", border: "bottom" },
 			new h.div(
@@ -495,14 +449,7 @@ const ex = {
 			])
 		);
 	},
-	c8: (arg: {
-		icon: string;
-		link: { href: string; icon: string; label: string; active?: boolean }[];
-		onlinkchange?: EventListener;
-		onlogin?: EventListener;
-		onsignup?: EventListener;
-		onsearch?: EventListener;
-	}) => {
+	c8: (arg: { icon: string; link: { href: string; icon: string; label: string; active?: boolean }[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener; onsearch?: EventListener }) => {
 		return new h.header([
 			new h.div(
 				{ paddingX: 3, paddingY: 2, textBgColor: "dark", theme: "dark" },
@@ -593,7 +540,7 @@ const ex = {
 	},
 };
 
-export const headers: IAttrContent = {
+export const headers: IContent = {
 	title: "Headers",
 	description: "Display your branding, navigation, search, and more with these header components",
 	item: () => {
@@ -796,13 +743,7 @@ export const headers: IAttrContent = {
 								{ href: "#", elem: "Customers" },
 								{ href: "#", elem: "Products" },
 							],
-							menu: [
-								new b.dropdown.item({ href: "#" }, "New project..."),
-								new b.dropdown.item({ href: "#" }, "Setting"),
-								new b.dropdown.item({ href: "#" }, "Profile"),
-								new b.dropdown.divider(),
-								new b.dropdown.item({ href: "#" }, "Sign out"),
-							],
+							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -863,13 +804,7 @@ export const headers: IAttrContent = {
 								new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
 							],
-							menu: [
-								new b.dropdown.item({ href: "#" }, "New project..."),
-								new b.dropdown.item({ href: "#" }, "Setting"),
-								new b.dropdown.item({ href: "#" }, "Profile"),
-								new b.dropdown.divider(),
-								new b.dropdown.item({ href: "#" }, "Sign out"),
-							],
+							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;

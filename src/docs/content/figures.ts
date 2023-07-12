@@ -1,17 +1,14 @@
 import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const figures: IAttrContent = {
+export const figures: IContent = {
 	title: "Figures",
-	description:
-		"Documentation and examples for displaying related images and text with the figure component in Bootstrap.",
+	description: "Documentation and examples for displaying related images and text with the figure component in Bootstrap.",
 	item: () => {
 		return [
 			new e.section([
-				new e.text(
-					"Anytime you need to display a piece of content—like an image with an optional caption, consider using a {{<figure>}}."
-				),
+				new e.text("Anytime you need to display a piece of content—like an image with an optional caption, consider using a {{<figure>}}."),
 				new e.text(
 					"Use the included {{.figure}}, {{.figure-img}} and {{.figure-caption}} classes to provide some baseline styles for the HTML5 {{<figure>}} and {{<figcaption>}} elements. Images in figures have no explicit size, so be sure to add the {{.img-fluid}} class to your {{<img>}} to make it responsive."
 				),
@@ -28,9 +25,7 @@ export const figures: IAttrContent = {
 						]);
 					},
 				}),
-				new e.text(
-					"Aligning the figure’s caption is easy with Bootstrap {{nav:docs/utilities/text#text_alignment::text utilities}}."
-				),
+				new e.text("Aligning the figure’s caption is easy with Bootstrap {{nav:docs/utilities/text#text_alignment::text utilities}}."),
 				new e.code({
 					output: () => {
 						return new b.figure.container([

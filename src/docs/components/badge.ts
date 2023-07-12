@@ -1,18 +1,13 @@
 import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const badge: IAttrContent = {
+export const badge: IContent = {
 	title: "Badges",
 	description: "Documentation and examples for badges, Bootstrap small count and labeling component.",
 	item: () => {
 		return [
-			new e.section([
-				new e.title("Examples"),
-				new e.text(
-					"Badges ({{b.badge}}) scale to match the size of the immediate parent element by using relative font sizing and {{em}} units. As of v5, badges no longer have focus or hover styles for links."
-				),
-			]),
+			new e.section([new e.title("Examples"), new e.text("Badges ({{b.badge}}) scale to match the size of the immediate parent element by using relative font sizing and {{em}} units. As of v5, badges no longer have focus or hover styles for links.")]),
 
 			//----------------------
 
@@ -21,10 +16,7 @@ export const badge: IAttrContent = {
 				new e.code({
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => {
-							return new h.h(i as I.H.HLevel, [
-								"Example heading ",
-								new b.badge({ bgColor: "secondary" }, "New"),
-							]);
+							return new h.h(i as I.H.HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
 						});
 					},
 				}),
@@ -43,9 +35,7 @@ export const badge: IAttrContent = {
 				new e.text(
 					"Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button."
 				),
-				new e.text(
-					"Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional text."
-				),
+				new e.text("Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional text."),
 			]),
 
 			//----------------------
@@ -71,9 +61,7 @@ export const badge: IAttrContent = {
 						]);
 					},
 				}),
-				new e.text(
-					"You can also replace the {{b.badge}} component with a few more utilities without a count for a more generic indicator."
-				),
+				new e.text("You can also replace the {{b.badge}} component with a few more utilities without a count for a more generic indicator."),
 				new e.code({
 					output: () => {
 						return new b.button({ position: "relative" }, [
@@ -107,14 +95,9 @@ export const badge: IAttrContent = {
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i) => {
-								return new b.badge(
-									{ textBgColor: i as core.IAttr["textBgColor"] },
-									core.uppercaseFirst(i)
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+							return new b.badge({ textBgColor: i as core.IAttr["textBgColor"] }, core.uppercaseFirst(i));
+						});
 					},
 				}),
 				new e.alert({ color: "info", callout: true }, [
@@ -129,20 +112,13 @@ export const badge: IAttrContent = {
 
 			new e.section([
 				new e.title("Pill badges"),
-				new e.text(
-					"Use the {{rounded:'pill'}} property to make badges more rounded with a larger {{border-radius}}."
-				),
+				new e.text("Use the {{rounded:'pill'}} property to make badges more rounded with a larger {{border-radius}}."),
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-							(i) => {
-								return new b.badge(
-									{ textBgColor: i as core.IAttr["textBgColor"], rounded: "pill" },
-									core.uppercaseFirst(i)
-								);
-							}
-						);
+						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+							return new b.badge({ textBgColor: i as core.IAttr["textBgColor"], rounded: "pill" }, core.uppercaseFirst(i));
+						});
 					},
 				}),
 			]),
@@ -155,9 +131,7 @@ export const badge: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text(
-					"As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-				),
+				new e.text("As part of Bootstrap’s evolving CSS variables approach, badges now use local CSS variables on {{.badge}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
 
 				new e.codepreview({
 					type: "css",

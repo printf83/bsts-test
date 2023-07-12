@@ -1,23 +1,17 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const vertical_rule: IAttrContent = {
+export const vertical_rule: IContent = {
 	title: "Vertical rule",
 	description: "Use the custom vertical rule helper to create vertical dividers like the {{<hr>}} element.",
 	item: () => {
 		return [
 			new e.section([
 				new e.title("How it works"),
-				new e.text(
-					"Vertical rules are inspired by the {{<hr>}} element, allowing you to create vertical dividers in common layouts. They’re styled just like {{<hr>}} elements:"
-				),
+				new e.text("Vertical rules are inspired by the {{<hr>}} element, allowing you to create vertical dividers in common layouts. They’re styled just like {{<hr>}} elements:"),
 				new e.ul({
-					item: [
-						"They’re {{1px}} wide",
-						"They have {{min-height}} of {{1em}}",
-						"Their color is set via {{currentColor}} and {{opacity}}",
-					],
+					item: ["They’re {{1px}} wide", "They have {{min-height}} of {{1em}}", "Their color is set via {{currentColor}} and {{opacity}}"],
 				}),
 				new e.text("Customize them with additional styles as needed."),
 			]),
@@ -47,12 +41,7 @@ export const vertical_rule: IAttrContent = {
 				new e.code({
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ hstack: true, gap: 3 }, [
-							new h.div({ padding: 2 }, "First item"),
-							new h.div({ padding: 2, marginStart: "auto" }, "Second item"),
-							new b.verticalrule(),
-							new h.div({ padding: 2 }, "Third item"),
-						]);
+						return new h.div({ hstack: true, gap: 3 }, [new h.div({ padding: 2 }, "First item"), new h.div({ padding: 2, marginStart: "auto" }, "Second item"), new b.verticalrule(), new h.div({ padding: 2 }, "Third item")]);
 					},
 				}),
 			]),

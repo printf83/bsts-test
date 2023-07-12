@@ -1,8 +1,8 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const close_button: IAttrContent = {
+export const close_button: IContent = {
 	title: "Close button",
 	description: "A generic close button for dismissing content like modals and alerts.",
 	item: () => {
@@ -23,9 +23,7 @@ export const close_button: IAttrContent = {
 
 			new e.section([
 				new e.title("Disabled state"),
-				new e.text(
-					"Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
-				),
+				new e.text("Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."),
 				new e.code({
 					output: () => {
 						return new b.btnclose({ disabled: true });
@@ -37,9 +35,7 @@ export const close_button: IAttrContent = {
 
 			new e.section([
 				new e.title("Dark variant"),
-				new e.text(
-					"Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."
-				),
+				new e.text("Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."),
 				new e.code({
 					previewAttr: { bgColor: "dark" },
 					output: () => {
@@ -56,9 +52,7 @@ export const close_button: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text(
-					"As part of Bootstrap’s evolving CSS variables approach, close button now use local CSS variables on {{.btn-close}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-				),
+				new e.text("As part of Bootstrap’s evolving CSS variables approach, close button now use local CSS variables on {{.btn-close}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
 
 				new e.codepreview({
 					type: "css",

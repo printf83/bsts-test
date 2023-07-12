@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: {
@@ -372,10 +372,7 @@ const ex = {
 				new h.ul(
 					{ unstyle: true, paddingStart: 0 },
 					new h.li({ marginBottom: 1 }, [
-						new b.collapse.button(
-							{ href: `#usermenu`, class: "btn", icon: true, defColor: false },
-							"Account"
-						),
+						new b.collapse.button({ href: `#usermenu`, class: "btn", icon: true, defColor: false }, "Account"),
 						new b.collapse.container(
 							{ id: "usermenu" },
 							new h.ul(
@@ -455,13 +452,7 @@ const ex = {
 								lineHeight: "sm",
 								autoInit: true,
 							},
-							[
-								new h.div(
-									{ display: "flex", width: 100, alignItem: "center", justifyContent: "between" },
-									[new h.b(i.title), new h.small(i.date)]
-								),
-								new h.div({ col: 10, marginBottom: 1, small: true }, i.description),
-							]
+							[new h.div({ display: "flex", width: 100, alignItem: "center", justifyContent: "between" }, [new h.b(i.title), new h.small(i.date)]), new h.div({ col: 10, marginBottom: 1, small: true }, i.description)]
 						);
 					})
 				),
@@ -469,7 +460,7 @@ const ex = {
 		);
 	},
 };
-export const sidebars: IAttrContent = {
+export const sidebars: IContent = {
 	title: "Sidebars",
 	description: "Common navigation patterns ideal for offcanvas or multi-column layouts.",
 	item: () => {
@@ -494,13 +485,7 @@ export const sidebars: IAttrContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [
-								new b.dropdown.item({ href: "#" }, "New project..."),
-								new b.dropdown.item({ href: "#" }, "Setting"),
-								new b.dropdown.item({ href: "#" }, "Profile"),
-								new b.dropdown.divider(),
-								new b.dropdown.item({ href: "#" }, "Sign out"),
-							],
+							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -541,13 +526,7 @@ export const sidebars: IAttrContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [
-								new b.dropdown.item({ href: "#" }, "New project..."),
-								new b.dropdown.item({ href: "#" }, "Setting"),
-								new b.dropdown.item({ href: "#" }, "Profile"),
-								new b.dropdown.divider(),
-								new b.dropdown.item({ href: "#" }, "Sign out"),
-							],
+							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -586,13 +565,7 @@ export const sidebars: IAttrContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [
-								new b.dropdown.item({ href: "#" }, "New project..."),
-								new b.dropdown.item({ href: "#" }, "Setting"),
-								new b.dropdown.item({ href: "#" }, "Profile"),
-								new b.dropdown.divider(),
-								new b.dropdown.item({ href: "#" }, "Sign out"),
-							],
+							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -670,9 +643,7 @@ export const sidebars: IAttrContent = {
 									"onlinkchange",
 									{
 										target: core.elemInfo(detail.target),
-										relatedTarget: detail.relatedTarget
-											? core.elemInfo(detail.relatedTarget)
-											: "null",
+										relatedTarget: detail.relatedTarget ? core.elemInfo(detail.relatedTarget) : "null",
 									},
 									"info"
 								);

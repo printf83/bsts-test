@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; description: string; elem?: core.IElem }) => {
@@ -235,7 +235,7 @@ const ex = {
 	},
 };
 
-export const heroes: IAttrContent = {
+export const heroes: IContent = {
 	title: "Heroes",
 	description: "Set the stage on your homepage with heroes that feature clear calls to action.",
 	item: () => {

@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { img: string; title: string; details: string; date: string; href: string }) => {
@@ -12,13 +12,7 @@ const ex = {
 				attrWidth: 32,
 				attrHeight: 32,
 			}),
-			new h.div({ display: "flex", gap: 2, width: 100, justifyContent: "between" }, [
-				new h.div([
-					new h.h(6, { marginBottom: 0 }, arg.title),
-					new h.p({ marginBottom: 0, opacity: 75 }, arg.details),
-				]),
-				new h.small({ opacity: 50, textWrap: false }, arg.date),
-			]),
+			new h.div({ display: "flex", gap: 2, width: 100, justifyContent: "between" }, [new h.div([new h.h(6, { marginBottom: 0 }, arg.title), new h.p({ marginBottom: 0, opacity: 75 }, arg.details)]), new h.small({ opacity: 50, textWrap: false }, arg.date)]),
 		]);
 	},
 	c2: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; name?: string }) => {
@@ -34,21 +28,11 @@ const ex = {
 					checked: arg.checked,
 					name: arg.name,
 				}),
-				new h.span([
-					arg.label,
-					new h.small({ display: "block", textColor: "body-secondary" }, arg.description),
-				]),
+				new h.span([arg.label, new h.small({ display: "block", textColor: "body-secondary" }, arg.description)]),
 			]
 		);
 	},
-	c3: (arg: {
-		icon: string;
-		label: string;
-		description: string;
-		checked?: boolean;
-		name?: string;
-		isadd?: boolean;
-	}) => {
+	c3: (arg: { icon: string; label: string; description: string; checked?: boolean; name?: string; isadd?: boolean }) => {
 		return new b.list.itemLabel(
 			{
 				display: "flex",
@@ -68,24 +52,11 @@ const ex = {
 						opacity: arg.isadd ? "0.5" : undefined,
 					},
 				}),
-				new h.span({ paddingTop: 1, class: "form-cheked-content" }, [
-					new h.b(arg.label),
-					new h.small(
-						{ display: "block", textColor: "body-secondary" },
-						new b.caption({ icon: arg.icon }, arg.description)
-					),
-				]),
+				new h.span({ paddingTop: 1, class: "form-cheked-content" }, [new h.b(arg.label), new h.small({ display: "block", textColor: "body-secondary" }, new b.caption({ icon: arg.icon }, arg.description))]),
 			]
 		);
 	},
-	c4: (arg: {
-		type: "checkbox" | "radio";
-		label: string;
-		description: string;
-		checked?: boolean;
-		disabled?: boolean;
-		name?: string;
-	}) => {
+	c4: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; disabled?: boolean; name?: string }) => {
 		const id = core.UUID();
 		return [
 			new b.input({
@@ -107,14 +78,7 @@ const ex = {
 			),
 		];
 	},
-	c5: (arg: {
-		type: "checkbox" | "radio";
-		label: string;
-		description: string;
-		checked?: boolean;
-		disabled?: boolean;
-		name?: string;
-	}) => {
+	c5: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; disabled?: boolean; name?: string }) => {
 		const id = core.UUID();
 		return new b.list.itemDiv(
 			{ display: "grid", gap: 2, border: false },
@@ -139,16 +103,13 @@ const ex = {
 						paddingY: 3,
 						paddingEnd: 5,
 					},
-					[
-						new h.b({ fontWeight: "semibold" }, arg.label),
-						new h.span({ display: "block", small: true, opacity: 75 }, arg.description),
-					]
+					[new h.b({ fontWeight: "semibold" }, arg.label), new h.span({ display: "block", small: true, opacity: 75 }, arg.description)]
 				),
 			])
 		);
 	},
 };
-export const list_groups: IAttrContent = {
+export const list_groups: IContent = {
 	title: "List groups",
 	description: "Extend list groups with utilities and custom styles for any content.",
 	item: () => {
@@ -170,8 +131,7 @@ export const list_groups: IAttrContent = {
 								href: "#",
 								img: "https://picsum.photos/seed/bsts_1/32/32.webp",
 								title: "Another title here",
-								details:
-									"Some placeholder content in a paragraph that gose a little longer so it wraps to a new line.",
+								details: "Some placeholder content in a paragraph that gose a little longer so it wraps to a new line.",
 								date: "3d",
 							}),
 							ex.c1({

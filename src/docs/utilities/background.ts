@@ -1,8 +1,8 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const background: IAttrContent = {
+export const background: IContent = {
 	title: "Background",
 	description: "Convey meaning through {{bgColor}} and add decoration with gradients.",
 	item: () => {
@@ -18,13 +18,8 @@ export const background: IAttrContent = {
 
 			new e.section([
 				new e.title("Background color"),
-				new e.text(
-					"Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::textColor}}, so in some cases you’ll want to use {{textColor}} {{nav:docs/utilities/colors::color utilities}}."
-				),
-				new e.alert(
-					{ color: "info", callout: true },
-					" Background utilities like {{bgColor}} property that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{bgColor:'*-subtle'}} utility will. This will be resolved in v6. "
-				),
+				new e.text("Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::textColor}}, so in some cases you’ll want to use {{textColor}} {{nav:docs/utilities/colors::color utilities}}."),
+				new e.alert({ color: "info", callout: true }, " Background utilities like {{bgColor}} property that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{bgColor:'*-subtle'}} utility will. This will be resolved in v6. "),
 				new e.code({
 					output: () => {
 						const data: { bgColor: core.IAttr["bgColor"]; textColor?: core.IAttr["textColor"] }[] = [
@@ -53,10 +48,7 @@ export const background: IAttrContent = {
 						];
 
 						return data.map((i) => {
-							return new h.div(
-								{ padding: 3, marginBottom: 2, bgColor: i.bgColor, textColor: i.textColor },
-								`bgColor:'${i.bgColor}'`
-							);
+							return new h.div({ padding: 3, marginBottom: 2, bgColor: i.bgColor, textColor: i.textColor }, `bgColor:'${i.bgColor}'`);
 						});
 					},
 				}),
@@ -66,12 +58,8 @@ export const background: IAttrContent = {
 
 			new e.section([
 				new e.title("Background gradient"),
-				new e.text(
-					"By adding a {{bgGradient:true}} property, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom."
-				),
-				new e.text(
-					"Do you need a gradient in your custom CSS? Just add {{background-image: var(--bs-gradient);}}."
-				),
+				new e.text("By adding a {{bgGradient:true}} property, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom."),
+				new e.text("Do you need a gradient in your custom CSS? Just add {{background-image: var(--bs-gradient);}}."),
 				new e.code({
 					output: () => {
 						const data: { bgColor: core.IAttr["bgColor"]; textColor?: core.IAttr["textColor"] }[] = [
@@ -117,12 +105,7 @@ export const background: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
-				new e.title("Opacity"),
-				new e.text(
-					"As of v5.1.0, {{bgColor}} property are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
-				),
-			]),
+			new e.section([new e.title("Opacity"), new e.text("As of v5.1.0, {{bgColor}} property are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.")]),
 
 			//----------------------
 
@@ -147,16 +130,11 @@ export const background: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Example"),
-				new e.text(
-					"To change that opacity, override {{style: { '--bs-bg-opacity': '.5' } }} via custom styles or inline styles."
-				),
+				new e.text("To change that opacity, override {{style: { '--bs-bg-opacity': '.5' } }} via custom styles or inline styles."),
 				new e.code({
 					output: () => {
 						return [
-							new h.div(
-								{ bgColor: "success", textColor: "white", padding: 2 },
-								"This is default success background"
-							),
+							new h.div({ bgColor: "success", textColor: "white", padding: 2 }, "This is default success background"),
 							new h.div(
 								{
 									bgColor: "success",
@@ -189,20 +167,13 @@ export const background: IAttrContent = {
 
 			//----------------------
 
-			new e.section([
-				new e.title("CSS"),
-				new e.text(
-					"In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
-				),
-			]),
+			new e.section([new e.title("CSS"), new e.text("In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more.")]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text(
-					"Most {{background-color}} utilities are generated by Bootstrap theme colors, reassigned from Bootstrap generic color palette variables."
-				),
+				new e.text("Most {{background-color}} utilities are generated by Bootstrap theme colors, reassigned from Bootstrap generic color palette variables."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -243,9 +214,7 @@ export const background: IAttrContent = {
 						$gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0));
 					`,
 				}),
-				new e.text(
-					"Grayscale colors are also available, but only a subset are used to generate any utilities."
-				),
+				new e.text("Grayscale colors are also available, but only a subset are used to generate any utilities."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -264,9 +233,7 @@ export const background: IAttrContent = {
 						$black:    #000;
 					`,
 				}),
-				new e.text(
-					"Variables for setting {{background-color}} in {{.bg-*-subtle}} utilities in light and dark mode:"
-				),
+				new e.text("Variables for setting {{background-color}} in {{.bg-*-subtle}} utilities in light and dark mode:"),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -303,9 +270,7 @@ export const background: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Sass maps"),
-				new e.text(
-					"Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."
-				),
+				new e.text("Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -323,9 +288,7 @@ export const background: IAttrContent = {
 						);
 					`,
 				}),
-				new e.text(
-					"Grayscale colors are also available as a Sass map. {{b::This map is not used to generate any utilities}}."
-				),
+				new e.text("Grayscale colors are also available as a Sass map. {{b::This map is not used to generate any utilities}}."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -353,9 +316,7 @@ export const background: IAttrContent = {
 						$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 					`,
 				}),
-				new e.text(
-					"Background color opacities build on that with their own map that’s consumed by the utilities API:"
-				),
+				new e.text("Background color opacities build on that with their own map that’s consumed by the utilities API:"),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
@@ -424,9 +385,7 @@ export const background: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Sass mixins"),
-				new e.text(
-					"{{b::No mixins are used to generate Bootstrap background utilities}}, but Bootstrap do have some additional mixins for other situations where you’d like to create your own gradients."
-				),
+				new e.text("{{b::No mixins are used to generate Bootstrap background utilities}}, but Bootstrap do have some additional mixins for other situations where you’d like to create your own gradients."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_gradients.scss",
@@ -487,9 +446,7 @@ export const background: IAttrContent = {
 
 			new e.section([
 				new e.title("Utilities API"),
-				new e.text(
-					"Background utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
-				),
+				new e.text("Background utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

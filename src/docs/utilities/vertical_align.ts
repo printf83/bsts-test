@@ -1,22 +1,16 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const vertical_align: IAttrContent = {
+export const vertical_align: IContent = {
 	title: "Vertical alignment",
 	description: "Easily change the vertical alignment of inline, inline-block, inline-table, and table cell elements.",
 	item: () => {
 		return [
 			new e.section([
-				new e.text(
-					"Change the alignment of elements with the {{https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align::vertical-alignment}} utilities. Please note that vertical-align only affects inline, inline-block, inline-table, and table cell elements."
-				),
-				new e.text(
-					"Choose from {{.align-baseline}}, {{.align-top}}, {{.align-middle}}, {{.align-bottom}}, {{.align-text-bottom}}, and {{.align-text-top}} as needed."
-				),
-				new e.text(
-					"To vertically center non-inline content (like {{<div>}}s and more), use Bootstrap {{nav:docs/utilities/flex#align_items::flex box utilities}}."
-				),
+				new e.text("Change the alignment of elements with the {{https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align::vertical-alignment}} utilities. Please note that vertical-align only affects inline, inline-block, inline-table, and table cell elements."),
+				new e.text("Choose from {{.align-baseline}}, {{.align-top}}, {{.align-middle}}, {{.align-bottom}}, {{.align-text-bottom}}, and {{.align-text-top}} as needed."),
+				new e.text("To vertically center non-inline content (like {{<div>}}s and more), use Bootstrap {{nav:docs/utilities/flex#align_items::flex box utilities}}."),
 				new e.text("With inline elements:"),
 				new e.code({
 					output: () => {
@@ -58,9 +52,7 @@ export const vertical_align: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text(
-					"Vertical align utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
-				),
+				new e.text("Vertical align utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

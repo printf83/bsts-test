@@ -1,23 +1,22 @@
 import { b } from "@printf83/bsts";
 import { cookie } from "./cookie.js";
-import * as main from "./_index.js";
-import { menu } from "./menu.js";
-import { updateMenu } from "./container.js";
+import { IMenu, IMenuItem, setupMenuContainer } from "./menu.js";
+import { menu } from "./_db.js";
 
 const getSavedBookmark = () => {
 	let bookmarkCookie = cookie.get("saved_bookmark");
 	if (bookmarkCookie) {
-		return JSON.parse(bookmarkCookie) as main.IAttrItemSubMenu[];
+		return JSON.parse(bookmarkCookie) as IMenuItem[];
 	} else {
 		return [];
 	}
 };
 
-export let bm: main.IAttrItemSubMenu[] = getSavedBookmark();
+export let bookmarkDB: IMenuItem[] = getSavedBookmark();
 
-const isInBookmark = (value: string) => {
-	if (bm && bm.length > 0) {
-		return bm.filter((i) => i.value === value).length > 0;
+export const isInBookmark = (value: string) => {
+	if (bookmarkDB && bookmarkDB.length > 0) {
+		return bookmarkDB.filter((i) => i.value === value).length > 0;
 	} else {
 		return false;
 	}
@@ -26,7 +25,7 @@ const isInBookmark = (value: string) => {
 const addToBookmark = (value: string) => {
 	let label = document.getElementById("bs-menu")?.querySelector(`a[data-value="${value}"]`)?.textContent;
 	if (label) {
-		bm.push({
+		bookmarkDB.push({
 			label: label,
 			value: value,
 		});
@@ -34,7 +33,7 @@ const addToBookmark = (value: string) => {
 };
 
 const removeFromBookmark = (value: string) => {
-	bm = bm.filter((i) => i.value !== value);
+	bookmarkDB = bookmarkDB.filter((i) => i.value !== value);
 };
 
 export const onBookmarkChange = (value: string) => {
@@ -44,22 +43,22 @@ export const onBookmarkChange = (value: string) => {
 		addToBookmark(value);
 	}
 
-	cookie.set("saved_bookmark", JSON.stringify(bm));
-	updateMenu(genMenuWithBookmark(), cookie.get("current_page") || "docs/gettingstarted/introduction");
+	cookie.set("saved_bookmark", JSON.stringify(bookmarkDB));
+	setupMenuContainer(menuWithBookmark(), cookie.get("current_page") || "docs/gettingstarted/introduction");
 };
 
-export const genMenuWithBookmark = () => {
-	let result: main.IAttrItemMenu[] = [];
+export const menuWithBookmark = () => {
+	let result: IMenu[] = [];
 
-	if (bm && bm.length > 0) {
+	if (bookmarkDB && bookmarkDB.length > 0) {
 		result.push({
 			icon: new b.icon({ id: "pin-fill", textColor: "secondary" }),
 			label: "Pinned",
-			item: bm,
+			item: bookmarkDB,
 		});
 	}
 
-	for (const doc of Object.values(menu.doc)) {
+	for (const doc of Object.values(menu)) {
 		let item = doc.item.filter((i) => !isInBookmark(i.value));
 		if (item && item.length > 0) {
 			result.push({
@@ -70,5 +69,5 @@ export const genMenuWithBookmark = () => {
 		}
 	}
 
-	return result && result.length > 0 ? result : menu.doc;
+	return result && result.length > 0 ? result : menu;
 };

@@ -1,28 +1,19 @@
 import { core, b, h, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IAttrContent } from "../../ctl/main/container.js";
+import { IContent } from "../../ctl/main/content.js";
 
-export const list: IAttrContent = {
+export const list: IContent = {
 	title: "List group",
-	description:
-		"List groups are a flexible and powerful component for displaying a series of content. Modify and extend them to support just about any content within.",
+	description: "List groups are a flexible and powerful component for displaying a series of content. Modify and extend them to support just about any content within.",
 	item: () => {
 		return [
 			new e.section([
 				new e.title("Basic example"),
-				new e.text(
-					"The most basic list group is an unordered list ({{b.list.container}}) with list items ({{b.list.item}}) and the proper classes. Build upon it with the options that follow, or with your own CSS as needed."
-				),
+				new e.text("The most basic list group is an unordered list ({{b.list.container}}) with list items ({{b.list.item}}) and the proper classes. Build upon it with the options that follow, or with your own CSS as needed."),
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
-						return new b.list.container([
-							new b.list.item("An item"),
-							new b.list.item("A second item"),
-							new b.list.item("A third item"),
-							new b.list.item("A fourth item"),
-							new b.list.item("And a fifth one"),
-						]);
+						return new b.list.container([new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item"), new b.list.item("A fourth item"), new b.list.item("And a fifth one")]);
 					},
 				}),
 			]),
@@ -35,13 +26,7 @@ export const list: IAttrContent = {
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
-						return new b.list.container([
-							new b.list.item({ active: true }, "An active item"),
-							new b.list.item("A second item"),
-							new b.list.item("A third item"),
-							new b.list.item("A fourth item"),
-							new b.list.item("And a fifth one"),
-						]);
+						return new b.list.container([new b.list.item({ active: true }, "An active item"), new b.list.item("A second item"), new b.list.item("A third item"), new b.list.item("A fourth item"), new b.list.item("And a fifth one")]);
 					},
 				}),
 			]),
@@ -54,13 +39,7 @@ export const list: IAttrContent = {
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
-						return new b.list.container([
-							new b.list.item({ disabled: true }, "A disabled item"),
-							new b.list.item("A second item"),
-							new b.list.item("A third item"),
-							new b.list.item("A fourth item"),
-							new b.list.item("And a fifth one"),
-						]);
+						return new b.list.container([new b.list.item({ disabled: true }, "A disabled item"), new b.list.item("A second item"), new b.list.item("A third item"), new b.list.item("A fourth item"), new b.list.item("And a fifth one")]);
 					},
 				}),
 			]),
@@ -86,9 +65,7 @@ export const list: IAttrContent = {
 					},
 				}),
 
-				new e.text(
-					"With {{b.list.item}}s or {{b.tabList.item}}, {{bsts}} also make use of the {{disabled}} attribute instead of the {{.disabled}} class automaticly."
-				),
+				new e.text("With {{b.list.item}}s or {{b.tabList.item}}, {{bsts}} also make use of the {{disabled}} attribute instead of the {{.disabled}} class automaticly."),
 
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
@@ -108,19 +85,11 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.title("Flush"),
-				new e.text(
-					"Set {{flush:true}} property on {{b.list.container}} to remove some borders and rounded corners to render list group items edge-to-edge in a parent container (e.g., cards)."
-				),
+				new e.text("Set {{flush:true}} property on {{b.list.container}} to remove some borders and rounded corners to render list group items edge-to-edge in a parent container (e.g., cards)."),
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
-						return new b.list.container({ flush: true }, [
-							new b.list.item("An item"),
-							new b.list.item("A second item"),
-							new b.list.item("A third item"),
-							new b.list.item("A fourth item"),
-							new b.list.item("And a fifth one"),
-						]);
+						return new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item"), new b.list.item("A fourth item"), new b.list.item("And a fifth one")]);
 					},
 				}),
 			]),
@@ -129,20 +98,12 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.title("Numbered"),
-				new e.text(
-					"Set {{numbered:true}} property on {{b.list.container}} to opt into numbered list group items. Numbers are generated via CSS for better placement inside list group items and to allow for better customization."
-				),
-				new e.text(
-					"Numbers are generated by {{counter-reset}} on the {{h.ol}}, and then styled and placed with a {{/://:/before}} pseudo-element on the {{h.li}} with counter-increment and content."
-				),
+				new e.text("Set {{numbered:true}} property on {{b.list.container}} to opt into numbered list group items. Numbers are generated via CSS for better placement inside list group items and to allow for better customization."),
+				new e.text("Numbers are generated by {{counter-reset}} on the {{h.ol}}, and then styled and placed with a {{/://:/before}} pseudo-element on the {{h.li}} with counter-increment and content."),
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
-						return new b.list.container({ numbered: true }, [
-							new b.list.item("A list item"),
-							new b.list.item("A list item"),
-							new b.list.item("A list item"),
-						]);
+						return new b.list.container({ numbered: true }, [new b.list.item("A list item"), new b.list.item("A list item"), new b.list.item("A list item")]);
 					},
 				}),
 
@@ -154,16 +115,10 @@ export const list: IAttrContent = {
 						return new b.list.container(
 							{ numbered: true },
 							[1, 2, 3].map((_i) => {
-								return new b.list.item(
-									{ display: "flex", justifyContent: "between", alignItem: "start" },
-									[
-										new h.div({ marginStart: 2, marginEnd: "auto" }, [
-											new h.div({ fontWeight: "bold" }, "Subheading"),
-											"Content for list item",
-										]),
-										new b.badge({ bgColor: "primary", rounded: "pill" }, "14"),
-									]
-								);
+								return new b.list.item({ display: "flex", justifyContent: "between", alignItem: "start" }, [
+									new h.div({ marginStart: 2, marginEnd: "auto" }, [new h.div({ fontWeight: "bold" }, "Subheading"), "Content for list item"]),
+									new b.badge({ bgColor: "primary", rounded: "pill" }, "14"),
+								]);
 							})
 						);
 					},
@@ -181,11 +136,7 @@ export const list: IAttrContent = {
 					showViewport: true,
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
-						let items = [
-							new b.list.item("An item"),
-							new b.list.item("A second item"),
-							new b.list.item("A third item"),
-						];
+						let items = [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")];
 
 						return [
 							new b.list.container({ horizontal: true }, items),
@@ -198,18 +149,12 @@ export const list: IAttrContent = {
 						];
 					},
 				}),
-				new e.text(
-					"{{b::ProTip:}} Want equal-width list group items when horizontal? Add {{flex:'fill'}} to each {{b.list.item}}."
-				),
+				new e.text("{{b::ProTip:}} Want equal-width list group items when horizontal? Add {{flex:'fill'}} to each {{b.list.item}}."),
 				new e.code({
 					showViewport: true,
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
-						let items = [
-							new b.list.item({ flex: "fill" }, "An item"),
-							new b.list.item({ flex: "fill" }, "A second item"),
-							new b.list.item({ flex: "fill" }, "A third item"),
-						];
+						let items = [new b.list.item({ flex: "fill" }, "An item"), new b.list.item({ flex: "fill" }, "A second item"), new b.list.item({ flex: "fill" }, "A third item")];
 
 						return [
 							new b.list.container({ horizontal: true }, items),
@@ -229,32 +174,14 @@ export const list: IAttrContent = {
 			new e.section([
 				new e.title("Variants"),
 
-				new e.alert(
-					{ color: "info", callout: true },
-					"{{b::Heads up!}} As of v5.3.0, the {{list-group-item-variant()}} Sass mixin is deprecated. List group item variants now have their CSS variables overridden in {{nav:docs/components/list#sass_loop::the Sass loop}}."
-				),
-				new e.text(
-					"Use {{color:'<value>'}} property to style list items with a stateful background and color."
-				),
+				new e.alert({ color: "info", callout: true }, "{{b::Heads up!}} As of v5.3.0, the {{list-group-item-variant()}} Sass mixin is deprecated. List group item variants now have their CSS variables overridden in {{nav:docs/components/list#sass_loop::the Sass loop}}."),
+				new e.text("Use {{color:'<value>'}} property to style list items with a stateful background and color."),
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
-							[
-								undefined,
-								"primary",
-								"secondary",
-								"success",
-								"danger",
-								"warning",
-								"info",
-								"light",
-								"dark",
-							].map((i) => {
-								return new b.list.item(
-									{ color: i as I.B.List.Item["color"] },
-									`A simple ${i ? i : "default"} list group item`
-								);
+							[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+								return new b.list.item({ color: i as I.B.List.Item["color"] }, `A simple ${i ? i : "default"} list group item`);
 							})
 						);
 					},
@@ -272,21 +199,8 @@ export const list: IAttrContent = {
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.tabList.container(
-							[
-								undefined,
-								"primary",
-								"secondary",
-								"success",
-								"danger",
-								"warning",
-								"info",
-								"light",
-								"dark",
-							].map((i) => {
-								return new b.tabList.item(
-									{ href: "#", action: true, color: i as I.B.TabList.Item["color"] },
-									`A simple ${i ? i : "default"} list group item`
-								);
+							[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+								return new b.tabList.item({ href: "#", action: true, color: i as I.B.TabList.Item["color"] }, `A simple ${i ? i : "default"} list group item`);
 							})
 						);
 					},
@@ -302,9 +216,7 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.title("With badges"),
-				new e.text(
-					"Add badges to any list group item to show unread counts, activity, and more with the help of some {{nav:docs/utilities/flex::utilities}}."
-				),
+				new e.text("Add badges to any list group item to show unread counts, activity, and more with the help of some {{nav:docs/utilities/flex::utilities}}."),
 
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
@@ -315,13 +227,7 @@ export const list: IAttrContent = {
 								{ label: "A second list item", counter: 2 },
 								{ label: "A third list item", counter: 1 },
 							].map((i) => {
-								return new b.list.item(
-									{ display: "flex", justifyContent: "between", alignItem: "center" },
-									[
-										i.label,
-										new b.badge({ bgColor: "primary", rounded: "pill" }, i.counter.toString()),
-									]
-								);
+								return new b.list.item({ display: "flex", justifyContent: "between", alignItem: "center" }, [i.label, new b.badge({ bgColor: "primary", rounded: "pill" }, i.counter.toString())]);
 							})
 						);
 					},
@@ -332,28 +238,16 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.title("Custom content"),
-				new e.text(
-					"Add nearly any component within, even for linked list groups like the one below, with the help of {{nav:docs/utilities/flex::flexbox utilities}}."
-				),
+				new e.text("Add nearly any component within, even for linked list groups like the one below, with the help of {{nav:docs/utilities/flex::flexbox utilities}}."),
 
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.tabList.container(
 							{ style: { maxWidth: "400px" } },
-							[
-								{ label: "And some small print", active: true },
-								{ label: "And some muted small print" },
-								{ label: "And some muted small print" },
-							].map((i) => {
+							[{ label: "And some small print", active: true }, { label: "And some muted small print" }, { label: "And some muted small print" }].map((i) => {
 								return new b.tabList.item({ href: "#", action: true, active: i.active }, [
-									new h.div({ display: "flex", width: 100, justifyContent: "between" }, [
-										new h.h(5, { marginBottom: 1 }, "List group item heading"),
-										new h.small(
-											{ textColor: !i.active ? "body-secondary" : undefined },
-											"3 days ago"
-										),
-									]),
+									new h.div({ display: "flex", width: 100, justifyContent: "between" }, [new h.h(5, { marginBottom: 1 }, "List group item heading"), new h.small({ textColor: !i.active ? "body-secondary" : undefined }, "3 days ago")]),
 									new h.p({ marginBottom: 1 }, "Some placeholder content in a paragraph."),
 									new h.small({ textColor: !i.active ? "body-secondary" : undefined }, i.label),
 								]);
@@ -367,22 +261,14 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.title("Checkboxes and radios"),
-				new e.text(
-					"Place Bootstrap’s checkboxes and radios within list group items and customize as needed. You can use them without {{b.label}}s, but please remember to include an {{label}} property and value for accessibility."
-				),
+				new e.text("Place Bootstrap’s checkboxes and radios within list group items and customize as needed. You can use them without {{b.label}}s, but please remember to include an {{label}} property and value for accessibility."),
 
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
 							["first", "second", "third"].map((i) => {
-								return new b.list.item([
-									new b.input({ type: "checkbox", id: `${i}Checkbox`, marginEnd: 2 }),
-									new b.label(
-										{ for: `${i}Checkbox`, class: "form-check-label" },
-										`${core.uppercaseFirst(i)} checkbox`
-									),
-								]);
+								return new b.list.item([new b.input({ type: "checkbox", id: `${i}Checkbox`, marginEnd: 2 }), new b.label({ for: `${i}Checkbox`, class: "form-check-label" }, `${core.uppercaseFirst(i)} checkbox`)]);
 							})
 						);
 					},
@@ -400,32 +286,21 @@ export const list: IAttrContent = {
 										name: "listGroupRadio",
 										marginEnd: 2,
 									}),
-									new b.label(
-										{ for: `${i}Radio`, class: "form-check-label" },
-										`${core.uppercaseFirst(i)} radio`
-									),
+									new b.label({ for: `${i}Radio`, class: "form-check-label" }, `${core.uppercaseFirst(i)} radio`),
 								]);
 							})
 						);
 					},
 				}),
 
-				new e.text(
-					"You can use {{stretched:true}} property on {{b.label}}s to make the whole {{b.list.item}} clickable."
-				),
+				new e.text("You can use {{stretched:true}} property on {{b.label}}s to make the whole {{b.list.item}} clickable."),
 
 				new e.code({
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
 							["first", "second", "third"].map((i) => {
-								return new b.list.item([
-									new b.input({ type: "checkbox", id: `${i}CheckboxStretched`, marginEnd: 2 }),
-									new b.label(
-										{ for: `${i}CheckboxStretched`, class: "form-check-label", stretched: true },
-										`${core.uppercaseFirst(i)} checkbox`
-									),
-								]);
+								return new b.list.item([new b.input({ type: "checkbox", id: `${i}CheckboxStretched`, marginEnd: 2 }), new b.label({ for: `${i}CheckboxStretched`, class: "form-check-label", stretched: true }, `${core.uppercaseFirst(i)} checkbox`)]);
 							})
 						);
 					},
@@ -440,9 +315,7 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text(
-					"As part of Bootstrap’s evolving CSS variables approach, list groups now use local CSS variables on {{.list-group}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
-				),
+				new e.text("As part of Bootstrap’s evolving CSS variables approach, list groups now use local CSS variables on {{.list-group}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
 
 				new e.codepreview({
 					type: "css",
@@ -548,9 +421,7 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.title("Tab behavior"),
-				new e.text(
-					"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap list group to create tabbable panes of local content."
-				),
+				new e.text("Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap list group to create tabbable panes of local content."),
 
 				new e.code({
 					output: () => {
@@ -602,9 +473,7 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Using {{autoInit}} property"),
-				new e.text(
-					"You can activate a list group navigation automaticly by simply specifying {{autoInit:true}} on {{b.tabList.item}}. Make sure you provide {{href}} property that point to {{b.tabList.tab.pane}} {{id}}"
-				),
+				new e.text("You can activate a list group navigation automaticly by simply specifying {{autoInit:true}} on {{b.tabList.item}}. Make sure you provide {{href}} property that point to {{b.tabList.tab.pane}} {{id}}"),
 
 				new e.code({
 					output: () => {
@@ -656,14 +525,9 @@ export const list: IAttrContent = {
 
 			new e.section([
 				new e.subtitle("Manual init"),
-				new e.text(
-					"Enable tabbable list item via JavaScript (each list item needs to be activated individually):"
-				),
+				new e.text("Enable tabbable list item via JavaScript (each list item needs to be activated individually):"),
 
-				new e.alert(
-					{ callout: true, color: "warning" },
-					"By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."
-				),
+				new e.alert({ callout: true, color: "warning" }, "By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."),
 
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -746,10 +610,7 @@ export const list: IAttrContent = {
 				}),
 
 				new e.text("You can activate individual list item in several ways:"),
-				new e.alert(
-					{ callout: true, color: "success" },
-					"{{bsts}} automaticly {{removeEventListener}} for event that create using {{on}} property to prevent memory leak."
-				),
+				new e.alert({ callout: true, color: "success" }, "{{bsts}} automaticly {{removeEventListener}} for event that create using {{on}} property to prevent memory leak."),
 
 				new e.code({
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -809,9 +670,7 @@ export const list: IAttrContent = {
 			new e.section([
 				new e.subtitle("Fade effect"),
 
-				new e.text(
-					"By default, {{bsts}} add {{.fade}} class automaticly into {{b.tabList.tab.pane}} component. You can disable it by set {{animation:false}} to each {{b.tabList.tab.pane}}"
-				),
+				new e.text("By default, {{bsts}} add {{.fade}} class automaticly into {{b.tabList.tab.pane}} component. You can disable it by set {{animation:false}} to each {{b.tabList.tab.pane}}"),
 
 				new e.code({
 					output: () => {
@@ -882,14 +741,8 @@ export const list: IAttrContent = {
 					item: [
 						["Method", "Description"],
 						["{{dispose}}", "Destroys an element’s tab."],
-						[
-							"{{getInstance}}",
-							"Static method which allows you to get the tab instance associated with a DOM element, you can use it like this: {{bootstrap.Tab.getInstance(element)}}.",
-						],
-						[
-							"{{getOrCreateInstance}}",
-							"Static method which returns a tab instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Tab.getOrCreateInstance(element)}}.",
-						],
+						["{{getInstance}}", "Static method which allows you to get the tab instance associated with a DOM element, you can use it like this: {{bootstrap.Tab.getInstance(element)}}."],
+						["{{getOrCreateInstance}}", "Static method which returns a tab instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Tab.getOrCreateInstance(element)}}."],
 						[
 							"{{show}}",
 							"Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. {{b::Returns to the caller before the tab pane has actually been shown}} (i.e. before the {{shown.bs.tab}} event occurs).",
@@ -957,12 +810,7 @@ export const list: IAttrContent = {
 											i.addEventListener("click", clickTabEvent);
 										});
 
-										e.console(
-											event.target as Element,
-											"b.tabList.init",
-											elem ? elem : "null",
-											elem ? "success" : "danger"
-										);
+										e.console(event.target as Element, "b.tabList.init", elem ? elem : "null", elem ? "success" : "danger");
 									},
 								},
 							},
@@ -981,12 +829,7 @@ export const list: IAttrContent = {
 											elemInstance.push(b.tabList.getInstance(i));
 										});
 
-										e.console(
-											event.target as Element,
-											"b.tabList.getInstance",
-											elemInstance && elemInstance.length > 0 ? elemInstance : "null",
-											elemInstance && elemInstance.length > 0 ? "success" : "danger"
-										);
+										e.console(event.target as Element, "b.tabList.getInstance", elemInstance && elemInstance.length > 0 ? elemInstance : "null", elemInstance && elemInstance.length > 0 ? "success" : "danger");
 									},
 								},
 							},
@@ -1005,12 +848,7 @@ export const list: IAttrContent = {
 											elemInstance.push(b.tabList.getOrCreateInstance(i));
 										});
 
-										e.console(
-											event.target as Element,
-											"b.tabList.getOrCreateInstance",
-											elemInstance && elemInstance.length > 0 ? elemInstance : "null",
-											elemInstance && elemInstance.length > 0 ? "success" : "danger"
-										);
+										e.console(event.target as Element, "b.tabList.getOrCreateInstance", elemInstance && elemInstance.length > 0 ? elemInstance : "null", elemInstance && elemInstance.length > 0 ? "success" : "danger");
 									},
 								},
 							},
@@ -1026,12 +864,7 @@ export const list: IAttrContent = {
 											let i = elem[core.rndBetween(0, elem.length - 1)];
 											if (i) {
 												b.tabList.show(i);
-												e.console(
-													event.target as Element,
-													"b.tabList.show",
-													i ? i : "null",
-													i ? "success" : "danger"
-												);
+												e.console(event.target as Element, "b.tabList.show", i ? i : "null", i ? "success" : "danger");
 											}
 										}
 									},
@@ -1052,25 +885,14 @@ export const list: IAttrContent = {
 											i.removeEventListener("click", clickTabEvent);
 										});
 
-										e.console(
-											event.target as Element,
-											"b.tabList.dispose",
-											elem && elem.length > 0 ? elem : "null",
-											elem && elem.length > 0 ? "success" : "danger"
-										);
+										e.console(event.target as Element, "b.tabList.dispose", elem && elem.length > 0 ? elem : "null", elem && elem.length > 0 ? "success" : "danger");
 									},
 								},
 							},
 							"dispose"
 						);
 
-						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
-							initButton,
-							getInstanceButton,
-							getOrCreateInstanceButton,
-							showButton,
-							disposeButton,
-						]);
+						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, showButton, disposeButton]);
 
 						const previewContainer = new h.div(
 							{
@@ -1111,29 +933,15 @@ export const list: IAttrContent = {
 					],
 				}),
 
-				new e.text(
-					"If no tab was already active, then the {{hide.bs.tab}} and {{hidden.bs.tab}} events will not be fired."
-				),
+				new e.text("If no tab was already active, then the {{hide.bs.tab}} and {{hidden.bs.tab}} events will not be fired."),
 
 				new e.table({
 					item: [
 						["Event type", "Description"],
-						[
-							"{{hide.bs.tab}}",
-							"This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use {{event.target}} and {{event.relatedTarget}} to target the current active tab and the new soon-to-be-active tab, respectively.",
-						],
-						[
-							"{{hidden.bs.tab}}",
-							"This event fires after a new tab is shown (and thus the previous active tab is hidden). Use {{event.target}} and {{event.relatedTarget}} to target the previous active tab and the new active tab, respectively.",
-						],
-						[
-							"{{show.bs.tab}}",
-							"This event fires on tab show, but before the new tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
-						],
-						[
-							"{{shown.bs.tab}}",
-							"This event fires on tab show after a tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
-						],
+						["{{hide.bs.tab}}", "This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use {{event.target}} and {{event.relatedTarget}} to target the current active tab and the new soon-to-be-active tab, respectively."],
+						["{{hidden.bs.tab}}", "This event fires after a new tab is shown (and thus the previous active tab is hidden). Use {{event.target}} and {{event.relatedTarget}} to target the previous active tab and the new active tab, respectively."],
+						["{{show.bs.tab}}", "This event fires on tab show, but before the new tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively."],
+						["{{shown.bs.tab}}", "This event fires on tab show after a tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively."],
 					],
 				}),
 
@@ -1163,12 +971,7 @@ export const list: IAttrContent = {
 												on: {
 													"shown.bs.tab": (event) => {
 														const evnt = event as EventWithTargetAndRelatedTarget;
-														e.console(
-															evnt.target,
-															"shown.bs.tab",
-															`target: {{b::${evnt.target}}}{{br}}relatedTarget: {{b::${evnt.relatedTarget}}}`,
-															"info"
-														);
+														e.console(evnt.target, "shown.bs.tab", `target: {{b::${evnt.target}}}{{br}}relatedTarget: {{b::${evnt.relatedTarget}}}`, "info");
 													},
 												},
 											},
