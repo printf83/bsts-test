@@ -499,6 +499,7 @@ const startMemoryTest = (arg: { testId: string; count: number; random: boolean; 
 										b.modal.hide(target);
 
 										core.requestIdleCallback(() => {
+											highlightMenu(docId);
 											setupContentDocument(docId, "push");
 										}, 300);
 									},
@@ -598,7 +599,7 @@ export const showMemoryTestDialog = () => {
 						type: "checkbox",
 						switch: true,
 						label: "Random page",
-						checked: true,
+						checked: false,
 						id: "memory-test-random",
 					}),
 					b.form.check({
