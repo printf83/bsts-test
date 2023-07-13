@@ -3,9 +3,7 @@ import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
 import { menu } from "./_db.js";
-import { setupContentContainerItem } from "./content.js";
-import { cookie } from "./cookie.js";
-import { pushState } from "./history.js";
+import { setupContentContainerItem, setupContentDocument } from "./content.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -478,12 +476,11 @@ const startMemoryTest = (arg: { testId: string; count: number; random: boolean; 
 						arg.counttag ? new h.small([`Most element : `, new h.strong(MOSTTAG.title), "(", new h.strong(MOSTTAG.count), " tag)"]) : "",
 					]),
 
-					new h.div({ display: "flex", gap: 3, marginTop: 3 }, [
+					new h.div({ display: "grid", gap: 3, gridTemplateColumns: "1fr 1fr", marginTop: 3 }, [
 						new b.button(
 							{
 								color: "secondary",
 								outline: true,
-								flex: "fill",
 								weight: "lg",
 								on: {
 									click: () => {
@@ -495,27 +492,14 @@ const startMemoryTest = (arg: { testId: string; count: number; random: boolean; 
 						),
 						new b.button(
 							{
-								flex: "fill",
 								weight: "lg",
 								on: {
 									click: (event) => {
 										const target = event.target as Element;
 										b.modal.hide(target);
 
-										//keep current page in cookie
-										cookie.set("current_page", docId);
-
-										//rename page title
-										const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-										const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-										document.title = strPagetitle;
-
-										//set history
-										pushState({ docId: docId, pagetitle: strPagetitle, value: docId });
-
-										//prettyprint code
 										core.requestIdleCallback(() => {
-											PR.prettyPrint();
+											setupContentDocument(docId, "push");
 										}, 300);
 									},
 								},
