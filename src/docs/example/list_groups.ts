@@ -421,8 +421,7 @@ export const list_groups: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new b.list.itemLink({ action: true, display: "flex", gap: 3, paddingY: 3, href: arg.href }, [
             new h.img({
                 rounded: "circle",
@@ -433,7 +432,7 @@ export const list_groups: IContent = {
             }),
             new h.div({ display: "flex", gap: 2, width: 100, justifyContent: "between" }, [new h.div([new h.h(6, { marginBottom: 0 }, arg.title), new h.p({ marginBottom: 0, opacity: 75 }, arg.details)]), new h.small({ opacity: 50, textWrap: false }, arg.date)]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -482,8 +481,7 @@ export const list_groups: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new b.list.itemLabel({
             display: "flex",
             gap: 2,
@@ -496,7 +494,7 @@ export const list_groups: IContent = {
             }),
             new h.span([arg.label, new h.small({ display: "block", textColor: "body-secondary" }, arg.description)]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -532,8 +530,7 @@ export const list_groups: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new b.list.itemLabel({
             display: "flex",
             gap: 3,
@@ -553,7 +550,7 @@ export const list_groups: IContent = {
             }),
             new h.span({ paddingTop: 1, class: "form-cheked-content" }, [new h.b(arg.label), new h.small({ display: "block", textColor: "body-secondary" }, new b.caption({ icon: arg.icon }, arg.description))]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -585,8 +582,7 @@ export const list_groups: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         const id = core.UUID();
         return [
             new b.input({
@@ -604,7 +600,7 @@ export const list_groups: IContent = {
                 paddingY: 3,
             }, [arg.label, new h.span({ display: "block", small: true, opacity: 50 }, arg.description)]),
         ];
-    };`,
+    }`,
 			],
 		},
 		{
@@ -640,8 +636,7 @@ export const list_groups: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         const id = core.UUID();
         return [
             new b.input({
@@ -659,7 +654,7 @@ export const list_groups: IContent = {
                 paddingY: 3,
             }, [arg.label, new h.span({ display: "block", small: true, opacity: 50 }, arg.description)]),
         ];
-    };`,
+    }`,
 			],
 		},
 		{
@@ -691,8 +686,7 @@ export const list_groups: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         const id = core.UUID();
         return new b.list.itemDiv({ display: "grid", gap: 2, border: false }, new h.div({ position: "relative" }, [
             new b.input({
@@ -715,7 +709,7 @@ export const list_groups: IContent = {
                 paddingEnd: 5,
             }, [new h.b({ fontWeight: "semibold" }, arg.label), new h.span({ display: "block", small: true, opacity: 75 }, arg.description)]),
         ]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -751,8 +745,7 @@ export const list_groups: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         const id = core.UUID();
         return new b.list.itemDiv({ display: "grid", gap: 2, border: false }, new h.div({ position: "relative" }, [
             new b.input({
@@ -775,7 +768,7 @@ export const list_groups: IContent = {
                 paddingEnd: 5,
             }, [new h.b({ fontWeight: "semibold" }, arg.label), new h.span({ display: "block", small: true, opacity: 75 }, arg.description)]),
         ]));
-    };`,
+    }`,
 			],
 		},
 	],

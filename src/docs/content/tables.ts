@@ -780,8 +780,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -790,7 +789,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -799,8 +798,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -809,7 +807,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -818,8 +816,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -828,7 +825,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -837,8 +834,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -847,7 +843,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -856,8 +852,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -866,7 +861,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -875,8 +870,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -885,7 +879,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -894,8 +888,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -904,7 +897,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -913,8 +906,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -923,7 +915,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -932,8 +924,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -942,7 +933,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -963,8 +954,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -973,7 +963,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -982,8 +972,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -992,7 +981,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1001,8 +990,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -1011,7 +999,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1020,8 +1008,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -1030,7 +1017,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1039,8 +1026,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -1049,7 +1035,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1058,8 +1044,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEITEM = () => {
+				`() => {
     return [
         new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
         new b.table.tbody([
@@ -1068,7 +1053,7 @@ export const tables: IContent = {
             new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
         ]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1131,18 +1116,16 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEHEAD = () => {
+				`() => {
     return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
-};`,
-				`
-						const TABLEBODY = () => {
+}`,
+				`() => {
     return [
         new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1151,18 +1134,16 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEHEAD = () => {
+				`() => {
     return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
-};`,
-				`
-						const TABLEBODY = () => {
+}`,
+				`() => {
     return [
         new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1171,18 +1152,16 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEHEAD = () => {
+				`() => {
     return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
-};`,
-				`
-						const TABLEBODY = () => {
+}`,
+				`() => {
     return [
         new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1191,18 +1170,16 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEHEAD = () => {
+				`() => {
     return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
-};`,
-				`
-						const TABLEBODY = () => {
+}`,
+				`() => {
     return [
         new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1211,18 +1188,16 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEHEAD = () => {
+				`() => {
     return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
-};`,
-				`
-						const TABLEBODY = () => {
+}`,
+				`() => {
     return [
         new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
         new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1231,8 +1206,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEBIG = (row, col) => {
+				`(row, col) => {
     return [
         new b.table.thead(new b.table.tr(Array(col)
             .fill("")
@@ -1243,7 +1217,7 @@ export const tables: IContent = {
             .fill("")
             .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1252,8 +1226,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEBIG = (row, col) => {
+				`(row, col) => {
     return [
         new b.table.thead(new b.table.tr(Array(col)
             .fill("")
@@ -1264,7 +1237,7 @@ export const tables: IContent = {
             .fill("")
             .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1273,8 +1246,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEBIG = (row, col) => {
+				`(row, col) => {
     return [
         new b.table.thead(new b.table.tr(Array(col)
             .fill("")
@@ -1285,7 +1257,7 @@ export const tables: IContent = {
             .fill("")
             .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1294,8 +1266,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEBIG = (row, col) => {
+				`(row, col) => {
     return [
         new b.table.thead(new b.table.tr(Array(col)
             .fill("")
@@ -1306,7 +1277,7 @@ export const tables: IContent = {
             .fill("")
             .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1315,8 +1286,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEBIG = (row, col) => {
+				`(row, col) => {
     return [
         new b.table.thead(new b.table.tr(Array(col)
             .fill("")
@@ -1327,7 +1297,7 @@ export const tables: IContent = {
             .fill("")
             .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1336,8 +1306,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEBIG = (row, col) => {
+				`(row, col) => {
     return [
         new b.table.thead(new b.table.tr(Array(col)
             .fill("")
@@ -1348,7 +1317,7 @@ export const tables: IContent = {
             .fill("")
             .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
     ];
-};`,
+}`,
 			],
 		},
 		{
@@ -1357,8 +1326,7 @@ export const tables: IContent = {
                     }`,
 
 			extention: [
-				`
-						const TABLEBIG = (row, col) => {
+				`(row, col) => {
     return [
         new b.table.thead(new b.table.tr(Array(col)
             .fill("")
@@ -1369,7 +1337,7 @@ export const tables: IContent = {
             .fill("")
             .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
     ];
-};`,
+}`,
 			],
 		},
 	],

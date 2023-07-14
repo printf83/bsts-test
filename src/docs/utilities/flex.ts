@@ -723,12 +723,11 @@ export const flex: IContent = {
                     }`,
 
 			extention: [
-				`
-						const FLEXITEM = (length) => {
+				`(length) => {
     return Array(length)
         .fill("")
         .map(() => new h.div({ padding: 2 }, "Flex item"));
-};`,
+}`,
 			],
 		},
 		{
@@ -761,12 +760,11 @@ export const flex: IContent = {
                     }`,
 
 			extention: [
-				`
-						const FLEXITEM = (length) => {
+				`(length) => {
     return Array(length)
         .fill("")
         .map(() => new h.div({ padding: 2 }, "Flex item"));
-};`,
+}`,
 			],
 		},
 		{
@@ -780,12 +778,11 @@ export const flex: IContent = {
                     }`,
 
 			extention: [
-				`
-						const FLEXITEM = (length) => {
+				`(length) => {
     return Array(length)
         .fill("")
         .map(() => new h.div({ padding: 2 }, "Flex item"));
-};`,
+}`,
 			],
 		},
 		{
@@ -799,12 +796,11 @@ export const flex: IContent = {
                     }`,
 
 			extention: [
-				`
-						const FLEXITEM = (length) => {
+				`(length) => {
     return Array(length)
         .fill("")
         .map(() => new h.div({ padding: 2 }, "Flex item"));
-};`,
+}`,
 			],
 		},
 		{
@@ -818,12 +814,11 @@ export const flex: IContent = {
                     }`,
 
 			extention: [
-				`
-						const FLEXITEM = (length) => {
+				`(length) => {
     return Array(length)
         .fill("")
         .map(() => new h.div({ padding: 2 }, "Flex item"));
-};`,
+}`,
 			],
 		},
 		{
@@ -837,12 +832,11 @@ export const flex: IContent = {
                     }`,
 
 			extention: [
-				`
-						const FLEXITEM = (length) => {
+				`(length) => {
     return Array(length)
         .fill("")
         .map(() => new h.div({ padding: 2 }, "Flex item"));
-};`,
+}`,
 			],
 		},
 		{
@@ -856,12 +850,11 @@ export const flex: IContent = {
                     }`,
 
 			extention: [
-				`
-						const FLEXITEM = (length) => {
+				`(length) => {
     return Array(length)
         .fill("")
         .map(() => new h.div({ padding: 2 }, "Flex item"));
-};`,
+}`,
 			],
 		},
 		{

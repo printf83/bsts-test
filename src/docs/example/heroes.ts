@@ -389,14 +389,13 @@ export const heroes: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({ paddingX: 4, paddingY: 5, marginY: 5, textAlign: "center" }, [
             new h.h(1, new b.icon({ id: arg.icon, fontDisplay: 1 })),
             new h.h(1, { fontDisplay: 5, fontWeight: "bold", textColor: "body-emphasis" }, arg.title),
             new h.div({ col: "lg-6", marginX: "auto" }, [new h.p({ lead: true, marginBottom: 4 }, arg.description), new h.div({ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" }, arg.elem ? arg.elem : "")]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -410,8 +409,7 @@ export const heroes: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             paddingX: 4,
             paddingTop: 5,
@@ -441,7 +439,7 @@ export const heroes: IContent = {
                 attrHeight: 500,
             }))),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -455,8 +453,7 @@ export const heroes: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             col: "xxl-8",
             container: true,
@@ -490,7 +487,7 @@ export const heroes: IContent = {
                 }, arg.elem ? arg.elem : ""),
             ]),
         ]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -515,8 +512,7 @@ export const heroes: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             col: ["xl-10", "xxl-8"],
             container: true,
@@ -563,7 +559,7 @@ export const heroes: IContent = {
                 new h.small({ textColor: "body-secondary" }, "By clicking Sign up, you agree to the terms of use."),
             ])),
         ]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -577,8 +573,7 @@ export const heroes: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             container: true,
             marginY: 5,
@@ -614,7 +609,7 @@ export const heroes: IContent = {
                 attrWidth: 720,
             })),
         ]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -627,8 +622,7 @@ export const heroes: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             paddingX: 4,
             paddingY: 5,
@@ -639,7 +633,7 @@ export const heroes: IContent = {
             new h.h(1, { fontDisplay: 5, fontWeight: "bold" }, arg.title),
             new h.div({ col: "lg-6", marginX: "auto" }, [new h.p({ lead: true, marginBottom: 4, textColor: "secondary" }, arg.description), new h.div({ display: ["grid", "sm-flex"], gap: 2, justifyContent: "sm-center" }, arg.elem ? arg.elem : "")]),
         ]);
-    };`,
+    }`,
 			],
 		},
 	],

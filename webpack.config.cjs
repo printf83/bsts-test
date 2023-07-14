@@ -4,6 +4,9 @@ module.exports = {
 	// mode: "development",
 	mode: "production",
 	entry: "./src/index.ts",
+	optimization: {
+		minimize: true,
+	},
 	module: {
 		rules: [
 			{

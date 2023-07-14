@@ -431,8 +431,7 @@ export const footers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.footer({
             display: "flex",
             flex: "wrap",
@@ -467,7 +466,7 @@ export const footers: IContent = {
                     : undefined,
             }),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -484,8 +483,7 @@ export const footers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.footer({
             display: "flex",
             flex: "wrap",
@@ -517,7 +515,7 @@ export const footers: IContent = {
                 unstyle: true,
             }),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -535,8 +533,7 @@ export const footers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.footer({
             paddingY: 3,
             marginY: 4,
@@ -551,7 +548,7 @@ export const footers: IContent = {
             }),
             new h.p({ textAlign: "center", textColor: "body-tertiary" }, arg.copyright),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -596,8 +593,7 @@ export const footers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENTSECTION = (arg) => {
+				`(arg) => {
         return [
             new h.h(5, arg.title),
             new b.nav.header.container({
@@ -613,9 +609,8 @@ export const footers: IContent = {
                 }),
             }),
         ];
-    };`,
-				`
-						const COMPONENT = (arg) => {
+    }`,
+				`(arg) => {
         return new h.footer({
             row: true,
             rowCol: [1, "sm-2", "md-5"],
@@ -637,7 +632,7 @@ export const footers: IContent = {
                 return new h.div({ col: true, marginBottom: 3 }, i ? i : "");
             }),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -696,8 +691,7 @@ export const footers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENTSECTION = (arg) => {
+				`(arg) => {
         return [
             new h.h(5, arg.title),
             new b.nav.header.container({
@@ -713,9 +707,8 @@ export const footers: IContent = {
                 }),
             }),
         ];
-    };`,
-				`
-						const COMPONENT = (arg) => {
+    }`,
+				`(arg) => {
         return new h.footer({
             paddingY: 5,
         }, [
@@ -765,7 +758,7 @@ export const footers: IContent = {
                 }),
             ]),
         ]);
-    };`,
+    }`,
 			],
 		},
 	],

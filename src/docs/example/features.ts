@@ -445,8 +445,7 @@ export const features: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({ col: true, marginBottom: 5 }, [
             new h.div({
                 display: "inline-flex",
@@ -464,7 +463,7 @@ export const features: IContent = {
             new h.p(arg.description),
             new h.a({ href: arg.href, iconLink: true }, ["Call to action", new b.icon("chevron-right")]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -492,8 +491,7 @@ export const features: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             col: true,
             display: "flex",
@@ -514,7 +512,7 @@ export const features: IContent = {
             }, new b.icon(arg.icon)),
             new h.div([new h.h(3, { fontSize: 2 }, arg.title), new h.p(arg.description), new h.div(arg.elem)]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -551,8 +549,7 @@ export const features: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             col: true,
         }, [
@@ -597,7 +594,7 @@ export const features: IContent = {
                 ]),
             ]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -652,8 +649,7 @@ export const features: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             col: true,
             display: "flex",
@@ -667,7 +663,7 @@ export const features: IContent = {
             }, new b.icon(arg.icon)),
             new h.div([new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title), new h.p(arg.description)]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -704,8 +700,7 @@ export const features: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENTFEATURE = (arg) => {
+				`(arg) => {
         return new h.div({
             col: true,
             display: "flex",
@@ -726,9 +721,8 @@ export const features: IContent = {
             new h.h(4, { fontWeight: "semibold", marginBottom: 0 }, arg.title),
             new h.p({ textColor: "body-secondary" }, arg.description),
         ]);
-    };`,
-				`
-						const COMPONENTTITLE = (arg) => {
+    }`,
+				`(arg) => {
         return new h.div({
             col: true,
             display: "flex",
@@ -736,14 +730,13 @@ export const features: IContent = {
             alignItem: "start",
             gap: 2,
         }, [new h.h(3, { fontWeight: "bold" }, arg.title), new h.p({ textColor: "body-secondary" }, arg.description), new h.div(arg.elem)]);
-    };`,
-				`
-						const COMPONENT = (arg) => {
+    }`,
+				`(arg) => {
         return new h.div({ row: true, rowCol: [1, "md-2"], alignItem: "md-center", gutter: 5, paddingY: 5 }, [
             COMPONENTTITLE(arg.main),
             new h.div({ col: true }, new h.div({ row: true, rowCol: [1, "sm-2"], gutter: 4 }, arg.feature.map((i) => COMPONENTFEATURE(i)))),
         ]);
-    };`,
+    }`,
 			],
 		},
 	],

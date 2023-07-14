@@ -783,8 +783,7 @@ export const sidebars: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             display: "flex",
             flex: ["column", "shrink-0"],
@@ -837,7 +836,7 @@ export const sidebars: IContent = {
                 new b.dropdown.menu(arg.menu ? arg.menu : ""),
             ]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -867,8 +866,7 @@ export const sidebars: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             display: "flex",
             flex: ["column", "shrink-0"],
@@ -921,7 +919,7 @@ export const sidebars: IContent = {
                 new b.dropdown.menu(arg.menu ? arg.menu : ""),
             ]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -949,8 +947,7 @@ export const sidebars: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             display: "flex",
             flex: ["column", "shrink-0"],
@@ -1016,7 +1013,7 @@ export const sidebars: IContent = {
                 new b.dropdown.menu(arg.menu ? arg.menu : ""),
             ]),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1070,8 +1067,7 @@ export const sidebars: IContent = {
                     }`,
 
 			extention: [
-				`
-						const CLICKEVENT = (event) => {
+				`(event) => {
         const target = event.target.closest("a.sidebar-item");
         const container = target.closest("div.sidebar-container");
         if (container) {
@@ -1095,9 +1091,8 @@ export const sidebars: IContent = {
             }
             target.classList.add("active");
         }
-    };`,
-				`
-						const COMPONENT = (arg) => {
+    }`,
+				`(arg) => {
         return new h.div({
             display: "flex",
             class: "sidebar-container",
@@ -1170,7 +1165,7 @@ export const sidebars: IContent = {
                 }))),
             ])),
         ]);
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1259,8 +1254,7 @@ export const sidebars: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({
             display: "flex",
             flex: ["column", "shrink-0"],
@@ -1290,7 +1284,7 @@ export const sidebars: IContent = {
                 }, [new h.div({ display: "flex", width: 100, alignItem: "center", justifyContent: "between" }, [new h.b(i.title), new h.small(i.date)]), new h.div({ col: 10, marginBottom: 1, small: true }, i.description)]);
             })),
         ]);
-    };`,
+    }`,
 			],
 		},
 	],

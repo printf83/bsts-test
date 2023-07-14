@@ -30,7 +30,7 @@ export const resetContentIndex = () => {
 
 export const getContentCode = (db?: e.IBsExampleData[]) => {
 	if (db && db.length > 0) {
-		if (contentIndex < db.length - 1) {
+		if (contentIndex < db.length) {
 			contentIndex = contentIndex + 1;
 			return db[contentIndex - 1];
 		} else {

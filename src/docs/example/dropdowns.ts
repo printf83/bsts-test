@@ -1126,8 +1126,7 @@ export const dropdowns: IContent = {
                     }`,
 
 			extention: [
-				`
-						const MENUCOMPONENT = () => {
+				`() => {
     return new h.div({
         display: "flex",
         flex: ["column", "lg-row"],
@@ -1206,7 +1205,7 @@ export const dropdowns: IContent = {
             }, i.label));
         }))),
     ]);
-};`,
+}`,
 			],
 		},
 		{
@@ -1230,8 +1229,7 @@ export const dropdowns: IContent = {
                     }`,
 
 			extention: [
-				`
-						const MENUCOMPONENT = () => {
+				`() => {
     return new h.div({
         display: "flex",
         flex: ["column", "lg-row"],
@@ -1310,7 +1308,7 @@ export const dropdowns: IContent = {
             }, i.label));
         }))),
     ]);
-};`,
+}`,
 			],
 		},
 	],

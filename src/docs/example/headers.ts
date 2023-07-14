@@ -1041,8 +1041,7 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({ container: true }, new h.header({
             display: "flex",
             flex: "wrap",
@@ -1076,7 +1075,7 @@ export const headers: IContent = {
                 },
             }),
         ]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1101,8 +1100,7 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({ container: true }, new h.header({
             display: "flex",
             justifyContent: "center",
@@ -1119,7 +1117,7 @@ export const headers: IContent = {
                 "change.bs.nav": arg.onlinkchange,
             },
         })));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1155,8 +1153,7 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.div({ container: true }, new h.header({
             display: "flex",
             flex: "wrap",
@@ -1191,7 +1188,7 @@ export const headers: IContent = {
             }),
             new h.div({ col: "md-3", textAlign: "end" }, [new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"), new b.button({ on: { click: arg.onsignup } }, "Sign-up")]),
         ]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1236,8 +1233,7 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.header({
             padding: 3,
             theme: "dark",
@@ -1294,7 +1290,7 @@ export const headers: IContent = {
                 new b.button({ color: "warning", on: { click: arg.onsignup } }, "Sign-up"),
             ]),
         ])));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1331,8 +1327,7 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.header({
             padding: 3,
             marginBottom: 3,
@@ -1396,7 +1391,7 @@ export const headers: IContent = {
                 new b.dropdown.menu(arg.menu ? arg.menu : ""),
             ]),
         ])));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1438,12 +1433,10 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return [COMPONENTHeader(arg), COMPONENTBody(arg)];
-    };`,
-				`
-						const COMPONENTHEADER = (arg) => {
+    }`,
+				`(arg) => {
         return new h.header({
             paddingY: 3,
             marginBottom: 3,
@@ -1496,11 +1489,10 @@ export const headers: IContent = {
                 ]),
             ]),
         ]));
-    };`,
-				`
-						const COMPONENTBODY = (arg) => {
+    }`,
+				`(arg) => {
         return new h.div({ container: "fluid", paddingBottom: 3 }, new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""), new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : "")]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1563,8 +1555,7 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENTNAV = (arg) => {
+				`(arg) => {
         return new h.nav({ paddingY: 2, bgColor: "body-secondary", border: "bottom" }, new h.div({
             container: true,
             display: "flex",
@@ -1590,9 +1581,8 @@ export const headers: IContent = {
                 }),
             }),
         ]));
-    };`,
-				`
-						const COMPONENTHEADER = (arg) => {
+    }`,
+				`(arg) => {
         return new h.header({ paddingY: 3, marginBottom: 4, border: "bottom" }, new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
             new h.a({
                 href: "#",
@@ -1615,7 +1605,7 @@ export const headers: IContent = {
                 },
             }, new b.input({ type: "search", placeholder: "Search..." })),
         ]));
-    };`,
+    }`,
 			],
 		},
 		{
@@ -1682,8 +1672,7 @@ export const headers: IContent = {
                     }`,
 
 			extention: [
-				`
-						const COMPONENT = (arg) => {
+				`(arg) => {
         return new h.header([
             new h.div({ paddingX: 3, paddingY: 2, textBgColor: "dark", theme: "dark" }, new h.div({ container: true }, new h.div({
                 display: "flex",
@@ -1745,7 +1734,7 @@ export const headers: IContent = {
                 ]),
             ])),
         ]);
-    };`,
+    }`,
 			],
 		},
 	],

@@ -943,6 +943,8 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	let strExtention: string[] = [];
+	let strExtentionDB: string[] = [];
+
 	if (attr.extention) {
 		let f: IBsExampleExt[] = [];
 		if (Array.isArray(attr.extention)) {
@@ -960,6 +962,7 @@ const convert = (attr: IBsExampleContainer) => {
 				} else {
 					strCode = attr.scriptConverter ? attr.scriptConverter(i.output!.toString()) : i.output!.toString();
 					strCode = replaceExtention(renameExtention, strCode);
+					strExtentionDB.push(strCode!);
 				}
 
 				strExtention.push(`
@@ -1028,7 +1031,7 @@ const convert = (attr: IBsExampleContainer) => {
 		core.dataManager.set(`code-${id}`, {
 			source: strSource,
 			manager: strManager,
-			extention: strExtention && strExtention.length > 0 ? strExtention : undefined,
+			extention: strExtentionDB && strExtentionDB.length > 0 ? strExtentionDB : undefined,
 		} satisfies IBsExampleData);
 	}
 
