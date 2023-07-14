@@ -5,6 +5,12 @@ import { ICodePen, codeBeautify, codePen, getCSSBaseOnSource, getRootBaseOnSourc
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.11/+esm";
 const BSCDNCSS = ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"];
 
+export interface IBsExampleData {
+	source?: string;
+	manager?: string;
+	extention?: string[];
+}
+
 export interface IBsExampleExt {
 	name?: string;
 	rename?: string;
@@ -13,13 +19,17 @@ export interface IBsExampleExt {
 }
 
 export interface IBsExampleContainer extends core.IAttr {
+	db?: IBsExampleData;
+	strExtention?: string | string[];
+	strOutput?: string;
+	strManager?: string;
+
 	lib?: string | string[];
 	css?: string;
 	extention?: IBsExampleExt | IBsExampleExt[];
 	output?: Function;
 	manager?: Function;
-	strOutput?: string;
-	strManager?: string;
+
 	scriptConverter?: Function;
 
 	showCodepen?: boolean;
@@ -828,6 +838,25 @@ const convert = (attr: IBsExampleContainer) => {
 			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_2__\[\"default\"\]\(/gm, "Chart(");
 	};
 
+	//setup strCode if db is provided
+	if (attr.db) {
+		if (attr.extention) {
+			if (!Array.isArray(attr.extention)) {
+				attr.extention = [attr.extention];
+			}
+
+			if (attr.db.extention && attr.db.extention.length === attr.extention.length) {
+				attr.extention = attr.extention.map((i, ix) => {
+					i.strOutput = attr.db?.extention ? attr.db?.extention[ix] : undefined;
+					return i;
+				});
+			}
+		}
+		attr.strManager = attr.db.manager;
+		attr.strOutput = attr.db.source;
+	}
+
+	//start create element
 	let e: t[] = [];
 
 	if (attr.output && attr.showOutput) {
@@ -914,7 +943,6 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	let strExtention: string[] = [];
-
 	if (attr.extention) {
 		let f: IBsExampleExt[] = [];
 		if (Array.isArray(attr.extention)) {
@@ -925,9 +953,14 @@ const convert = (attr: IBsExampleContainer) => {
 
 		f.forEach((i) => {
 			if (i && i.name && (i.output || i.strOutput)) {
-				let strCode = i.strOutput ? i.strOutput : attr.scriptConverter ? attr.scriptConverter(i.output!.toString()) : i.output!.toString();
+				let strCode: string | undefined = undefined;
 
-				strCode = replaceExtention(renameExtention, strCode);
+				if (i.strOutput) {
+					strCode = i.strOutput;
+				} else {
+					strCode = attr.scriptConverter ? attr.scriptConverter(i.output!.toString()) : i.output!.toString();
+					strCode = replaceExtention(renameExtention, strCode);
+				}
 
 				strExtention.push(`
 						const ${i.name} = ${strCode};`);
@@ -936,7 +969,7 @@ const convert = (attr: IBsExampleContainer) => {
 					...itemCode({
 						header: e.length > 0,
 						title: i.name,
-						elem: new preview({ type: i.strOutput ? "ts" : "js" }, strCode),
+						elem: new preview({ type: "js" }, strCode!),
 					})
 				);
 			}
@@ -945,15 +978,18 @@ const convert = (attr: IBsExampleContainer) => {
 
 	let strManager: string | undefined = undefined;
 	if ((attr.output || attr.strOutput) && attr.showScript && (attr.manager || attr.strManager) && attr.showManager) {
-		strManager = attr.strManager ? attr.strManager : attr.scriptConverter ? attr.scriptConverter(attr.manager!.toString()) : attr.manager!.toString();
-
-		strManager = replaceExtention(renameExtention, strManager);
+		if (attr.strManager) {
+			strManager = attr.strManager;
+		} else {
+			strManager = attr.scriptConverter ? attr.scriptConverter(attr.manager!.toString()) : attr.manager!.toString();
+			strManager = replaceExtention(renameExtention, strManager);
+		}
 
 		e.push(
 			...itemCode({
 				header: e.length > 0,
 				title: "MANAGER",
-				elem: new preview({ type: attr.strManager ? "ts" : "js" }, strManager!),
+				elem: new preview({ type: "js" }, strManager!),
 			})
 		);
 	}
@@ -962,9 +998,14 @@ const convert = (attr: IBsExampleContainer) => {
 	let strRoot: string | undefined = undefined;
 
 	if ((attr.output || attr.strOutput) && attr.showScript) {
-		strSource = attr.strOutput ? attr.strOutput : attr.scriptConverter ? attr.scriptConverter(attr.output!.toString()) : attr.output!.toString();
 		strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
-		strSource = replaceExtention(renameExtention, strSource);
+
+		if (attr.strOutput) {
+			strSource = attr.strOutput;
+		} else {
+			strSource = attr.scriptConverter ? attr.scriptConverter(attr.output!.toString()) : attr.output!.toString();
+			strSource = replaceExtention(renameExtention, strSource);
+		}
 
 		if (strSource) {
 			e.push(
@@ -972,7 +1013,7 @@ const convert = (attr: IBsExampleContainer) => {
 					islast: true,
 					header: e.length > 0,
 					title: "SOURCE",
-					elem: new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
+					elem: new preview({ type: "js" }, strSource),
 					onedit: attr.showCodepen
 						? () => {
 								codePen(generateCodePenData(getLibBaseOnSource(strSource, strManager, strExtention), strSource!, strManager, strExtention, strCSS, strRoot));
@@ -983,11 +1024,13 @@ const convert = (attr: IBsExampleContainer) => {
 		}
 	}
 
-	core.dataManager.set(`code-${id}`, {
-		source: strSource,
-		manager: strManager,
-		extention: strExtention && strExtention.length > 0 ? strExtention : undefined,
-	});
+	if (!attr.db) {
+		core.dataManager.set(`code-${id}`, {
+			source: strSource,
+			manager: strManager,
+			extention: strExtention && strExtention.length > 0 ? strExtention : undefined,
+		} satisfies IBsExampleData);
+	}
 
 	attr.elem = [
 		new b.card.container(
@@ -1007,13 +1050,6 @@ const convert = (attr: IBsExampleContainer) => {
 								addConsoleLog(ce.target as Element, ce.detail.title, ce.detail.msg, ce.detail.color);
 						  }
 						: undefined,
-					click: (event: Event) => {
-						const target = event.currentTarget as Element;
-						const id = target.id;
-						if (core.dataManager.exists(`code-${id}`)) {
-							console.log(`code-${id}`, core.dataManager.get(`code-${id}`));
-						}
-					},
 					destroy: (event: Event) => {
 						const target = event.currentTarget as Element;
 						const id = target.id;
@@ -1024,6 +1060,8 @@ const convert = (attr: IBsExampleContainer) => {
 			new b.card.body({ padding: 0 }, [new b.list.container(e)])
 		),
 	];
+
+	delete attr.db;
 
 	delete attr.lib;
 	delete attr.css;

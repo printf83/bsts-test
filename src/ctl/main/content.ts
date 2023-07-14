@@ -19,7 +19,8 @@ export interface IContent {
 
 	description?: string;
 
-	item?: () => core.IElem;
+	item?: (code?: e.IBsExampleData[]) => core.IElem;
+	code?: e.IBsExampleData[];
 }
 
 const setupIntro = (content?: IContent) => {
@@ -72,7 +73,7 @@ const setupContent = (content?: IContent) => {
 				class: "bs-content",
 				paddingStart: "lg-2",
 			},
-			content.item()
+			content.item(content.code)
 		);
 	} else {
 		return "";

@@ -44,6 +44,55 @@ const setupBSNavigate = () => {
 	);
 };
 
+const setupCopyDataManager = () => {
+	document.addEventListener("keydown", (event: KeyboardEvent) => {
+		if (event.ctrlKey && event.key == "l") {
+			event.stopPropagation();
+			event.preventDefault();
+
+			let listOfCodePreview = document.getElementsByClassName("example-code");
+			if (listOfCodePreview && listOfCodePreview.length > 0) {
+				let codeData = Array.from(listOfCodePreview)
+					.map((i) => {
+						let id = `code-${i.id}`;
+						if (core.dataManager.exists(id)) {
+							let dmCode = core.dataManager.get(id) as e.IBsExampleData;
+							if (dmCode) {
+								let source = dmCode.source ? `source: \`${dmCode.source}\`,` : "";
+								let manager = dmCode.manager ? `manager: \`${dmCode.manager}\`,` : "";
+								let extention = "";
+
+								if (dmCode.extention && dmCode.extention.length > 0) {
+									extention = `extention: [\`${dmCode.extention.join("`,`")}\`] ,`;
+								}
+
+								return `{
+									${source}
+									${manager}
+									${extention}
+								},
+								`;
+							}
+						}
+
+						return undefined;
+					})
+					.filter(Boolean)
+					.join("");
+
+				navigator.clipboard.writeText(`code: [${codeData}],`).then(
+					() => {
+						b.toast.show(b.toast.create({ color: "primary", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Code added to clipboard" }));
+					},
+					() => {
+						b.toast.show(b.toast.create({ color: "danger", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Fail add code to clipboard" }));
+					}
+				);
+			}
+		}
+	});
+};
+
 const mainContainer = () => {
 	return new container({
 		name: "Bootstrap TS",
@@ -185,6 +234,7 @@ core.documentReady(() => {
 			setupState();
 			setupBSNavigate();
 			setupThemeChanges();
+			setupCopyDataManager();
 			core.requestIdleCallback(() => {
 				loadDefaultDoc();
 			}, 300);
