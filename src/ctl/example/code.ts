@@ -958,27 +958,36 @@ const convert = (attr: IBsExampleContainer) => {
 		);
 	}
 
+	let strSource: string | undefined = undefined;
+	let strRoot: string | undefined = undefined;
+
 	if ((attr.output || attr.strOutput) && attr.showScript) {
-		let strSource = attr.strOutput ? attr.strOutput : attr.scriptConverter ? attr.scriptConverter(attr.output!.toString()) : attr.output!.toString();
-
-		let strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
-
+		strSource = attr.strOutput ? attr.strOutput : attr.scriptConverter ? attr.scriptConverter(attr.output!.toString()) : attr.output!.toString();
+		strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
 		strSource = replaceExtention(renameExtention, strSource);
 
-		e.push(
-			...itemCode({
-				islast: true,
-				header: e.length > 0,
-				title: "SOURCE",
-				elem: new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
-				onedit: attr.showCodepen
-					? () => {
-							codePen(generateCodePenData(getLibBaseOnSource(strSource, strManager, strExtention), strSource, strManager, strExtention, strCSS, strRoot));
-					  }
-					: undefined,
-			})
-		);
+		if (strSource) {
+			e.push(
+				...itemCode({
+					islast: true,
+					header: e.length > 0,
+					title: "SOURCE",
+					elem: new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
+					onedit: attr.showCodepen
+						? () => {
+								codePen(generateCodePenData(getLibBaseOnSource(strSource, strManager, strExtention), strSource!, strManager, strExtention, strCSS, strRoot));
+						  }
+						: undefined,
+				})
+			);
+		}
 	}
+
+	core.dataManager.set(`code-${id}`, {
+		source: strSource,
+		manager: strManager,
+		extention: strExtention && strExtention.length > 0 ? strExtention : undefined,
+	});
 
 	attr.elem = [
 		new b.card.container(
@@ -998,6 +1007,18 @@ const convert = (attr: IBsExampleContainer) => {
 								addConsoleLog(ce.target as Element, ce.detail.title, ce.detail.msg, ce.detail.color);
 						  }
 						: undefined,
+					click: (event: Event) => {
+						const target = event.currentTarget as Element;
+						const id = target.id;
+						if (core.dataManager.exists(`code-${id}`)) {
+							console.log(`code-${id}`, core.dataManager.get(`code-${id}`));
+						}
+					},
+					destroy: (event: Event) => {
+						const target = event.currentTarget as Element;
+						const id = target.id;
+						core.dataManager.remove(`code-${id}`);
+					},
 				},
 			},
 			new b.card.body({ padding: 0 }, [new b.list.container(e)])
