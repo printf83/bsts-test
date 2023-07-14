@@ -99,4 +99,25 @@ export const ratio: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.div({ ratio: "16x9" }, new h.iframe({
+                            src: "https://www.youtube.com/embed/eVxNksC88_U",
+                            title: "YouTube video player",
+                            allowfullscreen: true,
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.div({ ratio: "1x1" }, new h.div("1X1")), new h.div({ ratio: "4x3" }, new h.div("4X3")), new h.div({ ratio: "16x9" }, new h.div("16X9")), new h.div({ ratio: "21x9" }, new h.div("21X9"))];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ ratio: true, style: { "--bs-aspect-ratio": "50%" } }, new h.div("2X1"));
+                    }`,
+		},
+	],
 };

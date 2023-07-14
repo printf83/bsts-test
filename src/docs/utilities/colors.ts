@@ -402,4 +402,54 @@ export const colors: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        const data = [
+                            { textColor: "primary" },
+                            { textColor: "primary-emphasis" },
+                            { textColor: "secondary" },
+                            { textColor: "secondary-emphasis" },
+                            { textColor: "success" },
+                            { textColor: "success-emphasis" },
+                            { textColor: "danger" },
+                            { textColor: "danger-emphasis" },
+                            { textColor: "warning", bgColor: "dark" },
+                            { textColor: "warning-emphasis" },
+                            { textColor: "info", bgColor: "dark" },
+                            { textColor: "info-emphasis" },
+                            { textColor: "light", bgColor: "dark" },
+                            { textColor: "light-emphasis" },
+                            { textColor: "dark" },
+                            { textColor: "dark-emphasis" },
+                            { textColor: "body" },
+                            { textColor: "body-emphasis" },
+                            { textColor: "body-secondary" },
+                            { textColor: "body-tertiary" },
+                            { textColor: "black" },
+                            { textColor: "white", bgColor: "dark" },
+                            { textColor: "black", textOpacity: 50 },
+                            { textColor: "white", textOpacity: 50, bgColor: "dark" },
+                        ];
+                        return data.map((i) => {
+                            return new h.p({ bgColor: i.bgColor, textColor: i.textColor, textOpacity: i.textOpacity }, [\`.text-\${i.textColor}\`, i.textOpacity ? \`.text-opacity-\${i.textOpacity}\` : ""]);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.div({ textColor: "primary" }, "This is default primary text"), new h.div({ textColor: "primary", style: { "--bs-text-opacity": ".5" } }, "This is 50% opacity primary text")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [undefined, 75, 50, 25].map((i) => {
+                            return new h.div({
+                                textColor: "primary",
+                                textOpacity: i,
+                            }, \`This is \${i ? i + "% opacity" : "default"} primary text\`);
+                        });
+                    }`,
+		},
+	],
 };

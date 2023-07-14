@@ -392,4 +392,391 @@ export const list_groups: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
+                            COMPONENT({
+                                href: "#",
+                                img: "https://picsum.photos/seed/bsts_0/32/32.webp",
+                                title: "List group item heading",
+                                details: "Some placeholder content in a paragraph.",
+                                date: "now",
+                            }),
+                            COMPONENT({
+                                href: "#",
+                                img: "https://picsum.photos/seed/bsts_1/32/32.webp",
+                                title: "Another title here",
+                                details: "Some placeholder content in a paragraph that gose a little longer so it wraps to a new line.",
+                                date: "3d",
+                            }),
+                            COMPONENT({
+                                href: "#",
+                                img: "https://picsum.photos/seed/bsts_2/32/32.webp",
+                                title: "Third heading",
+                                details: "Some placeholder content in a paragraph.",
+                                date: "1w",
+                            }),
+                        ]);
+                    }`,
+
+			extention: [
+				`
+						const COMPONENT = (arg) => {
+        return new b.list.itemLink({ action: true, display: "flex", gap: 3, paddingY: 3, href: arg.href }, [
+            new h.img({
+                rounded: "circle",
+                flex: "shrink-0",
+                src: arg.img,
+                attrWidth: 32,
+                attrHeight: 32,
+            }),
+            new h.div({ display: "flex", gap: 2, width: 100, justifyContent: "between" }, [new h.div([new h.h(6, { marginBottom: 0 }, arg.title), new h.p({ marginBottom: 0, opacity: 75 }, arg.details)]), new h.small({ opacity: 50, textWrap: false }, arg.date)]),
+        ]);
+    };`,
+			],
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
+                                COMPONENT({
+                                    checked: true,
+                                    type: "checkbox",
+                                    label: "First checkbox",
+                                    description: "With support text underneath to add more detail",
+                                }),
+                                COMPONENT({
+                                    type: "checkbox",
+                                    label: "Second checkbox",
+                                    description: "Some other text goes here",
+                                }),
+                                COMPONENT({
+                                    type: "checkbox",
+                                    label: "Third checkbox",
+                                    description: "And we end with another snippet of text",
+                                }),
+                            ]),
+                            new b.list.container({ style: { maxWidth: "460px" } }, [
+                                COMPONENT({
+                                    name: "group1",
+                                    checked: true,
+                                    type: "radio",
+                                    label: "First radio",
+                                    description: "With support text underneath to add more detail",
+                                }),
+                                COMPONENT({
+                                    name: "group1",
+                                    type: "radio",
+                                    label: "Second radio",
+                                    description: "Some other text goes here",
+                                }),
+                                COMPONENT({
+                                    name: "group1",
+                                    type: "radio",
+                                    label: "Third radio",
+                                    description: "And we end with another snippet of text",
+                                }),
+                            ]),
+                        ];
+                    }`,
+
+			extention: [
+				`
+						const COMPONENT = (arg) => {
+        return new b.list.itemLabel({
+            display: "flex",
+            gap: 2,
+        }, [
+            new b.input({
+                flex: "shrink-0",
+                type: arg.type,
+                checked: arg.checked,
+                name: arg.name,
+            }),
+            new h.span([arg.label, new h.small({ display: "block", textColor: "body-secondary" }, arg.description)]),
+        ]);
+    };`,
+			],
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
+                                COMPONENT({
+                                    checked: true,
+                                    icon: "calendar-event",
+                                    label: "Finish sales report",
+                                    description: "1:00-2:00pm",
+                                }),
+                                COMPONENT({
+                                    checked: false,
+                                    icon: "calendar-event",
+                                    label: "Weekly All Hands",
+                                    description: "2:00-2:30pm",
+                                }),
+                                COMPONENT({
+                                    checked: false,
+                                    icon: "alarm",
+                                    label: "Out of office",
+                                    description: "Tomorrow",
+                                }),
+                                COMPONENT({
+                                    isadd: true,
+                                    icon: "list-check",
+                                    label: "Add new task",
+                                    description: "Choose list...",
+                                }),
+                            ]),
+                        ];
+                    }`,
+
+			extention: [
+				`
+						const COMPONENT = (arg) => {
+        return new b.list.itemLabel({
+            display: "flex",
+            gap: 3,
+            bgColor: arg.isadd ? "body-tertiary" : undefined,
+        }, [
+            new b.input({
+                flex: "shrink-0",
+                type: "checkbox",
+                checked: arg.checked,
+                disabled: arg.isadd ? true : undefined,
+                pointerEvent: arg.isadd ? "none" : undefined,
+                style: {
+                    fontSize: "1.375em",
+                    filter: arg.isadd ? "none" : undefined,
+                    opacity: arg.isadd ? "0.5" : undefined,
+                },
+            }),
+            new h.span({ paddingTop: 1, class: "form-cheked-content" }, [new h.b(arg.label), new h.small({ display: "block", textColor: "body-secondary" }, new b.caption({ icon: arg.icon }, arg.description))]),
+        ]);
+    };`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+                            ...COMPONENT({
+                                checked: true,
+                                type: "checkbox",
+                                label: "First checkbox",
+                                description: "With support text underneath to add more detail",
+                            }),
+                            ...COMPONENT({
+                                type: "checkbox",
+                                label: "Second checkbox",
+                                description: "Some other text goes here",
+                            }),
+                            ...COMPONENT({
+                                type: "checkbox",
+                                label: "Third checkbox",
+                                description: "And we end with another snippet of text",
+                            }),
+                            ...COMPONENT({
+                                type: "checkbox",
+                                disabled: true,
+                                label: "Fourth disabled checkbox",
+                                description: "This option is disabled",
+                            }),
+                        ]);
+                    }`,
+
+			extention: [
+				`
+						const COMPONENT = (arg) => {
+        const id = core.UUID();
+        return [
+            new b.input({
+                id: id,
+                class: "list-group-item",
+                type: arg.type,
+                checked: arg.checked,
+                name: arg.name,
+                disabled: arg.disabled,
+                pointerEvent: "none",
+            }),
+            new b.list.itemLabel({
+                for: id,
+                rounded: 3,
+                paddingY: 3,
+            }, [arg.label, new h.span({ display: "block", small: true, opacity: 50 }, arg.description)]),
+        ];
+    };`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+                            ...COMPONENT({
+                                checked: true,
+                                type: "radio",
+                                name: "group2",
+                                label: "First radio",
+                                description: "With support text underneath to add more detail",
+                            }),
+                            ...COMPONENT({
+                                type: "radio",
+                                name: "group2",
+                                label: "Second radio",
+                                description: "Some other text goes here",
+                            }),
+                            ...COMPONENT({
+                                type: "radio",
+                                name: "group2",
+                                label: "Third radio",
+                                description: "And we end with another snippet of text",
+                            }),
+                            ...COMPONENT({
+                                type: "radio",
+                                disabled: true,
+                                name: "group2",
+                                label: "Fourth disabled radio",
+                                description: "This option is disabled",
+                            }),
+                        ]);
+                    }`,
+
+			extention: [
+				`
+						const COMPONENT = (arg) => {
+        const id = core.UUID();
+        return [
+            new b.input({
+                id: id,
+                class: "list-group-item",
+                type: arg.type,
+                checked: arg.checked,
+                name: arg.name,
+                disabled: arg.disabled,
+                pointerEvent: "none",
+            }),
+            new b.list.itemLabel({
+                for: id,
+                rounded: 3,
+                paddingY: 3,
+            }, [arg.label, new h.span({ display: "block", small: true, opacity: 50 }, arg.description)]),
+        ];
+    };`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+                            COMPONENT({
+                                checked: true,
+                                type: "checkbox",
+                                label: "First checkbox",
+                                description: "With support text underneath to add more detail",
+                            }),
+                            COMPONENT({
+                                type: "checkbox",
+                                label: "Second checkbox",
+                                description: "Some other text goes here",
+                            }),
+                            COMPONENT({
+                                type: "checkbox",
+                                label: "Third checkbox",
+                                description: "And we end with another snippet of text",
+                            }),
+                            COMPONENT({
+                                type: "checkbox",
+                                disabled: true,
+                                label: "Fourth disabled checkbox",
+                                description: "This option is disabled",
+                            }),
+                        ]);
+                    }`,
+
+			extention: [
+				`
+						const COMPONENT = (arg) => {
+        const id = core.UUID();
+        return new b.list.itemDiv({ display: "grid", gap: 2, border: false }, new h.div({ position: "relative" }, [
+            new b.input({
+                id: id,
+                type: arg.type,
+                checked: arg.checked,
+                name: arg.name,
+                disabled: arg.disabled,
+                position: "absolute",
+                zIndex: 2,
+                top: 50,
+                end: 0,
+                marginEnd: 3,
+                fontSize: 5,
+            }),
+            new b.list.itemLabel({
+                for: id,
+                rounded: 3,
+                paddingY: 3,
+                paddingEnd: 5,
+            }, [new h.b({ fontWeight: "semibold" }, arg.label), new h.span({ display: "block", small: true, opacity: 75 }, arg.description)]),
+        ]));
+    };`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
+                            COMPONENT({
+                                checked: true,
+                                type: "radio",
+                                name: "group3",
+                                label: "First radio",
+                                description: "With support text underneath to add more detail",
+                            }),
+                            COMPONENT({
+                                type: "radio",
+                                name: "group3",
+                                label: "Second radio",
+                                description: "Some other text goes here",
+                            }),
+                            COMPONENT({
+                                type: "radio",
+                                name: "group3",
+                                label: "Third radio",
+                                description: "And we end with another snippet of text",
+                            }),
+                            COMPONENT({
+                                type: "radio",
+                                disabled: true,
+                                name: "group3",
+                                label: "Fourth disabled radio",
+                                description: "This option is disabled",
+                            }),
+                        ]);
+                    }`,
+
+			extention: [
+				`
+						const COMPONENT = (arg) => {
+        const id = core.UUID();
+        return new b.list.itemDiv({ display: "grid", gap: 2, border: false }, new h.div({ position: "relative" }, [
+            new b.input({
+                id: id,
+                type: arg.type,
+                checked: arg.checked,
+                name: arg.name,
+                disabled: arg.disabled,
+                position: "absolute",
+                zIndex: 2,
+                top: 50,
+                end: 0,
+                marginEnd: 3,
+                fontSize: 5,
+            }),
+            new b.list.itemLabel({
+                for: id,
+                rounded: 3,
+                paddingY: 3,
+                paddingEnd: 5,
+            }, [new h.b({ fontWeight: "semibold" }, arg.label), new h.span({ display: "block", small: true, opacity: 75 }, arg.description)]),
+        ]));
+    };`,
+			],
+		},
+	],
 };

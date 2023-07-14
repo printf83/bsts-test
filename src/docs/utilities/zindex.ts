@@ -86,4 +86,11 @@ export const zindex: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [3, 2, 1, 0, "n1"].map((i) => new h.div({ zIndex: i, position: "absolute", rounded: 3, padding: 5 }, new h.span(\`z-\${i}\`)));
+                    }`,
+		},
+	],
 };

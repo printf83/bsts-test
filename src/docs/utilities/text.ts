@@ -351,4 +351,80 @@ export const text: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.p({ textAlign: "start" }, "Start aligned text on all viewport sizes."),
+                            new h.p({ textAlign: "center" }, "Center aligned text on all viewport sizes."),
+                            new h.p({ textAlign: "end" }, "End aligned text on all viewport sizes."),
+                            new h.p({ textAlign: "sm-end" }, "End aligned text on viewports sized SM (small) or wider."),
+                            new h.p({ textAlign: "md-end" }, "End aligned text on viewports sized MD (medium) or wider."),
+                            new h.p({ textAlign: "lg-end" }, "End aligned text on viewports sized LG (large) or wider."),
+                            new h.p({ textAlign: "xl-end" }, "End aligned text on viewports sized XL (extra-large) or wider."),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.badge({ bgColor: "primary", textWrap: true, style: { width: "6rem" } }, "This text should wrap.");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ bgColor: "body-secondary", textWrap: false, style: { width: "8rem" } }, "This text should overflow the parent.");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.p({ textBreak: true }, "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.p({ textTransform: "lowercase" }, "Lowercased text."), new h.p({ textTransform: "uppercase" }, "Uppercased text."), new h.p({ textTransform: "capitalize" }, "CapiTaliZed text.")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [1, 2, 3, 4, 5, 6].map((i) => new h.p({ fontSize: i }, \`.fs-\${i} text\`));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.p({ fontWeight: "bold" }, "Bold text"),
+                            new h.p({ fontWeight: "bolder" }, "Bolder weight text (relative to the parent element)."),
+                            new h.p({ fontWeight: "semibold" }, "Semibold weight text."),
+                            new h.p({ fontWeight: "medium" }, "Medium weight text."),
+                            new h.p({ fontWeight: "normal" }, "Normal weight text."),
+                            new h.p({ fontWeight: "light" }, "Light weight text."),
+                            new h.p({ fontWeight: "lighter" }, "Lighter weight text (relative to the parent element)."),
+                            new h.p({ fontItalic: true }, "Italic text."),
+                            new h.p({ fontItalic: false }, "Text with normal font style"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const text = "This is a long paragraph written to show how the line-height of an element is affected by Bootstrap utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be customized as needed with Bootstrap utility API.";
+                        return [new h.p({ lineHeight: 1 }, text), new h.p({ lineHeight: "sm" }, text), new h.p({ lineHeight: "base" }, text), new h.p({ lineHeight: "lg" }, text)];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.p({ monospace: true }, "This is in monospace");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.p({ textColor: "body-secondary" }, ["Muted text with a ", new h.a({ href: "#", textColor: "reset" }, "reset link"), "."]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.p({ textDecoration: "underline" }, "This text has a line underneath it."), new h.p({ textDecoration: "line-through" }, "This text has a line going through it."), new h.a({ href: "#", textDecoration: "none" }, "This link has its text decoration removed")];
+                    }`,
+		},
+	],
 };

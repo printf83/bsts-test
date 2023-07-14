@@ -174,4 +174,70 @@ export const focus_ring: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.a({
+                            href: "#",
+                            display: "inline-flex",
+                            paddingY: 1,
+                            paddingX: 2,
+                            textDecoration: "none",
+                            border: true,
+                            rounded: true,
+                            focusRing: true,
+                        }, "Custom focus ring");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.a({
+                            href: "#",
+                            display: "inline-flex",
+                            paddingY: 1,
+                            paddingX: 2,
+                            textDecoration: "none",
+                            border: true,
+                            rounded: true,
+                            focusRing: true,
+                            style: {
+                                "--bs-focus-ring-color": "rgba(var(--bs-success-rgb), .25)",
+                            },
+                        }, "Green focus ring");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.a({
+                            href: "#",
+                            display: "inline-flex",
+                            paddingY: 1,
+                            paddingX: 2,
+                            textDecoration: "none",
+                            border: true,
+                            rounded: true,
+                            focusRing: true,
+                            style: {
+                                "--bs-focus-ring-x": "10px",
+                                "--bs-focus-ring-y": "10px",
+                                "--bs-focus-ring-blur": "4px",
+                            },
+                        }, "Blurry offset focus ring");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.p(new h.a({
+                            href: "#",
+                            display: "inline-flex",
+                            focusRing: i,
+                            paddingY: 1,
+                            paddingX: 2,
+                            textDecoration: "none",
+                            border: true,
+                            rounded: 2,
+                        }, \`\${core.uppercaseFirst(i)} focus\`)));
+                    }`,
+		},
+	],
 };

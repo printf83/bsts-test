@@ -386,4 +386,287 @@ export const layout: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.div({ marginBottom: 3 }, [new b.label({ for: "formGroupExampleInput", class: "form-label" }, "Example label"), new b.input({ id: "formGroupExampleInput", placeholder: "Example input placeholder" })]),
+                            new h.div([new b.label({ for: "formGroupExampleInput2", class: "form-label" }, "Another label"), new b.input({ id: "formGroupExampleInput2", placeholder: "Another input placeholder" })]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Example label",
+                                placeholder: "Example input placeholder",
+                            }),
+                            b.form.input({ label: "Another label", placeholder: "Another input placeholder" }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ row: true }, [
+                            b.form.input({
+                                container: { col: true },
+                                label: "First name",
+                                hideLabel: true,
+                                placeholder: "First name",
+                            }),
+                            b.form.input({
+                                container: { col: true },
+                                label: "Last name",
+                                hideLabel: true,
+                                placeholder: "Last name",
+                            }),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ row: true, gutter: 3 }, [
+                            b.form.input({
+                                container: { col: true },
+                                label: "First name",
+                                hideLabel: true,
+                                placeholder: "First name",
+                            }),
+                            b.form.input({
+                                container: { col: true },
+                                label: "Last name",
+                                hideLabel: true,
+                                placeholder: "Last name",
+                            }),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form({ row: true, gutter: 3 }, [
+                            b.form.input({
+                                container: { col: "md-6" },
+                                label: "Email",
+                                type: "email",
+                            }),
+                            b.form.input({
+                                container: { col: "md-6" },
+                                label: "Password",
+                                type: "password",
+                            }),
+                            b.form.input({
+                                container: { col: 12 },
+                                label: "Address",
+                                placeholder: "1234 Main st",
+                            }),
+                            b.form.input({
+                                container: { col: 12 },
+                                label: "Address 2",
+                                placeholder: "Apartment, studio, or floor",
+                            }),
+                            b.form.input({
+                                container: { col: 5 },
+                                label: "City",
+                            }),
+                            b.form.select({
+                                container: { col: 4 },
+                                label: "State",
+                                item: [{ selected: true, elem: "Choose..." }, { elem: "..." }],
+                            }),
+                            b.form.input({
+                                container: { col: 3 },
+                                label: "Zip",
+                            }),
+                            b.form.check({ container: { col: 12 }, label: "Check me out" }),
+                            new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form([
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Email",
+                                type: "email",
+                                col1: 3,
+                                col2: 9,
+                            }),
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Password",
+                                type: "password",
+                                col1: 3,
+                                col2: 9,
+                            }),
+                            new h.fieldset({ row: true, marginBottom: 3 }, [
+                                new h.legend({ class: "col-form-label", col: "sm-3", paddingTop: 0 }, "Radios"),
+                                new h.div({ col: "sm-9" }, [
+                                    b.form.check({
+                                        type: "radio",
+                                        name: "gridRadios",
+                                        label: "First radio",
+                                    }),
+                                    b.form.check({
+                                        type: "radio",
+                                        name: "gridRadios",
+                                        label: "Second radio",
+                                    }),
+                                    b.form.check({
+                                        type: "radio",
+                                        name: "gridRadios",
+                                        label: "Third radio",
+                                    }),
+                                ]),
+                            ]),
+                            new h.div({ row: true }, b.form.check({ container: { col: "sm-9", offset: "sm-3" }, label: "Example checkbox" })),
+                            new h.div({ col: 12 }, new b.button({ type: "submit" }, "Sign in")),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.input({
+                                container: { row: true, marginBottom: 3 },
+                                label: "Email",
+                                weight: "sm",
+                                placeholder: "col-form-label-sm",
+                                col1: 3,
+                                col2: 9,
+                            }),
+                            b.form.input({
+                                container: { row: true, marginBottom: 3 },
+                                label: "Email",
+                                placeholder: "col-form-label",
+                                col1: 3,
+                                col2: 9,
+                            }),
+                            b.form.input({
+                                label: "Email",
+                                weight: "lg",
+                                placeholder: "col-form-label-lg",
+                                col1: 3,
+                                col2: 9,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ row: true, gutter: 3 }, [
+                            b.form.input({
+                                container: { col: "sm-6" },
+                                label: "City",
+                                hideLabel: true,
+                                placeholder: "City",
+                            }),
+                            b.form.input({
+                                container: { col: "sm" },
+                                label: "State",
+                                hideLabel: true,
+                                placeholder: "State",
+                            }),
+                            b.form.input({
+                                container: { col: "sm" },
+                                label: "Zip",
+                                hideLabel: true,
+                                placeholder: "Zip",
+                            }),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
+                            b.form.input({
+                                container: { col: "auto" },
+                                label: "Name",
+                                hideLabel: true,
+                                placeholder: "Jane Doe",
+                            }),
+                            b.form.input({
+                                container: { col: "auto" },
+                                label: "Username",
+                                hideLabel: true,
+                                placeholder: "Username",
+                                before: "@",
+                            }),
+                            b.form.select({
+                                container: { col: "auto" },
+                                label: "Preference",
+                                hideLabel: true,
+                                item: [
+                                    { selected: true, elem: "Choose..." },
+                                    { value: "1", elem: "One" },
+                                    { value: "2", elem: "Two" },
+                                    { value: "3", elem: "Three" },
+                                ],
+                            }),
+                            b.form.check({ container: { col: "auto" }, label: "Remember me" }),
+                            new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Submit")),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
+                            b.form.input({
+                                container: { col: "sm-3" },
+                                label: "Name",
+                                hideLabel: true,
+                                placeholder: "Jane Doe",
+                            }),
+                            b.form.input({
+                                container: { col: "sm-3" },
+                                label: "Username",
+                                hideLabel: true,
+                                placeholder: "Username",
+                                before: "@",
+                            }),
+                            b.form.select({
+                                container: { col: "sm-3" },
+                                label: "Preference",
+                                hideLabel: true,
+                                item: [
+                                    { selected: true, elem: "Choose..." },
+                                    { value: "1", elem: "One" },
+                                    { value: "2", elem: "Two" },
+                                    { value: "3", elem: "Three" },
+                                ],
+                            }),
+                            b.form.check({ container: { col: "auto" }, label: "Remember me" }),
+                            new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Submit")),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ row: true, rowCol: "lg-auto", gutter: 3, alignItem: "center" }, [
+                            b.form.input({
+                                container: { col: 12 },
+                                label: "Username",
+                                hideLabel: true,
+                                placeholder: "Username",
+                                before: "@",
+                            }),
+                            b.form.select({
+                                container: { col: 12 },
+                                label: "Preference",
+                                hideLabel: true,
+                                item: [
+                                    { selected: true, elem: "Choose..." },
+                                    { value: "1", elem: "One" },
+                                    { value: "2", elem: "Two" },
+                                    { value: "3", elem: "Three" },
+                                ],
+                            }),
+                            b.form.check({ container: { col: 12 }, label: "Remember me" }),
+                            new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit")),
+                        ]);
+                    }`,
+		},
+	],
 };

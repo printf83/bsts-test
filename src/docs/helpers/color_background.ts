@@ -55,4 +55,22 @@ export const color_background: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.div({ textBgColor: i, padding: 3 }, \`\${core.uppercaseFirst(i)} with contrasting color\`));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.badge({ textBgColor: "primary" }, "Primary"), new b.badge({ textBgColor: "info" }, "Info")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const item = (textBgColor) => new b.card.container({ textBgColor: textBgColor, style: { width: "18rem" } }, [new b.card.header("Header"), new b.card.body(new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."))]);
+                        return [item("primary"), item("info")];
+                    }`,
+		},
+	],
 };

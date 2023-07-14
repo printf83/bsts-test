@@ -291,4 +291,133 @@ export const position: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.div({ position: "relative" }, [
+                            new h.div({ position: "absolute", top: 0, start: 0 }),
+                            new h.div({ position: "absolute", top: 0, end: 0 }),
+                            new h.div({ position: "absolute", top: 50, start: 50 }),
+                            new h.div({ position: "absolute", bottom: 50, end: 50 }),
+                            new h.div({ position: "absolute", bottom: 0, start: 0 }),
+                            new h.div({ position: "absolute", bottom: 0, end: 0 }),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ position: "relative" }, [
+                            new h.div({ position: "absolute", top: 0, start: 0, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 0, start: 50, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 0, start: 100, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 50, start: 0, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 50, start: 100, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 100, start: 0, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 100, start: 50, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 100, start: 100, tMiddle: true }),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ position: "relative" }, [
+                            new h.div({ position: "absolute", top: 0, start: 0 }),
+                            new h.div({ position: "absolute", top: 0, start: 50, tMiddle: "x" }),
+                            new h.div({ position: "absolute", top: 0, end: 0 }),
+                            new h.div({ position: "absolute", top: 50, start: 0, tMiddle: "y" }),
+                            new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }),
+                            new h.div({ position: "absolute", top: 50, end: 0, tMiddle: "y" }),
+                            new h.div({ position: "absolute", bottom: 0, start: 0 }),
+                            new h.div({ position: "absolute", bottom: 0, start: 50, tMiddle: "x" }),
+                            new h.div({ position: "absolute", bottom: 0, end: 0 }),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.button({ position: "relative" }, [
+                                "Mails ",
+                                new b.badge({
+                                    bgColor: "secondary",
+                                    position: "absolute",
+                                    top: 0,
+                                    start: 100,
+                                    tMiddle: true,
+                                    rounded: "pill",
+                                }, ["+99", new b.visuallyhidden("unread messages")]),
+                            ]),
+                            new h.div({
+                                theme: "dark",
+                                position: "relative",
+                                paddingY: 2,
+                                paddingX: 4,
+                                textBgColor: "secondary",
+                                borderColor: "secondary",
+                                border: true,
+                                rounded: "pill",
+                            }, [
+                                "Marker ",
+                                new s(\`<svg width="1em" height="1em" viewBox="0 0 16 16" class="position-absolute top-100 start-50 translate-middle mt-1" fill="var(--bs-secondary)" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>\`),
+                            ]),
+                            new b.button({ position: "relative" }, [
+                                "Alerts ",
+                                new b.badge({
+                                    bgColor: "danger",
+                                    position: "absolute",
+                                    top: 0,
+                                    start: 100,
+                                    tMiddle: true,
+                                    rounded: "circle",
+                                    border: true,
+                                    borderColor: "light",
+                                    padding: 2,
+                                }, new b.visuallyhidden("Unread messages")),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ position: "relative", margin: 4 }, [
+                            new b.progress.container({
+                                label: "Progress",
+                                style: { height: "1px" },
+                                value: 50,
+                                min: 0,
+                                max: 100,
+                            }, new b.progress.bar({ style: { width: "50%" } })),
+                            new b.button({
+                                position: "absolute",
+                                top: 0,
+                                start: 0,
+                                tMiddle: true,
+                                weight: "sm",
+                                rounded: "pill",
+                                style: { width: "2rem", height: "2rem" },
+                            }, "1"),
+                            new b.button({
+                                position: "absolute",
+                                top: 0,
+                                start: 50,
+                                tMiddle: true,
+                                weight: "sm",
+                                rounded: "pill",
+                                style: { width: "2rem", height: "2rem" },
+                            }, "2"),
+                            new b.button({
+                                position: "absolute",
+                                top: 0,
+                                start: 100,
+                                tMiddle: true,
+                                weight: "sm",
+                                rounded: "pill",
+                                color: "secondary",
+                                style: { width: "2rem", height: "2rem" },
+                            }, "3"),
+                        ]);
+                    }`,
+		},
+	],
 };

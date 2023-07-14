@@ -405,4 +405,138 @@ export const scrollspy: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        let headerItems = [
+                            new b.nav.header.item(new b.nav.header.link({ href: "#scrollspyHeading1" }, "First")),
+                            new b.nav.header.item(new b.nav.header.link({ href: "#scrollspyHeading2" }, "Second")),
+                            new b.nav.header.item({ dropdown: true }, [
+                                new b.dropdown.button({ navItem: true, href: "#" }, "Dropdown"),
+                                new b.dropdown.menu([new b.dropdown.item({ href: "#scrollspyHeading3" }, "Third"), new b.dropdown.item({ href: "#scrollspyHeading4" }, "Fourth"), new b.dropdown.divider(), new b.dropdown.item({ href: "#scrollspyHeading5" }, "Fifth")]),
+                            ]),
+                        ];
+                        let contentItems = [];
+                        ["First", "Second", "Third", "Forth", "Fifth"].forEach((i, ix) => {
+                            contentItems.push(new h.h(4, { id: \`scrollspyHeading\${ix + 1}\` }, \`\${i} heading\`));
+                            contentItems.push(new h.p("This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."));
+                        });
+                        return [
+                            new b.navbar.container({
+                                id: "navbar-example",
+                                bgColor: "body-tertiary",
+                                paddingX: 3,
+                                marginBottom: 3,
+                                rounded: 2,
+                            }, [new b.navbar.brand({ href: "#" }, "Navbar"), new b.nav.header.container({ type: "pill" }, headerItems)]),
+                            new b.scrollspy({
+                                target: "#navbar-example",
+                                rootMargin: "0px 0px -40%",
+                                smooth: true,
+                                bgColor: "body-tertiary",
+                                padding: 3,
+                                rounded: 2,
+                                overflowX: "auto",
+                                style: { maxHeight: "200px" },
+                            }, contentItems),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        let headerItems = new b.nav.header.containerNav({
+                            type: "pill",
+                            flex: "column",
+                        }, [
+                            new b.nav.header.link({ href: "#item-1" }, "Item 1"),
+                            new b.nav.header.containerNav({
+                                type: "pill",
+                                flex: "column",
+                            }, [new b.nav.header.link({ href: "#item-1-1", marginStart: 3, marginY: 1 }, "Item 1-1"), new b.nav.header.link({ href: "#item-1-2", marginStart: 3, marginY: 1 }, "Item 1-2")]),
+                            new b.nav.header.link({ href: "#item-2" }, "Item 2"),
+                            new b.nav.header.link({ href: "#item-3" }, "Item 3"),
+                            new b.nav.header.containerNav({
+                                type: "pill",
+                                flex: "column",
+                            }, [new b.nav.header.link({ href: "#item-3-1", marginStart: 3, marginY: 1 }, "Item 3-1"), new b.nav.header.link({ href: "#item-3-2", marginStart: 3, marginY: 1 }, "Item 3-2")]),
+                        ]);
+                        let contentItems = ["1", "1-1", "1-2", "2", "3", "3-1", "3-2"].map((i) => {
+                            return new h.div({ id: \`item-\${i}\` }, [
+                                new h.h(4, \`Item \${i}\`),
+                                new h.p("This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."),
+                                new h.p("Keep in mind that the JavaScript plugin tries to pick the right element among all that may be visible. Multiple visible scrollspy targets at the same time may cause some issues."),
+                            ]);
+                        });
+                        return new h.div({ row: true }, [
+                            new h.div({ col: 4 }, new h.nav({
+                                id: "navbar-example2",
+                                height: 100,
+                                flex: "column",
+                                alignItem: "stretch",
+                                paddingEnd: 4,
+                                border: "end",
+                            }, headerItems)),
+                            new h.div({ col: 8 }, new b.scrollspy({
+                                target: "#navbar-example2",
+                                smooth: true,
+                                overflowX: "auto",
+                                style: { maxHeight: "312px" },
+                            }, contentItems)),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        let d = ["1", "2", "3", "4"];
+                        let headerItems = d.map((i) => {
+                            return new b.tabList.item({ action: true, href: \`#list-item-\${i}\` }, \`Item \${i}\`);
+                        });
+                        let contentItems = [];
+                        d.forEach((i) => {
+                            contentItems.push(new h.h(4, { id: \`list-item-\${i}\` }, \`Item \${i}\`));
+                            contentItems.push(new h.p("This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."));
+                        });
+                        return new h.div({ row: true }, [
+                            new h.div({ col: 4 }, new b.tabList.container({
+                                id: "list-example",
+                            }, headerItems)),
+                            new h.div({ col: 8 }, new b.scrollspy({
+                                target: "#list-example",
+                                smooth: true,
+                                overflowX: "auto",
+                                style: { maxHeight: "165px" },
+                            }, contentItems)),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        let d = ["1", "2", "3", "4", "5"];
+                        let headerItems = d.map((i) => {
+                            return new h.a({ href: \`#simple-list-item-\${i}\`, padding: 2, rounded: true }, \`Item \${i}\`);
+                        });
+                        let contentItems = [];
+                        d.forEach((i) => {
+                            contentItems.push(new h.h(4, { id: \`simple-list-item-\${i}\` }, \`Item \${i}\`));
+                            contentItems.push(new h.p("This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."));
+                        });
+                        return new h.div({ row: true }, [
+                            new h.div({ col: 4 }, new h.div({
+                                id: "simple-list-example",
+                                display: "flex",
+                                flex: "column",
+                                gap: 2,
+                                textAlign: "center",
+                            }, headerItems)),
+                            new h.div({ col: 8 }, new b.scrollspy({
+                                target: "#simple-list-example",
+                                smooth: true,
+                                overflowX: "auto",
+                                style: { maxHeight: "232px" },
+                                data: { "bs-offset": "0" },
+                            }, contentItems)),
+                        ]);
+                    }`,
+		},
+	],
 };

@@ -44,6 +44,10 @@ const setupBSNavigate = () => {
 	);
 };
 
+const escapeBackQuote = (str: string) => {
+	return str.replaceAll("`", "\\`").replaceAll("${", "\\${");
+};
+
 const setupCopyDataManager = () => {
 	document.addEventListener("keydown", (event: KeyboardEvent) => {
 		if (event.ctrlKey && event.key == "l") {
@@ -58,12 +62,16 @@ const setupCopyDataManager = () => {
 						if (core.dataManager.exists(id)) {
 							let dmCode = core.dataManager.get(id) as e.IBsExampleData;
 							if (dmCode) {
-								let source = dmCode.source ? `source: \`${dmCode.source}\`,` : "";
-								let manager = dmCode.manager ? `manager: \`${dmCode.manager}\`,` : "";
+								let source = dmCode.source ? `source: \`${escapeBackQuote(dmCode.source)}\`,` : "";
+								let manager = dmCode.manager ? `manager: \`${escapeBackQuote(dmCode.manager)}\`,` : "";
 								let extention = "";
 
 								if (dmCode.extention && dmCode.extention.length > 0) {
-									extention = `extention: [\`${dmCode.extention.join("`,`")}\`] ,`;
+									extention = `extention: [\`${dmCode.extention
+										.map((j) => {
+											return escapeBackQuote(j);
+										})
+										.join("`,`")}\`] ,`;
 								}
 
 								return `{
@@ -80,14 +88,20 @@ const setupCopyDataManager = () => {
 					.filter(Boolean)
 					.join("");
 
-				navigator.clipboard.writeText(`db: [${codeData}],`).then(
-					() => {
-						b.toast.show(b.toast.create({ color: "primary", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Code added to clipboard" }));
-					},
-					() => {
-						b.toast.show(b.toast.create({ color: "danger", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Fail add code to clipboard" }));
-					}
-				);
+				if (codeData) {
+					navigator.clipboard.writeText(`db: [${codeData}],`).then(
+						() => {
+							b.toast.show(b.toast.create({ color: "success", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Code added to clipboard" }));
+						},
+						() => {
+							b.toast.show(b.toast.create({ color: "danger", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Fail add code to clipboard" }));
+						}
+					);
+				} else {
+					b.toast.show(b.toast.create({ color: "info", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Code already added" }));
+				}
+			} else {
+				b.toast.show(b.toast.create({ color: "warning", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "This document not have any code" }));
 			}
 		}
 	});

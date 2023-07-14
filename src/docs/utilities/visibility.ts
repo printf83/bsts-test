@@ -62,4 +62,11 @@ export const visibility: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [new h.div({ visible: true }, "Visible"), new h.div({ visible: false }, "Invisible")];
+                    }`,
+		},
+	],
 };

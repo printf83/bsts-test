@@ -82,4 +82,22 @@ export const shadow: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.div({
+                                shadow: "none",
+                                padding: 3,
+                                marginBottom: 5,
+                                bgColor: "body-tertiary",
+                                rounded: true,
+                            }, "No shadow"),
+                            new h.div({ shadow: "sm", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Small shadow"),
+                            new h.div({ shadow: true, padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Regular shadow"),
+                            new h.div({ shadow: "lg", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Large shadow"),
+                        ];
+                    }`,
+		},
+	],
 };

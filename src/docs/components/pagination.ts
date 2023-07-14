@@ -270,4 +270,97 @@ export const pagination: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "Page navigation example" }, [
+                            new b.pagination.item({ href: "#" }, "Previous"),
+                            new b.pagination.item({ href: "#" }, "1"),
+                            new b.pagination.item({ href: "#" }, "2"),
+                            new b.pagination.item({ href: "#" }, "3"),
+                            new b.pagination.item({ href: "#" }, "Next"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "Page navigation example" }, [
+                            new b.pagination.item({ href: "#", label: "Previous" }, new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-left"))),
+                            new b.pagination.item({ href: "#" }, "1"),
+                            new b.pagination.item({ href: "#" }, "2"),
+                            new b.pagination.item({ href: "#" }, "3"),
+                            new b.pagination.item({ href: "#", label: "Next" }, new h.span({ aria: { hidden: true } }, new b.icon("chevron-bar-right"))),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "..." }, [
+                            new b.pagination.item({ disabled: true }, "Previous"),
+                            new b.pagination.item({ href: "#" }, "1"),
+                            new b.pagination.item({ href: "#", active: true }, "2"),
+                            new b.pagination.item({ href: "#" }, "3"),
+                            new b.pagination.item({ href: "#" }, "Next"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "..." }, [
+                            new b.pagination.item({ disabled: true }, "Previous"),
+                            new b.pagination.item({ href: "#" }, "1"),
+                            new b.pagination.item({ active: true }, "2"),
+                            new b.pagination.item({ href: "#", disabled: true }, "3"),
+                            new b.pagination.item({ href: "#" }, "Next"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "...", weight: "lg" }, [new b.pagination.item({ active: true }, "1"), new b.pagination.item({ href: "#" }, "2"), new b.pagination.item({ href: "#" }, "3")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "...", weight: "sm" }, [new b.pagination.item({ active: true }, "1"), new b.pagination.item({ href: "#" }, "2"), new b.pagination.item({ href: "#" }, "3")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "Page navigation example", justifyContent: "center" }, [
+                            new b.pagination.item({ disabled: true }, "Previous"),
+                            new b.pagination.item({ href: "#" }, "1"),
+                            new b.pagination.item({ href: "#" }, "2"),
+                            new b.pagination.item({ href: "#" }, "3"),
+                            new b.pagination.item({ href: "#" }, "Next"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({ label: "Page navigation example", justifyContent: "end" }, [
+                            new b.pagination.item({ disabled: true }, "Previous"),
+                            new b.pagination.item({ href: "#" }, "1"),
+                            new b.pagination.item({ href: "#" }, "2"),
+                            new b.pagination.item({ href: "#" }, "3"),
+                            new b.pagination.item({ href: "#" }, "Next"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.pagination.container({
+                            label: "Event example",
+                            total: 1284,
+                            limit: 10,
+                            maxBtnCount: 5,
+                            on: {
+                                "change.bs.pagination": (event) => {
+                                    e.console(event.target, "change.bs.pagination", event.detail, "success");
+                                },
+                            },
+                        });
+                    }`,
+		},
+	],
 };

@@ -291,4 +291,103 @@ export const overview: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.form([
+                            new h.div({ marginBottom: 3 }, [
+                                new b.label({ for: "exampleInputEmail1", class: "form-label" }, "Email address"),
+                                new b.input({ type: "email", id: "exampleInputEmail1", describedby: "emailHelp" }),
+                                new h.div({ id: "emailHelp", class: "form-text" }, "Bootstrap'll never share your email with anyone else."),
+                            ]),
+                            new h.div({ marginBottom: 3 }, [new b.label({ for: "exampleInputPassword1", class: "form-label" }, "Password"), new b.input({ type: "password", id: "exampleInputPassword1" })]),
+                            new h.div({ marginBottom: 3, class: "form-check" }, [new b.input({ type: "checkbox", id: "exampleCheck1" }), new b.label({ for: "exampleCheck1", class: "form-check-label" }, "Check me out")]),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form([
+                            b.form.input({
+                                id: "easy-email-form",
+                                container: { marginBottom: 3 },
+                                label: "Email address",
+                                description: "Bootstrap'll never share your email with anyone else.",
+                                type: "email",
+                            }),
+                            b.form.input({
+                                id: "easy-password-form",
+                                container: { marginBottom: 3 },
+                                label: "Password",
+                                type: "password",
+                            }),
+                            b.form.check({
+                                id: "easy-check-form",
+                                container: { marginBottom: 3 },
+                                label: "Check me out",
+                                type: "checkbox",
+                            }),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form([
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Email address",
+                                description: "Bootstrap'll never share your email with anyone else.",
+                                type: "email",
+                            }),
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Password",
+                                type: "password",
+                            }),
+                            b.form.check({
+                                container: { marginBottom: 3 },
+                                label: "Check me out",
+                                type: "checkbox",
+                            }),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.input({
+                            type: "text",
+                            id: "disabledInput",
+                            placeholder: "Disabled input here...",
+                            disabled: true,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form(new h.fieldset({ disabled: true }, [
+                            new h.legend("Disabled fieldset example"),
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Disabled input",
+                                placeholder: "Disabled input",
+                                type: "text",
+                            }),
+                            b.form.select({
+                                container: { marginBottom: 3 },
+                                label: "Disabled select menu",
+                                item: [{ elem: "Disabled select" }],
+                            }),
+                            b.form.check({
+                                container: { marginBottom: 3 },
+                                label: "Check me out",
+                                type: "checkbox",
+                            }),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]));
+                    }`,
+		},
+	],
 };

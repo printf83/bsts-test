@@ -161,4 +161,65 @@ export const object_fit: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return ["contain", "cover", "fill", "scale", "none"].map((i) => new h.img({
+                            src: "https://picsum.photos/seed/bsts_0/110/65.webp",
+                            objectFit: i,
+                            border: true,
+                            rounded: true,
+                            alt: "...",
+                            style: { width: "135px", height: "115px" },
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["sm-contain", "md-contain", "lg-contain", "xl-contain", "xxl-contain"].map((i) => new h.img({
+                            src: "https://picsum.photos/seed/bsts_0/110/65.webp",
+                            objectFit: i,
+                            border: true,
+                            rounded: true,
+                            alt: "...",
+                            style: { width: "135px", height: "115px" },
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const videoFn = () => {
+                            return ["contain", "cover", "fill", "scale", "none"].map((i) => new h.video({
+                                src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+                                objectFit: i,
+                                border: true,
+                                rounded: true,
+                                controls: true,
+                                style: { width: "135px", height: "115px" },
+                            }));
+                        };
+                        return new b.button({
+                            position: "relative",
+                            on: {
+                                click: (e) => {
+                                    let target = e.target;
+                                    core.replaceWith(target, videoFn());
+                                },
+                            },
+                        }, [
+                            "Show live video ",
+                            new b.badge({
+                                bgColor: "danger",
+                                position: "absolute",
+                                top: 0,
+                                start: 100,
+                                tMiddle: true,
+                                rounded: "pill",
+                                border: true,
+                                borderColor: "light",
+                            }, ["61.5Mb", new b.visuallyhidden("estimate video size")]),
+                        ]);
+                    }`,
+		},
+	],
 };

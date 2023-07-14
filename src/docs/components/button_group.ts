@@ -271,4 +271,150 @@ export const button_group: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Basic example", role: "group" }, [new b.button("Left"), new b.button("Middle"), new b.button("Right")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup([new b.button({ href: "#", active: true }, "Left"), new b.button({ href: "#" }, "Middle"), new b.button({ href: "#" }, "Right")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Basic mixed styles example", role: "group" }, [new b.button({ color: "danger" }, "Left"), new b.button({ color: "warning" }, "Middle"), new b.button({ color: "success" }, "Right")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Basic outlined example", role: "group" }, [new b.button({ outline: true }, "Left"), new b.button({ outline: true }, "Middle"), new b.button({ outline: true }, "Right")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
+                            new b.input({ type: "checkbox", toggle: true, id: "btncheck1" }),
+                            new b.label({ for: "btncheck1", color: "primary", outline: true }, "Checkbox 1"),
+                            new b.input({ type: "checkbox", toggle: true, id: "btncheck2" }),
+                            new b.label({ for: "btncheck2", color: "primary", outline: true }, "Checkbox 2"),
+                            new b.input({ type: "checkbox", toggle: true, id: "btncheck3" }),
+                            new b.label({ for: "btncheck3", color: "primary", outline: true }, "Checkbox 3"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
+                            new b.input({
+                                type: "radio",
+                                toggle: true,
+                                id: "btnradio1",
+                                name: "btnradio",
+                                checked: true,
+                            }),
+                            new b.label({ for: "btnradio1", color: "primary", outline: true }, "Radio 1"),
+                            new b.input({ type: "radio", toggle: true, id: "btnradio2", name: "btnradio" }),
+                            new b.label({ for: "btnradio2", color: "primary", outline: true }, "Radio 2"),
+                            new b.input({ type: "radio", toggle: true, id: "btnradio3", name: "btnradio" }),
+                            new b.label({ for: "btnradio3", color: "primary", outline: true }, "Radio 3"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Toolbar with button groups", role: "toolbar" }, [
+                            new b.btngroup({ label: "First group", marginEnd: 2 }, ["1", "2", "3", "4"].map((i) => new b.button(i))),
+                            new b.btngroup({ label: "Second group", marginEnd: 2 }, ["5", "6", "7"].map((i) => new b.button({ color: "secondary" }, i))),
+                            new b.btngroup({ label: "Third group" }, ["8"].map((i) => new b.button({ color: "info" }, i))),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.btngroup({ label: "Toolbar with button groups", role: "toolbar", marginBottom: 3 }, [
+                                new b.btngroup({ label: "First group", marginEnd: 2 }, ["1", "2", "3", "4"].map((i) => new b.button({ color: "secondary", outline: true }, i))),
+                                new b.inputgroup.container([
+                                    new b.inputgroup.text({ id: "btnGroupAddon" }, "@"),
+                                    new b.input({
+                                        type: "text",
+                                        placeholder: "Input group example",
+                                        label: "Input group example",
+                                        describedby: "btnGroupAddon",
+                                    }),
+                                ]),
+                            ]),
+                            new b.btngroup({ label: "Toolbar with button groups", role: "toolbar", justifyContent: "between" }, [
+                                new b.btngroup({ label: "First group", marginEnd: 2 }, ["1", "2", "3", "4"].map((i) => new b.button({ color: "secondary", outline: true }, i))),
+                                new b.inputgroup.container([
+                                    new b.inputgroup.text({ id: "btnGroupAddon2" }, "@"),
+                                    new b.input({
+                                        type: "text",
+                                        placeholder: "Input group example",
+                                        label: "Input group example",
+                                        describedby: "btnGroupAddon2",
+                                    }),
+                                ]),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.btngroup({ label: "Large button group", weight: "lg", display: "block" }, ["Left", "Middle", "Right"].map((i) => new b.button({ color: "primary", outline: true }, i))),
+                            new b.btngroup({ label: "Default button group", display: "block" }, ["Left", "Middle", "Right"].map((i) => new b.button({ color: "primary", outline: true }, i))),
+                            new b.btngroup({ label: "Small button group", weight: "sm", display: "block" }, ["Left", "Middle", "Right"].map((i) => new b.button({ color: "primary", outline: true }, i))),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Button group with nested dropdown" }, [
+                            new b.button("1"),
+                            new b.button("2"),
+                            new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Vertical button group", vertical: true }, [1, 2, 3, 4, 5, 6].map(() => new b.button({ color: "primary" }, "Button")));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Vertical button group", vertical: true }, [
+                            new b.button("Button"),
+                            new b.button("Button"),
+                            new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+                            new b.button("Button"),
+                            new b.button("Button"),
+                            new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+                            new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+                            new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.btngroup({ label: "Vertical radio toggle button group", vertical: true }, [
+                            new b.input({
+                                type: "radio",
+                                toggle: true,
+                                id: "vbtnradio1",
+                                name: "vbtnradio",
+                                checked: true,
+                            }),
+                            new b.label({ for: "vbtnradio1", color: "danger", outline: true }, "Radio 1"),
+                            new b.input({ type: "radio", toggle: true, id: "vbtnradio2", name: "vbtnradio" }),
+                            new b.label({ for: "vbtnradio2", color: "danger", outline: true }, "Radio 2"),
+                            new b.input({ type: "radio", toggle: true, id: "vbtnradio3", name: "vbtnradio" }),
+                            new b.label({ for: "vbtnradio3", color: "danger", outline: true }, "Radio 3"),
+                        ]);
+                    }`,
+		},
+	],
 };

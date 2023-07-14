@@ -330,8 +330,8 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 			});
 			break;
 		case "docs/forms/check_radio":
-			forms.overview().then((res) => {
-				callback(res.overview);
+			forms.check_radio().then((res) => {
+				callback(res.check_radio);
 			});
 			break;
 		case "docs/forms/range":

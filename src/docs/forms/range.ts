@@ -124,4 +124,51 @@ export const range: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [new b.label({ for: "customRange1", class: "form-label" }, "Example range"), new b.input({ type: "range", id: "customRange1" })];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Example range",
+                            type: "range",
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Disabled range",
+                            type: "range",
+                            disabled: true,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Example range",
+                            type: "range",
+                            min: 0,
+                            max: 5,
+                            value: 4,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Example range",
+                            type: "range",
+                            min: 0,
+                            max: 5,
+                            step: 0.5,
+                            value: 4,
+                        });
+                    }`,
+		},
+	],
 };

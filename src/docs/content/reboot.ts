@@ -578,4 +578,229 @@ export const reboot: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.p("This is an example paragraph.");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.a({ href: "#" }, "This is an example link");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.a({ href: "#", style: { "--bs-link-opacity": ".5" } }, "This is an example link");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.a("This is a placeholder link");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.hr(), new h.div({ textColor: "success" }, new h.hr()), new h.hr({ border: true, borderColor: "danger", borderWidth: 2, opacity: 50 }), new h.hr({ border: true, borderColor: "primary", borderWidth: 3, opacity: 75 })];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.ul({
+                                item: [
+                                    "All lists have their top margin removed",
+                                    "And their bottom margin normalized",
+                                    new h.div([
+                                        "Nested lists have no bottom margin",
+                                        new h.ul({
+                                            item: ["This way they have a more even appearance", "Particularly when followed by more list items"],
+                                        }),
+                                    ]),
+                                    "The left padding has also been reset",
+                                ],
+                            }),
+                            new h.ol({
+                                item: ["Here’s an ordered list", "With a few list items", "It has the same overall look", "As the previous unordered list"],
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.dl([
+                            new h.dt("Description lists"),
+                            new h.dd("A description list is perfect for defining terms."),
+                            new h.dt("Term"),
+                            new h.dd("Definition for the term."),
+                            new h.dd("A second definition for the same term."),
+                            new h.dt("Another term"),
+                            new h.dd("Definition for this other term."),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["For example ", new h.code("<section>"), " sould be wrapped as inline."];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.pre(new h.code(\`<p>Sample text here...</p>
+		<p>And another line of sample text here...</p>\`));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.variable("y"), " = ", new h.variable("m"), new h.variable("x"), " + ", new h.variable("b")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["To switch directories, type ", new h.kbd("cd"), " followed by the name of the directory.{{br}}To edit settings, press ", new h.kbd([new h.kbd("Ctrl"), " + ", new h.kbd(",")])];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.samp(" This text is meant to be treated as sample output from a computer program. ");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.table([
+                            new h.caption("This is an example table, and this is its caption to describe the contents."),
+                            new h.thead(new h.tr([new h.th("Table heading"), new h.th("Table heading"), new h.th("Table heading"), new h.th("Table heading"), new h.th("Table heading")])),
+                            new h.tbody([
+                                new h.tr([new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell")]),
+                                new h.tr([new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell")]),
+                                new h.tr([new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell"), new h.td("Table cell")]),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form(new h.fieldset([
+                            new h.legend("Example legend"),
+                            new h.p([new h.label({ for: "input" }, "Example input"), " ", new h.input({ id: "input", placeholder: "Example input" })]),
+                            new h.p([new h.label({ for: "email" }, "Example email"), " ", new h.input({ id: "email", type: "email", placeholder: "test@example.com" })]),
+                            new h.p([new h.label({ for: "tel" }, "Example telephone"), " ", new h.input({ id: "tel", type: "tel" })]),
+                            new h.p([new h.label({ for: "url" }, "Example url"), " ", new h.input({ id: "url", type: "url" })]),
+                            new h.p([new h.label({ for: "number" }, "Example number"), " ", new h.input({ id: "number", type: "number" })]),
+                            new h.p([new h.label({ for: "search" }, "Example search"), " ", new h.input({ id: "search", type: "search" })]),
+                            new h.p([new h.label({ for: "range" }, "Example range"), " ", new h.input({ id: "range", type: "range", min: 0, max: 10 })]),
+                            new h.p([new h.label({ for: "file" }, "Example file input"), " ", new h.input({ id: "file", type: "file" })]),
+                            new h.p([
+                                new h.label({ for: "select" }, "Example select"),
+                                " ",
+                                new h.select({
+                                    id: "select",
+                                    item: [
+                                        { value: "", elem: "Choose..." },
+                                        {
+                                            label: "Option group 1",
+                                            item: [
+                                                { value: "", elem: "Option 1" },
+                                                { value: "", elem: "Option 2" },
+                                                { value: "", elem: "Option 3" },
+                                            ],
+                                        },
+                                        {
+                                            label: "Option group 2",
+                                            item: [
+                                                { value: "", elem: "Option 4" },
+                                                { value: "", elem: "Option 5" },
+                                                { value: "", elem: "Option 6" },
+                                            ],
+                                        },
+                                    ],
+                                }),
+                            ]),
+                            new h.p(new h.label([new h.input({ type: "checkbox", value: "" }), "Check this checkbox"])),
+                            new h.p([
+                                new h.label([
+                                    new h.input({
+                                        type: "radio",
+                                        name: "optionsRadios",
+                                        id: "optionsRadios1",
+                                        value: "option1",
+                                        checked: true,
+                                    }),
+                                    "Option one is this and that",
+                                ]),
+                                new h.label([
+                                    new h.input({
+                                        type: "radio",
+                                        name: "optionsRadios",
+                                        id: "optionsRadios2",
+                                        value: "option2",
+                                    }),
+                                    "Option two is something else that's also super long to demonstrate the wrapping of these fancy form controls.",
+                                ]),
+                                new h.label([
+                                    new h.input({
+                                        type: "radio",
+                                        name: "optionsRadios",
+                                        id: "optionsRadios3",
+                                        value: "option3",
+                                        disabled: true,
+                                    }),
+                                    "Option three is disabled",
+                                ]),
+                                new h.p([new h.label({ for: "textarea" }, "Example textarea"), " ", new h.textarea({ id: "textarea", rows: 3 })]),
+                                new h.p([new h.label({ for: "date" }, "Example date"), " ", new h.input({ id: "date", type: "date" })]),
+                                new h.p([new h.label({ for: "time" }, "Example time"), " ", new h.input({ id: "time", type: "time" })]),
+                                new h.p([new h.label({ for: "datetime-local" }, "Example datetime-local"), " ", new h.input({ id: "datetime-local", type: "datetime-local" })]),
+                                new h.p([new h.label({ for: "week" }, "Example week"), " ", new h.input({ id: "week", type: "week" })]),
+                                new h.p([new h.label({ for: "month" }, "Example month"), " ", new h.input({ id: "month", type: "month" })]),
+                                new h.p([new h.label({ for: "color" }, "Example color"), " ", new h.input({ id: "color", type: "color" })]),
+                                new h.p([new h.label({ for: "output" }, "Example output"), " ", new h.output({ id: "output", name: "result" }, "100")]),
+                                new h.p([new h.button({ type: "submit" }, "Button sumbit"), " ", new h.input({ type: "submit", value: "Input submit button" }), " ", new h.input({ type: "reset", value: "Input reset button" }), " ", new h.input({ type: "button", value: "Input button" })]),
+                                new h.p([
+                                    new h.button({ type: "submit", disabled: true }, "Button sumbit"),
+                                    " ",
+                                    new h.input({ type: "submit", value: "Input submit button", disabled: true }),
+                                    " ",
+                                    new h.input({ type: "reset", value: "Input reset button", disabled: true }),
+                                    " ",
+                                    new h.input({ type: "button", value: "Input button", disabled: true }),
+                                ]),
+                            ]),
+                        ]));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.span({ pointer: true, tabindex: "0" }, "Non-button element button");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.address([new h.strong("ACME Corporation"), new h.br(), "1123 Fictional St,", new h.br(), "San Francisco, CA 94103", new h.br(), new h.abbr({ title: "Phone" }, "P:"), "(123) 456-7890 "]),
+                            new h.address([new h.strong("Full Name"), new h.br(), new h.a({ href: "mailto:first.last@example.com" }, "first.last@example.com")]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new h.p(["Someone famous in", new h.cite({ title: "Source Title" }, "Source Title")])];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["The ", new h.abbr({ title: "HyperText Markup Language" }, "HTML"), "  abbreviation element."];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.details([new h.summary("Some details"), new h.p("More info about the details.")]), new h.details([new h.summary("Even more details"), new h.p("Here are even more details about the details.")])];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.input({ hidden: true });
+                    }`,
+		},
+	],
 };
