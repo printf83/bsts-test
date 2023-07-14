@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const close_button: IContent = {
 	title: "Close button",
 	description: "A generic close button for dismissing content like modals and alerts.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Examples"),
@@ -13,6 +15,7 @@ export const close_button: IContent = {
 					"Provide an option to dismiss or close a component with {{b.btnclose}}. Default styling is limited, but highly customizable. Modify the Sass variables to replace the default {{background-image}}. {{b::Be sure to include text for screen readers}}, as {{bsts}} done with {{label}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btnclose();
 					},
@@ -25,6 +28,7 @@ export const close_button: IContent = {
 				new e.title("Disabled state"),
 				new e.text("Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btnclose({ disabled: true });
 					},
@@ -37,6 +41,7 @@ export const close_button: IContent = {
 				new e.title("Dark variant"),
 				new e.text("Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "dark" },
 					output: () => {
 						return new h.div({ theme: "dark" }, [new b.btnclose(), new b.btnclose({ disabled: true })]);

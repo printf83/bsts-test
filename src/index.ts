@@ -80,7 +80,7 @@ const setupCopyDataManager = () => {
 					.filter(Boolean)
 					.join("");
 
-				navigator.clipboard.writeText(`code: [${codeData}],`).then(
+				navigator.clipboard.writeText(`db: [${codeData}],`).then(
 					() => {
 						b.toast.show(b.toast.create({ color: "primary", title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"), elem: "Code added to clipboard" }));
 					},

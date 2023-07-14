@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const validation: IContent = {
 	title: "Validation",
 	description: "Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.alert(
@@ -43,6 +45,7 @@ export const validation: IContent = {
 				),
 				new e.text("Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for {{<select>}}s are only available with {{.form-select}}, and not {{.form-control}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -156,6 +159,7 @@ export const validation: IContent = {
 			new e.section([
 				new e.subtitle("Custom styles with floating label"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -246,6 +250,7 @@ export const validation: IContent = {
 				new e.text("Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you’ll see a slightly different style of feedback."),
 				new e.text("While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -315,6 +320,7 @@ export const validation: IContent = {
 				new e.text("For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using {{aria-describedby}} (noting that this attribute allows more than one {{id}} to be referenced, in case the field already points to additional form text)."),
 				new e.text("To fix {{https://github.com/twbs/bootstrap/issues/25110::issues with border radius}}, input groups require an additional {{.has-validation}} class."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -399,6 +405,7 @@ export const validation: IContent = {
 					item: ["{{<input>}}s and {{<textarea>}}s with {{.form-control}} (including up to one {{.form-control}} in input groups)", "{{<select>}}s with {{.form-select}}", "{{.form-check}}s"],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form({ class: "was-validated" }, [
 							b.form.textarea({
@@ -463,6 +470,7 @@ export const validation: IContent = {
 					"If your form layout allows it, you can swap the {{.{valid|invalid}-feedback}} classes for {{.{valid|invalid}-tooltip}} classes to display validation feedback in a styled tooltip. Be sure to have a parent with {{position: relative}} on it for tooltip positioning. In the example below, Bootstrap column classes have this already, but your project may require an alternative setup."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -551,6 +559,7 @@ export const validation: IContent = {
 			new e.section([
 				new e.subtitle("Tooltips with floating label"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{

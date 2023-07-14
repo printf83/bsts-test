@@ -1,11 +1,13 @@
 import { core, I, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const colored_links: IContent = {
 	title: "Colored links",
 	description: "Colored links with hover states",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Link colors"),
@@ -17,6 +19,7 @@ export const colored_links: IContent = {
 					"{{b::Heads up! }}{{.link-body-emphasis}} is currently the only colored link that adapts to color modes. It’s treated as a special case until v6 arrives and Bootstrap can more thoroughly rebuild Bootstrap theme colors for color modes. Until then, it’s a unique, high-contrast link color with custom {{:hover}} and {{:focus}} styles. However, it still responds to the new link utilities."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({ href: "#", linkColor: i as I.H.A["linkColor"] }, `${core.uppercaseFirst(i)} link`)));
 					},
@@ -33,6 +36,7 @@ export const colored_links: IContent = {
 				new e.title("Link utilities"),
 				new e.text("Colored links can also be modified by Bootstrap {{nav:docs/utilities/link::link utilities}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map(
 							(i) =>

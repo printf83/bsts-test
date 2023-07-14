@@ -1,16 +1,19 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const control: IContent = {
 	title: "Form controls",
 	description: "Give textual form controls like {{<input>}}s and {{<textarea>}}s an upgrade with custom styles, sizing, focus states, and more.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example"),
 				new e.text("Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any customization method."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ marginBottom: 3 }, [
@@ -27,6 +30,7 @@ export const control: IContent = {
 				}),
 				new e.text("Using {{b.form.input}} and {{b.form.textarea}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -49,6 +53,7 @@ export const control: IContent = {
 				new e.title("Sizing"),
 				new e.text("Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -81,6 +86,7 @@ export const control: IContent = {
 
 				new e.text("Form text below inputs can be styled with .form-text. If a block-level element will be used, a top margin is added for easy spacing from the inputs above."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div([
 							new b.label({ for: "inputPassword5", class: "form-label" }, "Password"),
@@ -91,6 +97,7 @@ export const control: IContent = {
 				}),
 				new e.text("Using {{b.form.input}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Password",
@@ -102,6 +109,7 @@ export const control: IContent = {
 
 				new e.text("Inline text can use any typical inline HTML element (be it a {{<span>}}, {{<small>}}, or something else) with nothing more than the {{.form-text}} class."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true, gutter: 3, alignItem: "center" }, [
 							new h.div({ col: "auto" }, new b.label({ for: "inputPassword6", class: "col-form-label" }, "Password")),
@@ -119,6 +127,7 @@ export const control: IContent = {
 				}),
 				new e.text("Using {{b.form.input}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							container: { gutter: 3, alignItem: "center" },
@@ -139,6 +148,7 @@ export const control: IContent = {
 				new e.title("Disabled"),
 				new e.text("Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.input({
@@ -164,6 +174,7 @@ export const control: IContent = {
 				new e.title("Readonly"),
 				new e.text("Add the {{readonly}} boolean attribute on an input to prevent modification of the input’s value. {{readonly}} inputs can still be focused and selected, while {{disabled}} inputs cannot."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.input({
@@ -182,6 +193,7 @@ export const control: IContent = {
 				new e.title("Readonly plain text"),
 				new e.text("If you want to have {{<input readonly>}} elements in your form styled as plain text, replace {{.form-control}} with {{.form-control-plaintext}} to remove the default form field styling and preserve the correct {{margin}} and {{padding}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -202,6 +214,7 @@ export const control: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true }, [
 							b.form.input({
@@ -230,6 +243,7 @@ export const control: IContent = {
 				new e.title("File input"),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -272,6 +286,7 @@ export const control: IContent = {
 				new e.text("Set the {{type='color'}} and add {{.form-control-color}} to the {{<input>}}. Bootstrap use the modifier class to set fixed {{heights}} and override some inconsistencies between browsers."),
 				new e.text([new h.span({ class: "teal-700" }, "This teal-700")]),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Color picker",
@@ -292,6 +307,7 @@ export const control: IContent = {
 				new e.text("Learn more about {{https://caniuse.com/datalist::support for datalist elements}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Datalist example",

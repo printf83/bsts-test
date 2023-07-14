@@ -1,6 +1,6 @@
 import { I, b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { copyright: string; icon: string; link: I.B.Nav.Header.Link[] }) => {
@@ -217,11 +217,14 @@ const ex = {
 export const footers: IContent = {
 	title: "Footers",
 	description: "Finish every page strong with an awesome footer, big or small.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example footer 1"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
@@ -246,6 +249,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 2"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -268,6 +272,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 3"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "nav-custom-4" },
 					extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 					output: () => {
@@ -290,6 +295,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 4"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },
 					extention: [
@@ -343,6 +349,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 5"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },

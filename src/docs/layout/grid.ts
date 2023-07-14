@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const grid: IContent = {
 	title: "Grid",
 	description: "Use Bootstrap powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve column system, six default responsive tiers, Sass variables and mixins, and dozens of predefined classes.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example"),
@@ -14,6 +16,7 @@ export const grid: IContent = {
 				),
 				new e.alert({ color: "info", callout: true }, "{{b::New to or unfamiliar with flexbox? }}{{https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-background::Read this CSS Tricks flexbox guide}} for background, terminology, guidelines, and code snippets."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true }, [new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column")]));
@@ -107,6 +110,7 @@ export const grid: IContent = {
 				new e.subtitle("Equal-width"),
 				new e.text("For example, here are two grid layouts that apply to every device and viewport, from {{xs}} to {{xxl}}. Add any number of unit-less classes for each breakpoint you need and every column will be the same width."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, [
@@ -125,6 +129,7 @@ export const grid: IContent = {
 					"Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note that the other columns will resize no matter the width of the center column."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, [
@@ -141,6 +146,7 @@ export const grid: IContent = {
 				new e.subtitle("Variable width content"),
 				new e.text("Use {{col-{breakpoint}-auto}} classes to size columns based on the natural width of their content."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -162,6 +168,7 @@ export const grid: IContent = {
 				new e.subtitle("All breakpoints"),
 				new e.text("For grids that are the same from the smallest of devices to the largest, use the {{.col}} and {{.col-*}} classes. Specify a numbered class when you need a particularly sized column; otherwise, feel free to stick to {{.col}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, [
@@ -178,6 +185,7 @@ export const grid: IContent = {
 				new e.subtitle("Stacked to horizontal"),
 				new e.text("Using a single set of {{.col-sm-*}} classes, you can create a basic grid system that starts out stacked and becomes horizontal at the small breakpoint ({{sm}})."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -195,6 +203,7 @@ export const grid: IContent = {
 				new e.subtitle("Mix and match"),
 				new e.text("Don’t want your columns to simply stack in some grid tiers? Use a combination of different classes for each tier as needed. See the example below for a better idea of how it all works."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -219,36 +228,42 @@ export const grid: IContent = {
 				),
 				new e.text("Use these row columns classes to quickly create basic grid layouts or to control your card layouts."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, rowCol: 2 }, [new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column")]));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, rowCol: 3 }, [new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column")]));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, rowCol: "auto" }, [new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column")]));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, rowCol: 4 }, [new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column")]));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, rowCol: 4 }, [new h.div({ col: true }, "Column"), new h.div({ col: true }, "Column"), new h.div({ col: 6 }, "Column"), new h.div({ col: true }, "Column")]));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -278,6 +293,7 @@ export const grid: IContent = {
 				new e.title("Nesting"),
 				new e.text("To nest your content with the default grid, add a new {{.row}} and set of {{.col-sm-*}} columns within an existing {{.col-sm-*}} column. Nested rows should include a set of columns that add up to 12 or fewer (it is not required that you use all 12 available columns)."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -409,6 +425,7 @@ export const grid: IContent = {
 						`,
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "example-container-css" },
 					output: () => {
 						return new h.div({ class: "example-container" }, new h.div({ class: "example-row" }, [new h.div({ class: "example-content-main" }, "Main content"), new h.div({ class: "example-content-secondary" }, "Secondary content")]));

@@ -1,11 +1,13 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const bootswatch: IContent = {
 	title: "Bootswatch",
 	description: "Free themes for Bootstrap from Bootswatch",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			// disabled because cookies problem (try to create risk cookies)
 			// new e.section(
@@ -91,6 +93,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Navbars"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						const navbarItem = (btnColor: I.B.Button["color"]) => {
@@ -136,6 +139,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Buttons"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
@@ -150,6 +154,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Disabled"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
@@ -164,6 +169,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Outline"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
@@ -178,6 +184,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Sizing"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: {
 						display: "flex",
 						flex: "wrap",
@@ -195,6 +202,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Block"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ display: "grid", gap: 2 }, [new b.button("Button"), new b.button("Button")]);
 					},
@@ -206,6 +214,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Button group"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btngroup({ label: "Basic example", role: "group" }, [new b.button("Left"), new b.button("Middle"), new b.button("Right")]);
 					},
@@ -217,6 +226,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Checkbox"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
 							new b.input({ type: "checkbox", toggle: true, id: "btncheck1" }),
@@ -237,6 +247,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Radio"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
 							new b.input({
@@ -263,6 +274,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Toolbar"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btngroup({ label: "Toolbar with button groups", role: "toolbar" }, [
 							new b.btngroup(
@@ -287,6 +299,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Vertical"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btngroup({ label: "Vertical button group", vertical: true }, [
 							new b.button("Button"),
@@ -307,6 +320,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Dropdown"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
@@ -324,6 +338,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Split button"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
@@ -342,6 +357,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Typography"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as I.H.HLevel, `h${i}. Bootstrap heading`));
 					},
@@ -353,6 +369,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("With secondary text"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as I.H.HLevel, [`h${i}. Heading`, new h.small({ textColor: "body-secondary" }, " with faded secondary text")]));
 					},
@@ -364,6 +381,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Lead paragraph"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.p({ lead: true }, "This is a lead paragraph. It stands out from regular paragraphs.");
 					},
@@ -375,6 +393,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Body text"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.p(["You can use the mark tag to ", new h.mark("highlight"), " text."]),
@@ -395,6 +414,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Text color"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const data: {
 							textColor: core.IAttr["textColor"];
@@ -441,16 +461,19 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Blockquote"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.figure([new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.figure({ textAlign: "center" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.figure({ textAlign: "end" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
@@ -462,6 +485,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Table"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -481,6 +505,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Forms"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							new h.fieldset([
@@ -516,6 +541,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Select"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.select({
@@ -562,6 +588,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Textarea"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.textarea({
 							label: "Example textarea",
@@ -575,6 +602,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("File input"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Default file input exampe",
@@ -589,6 +617,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Radio buttons"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -618,6 +647,7 @@ export const bootswatch: IContent = {
 			new e.section({ id: "checkbox2" }, [
 				new e.subtitle({ id: "checkbox2" }, "Checkbox"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -645,6 +675,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Switch"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -671,6 +702,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Range"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -702,6 +734,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Button"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [new b.button({ type: "submit" }, "Submit"), new b.button({ type: "reset" }, "Reset"), new b.button({ type: "button" }, "Button")];
@@ -714,6 +747,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Disable & readonly"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -737,6 +771,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Validation"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -762,6 +797,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Weight"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -789,6 +825,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Input addon"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -810,6 +847,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Floating label"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.floatinglabel.input({
@@ -835,6 +873,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Tabs"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -856,6 +895,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Pills"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -878,6 +918,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Breadcrumbs"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map((i) => {
@@ -897,6 +938,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Pagination"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3, overflowX: "auto" },
 					output: () => {
 						return [
@@ -933,6 +975,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Alerts"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 							return new b.alert.container({ dismissible: true, color: i as I.B.Alert.Container["color"] }, `A simple ${i} alert—check it out!`);
@@ -946,6 +989,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Callout"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 							return new b.alert.container({ callout: true, color: i as I.B.Alert.Container["color"] }, `A simple ${i} alert—check it out!`);
@@ -959,6 +1003,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Badges"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -973,6 +1018,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Rounded pill"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -997,6 +1043,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Basic"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							value: 25,
@@ -1010,6 +1057,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Contextual alternatives"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
@@ -1031,6 +1079,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Multiple bars"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.stacked([
 							new b.progress.container({
@@ -1066,6 +1115,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Striped"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
@@ -1093,6 +1143,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Animated"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							value: 75,
@@ -1108,6 +1159,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("List groups"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container([new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item"), new b.list.item("A fourth item"), new b.list.item("And a fifth one")]);
@@ -1120,6 +1172,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("With badge"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
@@ -1140,6 +1193,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Color"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
@@ -1164,6 +1218,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Active action"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
@@ -1180,6 +1235,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Custom content"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.tabList.container(
@@ -1205,6 +1261,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Card"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
 							return new b.card.container(
@@ -1225,6 +1282,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Card outline"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
 							return new b.card.container(
@@ -1245,6 +1303,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Kitchen sink"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
 							new b.card.header("Header"),
@@ -1263,6 +1322,7 @@ export const bootswatch: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container(
 							{ style: { width: "18rem" } },
@@ -1283,6 +1343,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Accordion"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							item: [
@@ -1314,6 +1375,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Modal"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -1331,6 +1393,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Offcanvas"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 }, "Link with href"),
@@ -1355,6 +1418,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Popovers"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -1375,6 +1439,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Tooltips"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -1395,6 +1460,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Toasts"),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [

@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const stretched_link: IContent = {
 	title: "Stretched link",
 	description: "Make any HTML element or Bootstrap component clickable by “stretching” a nested link via CSS.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.text(
@@ -15,6 +17,7 @@ export const stretched_link: IContent = {
 				new e.text("Multiple links and tap targets are not recommended with stretched links. However, some {{position}} and {{z-index}} styles can help should this be required."),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
@@ -46,6 +49,7 @@ export const stretched_link: IContent = {
 
 				new e.text("Most custom components do not have {{position: relative}} by default, so Bootstrap need to add the {{.position-relative}} here to prevent the link from stretching outside the parent element."),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new h.div({ display: "flex", position: "relative" }, [
@@ -76,6 +80,7 @@ export const stretched_link: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new h.div({ row: true, gutter: 0, bgColor: "body-secondary", position: "relative" }, [
@@ -123,6 +128,7 @@ export const stretched_link: IContent = {
 					],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [

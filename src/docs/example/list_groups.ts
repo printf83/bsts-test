@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { img: string; title: string; details: string; date: string; href: string }) => {
@@ -112,11 +112,14 @@ const ex = {
 export const list_groups: IContent = {
 	title: "List groups",
 	description: "Extend list groups with utilities and custom styles for any content.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("List with icon"),
 				new e.code({
+					db: getContentCode(db),
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 					output: () => {
 						return new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
@@ -151,6 +154,7 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Checkbox and radio"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 					output: () => {
@@ -204,6 +208,7 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Todo list"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "todo-list" },
 					extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 					output: () => {
@@ -244,6 +249,7 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Checkable list"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
 					extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 					output: () => {
@@ -276,6 +282,7 @@ export const list_groups: IContent = {
 
 				new e.text("Radio"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
 					extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 					output: () => {
@@ -316,6 +323,7 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Checkable list 2"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 					output: () => {
@@ -347,6 +355,7 @@ export const list_groups: IContent = {
 				}),
 				new e.text("Radio"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 					output: () => {

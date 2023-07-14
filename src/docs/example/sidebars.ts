@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: {
@@ -463,11 +463,14 @@ const ex = {
 export const sidebars: IContent = {
 	title: "Sidebars",
 	description: "Common navigation patterns ideal for offcanvas or multi-column layouts.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Dark"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -509,6 +512,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("Light"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -550,6 +554,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("Compact"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -589,6 +594,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("Collapsible"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -658,6 +664,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("List group"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],

@@ -1,22 +1,26 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const sizing: IContent = {
 	title: "Sizing",
 	description: "Easily make an element as wide or as tall with Bootstrap width and height utilities.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Relative to the parent"),
 				new e.text("Width and height utilities are generated from the utility API in {{_utilities.scss}}. Includes support for {{25%}}, {{50%}}, {{75%}}, {{100%}}, and auto by default. Modify those values as you need to generate different utilities here."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
 						return [25, 50, 75, 100, "auto"].map((i) => new h.div({ width: i as core.IAttr["width"], padding: 3 }, `Width ${i}${i !== "auto" ? "%" : ""}`));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
 						return new h.div(
@@ -38,12 +42,14 @@ export const sizing: IContent = {
 				}),
 				new e.text("You can also use {{max-width: 100%;}} and {{max-height: 100%;}} utilities as needed."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
 						return new h.div({ style: { width: "50%", height: "100px" } }, new h.div({ maxWidth: 100, style: { width: "200%" } }, "Max-width 100%"));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
 						return new h.div({ style: { height: "100px" } }, new h.div({ maxHeight: 100, style: { width: "100px", height: "200px" } }, "Max-height 100%"));
@@ -57,6 +63,7 @@ export const sizing: IContent = {
 				new e.title("Relative to the viewport"),
 				new e.text("You can also use utilities to set the width and height relative to the viewport."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "flex-box", overflow: "auto", style: { maxHeight: "200px" } },
 					output: () => {
 						return [new h.div({ minViewWidth: 100 }, "Min-width 100vw"), new h.div({ minViewHeight: 100 }, "Min-height 100vh"), new h.div({ viewWidth: 100 }, "Width 100vw"), new h.div({ viewHeight: 100 }, "Height 100vh")];

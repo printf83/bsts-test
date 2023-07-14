@@ -1,6 +1,6 @@
 import { core, I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const TABLEITEM = () => {
 	return [
@@ -52,7 +52,9 @@ const TABLEBIG = (row: number, col: number) => {
 export const tables: IContent = {
 	title: "Tables",
 	description: "Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -61,6 +63,7 @@ export const tables: IContent = {
 				),
 				new e.text("Using the most basic table markup, here’s how {{.table}}-based tables look in Bootstrap."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -82,6 +85,7 @@ export const tables: IContent = {
 				new e.text("Use contextual classes to color tables, table rows or individual cells."),
 				new e.alert({ color: "info", callout: true }, "{{b::Heads up! }}Because of the more complicated CSS used to generate Bootstrap table variants, they most likely won’t see color mode adaptive styling until v6."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -96,6 +100,7 @@ export const tables: IContent = {
 				}),
 				new e.text("Set color on {{table}} and {{cell}}"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container({ color: "primary" }, [
@@ -135,6 +140,7 @@ export const tables: IContent = {
 				new e.subtitle("Striped rows"),
 				new e.text("Use {{.table-striped}} to add zebra-striping to any table row within the {{<tbody>}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -149,6 +155,7 @@ export const tables: IContent = {
 				new e.subtitle("Striped columns"),
 				new e.text("Use {{.table-striped-columns}} to add zebra-striping to any table column."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -157,6 +164,7 @@ export const tables: IContent = {
 				}),
 				new e.text("These classes can also be added to table variants:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -164,6 +172,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -171,6 +180,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -178,6 +188,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -192,6 +203,7 @@ export const tables: IContent = {
 				new e.subtitle("Hoverable rows"),
 				new e.text("Add {{.table-hover}} to enable a hover state on table rows within a {{<tbody>}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -199,6 +211,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -207,6 +220,7 @@ export const tables: IContent = {
 				}),
 				new e.text("These hoverable rows can also be combined with the striped rows variant:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -221,6 +235,7 @@ export const tables: IContent = {
 				new e.subtitle("Active tables"),
 				new e.text("Highlight a table row or cell by adding a {{.table-active}} class."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -293,6 +308,7 @@ export const tables: IContent = {
 				new e.subtitle("Bordered tables"),
 				new e.text("Add {{.table-bordered}} for borders on all sides of the table and cells."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -301,6 +317,7 @@ export const tables: IContent = {
 				}),
 				new e.text("{{nav:docs/utilities/borders#border_color::Border color utilities}} can be added to change colors:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -315,6 +332,7 @@ export const tables: IContent = {
 				new e.subtitle("Tables without borders"),
 				new e.text("Add {{.table-borderless}} for a table without borders."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -322,6 +340,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -336,6 +355,7 @@ export const tables: IContent = {
 				new e.title("Small tables"),
 				new e.text("Add {{.table-sm}} to make any {{.table}} more compact by cutting all cell {{padding}} in half."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -343,6 +363,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -357,6 +378,7 @@ export const tables: IContent = {
 				new e.title("Table group dividers"),
 				new e.text("Add a thicker border, darker between table groups—{{<thead>}}, {{<tbody>}}, and {{<tfoot>}}—with {{.table-group-divider}}. Customize the color by changing the {{border-top-color}} (which Bootstrap don’t currently provide a utility class for at this time)."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -379,6 +401,7 @@ export const tables: IContent = {
 					"Table cells of {{<thead>}} are always vertical aligned to the bottom. Table cells in {{<tbody>}} inherit their alignment from {{<table>}} and are aligned to the top by default. Use the {{nav:docs/utilities/vertical_align::vertical align}} classes to re-align where needed."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.table.responsive(
 							new b.table.container({ verticalAlign: "middle" }, [
@@ -415,6 +438,7 @@ export const tables: IContent = {
 				new e.title("Nesting"),
 				new e.text("Border styles, active styles, and table variants are not inherited by nested tables."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container({ striped: "row", bordered: true }, [
@@ -457,6 +481,7 @@ export const tables: IContent = {
 				new e.subtitle("Table head"),
 				new e.text("Similar to tables and dark tables, use the modifier classes {{.table-light}} or {{.table-dark}} to make {{<thead>}}s appear light or dark gray."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -467,6 +492,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -483,6 +509,7 @@ export const tables: IContent = {
 			new e.section([
 				new e.subtitle("Table foot"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -500,6 +527,7 @@ export const tables: IContent = {
 				new e.subtitle("Captions"),
 				new e.text("A {{<caption>}} functions like a heading for a table. It helps users with screen readers to find a table and understand what it’s about and decide if they want to read it."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -511,6 +539,7 @@ export const tables: IContent = {
 				}),
 				new e.text("You can also put the {{<caption>}} on the top of the table with {{.caption-top}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -542,6 +571,7 @@ export const tables: IContent = {
 				new e.text("Across every breakpoint, use {{.table-responsive}} for horizontally scrolling tables."),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -559,6 +589,7 @@ export const tables: IContent = {
 				new e.text("{{b::These tables may appear broken until their responsive styles apply at specific viewport widths.}}"),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -568,6 +599,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -577,6 +609,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -586,6 +619,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -595,6 +629,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
@@ -603,6 +638,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],

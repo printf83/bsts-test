@@ -1,11 +1,13 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const object_fit: IContent = {
 	title: "Object fit",
 	description: "Use the object fit utilities to modify how the content of a {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}, such as an {{<img>}} or {{<video>}}, should be resized to fit its container.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -24,6 +26,7 @@ export const object_fit: IContent = {
 				new e.title("Examples"),
 				new e.text("Add the {{object-fit-{value} }}class to the {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["contain", "cover", "fill", "scale", "none"].map(
@@ -47,6 +50,7 @@ export const object_fit: IContent = {
 				new e.title("Responsive"),
 				new e.text("Responsive variations also exist for each {{object-fit}} value using the format {{.object-fit-{breakpoint}-{value} }}, for the following breakpoint abbreviations: {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}. Classes can be combined for various effects as you need."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -83,6 +87,7 @@ export const object_fit: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const videoFn = () => {

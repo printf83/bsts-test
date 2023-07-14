@@ -1,11 +1,13 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const colors: IContent = {
 	title: "Colors",
 	description: "Convey meaning through {{color}} with a handful of color utility classes. Includes support for styling links with hover states, too.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.alert(
@@ -21,6 +23,7 @@ export const colors: IContent = {
 				new e.text("Colorize text with color utilities. If you want to colorize links, you can use the {{nav:docs/helpers/colored_links::linkColor helper property}} which have {{:hover}} and {{:focus}} states."),
 				new e.alert({ color: "info", callout: true }, "Color utilities like {{.text-*}} that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{.text-*-emphasis}} utility will. This will be resolved in v6. "),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const data: {
 							textColor: core.IAttr["textColor"];
@@ -98,12 +101,14 @@ export const colors: IContent = {
 				new e.subtitle("Example"),
 				new e.text("To change that opacity, override {{style: { '--bs-text-opacity': '.5' } }} via custom styles or inline styles."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [new h.div({ textColor: "primary" }, "This is default primary text"), new h.div({ textColor: "primary", style: { "--bs-text-opacity": ".5" } }, "This is 50% opacity primary text")];
 					},
 				}),
 				new e.text("Or, choose from any of the {{textOpacity}} property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [undefined, 75, 50, 25].map((i) => {
 							return new h.div(

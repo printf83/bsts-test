@@ -1,11 +1,13 @@
 import { b, h, s } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const icon_link: IContent = {
 	title: "Icon link",
 	description: "Quickly create stylized hyperlinks with Bootstrap Icons or other icons.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.text(
@@ -24,6 +26,7 @@ export const icon_link: IContent = {
 				new e.title("Example"),
 				new e.text("Take a regular {{<a>}} element, add {{.icon-link}}, and insert an icon on either the left or right of your link text. The icon is automatically sized, placed, and colored."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.a({ href: "#", iconLink: true }, [
 							new s(
@@ -34,6 +37,7 @@ export const icon_link: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.a({ href: "#", iconLink: true }, [
 							"Icon link",
@@ -51,6 +55,7 @@ export const icon_link: IContent = {
 				new e.title("Style on hover"),
 				new e.text("Add {{.icon-link-hover}} to move the icon to the right on hover."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.a({ href: "#", iconLink: "hover" }, [
 							"Icon link",
@@ -73,6 +78,7 @@ export const icon_link: IContent = {
 				new e.text("Modify the {{--bs-link-*}} and {{--bs-icon-link-*}} CSS variables as needed to change the default appearance."),
 				new e.text("Customize the hover {{transform}} by overriding the {{--bs-icon-link-transform}} CSS variable:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.a(
 							{
@@ -91,6 +97,7 @@ export const icon_link: IContent = {
 				}),
 				new e.text("Customize the color by overriding the {{--bs-link-*}} CSS variable:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.a(
 							{
@@ -136,6 +143,7 @@ export const icon_link: IContent = {
 				new e.subtitle("Utilities"),
 				new e.text("Modify icon links with any of {{nav:docs/utilities/link::Bootstrap link utilities}} for modifying underline color and offset."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.a(
 							{
@@ -159,6 +167,7 @@ export const icon_link: IContent = {
 				}),
 				new e.text("On {{<span>}} so you can use this everywhere"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							new h.span(

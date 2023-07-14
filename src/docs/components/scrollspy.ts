@@ -1,11 +1,13 @@
 import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const scrollspy: IContent = {
 	title: "Scrollspy",
 	description: "Automatically update Bootstrap navigation or list group components based on scroll position to indicate which link is currently active in the viewport.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -32,6 +34,7 @@ export const scrollspy: IContent = {
 				new e.subtitle("Navbar"),
 				new e.text("Scroll the area below the navbar and watch the active class change. Open the dropdown menu and watch the dropdown items be highlighted as well."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let headerItems = [
 							new b.nav.header.item(new b.nav.header.link({ href: "#scrollspyHeading1" }, "First")),
@@ -87,6 +90,7 @@ export const scrollspy: IContent = {
 				new e.subtitle("Nested nav"),
 				new e.text("Scrollspy also works with nested {{.navs}}. If a nested {{.nav}} is {{.active}}, its parents will also be {{.active}}. Scroll the area next to the navbar and watch the active class change."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let headerItems = new b.nav.header.containerNav(
 							{
@@ -162,6 +166,7 @@ export const scrollspy: IContent = {
 				new e.subtitle("List group"),
 				new e.text("Scrollspy also works with {{.list-groups}}. Scroll the area next to the list group and watch the active class change."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let d = ["1", "2", "3", "4"];
 						let headerItems = d.map((i) => {
@@ -211,6 +216,7 @@ export const scrollspy: IContent = {
 				new e.subtitle("Simple anchors"),
 				new e.text("Scrollspy is not limited to nav components and list groups, so it will work on any {{<a>}} anchor elements in the current document. Scroll the area and watch the {{.active}} class change."),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 					#simple-list-example a.active{
 						background-color: var(--bs-secondary-bg);

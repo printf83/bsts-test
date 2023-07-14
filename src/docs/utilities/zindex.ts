@@ -1,11 +1,13 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const zindex: IContent = {
 	title: "Z-index",
 	description: "Use Bootstrap low-level {{z-index}} utilities to quickly change the stack level of an element or component.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example"),
@@ -15,6 +17,7 @@ export const zindex: IContent = {
 					"Bootstrap call these “low-level” {{z-index}} utilities because of their default values of {{-1}} through {{3}}, which Bootstrap use for the layout of overlapping components. High-level {{z-index}} values are used for overlay components like modals and tooltips."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "zindex-box", style: { height: "200px" } },
 					output: () => {
 						return [3, 2, 1, 0, "n1"].map((i) => new h.div({ zIndex: i as core.IAttr["zIndex"], position: "absolute", rounded: 3, padding: 5 }, new h.span(`z-${i}`)));

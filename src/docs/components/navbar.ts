@@ -1,11 +1,13 @@
 import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const navbar: IContent = {
 	title: "Navbar",
 	description: "Documentation and examples for Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for Bootstrap collapse plugin.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -45,6 +47,7 @@ export const navbar: IContent = {
 				}),
 				new e.text("Here’s an example of all the sub-components included in a responsive light-themed navbar that automatically collapses at the {{lg}} (large) breakpoint."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -93,6 +96,7 @@ export const navbar: IContent = {
 				new e.xsubtitle({ id: "brand_text" }, "Text"),
 				new e.text("Add your text within an element with the {{b.navbar.brand}} component."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						return [
@@ -109,6 +113,7 @@ export const navbar: IContent = {
 				new e.xsubtitle("Image"),
 				new e.text("You can replace the text within the {{b.navbar.brand}} with an {{h.img}}, {{b.icon}} or {{b.label}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, new b.icon({ textColor: "primary", id: "bootstrap" }))));
 					},
@@ -121,6 +126,7 @@ export const navbar: IContent = {
 				new e.xsubtitle("Image and text"),
 				new e.text("You can also make use of some additional utilities to add an image and text at the same time. Note the addition of {{display:'inline-block'}} and {{alignText:'top'}} on the {{h.img}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, new b.caption({ icon: new b.icon({ textColor: "primary", id: "bootstrap" }) }, "Bootstrap"))));
 					},
@@ -137,6 +143,7 @@ export const navbar: IContent = {
 				new e.text("Add the {{active:true}} class on {{b.navbar.link}} to indicate the current page."),
 				new e.text("Please note that you should also add the {{current}} property on the active {{b.navbar.link}}."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -162,6 +169,7 @@ export const navbar: IContent = {
 				}),
 				new e.text("And because {{bsts}} use Bootstrap classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -182,6 +190,7 @@ export const navbar: IContent = {
 				}),
 				new e.text("You can also use dropdowns in your navbar. Dropdown menus require a wrapping element for positioning, so be sure to use separate and nested elements for {{b.navbar.item}} and {{dropdown:true}} property as shown below."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -216,6 +225,7 @@ export const navbar: IContent = {
 				new e.subtitle("Forms"),
 				new e.text("Place various form controls and components within a navbar:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ bgColor: "body-tertiary" },
@@ -236,6 +246,7 @@ export const navbar: IContent = {
 				}),
 				new e.text("Immediate child elements of {{b.navbar.container}} use flex layout and will default to {{justifyContent:'space-between'}}. Use additional {{nav:docs/utilities/flex::flex utilities}} as needed to adjust this behavior."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ bgColor: "body-tertiary" },
@@ -257,6 +268,7 @@ export const navbar: IContent = {
 
 				new e.text("Input groups work, too. If your navbar is an entire form, or mostly a form, you can use the {{h.form}} element as the container and save some code."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ bgColor: "body-tertiary" },
@@ -278,6 +290,7 @@ export const navbar: IContent = {
 
 				new e.text("Various buttons are supported as part of these navbar forms, too. This is also a great reminder that vertical alignment utilities can be used to align different sized elements."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ bgColor: "body-tertiary" },
@@ -293,12 +306,14 @@ export const navbar: IContent = {
 				new e.subtitle("Text"),
 				new e.text("Navbars may contain bits of text with the help of {{b.navbar.text}}. This class adjusts vertical alignment and horizontal spacing for strings of text."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.text("Navbar text with an inline element")));
 					},
 				}),
 				new e.text("Mix and match with other components and utilities as needed."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -337,6 +352,7 @@ export const navbar: IContent = {
 					"Navbar themes are easier than ever thanks to Bootstrap’s combination of Sass and CSS variables. The default is Bootstrap “light navbar” for use with light background colors, but you can also apply {{theme:'dark'}} to the {{b.navbar.container}} parent for dark background colors. Then, customize with {{bgColor}} property."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						const navbarItem = (btnColor: I.B.Button["color"]) => {
@@ -381,6 +397,7 @@ export const navbar: IContent = {
 					"Although it’s not required, you can wrap a navbar in a {{h.div({container:true})}} to center it on a page–though note that an inner container is still required. Or you can add a container inside the {{b.navbar.container}} to only center the contents of a {{nav:docs/components/navbar#placement::fixed or static top navbar}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div({ container: true }, new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Navbar"))));
@@ -389,6 +406,7 @@ export const navbar: IContent = {
 
 				new e.text("Use any of the responsive containers to change how wide the content in your navbar is presented."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "md" }, new b.navbar.brand({ href: "#" }, "Navbar")));
@@ -405,26 +423,31 @@ export const navbar: IContent = {
 				),
 				new e.text("Fixed navbars use {{position:fixed}}, meaning they’re pulled from the normal flow of the DOM and may require custom CSS (e.g., {{paddingTop}} on the {{<body>}}) to prevent overlap with other elements."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Default")));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary", fixed: "top" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Fixed top")));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary", fixed: "bottom" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Fixed bottom")));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary", sticky: "top" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Sticky top")));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container({ bgColor: "body-tertiary", sticky: "bottom" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Sticky bottom")));
 					},
@@ -442,6 +465,7 @@ export const navbar: IContent = {
 				new e.text("Here’s an example {{b.navbar.itemcontainer}} using {{scroll:true}} with {{scrollHeight:'100px'}}, with some extra margin utilities for optimum spacing."),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -504,6 +528,7 @@ export const navbar: IContent = {
 				),
 				new e.text("With no {{.navbar-brand}} shown at the smallest breakpoint:"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -537,6 +562,7 @@ export const navbar: IContent = {
 				}),
 				new e.text("With a brand name shown on the left and toggler on the right:"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -570,6 +596,7 @@ export const navbar: IContent = {
 				}),
 				new e.text("With a toggler on the left and brand name on the right:"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.navbar.container(
@@ -609,6 +636,7 @@ export const navbar: IContent = {
 				new e.subtitle("External content"),
 				new e.text("Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits outside of the {{b.navbar.container}} . Because Bootstrap plugin works on the {{id}} and {{target}} matching, that’s easily done!"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div([
@@ -645,6 +673,7 @@ export const navbar: IContent = {
 				new e.text("In the example below, to create an offcanvas navbar that is always collapsed across all breakpoints, omit the {{expand}} property entirely."),
 				new e.text("Use {{b.navbar.toggle.offcanvas}} to toggle {{b.offcanvas.container}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ bgColor: "body-tertiary", fixed: "top" },
@@ -726,6 +755,7 @@ export const navbar: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ bgColor: "body-tertiary", expand: "lg", fixed: "top" },
@@ -780,6 +810,7 @@ export const navbar: IContent = {
 				new e.text("When using offcanvas in a dark navbar, you just need to set {{theme:'dark'}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ theme: "dark", bgColor: "body-tertiary", fixed: "top" },

@@ -1,12 +1,14 @@
 import { h, b, s, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
 
 export const tooltip: IContent = {
 	title: "Tooltips",
 	description: "Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-bs-attributes for local title storage.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -68,6 +70,7 @@ export const tooltip: IContent = {
 				new e.text("Hover over the links below to see tooltips:"),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.p({ textColor: "body-secondary" }, [
 							"Placeholder text to demonstrate some ",
@@ -102,6 +105,7 @@ export const tooltip: IContent = {
 					`,
 				}),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 					.custom-tooltip {
 						--bs-tooltip-bg: var(--bs-primary);
@@ -126,6 +130,7 @@ export const tooltip: IContent = {
 				new e.subtitle("Directions"),
 				new e.text("Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left by set the {{placement}} property. Directions are mirrored when using Bootstrap in RTL."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -141,6 +146,7 @@ export const tooltip: IContent = {
 				}),
 				new e.text("And with custom HTML added:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					showHTML: false,
 					output: () => {
@@ -155,6 +161,7 @@ export const tooltip: IContent = {
 				}),
 				new e.text("With an SVG:"),
 				new e.code({
+					db: getContentCode(db),
 					showHTML: false,
 					output: () => {
 						return new b.tooltip(
@@ -277,6 +284,7 @@ export const tooltip: IContent = {
 				new e.subtitle("Disabled elements"),
 				new e.text("Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a tooltip (or popover). {{bsts}} use {{b.tooltip}} as a wrapper, and automaticlly made keyboard-focusable using {{tabindex:'0'}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.tooltip(
 							{
@@ -430,6 +438,7 @@ export const tooltip: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const myDefaultAllowList = Tooltip.Default.allowList;
@@ -624,6 +633,7 @@ export const tooltip: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					showConsole: true,
 					output: () => {

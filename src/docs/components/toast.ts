@@ -1,11 +1,13 @@
 import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const toast: IContent = {
 	title: "Toasts",
 	description: "Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([new e.text("Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems. They’re built with flexbox, so they’re easy to align and position.")]),
 
@@ -36,6 +38,7 @@ export const toast: IContent = {
 				new e.text("To encourage extensible and predictable toasts, Bootstrap recommend a header and body. Toast headers use {{display:'flex'}}, allowing easy alignment of content thanks to Bootstrap margin and flexbox utilities."),
 				new e.text("Toasts are as flexible as you need and have very little required markup. At a minimum, Bootstrap require a single element to contain your “toasted” content and strongly encourage a dismiss button."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
@@ -66,6 +69,7 @@ export const toast: IContent = {
 				new e.subtitle("Live example"),
 				new e.text("Click the button below to show a toast (positioned with Bootstrap utilities in the lower right corner) that has been hidden by default."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.button(
@@ -110,6 +114,7 @@ export const toast: IContent = {
 				new e.subtitle("Toast show"),
 				new e.text("You also can use Bootstrap {{b.toast.show}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -160,6 +165,7 @@ export const toast: IContent = {
 					],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const fnToast = (color: I.B.Toast.Create["color"], elem: core.IElem, icon?: string) => {
@@ -271,6 +277,7 @@ export const toast: IContent = {
 				new e.subtitle("Translucent"),
 				new e.text("Toasts are slightly translucent to blend in with what’s below them."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					previewAttr: { bgColor: "dark" },
 					output: () => {
@@ -298,6 +305,7 @@ export const toast: IContent = {
 				new e.subtitle("Stacking"),
 				new e.text("You can stack toasts by wrapping them in a toast container, which will vertically add some spacing."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const item = (msg: string, timer: string) => {
@@ -330,6 +338,7 @@ export const toast: IContent = {
 					"Customize your toasts by removing sub-components, tweaking them with {{nav:docs/utilities/api::utilities}}, or by adding your own markup. Here Bootstrap created a simpler toast by removing the default {{b.toast.header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:docs/utilities/flex::flexbox utilities}} to adjust the layout."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, new h.div({ display: "flex" }, [new b.toast.body("Hello, world! This is a toast message."), new b.toast.btnclose({ marginEnd: 2, margin: "auto" })]));
@@ -337,6 +346,7 @@ export const toast: IContent = {
 				}),
 				new e.text("Alternatively, you can also add additional controls and components to toasts."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, [
@@ -357,6 +367,7 @@ export const toast: IContent = {
 					"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:docs/utilities/colors::color}} and {{nav:docs/utilities/background::background}} utilities. Here Bootstrap added {{textBgColor:'primary'}} to the {{b.toast.item}}, and then added {{b.toast.btnclose({white:true})}} to Bootstrap close button. For a crisp edge, Bootstrap remove the default border with {{border:false}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item(
@@ -380,6 +391,7 @@ export const toast: IContent = {
 				new e.subtitle("Disable animation"),
 				new e.text("{{bsts}} automaticly set {{animation:true}} on {{b.toast.item}}. Set {{animation:false}} to disable toast animation."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -408,6 +420,7 @@ export const toast: IContent = {
 				new e.title("Placement"),
 				new e.text("Place toasts with custom CSS as you need them. The top right is often used for notifications, as is the top middle. If you’re only ever going to show one toast at a time, put the positioning styles right on the .toast."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const container = (placement: I.B.Toast.Container["placement"]) => {
@@ -479,6 +492,7 @@ export const toast: IContent = {
 				}),
 				new e.text("For systems that generate more notifications, consider using a wrapping element so they can easily stack."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const item = (msg: string, timer: string) => {
@@ -503,6 +517,7 @@ export const toast: IContent = {
 				}),
 				new e.text("You can also get fancy with flexbox utilities to align toasts horizontally and/or vertically."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const item = (msg: string, timer: string) => {
@@ -569,6 +584,7 @@ export const toast: IContent = {
 					`,
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.button(
@@ -601,6 +617,7 @@ export const toast: IContent = {
 				}),
 				new e.text("When using {{autohide:false}}, you must add a close button to allow users to dismiss the toast."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, live: "assertive", atomic: true, autohide: false }, [
@@ -770,6 +787,7 @@ export const toast: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return [
@@ -870,6 +888,7 @@ export const toast: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.button(

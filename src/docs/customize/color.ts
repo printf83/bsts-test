@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const hexToRGB = (hex: string) => {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -157,7 +157,9 @@ const colorpickerText = (variableName: string | string[]) => {
 export const color: IContent = {
 	title: "Color",
 	description: "Bootstrap is supported by an extensive color system that themes our styles and components. This enables more comprehensive customization and extension for any project.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Colors"),
@@ -571,6 +573,7 @@ export const color: IContent = {
 					"These new colors are accessible via CSS variables and utility classes—like {{--bs-primary-bg-subtle}} and {{.bg-primary-subtle}}—allowing you to compose your own CSS rules with the variables, or to quickly apply styles via classes. The utilities are built with the color’s associated CSS variables, and since Bootstrap customize those CSS variables for dark mode, they are also adaptive to color mode by default."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div(
 							{
@@ -648,6 +651,7 @@ export const color: IContent = {
 				new e.alert({ color: "danger", callout: true }, [new b.alert.header(5, "Unsuppoterd in {{bsts}}"), "This feature will supported when Bootstrap make it opt-in by default or available in CDN."]),
 				new e.text("If you like to use this feature using {{bsts}}, you can manually set it by class property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div(
 							{ container: "fluid", margin: 0, padding: 0 },

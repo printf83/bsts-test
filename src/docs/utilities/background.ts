@@ -1,11 +1,13 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const background: IContent = {
 	title: "Background",
 	description: "Convey meaning through {{bgColor}} and add decoration with gradients.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.alert(
@@ -21,6 +23,7 @@ export const background: IContent = {
 				new e.text("Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::textColor}}, so in some cases you’ll want to use {{textColor}} {{nav:docs/utilities/colors::color utilities}}."),
 				new e.alert({ color: "info", callout: true }, " Background utilities like {{bgColor}} property that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{bgColor:'*-subtle'}} utility will. This will be resolved in v6. "),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const data: { bgColor: core.IAttr["bgColor"]; textColor?: core.IAttr["textColor"] }[] = [
 							{ bgColor: "primary", textColor: "white" },
@@ -61,6 +64,7 @@ export const background: IContent = {
 				new e.text("By adding a {{bgGradient:true}} property, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom."),
 				new e.text("Do you need a gradient in your custom CSS? Just add {{background-image: var(--bs-gradient);}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const data: { bgColor: core.IAttr["bgColor"]; textColor?: core.IAttr["textColor"] }[] = [
 							{ bgColor: "primary", textColor: "white" },
@@ -132,6 +136,7 @@ export const background: IContent = {
 				new e.subtitle("Example"),
 				new e.text("To change that opacity, override {{style: { '--bs-bg-opacity': '.5' } }} via custom styles or inline styles."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ bgColor: "success", textColor: "white", padding: 2 }, "This is default success background"),
@@ -149,6 +154,7 @@ export const background: IContent = {
 				}),
 				new e.text("Or, choose from any of the {{bgOpacity}} property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [undefined, 75, 50, 25, 10].map((i) => {
 							return new h.div(

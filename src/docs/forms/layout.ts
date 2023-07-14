@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const layout: IContent = {
 	title: "Layout",
 	description: "Give your forms some structure—from inline to horizontal to custom grid implementations—with Bootstrap form layout options.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Forms"),
@@ -28,6 +30,7 @@ export const layout: IContent = {
 				),
 				new e.text("Feel free to build your forms however you like, with {{<fieldset>}}s, {{<div>}}s, or nearly any other element."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ marginBottom: 3 }, [new b.label({ for: "formGroupExampleInput", class: "form-label" }, "Example label"), new b.input({ id: "formGroupExampleInput", placeholder: "Example input placeholder" })]),
@@ -38,6 +41,7 @@ export const layout: IContent = {
 
 				new e.text("Using {{b.form.input}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -57,6 +61,7 @@ export const layout: IContent = {
 				new e.title("Form grid"),
 				new e.text("More complex forms can be built using Bootstrap grid classes. Use these for form layouts that require multiple columns, varied widths, and additional alignment options. {{b::Requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true }, [
 							b.form.input({
@@ -82,6 +87,7 @@ export const layout: IContent = {
 				new e.title("Gutters"),
 				new e.text("By adding {{nav:docs/layout/gutters::gutter modifier classes}}, you can have control over the gutter width in as well the inline as block direction. {{b::Also requires the }}{{bc::$enable-grid-classes}}{{b:: Sass variable to be enabled}} (on by default)."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true, gutter: 3 }, [
 							b.form.input({
@@ -101,6 +107,7 @@ export const layout: IContent = {
 				}),
 				new e.text("More complex layouts can also be created with the grid system."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form({ row: true, gutter: 3 }, [
 							b.form.input({
@@ -152,6 +159,7 @@ export const layout: IContent = {
 				),
 				new e.text("At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, Bootstrap removed the {{padding-top}} on Bootstrap stacked radio inputs label to better align the text baseline."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form([
 							b.form.input({
@@ -202,6 +210,7 @@ export const layout: IContent = {
 				new e.subtitle("Horizontal form label sizing"),
 				new e.text("Be sure to use {{.col-form-label-sm}} or {{.col-form-label-lg}} to your {{<label>}}s or {{<legend>}}s to correctly follow the size of {{.form-control-lg}} and {{.form-control-sm}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -239,6 +248,7 @@ export const layout: IContent = {
 					"As shown in the previous examples, Bootstrap grid system allows you to place any number of {{.col}}s within a {{.row}}. They’ll split the available width equally between them. You may also pick a subset of your columns to take up more or less space, while the remaining {{.col}}s equally split the rest, with specific column classes like {{.col-sm-6}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div({ row: true, gutter: 3 }, [
@@ -271,6 +281,7 @@ export const layout: IContent = {
 				new e.title("Auto-sizing"),
 				new e.text("The example below uses a flexbox utility to vertically center the contents and changes {{.col}} to {{.col-auto}} so that your columns only take up as much space as needed. Put another way, the column sizes itself based on the contents."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
 							b.form.input({
@@ -304,6 +315,7 @@ export const layout: IContent = {
 				}),
 				new e.text("You can then remix that once again with size-specific column classes."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true, gutterY: 2, gutterX: 3, alignItem: "center" }, [
 							b.form.input({
@@ -345,6 +357,7 @@ export const layout: IContent = {
 					"Use the {{.row-cols-*}} classes to create responsive horizontal layouts. By adding {{nav:docs/layout/gutters::gutter modifier classes}}, Bootstrap’ll have gutters in horizontal and vertical directions. On narrow mobile viewports, the {{.col-12}} helps stack the form controls and more. The {{.align-items-center}} aligns the form elements to the middle, making the {{.form-check}} align properly."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true, rowCol: "lg-auto", gutter: 3, alignItem: "center" }, [
 							b.form.input({

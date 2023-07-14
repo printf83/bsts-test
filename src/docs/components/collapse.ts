@@ -1,11 +1,13 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const collapse: IContent = {
 	title: "Collapse",
 	description: "Toggle the visibility of content across your project with a few classes and Bootstrap JavaScript plugins.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -32,6 +34,7 @@ export const collapse: IContent = {
 					"Generally, {{bsts}} recommend using a {{b.collapse.button}} with the {{target}} property. While not recommended from a semantic point of view, you can also use an {{b.collapse.button}} with the {{href}} property ({{bsts}} automaticly add {{role:'button'}} and the {{toggle:'collapse'}} because it's required by Bootstrap."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					output: () => {
 						return [
@@ -51,6 +54,7 @@ export const collapse: IContent = {
 				),
 				new e.text(new b.alert.container({ color: "info", callout: true }, "Please note that while the example below has a {{min-height}} set to avoid excessive repaints in Bootstrap docs, this is not explicitly required. {{b::Only the}} {{width}} {{b::on the child element is required}}.")),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						return [
@@ -72,6 +76,7 @@ export const collapse: IContent = {
 					"A {{b.collapse.button}} component can show and hide multiple elements by referencing them with a selector in its {{target}} or {{href}} property. Conversely, multiple {{b.collapse.button}} component can show and hide the same element if they each reference it with their {{target}} or {{href}} property."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const toggle1 = new b.collapse.button({ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" }, "Toggle first element");
@@ -257,6 +262,7 @@ export const collapse: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const collapseContent = new b.card.body("Some placeholder content for the collapse component.");
@@ -406,6 +412,7 @@ export const collapse: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					showConsole: true,
 					output: () => {

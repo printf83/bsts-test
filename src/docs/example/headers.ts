@@ -1,6 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
@@ -543,11 +543,14 @@ const ex = {
 export const headers: IContent = {
 	title: "Headers",
 	description: "Display your branding, navigation, search, and more with these header components",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example header 1"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					showConsole: true,
 					previewAttr: { padding: 0 },
@@ -586,6 +589,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 2"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					previewAttr: { padding: 0 },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -621,6 +625,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 3"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -668,6 +673,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 4"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { bgColor: "dark", padding: 0 },
@@ -729,6 +735,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 5"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -782,6 +789,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 6"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -845,6 +853,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 7"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -927,6 +936,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 8"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },

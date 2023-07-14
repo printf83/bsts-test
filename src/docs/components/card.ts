@@ -1,11 +1,13 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const card: IContent = {
 	title: "Cards",
 	description: "Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("About"),
@@ -25,6 +27,7 @@ export const card: IContent = {
 					"Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with Bootstrap various {{nav:docs/components/card#sizing::sizing options}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
 							new b.card.img({
@@ -48,6 +51,7 @@ export const card: IContent = {
 				new e.subtitle("Body"),
 				new e.text("The building block of a card is the {{b.card.body}}. Use it whenever you need a padded section within a card."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container(new b.card.body("This is some text within a card body."));
 					},
@@ -62,6 +66,7 @@ export const card: IContent = {
 				new e.text("Subtitles are used by adding a {{b.card.subtitle}} component. If the {{b.card.title}} and the {{b.card.subtitle}} items are placed in a {{b.card.body}} component, the card title and subtitle are aligned nicely."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container(
 							{ style: { width: "18rem" } },
@@ -83,6 +88,7 @@ export const card: IContent = {
 				new e.subtitle({ id: "contenttype_images" }, "Images"),
 				new e.text("{{location:top}} places an image ({{b.card.img}}) to the top of the card. With {{b.card.text}}, text can be added to the card. Text within {{b.card.text}} can also be styled with the standard HTML tags using {{s}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
 							new b.card.img({
@@ -102,18 +108,21 @@ export const card: IContent = {
 				new e.subtitle("List groups"),
 				new e.text("Create lists of content in a card using {{b.list.container}} with a flush list group using {{flush:true}} property."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")])]);
 					},
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [new b.card.header("Featured"), new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")])]);
 					},
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")]), new b.card.footer("Card footer")]);
 					},
@@ -126,6 +135,7 @@ export const card: IContent = {
 				new e.subtitle("Kitchen sink"),
 				new e.text("Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
 							new b.card.img({
@@ -147,6 +157,7 @@ export const card: IContent = {
 				new e.subtitle("Header and footer"),
 				new e.text("Add an optional header ({{b.card.header}}) and/or footer ({{b.card.footer}}) within a card."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container([new b.card.header("Featured"), new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
 					},
@@ -154,11 +165,13 @@ export const card: IContent = {
 
 				new e.text("Card headers can be styled by adding {{b.card.header}} component."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container([new h.h(5, { class: "card-header" }, "Featured"), new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container([
 							new h.div({ class: "card-header" }, "Quote"),
@@ -167,6 +180,7 @@ export const card: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ textAlign: "center" }, [
 							new b.card.header("Featured"),
@@ -188,6 +202,7 @@ export const card: IContent = {
 				new e.text("Using the grid, wrap cards in columns and rows as needed."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true }, [
 							new h.div({ col: "sm-6", marginBottom: [3, "sm-0"] }, new b.card.container(new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]))),
@@ -203,6 +218,7 @@ export const card: IContent = {
 				new e.subtitle("Using utilities"),
 				new e.text("Use Bootstrap handful of {{nav:docs/utilities/sizing::available sizing utilities}} to quickly set a card’s width."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.card.container({ width: 75, marginBottom: 3 }, new b.card.body([new b.card.title("Card title"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Button")])),
@@ -218,6 +234,7 @@ export const card: IContent = {
 				new e.subtitle("Using custom CSS"),
 				new e.text("Use custom CSS in your stylesheets or as inline styles to set a width."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
 					},
@@ -230,6 +247,7 @@ export const card: IContent = {
 				new e.title("Text alignment"),
 				new e.text("You can quickly change the text alignment of any card—in its entirety or specific parts—with Bootstrap {{nav:docs/utilities/text#text_alignment::text align property}} like {{textAlign:<value>}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [undefined, "center", "end"].map((i) => {
 							return new b.card.container(
@@ -251,6 +269,7 @@ export const card: IContent = {
 				new e.title("Navigation"),
 				new e.text("Add some navigation to a card’s header (or block) with Bootstrap’s {{nav:docs/components/nav::nav components}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ textAlign: "center" }, [
 							new b.card.header(
@@ -265,6 +284,7 @@ export const card: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ textAlign: "center" }, [
 							new b.card.header(
@@ -291,6 +311,7 @@ export const card: IContent = {
 				new e.text("Similar to headers and footers, cards can include top and bottom “image caps”—images at the top or bottom of a card using {{location:'top'|'bottom'}} property to {{b.card.img}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.card.container({ marginBottom: 3 }, [
@@ -329,6 +350,7 @@ export const card: IContent = {
 				new e.text("Turn an image into a card background and overlay your card’s text. Depending on the image, you may or may not need additional styles or utilities."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ textBgColor: "dark" }, [
 							new b.card.img({
@@ -356,6 +378,7 @@ export const card: IContent = {
 				),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.card.container({ style: { maxWidth: "540px" } }, [
@@ -396,6 +419,7 @@ export const card: IContent = {
 				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
 							return new b.card.container(
@@ -425,6 +449,7 @@ export const card: IContent = {
 				new e.text("Use {{nav:docs/utilities/borders::border utilities}} to change just the {{borderColor}} of a card. Note that you can put {{textColor}} property on the parent {{b.card.container}} or a subset of the card’s contents as shown below."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
 							return new b.card.container(
@@ -447,6 +472,7 @@ export const card: IContent = {
 				new e.text("You can also change the borders on the card header and footer as needed, and even remove their {{background-color}} with {{bgColor:'transparent'}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container(
 							{
@@ -474,6 +500,7 @@ export const card: IContent = {
 				new e.text("Use card groups to render cards as a single, attached element with equal width and height columns. Card groups start off stacked and use {{display:'flex'}} to become attached with uniform dimensions starting at the {{sm}} breakpoint."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.group(
 							[
@@ -497,6 +524,7 @@ export const card: IContent = {
 				new e.text("When using card groups with footers, their content will automatically line up."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.group(
 							[
@@ -528,6 +556,7 @@ export const card: IContent = {
 				),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div(
@@ -561,6 +590,7 @@ export const card: IContent = {
 				new e.text("Change it to {{rowCols:3}} and you’ll see the fourth card wrap."),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div(
@@ -594,6 +624,7 @@ export const card: IContent = {
 				new e.text("When you need equal height, add {{height:100}} to the cards. If you want equal heights by default, you can set {{$card-height: 100%}} in Sass."),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div(
@@ -627,6 +658,7 @@ export const card: IContent = {
 				new e.text("Just like with card groups, card footers will automatically line up."),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div(

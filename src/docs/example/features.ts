@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; description: string; href: string }) => {
@@ -194,11 +194,14 @@ const ex = {
 export const features: IContent = {
 	title: "Features",
 	description: "Explain the features, benefits, or other details in your marketing content.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Columns with icons"),
 				new e.code({
+					db: getContentCode(db),
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 					output: () => {
 						return [
@@ -230,6 +233,7 @@ export const features: IContent = {
 			new e.section([
 				new e.title("Hanging icons"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 					output: () => {
@@ -262,6 +266,7 @@ export const features: IContent = {
 			new e.section([
 				new e.title("Custom cards"),
 				new e.code({
+					db: getContentCode(db),
 					zoom: 50,
 					outputAttr: { viewWidth: 100 },
 					previewAttr: { overflow: "auto" },
@@ -309,6 +314,7 @@ export const features: IContent = {
 			new e.section([
 				new e.title("Icon grid"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 					output: () => {
@@ -371,6 +377,7 @@ export const features: IContent = {
 			new e.section([
 				new e.title("Features with title"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					extention: [
 						{ name: "COMPONENTFEATURE", rename: "ex.c5Feature", output: ex.c5Feature },

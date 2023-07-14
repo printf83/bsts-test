@@ -1,12 +1,14 @@
 import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
 
 export const popover: IContent = {
 	title: "Popovers",
 	description: "Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -69,6 +71,7 @@ export const popover: IContent = {
 				new e.text("Bootstrap use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{title}} and body content is set via {{content}}."),
 				new e.alert({ color: "warning", callout: true }, "When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} attribute when the element is rendered."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.popover(
 							{
@@ -87,6 +90,7 @@ export const popover: IContent = {
 				new e.subtitle("Four directions"),
 				new e.text("Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{placement}} to change the direction."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -136,6 +140,7 @@ export const popover: IContent = {
 					"You can customize the appearance of popovers using {{nav:docs/components/popover#variables::CSS variables}}. Bootstrap set a custom class with {{customClass:'custom-popover'}} property to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 				),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 					.custom-popover {
 						--bs-popover-max-width: 200px;
@@ -169,6 +174,7 @@ export const popover: IContent = {
 					"{{b::Dismissing on next click requires specific HTML for proper cross-browser and cross-platform behavior}}. You can only use {{h.a}} elements, not {{b.button}}s or {{h.button}}s, and you must include a {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex::tabindex}}.{{hr}}This not a problem in {{b.popover}} since it is a wrapper."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.popover(
 							{
@@ -193,6 +199,7 @@ export const popover: IContent = {
 				new e.text("For disabled popover triggers, you may also prefer {{trigger:['hover','focus']}} so that the popover appears as immediate visual feedback to your users as they may not expect to click on a disabled element."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.popover(
 							{
@@ -438,6 +445,7 @@ export const popover: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const myDefaultAllowList = Tooltip.Default.allowList;
@@ -637,6 +645,7 @@ export const popover: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.popover(

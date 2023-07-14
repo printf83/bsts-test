@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; description: string; elem?: core.IElem }) => {
@@ -238,11 +238,14 @@ const ex = {
 export const heroes: IContent = {
 	title: "Heroes",
 	description: "Set the stage on your homepage with heroes that feature clear calls to action.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Centered hero"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					previewAttr: { padding: 0 },
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
@@ -262,6 +265,7 @@ export const heroes: IContent = {
 			new e.section([
 				new e.title("Centered screenshot"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -281,6 +285,7 @@ export const heroes: IContent = {
 			new e.section([
 				new e.title("Responsive left-aligned hero with image"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					previewAttr: { padding: 0 },
 					extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
@@ -300,6 +305,7 @@ export const heroes: IContent = {
 			new e.section([
 				new e.title("Vertically centered hero sign-up form"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					showConsole: true,
 					previewAttr: { padding: 0 },
@@ -337,6 +343,7 @@ export const heroes: IContent = {
 			new e.section([
 				new e.title("Border hero with cropped image and shadows"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 					output: () => {
@@ -355,6 +362,7 @@ export const heroes: IContent = {
 			new e.section([
 				new e.title("Dark color hero"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					previewAttr: { padding: 0, bgColor: "dark", overflow: "hidden" },
 					extention: [{ name: "COMPONENT", rename: "ex.c6", output: ex.c6 }],

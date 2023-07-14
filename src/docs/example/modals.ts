@@ -1,15 +1,18 @@
 import { I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const modals: IContent = {
 	title: "Modals",
 	description: "Transform modals to serve any purpose, from feature tours to dialogs.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Style 1"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -43,6 +46,7 @@ export const modals: IContent = {
 
 				new e.text("Using {{b.modal.create}}"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -59,6 +63,7 @@ export const modals: IContent = {
 
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
@@ -136,6 +141,7 @@ export const modals: IContent = {
 			new e.section([
 				new e.title("Style 2"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -198,6 +204,7 @@ export const modals: IContent = {
 
 				new e.text("Using {{b.modal.create}}"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -214,6 +221,7 @@ export const modals: IContent = {
 
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
@@ -309,6 +317,7 @@ export const modals: IContent = {
 			new e.section([
 				new e.title("What's new"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -357,6 +366,7 @@ export const modals: IContent = {
 
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -424,6 +434,7 @@ export const modals: IContent = {
 			new e.section([
 				new e.title("Sign up form"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -454,6 +465,7 @@ export const modals: IContent = {
 
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{

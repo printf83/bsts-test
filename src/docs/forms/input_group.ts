@@ -1,16 +1,19 @@
 import { I, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const input_group: IContent = {
 	title: "Input group",
 	description: "Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Basic example"),
 				new e.text("Place one add-on or button on either side of an input. You may also place one on both sides of an input. Remember to place {{<label>}}s outside the input group."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -58,6 +61,7 @@ export const input_group: IContent = {
 				new e.title("Wrapping"),
 				new e.text("Input groups wrap by default via {{flex-wrap: wrap}} in order to accommodate custom form field validation within an input group. You may disable this with {{.flex-nowrap}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							type: "text",
@@ -75,6 +79,7 @@ export const input_group: IContent = {
 				new e.text("Add the relative form sizing classes to the {{.input-group}} itself and contents within will automatically resize—no need for repeating the form control size classes on each element."),
 				new e.text("{{b::Sizing on the individual input group elements isn’t supported.}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -104,6 +109,7 @@ export const input_group: IContent = {
 				new e.title("Checkboxes and radios"),
 				new e.text("Place any checkbox or radio option within an input group’s addon instead of text. Bootstrap recommend adding {{.mt-0}} to the {{.form-check-input}} when there’s no visible text next to the input."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -129,6 +135,7 @@ export const input_group: IContent = {
 				new e.title("Multiple inputs"),
 				new e.text("While multiple {{<input>}}s are supported visually, validation styles are only available for input groups with a single {{<input>}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -148,6 +155,7 @@ export const input_group: IContent = {
 				new e.title("Multiple addons"),
 				new e.text("Multiple add-ons are supported and can be mixed with checkbox and radio input versions."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -171,6 +179,7 @@ export const input_group: IContent = {
 			new e.section([
 				new e.title("Button addons"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -208,6 +217,7 @@ export const input_group: IContent = {
 			new e.section([
 				new e.title("Buttons with dropdowns"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const dropdownItem = [new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")];
 
@@ -240,6 +250,7 @@ export const input_group: IContent = {
 			new e.section([
 				new e.title("Segmented buttons"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const dropdownItem = [new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")];
 
@@ -267,6 +278,7 @@ export const input_group: IContent = {
 				new e.text("Input groups include support for custom selects and custom file inputs. Browser default versions of these are not supported."),
 				new e.subtitle("Custom select"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let selectItem: I.H.SelectItem[] = [
 							{ selected: true, elem: "Choose..." },
@@ -307,6 +319,7 @@ export const input_group: IContent = {
 				new e.subtitle("Custom file input"),
 				new e.text("Input groups include support for custom selects and custom file inputs. Browser default versions of these are not supported."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({

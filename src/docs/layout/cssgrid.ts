@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const cssgrid: IContent = {
 	title: "CSS Grid",
 	description: "Learn how to enable, use, and customize Bootstrap alternate layout system built on CSS Grid with examples and code snippets.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.text(
@@ -19,6 +21,7 @@ export const cssgrid: IContent = {
 				new e.alert({ color: "danger", callout: true }, [new b.alert.header(5, "Unsuppoterd in {{bsts}}"), "This feature will supported when Bootstrap make it opt-in by default or available in CDN."]),
 				new e.text("If you like to use this feature using {{bsts}}, you can manually set it by class property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ class: "grid", textAlign: "center" }, [new h.div({ class: "g-col-4" }, ".g-col-4"), new h.div({ class: "g-col-4" }, ".g-col-4"), new h.div({ class: "g-col-4" }, ".g-col-4")]);
 					},

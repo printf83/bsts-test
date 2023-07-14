@@ -1,11 +1,13 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const typography: IContent = {
 	title: "Typography",
 	description: "Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Global settings"),
@@ -39,12 +41,14 @@ export const typography: IContent = {
 					],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as I.H.HLevel, `h${i}. Bootstrap heading`));
 					},
 				}),
 				new e.text("{{.h1}} through {{.h6}} classes are also available, for when you want to match the font styling of a heading but cannot use the associated HTML element."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => new h.p({ h: i as core.IAttr["h"] }, `h${i}. Bootstrap heading`));
 					},
@@ -57,6 +61,7 @@ export const typography: IContent = {
 				new e.subtitle("Customizing headings"),
 				new e.text("Use the included utility classes to recreate the small secondary heading text from Bootstrap 3."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.h(3, ["Fancy display heading ", new h.small({ textColor: "body-secondary" }, "With faded secondary text")]);
 					},
@@ -69,6 +74,7 @@ export const typography: IContent = {
 				new e.title("Display headings"),
 				new e.text("Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a {{b::display heading}}—a larger, slightly more opinionated heading style."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => [new h.h(1, { fontDisplay: i as core.IAttr["fontDisplay"] }, `Display ${i}`), i < 6 ? new h.hr() : ""]).flat();
 					},
@@ -103,6 +109,7 @@ export const typography: IContent = {
 				new e.title("Lead"),
 				new e.text("Make a paragraph stand out by adding {{.lead}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.p({ lead: true }, "This is a lead paragraph. It stands out from regular paragraphs.");
 					},
@@ -115,6 +122,7 @@ export const typography: IContent = {
 				new e.title("Inline text elements"),
 				new e.text("Styling for common inline HTML5 elements."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.p(["You can use the mark tag to ", new h.mark("highlight"), " text."]),
@@ -155,6 +163,7 @@ export const typography: IContent = {
 				new e.text("Stylized implementation of HTML’s {{<abbr>}} element for abbreviations and acronyms to show the expanded version on hover. Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies."),
 				new e.text("Add {{.initialism}} to an abbreviation for a slightly smaller font-size."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [new h.p(new h.abbr({ title: "attribute" }, "attr")), new h.p(new h.abbr({ title: "HyperText Markup Language", small: true }, "HTML"))];
 					},
@@ -167,6 +176,7 @@ export const typography: IContent = {
 				new e.title("Blockquotes"),
 				new e.text("For quoting blocks of content from another source within your document. Wrap {{<blockquote class='blockquote'>}} around any HTML as the quote."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element."));
 					},
@@ -181,6 +191,7 @@ export const typography: IContent = {
 					"The HTML spec requires that blockquote attribution be placed outside the {{<blockquote>}}. When providing attribution, wrap your {{<blockquote>}} in a {{<figure>}} and use a {{<figcaption>}} or a block level element (e.g., {{<p>}}) with the {{.blockquote-footer}} class. Be sure to wrap the name of the source work in {{<cite>}} as well."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.figure([new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
@@ -193,11 +204,13 @@ export const typography: IContent = {
 				new e.subtitle("Alignment"),
 				new e.text("Use text utilities as needed to change the alignment of your blockquote."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.figure({ textAlign: "center" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.figure({ textAlign: "end" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
 					},
@@ -211,6 +224,7 @@ export const typography: IContent = {
 				new e.subtitle("Unstyled"),
 				new e.text("Remove the default {{list-style}} and left margin on list items (immediate children only). This only applies to immediate children list items, meaning you will need to add the class for any nested lists as well."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.ul(
 							{
@@ -235,6 +249,7 @@ export const typography: IContent = {
 				new e.subtitle("Inline"),
 				new e.text("Remove a list’s bullets and apply some light {{margin}} with a combination of two classes, {{.list-inline}} and {{.list-inline-item}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.ul({ inline: true }, [new h.li({ inline: true }, "This is a list item."), new h.li({ inline: true }, "And another one."), new h.li({ inline: true }, "But they're displayed inline.")]);
 					},
@@ -247,6 +262,7 @@ export const typography: IContent = {
 				new e.subtitle("Description list alignment"),
 				new e.text("Align terms and descriptions horizontally by using Bootstrap grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a {{.text-truncate}} class to truncate the text with an ellipsis."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.dl({ row: true }, [
 							new h.dt({ col: "sm-3" }, "Description lists"),

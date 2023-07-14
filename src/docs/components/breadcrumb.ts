@@ -1,16 +1,19 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const breadcrumb: IContent = {
 	title: "Breadcrumb",
 	description: "Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example"),
 				new e.text("Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb ({{b.breadcrumb.container}}). Use Bootstrap utilities to add additional styles as desired."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map((i) => {
 							return new b.breadcrumb.container(
@@ -29,6 +32,7 @@ export const breadcrumb: IContent = {
 			new e.section([
 				new e.subtitle("Using item"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.breadcrumb.container({
 							label: "breadcrumb",
@@ -50,6 +54,7 @@ export const breadcrumb: IContent = {
 					"Dividers are automatically added in CSS through {{https://developer.mozilla.org/en-US/docs/Web/CSS/::before}} and {{https://developer.mozilla.org/en-US/docs/Web/CSS/content::content}}. They can be changed by modifying the {{divider: '<divide>'}} property, or through the {{$breadcrumb-divider}} Sass variable — and {{$breadcrumb-divider-flipped}} for its RTL counterpart, if needed. Bootstrap default to Bootstrap Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.breadcrumb.container({
 							label: "breadcrumb",
@@ -77,6 +82,7 @@ export const breadcrumb: IContent = {
 					),
 				]),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.breadcrumb.container({
 							label: "breadcrumb",
@@ -97,6 +103,7 @@ export const breadcrumb: IContent = {
 				}),
 				new e.text("You can also remove the divider setting {{divider: ''}} (empty strings as a value), or setting the Sass variable to {{$breadcrumb-divider: none;}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.breadcrumb.container({
 							label: "breadcrumb",

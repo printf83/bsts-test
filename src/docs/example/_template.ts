@@ -1,10 +1,12 @@
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const _template: IContent = {
 	title: "",
 	description: "",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title(""),
@@ -14,6 +16,7 @@ export const _template: IContent = {
 				}),
 				new e.alert({ color: "info", callout: true }, ""),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [];
 					},
@@ -26,6 +29,7 @@ export const _template: IContent = {
 				new e.title(""),
 				new e.text(""),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [];
 					},

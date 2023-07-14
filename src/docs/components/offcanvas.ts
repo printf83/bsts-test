@@ -1,11 +1,13 @@
 import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const offcanvas: IContent = {
 	title: "Offcanvas",
 	description: "Build hidden sidebars into your project for navigation, shopping carts, and more with a few classes and Bootstrap JavaScript plugin.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -39,6 +41,7 @@ export const offcanvas: IContent = {
 					"Below is an offcanvas example that is shown by default (via {{debug}} on {{b.offcanvas.container}}). Offcanvas includes support for a header ({{b.offcanvas.header}}) with a close button ({{b.offcanvas.btnclose}}) and an optional body ({{b.offcanvas.body}}) component for some initial {{padding}}. Bootstrap suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action."
 				),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary", padding: 0 },
 					showCodepen: false,
 					output: () => {
@@ -62,6 +65,7 @@ export const offcanvas: IContent = {
 					item: ["{{b.offcanvas.container}} hides content (default)", "{{hide:false}} to shows content"],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 }, "Link with href"),
@@ -87,6 +91,7 @@ export const offcanvas: IContent = {
 				new e.subtitle("Body scrolling"),
 				new e.text("Scrolling the {{<body>}} element is disabled when an offcanvas and its backdrop are visible. Use the {{scroll:true}} property to enable {{<body>}} scrolling."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ target: "#offcanvasScrolling", controlfor: "offcanvasScrolling" }, "Enable body scrolling"),
@@ -110,6 +115,7 @@ export const offcanvas: IContent = {
 				new e.subtitle("Body scrolling and backdrop"),
 				new e.text("You can also enable {{<body>}} scrolling with a visible backdrop by set {{scroll:true}} and {{backdrop:true}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ target: "#offcanvasWithBothOptions", controlfor: "offcanvasWithBothOptions" }, "Enable both scrolling & backdrop"),
@@ -133,6 +139,7 @@ export const offcanvas: IContent = {
 				new e.subtitle("Static backdrop"),
 				new e.text("When {{backdrop}} is set to {{static}}, the offcanvas will not close when clicking outside of it."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ target: "#staticBackdrop", controlfor: "staticBackdrop" }, "Toggle static offcanvas"),
@@ -156,6 +163,7 @@ export const offcanvas: IContent = {
 				new e.text("Change the appearance of offcanvases to dark by setting {{theme:'dark'}} to {{b.offcanvas.container}}."),
 				new e.alert({ color: "warning", callout: true }, "{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes."),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary", padding: 0 },
 					showCodepen: false,
 					output: () => {
@@ -179,6 +187,7 @@ export const offcanvas: IContent = {
 					"Responsive offcanvas classes hide content outside the viewport from a specified breakpoint and down. Above that breakpoint, the contents within will behave as usual. For example, {{show:'lg'}} hides content in an offcanvas below the {{lg}} breakpoint, but shows the content above the {{lg}} breakpoint."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return [
@@ -224,6 +233,7 @@ export const offcanvas: IContent = {
 				}),
 				new e.text("Try the top, right, and bottom examples out below."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ target: "#offcanvasTop", controlfor: "offcanvasTop" }, "Toggle top offcanvas"),
@@ -239,6 +249,7 @@ export const offcanvas: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ target: "#offcanvasEnd", controlfor: "offcanvasEnd" }, "Toggle end offcanvas"),
@@ -254,6 +265,7 @@ export const offcanvas: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.offcanvas.button({ target: "#offcanvasBottom", controlfor: "offcanvasBottom" }, "Toggle bottom offcanvas"),
@@ -454,6 +466,7 @@ export const offcanvas: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const offcanvasContainer = new b.offcanvas.container(
@@ -595,6 +608,7 @@ export const offcanvas: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						interface EventWithTargetAndRelatedTarget extends Event {

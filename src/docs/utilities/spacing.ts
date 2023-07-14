@@ -1,11 +1,13 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const spacing: IContent = {
 	title: "Spacing",
 	description: "Bootstrap includes a wide range of shorthand responsive margin, padding, and gap utility classes to modify an element’s appearance.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Margin and padding"),
@@ -88,6 +90,7 @@ export const spacing: IContent = {
 				new e.subtitle("Horizontal centering"),
 				new e.text("Additionally, Bootstrap also includes an {{.mx-auto}} class for horizontally centering fixed-width block level content—that is, content that has {{display: block}} and a {{width}} set—by setting the horizontal margins to {{auto}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
 						return new h.div({ marginX: "auto", padding: 2, style: { width: "200px" } }, "Centered element");

@@ -1,11 +1,13 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const columns: IContent = {
 	title: "Columns",
 	description: "Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to Bootstrap flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([new e.alert({ color: "info", callout: true }, "{{b::Heads up! }}Be sure to {{nav:docs/layout/grid::read the Grid page}} first before diving into how to modify and customize your grid columns. ")]),
 
@@ -32,18 +34,21 @@ export const columns: IContent = {
 				new e.subtitle("Vertical alignment"),
 				new e.text("Change the vertical alignment with any of the responsive {{align-items-*}} classes."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: ["col-box", "row-10"] },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, alignItem: "start" }, [new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns")]));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: ["col-box", "row-10"] },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, alignItem: "center" }, [new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns")]));
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: ["col-box", "row-10"] },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, alignItem: "end" }, [new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns")]));
@@ -51,6 +56,7 @@ export const columns: IContent = {
 				}),
 				new e.text("Or, change the alignment of each column individually with any of the responsive {{.align-self-*}} classes."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: ["col-box", "row-10"] },
 					output: () => {
 						return new h.div(
@@ -67,6 +73,7 @@ export const columns: IContent = {
 				new e.subtitle("Horizontal alignment"),
 				new e.text("Change the horizontal alignment with any of the responsive {{justify-content-*}} classes."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div({ container: true, textAlign: "center" }, [
@@ -87,6 +94,7 @@ export const columns: IContent = {
 				new e.subtitle("Column wrapping"),
 				new e.text("If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div(
@@ -107,6 +115,7 @@ export const columns: IContent = {
 				new e.subtitle("Column breaks"),
 				new e.text("Breaking columns to a new line in flexbox requires a small hack: add an element with {{width: 100%}} wherever you want to wrap your columns to a new line. Normally this is accomplished with multiple {{.row}}s, but not every implementation method can account for this."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -127,6 +136,7 @@ export const columns: IContent = {
 				}),
 				new e.text("You may also apply this break at specific breakpoints with Bootstrap {{nav:docs/utilities/display::responsive display utilities}}."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -159,6 +169,7 @@ export const columns: IContent = {
 					"Use {{.order-}} classes for controlling the {{b::visual order}} of your content. These classes are responsive, so you can set the {{order}} by breakpoint (e.g., {{.order-1.order-md-2}}). Includes support for {{1}} through {{5}} across all six grid tiers. If you need more {{.order-*}} classes, you can modify the default number via Sass variable."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div(
@@ -169,6 +180,7 @@ export const columns: IContent = {
 				}),
 				new e.text("There are also responsive {{.order-first}} and {{.order-last}} classes that change the {{order}} of an element by applying {{order: -1}} and {{order: 6}}, respectively. These classes can also be intermixed with the numbered {{.order-*}} classes as needed."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "col-box" },
 					output: () => {
 						return new h.div(
@@ -194,6 +206,7 @@ export const columns: IContent = {
 				new e.xsubtitle("Offset classes"),
 				new e.text("Move columns to the right using {{.offset-md-*}} classes. These classes increase the left margin of a column by {{*}} columns. For example, {{.offset-md-4}} moves {{.col-md-4}} over four columns."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -206,6 +219,7 @@ export const columns: IContent = {
 				}),
 				new e.text("In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in {{nav:docs/examples/grid::the grid example}}."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -223,6 +237,7 @@ export const columns: IContent = {
 				new e.xsubtitle("Margin utilities"),
 				new e.text("With the move to flexbox in v4, you can use margin utilities like {{.me-auto}} to force sibling columns away from one another."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -241,6 +256,7 @@ export const columns: IContent = {
 				new e.title("Standalone column classes"),
 				new e.text("The {{.col-*}} classes can also be used outside a {{.row}} to give an element a specific width. Whenever column classes are used as non-direct children of a row, the paddings are omitted."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "col-box" },
 					output: () => {
@@ -249,6 +265,7 @@ export const columns: IContent = {
 				}),
 				new e.text("The classes can be used together with utilities to create responsive floated images. Make sure to wrap the content in a {{nav:docs/helpers/clearfix::.clearfix}} wrapper to clear the float if the text is shorter."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div({ clearfix: true }, [

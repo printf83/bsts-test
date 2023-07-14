@@ -1,16 +1,19 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const overflow: IContent = {
 	title: "Overflow",
 	description: "Use these shorthand utilities for quickly configuring how content overflows an element.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overflow"),
 				new e.text("Adjust the {{overflow}} property on the fly with four default values and classes. These classes are not responsive by default."),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { overflow: "hidden" },
 					outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 					output: () => {
@@ -35,6 +38,7 @@ export const overflow: IContent = {
 				new e.subtitle("{{overflow-x}}"),
 				new e.text("Adjust the {{overflow-x}} property to affect the overflow of content horizontally."),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { overflow: "hidden" },
 					outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 					output: () => {
@@ -59,6 +63,7 @@ export const overflow: IContent = {
 				new e.subtitle("{{overflow-y}}"),
 				new e.text("Adjust the {{overflow-y}} property to affect the overflow of content vertically."),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { overflow: "hidden" },
 					outputAttr: { display: ["md-flex", "grid"], gap: 2 },
 					output: () => {

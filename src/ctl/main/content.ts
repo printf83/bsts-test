@@ -19,9 +19,28 @@ export interface IContent {
 
 	description?: string;
 
-	item?: (code?: e.IBsExampleData[]) => core.IElem;
-	code?: e.IBsExampleData[];
+	item?: (db?: e.IBsExampleData[]) => core.IElem;
+	db?: e.IBsExampleData[];
 }
+
+let contentIndex: number = 0;
+export const resetContentIndex = () => {
+	contentIndex = 0;
+};
+
+export const getContentCode = (db?: e.IBsExampleData[]) => {
+	if (db && db.length > 0) {
+		if (contentIndex < db.length - 1) {
+			return db[contentIndex];
+			contentIndex = contentIndex + 1;
+		} else {
+			console.warn(`Invalid content code index`);
+			return undefined;
+		}
+	} else {
+		return undefined;
+	}
+};
 
 const setupIntro = (content?: IContent) => {
 	if (content) {
@@ -73,7 +92,7 @@ const setupContent = (content?: IContent) => {
 				class: "bs-content",
 				paddingStart: "lg-2",
 			},
-			content.item(content.code)
+			content.item(content.db)
 		);
 	} else {
 		return "";

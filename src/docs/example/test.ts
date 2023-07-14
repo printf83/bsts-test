@@ -1,19 +1,21 @@
 import { b, h, core, I } from "@printf83/bsts";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
 
 export const test: IContent = {
 	title: "Testing memory leak",
 	description: "This is testing page to test our library one by one",
-	item: (data?: e.IBsExampleData[]) => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			//----------------------
 
 			new e.section([
 				new e.title("Extended color"),
 				new e.code({
-					db: data ? data[0] : undefined,
+					db: getContentCode(db),
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
@@ -46,7 +48,7 @@ export const test: IContent = {
 			new e.section([
 				new e.title("Animation"),
 				new e.code({
-					db: data ? data[1] : undefined,
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					output: () => {
 						return [
@@ -120,7 +122,7 @@ export const test: IContent = {
 			new e.section([
 				new e.title("Rotate"),
 				new e.code({
-					db: data ? data[2] : undefined,
+					db: getContentCode(db),
 					outputAttr: { display: "flex", gap: 3, flex: "wrap" },
 					output: () => {
 						return [undefined, 45, 90, 135, 180, 225, 270, 315].map(
@@ -157,7 +159,7 @@ export const test: IContent = {
 			new e.section([
 				new e.title("Flip"),
 				new e.code({
-					db: data ? data[3] : undefined,
+					db: getContentCode(db),
 					outputAttr: { display: "flex", gap: 3, flex: "wrap" },
 					output: () => {
 						return [undefined, "vertical", "horizontal", "both"].map(
@@ -194,7 +196,7 @@ export const test: IContent = {
 			new e.section([
 				new e.title("Duplicate ID"),
 				new e.code({
-					db: data ? data[4] : undefined,
+					db: getContentCode(db),
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
@@ -211,7 +213,7 @@ export const test: IContent = {
 			new e.section([
 				new e.title("Chart"),
 				new e.code({
-					db: data ? data[5] : undefined,
+					db: getContentCode(db),
 					output: () => {
 						const item = (arg: { data: number[] }) => {
 							return new b.card.container(
@@ -305,7 +307,7 @@ export const test: IContent = {
 			]),
 		];
 	},
-	code: [
+	db: [
 		{
 			source: `() => {
                         return [

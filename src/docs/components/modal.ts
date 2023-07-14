@@ -1,11 +1,13 @@
 import { core, h, b, I, s } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const modal: IContent = {
 	title: "Modal",
 	description: "Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -22,6 +24,7 @@ export const modal: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const myModal = new b.modal.container(
 							{
@@ -70,6 +73,7 @@ export const modal: IContent = {
 					"Below is a static modal ({{b.modal.container}}) example (meaning its {{position}} and {{display}} have been overridden using {{debug}} property). Included are the {{b.modal.header}}, {{b.modal.body}} (required for {{padding}}), and {{b.modal.footer}} (optional). Bootstrap ask that you include modal headers with dismiss actions whenever possible, or provide another explicit dismiss action."
 				),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
@@ -93,6 +97,7 @@ export const modal: IContent = {
 				new e.subtitle("Live demo"),
 				new e.text("Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							// Button trigger modal
@@ -115,6 +120,7 @@ export const modal: IContent = {
 				new e.subtitle("Modal show"),
 				new e.text("You also can use {{bsts}} {{b.modal.show}} function to show the modal. This modal will be regenerated every time you call it and get destroy automaticly on {{hidden.bs.modal}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							// Button trigger modal
@@ -149,6 +155,7 @@ export const modal: IContent = {
 				new e.text("You can use Bootstrap simple modal by calling function {{b.modal.create}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -296,6 +303,7 @@ export const modal: IContent = {
 				new e.subtitle("Static backdrop"),
 				new e.text("When backdrop is set to static by setting {{backdrop:'static'}} on {{b.modal.container}}, the modal will not close when clicking outside of it. Click the button below to try it."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.button({ color: "primary", toggle: "modal", target: "#staticBackdrop" }, "Launch static backdrop modal"),
@@ -323,6 +331,7 @@ export const modal: IContent = {
 				new e.subtitle("Scrolling long content"),
 				new e.text("When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what Bootstrap mean."),
 				new e.code({
+					db: getContentCode(db),
 					showScript: false,
 					showHTML: false,
 					output: () => {
@@ -346,6 +355,7 @@ export const modal: IContent = {
 				new e.text("You can also create a scrollable modal that allows scroll the modal body by set {{scrollable:true}} to {{b.modal.container}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.button({ color: "primary", toggle: "modal", target: "#scrollableModal" }, "Launch demo modal"),
@@ -379,6 +389,7 @@ export const modal: IContent = {
 				new e.subtitle("Vertically centered"),
 				new e.text("Set {{centered:true}} to {{b.modal.container}} to vertically center the modal."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let modalContent = (id: string, elem: core.IElem) => {
@@ -434,6 +445,7 @@ export const modal: IContent = {
 				new e.subtitle("Tooltips and popovers"),
 				new e.text("{{nav:docs/components/tooltip::Tooltips}} and {{nav:docs/components/popover::popovers}} can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const modalElem = [
@@ -504,6 +516,7 @@ export const modal: IContent = {
 				}),
 				new e.text("Test {{b.modal.show}} function for {{auto init}} popover and tooltips."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							// Button trigger modal
@@ -568,6 +581,7 @@ export const modal: IContent = {
 				new e.subtitle("Using the grid"),
 				new e.text("Utilize the Bootstrap grid system within a modal by nesting {{container:'fluid'}} within the {{b.modal.body}}. Then, use the normal grid system as you would anywhere else."),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 						.bs-highlight-col div[class^="col"]{
 							padding-top:0.75rem;
@@ -605,6 +619,7 @@ export const modal: IContent = {
 				new e.text("Or using {{s}} or {{S}} library :"),
 				new e.alert({ color: "warning", callout: true }, "{{Warning!}} When you using {{s}} or {{S}} library to create html tag, it may broken when future update of Bootstrap library without any warning."),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 						.bs-highlight-col div[class^="col"]{
 							padding-top:0.75rem;
@@ -650,6 +665,7 @@ export const modal: IContent = {
 				new e.text("Below is a live demo followed by example HTML and JavaScript. For more information, {{nav:docs/components/modal#events::read the modal events docs}} for details on {{relatedTarget}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						interface EventWithRelatedTarget extends Event {
@@ -713,6 +729,7 @@ export const modal: IContent = {
 					"Toggle between multiple modals with some clever placement of the {{target}} and {{toggle}} property. For example, you could toggle a password reset modal from within an already open sign in modal. {{b::Please note multiple modals cannot be open at the same time}}—this method simply toggles between two separate modals."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const mdl = (id: string, title: string, content: string, target: string, targetName: string) => {
 							return new b.modal.container(
@@ -756,6 +773,7 @@ export const modal: IContent = {
 				new e.text("For modals that simply appear rather than fade in to view, set {{animation:false}} property to {{b.modal.container}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							// Button trigger modal
@@ -786,6 +804,7 @@ export const modal: IContent = {
 				new e.text("If the height of a modal changes while it is open, you should call {{b.modal.handleUpdate}} to readjust the modal’s position in case a scrollbar appears."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -850,6 +869,7 @@ export const modal: IContent = {
 				new e.text("Embedding YouTube videos in modals requires additional JavaScript not in Bootstrap to automatically stop playback and more. {{https://stackoverflow.com/questions/18622508/bootstrap-3-and-youtube-in-modal::See this helpful Stack Overflow post}} for more information."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							// Button trigger modal
@@ -915,6 +935,7 @@ export const modal: IContent = {
 				}),
 				new e.text("Bootstrap default modal without modifier class constitutes the “medium” size modal."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -967,6 +988,7 @@ export const modal: IContent = {
 					],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -1285,6 +1307,7 @@ export const modal: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const modalBody = new b.modal.body({ id: "example-modal-body" }, new h.p("Woo-hoo, you're reading this text in a modal!"));
@@ -1473,6 +1496,7 @@ export const modal: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						interface EventWithTargetAndRelatedTarget extends Event {

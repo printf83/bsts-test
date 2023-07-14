@@ -1,6 +1,6 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const menuItem = () => {
 	return new h.div(
@@ -109,11 +109,14 @@ const menuItem = () => {
 export const dropdowns: IContent = {
 	title: "Dropdowns",
 	description: "Enhance your dropdowns with filters, icons, custom styles, and more.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Style : 1"),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					outputAttr: {
 						display: "flex",
@@ -146,6 +149,7 @@ export const dropdowns: IContent = {
 				new e.text("Live preview"),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: {
 						display: "flex",
 						flex: "wrap",
@@ -183,6 +187,7 @@ export const dropdowns: IContent = {
 			new e.section([
 				new e.title("Filter"),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					outputAttr: {
 						display: "flex",
@@ -236,6 +241,7 @@ export const dropdowns: IContent = {
 				}),
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: {
 						display: "flex",
 						flex: "wrap",
@@ -299,6 +305,7 @@ export const dropdowns: IContent = {
 			new e.section([
 				new e.title("Menu"),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					outputAttr: {
 						display: "flex",
@@ -350,6 +357,7 @@ export const dropdowns: IContent = {
 				}),
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: {
 						display: "flex",
 						flex: "wrap",
@@ -391,6 +399,7 @@ export const dropdowns: IContent = {
 			new e.section([
 				new e.title("Calendar"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showCodepen: false,
 					outputAttr: {
@@ -436,6 +445,7 @@ export const dropdowns: IContent = {
 
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					outputAttr: {
 						display: "flex",
@@ -493,6 +503,7 @@ export const dropdowns: IContent = {
 			new e.section([
 				new e.subtitle("Multiple"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showCodepen: false,
 					outputAttr: {
@@ -542,6 +553,7 @@ export const dropdowns: IContent = {
 
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					outputAttr: {
 						display: "flex",
@@ -602,6 +614,7 @@ export const dropdowns: IContent = {
 
 				new e.text("Change toggle"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					outputAttr: {
 						display: "flex",
@@ -652,6 +665,7 @@ export const dropdowns: IContent = {
 			new e.section([
 				new e.title("List"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					showCodepen: false,
 					outputAttr: { class: "dropdown-menu-w-md-480px", display: "flex", flex: "wrap", gap: 4 },
@@ -682,6 +696,7 @@ export const dropdowns: IContent = {
 
 				new e.text("Live preview"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "dropdown-menu-w-md-480px", display: "flex", flex: "wrap", gap: 2 },
 					extention: [{ name: "MENUCOMPONENT", rename: "menuItem", output: menuItem }],

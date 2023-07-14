@@ -1,11 +1,13 @@
 import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const dropdown: IContent = {
 	title: "Dropdowns",
 	description: "Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -45,6 +47,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Single button"),
 				new e.text("Use {{b.dropdown.button}} like this to toggle the {{b.dropdown.menu}} component:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
 							new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
@@ -56,6 +59,7 @@ export const dropdown: IContent = {
 					"While {{b.dropdown.button}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{b.dropdown.button(href:'')}} component that create {{h.a}} component. {{bsts}} automaticly add {{role='button'}} property which recomended by Bootstrap to appropriately convey control’s purpose to assistive technologies such as screen readers."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
 							new b.dropdown.button({ color: "secondary", href: "#" }, "Dropdown link"),
@@ -66,6 +70,7 @@ export const dropdown: IContent = {
 
 				new e.text("The best part is you can do this with any button {{color}} variant, too:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
@@ -87,6 +92,7 @@ export const dropdown: IContent = {
 					"Bootstrap use this extra property to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
@@ -106,6 +112,7 @@ export const dropdown: IContent = {
 				new e.title("Sizing"),
 				new e.text("Button dropdowns work with buttons of all sizes, including default and split dropdown buttons."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
@@ -118,6 +125,7 @@ export const dropdown: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
@@ -140,6 +148,7 @@ export const dropdown: IContent = {
 					"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.dropdown-menu-dark}}, set {{theme:'dark'}} on {{b.dropdown.menu}} component, a parent wrapper ({{new b.dropdown.container}}), or the component itself."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
 							new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
@@ -157,6 +166,7 @@ export const dropdown: IContent = {
 				new e.text("And putting it to use in a navbar:"),
 
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "dark" },
 					output: () => {
 						return new b.navbar.container(
@@ -199,6 +209,7 @@ export const dropdown: IContent = {
 				new e.text("Make the dropdown menu centered below the toggle with {{drop:'down-center'}} on the {{b.dropdown.container}} component."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container({ drop: "down-center" }, [
 							new b.dropdown.button({ color: "secondary" }, "Centered dropdown"),
@@ -214,6 +225,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Dropup"),
 				new e.text("Trigger dropdown menus above elements by adding {{drop:'up'}} on the {{b.dropdown.container}} component."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
@@ -233,6 +245,7 @@ export const dropdown: IContent = {
 				new e.text("Make the dropup menu centered above the toggle with {{drop:'up-center'}} on the {{b.dropdown.container}} component."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container({ drop: "up-center" }, [
 							new b.dropdown.button({ color: "secondary" }, "Centered dropup"),
@@ -248,6 +261,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Dropend"),
 				new e.text("Trigger dropdown menus at the right of the elements by adding {{drop:'end'}} on the {{b.dropdown.container}} component."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
@@ -266,6 +280,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Dropstart"),
 				new e.text("Trigger dropdown menus at the left of the elements by adding {{drop:'start'}} on the {{b.dropdown.container}} component."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
@@ -289,6 +304,7 @@ export const dropdown: IContent = {
 				new e.title("Menu items"),
 				new e.text("You can use {{new b.dropdown.item}} elements as dropdown items."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([new b.dropdown.button({ color: "secondary" }, "Dropdown button"), new b.dropdown.menu([new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")])]);
 					},
@@ -297,6 +313,7 @@ export const dropdown: IContent = {
 				new e.alert({ color: "info", callout: true }, "{{b::Heads up!}} In this example, Bootstrap use {{debug='true'}} for documentation only."),
 
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu({ debug: true }, [new b.dropdown.text("Dropdown item text"), new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")]);
@@ -310,6 +327,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Active"),
 				new e.text("Add {{active:true}} to items in the {{b.dropdown.item}} to {{b::style them as active}}."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu({ debug: true }, [new b.dropdown.item({ href: "#" }, "Regular link"), new b.dropdown.item({ href: "#", active: true }, "Active link"), new b.dropdown.item({ href: "#" }, "Another link")]);
@@ -317,6 +335,7 @@ export const dropdown: IContent = {
 				}),
 				new e.text("By default {{bsts}} set active item as {{aria-current:'true'}}. To convey the active state to assistive technologies, set {{current:'page'}} property — when you using the {{page}} value for the current page."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu({ debug: true }, [new b.dropdown.item({ href: "#" }, "Regular link"), new b.dropdown.item({ href: "#", active: true, current: "page" }, "Active link"), new b.dropdown.item({ href: "#" }, "Another link")]);
@@ -330,6 +349,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Disabled"),
 				new e.text("Add {{disabled:true}} to {{b.dropdown.item}} in the {{b.dropdown.menu}} to {{b::style them as disabled}}."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu({ debug: true }, [new b.dropdown.item({ href: "#" }, "Regular link"), new b.dropdown.item({ href: "#", disabled: true }, "Disabled link"), new b.dropdown.item({ href: "#" }, "Another link")]);
@@ -345,6 +365,7 @@ export const dropdown: IContent = {
 				new e.text("Add {{positionView:'end'}} to a {{b.dropdown.menu}} to right align the dropdown menu. Directions are mirrored when using Bootstrap in RTL, meaning {{positionView:'end'}} will appear on the left side."),
 				new e.alert({ color: "info", callout: true }, "{{b::Heads up!}} Dropdowns are positioned thanks to Popper except when they are contained in a navbar."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([new b.dropdown.button({ color: "secondary" }, "Right-aligned menu example"), new b.dropdown.menu({ positionView: "end" }, [new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")])]);
 					},
@@ -358,6 +379,7 @@ export const dropdown: IContent = {
 				new e.text("If you want to use responsive alignment, disable Popper dynamic positioning by set the {{dynamicPosition:false}} property and use the responsive variation classes."),
 				new e.text("To align {{b::right}} the dropdown menu with the given breakpoint or larger, set {{positionView:'{sm|md|lg|xl|xxl}-end'}}."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.dropdown.container([
@@ -368,6 +390,7 @@ export const dropdown: IContent = {
 				}),
 				new e.text("To align {{b::left}} the dropdown menu with the given breakpoint or larger, set {{positionView:['end','{sm|md|lg|xl|xxl}-start']}}."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.dropdown.container([
@@ -385,6 +408,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Alignment options"),
 				new e.text("Taking most of the options shown above, here’s a small kitchen sink demo of various dropdown alignment options in one place."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -420,6 +444,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Headers"),
 				new e.text("Add a {{b.dropdown.header}} to label sections of actions in any dropdown menu."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu({ debug: true }, [new b.dropdown.header("Dropdown header"), new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action")]);
@@ -433,6 +458,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Dividers"),
 				new e.text("Separate groups of related menu items with a {{b.dropdown.divider}}."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu({ debug: true }, [
@@ -452,6 +478,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Text"),
 				new e.text("Place any freeform text within a dropdown menu with text and use {{nav:docs/utilities/spacing::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu(
@@ -473,6 +500,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Forms"),
 				new e.text("Put a form using {{h.form}} within a dropdown menu, or make it into a dropdown menu, and use {{nav:docs/utilities/spacing::margin or padding utilities}} to give it the negative space you require."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu(
@@ -524,6 +552,7 @@ export const dropdown: IContent = {
 
 				new e.text("Use {{h.div({class:'dropdown'})}} to prevent small form layout under menu:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ class: "dropdown" }, [
 							new b.dropdown.button({ autoClose: "outside" }, "Dropdown form"),
@@ -568,6 +597,7 @@ export const dropdown: IContent = {
 				}),
 				new e.text("Use {{b.dropdown.container}} and set{{ style:{width:''} }}property on {{b.dropdown.menu}} to prevent small form layout under menu:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
 							new b.dropdown.button({ autoClose: "outside" }, "Dropdown form"),
@@ -619,6 +649,7 @@ export const dropdown: IContent = {
 				new e.title("Dropdown options"),
 				new e.text("Use {{menuOffset}} or {{menuReference}} property on {{b.dropdown.button}} to change the location of the dropdown."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
@@ -637,6 +668,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Auto close behavior"),
 				new e.text("By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{menuAutoClose}} option to change this behavior of the dropdown."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
@@ -1028,6 +1060,7 @@ export const dropdown: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { position: "relative" },
 					showConsole: true,
 					output: () => {
@@ -1190,6 +1223,7 @@ export const dropdown: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						interface EventWithTargetAndRelatedTarget extends Event {

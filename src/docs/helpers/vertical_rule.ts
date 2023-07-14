@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const vertical_rule: IContent = {
 	title: "Vertical rule",
 	description: "Use the custom vertical rule helper to create vertical dividers like the {{<hr>}} element.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -21,12 +23,14 @@ export const vertical_rule: IContent = {
 			new e.section([
 				new e.title("Example"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.verticalrule();
 					},
 				}),
 				new e.text("Vertical rules scale their height in flex layouts:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ display: "flex", style: { height: "200px" } }, new b.verticalrule());
 					},
@@ -39,6 +43,7 @@ export const vertical_rule: IContent = {
 				new e.title("With stack"),
 				new e.text("They can also be used in {{nav:docs/helpers/stacks::stacks}}:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
 						return new h.div({ hstack: true, gap: 3 }, [new h.div({ padding: 2 }, "First item"), new h.div({ padding: 2, marginStart: "auto" }, "Second item"), new b.verticalrule(), new h.div({ padding: 2 }, "Third item")]);
