@@ -1,11 +1,13 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const check_radio: IContent = {
 	title: "Checks and radios",
 	description: "Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap completely rewritten checks component.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Approach"),
@@ -23,6 +25,7 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.title("Checks"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckDefault" }), new b.label({ for: "flexCheckDefault", class: "form-check-label" }, "Default checkbox")]),
@@ -32,6 +35,7 @@ export const check_radio: IContent = {
 				}),
 				new e.text("Using {{b.form.check}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true })];
 					},
@@ -44,6 +48,7 @@ export const check_radio: IContent = {
 				new e.subtitle("Indeterminate"),
 				new e.text("Checkboxes can utilize the {{:indeterminate}} pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it)."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
 					},
@@ -56,6 +61,7 @@ export const check_radio: IContent = {
 				new e.subtitle("Disabled"),
 				new e.text("Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -85,6 +91,7 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.title("Radios"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ class: "form-check" }, [new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }), new b.label({ for: "flexRadioDefault", class: "form-check-label" }, "Default radio")]),
@@ -102,6 +109,7 @@ export const check_radio: IContent = {
 				}),
 				new e.text("Using {{b.form.check}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({ type: "radio", name: "exampeRadioGroup2", label: "Default radio" }),
@@ -122,6 +130,7 @@ export const check_radio: IContent = {
 				new e.subtitle({ id: "radio_disabled" }, "Disabled"),
 				new e.text("Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -150,6 +159,7 @@ export const check_radio: IContent = {
 					"A switch has the markup of a custom checkbox but uses the {{.form-switch}} class to render a toggle switch. Consider using {{role='switch'}} to more accurately convey the nature of the control to assistive technologies that support this role. In older assistive technologies, it will simply be announced as a regular checkbox as a fallback. Switches also support the {{disabled}} attribute."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({ type: "checkbox", switch: true, label: "Default switch checkbox input" }),
@@ -183,11 +193,13 @@ export const check_radio: IContent = {
 				new e.title("Default (stacked)"),
 				new e.text("By default, any number of checkboxes and radios that are immediate sibling will be vertically stacked and appropriately spaced with {{.form-check}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true })];
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -214,12 +226,14 @@ export const check_radio: IContent = {
 				new e.title("Inline"),
 				new e.text("Group checkboxes or radios on the same horizontal row by adding {{.form-check-inline}} to any {{.form-check}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [b.form.check({ type: "checkbox", label: "1", inline: true }), b.form.check({ type: "checkbox", label: "2", inline: true }), b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true })];
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -243,6 +257,7 @@ export const check_radio: IContent = {
 				new e.title("Reverse"),
 				new e.text("Put your checkboxes, radios, and switches on the opposite side with the .form-check-reverse modifier class."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({ type: "checkbox", label: "Reverse checkbox", reverse: true }),
@@ -271,6 +286,7 @@ export const check_radio: IContent = {
 					"Omit the wrapping {{.form-check}} for checkboxes and radios that have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using {{aria-label}}). See the {{nav:docs/forms/overview#accessibility::forms overview accessibility}} section for details."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({ type: "checkbox", label: "Checkbox without label", hideLabel: true }),
@@ -304,6 +320,7 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.subtitle("Checkbox toggle buttons"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.toggle({
 							type: "checkbox",
@@ -313,6 +330,7 @@ export const check_radio: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.toggle({
 							type: "checkbox",
@@ -323,6 +341,7 @@ export const check_radio: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.toggle({
 							type: "checkbox",
@@ -343,6 +362,7 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.subtitle("Radio toggle buttons"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -383,6 +403,7 @@ export const check_radio: IContent = {
 				new e.subtitle("Outlined styles"),
 				new e.text("Different variants of {{.btn}}, such at the various outlined styles, are supported."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -490,4 +511,296 @@ export const check_radio: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckDefault" }), new b.label({ for: "flexCheckDefault", class: "form-check-label" }, "Default checkbox")]),
+                            new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckChecked", checked: true }), new b.label({ for: "flexCheckChecked", class: "form-check-label" }, "Checked checkbox")]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true })];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({
+                                type: "checkbox",
+                                label: "Disabled indeterminate checkbox",
+                                indeterminate: true,
+                                disabled: true,
+                            }),
+                            b.form.check({
+                                type: "checkbox",
+                                label: "Disabled checkbox",
+                                disabled: true,
+                            }),
+                            b.form.check({
+                                type: "checkbox",
+                                label: "Disabled checked checkbox",
+                                checked: true,
+                                disabled: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ class: "form-check" }, [new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }), new b.label({ for: "flexRadioDefault", class: "form-check-label" }, "Default radio")]),
+                            new h.div({ class: "form-check" }, [
+                                new b.input({
+                                    type: "radio",
+                                    id: "flexRadioDefault2",
+                                    name: "exampeRadioGroup1",
+                                    checked: true,
+                                }),
+                                new b.label({ for: "flexRadioDefault2", class: "form-check-label" }, "Default checked radio"),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({ type: "radio", name: "exampeRadioGroup2", label: "Default radio" }),
+                            b.form.check({
+                                type: "radio",
+                                name: "exampeRadioGroup2",
+                                label: "Default checked radio",
+                                checked: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({
+                                type: "radio",
+                                name: "exampeRadioGroup3",
+                                label: "Disabled radio",
+                                disabled: true,
+                            }),
+                            b.form.check({
+                                type: "radio",
+                                name: "exampeRadioGroup3",
+                                label: "Disabled checked radio",
+                                checked: true,
+                                disabled: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({ type: "checkbox", switch: true, label: "Default switch checkbox input" }),
+                            b.form.check({
+                                type: "checkbox",
+                                switch: true,
+                                label: "Checked switch checkbox input",
+                                checked: true,
+                            }),
+                            b.form.check({
+                                type: "checkbox",
+                                switch: true,
+                                label: "Disabled switch checkbox input",
+                                disabled: true,
+                            }),
+                            b.form.check({
+                                type: "checkbox",
+                                switch: true,
+                                label: "Disabled switch checkbox input",
+                                checked: true,
+                                disabled: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true })];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({
+                                type: "radio",
+                                name: "exampeRadioGroup4",
+                                label: "Default radio",
+                                checked: true,
+                            }),
+                            b.form.check({ type: "radio", name: "exampeRadioGroup4", label: "Second default radio" }),
+                            b.form.check({
+                                type: "radio",
+                                name: "exampeRadioGroup4",
+                                label: "Disabled radio",
+                                disabled: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [b.form.check({ type: "checkbox", label: "1", inline: true }), b.form.check({ type: "checkbox", label: "2", inline: true }), b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true })];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "1", inline: true }),
+                            b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "2", inline: true }),
+                            b.form.check({
+                                type: "radio",
+                                name: "exampeRadioGroup5",
+                                label: "3 (disabled)",
+                                disabled: true,
+                                inline: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({ type: "checkbox", label: "Reverse checkbox", reverse: true }),
+                            b.form.check({
+                                type: "checkbox",
+                                label: "Disabled reverse checkbox",
+                                disabled: true,
+                                reverse: true,
+                            }),
+                            b.form.check({
+                                type: "checkbox",
+                                label: "Reverse switch checkbox input",
+                                switch: true,
+                                reverse: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.check({ type: "checkbox", label: "Checkbox without label", hideLabel: true }),
+                            b.form.check({
+                                type: "radio",
+                                label: "Radio without label",
+                                name: "exampeRadioGroup6",
+                                hideLabel: true,
+                            }),
+                            b.form.check({
+                                type: "checkbox",
+                                label: "Switch without label",
+                                switch: true,
+                                hideLabel: true,
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.toggle({
+                            type: "checkbox",
+                            label: "Single toggle",
+                            container: { color: "primary" },
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.toggle({
+                            type: "checkbox",
+                            label: "Checked",
+                            container: { color: "primary" },
+                            checked: true,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.toggle({
+                            type: "checkbox",
+                            label: "Disabled",
+                            container: { color: "primary" },
+                            disabled: true,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            ...b.form.toggle({
+                                type: "radio",
+                                label: "Checked",
+                                name: "exampeRadioGroup7",
+                                checked: true,
+                                container: { color: "secondary" },
+                            }),
+                            ...b.form.toggle({
+                                type: "radio",
+                                label: "Radio",
+                                name: "exampeRadioGroup7",
+                                container: { color: "secondary" },
+                            }),
+                            ...b.form.toggle({
+                                type: "radio",
+                                label: "Disabled",
+                                name: "exampeRadioGroup7",
+                                disabled: true,
+                                container: { color: "secondary" },
+                            }),
+                            ...b.form.toggle({
+                                type: "radio",
+                                label: "Radio",
+                                name: "exampeRadioGroup7",
+                                container: { color: "secondary" },
+                            }),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            ...b.form.toggle({
+                                type: "checkbox",
+                                label: "Single toggle",
+                                container: { color: "primary", outline: true },
+                            }),
+                            new h.br(),
+                            ...b.form.toggle({
+                                type: "checkbox",
+                                label: "Checked",
+                                checked: true,
+                                container: { color: "secondary", outline: true },
+                            }),
+                            new h.br(),
+                            ...b.form.toggle({
+                                type: "radio",
+                                label: "Checked success radio",
+                                name: "exampeRadioGroup8",
+                                checked: true,
+                                container: { color: "success", outline: true },
+                            }),
+                            ...b.form.toggle({
+                                type: "radio",
+                                label: "Radio",
+                                name: "exampeRadioGroup8",
+                                container: { color: "danger", outline: true },
+                            }),
+                        ];
+                    }`,
+		},
+	],
 };

@@ -1,6 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
@@ -543,11 +543,14 @@ const ex = {
 export const headers: IContent = {
 	title: "Headers",
 	description: "Display your branding, navigation, search, and more with these header components",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example header 1"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					showConsole: true,
 					previewAttr: { padding: 0 },
@@ -586,6 +589,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 2"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					previewAttr: { padding: 0 },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -621,6 +625,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 3"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -668,6 +673,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 4"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { bgColor: "dark", padding: 0 },
@@ -729,6 +735,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 5"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -782,6 +789,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 6"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -845,6 +853,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 7"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -927,6 +936,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 8"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -1006,4 +1016,726 @@ export const headers: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return COMPONENT({
+                            icon: "hexagon-fill",
+                            title: "Simple header",
+                            link: [
+                                { active: true, href: "#", elem: "Home" },
+                                { href: "#", elem: "Features" },
+                                { href: "#", elem: "Pricing" },
+                                { href: "#", elem: "FAQs" },
+                                { href: "#", elem: "About" },
+                            ],
+                            onlinkchange: (event) => {
+                                const target = event.target;
+                                const detail = event.detail;
+                                e.console(target, "onlinkchange", {
+                                    target: core.elemInfo(detail.target),
+                                    relatedTarget: core.elemInfo(detail.relatedTarget),
+                                }, "info");
+                            },
+                        });
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return new h.div({ container: true }, new h.header({
+            display: "flex",
+            flex: "wrap",
+            justifyContent: "center",
+            paddingY: 3,
+            marginBottom: 4,
+            border: "bottom",
+        }, [
+            new h.a({
+                href: "#",
+                display: "flex",
+                alignItem: "center",
+                marginBottom: [3, "md-0"],
+                marginEnd: "md-auto",
+                linkColor: "body-emphasis",
+                textDecoration: "none",
+            }, new b.caption({
+                icon: new b.icon({ id: arg.icon, marginBottom: 0 }),
+                fontSize: 4,
+            }, arg.title)),
+            new b.nav.header.container({
+                type: "pill",
+                link: arg.link
+                    ? arg.link.map((i) => {
+                        i.handleActive = true;
+                        return i;
+                    })
+                    : undefined,
+                on: {
+                    "change.bs.nav": arg.onlinkchange,
+                },
+            }),
+        ]));
+    }`,
+			],
+		},
+		{
+			source: `() => {
+                        return COMPONENT({
+                            link: [
+                                { active: true, href: "#", elem: "Home" },
+                                { href: "#", elem: "Features" },
+                                { href: "#", elem: "Pricing" },
+                                { href: "#", elem: "FAQs" },
+                                { href: "#", elem: "About" },
+                            ],
+                            onlinkchange: (event) => {
+                                const target = event.target;
+                                const detail = event.detail;
+                                e.console(target, "onlinkchange", {
+                                    target: core.elemInfo(detail.target),
+                                    relatedTarget: core.elemInfo(detail.relatedTarget),
+                                }, "info");
+                            },
+                        });
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return new h.div({ container: true }, new h.header({
+            display: "flex",
+            justifyContent: "center",
+            paddingY: 3,
+        }, new b.nav.header.container({
+            type: "pill",
+            link: arg.link
+                ? arg.link.map((i) => {
+                    i.handleActive = true;
+                    return i;
+                })
+                : undefined,
+            on: {
+                "change.bs.nav": arg.onlinkchange,
+            },
+        })));
+    }`,
+			],
+		},
+		{
+			source: `() => {
+                        return COMPONENT({
+                            icon: "hexagon-fill",
+                            link: [
+                                { active: true, href: "#", elem: "Home" },
+                                { href: "#", elem: "Features" },
+                                { href: "#", elem: "Pricing" },
+                                { href: "#", elem: "FAQs" },
+                                { href: "#", elem: "About" },
+                            ],
+                            onlinkchange: (event) => {
+                                const target = event.target;
+                                const detail = event.detail;
+                                e.console(target, "onlinkchange", {
+                                    target: core.elemInfo(detail.target),
+                                    relatedTarget: core.elemInfo(detail.relatedTarget),
+                                }, "info");
+                            },
+                            onlogin: (event) => {
+                                //do login
+                                const target = event.target;
+                                e.console(target, "onlogin", core.elemInfo(target), "secondary");
+                            },
+                            onsignup: (event) => {
+                                //do sign up
+                                const target = event.target;
+                                e.console(target, "onsignup", core.elemInfo(target), "warning");
+                            },
+                        });
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return new h.div({ container: true }, new h.header({
+            display: "flex",
+            flex: "wrap",
+            alignItem: "center",
+            justifyContent: ["center", "md-between"],
+            paddingY: 3,
+            marginBottom: 4,
+            border: "bottom",
+        }, [
+            new h.div({ col: "md-3", marginBottom: [2, "md-0"] }, new h.a({
+                href: "#",
+                display: "inline-flex",
+                textColor: "body-emphasis",
+                textDecoration: "none",
+                marginBottom: [3, "md-0"],
+            }, new b.icon({ id: arg.icon, fontSize: 4 }))),
+            new b.nav.header.container({
+                col: [12, "md-auto"],
+                marginBottom: [2, "md-0"],
+                justifyContent: "center",
+                link: arg.link
+                    ? arg.link.map((i) => {
+                        i.textColorActive = "body-tertiary";
+                        i.paddingX = 2;
+                        i.handleActive = true;
+                        return i;
+                    })
+                    : undefined,
+                on: {
+                    "change.bs.nav": arg.onlinkchange,
+                },
+            }),
+            new h.div({ col: "md-3", textAlign: "end" }, [new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"), new b.button({ on: { click: arg.onsignup } }, "Sign-up")]),
+        ]));
+    }`,
+			],
+		},
+		{
+			source: `() => {
+                        return COMPONENT({
+                            icon: "hexagon-fill",
+                            link: [
+                                { active: true, href: "#", elem: "Home" },
+                                { href: "#", elem: "Features" },
+                                { href: "#", elem: "FAQs" },
+                                { href: "#", elem: "About" },
+                            ],
+                            onlinkchange: (event) => {
+                                const target = event.target;
+                                const detail = event.detail;
+                                e.console(target, "onlinkchange", {
+                                    target: core.elemInfo(detail.target),
+                                    relatedTarget: core.elemInfo(detail.relatedTarget),
+                                }, "info");
+                            },
+                            onlogin: (event) => {
+                                //do login
+                                const target = event.target;
+                                e.console(target, "onlogin", core.elemInfo(target), "secondary");
+                            },
+                            onsignup: (event) => {
+                                //do sign up
+                                const target = event.target;
+                                e.console(target, "onsignup", core.elemInfo(target), "warning");
+                            },
+                            onsearch: (event) => {
+                                //do search
+                                event.preventDefault();
+                                const target = event.target;
+                                const input = target.getElementsByTagName("input")[0];
+                                e.console(target, "onsearch", {
+                                    input: core.elemInfo(input),
+                                    value: input.value,
+                                }, "success");
+                            },
+                        });
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return new h.header({
+            padding: 3,
+            theme: "dark",
+        }, new h.div({ container: true }, new h.div({
+            display: "flex",
+            flex: "wrap",
+            alignItem: "center",
+            justifyContent: ["center", "lg-start"],
+        }, [
+            new h.a({
+                href: "#",
+                display: "flex",
+                alignItem: "center",
+                marginBottom: [2, "lg-0"],
+                textColor: "body-emphasis",
+                textDecoration: "none",
+                marginEnd: 2,
+            }, new b.icon({ id: arg.icon, fontSize: 4 })),
+            new b.nav.header.container({
+                col: [12, "lg-auto"],
+                marginBottom: [2, "md-0"],
+                marginEnd: "lg-auto",
+                justifyContent: "center",
+                link: arg.link
+                    ? arg.link.map((i) => {
+                        i.textColorActive = "body-tertiary";
+                        i.textColor = "body-emphasis";
+                        i.textColorHover = "primary-emphasis";
+                        i.handleActive = true;
+                        i.paddingX = 2;
+                        return i;
+                    })
+                    : undefined,
+                on: {
+                    "change.bs.nav": arg.onlinkchange,
+                },
+            }),
+            new h.form({
+                col: [12, "lg-auto"],
+                marginBottom: [3, "lg-0"],
+                marginEnd: "lg-3",
+                role: "search",
+                on: {
+                    submit: arg.onsearch,
+                },
+            }, new b.input({ type: "search" })),
+            new h.div({ textAlign: "end" }, [
+                new b.button({
+                    outline: true,
+                    color: "light",
+                    marginEnd: 2,
+                    on: { click: arg.onlogin },
+                }, "Login"),
+                new b.button({ color: "warning", on: { click: arg.onsignup } }, "Sign-up"),
+            ]),
+        ])));
+    }`,
+			],
+		},
+		{
+			source: `() => {
+                        return COMPONENT({
+                            img: "https://picsum.photos/seed/bsts_0/32/32.webp",
+                            icon: "hexagon-fill",
+                            link: [
+                                { active: true, href: "#", elem: "Overview" },
+                                { href: "#", elem: "Inventory" },
+                                { href: "#", elem: "Customers" },
+                                { href: "#", elem: "Products" },
+                            ],
+                            menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+                            onlinkchange: (event) => {
+                                const target = event.target;
+                                const detail = event.detail;
+                                e.console(target, "onlinkchange", {
+                                    target: core.elemInfo(detail.target),
+                                    relatedTarget: core.elemInfo(detail.relatedTarget),
+                                }, "info");
+                            },
+                            onsearch: (event) => {
+                                //do search
+                                event.preventDefault();
+                                const target = event.target;
+                                const input = target.getElementsByTagName("input")[0];
+                                e.console(target, "onsearch", {
+                                    input: core.elemInfo(input),
+                                    value: input.value,
+                                }, "success");
+                            },
+                        });
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return new h.header({
+            padding: 3,
+            marginBottom: 3,
+            border: "bottom",
+        }, new h.div({ container: true }, new h.div({
+            display: "flex",
+            flex: "wrap",
+            alignItem: "center",
+            justifyContent: ["center", "lg-start"],
+        }, [
+            new h.a({
+                href: "#",
+                display: "flex",
+                alignItem: "center",
+                marginBottom: [2, "lg-0"],
+                textColor: "body-emphasis",
+                textDecoration: "none",
+                marginEnd: 2,
+            }, new b.icon({ id: arg.icon, fontSize: 4 })),
+            new b.nav.header.container({
+                col: [12, "lg-auto"],
+                marginBottom: [2, "md-0"],
+                marginEnd: "lg-auto",
+                justifyContent: "center",
+                link: arg.link
+                    ? arg.link.map((i) => {
+                        i.textColorActive = "body-tertiary";
+                        i.textColor = "body-emphasis";
+                        i.textColorHover = "primary-emphasis";
+                        i.handleActive = true;
+                        i.paddingX = 2;
+                        return i;
+                    })
+                    : undefined,
+                on: {
+                    "change.bs.nav": arg.onlinkchange,
+                },
+            }),
+            new h.form({
+                col: [12, "lg-auto"],
+                marginBottom: [3, "lg-0"],
+                marginEnd: "lg-3",
+                role: "search",
+                on: {
+                    submit: arg.onsearch,
+                },
+            }, new b.input({ type: "search", placeholder: "Search..." })),
+            new h.div({
+                textAlign: "end",
+                class: "dropdown",
+            }, [
+                new b.dropdown.buttonLink({
+                    href: "#",
+                    color: "body-emphasis",
+                }, new h.img({
+                    src: arg.img,
+                    rounded: "circle",
+                    attrWidth: 32,
+                    attrHeight: 32,
+                })),
+                new b.dropdown.menu(arg.menu ? arg.menu : ""),
+            ]),
+        ])));
+    }`,
+			],
+		},
+		{
+			source: `() => {
+                        return COMPONENT({
+                            img: "https://picsum.photos/seed/bsts_0/32/32.webp",
+                            icon: "hexagon-fill",
+                            link: [
+                                new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
+                                new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
+                                new b.dropdown.item({ href: "#", handleActive: true }, "Customers"),
+                                new b.dropdown.item({ href: "#", handleActive: true }, "Products"),
+                                new b.dropdown.divider(),
+                                new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
+                                new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
+                            ],
+                            menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+                            onlinkchange: (event) => {
+                                const target = event.target;
+                                const detail = event.detail;
+                                e.console(target, "onlinkchange", {
+                                    target: core.elemInfo(detail.target),
+                                    relatedTarget: core.elemInfo(detail.relatedTarget),
+                                }, "info");
+                            },
+                            onsearch: (event) => {
+                                //do search
+                                event.preventDefault();
+                                const target = event.target;
+                                const input = target.getElementsByTagName("input")[0];
+                                e.console(target, "onsearch", {
+                                    input: core.elemInfo(input),
+                                    value: input.value,
+                                }, "success");
+                            },
+                            side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
+                            main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
+                        });
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return [COMPONENTHeader(arg), COMPONENTBody(arg)];
+    }`,
+				`(arg) => {
+        return new h.header({
+            paddingY: 3,
+            marginBottom: 3,
+            border: "bottom",
+        }, new h.div({
+            container: "fluid",
+            display: "grid",
+            gridTemplateColumns: "1fr 2fr",
+            gap: 3,
+            alignItem: "center",
+        }, [
+            new h.div({ class: "dropdown" }, [
+                new b.dropdown.buttonLink({
+                    href: "#",
+                    color: "body-emphasis",
+                    display: "flex",
+                    alignItem: "center",
+                    col: "lg-4",
+                    marginBottom: [2, "lg-0"],
+                }, new b.icon({ id: arg.icon, fontSize: 2 })),
+                new b.dropdown.menu({
+                    shadow: true,
+                    on: {
+                        "change.bs.menu": arg.onlinkchange,
+                    },
+                }, arg.link ? arg.link : ""),
+            ]),
+            new h.div({ display: "flex", alignItem: "center" }, [
+                new h.form({
+                    width: 100,
+                    marginEnd: 3,
+                    role: "search",
+                    on: {
+                        submit: arg.onsearch,
+                    },
+                }, new b.input({ type: "search", placeholder: "Search..." })),
+                new h.div({ flex: "shrink-0", class: "dropdown" }, [
+                    new b.dropdown.buttonLink({
+                        href: "#",
+                        color: "body-emphasis",
+                    }, new h.img({
+                        src: arg.img,
+                        rounded: "circle",
+                        attrWidth: 32,
+                        attrHeight: 32,
+                    })),
+                    new b.dropdown.menu({
+                        shadow: true,
+                    }, arg.menu ? arg.menu : ""),
+                ]),
+            ]),
+        ]));
+    }`,
+				`(arg) => {
+        return new h.div({ container: "fluid", paddingBottom: 3 }, new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""), new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : "")]));
+    }`,
+			],
+		},
+		{
+			source: `() => {
+                        return [
+                            COMPONENTNAV({
+                                startMenu: [
+                                    { active: true, href: "#", elem: "Home" },
+                                    { href: "#", elem: "Features" },
+                                    { href: "#", elem: "Pricing" },
+                                    { href: "#", elem: "FAQs" },
+                                    { href: "#", elem: "About" },
+                                ],
+                                onstarmenuchange: (event) => {
+                                    const target = event.target;
+                                    const detail = event.detail;
+                                    e.console(target, "onstarmenuchange", {
+                                        target: core.elemInfo(detail.target),
+                                        relatedTarget: core.elemInfo(detail.relatedTarget),
+                                    }, "info");
+                                },
+                                endMenu: [
+                                    {
+                                        on: {
+                                            click: (event) => {
+                                                //do login
+                                                const target = event.target;
+                                                e.console(target, "login", core.elemInfo(target), "secondary");
+                                            },
+                                        },
+                                        elem: "Login",
+                                    },
+                                    {
+                                        on: {
+                                            click: (event) => {
+                                                //do signup
+                                                const target = event.target;
+                                                e.console(target, "signup", core.elemInfo(target), "secondary");
+                                            },
+                                        },
+                                        elem: "Sign up",
+                                    },
+                                ],
+                            }),
+                            COMPONENTHEADER({
+                                icon: "hexagon-fill",
+                                title: "Double header",
+                                onsearch: (event) => {
+                                    //do search
+                                    event.preventDefault();
+                                    const target = event.target;
+                                    const input = target.getElementsByTagName("input")[0];
+                                    e.console(target, "onsearch", {
+                                        input: core.elemInfo(input),
+                                        value: input.value,
+                                    }, "success");
+                                },
+                            }),
+                        ];
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return new h.nav({ paddingY: 2, bgColor: "body-secondary", border: "bottom" }, new h.div({
+            container: true,
+            display: "flex",
+            flex: "wrap",
+        }, [
+            new b.nav.header.container({
+                marginEnd: "auto",
+                link: arg.startMenu?.map((i) => {
+                    i.textColor = "body-emphasis";
+                    i.textColorActive = "body-tertiary";
+                    i.textColorHover = "primary-emphasis";
+                    i.handleActive = true;
+                    return i;
+                }),
+                on: { "change.bs.nav": arg.onstarmenuchange },
+            }),
+            new b.nav.header.container({
+                link: arg.endMenu?.map((i) => {
+                    i.textColor = "body-emphasis";
+                    i.textColorActive = "body-tertiary";
+                    i.textColorHover = "primary-emphasis";
+                    return i;
+                }),
+            }),
+        ]));
+    }`,
+				`(arg) => {
+        return new h.header({ paddingY: 3, marginBottom: 4, border: "bottom" }, new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
+            new h.a({
+                href: "#",
+                display: "flex",
+                alignItem: "center",
+                marginBottom: [3, "lg-0"],
+                marginEnd: "lg-auto",
+                linkColor: "body-emphasis",
+                textDecoration: "none",
+            }, new b.caption({
+                icon: new b.icon({ id: arg.icon }),
+                fontSize: 4,
+            }, arg.title)),
+            new h.form({
+                col: [12, "lg-auto"],
+                marginBottom: [3, "lg-0"],
+                role: "search",
+                on: {
+                    submit: arg.onsearch ? arg.onsearch : undefined,
+                },
+            }, new b.input({ type: "search", placeholder: "Search..." })),
+        ]));
+    }`,
+			],
+		},
+		{
+			source: `() => {
+                        return COMPONENT({
+                            icon: "hexagon-fill",
+                            link: [
+                                {
+                                    active: true,
+                                    href: "#",
+                                    icon: "house",
+                                    label: "Home",
+                                },
+                                {
+                                    href: "#",
+                                    icon: "speedometer2",
+                                    label: "Dashboard",
+                                },
+                                {
+                                    href: "#",
+                                    icon: "table",
+                                    label: "Order",
+                                },
+                                {
+                                    href: "#",
+                                    icon: "grid",
+                                    label: "Products",
+                                },
+                                {
+                                    href: "#",
+                                    icon: "person-circle",
+                                    label: "Customers",
+                                },
+                            ],
+                            onlinkchange: (event) => {
+                                const target = event.target;
+                                const detail = event.detail;
+                                e.console(target, "onlinkchange", {
+                                    target: core.elemInfo(detail.target),
+                                    relatedTarget: core.elemInfo(detail.relatedTarget),
+                                }, "info");
+                            },
+                            onlogin: (event) => {
+                                //do login
+                                const target = event.target;
+                                e.console(target, "onlogin", core.elemInfo(target), "secondary");
+                            },
+                            onsignup: (event) => {
+                                //do sign up
+                                const target = event.target;
+                                e.console(target, "onsignup", core.elemInfo(target), "warning");
+                            },
+                            onsearch: (event) => {
+                                //do search
+                                event.preventDefault();
+                                const target = event.target;
+                                const input = target.getElementsByTagName("input")[0];
+                                e.console(target, "onsearch", {
+                                    input: core.elemInfo(input),
+                                    value: input.value,
+                                }, "success");
+                            },
+                        });
+                    }`,
+
+			extention: [
+				`(arg) => {
+        return new h.header([
+            new h.div({ paddingX: 3, paddingY: 2, textBgColor: "dark", theme: "dark" }, new h.div({ container: true }, new h.div({
+                display: "flex",
+                flex: "wrap",
+                alignItem: "center",
+                justifyContent: ["center", "lg-start"],
+            }, [
+                new h.a({
+                    href: "#",
+                    display: "flex",
+                    alignItem: "center",
+                    marginY: [2, "lg-0"],
+                    marginEnd: "lg-auto",
+                    textColor: "body-emphasis",
+                    textDecoration: "none",
+                }, new b.icon({ id: arg.icon, fontSize: 1 })),
+                new b.nav.header.container({
+                    col: [12, "lg-auto"],
+                    marginY: [2, "md-0"],
+                    small: true,
+                    justifyContent: "center",
+                    link: arg.link.map((i) => {
+                        let result = {
+                            textColor: "body-emphasis",
+                            textColorActive: "body-tertiary",
+                            textColorHover: "primary-emphasis",
+                            active: i.active,
+                            handleActive: true,
+                            href: i.href,
+                            elem: new b.caption({
+                                icon: new b.icon({ id: i.icon, fontSize: 4 }),
+                                iconPosition: "top",
+                            }, i.label),
+                        };
+                        return result;
+                    }),
+                    on: {
+                        "change.bs.nav": arg.onlinkchange,
+                    },
+                }),
+            ]))),
+            new h.div({ paddingX: 3, paddingY: 2, border: "bottom", marginBottom: 3 }, new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
+                new h.form({
+                    col: [12, "lg-auto"],
+                    marginBottom: [2, "lg-0"],
+                    marginEnd: "lg-auto",
+                    role: "search",
+                    on: {
+                        submit: arg.onsearch ? arg.onsearch : undefined,
+                    },
+                }, new b.input({ type: "search", label: "Search", placeholder: "Search..." })),
+                new h.div({ textAlign: "end" }, [
+                    new b.button({
+                        color: "light",
+                        marginEnd: 2,
+                        on: { click: arg.onlogin },
+                    }, "Login"),
+                    new b.button({ color: "primary", on: { click: arg.onsignup } }, "Sign-up"),
+                ]),
+            ])),
+        ]);
+    }`,
+			],
+		},
+	],
 };

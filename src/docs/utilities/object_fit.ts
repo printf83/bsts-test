@@ -1,11 +1,13 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const object_fit: IContent = {
 	title: "Object fit",
 	description: "Use the object fit utilities to modify how the content of a {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}, such as an {{<img>}} or {{<video>}}, should be resized to fit its container.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -24,6 +26,7 @@ export const object_fit: IContent = {
 				new e.title("Examples"),
 				new e.text("Add the {{object-fit-{value} }}class to the {{https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element::replaced element}}:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["contain", "cover", "fill", "scale", "none"].map(
@@ -47,6 +50,7 @@ export const object_fit: IContent = {
 				new e.title("Responsive"),
 				new e.text("Responsive variations also exist for each {{object-fit}} value using the format {{.object-fit-{breakpoint}-{value} }}, for the following breakpoint abbreviations: {{sm}}, {{md}}, {{lg}}, {{xl}}, and {{xxl}}. Classes can be combined for various effects as you need."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
@@ -83,6 +87,7 @@ export const object_fit: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const videoFn = () => {
@@ -156,4 +161,65 @@ export const object_fit: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return ["contain", "cover", "fill", "scale", "none"].map((i) => new h.img({
+                            src: "https://picsum.photos/seed/bsts_0/110/65.webp",
+                            objectFit: i,
+                            border: true,
+                            rounded: true,
+                            alt: "...",
+                            style: { width: "135px", height: "115px" },
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["sm-contain", "md-contain", "lg-contain", "xl-contain", "xxl-contain"].map((i) => new h.img({
+                            src: "https://picsum.photos/seed/bsts_0/110/65.webp",
+                            objectFit: i,
+                            border: true,
+                            rounded: true,
+                            alt: "...",
+                            style: { width: "135px", height: "115px" },
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const videoFn = () => {
+                            return ["contain", "cover", "fill", "scale", "none"].map((i) => new h.video({
+                                src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+                                objectFit: i,
+                                border: true,
+                                rounded: true,
+                                controls: true,
+                                style: { width: "135px", height: "115px" },
+                            }));
+                        };
+                        return new b.button({
+                            position: "relative",
+                            on: {
+                                click: (e) => {
+                                    let target = e.target;
+                                    core.replaceWith(target, videoFn());
+                                },
+                            },
+                        }, [
+                            "Show live video ",
+                            new b.badge({
+                                bgColor: "danger",
+                                position: "absolute",
+                                top: 0,
+                                start: 100,
+                                tMiddle: true,
+                                rounded: "pill",
+                                border: true,
+                                borderColor: "light",
+                            }, ["61.5Mb", new b.visuallyhidden("estimate video size")]),
+                        ]);
+                    }`,
+		},
+	],
 };

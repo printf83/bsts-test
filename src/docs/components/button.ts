@@ -1,16 +1,19 @@
 import { b, h, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const button: IContent = {
 	title: "Buttons",
 	description: "Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Examples"),
 				new e.text("Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
@@ -40,6 +43,7 @@ export const button: IContent = {
 					"When using button classes on {{h.a}} component that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a {{role:'button'}} to appropriately convey their purpose to assistive technologies such as screen readers."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let id = core.UUID();
@@ -63,6 +67,7 @@ export const button: IContent = {
 				new e.title("Outline buttons"),
 				new e.text("In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the {{outline:true}} ones to remove all background images and colors on any {{b.button}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
@@ -79,6 +84,7 @@ export const button: IContent = {
 				new e.title("Sizes"),
 				new e.text("Fancy larger or smaller buttons? Add {{weight:'lg'|'sm'}} for additional sizes."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: {
 						display: "flex",
 						flex: "wrap",
@@ -89,6 +95,7 @@ export const button: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [new b.button({ weight: "sm", color: "primary" }, "Small button"), new b.button({ weight: "sm", color: "secondary" }, "Small button")];
@@ -96,6 +103,7 @@ export const button: IContent = {
 				}),
 				new e.text("You can even roll your own custom sizing with CSS variables:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -118,6 +126,7 @@ export const button: IContent = {
 				new e.title("Disabled state"),
 				new e.text("Make buttons look inactive by adding the {{disabled:true}} property to any {{h.button}} component. Disabled buttons have {{pointer-events: none}} applied to, preventing hover and active states from triggering."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -139,6 +148,7 @@ export const button: IContent = {
 				}),
 				new e.text("{{bsts}} handle this if you using {{b.button({href:'#'})}} component"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"), new b.button({ color: "secondary", href: "#", disabled: true }, "Link")];
@@ -155,6 +165,7 @@ export const button: IContent = {
 				),
 				new e.text("{{bsts}} handle this automaticly."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"), new b.button({ color: "secondary", href: "#", disabled: true }, "Link")];
@@ -170,12 +181,14 @@ export const button: IContent = {
 					"Create responsive stacks of full-width, “block buttons” like those in Bootstrap 4 with a mix of Bootstrap display and gap utilities. By using utilities instead of button specific classes, Bootstrap have much greater control over spacing, alignment, and responsive behaviors."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ display: "grid", gap: 2 }, [new b.button("Button"), new b.button("Button")]);
 					},
 				}),
 				new e.text("Here Bootstrap create a responsive variation, starting with vertically stacked buttons until the {{md}} breakpoint, where {{display:'md-block'}} replaces the {{display:'grid'}}, thus nullifying the {{gap:2}} utility. Resize your browser to see them change."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div({ display: ["grid", "md-flex"], gap: 2 }, [new b.button("Button"), new b.button("Button")]);
@@ -183,12 +196,14 @@ export const button: IContent = {
 				}),
 				new e.text("You can adjust the width of your block buttons with grid column width classes. For example, for a half-width “block button”, use {{col:6}}. Center it horizontally with {{marginX:'auto'}}, too."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ display: "grid", gap: 2, col: 6, marginX: "auto" }, [new b.button("Button"), new b.button("Button")]);
 					},
 				}),
 				new e.text("Additional utilities can be used to adjust the alignment of buttons when horizontal. Here Bootstrap taken Bootstrap previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.div({ display: ["grid", "md-flex"], gap: 2, justifyContent: "md-end" }, [new b.button("Button"), new b.button("Button")]);
@@ -215,6 +230,7 @@ export const button: IContent = {
 					"Add {{toggle:true}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{active:true}} property. The {{aria:{pressed:'true'/}/}} add automaticly by {{bsts}} to ensure that it is conveyed appropriately to assistive technologies."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [new b.button({ toggle: true }, "Toggle button"), new b.button({ toggle: true, active: true }, "Active toggle button"), new b.button({ toggle: true, disabled: true }, "Disabled toggle button")];
@@ -222,6 +238,7 @@ export const button: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [new b.button({ href: "#", toggle: true }, "Toggle button"), new b.button({ href: "#", toggle: true, active: true }, "Active toggle button"), new b.button({ href: "#", toggle: true, disabled: true }, "Disabled toggle button")];
@@ -261,6 +278,7 @@ export const button: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return [
@@ -393,6 +411,7 @@ export const button: IContent = {
 				new e.text("Here’s an example of building a custom {{.btn-*}} modifier class like Bootstrap do for the buttons unique to Bootstrap docs by reassigning Bootstrap’s CSS variables with a mixture of Bootstrap own CSS and Sass variables."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -610,4 +629,192 @@ export const button: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
+                            return new b.button({ color: i }, core.uppercaseFirst(i));
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        let id = core.UUID();
+                        return [
+                            new b.button({ color: "primary", href: "#" }, "Link"),
+                            new b.button({ color: "primary" }, "Button"),
+                            new b.button({ color: "primary", type: "submit" }, "Submit"),
+                            new b.button({ color: "primary", type: "reset" }, "Reset"),
+                            new b.input({ type: "checkbox", id: \`chk\${id}\`, toggle: true }),
+                            new b.label({ for: \`chk\${id}\`, color: "primary" }, "Check"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
+                            return new b.button({ color: i, outline: true }, core.uppercaseFirst(i));
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.button({ weight: "lg", color: "primary" }, "Large button"), new b.button({ weight: "lg", color: "secondary" }, "Large button")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.button({ weight: "sm", color: "primary" }, "Small button"), new b.button({ weight: "sm", color: "secondary" }, "Small button")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button({
+                            color: "primary",
+                            style: {
+                                "--bs-btn-padding-y": ".25rem",
+                                "--bs-btn-padding-x": ".5rem",
+                                "--bs-btn-font-size": ".75rem",
+                            },
+                        }, "Custom button");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.button({ color: "primary", disabled: true }, "Primary button"),
+                            new b.button({ color: "secondary", disabled: true }, "Button"),
+                            new b.button({ color: "primary", outline: true, disabled: true }, "Primary button"),
+                            new b.button({ color: "secondary", outline: true, disabled: true }, "Button"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"), new b.button({ color: "secondary", href: "#", disabled: true }, "Link")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"), new b.button({ color: "secondary", href: "#", disabled: true }, "Link")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ display: "grid", gap: 2 }, [new b.button("Button"), new b.button("Button")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ display: ["grid", "md-flex"], gap: 2 }, [new b.button("Button"), new b.button("Button")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ display: "grid", gap: 2, col: 6, marginX: "auto" }, [new b.button("Button"), new b.button("Button")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ display: ["grid", "md-flex"], gap: 2, justifyContent: "md-end" }, [new b.button("Button"), new b.button("Button")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.button({ toggle: true }, "Toggle button"), new b.button({ toggle: true, active: true }, "Active toggle button"), new b.button({ toggle: true, disabled: true }, "Disabled toggle button")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new b.button({ href: "#", toggle: true }, "Toggle button"), new b.button({ href: "#", toggle: true, active: true }, "Active toggle button"), new b.button({ href: "#", toggle: true, disabled: true }, "Disabled toggle button")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ display: "flex", overflow: "auto" }, [
+                                new h.div({
+                                    width: 100,
+                                    marginEnd: 3,
+                                    bgColor: "body-tertiary",
+                                    rounded: true,
+                                    position: "relative",
+                                }, new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }, new b.button({
+                                    id: "example-button",
+                                    outline: true,
+                                    color: "primary",
+                                    weight: "lg",
+                                }, "Example"))),
+                                new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.button.init("#example-button");
+                                                e.console(event.target, "b.button.init", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "init"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.button.getInstance("#example-button");
+                                                e.console(event.target, "b.button.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getInstance"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.button.getOrCreateInstance("#example-button");
+                                                e.console(event.target, "b.button.getOrCreateInstance", elem, elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getOrCreateInstance"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.button.toggle("#example-button");
+                                            },
+                                        },
+                                    }, "toggle"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.button.dispose("#example-button");
+                                            },
+                                        },
+                                    }, "dispose"),
+                                ])),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button({
+                            style: {
+                                "$bd-violet": "#ee82ee",
+                                "--bd-violet": "#ee82ee",
+                                "--bd-violet-rgb": "238,130,238",
+                                "--bs-btn-font-weight": "600",
+                                "--bs-btn-color": "var(--bs-white)",
+                                "--bs-btn-bg": "var(--bd-violet)",
+                                "--bs-btn-border-color": "var(--bd-violet)",
+                                "--bs-btn-border-radius": ".5rem",
+                                "--bs-btn-hover-color": "var(--bs-white)",
+                                "--bs-btn-hover-bg": "#{shade-color($bd-violet, 10%)}",
+                                "--bs-btn-hover-border-color": "#{shade-color($bd-violet, 10%)}",
+                                "--bs-btn-focus-shadow-rgb": "var(--bd-violet-rgb)",
+                                "--bs-btn-active-color": "var(--bs-btn-hover-color)",
+                                "--bs-btn-active-bg": "#{shade-color($bd-violet, 20%)}",
+                                "--bs-btn-active-border-color": "#{shade-color($bd-violet, 20%)}",
+                            },
+                        }, "Custom button");
+                    }`,
+		},
+	],
 };

@@ -1,11 +1,13 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const ratio: IContent = {
 	title: "Ratios",
 	description: "Use generated pseudo elements to make an element maintain the aspect ratio of your choosing. Perfect for responsively handling video or slideshow embeds based on the width of the parent.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("About"),
@@ -22,6 +24,7 @@ export const ratio: IContent = {
 				new e.title("Example"),
 				new e.text("Wrap any embed, like an {{h.iframe}}, in a parent element with {{ratio}} and an aspect ratio class. The immediate child element is automatically sized thanks to Bootstrap universal selector {{.ratio > *}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div(
 							{ ratio: "16x9" },
@@ -41,6 +44,7 @@ export const ratio: IContent = {
 				new e.title("Aspect ratios"),
 				new e.text("Aspect ratios can be customized with modifier classes. By default the following ratio classes are provided:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "ratio-box" },
 					output: () => {
 						return [new h.div({ ratio: "1x1" }, new h.div("1X1")), new h.div({ ratio: "4x3" }, new h.div("4X3")), new h.div({ ratio: "16x9" }, new h.div("16X9")), new h.div({ ratio: "21x9" }, new h.div("21X9"))];
@@ -55,6 +59,7 @@ export const ratio: IContent = {
 				new e.text("Each {{ratio}} property includes a CSS custom property (or CSS variable) in the selector. You can override this CSS variable to create custom aspect ratios on the fly with some quick math on your part."),
 				new e.text("For example, to create a 2x1 aspect ratio, set {{style:{'--bs-aspect-ratio': '50%'} }}beside the {{ratio}} property."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "ratio-box" },
 					output: () => {
 						return new h.div({ ratio: true, style: { "--bs-aspect-ratio": "50%" } }, new h.div("2X1"));
@@ -94,4 +99,25 @@ export const ratio: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.div({ ratio: "16x9" }, new h.iframe({
+                            src: "https://www.youtube.com/embed/eVxNksC88_U",
+                            title: "YouTube video player",
+                            allowfullscreen: true,
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.div({ ratio: "1x1" }, new h.div("1X1")), new h.div({ ratio: "4x3" }, new h.div("4X3")), new h.div({ ratio: "16x9" }, new h.div("16X9")), new h.div({ ratio: "21x9" }, new h.div("21X9"))];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ ratio: true, style: { "--bs-aspect-ratio": "50%" } }, new h.div("2X1"));
+                    }`,
+		},
+	],
 };

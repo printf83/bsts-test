@@ -1,11 +1,13 @@
 import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const nav: IContent = {
 	title: "Navs and tabs",
 	description: "Documentation and examples for how to use Bootstrap’s included navigation components.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Base nav"),
@@ -19,6 +21,7 @@ export const nav: IContent = {
 					new h.p("By default, {{bsts}} set {{aria-current:'page'}} when {{active:true}} on {{b.nav.header.link}}. Change it using {{current:true}} to change this behavior."),
 				]),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container([
 							new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
@@ -32,6 +35,7 @@ export const nav: IContent = {
 				new e.text("Or using {{link}} property to create {{b.nav.header.item}} and {{b.nav.header.link}} directly."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							link: [
@@ -48,6 +52,7 @@ export const nav: IContent = {
 					"{{b.nav.header.container}} component will generate {{h.ul}} component. If the order of your items is important, or roll your own with a {{b.nav.header.containerNav}} component to generate {{h.nav}}. Because the {{h.hav}} uses {{display: flex}}, the nav links behave the same as nav items would, but without the extra markup ({{b.nav.header.item}})."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.containerNav([new b.nav.header.link({ active: true, href: "#" }, "Active"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")]);
 					},
@@ -55,6 +60,7 @@ export const nav: IContent = {
 
 				new e.text("Or using {{link}} property to create {{b.nav.header.link}} directly."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.containerNav({
 							link: [
@@ -79,6 +85,7 @@ export const nav: IContent = {
 				new e.text("Change the horizontal alignment of your nav with {{nav:docs/layout/grid#horizontal_alignment::flexbox utilities}}. By default, navs are left-aligned, but you can easily change them to center or right aligned."),
 				new e.text("Centered with {{justifyContent:'center'}} property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							justifyContent: "center",
@@ -93,6 +100,7 @@ export const nav: IContent = {
 				}),
 				new e.text("Right-aligned with {{justifyContent:'end'}} property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							justifyContent: "end",
@@ -113,6 +121,7 @@ export const nav: IContent = {
 				new e.subtitle("Vertical"),
 				new e.text("Stack your navigation by changing the flex item direction with the {{flex:'column'}} property. Need to stack them on some viewports but not others? Use the responsive versions (e.g., {{flex:'sm-column'}})."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							flex: "column",
@@ -127,6 +136,7 @@ export const nav: IContent = {
 				}),
 				new e.text("As always, vertical navigation also possible with {{b.nav.header.containerNav}}s, too."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.containerNav({
 							flex: "column",
@@ -147,6 +157,7 @@ export const nav: IContent = {
 				new e.subtitle("Tabs"),
 				new e.text("Takes the basic nav from above and adds the {{type:'tab'}} property on {{b.nav.header.container}} to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:docs/components/nav#javascript_behavior::tab JavaScript plugin}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							type: "tab",
@@ -167,6 +178,7 @@ export const nav: IContent = {
 				new e.subtitle("Pills"),
 				new e.text("Take that same code, but use {{type:'pill'}} instead:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							type: "pill",
@@ -187,6 +199,7 @@ export const nav: IContent = {
 				new e.subtitle("Underline"),
 				new e.text("Take that same code, but use {{type:'underline'}} instead:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							type: "underline",
@@ -209,6 +222,7 @@ export const nav: IContent = {
 					"Force your {{b.nav.header.container}}’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your {{b.nav.header.item}}, use {{itemWidth:'fill'}}. Notice that all horizontal space is occupied, but not every nav item has the same width."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							type: "pill",
@@ -224,6 +238,7 @@ export const nav: IContent = {
 				}),
 				new e.text("When using a {{b.nav.header.containerNav}}-based navigation, you can safely omit {{b.nav.header.item}} as only {{b.nav.header.link}} is required for styling {{h.a}} component."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.containerNav({
 							type: "pill",
@@ -239,6 +254,7 @@ export const nav: IContent = {
 				}),
 				new e.text("For equal-width component, use {{itemWidth:'justified'}}. All horizontal space will be occupied by nav links, but unlike the {{itemWidth:'fill'}} above, every nav item will be the same width."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							type: "pill",
@@ -254,6 +270,7 @@ export const nav: IContent = {
 				}),
 				new e.text("Similar to the {{itemWidth:'fill'}} example using a {{b.nav.header.containerNav}}-based navigation."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.containerNav({
 							type: "pill",
@@ -277,6 +294,7 @@ export const nav: IContent = {
 					"If you need responsive nav variations, consider using a series of {{nav:docs/utilities/flex::flexbox utilities}}. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, Bootstrap nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.nav.header.containerNav({
@@ -312,6 +330,7 @@ export const nav: IContent = {
 				new e.text("Add dropdown menus with a little extra HTML and the {{nav:docs/components/dropdown#usage::dropdowns JavaScript plugin}}."),
 				new e.text("Tabs with dropdowns with set {{dropdown:true}} property on {{b.nav.header.item}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({ type: "tab" }, [
 							new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
@@ -327,6 +346,7 @@ export const nav: IContent = {
 
 				new e.text("Or using {{item}} property to create {{b.nav.header.item}} directly."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							type: "tab",
@@ -358,6 +378,7 @@ export const nav: IContent = {
 			new e.section([
 				new e.subtitle("Pills with dropdowns"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({
 							type: "pill",
@@ -493,6 +514,7 @@ export const nav: IContent = {
 				new e.text("Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap navigational tabs and pills to create tabbable panes of local content."),
 				new e.text("Tab panel header should using {{b.nav.header.button}} insted of {{b.nav.header.link}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -543,6 +565,7 @@ export const nav: IContent = {
 				}),
 				new e.text("To help fit your needs, this works with {{b.nav.header.container}}-based markup, as shown above, or with any arbitrary “roll your own” markup."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -590,6 +613,7 @@ export const nav: IContent = {
 				}),
 				new e.text("The tabs plugin also works with pills."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -640,6 +664,7 @@ export const nav: IContent = {
 				}),
 				new e.text("You also can use {{bsts}} {{b.nav.tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -657,6 +682,7 @@ export const nav: IContent = {
 				}),
 				new e.text("And with vertical pills. Ideally, for vertical tabs, you should also add {{vertical:true}} to the tab {{b.nav.header.container}} or {{b.nav.header.containerNav}}."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						const content = (title: string) =>
@@ -711,6 +737,7 @@ export const nav: IContent = {
 				new e.text("You can activate a tab or pill navigation by simply specifying {{toggle:'tab'}} or {{toggle:'pill'}} on an {{b.nav.header.container}} or {{b.nav.header.containerNav}} component."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -807,6 +834,7 @@ export const nav: IContent = {
 				new e.subtitle("Fade effect"),
 				new e.text("To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}} or {{b.nav.tab}}. The first tab pane must also have {{active:true}} to make the initial content visible."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -830,6 +858,7 @@ export const nav: IContent = {
 				new e.title("Tab in card"),
 				new e.text("Just set {{container:'card'}} to {{b.nav.tab}} then wrap it using {{b.card.container}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -854,6 +883,7 @@ export const nav: IContent = {
 				new e.subtitle("Pill in card"),
 				new e.text("Just set {{container:'card'}} and {{type:'pill'}} to {{b.nav.tab}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -880,6 +910,7 @@ export const nav: IContent = {
 				new e.text("You also can put card tab in {{b.modal.body}}. Just make sure you add {{padding:0}} to {{b.modal.body}} and {{border:false}} to {{b.card.container}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					showCodepen: false,
 					previewAttr: { bgColor: "body-tertiary" },
@@ -950,6 +981,7 @@ export const nav: IContent = {
 				new e.text("Tab card in modal live demo :"),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					previewAttr: { bgColor: "body-tertiary" },
 					output: () => {
@@ -1053,6 +1085,7 @@ export const nav: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					outputAttr: { overflowX: "auto" },
 					output: () => {
@@ -1225,6 +1258,7 @@ export const nav: IContent = {
 
 				new e.text("Example tracking event using {{b.nav.header.container}} or  {{b.nav.header.containerNav}}."),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						interface EventWithTargetAndRelatedTarget extends Event {
@@ -1293,6 +1327,7 @@ export const nav: IContent = {
 
 				new e.text("Or track event using {{b.nav.tab}}"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						interface EventWithTargetAndRelatedTarget extends Event {
@@ -1327,4 +1362,731 @@ export const nav: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.nav.header.container([
+                            new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+                            new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+                            new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+                            new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.containerNav([new b.nav.header.link({ active: true, href: "#" }, "Active"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.containerNav({
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            justifyContent: "center",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            justifyContent: "end",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            flex: "column",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.containerNav({
+                            flex: "column",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            type: "tab",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            type: "pill",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            type: "underline",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            type: "pill",
+                            itemWidth: "fill",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Much longer nav link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.containerNav({
+                            type: "pill",
+                            itemWidth: "fill",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Much longer nav link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            type: "pill",
+                            itemWidth: "justified",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Much longer nav link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.containerNav({
+                            type: "pill",
+                            itemWidth: "justified",
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Much longer nav link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.containerNav({
+                            type: "pill",
+                            flex: ["column", "sm-row"],
+                            link: [
+                                { active: true, href: "#", elem: "Active" },
+                                { href: "#", elem: "Much longer nav link" },
+                                { href: "#", elem: "Link" },
+                                { disabled: true, href: "#", elem: "Disabled" },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({ type: "tab" }, [
+                            new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+                            new b.nav.header.item({ dropdown: true }, [
+                                new b.dropdown.button({ navItem: true }, "Dropdown"),
+                                new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
+                            ]),
+                            new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+                            new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            type: "tab",
+                            item: [
+                                { link: { active: true, href: "#", elem: "Active" } },
+                                {
+                                    dropdown: true,
+                                    elem: [
+                                        new b.dropdown.button({ navItem: true }, "Dropdown"),
+                                        new b.dropdown.menu([
+                                            new b.dropdown.item({ href: "#" }, "Action"),
+                                            new b.dropdown.item({ href: "#" }, "Another action"),
+                                            new b.dropdown.item({ href: "#" }, "Something else here"),
+                                            new b.dropdown.divider(),
+                                            new b.dropdown.item({ href: "#" }, "Separated link"),
+                                        ]),
+                                    ],
+                                },
+                                { link: { href: "#", elem: "Link" } },
+                                { link: { disabled: true, href: "#", elem: "Disabled" } },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.nav.header.container({
+                            type: "pill",
+                            item: [
+                                { link: { active: true, href: "#", elem: "Active" } },
+                                {
+                                    dropdown: true,
+                                    elem: [
+                                        new b.dropdown.button({ navItem: true }, "Dropdown"),
+                                        new b.dropdown.menu([
+                                            new b.dropdown.item({ href: "#" }, "Action"),
+                                            new b.dropdown.item({ href: "#" }, "Another action"),
+                                            new b.dropdown.item({ href: "#" }, "Something else here"),
+                                            new b.dropdown.divider(),
+                                            new b.dropdown.item({ href: "#" }, "Separated link"),
+                                        ]),
+                                    ],
+                                },
+                                { link: { href: "#", elem: "Link" } },
+                                { link: { disabled: true, href: "#", elem: "Disabled" } },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        const d = [
+                            { label: "Home", id: "home", active: true },
+                            { label: "Profile", id: "profile" },
+                            { label: "Contact", id: "contact" },
+                            { label: "Disabled", id: "disabled", disabled: true },
+                        ];
+                        return [
+                            new b.nav.header.container({ type: "tab", role: "tablist", id: "myTab" }, d.map((i) => {
+                                return new b.nav.header.item({ role: "presentation" }, new b.nav.header.button({
+                                    active: i.active,
+                                    disabled: i.disabled,
+                                    id: \`\${i.id}-tab\`,
+                                    target: \`#\${i.id}-tab-pane\`,
+                                    controlfor: \`\${i.id}-tab-pane\`,
+                                    toggle: "tab",
+                                }, i.label));
+                            })),
+                            new b.nav.content.container({ id: "myTabContent", marginTop: 3 }, d.map((i) => {
+                                return new b.nav.content.item({
+                                    active: i.active,
+                                    id: \`\${i.id}-tab-pane\`,
+                                    role: "tabpanel",
+                                    labelledby: \`\${i.id}-tab\`,
+                                }, content(i.label));
+                            })),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        const d = [
+                            { label: "Home", id: "home2", active: true },
+                            { label: "Profile", id: "profile2" },
+                            { label: "Contact", id: "contact2" },
+                            { label: "Disabled", id: "disabled2", disabled: true },
+                        ];
+                        return [
+                            new b.nav.header.containerNav({ type: "tab", role: "tablist", id: "nav-tab" }, d.map((i) => {
+                                return new b.nav.header.button({
+                                    active: i.active,
+                                    disabled: i.disabled,
+                                    id: \`\${i.id}-tab\`,
+                                    target: \`#nav-\${i.id}-tab-pane\`,
+                                    controlfor: \`nav-\${i.id}-tab-pane\`,
+                                    toggle: "tab",
+                                }, i.label);
+                            })),
+                            new b.nav.content.container({ id: "nav-tabContent", marginTop: 3 }, d.map((i) => {
+                                return new b.nav.content.item({
+                                    active: i.active,
+                                    id: \`nav-\${i.id}-tab-pane\`,
+                                    role: "tabpanel",
+                                    labelledby: \`nav-\${i.id}-tab\`,
+                                }, content(i.label));
+                            })),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        const d = [
+                            { label: "Home", id: "home3", active: true },
+                            { label: "Profile", id: "profile3" },
+                            { label: "Contact", id: "contact3" },
+                            { label: "Disabled", id: "disabled3", disabled: true },
+                        ];
+                        return [
+                            new b.nav.header.container({ type: "pill", role: "tablist", id: "pills-tab" }, d.map((i) => {
+                                return new b.nav.header.item({ role: "presentation" }, new b.nav.header.button({
+                                    active: i.active,
+                                    disabled: i.disabled,
+                                    id: \`pills-\${i.id}-tab\`,
+                                    target: \`#pills-\${i.id}-tab-pane\`,
+                                    controlfor: \`pills-\${i.id}-tab-pane\`,
+                                    toggle: "pill",
+                                }, i.label));
+                            })),
+                            new b.nav.content.container({ id: "pills-tabContent", marginTop: 3 }, d.map((i) => {
+                                return new b.nav.content.item({
+                                    active: i.active,
+                                    id: \`pills-\${i.id}-tab-pane\`,
+                                    role: "tabpanel",
+                                    labelledby: \`pills-\${i.id}-tab\`,
+                                }, content(i.label));
+                            })),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        return b.nav.tab({
+                            type: "pill",
+                            item: [
+                                { label: "Home", active: true, elem: content("Home") },
+                                { label: "Profile", elem: content("Profile") },
+                                { label: "Contact", elem: content("Contact") },
+                                { label: "Disabled", disabled: true, elem: content("Disabled") },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        return new h.div({ display: "md-flex", alignItem: "md-start" }, b.nav.tab({
+                            type: "pill",
+                            vertical: true,
+                            flex: "md-column",
+                            marginEnd: "md-3",
+                            attrContent: { marginTop: [3, "md-0"] },
+                            item: [
+                                { label: "Home", active: true, elem: content("Home") },
+                                { label: "Profile", elem: content("Profile") },
+                                { label: "Disabled", disabled: true, elem: content("Disabled") },
+                                { label: "Messages", elem: content("Messages") },
+                                { label: "Settings", elem: content("Settings") },
+                            ],
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        const d = [
+                            { label: "Home", id: "home4", active: true },
+                            { label: "Profile", id: "profile4" },
+                            { label: "Contact", id: "contact4" },
+                        ];
+                        return [
+                            new b.nav.header.container({
+                                type: "tab",
+                                role: "tablist",
+                                id: "prop-tab",
+                            }, d.map((i) => {
+                                return new b.nav.header.item({ role: "presentation" }, new b.nav.header.button({
+                                    active: i.active,
+                                    id: \`prop-\${i.id}-tab\`,
+                                    target: \`#prop-\${i.id}-tab-pane\`,
+                                    controlfor: \`prop-\${i.id}-tab-pane\`,
+                                    //set toggle property
+                                    toggle: "tab",
+                                }, i.label));
+                            })),
+                            new b.nav.content.container({ id: "prop-tabContent", marginTop: 3 }, d.map((i) => {
+                                return new b.nav.content.item({
+                                    active: i.active,
+                                    id: \`prop-\${i.id}-tab-pane\`,
+                                    role: "tabpanel",
+                                    labelledby: \`prop-\${i.id}-tab\`,
+                                }, content(i.label));
+                            })),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        return b.nav.tab({
+                            animation: false,
+                            item: [
+                                { label: "Home", active: true, elem: content("Home") },
+                                { label: "Profile", elem: content("Profile") },
+                                { label: "Messages", elem: content("Messages") },
+                                { label: "Settings", elem: content("Settings") },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        return new b.card.container(b.nav.tab({
+                            card: true,
+                            item: [
+                                { label: "Home", active: true, elem: content("Home") },
+                                { label: "Profile", elem: content("Profile") },
+                                { label: "Messages", elem: content("Messages") },
+                            ],
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        return new b.card.container(b.nav.tab({
+                            card: true,
+                            type: "pill",
+                            item: [
+                                { label: "Home", active: true, elem: content("Home") },
+                                { label: "Profile", elem: content("Profile") },
+                                { label: "Messages", elem: content("Messages") },
+                            ],
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        return new b.modal.container({ debug: true }, [
+                            new b.modal.header({ close: true }, new b.modal.title("Modal title")),
+                            new b.modal.body({ padding: 0 }, new b.card.container({ border: false }, b.nav.tab({
+                                card: true,
+                                on: {
+                                    "shown.bs.tab": (event) => {
+                                        const target = event.target.closest(".modal");
+                                        // readjust the modal’s position
+                                        b.modal.handleUpdate(target);
+                                    },
+                                },
+                                item: [
+                                    {
+                                        label: new b.caption({
+                                            icon: "house-fill",
+                                            labelDisplay: ["none", "md-block"],
+                                            iconDisplay: "md-none",
+                                        }, "Home"),
+                                        active: true,
+                                        elem: content("Home"),
+                                    },
+                                    {
+                                        label: new b.caption({
+                                            icon: "person-vcard-fill",
+                                            labelDisplay: ["none", "md-block"],
+                                            iconDisplay: "md-none",
+                                        }, "Profile"),
+                                        elem: content("Profile"),
+                                    },
+                                    {
+                                        label: new b.caption({
+                                            icon: "envelope-at-fill",
+                                            labelDisplay: ["none", "md-block"],
+                                            iconDisplay: "md-none",
+                                        }, "Message"),
+                                        elem: content("Messages"),
+                                    },
+                                ],
+                            }))),
+                            new b.modal.footer([new b.button({ dismiss: "modal", color: "secondary" }, "Close"), new b.button({ color: "primary" }, "Save changes")]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        const tabCard = new b.card.container({ border: false }, b.nav.tab({
+                            card: true,
+                            on: {
+                                "shown.bs.tab": (event) => {
+                                    const target = event.target.closest(".modal");
+                                    // readjust the modal’s position
+                                    b.modal.handleUpdate(target);
+                                },
+                            },
+                            item: [
+                                {
+                                    label: new b.caption({
+                                        icon: "house-fill",
+                                        labelDisplay: ["none", "md-block"],
+                                        iconDisplay: "md-none",
+                                    }, "Home"),
+                                    active: true,
+                                    elem: content("Home"),
+                                },
+                                {
+                                    label: new b.caption({
+                                        icon: "person-vcard-fill",
+                                        labelDisplay: ["none", "md-block"],
+                                        iconDisplay: "md-none",
+                                    }, "Profile"),
+                                    elem: content("Profile"),
+                                },
+                                {
+                                    label: new b.caption({
+                                        icon: "envelope-at-fill",
+                                        labelDisplay: ["none", "md-block"],
+                                        iconDisplay: "md-none",
+                                    }, "Message"),
+                                    elem: content("Messages"),
+                                },
+                            ],
+                        }));
+                        const modal = b.modal.create({
+                            id: "modal-tab-example",
+                            title: "Modal title",
+                            attrBody: { padding: 0 },
+                            btn: ["savechanges", "close"],
+                            btnFn: () => { },
+                            elem: tabCard,
+                        });
+                        const btnShow = new b.button({ target: "#modal-tab-example", toggle: "modal" }, "Show tab in modal");
+                        return [btnShow, modal];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const showTabPaneEventHandler = (event) => {
+                            event.preventDefault();
+                            b.tabList.show(event.target);
+                        };
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        const d = [
+                            { label: "1", id: "one", active: true },
+                            { label: "2", id: "two" },
+                            { label: "3", id: "three" },
+                        ];
+                        const navTabContainer = [
+                            new b.nav.header.containerNav({ type: "tab", role: "tablist", id: "example-nav-tab" }, d.map((i) => {
+                                return new b.nav.header.button({
+                                    active: i.active,
+                                    id: \`example-nav-\${i.id}-tab\`,
+                                    target: \`#example-nav-\${i.id}-tab-pane\`,
+                                    controlfor: \`example-nav-\${i.id}-tab-pane\`,
+                                    //disable auto init tab for documentation
+                                    //toggle: "tab",
+                                }, i.label);
+                            })),
+                            new b.nav.content.container({ id: "example-nav-tabContent", marginTop: 3 }, d.map((i) => {
+                                return new b.nav.content.item({
+                                    active: i.active,
+                                    id: \`example-nav-\${i.id}-tab-pane\`,
+                                    role: "tabpanel",
+                                    labelledby: \`example-nav-\${i.id}-tab\`,
+                                }, content(i.label));
+                            })),
+                        ];
+                        const initButton = new b.button({
+                            color: "success",
+                            on: {
+                                click: (event) => {
+                                    const elem = document.querySelectorAll("#example-nav-tab button");
+                                    elem.forEach((i) => {
+                                        b.tabList.init(i);
+                                        i.addEventListener("click", showTabPaneEventHandler);
+                                    });
+                                    e.console(event.target, "b.tabList.init", elem ? elem : "null", elem ? "success" : "danger");
+                                },
+                            },
+                        }, "init");
+                        const getInstanceButton = new b.button({
+                            color: "success",
+                            on: {
+                                click: (event) => {
+                                    const elem = b.tabList.getInstance("#example-nav-tab button.active");
+                                    e.console(event.target, "b.tabList.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                },
+                            },
+                        }, "getInstance");
+                        const getOrCreateInstanceButton = new b.button({
+                            color: "success",
+                            on: {
+                                click: (event) => {
+                                    const elem = b.tabList.getOrCreateInstance("#example-nav-tab button.active");
+                                    e.console(event.target, "b.tabList.getOrCreateInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                },
+                            },
+                        }, "getOrCreateInstance");
+                        const showButton = new b.button({
+                            on: {
+                                click: () => {
+                                    const elem = document.querySelectorAll("#example-nav-tab button");
+                                    b.tabList.show(elem[core.rndBetween(0, elem.length - 1)]);
+                                },
+                            },
+                        }, "show (random)");
+                        const disposeButton = new b.button({
+                            color: "danger",
+                            on: {
+                                click: () => {
+                                    const elem = document.querySelectorAll("#example-nav-tab button");
+                                    elem.forEach((i) => {
+                                        b.tabList.dispose(i);
+                                        i.removeEventListener("click", showTabPaneEventHandler);
+                                    });
+                                },
+                            },
+                        }, "dispose");
+                        const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, showButton, disposeButton]);
+                        const previewContainer = new h.div({
+                            width: 100,
+                            marginEnd: 2,
+                        }, navTabContainer);
+                        const controlContainer = new h.div({
+                            marginStart: "auto",
+                        }, buttonGroup);
+                        const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+                        return [mainContainer];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content.\`;
+                        const d = [
+                            { label: "Home", id: "home5", active: true },
+                            { label: "Profile", id: "profile5" },
+                            { label: "Messages", id: "messages5" },
+                            { label: "Settings", id: "settings5" },
+                        ];
+                        return [
+                            new b.nav.header.containerNav({
+                                type: "tab",
+                                role: "tablist",
+                                id: "event-tab",
+                                on: {
+                                    "shown.bs.tab": (event) => {
+                                        const evnt = event;
+                                        e.console(evnt.target, "shown.bs.tab", \`Target: {{b::\${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::\${core.elemInfo(evnt.relatedTarget)}}}\`, "success");
+                                    },
+                                    "hidden.bs.tab": (event) => {
+                                        const evnt = event;
+                                        e.console(evnt.target, "hidden.bs.tab", \`Target: {{b::\${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::\${core.elemInfo(evnt.relatedTarget)}}}\`, "danger");
+                                    },
+                                },
+                            }, d.map((i) => {
+                                return new b.nav.header.button({
+                                    active: i.active,
+                                    id: \`event-\${i.id}-tab\`,
+                                    target: \`#event-\${i.id}-tab-pane\`,
+                                    controlfor: \`event-\${i.id}-tab-pane\`,
+                                    toggle: "tab",
+                                }, i.label);
+                            })),
+                            new b.nav.content.container({ id: "event-tabContent", marginTop: 3 }, d.map((i) => {
+                                return new b.nav.content.item({
+                                    active: i.active,
+                                    animation: false,
+                                    id: \`event-\${i.id}-tab-pane\`,
+                                    role: "tabpanel",
+                                    labelledby: \`event-\${i.id}-tab\`,
+                                }, content(i.label));
+                            })),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
+                        return b.nav.tab({
+                            on: {
+                                "shown.bs.tab": (event) => {
+                                    const evnt = event;
+                                    e.console(evnt.target, "shown.bs.tab", \`Target: {{b::\${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::\${core.elemInfo(evnt.relatedTarget)}}}\`, "success");
+                                },
+                                "hidden.bs.tab": (event) => {
+                                    const evnt = event;
+                                    e.console(evnt.target, "hidden.bs.tab", \`Target: {{b::\${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::\${core.elemInfo(evnt.relatedTarget)}}}\`, "danger");
+                                },
+                            },
+                            item: [
+                                { label: "Home", active: true, elem: content("Home") },
+                                { label: "Profile", elem: content("Profile") },
+                                { label: "Messages", elem: content("Messages") },
+                                { label: "Settings", elem: content("Settings") },
+                            ],
+                        });
+                    }`,
+		},
+	],
 };

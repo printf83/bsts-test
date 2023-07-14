@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const stretched_link: IContent = {
 	title: "Stretched link",
 	description: "Make any HTML element or Bootstrap component clickable by “stretching” a nested link via CSS.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.text(
@@ -15,6 +17,7 @@ export const stretched_link: IContent = {
 				new e.text("Multiple links and tap targets are not recommended with stretched links. However, some {{position}} and {{z-index}} styles can help should this be required."),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
@@ -46,6 +49,7 @@ export const stretched_link: IContent = {
 
 				new e.text("Most custom components do not have {{position: relative}} by default, so Bootstrap need to add the {{.position-relative}} here to prevent the link from stretching outside the parent element."),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new h.div({ display: "flex", position: "relative" }, [
@@ -76,6 +80,7 @@ export const stretched_link: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new h.div({ row: true, gutter: 0, bgColor: "body-secondary", position: "relative" }, [
@@ -123,6 +128,7 @@ export const stretched_link: IContent = {
 					],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
@@ -182,4 +188,127 @@ export const stretched_link: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.card.container({ style: { width: "18rem" } }, [
+                            new b.card.img({
+                                location: "top",
+                                src: "https://picsum.photos/seed/bsts_0/286/180.webp",
+                                alt: "Image cap",
+                            }),
+                            new b.card.body([
+                                new b.card.title("Card with stretched link"),
+                                new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."),
+                                new b.button({
+                                    href: "#",
+                                    stretched: true,
+                                    on: {
+                                        click: (event) => {
+                                            const target = event.target;
+                                            e.console(target, "click", "Go somewhere button clicked");
+                                        },
+                                    },
+                                }, "Go somewhere"),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ display: "flex", position: "relative" }, [
+                            new h.img({
+                                flex: "shrink-0",
+                                marginEnd: 3,
+                                src: "https://picsum.photos/seed/bsts_0/144/144.webp",
+                                alt: "Image cap",
+                            }),
+                            new h.div([
+                                new h.h(5, { marginTop: 0 }, "Custom component with stretched link"),
+                                new h.p("This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."),
+                                new h.a({
+                                    href: "#",
+                                    stretched: true,
+                                    on: {
+                                        click: (event) => {
+                                            const target = event.target;
+                                            e.console(target, "click", "Go somewhere link clicked");
+                                        },
+                                    },
+                                }, "Go somewhere"),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ row: true, gutter: 0, bgColor: "body-secondary", position: "relative" }, [
+                            new h.div({ col: "md-6", marginBottom: "md-0", padding: "md-4" }, new h.img({
+                                width: 100,
+                                src: "https://picsum.photos/seed/bsts_0/330/200.webp",
+                                alt: "Image cap",
+                            })),
+                            new h.div({ col: "md-6", padding: 4, paddingStart: "md-0" }, [
+                                new h.h(5, { marginTop: 0 }, "Columns with stretched link"),
+                                new h.p("Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."),
+                                new h.a({
+                                    href: "#",
+                                    stretched: true,
+                                    on: {
+                                        click: (event) => {
+                                            const target = event.target;
+                                            e.console(target, "click", "Go somewhere link clicked");
+                                        },
+                                    },
+                                }, "Go somewhere"),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.card.container({ style: { width: "18rem" } }, [
+                            new b.card.img({
+                                location: "top",
+                                src: "https://picsum.photos/seed/bsts_0/286/180.webp",
+                                alt: "Image cap",
+                            }),
+                            new b.card.body([
+                                new b.card.title("Card with stretched link"),
+                                new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."),
+                                new b.card.text(new h.a({
+                                    href: "#",
+                                    stretched: true,
+                                    textColor: "danger",
+                                    style: { position: "relative" },
+                                    on: {
+                                        click: (event) => {
+                                            const target = event.target;
+                                            e.console(target, "click", "Link 1 clicked");
+                                        },
+                                    },
+                                }, "Stretched link will not work here, because {{position: relative}} is added to the link")),
+                                new b.card.text({
+                                    bgColor: "body-tertiary",
+                                    style: { transform: "rotate(0)" },
+                                }, [
+                                    "This ",
+                                    new h.a({
+                                        href: "#",
+                                        textColor: "warning",
+                                        stretched: true,
+                                        on: {
+                                            click: (event) => {
+                                                const target = event.target;
+                                                e.console(target, "click", "Link 2 clicked");
+                                            },
+                                        },
+                                    }, "stretched link"),
+                                    " will only be spread over the {{p}}-tag, because a transform is applied to it.",
+                                ]),
+                            ]),
+                        ]);
+                    }`,
+		},
+	],
 };

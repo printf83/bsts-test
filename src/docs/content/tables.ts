@@ -1,6 +1,6 @@
 import { core, I, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const TABLEITEM = () => {
 	return [
@@ -52,7 +52,9 @@ const TABLEBIG = (row: number, col: number) => {
 export const tables: IContent = {
 	title: "Tables",
 	description: "Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -61,6 +63,7 @@ export const tables: IContent = {
 				),
 				new e.text("Using the most basic table markup, here’s how {{.table}}-based tables look in Bootstrap."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -82,6 +85,7 @@ export const tables: IContent = {
 				new e.text("Use contextual classes to color tables, table rows or individual cells."),
 				new e.alert({ color: "info", callout: true }, "{{b::Heads up! }}Because of the more complicated CSS used to generate Bootstrap table variants, they most likely won’t see color mode adaptive styling until v6."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -96,6 +100,7 @@ export const tables: IContent = {
 				}),
 				new e.text("Set color on {{table}} and {{cell}}"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container({ color: "primary" }, [
@@ -135,6 +140,7 @@ export const tables: IContent = {
 				new e.subtitle("Striped rows"),
 				new e.text("Use {{.table-striped}} to add zebra-striping to any table row within the {{<tbody>}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -149,6 +155,7 @@ export const tables: IContent = {
 				new e.subtitle("Striped columns"),
 				new e.text("Use {{.table-striped-columns}} to add zebra-striping to any table column."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -157,6 +164,7 @@ export const tables: IContent = {
 				}),
 				new e.text("These classes can also be added to table variants:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -164,6 +172,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -171,6 +180,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -178,6 +188,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -192,6 +203,7 @@ export const tables: IContent = {
 				new e.subtitle("Hoverable rows"),
 				new e.text("Add {{.table-hover}} to enable a hover state on table rows within a {{<tbody>}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -199,6 +211,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -207,6 +220,7 @@ export const tables: IContent = {
 				}),
 				new e.text("These hoverable rows can also be combined with the striped rows variant:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -221,6 +235,7 @@ export const tables: IContent = {
 				new e.subtitle("Active tables"),
 				new e.text("Highlight a table row or cell by adding a {{.table-active}} class."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -293,6 +308,7 @@ export const tables: IContent = {
 				new e.subtitle("Bordered tables"),
 				new e.text("Add {{.table-bordered}} for borders on all sides of the table and cells."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -301,6 +317,7 @@ export const tables: IContent = {
 				}),
 				new e.text("{{nav:docs/utilities/borders#border_color::Border color utilities}} can be added to change colors:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -315,6 +332,7 @@ export const tables: IContent = {
 				new e.subtitle("Tables without borders"),
 				new e.text("Add {{.table-borderless}} for a table without borders."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -322,6 +340,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -336,6 +355,7 @@ export const tables: IContent = {
 				new e.title("Small tables"),
 				new e.text("Add {{.table-sm}} to make any {{.table}} more compact by cutting all cell {{padding}} in half."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -343,6 +363,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [{ name: "TABLEITEM", output: TABLEITEM }],
 					output: () => {
@@ -357,6 +378,7 @@ export const tables: IContent = {
 				new e.title("Table group dividers"),
 				new e.text("Add a thicker border, darker between table groups—{{<thead>}}, {{<tbody>}}, and {{<tfoot>}}—with {{.table-group-divider}}. Customize the color by changing the {{border-top-color}} (which Bootstrap don’t currently provide a utility class for at this time)."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
@@ -379,6 +401,7 @@ export const tables: IContent = {
 					"Table cells of {{<thead>}} are always vertical aligned to the bottom. Table cells in {{<tbody>}} inherit their alignment from {{<table>}} and are aligned to the top by default. Use the {{nav:docs/utilities/vertical_align::vertical align}} classes to re-align where needed."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.table.responsive(
 							new b.table.container({ verticalAlign: "middle" }, [
@@ -415,6 +438,7 @@ export const tables: IContent = {
 				new e.title("Nesting"),
 				new e.text("Border styles, active styles, and table variants are not inherited by nested tables."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container({ striped: "row", bordered: true }, [
@@ -457,6 +481,7 @@ export const tables: IContent = {
 				new e.subtitle("Table head"),
 				new e.text("Similar to tables and dark tables, use the modifier classes {{.table-light}} or {{.table-dark}} to make {{<thead>}}s appear light or dark gray."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -467,6 +492,7 @@ export const tables: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -483,6 +509,7 @@ export const tables: IContent = {
 			new e.section([
 				new e.subtitle("Table foot"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -500,6 +527,7 @@ export const tables: IContent = {
 				new e.subtitle("Captions"),
 				new e.text("A {{<caption>}} functions like a heading for a table. It helps users with screen readers to find a table and understand what it’s about and decide if they want to read it."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -511,6 +539,7 @@ export const tables: IContent = {
 				}),
 				new e.text("You can also put the {{<caption>}} on the top of the table with {{.caption-top}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					extention: [
 						{ name: "TABLEHEAD", output: TABLEHEAD },
@@ -542,6 +571,7 @@ export const tables: IContent = {
 				new e.text("Across every breakpoint, use {{.table-responsive}} for horizontally scrolling tables."),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -559,6 +589,7 @@ export const tables: IContent = {
 				new e.text("{{b::These tables may appear broken until their responsive styles apply at specific viewport widths.}}"),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -568,6 +599,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -577,6 +609,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -586,6 +619,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -595,6 +629,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
 					output: () => {
@@ -603,6 +638,7 @@ export const tables: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { overflow: "hidden" },
 					extention: [{ name: "TABLEBIG", output: TABLEBIG }],
@@ -702,4 +738,607 @@ export const tables: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.table.container([
+                            new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+                            new b.table.tbody([
+                                new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+                                new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+                                new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.table.container([
+                            new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Class"), new b.table.th({ scope: "col" }, "Heading"), new b.table.th({ scope: "col" }, "Heading")])),
+                            new b.table.tbody([undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new b.table.tr({ color: i }, [new b.table.th({ scope: "row" }, i ? core.uppercaseFirst(i) : "Default"), new b.table.td("Cell"), new b.table.td("Cell")]))),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ color: "primary" }, [
+                            new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Class"), new b.table.th({ scope: "col" }, "Heading"), new b.table.th({ scope: "col" }, "Heading")])),
+                            new b.table.tbody([undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new b.table.tr([
+                                new b.table.th({
+                                    scope: "row",
+                                    color: i,
+                                }, i ? core.uppercaseFirst(i) : "Default"),
+                                new b.table.td("Cell"),
+                                new b.table.td({ color: i }, "Cell"),
+                            ]))),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ striped: "row" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ striped: "col" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ striped: "row", color: "dark" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ striped: "col", color: "dark" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ striped: "row", color: "success" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ striped: "col", color: "success" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ hoverable: true }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ hoverable: true, color: "dark" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ hoverable: true, striped: "row" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container([
+                            new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+                            new b.table.tbody([
+                                new b.table.tr({ active: true }, [new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+                                new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+                                new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2, active: true }, "Larry the Bird"), new b.table.td("@twitter")]),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ bordered: true }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ bordered: true, borderColor: "primary" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ bordered: false }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ bordered: false, color: "dark" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ small: true }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ small: true, color: "dark" }, TABLEITEM());
+                    }`,
+
+			extention: [
+				`() => {
+    return [
+        new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+        new b.table.tbody([
+            new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+            new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+        ]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container([
+                            new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+                            new b.table.tbody({ divider: true }, [
+                                new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+                                new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+                                new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td({ colspan: 2 }, "Larry the Bird"), new b.table.td("@twitter")]),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive(new b.table.container({ verticalAlign: "middle" }, [
+                            new b.table.thead(new b.table.tr([new b.table.th({ scope: "col", width: 25 }, "Heading 1"), new b.table.th({ scope: "col", width: 25 }, "Heading 2"), new b.table.th({ scope: "col", width: 25 }, "Heading 3"), new b.table.th({ scope: "col", width: 25 }, "Heading 4")])),
+                            new b.table.tbody([
+                                new b.table.tr([
+                                    new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
+                                    new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
+                                    new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
+                                    new b.table.td("This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."),
+                                ]),
+                                new b.table.tr({ verticalAlign: "bottom" }, [
+                                    new b.table.td("This cell inherits {{vertical-align: bottom;}} from the table row"),
+                                    new b.table.td("This cell inherits {{vertical-align: bottom;}} from the table row"),
+                                    new b.table.td("This cell inherits {{vertical-align: bottom;}} from the table row"),
+                                    new b.table.td("This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."),
+                                ]),
+                                new b.table.tr([
+                                    new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
+                                    new b.table.td("This cell inherits {{vertical-align: middle;}} from the table"),
+                                    new b.table.td({ verticalAlign: "top" }, "This cell is aligned to the top."),
+                                    new b.table.td("This here is some placeholder text, intended to take up quite a bit of vertical space, to demonstrate how the vertical alignment works in the preceding cells."),
+                                ]),
+                            ]),
+                        ]));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ striped: "row", bordered: true }, [
+                            new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")])),
+                            new b.table.tbody([
+                                new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+                                new b.table.tr(new b.table.td({ colspan: 4 }, new b.table.container({ marginBottom: 0 }, [
+                                    new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Header"), new b.table.th({ scope: "col" }, "Header"), new b.table.th({ scope: "col" }, "Header")])),
+                                    new b.table.tbody(["A", "B", "C"].map((i) => new b.table.tr([new b.table.th({ scope: "row" }, i), new b.table.td("First"), new b.table.td("Last")]))),
+                                ]))),
+                                new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.table.container([new b.table.thead({ color: "light" }, TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
+                    }`,
+
+			extention: [
+				`() => {
+    return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
+}`,
+				`() => {
+    return [
+        new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container([new b.table.thead({ color: "dark" }, TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
+                    }`,
+
+			extention: [
+				`() => {
+    return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
+}`,
+				`() => {
+    return [
+        new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container([new b.table.thead({ color: "light" }, TABLEHEAD()), new b.table.tbody(TABLEBODY()), new b.table.tfoot(new b.table.tr([new b.table.td("Footer"), new b.table.td("Footer"), new b.table.td("Footer"), new b.table.td("Footer")]))]);
+                    }`,
+
+			extention: [
+				`() => {
+    return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
+}`,
+				`() => {
+    return [
+        new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ small: true }, [new h.caption("List of user"), new b.table.thead(TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
+                    }`,
+
+			extention: [
+				`() => {
+    return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
+}`,
+				`() => {
+    return [
+        new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.container({ small: true, captionLocation: "top" }, [new h.caption("List of user"), new b.table.thead(TABLEHEAD()), new b.table.tbody(TABLEBODY())]);
+                    }`,
+
+			extention: [
+				`() => {
+    return new b.table.tr([new b.table.th({ scope: "col" }, "#"), new b.table.th({ scope: "col" }, "First"), new b.table.th({ scope: "col" }, "Last"), new b.table.th({ scope: "col" }, "Handle")]);
+}`,
+				`() => {
+    return [
+        new b.table.tr([new b.table.th({ scope: "row" }, "1"), new b.table.td("Mark"), new b.table.td("Otto"), new b.table.td("@mdo")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "2"), new b.table.td("Jacob"), new b.table.td("Thornton"), new b.table.td("@fat")]),
+        new b.table.tr([new b.table.th({ scope: "row" }, "3"), new b.table.td("Larry"), new b.table.td("the Bird"), new b.table.td("@twitter")]),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive(new b.table.container(TABLEBIG(3, 9)));
+                    }`,
+
+			extention: [
+				`(row, col) => {
+    return [
+        new b.table.thead(new b.table.tr(Array(col)
+            .fill("")
+            .map((_i, ix) => new b.table.th({ scope: "col" }, ix === 0 ? "#" : \`Head#\${ix + 1}\`)))),
+        new b.table.tbody(Array(row)
+            .fill("")
+            .map((_i, ix) => new b.table.tr(Array(col)
+            .fill("")
+            .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive(new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive"), ...TABLEBIG(3, 12)]));
+                    }`,
+
+			extention: [
+				`(row, col) => {
+    return [
+        new b.table.thead(new b.table.tr(Array(col)
+            .fill("")
+            .map((_i, ix) => new b.table.th({ scope: "col" }, ix === 0 ? "#" : \`Head#\${ix + 1}\`)))),
+        new b.table.tbody(Array(row)
+            .fill("")
+            .map((_i, ix) => new b.table.tr(Array(col)
+            .fill("")
+            .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive({ responsive: "sm" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-sm"), ...TABLEBIG(3, 12)]));
+                    }`,
+
+			extention: [
+				`(row, col) => {
+    return [
+        new b.table.thead(new b.table.tr(Array(col)
+            .fill("")
+            .map((_i, ix) => new b.table.th({ scope: "col" }, ix === 0 ? "#" : \`Head#\${ix + 1}\`)))),
+        new b.table.tbody(Array(row)
+            .fill("")
+            .map((_i, ix) => new b.table.tr(Array(col)
+            .fill("")
+            .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive({ responsive: "md" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-md"), ...TABLEBIG(3, 12)]));
+                    }`,
+
+			extention: [
+				`(row, col) => {
+    return [
+        new b.table.thead(new b.table.tr(Array(col)
+            .fill("")
+            .map((_i, ix) => new b.table.th({ scope: "col" }, ix === 0 ? "#" : \`Head#\${ix + 1}\`)))),
+        new b.table.tbody(Array(row)
+            .fill("")
+            .map((_i, ix) => new b.table.tr(Array(col)
+            .fill("")
+            .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive({ responsive: "lg" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-lg"), ...TABLEBIG(3, 12)]));
+                    }`,
+
+			extention: [
+				`(row, col) => {
+    return [
+        new b.table.thead(new b.table.tr(Array(col)
+            .fill("")
+            .map((_i, ix) => new b.table.th({ scope: "col" }, ix === 0 ? "#" : \`Head#\${ix + 1}\`)))),
+        new b.table.tbody(Array(row)
+            .fill("")
+            .map((_i, ix) => new b.table.tr(Array(col)
+            .fill("")
+            .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive({ responsive: "xl" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-xxl"), ...TABLEBIG(3, 12)]));
+                    }`,
+
+			extention: [
+				`(row, col) => {
+    return [
+        new b.table.thead(new b.table.tr(Array(col)
+            .fill("")
+            .map((_i, ix) => new b.table.th({ scope: "col" }, ix === 0 ? "#" : \`Head#\${ix + 1}\`)))),
+        new b.table.tbody(Array(row)
+            .fill("")
+            .map((_i, ix) => new b.table.tr(Array(col)
+            .fill("")
+            .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
+    ];
+}`,
+			],
+		},
+		{
+			source: `() => {
+                        return new b.table.responsive({ responsive: "xxl" }, new b.table.container({ captionLocation: "top" }, [new h.caption(".table-responsive-xxl"), ...TABLEBIG(3, 12)]));
+                    }`,
+
+			extention: [
+				`(row, col) => {
+    return [
+        new b.table.thead(new b.table.tr(Array(col)
+            .fill("")
+            .map((_i, ix) => new b.table.th({ scope: "col" }, ix === 0 ? "#" : \`Head#\${ix + 1}\`)))),
+        new b.table.tbody(Array(row)
+            .fill("")
+            .map((_i, ix) => new b.table.tr(Array(col)
+            .fill("")
+            .map((_j, jx) => (jx === 0 ? new b.table.th({ scope: "row" }, (ix + 1).toString()) : new b.table.td(\`Cell#\${jx + 1}\`)))))),
+    ];
+}`,
+			],
+		},
+	],
 };

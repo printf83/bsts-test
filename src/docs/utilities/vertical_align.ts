@@ -1,11 +1,13 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const vertical_align: IContent = {
 	title: "Vertical alignment",
 	description: "Easily change the vertical alignment of inline, inline-block, inline-table, and table cell elements.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.text("Change the alignment of elements with the {{https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align::vertical-alignment}} utilities. Please note that vertical-align only affects inline, inline-block, inline-table, and table cell elements."),
@@ -13,6 +15,7 @@ export const vertical_align: IContent = {
 				new e.text("To vertically center non-inline content (like {{<div>}}s and more), use Bootstrap {{nav:docs/utilities/flex#align_items::flex box utilities}}."),
 				new e.text("With inline elements:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.span({ verticalAlign: "baseline" }, "baseline"),
@@ -26,6 +29,7 @@ export const vertical_align: IContent = {
 				}),
 				new e.text("With table cells:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.table(
 							{ style: { height: "100px" } },
@@ -68,4 +72,30 @@ export const vertical_align: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.span({ verticalAlign: "baseline" }, "baseline"),
+                            new h.span({ verticalAlign: "top" }, "top"),
+                            new h.span({ verticalAlign: "middle" }, "middle"),
+                            new h.span({ verticalAlign: "bottom" }, "bottom"),
+                            new h.span({ verticalAlign: "text-top" }, "text-top"),
+                            new h.span({ verticalAlign: "text-bottom" }, "text-bottom"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.table({ style: { height: "100px" } }, new h.tbody(new h.tr([
+                            new h.td({ verticalAlign: "baseline" }, "baseline"),
+                            new h.td({ verticalAlign: "top" }, "top"),
+                            new h.td({ verticalAlign: "middle" }, "middle"),
+                            new h.td({ verticalAlign: "bottom" }, "bottom"),
+                            new h.td({ verticalAlign: "text-top" }, "text-top"),
+                            new h.td({ verticalAlign: "text-bottom" }, "text-bottom"),
+                        ])));
+                    }`,
+		},
+	],
 };

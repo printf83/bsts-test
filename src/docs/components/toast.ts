@@ -1,11 +1,13 @@
 import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const toast: IContent = {
 	title: "Toasts",
 	description: "Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([new e.text("Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems. They’re built with flexbox, so they’re easy to align and position.")]),
 
@@ -36,6 +38,7 @@ export const toast: IContent = {
 				new e.text("To encourage extensible and predictable toasts, Bootstrap recommend a header and body. Toast headers use {{display:'flex'}}, allowing easy alignment of content thanks to Bootstrap margin and flexbox utilities."),
 				new e.text("Toasts are as flexible as you need and have very little required markup. At a minimum, Bootstrap require a single element to contain your “toasted” content and strongly encourage a dismiss button."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
@@ -66,6 +69,7 @@ export const toast: IContent = {
 				new e.subtitle("Live example"),
 				new e.text("Click the button below to show a toast (positioned with Bootstrap utilities in the lower right corner) that has been hidden by default."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.button(
@@ -110,6 +114,7 @@ export const toast: IContent = {
 				new e.subtitle("Toast show"),
 				new e.text("You also can use Bootstrap {{b.toast.show}} function to show the toast. This toast will be regenerated every time you call it and get will be destroy automaticly on {{hidden.bs.toast}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -160,6 +165,7 @@ export const toast: IContent = {
 					],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const fnToast = (color: I.B.Toast.Create["color"], elem: core.IElem, icon?: string) => {
@@ -271,6 +277,7 @@ export const toast: IContent = {
 				new e.subtitle("Translucent"),
 				new e.text("Toasts are slightly translucent to blend in with what’s below them."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					previewAttr: { bgColor: "dark" },
 					output: () => {
@@ -298,6 +305,7 @@ export const toast: IContent = {
 				new e.subtitle("Stacking"),
 				new e.text("You can stack toasts by wrapping them in a toast container, which will vertically add some spacing."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const item = (msg: string, timer: string) => {
@@ -330,6 +338,7 @@ export const toast: IContent = {
 					"Customize your toasts by removing sub-components, tweaking them with {{nav:docs/utilities/api::utilities}}, or by adding your own markup. Here Bootstrap created a simpler toast by removing the default {{b.toast.header}}, adding a custom hide icon from {{https://icons.getbootstrap.com/::Bootstrap Icons}}, and using some {{nav:docs/utilities/flex::flexbox utilities}} to adjust the layout."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, new h.div({ display: "flex" }, [new b.toast.body("Hello, world! This is a toast message."), new b.toast.btnclose({ marginEnd: 2, margin: "auto" })]));
@@ -337,6 +346,7 @@ export const toast: IContent = {
 				}),
 				new e.text("Alternatively, you can also add additional controls and components to toasts."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, [
@@ -357,6 +367,7 @@ export const toast: IContent = {
 					"Building on the above example, you can create different toast color schemes with Bootstrap {{nav:docs/utilities/colors::color}} and {{nav:docs/utilities/background::background}} utilities. Here Bootstrap added {{textBgColor:'primary'}} to the {{b.toast.item}}, and then added {{b.toast.btnclose({white:true})}} to Bootstrap close button. For a crisp edge, Bootstrap remove the default border with {{border:false}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item(
@@ -380,6 +391,7 @@ export const toast: IContent = {
 				new e.subtitle("Disable animation"),
 				new e.text("{{bsts}} automaticly set {{animation:true}} on {{b.toast.item}}. Set {{animation:false}} to disable toast animation."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -408,6 +420,7 @@ export const toast: IContent = {
 				new e.title("Placement"),
 				new e.text("Place toasts with custom CSS as you need them. The top right is often used for notifications, as is the top middle. If you’re only ever going to show one toast at a time, put the positioning styles right on the .toast."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const container = (placement: I.B.Toast.Container["placement"]) => {
@@ -479,6 +492,7 @@ export const toast: IContent = {
 				}),
 				new e.text("For systems that generate more notifications, consider using a wrapping element so they can easily stack."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const item = (msg: string, timer: string) => {
@@ -503,6 +517,7 @@ export const toast: IContent = {
 				}),
 				new e.text("You can also get fancy with flexbox utilities to align toasts horizontally and/or vertically."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						const item = (msg: string, timer: string) => {
@@ -569,6 +584,7 @@ export const toast: IContent = {
 					`,
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.button(
@@ -601,6 +617,7 @@ export const toast: IContent = {
 				}),
 				new e.text("When using {{autohide:false}}, you must add a close button to allow users to dismiss the toast."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, live: "assertive", atomic: true, autohide: false }, [
@@ -770,6 +787,7 @@ export const toast: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return [
@@ -870,6 +888,7 @@ export const toast: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.button(
@@ -922,4 +941,516 @@ export const toast: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+                            new b.toast.header([
+                                new h.div({
+                                    bgColor: "primary",
+                                    rounded: true,
+                                    marginEnd: 2,
+                                    style: { width: "20px", height: "20px" },
+                                }),
+                                new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                new h.small("11 mins ago"),
+                                new b.toast.btnclose(),
+                            ]),
+                            new b.toast.body("Hello, world! This is a toast message."),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.button({
+                                id: "liveToastBtn",
+                                on: {
+                                    click: (_e) => {
+                                        //trigger live toast demo
+                                        const toastLiveExample = document.getElementById("liveToast");
+                                        const toastBootstrap = b.toast.getOrCreateInstance(toastLiveExample);
+                                        toastBootstrap.show();
+                                    },
+                                },
+                            }, "Show live toast"),
+                            new b.toast.container({ placement: "bottom-end" }, new b.toast.item({ id: "liveToast", live: "assertive", atomic: true }, [
+                                new b.toast.header([
+                                    new h.div({
+                                        bgColor: "primary",
+                                        rounded: true,
+                                        marginEnd: 2,
+                                        style: { width: "20px", height: "20px" },
+                                    }),
+                                    new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                    new h.small("11 mins ago"),
+                                    new b.toast.btnclose(),
+                                ]),
+                                new b.toast.body("Hello, world! This is a toast message."),
+                            ])),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button({
+                            on: {
+                                click: (_e) => {
+                                    const tItem = new b.toast.item({ live: "assertive", atomic: true }, [
+                                        new b.toast.header([
+                                            new h.div({
+                                                bgColor: "primary",
+                                                rounded: true,
+                                                marginEnd: 2,
+                                                style: { width: "20px", height: "20px" },
+                                            }),
+                                            new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                            new b.toast.timer(),
+                                            new b.toast.btnclose(),
+                                        ]),
+                                        new b.toast.body("Hello, world! This is a toast message."),
+                                    ]);
+                                    //show the above toast on the top-end
+                                    b.toast.show(tItem, "top-end");
+                                },
+                            },
+                        }, "Show live toast");
+                    }`,
+		},
+		{
+			source: `() => {
+                        const fnToast = (color, elem, icon) => {
+                            let tElem;
+                            switch (color) {
+                                case "danger":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "x-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                case "dark":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "info-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                case "info":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "info-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                case "light":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "info-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                case "primary":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "info-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                case "secondary":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "info-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                case "success":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "check-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                case "warning":
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "exclamation-triangle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                                    break;
+                                default:
+                                    tElem = new b.caption({
+                                        icon: b.icon.bi(icon || "info-circle-fill", {
+                                            fontSize: 5,
+                                        }),
+                                        elem: elem,
+                                    });
+                            }
+                            b.toast.show(b.toast.create({
+                                color: color,
+                                elem: tElem,
+                                title: document.title,
+                            }));
+                        };
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+                            return new b.button({
+                                color: i,
+                                on: {
+                                    click: (_e) => {
+                                        fnToast(i, \`This is {{b::\${i} }}toast.\`);
+                                    },
+                                },
+                            }, \`Show \${i} toast\`);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+                            new b.toast.header([
+                                new h.div({
+                                    bgColor: "primary",
+                                    rounded: true,
+                                    marginEnd: 2,
+                                    style: { width: "20px", height: "20px" },
+                                }),
+                                new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                new h.small("11 mins ago"),
+                                new b.toast.btnclose(),
+                            ]),
+                            new b.toast.body("Hello, world! This is a toast message."),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        const item = (msg, timer) => {
+                            return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+                                new b.toast.header([
+                                    new h.div({
+                                        bgColor: "primary",
+                                        rounded: true,
+                                        marginEnd: 2,
+                                        style: { width: "20px", height: "20px" },
+                                    }),
+                                    new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                    new h.small(timer),
+                                    new b.toast.btnclose(),
+                                ]),
+                                new b.toast.body(msg),
+                            ]);
+                        };
+                        return new b.toast.container({ debug: true }, [item("See? just like this", "Just now"), item("Heads up, toasts will stack automatically", "2 second ago")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, new h.div({ display: "flex" }, [new b.toast.body("Hello, world! This is a toast message."), new b.toast.btnclose({ marginEnd: 2, margin: "auto" })]));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.toast.item({ debug: true, alignItem: "center", live: "assertive", atomic: true }, [
+                            new b.toast.body([
+                                "Hello, world! This is a toast message.",
+                                new h.div({ marginTop: 2, paddingTop: 2, border: "top", display: "flex", gap: 1 }, [new b.button({ weight: "sm" }, "Take action"), new b.button({ weight: "sm", color: "secondary", dismiss: "toast" }, "Close")]),
+                            ]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.toast.item({
+                            debug: true,
+                            alignItem: "center",
+                            textBgColor: "primary",
+                            border: false,
+                            live: "assertive",
+                            atomic: true,
+                        }, new h.div({ display: "flex" }, [new b.toast.body("Hello, world! This is a toast message."), new b.toast.btnclose({ white: true, marginEnd: 2, margin: "auto" })]));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button({
+                            on: {
+                                click: () => {
+                                    b.toast.show(b.toast.create({
+                                        delay: 30000,
+                                        animation: false,
+                                        elem: "Toast without animation",
+                                        title: document.title,
+                                    }));
+                                },
+                            },
+                        }, "Show live toast");
+                    }`,
+		},
+		{
+			source: `() => {
+                        const container = (placement) => {
+                            return new b.toast.container({
+                                class: "debug",
+                                padding: 3,
+                                id: "toastPlacement",
+                                placement: placement,
+                                position: undefined,
+                            }, new b.toast.item({ debug: true }, [
+                                new b.toast.header([
+                                    new h.div({
+                                        bgColor: "primary",
+                                        rounded: true,
+                                        marginEnd: 2,
+                                        style: { width: "20px", height: "20px" },
+                                    }),
+                                    new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                    new h.small("11 mins ago"),
+                                    new b.toast.btnclose(),
+                                ]),
+                                new b.toast.body("Hello, world! This is a toast message."),
+                            ]));
+                        };
+                        return [
+                            new h.form([
+                                new h.label({ for: "selectToastPlacement" }, "Toast placement"),
+                                new b.select({
+                                    marginTop: 2,
+                                    id: "selectToastPlacement",
+                                    item: [
+                                        { value: "", selected: true, elem: "Select a position..." },
+                                        { value: "top-start", elem: "Top start" },
+                                        { value: "top-end", elem: "Top end" },
+                                        { value: "top-center", elem: "Top center" },
+                                        { value: "middle-start", elem: "Middle start" },
+                                        { value: "middle-end", elem: "Middle end" },
+                                        { value: "middle-center", elem: "Middle center" },
+                                        { value: "bottom-start", elem: "Bottom start" },
+                                        { value: "bottom-end", elem: "Bottom end" },
+                                        { value: "bottom-center", elem: "Bottom center" },
+                                    ],
+                                    on: {
+                                        change: (e) => {
+                                            const target = e.target;
+                                            const value = target.value;
+                                            core.replaceWith(document.getElementById("toastPlacement"), container(value));
+                                        },
+                                    },
+                                }),
+                            ]),
+                            new h.div({
+                                position: "relative",
+                                rounded: 3,
+                                bgColor: "body-secondary",
+                                marginTop: 3,
+                                style: { minHeight: "240px", zIndex: "0" },
+                                aria: { live: "polite", atomic: "true" },
+                            }, container("top-start")),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const item = (msg, timer) => {
+                            return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+                                new b.toast.header([
+                                    new h.div({
+                                        bgColor: "primary",
+                                        rounded: true,
+                                        marginEnd: 2,
+                                        style: { width: "20px", height: "20px" },
+                                    }),
+                                    new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                    new h.small(timer),
+                                    new b.toast.btnclose(),
+                                ]),
+                                new b.toast.body(msg),
+                            ]);
+                        };
+                        return new h.div({ aria: { live: "polite", atomic: "true" }, position: "relative" }, new b.toast.container({ debug: true, placement: "top-end" }, [item("See? just like this", "Just now"), item("Heads up, toasts will stack automatically", "2 second ago")]));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const item = (msg, timer) => {
+                            return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [
+                                new b.toast.header([
+                                    new h.div({
+                                        bgColor: "primary",
+                                        rounded: true,
+                                        marginEnd: 2,
+                                        style: { width: "20px", height: "20px" },
+                                    }),
+                                    new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                    new h.small(timer),
+                                    new b.toast.btnclose(),
+                                ]),
+                                new b.toast.body(msg),
+                            ]);
+                        };
+                        return new h.div({
+                            aria: { live: "polite", atomic: "true" },
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItem: "center",
+                            width: 100,
+                            style: { minHeight: "200px" },
+                        }, item("Hello, world! This is a toast message.", "11 mins ago"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.button({
+                                on: {
+                                    click: (_e) => {
+                                        const tItem = new b.toast.item({ live: "assertive", atomic: true, delay: 10000 }, [
+                                            new b.toast.header([
+                                                new h.div({
+                                                    bgColor: "primary",
+                                                    rounded: true,
+                                                    marginEnd: 2,
+                                                    style: { width: "20px", height: "20px" },
+                                                }),
+                                                new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                                new b.toast.timer(),
+                                                new b.toast.btnclose(),
+                                            ]),
+                                            new b.toast.body("This toast auto close {{delay}} set to 10 second"),
+                                        ]);
+                                        b.toast.show(tItem);
+                                    },
+                                },
+                            }, "Show delay timeout toast"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.toast.item({ debug: true, live: "assertive", atomic: true, autohide: false }, [
+                            new b.toast.header([
+                                new h.div({
+                                    bgColor: "primary",
+                                    rounded: true,
+                                    marginEnd: 2,
+                                    style: { width: "20px", height: "20px" },
+                                }),
+                                new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                new b.toast.timer(),
+                                new b.toast.btnclose(),
+                            ]),
+                            new b.toast.body("Hello, world! This is a toast message."),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ display: "flex", overflow: "auto" }, [
+                                new h.div({
+                                    width: 100,
+                                    marginEnd: 3,
+                                    bgColor: "body-tertiary",
+                                    rounded: true,
+                                    position: "relative",
+                                }, new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }, new b.toast.item({ id: "example-toast", live: "assertive", atomic: true, autohide: false }, [
+                                    new b.toast.header([
+                                        new h.div({
+                                            bgColor: "primary",
+                                            rounded: true,
+                                            marginEnd: 2,
+                                            style: { width: "20px", height: "20px" },
+                                        }),
+                                        new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                        new h.small("Just now"),
+                                        new b.toast.btnclose(),
+                                    ]),
+                                    new b.toast.body("Example toast"),
+                                ]))),
+                                new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.toast.show("#example-toast");
+                                            },
+                                        },
+                                    }, "show"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.toast.hide("#example-toast");
+                                            },
+                                        },
+                                    }, "hide"),
+                                    new b.button({
+                                        on: {
+                                            click: (event) => {
+                                                const target = event.target;
+                                                const result = b.toast.isShown("#example-toast");
+                                                e.console(target, "b.toast.isShown", result ? "true" : "false", "info");
+                                            },
+                                        },
+                                    }, "isShown"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.toast.dispose("#example-toast");
+                                            },
+                                        },
+                                    }, "dispose"),
+                                ])),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button({
+                            on: {
+                                click: (btnEvent) => {
+                                    const tItem = new b.toast.item({
+                                        color: "primary",
+                                        autohide: false,
+                                        live: "assertive",
+                                        atomic: true,
+                                        on: {
+                                            "shown.bs.toast": (event) => {
+                                                const target = event.target;
+                                                e.console(btnEvent.target, "shown.bs.toast", \`Target: {{b::\${core.elemInfo(target)}}}\`, "success");
+                                            },
+                                            "hidden.bs.toast": (event) => {
+                                                const target = event.target;
+                                                e.console(btnEvent.target, "hidden.bs.toast", \`Target: {{b::\${core.elemInfo(target)}}}\`, "danger");
+                                            },
+                                        },
+                                    }, [
+                                        new b.toast.header([
+                                            new h.div({
+                                                bgColor: "primary",
+                                                rounded: true,
+                                                marginEnd: 2,
+                                                style: { width: "20px", height: "20px" },
+                                            }),
+                                            new h.strong({ marginEnd: "auto" }, "Bootstrap"),
+                                            new b.toast.timer(),
+                                            new b.toast.btnclose(),
+                                        ]),
+                                        new b.toast.body("Hello, world! This is a toast event example. This toast {{b::dose not}} close automaticly. Click on the close button to close this toast."),
+                                    ]);
+                                    //show the above toast on the top-end
+                                    b.toast.show(tItem, "top-end");
+                                },
+                            },
+                        }, "Show toast event");
+                    }`,
+		},
+	],
 };

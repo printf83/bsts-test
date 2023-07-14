@@ -1,11 +1,13 @@
 import { b, core } from "@printf83/bsts";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 
 export const accordion: IContent = {
 	title: "Accordion",
 	description: "Build vertically collapsing accordions in combination with Bootstrap Collapse JavaScript plugin.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -19,6 +21,7 @@ export const accordion: IContent = {
 				new e.title("Example"),
 				new e.text("Click the accordions below to expand/collapse the accordion content."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let mainID = core.UUID();
 
@@ -65,6 +68,7 @@ export const accordion: IContent = {
 				new e.subtitle("Using item"),
 				new e.text("Same as above but more easy."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							item: [
@@ -93,6 +97,7 @@ export const accordion: IContent = {
 				new e.subtitle("Flush"),
 				new e.text("Add {{flush:true}} to {{b.accordion.container}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							flush: true,
@@ -122,6 +127,7 @@ export const accordion: IContent = {
 				new e.subtitle("Always open"),
 				new e.text("Add {{alwaysOpen:true}} to {{b.accordion.container}} to make accordion items stay open when another item is opened."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							alwaysOpen: true,
@@ -236,4 +242,102 @@ export const accordion: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        let mainID = core.UUID();
+                        return new b.accordion.container({ id: mainID }, [
+                            {
+                                title: "Accordion Item #1",
+                                elem: "{{b::This is the first item's accordion body}}. It is shown by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                show: true,
+                            },
+                            {
+                                title: "Accordion Item #2",
+                                elem: "{{b::This is the second item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                            },
+                            {
+                                title: "Accordion Item #3",
+                                elem: "{{b::This is the third item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                            },
+                        ].map((i) => {
+                            let itemID = core.UUID();
+                            return new b.accordion.item([
+                                new b.accordion.header({
+                                    id: \`heading-\${itemID}\`,
+                                    target: \`#collapse-\${itemID}\`,
+                                    controlfor: \`collapse-\${itemID}\`,
+                                    expanded: i.show,
+                                }, i.title),
+                                new b.accordion.body({ id: \`collapse-\${itemID}\`, parent: \`#\${mainID}\`, show: i.show }, i.elem),
+                            ]);
+                        }));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.accordion.container({
+                            item: [
+                                {
+                                    title: "Accordion Item #1",
+                                    elem: "{{b::This is the first item's accordion body}}. It is shown by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                    show: true,
+                                },
+                                {
+                                    title: "Accordion Item #2",
+                                    elem: "{{b::This is the second item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                },
+                                {
+                                    title: "Accordion Item #3",
+                                    elem: "{{b::This is the third item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.accordion.container({
+                            flush: true,
+                            item: [
+                                {
+                                    title: "Accordion Item #1",
+                                    elem: "{{b::This is the first item's accordion body}}. It is shown by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                    show: true,
+                                },
+                                {
+                                    title: "Accordion Item #2",
+                                    elem: "{{b::This is the second item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                },
+                                {
+                                    title: "Accordion Item #3",
+                                    elem: "{{b::This is the third item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                },
+                            ],
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.accordion.container({
+                            alwaysOpen: true,
+                            item: [
+                                {
+                                    title: "Accordion Item #1",
+                                    elem: "{{b::This is the first item's accordion body}}. It is shown by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                    show: true,
+                                },
+                                {
+                                    title: "Accordion Item #2",
+                                    elem: "{{b::This is the second item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                },
+                                {
+                                    title: "Accordion Item #3",
+                                    elem: "{{b::This is the third item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
+                                },
+                            ],
+                        });
+                    }`,
+		},
+	],
 };

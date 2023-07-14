@@ -1,11 +1,13 @@
 import { b, h, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const alert: IContent = {
 	title: "Alert",
 	description: "Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Examples"),
@@ -14,6 +16,7 @@ export const alert: IContent = {
 				),
 				new e.alert({ color: "info", callout: true }, "{{b::Heads up!}} As of v5.3.0, the {{alert-variant()}} Sass mixin is deprecated. Alert variants now have their CSS variables overridden in the {{nav:docs/components/alert#sass_loop::Sass loop}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 							return new b.alert.container({ color: i as I.B.Alert.Container["color"] }, `A simple ${i} alert—check it out!`);
@@ -35,6 +38,7 @@ export const alert: IContent = {
 				new e.subtitle("Callout"),
 				new e.text("Just set {{callout:true}} to change the {{alert}} to {{callout}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 							return new b.alert.container({ color: i as I.B.Alert.Container["color"], callout: true }, `A simple ${i} callout—check it out!`);
@@ -49,6 +53,7 @@ export const alert: IContent = {
 				new e.subtitle("Live example"),
 				new e.text("Click the button below to show an alert (hidden with inline styles to start), then dismiss (and destroy) it with the built-in close button."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ id: "liveAlertPlaceholder" }),
@@ -77,6 +82,7 @@ export const alert: IContent = {
 				new e.subtitle("Link color"),
 				new e.text("Use the {{b.alert.link}} component to quickly provide matching colored links within any alert."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
 							return new b.alert.container({ color: i as I.B.Alert.Container["color"] }, [`A simple ${i} alert with `, new b.alert.link({ href: "#" }, "an example link"), "."]);
@@ -91,6 +97,7 @@ export const alert: IContent = {
 				new e.subtitle("Additional content"),
 				new e.text("Alerts can also contain additional HTML elements like headings, paragraphs and dividers."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.alert.container({ color: "success" }, [
 							new b.alert.header(4, "Well done!"),
@@ -108,6 +115,7 @@ export const alert: IContent = {
 				new e.subtitle("Icons"),
 				new e.text("Similarly, you can use {{nav:docs/utilities/flex::flexbox utilities}} and {{https://icons.getbootstrap.com/::Bootstrap Icons}} to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.alert.container({ color: "info" }, new b.msg({ icon: "info-circle-fill" }, "An example alert with an icon"));
 					},
@@ -115,6 +123,7 @@ export const alert: IContent = {
 
 				new e.text("Need more than one icon for your alerts? Consider using more Bootstrap Icons and making a local SVG sprite like so to easily reference the same icons repeatedly."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							{ color: "info", icon: "info-circle-fill" },
@@ -145,6 +154,7 @@ export const alert: IContent = {
 				new e.text("You can see this in action with a live demo:"),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.alert.container({ color: "warning", dismissible: true }, "{{b::Holy guacamole!}} You should check in on some of those fields below.");
 					},
@@ -339,6 +349,7 @@ export const alert: IContent = {
 					`,
 				}),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const exampleAlert = new h.div(
@@ -467,6 +478,7 @@ export const alert: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.alert.container(
@@ -487,4 +499,166 @@ export const alert: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+                            return new b.alert.container({ color: i }, \`A simple \${i} alert—check it out!\`);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+                            return new b.alert.container({ color: i, callout: true }, \`A simple \${i} callout—check it out!\`);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ id: "liveAlertPlaceholder" }),
+                            new h.div(new b.button({
+                                color: "primary",
+                                on: {
+                                    click: (_e) => {
+                                        let container = document.getElementById("liveAlertPlaceholder");
+                                        core.appendChild(container, new b.alert.container({ color: "success", dismissible: true }, "Nice, you triggered this alert message!"));
+                                    },
+                                },
+                            }, "Show live alert")),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+                            return new b.alert.container({ color: i }, [\`A simple \${i} alert with \`, new b.alert.link({ href: "#" }, "an example link"), "."]);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.alert.container({ color: "success" }, [
+                            new b.alert.header(4, "Well done!"),
+                            new h.p("Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."),
+                            new h.hr(),
+                            new h.p({ marginBottom: 0 }, "Whenever you need to, be sure to use margin utilities to keep things nice and tidy."),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.alert.container({ color: "info" }, new b.msg({ icon: "info-circle-fill" }, "An example alert with an icon"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            { color: "info", icon: "info-circle-fill" },
+                            { color: "success", icon: "check-circle-fill" },
+                            { color: "warning", icon: "exclamation-triangle-fill" },
+                            { color: "danger", icon: "x-circle-fill" },
+                        ].map((i) => {
+                            return new b.alert.container({ color: i.color }, [new b.msg({ icon: i.icon }, \`An example \${i.color} alert with an icon\`)]);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.alert.container({ color: "warning", dismissible: true }, "{{b::Holy guacamole!}} You should check in on some of those fields below.");
+                    }`,
+		},
+		{
+			source: `() => {
+                        const exampleAlert = new h.div({ id: "example-alert-container" }, new b.alert.container({
+                            id: "example-alert",
+                            animation: true,
+                            color: "primary",
+                            marginBottom: 0,
+                            dismissible: true,
+                        }, "Example"));
+                        return [
+                            new h.div({ display: "flex", overflow: "auto" }, [
+                                new h.div({
+                                    width: 100,
+                                    marginEnd: 3,
+                                    bgColor: "body-tertiary",
+                                    rounded: true,
+                                    padding: [1, "md-4"],
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItem: "center",
+                                }, exampleAlert),
+                                new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.alert.init("#example-alert");
+                                                e.console(event.target, "b.alert.init", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "init"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.alert.getInstance("#example-alert");
+                                                e.console(event.target, "b.alert.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getInstance"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.alert.getOrCreateInstance("#example-alert");
+                                                e.console(event.target, "b.alert.getOrCreateInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getOrCreateInstance"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.alert.close("#example-alert");
+                                            },
+                                        },
+                                    }, "close"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.alert.dispose("#example-alert");
+                                            },
+                                        },
+                                    }, "dispose"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                core.replaceWith(document.getElementById("example-alert-container"), exampleAlert);
+                                            },
+                                        },
+                                    }, "reset"),
+                                ])),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.alert.container({
+                            color: "info",
+                            dismissible: true,
+                            on: {
+                                "close.bs.alert": (event) => {
+                                    const target = event.target;
+                                    e.console(target, "close.bs.alert", \`Target: {{b::\${core.elemInfo(target)}}}\`, "info");
+                                },
+                            },
+                        }, "Click close to see event trigged.");
+                    }`,
+		},
+	],
 };

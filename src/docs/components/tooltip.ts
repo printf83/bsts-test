@@ -1,12 +1,14 @@
 import { h, b, s, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
 
 export const tooltip: IContent = {
 	title: "Tooltips",
 	description: "Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-bs-attributes for local title storage.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -68,6 +70,7 @@ export const tooltip: IContent = {
 				new e.text("Hover over the links below to see tooltips:"),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.p({ textColor: "body-secondary" }, [
 							"Placeholder text to demonstrate some ",
@@ -102,6 +105,7 @@ export const tooltip: IContent = {
 					`,
 				}),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 					.custom-tooltip {
 						--bs-tooltip-bg: var(--bs-primary);
@@ -126,6 +130,7 @@ export const tooltip: IContent = {
 				new e.subtitle("Directions"),
 				new e.text("Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left by set the {{placement}} property. Directions are mirrored when using Bootstrap in RTL."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -141,6 +146,7 @@ export const tooltip: IContent = {
 				}),
 				new e.text("And with custom HTML added:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					showHTML: false,
 					output: () => {
@@ -155,6 +161,7 @@ export const tooltip: IContent = {
 				}),
 				new e.text("With an SVG:"),
 				new e.code({
+					db: getContentCode(db),
 					showHTML: false,
 					output: () => {
 						return new b.tooltip(
@@ -277,6 +284,7 @@ export const tooltip: IContent = {
 				new e.subtitle("Disabled elements"),
 				new e.text("Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a tooltip (or popover). {{bsts}} use {{b.tooltip}} as a wrapper, and automaticlly made keyboard-focusable using {{tabindex:'0'}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.tooltip(
 							{
@@ -430,6 +438,7 @@ export const tooltip: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const myDefaultAllowList = Tooltip.Default.allowList;
@@ -624,6 +633,7 @@ export const tooltip: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					showConsole: true,
 					output: () => {
@@ -655,4 +665,206 @@ export const tooltip: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.p({ textColor: "body-secondary" }, [
+                            "Placeholder text to demonstrate some ",
+                            new b.tooltip({ content: "Default tooltip" }, new h.a({ href: "#" }, "inline links")),
+                            " with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of ",
+                            new b.tooltip({ content: "Another tooltip" }, new h.a({ href: "#" }, "real text")),
+                            ". And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how ",
+                            new b.tooltip({ content: "Another one here too" }, new h.a({ href: "#" }, "these tooltips on links")),
+                            " can work in practice, once you use them on ",
+                            new b.tooltip({ content: "The last tip!" }, new h.a({ href: "#" }, "your own")),
+                            " site or project.",
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.tooltip({
+                            title: "Custom tooltip",
+                            content: "This tooltip is themed via CSS variables.",
+                            customClass: "custom-tooltip",
+                        }, new b.button({ color: "secondary" }, "Custom tooltip"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["top", "right", "bottom", "left"].map((i) => {
+                            return new b.tooltip({
+                                placement: i,
+                                content: \`Tooltip on \${i}\`,
+                            }, new b.button({ color: "secondary" }, \`Tooltip on \${i}\`));
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.tooltip({
+                            content: "<em>Tooltip</em> <u>with</u> <b>HTML</b>",
+                            allowHtml: true,
+                        }, new b.button({ color: "secondary" }, "Tooltip on HTML"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.tooltip({
+                            content: "Default tooltip",
+                        }, new s(\`<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#563d7c"></rect><circle cx="50" cy="50" r="30" fill="#007bff"></circle></svg>\`));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.tooltip({
+                            content: "Disabled tooltip",
+                        }, new b.button({ color: "primary", disabled: true }, "Disabled button"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const myDefaultAllowList = bootstrap__WEBPACK_IMPORTED_MODULE_3__.Tooltip.Default.allowList;
+                        myDefaultAllowList.img = ["src", "alt"];
+                        return [
+                            new h.div({ display: "flex", overflow: "auto" }, [
+                                new h.div({
+                                    width: 100,
+                                    marginEnd: 3,
+                                    bgColor: "body-tertiary",
+                                    rounded: true,
+                                    position: "relative",
+                                }, new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }, new b.tooltip({
+                                    autoInit: false,
+                                    id: "example-tooltip",
+                                    allowHtml: true,
+                                    content: "Default tooltip",
+                                    on: {
+                                        "hidden.bs.tooltip": () => {
+                                            b.tooltip.setContent("#example-tooltip", {
+                                                ".tooltip-inner": "Default tooltip",
+                                            });
+                                        },
+                                    },
+                                }, new b.button({
+                                    color: "primary",
+                                    weight: "lg",
+                                }, "Example")))),
+                                new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.enable("#example-tooltip");
+                                            },
+                                        },
+                                    }, "enable"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.tooltip.getInstance("#example-tooltip");
+                                                e.console(event.target, "b.tooltip.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getInstance"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.tooltip.getOrCreateInstance("#example-tooltip");
+                                                e.console(event.target, "b.tooltip.getOrCreateInstance", elem, elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getOrCreateInstance"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.toggle("#example-tooltip");
+                                            },
+                                        },
+                                    }, "toggle"),
+                                    new b.button({
+                                        color: "warning",
+                                        toggle: true,
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.toggleEnabled("#example-tooltip");
+                                            },
+                                        },
+                                    }, "toggleEnabled"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.show("#example-tooltip");
+                                            },
+                                        },
+                                    }, "show"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.hide("#example-tooltip");
+                                            },
+                                        },
+                                    }, "hide"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.update("#example-tooltip");
+                                            },
+                                        },
+                                    }, "update"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.setContent("#example-tooltip", {
+                                                    ".tooltip-inner": "<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
+                                                });
+                                            },
+                                        },
+                                    }, "setContent"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.disable("#example-tooltip");
+                                            },
+                                        },
+                                    }, "disabled"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.tooltip.dispose("#example-tooltip");
+                                            },
+                                        },
+                                    }, "dispose"),
+                                ])),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.tooltip({
+                            id: "event-tooltip",
+                            content: "Tooltip event",
+                            on: {
+                                "shown.bs.tooltip": (event) => {
+                                    const target = event.target;
+                                    e.console(target, "shown.bs.tooltip", \`target: {{b::\${core.elemInfo(target)}}}\`, "success");
+                                },
+                                "hidden.bs.tooltip": (event) => {
+                                    const target = event.target;
+                                    e.console(target, "hidden.bs.tooltip", \`target: {{b::\${core.elemInfo(target)}}}\`, "danger");
+                                },
+                                "inserted.bs.tooltip": (event) => {
+                                    const target = event.target;
+                                    e.console(target, "inserted.bs.tooltip", \`target: {{b::\${core.elemInfo(target)}}}\`, "info");
+                                },
+                            },
+                        }, new b.button({ color: "primary" }, "Tooltip event"));
+                    }`,
+		},
+	],
 };

@@ -1,12 +1,14 @@
 import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
 
 export const popover: IContent = {
 	title: "Popovers",
 	description: "Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -69,6 +71,7 @@ export const popover: IContent = {
 				new e.text("Bootstrap use JavaScript similar to the snippet above to render the following live popover. Titles are set via {{title}} and body content is set via {{content}}."),
 				new e.alert({ color: "warning", callout: true }, "When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} attribute when the element is rendered."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.popover(
 							{
@@ -87,6 +90,7 @@ export const popover: IContent = {
 				new e.subtitle("Four directions"),
 				new e.text("Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL. Set {{placement}} to change the direction."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -136,6 +140,7 @@ export const popover: IContent = {
 					"You can customize the appearance of popovers using {{nav:docs/components/popover#variables::CSS variables}}. Bootstrap set a custom class with {{customClass:'custom-popover'}} property to scope Bootstrap custom appearance and use it to override some of the local CSS variables."
 				),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 					.custom-popover {
 						--bs-popover-max-width: 200px;
@@ -169,6 +174,7 @@ export const popover: IContent = {
 					"{{b::Dismissing on next click requires specific HTML for proper cross-browser and cross-platform behavior}}. You can only use {{h.a}} elements, not {{b.button}}s or {{h.button}}s, and you must include a {{https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex::tabindex}}.{{hr}}This not a problem in {{b.popover}} since it is a wrapper."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.popover(
 							{
@@ -193,6 +199,7 @@ export const popover: IContent = {
 				new e.text("For disabled popover triggers, you may also prefer {{trigger:['hover','focus']}} so that the popover appears as immediate visual feedback to your users as they may not expect to click on a disabled element."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.popover(
 							{
@@ -438,6 +445,7 @@ export const popover: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const myDefaultAllowList = Tooltip.Default.allowList;
@@ -637,6 +645,7 @@ export const popover: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.popover(
@@ -667,4 +676,200 @@ export const popover: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.popover({
+                            title: "Popover title",
+                            content: "And here's some amazing content. It's very engaging. Right?",
+                        }, new b.button({ weight: "lg", color: "danger" }, "Click to toggle popover"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["top", "right", "bottom", "left"].map((i) => {
+                            return new b.popover({
+                                placement: i,
+                                content: \`\${core.uppercaseFirst(i)} popover\`,
+                            }, new b.button({ color: "secondary" }, \`Popover on \${i}\`));
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.popover({
+                            title: "Custom popover",
+                            content: "This popover is themed via CSS variables.",
+                            customClass: "custom-popover",
+                        }, new b.button({ color: "secondary" }, "Custom popover"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.popover({
+                            title: "Dismissible popover",
+                            content: "And here's some amazing content. It's very engaging. Right?",
+                            trigger: "focus",
+                        }, new b.button({ weight: "lg", color: "danger" }, "Dismissible popover"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.popover({
+                            content: "Disabled popover",
+                            trigger: ["hover", "focus"],
+                        }, new b.button({ color: "primary", disabled: true }, "Disabled button"));
+                    }`,
+		},
+		{
+			source: `() => {
+                        const myDefaultAllowList = bootstrap__WEBPACK_IMPORTED_MODULE_3__.Tooltip.Default.allowList;
+                        myDefaultAllowList.img = ["src", "alt"];
+                        return [
+                            new h.div({ display: "flex", overflow: "auto" }, [
+                                new h.div({
+                                    width: 100,
+                                    marginEnd: 3,
+                                    bgColor: "body-tertiary",
+                                    rounded: true,
+                                    position: "relative",
+                                }, new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }, new b.popover({
+                                    autoInit: false,
+                                    id: "example-popover",
+                                    placement: "top",
+                                    fallbackPlacement: "bottom",
+                                    allowHtml: true,
+                                    allowList: myDefaultAllowList,
+                                    title: "Popover title",
+                                    content: "And here's some amazing content. It's very engaging. Right?",
+                                    on: {
+                                        "hidden.bs.popover": () => {
+                                            b.popover.setContent("#example-popover", {
+                                                ".popover-header": "Popover title",
+                                                ".popover-body": "And here's some amazing content. It's very engaging. Right?",
+                                            });
+                                        },
+                                    },
+                                }, new b.button({
+                                    color: "primary",
+                                    weight: "lg",
+                                }, "Example")))),
+                                new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: () => {
+                                                b.popover.enable("#example-popover");
+                                            },
+                                        },
+                                    }, "enable"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.popover.getInstance("#example-popover");
+                                                e.console(event.target, "b.popover.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getInstance"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.popover.getOrCreateInstance("#example-popover");
+                                                e.console(event.target, "b.popover.getOrCreateInstance", elem, elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getOrCreateInstance"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.popover.toggle("#example-popover");
+                                            },
+                                        },
+                                    }, "toggle"),
+                                    new b.button({
+                                        color: "warning",
+                                        toggle: true,
+                                        on: {
+                                            click: () => {
+                                                b.popover.toggleEnabled("#example-popover");
+                                            },
+                                        },
+                                    }, "toggleEnabled"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.popover.show("#example-popover");
+                                            },
+                                        },
+                                    }, "show"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.popover.hide("#example-popover");
+                                            },
+                                        },
+                                    }, "hide"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.popover.update("#example-popover");
+                                            },
+                                        },
+                                    }, "update"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.popover.setContent("#example-popover", {
+                                                    ".popover-header": "Image",
+                                                    ".popover-body": "<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
+                                                });
+                                            },
+                                        },
+                                    }, "setContent"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.popover.disable("#example-popover");
+                                            },
+                                        },
+                                    }, "disabled"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.popover.dispose("#example-popover");
+                                            },
+                                        },
+                                    }, "dispose"),
+                                ])),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.popover({
+                            title: "Popover title",
+                            content: "And here's some amazing content. It's very engaging. Right?",
+                            on: {
+                                "shown.bs.popover": (event) => {
+                                    const target = event.target;
+                                    e.console(target, "shown.bs.popover", \`Target: {{b::\${core.elemInfo(target)}}}\`, "success");
+                                },
+                                "hidden.bs.popover": (event) => {
+                                    const target = event.target;
+                                    e.console(target, "hidden.bs.popover", \`Target: {{b::\${core.elemInfo(target)}}}\`, "danger");
+                                },
+                                "inserted.bs.popover": (event) => {
+                                    const target = event.target;
+                                    e.console(target, "inserted.bs.popover", \`Target: {{b::\${core.elemInfo(target)}}}\`, "info");
+                                },
+                            },
+                        }, new b.button({ weight: "lg" }, "Click to toggle popover"));
+                    }`,
+		},
+	],
 };

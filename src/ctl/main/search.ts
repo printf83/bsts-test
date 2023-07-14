@@ -336,20 +336,20 @@ export const showSearchDialog = () => {
 													gap: 2,
 													alignItem: "center",
 													lineHeight: 1,
-													on: {
-														click: () => {
-															b.modal.show(
-																b.modal.create({
-																	elem: b.form.textarea({
-																		label: "docIndexDB",
-																		rows: 10,
-																		value: JSON.stringify(_docIndexDB),
-																	}),
-																	btn: "ok",
-																})
-															);
-														},
-													},
+													// on: {
+													// 	click: () => {
+													// 		b.modal.show(
+													// 			b.modal.create({
+													// 				elem: b.form.textarea({
+													// 					label: "docIndexDB",
+													// 					rows: 10,
+													// 					value: JSON.stringify(_docIndexDB),
+													// 				}),
+													// 				btn: "ok",
+													// 			})
+													// 		);
+													// 	},
+													// },
 												},
 												[
 													"Search by ",

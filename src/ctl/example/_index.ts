@@ -1,4 +1,4 @@
-import { Code, code, IBsExampleContainer, IBsExampleExt } from "./code.js";
+import { Code, code, IBsExampleContainer, IBsExampleExt, IBsExampleData } from "./code.js";
 import { Codepreview, codepreview, IBsExampleCodepreview } from "./codepreview.js";
 import { Description, description } from "./description.js";
 import { Item, item } from "./item.js";
@@ -14,44 +14,6 @@ import { Ul, ul } from "./ul.js";
 import { Alert, alert } from "./alert.js";
 import { toast, console, codePen as codePen, ICodePen, codeBeautify } from "./_fn.js";
 
-export {
-	code,
-	codepreview,
-	title,
-	pagetitle,
-	description,
-	item,
-	subtitle,
-	xsubtitle,
-	section,
-	text,
-	table,
-	ol,
-	ul,
-	alert,
-	toast,
-	console,
-	codePen,
-	codeBeautify,
-	ICodePen,
-	IBsExampleCodepreview,
-	IBsExampleContainer,
-	IBsExampleExt,
-};
+export { code, codepreview, title, pagetitle, description, item, subtitle, xsubtitle, section, text, table, ol, ul, alert, toast, console, codePen, codeBeautify, ICodePen, IBsExampleCodepreview, IBsExampleContainer, IBsExampleExt, IBsExampleData };
 
-export {
-	Code,
-	Codepreview,
-	Title,
-	Pagetitle,
-	Description,
-	Item,
-	Subtitle,
-	Xsubtitle,
-	Section,
-	Text,
-	Table,
-	Ol,
-	Ul,
-	Alert,
-};
+export { Code, Codepreview, Title, Pagetitle, Description, Item, Subtitle, Xsubtitle, Section, Text, Table, Ol, Ul, Alert };

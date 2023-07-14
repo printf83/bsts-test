@@ -1,11 +1,13 @@
 import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const range: IContent = {
 	title: "Range",
 	description: "Use Bootstrap custom range inputs for consistent cross-browser styling and built-in customization.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -13,12 +15,14 @@ export const range: IContent = {
 					"Create custom {{<input type='range'>}} controls with {{.form-range}}. The track (the background) and thumb (the value) are both styled to appear the same across browsers. As only Firefox supports “filling” their track from the left or right of the thumb as a means to visually indicate progress, Bootstrap do not currently support it."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [new b.label({ for: "customRange1", class: "form-label" }, "Example range"), new b.input({ type: "range", id: "customRange1" })];
 					},
 				}),
 				new e.text("Using {{item}} to setup option"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Example range",
@@ -34,6 +38,7 @@ export const range: IContent = {
 				new e.title("Disabled"),
 				new e.text("Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Disabled range",
@@ -50,6 +55,7 @@ export const range: IContent = {
 				new e.title("Min and max"),
 				new e.text("Range inputs have implicit values for {{min}} and {{max}}—{{0}} and {{100}}, respectively. You may specify new values for those using the {{min}} and {{max}} attributes."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Example range",
@@ -68,6 +74,7 @@ export const range: IContent = {
 				new e.title("Steps"),
 				new e.text("By default, range inputs “snap” to integer values. To change this, you can specify a {{step}} value. In the example below, Bootstrap double the number of steps by using {{step='0.5'}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Example range",
@@ -117,4 +124,51 @@ export const range: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [new b.label({ for: "customRange1", class: "form-label" }, "Example range"), new b.input({ type: "range", id: "customRange1" })];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Example range",
+                            type: "range",
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Disabled range",
+                            type: "range",
+                            disabled: true,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Example range",
+                            type: "range",
+                            min: 0,
+                            max: 5,
+                            value: 4,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return b.form.input({
+                            label: "Example range",
+                            type: "range",
+                            min: 0,
+                            max: 5,
+                            step: 0.5,
+                            value: 4,
+                        });
+                    }`,
+		},
+	],
 };

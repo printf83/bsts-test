@@ -1,11 +1,13 @@
 import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const badge: IContent = {
 	title: "Badges",
 	description: "Documentation and examples for badges, Bootstrap small count and labeling component.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([new e.title("Examples"), new e.text("Badges ({{b.badge}}) scale to match the size of the immediate parent element by using relative font sizing and {{em}} units. As of v5, badges no longer have focus or hover styles for links.")]),
 
@@ -14,6 +16,7 @@ export const badge: IContent = {
 			new e.section([
 				new e.subtitle("Headings"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => {
 							return new h.h(i as I.H.HLevel, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
@@ -28,6 +31,7 @@ export const badge: IContent = {
 				new e.subtitle("Buttons"),
 				new e.text("Badges can be used as part of links or buttons to provide a counter."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(["Notification ", new b.badge({ bgColor: "secondary" }, "4")]);
 					},
@@ -44,6 +48,7 @@ export const badge: IContent = {
 				new e.subtitle("Positioned"),
 				new e.text("Use utilities to modify a {{b.badge}} and position it in the corner of a link or button."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button({ position: "relative" }, [
 							"Inbox ",
@@ -63,6 +68,7 @@ export const badge: IContent = {
 				}),
 				new e.text("You can also replace the {{b.badge}} component with a few more utilities without a count for a more generic indicator."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button({ position: "relative" }, [
 							"Profile ",
@@ -93,6 +99,7 @@ export const badge: IContent = {
 					"Set a {{bgColor}} with contrasting foreground {{textColor}} with {{nav:docs/helpers/color_background::textBgColor:<color> property}}. Previously it was required to manually pair your choice of {{nav:docs/utilities/colors::textColor:<color> }}and {{nav:docs/utilities/background::bgColor:<color> }}utilities for styling, which you still may use if you prefer."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -114,6 +121,7 @@ export const badge: IContent = {
 				new e.title("Pill badges"),
 				new e.text("Use the {{rounded:'pill'}} property to make badges more rounded with a larger {{border-radius}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
@@ -168,4 +176,65 @@ export const badge: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [1, 2, 3, 4, 5, 6].map((i) => {
+                            return new h.h(i, ["Example heading ", new b.badge({ bgColor: "secondary" }, "New")]);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button(["Notification ", new b.badge({ bgColor: "secondary" }, "4")]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button({ position: "relative" }, [
+                            "Inbox ",
+                            new b.badge({
+                                bgColor: "danger",
+                                position: "absolute",
+                                top: 0,
+                                start: 100,
+                                tMiddle: true,
+                                rounded: "pill",
+                            }, ["99+", new b.visuallyhidden("unread messages")]),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.button({ position: "relative" }, [
+                            "Profile ",
+                            new b.badge({
+                                bgColor: "danger",
+                                position: "absolute",
+                                top: 0,
+                                start: 100,
+                                tMiddle: true,
+                                rounded: "circle",
+                                border: true,
+                                borderColor: "light",
+                                padding: 2,
+                            }, new b.visuallyhidden("New alerts")),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+                            return new b.badge({ textBgColor: i }, core.uppercaseFirst(i));
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+                            return new b.badge({ textBgColor: i, rounded: "pill" }, core.uppercaseFirst(i));
+                        });
+                    }`,
+		},
+	],
 };

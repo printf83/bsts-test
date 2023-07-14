@@ -1,16 +1,19 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const interactions: IContent = {
 	title: "Interactions",
 	description: "Utility classes that change how users interact with contents of a website.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Text selection"),
 				new e.text("Change the way in which the content is selected when the user interacts with it."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.p({ userSelect: "all" }, "This paragraph will be entirely selected when clicked by the user."),
@@ -27,6 +30,7 @@ export const interactions: IContent = {
 				new e.title("Pointer events"),
 				new e.text("Bootstrap provides {{.pe-none}} and {{.pe-auto}} classes to prevent or add element interactions."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.p([new h.a({ href: "#", pointerEvent: "none", tabindex: "-1", aria: { disabled: "true" } }, "This link"), " can not be clicked"]),
@@ -77,4 +81,29 @@ export const interactions: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.p({ userSelect: "all" }, "This paragraph will be entirely selected when clicked by the user."),
+                            new h.p({ userSelect: "auto" }, "This paragraph has default select behavior."),
+                            new h.p({ userSelect: "none" }, "This paragraph will not be selectable when clicked by the user."),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.p([new h.a({ href: "#", pointerEvent: "none", tabindex: "-1", aria: { disabled: "true" } }, "This link"), " can not be clicked"]),
+                            new h.p([new h.a({ href: "#", pointerEvent: "auto" }, "This link"), " can be clicked (this is default behavior)."]),
+                            new h.p({ pointerEvent: "none" }, [
+                                new h.a({ href: "#" }, "This link"),
+                                "  can not be clicked because the {{pointer-events}} property is inherited from its parent. However, ",
+                                new h.a({ href: "#", pointerEvent: "auto" }, "this link"),
+                                " has a {{pe-auto}} class and can be clicked.",
+                            ]),
+                        ];
+                    }`,
+		},
+	],
 };

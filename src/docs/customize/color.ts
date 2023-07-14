@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const hexToRGB = (hex: string) => {
 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
@@ -157,7 +157,9 @@ const colorpickerText = (variableName: string | string[]) => {
 export const color: IContent = {
 	title: "Color",
 	description: "Bootstrap is supported by an extensive color system that themes our styles and components. This enables more comprehensive customization and extension for any project.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Colors"),
@@ -571,6 +573,7 @@ export const color: IContent = {
 					"These new colors are accessible via CSS variables and utility classes—like {{--bs-primary-bg-subtle}} and {{.bg-primary-subtle}}—allowing you to compose your own CSS rules with the variables, or to quickly apply styles via classes. The utilities are built with the color’s associated CSS variables, and since Bootstrap customize those CSS variables for dark mode, they are also adaptive to color mode by default."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div(
 							{
@@ -648,6 +651,7 @@ export const color: IContent = {
 				new e.alert({ color: "danger", callout: true }, [new b.alert.header(5, "Unsuppoterd in {{bsts}}"), "This feature will supported when Bootstrap make it opt-in by default or available in CDN."]),
 				new e.text("If you like to use this feature using {{bsts}}, you can manually set it by class property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div(
 							{ container: "fluid", margin: 0, padding: 0 },
@@ -676,4 +680,29 @@ export const color: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.div({
+                            padding: 3,
+                            textColor: "primary-emphasis",
+                            bgColor: "primary-subtle",
+                            border: true,
+                            borderColor: "primary-subtle",
+                            roundedSize: 3,
+                        }, "Example element with utilities");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ container: "fluid", margin: 0, padding: 0 }, new h.div({ row: true, gutter: 3 }, ["blue-100", "blue-200", "blue-300", "blue-400", "blue-500", "blue-600", "blue-700", "blue-800", "blue-900"].map((i) => new h.div({
+                            col: [12, "sm-6", "md-4"],
+                        }, new h.div({
+                            padding: 3,
+                            class: i,
+                            rounded: true,
+                        }, \`$\${i}\`)))));
+                    }`,
+		},
+	],
 };

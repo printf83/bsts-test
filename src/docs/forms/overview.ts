@@ -1,11 +1,13 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const overview: IContent = {
 	title: "Forms",
 	description: "Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.item(
@@ -81,6 +83,7 @@ export const overview: IContent = {
 				new e.text("Be sure to use an appropriate {{type}} attribute on all inputs (e.g., {{email}} for email address or {{number}} for numerical information) to take advantage of newer input controls like email verification, number selection, and more."),
 				new e.text("Here’s a quick example to demonstrate Bootstrap’s form styles. Keep reading for documentation on required classes, form layout, and more."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form([
 							new h.div({ marginBottom: 3 }, [
@@ -103,6 +106,7 @@ export const overview: IContent = {
 				new e.text("{{bsts}} create {{B.Form}} function to help you create same output as above. This function automaticly create {{id}} for related component. You still can give an {{id}} and {{B.Form}} will use it to related component."),
 				new e.text("Using {{b.form.input}} with {{id}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form([
 							b.form.input({
@@ -130,6 +134,7 @@ export const overview: IContent = {
 				}),
 				new e.text("Using {{b.form.input}} without {{id}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form([
 							b.form.input({
@@ -180,6 +185,7 @@ export const overview: IContent = {
 				new e.title("Disabled forms"),
 				new e.text("Add the {{disabled:true}} property on an {{b.input}} to prevent user interactions and make it appear lighter."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.input({
 							type: "text",
@@ -197,6 +203,7 @@ export const overview: IContent = {
 				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							new h.fieldset({ disabled: true }, [
@@ -284,4 +291,103 @@ export const overview: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new h.form([
+                            new h.div({ marginBottom: 3 }, [
+                                new b.label({ for: "exampleInputEmail1", class: "form-label" }, "Email address"),
+                                new b.input({ type: "email", id: "exampleInputEmail1", describedby: "emailHelp" }),
+                                new h.div({ id: "emailHelp", class: "form-text" }, "Bootstrap'll never share your email with anyone else."),
+                            ]),
+                            new h.div({ marginBottom: 3 }, [new b.label({ for: "exampleInputPassword1", class: "form-label" }, "Password"), new b.input({ type: "password", id: "exampleInputPassword1" })]),
+                            new h.div({ marginBottom: 3, class: "form-check" }, [new b.input({ type: "checkbox", id: "exampleCheck1" }), new b.label({ for: "exampleCheck1", class: "form-check-label" }, "Check me out")]),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form([
+                            b.form.input({
+                                id: "easy-email-form",
+                                container: { marginBottom: 3 },
+                                label: "Email address",
+                                description: "Bootstrap'll never share your email with anyone else.",
+                                type: "email",
+                            }),
+                            b.form.input({
+                                id: "easy-password-form",
+                                container: { marginBottom: 3 },
+                                label: "Password",
+                                type: "password",
+                            }),
+                            b.form.check({
+                                id: "easy-check-form",
+                                container: { marginBottom: 3 },
+                                label: "Check me out",
+                                type: "checkbox",
+                            }),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form([
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Email address",
+                                description: "Bootstrap'll never share your email with anyone else.",
+                                type: "email",
+                            }),
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Password",
+                                type: "password",
+                            }),
+                            b.form.check({
+                                container: { marginBottom: 3 },
+                                label: "Check me out",
+                                type: "checkbox",
+                            }),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.input({
+                            type: "text",
+                            id: "disabledInput",
+                            placeholder: "Disabled input here...",
+                            disabled: true,
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.form(new h.fieldset({ disabled: true }, [
+                            new h.legend("Disabled fieldset example"),
+                            b.form.input({
+                                container: { marginBottom: 3 },
+                                label: "Disabled input",
+                                placeholder: "Disabled input",
+                                type: "text",
+                            }),
+                            b.form.select({
+                                container: { marginBottom: 3 },
+                                label: "Disabled select menu",
+                                item: [{ elem: "Disabled select" }],
+                            }),
+                            b.form.check({
+                                container: { marginBottom: 3 },
+                                label: "Check me out",
+                                type: "checkbox",
+                            }),
+                            new b.button({ type: "submit" }, "Submit"),
+                        ]));
+                    }`,
+		},
+	],
 };

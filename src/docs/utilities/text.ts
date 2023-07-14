@@ -1,16 +1,19 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const text: IContent = {
 	title: "Text",
 	description: "Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Text alignment"),
 				new e.text("Easily realign text to components with text alignment classes. For start, end, and center alignment, responsive classes are available that use the same viewport width breakpoints as the grid system."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return [
@@ -33,12 +36,14 @@ export const text: IContent = {
 				new e.title("Text wrapping and overflow"),
 				new e.text("Wrap text with a {{.text-wrap}} class."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.badge({ bgColor: "primary", textWrap: true, style: { width: "6rem" } }, "This text should wrap.");
 					},
 				}),
 				new e.text("Prevent text from wrapping with a {{.text-nowrap}} class."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ bgColor: "body-secondary", textWrap: false, style: { width: "8rem" } }, "This text should overflow the parent.");
 					},
@@ -53,6 +58,7 @@ export const text: IContent = {
 					"Prevent long strings of text from breaking your components’ layout by using {{.text-break}} to set {{word-wrap: break-word}} and {{word-break: break-word}}. Bootstrap use {{word-wrap}} instead of the more common {{overflow-wrap}} for wider browser support, and add the deprecated {{word-break: break-word}} to avoid issues with flex containers."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.p({ textBreak: true }, "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
 					},
@@ -66,6 +72,7 @@ export const text: IContent = {
 				new e.title("Text transform"),
 				new e.text("Transform text in components with text capitalization classes."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [new h.p({ textTransform: "lowercase" }, "Lowercased text."), new h.p({ textTransform: "uppercase" }, "Uppercased text."), new h.p({ textTransform: "capitalize" }, "CapiTaliZed text.")];
 					},
@@ -81,6 +88,7 @@ export const text: IContent = {
 					"Quickly change the {{font-size}} of text. While Bootstrap heading classes (e.g., {{.h1}}–{{.h6}}) apply {{font-size}}, {{font-weight}}, and {{line-height}}, these utilities only apply {{font-size}}. Sizing for these utilities matches HTML’s heading elements, so as the number increases, their size decreases."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => new h.p({ fontSize: i as core.IAttr["fontSize"] }, `.fs-${i} text`));
 					},
@@ -94,6 +102,7 @@ export const text: IContent = {
 				new e.title("Font weight and italics"),
 				new e.text("Quickly change the {{font-weight}} or {{font-style}} of text with these utilities. {{font-style}} utilities are abbreviated as {{.fst-*}} and {{font-weight}} utilities are abbreviated as {{.fw-*}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.p({ fontWeight: "bold" }, "Bold text"),
@@ -116,6 +125,7 @@ export const text: IContent = {
 				new e.title("Line height"),
 				new e.text("Change the line height with {{.lh-*}} utilities."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const text = "This is a long paragraph written to show how the line-height of an element is affected by Bootstrap utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be customized as needed with Bootstrap utility API.";
 
@@ -130,6 +140,7 @@ export const text: IContent = {
 				new e.title("Monospace"),
 				new e.text("Change a selection to Bootstrap monospace font stack with {{.font-monospace}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.p({ monospace: true }, "This is in monospace");
 					},
@@ -142,6 +153,7 @@ export const text: IContent = {
 				new e.title("Reset color"),
 				new e.text("Reset a text or link’s color with {{.text-reset}}, so that it inherits the color from its parent."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.p({ textColor: "body-secondary" }, ["Muted text with a ", new h.a({ href: "#", textColor: "reset" }, "reset link"), "."]);
 					},
@@ -154,6 +166,7 @@ export const text: IContent = {
 				new e.title("Text decoration"),
 				new e.text("Decorate text in components with text decoration classes."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [new h.p({ textDecoration: "underline" }, "This text has a line underneath it."), new h.p({ textDecoration: "line-through" }, "This text has a line going through it."), new h.a({ href: "#", textDecoration: "none" }, "This link has its text decoration removed")];
 					},
@@ -338,4 +351,80 @@ export const text: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.p({ textAlign: "start" }, "Start aligned text on all viewport sizes."),
+                            new h.p({ textAlign: "center" }, "Center aligned text on all viewport sizes."),
+                            new h.p({ textAlign: "end" }, "End aligned text on all viewport sizes."),
+                            new h.p({ textAlign: "sm-end" }, "End aligned text on viewports sized SM (small) or wider."),
+                            new h.p({ textAlign: "md-end" }, "End aligned text on viewports sized MD (medium) or wider."),
+                            new h.p({ textAlign: "lg-end" }, "End aligned text on viewports sized LG (large) or wider."),
+                            new h.p({ textAlign: "xl-end" }, "End aligned text on viewports sized XL (extra-large) or wider."),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.badge({ bgColor: "primary", textWrap: true, style: { width: "6rem" } }, "This text should wrap.");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.div({ bgColor: "body-secondary", textWrap: false, style: { width: "8rem" } }, "This text should overflow the parent.");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.p({ textBreak: true }, "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.p({ textTransform: "lowercase" }, "Lowercased text."), new h.p({ textTransform: "uppercase" }, "Uppercased text."), new h.p({ textTransform: "capitalize" }, "CapiTaliZed text.")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [1, 2, 3, 4, 5, 6].map((i) => new h.p({ fontSize: i }, \`.fs-\${i} text\`));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.p({ fontWeight: "bold" }, "Bold text"),
+                            new h.p({ fontWeight: "bolder" }, "Bolder weight text (relative to the parent element)."),
+                            new h.p({ fontWeight: "semibold" }, "Semibold weight text."),
+                            new h.p({ fontWeight: "medium" }, "Medium weight text."),
+                            new h.p({ fontWeight: "normal" }, "Normal weight text."),
+                            new h.p({ fontWeight: "light" }, "Light weight text."),
+                            new h.p({ fontWeight: "lighter" }, "Lighter weight text (relative to the parent element)."),
+                            new h.p({ fontItalic: true }, "Italic text."),
+                            new h.p({ fontItalic: false }, "Text with normal font style"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const text = "This is a long paragraph written to show how the line-height of an element is affected by Bootstrap utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be customized as needed with Bootstrap utility API.";
+                        return [new h.p({ lineHeight: 1 }, text), new h.p({ lineHeight: "sm" }, text), new h.p({ lineHeight: "base" }, text), new h.p({ lineHeight: "lg" }, text)];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.p({ monospace: true }, "This is in monospace");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.p({ textColor: "body-secondary" }, ["Muted text with a ", new h.a({ href: "#", textColor: "reset" }, "reset link"), "."]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [new h.p({ textDecoration: "underline" }, "This text has a line underneath it."), new h.p({ textDecoration: "line-through" }, "This text has a line going through it."), new h.a({ href: "#", textDecoration: "none" }, "This link has its text decoration removed")];
+                    }`,
+		},
+	],
 };

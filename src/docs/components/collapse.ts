@@ -1,11 +1,13 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const collapse: IContent = {
 	title: "Collapse",
 	description: "Toggle the visibility of content across your project with a few classes and Bootstrap JavaScript plugins.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -32,6 +34,7 @@ export const collapse: IContent = {
 					"Generally, {{bsts}} recommend using a {{b.collapse.button}} with the {{target}} property. While not recommended from a semantic point of view, you can also use an {{b.collapse.button}} with the {{href}} property ({{bsts}} automaticly add {{role:'button'}} and the {{toggle:'collapse'}} because it's required by Bootstrap."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					output: () => {
 						return [
@@ -51,6 +54,7 @@ export const collapse: IContent = {
 				),
 				new e.text(new b.alert.container({ color: "info", callout: true }, "Please note that while the example below has a {{min-height}} set to avoid excessive repaints in Bootstrap docs, this is not explicitly required. {{b::Only the}} {{width}} {{b::on the child element is required}}.")),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						return [
@@ -72,6 +76,7 @@ export const collapse: IContent = {
 					"A {{b.collapse.button}} component can show and hide multiple elements by referencing them with a selector in its {{target}} or {{href}} property. Conversely, multiple {{b.collapse.button}} component can show and hide the same element if they each reference it with their {{target}} or {{href}} property."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const toggle1 = new b.collapse.button({ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" }, "Toggle first element");
@@ -257,6 +262,7 @@ export const collapse: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						const collapseContent = new b.card.body("Some placeholder content for the collapse component.");
@@ -406,6 +412,7 @@ export const collapse: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					showConsole: true,
 					output: () => {
@@ -433,4 +440,138 @@ export const collapse: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [
+                            new h.div({ display: "flex", gap: 2 }, [new b.collapse.button({ href: "#collapseExample", controlfor: "collapseExample" }, "Link with href"), new b.collapse.button({ target: "#collapseExample", controlfor: "collapseExample" }, "Button with data-bs-target")]),
+                            new b.collapse.container({ id: "collapseExample" }, new b.card.container(new b.card.body("Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."))),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ display: "flex", gap: 2 }, [new b.collapse.button({ target: "#collapseWidthExample", controlfor: "collapseWidthExample" }, "Toggle width collapse")]),
+                            new h.div({ style: { minHeight: "120px" } }, new b.collapse.container({ id: "collapseWidthExample", horizontal: true }, new b.card.container({ style: { width: "300px" } }, new b.card.body("This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.")))),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const toggle1 = new b.collapse.button({ href: "#multiCollapseExample1", controlfor: "multiCollapseExample1" }, "Toggle first element");
+                        const toggle2 = new b.collapse.button({ target: "#multiCollapseExample2", controlfor: "multiCollapseExample2" }, "Toggle second element");
+                        const toggleBoth = new b.collapse.button({ target: ".multi-collapse", controlfor: "multiCollapseExample1 multiCollapseExample2" }, "Toggle both element");
+                        const collapse1 = new b.collapse.container({ id: "multiCollapseExample1", class: "multi-collapse" }, new b.card.container(new b.card.body("Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.")));
+                        const collapse2 = new b.collapse.container({ id: "multiCollapseExample2", class: "multi-collapse" }, new b.card.container(new b.card.body("Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.")));
+                        const rowDiv = new h.div({ padding: 0 }, new h.div({ row: true, gutter: 2 }, [new h.div({ col: 6 }, collapse1), new h.div({ col: 6 }, collapse2)]));
+                        return [toggle1, toggle2, toggleBoth, rowDiv];
+                    }`,
+		},
+		{
+			source: `() => {
+                        const collapseContent = new b.card.body("Some placeholder content for the collapse component.");
+                        const collapseContainer = new b.collapse.container({
+                            id: "example-collapse",
+                            autoInit: false,
+                        }, new b.card.container(collapseContent));
+                        const initButton = new b.button({
+                            color: "success",
+                            on: {
+                                click: (event) => {
+                                    const elem = b.collapse.init("#example-collapse");
+                                    e.console(event.target, "b.collapse.init", elem ? elem : "null", elem ? "success" : "danger");
+                                },
+                            },
+                        }, "init");
+                        const getInstanceButton = new b.button({
+                            color: "success",
+                            on: {
+                                click: (event) => {
+                                    const elem = b.collapse.getInstance("#example-collapse");
+                                    e.console(event.target, "b.collapse.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                },
+                            },
+                        }, "getInstance");
+                        const getOrCreateInstanceButton = new b.button({
+                            color: "success",
+                            on: {
+                                click: (event) => {
+                                    const elem = b.collapse.getOrCreateInstance("#example-collapse");
+                                    e.console(event.target, "b.collapse.getOrCreateInstance", elem, elem ? "success" : "danger");
+                                },
+                            },
+                        }, "getOrCreateInstance");
+                        const hideButton = new b.button({
+                            on: {
+                                click: () => {
+                                    b.collapse.hide("#example-collapse");
+                                },
+                            },
+                        }, "hide");
+                        const showButton = new b.button({
+                            on: {
+                                click: () => {
+                                    b.collapse.show("#example-collapse");
+                                },
+                            },
+                        }, "show");
+                        const toggleButton = new b.button({
+                            on: {
+                                click: () => {
+                                    b.collapse.toggle("#example-collapse");
+                                },
+                            },
+                        }, "toggle");
+                        const disposeButton = new b.button({
+                            color: "danger",
+                            on: {
+                                click: () => {
+                                    b.collapse.dispose("#example-collapse");
+                                },
+                            },
+                        }, "dispose");
+                        const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, hideButton, showButton, toggleButton, disposeButton]);
+                        const previewContainer = new h.div({
+                            width: 100,
+                            marginEnd: 3,
+                            bgColor: "body-tertiary",
+                            rounded: true,
+                            position: "relative",
+                        }, [
+                            new h.div({
+                                position: "absolute",
+                                top: 50,
+                                start: 50,
+                                tMiddle: true,
+                            }, collapseContainer),
+                        ]);
+                        const controlContainer = new h.div({
+                            marginStart: "auto",
+                        }, buttonGroup);
+                        const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+                        return [mainContainer];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new b.collapse.button({ target: "#collapseEventExample", controlfor: "collapseEventExample" }, "Collapse event"),
+                            new b.collapse.container({
+                                id: "collapseEventExample",
+                                on: {
+                                    "hidden.bs.collapse": (event) => {
+                                        let target = event.target;
+                                        e.console(event.target, "hidden.bs.collapse", \`Target: {{b::\${core.elemInfo(target)}}}\`, "danger");
+                                    },
+                                    "shown.bs.collapse": (event) => {
+                                        let target = event.target;
+                                        e.console(event.target, "shown.bs.collapse", \`Target: {{b::\${core.elemInfo(target)}}}\`, "success");
+                                    },
+                                },
+                            }, new b.card.container(new b.card.body("Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger."))),
+                        ];
+                    }`,
+		},
+	],
 };

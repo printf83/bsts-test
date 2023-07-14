@@ -1,11 +1,13 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const float: IContent = {
 	title: "Float",
 	description: "Toggle floats on any element, across any breakpoint, using Bootstrap responsive float utilities.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -13,6 +15,7 @@ export const float: IContent = {
 					"These utility classes float an element to the left or right, or disable floating, based on the current viewport size using the {{https://developer.mozilla.org/en-US/docs/Web/CSS/float::CSS float property}}. {{!important}} is included to avoid specificity issues. These use the same viewport breakpoints as Bootstrap grid system. Please be aware float utilities have no effect on flex items."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [new h.div({ float: "start" }, "Float start on all viewport sizes"), new h.br(), new h.div({ float: "end" }, "Float end on all viewport sizes"), new h.br(), new h.div({ float: "none" }, "Don't float on all viewport sizes")];
 					},
@@ -25,6 +28,7 @@ export const float: IContent = {
 				new e.title("Responsive"),
 				new e.text("Responsive variations also exist for each {{float}} value."),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return [
@@ -78,4 +82,24 @@ export const float: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [new h.div({ float: "start" }, "Float start on all viewport sizes"), new h.br(), new h.div({ float: "end" }, "Float end on all viewport sizes"), new h.br(), new h.div({ float: "none" }, "Don't float on all viewport sizes")];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ float: "sm-end" }, "Float end on viewports sized SM (small) or wider"),
+                            new h.br(),
+                            new h.div({ float: "md-end" }, "Float end on viewports sized MD (medium) or wider"),
+                            new h.br(),
+                            new h.div({ float: "lg-end" }, "Float end on viewports sized LG (large) or wider"),
+                            new h.br(),
+                            new h.div({ float: "xl-end" }, "Float end on viewports sized XL (extra-large) or wider"),
+                        ];
+                    }`,
+		},
+	],
 };

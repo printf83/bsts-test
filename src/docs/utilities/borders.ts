@@ -1,11 +1,13 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const borders: IContent = {
 	title: "Borders",
 	description: "Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([new e.title("Border"), new e.text("Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.")]),
 
@@ -16,6 +18,7 @@ export const borders: IContent = {
 				new e.text("Add borders to custom elements:"),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
 						const data: core.IAttr["border"][] = [true, "top", "end", "bottom", "start"];
@@ -36,6 +39,7 @@ export const borders: IContent = {
 				new e.text("Or remove borders:"),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
 						const data: core.IAttr["borderNone"][] = [true, "top", "end", "bottom", "start"];
@@ -57,6 +61,7 @@ export const borders: IContent = {
 				new e.alert({ color: "info", callout: true }, "Border utilities like {{.border-*}} that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{.border-*-subtle}} utility will. This will be resolved in v6."),
 				new e.text("Change the border color using utilities built on Bootstrap theme colors."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
 						const data: core.IAttr["borderColor"][] = [
@@ -92,6 +97,7 @@ export const borders: IContent = {
 				new e.text("Or modify the default {{borderColor}} of a property:"),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -161,6 +167,7 @@ export const borders: IContent = {
 				new e.subtitle("Example"),
 				new e.text("To change that opacity, override {{style: { '--bs-border-opacity': '.5' } }} via custom styles or inline styles."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ border: true, borderColor: "success", padding: 2, marginBottom: 2 }, "This is default success border"),
@@ -178,6 +185,7 @@ export const borders: IContent = {
 				}),
 				new e.text("Or, choose from any of the {{borderOpacity}} property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [undefined, 75, 50, 25, 10].map((i, ix) => {
 							return new h.div(
@@ -200,6 +208,7 @@ export const borders: IContent = {
 			new e.section([
 				new e.title("Width"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
 						return [1, 2, 3, 4, 5].map((i) => {
@@ -218,6 +227,7 @@ export const borders: IContent = {
 				new e.title("Radius"),
 				new e.text("Add classes to an element to easily round its corners."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [true, "top", "end", "bottom", "start", "circle", "pill"].map((i) => {
@@ -237,6 +247,7 @@ export const borders: IContent = {
 				new e.subtitle("Sizes"),
 				new e.text("Use the scaling classes for larger or smaller rounded corners. Sizes range from {{0}} to {{5}}, and can be configured by modifying the utilities API."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [0, 1, 2, 3, 4, 5].map((i) => {
@@ -249,6 +260,7 @@ export const borders: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -658,4 +670,177 @@ export const borders: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        const data = [true, "top", "end", "bottom", "start"];
+                        return data.map((i) => {
+                            return new h.span({
+                                border: i,
+                            });
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        const data = [true, "top", "end", "bottom", "start"];
+                        return data.map((i) => {
+                            return new h.span({
+                                border: true,
+                                borderNone: i,
+                            });
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        const data = [
+                            "primary",
+                            "primary-subtle",
+                            "secondary",
+                            "secondary-subtle",
+                            "success",
+                            "success-subtle",
+                            "danger",
+                            "danger-subtle",
+                            "warning",
+                            "warning-subtle",
+                            "info",
+                            "info-subtle",
+                            "light",
+                            "light-subtle",
+                            "dark",
+                            "dark-subtle",
+                            "black",
+                            "white",
+                        ];
+                        return data.map((i) => {
+                            return new h.span({
+                                border: true,
+                                borderColor: i,
+                            });
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            b.form.input({
+                                borderColor: "success",
+                                container: { marginBottom: 4 },
+                                label: "Email address",
+                                type: "email",
+                                placeholder: "name@example.com",
+                            }),
+                            new h.div({
+                                border: "bottom",
+                                borderColor: "danger",
+                                class: "h4",
+                                paddingBottom: 2,
+                                marginBottom: 4,
+                                textColor: "danger",
+                            }, "Dangerous heading"),
+                            new h.div({
+                                border: true,
+                                borderColor: "info",
+                                borderNone: "start",
+                                padding: 3,
+                                bgColor: "info",
+                                bgOpacity: 10,
+                                rounded: "end",
+                            }, "Changing border color and width"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ border: true, borderColor: "success", padding: 2, marginBottom: 2 }, "This is default success border"),
+                            new h.div({
+                                border: true,
+                                borderColor: "success",
+                                padding: 2,
+                                style: { "--bs-border-opacity": ".5" },
+                            }, "This is 50% opacity success border"),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [undefined, 75, 50, 25, 10].map((i, ix) => {
+                            return new h.div({
+                                border: true,
+                                borderColor: "success",
+                                borderOpacity: i,
+                                padding: 2,
+                                marginBottom: ix < 4 ? 2 : undefined,
+                            }, \`This is \${i ? i + "% opacity" : "default"} success border\`);
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [1, 2, 3, 4, 5].map((i) => {
+                            return new h.span({
+                                border: true,
+                                borderWidth: i,
+                            });
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [true, "top", "end", "bottom", "start", "circle", "pill"].map((i) => {
+                            return new h.img({
+                                src: \`https://picsum.photos/seed/bsts_0/\${i === "pill" ? "150" : "75"}/75.webp\`,
+                                alt: "...",
+                                rounded: i,
+                            });
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [0, 1, 2, 3, 4, 5].map((i) => {
+                            return new h.img({
+                                src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+                                alt: "...",
+                                roundedSize: i,
+                            });
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.img({
+                                src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+                                alt: "...",
+                                rounded: "bottom-1",
+                            }),
+                            new h.img({
+                                src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+                                alt: "...",
+                                rounded: "start-2",
+                            }),
+                            new h.img({
+                                src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+                                alt: "...",
+                                rounded: "end-circle",
+                            }),
+                            new h.img({
+                                src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+                                alt: "...",
+                                rounded: "start-pill",
+                            }),
+                            new h.img({
+                                src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+                                alt: "...",
+                                rounded: "top-0",
+                                roundedSize: 5,
+                            }),
+                        ];
+                    }`,
+		},
+	],
 };

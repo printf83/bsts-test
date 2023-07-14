@@ -1,23 +1,27 @@
 import { core, I, h } from "@printf83/bsts";
 
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const link: IContent = {
 	title: "Link",
 	description: "Link utilities are used to stylize your anchors to adjust their color, opacity, underline offset, underline color, and more.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Link opacity"),
 				new e.text("Change the alpha opacity of the link {{rgba()}} color value with utilities. Please be aware that changes to a color’s opacity can lead to links with {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#color-contrast::insufficient contrast}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacity: i as I.H.A["linkOpacity"] }, `Link opacity ${i}`)));
 					},
 				}),
 				new e.text("You can even change the opacity level on hover."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacityHover: i as I.H.A["linkOpacityHover"] }, `Link hover opacity ${i}`)));
 					},
@@ -31,6 +35,7 @@ export const link: IContent = {
 				new e.subtitle("Underline color"),
 				new e.text("Change the underline’s color independent of the link text color."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.p(new h.a({ href: "#", linkUnderlineColor: i as I.H.A["linkUnderlineColor"] }, `${core.uppercaseFirst(i)} underline`)));
 					},
@@ -43,6 +48,7 @@ export const link: IContent = {
 				new e.subtitle("Underline offset"),
 				new e.text("Change the underline’s distance from your text. Offset is set in {{em}} units to automatically scale with the element’s current {{font-size}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [undefined, 1, 2, 3].map((i) => new h.p(new h.a({ href: "#", linkOffset: i as I.H.A["linkOffset"] }, i ? `Offset ${i} link` : "Default link")));
 					},
@@ -55,6 +61,7 @@ export const link: IContent = {
 				new e.subtitle("Underline opacity"),
 				new e.text("Change the underline’s opacity. Requires adding {{.link-underline}} to first set an {{rgba()}} color Bootstrap use to then modify the alpha opacity."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [0, 10, 25, 50, 75, 100].map(
 							(i) =>
@@ -80,6 +87,7 @@ export const link: IContent = {
 				new e.subtitle("Hover variants"),
 				new e.text("Just like the {{.link-opacity-*-hover}} utilities, {{.link-offset}} and {{.link-underline-opacity}} utilities include {{:hover}} variants by default. Mix and match to create unique link styles."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.a(
 							{
@@ -102,6 +110,7 @@ export const link: IContent = {
 				new e.title("Colored links"),
 				new e.text("{{nav:docs/helpers/colored_links::Colored link helpers}} have been updated to pair with Bootstrap link utilities. Use the new utilities to modify the link opacity, underline opacity, and underline offset."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map(
 							(i) =>
@@ -193,4 +202,59 @@ export const link: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacity: i }, \`Link opacity \${i}\`)));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacityHover: i }, \`Link hover opacity \${i}\`)));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.p(new h.a({ href: "#", linkUnderlineColor: i }, \`\${core.uppercaseFirst(i)} underline\`)));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [undefined, 1, 2, 3].map((i) => new h.p(new h.a({ href: "#", linkOffset: i }, i ? \`Offset \${i} link\` : "Default link")));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [0, 10, 25, 50, 75, 100].map((i) => new h.p(new h.a({
+                            href: "#",
+                            linkOffset: 2,
+                            linkUnderline: true,
+                            linkUnderlineOpacity: i,
+                        }, \`Underline opacity \${i}\`)));
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new h.a({
+                            href: "#",
+                            linkOffset: 2,
+                            linkOffsetHover: 3,
+                            linkUnderline: true,
+                            linkUnderlineOpacity: 0,
+                            linkUnderlineOpacityHover: 75,
+                        }, "Underline opacity 0");
+                    }`,
+		},
+		{
+			source: `() => {
+                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({
+                            href: "#",
+                            linkOffset: 2,
+                            linkUnderlineOpacity: 25,
+                            linkUnderlineOpacityHover: 100,
+                            linkColor: i,
+                        }, \`\${core.uppercaseFirst(i)} link\`)));
+                    }`,
+		},
+	],
 };

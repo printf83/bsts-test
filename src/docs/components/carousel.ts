@@ -1,11 +1,13 @@
 import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const carousel: IContent = {
 	title: "Carousel",
 	description: "A slideshow component for cycling through elements—images or slides of text—like a carousel.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -29,6 +31,7 @@ export const carousel: IContent = {
 				new e.title("Basic examples"),
 				new e.text("Here is a basic example of a carousel with three slides. Note the previous/next controls. Bootstrap recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({ id: "carouselExample" }, [
 							new b.carousel.indicators.container(
@@ -70,6 +73,7 @@ export const carousel: IContent = {
 			new e.section([
 				new e.subtitle("Using item"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							itemControl: true,
@@ -91,6 +95,7 @@ export const carousel: IContent = {
 				new e.subtitle("Indicators"),
 				new e.text("You can add indicators to the carousel using {{itemIndicator:true}}, alongside the previous/next controls using {{itemControl:true}}. The indicators let users jump directly to a particular slide."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							itemControl: true,
@@ -113,6 +118,7 @@ export const carousel: IContent = {
 					"You can add captions to your slides with the {{b.carousel.inner.item.caption}} component within any {{b.carousel.inner.item.container}}. They can be easily hidden on smaller viewports, as shown below, with optional {{nav:docs/utilities/display::display utilities}}. Bootstrap hide them initially with {{display:'none'}} and bring them back on medium-sized devices with {{display:'md-block'}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							itemControl: true,
@@ -136,6 +142,7 @@ export const carousel: IContent = {
 					"Add {{fade:true}} to your carousel to animate slides with a fade transition instead of a slide. Depending on your carousel content (e.g., text only slides), you may want to add {{bgColor:'body'}} or some custom CSS to the {{b.carousel.inner.item.container}} for proper crossfading."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							fade: true,
@@ -163,6 +170,7 @@ export const carousel: IContent = {
 					new h.p("See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."),
 				]),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							ride: "carousel",
@@ -180,6 +188,7 @@ export const carousel: IContent = {
 				new e.text("By default {{bsts}} set {{ride:true}} if {{itemControl:true}} and {{ride:'carousel'}} if {{itemControl:false}}. So it will only start after first user intraction."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							ride: true,
@@ -200,6 +209,7 @@ export const carousel: IContent = {
 				new e.subtitle("Individual {{.carousel-item}} interval"),
 				new e.text("Add {{interval='<milisecond>'}} to a {{b.carousel.inner.item.container}} to change the amount of time to delay between automatically cycling to the next item."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							itemControl: true,
@@ -220,6 +230,7 @@ export const carousel: IContent = {
 				new e.subtitle("Autoplaying carousels without controls"),
 				new e.text("Here’s a carousel with slides only. Note the presence of the .d-block and .w-100 on carousel images to prevent browser default image alignment."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							ride: "carousel",
@@ -240,6 +251,7 @@ export const carousel: IContent = {
 				new e.title("Disable touch swiping"),
 				new e.text("Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} property to {{false}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							touch: false,
@@ -265,6 +277,7 @@ export const carousel: IContent = {
 				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.carousel.container({
 							theme: "dark",
@@ -425,6 +438,7 @@ export const carousel: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return [
@@ -591,6 +605,7 @@ export const carousel: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return new b.carousel.container({
@@ -622,4 +637,288 @@ export const carousel: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return new b.carousel.container({ id: "carouselExample" }, [
+                            new b.carousel.indicators.container([0, 1, 2, 3, 4, 5, 6].map((_i, ix) => {
+                                return new b.carousel.indicators.button({
+                                    target: "#carouselExample",
+                                    slide: ix,
+                                    active: ix === 0 ? true : undefined,
+                                });
+                            })),
+                            new b.carousel.inner.container([0, 1, 2, 3, 4, 5, 6].map((i, ix) => {
+                                return new b.carousel.inner.item.container({ active: ix === 0 ? true : undefined }, [
+                                    new b.carousel.inner.item.img({
+                                        src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                    }),
+                                    new b.carousel.inner.item.caption([new h.h(5, \`Slide #\${ix + 1}\`), new h.p(\`Some representative placeholder content for the slide #\${ix + 1}.\`)]),
+                                ]);
+                            })),
+                            new b.carousel.inner.control.prev({ target: "#carouselExample" }),
+                            new b.carousel.inner.control.next({ target: "#carouselExample" }),
+                        ]);
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            itemControl: true,
+                            itemIndicator: true,
+                            item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                    caption: [new h.h(5, \`Slide #\${i + 1}\`), new h.p(\`Some representative placeholder content for the slide #\${i + 1}.\`)],
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            itemControl: true,
+                            itemIndicator: true,
+                            item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            itemControl: true,
+                            itemIndicator: true,
+                            item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                    caption: [new h.h(5, \`Slide #\${i + 1}\`), new h.p(\`Some representative placeholder content for the slide #\${i + 1}.\`)],
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            fade: true,
+                            itemControl: true,
+                            item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            ride: "carousel",
+                            itemControl: true,
+                            item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            ride: true,
+                            itemControl: true,
+                            item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            itemControl: true,
+                            item: [1000, 2000, 3000, 4000, 5000, 6000, 7000].map((i, ix) => {
+                                return {
+                                    interval: i,
+                                    src: \`https://picsum.photos/seed/bsts_\${ix}/710/400.webp\`,
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            ride: "carousel",
+                            itemControl: false,
+                            item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            touch: false,
+                            itemControl: true,
+                            item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            theme: "dark",
+                            itemControl: true,
+                            item: ["first", "second", "third", "fourth", "fifth"].map((i, ix) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${ix}/710/400.webp\`,
+                                    caption: [new h.h(5, \`\${core.uppercaseFirst(i)} slide label\`), new h.p(\`Some representative placeholder content for the \${i} slide.\`)],
+                                };
+                            }),
+                        });
+                    }`,
+		},
+		{
+			source: `() => {
+                        return [
+                            new h.div({ display: "flex", overflow: "auto" }, [
+                                new h.div({
+                                    width: 100,
+                                    marginEnd: 3,
+                                    bgColor: "body-tertiary",
+                                    rounded: true,
+                                    position: "relative",
+                                }, new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }, new b.carousel.container({
+                                    id: "example-carousel",
+                                    itemIndicator: true,
+                                    item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                        return {
+                                            src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                        };
+                                    }),
+                                }))),
+                                new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.carousel.init("#example-carousel", {
+                                                    interval: 1500,
+                                                });
+                                                e.console(event.target, "b.carousel.init", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "init"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.carousel.getInstance("#example-carousel");
+                                                e.console(event.target, "b.carousel.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getInstance"),
+                                    new b.button({
+                                        color: "success",
+                                        on: {
+                                            click: (event) => {
+                                                const elem = b.carousel.getOrCreateInstance("#example-carousel");
+                                                e.console(event.target, "b.carousel.getOrCreateInstance", elem, elem ? "success" : "danger");
+                                            },
+                                        },
+                                    }, "getOrCreateInstance"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.carousel.cycle("#example-carousel");
+                                            },
+                                        },
+                                    }, "cycle"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.carousel.pause("#example-carousel", false);
+                                            },
+                                        },
+                                    }, "pause"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.carousel.next("#example-carousel");
+                                            },
+                                        },
+                                    }, "next"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.carousel.nextWhenVisible("#example-carousel");
+                                            },
+                                        },
+                                    }, "nextWhenVisible"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.carousel.prev("#example-carousel");
+                                            },
+                                        },
+                                    }, "prev"),
+                                    new b.button({
+                                        on: {
+                                            click: () => {
+                                                b.carousel.to("#example-carousel", core.rndBetween(0, 6));
+                                            },
+                                        },
+                                    }, "to (random)"),
+                                    new b.button({
+                                        color: "danger",
+                                        on: {
+                                            click: () => {
+                                                b.carousel.dispose("#example-carousel");
+                                            },
+                                        },
+                                    }, "dispose"),
+                                ])),
+                            ]),
+                        ];
+                    }`,
+		},
+		{
+			source: `() => {
+                        return new b.carousel.container({
+                            interval: 3000,
+                            itemControl: true,
+                            item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+                                return {
+                                    src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+                                };
+                            }),
+                            on: {
+                                "slide.bs.carousel": (event) => {
+                                    let carouselEvent = event;
+                                    e.console(event.target, "slide.bs.carousel", \`Direction: {{b::\${carouselEvent.direction}}}{{br}}
+															From: {{b::\${carouselEvent.from}}}{{br}}
+															To: {{b::\${carouselEvent.to}}}{{br}}
+															RelatedTarget: {{b::\${core.elemInfo(carouselEvent.relatedTarget)}}}\`, "info");
+                                },
+                            },
+                        });
+                    }`,
+		},
+	],
 };

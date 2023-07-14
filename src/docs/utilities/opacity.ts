@@ -1,17 +1,20 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const opacity: IContent = {
 	title: "Opacity",
 	description: "Control the opacity of elements.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.text("The {{opacity}} property sets the opacity level for an element. The opacity level describes the transparency level, where {{1}} is not transparent at all, {{.5}} is 50% visible, and {{0}} is completely transparent."),
 				new e.text("Set the {{opacity}} of an element using {{.opacity-{value} }}utilities."),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [100, 75, 50, 25].map(
@@ -57,4 +60,18 @@ export const opacity: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+                        return [100, 75, 50, 25].map((i) => new h.div({
+                            opacity: i,
+                            padding: 3,
+                            textBgColor: "primary",
+                            rounded: true,
+                            fontWeight: "bold",
+                            display: "inline-block",
+                        }, \`\${i}%\`));
+                    }`,
+		},
+	],
 };
