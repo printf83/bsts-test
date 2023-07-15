@@ -2,31 +2,70 @@ import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent } from "../../ctl/main/content.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.12/+esm";
-const BSCDNCSS = ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"];
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.13/+esm";
+const BSCDNCSS = [
+	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
+];
 
 export const introduction: IContent = {
 	title: "Get started with Bootstrap",
-	description: "Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
+	description:
+		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
 	item: () => {
 		return [
 			new e.section([
-				new e.alert({ color: "warning", callout: true }, [new b.alert.header(3, "Disclaimer"), "This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap."]),
+				new e.alert({ color: "warning", callout: true }, [
+					new b.alert.header(3, "Disclaimer"),
+					"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
+				]),
 			]),
 
 			//----------------------
 
 			new e.section([
 				new e.title("Current version"),
-				new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [new b.tooltip({ content: "@printf83/bsts" }, new h.a({ href: "https://github.com/printf83/bsts", target: "_blank" }, new b.pill({ icon: "github", color: "danger", weight: "lg" }, "v0.2.12")))]),
-
-				new e.text({ textAlign: "center" }, "{{bsts}} couldn't have done without this awesome library. Thanks for your hard work on this."),
-
-				new e.item({ display: "flex", flex: ["wrap", "md-row"], gap: 3, justifyContent: "center" }, [
-					new b.tooltip({ content: "Bootstrap" }, new h.a({ href: "https://getbootstrap.com/", target: "_blank" }, new b.pill({ icon: "bootstrap", color: "primary" }, "v5.3"))),
-					new b.tooltip({ content: "Bootstrap Icon" }, new h.a({ href: "https://icons.getbootstrap.com/", target: "_blank" }, new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10"))),
-					new b.tooltip({ content: "Bootswatch" }, new h.a({ href: "https://bootswatch.com/", target: "_blank" }, new b.pill({ icon: "palette2", color: "success" }, "v5.3"))),
+				new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [
+					new b.tooltip(
+						{ content: "@printf83/bsts" },
+						new h.a(
+							{ href: "https://github.com/printf83/bsts", target: "_blank" },
+							new b.pill({ icon: "github", color: "danger", weight: "lg" }, "v0.2.13")
+						)
+					),
 				]),
+
+				new e.text(
+					{ textAlign: "center" },
+					"{{bsts}} couldn't have done without this awesome library. Thanks for your hard work on this."
+				),
+
+				new e.item(
+					{ display: "flex", flex: ["wrap", "md-row"], gap: 3, justifyContent: "center" },
+					[
+						new b.tooltip(
+							{ content: "Bootstrap" },
+							new h.a(
+								{ href: "https://getbootstrap.com/", target: "_blank" },
+								new b.pill({ icon: "bootstrap", color: "primary" }, "v5.3")
+							)
+						),
+						new b.tooltip(
+							{ content: "Bootstrap Icon" },
+							new h.a(
+								{ href: "https://icons.getbootstrap.com/", target: "_blank" },
+								new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10")
+							)
+						),
+						new b.tooltip(
+							{ content: "Bootswatch" },
+							new h.a(
+								{ href: "https://bootswatch.com/", target: "_blank" },
+								new b.pill({ icon: "palette2", color: "success" }, "v5.3")
+							)
+						),
+					]
+				),
 			]),
 
 			//----------------------
@@ -188,9 +227,18 @@ export const introduction: IContent = {
 						["I", "Interface if you like to use {{Typescript}}"],
 						["h", "HTML component. Example {{new h.div()}}."],
 						["b", "Bootstrap component. Example {{new b.button()}}."],
-						["t", "Main class that build all HTML and Bootstrap component. Example {{new t()}}."],
-						["s", "Class to allow HTML syntax and process by {{core.build}} as HTML. Example {{new s()}}."],
-						["$", "Create bsts component wihthout {{new}} keyword. For example {{$.h.div()}}, {{$.b.button()}}, {{$.t()}} and {{$.s()}}"],
+						[
+							"t",
+							"Main class that build all HTML and Bootstrap component. Example {{new t()}}.",
+						],
+						[
+							"s",
+							"Class to allow HTML syntax and process by {{core.build}} as HTML. Example {{new s()}}.",
+						],
+						[
+							"$",
+							"Create bsts component wihthout {{new}} keyword. For example {{$.h.div()}}, {{$.b.button()}}, {{$.t()}} and {{$.s()}}",
+						],
 					],
 				}),
 
@@ -229,7 +277,9 @@ export const introduction: IContent = {
 						`,
 				}),
 
-				new e.text("You can also use the CDN to fetch any of Bootstrap {{nav:docs/gettingstarted/content::additional builds listed in the Contents page}}."),
+				new e.text(
+					"You can also use the CDN to fetch any of Bootstrap {{nav:docs/gettingstarted/content::additional builds listed in the Contents page}}."
+				),
 			]),
 
 			//----------------------
@@ -250,7 +300,9 @@ export const introduction: IContent = {
 
 			new e.section([
 				new e.title("JS components"),
-				new e.text("Curious which components explicitly require Bootstrap JavaScript and Popper? Click the show components link below. If you’re at all unsure about the general page structure, keep reading for an example page template."),
+				new e.text(
+					"Curious which components explicitly require Bootstrap JavaScript and Popper? Click the show components link below. If you’re at all unsure about the general page structure, keep reading for an example page template."
+				),
 
 				new e.item(
 					new h.details([
@@ -280,13 +332,20 @@ export const introduction: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Important globals"), new e.text("Bootstrap employs a handful of important global styles and settings, all of which are almost exclusively geared towards the normalization of cross browser styles. Let’s dive in.")]),
+			new e.section([
+				new e.title("Important globals"),
+				new e.text(
+					"Bootstrap employs a handful of important global styles and settings, all of which are almost exclusively geared towards the normalization of cross browser styles. Let’s dive in."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("HTML5 doctype"),
-				new e.text("Bootstrap requires the use of the HTML5 doctype. Without it, you’ll see some funky and incomplete styling."),
+				new e.text(
+					"Bootstrap requires the use of the HTML5 doctype. Without it, you’ll see some funky and incomplete styling."
+				),
 				new e.codepreview({
 					type: "html",
 					code: `
@@ -311,7 +370,9 @@ export const introduction: IContent = {
 						<meta name="viewport" content="width=device-width, initial-scale=1">
 						`,
 				}),
-				new e.text("You can see an example of this in action in the {{nav:docs/gettingstarted/introduction#quick_start::quick start}}."),
+				new e.text(
+					"You can see an example of this in action in the {{nav:docs/gettingstarted/introduction#quick_start::quick start}}."
+				),
 			]),
 
 			//----------------------
@@ -321,7 +382,9 @@ export const introduction: IContent = {
 				new e.text(
 					"For more straightforward sizing in CSS, Bootstrap switch the global {{box-sizing}} value from {{content-box}} to {{border-box}}. This ensures {{padding}} does not affect the final computed width of an element, but it can cause problems with some third-party software like Google Maps and Google Custom Search Engine."
 				),
-				new e.text("On the rare occasion you need to override it, use something like the following:"),
+				new e.text(
+					"On the rare occasion you need to override it, use something like the following:"
+				),
 				new e.codepreview({
 					type: "css",
 					code: `
@@ -330,19 +393,30 @@ export const introduction: IContent = {
 						}
 						`,
 				}),
-				new e.text("With the above snippet, nested elements—including generated content via {{/://:/before}} and {{/://:/after}}—will all inherit the specified {{box-sizing}} for that {{.selector-for-some-widget}}."),
-				new e.text("Learn more about {{https://css-tricks.com/box-sizing/::box model and sizing at CSS Tricks}}."),
+				new e.text(
+					"With the above snippet, nested elements—including generated content via {{/://:/before}} and {{/://:/after}}—will all inherit the specified {{box-sizing}} for that {{.selector-for-some-widget}}."
+				),
+				new e.text(
+					"Learn more about {{https://css-tricks.com/box-sizing/::box model and sizing at CSS Tricks}}."
+				),
 			]),
 
 			//----------------------
 
-			new e.section([new e.subtitle("Reboot"), new e.text("For improved cross-browser rendering, Bootstrap use {{nav:docs/content/reboot::Reboot}} to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.")]),
+			new e.section([
+				new e.subtitle("Reboot"),
+				new e.text(
+					"For improved cross-browser rendering, Bootstrap use {{nav:docs/content/reboot::Reboot}} to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.title("Community"),
-				new e.text("Stay up-to-date on the development of Bootstrap and reach out to the community with these helpful resources."),
+				new e.text(
+					"Stay up-to-date on the development of Bootstrap and reach out to the community with these helpful resources."
+				),
 				new e.ul({
 					item: [
 						"Read and subscribe to {{https://blog.getbootstrap.com/::The Official Bootstrap Blog}}.",
@@ -352,7 +426,9 @@ export const introduction: IContent = {
 						"Developers should use the keyword {{bootstrap}} on packages that modify or add to the functionality of Bootstrap when distributing through {{https://www.npmjs.com/search?q=keywords:bootstrap::npm}} or similar delivery mechanisms for maximum discoverability.",
 					],
 				}),
-				new e.text("You can also follow {{https://twitter.com/getbootstrap::@getbootstrap on Twitter}} for the latest gossip and awesome music videos."),
+				new e.text(
+					"You can also follow {{https://twitter.com/getbootstrap::@getbootstrap on Twitter}} for the latest gossip and awesome music videos."
+				),
 			]),
 		];
 	},
