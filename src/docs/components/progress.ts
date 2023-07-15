@@ -4,7 +4,8 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const progress: IContent = {
 	title: "Progress",
-	description: "Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels.",
+	description:
+		"Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
@@ -34,7 +35,10 @@ export const progress: IContent = {
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [0, 25, 50, 75, 100].map((i) => {
-							return new b.progress.container({ label: "Basic example", value: i, min: 0, max: 100 }, new b.progress.bar({ style: { width: `${i}%` } }));
+							return new b.progress.container(
+								{ label: "Basic example", value: i, min: 0, max: 100 },
+								new b.progress.bar({ style: { width: `${i}%` } })
+							);
 						});
 					},
 				}),
@@ -64,19 +68,29 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Width"),
-				new e.text("Bootstrap provides a handful of {{nav:docs/utilities/sizing::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{b.progress.bar}}."),
+				new e.text(
+					"Bootstrap provides a handful of {{nav:docs/utilities/sizing::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{b.progress.bar}}."
+				),
 
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Basic example", value: 75, min: 0, max: 100 }, new b.progress.bar({ width: 75 }));
+						return new b.progress.container(
+							{ label: "Basic example", value: 75, min: 0, max: 100 },
+							new b.progress.bar({ width: 75 })
+						);
 					},
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Basic example", value: 75, min: 0, max: 100 });
+						return new b.progress.container({
+							label: "Basic example",
+							value: 75,
+							min: 0,
+							max: 100,
+						});
 					},
 				}),
 			]),
@@ -85,15 +99,35 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Height"),
-				new e.text("You only set a {{height}} value on the {{b.progress.container}} component, so if you change that value, the inner {{b.progress.bar}} will automatically resize accordingly."),
+				new e.text(
+					"You only set a {{height}} value on the {{b.progress.container}} component, so if you change that value, the inner {{b.progress.bar}} will automatically resize accordingly."
+				),
 
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [
-							new b.progress.container({ label: "Example 1px high", value: 25, min: 0, max: 100, style: { height: "1px" } }, new b.progress.bar({ style: { width: "25%" } })),
-							new b.progress.container({ label: "Example 20px high", value: 25, min: 0, max: 100, style: { height: "20px" } }, new b.progress.bar({ style: { width: "25%" } })),
+							new b.progress.container(
+								{
+									label: "Example 1px high",
+									value: 25,
+									min: 0,
+									max: 100,
+									style: { height: "1px" },
+								},
+								new b.progress.bar({ style: { width: "25%" } })
+							),
+							new b.progress.container(
+								{
+									label: "Example 20px high",
+									value: 25,
+									min: 0,
+									max: 100,
+									style: { height: "20px" },
+								},
+								new b.progress.bar({ style: { width: "25%" } })
+							),
 						];
 					},
 				}),
@@ -126,11 +160,16 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Labels"),
-				new e.text("Add labels to your progress bars by placing text within the {{b.progress.bar}}."),
+				new e.text(
+					"Add labels to your progress bars by placing text within the {{b.progress.bar}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Example with label", value: 25, min: 0, max: 100 }, new b.progress.bar({ style: { width: "25%" } }, "25%"));
+						return new b.progress.container(
+							{ label: "Example with label", value: 25, min: 0, max: 100 },
+							new b.progress.bar({ style: { width: "25%" } }, "25%")
+						);
 					},
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
@@ -164,7 +203,13 @@ export const progress: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Example with label", value: 10, min: 0, max: 100 }, new b.progress.bar({ style: { width: "10%" }, overflow: "visible", textColor: "dark" }, "Long label text for the progress bar, set to a dark color"));
+						return new b.progress.container(
+							{ label: "Example with label", value: 10, min: 0, max: 100 },
+							new b.progress.bar(
+								{ style: { width: "10%" }, overflow: "visible", textColor: "dark" },
+								"Long label text for the progress bar, set to a dark color"
+							)
+						);
 					},
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
@@ -186,7 +231,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Backgrounds"),
-				new e.text("Use background utility classes to change the appearance of individual progress bars."),
+				new e.text(
+					"Use background utility classes to change the appearance of individual progress bars."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -194,7 +241,12 @@ export const progress: IContent = {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [25, 50, 75, 100][ix];
 							return new b.progress.container(
-								{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+								{
+									label: `${core.uppercaseFirst(i)} example`,
+									value: val,
+									min: 0,
+									max: 100,
+								},
 								new b.progress.bar({
 									color: i as I.B.Progress.Bar["color"],
 									style: { width: `${val}%` },
@@ -224,7 +276,9 @@ export const progress: IContent = {
 					{ color: "info", callout: true },
 					"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 				),
-				new e.text("If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{textColor}}, so the labels remain readable and have sufficient contrast."),
+				new e.text(
+					"If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{textColor}}, so the labels remain readable and have sufficient contrast."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -233,7 +287,12 @@ export const progress: IContent = {
 							let val = [25, 50, 75, 100][ix];
 							let text = ["light", "dark", "dark", "light"][ix];
 							return new b.progress.container(
-								{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+								{
+									label: `${core.uppercaseFirst(i)} example`,
+									value: val,
+									min: 0,
+									max: 100,
+								},
 								new b.progress.bar(
 									{
 										color: i as I.B.Progress.Bar["color"],
@@ -265,7 +324,9 @@ export const progress: IContent = {
 						});
 					},
 				}),
-				new e.text("Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} property. Without {{b.progress.bar}} the {{textBgColor}} will be used."),
+				new e.text(
+					"Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} property. Without {{b.progress.bar}} the {{textBgColor}} will be used."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -273,7 +334,12 @@ export const progress: IContent = {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [25, 50, 75, 100][ix];
 							return new b.progress.container(
-								{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+								{
+									label: `${core.uppercaseFirst(i)} example`,
+									value: val,
+									min: 0,
+									max: 100,
+								},
 								new b.progress.bar(
 									{
 										textBgColor: i as I.B.Progress.Bar["textBgColor"],
@@ -368,7 +434,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Striped"),
-				new e.text("Add {{striped:true}} to any {{b.progress.bar}} to apply a stripe via CSS gradient over the progress bar’s background color."),
+				new e.text(
+					"Add {{striped:true}} to any {{b.progress.bar}} to apply a stripe via CSS gradient over the progress bar’s background color."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -377,7 +445,9 @@ export const progress: IContent = {
 							let val = [10, 25, 50, 75, 100][ix];
 							return new b.progress.container(
 								{
-									label: `${i ? core.uppercaseFirst(i) : "Default"} striped example`,
+									label: `${
+										i ? core.uppercaseFirst(i) : "Default"
+									} striped example`,
 									value: val,
 									min: 0,
 									max: 100,
@@ -415,7 +485,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Animated stripes"),
-				new e.text("The striped gradient can also be animated. Add {{striped:true}} and {{animated:true}} togather to {{b.progress.bar}} to animate the stripes right to left via CSS3 animations."),
+				new e.text(
+					"The striped gradient can also be animated. Add {{striped:true}} and {{animated:true}} togather to {{b.progress.bar}} to animate the stripes right to left via CSS3 animations."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -459,7 +531,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_progress.scss",
@@ -481,7 +555,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -504,7 +580,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Keyframes"),
-				new e.text("Used for creating the CSS animations for {{.progress-bar-animated}}. Included in {{scss/_progress-bar.scss}}."),
+				new e.text(
+					"Used for creating the CSS animations for {{.progress-bar-animated}}. Included in {{scss/_progress-bar.scss}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_progress.scss",
@@ -524,16 +602,7 @@ export const progress: IContent = {
 		{
 			source: `() => {
 return [0, 25, 50, 75, 100].map((i) => {
-return new b.progress.container({
-label: "Basic example",
-value: i,
-min: 0,
-max: 100
-}, new b.progress.bar({
-style: {
-width: \`\${i}%\`
-}
-}));
+return new b.progress.container({ label: "Basic example", value: i, min: 0, max: 100 }, new b.progress.bar({ style: { width: \`\${i}%\` } }));
 });
 }`,
 		},
@@ -551,55 +620,19 @@ max: 100,
 		},
 		{
 			source: `() => {
-return new b.progress.container({
-label: "Basic example",
-value: 75,
-min: 0,
-max: 100
-}, new b.progress.bar({
-width: 75
-}));
+return new b.progress.container({ label: "Basic example", value: 75, min: 0, max: 100 }, new b.progress.bar({ width: 75 }));
 }`,
 		},
 		{
 			source: `() => {
-return new b.progress.container({
-label: "Basic example",
-value: 75,
-min: 0,
-max: 100
-});
+return new b.progress.container({ label: "Basic example", value: 75, min: 0, max: 100 });
 }`,
 		},
 		{
 			source: `() => {
 return [
-new b.progress.container({
-label: "Example 1px high",
-value: 25,
-min: 0,
-max: 100,
-style: {
-height: "1px"
-}
-}, new b.progress.bar({
-style: {
-width: "25%"
-}
-})),
-new b.progress.container({
-label: "Example 20px high",
-value: 25,
-min: 0,
-max: 100,
-style: {
-height: "20px"
-}
-}, new b.progress.bar({
-style: {
-width: "25%"
-}
-})),
+new b.progress.container({ label: "Example 1px high", value: 25, min: 0, max: 100, style: { height: "1px" } }, new b.progress.bar({ style: { width: "25%" } })),
+new b.progress.container({ label: "Example 20px high", value: 25, min: 0, max: 100, style: { height: "20px" } }, new b.progress.bar({ style: { width: "25%" } })),
 ];
 }`,
 		},
@@ -611,34 +644,21 @@ label: "Example 1px high",
 value: 25,
 min: 0,
 max: 100,
-style: {
-height: "1px"
-},
+style: { height: "1px" },
 }),
 new b.progress.container({
 label: "Example 20px high",
 value: 25,
 min: 0,
 max: 100,
-style: {
-height: "20px"
-},
+style: { height: "20px" },
 }),
 ];
 }`,
 		},
 		{
 			source: `() => {
-return new b.progress.container({
-label: "Example with label",
-value: 25,
-min: 0,
-max: 100
-}, new b.progress.bar({
-style: {
-width: "25%"
-}
-}, "25%"));
+return new b.progress.container({ label: "Example with label", value: 25, min: 0, max: 100 }, new b.progress.bar({ style: { width: "25%" } }, "25%"));
 }`,
 		},
 		{
@@ -665,18 +685,7 @@ text: "progress",
 		},
 		{
 			source: `() => {
-return new b.progress.container({
-label: "Example with label",
-value: 10,
-min: 0,
-max: 100
-}, new b.progress.bar({
-style: {
-width: "10%"
-},
-overflow: "visible",
-textColor: "dark"
-}, "Long label text for the progress bar, set to a dark color"));
+return new b.progress.container({ label: "Example with label", value: 10, min: 0, max: 100 }, new b.progress.bar({ style: { width: "10%" }, overflow: "visible", textColor: "dark" }, "Long label text for the progress bar, set to a dark color"));
 }`,
 		},
 		{
@@ -694,16 +703,9 @@ text: "Long label text for the progress bar, set to a dark color",
 			source: `() => {
 return ["success", "info", "warning", "danger"].map((i, ix) => {
 let val = [25, 50, 75, 100][ix];
-return new b.progress.container({
-label: \`\${core.uppercaseFirst(i)} example\`,
-value: val,
-min: 0,
-max: 100
-}, new b.progress.bar({
+return new b.progress.container({ label: \`\${core.uppercaseFirst(i)} example\`, value: val, min: 0, max: 100 }, new b.progress.bar({
 color: i,
-style: {
-width: \`\${val}%\`
-},
+style: { width: \`\${val}%\` },
 }));
 });
 }`,
@@ -727,17 +729,10 @@ color: i,
 return ["success", "info", "warning", "danger"].map((i, ix) => {
 let val = [25, 50, 75, 100][ix];
 let text = ["light", "dark", "dark", "light"][ix];
-return new b.progress.container({
-label: \`\${core.uppercaseFirst(i)} example\`,
-value: val,
-min: 0,
-max: 100
-}, new b.progress.bar({
+return new b.progress.container({ label: \`\${core.uppercaseFirst(i)} example\`, value: val, min: 0, max: 100 }, new b.progress.bar({
 color: i,
 textColor: text,
-style: {
-width: \`\${val}%\`
-},
+style: { width: \`\${val}%\` },
 }, \`\${val}%\`));
 });
 }`,
@@ -761,16 +756,9 @@ text: "percent",
 			source: `() => {
 return ["success", "info", "warning", "danger"].map((i, ix) => {
 let val = [25, 50, 75, 100][ix];
-return new b.progress.container({
-label: \`\${core.uppercaseFirst(i)} example\`,
-value: val,
-min: 0,
-max: 100
-}, new b.progress.bar({
+return new b.progress.container({ label: \`\${core.uppercaseFirst(i)} example\`, value: val, min: 0, max: 100 }, new b.progress.bar({
 textBgColor: i,
-style: {
-width: \`\${val}%\`
-},
+style: { width: \`\${val}%\` },
 }, \`\${val}%\`));
 });
 }`,
@@ -783,32 +771,22 @@ label: "Segment one",
 value: 15,
 min: 0,
 max: 100,
-style: {
-width: "15%"
-},
+style: { width: "15%" },
 }, new b.progress.bar()),
 new b.progress.container({
 label: "Segment two",
 value: 30,
 min: 0,
 max: 100,
-style: {
-width: "30%"
-},
-}, new b.progress.bar({
-color: "success"
-})),
+style: { width: "30%" },
+}, new b.progress.bar({ color: "success" })),
 new b.progress.container({
 label: "Segment three",
 value: 20,
 min: 0,
 max: 100,
-style: {
-width: "20%"
-},
-}, new b.progress.bar({
-color: "info"
-})),
+style: { width: "20%" },
+}, new b.progress.bar({ color: "info" })),
 ]);
 }`,
 		},
@@ -853,9 +831,7 @@ max: 100,
 }, new b.progress.bar({
 striped: true,
 textBgColor: i,
-style: {
-width: \`\${val}%\`
-},
+style: { width: \`\${val}%\` },
 }));
 });
 }`,
@@ -885,9 +861,7 @@ max: 100,
 }, new b.progress.bar({
 striped: true,
 animated: true,
-style: {
-width: \`75%\`
-},
+style: { width: \`75%\` },
 }));
 }`,
 		},

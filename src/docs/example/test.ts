@@ -231,7 +231,9 @@ export const test: IContent = {
 														new Chart(target, {
 															type: "line",
 															data: {
-																labels: Array(arg.data.length).fill(""),
+																labels: Array(arg.data.length).fill(
+																	""
+																),
 																datasets: [
 																	{
 																		data: arg.data,
@@ -332,7 +334,42 @@ border: true,
 		},
 		{
 			source: `() => {
-return ["rotation", "sidetoside", "zoom-in", "zoom-out", "spin", "pulse", "shake", "barrel-roll", "floater", "wiggle", "pound", "heartbeat", "roller-in-right", "roller-in-left", "roller-out-right", "roller-out-left", "slide-in-bottom", "slide-in-top", "slide-in-left", "slide-in-right", "slide-out-bottom", "slide-out-top", "slide-out-left", "slide-out-right", "fade-in", "fade-out", "rotate-in-right", "rotate-in-left", "rotate-in", "rotate-out-right", "rotate-out-left", "rotate-out", "bounce-in", "bounce-out", ].map((i) => new h.div({
+return [
+"rotation",
+"sidetoside",
+"zoom-in",
+"zoom-out",
+"spin",
+"pulse",
+"shake",
+"barrel-roll",
+"floater",
+"wiggle",
+"pound",
+"heartbeat",
+"roller-in-right",
+"roller-in-left",
+"roller-out-right",
+"roller-out-left",
+"slide-in-bottom",
+"slide-in-top",
+"slide-in-left",
+"slide-in-right",
+"slide-out-bottom",
+"slide-out-top",
+"slide-out-left",
+"slide-out-right",
+"fade-in",
+"fade-out",
+"rotate-in-right",
+"rotate-in-left",
+"rotate-in",
+"rotate-out-right",
+"rotate-out-left",
+"rotate-out",
+"bounce-in",
+"bounce-out",
+].map((i) => new h.div({
 display: "flex",
 justifyContent: "center",
 alignItem: "center",
@@ -340,9 +377,7 @@ overflow: "hidden",
 padding: 2,
 border: true,
 rounded: 2,
-style: {
-width: "8rem"
-},
+style: { width: "8rem" },
 }, new b.caption({
 icon: new b.icon({
 animate: i,
@@ -363,9 +398,7 @@ alignItem: "center",
 padding: 2,
 border: true,
 rounded: 2,
-style: {
-width: "8rem"
-},
+style: { width: "8rem" },
 }, new b.caption({
 icon: new b.icon({
 rotate: i,
@@ -385,9 +418,7 @@ alignItem: "center",
 padding: 2,
 border: true,
 rounded: 2,
-style: {
-width: "8rem"
-},
+style: { width: "8rem" },
 }, new b.caption({
 icon: new b.icon({
 flip: i,
@@ -410,11 +441,7 @@ return [
 		{
 			source: `() => {
 const item = (arg) => {
-return new b.card.container({
-style: {
-maxWidth: "120px"
-}
-}, new b.card.body(new h.canvas({
+return new b.card.container({ style: { maxWidth: "120px" } }, new b.card.body(new h.canvas({
 ratio: "4x3",
 on: {
 build: (event) => {
@@ -425,8 +452,7 @@ new chart_js_auto__WEBPACK_IMPORTED_MODULE_3__["default"](target, {
 type: "line",
 data: {
 labels: Array(arg.data.length).fill(""),
-datasets: [
-{
+datasets: [{
 data: arg.data,
 borderWidth: 2,
 pointRadius: 0,
@@ -440,9 +466,7 @@ display: false,
 },
 },
 scales: {
-x: {
-display: false
-},
+x: { display: false },
 y: {
 display: false,
 beginAtZero: true,
@@ -470,7 +494,9 @@ flex: "wrap",
 marginTop: 3,
 }, new Array(15).fill("").map(() => {
 return item({
-data: Array(core.rndBetween(5, 20)).fill("").map(() => {
+data: Array(core.rndBetween(5, 20))
+.fill("")
+.map(() => {
 return core.rndBetween(1, 20);
 }),
 });

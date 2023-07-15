@@ -4,25 +4,33 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const breadcrumb: IContent = {
 	title: "Breadcrumb",
-	description: "Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.",
+	description:
+		"Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
 			new e.section([
 				new e.title("Example"),
-				new e.text("Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb ({{b.breadcrumb.container}}). Use Bootstrap utilities to add additional styles as desired."),
+				new e.text(
+					"Use an ordered or unordered list with linked list items to create a minimally styled breadcrumb ({{b.breadcrumb.container}}). Use Bootstrap utilities to add additional styles as desired."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map((i) => {
-							return new b.breadcrumb.container(
-								{ label: "breadcrumb" },
-								i.map((j, jx) => {
-									return new b.breadcrumb.item({ active: jx === i.length - 1, href: "#" }, j);
-								})
-							);
-						});
+						return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map(
+							(i) => {
+								return new b.breadcrumb.container(
+									{ label: "breadcrumb" },
+									i.map((j, jx) => {
+										return new b.breadcrumb.item(
+											{ active: jx === i.length - 1, href: "#" },
+											j
+										);
+									})
+								);
+							}
+						);
 					},
 				}),
 			]),
@@ -67,14 +75,18 @@ export const breadcrumb: IContent = {
 						});
 					},
 				}),
-				new e.text("When modifying via Sass, the {{https://sass-lang.com/documentation/modules/string#quote::quote}} function is required to generate the quotes around a string. For example, using {{>}} as the divider, you can use this:"),
+				new e.text(
+					"When modifying via Sass, the {{https://sass-lang.com/documentation/modules/string#quote::quote}} function is required to generate the quotes around a string. For example, using {{>}} as the divider, you can use this:"
+				),
 				new e.codepreview({
 					type: "css",
 					code: `
 						$breadcrumb-divider: quote(">");
 						`,
 				}),
-				new e.text("It’s also possible to use an {{b::embedded SVG icon}}. Apply it via Bootstrap CSS custom property, or use the Sass variable."),
+				new e.text(
+					"It’s also possible to use an {{b::embedded SVG icon}}. Apply it via Bootstrap CSS custom property, or use the Sass variable."
+				),
 				new e.alert({ color: "info", callout: true }, [
 					new h.h(5, "Using embedded SVG"),
 					new h.p(
@@ -101,7 +113,9 @@ export const breadcrumb: IContent = {
 						$breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color}'/></svg>");
 						`,
 				}),
-				new e.text("You can also remove the divider setting {{divider: ''}} (empty strings as a value), or setting the Sass variable to {{$breadcrumb-divider: none;}}."),
+				new e.text(
+					"You can also remove the divider setting {{divider: ''}} (empty strings as a value), or setting the Sass variable to {{$breadcrumb-divider: none;}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -131,7 +145,9 @@ export const breadcrumb: IContent = {
 				new e.text(
 					"Since breadcrumbs provide a navigation, it’s a good idea to add a meaningful label such as {{label:'breadcrumb'}} to describe the type of navigation provided in the {{b.breadcrumb.container}} component, and automaticly applying an {{aria-current='page'}} to the last item of the set to indicate that it represents the current page."
 				),
-				new e.text("For more information, see the {{https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/::ARIA Authoring Practices Guide breadcrumb pattern}}."),
+				new e.text(
+					"For more information, see the {{https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/::ARIA Authoring Practices Guide breadcrumb pattern}}."
+				),
 			]),
 
 			//----------------------
@@ -142,7 +158,9 @@ export const breadcrumb: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, breadcrumbs now use local CSS variables on {{.breadcrumb}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, breadcrumbs now use local CSS variables on {{.breadcrumb}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -195,13 +213,8 @@ return [
 ["Home", "Library"],
 ["Home", "Library", "Data"]
 ].map((i) => {
-return new b.breadcrumb.container({
-label: "breadcrumb"
-}, i.map((j, jx) => {
-return new b.breadcrumb.item({
-active: jx === i.length - 1,
-href: "#"
-}, j);
+return new b.breadcrumb.container({ label: "breadcrumb" }, i.map((j, jx) => {
+return new b.breadcrumb.item({ active: jx === i.length - 1, href: "#" }, j);
 }));
 });
 }`,
@@ -210,16 +223,11 @@ href: "#"
 			source: `() => {
 return new b.breadcrumb.container({
 label: "breadcrumb",
-item: [{
-href: "#",
-elem: "Home"
-}, {
-href: "#",
-elem: "Library"
-}, {
-href: "#",
-elem: "Data"
-}, ],
+item: [
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Library" },
+{ href: "#", elem: "Data" },
+],
 });
 }`,
 		},
@@ -228,16 +236,11 @@ elem: "Data"
 return new b.breadcrumb.container({
 label: "breadcrumb",
 divider: "'>'",
-item: [{
-href: "#",
-elem: "Home"
-}, {
-href: "#",
-elem: "Library"
-}, {
-href: "#",
-elem: "Data"
-}, ],
+item: [
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Library" },
+{ href: "#", elem: "Data" },
+],
 });
 }`,
 		},
@@ -246,16 +249,11 @@ elem: "Data"
 return new b.breadcrumb.container({
 label: "breadcrumb",
 divider: \`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E")\`,
-item: [{
-href: "#",
-elem: "Home"
-}, {
-href: "#",
-elem: "Library"
-}, {
-href: "#",
-elem: "Data"
-}, ],
+item: [
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Library" },
+{ href: "#", elem: "Data" },
+],
 });
 }`,
 		},
@@ -264,16 +262,11 @@ elem: "Data"
 return new b.breadcrumb.container({
 label: "breadcrumb",
 divider: "''",
-item: [{
-href: "#",
-elem: "Home"
-}, {
-href: "#",
-elem: "Library"
-}, {
-href: "#",
-elem: "Data"
-}, ],
+item: [
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Library" },
+{ href: "#", elem: "Data" },
+],
 });
 }`,
 		},

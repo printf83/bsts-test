@@ -4,7 +4,8 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const visually_hidden: IContent = {
 	title: "Visually hidden",
-	description: "Use these helpers to visually hide elements but keep them accessible to assistive technologies.",
+	description:
+		"Use these helpers to visually hide elements but keep them accessible to assistive technologies.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
@@ -18,12 +19,21 @@ export const visually_hidden: IContent = {
 					output: () => {
 						return [
 							new h.h(2, { visually: "hidden" }, "Title for screen readers"),
-							new h.a({ visually: "hidden-focusable", href: "#content" }, "Skip to main content"),
-							new h.div({ visually: "hidden-focusable" }, ["A container wiht a ", new h.a({ href: "#" }, "focusable element"), "."]),
+							new h.a(
+								{ visually: "hidden-focusable", href: "#content" },
+								"Skip to main content"
+							),
+							new h.div({ visually: "hidden-focusable" }, [
+								"A container wiht a ",
+								new h.a({ href: "#" }, "focusable element"),
+								".",
+							]),
 						];
 					},
 				}),
-				new e.text("Both {{visually-hidden}} and {{visually-hidden-focusable}} can also be used as mixins."),
+				new e.text(
+					"Both {{visually-hidden}} and {{visually-hidden-focusable}} can also be used as mixins."
+				),
 				new e.codepreview({
 					type: "css",
 					code: `
@@ -45,18 +55,13 @@ export const visually_hidden: IContent = {
 		{
 			source: `() => {
 return [
-new h.h(2, {
-visually: "hidden"
-}, "Title for screen readers"),
-new h.a({
-visually: "hidden-focusable",
-href: "#content"
-}, "Skip to main content"),
-new h.div({
-visually: "hidden-focusable"
-}, ["A container wiht a ", new h.a({
-href: "#"
-}, "focusable element"), "."]),
+new h.h(2, { visually: "hidden" }, "Title for screen readers"),
+new h.a({ visually: "hidden-focusable", href: "#content" }, "Skip to main content"),
+new h.div({ visually: "hidden-focusable" }, [
+"A container wiht a ",
+new h.a({ href: "#" }, "focusable element"),
+".",
+]),
 ];
 }`,
 		},

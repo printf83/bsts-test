@@ -4,35 +4,50 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const nav: IContent = {
 	title: "Navs and tabs",
-	description: "Documentation and examples for how to use Bootstrap’s included navigation components.",
+	description:
+		"Documentation and examples for how to use Bootstrap’s included navigation components.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
 			new e.section([
 				new e.title("Base nav"),
-				new e.text("Navigation available in Bootstrap share general markup and styles, from the base {{b.nav.header.container}} component to the active and disabled states. Swap modifier property to switch between each style."),
+				new e.text(
+					"Navigation available in Bootstrap share general markup and styles, from the base {{b.nav.header.container}} component to the active and disabled states. Swap modifier property to switch between each style."
+				),
 				new e.text(
 					"The base {{b.nav.header.container}} component is built with flexbox and provide a strong foundation for building all types of navigation components. It includes some style overrides (for working with lists), some link padding for larger hit areas, and basic disabled styling."
 				),
 				new e.alert({ color: "info", callout: true }, [
-					new h.p("The base {{b.nav.header.container}} component does not include any {{active}} state property. The following examples include the class, mainly to demonstrate that this particular class does not trigger any special styling."),
-					new h.p("To convey the active state to assistive technologies, use the {{aria-current}} attribute — using the page value for current page, or {{true}} for the current item in a set."),
-					new h.p("By default, {{bsts}} set {{aria-current:'page'}} when {{active:true}} on {{b.nav.header.link}}. Change it using {{current:true}} to change this behavior."),
+					new h.p(
+						"The base {{b.nav.header.container}} component does not include any {{active}} state property. The following examples include the class, mainly to demonstrate that this particular class does not trigger any special styling."
+					),
+					new h.p(
+						"To convey the active state to assistive technologies, use the {{aria-current}} attribute — using the page value for current page, or {{true}} for the current item in a set."
+					),
+					new h.p(
+						"By default, {{bsts}} set {{aria-current:'page'}} when {{active:true}} on {{b.nav.header.link}}. Change it using {{current:true}} to change this behavior."
+					),
 				]),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container([
-							new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+							new b.nav.header.item(
+								new b.nav.header.link({ active: true, href: "#" }, "Active")
+							),
 							new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
 							new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-							new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+							new b.nav.header.item(
+								new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")
+							),
 						]);
 					},
 				}),
 
-				new e.text("Or using {{link}} property to create {{b.nav.header.item}} and {{b.nav.header.link}} directly."),
+				new e.text(
+					"Or using {{link}} property to create {{b.nav.header.item}} and {{b.nav.header.link}} directly."
+				),
 
 				new e.code({
 					db: getContentCode(db),
@@ -54,7 +69,12 @@ export const nav: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.nav.header.containerNav([new b.nav.header.link({ active: true, href: "#" }, "Active"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")]);
+						return new b.nav.header.containerNav([
+							new b.nav.header.link({ active: true, href: "#" }, "Active"),
+							new b.nav.header.link({ href: "#" }, "Link"),
+							new b.nav.header.link({ href: "#" }, "Link"),
+							new b.nav.header.link({ disabled: true, href: "#" }, "Disabled"),
+						]);
 					},
 				}),
 
@@ -76,13 +96,20 @@ export const nav: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Available styles"), new e.text("Change the style of {{b.nav.header.container}}s component with modifiers and utilities. Mix and match as needed, or build your own.")]),
+			new e.section([
+				new e.title("Available styles"),
+				new e.text(
+					"Change the style of {{b.nav.header.container}}s component with modifiers and utilities. Mix and match as needed, or build your own."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Horizontal alignment"),
-				new e.text("Change the horizontal alignment of your nav with {{nav:docs/layout/grid#horizontal_alignment::flexbox utilities}}. By default, navs are left-aligned, but you can easily change them to center or right aligned."),
+				new e.text(
+					"Change the horizontal alignment of your nav with {{nav:docs/layout/grid#horizontal_alignment::flexbox utilities}}. By default, navs are left-aligned, but you can easily change them to center or right aligned."
+				),
 				new e.text("Centered with {{justifyContent:'center'}} property:"),
 				new e.code({
 					db: getContentCode(db),
@@ -119,7 +146,9 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.subtitle("Vertical"),
-				new e.text("Stack your navigation by changing the flex item direction with the {{flex:'column'}} property. Need to stack them on some viewports but not others? Use the responsive versions (e.g., {{flex:'sm-column'}})."),
+				new e.text(
+					"Stack your navigation by changing the flex item direction with the {{flex:'column'}} property. Need to stack them on some viewports but not others? Use the responsive versions (e.g., {{flex:'sm-column'}})."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -134,7 +163,9 @@ export const nav: IContent = {
 						});
 					},
 				}),
-				new e.text("As always, vertical navigation also possible with {{b.nav.header.containerNav}}s, too."),
+				new e.text(
+					"As always, vertical navigation also possible with {{b.nav.header.containerNav}}s, too."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -155,7 +186,9 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.subtitle("Tabs"),
-				new e.text("Takes the basic nav from above and adds the {{type:'tab'}} property on {{b.nav.header.container}} to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:docs/components/nav#javascript_behavior::tab JavaScript plugin}}."),
+				new e.text(
+					"Takes the basic nav from above and adds the {{type:'tab'}} property on {{b.nav.header.container}} to generate a tabbed interface. Use them to create tabbable regions with Bootstrap {{nav:docs/components/nav#javascript_behavior::tab JavaScript plugin}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -236,7 +269,9 @@ export const nav: IContent = {
 						});
 					},
 				}),
-				new e.text("When using a {{b.nav.header.containerNav}}-based navigation, you can safely omit {{b.nav.header.item}} as only {{b.nav.header.link}} is required for styling {{h.a}} component."),
+				new e.text(
+					"When using a {{b.nav.header.containerNav}}-based navigation, you can safely omit {{b.nav.header.item}} as only {{b.nav.header.link}} is required for styling {{h.a}} component."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -252,7 +287,9 @@ export const nav: IContent = {
 						});
 					},
 				}),
-				new e.text("For equal-width component, use {{itemWidth:'justified'}}. All horizontal space will be occupied by nav links, but unlike the {{itemWidth:'fill'}} above, every nav item will be the same width."),
+				new e.text(
+					"For equal-width component, use {{itemWidth:'justified'}}. All horizontal space will be occupied by nav links, but unlike the {{itemWidth:'fill'}} above, every nav item will be the same width."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -268,7 +305,9 @@ export const nav: IContent = {
 						});
 					},
 				}),
-				new e.text("Similar to the {{itemWidth:'fill'}} example using a {{b.nav.header.containerNav}}-based navigation."),
+				new e.text(
+					"Similar to the {{itemWidth:'fill'}} example using a {{b.nav.header.containerNav}}-based navigation."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -327,19 +366,33 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.title("Using dropdowns"),
-				new e.text("Add dropdown menus with a little extra HTML and the {{nav:docs/components/dropdown#usage::dropdowns JavaScript plugin}}."),
-				new e.text("Tabs with dropdowns with set {{dropdown:true}} property on {{b.nav.header.item}}"),
+				new e.text(
+					"Add dropdown menus with a little extra HTML and the {{nav:docs/components/dropdown#usage::dropdowns JavaScript plugin}}."
+				),
+				new e.text(
+					"Tabs with dropdowns with set {{dropdown:true}} property on {{b.nav.header.item}}"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return new b.nav.header.container({ type: "tab" }, [
-							new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+							new b.nav.header.item(
+								new b.nav.header.link({ active: true, href: "#" }, "Active")
+							),
 							new b.nav.header.item({ dropdown: true }, [
 								new b.dropdown.button({ navItem: true }, "Dropdown"),
-								new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Action"),
+									new b.dropdown.item({ href: "#" }, "Another action"),
+									new b.dropdown.item({ href: "#" }, "Something else here"),
+									new b.dropdown.divider(),
+									new b.dropdown.item({ href: "#" }, "Separated link"),
+								]),
 							]),
 							new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-							new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
+							new b.nav.header.item(
+								new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")
+							),
 						]);
 					},
 				}),
@@ -359,7 +412,10 @@ export const nav: IContent = {
 										new b.dropdown.menu([
 											new b.dropdown.item({ href: "#" }, "Action"),
 											new b.dropdown.item({ href: "#" }, "Another action"),
-											new b.dropdown.item({ href: "#" }, "Something else here"),
+											new b.dropdown.item(
+												{ href: "#" },
+												"Something else here"
+											),
 											new b.dropdown.divider(),
 											new b.dropdown.item({ href: "#" }, "Separated link"),
 										]),
@@ -391,7 +447,10 @@ export const nav: IContent = {
 										new b.dropdown.menu([
 											new b.dropdown.item({ href: "#" }, "Action"),
 											new b.dropdown.item({ href: "#" }, "Another action"),
-											new b.dropdown.item({ href: "#" }, "Something else here"),
+											new b.dropdown.item(
+												{ href: "#" },
+												"Something else here"
+											),
 											new b.dropdown.divider(),
 											new b.dropdown.item({ href: "#" }, "Separated link"),
 										]),
@@ -413,7 +472,9 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, navs now use local CSS variables on {{.nav}}, {{.nav-tabs}}, and {{.nav-pills}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, navs now use local CSS variables on {{.nav}}, {{.nav-tabs}}, and {{.nav-pills}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 				new e.text("On the {{.nav}} base class:"),
 				new e.codepreview({
 					type: "css",
@@ -511,8 +572,12 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.title("JavaScript behavior"),
-				new e.text("Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap navigational tabs and pills to create tabbable panes of local content."),
-				new e.text("Tab panel header should using {{b.nav.header.button}} insted of {{b.nav.header.link}}."),
+				new e.text(
+					"Use the tab JavaScript plugin—include it individually or through the compiled {{bootstrap.js}} file—to extend Bootstrap navigational tabs and pills to create tabbable panes of local content."
+				),
+				new e.text(
+					"Tab panel header should using {{b.nav.header.button}} insted of {{b.nav.header.link}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -563,7 +628,9 @@ export const nav: IContent = {
 						];
 					},
 				}),
-				new e.text("To help fit your needs, this works with {{b.nav.header.container}}-based markup, as shown above, or with any arbitrary “roll your own” markup."),
+				new e.text(
+					"To help fit your needs, this works with {{b.nav.header.container}}-based markup, as shown above, or with any arbitrary “roll your own” markup."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -662,7 +729,9 @@ export const nav: IContent = {
 						];
 					},
 				}),
-				new e.text("You also can use {{bsts}} {{b.nav.tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."),
+				new e.text(
+					"You also can use {{bsts}} {{b.nav.tab}} function to create simple tab without need to create {{id}}, {{target}}, {{controlfor}}, {{toggle}}, {{role}} and {{labelledby}} manually."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -680,7 +749,9 @@ export const nav: IContent = {
 						});
 					},
 				}),
-				new e.text("And with vertical pills. Ideally, for vertical tabs, you should also add {{vertical:true}} to the tab {{b.nav.header.container}} or {{b.nav.header.containerNav}}."),
+				new e.text(
+					"And with vertical pills. Ideally, for vertical tabs, you should also add {{vertical:true}} to the tab {{b.nav.header.container}} or {{b.nav.header.containerNav}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
@@ -699,7 +770,11 @@ export const nav: IContent = {
 								item: [
 									{ label: "Home", active: true, elem: content("Home") },
 									{ label: "Profile", elem: content("Profile") },
-									{ label: "Disabled", disabled: true, elem: content("Disabled") },
+									{
+										label: "Disabled",
+										disabled: true,
+										elem: content("Disabled"),
+									},
 									{ label: "Messages", elem: content("Messages") },
 									{ label: "Settings", elem: content("Settings") },
 								],
@@ -734,7 +809,9 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.subtitle("Using toggle property"),
-				new e.text("You can activate a tab or pill navigation by simply specifying {{toggle:'tab'}} or {{toggle:'pill'}} on an {{b.nav.header.container}} or {{b.nav.header.containerNav}} component."),
+				new e.text(
+					"You can activate a tab or pill navigation by simply specifying {{toggle:'tab'}} or {{toggle:'pill'}} on an {{b.nav.header.container}} or {{b.nav.header.containerNav}} component."
+				),
 
 				new e.code({
 					db: getContentCode(db),
@@ -796,9 +873,14 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.subtitle("Via JavaScript"),
-				new e.text("Enable tabbable tabs via JavaScript (each tab needs to be activated individually):"),
+				new e.text(
+					"Enable tabbable tabs via JavaScript (each tab needs to be activated individually):"
+				),
 
-				new e.alert({ color: "warning", callout: true }, "By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."),
+				new e.alert(
+					{ color: "warning", callout: true },
+					"By manually addEventListener, make sure you remove the event listernet on element remove to prevent memory leak."
+				),
 
 				new e.codepreview({
 					type: "js",
@@ -832,7 +914,9 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.subtitle("Fade effect"),
-				new e.text("To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}} or {{b.nav.tab}}. The first tab pane must also have {{active:true}} to make the initial content visible."),
+				new e.text(
+					"To disable tabs fade in effect, add {{animation:false}} property to each {{b.nav.content.item}} or {{b.nav.tab}}. The first tab pane must also have {{active:true}} to make the initial content visible."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -856,7 +940,9 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.title("Tab in card"),
-				new e.text("Just set {{container:'card'}} to {{b.nav.tab}} then wrap it using {{b.card.container}}"),
+				new e.text(
+					"Just set {{container:'card'}} to {{b.nav.tab}} then wrap it using {{b.card.container}}"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -907,7 +993,9 @@ export const nav: IContent = {
 
 			new e.section([
 				new e.subtitle("Tab in modal"),
-				new e.text("You also can put card tab in {{b.modal.body}}. Just make sure you add {{padding:0}} to {{b.modal.body}} and {{border:false}} to {{b.card.container}}."),
+				new e.text(
+					"You also can put card tab in {{b.modal.body}}. Just make sure you add {{padding:0}} to {{b.modal.body}} and {{border:false}} to {{b.card.container}}."
+				),
 
 				new e.code({
 					db: getContentCode(db),
@@ -928,7 +1016,9 @@ export const nav: IContent = {
 										card: true,
 										on: {
 											"shown.bs.tab": (event) => {
-												const target = (event.target as Element).closest(".modal") as Element;
+												const target = (event.target as Element).closest(
+													".modal"
+												) as Element;
 
 												// readjust the modal’s position
 												b.modal.handleUpdate(target);
@@ -973,7 +1063,10 @@ export const nav: IContent = {
 									})
 								)
 							),
-							new b.modal.footer([new b.button({ dismiss: "modal", color: "secondary" }, "Close"), new b.button({ color: "primary" }, "Save changes")]),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Save changes"),
+							]),
 						]);
 					},
 				}),
@@ -994,7 +1087,9 @@ export const nav: IContent = {
 								card: true,
 								on: {
 									"shown.bs.tab": (event) => {
-										const target = (event.target as Element).closest(".modal") as Element;
+										const target = (event.target as Element).closest(
+											".modal"
+										) as Element;
 
 										// readjust the modal’s position
 										b.modal.handleUpdate(target);
@@ -1048,7 +1143,10 @@ export const nav: IContent = {
 							elem: tabCard,
 						});
 
-						const btnShow = new b.button({ target: "#modal-tab-example", toggle: "modal" }, "Show tab in modal");
+						const btnShow = new b.button(
+							{ target: "#modal-tab-example", toggle: "modal" },
+							"Show tab in modal"
+						);
 
 						return [btnShow, modal];
 					},
@@ -1075,8 +1173,14 @@ export const nav: IContent = {
 					item: [
 						["Method", "Description"],
 						["{{dispose}}", "Destroys an element’s tab."],
-						["{{getInstance}}", "Static method which allows you to get the tab instance associated with a DOM element, you can use it like this: {{bootstrap.Tab.getInstance(element)}}."],
-						["{{getOrCreateInstance}}", "Static method which returns a tab instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Tab.getOrCreateInstance(element)}}."],
+						[
+							"{{getInstance}}",
+							"Static method which allows you to get the tab instance associated with a DOM element, you can use it like this: {{bootstrap.Tab.getInstance(element)}}.",
+						],
+						[
+							"{{getOrCreateInstance}}",
+							"Static method which returns a tab instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Tab.getOrCreateInstance(element)}}.",
+						],
 						[
 							"{{show}}",
 							"Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. {{b::Returns to the caller before the tab pane has actually been shown}} (i.e. before the {{shown.bs.tab}} event occurs).",
@@ -1142,12 +1246,18 @@ export const nav: IContent = {
 								color: "success",
 								on: {
 									click: (event) => {
-										const elem = document.querySelectorAll("#example-nav-tab button");
+										const elem =
+											document.querySelectorAll("#example-nav-tab button");
 										elem.forEach((i) => {
 											b.tabList.init(i);
 											i.addEventListener("click", showTabPaneEventHandler);
 										});
-										e.console(event.target as Element, "b.tabList.init", elem ? elem : "null", elem ? "success" : "danger");
+										e.console(
+											event.target as Element,
+											"b.tabList.init",
+											elem ? elem : "null",
+											elem ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -1159,8 +1269,15 @@ export const nav: IContent = {
 								color: "success",
 								on: {
 									click: (event) => {
-										const elem = b.tabList.getInstance("#example-nav-tab button.active");
-										e.console(event.target as Element, "b.tabList.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+										const elem = b.tabList.getInstance(
+											"#example-nav-tab button.active"
+										);
+										e.console(
+											event.target as Element,
+											"b.tabList.getInstance",
+											elem ? elem : "null",
+											elem ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -1172,8 +1289,15 @@ export const nav: IContent = {
 								color: "success",
 								on: {
 									click: (event) => {
-										const elem = b.tabList.getOrCreateInstance("#example-nav-tab button.active");
-										e.console(event.target as Element, "b.tabList.getOrCreateInstance", elem ? elem : "null", elem ? "success" : "danger");
+										const elem = b.tabList.getOrCreateInstance(
+											"#example-nav-tab button.active"
+										);
+										e.console(
+											event.target as Element,
+											"b.tabList.getOrCreateInstance",
+											elem ? elem : "null",
+											elem ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -1184,7 +1308,8 @@ export const nav: IContent = {
 							{
 								on: {
 									click: () => {
-										const elem = document.querySelectorAll("#example-nav-tab button");
+										const elem =
+											document.querySelectorAll("#example-nav-tab button");
 										b.tabList.show(elem[core.rndBetween(0, elem.length - 1)]);
 									},
 								},
@@ -1197,7 +1322,8 @@ export const nav: IContent = {
 								color: "danger",
 								on: {
 									click: () => {
-										const elem = document.querySelectorAll("#example-nav-tab button");
+										const elem =
+											document.querySelectorAll("#example-nav-tab button");
 										elem.forEach((i) => {
 											b.tabList.dispose(i);
 											i.removeEventListener("click", showTabPaneEventHandler);
@@ -1208,7 +1334,13 @@ export const nav: IContent = {
 							"dispose"
 						);
 
-						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, showButton, disposeButton]);
+						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+							initButton,
+							getInstanceButton,
+							getOrCreateInstanceButton,
+							showButton,
+							disposeButton,
+						]);
 
 						const previewContainer = new h.div(
 							{
@@ -1225,7 +1357,10 @@ export const nav: IContent = {
 							buttonGroup
 						);
 
-						const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+						const mainContainer = new h.div({ display: "flex" }, [
+							previewContainer,
+							controlContainer,
+						]);
 
 						return [mainContainer];
 					},
@@ -1245,18 +1380,34 @@ export const nav: IContent = {
 						"{{shown.bs.tab}} (on the newly-active just-shown tab, the same one as for the {{show.bs.tab}} event)",
 					],
 				}),
-				new e.text("If no tab was already active, then the {{hide.bs.tab}} and {{hidden.bs.tab}} events will not be fired."),
+				new e.text(
+					"If no tab was already active, then the {{hide.bs.tab}} and {{hidden.bs.tab}} events will not be fired."
+				),
 				new e.table({
 					item: [
 						["Event type", "Description"],
-						["{{hide.bs.tab}}", "This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use {{event.target}} and {{event.relatedTarget}} to target the current active tab and the new soon-to-be-active tab, respectively."],
-						["{{hidden.bs.tab}}", "This event fires after a new tab is shown (and thus the previous active tab is hidden). Use {{event.target}} and {{event.relatedTarget}} to target the previous active tab and the new active tab, respectively."],
-						["{{show.bs.tab}}", "This event fires on tab show, but before the new tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively."],
-						["{{shown.bs.tab}}", "This event fires on tab show after a tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively."],
+						[
+							"{{hide.bs.tab}}",
+							"This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use {{event.target}} and {{event.relatedTarget}} to target the current active tab and the new soon-to-be-active tab, respectively.",
+						],
+						[
+							"{{hidden.bs.tab}}",
+							"This event fires after a new tab is shown (and thus the previous active tab is hidden). Use {{event.target}} and {{event.relatedTarget}} to target the previous active tab and the new active tab, respectively.",
+						],
+						[
+							"{{show.bs.tab}}",
+							"This event fires on tab show, but before the new tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
+						],
+						[
+							"{{shown.bs.tab}}",
+							"This event fires on tab show after a tab has been shown. Use {{event.target}} and {{event.relatedTarget}} to target the active tab and the previous active tab (if available) respectively.",
+						],
 					],
 				}),
 
-				new e.text("Example tracking event using {{b.nav.header.container}} or  {{b.nav.header.containerNav}}."),
+				new e.text(
+					"Example tracking event using {{b.nav.header.container}} or  {{b.nav.header.containerNav}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showConsole: true,
@@ -1266,7 +1417,8 @@ export const nav: IContent = {
 							relatedTarget: Element;
 						}
 
-						const content = (title: string) => `This is some placeholder content the {{b::${title} tab's}} associated content.`;
+						const content = (title: string) =>
+							`This is some placeholder content the {{b::${title} tab's}} associated content.`;
 
 						const d = [
 							{ label: "Home", id: "home5", active: true },
@@ -1284,12 +1436,30 @@ export const nav: IContent = {
 									on: {
 										"shown.bs.tab": (event) => {
 											const evnt = event as EventWithTargetAndRelatedTarget;
-											e.console(evnt.target, "shown.bs.tab", `Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`, "success");
+											e.console(
+												evnt.target,
+												"shown.bs.tab",
+												`Target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(
+													evnt.relatedTarget
+												)}}}`,
+												"success"
+											);
 										},
 
 										"hidden.bs.tab": (event) => {
 											const evnt = event as EventWithTargetAndRelatedTarget;
-											e.console(evnt.target, "hidden.bs.tab", `Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`, "danger");
+											e.console(
+												evnt.target,
+												"hidden.bs.tab",
+												`Target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(
+													evnt.relatedTarget
+												)}}}`,
+												"danger"
+											);
 										},
 									},
 								},
@@ -1342,12 +1512,30 @@ export const nav: IContent = {
 							on: {
 								"shown.bs.tab": (event) => {
 									const evnt = event as EventWithTargetAndRelatedTarget;
-									e.console(evnt.target, "shown.bs.tab", `Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`, "success");
+									e.console(
+										evnt.target,
+										"shown.bs.tab",
+										`Target: {{b::${core.elemInfo(
+											evnt.target
+										)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(
+											evnt.relatedTarget
+										)}}}`,
+										"success"
+									);
 								},
 
 								"hidden.bs.tab": (event) => {
 									const evnt = event as EventWithTargetAndRelatedTarget;
-									e.console(evnt.target, "hidden.bs.tab", `Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`, "danger");
+									e.console(
+										evnt.target,
+										"hidden.bs.tab",
+										`Target: {{b::${core.elemInfo(
+											evnt.target
+										)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(
+											evnt.relatedTarget
+										)}}}`,
+										"danger"
+									);
 								},
 							},
 							item: [
@@ -1366,77 +1554,39 @@ export const nav: IContent = {
 		{
 			source: `() => {
 return new b.nav.header.container([
-new b.nav.header.item(new b.nav.header.link({
-active: true,
-href: "#"
-}, "Active")),
-new b.nav.header.item(new b.nav.header.link({
-href: "#"
-}, "Link")),
-new b.nav.header.item(new b.nav.header.link({
-href: "#"
-}, "Link")),
-new b.nav.header.item(new b.nav.header.link({
-disabled: true,
-href: "#"
-}, "Disabled")),
+new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
 ]);
 }`,
 		},
 		{
 			source: `() => {
 return new b.nav.header.container({
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
 		{
 			source: `() => {
-return new b.nav.header.containerNav([new b.nav.header.link({
-active: true,
-href: "#"
-}, "Active"), new b.nav.header.link({
-href: "#"
-}, "Link"), new b.nav.header.link({
-href: "#"
-}, "Link"), new b.nav.header.link({
-disabled: true,
-href: "#"
-}, "Disabled")]);
+return new b.nav.header.containerNav([new b.nav.header.link({ active: true, href: "#" }, "Active"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ href: "#" }, "Link"), new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")]);
 }`,
 		},
 		{
 			source: `() => {
 return new b.nav.header.containerNav({
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1444,21 +1594,12 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 justifyContent: "center",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1466,21 +1607,12 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 justifyContent: "end",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1488,21 +1620,12 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 flex: "column",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1510,21 +1633,12 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.containerNav({
 flex: "column",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1532,21 +1646,12 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "tab",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1554,21 +1659,12 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "pill",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1576,21 +1672,12 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "underline",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1599,21 +1686,12 @@ elem: "Disabled"
 return new b.nav.header.container({
 type: "pill",
 itemWidth: "fill",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Much longer nav link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Much longer nav link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1622,21 +1700,12 @@ elem: "Disabled"
 return new b.nav.header.containerNav({
 type: "pill",
 itemWidth: "fill",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Much longer nav link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Much longer nav link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1645,21 +1714,12 @@ elem: "Disabled"
 return new b.nav.header.container({
 type: "pill",
 itemWidth: "justified",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Much longer nav link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Much longer nav link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1668,21 +1728,12 @@ elem: "Disabled"
 return new b.nav.header.containerNav({
 type: "pill",
 itemWidth: "justified",
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Much longer nav link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Much longer nav link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
@@ -1691,56 +1742,25 @@ elem: "Disabled"
 return new b.nav.header.containerNav({
 type: "pill",
 flex: ["column", "sm-row"],
-link: [{
-active: true,
-href: "#",
-elem: "Active"
-}, {
-href: "#",
-elem: "Much longer nav link"
-}, {
-href: "#",
-elem: "Link"
-}, {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}, ],
+link: [
+{ active: true, href: "#", elem: "Active" },
+{ href: "#", elem: "Much longer nav link" },
+{ href: "#", elem: "Link" },
+{ disabled: true, href: "#", elem: "Disabled" },
+],
 });
 }`,
 		},
 		{
 			source: `() => {
-return new b.nav.header.container({
-type: "tab"
-}, [
-new b.nav.header.item(new b.nav.header.link({
-active: true,
-href: "#"
-}, "Active")),
-new b.nav.header.item({
-dropdown: true
-}, [
-new b.dropdown.button({
-navItem: true
-}, "Dropdown"),
-new b.dropdown.menu([new b.dropdown.item({
-href: "#"
-}, "Action"), new b.dropdown.item({
-href: "#"
-}, "Another action"), new b.dropdown.item({
-href: "#"
-}, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({
-href: "#"
-}, "Separated link")]),
+return new b.nav.header.container({ type: "tab" }, [
+new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
+new b.nav.header.item({ dropdown: true }, [
+new b.dropdown.button({ navItem: true }, "Dropdown"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
 ]),
-new b.nav.header.item(new b.nav.header.link({
-href: "#"
-}, "Link")),
-new b.nav.header.item(new b.nav.header.link({
-disabled: true,
-href: "#"
-}, "Disabled")),
+new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
+new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
 ]);
 }`,
 		},
@@ -1748,46 +1768,24 @@ href: "#"
 			source: `() => {
 return new b.nav.header.container({
 type: "tab",
-item: [{
-link: {
-active: true,
-href: "#",
-elem: "Active"
-}
-}, {
+item: [
+{ link: { active: true, href: "#", elem: "Active" } },
+{
 dropdown: true,
 elem: [
-new b.dropdown.button({
-navItem: true
-}, "Dropdown"),
+new b.dropdown.button({ navItem: true }, "Dropdown"),
 new b.dropdown.menu([
-new b.dropdown.item({
-href: "#"
-}, "Action"),
-new b.dropdown.item({
-href: "#"
-}, "Another action"),
-new b.dropdown.item({
-href: "#"
-}, "Something else here"),
+new b.dropdown.item({ href: "#" }, "Action"),
+new b.dropdown.item({ href: "#" }, "Another action"),
+new b.dropdown.item({ href: "#" }, "Something else here"),
 new b.dropdown.divider(),
-new b.dropdown.item({
-href: "#"
-}, "Separated link"),
+new b.dropdown.item({ href: "#" }, "Separated link"),
 ]),
 ],
-}, {
-link: {
-href: "#",
-elem: "Link"
-}
-}, {
-link: {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}
-}, ],
+},
+{ link: { href: "#", elem: "Link" } },
+{ link: { disabled: true, href: "#", elem: "Disabled" } },
+],
 });
 }`,
 		},
@@ -1795,76 +1793,39 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "pill",
-item: [{
-link: {
-active: true,
-href: "#",
-elem: "Active"
-}
-}, {
+item: [
+{ link: { active: true, href: "#", elem: "Active" } },
+{
 dropdown: true,
 elem: [
-new b.dropdown.button({
-navItem: true
-}, "Dropdown"),
+new b.dropdown.button({ navItem: true }, "Dropdown"),
 new b.dropdown.menu([
-new b.dropdown.item({
-href: "#"
-}, "Action"),
-new b.dropdown.item({
-href: "#"
-}, "Another action"),
-new b.dropdown.item({
-href: "#"
-}, "Something else here"),
+new b.dropdown.item({ href: "#" }, "Action"),
+new b.dropdown.item({ href: "#" }, "Another action"),
+new b.dropdown.item({ href: "#" }, "Something else here"),
 new b.dropdown.divider(),
-new b.dropdown.item({
-href: "#"
-}, "Separated link"),
+new b.dropdown.item({ href: "#" }, "Separated link"),
 ]),
 ],
-}, {
-link: {
-href: "#",
-elem: "Link"
-}
-}, {
-link: {
-disabled: true,
-href: "#",
-elem: "Disabled"
-}
-}, ],
+},
+{ link: { href: "#", elem: "Link" } },
+{ link: { disabled: true, href: "#", elem: "Disabled" } },
+],
 });
 }`,
 		},
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
-label: "Home",
-id: "home",
-active: true
-}, {
-label: "Profile",
-id: "profile"
-}, {
-label: "Contact",
-id: "contact"
-}, {
-label: "Disabled",
-id: "disabled",
-disabled: true
-}, ];
+const d = [
+{ label: "Home", id: "home", active: true },
+{ label: "Profile", id: "profile" },
+{ label: "Contact", id: "contact" },
+{ label: "Disabled", id: "disabled", disabled: true },
+];
 return [
-new b.nav.header.container({
-type: "tab",
-role: "tablist",
-id: "myTab"
-}, d.map((i) => {
-return new b.nav.header.item({
-role: "presentation"
-}, new b.nav.header.button({
+new b.nav.header.container({ type: "tab", role: "tablist", id: "myTab" }, d.map((i) => {
+return new b.nav.header.item({ role: "presentation" }, new b.nav.header.button({
 active: i.active,
 disabled: i.disabled,
 id: \`\${i.id}-tab\`,
@@ -1873,10 +1834,7 @@ controlfor: \`\${i.id}-tab-pane\`,
 toggle: "tab",
 }, i.label));
 })),
-new b.nav.content.container({
-id: "myTabContent",
-marginTop: 3
-}, d.map((i) => {
+new b.nav.content.container({ id: "myTabContent", marginTop: 3 }, d.map((i) => {
 return new b.nav.content.item({
 active: i.active,
 id: \`\${i.id}-tab-pane\`,
@@ -1890,27 +1848,14 @@ labelledby: \`\${i.id}-tab\`,
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
-label: "Home",
-id: "home2",
-active: true
-}, {
-label: "Profile",
-id: "profile2"
-}, {
-label: "Contact",
-id: "contact2"
-}, {
-label: "Disabled",
-id: "disabled2",
-disabled: true
-}, ];
+const d = [
+{ label: "Home", id: "home2", active: true },
+{ label: "Profile", id: "profile2" },
+{ label: "Contact", id: "contact2" },
+{ label: "Disabled", id: "disabled2", disabled: true },
+];
 return [
-new b.nav.header.containerNav({
-type: "tab",
-role: "tablist",
-id: "nav-tab"
-}, d.map((i) => {
+new b.nav.header.containerNav({ type: "tab", role: "tablist", id: "nav-tab" }, d.map((i) => {
 return new b.nav.header.button({
 active: i.active,
 disabled: i.disabled,
@@ -1920,10 +1865,7 @@ controlfor: \`nav-\${i.id}-tab-pane\`,
 toggle: "tab",
 }, i.label);
 })),
-new b.nav.content.container({
-id: "nav-tabContent",
-marginTop: 3
-}, d.map((i) => {
+new b.nav.content.container({ id: "nav-tabContent", marginTop: 3 }, d.map((i) => {
 return new b.nav.content.item({
 active: i.active,
 id: \`nav-\${i.id}-tab-pane\`,
@@ -1937,30 +1879,15 @@ labelledby: \`nav-\${i.id}-tab\`,
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
-label: "Home",
-id: "home3",
-active: true
-}, {
-label: "Profile",
-id: "profile3"
-}, {
-label: "Contact",
-id: "contact3"
-}, {
-label: "Disabled",
-id: "disabled3",
-disabled: true
-}, ];
+const d = [
+{ label: "Home", id: "home3", active: true },
+{ label: "Profile", id: "profile3" },
+{ label: "Contact", id: "contact3" },
+{ label: "Disabled", id: "disabled3", disabled: true },
+];
 return [
-new b.nav.header.container({
-type: "pill",
-role: "tablist",
-id: "pills-tab"
-}, d.map((i) => {
-return new b.nav.header.item({
-role: "presentation"
-}, new b.nav.header.button({
+new b.nav.header.container({ type: "pill", role: "tablist", id: "pills-tab" }, d.map((i) => {
+return new b.nav.header.item({ role: "presentation" }, new b.nav.header.button({
 active: i.active,
 disabled: i.disabled,
 id: \`pills-\${i.id}-tab\`,
@@ -1969,10 +1896,7 @@ controlfor: \`pills-\${i.id}-tab-pane\`,
 toggle: "pill",
 }, i.label));
 })),
-new b.nav.content.container({
-id: "pills-tabContent",
-marginTop: 3
-}, d.map((i) => {
+new b.nav.content.container({ id: "pills-tabContent", marginTop: 3 }, d.map((i) => {
 return new b.nav.content.item({
 active: i.active,
 id: \`pills-\${i.id}-tab-pane\`,
@@ -1988,82 +1912,49 @@ labelledby: \`pills-\${i.id}-tab\`,
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return b.nav.tab({
 type: "pill",
-item: [{
-label: "Home",
-active: true,
-elem: content("Home")
-}, {
-label: "Profile",
-elem: content("Profile")
-}, {
-label: "Contact",
-elem: content("Contact")
-}, {
-label: "Disabled",
-disabled: true,
-elem: content("Disabled")
-}, ],
+item: [
+{ label: "Home", active: true, elem: content("Home") },
+{ label: "Profile", elem: content("Profile") },
+{ label: "Contact", elem: content("Contact") },
+{ label: "Disabled", disabled: true, elem: content("Disabled") },
+],
 });
 }`,
 		},
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-return new h.div({
-display: "md-flex",
-alignItem: "md-start"
-}, b.nav.tab({
+return new h.div({ display: "md-flex", alignItem: "md-start" }, b.nav.tab({
 type: "pill",
 vertical: true,
 flex: "md-column",
 marginEnd: "md-3",
-attrContent: {
-marginTop: [3, "md-0"]
-},
-item: [{
-label: "Home",
-active: true,
-elem: content("Home")
-}, {
-label: "Profile",
-elem: content("Profile")
-}, {
-label: "Disabled",
-disabled: true,
-elem: content("Disabled")
-}, {
-label: "Messages",
-elem: content("Messages")
-}, {
-label: "Settings",
-elem: content("Settings")
-}, ],
+attrContent: { marginTop: [3, "md-0"] },
+item: [
+{ label: "Home", active: true, elem: content("Home") },
+{ label: "Profile", elem: content("Profile") },
+{ label: "Disabled", disabled: true, elem: content("Disabled") },
+{ label: "Messages", elem: content("Messages") },
+{ label: "Settings", elem: content("Settings") },
+],
 }));
 }`,
 		},
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
-label: "Home",
-id: "home4",
-active: true
-}, {
-label: "Profile",
-id: "profile4"
-}, {
-label: "Contact",
-id: "contact4"
-}, ];
+const d = [
+{ label: "Home", id: "home4", active: true },
+{ label: "Profile", id: "profile4" },
+{ label: "Contact", id: "contact4" },
+];
 return [
 new b.nav.header.container({
 type: "tab",
 role: "tablist",
 id: "prop-tab",
 }, d.map((i) => {
-return new b.nav.header.item({
-role: "presentation"
-}, new b.nav.header.button({
+return new b.nav.header.item({ role: "presentation" }, new b.nav.header.button({
 active: i.active,
 id: \`prop-\${i.id}-tab\`,
 target: \`#prop-\${i.id}-tab-pane\`,
@@ -2072,10 +1963,7 @@ controlfor: \`prop-\${i.id}-tab-pane\`,
 toggle: "tab",
 }, i.label));
 })),
-new b.nav.content.container({
-id: "prop-tabContent",
-marginTop: 3
-}, d.map((i) => {
+new b.nav.content.container({ id: "prop-tabContent", marginTop: 3 }, d.map((i) => {
 return new b.nav.content.item({
 active: i.active,
 id: \`prop-\${i.id}-tab-pane\`,
@@ -2091,20 +1979,12 @@ labelledby: \`prop-\${i.id}-tab\`,
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return b.nav.tab({
 animation: false,
-item: [{
-label: "Home",
-active: true,
-elem: content("Home")
-}, {
-label: "Profile",
-elem: content("Profile")
-}, {
-label: "Messages",
-elem: content("Messages")
-}, {
-label: "Settings",
-elem: content("Settings")
-}, ],
+item: [
+{ label: "Home", active: true, elem: content("Home") },
+{ label: "Profile", elem: content("Profile") },
+{ label: "Messages", elem: content("Messages") },
+{ label: "Settings", elem: content("Settings") },
+],
 });
 }`,
 		},
@@ -2113,17 +1993,11 @@ elem: content("Settings")
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return new b.card.container(b.nav.tab({
 card: true,
-item: [{
-label: "Home",
-active: true,
-elem: content("Home")
-}, {
-label: "Profile",
-elem: content("Profile")
-}, {
-label: "Messages",
-elem: content("Messages")
-}, ],
+item: [
+{ label: "Home", active: true, elem: content("Home") },
+{ label: "Profile", elem: content("Profile") },
+{ label: "Messages", elem: content("Messages") },
+],
 }));
 }`,
 		},
@@ -2133,34 +2007,20 @@ const content = (title) => \`This is some placeholder content the {{b::\${title}
 return new b.card.container(b.nav.tab({
 card: true,
 type: "pill",
-item: [{
-label: "Home",
-active: true,
-elem: content("Home")
-}, {
-label: "Profile",
-elem: content("Profile")
-}, {
-label: "Messages",
-elem: content("Messages")
-}, ],
+item: [
+{ label: "Home", active: true, elem: content("Home") },
+{ label: "Profile", elem: content("Profile") },
+{ label: "Messages", elem: content("Messages") },
+],
 }));
 }`,
 		},
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-return new b.modal.container({
-debug: true
-}, [
-new b.modal.header({
-close: true
-}, new b.modal.title("Modal title")),
-new b.modal.body({
-padding: 0
-}, new b.card.container({
-border: false
-}, b.nav.tab({
+return new b.modal.container({ debug: true }, [
+new b.modal.header({ close: true }, new b.modal.title("Modal title")),
+new b.modal.body({ padding: 0 }, new b.card.container({ border: false }, b.nav.tab({
 card: true,
 on: {
 "shown.bs.tab": (event) => {
@@ -2177,37 +2037,33 @@ iconDisplay: "md-none",
 }, "Home"),
 active: true,
 elem: content("Home"),
-}, {
+},
+{
 label: new b.caption({
 icon: "person-vcard-fill",
 labelDisplay: ["none", "md-block"],
 iconDisplay: "md-none",
 }, "Profile"),
 elem: content("Profile"),
-}, {
+},
+{
 label: new b.caption({
 icon: "envelope-at-fill",
 labelDisplay: ["none", "md-block"],
 iconDisplay: "md-none",
 }, "Message"),
 elem: content("Messages"),
-}, ],
+},
+],
 }))),
-new b.modal.footer([new b.button({
-dismiss: "modal",
-color: "secondary"
-}, "Close"), new b.button({
-color: "primary"
-}, "Save changes")]),
+new b.modal.footer([new b.button({ dismiss: "modal", color: "secondary" }, "Close"), new b.button({ color: "primary" }, "Save changes")]),
 ]);
 }`,
 		},
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const tabCard = new b.card.container({
-border: false
-}, b.nav.tab({
+const tabCard = new b.card.container({ border: false }, b.nav.tab({
 card: true,
 on: {
 "shown.bs.tab": (event) => {
@@ -2224,36 +2080,34 @@ iconDisplay: "md-none",
 }, "Home"),
 active: true,
 elem: content("Home"),
-}, {
+},
+{
 label: new b.caption({
 icon: "person-vcard-fill",
 labelDisplay: ["none", "md-block"],
 iconDisplay: "md-none",
 }, "Profile"),
 elem: content("Profile"),
-}, {
+},
+{
 label: new b.caption({
 icon: "envelope-at-fill",
 labelDisplay: ["none", "md-block"],
 iconDisplay: "md-none",
 }, "Message"),
 elem: content("Messages"),
-}, ],
+},
+],
 }));
 const modal = b.modal.create({
 id: "modal-tab-example",
 title: "Modal title",
-attrBody: {
-padding: 0
-},
+attrBody: { padding: 0 },
 btn: ["savechanges", "close"],
 btnFn: () => {},
 elem: tabCard,
 });
-const btnShow = new b.button({
-target: "#modal-tab-example",
-toggle: "modal"
-}, "Show tab in modal");
+const btnShow = new b.button({ target: "#modal-tab-example", toggle: "modal" }, "Show tab in modal");
 return [btnShow, modal];
 }`,
 		},
@@ -2264,23 +2118,13 @@ event.preventDefault();
 b.tabList.show(event.target);
 };
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
-label: "1",
-id: "one",
-active: true
-}, {
-label: "2",
-id: "two"
-}, {
-label: "3",
-id: "three"
-}, ];
+const d = [
+{ label: "1", id: "one", active: true },
+{ label: "2", id: "two" },
+{ label: "3", id: "three" },
+];
 const navTabContainer = [
-new b.nav.header.containerNav({
-type: "tab",
-role: "tablist",
-id: "example-nav-tab"
-}, d.map((i) => {
+new b.nav.header.containerNav({ type: "tab", role: "tablist", id: "example-nav-tab" }, d.map((i) => {
 return new b.nav.header.button({
 active: i.active,
 id: \`example-nav-\${i.id}-tab\`,
@@ -2290,10 +2134,7 @@ controlfor: \`example-nav-\${i.id}-tab-pane\`,
 //toggle: "tab",
 }, i.label);
 })),
-new b.nav.content.container({
-id: "example-nav-tabContent",
-marginTop: 3
-}, d.map((i) => {
+new b.nav.content.container({ id: "example-nav-tabContent", marginTop: 3 }, d.map((i) => {
 return new b.nav.content.item({
 active: i.active,
 id: \`example-nav-\${i.id}-tab-pane\`,
@@ -2353,10 +2194,7 @@ i.removeEventListener("click", showTabPaneEventHandler);
 },
 },
 }, "dispose");
-const buttonGroup = new b.btngroup({
-vertical: true,
-weight: "sm"
-}, [initButton, getInstanceButton, getOrCreateInstanceButton, showButton, disposeButton]);
+const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, showButton, disposeButton]);
 const previewContainer = new h.div({
 width: 100,
 marginEnd: 2,
@@ -2364,29 +2202,19 @@ marginEnd: 2,
 const controlContainer = new h.div({
 marginStart: "auto",
 }, buttonGroup);
-const mainContainer = new h.div({
-display: "flex"
-}, [previewContainer, controlContainer]);
+const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
 return [mainContainer];
 }`,
 		},
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content.\`;
-const d = [{
-label: "Home",
-id: "home5",
-active: true
-}, {
-label: "Profile",
-id: "profile5"
-}, {
-label: "Messages",
-id: "messages5"
-}, {
-label: "Settings",
-id: "settings5"
-}, ];
+const d = [
+{ label: "Home", id: "home5", active: true },
+{ label: "Profile", id: "profile5" },
+{ label: "Messages", id: "messages5" },
+{ label: "Settings", id: "settings5" },
+];
 return [
 new b.nav.header.containerNav({
 type: "tab",
@@ -2411,10 +2239,7 @@ controlfor: \`event-\${i.id}-tab-pane\`,
 toggle: "tab",
 }, i.label);
 })),
-new b.nav.content.container({
-id: "event-tabContent",
-marginTop: 3
-}, d.map((i) => {
+new b.nav.content.container({ id: "event-tabContent", marginTop: 3 }, d.map((i) => {
 return new b.nav.content.item({
 active: i.active,
 animation: false,
@@ -2440,20 +2265,12 @@ const evnt = event;
 e.console(evnt.target, "hidden.bs.tab", \`Target: {{b::\${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::\${core.elemInfo(evnt.relatedTarget)}}}\`, "danger");
 },
 },
-item: [{
-label: "Home",
-active: true,
-elem: content("Home")
-}, {
-label: "Profile",
-elem: content("Profile")
-}, {
-label: "Messages",
-elem: content("Messages")
-}, {
-label: "Settings",
-elem: content("Settings")
-}, ],
+item: [
+{ label: "Home", active: true, elem: content("Home") },
+{ label: "Profile", elem: content("Profile") },
+{ label: "Messages", elem: content("Messages") },
+{ label: "Settings", elem: content("Settings") },
+],
 });
 }`,
 		},

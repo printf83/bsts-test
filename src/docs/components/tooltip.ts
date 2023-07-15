@@ -5,7 +5,8 @@ import { Tooltip } from "bootstrap";
 
 export const tooltip: IContent = {
 	title: "Tooltips",
-	description: "Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-bs-attributes for local title storage.",
+	description:
+		"Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-bs-attributes for local title storage.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
@@ -45,7 +46,9 @@ export const tooltip: IContent = {
 
 			new e.section([
 				new e.subtitle("Enable tooltips"),
-				new e.text("As mentioned above, {{bsts}} automaticly initialize tooltips on {{build}}. For example:"),
+				new e.text(
+					"As mentioned above, {{bsts}} automaticly initialize tooltips on {{build}}. For example:"
+				),
 				new e.codepreview({
 					type: "js",
 					code: `
@@ -74,18 +77,33 @@ export const tooltip: IContent = {
 					output: () => {
 						return new h.p({ textColor: "body-secondary" }, [
 							"Placeholder text to demonstrate some ",
-							new b.tooltip({ content: "Default tooltip" }, new h.a({ href: "#" }, "inline links")),
+							new b.tooltip(
+								{ content: "Default tooltip" },
+								new h.a({ href: "#" }, "inline links")
+							),
 							" with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of ",
-							new b.tooltip({ content: "Another tooltip" }, new h.a({ href: "#" }, "real text")),
+							new b.tooltip(
+								{ content: "Another tooltip" },
+								new h.a({ href: "#" }, "real text")
+							),
 							". And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how ",
-							new b.tooltip({ content: "Another one here too" }, new h.a({ href: "#" }, "these tooltips on links")),
+							new b.tooltip(
+								{ content: "Another one here too" },
+								new h.a({ href: "#" }, "these tooltips on links")
+							),
 							" can work in practice, once you use them on ",
-							new b.tooltip({ content: "The last tip!" }, new h.a({ href: "#" }, "your own")),
+							new b.tooltip(
+								{ content: "The last tip!" },
+								new h.a({ href: "#" }, "your own")
+							),
 							" site or project.",
 						]);
 					},
 				}),
-				new e.alert({ color: "warning", callout: true }, "When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} when the element is rendered."),
+				new e.alert(
+					{ color: "warning", callout: true },
+					"When {{title}} is used, Popper will replace it automatically with {{data-bs-title}} when the element is rendered."
+				),
 			]),
 
 			//----------------------
@@ -128,7 +146,9 @@ export const tooltip: IContent = {
 
 			new e.section([
 				new e.subtitle("Directions"),
-				new e.text("Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left by set the {{placement}} property. Directions are mirrored when using Bootstrap in RTL."),
+				new e.text(
+					"Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left by set the {{placement}} property. Directions are mirrored when using Bootstrap in RTL."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -168,7 +188,9 @@ export const tooltip: IContent = {
 							{
 								content: "Default tooltip",
 							},
-							new s(`<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#563d7c"></rect><circle cx="50" cy="50" r="30" fill="#007bff"></circle></svg>`)
+							new s(
+								`<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#563d7c"></rect><circle cx="50" cy="50" r="30" fill="#007bff"></circle></svg>`
+							)
 						);
 					},
 				}),
@@ -182,7 +204,9 @@ export const tooltip: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, tooltip now use local CSS variables on {{.tooltip}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, tooltip now use local CSS variables on {{.tooltip}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -256,7 +280,9 @@ export const tooltip: IContent = {
 
 			new e.section([
 				new e.subtitle("Markup"),
-				new e.text("{{content}} property on {{b.tooltip}} required to create a tooltip on the component you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to {{top}} by the plugin)."),
+				new e.text(
+					"{{content}} property on {{b.tooltip}} required to create a tooltip on the component you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to {{top}} by the plugin)."
+				),
 				new e.alert(
 					{ color: "warning", callout: true },
 					"{{b::Keep tooltips accessible to keyboard and assistive technology users}} by only adding them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). While other HTML elements can be made focusable by adding {{tabindex:'0'}}, this can create annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce tooltips in this situation. Additionally, do not rely solely on {{hover}} as the trigger for your tooltips as this will make theme impossible to trigger for keyboard users."
@@ -282,7 +308,9 @@ export const tooltip: IContent = {
 
 			new e.section([
 				new e.subtitle("Disabled elements"),
-				new e.text("Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a tooltip (or popover). {{bsts}} use {{b.tooltip}} as a wrapper, and automaticlly made keyboard-focusable using {{tabindex:'0'}}."),
+				new e.text(
+					"Elements with the {{disabled}} attribute aren’t interactive, meaning users cannot hover or click them to trigger a tooltip (or popover). {{bsts}} use {{b.tooltip}} as a wrapper, and automaticlly made keyboard-focusable using {{tabindex:'0'}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -306,14 +334,34 @@ export const tooltip: IContent = {
 				new e.text(
 					`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data:{'bs-config':'{"delay":0, "title":123}'/}/}} and {{data:{'bs-title':'456'/}/}} property, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data:{'bs-config':''/}/}}. In addition, existing data attributes are able to house JSON values like {{data:{'bs-delay':'{"show":0,"hide":150}'/}/}}.`
 				),
-				new e.text("The final configuration object is the merged result of {{data-bs-config}}, {{data-bs-}}, and {{js object}} where the latest given key-value overrides the others."),
-				new e.alert({ color: "warning", callout: true }, "Note that for security reasons the {{sanitize}}, {{sanitizeFn}}, and {{allowList}} options cannot be supplied using data attributes."),
+				new e.text(
+					"The final configuration object is the merged result of {{data-bs-config}}, {{data-bs-}}, and {{js object}} where the latest given key-value overrides the others."
+				),
+				new e.alert(
+					{ color: "warning", callout: true },
+					"Note that for security reasons the {{sanitize}}, {{sanitizeFn}}, and {{allowList}} options cannot be supplied using data attributes."
+				),
 				new e.table({
 					item: [
 						["Name", "Type", "Default", "Description"],
-						["{{autoInit}}", "boolean", "{{true}}", "Auto add {{data:{'bs-toggle':'tooltip'/}/}} to the component for auto initilize."],
-						["{{allowList}}", "object", "{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}", "Object which contains allowed attributes and tags."],
-						["{{animation}}", "boolean", "{{true}}", "Apply a CSS fade transition to the tooltip."],
+						[
+							"{{autoInit}}",
+							"boolean",
+							"{{true}}",
+							"Auto add {{data:{'bs-toggle':'tooltip'/}/}} to the component for auto initilize.",
+						],
+						[
+							"{{allowList}}",
+							"object",
+							"{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}",
+							"Object which contains allowed attributes and tags.",
+						],
+						[
+							"{{animation}}",
+							"boolean",
+							"{{true}}",
+							"Apply a CSS fade transition to the tooltip.",
+						],
 						[
 							"{{boundary}}",
 							"string",
@@ -333,16 +381,36 @@ export const tooltip: IContent = {
 							"{{undefined}}",
 							"Add classes to the tooltip when it is shown. Note that these classes will be added in addition to any classes specified in the template. To add multiple classes, separate them with spaces: {{'class-1 class-2'}}. You can also pass a function that should return a single string containing additional class names.",
 						],
-						["{{delay}}", "number", "{{0}}", `Delay showing and hiding the tooltip (ms)—doesn’t apply to manual trigger type. If a value is supplied, delay is applied to both hide/show.`],
-						["{{hideDelay}}", "number", "{{0}}", `Delay hiding the tooltip (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide. Object structure created is: {{delay: { "hide": value } }}.`],
-						["{{showDelay}}", "number", "{{0}}", `Delay showing the tooltip (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to show. Object structure created is: {{delay: { "show": value } }}.`],
+						[
+							"{{delay}}",
+							"number",
+							"{{0}}",
+							`Delay showing and hiding the tooltip (ms)—doesn’t apply to manual trigger type. If a value is supplied, delay is applied to both hide/show.`,
+						],
+						[
+							"{{hideDelay}}",
+							"number",
+							"{{0}}",
+							`Delay hiding the tooltip (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to both hide. Object structure created is: {{delay: { "hide": value } }}.`,
+						],
+						[
+							"{{showDelay}}",
+							"number",
+							"{{0}}",
+							`Delay showing the tooltip (ms)—doesn’t apply to manual trigger type. If a number is supplied, delay is applied to show. Object structure created is: {{delay: { "show": value } }}.`,
+						],
 						[
 							"{{fallbackPlacements}}",
 							"string, array",
 							"{{['top', 'right', 'bottom', 'left']}}",
 							"Define fallback placements by providing a list of placements in array (in order of preference). For more information refer to Popper’s {{https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements::behavior docs}}.",
 						],
-						["{{html}}", "boolean", "{{false}}", "Allow HTML in the tooltip. If true, HTML tags in the tooltip’s {{content}} will be rendered in the tooltip. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks."],
+						[
+							"{{html}}",
+							"boolean",
+							"{{false}}",
+							"Allow HTML in the tooltip. If true, HTML tags in the tooltip’s {{content}} will be rendered in the tooltip. If false, {{innerText}} property will be used to insert content into the DOM. Use text if you’re worried about XSS attacks.",
+						],
 						[
 							"{{viewOffset}}",
 							"array number, string",
@@ -361,8 +429,18 @@ export const tooltip: IContent = {
 							"{{undefined}}",
 							"To change Bootstrap’s default Popper config, see {{https://popper.js.org/docs/v2/constructors/#options::Popper’s configuration}}. When a function is used to create the Popper configuration, it’s called with an object that contains the Bootstrap’s default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper.",
 						],
-						["{{sanitize}}", "boolean", "{{true}}", "Enable or disable the sanitization. If activated {{'template'}} and {{'title'}} options will be sanitized."],
-						["{{sanitizeFn}}", "function name in string", "{{undefined}}", "Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization."],
+						[
+							"{{sanitize}}",
+							"boolean",
+							"{{true}}",
+							"Enable or disable the sanitization. If activated {{'template'}} and {{'title'}} options will be sanitized.",
+						],
+						[
+							"{{sanitizeFn}}",
+							"function name in string",
+							"{{undefined}}",
+							"Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization.",
+						],
 						[
 							"{{selector}}",
 							"string, false",
@@ -384,7 +462,10 @@ export const tooltip: IContent = {
 						],
 					],
 				}),
-				new e.alert({ color: "info", callout: true }, [new b.alert.header(4, "Data attributes for individual tooltips"), "Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above."]),
+				new e.alert({ color: "info", callout: true }, [
+					new b.alert.header(4, "Data attributes for individual tooltips"),
+					"Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.",
+				]),
 			]),
 
 			//----------------------
@@ -417,22 +498,46 @@ export const tooltip: IContent = {
 				new e.table({
 					item: [
 						["Method", "Description"],
-						["{{disable}}", "Removes the ability for an element’s tooltip to be shown. The tooltip will only be able to be shown if it is re-enabled."],
+						[
+							"{{disable}}",
+							"Removes the ability for an element’s tooltip to be shown. The tooltip will only be able to be shown if it is re-enabled.",
+						],
 						[
 							"{{dispose}}",
 							"Hides and destroys an element’s tooltip (Removes stored data on the DOM element). Tooltips that use delegation (which are created using {{nav:docs/components/tooltip#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
 						],
-						["{{enable}}", "Gives an element’s tooltip the ability to be shown. {{b::Tooltips are enabled by default}}."],
-						["{{getInstance}}", "{{i::Static}} method which allows you to get the tooltip instance associated with a DOM element."],
-						["{{getOrCreateInstance}}", "{{i::Static}} method which allows you to get the tooltip instance associated with a DOM element, or create a new one in case it wasn’t initialized."],
-						["{{hide}}", "Hides an element’s tooltip. {{b::Returns to the caller before the tooltip has actually been hidden}} (i.e. before the {{hidden.bs.tooltip}} event occurs). This is considered a “manual” triggering of the tooltip."],
-						["{{setContent}}", "Gives a way to change the tooltip’s content after its initialization."],
+						[
+							"{{enable}}",
+							"Gives an element’s tooltip the ability to be shown. {{b::Tooltips are enabled by default}}.",
+						],
+						[
+							"{{getInstance}}",
+							"{{i::Static}} method which allows you to get the tooltip instance associated with a DOM element.",
+						],
+						[
+							"{{getOrCreateInstance}}",
+							"{{i::Static}} method which allows you to get the tooltip instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
+						],
+						[
+							"{{hide}}",
+							"Hides an element’s tooltip. {{b::Returns to the caller before the tooltip has actually been hidden}} (i.e. before the {{hidden.bs.tooltip}} event occurs). This is considered a “manual” triggering of the tooltip.",
+						],
+						[
+							"{{setContent}}",
+							"Gives a way to change the tooltip’s content after its initialization.",
+						],
 						[
 							"{{show}}",
 							"Reveals an element’s tooltip. {{b::Returns to the caller before the tooltip has actually been shown}} (i.e. before the {{shown.bs.tooltip}} event occurs). This is considered a “manual” triggering of the tooltip. Tooltips whose title and content are both zero-length are never displayed.",
 						],
-						["{{toggle}}", "Toggles an element’s tooltip. {{b::Returns to the caller before the tooltip has actually been shown or hidden}} (i.e. before the {{shown.bs.tooltip}} or {{hidden.bs.tooltip}} event occurs). This is considered a “manual” triggering of the tooltip."],
-						["{{toggleEnabled}}", "Toggles the ability for an element’s tooltip to be shown or hidden."],
+						[
+							"{{toggle}}",
+							"Toggles an element’s tooltip. {{b::Returns to the caller before the tooltip has actually been shown or hidden}} (i.e. before the {{shown.bs.tooltip}} or {{hidden.bs.tooltip}} event occurs). This is considered a “manual” triggering of the tooltip.",
+						],
+						[
+							"{{toggleEnabled}}",
+							"Toggles the ability for an element’s tooltip to be shown or hidden.",
+						],
 						["{{update}}", "Updates the position of an element’s tooltip."],
 					],
 				}),
@@ -499,9 +604,17 @@ export const tooltip: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.tooltip.getInstance("#example-tooltip");
+														const elem =
+															b.tooltip.getInstance(
+																"#example-tooltip"
+															);
 
-														e.console(event.target as Element, "b.tooltip.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.tooltip.getInstance",
+															elem ? elem : "null",
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -512,9 +625,17 @@ export const tooltip: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.tooltip.getOrCreateInstance("#example-tooltip");
+														const elem =
+															b.tooltip.getOrCreateInstance(
+																"#example-tooltip"
+															);
 
-														e.console(event.target as Element, "b.tooltip.getOrCreateInstance", elem, elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.tooltip.getOrCreateInstance",
+															elem,
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -577,7 +698,8 @@ export const tooltip: IContent = {
 												on: {
 													click: () => {
 														b.tooltip.setContent("#example-tooltip", {
-															".tooltip-inner": "<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
+															".tooltip-inner":
+																"<img class='rounded' src='https://picsum.photos/seed/bsts_0/170/170.webp' alt='Image cap'>",
 														});
 													},
 												},
@@ -614,7 +736,10 @@ export const tooltip: IContent = {
 					},
 				}),
 
-				new e.alert({ color: "info", callout: true }, "The {{setContent}} method accepts an {{object}} argument, where each property-key is a valid {{string}} selector within the tooltip template, and each related property-value can be {{string}} | {{element}} | {{function}} | {{null}}"),
+				new e.alert(
+					{ color: "info", callout: true },
+					"The {{setContent}} method accepts an {{object}} argument, where each property-key is a valid {{string}} selector within the tooltip template, and each related property-value can be {{string}} | {{element}} | {{function}} | {{null}}"
+				),
 			]),
 
 			//----------------------
@@ -624,11 +749,26 @@ export const tooltip: IContent = {
 				new e.table({
 					item: [
 						["Event", "Description"],
-						["{{hide.bs.tooltip}}", "This event is fired immediately when the {{hide}} instance method has been called."],
-						["{{hidden.bs.tooltip}}", "This event is fired when the tooltip has finished being hidden from the user (will wait for CSS transitions to complete)."],
-						["{{inserted.bs.tooltip}}", "This event is fired after the {{show.bs.tooltip }}event when the tooltip template has been added to the DOM."],
-						["{{show.bs.tooltip}}", "This event fires immediately when the {{show}} instance method is called."],
-						["{{shown.bs.tooltip}}", "This event is fired when the tooltip has been made visible to the user (will wait for CSS transitions to complete)."],
+						[
+							"{{hide.bs.tooltip}}",
+							"This event is fired immediately when the {{hide}} instance method has been called.",
+						],
+						[
+							"{{hidden.bs.tooltip}}",
+							"This event is fired when the tooltip has finished being hidden from the user (will wait for CSS transitions to complete).",
+						],
+						[
+							"{{inserted.bs.tooltip}}",
+							"This event is fired after the {{show.bs.tooltip }}event when the tooltip template has been added to the DOM.",
+						],
+						[
+							"{{show.bs.tooltip}}",
+							"This event fires immediately when the {{show}} instance method is called.",
+						],
+						[
+							"{{shown.bs.tooltip}}",
+							"This event is fired when the tooltip has been made visible to the user (will wait for CSS transitions to complete).",
+						],
 					],
 				}),
 
@@ -644,17 +784,32 @@ export const tooltip: IContent = {
 								on: {
 									"shown.bs.tooltip": (event) => {
 										const target = event.target as Element;
-										e.console(target, "shown.bs.tooltip", `target: {{b::${core.elemInfo(target)}}}`, "success");
+										e.console(
+											target,
+											"shown.bs.tooltip",
+											`target: {{b::${core.elemInfo(target)}}}`,
+											"success"
+										);
 									},
 
 									"hidden.bs.tooltip": (event) => {
 										const target = event.target as Element;
-										e.console(target, "hidden.bs.tooltip", `target: {{b::${core.elemInfo(target)}}}`, "danger");
+										e.console(
+											target,
+											"hidden.bs.tooltip",
+											`target: {{b::${core.elemInfo(target)}}}`,
+											"danger"
+										);
 									},
 
 									"inserted.bs.tooltip": (event) => {
 										const target = event.target as Element;
-										e.console(target, "inserted.bs.tooltip", `target: {{b::${core.elemInfo(target)}}}`, "info");
+										e.console(
+											target,
+											"inserted.bs.tooltip",
+											`target: {{b::${core.elemInfo(target)}}}`,
+											"info"
+										);
 									},
 								},
 							},
@@ -668,29 +823,16 @@ export const tooltip: IContent = {
 	db: [
 		{
 			source: `() => {
-return new h.p({
-textColor: "body-secondary"
-}, ["Placeholder text to demonstrate some ",
-new b.tooltip({
-content: "Default tooltip"
-}, new h.a({
-href: "#"
-}, "inline links")), " with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of ",
-new b.tooltip({
-content: "Another tooltip"
-}, new h.a({
-href: "#"
-}, "real text")), ". And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how ",
-new b.tooltip({
-content: "Another one here too"
-}, new h.a({
-href: "#"
-}, "these tooltips on links")), " can work in practice, once you use them on ",
-new b.tooltip({
-content: "The last tip!"
-}, new h.a({
-href: "#"
-}, "your own")), " site or project.",
+return new h.p({ textColor: "body-secondary" }, [
+"Placeholder text to demonstrate some ",
+new b.tooltip({ content: "Default tooltip" }, new h.a({ href: "#" }, "inline links")),
+" with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of ",
+new b.tooltip({ content: "Another tooltip" }, new h.a({ href: "#" }, "real text")),
+". And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how ",
+new b.tooltip({ content: "Another one here too" }, new h.a({ href: "#" }, "these tooltips on links")),
+" can work in practice, once you use them on ",
+new b.tooltip({ content: "The last tip!" }, new h.a({ href: "#" }, "your own")),
+" site or project.",
 ]);
 }`,
 		},
@@ -700,9 +842,7 @@ return new b.tooltip({
 title: "Custom tooltip",
 content: "This tooltip is themed via CSS variables.",
 customClass: "custom-tooltip",
-}, new b.button({
-color: "secondary"
-}, "Custom tooltip"));
+}, new b.button({ color: "secondary" }, "Custom tooltip"));
 }`,
 		},
 		{
@@ -711,9 +851,7 @@ return ["top", "right", "bottom", "left"].map((i) => {
 return new b.tooltip({
 placement: i,
 content: \`Tooltip on \${i}\`,
-}, new b.button({
-color: "secondary"
-}, \`Tooltip on \${i}\`));
+}, new b.button({ color: "secondary" }, \`Tooltip on \${i}\`));
 });
 }`,
 		},
@@ -722,9 +860,7 @@ color: "secondary"
 return new b.tooltip({
 content: "<em>Tooltip</em> <u>with</u> <b>HTML</b>",
 allowHtml: true,
-}, new b.button({
-color: "secondary"
-}, "Tooltip on HTML"));
+}, new b.button({ color: "secondary" }, "Tooltip on HTML"));
 }`,
 		},
 		{
@@ -738,10 +874,7 @@ content: "Default tooltip",
 			source: `() => {
 return new b.tooltip({
 content: "Disabled tooltip",
-}, new b.button({
-color: "primary",
-disabled: true
-}, "Disabled button"));
+}, new b.button({ color: "primary", disabled: true }, "Disabled button"));
 }`,
 		},
 		{
@@ -749,22 +882,14 @@ disabled: true
 const myDefaultAllowList = bootstrap__WEBPACK_IMPORTED_MODULE_3__.Tooltip.Default.allowList;
 myDefaultAllowList.img = ["src", "alt"];
 return [
-new h.div({
-display: "flex",
-overflow: "auto"
-}, [
+new h.div({ display: "flex", overflow: "auto" }, [
 new h.div({
 width: 100,
 marginEnd: 3,
 bgColor: "body-tertiary",
 rounded: true,
 position: "relative",
-}, new h.div({
-position: "absolute",
-top: 50,
-start: 50,
-tMiddle: true
-}, new b.tooltip({
+}, new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }, new b.tooltip({
 autoInit: false,
 id: "example-tooltip",
 allowHtml: true,
@@ -780,12 +905,7 @@ b.tooltip.setContent("#example-tooltip", {
 color: "primary",
 weight: "lg",
 }, "Example")))),
-new h.div({
-marginStart: "auto"
-}, new b.btngroup({
-vertical: true,
-weight: "sm"
-}, [
+new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
 new b.button({
 color: "success",
 on: {
@@ -898,9 +1018,7 @@ const target = event.target;
 e.console(target, "inserted.bs.tooltip", \`target: {{b::\${core.elemInfo(target)}}}\`, "info");
 },
 },
-}, new b.button({
-color: "primary"
-}, "Tooltip event"));
+}, new b.button({ color: "primary" }, "Tooltip event"));
 }`,
 		},
 	],

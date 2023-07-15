@@ -15,7 +15,10 @@ const ex = {
 				border: "top",
 			},
 			[
-				new h.p({ col: "md-4", marginBottom: 0, textColor: "body-secondary" }, arg.copyright),
+				new h.p(
+					{ col: "md-4", marginBottom: 0, textColor: "body-secondary" },
+					arg.copyright
+				),
 				new h.a(
 					{
 						href: "#",
@@ -70,7 +73,10 @@ const ex = {
 						},
 						new b.icon({ id: arg.icon, fontSize: 2 })
 					),
-					new h.span({ marginBottom: [3, "md-0"], textColor: "body-tertiary" }, arg.copyright),
+					new h.span(
+						{ marginBottom: [3, "md-0"], textColor: "body-tertiary" },
+						arg.copyright
+					),
 				]),
 
 				new h.ul({
@@ -78,7 +84,17 @@ const ex = {
 					justifyContent: "end",
 					display: "flex",
 					item: arg.link.map((i) => {
-						return new h.li({ marginStart: 3 }, new h.a({ href: i.href, textColor: "body-tertiary", textColorHover: "body-emphasis" }, new b.icon({ id: i.icon, fontSize: 2 })));
+						return new h.li(
+							{ marginStart: 3 },
+							new h.a(
+								{
+									href: i.href,
+									textColor: "body-tertiary",
+									textColorHover: "body-emphasis",
+								},
+								new b.icon({ id: i.icon, fontSize: 2 })
+							)
+						);
 					}),
 					unstyle: true,
 				}),
@@ -153,7 +169,12 @@ const ex = {
 			]
 		);
 	},
-	c5: (arg: { copyright: string; link: (undefined | t[])[]; linkicon: { icon: string; href: string }[]; onsubscribe: EventListener }) => {
+	c5: (arg: {
+		copyright: string;
+		link: (undefined | t[])[];
+		linkicon: { icon: string; href: string }[];
+		onsubscribe: EventListener;
+	}) => {
 		return new h.footer(
 			{
 				paddingY: 5,
@@ -204,7 +225,13 @@ const ex = {
 						new h.ul({
 							display: "flex",
 							item: arg.linkicon.map((i) => {
-								return new h.li({ marginStart: 3 }, new h.a({ href: i.href }, new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })));
+								return new h.li(
+									{ marginStart: 3 },
+									new h.a(
+										{ href: i.href },
+										new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })
+									)
+								);
 							}),
 							unstyle: true,
 						}),
@@ -401,7 +428,9 @@ export const footers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								if (target) {
-									const input = target.querySelector("input[name='subcribe']") as HTMLInputElement;
+									const input = target.querySelector(
+										"input[name='subcribe']"
+									) as HTMLInputElement;
 									if (input) {
 										const email = (input as HTMLInputElement).value;
 										e.console(target, "onsubscribe", { email: email }, "info");
@@ -421,26 +450,12 @@ return COMPONENT({
 copyright: "© 2023 Company, Inc",
 icon: "hexagon-fill",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 });
 }`,
 
@@ -455,11 +470,7 @@ paddingY: 3,
 marginY: 4,
 border: "top",
 }, [
-new h.p({
-col: "md-4",
-marginBottom: 0,
-textColor: "body-secondary"
-}, arg.copyright),
+new h.p({ col: "md-4", marginBottom: 0, textColor: "body-secondary" }, arg.copyright),
 new h.a({
 href: "#",
 col: "md-4",
@@ -471,18 +482,17 @@ marginEnd: "md-auto",
 textColor: "body-tertiary",
 textColorHover: "body-emphasis",
 textDecoration: "none",
-}, new b.icon({
-id: arg.icon,
-fontSize: 2
-})),
+}, new b.icon({ id: arg.icon, fontSize: 2 })),
 new b.nav.header.container({
 col: "md-4",
 justifyContent: "end",
-link: arg.link ? arg.link.map((i) => {
+link: arg.link ?
+arg.link.map((i) => {
 i.textColor = "body-tertiary";
 i.textColorHover = "body-emphasis";
 return i;
-}) : undefined,
+}) :
+undefined,
 }),
 ]);
 }`,
@@ -494,18 +504,10 @@ return COMPONENT({
 copyright: "© 2023 Company, Inc",
 icon: "hexagon-fill",
 link: [
-{
-href: "#",
-icon: "twitter"
-},
-{
-href: "#",
-icon: "instagram"
-},
-{
-href: "#",
-icon: "facebook"
-}, ],
+{ href: "#", icon: "twitter" },
+{ href: "#", icon: "instagram" },
+{ href: "#", icon: "facebook" },
+],
 });
 }`,
 
@@ -520,11 +522,7 @@ paddingY: 3,
 marginY: 4,
 border: "top",
 }, [
-new h.div({
-col: "md-4",
-display: "flex",
-alignItem: "center"
-}, [
+new h.div({ col: "md-4", display: "flex", alignItem: "center" }, [
 new h.a({
 href: "#",
 marginBottom: [3, "md-0"],
@@ -533,30 +531,15 @@ textColor: "body-tertiary",
 textColorHover: "body-emphasis",
 textDecoration: "none",
 lineHeight: 1,
-}, new b.icon({
-id: arg.icon,
-fontSize: 2
-})),
-new h.span({
-marginBottom: [3, "md-0"],
-textColor: "body-tertiary"
-}, arg.copyright),
+}, new b.icon({ id: arg.icon, fontSize: 2 })),
+new h.span({ marginBottom: [3, "md-0"], textColor: "body-tertiary" }, arg.copyright),
 ]),
 new h.ul({
 col: "md-4",
 justifyContent: "end",
 display: "flex",
 item: arg.link.map((i) => {
-return new h.li({
-marginStart: 3
-}, new h.a({
-href: i.href,
-textColor: "body-tertiary",
-textColorHover: "body-emphasis"
-}, new b.icon({
-id: i.icon,
-fontSize: 2
-})));
+return new h.li({ marginStart: 3 }, new h.a({ href: i.href, textColor: "body-tertiary", textColorHover: "body-emphasis" }, new b.icon({ id: i.icon, fontSize: 2 })));
 }),
 unstyle: true,
 }),
@@ -569,26 +552,12 @@ unstyle: true,
 return COMPONENT({
 copyright: "© 2023 Company, Inc",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 });
 }`,
 
@@ -606,10 +575,7 @@ justifyContent: "center",
 textColor: "secondary",
 link: arg.link,
 }),
-new h.p({
-textAlign: "center",
-textColor: "body-tertiary"
-}, arg.copyright),
+new h.p({ textAlign: "center", textColor: "body-tertiary" }, arg.copyright),
 ]);
 }`,
 			],
@@ -624,74 +590,32 @@ undefined,
 COMPONENTSECTION({
 title: "Section",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 }),
 COMPONENTSECTION({
 title: "Section",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 }),
 COMPONENTSECTION({
 title: "Section",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 }),
 ],
 });
@@ -704,9 +628,7 @@ new h.h(5, arg.title),
 new b.nav.header.container({
 flex: "column",
 elem: arg.link.map((i) => {
-return new b.nav.header.item({
-marginBottom: 2
-}, new b.nav.header.link({
+return new b.nav.header.item({ marginBottom: 2 }, new b.nav.header.link({
 textColor: "secondary",
 textColorHover: "primary-emphasis",
 href: i.href,
@@ -725,29 +647,18 @@ paddingY: 5,
 marginY: 5,
 border: "top",
 }, [
-new h.div({
-col: true,
-marginBottom: 3
-}, [
+new h.div({ col: true, marginBottom: 3 }, [
 new h.a({
 href: "#",
 display: "flex",
 alignItem: "center",
 marginBottom: 3,
 textDecoration: "none",
-}, new b.icon({
-id: arg.icon,
-fontSize: 1,
-textColor: "body"
-})),
-new h.p({
-textColor: "body-tertiary"
-}, arg.copyright),
-]), ...arg.link.map((i) => {
-return new h.div({
-col: true,
-marginBottom: 3
-}, i ? i : "");
+}, new b.icon({ id: arg.icon, fontSize: 1, textColor: "body" })),
+new h.p({ textColor: "body-tertiary" }, arg.copyright),
+]),
+...arg.link.map((i) => {
+return new h.div({ col: true, marginBottom: 3 }, i ? i : "");
 }),
 ]);
 }`,
@@ -758,90 +669,40 @@ marginBottom: 3
 return COMPONENT({
 copyright: "© 2023 Company, Inc. All rights reserved.",
 linkicon: [
-{
-href: "#",
-icon: "twitter"
-},
-{
-href: "#",
-icon: "instagram"
-},
-{
-href: "#",
-icon: "facebook"
-}, ],
+{ href: "#", icon: "twitter" },
+{ href: "#", icon: "instagram" },
+{ href: "#", icon: "facebook" },
+],
 link: [
 COMPONENTSECTION({
 title: "Section",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 }),
 COMPONENTSECTION({
 title: "Section",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 }),
 COMPONENTSECTION({
 title: "Section",
 link: [
-{
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 }),
 ],
 onsubscribe: (event) => {
@@ -851,9 +712,7 @@ if (target) {
 const input = target.querySelector("input[name='subcribe']");
 if (input) {
 const email = input.value;
-e.console(target, "onsubscribe", {
-email: email
-}, "info");
+e.console(target, "onsubscribe", { email: email }, "info");
 }
 }
 },
@@ -867,9 +726,7 @@ new h.h(5, arg.title),
 new b.nav.header.container({
 flex: "column",
 elem: arg.link.map((i) => {
-return new b.nav.header.item({
-marginBottom: 2
-}, new b.nav.header.link({
+return new b.nav.header.item({ marginBottom: 2 }, new b.nav.header.link({
 textColor: "secondary",
 textColorHover: "primary-emphasis",
 href: i.href,
@@ -884,24 +741,12 @@ padding: 0,
 return new h.footer({
 paddingY: 5,
 }, [
-new h.div({
-row: true
-}, [...arg.link.map((i) => {
-return new h.div({
-col: [6, "md-2"],
-marginBottom: 3
-}, i ? i : "");
+new h.div({ row: true }, [
+...arg.link.map((i) => {
+return new h.div({ col: [6, "md-2"], marginBottom: 3 }, i ? i : "");
 }),
-new h.div({
-col: "md-5",
-offset: "md-1",
-marginBottom: 3
-}, [
-new h.form({
-on: {
-submit: arg.onsubscribe
-}
-}, [
+new h.div({ col: "md-5", offset: "md-1", marginBottom: 3 }, [
+new h.form({ on: { submit: arg.onsubscribe } }, [
 new h.h(5, "Subscribe to our newsletter"),
 new h.p("Monthly digest of what's new and exciting from us."),
 new h.div({
@@ -918,9 +763,7 @@ placeholder: "Email address",
 name: "subcribe",
 required: true,
 }),
-new b.button({
-type: "submit"
-}, "Subscribe"),
+new b.button({ type: "submit" }, "Subscribe"),
 ]),
 ]),
 ]),
@@ -934,21 +777,11 @@ paddingY: 4,
 marginY: 4,
 border: "top",
 }, [
-new h.p({
-marginBottom: 0
-}, arg.copyright),
+new h.p({ marginBottom: 0 }, arg.copyright),
 new h.ul({
 display: "flex",
 item: arg.linkicon.map((i) => {
-return new h.li({
-marginStart: 3
-}, new h.a({
-href: i.href
-}, new b.icon({
-id: i.icon,
-fontSize: 3,
-textColor: "body"
-})));
+return new h.li({ marginStart: 3 }, new h.a({ href: i.href }, new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })));
 }),
 unstyle: true,
 }),

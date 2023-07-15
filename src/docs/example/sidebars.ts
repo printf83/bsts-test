@@ -372,7 +372,10 @@ const ex = {
 				new h.ul(
 					{ unstyle: true, paddingStart: 0 },
 					new h.li({ marginBottom: 1 }, [
-						new b.collapse.button({ href: `#usermenu`, class: "btn", icon: true, defColor: false }, "Account"),
+						new b.collapse.button(
+							{ href: `#usermenu`, class: "btn", icon: true, defColor: false },
+							"Account"
+						),
 						new b.collapse.container(
 							{ id: "usermenu" },
 							new h.ul(
@@ -452,7 +455,18 @@ const ex = {
 								lineHeight: "sm",
 								autoInit: true,
 							},
-							[new h.div({ display: "flex", width: 100, alignItem: "center", justifyContent: "between" }, [new h.b(i.title), new h.small(i.date)]), new h.div({ col: 10, marginBottom: 1, small: true }, i.description)]
+							[
+								new h.div(
+									{
+										display: "flex",
+										width: 100,
+										alignItem: "center",
+										justifyContent: "between",
+									},
+									[new h.b(i.title), new h.small(i.date)]
+								),
+								new h.div({ col: 10, marginBottom: 1, small: true }, i.description),
+							]
 						);
 					})
 				),
@@ -488,7 +502,13 @@ export const sidebars: IContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -530,7 +550,13 @@ export const sidebars: IContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -570,7 +596,13 @@ export const sidebars: IContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -649,7 +681,9 @@ export const sidebars: IContent = {
 									"onlinkchange",
 									{
 										target: core.elemInfo(detail.target),
-										relatedTarget: detail.relatedTarget ? core.elemInfo(detail.relatedTarget) : "null",
+										relatedTarget: detail.relatedTarget
+											? core.elemInfo(detail.relatedTarget)
+											: "null",
 									},
 									"info"
 								);
@@ -675,77 +709,92 @@ export const sidebars: IContent = {
 							item: [
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 							],
@@ -764,41 +813,13 @@ title: "Sidebar",
 userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 userName: "@printf83",
 link: [
-{
-active: true,
-href: "#",
-icon: "house",
-label: "Home"
-},
-{
-href: "#",
-icon: "speedometer2",
-label: "Dashboard"
-},
-{
-href: "#",
-icon: "table",
-label: "Orders"
-},
-{
-href: "#",
-icon: "grid",
-label: "Products"
-},
-{
-href: "#",
-icon: "person-circle",
-label: "Customers"
-}, ],
-menu: [new b.dropdown.item({
-href: "#"
-}, "New project..."), new b.dropdown.item({
-href: "#"
-}, "Setting"), new b.dropdown.item({
-href: "#"
-}, "Profile"), new b.dropdown.divider(), new b.dropdown.item({
-href: "#"
-}, "Sign out")],
+{ active: true, href: "#", icon: "house", label: "Home" },
+{ href: "#", icon: "speedometer2", label: "Dashboard" },
+{ href: "#", icon: "table", label: "Orders" },
+{ href: "#", icon: "grid", label: "Products" },
+{ href: "#", icon: "person-circle", label: "Customers" },
+],
+menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -817,10 +838,7 @@ display: "flex",
 flex: ["column", "shrink-0"],
 padding: 3,
 shadow: true,
-style: {
-width: "280px",
-minHeight: "500px"
-},
+style: { width: "280px", minHeight: "500px" },
 theme: "dark",
 textBgColor: "dark",
 }, [
@@ -831,29 +849,20 @@ alignItem: "center",
 marginEnd: "md-auto",
 textDecoration: "none",
 textColor: "white",
-}, new b.caption({
-icon: new b.icon({
-id: arg.icon
-}),
-fontSize: 4
-}, arg.title)),
+}, new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)),
 new h.hr(),
 new b.nav.header.container({
 type: "pill",
 flex: "column",
 marginBottom: "auto",
-on: {
-"change.bs.nav": arg.onlinkchange
-},
+on: { "change.bs.nav": arg.onlinkchange },
 link: arg.link?.map((i) => {
 return {
 handleActive: true,
 active: i.active,
 textColor: "white",
 href: i.href,
-elem: new b.caption({
-icon: i.icon
-}, i.label),
+elem: new b.caption({ icon: i.icon }, i.label),
 };
 }),
 }),
@@ -871,9 +880,7 @@ rounded: "circle",
 attrWidth: 32,
 attrHeight: 32,
 }),
-new h.b({
-marginStart: 2
-}, arg.userName),
+new h.b({ marginStart: 2 }, arg.userName),
 ]),
 new b.dropdown.menu(arg.menu ? arg.menu : ""),
 ]),
@@ -889,41 +896,13 @@ title: "Sidebar",
 userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 userName: "@printf83",
 link: [
-{
-active: true,
-href: "#",
-icon: "house",
-label: "Home"
-},
-{
-href: "#",
-icon: "speedometer2",
-label: "Dashboard"
-},
-{
-href: "#",
-icon: "table",
-label: "Orders"
-},
-{
-href: "#",
-icon: "grid",
-label: "Products"
-},
-{
-href: "#",
-icon: "person-circle",
-label: "Customers"
-}, ],
-menu: [new b.dropdown.item({
-href: "#"
-}, "New project..."), new b.dropdown.item({
-href: "#"
-}, "Setting"), new b.dropdown.item({
-href: "#"
-}, "Profile"), new b.dropdown.divider(), new b.dropdown.item({
-href: "#"
-}, "Sign out")],
+{ active: true, href: "#", icon: "house", label: "Home" },
+{ href: "#", icon: "speedometer2", label: "Dashboard" },
+{ href: "#", icon: "table", label: "Orders" },
+{ href: "#", icon: "grid", label: "Products" },
+{ href: "#", icon: "person-circle", label: "Customers" },
+],
+menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -943,10 +922,7 @@ flex: ["column", "shrink-0"],
 padding: 3,
 shadow: true,
 bgColor: "body-tertiary",
-style: {
-width: "280px",
-minHeight: "500px"
-},
+style: { width: "280px", minHeight: "500px" },
 }, [
 new h.a({
 href: "#",
@@ -955,12 +931,7 @@ alignItem: "center",
 marginEnd: "md-auto",
 textDecoration: "none",
 textColor: "body-emphasis",
-}, new b.caption({
-icon: new b.icon({
-id: arg.icon
-}),
-fontSize: 4
-}, arg.title)),
+}, new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)),
 new h.hr(),
 new b.nav.header.container({
 type: "pill",
@@ -968,17 +939,13 @@ flex: "column",
 marginBottom: "auto",
 textColor: "body",
 textColorActive: "white",
-on: {
-"change.bs.nav": arg.onlinkchange
-},
+on: { "change.bs.nav": arg.onlinkchange },
 link: arg.link?.map((i) => {
 return {
 handleActive: true,
 active: i.active,
 href: i.href,
-elem: new b.caption({
-icon: i.icon
-}, i.label),
+elem: new b.caption({ icon: i.icon }, i.label),
 };
 }),
 }),
@@ -996,9 +963,7 @@ rounded: "circle",
 attrWidth: 32,
 attrHeight: 32,
 }),
-new h.b({
-marginStart: 2
-}, arg.userName),
+new h.b({ marginStart: 2 }, arg.userName),
 ]),
 new b.dropdown.menu(arg.menu ? arg.menu : ""),
 ]),
@@ -1012,41 +977,13 @@ return COMPONENT({
 icon: "hexagon-fill",
 userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
 link: [
-{
-active: true,
-href: "#",
-icon: "house",
-label: "Home"
-},
-{
-href: "#",
-icon: "speedometer2",
-label: "Dashboard"
-},
-{
-href: "#",
-icon: "table",
-label: "Orders"
-},
-{
-href: "#",
-icon: "grid",
-label: "Products"
-},
-{
-href: "#",
-icon: "person-circle",
-label: "Customers"
-}, ],
-menu: [new b.dropdown.item({
-href: "#"
-}, "New project..."), new b.dropdown.item({
-href: "#"
-}, "Setting"), new b.dropdown.item({
-href: "#"
-}, "Profile"), new b.dropdown.divider(), new b.dropdown.item({
-href: "#"
-}, "Sign out")],
+{ active: true, href: "#", icon: "house", label: "Home" },
+{ href: "#", icon: "speedometer2", label: "Dashboard" },
+{ href: "#", icon: "table", label: "Orders" },
+{ href: "#", icon: "grid", label: "Products" },
+{ href: "#", icon: "person-circle", label: "Customers" },
+],
+menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1065,10 +1002,7 @@ display: "flex",
 flex: ["column", "shrink-0"],
 shadow: true,
 bgColor: "body-tertiary",
-style: {
-width: "4.5rem",
-minHeight: "500px"
-},
+style: { width: "4.5rem", minHeight: "500px" },
 }, [
 new h.a({
 href: "#",
@@ -1080,19 +1014,12 @@ textDecoration: "none",
 textColor: "body-emphasis",
 paddingX: 4,
 paddingY: 3,
-}, new b.icon({
-id: arg.icon,
-h: 4
-})),
-new h.div({
-marginBottom: "auto"
-}, new b.nav.header.containerNav({
+}, new b.icon({ id: arg.icon, h: 4 })),
+new h.div({ marginBottom: "auto" }, new b.nav.header.containerNav({
 type: "pill",
 flex: "column",
 border: "top",
-on: {
-"change.bs.nav": arg.onlinkchange
-},
+on: { "change.bs.nav": arg.onlinkchange },
 link: arg.link?.map((i) => {
 return {
 handleActive: true,
@@ -1143,80 +1070,39 @@ new b.dropdown.menu(arg.menu ? arg.menu : ""),
 return COMPONENT({
 icon: "hexagon-fill",
 title: "Collapsible",
-link: [
-{
+link: [{
 label: "Home",
 item: [
-{
-href: "#",
-label: "Overview"
-},
-{
-href: "#",
-label: "Updates"
-},
-{
-href: "#",
-label: "Reports"
-}, ],
+{ href: "#", label: "Overview" },
+{ href: "#", label: "Updates" },
+{ href: "#", label: "Reports" },
+],
 },
 {
 label: "Dashboard",
 item: [
-{
-href: "#",
-label: "Overview"
-},
-{
-href: "#",
-label: "Weekly"
-},
-{
-href: "#",
-label: "Monthly"
-},
-{
-href: "#",
-label: "Annually"
-}, ],
+{ href: "#", label: "Overview" },
+{ href: "#", label: "Weekly" },
+{ href: "#", label: "Monthly" },
+{ href: "#", label: "Annually" },
+],
 },
 {
 label: "Orders",
 item: [
-{
-href: "#",
-label: "New"
+{ href: "#", label: "New" },
+{ href: "#", label: "Processed" },
+{ href: "#", label: "Shipped" },
+{ href: "#", label: "Returned" },
+],
 },
-{
-href: "#",
-label: "Processed"
-},
-{
-href: "#",
-label: "Shipped"
-},
-{
-href: "#",
-label: "Returned"
-}, ],
-}, ],
+],
 menu: [
-{
-href: "#",
-label: "New..."
-},
-{
-href: "#",
-label: "Profile"
-},
-{
-href: "#",
-label: "Setting"
-},
-{
-href: "#",
-label: "Sign out"
-}, ],
+{ href: "#", label: "New..." },
+{ href: "#", label: "Profile" },
+{ href: "#", label: "Setting" },
+{ href: "#", label: "Sign out" },
+],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1242,8 +1128,7 @@ target: target,
 relatedTarget: lastActive,
 },
 }));
-}
-else {
+} else {
 container.dispatchEvent(new CustomEvent("change.bs.sidebar", {
 detail: {
 target: target,
@@ -1261,13 +1146,8 @@ class: "sidebar-container",
 flex: ["column", "shrink-0"],
 padding: 3,
 shadow: true,
-style: {
-width: "280px",
-minHeight: "500px"
-},
-on: {
-"change.bs.sidebar": arg.onlinkchange
-},
+style: { width: "280px", minHeight: "500px" },
+on: { "change.bs.sidebar": arg.onlinkchange },
 }, [
 new h.a({
 href: "#",
@@ -1276,30 +1156,18 @@ alignItem: "center",
 marginEnd: "md-auto",
 textDecoration: "none",
 textColor: "body-emphasis",
-}, new b.caption({
-icon: new b.icon({
-id: arg.icon
-}),
-fontSize: 4
-}, arg.title)),
+}, new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)),
 new h.hr(),
-new h.ul({
-unstyle: true,
-paddingStart: 0
-}, arg.link?.map((i) => {
+new h.ul({ unstyle: true, paddingStart: 0 }, arg.link?.map((i) => {
 let id = core.UUID();
-return new h.li({
-marginBottom: 1
-}, [
+return new h.li({ marginBottom: 1 }, [
 new b.collapse.button({
 href: \`#\${id}\`,
 class: "btn",
 icon: true,
 defColor: false,
 }, i.label),
-new b.collapse.container({
-id: id
-}, new h.ul({
+new b.collapse.container({ id: id }, new h.ul({
 unstyle: true,
 fontWeight: "normal",
 class: "btn-toggle-nav",
@@ -1321,21 +1189,9 @@ click: CLICKEVENT,
 ]);
 })),
 new h.hr(),
-new h.ul({
-unstyle: true,
-paddingStart: 0
-}, new h.li({
-marginBottom: 1
-}, [
-new b.collapse.button({
-href: \`#usermenu\`,
-class: "btn",
-icon: true,
-defColor: false
-}, "Account"),
-new b.collapse.container({
-id: "usermenu"
-}, new h.ul({
+new h.ul({ unstyle: true, paddingStart: 0 }, new h.li({ marginBottom: 1 }, [
+new b.collapse.button({ href: \`#usermenu\`, class: "btn", icon: true, defColor: false }, "Account"),
+new b.collapse.container({ id: "usermenu" }, new h.ul({
 unstyle: true,
 class: "btn-toggle-nav",
 fontWeight: "normal",
@@ -1364,8 +1220,7 @@ click: CLICKEVENT,
 return COMPONENT({
 icon: "hexagon-fill",
 title: "List group",
-item: [
-{
+item: [{
 title: "List group item heading",
 description: "Some placeholder content in a paragraph below the heading and date.",
 date: "Wed",
@@ -1439,7 +1294,8 @@ date: "Tues",
 title: "List group item heading",
 description: "Some placeholder content in a paragraph below the heading and date.",
 date: "Mon",
-}, ],
+},
+],
 });
 }`,
 
@@ -1449,10 +1305,7 @@ return new h.div({
 display: "flex",
 flex: ["column", "shrink-0"],
 shadow: true,
-style: {
-maxWidth: "380px",
-height: "500px"
-},
+style: { maxWidth: "380px", height: "500px" },
 }, [
 new h.a({
 href: "#",
@@ -1466,32 +1319,15 @@ bgColor: "body-tertiary",
 width: 100,
 padding: 3,
 border: "bottom",
-}, new b.caption({
-icon: new b.icon({
-id: arg.icon
-}),
-fontSize: 4
-}, arg.title)),
-new b.tabList.container({
-flush: true,
-overflowY: "auto"
-}, arg.item?.map((i, ix) => {
+}, new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)),
+new b.tabList.container({ flush: true, overflowY: "auto" }, arg.item?.map((i, ix) => {
 return new b.tabList.item({
 action: true,
 active: ix === 0 ? true : undefined,
 paddingY: 3,
 lineHeight: "sm",
 autoInit: true,
-}, [new h.div({
-display: "flex",
-width: 100,
-alignItem: "center",
-justifyContent: "between"
-}, [new h.b(i.title), new h.small(i.date)]), new h.div({
-col: 10,
-marginBottom: 1,
-small: true
-}, i.description)]);
+}, [new h.div({ display: "flex", width: 100, alignItem: "center", justifyContent: "between" }, [new h.b(i.title), new h.small(i.date)]), new h.div({ col: 10, marginBottom: 1, small: true }, i.description)]);
 })),
 ]);
 }`,

@@ -4,12 +4,18 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const borders: IContent = {
 	title: "Borders",
-	description: "Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.",
+	description:
+		"Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
-			new e.section([new e.title("Border"), new e.text("Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.")]),
+			new e.section([
+				new e.title("Border"),
+				new e.text(
+					"Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time."
+				),
+			]),
 
 			//----------------------
 
@@ -21,7 +27,13 @@ export const borders: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
-						const data: core.IAttr["border"][] = [true, "top", "end", "bottom", "start"];
+						const data: core.IAttr["border"][] = [
+							true,
+							"top",
+							"end",
+							"bottom",
+							"start",
+						];
 
 						return data.map((i) => {
 							return new h.span({
@@ -42,7 +54,13 @@ export const borders: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
-						const data: core.IAttr["borderNone"][] = [true, "top", "end", "bottom", "start"];
+						const data: core.IAttr["borderNone"][] = [
+							true,
+							"top",
+							"end",
+							"bottom",
+							"start",
+						];
 
 						return data.map((i) => {
 							return new h.span({
@@ -58,8 +76,13 @@ export const borders: IContent = {
 
 			new e.section([
 				new e.title("Color"),
-				new e.alert({ color: "info", callout: true }, "Border utilities like {{.border-*}} that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{.border-*-subtle}} utility will. This will be resolved in v6."),
-				new e.text("Change the border color using utilities built on Bootstrap theme colors."),
+				new e.alert(
+					{ color: "info", callout: true },
+					"Border utilities like {{.border-*}} that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{.border-*-subtle}} utility will. This will be resolved in v6."
+				),
+				new e.text(
+					"Change the border color using utilities built on Bootstrap theme colors."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
@@ -140,7 +163,12 @@ export const borders: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Opacity"), new e.text("Bootstrap {{border-{color} }}utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.")]),
+			new e.section([
+				new e.title("Opacity"),
+				new e.text(
+					"Bootstrap {{border-{color} }}utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
+				),
+			]),
 
 			//----------------------
 
@@ -165,12 +193,22 @@ export const borders: IContent = {
 
 			new e.section([
 				new e.subtitle("Example"),
-				new e.text("To change that opacity, override {{style: { '--bs-border-opacity': '.5' } }} via custom styles or inline styles."),
+				new e.text(
+					"To change that opacity, override {{style: { '--bs-border-opacity': '.5' } }} via custom styles or inline styles."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new h.div({ border: true, borderColor: "success", padding: 2, marginBottom: 2 }, "This is default success border"),
+							new h.div(
+								{
+									border: true,
+									borderColor: "success",
+									padding: 2,
+									marginBottom: 2,
+								},
+								"This is default success border"
+							),
 							new h.div(
 								{
 									border: true,
@@ -230,13 +268,17 @@ export const borders: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [true, "top", "end", "bottom", "start", "circle", "pill"].map((i) => {
-							return new h.img({
-								src: `https://picsum.photos/seed/bsts_0/${i === "pill" ? "150" : "75"}/75.webp`,
-								alt: "...",
-								rounded: i as core.IAttr["rounded"],
-							});
-						});
+						return [true, "top", "end", "bottom", "start", "circle", "pill"].map(
+							(i) => {
+								return new h.img({
+									src: `https://picsum.photos/seed/bsts_0/${
+										i === "pill" ? "150" : "75"
+									}/75.webp`,
+									alt: "...",
+									rounded: i as core.IAttr["rounded"],
+								});
+							}
+						);
 					},
 				}),
 			]),
@@ -245,7 +287,9 @@ export const borders: IContent = {
 
 			new e.section([
 				new e.subtitle("Sizes"),
-				new e.text("Use the scaling classes for larger or smaller rounded corners. Sizes range from {{0}} to {{5}}, and can be configured by modifying the utilities API."),
+				new e.text(
+					"Use the scaling classes for larger or smaller rounded corners. Sizes range from {{0}} to {{5}}, and can be configured by modifying the utilities API."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -359,7 +403,9 @@ export const borders: IContent = {
 						$border-radius-pill:          50rem;
 					`,
 				}),
-				new e.text("Variables for setting {{border-color}} in {{.border-*-subtle}} utilities in light and dark mode:"),
+				new e.text(
+					"Variables for setting {{border-color}} in {{.border-*-subtle}} utilities in light and dark mode:"
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -511,7 +557,9 @@ export const borders: IContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text("Border utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Border utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
@@ -673,7 +721,13 @@ export const borders: IContent = {
 	db: [
 		{
 			source: `() => {
-const data = [true, "top", "end", "bottom", "start"];
+const data = [
+true,
+"top",
+"end",
+"bottom",
+"start",
+];
 return data.map((i) => {
 return new h.span({
 border: i,
@@ -683,7 +737,13 @@ border: i,
 		},
 		{
 			source: `() => {
-const data = [true, "top", "end", "bottom", "start"];
+const data = [
+true,
+"top",
+"end",
+"bottom",
+"start",
+];
 return data.map((i) => {
 return new h.span({
 border: true,
@@ -694,7 +754,26 @@ borderNone: i,
 		},
 		{
 			source: `() => {
-const data = ["primary", "primary-subtle", "secondary", "secondary-subtle", "success", "success-subtle", "danger", "danger-subtle", "warning", "warning-subtle", "info", "info-subtle", "light", "light-subtle", "dark", "dark-subtle", "black", "white", ];
+const data = [
+"primary",
+"primary-subtle",
+"secondary",
+"secondary-subtle",
+"success",
+"success-subtle",
+"danger",
+"danger-subtle",
+"warning",
+"warning-subtle",
+"info",
+"info-subtle",
+"light",
+"light-subtle",
+"dark",
+"dark-subtle",
+"black",
+"white",
+];
 return data.map((i) => {
 return new h.span({
 border: true,
@@ -708,9 +787,7 @@ borderColor: i,
 return [
 b.form.input({
 borderColor: "success",
-container: {
-marginBottom: 4
-},
+container: { marginBottom: 4 },
 label: "Email address",
 type: "email",
 placeholder: "name@example.com",
@@ -742,15 +819,13 @@ new h.div({
 border: true,
 borderColor: "success",
 padding: 2,
-marginBottom: 2
+marginBottom: 2,
 }, "This is default success border"),
 new h.div({
 border: true,
 borderColor: "success",
 padding: 2,
-style: {
-"--bs-border-opacity": ".5"
-},
+style: { "--bs-border-opacity": ".5" },
 }, "This is 50% opacity success border"),
 ];
 }`,

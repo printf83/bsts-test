@@ -5,25 +5,47 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const link: IContent = {
 	title: "Link",
-	description: "Link utilities are used to stylize your anchors to adjust their color, opacity, underline offset, underline color, and more.",
+	description:
+		"Link utilities are used to stylize your anchors to adjust their color, opacity, underline offset, underline color, and more.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
 			new e.section([
 				new e.title("Link opacity"),
-				new e.text("Change the alpha opacity of the link {{rgba()}} color value with utilities. Please be aware that changes to a color’s opacity can lead to links with {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#color-contrast::insufficient contrast}}."),
+				new e.text(
+					"Change the alpha opacity of the link {{rgba()}} color value with utilities. Please be aware that changes to a color’s opacity can lead to links with {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#color-contrast::insufficient contrast}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacity: i as I.H.A["linkOpacity"] }, `Link opacity ${i}`)));
+						return [10, 25, 50, 75, 100].map(
+							(i) =>
+								new h.p(
+									new h.a(
+										{ href: "#", linkOpacity: i as I.H.A["linkOpacity"] },
+										`Link opacity ${i}`
+									)
+								)
+						);
 					},
 				}),
 				new e.text("You can even change the opacity level on hover."),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacityHover: i as I.H.A["linkOpacityHover"] }, `Link hover opacity ${i}`)));
+						return [10, 25, 50, 75, 100].map(
+							(i) =>
+								new h.p(
+									new h.a(
+										{
+											href: "#",
+											linkOpacityHover: i as I.H.A["linkOpacityHover"],
+										},
+										`Link hover opacity ${i}`
+									)
+								)
+						);
 					},
 				}),
 			]),
@@ -37,7 +59,27 @@ export const link: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.p(new h.a({ href: "#", linkUnderlineColor: i as I.H.A["linkUnderlineColor"] }, `${core.uppercaseFirst(i)} underline`)));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map(
+							(i) =>
+								new h.p(
+									new h.a(
+										{
+											href: "#",
+											linkUnderlineColor: i as I.H.A["linkUnderlineColor"],
+										},
+										`${core.uppercaseFirst(i)} underline`
+									)
+								)
+						);
 					},
 				}),
 			]),
@@ -46,11 +88,21 @@ export const link: IContent = {
 
 			new e.section([
 				new e.subtitle("Underline offset"),
-				new e.text("Change the underline’s distance from your text. Offset is set in {{em}} units to automatically scale with the element’s current {{font-size}}."),
+				new e.text(
+					"Change the underline’s distance from your text. Offset is set in {{em}} units to automatically scale with the element’s current {{font-size}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [undefined, 1, 2, 3].map((i) => new h.p(new h.a({ href: "#", linkOffset: i as I.H.A["linkOffset"] }, i ? `Offset ${i} link` : "Default link")));
+						return [undefined, 1, 2, 3].map(
+							(i) =>
+								new h.p(
+									new h.a(
+										{ href: "#", linkOffset: i as I.H.A["linkOffset"] },
+										i ? `Offset ${i} link` : "Default link"
+									)
+								)
+						);
 					},
 				}),
 			]),
@@ -59,7 +111,9 @@ export const link: IContent = {
 
 			new e.section([
 				new e.subtitle("Underline opacity"),
-				new e.text("Change the underline’s opacity. Requires adding {{.link-underline}} to first set an {{rgba()}} color Bootstrap use to then modify the alpha opacity."),
+				new e.text(
+					"Change the underline’s opacity. Requires adding {{.link-underline}} to first set an {{rgba()}} color Bootstrap use to then modify the alpha opacity."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -71,7 +125,8 @@ export const link: IContent = {
 											href: "#",
 											linkOffset: 2,
 											linkUnderline: true,
-											linkUnderlineOpacity: i as I.H.A["linkUnderlineOpacity"],
+											linkUnderlineOpacity:
+												i as I.H.A["linkUnderlineOpacity"],
 										},
 										`Underline opacity ${i}`
 									)
@@ -85,7 +140,9 @@ export const link: IContent = {
 
 			new e.section([
 				new e.subtitle("Hover variants"),
-				new e.text("Just like the {{.link-opacity-*-hover}} utilities, {{.link-offset}} and {{.link-underline-opacity}} utilities include {{:hover}} variants by default. Mix and match to create unique link styles."),
+				new e.text(
+					"Just like the {{.link-opacity-*-hover}} utilities, {{.link-offset}} and {{.link-underline-opacity}} utilities include {{:hover}} variants by default. Mix and match to create unique link styles."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -108,11 +165,23 @@ export const link: IContent = {
 
 			new e.section([
 				new e.title("Colored links"),
-				new e.text("{{nav:docs/helpers/colored_links::Colored link helpers}} have been updated to pair with Bootstrap link utilities. Use the new utilities to modify the link opacity, underline opacity, and underline offset."),
+				new e.text(
+					"{{nav:docs/helpers/colored_links::Colored link helpers}} have been updated to pair with Bootstrap link utilities. Use the new utilities to modify the link opacity, underline opacity, and underline offset."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map(
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"body-emphasis",
+						].map(
 							(i) =>
 								new h.p(
 									new h.a(
@@ -137,13 +206,20 @@ export const link: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Sass"), new e.text("In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more.")]),
+			new e.section([
+				new e.title("Sass"),
+				new e.text(
+					"In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text("Link utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Link utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
@@ -205,34 +281,37 @@ export const link: IContent = {
 	db: [
 		{
 			source: `() => {
-return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({
-href: "#",
-linkOpacity: i
-}, \`Link opacity \${i}\`)));
+return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacity: i }, \`Link opacity \${i}\`)));
 }`,
 		},
 		{
 			source: `() => {
 return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({
 href: "#",
-linkOpacityHover: i
+linkOpacityHover: i,
 }, \`Link hover opacity \${i}\`)));
 }`,
 		},
 		{
 			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.p(new h.a({
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+].map((i) => new h.p(new h.a({
 href: "#",
-linkUnderlineColor: i
+linkUnderlineColor: i,
 }, \`\${core.uppercaseFirst(i)} underline\`)));
 }`,
 		},
 		{
 			source: `() => {
-return [undefined, 1, 2, 3].map((i) => new h.p(new h.a({
-href: "#",
-linkOffset: i
-}, i ? \`Offset \${i} link\` : "Default link")));
+return [undefined, 1, 2, 3].map((i) => new h.p(new h.a({ href: "#", linkOffset: i }, i ? \`Offset \${i} link\` : "Default link")));
 }`,
 		},
 		{
@@ -259,7 +338,17 @@ linkUnderlineOpacityHover: 75,
 		},
 		{
 			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+"body-emphasis",
+].map((i) => new h.p(new h.a({
 href: "#",
 linkOffset: 2,
 linkUnderlineOpacity: 25,

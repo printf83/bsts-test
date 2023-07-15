@@ -28,9 +28,36 @@ export const shadow: IContent = {
 								},
 								"No shadow"
 							),
-							new h.div({ shadow: "sm", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Small shadow"),
-							new h.div({ shadow: true, padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Regular shadow"),
-							new h.div({ shadow: "lg", padding: 3, marginBottom: 5, bgColor: "body-tertiary", rounded: true }, "Large shadow"),
+							new h.div(
+								{
+									shadow: "sm",
+									padding: 3,
+									marginBottom: 5,
+									bgColor: "body-tertiary",
+									rounded: true,
+								},
+								"Small shadow"
+							),
+							new h.div(
+								{
+									shadow: true,
+									padding: 3,
+									marginBottom: 5,
+									bgColor: "body-tertiary",
+									rounded: true,
+								},
+								"Regular shadow"
+							),
+							new h.div(
+								{
+									shadow: "lg",
+									padding: 3,
+									marginBottom: 5,
+									bgColor: "body-tertiary",
+									rounded: true,
+								},
+								"Large shadow"
+							),
 						];
 					},
 				}),
@@ -61,7 +88,9 @@ export const shadow: IContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text("Shadow utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Shadow utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
@@ -98,21 +127,21 @@ shadow: "sm",
 padding: 3,
 marginBottom: 5,
 bgColor: "body-tertiary",
-rounded: true
+rounded: true,
 }, "Small shadow"),
 new h.div({
 shadow: true,
 padding: 3,
 marginBottom: 5,
 bgColor: "body-tertiary",
-rounded: true
+rounded: true,
 }, "Regular shadow"),
 new h.div({
 shadow: "lg",
 padding: 3,
 marginBottom: 5,
 bgColor: "body-tertiary",
-rounded: true
+rounded: true,
 }, "Large shadow"),
 ];
 }`,

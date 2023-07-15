@@ -4,26 +4,38 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const stacks: IContent = {
 	title: "Stacks",
-	description: "Shorthand helpers that build on top of Bootstrap flexbox utilities to make component layout faster and easier than ever.",
+	description:
+		"Shorthand helpers that build on top of Bootstrap flexbox utilities to make component layout faster and easier than ever.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
 			new e.section([
-				new e.text("Stacks offer a shortcut for applying a number of flexbox properties to quickly and easily create layouts in Bootstrap. All credit for the concept and implementation goes to the open source {{https://almonk.github.io/pylon/::Pylon project}}."),
-				new e.alert({ color: "info", callout: true }, "{{b::Heads up! }}Support for gap utilities with flexbox was recently added to Safari, so consider verifying your intended browser support. Grid layout should have no issues. {{https://caniuse.com/flexbox-gap::Read more}}."),
+				new e.text(
+					"Stacks offer a shortcut for applying a number of flexbox properties to quickly and easily create layouts in Bootstrap. All credit for the concept and implementation goes to the open source {{https://almonk.github.io/pylon/::Pylon project}}."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					"{{b::Heads up! }}Support for gap utilities with flexbox was recently added to Safari, so consider verifying your intended browser support. Grid layout should have no issues. {{https://caniuse.com/flexbox-gap::Read more}}."
+				),
 			]),
 
 			//----------------------
 
 			new e.section([
 				new e.title("Vertical"),
-				new e.text("Use {{.vstack}} to create vertical layouts. Stacked items are full-width by default. Use {{.gap-*}} utilities to add space between items."),
+				new e.text(
+					"Use {{.vstack}} to create vertical layouts. Stacked items are full-width by default. Use {{.gap-*}} utilities to add space between items."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ vstack: true, gap: 3 }, [new h.div({ padding: 2 }, "First item"), new h.div({ padding: 2 }, "Second item"), new h.div({ padding: 2 }, "Third item")]);
+						return new h.div({ vstack: true, gap: 3 }, [
+							new h.div({ padding: 2 }, "First item"),
+							new h.div({ padding: 2 }, "Second item"),
+							new h.div({ padding: 2 }, "Third item"),
+						]);
 					},
 				}),
 			]),
@@ -32,12 +44,18 @@ export const stacks: IContent = {
 
 			new e.section([
 				new e.title("Horizontal"),
-				new e.text("Use {{.hstack}} for horizontal layouts. Stacked items are vertically centered by default and only take up their necessary width. Use {{.gap-*}} utilities to add space between items."),
+				new e.text(
+					"Use {{.hstack}} for horizontal layouts. Stacked items are vertically centered by default and only take up their necessary width. Use {{.gap-*}} utilities to add space between items."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ hstack: true, gap: 3 }, [new h.div({ padding: 2 }, "First item"), new h.div({ padding: 2 }, "Second item"), new h.div({ padding: 2 }, "Third item")]);
+						return new h.div({ hstack: true, gap: 3 }, [
+							new h.div({ padding: 2 }, "First item"),
+							new h.div({ padding: 2 }, "Second item"),
+							new h.div({ padding: 2 }, "Third item"),
+						]);
 					},
 				}),
 				new e.text("Using horizontal margin utilities like {{.ms-auto}} as spacers:"),
@@ -45,7 +63,11 @@ export const stacks: IContent = {
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ hstack: true, gap: 3 }, [new h.div({ padding: 2 }, "First item"), new h.div({ padding: 2, marginStart: "auto" }, "Second item"), new h.div({ padding: 2 }, "Third item")]);
+						return new h.div({ hstack: true, gap: 3 }, [
+							new h.div({ padding: 2 }, "First item"),
+							new h.div({ padding: 2, marginStart: "auto" }, "Second item"),
+							new h.div({ padding: 2 }, "Third item"),
+						]);
 					},
 				}),
 				new e.text("And with {{nav:docs/helpers/vertical_rule::vertical rules}}:"),
@@ -53,7 +75,12 @@ export const stacks: IContent = {
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ hstack: true, gap: 3 }, [new h.div({ padding: 2 }, "First item"), new h.div({ padding: 2 }, "Second item"), new b.verticalrule(), new h.div({ padding: 2 }, "Third item")]);
+						return new h.div({ hstack: true, gap: 3 }, [
+							new h.div({ padding: 2 }, "First item"),
+							new h.div({ padding: 2 }, "Second item"),
+							new b.verticalrule(),
+							new h.div({ padding: 2 }, "Third item"),
+						]);
 					},
 				}),
 			]),
@@ -66,7 +93,10 @@ export const stacks: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new h.div({ vstack: true, gap: 3, col: "md-5", marginX: "auto" }, [new b.button({ color: "secondary" }, "Save changes"), new b.button({ color: "secondary", outline: true }, "Cancel")]);
+						return new h.div({ vstack: true, gap: 3, col: "md-5", marginX: "auto" }, [
+							new b.button({ color: "secondary" }, "Save changes"),
+							new b.button({ color: "secondary", outline: true }, "Cancel"),
+						]);
 					},
 				}),
 				new e.text("Create an inline form with {{.hstack}}:"),
@@ -117,95 +147,60 @@ export const stacks: IContent = {
 	db: [
 		{
 			source: `() => {
-return new h.div({
-vstack: true,
-gap: 3
-}, [new h.div({
-padding: 2
-}, "First item"), new h.div({
-padding: 2
-}, "Second item"), new h.div({
-padding: 2
-}, "Third item")]);
+return new h.div({ vstack: true, gap: 3 }, [
+new h.div({ padding: 2 }, "First item"),
+new h.div({ padding: 2 }, "Second item"),
+new h.div({ padding: 2 }, "Third item"),
+]);
 }`,
 		},
 		{
 			source: `() => {
-return new h.div({
-hstack: true,
-gap: 3
-}, [new h.div({
-padding: 2
-}, "First item"), new h.div({
-padding: 2
-}, "Second item"), new h.div({
-padding: 2
-}, "Third item")]);
+return new h.div({ hstack: true, gap: 3 }, [
+new h.div({ padding: 2 }, "First item"),
+new h.div({ padding: 2 }, "Second item"),
+new h.div({ padding: 2 }, "Third item"),
+]);
 }`,
 		},
 		{
 			source: `() => {
-return new h.div({
-hstack: true,
-gap: 3
-}, [new h.div({
-padding: 2
-}, "First item"), new h.div({
-padding: 2,
-marginStart: "auto"
-}, "Second item"), new h.div({
-padding: 2
-}, "Third item")]);
+return new h.div({ hstack: true, gap: 3 }, [
+new h.div({ padding: 2 }, "First item"),
+new h.div({ padding: 2, marginStart: "auto" }, "Second item"),
+new h.div({ padding: 2 }, "Third item"),
+]);
 }`,
 		},
 		{
 			source: `() => {
-return new h.div({
-hstack: true,
-gap: 3
-}, [new h.div({
-padding: 2
-}, "First item"), new h.div({
-padding: 2
-}, "Second item"), new b.verticalrule(), new h.div({
-padding: 2
-}, "Third item")]);
+return new h.div({ hstack: true, gap: 3 }, [
+new h.div({ padding: 2 }, "First item"),
+new h.div({ padding: 2 }, "Second item"),
+new b.verticalrule(),
+new h.div({ padding: 2 }, "Third item"),
+]);
 }`,
 		},
 		{
 			source: `() => {
-return new h.div({
-vstack: true,
-gap: 3,
-col: "md-5",
-marginX: "auto"
-}, [new b.button({
-color: "secondary"
-}, "Save changes"), new b.button({
-color: "secondary",
-outline: true
-}, "Cancel")]);
+return new h.div({ vstack: true, gap: 3, col: "md-5", marginX: "auto" }, [
+new b.button({ color: "secondary" }, "Save changes"),
+new b.button({ color: "secondary", outline: true }, "Cancel"),
+]);
 }`,
 		},
 		{
 			source: `() => {
-return new h.div({
-hstack: true,
-gap: 3
-}, [
+return new h.div({ hstack: true, gap: 3 }, [
 new b.input({
 marginEnd: "auto",
 placeholder: "Add your item here...",
 label: "Add your item here...",
 }),
-new b.button({
-color: "secondary"
-}, "Submit"),
+new b.button({ color: "secondary" }, "Submit"),
 new b.verticalrule(),
-new b.button({
-color: "danger",
-outline: true
-}, "Reset"),
+new b.button({ color: "danger", outline: true }, "Reset"),
 ]);
 }`,
 		},

@@ -14,7 +14,19 @@ export const breadcrumbs: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.breadcrumb.container({ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 }, [new b.breadcrumb.item({ href: "#" }, "Home"), new b.breadcrumb.item({ href: "#" }, "Library"), new b.breadcrumb.item({ active: true, href: "#" }, "Data")]);
+						return new b.breadcrumb.container(
+							{
+								label: "breadcrumb",
+								bgColor: "body-tertiary",
+								rounded: 3,
+								padding: 3,
+							},
+							[
+								new b.breadcrumb.item({ href: "#" }, "Home"),
+								new b.breadcrumb.item({ href: "#" }, "Library"),
+								new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
+							]
+						);
 					},
 				}),
 			]),
@@ -26,27 +38,35 @@ export const breadcrumbs: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.breadcrumb.container({ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 }, [
-							new b.breadcrumb.item(
-								{
-									textDecoration: "none",
-									fontWeight: "semibold",
-									linkColor: "body-emphasis",
-									href: "#",
-								},
-								new b.icon("house-fill")
-							),
-							new b.breadcrumb.item(
-								{
-									textDecoration: "none",
-									fontWeight: "semibold",
-									linkColor: "body-emphasis",
-									href: "#",
-								},
-								"Library"
-							),
-							new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
-						]);
+						return new b.breadcrumb.container(
+							{
+								label: "breadcrumb",
+								bgColor: "body-tertiary",
+								rounded: 3,
+								padding: 3,
+							},
+							[
+								new b.breadcrumb.item(
+									{
+										textDecoration: "none",
+										fontWeight: "semibold",
+										linkColor: "body-emphasis",
+										href: "#",
+									},
+									new b.icon("house-fill")
+								),
+								new b.breadcrumb.item(
+									{
+										textDecoration: "none",
+										fontWeight: "semibold",
+										linkColor: "body-emphasis",
+										href: "#",
+									},
+									"Library"
+								),
+								new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
+							]
+						);
 					},
 				}),
 			]),
@@ -147,15 +167,12 @@ return new b.breadcrumb.container({
 label: "breadcrumb",
 bgColor: "body-tertiary",
 rounded: 3,
-padding: 3
-}, [new b.breadcrumb.item({
-href: "#"
-}, "Home"), new b.breadcrumb.item({
-href: "#"
-}, "Library"), new b.breadcrumb.item({
-active: true,
-href: "#"
-}, "Data")]);
+padding: 3,
+}, [
+new b.breadcrumb.item({ href: "#" }, "Home"),
+new b.breadcrumb.item({ href: "#" }, "Library"),
+new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
+]);
 }`,
 		},
 		{
@@ -164,7 +181,7 @@ return new b.breadcrumb.container({
 label: "breadcrumb",
 bgColor: "body-tertiary",
 rounded: 3,
-padding: 3
+padding: 3,
 }, [
 new b.breadcrumb.item({
 textDecoration: "none",
@@ -178,10 +195,7 @@ fontWeight: "semibold",
 linkColor: "body-emphasis",
 href: "#",
 }, "Library"),
-new b.breadcrumb.item({
-active: true,
-href: "#"
-}, "Data"),
+new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
 ]);
 }`,
 		},
@@ -206,10 +220,7 @@ fontWeight: "semibold",
 linkColor: "body-emphasis",
 href: "#",
 }, "Library"),
-new b.breadcrumb.item({
-active: true,
-href: "#"
-}, "Data"),
+new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
 ]);
 }`,
 		},
@@ -231,19 +242,14 @@ textDecoration: "none",
 fontWeight: "semibold",
 linkColor: "body-emphasis",
 href: "#",
-}, new b.caption({
-icon: "house-fill"
-}, "Home")),
+}, new b.caption({ icon: "house-fill" }, "Home")),
 new b.breadcrumb.item({
 textDecoration: "none",
 fontWeight: "semibold",
 linkColor: "body-emphasis",
 href: "#",
 }, "Library"),
-new b.breadcrumb.item({
-active: true,
-href: "#"
-}, "Data"),
+new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
 ]);
 }`,
 		},

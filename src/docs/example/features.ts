@@ -22,7 +22,10 @@ const ex = {
 			),
 			new h.h(3, { fontSize: 2 }, arg.title),
 			new h.p(arg.description),
-			new h.a({ href: arg.href, iconLink: true }, ["Call to action", new b.icon("chevron-right")]),
+			new h.a({ href: arg.href, iconLink: true }, [
+				"Call to action",
+				new b.icon("chevron-right"),
+			]),
 		]);
 	},
 	c2: (arg: { icon: string; title: string; description: string; elem: core.IElem }) => {
@@ -49,7 +52,11 @@ const ex = {
 					},
 					new b.icon(arg.icon)
 				),
-				new h.div([new h.h(3, { fontSize: 2 }, arg.title), new h.p(arg.description), new h.div(arg.elem)]),
+				new h.div([
+					new h.h(3, { fontSize: 2 }, arg.title),
+					new h.p(arg.description),
+					new h.div(arg.elem),
+				]),
 			]
 		);
 	},
@@ -104,8 +111,14 @@ const ex = {
 											borderColor: "light",
 										})
 									),
-									new h.li({ display: "flex", marginEnd: 3, textAlign: "center" }, new b.caption({ icon: "geo-fill" }, arg.location)),
-									new h.li({ display: "flex", textAlign: "center" }, new b.caption({ icon: "calendar3" }, arg.date)),
+									new h.li(
+										{ display: "flex", marginEnd: 3, textAlign: "center" },
+										new b.caption({ icon: "geo-fill" }, arg.location)
+									),
+									new h.li(
+										{ display: "flex", textAlign: "center" },
+										new b.caption({ icon: "calendar3" }, arg.date)
+									),
 								]),
 							]
 						),
@@ -131,7 +144,10 @@ const ex = {
 					},
 					new b.icon(arg.icon)
 				),
-				new h.div([new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title), new h.p(arg.description)]),
+				new h.div([
+					new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title),
+					new h.p(arg.description),
+				]),
 			]
 		);
 	},
@@ -174,20 +190,30 @@ const ex = {
 				alignItem: "start",
 				gap: 2,
 			},
-			[new h.h(3, { fontWeight: "bold" }, arg.title), new h.p({ textColor: "body-secondary" }, arg.description), new h.div(arg.elem)]
+			[
+				new h.h(3, { fontWeight: "bold" }, arg.title),
+				new h.p({ textColor: "body-secondary" }, arg.description),
+				new h.div(arg.elem),
+			]
 		);
 	},
-	c5: (arg: { main: { title: string; description: string; elem: core.IElem }; feature: { icon: string; title: string; description: string }[] }) => {
-		return new h.div({ row: true, rowCol: [1, "md-2"], alignItem: "md-center", gutter: 5, paddingY: 5 }, [
-			ex.c5Title(arg.main),
-			new h.div(
-				{ col: true },
+	c5: (arg: {
+		main: { title: string; description: string; elem: core.IElem };
+		feature: { icon: string; title: string; description: string }[];
+	}) => {
+		return new h.div(
+			{ row: true, rowCol: [1, "md-2"], alignItem: "md-center", gutter: 5, paddingY: 5 },
+			[
+				ex.c5Title(arg.main),
 				new h.div(
-					{ row: true, rowCol: [1, "sm-2"], gutter: 4 },
-					arg.feature.map((i) => ex.c5Feature(i))
-				)
-			),
-		]);
+					{ col: true },
+					new h.div(
+						{ row: true, rowCol: [1, "sm-2"], gutter: 4 },
+						arg.feature.map((i) => ex.c5Feature(i))
+					)
+				),
+			]
+		);
 	},
 };
 
@@ -208,19 +234,22 @@ export const features: IContent = {
 							ex.c1({
 								icon: "collection",
 								title: "Featured title",
-								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description:
+									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								href: "",
 							}),
 							ex.c1({
 								icon: "person-circle",
 								title: "Featured title",
-								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description:
+									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								href: "",
 							}),
 							ex.c1({
 								icon: "toggles2",
 								title: "Featured title",
-								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description:
+									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								href: "",
 							}),
 						];
@@ -237,26 +266,32 @@ export const features: IContent = {
 					showViewport: true,
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 					output: () => {
-						return new h.div({ row: true, gutter: 4, paddingY: 5, rowCol: [1, "md-2", "lg-3"] }, [
-							ex.c2({
-								icon: "toggles2",
-								title: "Featured title",
-								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
-								elem: new b.button({ href: "#" }, "Primary button"),
-							}),
-							ex.c2({
-								icon: "cpu-fill",
-								title: "Featured title",
-								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
-								elem: new b.button({ href: "#" }, "Primary button"),
-							}),
-							ex.c2({
-								icon: "tools",
-								title: "Featured title",
-								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
-								elem: new b.button({ href: "#" }, "Primary button"),
-							}),
-						]);
+						return new h.div(
+							{ row: true, gutter: 4, paddingY: 5, rowCol: [1, "md-2", "lg-3"] },
+							[
+								ex.c2({
+									icon: "toggles2",
+									title: "Featured title",
+									description:
+										"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+									elem: new b.button({ href: "#" }, "Primary button"),
+								}),
+								ex.c2({
+									icon: "cpu-fill",
+									title: "Featured title",
+									description:
+										"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+									elem: new b.button({ href: "#" }, "Primary button"),
+								}),
+								ex.c2({
+									icon: "tools",
+									title: "Featured title",
+									description:
+										"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+									elem: new b.button({ href: "#" }, "Primary button"),
+								}),
+							]
+						);
 					},
 				}),
 			]),
@@ -329,42 +364,50 @@ export const features: IContent = {
 								ex.c4({
 									icon: "hexagon-fill",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 								ex.c4({
 									icon: "cpu-fill",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 								ex.c4({
 									icon: "calendar3",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 								ex.c4({
 									icon: "house",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 								ex.c4({
 									icon: "speedometer2",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 								ex.c4({
 									icon: "toggles2",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 								ex.c4({
 									icon: "geo-fill",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 								ex.c4({
 									icon: "tools",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								}),
 							]
 						);
@@ -388,29 +431,34 @@ export const features: IContent = {
 						return ex.c5({
 							main: {
 								title: "Left-aligned title explaining these awesome features",
-								description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+								description:
+									"Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
 								elem: new b.button({ weight: "lg" }, "Primary button"),
 							},
 							feature: [
 								{
 									icon: "collection",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								},
 								{
 									icon: "gear-fill",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								},
 								{
 									icon: "person-circle",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								},
 								{
 									icon: "toggles2",
 									title: "Featured title",
-									description: "Paragraph of text beneath the heading to explain the heading.",
+									description:
+										"Paragraph of text beneath the heading to explain the heading.",
 								},
 							],
 						});
@@ -446,10 +494,7 @@ href: "",
 
 			extention: [
 				`(arg) => {
-return new h.div({
-col: true,
-marginBottom: 5
-}, [
+return new h.div({ col: true, marginBottom: 5 }, [
 new h.div({
 display: "inline-flex",
 alignItem: "center",
@@ -462,49 +507,33 @@ paddingX: 3,
 paddingY: 2,
 rounded: 3,
 }, new b.icon(arg.icon)),
-new h.h(3, {
-fontSize: 2
-}, arg.title),
+new h.h(3, { fontSize: 2 }, arg.title),
 new h.p(arg.description),
-new h.a({
-href: arg.href,
-iconLink: true
-}, ["Call to action", new b.icon("chevron-right")]),
+new h.a({ href: arg.href, iconLink: true }, ["Call to action", new b.icon("chevron-right")]),
 ]);
 }`,
 			],
 		},
 		{
 			source: `() => {
-return new h.div({
-row: true,
-gutter: 4,
-paddingY: 5,
-rowCol: [1, "md-2", "lg-3"]
-}, [
+return new h.div({ row: true, gutter: 4, paddingY: 5, rowCol: [1, "md-2", "lg-3"] }, [
 COMPONENT({
 icon: "toggles2",
 title: "Featured title",
 description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
-elem: new b.button({
-href: "#"
-}, "Primary button"),
+elem: new b.button({ href: "#" }, "Primary button"),
 }),
 COMPONENT({
 icon: "cpu-fill",
 title: "Featured title",
 description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
-elem: new b.button({
-href: "#"
-}, "Primary button"),
+elem: new b.button({ href: "#" }, "Primary button"),
 }),
 COMPONENT({
 icon: "tools",
 title: "Featured title",
 description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
-elem: new b.button({
-href: "#"
-}, "Primary button"),
+elem: new b.button({ href: "#" }, "Primary button"),
 }),
 ]);
 }`,
@@ -529,9 +558,7 @@ paddingX: 3,
 paddingY: 2,
 rounded: 3,
 }, new b.icon(arg.icon)),
-new h.div([new h.h(3, {
-fontSize: 2
-}, arg.title), new h.p(arg.description), new h.div(arg.elem)]),
+new h.div([new h.h(3, { fontSize: 2 }, arg.title), new h.p(arg.description), new h.div(arg.elem)]),
 ]);
 }`,
 			],
@@ -598,14 +625,8 @@ fontDisplay: 6,
 lineHeight: 1,
 fontWeight: "bold",
 }, arg.title),
-new h.ul({
-display: "flex",
-unstyle: true,
-marginBottom: 3
-}, [
-new h.li({
-marginEnd: "auto"
-}, new h.img({
+new h.ul({ display: "flex", unstyle: true, marginBottom: 3 }, [
+new h.li({ marginEnd: "auto" }, new h.img({
 src: arg.img,
 alt: "Image",
 attrWidth: 32,
@@ -615,19 +636,8 @@ border: true,
 borderWidth: 2,
 borderColor: "light",
 })),
-new h.li({
-display: "flex",
-marginEnd: 3,
-textAlign: "center"
-}, new b.caption({
-icon: "geo-fill"
-}, arg.location)),
-new h.li({
-display: "flex",
-textAlign: "center"
-}, new b.caption({
-icon: "calendar3"
-}, arg.date)),
+new h.li({ display: "flex", marginEnd: 3, textAlign: "center" }, new b.caption({ icon: "geo-fill" }, arg.location)),
+new h.li({ display: "flex", textAlign: "center" }, new b.caption({ icon: "calendar3" }, arg.date)),
 ]),
 ]),
 ]),
@@ -699,11 +709,7 @@ flex: "shrink-0",
 marginEnd: 3,
 h: 3,
 }, new b.icon(arg.icon)),
-new h.div([new h.h(3, {
-fontSize: 4,
-marginBottom: 0,
-fontWeight: "bold"
-}, arg.title), new h.p(arg.description)]),
+new h.div([new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title), new h.p(arg.description)]),
 ]);
 }`,
 			],
@@ -714,12 +720,9 @@ return COMPONENT({
 main: {
 title: "Left-aligned title explaining these awesome features",
 description: "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
-elem: new b.button({
-weight: "lg"
-}, "Primary button"),
+elem: new b.button({ weight: "lg" }, "Primary button"),
 },
-feature: [
-{
+feature: [{
 icon: "collection",
 title: "Featured title",
 description: "Paragraph of text beneath the heading to explain the heading.",
@@ -738,7 +741,8 @@ description: "Paragraph of text beneath the heading to explain the heading.",
 icon: "toggles2",
 title: "Featured title",
 description: "Paragraph of text beneath the heading to explain the heading.",
-}, ],
+},
+],
 });
 }`,
 
@@ -761,13 +765,8 @@ paddingX: 3,
 paddingY: 2,
 rounded: 3,
 }, new b.icon(arg.icon))),
-new h.h(4, {
-fontWeight: "semibold",
-marginBottom: 0
-}, arg.title),
-new h.p({
-textColor: "body-secondary"
-}, arg.description),
+new h.h(4, { fontWeight: "semibold", marginBottom: 0 }, arg.title),
+new h.p({ textColor: "body-secondary" }, arg.description),
 ]);
 }`,
 				`(arg) => {
@@ -777,28 +776,12 @@ display: "flex",
 flex: "column",
 alignItem: "start",
 gap: 2,
-}, [new h.h(3, {
-fontWeight: "bold"
-}, arg.title), new h.p({
-textColor: "body-secondary"
-}, arg.description), new h.div(arg.elem)]);
+}, [new h.h(3, { fontWeight: "bold" }, arg.title), new h.p({ textColor: "body-secondary" }, arg.description), new h.div(arg.elem)]);
 }`,
 				`(arg) => {
-return new h.div({
-row: true,
-rowCol: [1, "md-2"],
-alignItem: "md-center",
-gutter: 5,
-paddingY: 5
-}, [
+return new h.div({ row: true, rowCol: [1, "md-2"], alignItem: "md-center", gutter: 5, paddingY: 5 }, [
 COMPONENTTITLE(arg.main),
-new h.div({
-col: true
-}, new h.div({
-row: true,
-rowCol: [1, "sm-2"],
-gutter: 4
-}, arg.feature.map((i) => COMPONENTFEATURE(i)))),
+new h.div({ col: true }, new h.div({ row: true, rowCol: [1, "sm-2"], gutter: 4 }, arg.feature.map((i) => COMPONENTFEATURE(i)))),
 ]);
 }`,
 			],

@@ -18,10 +18,15 @@ const convert = (attr: IBsExampleCode) => {
 		attr
 	);
 
-	attr.elem = new h.code(
-		{ class: ["prettyprint", `lang-${attr.type}`], lang: attr.type, border: false },
-		attr.elem ? (typeof attr.elem === "string" ? codeBeautify(attr.type, attr.elem) : attr.elem) : ""
-	);
+	if (attr.elem && typeof attr.elem === "string") {
+		attr.elem = new h.code({ class: ["", `lang-${attr.type}`], lang: attr.type, border: false }, codeBeautify(attr.type, attr.elem));
+	} else {
+		if (attr.elem) {
+			attr.elem = new h.code({ class: ["", `lang-${attr.type}`], lang: attr.type, border: false }, attr.elem);
+		} else {
+			attr.elem = new h.code({ class: ["", `lang-${attr.type}`], lang: attr.type, border: false }, "");
+		}
+	}
 
 	delete attr.type;
 
@@ -37,5 +42,4 @@ export class preview extends h.pre {
 		super(convert(core.bsConstArg<IBsExampleCode>("elem", arg)));
 	}
 }
-export const Preview = (AttrOrElem?: IBsExampleCode | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<preview, IBsExampleCode>(preview, AttrOrElem, Elem);
+export const Preview = (AttrOrElem?: IBsExampleCode | core.IElem, Elem?: core.IElem) => core.genTagClass<preview, IBsExampleCode>(preview, AttrOrElem, Elem);

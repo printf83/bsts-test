@@ -3,7 +3,12 @@ import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
-	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
+	c1: (arg: {
+		icon: string;
+		title: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+	}) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -75,7 +80,13 @@ const ex = {
 			)
 		);
 	},
-	c3: (arg: { icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener }) => {
+	c3: (arg: {
+		icon: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+		onlogin?: EventListener;
+		onsignup?: EventListener;
+	}) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -120,12 +131,25 @@ const ex = {
 						},
 					}),
 
-					new h.div({ col: "md-3", textAlign: "end" }, [new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"), new b.button({ on: { click: arg.onsignup } }, "Sign-up")]),
+					new h.div({ col: "md-3", textAlign: "end" }, [
+						new b.button(
+							{ outline: true, marginEnd: 2, on: { click: arg.onlogin } },
+							"Login"
+						),
+						new b.button({ on: { click: arg.onsignup } }, "Sign-up"),
+					]),
 				]
 			)
 		);
 	},
-	c4: (arg: { icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener; onsearch?: EventListener }) => {
+	c4: (arg: {
+		icon: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+		onlogin?: EventListener;
+		onsignup?: EventListener;
+		onsearch?: EventListener;
+	}) => {
 		return new h.header(
 			{
 				padding: 3,
@@ -197,14 +221,24 @@ const ex = {
 								},
 								"Login"
 							),
-							new b.button({ color: "warning", on: { click: arg.onsignup } }, "Sign-up"),
+							new b.button(
+								{ color: "warning", on: { click: arg.onsignup } },
+								"Sign-up"
+							),
 						]),
 					]
 				)
 			)
 		);
 	},
-	c5: (arg: { img: string; icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; menu?: core.IElem; onsearch?: EventListener }) => {
+	c5: (arg: {
+		img: string;
+		icon: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+		menu?: core.IElem;
+		onsearch?: EventListener;
+	}) => {
 		return new h.header(
 			{
 				padding: 3,
@@ -294,7 +328,14 @@ const ex = {
 			)
 		);
 	},
-	c6Header: (arg: { img: string; icon: string; link?: core.IElem; menu?: core.IElem; onsearch?: EventListener; onlinkchange?: EventListener }) => {
+	c6Header: (arg: {
+		img: string;
+		icon: string;
+		link?: core.IElem;
+		menu?: core.IElem;
+		onsearch?: EventListener;
+		onlinkchange?: EventListener;
+	}) => {
 		return new h.header(
 			{
 				paddingY: 3,
@@ -374,13 +415,35 @@ const ex = {
 	c6Body: (arg: { side?: core.IElem; main?: core.IElem }) => {
 		return new h.div(
 			{ container: "fluid", paddingBottom: 3 },
-			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""), new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : "")])
+			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [
+				new h.div(
+					{ bgColor: "body-tertiary", border: true, rounded: 3 },
+					arg.side ? arg.side : ""
+				),
+				new h.div(
+					{ bgColor: "body-tertiary", border: true, rounded: 3 },
+					arg.main ? arg.main : ""
+				),
+			])
 		);
 	},
-	c6: (arg: { img: string; icon: string; link?: core.IElem; menu?: core.IElem; onsearch?: EventListener; onlinkchange?: EventListener; side?: core.IElem; main?: core.IElem }) => {
+	c6: (arg: {
+		img: string;
+		icon: string;
+		link?: core.IElem;
+		menu?: core.IElem;
+		onsearch?: EventListener;
+		onlinkchange?: EventListener;
+		side?: core.IElem;
+		main?: core.IElem;
+	}) => {
 		return [ex.c6Header(arg), ex.c6Body(arg)];
 	},
-	c7Nav: (arg: { startMenu?: I.B.Nav.Header.Link[]; endMenu?: I.B.Nav.Header.Link[]; onstarmenuchange?: EventListener }) => {
+	c7Nav: (arg: {
+		startMenu?: I.B.Nav.Header.Link[];
+		endMenu?: I.B.Nav.Header.Link[];
+		onstarmenuchange?: EventListener;
+	}) => {
 		return new h.nav(
 			{ paddingY: 2, bgColor: "body-secondary", border: "bottom" },
 			new h.div(
@@ -416,40 +479,50 @@ const ex = {
 	c7Header: (arg: { icon: string; title: string; onsearch?: EventListener }) => {
 		return new h.header(
 			{ paddingY: 3, marginBottom: 4, border: "bottom" },
-			new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
-				new h.a(
-					{
-						href: "#",
-						display: "flex",
-						alignItem: "center",
-						marginBottom: [3, "lg-0"],
-						marginEnd: "lg-auto",
-						linkColor: "body-emphasis",
-						textDecoration: "none",
-					},
-					new b.caption(
+			new h.div(
+				{ container: true, display: "flex", flex: "wrap", justifyContent: "center" },
+				[
+					new h.a(
 						{
-							icon: new b.icon({ id: arg.icon }),
-							fontSize: 4,
+							href: "#",
+							display: "flex",
+							alignItem: "center",
+							marginBottom: [3, "lg-0"],
+							marginEnd: "lg-auto",
+							linkColor: "body-emphasis",
+							textDecoration: "none",
 						},
-						arg.title
-					)
-				),
-				new h.form(
-					{
-						col: [12, "lg-auto"],
-						marginBottom: [3, "lg-0"],
-						role: "search",
-						on: {
-							submit: arg.onsearch ? arg.onsearch : undefined,
+						new b.caption(
+							{
+								icon: new b.icon({ id: arg.icon }),
+								fontSize: 4,
+							},
+							arg.title
+						)
+					),
+					new h.form(
+						{
+							col: [12, "lg-auto"],
+							marginBottom: [3, "lg-0"],
+							role: "search",
+							on: {
+								submit: arg.onsearch ? arg.onsearch : undefined,
+							},
 						},
-					},
-					new b.input({ type: "search", placeholder: "Search..." })
-				),
-			])
+						new b.input({ type: "search", placeholder: "Search..." })
+					),
+				]
+			)
 		);
 	},
-	c8: (arg: { icon: string; link: { href: string; icon: string; label: string; active?: boolean }[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener; onsearch?: EventListener }) => {
+	c8: (arg: {
+		icon: string;
+		link: { href: string; icon: string; label: string; active?: boolean }[];
+		onlinkchange?: EventListener;
+		onlogin?: EventListener;
+		onsignup?: EventListener;
+		onsearch?: EventListener;
+	}) => {
 		return new h.header([
 			new h.div(
 				{ paddingX: 3, paddingY: 2, textBgColor: "dark", theme: "dark" },
@@ -510,31 +583,41 @@ const ex = {
 			),
 			new h.div(
 				{ paddingX: 3, paddingY: 2, border: "bottom", marginBottom: 3 },
-				new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
-					new h.form(
-						{
-							col: [12, "lg-auto"],
-							marginBottom: [2, "lg-0"],
-							marginEnd: "lg-auto",
-							role: "search",
-							on: {
-								submit: arg.onsearch ? arg.onsearch : undefined,
-							},
-						},
-						new b.input({ type: "search", label: "Search", placeholder: "Search..." })
-					),
-					new h.div({ textAlign: "end" }, [
-						new b.button(
+				new h.div(
+					{ container: true, display: "flex", flex: "wrap", justifyContent: "center" },
+					[
+						new h.form(
 							{
-								color: "light",
-								marginEnd: 2,
-								on: { click: arg.onlogin },
+								col: [12, "lg-auto"],
+								marginBottom: [2, "lg-0"],
+								marginEnd: "lg-auto",
+								role: "search",
+								on: {
+									submit: arg.onsearch ? arg.onsearch : undefined,
+								},
 							},
-							"Login"
+							new b.input({
+								type: "search",
+								label: "Search",
+								placeholder: "Search...",
+							})
 						),
-						new b.button({ color: "primary", on: { click: arg.onsignup } }, "Sign-up"),
-					]),
-				])
+						new h.div({ textAlign: "end" }, [
+							new b.button(
+								{
+									color: "light",
+									marginEnd: 2,
+									on: { click: arg.onlogin },
+								},
+								"Login"
+							),
+							new b.button(
+								{ color: "primary", on: { click: arg.onsignup } },
+								"Sign-up"
+							),
+						]),
+					]
+				)
 			),
 		]);
 	},
@@ -750,7 +833,13 @@ export const headers: IContent = {
 								{ href: "#", elem: "Customers" },
 								{ href: "#", elem: "Products" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -804,7 +893,10 @@ export const headers: IContent = {
 							img: "https://picsum.photos/seed/bsts_0/32/32.webp",
 							icon: "hexagon-fill",
 							link: [
-								new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
+								new b.dropdown.item(
+									{ href: "#", active: true, handleActive: true },
+									"Overview"
+								),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Customers"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Products"),
@@ -812,7 +904,13 @@ export const headers: IContent = {
 								new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -890,7 +988,12 @@ export const headers: IContent = {
 											click: (event) => {
 												//do login
 												const target = event.target as Element;
-												e.console(target, "login", core.elemInfo(target), "secondary");
+												e.console(
+													target,
+													"login",
+													core.elemInfo(target),
+													"secondary"
+												);
 											},
 										},
 										elem: "Login",
@@ -900,7 +1003,12 @@ export const headers: IContent = {
 											click: (event) => {
 												//do signup
 												const target = event.target as Element;
-												e.console(target, "signup", core.elemInfo(target), "secondary");
+												e.console(
+													target,
+													"signup",
+													core.elemInfo(target),
+													"secondary"
+												);
 											},
 										},
 										elem: "Sign up",
@@ -1023,27 +1131,12 @@ return COMPONENT({
 icon: "hexagon-fill",
 title: "Simple header",
 link: [
-{
-active: true,
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ active: true, href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1057,9 +1150,7 @@ relatedTarget: core.elemInfo(detail.relatedTarget),
 
 			extention: [
 				`(arg) => {
-return new h.div({
-container: true
-}, new h.header({
+return new h.div({ container: true }, new h.header({
 display: "flex",
 flex: "wrap",
 justifyContent: "center",
@@ -1076,18 +1167,17 @@ marginEnd: "md-auto",
 linkColor: "body-emphasis",
 textDecoration: "none",
 }, new b.caption({
-icon: new b.icon({
-id: arg.icon,
-marginBottom: 0
-}),
+icon: new b.icon({ id: arg.icon, marginBottom: 0 }),
 fontSize: 4,
 }, arg.title)),
 new b.nav.header.container({
 type: "pill",
-link: arg.link ? arg.link.map((i) => {
+link: arg.link ?
+arg.link.map((i) => {
 i.handleActive = true;
 return i;
-}) : undefined,
+}) :
+undefined,
 on: {
 "change.bs.nav": arg.onlinkchange,
 },
@@ -1100,27 +1190,12 @@ on: {
 			source: `() => {
 return COMPONENT({
 link: [
-{
-active: true,
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ active: true, href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1134,18 +1209,18 @@ relatedTarget: core.elemInfo(detail.relatedTarget),
 
 			extention: [
 				`(arg) => {
-return new h.div({
-container: true
-}, new h.header({
+return new h.div({ container: true }, new h.header({
 display: "flex",
 justifyContent: "center",
 paddingY: 3,
 }, new b.nav.header.container({
 type: "pill",
-link: arg.link ? arg.link.map((i) => {
+link: arg.link ?
+arg.link.map((i) => {
 i.handleActive = true;
 return i;
-}) : undefined,
+}) :
+undefined,
 on: {
 "change.bs.nav": arg.onlinkchange,
 },
@@ -1158,27 +1233,12 @@ on: {
 return COMPONENT({
 icon: "hexagon-fill",
 link: [
-{
-active: true,
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ active: true, href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1202,9 +1262,7 @@ e.console(target, "onsignup", core.elemInfo(target), "warning");
 
 			extention: [
 				`(arg) => {
-return new h.div({
-container: true
-}, new h.header({
+return new h.div({ container: true }, new h.header({
 display: "flex",
 flex: "wrap",
 alignItem: "center",
@@ -1213,47 +1271,30 @@ paddingY: 3,
 marginBottom: 4,
 border: "bottom",
 }, [
-new h.div({
-col: "md-3",
-marginBottom: [2, "md-0"]
-}, new h.a({
+new h.div({ col: "md-3", marginBottom: [2, "md-0"] }, new h.a({
 href: "#",
 display: "inline-flex",
 textColor: "body-emphasis",
 textDecoration: "none",
 marginBottom: [3, "md-0"],
-}, new b.icon({
-id: arg.icon,
-fontSize: 4
-}))),
+}, new b.icon({ id: arg.icon, fontSize: 4 }))),
 new b.nav.header.container({
 col: [12, "md-auto"],
 marginBottom: [2, "md-0"],
 justifyContent: "center",
-link: arg.link ? arg.link.map((i) => {
+link: arg.link ?
+arg.link.map((i) => {
 i.textColorActive = "body-tertiary";
 i.paddingX = 2;
 i.handleActive = true;
 return i;
-}) : undefined,
+}) :
+undefined,
 on: {
 "change.bs.nav": arg.onlinkchange,
 },
 }),
-new h.div({
-col: "md-3",
-textAlign: "end"
-}, [new b.button({
-outline: true,
-marginEnd: 2,
-on: {
-click: arg.onlogin
-}
-}, "Login"), new b.button({
-on: {
-click: arg.onsignup
-}
-}, "Sign-up")]),
+new h.div({ col: "md-3", textAlign: "end" }, [new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"), new b.button({ on: { click: arg.onsignup } }, "Sign-up")]),
 ]));
 }`,
 			],
@@ -1263,23 +1304,11 @@ click: arg.onsignup
 return COMPONENT({
 icon: "hexagon-fill",
 link: [
-{
-active: true,
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ active: true, href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1316,9 +1345,7 @@ value: input.value,
 return new h.header({
 padding: 3,
 theme: "dark",
-}, new h.div({
-container: true
-}, new h.div({
+}, new h.div({ container: true }, new h.div({
 display: "flex",
 flex: "wrap",
 alignItem: "center",
@@ -1332,23 +1359,22 @@ marginBottom: [2, "lg-0"],
 textColor: "body-emphasis",
 textDecoration: "none",
 marginEnd: 2,
-}, new b.icon({
-id: arg.icon,
-fontSize: 4
-})),
+}, new b.icon({ id: arg.icon, fontSize: 4 })),
 new b.nav.header.container({
 col: [12, "lg-auto"],
 marginBottom: [2, "md-0"],
 marginEnd: "lg-auto",
 justifyContent: "center",
-link: arg.link ? arg.link.map((i) => {
+link: arg.link ?
+arg.link.map((i) => {
 i.textColorActive = "body-tertiary";
 i.textColor = "body-emphasis";
 i.textColorHover = "primary-emphasis";
 i.handleActive = true;
 i.paddingX = 2;
 return i;
-}) : undefined,
+}) :
+undefined,
 on: {
 "change.bs.nav": arg.onlinkchange,
 },
@@ -1361,26 +1387,15 @@ role: "search",
 on: {
 submit: arg.onsearch,
 },
-}, new b.input({
-type: "search"
-})),
-new h.div({
-textAlign: "end"
-}, [
+}, new b.input({ type: "search" })),
+new h.div({ textAlign: "end" }, [
 new b.button({
 outline: true,
 color: "light",
 marginEnd: 2,
-on: {
-click: arg.onlogin
-},
+on: { click: arg.onlogin },
 }, "Login"),
-new b.button({
-color: "warning",
-on: {
-click: arg.onsignup
-}
-}, "Sign-up"),
+new b.button({ color: "warning", on: { click: arg.onsignup } }, "Sign-up"),
 ]),
 ])));
 }`,
@@ -1392,32 +1407,12 @@ return COMPONENT({
 img: "https://picsum.photos/seed/bsts_0/32/32.webp",
 icon: "hexagon-fill",
 link: [
-{
-active: true,
-href: "#",
-elem: "Overview"
-},
-{
-href: "#",
-elem: "Inventory"
-},
-{
-href: "#",
-elem: "Customers"
-},
-{
-href: "#",
-elem: "Products"
-}, ],
-menu: [new b.dropdown.item({
-href: "#"
-}, "New project..."), new b.dropdown.item({
-href: "#"
-}, "Setting"), new b.dropdown.item({
-href: "#"
-}, "Profile"), new b.dropdown.divider(), new b.dropdown.item({
-href: "#"
-}, "Sign out")],
+{ active: true, href: "#", elem: "Overview" },
+{ href: "#", elem: "Inventory" },
+{ href: "#", elem: "Customers" },
+{ href: "#", elem: "Products" },
+],
+menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1445,9 +1440,7 @@ return new h.header({
 padding: 3,
 marginBottom: 3,
 border: "bottom",
-}, new h.div({
-container: true
-}, new h.div({
+}, new h.div({ container: true }, new h.div({
 display: "flex",
 flex: "wrap",
 alignItem: "center",
@@ -1461,23 +1454,22 @@ marginBottom: [2, "lg-0"],
 textColor: "body-emphasis",
 textDecoration: "none",
 marginEnd: 2,
-}, new b.icon({
-id: arg.icon,
-fontSize: 4
-})),
+}, new b.icon({ id: arg.icon, fontSize: 4 })),
 new b.nav.header.container({
 col: [12, "lg-auto"],
 marginBottom: [2, "md-0"],
 marginEnd: "lg-auto",
 justifyContent: "center",
-link: arg.link ? arg.link.map((i) => {
+link: arg.link ?
+arg.link.map((i) => {
 i.textColorActive = "body-tertiary";
 i.textColor = "body-emphasis";
 i.textColorHover = "primary-emphasis";
 i.handleActive = true;
 i.paddingX = 2;
 return i;
-}) : undefined,
+}) :
+undefined,
 on: {
 "change.bs.nav": arg.onlinkchange,
 },
@@ -1490,10 +1482,7 @@ role: "search",
 on: {
 submit: arg.onsearch,
 },
-}, new b.input({
-type: "search",
-placeholder: "Search..."
-})),
+}, new b.input({ type: "search", placeholder: "Search..." })),
 new h.div({
 textAlign: "end",
 class: "dropdown",
@@ -1519,42 +1508,15 @@ return COMPONENT({
 img: "https://picsum.photos/seed/bsts_0/32/32.webp",
 icon: "hexagon-fill",
 link: [
-new b.dropdown.item({
-href: "#",
-active: true,
-handleActive: true
-}, "Overview"),
-new b.dropdown.item({
-href: "#",
-handleActive: true
-}, "Inventory"),
-new b.dropdown.item({
-href: "#",
-handleActive: true
-}, "Customers"),
-new b.dropdown.item({
-href: "#",
-handleActive: true
-}, "Products"),
+new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
+new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
+new b.dropdown.item({ href: "#", handleActive: true }, "Customers"),
+new b.dropdown.item({ href: "#", handleActive: true }, "Products"),
 new b.dropdown.divider(),
-new b.dropdown.item({
-href: "#",
-handleActive: true
-}, "Reports"),
-new b.dropdown.item({
-href: "#",
-handleActive: true
-}, "Analytics"),
+new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
+new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
 ],
-menu: [new b.dropdown.item({
-href: "#"
-}, "New project..."), new b.dropdown.item({
-href: "#"
-}, "Setting"), new b.dropdown.item({
-href: "#"
-}, "Profile"), new b.dropdown.divider(), new b.dropdown.item({
-href: "#"
-}, "Sign out")],
+menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1573,18 +1535,8 @@ input: core.elemInfo(input),
 value: input.value,
 }, "success");
 },
-side: new h.div({
-padding: 2,
-style: {
-height: "200px"
-}
-}, "@side"),
-main: new h.div({
-padding: 2,
-style: {
-height: "200px"
-}
-}, "@main"),
+side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
+main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
 });
 }`,
 
@@ -1604,9 +1556,7 @@ gridTemplateColumns: "1fr 2fr",
 gap: 3,
 alignItem: "center",
 }, [
-new h.div({
-class: "dropdown"
-}, [
+new h.div({ class: "dropdown" }, [
 new b.dropdown.buttonLink({
 href: "#",
 color: "body-emphasis",
@@ -1614,10 +1564,7 @@ display: "flex",
 alignItem: "center",
 col: "lg-4",
 marginBottom: [2, "lg-0"],
-}, new b.icon({
-id: arg.icon,
-fontSize: 2
-})),
+}, new b.icon({ id: arg.icon, fontSize: 2 })),
 new b.dropdown.menu({
 shadow: true,
 on: {
@@ -1625,10 +1572,7 @@ on: {
 },
 }, arg.link ? arg.link : ""),
 ]),
-new h.div({
-display: "flex",
-alignItem: "center"
-}, [
+new h.div({ display: "flex", alignItem: "center" }, [
 new h.form({
 width: 100,
 marginEnd: 3,
@@ -1636,14 +1580,8 @@ role: "search",
 on: {
 submit: arg.onsearch,
 },
-}, new b.input({
-type: "search",
-placeholder: "Search..."
-})),
-new h.div({
-flex: "shrink-0",
-class: "dropdown"
-}, [
+}, new b.input({ type: "search", placeholder: "Search..." })),
+new h.div({ flex: "shrink-0", class: "dropdown" }, [
 new b.dropdown.buttonLink({
 href: "#",
 color: "body-emphasis",
@@ -1661,22 +1599,7 @@ shadow: true,
 ]));
 }`,
 				`(arg) => {
-return new h.div({
-container: "fluid",
-paddingBottom: 3
-}, new h.div({
-display: "grid",
-gridTemplateColumns: "1fr 2fr",
-gap: 3
-}, [new h.div({
-bgColor: "body-tertiary",
-border: true,
-rounded: 3
-}, arg.side ? arg.side : ""), new h.div({
-bgColor: "body-tertiary",
-border: true,
-rounded: 3
-}, arg.main ? arg.main : "")]));
+return new h.div({ container: "fluid", paddingBottom: 3 }, new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""), new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : "")]));
 }`,
 			],
 		},
@@ -1685,27 +1608,12 @@ rounded: 3
 return [
 COMPONENTNAV({
 startMenu: [
-{
-active: true,
-href: "#",
-elem: "Home"
-},
-{
-href: "#",
-elem: "Features"
-},
-{
-href: "#",
-elem: "Pricing"
-},
-{
-href: "#",
-elem: "FAQs"
-},
-{
-href: "#",
-elem: "About"
-}, ],
+{ active: true, href: "#", elem: "Home" },
+{ href: "#", elem: "Features" },
+{ href: "#", elem: "Pricing" },
+{ href: "#", elem: "FAQs" },
+{ href: "#", elem: "About" },
+],
 onstarmenuchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1714,8 +1622,7 @@ target: core.elemInfo(detail.target),
 relatedTarget: core.elemInfo(detail.relatedTarget),
 }, "info");
 },
-endMenu: [
-{
+endMenu: [{
 on: {
 click: (event) => {
 //do login
@@ -1734,7 +1641,8 @@ e.console(target, "signup", core.elemInfo(target), "secondary");
 },
 },
 elem: "Sign up",
-}, ],
+},
+],
 }),
 COMPONENTHEADER({
 icon: "hexagon-fill",
@@ -1755,11 +1663,7 @@ value: input.value,
 
 			extention: [
 				`(arg) => {
-return new h.nav({
-paddingY: 2,
-bgColor: "body-secondary",
-border: "bottom"
-}, new h.div({
+return new h.nav({ paddingY: 2, bgColor: "body-secondary", border: "bottom" }, new h.div({
 container: true,
 display: "flex",
 flex: "wrap",
@@ -1773,9 +1677,7 @@ i.textColorHover = "primary-emphasis";
 i.handleActive = true;
 return i;
 }),
-on: {
-"change.bs.nav": arg.onstarmenuchange
-},
+on: { "change.bs.nav": arg.onstarmenuchange },
 }),
 new b.nav.header.container({
 link: arg.endMenu?.map((i) => {
@@ -1788,16 +1690,7 @@ return i;
 ]));
 }`,
 				`(arg) => {
-return new h.header({
-paddingY: 3,
-marginBottom: 4,
-border: "bottom"
-}, new h.div({
-container: true,
-display: "flex",
-flex: "wrap",
-justifyContent: "center"
-}, [
+return new h.header({ paddingY: 3, marginBottom: 4, border: "bottom" }, new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
 new h.a({
 href: "#",
 display: "flex",
@@ -1807,9 +1700,7 @@ marginEnd: "lg-auto",
 linkColor: "body-emphasis",
 textDecoration: "none",
 }, new b.caption({
-icon: new b.icon({
-id: arg.icon
-}),
+icon: new b.icon({ id: arg.icon }),
 fontSize: 4,
 }, arg.title)),
 new h.form({
@@ -1819,10 +1710,7 @@ role: "search",
 on: {
 submit: arg.onsearch ? arg.onsearch : undefined,
 },
-}, new b.input({
-type: "search",
-placeholder: "Search..."
-})),
+}, new b.input({ type: "search", placeholder: "Search..." })),
 ]));
 }`,
 			],
@@ -1831,8 +1719,7 @@ placeholder: "Search..."
 			source: `() => {
 return COMPONENT({
 icon: "hexagon-fill",
-link: [
-{
+link: [{
 active: true,
 href: "#",
 icon: "house",
@@ -1857,7 +1744,8 @@ label: "Products",
 href: "#",
 icon: "person-circle",
 label: "Customers",
-}, ],
+},
+],
 onlinkchange: (event) => {
 const target = event.target;
 const detail = event.detail;
@@ -1892,14 +1780,7 @@ value: input.value,
 			extention: [
 				`(arg) => {
 return new h.header([
-new h.div({
-paddingX: 3,
-paddingY: 2,
-textBgColor: "dark",
-theme: "dark"
-}, new h.div({
-container: true
-}, new h.div({
+new h.div({ paddingX: 3, paddingY: 2, textBgColor: "dark", theme: "dark" }, new h.div({ container: true }, new h.div({
 display: "flex",
 flex: "wrap",
 alignItem: "center",
@@ -1913,10 +1794,7 @@ marginY: [2, "lg-0"],
 marginEnd: "lg-auto",
 textColor: "body-emphasis",
 textDecoration: "none",
-}, new b.icon({
-id: arg.icon,
-fontSize: 1
-})),
+}, new b.icon({ id: arg.icon, fontSize: 1 })),
 new b.nav.header.container({
 col: [12, "lg-auto"],
 marginY: [2, "md-0"],
@@ -1931,10 +1809,7 @@ active: i.active,
 handleActive: true,
 href: i.href,
 elem: new b.caption({
-icon: new b.icon({
-id: i.icon,
-fontSize: 4
-}),
+icon: new b.icon({ id: i.icon, fontSize: 4 }),
 iconPosition: "top",
 }, i.label),
 };
@@ -1945,17 +1820,7 @@ on: {
 },
 }),
 ]))),
-new h.div({
-paddingX: 3,
-paddingY: 2,
-border: "bottom",
-marginBottom: 3
-}, new h.div({
-container: true,
-display: "flex",
-flex: "wrap",
-justifyContent: "center"
-}, [
+new h.div({ paddingX: 3, paddingY: 2, border: "bottom", marginBottom: 3 }, new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
 new h.form({
 col: [12, "lg-auto"],
 marginBottom: [2, "lg-0"],
@@ -1964,27 +1829,14 @@ role: "search",
 on: {
 submit: arg.onsearch ? arg.onsearch : undefined,
 },
-}, new b.input({
-type: "search",
-label: "Search",
-placeholder: "Search..."
-})),
-new h.div({
-textAlign: "end"
-}, [
+}, new b.input({ type: "search", label: "Search", placeholder: "Search..." })),
+new h.div({ textAlign: "end" }, [
 new b.button({
 color: "light",
 marginEnd: 2,
-on: {
-click: arg.onlogin
-},
+on: { click: arg.onlogin },
 }, "Login"),
-new b.button({
-color: "primary",
-on: {
-click: arg.onsignup
-}
-}, "Sign-up"),
+new b.button({ color: "primary", on: { click: arg.onsignup } }, "Sign-up"),
 ]),
 ])),
 ]);

@@ -4,18 +4,26 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const select: IContent = {
 	title: "Select",
-	description: "Customize the native {{<select>}}s with custom CSS that changes the element’s initial appearance.",
+	description:
+		"Customize the native {{<select>}}s with custom CSS that changes the element’s initial appearance.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
 			new e.section([
 				new e.title("Default"),
-				new e.text("Custom {{<select>}} menus need only a custom class, {{.form-select}} to trigger the custom styles. Custom styles are limited to the {{<select>}}’s initial appearance and cannot modify the {{<option>}}s due to browser limitations."),
+				new e.text(
+					"Custom {{<select>}} menus need only a custom class, {{.form-select}} to trigger the custom styles. Custom styles are limited to the {{<select>}}’s initial appearance and cannot modify the {{<option>}}s due to browser limitations."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.select({ label: "Default select example" }, [new h.option({ selected: true }, "Open this select menu"), new h.option({ value: "1" }, "One"), new h.option({ value: "2" }, "Two"), new h.option({ value: "3" }, "Three")]);
+						return new b.select({ label: "Default select example" }, [
+							new h.option({ selected: true }, "Open this select menu"),
+							new h.option({ value: "1" }, "One"),
+							new h.option({ value: "2" }, "Two"),
+							new h.option({ value: "3" }, "Three"),
+						]);
 					},
 				}),
 				new e.text("Using {{item}} to setup option"),
@@ -55,7 +63,9 @@ export const select: IContent = {
 
 			new e.section([
 				new e.title("Sizing"),
-				new e.text("Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."),
+				new e.text(
+					"Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
@@ -128,7 +138,9 @@ export const select: IContent = {
 
 			new e.section([
 				new e.title("Disabled"),
-				new e.text("Add the {{disabled}} boolean attribute on a select to give it a grayed out appearance and remove pointer events."),
+				new e.text(
+					"Add the {{disabled}} boolean attribute on a select to give it a grayed out appearance and remove pointer events."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -209,36 +221,24 @@ export const select: IContent = {
 	db: [
 		{
 			source: `() => {
-return new b.select({
-label: "Default select example"
-}, [new h.option({
-selected: true
-}, "Open this select menu"), new h.option({
-value: "1"
-}, "One"), new h.option({
-value: "2"
-}, "Two"), new h.option({
-value: "3"
-}, "Three")]);
+return new b.select({ label: "Default select example" }, [
+new h.option({ selected: true }, "Open this select menu"),
+new h.option({ value: "1" }, "One"),
+new h.option({ value: "2" }, "Two"),
+new h.option({ value: "3" }, "Three"),
+]);
 }`,
 		},
 		{
 			source: `() => {
 return new b.select({
 label: "Default select example using item",
-item: [{
-selected: true,
-elem: "Open this select menu"
-}, {
-value: "1",
-elem: "One"
-}, {
-value: "2",
-elem: "Two"
-}, {
-value: "3",
-elem: "Three"
-}, ],
+item: [
+{ selected: true, elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
 });
 }`,
 		},
@@ -247,19 +247,12 @@ elem: "Three"
 return b.form.select({
 label: "Default select example using b.form.select",
 hideLabel: true,
-item: [{
-selected: true,
-elem: "Open this select menu"
-}, {
-value: "1",
-elem: "One"
-}, {
-value: "2",
-elem: "Two"
-}, {
-value: "3",
-elem: "Three"
-}, ],
+item: [
+{ selected: true, elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
 });
 }`,
 		},
@@ -270,37 +263,23 @@ b.form.select({
 weight: "lg",
 label: ".form-select-lg example",
 hideLabel: true,
-item: [{
-selected: true,
-elem: "Open this select menu"
-}, {
-value: "1",
-elem: "One"
-}, {
-value: "2",
-elem: "Two"
-}, {
-value: "3",
-elem: "Three"
-}, ],
+item: [
+{ selected: true, elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
 }),
 b.form.select({
 weight: "sm",
 label: ".form-select-sm example",
 hideLabel: true,
-item: [{
-selected: true,
-elem: "Open this select menu"
-}, {
-value: "1",
-elem: "One"
-}, {
-value: "2",
-elem: "Two"
-}, {
-value: "3",
-elem: "Three"
-}, ],
+item: [
+{ selected: true, elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
 }),
 ];
 }`,
@@ -311,19 +290,12 @@ return b.form.select({
 multiple: true,
 label: "Multiple select example",
 hideLabel: true,
-item: [{
-selected: true,
-elem: "Open this select menu"
-}, {
-value: "1",
-elem: "One"
-}, {
-value: "2",
-elem: "Two"
-}, {
-value: "3",
-elem: "Three"
-}, ],
+item: [
+{ selected: true, elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
 });
 }`,
 		},
@@ -333,19 +305,12 @@ return b.form.select({
 size: 3,
 label: "Size 3 select example",
 hideLabel: true,
-item: [{
-selected: true,
-elem: "Open this select menu"
-}, {
-value: "1",
-elem: "One"
-}, {
-value: "2",
-elem: "Two"
-}, {
-value: "3",
-elem: "Three"
-}, ],
+item: [
+{ selected: true, elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
 });
 }`,
 		},
@@ -355,19 +320,12 @@ return b.form.select({
 disabled: true,
 label: "Disabled select example",
 hideLabel: true,
-item: [{
-selected: true,
-elem: "Open this select menu"
-}, {
-value: "1",
-elem: "One"
-}, {
-value: "2",
-elem: "Two"
-}, {
-value: "3",
-elem: "Three"
-}, ],
+item: [
+{ selected: true, elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
 });
 }`,
 		},
