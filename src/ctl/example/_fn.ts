@@ -108,7 +108,7 @@ export const codeBeautifyMinify = (
 
 		default:
 			return js_beautify(source_text, {
-				preserve_newlines: false,
+				preserve_newlines: true,
 				end_with_newline: false,
 				indent_size: 0,
 				brace_style: "preserve-inline",
