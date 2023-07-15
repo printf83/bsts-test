@@ -394,8 +394,14 @@ export const spacing: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new h.div({ marginX: "auto", padding: 2, style: { width: "200px" } }, "Centered element");
-                    }`,
+return new h.div({
+marginX: "auto",
+padding: 2,
+style: {
+width: "200px"
+}
+}, "Centered element");
+}`,
 		},
 	],
 };

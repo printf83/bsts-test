@@ -428,219 +428,284 @@ export const control: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return [
-                            new h.div({ marginBottom: 3 }, [
-                                new b.label({ for: "exampleFormControlInput1", class: "form-label" }, "Email address"),
-                                new b.input({
-                                    type: "email",
-                                    id: "exampleFormControlInput1",
-                                    placeholder: "name@example.com",
-                                }),
-                            ]),
-                            new h.div([new b.label({ for: "exampleFormControlTextarea1", class: "form-label" }, "Example textarea"), new b.textarea({ id: "exampleFormControlTextarea1" })]),
-                        ];
-                    }`,
+return [
+new h.div({
+marginBottom: 3
+}, [
+new b.label({
+for: "exampleFormControlInput1",
+class: "form-label"
+}, "Email address"),
+new b.input({
+type: "email",
+id: "exampleFormControlInput1",
+placeholder: "name@example.com",
+}),
+]),
+new h.div([new b.label({
+for: "exampleFormControlTextarea1",
+class: "form-label"
+}, "Example textarea"), new b.textarea({
+id: "exampleFormControlTextarea1"
+})]),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                label: "Email address",
-                                placeholder: "name@example.com",
-                                type: "email",
-                            }),
-                            b.form.textarea({
-                                label: "Example textarea",
-                            }),
-                        ];
-                    }`,
+return [
+b.form.input({
+container: {
+marginBottom: 3
+},
+label: "Email address",
+placeholder: "name@example.com",
+type: "email",
+}),
+b.form.textarea({
+label: "Example textarea",
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                placeholder: ".form-control-lg",
-                                weight: "lg",
-                            }),
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                placeholder: "Default input",
-                            }),
-                            b.form.input({
-                                placeholder: ".form-control-sm",
-                                weight: "sm",
-                            }),
-                        ];
-                    }`,
+return [
+b.form.input({
+container: {
+marginBottom: 3
+},
+placeholder: ".form-control-lg",
+weight: "lg",
+}),
+b.form.input({
+container: {
+marginBottom: 3
+},
+placeholder: "Default input",
+}),
+b.form.input({
+placeholder: ".form-control-sm",
+weight: "sm",
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div([
-                            new b.label({ for: "inputPassword5", class: "form-label" }, "Password"),
-                            new b.input({ type: "password", id: "inputPassword5", describedby: "passwordHelpBlock" }),
-                            new h.div({ id: "passwordHelpBlock", class: "form-text" }, "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji."),
-                        ]);
-                    }`,
+return new h.div([
+new b.label({
+for: "inputPassword5",
+class: "form-label"
+}, "Password"),
+new b.input({
+type: "password",
+id: "inputPassword5",
+describedby: "passwordHelpBlock"
+}),
+new h.div({
+id: "passwordHelpBlock",
+class: "form-text"
+}, "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji."),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.input({
-                            label: "Password",
-                            type: "password",
-                            description: "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
-                        });
-                    }`,
+return b.form.input({
+label: "Password",
+type: "password",
+description: "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ row: true, gutter: 3, alignItem: "center" }, [
-                            new h.div({ col: "auto" }, new b.label({ for: "inputPassword6", class: "col-form-label" }, "Password")),
-                            new h.div({ col: "auto" }, new b.input({
-                                type: "password",
-                                id: "inputPassword6",
-                                describedby: "passwordHelpBlock",
-                            })),
-                            new h.div({ col: "auto" }, new h.span({ id: "passwordHelpInline", class: "form-text" }, " Must be 8-20 characters long. ")),
-                        ]);
-                    }`,
+return new h.div({
+row: true,
+gutter: 3,
+alignItem: "center"
+}, [
+new h.div({
+col: "auto"
+}, new b.label({
+for: "inputPassword6",
+class: "col-form-label"
+}, "Password")),
+new h.div({
+col: "auto"
+}, new b.input({
+type: "password",
+id: "inputPassword6",
+describedby: "passwordHelpBlock",
+})),
+new h.div({
+col: "auto"
+}, new h.span({
+id: "passwordHelpInline",
+class: "form-text"
+}, " Must be 8-20 characters long. ")),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.input({
-                            container: { gutter: 3, alignItem: "center" },
-                            label: "Password",
-                            type: "password",
-                            description: " Must be 8-20 characters long. ",
-                            col1: "auto",
-                            col2: "auto",
-                            col3: "auto",
-                        });
-                    }`,
+return b.form.input({
+container: {
+gutter: 3,
+alignItem: "center"
+},
+label: "Password",
+type: "password",
+description: " Must be 8-20 characters long. ",
+col1: "auto",
+col2: "auto",
+col3: "auto",
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new b.input({
-                                marginBottom: 3,
-                                placeholder: "Disabled input",
-                                label: "Disabled input example",
-                                disabled: true,
-                            }),
-                            new b.input({
-                                value: "Disabled readonly input",
-                                label: "Disabled readonly input example",
-                                disabled: true,
-                                readonly: true,
-                            }),
-                        ];
-                    }`,
+return [
+new b.input({
+marginBottom: 3,
+placeholder: "Disabled input",
+label: "Disabled input example",
+disabled: true,
+}),
+new b.input({
+value: "Disabled readonly input",
+label: "Disabled readonly input example",
+disabled: true,
+readonly: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new b.input({
-                                value: "Readonly input here...",
-                                label: "Readonly input example",
-                                readonly: true,
-                            }),
-                        ];
-                    }`,
+return [
+new b.input({
+value: "Readonly input here...",
+label: "Readonly input example",
+readonly: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                value: "email@example.com",
-                                label: "Email",
-                                plaintext: true,
-                                col1: "sm-2",
-                                col2: "sm-10",
-                            }),
-                            b.form.input({
-                                label: "Password",
-                                type: "password",
-                                col1: "sm-2",
-                                col2: "sm-10",
-                            }),
-                        ];
-                    }`,
+return [
+b.form.input({
+container: {
+marginBottom: 3
+},
+value: "email@example.com",
+label: "Email",
+plaintext: true,
+col1: "sm-2",
+col2: "sm-10",
+}),
+b.form.input({
+label: "Password",
+type: "password",
+col1: "sm-2",
+col2: "sm-10",
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ row: true }, [
-                            b.form.input({
-                                container: { col: "auto" },
-                                value: "email@example.com",
-                                label: "Email",
-                                hideLabel: true,
-                                plaintext: true,
-                            }),
-                            b.form.input({
-                                container: { col: "auto" },
-                                label: "Password",
-                                hideLabel: true,
-                                type: "password",
-                                placeholder: "Password",
-                            }),
-                            new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Confirm identity")),
-                        ]);
-                    }`,
+return new h.div({
+row: true
+}, [
+b.form.input({
+container: {
+col: "auto"
+},
+value: "email@example.com",
+label: "Email",
+hideLabel: true,
+plaintext: true,
+}),
+b.form.input({
+container: {
+col: "auto"
+},
+label: "Password",
+hideLabel: true,
+type: "password",
+placeholder: "Password",
+}),
+new h.div({
+col: "auto"
+}, new b.button({
+type: "submit"
+}, "Confirm identity")),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                label: "Default file input example",
-                                type: "file",
-                            }),
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                label: "Multiple file input example",
-                                type: "file",
-                                multiple: true,
-                            }),
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                label: "Disabled file input example",
-                                type: "file",
-                                disabled: true,
-                            }),
-                            b.form.input({
-                                container: { marginBottom: 3 },
-                                label: "Small file input example",
-                                type: "file",
-                                weight: "sm",
-                            }),
-                            b.form.input({
-                                label: "Large file input example",
-                                type: "file",
-                                weight: "lg",
-                            }),
-                        ];
-                    }`,
+return [
+b.form.input({
+container: {
+marginBottom: 3
+},
+label: "Default file input example",
+type: "file",
+}),
+b.form.input({
+container: {
+marginBottom: 3
+},
+label: "Multiple file input example",
+type: "file",
+multiple: true,
+}),
+b.form.input({
+container: {
+marginBottom: 3
+},
+label: "Disabled file input example",
+type: "file",
+disabled: true,
+}),
+b.form.input({
+container: {
+marginBottom: 3
+},
+label: "Small file input example",
+type: "file",
+weight: "sm",
+}),
+b.form.input({
+label: "Large file input example",
+type: "file",
+weight: "lg",
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.input({
-                            label: "Color picker",
-                            type: "color",
-                            value: "#563d7c",
-                        });
-                    }`,
+return b.form.input({
+label: "Color picker",
+type: "color",
+value: "#563d7c",
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.input({
-                            label: "Datalist example",
-                            type: "text",
-                            placeholder: "Type to search...",
-                            datalist: ["San Francisco", "New York", "Seattle", "Los Angeles", "Chicago"],
-                        });
-                    }`,
+return b.form.input({
+label: "Datalist example",
+type: "text",
+placeholder: "Type to search...",
+datalist: ["San Francisco", "New York", "Seattle", "Los Angeles", "Chicago"],
+});
+}`,
 		},
 	],
 };

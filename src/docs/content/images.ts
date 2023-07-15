@@ -139,68 +139,70 @@ export const images: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new b.img({
-                            fluid: true,
-                            src: "https://picsum.photos/seed/bsts_0/820/250.webp",
-                            alt: "...",
-                        });
-                    }`,
+return new b.img({
+fluid: true,
+src: "https://picsum.photos/seed/bsts_0/820/250.webp",
+alt: "...",
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.img({
-                            thumbnail: true,
-                            src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-                            alt: "...",
-                        });
-                    }`,
+return new b.img({
+thumbnail: true,
+src: "https://picsum.photos/seed/bsts_0/200/200.webp",
+alt: "...",
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new b.img({
-                                float: "start",
-                                rounded: true,
-                                src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-                                alt: "...",
-                            }),
-                            new b.img({
-                                float: "end",
-                                rounded: true,
-                                src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-                                alt: "...",
-                            }),
-                        ];
-                    }`,
+return [
+new b.img({
+float: "start",
+rounded: true,
+src: "https://picsum.photos/seed/bsts_0/200/200.webp",
+alt: "...",
+}),
+new b.img({
+float: "end",
+rounded: true,
+src: "https://picsum.photos/seed/bsts_0/200/200.webp",
+alt: "...",
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ textAlign: "center" }, new b.img({
-                            rounded: true,
-                            src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-                            alt: "...",
-                        }));
-                    }`,
+return new h.div({
+textAlign: "center"
+}, new b.img({
+rounded: true,
+src: "https://picsum.photos/seed/bsts_0/200/200.webp",
+alt: "...",
+}));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.picture([
-                            new h.source({
-                                media: "(min-width:992px)",
-                                srcset: "https://picsum.photos/seed/bsts_0/820/250.webp",
-                            }),
-                            new h.source({
-                                media: "(min-width:768px)",
-                                srcset: "https://picsum.photos/seed/bsts_1/710/200.webp",
-                            }),
-                            new b.img({
-                                fluid: true,
-                                thumbnail: true,
-                                src: "https://picsum.photos/seed/bsts_2/450/200.webp",
-                                alt: "...",
-                            }),
-                        ]);
-                    }`,
+return new h.picture([
+new h.source({
+media: "(min-width:992px)",
+srcset: "https://picsum.photos/seed/bsts_0/820/250.webp",
+}),
+new h.source({
+media: "(min-width:768px)",
+srcset: "https://picsum.photos/seed/bsts_1/710/200.webp",
+}),
+new b.img({
+fluid: true,
+thumbnail: true,
+src: "https://picsum.photos/seed/bsts_2/450/200.webp",
+alt: "...",
+}),
+]);
+}`,
 		},
 	],
 };

@@ -63,15 +63,15 @@ export const opacity: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return [100, 75, 50, 25].map((i) => new h.div({
-                            opacity: i,
-                            padding: 3,
-                            textBgColor: "primary",
-                            rounded: true,
-                            fontWeight: "bold",
-                            display: "inline-block",
-                        }, \`\${i}%\`));
-                    }`,
+return [100, 75, 50, 25].map((i) => new h.div({
+opacity: i,
+padding: 3,
+textBgColor: "primary",
+rounded: true,
+fontWeight: "bold",
+display: "inline-block",
+}, \`\${i}%\`));
+}`,
 		},
 	],
 };

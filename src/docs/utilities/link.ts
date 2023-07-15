@@ -205,56 +205,68 @@ export const link: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacity: i }, \`Link opacity \${i}\`)));
-                    }`,
+return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({
+href: "#",
+linkOpacity: i
+}, \`Link opacity \${i}\`)));
+}`,
 		},
 		{
 			source: `() => {
-                        return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({ href: "#", linkOpacityHover: i }, \`Link hover opacity \${i}\`)));
-                    }`,
+return [10, 25, 50, 75, 100].map((i) => new h.p(new h.a({
+href: "#",
+linkOpacityHover: i
+}, \`Link hover opacity \${i}\`)));
+}`,
 		},
 		{
 			source: `() => {
-                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.p(new h.a({ href: "#", linkUnderlineColor: i }, \`\${core.uppercaseFirst(i)} underline\`)));
-                    }`,
+return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => new h.p(new h.a({
+href: "#",
+linkUnderlineColor: i
+}, \`\${core.uppercaseFirst(i)} underline\`)));
+}`,
 		},
 		{
 			source: `() => {
-                        return [undefined, 1, 2, 3].map((i) => new h.p(new h.a({ href: "#", linkOffset: i }, i ? \`Offset \${i} link\` : "Default link")));
-                    }`,
+return [undefined, 1, 2, 3].map((i) => new h.p(new h.a({
+href: "#",
+linkOffset: i
+}, i ? \`Offset \${i} link\` : "Default link")));
+}`,
 		},
 		{
 			source: `() => {
-                        return [0, 10, 25, 50, 75, 100].map((i) => new h.p(new h.a({
-                            href: "#",
-                            linkOffset: 2,
-                            linkUnderline: true,
-                            linkUnderlineOpacity: i,
-                        }, \`Underline opacity \${i}\`)));
-                    }`,
+return [0, 10, 25, 50, 75, 100].map((i) => new h.p(new h.a({
+href: "#",
+linkOffset: 2,
+linkUnderline: true,
+linkUnderlineOpacity: i,
+}, \`Underline opacity \${i}\`)));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.a({
-                            href: "#",
-                            linkOffset: 2,
-                            linkOffsetHover: 3,
-                            linkUnderline: true,
-                            linkUnderlineOpacity: 0,
-                            linkUnderlineOpacityHover: 75,
-                        }, "Underline opacity 0");
-                    }`,
+return new h.a({
+href: "#",
+linkOffset: 2,
+linkOffsetHover: 3,
+linkUnderline: true,
+linkUnderlineOpacity: 0,
+linkUnderlineOpacityHover: 75,
+}, "Underline opacity 0");
+}`,
 		},
 		{
 			source: `() => {
-                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({
-                            href: "#",
-                            linkOffset: 2,
-                            linkUnderlineOpacity: 25,
-                            linkUnderlineOpacityHover: 100,
-                            linkColor: i,
-                        }, \`\${core.uppercaseFirst(i)} link\`)));
-                    }`,
+return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({
+href: "#",
+linkOffset: 2,
+linkUnderlineOpacity: 25,
+linkUnderlineOpacityHover: 100,
+linkColor: i,
+}, \`\${core.uppercaseFirst(i)} link\`)));
+}`,
 		},
 	],
 };

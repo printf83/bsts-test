@@ -32,8 +32,17 @@ export const cssgrid: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new h.div({ class: "grid", textAlign: "center" }, [new h.div({ class: "g-col-4" }, ".g-col-4"), new h.div({ class: "g-col-4" }, ".g-col-4"), new h.div({ class: "g-col-4" }, ".g-col-4")]);
-                    }`,
+return new h.div({
+class: "grid",
+textAlign: "center"
+}, [new h.div({
+class: "g-col-4"
+}, ".g-col-4"), new h.div({
+class: "g-col-4"
+}, ".g-col-4"), new h.div({
+class: "g-col-4"
+}, ".g-col-4")]);
+}`,
 		},
 	],
 };

@@ -774,382 +774,511 @@ export const card: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, [
-                            new b.card.img({
-                                location: "top",
-                                src: "https://picsum.photos/seed/bsts_0/286/180.webp",
-                                alt: "Image cap",
-                            }),
-                            new b.card.body([new b.card.title("Card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."), new b.button("Go somewhere")]),
-                        ]);
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, [
+new b.card.img({
+location: "top",
+src: "https://picsum.photos/seed/bsts_0/286/180.webp",
+alt: "Image cap",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."), new b.button("Go somewhere")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container(new b.card.body("This is some text within a card body."));
-                    }`,
+return new b.card.container(new b.card.body("This is some text within a card body."));
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, new b.card.body([
-                            new b.card.title("Card title"),
-                            new b.card.subtitle("Card subtitle"),
-                            new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."),
-                            new b.card.link({ href: "#" }, "Card link"),
-                            new b.card.link({ href: "#" }, "Another link"),
-                        ]));
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, new b.card.body([
+new b.card.title("Card title"),
+new b.card.subtitle("Card subtitle"),
+new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."),
+new b.card.link({
+href: "#"
+}, "Card link"),
+new b.card.link({
+href: "#"
+}, "Another link"),
+]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, [
-                            new b.card.img({
-                                location: "top",
-                                src: "https://picsum.photos/seed/bsts_0/286/180.webp",
-                                alt: "Image cap",
-                            }),
-                            new b.card.body([new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
-                        ]);
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, [
+new b.card.img({
+location: "top",
+src: "https://picsum.photos/seed/bsts_0/286/180.webp",
+alt: "Image cap",
+}),
+new b.card.body([new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, [new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")])]);
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, [new b.list.container({
+flush: true
+}, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")])]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, [new b.card.header("Featured"), new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")])]);
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, [new b.card.header("Featured"), new b.list.container({
+flush: true
+}, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")])]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, [new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")]), new b.card.footer("Card footer")]);
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, [new b.list.container({
+flush: true
+}, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")]), new b.card.footer("Card footer")]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, [
-                            new b.card.img({
-                                location: "top",
-                                src: "https://picsum.photos/seed/bsts_0/286/180.webp",
-                                alt: "Image cap",
-                            }),
-                            new b.card.body([new b.card.title("Card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
-                            new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")]),
-                            new b.card.body([new b.card.link({ href: "#" }, "Card link"), new b.card.link({ href: "#" }, "Another link")]),
-                        ]);
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, [
+new b.card.img({
+location: "top",
+src: "https://picsum.photos/seed/bsts_0/286/180.webp",
+alt: "Image cap",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
+new b.list.container({
+flush: true
+}, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")]),
+new b.card.body([new b.card.link({
+href: "#"
+}, "Card link"), new b.card.link({
+href: "#"
+}, "Another link")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container([new b.card.header("Featured"), new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
-                    }`,
+return new b.card.container([new b.card.header("Featured"), new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container([new h.h(5, { class: "card-header" }, "Featured"), new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
-                    }`,
+return new b.card.container([new h.h(5, {
+class: "card-header"
+}, "Featured"), new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container([
-                            new h.div({ class: "card-header" }, "Quote"),
-                            new b.card.body([new b.blockquote.container({ marginBottom: 0 }, [new h.p("A well-known quote, contained in a blockquote element."), new b.blockquote.footer(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])])]),
-                        ]);
-                    }`,
+return new b.card.container([
+new h.div({
+class: "card-header"
+}, "Quote"),
+new b.card.body([new b.blockquote.container({
+marginBottom: 0
+}, [new h.p("A well-known quote, contained in a blockquote element."), new b.blockquote.footer(["Someone famous in ", new h.cite({
+title: "Source Title"
+}, "Source Title")])])]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ textAlign: "center" }, [
-                            new b.card.header("Featured"),
-                            new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]),
-                            new b.card.footer({ textColor: "body-secondary" }, "2 days ago"),
-                        ]);
-                    }`,
+return new b.card.container({
+textAlign: "center"
+}, [
+new b.card.header("Featured"),
+new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]),
+new b.card.footer({
+textColor: "body-secondary"
+}, "2 days ago"),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ row: true }, [
-                            new h.div({ col: "sm-6", marginBottom: [3, "sm-0"] }, new b.card.container(new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]))),
-                            new h.div({ col: "sm-6", marginBottom: [3, "sm-0"] }, new b.card.container(new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]))),
-                        ]);
-                    }`,
+return new h.div({
+row: true
+}, [
+new h.div({
+col: "sm-6",
+marginBottom: [3, "sm-0"]
+}, new b.card.container(new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]))),
+new h.div({
+col: "sm-6",
+marginBottom: [3, "sm-0"]
+}, new b.card.container(new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]))),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new b.card.container({ width: 75, marginBottom: 3 }, new b.card.body([new b.card.title("Card title"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Button")])),
-                            new b.card.container({ width: 50 }, new b.card.body([new b.card.title("Card title"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Button")])),
-                        ];
-                    }`,
+return [
+new b.card.container({
+width: 75,
+marginBottom: 3
+}, new b.card.body([new b.card.title("Card title"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Button")])),
+new b.card.container({
+width: 50
+}, new b.card.body([new b.card.title("Card title"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Button")])),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { width: "18rem" } }, [new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
-                    }`,
+return new b.card.container({
+style: {
+width: "18rem"
+}
+}, [new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
+}`,
 		},
 		{
 			source: `() => {
-                        return [undefined, "center", "end"].map((i) => {
-                            return new b.card.container({
-                                style: { width: "18rem" },
-                                marginTop: i ? 3 : undefined,
-                                textAlign: i,
-                            }, [new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
-                        });
-                    }`,
+return [undefined, "center", "end"].map((i) => {
+return new b.card.container({
+style: {
+width: "18rem"
+},
+marginTop: i ? 3 : undefined,
+textAlign: i,
+}, [new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")])]);
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ textAlign: "center" }, [
-                            new b.card.header(new b.card.nav({ type: "tab" }, [
-                                new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-                                new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-                                new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-                            ])),
-                            new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]),
-                        ]);
-                    }`,
+return new b.card.container({
+textAlign: "center"
+}, [
+new b.card.header(new b.card.nav({
+type: "tab"
+}, [
+new b.nav.header.item(new b.nav.header.link({
+active: true,
+href: "#"
+}, "Active")),
+new b.nav.header.item(new b.nav.header.link({
+href: "#"
+}, "Link")),
+new b.nav.header.item(new b.nav.header.link({
+disabled: true,
+href: "#"
+}, "Disabled")),
+])),
+new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ textAlign: "center" }, [
-                            new b.card.header(new b.card.nav({ type: "pill" }, [
-                                new b.nav.header.item(new b.nav.header.link({ active: true, href: "#" }, "Active")),
-                                new b.nav.header.item(new b.nav.header.link({ href: "#" }, "Link")),
-                                new b.nav.header.item(new b.nav.header.link({ disabled: true, href: "#" }, "Disabled")),
-                            ])),
-                            new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]),
-                        ]);
-                    }`,
+return new b.card.container({
+textAlign: "center"
+}, [
+new b.card.header(new b.card.nav({
+type: "pill"
+}, [
+new b.nav.header.item(new b.nav.header.link({
+active: true,
+href: "#"
+}, "Active")),
+new b.nav.header.item(new b.nav.header.link({
+href: "#"
+}, "Link")),
+new b.nav.header.item(new b.nav.header.link({
+disabled: true,
+href: "#"
+}, "Disabled")),
+])),
+new b.card.body([new b.card.title("Special title treatment"), new b.card.text("With supporting text below as a natural lead-in to additional content."), new b.button("Go somewhere")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new b.card.container({ marginBottom: 3 }, [
-                                new b.card.img({
-                                    location: "top",
-                                    src: "https://picsum.photos/seed/bsts_0/708/180.webp",
-                                    alt: "Image cap",
-                                }),
-                                new b.card.body([
-                                    new b.card.title("Card title"),
-                                    new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
-                                    new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
-                                ]),
-                            ]),
-                            new b.card.container([
-                                new b.card.body([
-                                    new b.card.title("Card title"),
-                                    new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
-                                    new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
-                                ]),
-                                new b.card.img({
-                                    location: "bottom",
-                                    src: "https://picsum.photos/seed/bsts_0/708/180.webp",
-                                    alt: "Image cap",
-                                }),
-                            ]),
-                        ];
-                    }`,
+return [
+new b.card.container({
+marginBottom: 3
+}, [
+new b.card.img({
+location: "top",
+src: "https://picsum.photos/seed/bsts_0/708/180.webp",
+alt: "Image cap",
+}),
+new b.card.body([
+new b.card.title("Card title"),
+new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
+new b.card.text(new h.small({
+textColor: "body-secondary"
+}, "Last updated 3 mins ago")),
+]),
+]),
+new b.card.container([
+new b.card.body([
+new b.card.title("Card title"),
+new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
+new b.card.text(new h.small({
+textColor: "body-secondary"
+}, "Last updated 3 mins ago")),
+]),
+new b.card.img({
+location: "bottom",
+src: "https://picsum.photos/seed/bsts_0/708/180.webp",
+alt: "Image cap",
+}),
+]),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ textBgColor: "dark" }, [
-                            new b.card.img({
-                                src: "https://picsum.photos/seed/bsts_0/450/200.webp",
-                                alt: "Card image",
-                            }),
-                            new b.card.imgoverlay([
-                                new b.card.title("Card title"),
-                                new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
-                                new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
-                            ]),
-                        ]);
-                    }`,
+return new b.card.container({
+textBgColor: "dark"
+}, [
+new b.card.img({
+src: "https://picsum.photos/seed/bsts_0/450/200.webp",
+alt: "Card image",
+}),
+new b.card.imgoverlay([
+new b.card.title("Card title"),
+new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
+new b.card.text(new h.small({
+textColor: "body-secondary"
+}, "Last updated 3 mins ago")),
+]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({ style: { maxWidth: "540px" } }, [
-                            new h.div({ row: true, gutter: 0 }, [
-                                new h.div({ col: "md-4" }, new b.card.img({
-                                    fluid: true,
-                                    rounded: "start",
-                                    src: "https://picsum.photos/seed/bsts_0/180/250.webp",
-                                    alt: "Image",
-                                })),
-                                new h.div({ col: "md-8" }, new b.card.body([
-                                    new b.card.title("Card title"),
-                                    new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
-                                    new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
-                                ])),
-                            ]),
-                        ]);
-                    }`,
+return new b.card.container({
+style: {
+maxWidth: "540px"
+}
+}, [
+new h.div({
+row: true,
+gutter: 0
+}, [
+new h.div({
+col: "md-4"
+}, new b.card.img({
+fluid: true,
+rounded: "start",
+src: "https://picsum.photos/seed/bsts_0/180/250.webp",
+alt: "Image",
+})),
+new h.div({
+col: "md-8"
+}, new b.card.body([
+new b.card.title("Card title"),
+new b.card.text("This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."),
+new b.card.text(new h.small({
+textColor: "body-secondary"
+}, "Last updated 3 mins ago")),
+])),
+]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
-                            return new b.card.container({
-                                textBgColor: i,
-                                marginTop: ix !== 0 ? 3 : undefined,
-                                style: { width: "18rem" },
-                            }, [new b.card.header("Header"), new b.card.body([new b.card.title(\`\${core.uppercaseFirst(i)} card title\`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]);
-                        });
-                    }`,
+return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+return new b.card.container({
+textBgColor: i,
+marginTop: ix !== 0 ? 3 : undefined,
+style: {
+width: "18rem"
+},
+}, [new b.card.header("Header"), new b.card.body([new b.card.title(\`\${core.uppercaseFirst(i)} card title\`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]);
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
-                            return new b.card.container({
-                                borderColor: i,
-                                marginTop: ix !== 0 ? 3 : undefined,
-                                style: { width: "18rem" },
-                            }, [new b.card.header("Header"), new b.card.body({ textColor: i }, [new b.card.title(\`\${core.uppercaseFirst(i)} card title\`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]);
-                        });
-                    }`,
+return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+return new b.card.container({
+borderColor: i,
+marginTop: ix !== 0 ? 3 : undefined,
+style: {
+width: "18rem"
+},
+}, [new b.card.header("Header"), new b.card.body({
+textColor: i
+}, [new b.card.title(\`\${core.uppercaseFirst(i)} card title\`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]);
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.container({
-                            borderColor: "success",
-                            style: { width: "18rem" },
-                        }, [
-                            new b.card.header({ borderColor: "success", bgColor: "transparent" }, "Header"),
-                            new b.card.body({ textColor: "success" }, [new b.card.title("Success card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
-                            new b.card.footer({ borderColor: "success", bgColor: "transparent" }, "Footer"),
-                        ]);
-                    }`,
+return new b.card.container({
+borderColor: "success",
+style: {
+width: "18rem"
+},
+}, [
+new b.card.header({
+borderColor: "success",
+bgColor: "transparent"
+}, "Header"),
+new b.card.body({
+textColor: "success"
+}, [new b.card.title("Success card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
+new b.card.footer({
+borderColor: "success",
+bgColor: "transparent"
+}, "Footer"),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.group([
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-                            "This card has supporting text below as a natural lead-in to additional content.",
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-                        ].map((i) => {
-                            return new b.card.container([
-                                new b.card.img({
-                                    src: "https://picsum.photos/seed/bsts_0/235/180.webp",
-                                    alt: "Image cap",
-                                    location: "top",
-                                }),
-                                new b.card.body([new b.card.title("Card title"), new b.card.text(i), new b.card.text(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago"))]),
-                            ]);
-                        }));
-                    }`,
+return new b.card.group(["This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.", "This card has supporting text below as a natural lead-in to additional content.", "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.", ].map((i) => {
+return new b.card.container([
+new b.card.img({
+src: "https://picsum.photos/seed/bsts_0/235/180.webp",
+alt: "Image cap",
+location: "top",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text(i), new b.card.text(new h.small({
+textColor: "body-secondary"
+}, "Last updated 3 mins ago"))]),
+]);
+}));
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.card.group([
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-                            "This card has supporting text below as a natural lead-in to additional content.",
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-                        ].map((i) => {
-                            return new b.card.container([
-                                new b.card.img({
-                                    src: "https://picsum.photos/seed/bsts_0/235/180.webp",
-                                    alt: "Image cap",
-                                    location: "top",
-                                }),
-                                new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
-                                new b.card.footer(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
-                            ]);
-                        }));
-                    }`,
+return new b.card.group(["This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.", "This card has supporting text below as a natural lead-in to additional content.", "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.", ].map((i) => {
+return new b.card.container([
+new b.card.img({
+src: "https://picsum.photos/seed/bsts_0/235/180.webp",
+alt: "Image cap",
+location: "top",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+new b.card.footer(new h.small({
+textColor: "body-secondary"
+}, "Last updated 3 mins ago")),
+]);
+}));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            row: true,
-                            rowCol: [1, "md-2"],
-                            gutter: 4,
-                        }, [
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-                            "This card has supporting text below as a natural lead-in to additional content.",
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-                            "This is a longer card with supporting text below as a natural lead-in to additional content.",
-                        ].map((i) => {
-                            return new h.div({ col: true }, new b.card.container([
-                                new b.card.img({
-                                    src: "https://picsum.photos/seed/bsts_0/341/140.webp",
-                                    alt: "Image cap",
-                                    location: "top",
-                                }),
-                                new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
-                            ]));
-                        }));
-                    }`,
+return new h.div({
+row: true,
+rowCol: [1, "md-2"],
+gutter: 4,
+}, ["This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.", "This card has supporting text below as a natural lead-in to additional content.", "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.", "This is a longer card with supporting text below as a natural lead-in to additional content.", ].map((i) => {
+return new h.div({
+col: true
+}, new b.card.container([
+new b.card.img({
+src: "https://picsum.photos/seed/bsts_0/341/140.webp",
+alt: "Image cap",
+location: "top",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+]));
+}));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            row: true,
-                            rowCol: [1, "md-3"],
-                            gutter: 4,
-                        }, [
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-                            "This card has supporting text below as a natural lead-in to additional content.",
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-                            "This is a longer card with supporting text below as a natural lead-in to additional content.",
-                        ].map((i) => {
-                            return new h.div({ col: true }, new b.card.container([
-                                new b.card.img({
-                                    src: "https://picsum.photos/seed/bsts_0/218/140.webp",
-                                    alt: "Image cap",
-                                    location: "top",
-                                }),
-                                new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
-                            ]));
-                        }));
-                    }`,
+return new h.div({
+row: true,
+rowCol: [1, "md-3"],
+gutter: 4,
+}, ["This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.", "This card has supporting text below as a natural lead-in to additional content.", "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.", "This is a longer card with supporting text below as a natural lead-in to additional content.", ].map((i) => {
+return new h.div({
+col: true
+}, new b.card.container([
+new b.card.img({
+src: "https://picsum.photos/seed/bsts_0/218/140.webp",
+alt: "Image cap",
+location: "top",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+]));
+}));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            row: true,
-                            rowCol: [1, "md-3"],
-                            gutter: 4,
-                        }, [
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-                            "This is a short card.",
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-                            "This is a longer card with supporting text below as a natural lead-in to additional content.",
-                        ].map((i) => {
-                            return new h.div({ col: true }, new b.card.container({ height: 100 }, [
-                                new b.card.img({
-                                    src: "https://picsum.photos/seed/bsts_0/218/140.webp",
-                                    alt: "Image cap",
-                                    location: "top",
-                                }),
-                                new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
-                            ]));
-                        }));
-                    }`,
+return new h.div({
+row: true,
+rowCol: [1, "md-3"],
+gutter: 4,
+}, ["This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.", "This is a short card.", "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.", "This is a longer card with supporting text below as a natural lead-in to additional content.", ].map((i) => {
+return new h.div({
+col: true
+}, new b.card.container({
+height: 100
+}, [
+new b.card.img({
+src: "https://picsum.photos/seed/bsts_0/218/140.webp",
+alt: "Image cap",
+location: "top",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+]));
+}));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            row: true,
-                            rowCol: [1, "md-3"],
-                            gutter: 4,
-                        }, [
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-                            "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
-                            "This is a longer card with supporting text below as a natural lead-in to additional content.",
-                        ].map((i) => {
-                            return new h.div({ col: true }, new b.card.container({ height: 100 }, [
-                                new b.card.img({
-                                    src: "https://picsum.photos/seed/bsts_0/218/140.webp",
-                                    alt: "Image cap",
-                                    location: "top",
-                                }),
-                                new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
-                                new b.card.footer(new h.small({ textColor: "body-secondary" }, "Last updated 3 mins ago")),
-                            ]));
-                        }));
-                    }`,
+return new h.div({
+row: true,
+rowCol: [1, "md-3"],
+gutter: 4,
+}, ["This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.", "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.", "This is a longer card with supporting text below as a natural lead-in to additional content.", ].map((i) => {
+return new h.div({
+col: true
+}, new b.card.container({
+height: 100
+}, [
+new b.card.img({
+src: "https://picsum.photos/seed/bsts_0/218/140.webp",
+alt: "Image cap",
+location: "top",
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text(i)]),
+new b.card.footer(new h.small({
+textColor: "body-secondary"
+}, "Last updated 3 mins ago")),
+]));
+}));
+}`,
 		},
 	],
 };

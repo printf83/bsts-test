@@ -34,6 +34,7 @@
 	"devDependencies": {
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
+		"compression-webpack-plugin": "^10.0.0",
 		"gh-pages": "^5.0.0",
 		"ts-loader": "^9.4.4",
 		"typescript": "^5.1.6",

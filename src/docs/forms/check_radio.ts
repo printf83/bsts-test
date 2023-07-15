@@ -514,293 +514,402 @@ export const check_radio: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return [
-                            new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckDefault" }), new b.label({ for: "flexCheckDefault", class: "form-check-label" }, "Default checkbox")]),
-                            new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckChecked", checked: true }), new b.label({ for: "flexCheckChecked", class: "form-check-label" }, "Checked checkbox")]),
-                        ];
-                    }`,
+return [
+new h.div({
+class: "form-check"
+}, [new b.input({
+type: "checkbox",
+id: "flexCheckDefault"
+}), new b.label({
+for: "flexCheckDefault",
+class: "form-check-label"
+}, "Default checkbox")]),
+new h.div({
+class: "form-check"
+}, [new b.input({
+type: "checkbox",
+id: "flexCheckChecked",
+checked: true
+}), new b.label({
+for: "flexCheckChecked",
+class: "form-check-label"
+}, "Checked checkbox")]),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true })];
-                    }`,
+return [b.form.check({
+type: "checkbox",
+label: "Default checkbox"
+}), b.form.check({
+type: "checkbox",
+label: "Checked checkbox",
+checked: true
+})];
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
-                    }`,
+return b.form.check({
+type: "checkbox",
+label: "Indeterminate checkbox",
+indeterminate: true
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({
-                                type: "checkbox",
-                                label: "Disabled indeterminate checkbox",
-                                indeterminate: true,
-                                disabled: true,
-                            }),
-                            b.form.check({
-                                type: "checkbox",
-                                label: "Disabled checkbox",
-                                disabled: true,
-                            }),
-                            b.form.check({
-                                type: "checkbox",
-                                label: "Disabled checked checkbox",
-                                checked: true,
-                                disabled: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "checkbox",
+label: "Disabled indeterminate checkbox",
+indeterminate: true,
+disabled: true,
+}),
+b.form.check({
+type: "checkbox",
+label: "Disabled checkbox",
+disabled: true,
+}),
+b.form.check({
+type: "checkbox",
+label: "Disabled checked checkbox",
+checked: true,
+disabled: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new h.div({ class: "form-check" }, [new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }), new b.label({ for: "flexRadioDefault", class: "form-check-label" }, "Default radio")]),
-                            new h.div({ class: "form-check" }, [
-                                new b.input({
-                                    type: "radio",
-                                    id: "flexRadioDefault2",
-                                    name: "exampeRadioGroup1",
-                                    checked: true,
-                                }),
-                                new b.label({ for: "flexRadioDefault2", class: "form-check-label" }, "Default checked radio"),
-                            ]),
-                        ];
-                    }`,
+return [
+new h.div({
+class: "form-check"
+}, [new b.input({
+type: "radio",
+id: "flexRadioDefault",
+name: "exampeRadioGroup1"
+}), new b.label({
+for: "flexRadioDefault",
+class: "form-check-label"
+}, "Default radio")]),
+new h.div({
+class: "form-check"
+}, [
+new b.input({
+type: "radio",
+id: "flexRadioDefault2",
+name: "exampeRadioGroup1",
+checked: true,
+}),
+new b.label({
+for: "flexRadioDefault2",
+class: "form-check-label"
+}, "Default checked radio"),
+]),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({ type: "radio", name: "exampeRadioGroup2", label: "Default radio" }),
-                            b.form.check({
-                                type: "radio",
-                                name: "exampeRadioGroup2",
-                                label: "Default checked radio",
-                                checked: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup2",
+label: "Default radio"
+}),
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup2",
+label: "Default checked radio",
+checked: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({
-                                type: "radio",
-                                name: "exampeRadioGroup3",
-                                label: "Disabled radio",
-                                disabled: true,
-                            }),
-                            b.form.check({
-                                type: "radio",
-                                name: "exampeRadioGroup3",
-                                label: "Disabled checked radio",
-                                checked: true,
-                                disabled: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup3",
+label: "Disabled radio",
+disabled: true,
+}),
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup3",
+label: "Disabled checked radio",
+checked: true,
+disabled: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({ type: "checkbox", switch: true, label: "Default switch checkbox input" }),
-                            b.form.check({
-                                type: "checkbox",
-                                switch: true,
-                                label: "Checked switch checkbox input",
-                                checked: true,
-                            }),
-                            b.form.check({
-                                type: "checkbox",
-                                switch: true,
-                                label: "Disabled switch checkbox input",
-                                disabled: true,
-                            }),
-                            b.form.check({
-                                type: "checkbox",
-                                switch: true,
-                                label: "Disabled switch checkbox input",
-                                checked: true,
-                                disabled: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "checkbox",
+switch: true,
+label: "Default switch checkbox input"
+}),
+b.form.check({
+type: "checkbox",
+switch: true,
+label: "Checked switch checkbox input",
+checked: true,
+}),
+b.form.check({
+type: "checkbox",
+switch: true,
+label: "Disabled switch checkbox input",
+disabled: true,
+}),
+b.form.check({
+type: "checkbox",
+switch: true,
+label: "Disabled switch checkbox input",
+checked: true,
+disabled: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true })];
-                    }`,
+return [b.form.check({
+type: "checkbox",
+label: "Default checkbox"
+}), b.form.check({
+type: "checkbox",
+label: "Disabled checkbox",
+disabled: true
+})];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({
-                                type: "radio",
-                                name: "exampeRadioGroup4",
-                                label: "Default radio",
-                                checked: true,
-                            }),
-                            b.form.check({ type: "radio", name: "exampeRadioGroup4", label: "Second default radio" }),
-                            b.form.check({
-                                type: "radio",
-                                name: "exampeRadioGroup4",
-                                label: "Disabled radio",
-                                disabled: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup4",
+label: "Default radio",
+checked: true,
+}),
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup4",
+label: "Second default radio"
+}),
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup4",
+label: "Disabled radio",
+disabled: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [b.form.check({ type: "checkbox", label: "1", inline: true }), b.form.check({ type: "checkbox", label: "2", inline: true }), b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true })];
-                    }`,
+return [b.form.check({
+type: "checkbox",
+label: "1",
+inline: true
+}), b.form.check({
+type: "checkbox",
+label: "2",
+inline: true
+}), b.form.check({
+type: "checkbox",
+label: "3 (disabled)",
+disabled: true,
+inline: true
+})];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "1", inline: true }),
-                            b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "2", inline: true }),
-                            b.form.check({
-                                type: "radio",
-                                name: "exampeRadioGroup5",
-                                label: "3 (disabled)",
-                                disabled: true,
-                                inline: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup5",
+label: "1",
+inline: true
+}),
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup5",
+label: "2",
+inline: true
+}),
+b.form.check({
+type: "radio",
+name: "exampeRadioGroup5",
+label: "3 (disabled)",
+disabled: true,
+inline: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({ type: "checkbox", label: "Reverse checkbox", reverse: true }),
-                            b.form.check({
-                                type: "checkbox",
-                                label: "Disabled reverse checkbox",
-                                disabled: true,
-                                reverse: true,
-                            }),
-                            b.form.check({
-                                type: "checkbox",
-                                label: "Reverse switch checkbox input",
-                                switch: true,
-                                reverse: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "checkbox",
+label: "Reverse checkbox",
+reverse: true
+}),
+b.form.check({
+type: "checkbox",
+label: "Disabled reverse checkbox",
+disabled: true,
+reverse: true,
+}),
+b.form.check({
+type: "checkbox",
+label: "Reverse switch checkbox input",
+switch: true,
+reverse: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            b.form.check({ type: "checkbox", label: "Checkbox without label", hideLabel: true }),
-                            b.form.check({
-                                type: "radio",
-                                label: "Radio without label",
-                                name: "exampeRadioGroup6",
-                                hideLabel: true,
-                            }),
-                            b.form.check({
-                                type: "checkbox",
-                                label: "Switch without label",
-                                switch: true,
-                                hideLabel: true,
-                            }),
-                        ];
-                    }`,
+return [
+b.form.check({
+type: "checkbox",
+label: "Checkbox without label",
+hideLabel: true
+}),
+b.form.check({
+type: "radio",
+label: "Radio without label",
+name: "exampeRadioGroup6",
+hideLabel: true,
+}),
+b.form.check({
+type: "checkbox",
+label: "Switch without label",
+switch: true,
+hideLabel: true,
+}),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.toggle({
-                            type: "checkbox",
-                            label: "Single toggle",
-                            container: { color: "primary" },
-                        });
-                    }`,
+return b.form.toggle({
+type: "checkbox",
+label: "Single toggle",
+container: {
+color: "primary"
+},
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.toggle({
-                            type: "checkbox",
-                            label: "Checked",
-                            container: { color: "primary" },
-                            checked: true,
-                        });
-                    }`,
+return b.form.toggle({
+type: "checkbox",
+label: "Checked",
+container: {
+color: "primary"
+},
+checked: true,
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return b.form.toggle({
-                            type: "checkbox",
-                            label: "Disabled",
-                            container: { color: "primary" },
-                            disabled: true,
-                        });
-                    }`,
+return b.form.toggle({
+type: "checkbox",
+label: "Disabled",
+container: {
+color: "primary"
+},
+disabled: true,
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            ...b.form.toggle({
-                                type: "radio",
-                                label: "Checked",
-                                name: "exampeRadioGroup7",
-                                checked: true,
-                                container: { color: "secondary" },
-                            }),
-                            ...b.form.toggle({
-                                type: "radio",
-                                label: "Radio",
-                                name: "exampeRadioGroup7",
-                                container: { color: "secondary" },
-                            }),
-                            ...b.form.toggle({
-                                type: "radio",
-                                label: "Disabled",
-                                name: "exampeRadioGroup7",
-                                disabled: true,
-                                container: { color: "secondary" },
-                            }),
-                            ...b.form.toggle({
-                                type: "radio",
-                                label: "Radio",
-                                name: "exampeRadioGroup7",
-                                container: { color: "secondary" },
-                            }),
-                        ];
-                    }`,
+return [...b.form.toggle({
+type: "radio",
+label: "Checked",
+name: "exampeRadioGroup7",
+checked: true,
+container: {
+color: "secondary"
+},
+}), ...b.form.toggle({
+type: "radio",
+label: "Radio",
+name: "exampeRadioGroup7",
+container: {
+color: "secondary"
+},
+}), ...b.form.toggle({
+type: "radio",
+label: "Disabled",
+name: "exampeRadioGroup7",
+disabled: true,
+container: {
+color: "secondary"
+},
+}), ...b.form.toggle({
+type: "radio",
+label: "Radio",
+name: "exampeRadioGroup7",
+container: {
+color: "secondary"
+},
+}), ];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            ...b.form.toggle({
-                                type: "checkbox",
-                                label: "Single toggle",
-                                container: { color: "primary", outline: true },
-                            }),
-                            new h.br(),
-                            ...b.form.toggle({
-                                type: "checkbox",
-                                label: "Checked",
-                                checked: true,
-                                container: { color: "secondary", outline: true },
-                            }),
-                            new h.br(),
-                            ...b.form.toggle({
-                                type: "radio",
-                                label: "Checked success radio",
-                                name: "exampeRadioGroup8",
-                                checked: true,
-                                container: { color: "success", outline: true },
-                            }),
-                            ...b.form.toggle({
-                                type: "radio",
-                                label: "Radio",
-                                name: "exampeRadioGroup8",
-                                container: { color: "danger", outline: true },
-                            }),
-                        ];
-                    }`,
+return [...b.form.toggle({
+type: "checkbox",
+label: "Single toggle",
+container: {
+color: "primary",
+outline: true
+},
+}),
+new h.br(), ...b.form.toggle({
+type: "checkbox",
+label: "Checked",
+checked: true,
+container: {
+color: "secondary",
+outline: true
+},
+}),
+new h.br(), ...b.form.toggle({
+type: "radio",
+label: "Checked success radio",
+name: "exampeRadioGroup8",
+checked: true,
+container: {
+color: "success",
+outline: true
+},
+}), ...b.form.toggle({
+type: "radio",
+label: "Radio",
+name: "exampeRadioGroup8",
+container: {
+color: "danger",
+outline: true
+},
+}),
+];
+}`,
 		},
 	],
 };

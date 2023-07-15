@@ -190,63 +190,92 @@ export const breadcrumb: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map((i) => {
-                            return new b.breadcrumb.container({ label: "breadcrumb" }, i.map((j, jx) => {
-                                return new b.breadcrumb.item({ active: jx === i.length - 1, href: "#" }, j);
-                            }));
-                        });
-                    }`,
+return [
+["Home"],
+["Home", "Library"],
+["Home", "Library", "Data"]
+].map((i) => {
+return new b.breadcrumb.container({
+label: "breadcrumb"
+}, i.map((j, jx) => {
+return new b.breadcrumb.item({
+active: jx === i.length - 1,
+href: "#"
+}, j);
+}));
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.breadcrumb.container({
-                            label: "breadcrumb",
-                            item: [
-                                { href: "#", elem: "Home" },
-                                { href: "#", elem: "Library" },
-                                { href: "#", elem: "Data" },
-                            ],
-                        });
-                    }`,
+return new b.breadcrumb.container({
+label: "breadcrumb",
+item: [{
+href: "#",
+elem: "Home"
+}, {
+href: "#",
+elem: "Library"
+}, {
+href: "#",
+elem: "Data"
+}, ],
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.breadcrumb.container({
-                            label: "breadcrumb",
-                            divider: "'>'",
-                            item: [
-                                { href: "#", elem: "Home" },
-                                { href: "#", elem: "Library" },
-                                { href: "#", elem: "Data" },
-                            ],
-                        });
-                    }`,
+return new b.breadcrumb.container({
+label: "breadcrumb",
+divider: "'>'",
+item: [{
+href: "#",
+elem: "Home"
+}, {
+href: "#",
+elem: "Library"
+}, {
+href: "#",
+elem: "Data"
+}, ],
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.breadcrumb.container({
-                            label: "breadcrumb",
-                            divider: \`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E")\`,
-                            item: [
-                                { href: "#", elem: "Home" },
-                                { href: "#", elem: "Library" },
-                                { href: "#", elem: "Data" },
-                            ],
-                        });
-                    }`,
+return new b.breadcrumb.container({
+label: "breadcrumb",
+divider: \`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E")\`,
+item: [{
+href: "#",
+elem: "Home"
+}, {
+href: "#",
+elem: "Library"
+}, {
+href: "#",
+elem: "Data"
+}, ],
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.breadcrumb.container({
-                            label: "breadcrumb",
-                            divider: "''",
-                            item: [
-                                { href: "#", elem: "Home" },
-                                { href: "#", elem: "Library" },
-                                { href: "#", elem: "Data" },
-                            ],
-                        });
-                    }`,
+return new b.breadcrumb.container({
+label: "breadcrumb",
+divider: "''",
+item: [{
+href: "#",
+elem: "Home"
+}, {
+href: "#",
+elem: "Library"
+}, {
+href: "#",
+elem: "Data"
+}, ],
+});
+}`,
 		},
 	],
 };

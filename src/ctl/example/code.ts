@@ -1,6 +1,6 @@
 import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
-import { ICodePen, codeBeautify, codePen, getCSSBaseOnSource, getRootBaseOnSource, getLibBaseOnSource, replaceEConsole, replaceExtention } from "./_fn.js";
+import { ICodePen, codeBeautify, codePen, getCSSBaseOnSource, getRootBaseOnSource, getLibBaseOnSource, replaceEConsole, replaceExtention, codeBeautifyMinify } from "./_fn.js";
 
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.12/+esm";
 const BSCDNCSS = ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"];
@@ -962,7 +962,9 @@ const convert = (attr: IBsExampleContainer) => {
 				} else {
 					strCode = attr.scriptConverter ? attr.scriptConverter(i.output!.toString()) : i.output!.toString();
 					strCode = replaceExtention(renameExtention, strCode);
-					strExtentionDB.push(strCode!);
+					if (!attr.db && strCode) {
+						strExtentionDB.push(codeBeautifyMinify("js", strCode));
+					}
 				}
 
 				strExtention.push(`
@@ -1029,8 +1031,8 @@ const convert = (attr: IBsExampleContainer) => {
 
 	if (!attr.db) {
 		core.dataManager.set(`code-${id}`, {
-			source: strSource,
-			manager: strManager,
+			source: strSource ? codeBeautifyMinify("js", strSource) : undefined,
+			manager: strManager ? codeBeautifyMinify("js", strManager) : undefined,
 			extention: strExtentionDB && strExtentionDB.length > 0 ? strExtentionDB : undefined,
 		} satisfies IBsExampleData);
 	}

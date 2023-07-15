@@ -69,29 +69,31 @@ export const figures: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new b.figure.container([
-                            new b.figure.img({
-                                fluid: true,
-                                rounded: true,
-                                src: "https://picsum.photos/seed/bsts_0/400/300.webp",
-                                alt: "...",
-                            }),
-                            new b.figure.caption("A caption for the above image"),
-                        ]);
-                    }`,
+return new b.figure.container([
+new b.figure.img({
+fluid: true,
+rounded: true,
+src: "https://picsum.photos/seed/bsts_0/400/300.webp",
+alt: "...",
+}),
+new b.figure.caption("A caption for the above image"),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.figure.container([
-                            new b.figure.img({
-                                fluid: true,
-                                rounded: true,
-                                src: "https://picsum.photos/seed/bsts_0/400/300.webp",
-                                alt: "...",
-                            }),
-                            new b.figure.caption({ textAlign: "end" }, "A caption for the above image"),
-                        ]);
-                    }`,
+return new b.figure.container([
+new b.figure.img({
+fluid: true,
+rounded: true,
+src: "https://picsum.photos/seed/bsts_0/400/300.webp",
+alt: "...",
+}),
+new b.figure.caption({
+textAlign: "end"
+}, "A caption for the above image"),
+]);
+}`,
 		},
 	],
 };

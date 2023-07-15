@@ -181,76 +181,158 @@ export const placeholder: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return [
-                            new b.card.container([
-                                new h.div({ class: "card-img-top", bgColor: "primary", style: { height: "180px" } }),
-                                new b.card.body([new b.card.title("Card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."), new b.button("Go somewhere")]),
-                            ]),
-                            new b.card.container([
-                                new h.div({ class: "card-img-top", bgColor: "secondary", style: { height: "180px" } }),
-                                new b.card.body([
-                                    new b.card.title({ loadingPlaceholderAnimation: "glow" }, new h.span({ loadingPlaceholder: true, col: 6 }, " ")),
-                                    new b.card.text({ loadingPlaceholderAnimation: "glow" }, [
-                                        new h.span({ loadingPlaceholder: true, col: 7, marginEnd: 1 }, " "),
-                                        new h.span({ loadingPlaceholder: true, col: 4, marginEnd: 1 }, " "),
-                                        new h.span({ loadingPlaceholder: true, col: 4, marginEnd: 1 }, " "),
-                                        new h.span({ loadingPlaceholder: true, col: 6, marginEnd: 1 }, " "),
-                                        new h.span({ loadingPlaceholder: true, col: 8 }, " "),
-                                    ]),
-                                    new b.button({ loadingPlaceholder: true, col: 6, disabled: true }, " "),
-                                ]),
-                            ]),
-                        ];
-                    }`,
+return [
+new b.card.container([
+new h.div({
+class: "card-img-top",
+bgColor: "primary",
+style: {
+height: "180px"
+}
+}),
+new b.card.body([new b.card.title("Card title"), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."), new b.button("Go somewhere")]),
+]),
+new b.card.container([
+new h.div({
+class: "card-img-top",
+bgColor: "secondary",
+style: {
+height: "180px"
+}
+}),
+new b.card.body([
+new b.card.title({
+loadingPlaceholderAnimation: "glow"
+}, new h.span({
+loadingPlaceholder: true,
+col: 6
+}, " ")),
+new b.card.text({
+loadingPlaceholderAnimation: "glow"
+}, [
+new h.span({
+loadingPlaceholder: true,
+col: 7,
+marginEnd: 1
+}, " "),
+new h.span({
+loadingPlaceholder: true,
+col: 4,
+marginEnd: 1
+}, " "),
+new h.span({
+loadingPlaceholder: true,
+col: 4,
+marginEnd: 1
+}, " "),
+new h.span({
+loadingPlaceholder: true,
+col: 6,
+marginEnd: 1
+}, " "),
+new h.span({
+loadingPlaceholder: true,
+col: 8
+}, " "),
+]),
+new b.button({
+loadingPlaceholder: true,
+col: 6,
+disabled: true
+}, " "),
+]),
+]),
+];
+}`,
 			manager: `(item) => {
-                        return new h.div({ row: true }, item.map((i) => {
-                            return new h.div({ col: [12, "md-6"], paddingY: 3 }, i);
-                        }));
-                    }`,
+return new h.div({
+row: true
+}, item.map((i) => {
+return new h.div({
+col: [12, "md-6"],
+paddingY: 3
+}, i);
+}));
+}`,
 		},
 		{
 			source: `() => {
-                        return [new h.p({ aria: { hidden: true } }, new h.span({ loadingPlaceholder: true, col: 6 }, " ")), new b.button({ color: "primary", disabled: true, loadingPlaceholder: true, col: 4 })];
-                    }`,
+return [new h.p({
+aria: {
+hidden: true
+}
+}, new h.span({
+loadingPlaceholder: true,
+col: 6
+}, " ")), new b.button({
+color: "primary",
+disabled: true,
+loadingPlaceholder: true,
+col: 4
+})];
+}`,
 		},
 		{
 			source: `() => {
-                        return [new h.span({ loadingPlaceholder: true, col: 6 }, " "), new h.span({ loadingPlaceholder: true, width: 75 }, " "), new h.span({ loadingPlaceholder: true, style: { width: "30%" } }, " ")];
-                    }`,
+return [new h.span({
+loadingPlaceholder: true,
+col: 6
+}, " "), new h.span({
+loadingPlaceholder: true,
+width: 75
+}, " "), new h.span({
+loadingPlaceholder: true,
+style: {
+width: "30%"
+}
+}, " ")];
+}`,
 		},
 		{
 			source: `() => {
-                        return [undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-                            return new h.span({ bgColor: i, col: 12, loadingPlaceholder: true }, " ");
-                        });
-                    }`,
+return [undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+return new h.span({
+bgColor: i,
+col: 12,
+loadingPlaceholder: true
+}, " ");
+});
+}`,
 			manager: `(item) => {
-                        return new h.div({ row: true, gutter: 2 }, item);
-                    }`,
+return new h.div({
+row: true,
+gutter: 2
+}, item);
+}`,
 		},
 		{
 			source: `() => {
-                        return ["lg", undefined, "sm", "xs"].map((i) => {
-                            return new h.span({
-                                col: 12,
-                                loadingPlaceholder: true,
-                                loadingPlaceholderWeight: i,
-                            }, " ");
-                        });
-                    }`,
+return ["lg", undefined, "sm", "xs"].map((i) => {
+return new h.span({
+col: 12,
+loadingPlaceholder: true,
+loadingPlaceholderWeight: i,
+}, " ");
+});
+}`,
 			manager: `(item) => {
-                        return new h.div({ row: true, gutter: 2 }, item);
-                    }`,
+return new h.div({
+row: true,
+gutter: 2
+}, item);
+}`,
 		},
 		{
 			source: `() => {
-                        return ["glow", "wave"].map((i) => {
-                            return new h.p({ loadingPlaceholderAnimation: i }, new h.span({
-                                col: 12,
-                                loadingPlaceholder: true,
-                            }, " "));
-                        });
-                    }`,
+return ["glow", "wave"].map((i) => {
+return new h.p({
+loadingPlaceholderAnimation: i
+}, new h.span({
+col: 12,
+loadingPlaceholder: true,
+}, " "));
+});
+}`,
 		},
 	],
 };

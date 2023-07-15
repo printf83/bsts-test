@@ -106,18 +106,24 @@ export const close_button: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new b.btnclose();
-                    }`,
+return new b.btnclose();
+}`,
 		},
 		{
 			source: `() => {
-                        return new b.btnclose({ disabled: true });
-                    }`,
+return new b.btnclose({
+disabled: true
+});
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ theme: "dark" }, [new b.btnclose(), new b.btnclose({ disabled: true })]);
-                    }`,
+return new h.div({
+theme: "dark"
+}, [new b.btnclose(), new b.btnclose({
+disabled: true
+})]);
+}`,
 		},
 	],
 };
