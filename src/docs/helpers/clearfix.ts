@@ -61,13 +61,30 @@ export const clearfix: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new h.div({ bgColor: "info", clearfix: true }, [new b.button({ float: "start", color: "secondary" }, "Example button floated left"), new b.button({ float: "end", color: "secondary" }, "Example button floated right")]);
-                    }`,
+return new h.div({
+bgColor: "info",
+clearfix: true
+}, [new b.button({
+float: "start",
+color: "secondary"
+}, "Example button floated left"), new b.button({
+float: "end",
+color: "secondary"
+}, "Example button floated right")]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ bgColor: "info" }, [new b.button({ float: "start", color: "secondary" }, "Example button floated left"), new b.button({ float: "end", color: "secondary" }, "Example button floated right")]);
-                    }`,
+return new h.div({
+bgColor: "info"
+}, [new b.button({
+float: "start",
+color: "secondary"
+}, "Example button floated left"), new b.button({
+float: "end",
+color: "secondary"
+}, "Example button floated right")]);
+}`,
 		},
 	],
 };

@@ -92,6 +92,7 @@ const setupContent = (content?: IContent) => {
 				class: "bs-content",
 				paddingStart: "lg-2",
 			},
+			// content.item()
 			content.item(content.db)
 		);
 	} else {

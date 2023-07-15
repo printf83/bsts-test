@@ -683,26 +683,33 @@ export const color: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new h.div({
-                            padding: 3,
-                            textColor: "primary-emphasis",
-                            bgColor: "primary-subtle",
-                            border: true,
-                            borderColor: "primary-subtle",
-                            roundedSize: 3,
-                        }, "Example element with utilities");
-                    }`,
+return new h.div({
+padding: 3,
+textColor: "primary-emphasis",
+bgColor: "primary-subtle",
+border: true,
+borderColor: "primary-subtle",
+roundedSize: 3,
+}, "Example element with utilities");
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: "fluid", margin: 0, padding: 0 }, new h.div({ row: true, gutter: 3 }, ["blue-100", "blue-200", "blue-300", "blue-400", "blue-500", "blue-600", "blue-700", "blue-800", "blue-900"].map((i) => new h.div({
-                            col: [12, "sm-6", "md-4"],
-                        }, new h.div({
-                            padding: 3,
-                            class: i,
-                            rounded: true,
-                        }, \`$\${i}\`)))));
-                    }`,
+return new h.div({
+container: "fluid",
+margin: 0,
+padding: 0
+}, new h.div({
+row: true,
+gutter: 3
+}, ["blue-100", "blue-200", "blue-300", "blue-400", "blue-500", "blue-600", "blue-700", "blue-800", "blue-900"].map((i) => new h.div({
+col: [12, "sm-6", "md-4"],
+}, new h.div({
+padding: 3,
+class: i,
+rounded: true,
+}, \`$\${i}\`)))));
+}`,
 		},
 	],
 };

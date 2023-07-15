@@ -291,126 +291,362 @@ export const columns: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, alignItem: "start" }, [new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns")]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true,
+alignItem: "start"
+}, [new h.div({
+col: true
+}, "One of three columns"), new h.div({
+col: true
+}, "One of three columns"), new h.div({
+col: true
+}, "One of three columns")]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, alignItem: "center" }, [new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns")]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true,
+alignItem: "center"
+}, [new h.div({
+col: true
+}, "One of three columns"), new h.div({
+col: true
+}, "One of three columns"), new h.div({
+col: true
+}, "One of three columns")]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true, alignItem: "end" }, [new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns"), new h.div({ col: true }, "One of three columns")]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true,
+alignItem: "end"
+}, [new h.div({
+col: true
+}, "One of three columns"), new h.div({
+col: true
+}, "One of three columns"), new h.div({
+col: true
+}, "One of three columns")]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true }, [new h.div({ col: true, alignSelf: "start" }, "One of three columns"), new h.div({ col: true, alignSelf: "center" }, "One of three columns"), new h.div({ col: true, alignSelf: "end" }, "One of three columns")]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true
+}, [new h.div({
+col: true,
+alignSelf: "start"
+}, "One of three columns"), new h.div({
+col: true,
+alignSelf: "center"
+}, "One of three columns"), new h.div({
+col: true,
+alignSelf: "end"
+}, "One of three columns")]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, [
-                            new h.div({ row: true, justifyContent: "start" }, [new h.div({ col: 4 }, "One of two columns"), new h.div({ col: 4 }, "One of two columns")]),
-                            new h.div({ row: true, justifyContent: "center" }, [new h.div({ col: 4 }, "One of two columns"), new h.div({ col: 4 }, "One of two columns")]),
-                            new h.div({ row: true, justifyContent: "end" }, [new h.div({ col: 4 }, "One of two columns"), new h.div({ col: 4 }, "One of two columns")]),
-                            new h.div({ row: true, justifyContent: "around" }, [new h.div({ col: 4 }, "One of two columns"), new h.div({ col: 4 }, "One of two columns")]),
-                            new h.div({ row: true, justifyContent: "between" }, [new h.div({ col: 4 }, "One of two columns"), new h.div({ col: 4 }, "One of two columns")]),
-                            new h.div({ row: true, justifyContent: "evenly" }, [new h.div({ col: 4 }, "One of two columns"), new h.div({ col: 4 }, "One of two columns")]),
-                        ]);
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, [
+new h.div({
+row: true,
+justifyContent: "start"
+}, [new h.div({
+col: 4
+}, "One of two columns"), new h.div({
+col: 4
+}, "One of two columns")]),
+new h.div({
+row: true,
+justifyContent: "center"
+}, [new h.div({
+col: 4
+}, "One of two columns"), new h.div({
+col: 4
+}, "One of two columns")]),
+new h.div({
+row: true,
+justifyContent: "end"
+}, [new h.div({
+col: 4
+}, "One of two columns"), new h.div({
+col: 4
+}, "One of two columns")]),
+new h.div({
+row: true,
+justifyContent: "around"
+}, [new h.div({
+col: 4
+}, "One of two columns"), new h.div({
+col: 4
+}, "One of two columns")]),
+new h.div({
+row: true,
+justifyContent: "between"
+}, [new h.div({
+col: 4
+}, "One of two columns"), new h.div({
+col: 4
+}, "One of two columns")]),
+new h.div({
+row: true,
+justifyContent: "evenly"
+}, [new h.div({
+col: 4
+}, "One of two columns"), new h.div({
+col: 4
+}, "One of two columns")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true }, new h.div({ row: true }, [
-                            new h.div({ col: 9 }, ".col-9"),
-                            new h.div({ col: 4 }, [".col-4", new h.br(), "Since 9 + 4 = 13 > 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit."]),
-                            new h.div({ col: 6 }, [".col-6", new h.br(), "Subsequent columns continue along the new line."]),
-                        ]));
-                    }`,
+return new h.div({
+container: true
+}, new h.div({
+row: true
+}, [
+new h.div({
+col: 9
+}, ".col-9"),
+new h.div({
+col: 4
+}, [".col-4", new h.br(), "Since 9 + 4 = 13 > 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit."]),
+new h.div({
+col: 6
+}, [".col-6", new h.br(), "Subsequent columns continue along the new line."]),
+]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true }, [
-                            new h.div({ col: [6, "sm-3"] }, ".col-6 .col-sm-3"),
-                            new h.div({ col: [6, "sm-3"] }, ".col-6 .col-sm-3"),
-                            //Force next columns to break to new line
-                            new h.div({ width: 100 }),
-                            new h.div({ col: [6, "sm-3"] }, ".col-6 .col-sm-3"),
-                            new h.div({ col: [6, "sm-3"] }, ".col-6 .col-sm-3"),
-                        ]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true
+}, [
+new h.div({
+col: [6, "sm-3"]
+}, ".col-6 .col-sm-3"),
+new h.div({
+col: [6, "sm-3"]
+}, ".col-6 .col-sm-3"),
+//Force next columns to break to new line
+new h.div({
+width: 100
+}),
+new h.div({
+col: [6, "sm-3"]
+}, ".col-6 .col-sm-3"),
+new h.div({
+col: [6, "sm-3"]
+}, ".col-6 .col-sm-3"),
+]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true }, [
-                            new h.div({ col: [6, "sm-4"] }, ".col-6 .col-sm-4"),
-                            new h.div({ col: [6, "sm-4"] }, ".col-6 .col-sm-4"),
-                            //Force next columns to break to new line
-                            new h.div({ width: 100, display: ["none", "md-block"] }),
-                            new h.div({ col: [6, "sm-4"] }, ".col-6 .col-sm-4"),
-                            new h.div({ col: [6, "sm-4"] }, ".col-6 .col-sm-4"),
-                        ]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true
+}, [
+new h.div({
+col: [6, "sm-4"]
+}, ".col-6 .col-sm-4"),
+new h.div({
+col: [6, "sm-4"]
+}, ".col-6 .col-sm-4"),
+//Force next columns to break to new line
+new h.div({
+width: 100,
+display: ["none", "md-block"]
+}),
+new h.div({
+col: [6, "sm-4"]
+}, ".col-6 .col-sm-4"),
+new h.div({
+col: [6, "sm-4"]
+}, ".col-6 .col-sm-4"),
+]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true }, [new h.div({ col: true }, "First in DOM, no order applied"), new h.div({ col: true, order: 5 }, "Second in DOM, with a larger order"), new h.div({ col: true, order: 1 }, "Third in DOM, with an order of 1")]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true
+}, [new h.div({
+col: true
+}, "First in DOM, no order applied"), new h.div({
+col: true,
+order: 5
+}, "Second in DOM, with a larger order"), new h.div({
+col: true,
+order: 1
+}, "Third in DOM, with an order of 1")]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, new h.div({ row: true }, [new h.div({ col: true, order: "last" }, "First in DOM, ordered last"), new h.div({ col: true }, "Second in DOM, unordered"), new h.div({ col: true, order: "first" }, "Third in DOM, ordered first")]));
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, new h.div({
+row: true
+}, [new h.div({
+col: true,
+order: "last"
+}, "First in DOM, ordered last"), new h.div({
+col: true
+}, "Second in DOM, unordered"), new h.div({
+col: true,
+order: "first"
+}, "Third in DOM, ordered first")]));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, [
-                            new h.div({ row: true }, [new h.div({ col: "md-4" }, ".col-md-4"), new h.div({ col: "md-4", offset: "md-4" }, ".col-md-4 .offset-md-4")]),
-                            new h.div({ row: true }, [new h.div({ col: "md-3", offset: "md-3" }, ".col-md-3 .offset-md-3"), new h.div({ col: "md-3", offset: "md-3" }, ".col-md-3 .offset-md-3")]),
-                            new h.div({ row: true }, [new h.div({ col: "md-6", offset: "md-3" }, ".col-md-6 .offset-md-3")]),
-                        ]);
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, [
+new h.div({
+row: true
+}, [new h.div({
+col: "md-4"
+}, ".col-md-4"), new h.div({
+col: "md-4",
+offset: "md-4"
+}, ".col-md-4 .offset-md-4")]),
+new h.div({
+row: true
+}, [new h.div({
+col: "md-3",
+offset: "md-3"
+}, ".col-md-3 .offset-md-3"), new h.div({
+col: "md-3",
+offset: "md-3"
+}, ".col-md-3 .offset-md-3")]),
+new h.div({
+row: true
+}, [new h.div({
+col: "md-6",
+offset: "md-3"
+}, ".col-md-6 .offset-md-3")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, [
-                            new h.div({ row: true }, [new h.div({ col: ["sm-5", "md-6"] }, ".col-sm-5 .col-md-6"), new h.div({ col: ["sm-5", "md-6"], offset: ["sm-2", "md-0"] }, ".col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0")]),
-                            new h.div({ row: true }, [new h.div({ col: ["sm-6", "md-5", "lg-6"] }, ".col-sm-6 .col-md-5 .col-lg-6"), new h.div({ col: ["sm-6", "md-5", "lg-6"], offset: ["md-2", "lg-0"] }, ".col-sm-6 .col-md-5 .offset-md-2 .col-lg-6 .offset-lg-0")]),
-                        ]);
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, [
+new h.div({
+row: true
+}, [new h.div({
+col: ["sm-5", "md-6"]
+}, ".col-sm-5 .col-md-6"), new h.div({
+col: ["sm-5", "md-6"],
+offset: ["sm-2", "md-0"]
+}, ".col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0")]),
+new h.div({
+row: true
+}, [new h.div({
+col: ["sm-6", "md-5", "lg-6"]
+}, ".col-sm-6 .col-md-5 .col-lg-6"), new h.div({
+col: ["sm-6", "md-5", "lg-6"],
+offset: ["md-2", "lg-0"]
+}, ".col-sm-6 .col-md-5 .offset-md-2 .col-lg-6 .offset-lg-0")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ container: true, textAlign: "center" }, [
-                            new h.div({ row: true }, [new h.div({ col: "md-4" }, ".col-md-4"), new h.div({ col: "md-4", marginStart: "auto" }, ".col-md-4 .ms-auto")]),
-                            new h.div({ row: true }, [new h.div({ col: "md-3", marginStart: "md-auto" }, ".col-md-3 .ms-md-auto"), new h.div({ col: "md-3", marginStart: "md-auto" }, ".col-md-3 .ms-md-auto")]),
-                            new h.div({ row: true }, [new h.div({ col: "auto", marginEnd: "auto" }, ".col-auto .me-auto"), new h.div({ col: "auto" }, ".col-auto")]),
-                        ]);
-                    }`,
+return new h.div({
+container: true,
+textAlign: "center"
+}, [
+new h.div({
+row: true
+}, [new h.div({
+col: "md-4"
+}, ".col-md-4"), new h.div({
+col: "md-4",
+marginStart: "auto"
+}, ".col-md-4 .ms-auto")]),
+new h.div({
+row: true
+}, [new h.div({
+col: "md-3",
+marginStart: "md-auto"
+}, ".col-md-3 .ms-md-auto"), new h.div({
+col: "md-3",
+marginStart: "md-auto"
+}, ".col-md-3 .ms-md-auto")]),
+new h.div({
+row: true
+}, [new h.div({
+col: "auto",
+marginEnd: "auto"
+}, ".col-auto .me-auto"), new h.div({
+col: "auto"
+}, ".col-auto")]),
+]);
+}`,
 		},
 		{
 			source: `() => {
-                        return [new h.div({ col: 3, padding: 3, marginBottom: 2 }, ".col-3: width of 25%"), new h.div({ col: "sm-9", padding: 3 }, ".col-sm-9: width of 75% above sm breakpoint")];
-                    }`,
+return [new h.div({
+col: 3,
+padding: 3,
+marginBottom: 2
+}, ".col-3: width of 25%"), new h.div({
+col: "sm-9",
+padding: 3
+}, ".col-sm-9: width of 75% above sm breakpoint")];
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ clearfix: true }, [
-                            new h.img({
-                                col: "md-6",
-                                float: "end",
-                                marginBottom: 3,
-                                marginStart: "md-3",
-                                alt: "...",
-                                src: "https://picsum.photos/seed/bsts_0/300/200.webp",
-                            }),
-                            new h.p("A paragraph of placeholder text. Bootstrap're using it here to show the use of the clearfix class. Bootstrap're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image."),
-                            new h.p("As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible information at. It simply takes up space and should not really be read."),
-                            new h.p("And yet, here you are, still persevering in reading this placeholder text, hoping for some more insights, or some hidden easter egg of content. A joke, perhaps. Unfortunately, there's none of that here."),
-                        ]);
-                    }`,
+return new h.div({
+clearfix: true
+}, [
+new h.img({
+col: "md-6",
+float: "end",
+marginBottom: 3,
+marginStart: "md-3",
+alt: "...",
+src: "https://picsum.photos/seed/bsts_0/300/200.webp",
+}),
+new h.p("A paragraph of placeholder text. Bootstrap're using it here to show the use of the clearfix class. Bootstrap're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image."),
+new h.p("As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible information at. It simply takes up space and should not really be read."),
+new h.p("And yet, here you are, still persevering in reading this placeholder text, hoping for some more insights, or some hidden easter egg of content. A joke, perhaps. Unfortunately, there's none of that here."),
+]);
+}`,
 		},
 	],
 };

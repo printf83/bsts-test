@@ -83,6 +83,33 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 	}
 };
 
+export const codeBeautifyMinify = (type: codeBeautifyType | undefined, source_text: string): string => {
+	switch (type) {
+		case "html":
+			return html_beautify(source_text, {
+				preserve_newlines: false,
+				end_with_newline: false,
+				indent_size: 0,
+			}) as string;
+
+		case "css":
+			return css_beautify(source_text, {
+				preserve_newlines: false,
+				end_with_newline: false,
+				indent_size: 0,
+			}) as string;
+
+		default:
+			return js_beautify(source_text, {
+				preserve_newlines: false,
+				end_with_newline: false,
+				indent_size: 0,
+				brace_style: "none",
+				unescape_strings: false,
+			}) as string;
+	}
+};
+
 export interface ICodePen {
 	title?: string;
 	description?: string;

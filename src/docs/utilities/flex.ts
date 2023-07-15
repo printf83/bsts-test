@@ -626,244 +626,470 @@ export const flex: IContent = {
 	db: [
 		{
 			source: `() => {
-                        return new h.div({ display: "flex", padding: 2 }, "I'm a flexbox container!");
-                    }`,
+return new h.div({
+display: "flex",
+padding: 2
+}, "I'm a flexbox container!");
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "inline-flex", padding: 2 }, "I'm a flexbox container!");
-                    }`,
+return new h.div({
+display: "inline-flex",
+padding: 2
+}, "I'm a flexbox container!");
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new h.div({ display: "flex", flex: "row" }, [1, 2, 3].map((i) => new h.div({ padding: 2 }, \`Flex item \${i}\`))),
-                            new h.div({ display: "flex", flex: "row-reverse" }, [1, 2, 3].map((i) => new h.div({ padding: 2 }, \`Flex item \${i}\`))),
-                        ];
-                    }`,
+return [
+new h.div({
+display: "flex",
+flex: "row"
+}, [1, 2, 3].map((i) => new h.div({
+padding: 2
+}, \`Flex item \${i}\`))),
+new h.div({
+display: "flex",
+flex: "row-reverse"
+}, [1, 2, 3].map((i) => new h.div({
+padding: 2
+}, \`Flex item \${i}\`))),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new h.div({ display: "flex", flex: "column" }, [1, 2, 3].map((i) => new h.div({ padding: 2 }, \`Flex item \${i}\`))),
-                            new h.div({ display: "flex", flex: "column-reverse" }, [1, 2, 3].map((i) => new h.div({ padding: 2 }, \`Flex item \${i}\`))),
-                        ];
-                    }`,
+return [
+new h.div({
+display: "flex",
+flex: "column"
+}, [1, 2, 3].map((i) => new h.div({
+padding: 2
+}, \`Flex item \${i}\`))),
+new h.div({
+display: "flex",
+flex: "column-reverse"
+}, [1, 2, 3].map((i) => new h.div({
+padding: 2
+}, \`Flex item \${i}\`))),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        const item = (value) => {
-                            return [new h.div({ padding: 2 }, "Justify"), new h.div({ padding: 2 }, "Content"), new h.div({ padding: 2 }, value)];
-                        };
-                        return [
-                            new h.div({ display: "flex", justifyContent: "start" }, item("Start")),
-                            new h.div({ display: "flex", justifyContent: "end" }, item("End")),
-                            new h.div({ display: "flex", justifyContent: "center" }, item("Center")),
-                            new h.div({ display: "flex", justifyContent: "between" }, item("Between")),
-                            new h.div({ display: "flex", justifyContent: "around" }, item("Around")),
-                            new h.div({ display: "flex", justifyContent: "evenly" }, item("Evenly")),
-                        ];
-                    }`,
+const item = (value) => {
+return [new h.div({
+padding: 2
+}, "Justify"), new h.div({
+padding: 2
+}, "Content"), new h.div({
+padding: 2
+}, value)];
+};
+return [
+new h.div({
+display: "flex",
+justifyContent: "start"
+}, item("Start")),
+new h.div({
+display: "flex",
+justifyContent: "end"
+}, item("End")),
+new h.div({
+display: "flex",
+justifyContent: "center"
+}, item("Center")),
+new h.div({
+display: "flex",
+justifyContent: "between"
+}, item("Between")),
+new h.div({
+display: "flex",
+justifyContent: "around"
+}, item("Around")),
+new h.div({
+display: "flex",
+justifyContent: "evenly"
+}, item("Evenly")),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        const item = [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")];
-                        return [
-                            new h.div({ display: "flex", alignItem: "start", style: { height: "100px" } }, item),
-                            new h.div({ display: "flex", alignItem: "end", style: { height: "100px" } }, item),
-                            new h.div({ display: "flex", alignItem: "center", style: { height: "100px" } }, item),
-                            new h.div({ display: "flex", alignItem: "baseline", style: { height: "100px" } }, item),
-                            new h.div({ display: "flex", alignItem: "stretch", style: { height: "100px" } }, item),
-                        ];
-                    }`,
+const item = [new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item")];
+return [
+new h.div({
+display: "flex",
+alignItem: "start",
+style: {
+height: "100px"
+}
+}, item),
+new h.div({
+display: "flex",
+alignItem: "end",
+style: {
+height: "100px"
+}
+}, item),
+new h.div({
+display: "flex",
+alignItem: "center",
+style: {
+height: "100px"
+}
+}, item),
+new h.div({
+display: "flex",
+alignItem: "baseline",
+style: {
+height: "100px"
+}
+}, item),
+new h.div({
+display: "flex",
+alignItem: "stretch",
+style: {
+height: "100px"
+}
+}, item),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        const item = (i) => {
-                            return [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2, alignSelf: i }, "Flex item"), new h.div({ padding: 2 }, "Flex item")];
-                        };
-                        return ["start", "end", "center", "baseline", "stretch"].map((i) => new h.div({ display: "flex", style: { height: "100px" } }, item(i)));
-                    }`,
+const item = (i) => {
+return [new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2,
+alignSelf: i
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item")];
+};
+return ["start", "end", "center", "baseline", "stretch"].map((i) => new h.div({
+display: "flex",
+style: {
+height: "100px"
+}
+}, item(i)));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex" }, [new h.div({ flex: "fill", padding: 2 }, "Flex item with a lot of content"), new h.div({ flex: "fill", padding: 2 }, "Flex item"), new h.div({ flex: "fill", padding: 2 }, "Flex item")]);
-                    }`,
+return new h.div({
+display: "flex"
+}, [new h.div({
+flex: "fill",
+padding: 2
+}, "Flex item with a lot of content"), new h.div({
+flex: "fill",
+padding: 2
+}, "Flex item"), new h.div({
+flex: "fill",
+padding: 2
+}, "Flex item")]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex" }, [new h.div({ flex: "grow-1", padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Third flex item")]);
-                    }`,
+return new h.div({
+display: "flex"
+}, [new h.div({
+flex: "grow-1",
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Third flex item")]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex" }, [new h.div({ width: 100, padding: 2 }, "Flex item"), new h.div({ flex: "shrink-1", padding: 2 }, "Flex item")]);
-                    }`,
+return new h.div({
+display: "flex"
+}, [new h.div({
+width: 100,
+padding: 2
+}, "Flex item"), new h.div({
+flex: "shrink-1",
+padding: 2
+}, "Flex item")]);
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new h.div({ display: "flex" }, [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")]),
-                            new h.div({ display: "flex" }, [new h.div({ padding: 2, marginEnd: "auto" }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")]),
-                            new h.div({ display: "flex" }, [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2, marginStart: "auto" }, "Flex item")]),
-                        ];
-                    }`,
+return [
+new h.div({
+display: "flex"
+}, [new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item")]),
+new h.div({
+display: "flex"
+}, [new h.div({
+padding: 2,
+marginEnd: "auto"
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item")]),
+new h.div({
+display: "flex"
+}, [new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2,
+marginStart: "auto"
+}, "Flex item")]),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return [
-                            new h.div({ display: "flex", alignItem: "start", flex: "column", style: { height: "200px" } }, [new h.div({ padding: 2, marginBottom: "auto" }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")]),
-                            new h.div({ display: "flex", alignItem: "end", flex: "column", style: { height: "200px" } }, [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2, marginTop: "auto" }, "Flex item")]),
-                        ];
-                    }`,
+return [
+new h.div({
+display: "flex",
+alignItem: "start",
+flex: "column",
+style: {
+height: "200px"
+}
+}, [new h.div({
+padding: 2,
+marginBottom: "auto"
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item")]),
+new h.div({
+display: "flex",
+alignItem: "end",
+flex: "column",
+style: {
+height: "200px"
+}
+}, [new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2
+}, "Flex item"), new h.div({
+padding: 2,
+marginTop: "auto"
+}, "Flex item")]),
+];
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex", flex: "nowrap", style: { width: "8rem" } }, FLEXITEM(5));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "nowrap",
+style: {
+width: "8rem"
+}
+}, FLEXITEM(5));
+}`,
 
 			extention: [
 				`(length) => {
-    return Array(length)
-        .fill("")
-        .map(() => new h.div({ padding: 2 }, "Flex item"));
+return Array(length).fill("").map(() => new h.div({
+padding: 2
+}, "Flex item"));
 }`,
 			],
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex", flex: "wrap" }, Array(14)
-                            .fill("")
-                            .map((_i, ix) => new h.div({ padding: 2 }, \`Flex item \${ix + 1}\`)));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap"
+}, Array(14).fill("").map((_i, ix) => new h.div({
+padding: 2
+}, \`Flex item \${ix + 1}\`)));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex", flex: "wrap-reverse" }, Array(14)
-                            .fill("")
-                            .map((_i, ix) => new h.div({ padding: 2 }, \`Flex item \${ix + 1}\`)));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap-reverse"
+}, Array(14).fill("").map((_i, ix) => new h.div({
+padding: 2
+}, \`Flex item \${ix + 1}\`)));
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex", flex: "nowrap" }, [new h.div({ padding: 2, order: 3 }, "First flex item"), new h.div({ padding: 2, order: 2 }, "Second flex item"), new h.div({ padding: 2, order: 1 }, "Third flex item")]);
-                    }`,
+return new h.div({
+display: "flex",
+flex: "nowrap"
+}, [new h.div({
+padding: 2,
+order: 3
+}, "First flex item"), new h.div({
+padding: 2,
+order: 2
+}, "Second flex item"), new h.div({
+padding: 2,
+order: 1
+}, "Third flex item")]);
+}`,
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            display: "flex",
-                            flex: "wrap",
-                            alignContent: "start",
-                            style: { height: "200px" },
-                        }, FLEXITEM(15));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap",
+alignContent: "start",
+style: {
+height: "200px"
+},
+}, FLEXITEM(15));
+}`,
 
 			extention: [
 				`(length) => {
-    return Array(length)
-        .fill("")
-        .map(() => new h.div({ padding: 2 }, "Flex item"));
+return Array(length).fill("").map(() => new h.div({
+padding: 2
+}, "Flex item"));
 }`,
 			],
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            display: "flex",
-                            flex: "wrap",
-                            alignContent: "end",
-                            style: { height: "200px" },
-                        }, FLEXITEM(15));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap",
+alignContent: "end",
+style: {
+height: "200px"
+},
+}, FLEXITEM(15));
+}`,
 
 			extention: [
 				`(length) => {
-    return Array(length)
-        .fill("")
-        .map(() => new h.div({ padding: 2 }, "Flex item"));
+return Array(length).fill("").map(() => new h.div({
+padding: 2
+}, "Flex item"));
 }`,
 			],
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            display: "flex",
-                            flex: "wrap",
-                            alignContent: "center",
-                            style: { height: "200px" },
-                        }, FLEXITEM(15));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap",
+alignContent: "center",
+style: {
+height: "200px"
+},
+}, FLEXITEM(15));
+}`,
 
 			extention: [
 				`(length) => {
-    return Array(length)
-        .fill("")
-        .map(() => new h.div({ padding: 2 }, "Flex item"));
+return Array(length).fill("").map(() => new h.div({
+padding: 2
+}, "Flex item"));
 }`,
 			],
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            display: "flex",
-                            flex: "wrap",
-                            alignContent: "between",
-                            style: { height: "200px" },
-                        }, FLEXITEM(15));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap",
+alignContent: "between",
+style: {
+height: "200px"
+},
+}, FLEXITEM(15));
+}`,
 
 			extention: [
 				`(length) => {
-    return Array(length)
-        .fill("")
-        .map(() => new h.div({ padding: 2 }, "Flex item"));
+return Array(length).fill("").map(() => new h.div({
+padding: 2
+}, "Flex item"));
 }`,
 			],
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            display: "flex",
-                            flex: "wrap",
-                            alignContent: "around",
-                            style: { height: "200px" },
-                        }, FLEXITEM(15));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap",
+alignContent: "around",
+style: {
+height: "200px"
+},
+}, FLEXITEM(15));
+}`,
 
 			extention: [
 				`(length) => {
-    return Array(length)
-        .fill("")
-        .map(() => new h.div({ padding: 2 }, "Flex item"));
+return Array(length).fill("").map(() => new h.div({
+padding: 2
+}, "Flex item"));
 }`,
 			],
 		},
 		{
 			source: `() => {
-                        return new h.div({
-                            display: "flex",
-                            flex: "wrap",
-                            alignContent: "stretch",
-                            style: { height: "200px" },
-                        }, FLEXITEM(15));
-                    }`,
+return new h.div({
+display: "flex",
+flex: "wrap",
+alignContent: "stretch",
+style: {
+height: "200px"
+},
+}, FLEXITEM(15));
+}`,
 
 			extention: [
 				`(length) => {
-    return Array(length)
-        .fill("")
-        .map(() => new h.div({ padding: 2 }, "Flex item"));
+return Array(length).fill("").map(() => new h.div({
+padding: 2
+}, "Flex item"));
 }`,
 			],
 		},
 		{
 			source: `() => {
-                        return new h.div({ display: "flex" }, [
-                            new h.div({ flex: "shrink-0" }, new h.img({ src: "https://picsum.photos/seed/bsts_0/100/100.webp", alt: "..." })),
-                            new h.div({ flex: "grow-1", marginStart: 3 }, "This is some content from a media component. You can replace this with any content and adjust it as needed."),
-                        ]);
-                    }`,
+return new h.div({
+display: "flex"
+}, [
+new h.div({
+flex: "shrink-0"
+}, new h.img({
+src: "https://picsum.photos/seed/bsts_0/100/100.webp",
+alt: "..."
+})),
+new h.div({
+flex: "grow-1",
+marginStart: 3
+}, "This is some content from a media component. You can replace this with any content and adjust it as needed."),
+]);
+}`,
 		},
 	],
 };
