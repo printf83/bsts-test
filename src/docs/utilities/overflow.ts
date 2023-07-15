@@ -136,4 +136,53 @@ export const overflow: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return ["auto", "hidden", "visible", "scroll"].map((i) => {
+return new h.div({
+overflow: i,
+padding: 3,
+bgColor: "body-tertiary",
+style: { maxHeight: "100px", maxWidth: "260px" },
+}, [
+\`This is an example of using {{.overflow-\${i} }}on an element with set width and height dimensions. \`,
+i === "auto" ?
+"By design, this content will vertically scroll." :
+"",
+]);
+});
+}`,
+		},
+		{
+			source: `() => {
+return ["auto", "hidden", "visible", "scroll"].map((i) => {
+return new h.div({
+overflowX: i,
+padding: 3,
+bgColor: "body-tertiary",
+style: {
+maxHeight: "100px",
+maxWidth: "200px",
+whiteSpace: "nowrap",
+},
+}, [
+\`{{.overflow-x-\${i} }}example{{br}}on an element with set width and height dimensions.\`,
+]);
+});
+}`,
+		},
+		{
+			source: `() => {
+return ["auto", "hidden", "visible", "scroll"].map((i) => {
+return new h.div({
+overflowY: i,
+padding: 3,
+bgColor: "body-tertiary",
+style: { maxHeight: "100px", maxWidth: "200px" },
+}, \`This is an example of using {{.overflow-\${i} }}on an element with set width and height dimensions.\`);
+});
+}`,
+		},
+	],
 };

@@ -989,4 +989,495 @@ export const validation: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return new h.form({
+row: true,
+gutter: 3,
+novalidate: true,
+class: "needs-validation",
+on: {
+submit: (e) => {
+const form = e.target;
+if (form.classList.contains("needs-validation")) {
+if (!form.checkValidity()) {
+e.preventDefault();
+e.stopPropagation();
+}
+form.classList.add("was-validated");
+}
+},
+},
+}, [
+b.form.input({
+container: { col: "md-4" },
+label: "First name",
+value: "Mark",
+required: true,
+validFeedback: "Looks good!",
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Last name",
+value: "Otto",
+required: true,
+validFeedback: "Looks good!",
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Username",
+before: "@",
+required: true,
+invalidFeedback: "Please choose a username.",
+}),
+b.form.input({
+container: { col: "md-6" },
+label: "City",
+required: true,
+invalidFeedback: "Please choose a valid city.",
+}),
+b.form.select({
+container: { col: "md-3" },
+label: "State",
+required: true,
+item: [{
+selected: true,
+disabled: true,
+value: "",
+elem: "Choose...",
+},
+{ value: "...", elem: "..." },
+],
+invalidFeedback: "Please select a valid state",
+}),
+b.form.input({
+container: { col: "md-3" },
+label: "Zip",
+required: true,
+invalidFeedback: "Please provide a valid zip",
+}),
+b.form.check({
+container: { col: 12 },
+required: true,
+label: "Agree to terms and conditions",
+invalidFeedback: "You must agree before sumbitting",
+}),
+new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new h.form({
+row: true,
+gutter: 3,
+novalidate: true,
+class: "needs-validation",
+on: {
+submit: (e) => {
+const form = e.target;
+if (form.classList.contains("needs-validation")) {
+if (!form.checkValidity()) {
+e.preventDefault();
+e.stopPropagation();
+}
+form.classList.add("was-validated");
+}
+},
+},
+}, [
+b.form.floatinglabel.input({
+container: { col: "md-4" },
+label: "First name",
+value: "Mark",
+required: true,
+validFeedback: "Looks good!",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-4" },
+label: "Last name",
+value: "Otto",
+required: true,
+validFeedback: "Looks good!",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-4" },
+label: "Username",
+before: "@",
+required: true,
+invalidFeedback: "Please choose a username.",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-6" },
+label: "City",
+required: true,
+invalidFeedback: "Please choose a valid city.",
+}),
+b.form.floatinglabel.select({
+container: { col: "md-3" },
+label: "State",
+required: true,
+item: [{
+selected: true,
+disabled: true,
+value: "",
+elem: "Choose...",
+},
+{ value: "...", elem: "..." },
+],
+invalidFeedback: "Please select a valid state",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-3" },
+label: "Zip",
+required: true,
+invalidFeedback: "Please provide a valid zip",
+}),
+b.form.check({
+container: { col: 12 },
+required: true,
+label: "Agree to terms and conditions",
+invalidFeedback: "You must agree before sumbitting",
+}),
+new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new h.form({
+row: true,
+gutter: 3,
+}, [
+b.form.input({
+container: { col: "md-4" },
+label: "First name",
+value: "Mark",
+required: true,
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Last name",
+value: "Otto",
+required: true,
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Username",
+before: "@",
+required: true,
+}),
+b.form.input({
+container: { col: "md-6" },
+label: "City",
+required: true,
+}),
+b.form.select({
+container: { col: "md-3" },
+label: "State",
+required: true,
+item: [{
+selected: true,
+disabled: true,
+value: "",
+elem: "Choose...",
+},
+{ value: "...", elem: "..." },
+],
+}),
+b.form.input({
+container: { col: "md-3" },
+label: "Zip",
+required: true,
+}),
+b.form.check({
+container: { col: 12 },
+required: true,
+label: "Agree to terms and conditions",
+}),
+new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new h.form({
+row: true,
+gutter: 3,
+}, [
+b.form.input({
+container: { col: "md-4" },
+label: "First name",
+value: "Mark",
+required: true,
+validFeedback: "Looks good!",
+isvalid: true,
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Last name",
+value: "Otto",
+required: true,
+validFeedback: "Looks good!",
+isvalid: true,
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Username",
+before: "@",
+required: true,
+invalidFeedback: "Please choose a username.",
+isvalid: false,
+}),
+b.form.input({
+container: { col: "md-6" },
+label: "City",
+required: true,
+invalidFeedback: "Please choose a valid city.",
+isvalid: false,
+}),
+b.form.select({
+container: { col: "md-3" },
+label: "State",
+required: true,
+item: [{
+selected: true,
+disabled: true,
+value: "",
+elem: "Choose...",
+},
+{ value: "...", elem: "..." },
+],
+invalidFeedback: "Please select a valid state",
+isvalid: false,
+}),
+b.form.input({
+container: { col: "md-3" },
+label: "Zip",
+required: true,
+invalidFeedback: "Please provide a valid zip",
+isvalid: false,
+}),
+b.form.check({
+container: { col: 12 },
+required: true,
+label: "Agree to terms and conditions",
+invalidFeedback: "You must agree before sumbitting",
+isvalid: false,
+}),
+new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new h.form({ class: "was-validated" }, [
+b.form.textarea({
+container: { marginBottom: 3 },
+label: "Textarea",
+placeholder: "Required example textarea",
+required: true,
+invalidFeedback: "Please enter a message in the textarea.",
+}),
+b.form.check({
+container: { marginBottom: 3 },
+label: "Check this checkbox",
+required: true,
+invalidFeedback: "Example invalid feedback text",
+}),
+b.form.check({
+type: "radio",
+name: "radio-stacked",
+label: "Or toggle this other radio",
+required: true,
+}),
+b.form.check({
+container: { marginBottom: 3 },
+type: "radio",
+name: "radio-stacked",
+label: "Toggle this radio",
+required: true,
+invalidFeedback: "More example invalid feedback text",
+}),
+b.form.select({
+container: { marginBottom: 3 },
+label: "select example",
+hideLabel: true,
+required: true,
+item: [
+{ value: "", elem: "Open this select menu" },
+{ value: "1", elem: "One" },
+{ value: "2", elem: "Two" },
+{ value: "3", elem: "Three" },
+],
+invalidFeedback: "Example invalid select feedback",
+}),
+b.form.input({
+container: { marginBottom: 3 },
+label: "file example",
+hideLabel: true,
+required: true,
+type: "file",
+invalidFeedback: "Example invalid form file feedback",
+}),
+new h.div({ marginBottom: 3 }, new b.button({ type: "submit", disabled: true }, "Submit form")),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new h.form({
+row: true,
+gutter: 3,
+class: "needs-validation",
+novalidate: true,
+on: {
+submit: (e) => {
+const form = e.target;
+if (form.classList.contains("needs-validation")) {
+if (!form.checkValidity()) {
+e.preventDefault();
+e.stopPropagation();
+}
+form.classList.add("was-validated");
+}
+},
+},
+}, [
+b.form.input({
+container: { col: "md-4" },
+label: "First name",
+value: "Mark",
+required: true,
+validTooltip: "Looks good!",
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Last name",
+value: "Otto",
+required: true,
+validTooltip: "Looks good!",
+}),
+b.form.input({
+container: { col: "md-4" },
+label: "Username",
+before: "@",
+required: true,
+invalidTooltip: "Please choose a unique and valid username.",
+}),
+b.form.input({
+container: { col: "md-6" },
+label: "City",
+required: true,
+invalidTooltip: "Please provide a valid city.",
+}),
+b.form.select({
+container: { col: "md-3" },
+label: "State",
+required: true,
+item: [{
+selected: true,
+disabled: true,
+value: "",
+elem: "Choose...",
+},
+{ value: "...", elem: "..." },
+],
+invalidTooltip: "Please select a valid state",
+}),
+b.form.input({
+container: { col: "md-3" },
+label: "Zip",
+required: true,
+invalidTooltip: "Please provide a valid zip",
+}),
+b.form.check({
+container: { col: 12 },
+required: true,
+label: "Agree to terms and conditions",
+invalidTooltip: "You must agree before sumbitting",
+}),
+new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new h.form({
+row: true,
+gutter: 3,
+class: "needs-validation",
+novalidate: true,
+on: {
+submit: (e) => {
+const form = e.target;
+if (form.classList.contains("needs-validation")) {
+if (!form.checkValidity()) {
+e.preventDefault();
+e.stopPropagation();
+}
+form.classList.add("was-validated");
+}
+},
+},
+}, [
+b.form.floatinglabel.input({
+container: { col: "md-4" },
+label: "First name",
+value: "Mark",
+required: true,
+validTooltip: "Looks good!",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-4" },
+label: "Last name",
+value: "Otto",
+required: true,
+validTooltip: "Looks good!",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-4" },
+label: "Username",
+before: "@",
+required: true,
+invalidTooltip: "Please choose a unique and valid username.",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-6" },
+label: "City",
+required: true,
+invalidTooltip: "Please provide a valid city.",
+}),
+b.form.floatinglabel.select({
+container: { col: "md-3" },
+label: "State",
+required: true,
+item: [{
+selected: true,
+disabled: true,
+value: "",
+elem: "Choose...",
+},
+{ value: "...", elem: "..." },
+],
+invalidTooltip: "Please select a valid state",
+}),
+b.form.floatinglabel.input({
+container: { col: "md-3" },
+label: "Zip",
+required: true,
+invalidTooltip: "Please provide a valid zip",
+}),
+b.form.check({
+container: { col: 12 },
+required: true,
+label: "Agree to terms and conditions",
+invalidTooltip: "You must agree before sumbitting",
+}),
+new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+]);
+}`,
+		},
+	],
 };

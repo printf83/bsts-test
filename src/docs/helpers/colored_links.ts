@@ -88,4 +88,42 @@ export const colored_links: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+"body-emphasis",
+].map((i) => new h.p(new h.a({ href: "#", linkColor: i }, \`\${core.uppercaseFirst(i)} link\`)));
+}`,
+		},
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+"body-emphasis",
+].map((i) => new h.p(new h.a({
+href: "#",
+linkColor: i,
+linkOffset: 2,
+linkUnderlineOpacity: 25,
+linkUnderlineOpacityHover: 100,
+}, \`\${core.uppercaseFirst(i)} link\`)));
+}`,
+		},
+	],
 };

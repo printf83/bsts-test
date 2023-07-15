@@ -8,6 +8,7 @@ import { pushState, replaceState } from "./history.js";
 import hljs from "highlight.js";
 
 export interface IContent {
+	usedb?: boolean;
 	loading?: boolean;
 
 	bookmark?: boolean;
@@ -53,7 +54,10 @@ const setupIntro = (content?: IContent) => {
 					},
 					core.placeholder(1, 3)
 				),
-				new e.description({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 15)),
+				new e.description(
+					{ loadingPlaceholderAnimation: "wave" },
+					core.placeholder(10, 15)
+				),
 			]);
 		} else {
 			return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
@@ -93,8 +97,7 @@ const setupContent = (content?: IContent) => {
 				class: "bs-content",
 				paddingStart: "lg-2",
 			},
-			content.item()
-			// content.item(content.db)
+			content.item(content.usedb ? content.db : undefined)
 		);
 	} else {
 		return "";
@@ -245,7 +248,11 @@ const PR = {
 	},
 };
 
-export const setupContentDocument = (value: string, state?: "push" | "replace", callback?: Function) => {
+export const setupContentDocument = (
+	value: string,
+	state?: "push" | "replace",
+	callback?: Function
+) => {
 	state ??= "push";
 
 	let docId: string = value;
@@ -281,9 +288,19 @@ export const setupContentDocument = (value: string, state?: "push" | "replace", 
 
 			//set history
 			if (state === "push") {
-				pushState({ docId: docId, anchorId: anchorId, pagetitle: strPagetitle, value: value });
+				pushState({
+					docId: docId,
+					anchorId: anchorId,
+					pagetitle: strPagetitle,
+					value: value,
+				});
 			} else if (state === "replace") {
-				replaceState({ docId: docId, anchorId: anchorId, pagetitle: strPagetitle, value: value });
+				replaceState({
+					docId: docId,
+					anchorId: anchorId,
+					pagetitle: strPagetitle,
+					value: value,
+				});
 			}
 
 			focusToAnchor(anchorId);

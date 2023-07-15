@@ -254,4 +254,180 @@ export const badges: IContent = {
 			//----------------------
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+].map((i) => {
+return new b.badge({ textBgColor: i, rounded: "pill" }, core.uppercaseFirst(i));
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+].map((i) => {
+return new b.badge({
+bgColor: \`\${i}-subtle\`,
+textColor: \`\${i}-emphasis\`,
+rounded: "pill",
+}, core.uppercaseFirst(i));
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+].map((i) => {
+return new b.badge({
+bgColor: \`\${i}-subtle\`,
+textColor: \`\${i}-emphasis\`,
+border: true,
+borderColor: \`\${i}-subtle\`,
+rounded: "pill",
+}, core.uppercaseFirst(i));
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+].map((i, ix) => {
+return new b.badge({
+bgColor: \`\${i}-subtle\`,
+textColor: \`\${i}-emphasis\`,
+border: true,
+borderColor: \`\${i}-subtle\`,
+rounded: "pill",
+display: "flex",
+alignItem: "center",
+gap: 2,
+}, [
+new b.img({
+rounded: "circle",
+attrWidth: 24,
+attrHeight: 24,
+src: \`https://picsum.photos/seed/bsts_\${ix}/24/24.webp\`,
+}),
+core.uppercaseFirst(i),
+]);
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+].map((i) => {
+return new b.badge({
+bgColor: \`\${i}-subtle\`,
+textColor: \`\${i}-emphasis\`,
+border: true,
+borderColor: \`\${i}-subtle\`,
+rounded: "pill",
+display: "flex",
+alignItem: "center",
+gap: 2,
+}, [
+core.uppercaseFirst(i),
+new b.icon({
+id: "x-circle-fill",
+fontSize: 6,
+pointerEvent: "auto",
+on: {
+click: (event) => {
+const target = event.target;
+core.removeElement(target.closest(".badge"));
+},
+},
+}),
+]);
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+"primary",
+"secondary",
+"success",
+"danger",
+"warning",
+"info",
+"light",
+"dark",
+].map((i, ix) => {
+return new b.badge({
+bgColor: \`\${i}-subtle\`,
+textColor: \`\${i}-emphasis\`,
+border: true,
+borderColor: \`\${i}-subtle\`,
+rounded: "pill",
+display: "flex",
+alignItem: "center",
+gap: 2,
+}, [
+new b.img({
+rounded: "circle",
+attrWidth: 24,
+attrHeight: 24,
+src: \`https://picsum.photos/seed/bsts_\${ix}/24/24.webp\`,
+}),
+core.uppercaseFirst(i),
+new b.verticalrule(),
+new b.icon({
+id: "x-circle-fill",
+fontSize: 6,
+pointerEvent: "auto",
+on: {
+click: (event) => {
+const target = event.target;
+core.removeElement(target.closest(".badge"));
+},
+},
+}),
+]);
+});
+}`,
+		},
+	],
 };

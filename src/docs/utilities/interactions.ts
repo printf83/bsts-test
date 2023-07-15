@@ -113,4 +113,40 @@ export const interactions: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return [
+new h.p({ userSelect: "all" }, "This paragraph will be entirely selected when clicked by the user."),
+new h.p({ userSelect: "auto" }, "This paragraph has default select behavior."),
+new h.p({ userSelect: "none" }, "This paragraph will not be selectable when clicked by the user."),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.p([
+new h.a({
+href: "#",
+pointerEvent: "none",
+tabindex: "-1",
+aria: { disabled: "true" },
+}, "This link"),
+" can not be clicked",
+]),
+new h.p([
+new h.a({ href: "#", pointerEvent: "auto" }, "This link"),
+" can be clicked (this is default behavior).",
+]),
+new h.p({ pointerEvent: "none" }, [
+new h.a({ href: "#" }, "This link"),
+"  can not be clicked because the {{pointer-events}} property is inherited from its parent. However, ",
+new h.a({ href: "#", pointerEvent: "auto" }, "this link"),
+" has a {{pe-auto}} class and can be clicked.",
+]),
+];
+}`,
+		},
+	],
 };

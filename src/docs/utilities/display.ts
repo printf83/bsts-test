@@ -207,4 +207,39 @@ export const display: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return [
+new h.div({ display: "inline", padding: 2, textBgColor: "primary" }, "d-inline"),
+new h.div({ display: "inline", padding: 2, textBgColor: "dark" }, "d-inline"),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.div({ display: "block", padding: 2, textBgColor: "primary" }, "d-block"),
+new h.div({ display: "block", padding: 2, textBgColor: "dark" }, "d-block"),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.div({ display: "lg-none" }, "hide on lg and wider screens"),
+new h.div({ display: ["none", "lg-block"] }, "hide on screens smaller than lg"),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.div({ print: "none" }, "Screen Only (Hide on print only)"),
+new h.div({ display: "none", print: "block" }, "Print Only (Hide on screen only)"),
+new h.div({ display: ["none", "lg-block"], print: "block" }, "Hide up to large on screen, but always show on print"),
+];
+}`,
+		},
+	],
 };

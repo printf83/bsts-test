@@ -548,4 +548,104 @@ export const background: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+const data = [
+{ bgColor: "primary", textColor: "white" },
+{ bgColor: "primary-subtle", textColor: "primary-emphasis" },
+{ bgColor: "secondary", textColor: "white" },
+{ bgColor: "secondary-subtle", textColor: "secondary-emphasis" },
+{ bgColor: "success", textColor: "white" },
+{ bgColor: "success-subtle", textColor: "success-emphasis" },
+{ bgColor: "danger", textColor: "white" },
+{ bgColor: "danger-subtle", textColor: "danger-emphasis" },
+{ bgColor: "warning", textColor: "dark" },
+{ bgColor: "warning-subtle", textColor: "warning-emphasis" },
+{ bgColor: "info", textColor: "dark" },
+{ bgColor: "info-subtle", textColor: "info-emphasis" },
+{ bgColor: "light", textColor: "dark" },
+{ bgColor: "light-subtle", textColor: "light-emphasis" },
+{ bgColor: "dark", textColor: "white" },
+{ bgColor: "dark-subtle", textColor: "dark-emphasis" },
+{ bgColor: "body-secondary" },
+{ bgColor: "body-tertiary" },
+{ bgColor: "body", textColor: "body" },
+{ bgColor: "black", textColor: "white" },
+{ bgColor: "white", textColor: "dark" },
+{ bgColor: "transparent", textColor: "body" },
+];
+return data.map((i) => {
+return new h.div({
+padding: 3,
+marginBottom: 2,
+bgColor: i.bgColor,
+textColor: i.textColor,
+}, \`bgColor:'\${i.bgColor}'\`);
+});
+}`,
+		},
+		{
+			source: `() => {
+const data = [
+{ bgColor: "primary", textColor: "white" },
+{ bgColor: "primary-subtle", textColor: "primary-emphasis" },
+{ bgColor: "secondary", textColor: "white" },
+{ bgColor: "secondary-subtle", textColor: "secondary-emphasis" },
+{ bgColor: "success", textColor: "white" },
+{ bgColor: "success-subtle", textColor: "success-emphasis" },
+{ bgColor: "danger", textColor: "white" },
+{ bgColor: "danger-subtle", textColor: "danger-emphasis" },
+{ bgColor: "warning", textColor: "dark" },
+{ bgColor: "warning-subtle", textColor: "warning-emphasis" },
+{ bgColor: "info", textColor: "dark" },
+{ bgColor: "info-subtle", textColor: "info-emphasis" },
+{ bgColor: "light", textColor: "dark" },
+{ bgColor: "light-subtle", textColor: "light-emphasis" },
+{ bgColor: "dark", textColor: "white" },
+{ bgColor: "dark-subtle", textColor: "dark-emphasis" },
+{ bgColor: "body-secondary" },
+{ bgColor: "body-tertiary" },
+{ bgColor: "body", textColor: "body" },
+{ bgColor: "black", textColor: "white" },
+{ bgColor: "white", textColor: "dark" },
+{ bgColor: "transparent", textColor: "body" },
+];
+return data.map((i) => {
+return new h.div({
+padding: 3,
+marginBottom: 2,
+bgColor: i.bgColor,
+textColor: i.textColor,
+bgGradient: true,
+}, \`bgColor: '\${i.bgColor}', bgGradient: true\`);
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.div({ bgColor: "success", textColor: "white", padding: 2 }, "This is default success background"),
+new h.div({
+bgColor: "success",
+textColor: "white",
+padding: 2,
+style: { "--bs-bg-opacity": ".5" },
+}, "This is 50% opacity success background"),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [undefined, 75, 50, 25, 10].map((i) => {
+return new h.div({
+bgColor: "success",
+textColor: i && i < 75 ? "body-emphasis" : "white",
+padding: 2,
+bgOpacity: i,
+}, \`This is \${i ? i + "% opacity" : "default"} success background\`);
+});
+}`,
+		},
+	],
 };

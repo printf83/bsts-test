@@ -4,7 +4,8 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const navbar: IContent = {
 	title: "Navbar",
-	description: "Documentation and examples for Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for Bootstrap collapse plugin.",
+	description:
+		"Documentation and examples for Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for Bootstrap collapse plugin.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
@@ -33,7 +34,9 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.title("Supported content"),
-				new e.text("Navbars come with built-in support for a handful of sub-components. Choose from the following as needed:"),
+				new e.text(
+					"Navbars come with built-in support for a handful of sub-components. Choose from the following as needed:"
+				),
 				new e.ul({
 					item: [
 						"{{b.navbar.brand}} for your company, product, or project name.",
@@ -45,7 +48,9 @@ export const navbar: IContent = {
 						"Add an optional {{scroll:true}} property on {{b.navbar.itemcontainer}} to set a {{scrollHeight}} and {{nav:docs/components/navbar#scrolling::scroll expanded navbar content}}.",
 					],
 				}),
-				new e.text("Here’s an example of all the sub-components included in a responsive light-themed navbar that automatically collapses at the {{lg}} (large) breakpoint."),
+				new e.text(
+					"Here’s an example of all the sub-components included in a responsive light-themed navbar that automatically collapses at the {{lg}} (large) breakpoint."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
@@ -60,15 +65,44 @@ export const navbar: IContent = {
 									label: "Toggle navigation",
 								}),
 								new b.navbar.collapse({ id: "navbarSupportedContent" }, [
-									new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
-										new b.navbar.item({ dropdown: true }, [
-											new b.dropdown.button({ navItem: true }, "Dropdown"),
-											new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
-										]),
-										new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
-									]),
+									new b.navbar.itemcontainer(
+										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										[
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Link")
+											),
+											new b.navbar.item({ dropdown: true }, [
+												new b.dropdown.button(
+													{ navItem: true },
+													"Dropdown"
+												),
+												new b.dropdown.menu([
+													new b.dropdown.item({ href: "#" }, "Action"),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Another action"
+													),
+													new b.dropdown.divider(),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Something else here"
+													),
+												]),
+											]),
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", disabled: true },
+													"Disabled"
+												)
+											),
+										]
+									),
 									new h.form({ display: "flex", role: "search" }, [
 										new b.input({
 											type: "search",
@@ -76,32 +110,54 @@ export const navbar: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+										new b.button(
+											{ type: "submit", color: "success", outline: true },
+											"Search"
+										),
 									]),
 								]),
 							])
 						);
 					},
 				}),
-				new e.text("This example uses {{nav:docs/utilities/background::background}} ({{bgColor:'body-tertiary'}}) and {{nav:docs/utilities/spacing::spacing}} ({{marginEnd:'auto'}}, {{marginBottom:[2,'lg-0']}}, {{marginEnd:2}}) utility property."),
+				new e.text(
+					"This example uses {{nav:docs/utilities/background::background}} ({{bgColor:'body-tertiary'}}) and {{nav:docs/utilities/spacing::spacing}} ({{marginEnd:'auto'}}, {{marginBottom:[2,'lg-0']}}, {{marginEnd:2}}) utility property."
+				),
 			]),
 
 			//----------------------
 
-			new e.section([new e.subtitle("Brand"), new e.text("The {{b.navbar.brand}} will create {{h.a}} as suggested by Bootstrap")]),
+			new e.section([
+				new e.subtitle("Brand"),
+				new e.text("The {{b.navbar.brand}} will create {{h.a}} as suggested by Bootstrap"),
+			]),
 
 			//----------------------
 
 			new e.section({ id: "brand_text" }, [
 				new e.xsubtitle({ id: "brand_text" }, "Text"),
-				new e.text("Add your text within an element with the {{b.navbar.brand}} component."),
+				new e.text(
+					"Add your text within an element with the {{b.navbar.brand}} component."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						return [
-							new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Navbar"))),
-							new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ marginBottom: 0, class: "h1" }, "Navbar"))),
+							new b.navbar.container(
+								{ bgColor: "body-tertiary" },
+								new b.navbar.innercontainer(
+									{ container: "fluid" },
+									new b.navbar.brand({ href: "#" }, "Navbar")
+								)
+							),
+							new b.navbar.container(
+								{ bgColor: "body-tertiary" },
+								new b.navbar.innercontainer(
+									{ container: "fluid" },
+									new b.navbar.brand({ marginBottom: 0, class: "h1" }, "Navbar")
+								)
+							),
 						];
 					},
 				}),
@@ -111,11 +167,22 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.xsubtitle("Image"),
-				new e.text("You can replace the text within the {{b.navbar.brand}} with an {{h.img}}, {{b.icon}} or {{b.label}}."),
+				new e.text(
+					"You can replace the text within the {{b.navbar.brand}} with an {{h.img}}, {{b.icon}} or {{b.label}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, new b.icon({ textColor: "primary", id: "bootstrap" }))));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.brand(
+									{ href: "#" },
+									new b.icon({ textColor: "primary", id: "bootstrap" })
+								)
+							)
+						);
 					},
 				}),
 			]),
@@ -124,11 +191,30 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.xsubtitle("Image and text"),
-				new e.text("You can also make use of some additional utilities to add an image and text at the same time. Note the addition of {{display:'inline-block'}} and {{alignText:'top'}} on the {{h.img}}."),
+				new e.text(
+					"You can also make use of some additional utilities to add an image and text at the same time. Note the addition of {{display:'inline-block'}} and {{alignText:'top'}} on the {{h.img}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, new b.caption({ icon: new b.icon({ textColor: "primary", id: "bootstrap" }) }, "Bootstrap"))));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.brand(
+									{ href: "#" },
+									new b.caption(
+										{
+											icon: new b.icon({
+												textColor: "primary",
+												id: "bootstrap",
+											}),
+										},
+										"Bootstrap"
+									)
+								)
+							)
+						);
 					},
 				}),
 			]),
@@ -140,8 +226,12 @@ export const navbar: IContent = {
 				new e.text(
 					"Navbar navigation links build on Bootstrap {{b.navbar.container}} options with their own modifier class and require the use of {{nav:docs/components/navbar#toggler::toggler classes}} for proper responsive styling. {{b::Navigation in navbars will also grow to occupy as much horizontal space as possible}} to keep your navbar contents securely aligned."
 				),
-				new e.text("Add the {{active:true}} class on {{b.navbar.link}} to indicate the current page."),
-				new e.text("Please note that you should also add the {{current}} property on the active {{b.navbar.link}}."),
+				new e.text(
+					"Add the {{active:true}} class on {{b.navbar.link}} to indicate the current page."
+				),
+				new e.text(
+					"Please note that you should also add the {{current}} property on the active {{b.navbar.link}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
@@ -157,17 +247,30 @@ export const navbar: IContent = {
 								}),
 								new b.navbar.collapse({ id: "navbarNavContent" }, [
 									new b.navbar.itemcontainer([
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
-										new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+										new b.navbar.item(
+											new b.navbar.link({ href: "#", active: true }, "Home")
+										),
+										new b.navbar.item(
+											new b.navbar.link({ href: "#" }, "Features")
+										),
+										new b.navbar.item(
+											new b.navbar.link({ href: "#" }, "Pricing")
+										),
+										new b.navbar.item(
+											new b.navbar.link(
+												{ href: "#", disabled: true },
+												"Disabled"
+											)
+										),
 									]),
 								]),
 							])
 						);
 					},
 				}),
-				new e.text("And because {{bsts}} use Bootstrap classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."),
+				new e.text(
+					"And because {{bsts}} use Bootstrap classes for Bootstrap navs, you can avoid the list-based approach entirely if you like."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
@@ -182,13 +285,23 @@ export const navbar: IContent = {
 									label: "Toggle navigation",
 								}),
 								new b.navbar.collapse({ id: "navbarNavAltMarkup" }, [
-									new h.div({ class: "navbar-nav" }, [new b.navbar.link({ href: "#", active: true }, "Home"), new b.navbar.link({ href: "#" }, "Features"), new b.navbar.link({ href: "#" }, "Pricing"), new b.navbar.link({ href: "#", disabled: true }, "Disabled")]),
+									new h.div({ class: "navbar-nav" }, [
+										new b.navbar.link({ href: "#", active: true }, "Home"),
+										new b.navbar.link({ href: "#" }, "Features"),
+										new b.navbar.link({ href: "#" }, "Pricing"),
+										new b.navbar.link(
+											{ href: "#", disabled: true },
+											"Disabled"
+										),
+									]),
 								]),
 							])
 						);
 					},
 				}),
-				new e.text("You can also use dropdowns in your navbar. Dropdown menus require a wrapping element for positioning, so be sure to use separate and nested elements for {{b.navbar.item}} and {{dropdown:true}} property as shown below."),
+				new e.text(
+					"You can also use dropdowns in your navbar. Dropdown menus require a wrapping element for positioning, so be sure to use separate and nested elements for {{b.navbar.item}} and {{dropdown:true}} property as shown below."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
@@ -204,12 +317,31 @@ export const navbar: IContent = {
 								}),
 								new b.navbar.collapse({ id: "navbarNavDropdown" }, [
 									new b.navbar.itemcontainer([
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
+										new b.navbar.item(
+											new b.navbar.link({ href: "#", active: true }, "Home")
+										),
+										new b.navbar.item(
+											new b.navbar.link({ href: "#" }, "Features")
+										),
+										new b.navbar.item(
+											new b.navbar.link({ href: "#" }, "Pricing")
+										),
 										new b.navbar.item({ dropdown: true }, [
-											new b.dropdown.button({ navItem: true, href: "#" }, "Dropdown link"),
-											new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+											new b.dropdown.button(
+												{ navItem: true, href: "#" },
+												"Dropdown link"
+											),
+											new b.dropdown.menu([
+												new b.dropdown.item({ href: "#" }, "Action"),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Another action"
+												),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Something else here"
+												),
+											]),
 										]),
 									]),
 								]),
@@ -238,13 +370,18 @@ export const navbar: IContent = {
 										placeholder: "Search",
 										label: "Search",
 									}),
-									new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+									new b.button(
+										{ type: "submit", color: "success", outline: true },
+										"Search"
+									),
 								])
 							)
 						);
 					},
 				}),
-				new e.text("Immediate child elements of {{b.navbar.container}} use flex layout and will default to {{justifyContent:'space-between'}}. Use additional {{nav:docs/utilities/flex::flex utilities}} as needed to adjust this behavior."),
+				new e.text(
+					"Immediate child elements of {{b.navbar.container}} use flex layout and will default to {{justifyContent:'space-between'}}. Use additional {{nav:docs/utilities/flex::flex utilities}} as needed to adjust this behavior."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -259,14 +396,19 @@ export const navbar: IContent = {
 										placeholder: "Search",
 										label: "Search",
 									}),
-									new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+									new b.button(
+										{ type: "submit", color: "success", outline: true },
+										"Search"
+									),
 								]),
 							])
 						);
 					},
 				}),
 
-				new e.text("Input groups work, too. If your navbar is an entire form, or mostly a form, you can use the {{h.form}} element as the container and save some code."),
+				new e.text(
+					"Input groups work, too. If your navbar is an entire form, or mostly a form, you can use the {{h.form}} element as the container and save some code."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -288,13 +430,24 @@ export const navbar: IContent = {
 					},
 				}),
 
-				new e.text("Various buttons are supported as part of these navbar forms, too. This is also a great reminder that vertical alignment utilities can be used to align different sized elements."),
+				new e.text(
+					"Various buttons are supported as part of these navbar forms, too. This is also a great reminder that vertical alignment utilities can be used to align different sized elements."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return new b.navbar.container(
 							{ bgColor: "body-tertiary" },
-							new h.form({ container: "fluid", justifyContent: "start" }, [new b.button({ color: "success", outline: true, marginEnd: 2 }, "Main button"), new b.button({ color: "secondary", outline: true, weight: "sm" }, "Smaller button")])
+							new h.form({ container: "fluid", justifyContent: "start" }, [
+								new b.button(
+									{ color: "success", outline: true, marginEnd: 2 },
+									"Main button"
+								),
+								new b.button(
+									{ color: "secondary", outline: true, weight: "sm" },
+									"Smaller button"
+								),
+							])
 						);
 					},
 				}),
@@ -304,11 +457,19 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.subtitle("Text"),
-				new e.text("Navbars may contain bits of text with the help of {{b.navbar.text}}. This class adjusts vertical alignment and horizontal spacing for strings of text."),
+				new e.text(
+					"Navbars may contain bits of text with the help of {{b.navbar.text}}. This class adjusts vertical alignment and horizontal spacing for strings of text."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.text("Navbar text with an inline element")));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.text("Navbar text with an inline element")
+							)
+						);
 					},
 				}),
 				new e.text("Mix and match with other components and utilities as needed."),
@@ -326,11 +487,23 @@ export const navbar: IContent = {
 									label: "Toggle navigation",
 								}),
 								new b.navbar.collapse({ id: "navbarText" }, [
-									new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
-									]),
+									new b.navbar.itemcontainer(
+										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										[
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Features")
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Pricing")
+											),
+										]
+									),
 									new b.navbar.text("Navbar text with an inline element"),
 								]),
 							])
@@ -365,12 +538,26 @@ export const navbar: IContent = {
 									label: "Toggle navigation",
 								}),
 								new b.navbar.collapse({ id: id }, [
-									new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "About")),
-									]),
+									new b.navbar.itemcontainer(
+										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										[
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Features")
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Pricing")
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "About")
+											),
+										]
+									),
 									new h.form({ display: "flex", role: "search" }, [
 										new b.input({
 											type: "search",
@@ -378,13 +565,29 @@ export const navbar: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button({ type: "submit", color: btnColor, outline: true }, "Search"),
+										new b.button(
+											{ type: "submit", color: btnColor, outline: true },
+											"Search"
+										),
 									]),
 								]),
 							]);
 						};
 
-						return [new b.navbar.container({ bgColor: "dark", theme: "dark" }, navbarItem("light")), new b.navbar.container({ bgColor: "primary", theme: "dark" }, navbarItem("light")), new b.navbar.container({ style: { backgroundColor: "#e3f2fd" } }, navbarItem("primary"))];
+						return [
+							new b.navbar.container(
+								{ bgColor: "dark", theme: "dark" },
+								navbarItem("light")
+							),
+							new b.navbar.container(
+								{ bgColor: "primary", theme: "dark" },
+								navbarItem("light")
+							),
+							new b.navbar.container(
+								{ style: { backgroundColor: "#e3f2fd" } },
+								navbarItem("primary")
+							),
+						];
 					},
 				}),
 			]),
@@ -400,16 +603,33 @@ export const navbar: IContent = {
 					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
-						return new h.div({ container: true }, new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Navbar"))));
+						return new h.div(
+							{ container: true },
+							new b.navbar.container(
+								{ bgColor: "body-tertiary", expand: "lg" },
+								new b.navbar.innercontainer(
+									{ container: "fluid" },
+									new b.navbar.brand({ href: "#" }, "Navbar")
+								)
+							)
+						);
 					},
 				}),
 
-				new e.text("Use any of the responsive containers to change how wide the content in your navbar is presented."),
+				new e.text(
+					"Use any of the responsive containers to change how wide the content in your navbar is presented."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "md" }, new b.navbar.brand({ href: "#" }, "Navbar")));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary", expand: "lg" },
+							new b.navbar.innercontainer(
+								{ container: "md" },
+								new b.navbar.brand({ href: "#" }, "Navbar")
+							)
+						);
 					},
 				}),
 			]),
@@ -421,35 +641,67 @@ export const navbar: IContent = {
 				new e.text(
 					"Use Bootstrap {{nav:docs/utilities/position::position utilities}} to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the bottom (scrolls with the page until it reaches the bottom, then stays there)."
 				),
-				new e.text("Fixed navbars use {{position:fixed}}, meaning they’re pulled from the normal flow of the DOM and may require custom CSS (e.g., {{paddingTop}} on the {{<body>}}) to prevent overlap with other elements."),
+				new e.text(
+					"Fixed navbars use {{position:fixed}}, meaning they’re pulled from the normal flow of the DOM and may require custom CSS (e.g., {{paddingTop}} on the {{<body>}}) to prevent overlap with other elements."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Default")));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.brand({ href: "#" }, "Default")
+							)
+						);
 					},
 				}),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary", fixed: "top" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Fixed top")));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary", fixed: "top" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.brand({ href: "#" }, "Fixed top")
+							)
+						);
 					},
 				}),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary", fixed: "bottom" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Fixed bottom")));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary", fixed: "bottom" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.brand({ href: "#" }, "Fixed bottom")
+							)
+						);
 					},
 				}),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary", sticky: "top" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Sticky top")));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary", sticky: "top" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.brand({ href: "#" }, "Sticky top")
+							)
+						);
 					},
 				}),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.navbar.container({ bgColor: "body-tertiary", sticky: "bottom" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Sticky bottom")));
+						return new b.navbar.container(
+							{ bgColor: "body-tertiary", sticky: "bottom" },
+							new b.navbar.innercontainer(
+								{ container: "fluid" },
+								new b.navbar.brand({ href: "#" }, "Sticky bottom")
+							)
+						);
 					},
 				}),
 			]),
@@ -461,8 +713,12 @@ export const navbar: IContent = {
 				new e.text(
 					"Add {{scroll:true}} to a {{b.navbar.itemcontainer}} (or other navbar sub-component) to enable vertical scrolling within the toggleable contents of a collapsed navbar. By default, scrolling kicks in at {{75vh}} (or 75% of the viewport height), but you can override that with the local CSS custom property {{--bs-navbar-height}} or custom styles. At larger viewports when the navbar is expanded, content will appear as it does in a default navbar."
 				),
-				new e.text("Please note that this behavior comes with a potential drawback {{of overflow}}—when setting {{overflowY:'auto'}} (required to scroll the content here), {{overflowX}} is the equivalent of {{auto}}, which will crop some horizontal content."),
-				new e.text("Here’s an example {{b.navbar.itemcontainer}} using {{scroll:true}} with {{scrollHeight:'100px'}}, with some extra margin utilities for optimum spacing."),
+				new e.text(
+					"Please note that this behavior comes with a potential drawback {{of overflow}}—when setting {{overflowY:'auto'}} (required to scroll the content here), {{overflowX}} is the equivalent of {{auto}}, which will crop some horizontal content."
+				),
+				new e.text(
+					"Here’s an example {{b.navbar.itemcontainer}} using {{scroll:true}} with {{scrollHeight:'100px'}}, with some extra margin utilities for optimum spacing."
+				),
 
 				new e.code({
 					db: getContentCode(db),
@@ -486,13 +742,36 @@ export const navbar: IContent = {
 											scrollHeight: "100px",
 										},
 										[
-											new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-											new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Link")
+											),
 											new b.navbar.item({ dropdown: true }, [
 												new b.dropdown.button({ navItem: true }, "Link"),
-												new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+												new b.dropdown.menu([
+													new b.dropdown.item({ href: "#" }, "Action"),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Another action"
+													),
+													new b.dropdown.divider(),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Something else here"
+													),
+												]),
 											]),
-											new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Link")),
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", disabled: true },
+													"Link"
+												)
+											),
 										]
 									),
 									new h.form({ display: "flex", role: "search" }, [
@@ -502,7 +781,10 @@ export const navbar: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+										new b.button(
+											{ type: "submit", color: "success", outline: true },
+											"Search"
+										),
 									]),
 								]),
 							])
@@ -515,8 +797,12 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.title("Responsive behaviors"),
-				new e.text("Navbars can use {{b.navbar.toggle.collapse}}, and {{expand:'sm|md|lg|xl|xxl'}} property to determine when their content collapses behind a button. In combination with other utilities, you can easily choose when to show or hide particular component."),
-				new e.text("For navbars that never collapse, add the {{expand}} property on the {{b.navbar.container}}. For navbars that always collapse, don’t add any {{.navbar-expand}} class."),
+				new e.text(
+					"Navbars can use {{b.navbar.toggle.collapse}}, and {{expand:'sm|md|lg|xl|xxl'}} property to determine when their content collapses behind a button. In combination with other utilities, you can easily choose when to show or hide particular component."
+				),
+				new e.text(
+					"For navbars that never collapse, add the {{expand}} property on the {{b.navbar.container}}. For navbars that always collapse, don’t add any {{.navbar-expand}} class."
+				),
 			]),
 
 			//----------------------
@@ -541,11 +827,26 @@ export const navbar: IContent = {
 								}),
 								new b.navbar.collapse({ id: "navbarTogglerDemo01" }, [
 									new b.navbar.brand({ href: "#" }, "Hidden brand"),
-									new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
-										new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
-									]),
+									new b.navbar.itemcontainer(
+										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										[
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Link")
+											),
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", disabled: true },
+													"Disabled"
+												)
+											),
+										]
+									),
 									new h.form({ display: "flex", role: "search" }, [
 										new b.input({
 											type: "search",
@@ -553,7 +854,10 @@ export const navbar: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+										new b.button(
+											{ type: "submit", color: "success", outline: true },
+											"Search"
+										),
 									]),
 								]),
 							])
@@ -575,11 +879,26 @@ export const navbar: IContent = {
 									label: "Toggle navigation",
 								}),
 								new b.navbar.collapse({ id: "navbarTogglerDemo02" }, [
-									new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
-										new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
-									]),
+									new b.navbar.itemcontainer(
+										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										[
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Link")
+											),
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", disabled: true },
+													"Disabled"
+												)
+											),
+										]
+									),
 									new h.form({ display: "flex", role: "search" }, [
 										new b.input({
 											type: "search",
@@ -587,7 +906,10 @@ export const navbar: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+										new b.button(
+											{ type: "submit", color: "success", outline: true },
+											"Search"
+										),
 									]),
 								]),
 							])
@@ -609,11 +931,26 @@ export const navbar: IContent = {
 								}),
 								new b.navbar.brand({ href: "#" }, "Navbar"),
 								new b.navbar.collapse({ id: "navbarTogglerDemo03" }, [
-									new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
-										new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
-									]),
+									new b.navbar.itemcontainer(
+										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										[
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Link")
+											),
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", disabled: true },
+													"Disabled"
+												)
+											),
+										]
+									),
 									new h.form({ display: "flex", role: "search" }, [
 										new b.input({
 											type: "search",
@@ -621,7 +958,10 @@ export const navbar: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+										new b.button(
+											{ type: "submit", color: "success", outline: true },
+											"Search"
+										),
 									]),
 								]),
 							])
@@ -634,7 +974,9 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.subtitle("External content"),
-				new e.text("Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits outside of the {{b.navbar.container}} . Because Bootstrap plugin works on the {{id}} and {{target}} matching, that’s easily done!"),
+				new e.text(
+					"Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits outside of the {{b.navbar.container}} . Because Bootstrap plugin works on the {{id}} and {{target}} matching, that’s easily done!"
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
@@ -642,7 +984,17 @@ export const navbar: IContent = {
 						return new h.div([
 							new b.collapse.container(
 								{ id: "navbarToggleExternalContent" },
-								new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [new h.h(5, { textColor: "body-emphasis", h: 4 }, "Collapsed content"), new h.span({ textColor: "body-secondary" }, "Toggleable via the navbar brand.")])
+								new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [
+									new h.h(
+										5,
+										{ textColor: "body-emphasis", h: 4 },
+										"Collapsed content"
+									),
+									new h.span(
+										{ textColor: "body-secondary" },
+										"Toggleable via the navbar brand."
+									),
+								])
 							),
 							new b.navbar.container(
 								{ theme: "dark", bgColor: "body-tertiary" },
@@ -670,8 +1022,12 @@ export const navbar: IContent = {
 				new e.text(
 					"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{nav:docs/components/offcanvas::offcanvas component}}. Bootstrap extend both the offcanvas default styles and use Bootstrap {{expand}} property to create a dynamic and flexible navigation sidebar."
 				),
-				new e.text("In the example below, to create an offcanvas navbar that is always collapsed across all breakpoints, omit the {{expand}} property entirely."),
-				new e.text("Use {{b.navbar.toggle.offcanvas}} to toggle {{b.offcanvas.container}}."),
+				new e.text(
+					"In the example below, to create an offcanvas navbar that is always collapsed across all breakpoints, omit the {{expand}} property entirely."
+				),
+				new e.text(
+					"Use {{b.navbar.toggle.offcanvas}} to toggle {{b.offcanvas.container}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -691,7 +1047,13 @@ export const navbar: IContent = {
 										labelledby: "offcanvasNavbarLabel",
 									},
 									[
-										new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasNavbarLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
+										new b.offcanvas.header([
+											new b.offcanvas.title(
+												{ id: "offcanvasNavbarLabel" },
+												"Offcanvas"
+											),
+											new b.offcanvas.btnclose(),
+										]),
 										new b.offcanvas.body([
 											new b.navbar.itemcontainer(
 												{
@@ -700,23 +1062,57 @@ export const navbar: IContent = {
 													paddingEnd: 3,
 												},
 												[
-													new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-													new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+													new b.navbar.item(
+														new b.navbar.link(
+															{ href: "#", active: true },
+															"Home"
+														)
+													),
+													new b.navbar.item(
+														new b.navbar.link({ href: "#" }, "Link")
+													),
 													new b.navbar.item({ dropdown: true }, [
-														new b.dropdown.button({ navItem: true }, "Dropdown"),
-														new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+														new b.dropdown.button(
+															{ navItem: true },
+															"Dropdown"
+														),
+														new b.dropdown.menu([
+															new b.dropdown.item(
+																{ href: "#" },
+																"Action"
+															),
+															new b.dropdown.item(
+																{ href: "#" },
+																"Another action"
+															),
+															new b.dropdown.divider(),
+															new b.dropdown.item(
+																{ href: "#" },
+																"Something else here"
+															),
+														]),
 													]),
 												]
 											),
-											new h.form({ display: "flex", role: "search", marginTop: 3 }, [
-												new b.input({
-													type: "search",
-													marginEnd: 2,
-													placeholder: "Search",
-													label: "Search",
-												}),
-												new b.button({ type: "submit", color: "success", outline: true }, "Search"),
-											]),
+											new h.form(
+												{ display: "flex", role: "search", marginTop: 3 },
+												[
+													new b.input({
+														type: "search",
+														marginEnd: 2,
+														placeholder: "Search",
+														label: "Search",
+													}),
+													new b.button(
+														{
+															type: "submit",
+															color: "success",
+															outline: true,
+														},
+														"Search"
+													),
+												]
+											),
 										]),
 									]
 								),
@@ -725,7 +1121,9 @@ export const navbar: IContent = {
 					},
 				}),
 
-				new e.text("To create an offcanvas navbar that expands into a normal navbar at a specific breakpoint like {{lg}}, use {{expand:'lg'}}."),
+				new e.text(
+					"To create an offcanvas navbar that expands into a normal navbar at a specific breakpoint like {{lg}}, use {{expand:'lg'}}."
+				),
 
 				new e.codepreview({
 					type: "js",
@@ -773,7 +1171,13 @@ export const navbar: IContent = {
 										labelledby: "offcanvasLgNavbarLabel",
 									},
 									[
-										new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasLgNavbarLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
+										new b.offcanvas.header([
+											new b.offcanvas.title(
+												{ id: "offcanvasLgNavbarLabel" },
+												"Offcanvas"
+											),
+											new b.offcanvas.btnclose(),
+										]),
 										new b.offcanvas.body([
 											new b.navbar.itemcontainer(
 												{
@@ -782,23 +1186,66 @@ export const navbar: IContent = {
 													paddingEnd: 3,
 												},
 												[
-													new b.navbar.item({ paddingTop: "lg-1" }, new b.navbar.link({ href: "#", active: true }, "Home")),
-													new b.navbar.item({ paddingTop: "lg-1" }, new b.navbar.link({ href: "#" }, "Link")),
-													new b.navbar.item({ dropdown: true, paddingTop: "lg-1" }, [
-														new b.dropdown.button({ navItem: true }, "Dropdown"),
-														new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
-													]),
+													new b.navbar.item(
+														{ paddingTop: "lg-1" },
+														new b.navbar.link(
+															{ href: "#", active: true },
+															"Home"
+														)
+													),
+													new b.navbar.item(
+														{ paddingTop: "lg-1" },
+														new b.navbar.link({ href: "#" }, "Link")
+													),
+													new b.navbar.item(
+														{ dropdown: true, paddingTop: "lg-1" },
+														[
+															new b.dropdown.button(
+																{ navItem: true },
+																"Dropdown"
+															),
+															new b.dropdown.menu([
+																new b.dropdown.item(
+																	{ href: "#" },
+																	"Action"
+																),
+																new b.dropdown.item(
+																	{ href: "#" },
+																	"Another action"
+																),
+																new b.dropdown.divider(),
+																new b.dropdown.item(
+																	{ href: "#" },
+																	"Something else here"
+																),
+															]),
+														]
+													),
 												]
 											),
-											new h.form({ hstack: true, role: "search", marginTop: [3, "lg-0"] }, [
-												new b.input({
-													type: "search",
-													marginEnd: 2,
-													placeholder: "Search",
-													label: "Search",
-												}),
-												new b.button({ type: "submit", color: "success", outline: true }, "Search"),
-											]),
+											new h.form(
+												{
+													hstack: true,
+													role: "search",
+													marginTop: [3, "lg-0"],
+												},
+												[
+													new b.input({
+														type: "search",
+														marginEnd: 2,
+														placeholder: "Search",
+														label: "Search",
+													}),
+													new b.button(
+														{
+															type: "submit",
+															color: "success",
+															outline: true,
+														},
+														"Search"
+													),
+												]
+											),
 										]),
 									]
 								),
@@ -807,7 +1254,9 @@ export const navbar: IContent = {
 					},
 				}),
 
-				new e.text("When using offcanvas in a dark navbar, you just need to set {{theme:'dark'}}."),
+				new e.text(
+					"When using offcanvas in a dark navbar, you just need to set {{theme:'dark'}}."
+				),
 
 				new e.code({
 					db: getContentCode(db),
@@ -828,7 +1277,13 @@ export const navbar: IContent = {
 										labelledby: "offcanvasDarkNavbarLabel",
 									},
 									[
-										new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasDarkNavbarLabel" }, "Dark offcanvas"), new b.offcanvas.btnclose()]),
+										new b.offcanvas.header([
+											new b.offcanvas.title(
+												{ id: "offcanvasDarkNavbarLabel" },
+												"Dark offcanvas"
+											),
+											new b.offcanvas.btnclose(),
+										]),
 										new b.offcanvas.body([
 											new b.navbar.itemcontainer(
 												{
@@ -837,23 +1292,57 @@ export const navbar: IContent = {
 													paddingEnd: 3,
 												},
 												[
-													new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-													new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+													new b.navbar.item(
+														new b.navbar.link(
+															{ href: "#", active: true },
+															"Home"
+														)
+													),
+													new b.navbar.item(
+														new b.navbar.link({ href: "#" }, "Link")
+													),
 													new b.navbar.item({ dropdown: true }, [
-														new b.dropdown.button({ navItem: true }, "Dropdown"),
-														new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+														new b.dropdown.button(
+															{ navItem: true },
+															"Dropdown"
+														),
+														new b.dropdown.menu([
+															new b.dropdown.item(
+																{ href: "#" },
+																"Action"
+															),
+															new b.dropdown.item(
+																{ href: "#" },
+																"Another action"
+															),
+															new b.dropdown.divider(),
+															new b.dropdown.item(
+																{ href: "#" },
+																"Something else here"
+															),
+														]),
 													]),
 												]
 											),
-											new h.form({ display: "flex", role: "search", marginTop: 3 }, [
-												new b.input({
-													type: "search",
-													marginEnd: 2,
-													placeholder: "Search",
-													label: "Search",
-												}),
-												new b.button({ type: "submit", color: "success", outline: true }, "Search"),
-											]),
+											new h.form(
+												{ display: "flex", role: "search", marginTop: 3 },
+												[
+													new b.input({
+														type: "search",
+														marginEnd: 2,
+														placeholder: "Search",
+														label: "Search",
+													}),
+													new b.button(
+														{
+															type: "submit",
+															color: "success",
+															outline: true,
+														},
+														"Search"
+													),
+												]
+											),
 										]),
 									]
 								),
@@ -871,7 +1360,9 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, navbars now use local CSS variables on {{.navbar}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, navbars now use local CSS variables on {{.navbar}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -918,7 +1409,9 @@ export const navbar: IContent = {
 					`,
 				}),
 
-				new e.text("Customization through CSS variables can be seen on the {{.navbar-dark}} class where Bootstrap override specific values without adding duplicate CSS selectors."),
+				new e.text(
+					"Customization through CSS variables can be seen on the {{.navbar-dark}} class where Bootstrap override specific values without adding duplicate CSS selectors."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -979,7 +1472,9 @@ export const navbar: IContent = {
 					`,
 				}),
 
-				new e.text("Variables for the {{nav:docs/components/navbar#color_schemes::dark navbar}}:"),
+				new e.text(
+					"Variables for the {{nav:docs/components/navbar#color_schemes::dark navbar}}:"
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -1001,7 +1496,9 @@ export const navbar: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass loop"),
-				new e.text("{{nav:docs/components/navbar#responsive_behaviors::Responsive navbar expand/collapse classes}} (e.g., {{.navbar-expand-lg}}) are combined with the {{$breakpoints}} map and generated through a loop in {{scss/_navbar.scss}}."),
+				new e.text(
+					"{{nav:docs/components/navbar#responsive_behaviors::Responsive navbar expand/collapse classes}} (e.g., {{.navbar-expand-lg}}) are combined with the {{$breakpoints}} map and generated through a loop in {{scss/_navbar.scss}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_navbar.scss",
@@ -1081,5 +1578,516 @@ export const navbar: IContent = {
 			]),
 		];
 	},
-
+	db: [
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.toggle.collapse({
+target: "#navbarSupportedContent",
+controlfor: "navbarSupportedContent",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarSupportedContent" }, [
+new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item({ dropdown: true }, [
+new b.dropdown.button({ navItem: true }, "Dropdown"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+]),
+new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Navbar"))),
+new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ marginBottom: 0, class: "h1" }, "Navbar"))),
+];
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, new b.icon({ textColor: "primary", id: "bootstrap" }))));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, new b.caption({ icon: new b.icon({ textColor: "primary", id: "bootstrap" }) }, "Bootstrap"))));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.toggle.collapse({
+target: "#navbarNavContent",
+controlfor: "navbarNavContent",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarNavContent" }, [
+new b.navbar.itemcontainer([
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
+new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.toggle.collapse({
+target: "#navbarNavAltMarkup",
+controlfor: "navbarNavAltMarkup",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarNavAltMarkup" }, [
+new h.div({ class: "navbar-nav" }, [new b.navbar.link({ href: "#", active: true }, "Home"), new b.navbar.link({ href: "#" }, "Features"), new b.navbar.link({ href: "#" }, "Pricing"), new b.navbar.link({ href: "#", disabled: true }, "Disabled")]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.toggle.collapse({
+target: "#navbarNavDropdown",
+controlfor: "navbarNavDropdown",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarNavDropdown" }, [
+new b.navbar.itemcontainer([
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
+new b.navbar.item({ dropdown: true }, [
+new b.dropdown.button({ navItem: true, href: "#" }, "Dropdown link"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+])));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand("Navbar"),
+new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.inputgroup.container([
+new b.inputgroup.text({ id: "basic-addon1" }, "@"),
+new b.input({
+type: "text",
+describedby: "basic-addon1",
+label: "Username",
+placeholder: "Username",
+}),
+])));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new h.form({ container: "fluid", justifyContent: "start" }, [new b.button({ color: "success", outline: true, marginEnd: 2 }, "Main button"), new b.button({ color: "secondary", outline: true, weight: "sm" }, "Smaller button")]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.text("Navbar text with an inline element")));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar w/ text"),
+new b.navbar.toggle.collapse({
+target: "#navbarText",
+controlfor: "navbarText",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarText" }, [
+new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
+]),
+new b.navbar.text("Navbar text with an inline element"),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+const navbarItem = (btnColor) => {
+let id = core.UUID();
+return new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.toggle.collapse({
+target: \`#\${id}\`,
+controlfor: id,
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: id }, [
+new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "About")),
+]),
+new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: btnColor, outline: true }, "Search"),
+]),
+]),
+]);
+};
+return [new b.navbar.container({ bgColor: "dark", theme: "dark" }, navbarItem("light")), new b.navbar.container({ bgColor: "primary", theme: "dark" }, navbarItem("light")), new b.navbar.container({ style: { backgroundColor: "#e3f2fd" } }, navbarItem("primary"))];
+}`,
+		},
+		{
+			source: `() => {
+return new h.div({ container: true }, new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Navbar"))));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "md" }, new b.navbar.brand({ href: "#" }, "Navbar")));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Default")));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", fixed: "top" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Fixed top")));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", fixed: "bottom" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Fixed bottom")));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", sticky: "top" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Sticky top")));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", sticky: "bottom" }, new b.navbar.innercontainer({ container: "fluid" }, new b.navbar.brand({ href: "#" }, "Sticky bottom")));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar scroll"),
+new b.navbar.toggle.collapse({
+target: "#navbarScroll",
+controlfor: "navbarScroll",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarScroll" }, [
+new b.navbar.itemcontainer({
+marginEnd: "auto",
+marginBottom: [2, "lg-0"],
+scroll: true,
+scrollHeight: "100px",
+}, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item({ dropdown: true }, [
+new b.dropdown.button({ navItem: true }, "Link"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Link")),
+]),
+new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.toggle.collapse({
+target: "#navbarTogglerDemo01",
+controlfor: "navbarTogglerDemo01",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarTogglerDemo01" }, [
+new b.navbar.brand({ href: "#" }, "Hidden brand"),
+new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+]),
+new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.toggle.collapse({
+target: "#navbarTogglerDemo02",
+controlfor: "navbarTogglerDemo02",
+label: "Toggle navigation",
+}),
+new b.navbar.collapse({ id: "navbarTogglerDemo02" }, [
+new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+]),
+new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.toggle.collapse({
+target: "#navbarTogglerDemo03",
+controlfor: "navbarTogglerDemo03",
+label: "Toggle navigation",
+}),
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.collapse({ id: "navbarTogglerDemo03" }, [
+new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item(new b.navbar.link({ href: "#", disabled: true }, "Disabled")),
+]),
+new h.form({ display: "flex", role: "search" }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new h.div([
+new b.collapse.container({ id: "navbarToggleExternalContent" }, new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [new h.h(5, { textColor: "body-emphasis", h: 4 }, "Collapsed content"), new h.span({ textColor: "body-secondary" }, "Toggleable via the navbar brand.")])),
+new b.navbar.container({ theme: "dark", bgColor: "body-tertiary" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Navbar"),
+new b.navbar.toggle.collapse({
+target: "#navbarToggleExternalContent",
+controlfor: "navbarToggleExternalContent",
+label: "Toggle navigation",
+}),
+])),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", fixed: "top" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Offcanvas navbar"),
+new b.navbar.toggle.offcanvas({
+target: "#offcanvasNavbar",
+controlfor: "offcanvasNavbar",
+label: "Toggle navigation",
+}),
+new b.offcanvas.container({
+id: "offcanvasNavbar",
+placement: "end",
+labelledby: "offcanvasNavbarLabel",
+}, [
+new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasNavbarLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
+new b.offcanvas.body([
+new b.navbar.itemcontainer({
+justifyContent: "end",
+flex: "grow-1",
+paddingEnd: 3,
+}, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item({ dropdown: true }, [
+new b.dropdown.button({ navItem: true }, "Dropdown"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+]),
+new h.form({ display: "flex", role: "search", marginTop: 3 }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ bgColor: "body-tertiary", expand: "lg", fixed: "top" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Offcanvas lg navbar"),
+new b.navbar.toggle.offcanvas({
+target: "#offcanvasLgNavbar",
+controlfor: "offcanvasLgNavbar",
+label: "Toggle navigation",
+}),
+new b.offcanvas.container({
+id: "offcanvasLgNavbar",
+placement: "end",
+labelledby: "offcanvasLgNavbarLabel",
+}, [
+new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasLgNavbarLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
+new b.offcanvas.body([
+new b.navbar.itemcontainer({
+justifyContent: "end",
+flex: "grow-1",
+paddingEnd: 3,
+}, [
+new b.navbar.item({ paddingTop: "lg-1" }, new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item({ paddingTop: "lg-1" }, new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item({ dropdown: true, paddingTop: "lg-1" }, [
+new b.dropdown.button({ navItem: true }, "Dropdown"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+]),
+new h.form({ hstack: true, role: "search", marginTop: [3, "lg-0"] }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]),
+]));
+}`,
+		},
+		{
+			source: `() => {
+return new b.navbar.container({ theme: "dark", bgColor: "body-tertiary", fixed: "top" }, new b.navbar.innercontainer({ container: "fluid" }, [
+new b.navbar.brand({ href: "#" }, "Offcanvas dark navbar"),
+new b.navbar.toggle.offcanvas({
+target: "#offcanvasDarkNavbar",
+controlfor: "offcanvasDarkNavbar",
+label: "Toggle navigation",
+}),
+new b.offcanvas.container({
+id: "offcanvasDarkNavbar",
+placement: "end",
+labelledby: "offcanvasDarkNavbarLabel",
+}, [
+new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasDarkNavbarLabel" }, "Dark offcanvas"), new b.offcanvas.btnclose()]),
+new b.offcanvas.body([
+new b.navbar.itemcontainer({
+justifyContent: "end",
+flex: "grow-1",
+paddingEnd: 3,
+}, [
+new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
+new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+new b.navbar.item({ dropdown: true }, [
+new b.dropdown.button({ navItem: true }, "Dropdown"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+]),
+new h.form({ display: "flex", role: "search", marginTop: 3 }, [
+new b.input({
+type: "search",
+marginEnd: 2,
+placeholder: "Search",
+label: "Search",
+}),
+new b.button({ type: "submit", color: "success", outline: true }, "Search"),
+]),
+]),
+]),
+]));
+}`,
+		},
+	],
 };

@@ -718,4 +718,194 @@ export const borders: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+const data = [
+true,
+"top",
+"end",
+"bottom",
+"start",
+];
+return data.map((i) => {
+return new h.span({
+border: i,
+});
+});
+}`,
+		},
+		{
+			source: `() => {
+const data = [
+true,
+"top",
+"end",
+"bottom",
+"start",
+];
+return data.map((i) => {
+return new h.span({
+border: true,
+borderNone: i,
+});
+});
+}`,
+		},
+		{
+			source: `() => {
+const data = [
+"primary",
+"primary-subtle",
+"secondary",
+"secondary-subtle",
+"success",
+"success-subtle",
+"danger",
+"danger-subtle",
+"warning",
+"warning-subtle",
+"info",
+"info-subtle",
+"light",
+"light-subtle",
+"dark",
+"dark-subtle",
+"black",
+"white",
+];
+return data.map((i) => {
+return new h.span({
+border: true,
+borderColor: i,
+});
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+b.form.input({
+borderColor: "success",
+container: { marginBottom: 4 },
+label: "Email address",
+type: "email",
+placeholder: "name@example.com",
+}),
+new h.div({
+border: "bottom",
+borderColor: "danger",
+class: "h4",
+paddingBottom: 2,
+marginBottom: 4,
+textColor: "danger",
+}, "Dangerous heading"),
+new h.div({
+border: true,
+borderColor: "info",
+borderNone: "start",
+padding: 3,
+bgColor: "info",
+bgOpacity: 10,
+rounded: "end",
+}, "Changing border color and width"),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.div({
+border: true,
+borderColor: "success",
+padding: 2,
+marginBottom: 2,
+}, "This is default success border"),
+new h.div({
+border: true,
+borderColor: "success",
+padding: 2,
+style: { "--bs-border-opacity": ".5" },
+}, "This is 50% opacity success border"),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [undefined, 75, 50, 25, 10].map((i, ix) => {
+return new h.div({
+border: true,
+borderColor: "success",
+borderOpacity: i,
+padding: 2,
+marginBottom: ix < 4 ? 2 : undefined,
+}, \`This is \${i ? i + "% opacity" : "default"} success border\`);
+});
+}`,
+		},
+		{
+			source: `() => {
+return [1, 2, 3, 4, 5].map((i) => {
+return new h.span({
+border: true,
+borderWidth: i,
+});
+});
+}`,
+		},
+		{
+			source: `() => {
+return [true, "top", "end", "bottom", "start", "circle", "pill"].map((i) => {
+return new h.img({
+src: \`https://picsum.photos/seed/bsts_0/\${i === "pill" ? "150" : "75"}/75.webp\`,
+alt: "...",
+rounded: i,
+});
+});
+}`,
+		},
+		{
+			source: `() => {
+return [0, 1, 2, 3, 4, 5].map((i) => {
+return new h.img({
+src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+alt: "...",
+roundedSize: i,
+});
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.img({
+src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+alt: "...",
+rounded: "bottom-1",
+}),
+new h.img({
+src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+alt: "...",
+rounded: "start-2",
+}),
+new h.img({
+src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+alt: "...",
+rounded: "end-circle",
+}),
+new h.img({
+src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+alt: "...",
+rounded: "start-pill",
+}),
+new h.img({
+src: \`https://picsum.photos/seed/bsts_0/75/75.webp\`,
+alt: "...",
+rounded: "top-0",
+roundedSize: 5,
+}),
+];
+}`,
+		},
+	],
 };

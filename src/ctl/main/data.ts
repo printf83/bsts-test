@@ -16,6 +16,7 @@ export const getContent = (docId: string, callback: (arg: IContent) => void) => 
 	if (tValue.length === 3 && tValue[0] === "docs") {
 		doc(docId, (c) => {
 			if (c) {
+				c.usedb = true;
 				c.docId = docId;
 				c.bookmark = isInBookmark(docId);
 				c.sourceUrl = `https://github.com/printf83/bsts-test/blob/beta/src/${docId}.ts`;

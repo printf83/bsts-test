@@ -67,4 +67,26 @@ export const vertical_rule: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return new b.verticalrule();
+}`,
+		},
+		{
+			source: `() => {
+return new h.div({ display: "flex", style: { height: "200px" } }, new b.verticalrule());
+}`,
+		},
+		{
+			source: `() => {
+return new h.div({ hstack: true, gap: 3 }, [
+new h.div({ padding: 2 }, "First item"),
+new h.div({ padding: 2, marginStart: "auto" }, "Second item"),
+new b.verticalrule(),
+new h.div({ padding: 2 }, "Third item"),
+]);
+}`,
+		},
+	],
 };

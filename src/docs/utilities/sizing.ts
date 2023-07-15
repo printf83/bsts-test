@@ -175,4 +175,41 @@ export const sizing: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return [25, 50, 75, 100, "auto"].map((i) => new h.div({ width: i, padding: 3 }, \`Width \${i}\${i !== "auto" ? "%" : ""}\`));
+}`,
+		},
+		{
+			source: `() => {
+return new h.div({ style: { height: "100px" } }, [25, 50, 75, 100, "auto"].map((i) => new h.div({
+height: i,
+display: "inline-block",
+marginEnd: 1,
+style: { width: "120px" },
+}, \`Height \${i}\${i !== "auto" ? "%" : ""}\`)));
+}`,
+		},
+		{
+			source: `() => {
+return new h.div({ style: { width: "50%", height: "100px" } }, new h.div({ maxWidth: 100, style: { width: "200%" } }, "Max-width 100%"));
+}`,
+		},
+		{
+			source: `() => {
+return new h.div({ style: { height: "100px" } }, new h.div({ maxHeight: 100, style: { width: "100px", height: "200px" } }, "Max-height 100%"));
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.div({ minViewWidth: 100 }, "Min-width 100vw"),
+new h.div({ minViewHeight: 100 }, "Min-height 100vh"),
+new h.div({ viewWidth: 100 }, "Width 100vw"),
+new h.div({ viewHeight: 100 }, "Height 100vh"),
+];
+}`,
+		},
+	],
 };

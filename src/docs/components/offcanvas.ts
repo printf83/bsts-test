@@ -4,7 +4,8 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const offcanvas: IContent = {
 	title: "Offcanvas",
-	description: "Build hidden sidebars into your project for navigation, shopping carts, and more with a few classes and Bootstrap JavaScript plugin.",
+	description:
+		"Build hidden sidebars into your project for navigation, shopping carts, and more with a few classes and Bootstrap JavaScript plugin.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
@@ -22,7 +23,9 @@ export const offcanvas: IContent = {
 						"Similar to modals, only one offcanvas can be shown at a time.",
 					],
 				}),
-				new e.text("{{b::Heads up!}} Given how CSS handles animations, you cannot use {{margin}} or {{translate}} on an {{.offcanvas}} element. Instead, use the class as an independent wrapping element."),
+				new e.text(
+					"{{b::Heads up!}} Given how CSS handles animations, you cannot use {{margin}} or {{translate}} on an {{.offcanvas}} element. Instead, use the class as an independent wrapping element."
+				),
 				new e.alert(
 					{ color: "info", callout: true },
 					" The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
@@ -50,7 +53,15 @@ export const offcanvas: IContent = {
 								debug: true,
 								labelledby: "offcanvasLabel",
 							},
-							[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body("Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.")]
+							[
+								new b.offcanvas.header([
+									new b.offcanvas.title({ id: "offcanvasLabel" }, "Offcanvas"),
+									new b.offcanvas.btnclose(),
+								]),
+								new b.offcanvas.body(
+									"Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here."
+								),
+							]
 						);
 					},
 				}),
@@ -60,26 +71,65 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.subtitle("Live demo"),
-				new e.text("Use the buttons below to show and hide an offcanvas element via JavaScript that toggles the {{b.offcanvas.container}} component."),
+				new e.text(
+					"Use the buttons below to show and hide an offcanvas element via JavaScript that toggles the {{b.offcanvas.container}} component."
+				),
 				new e.ul({
-					item: ["{{b.offcanvas.container}} hides content (default)", "{{hide:false}} to shows content"],
+					item: [
+						"{{b.offcanvas.container}} hides content (default)",
+						"{{hide:false}} to shows content",
+					],
 				}),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 }, "Link with href"),
-							new b.offcanvas.button({ target: "#offcanvasExample", controlfor: "offcanvasExample" }, "Button with data-bs-target"),
-							new b.offcanvas.container({ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" }, [
-								new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
-								new b.offcanvas.body([
-									new h.div("Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."),
-									new b.dropdown.container({ marginTop: 3 }, [
-										new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
-										new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+							new b.offcanvas.button(
+								{
+									href: "#offcanvasExample",
+									controlfor: "offcanvasExample",
+									marginEnd: 2,
+								},
+								"Link with href"
+							),
+							new b.offcanvas.button(
+								{ target: "#offcanvasExample", controlfor: "offcanvasExample" },
+								"Button with data-bs-target"
+							),
+							new b.offcanvas.container(
+								{ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" },
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasExampleLabel" },
+											"Offcanvas"
+										),
+										new b.offcanvas.btnclose(),
 									]),
-								]),
-							]),
+									new b.offcanvas.body([
+										new h.div(
+											"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+										),
+										new b.dropdown.container({ marginTop: 3 }, [
+											new b.dropdown.button(
+												{ color: "secondary" },
+												"Dropdown button"
+											),
+											new b.dropdown.menu([
+												new b.dropdown.item({ href: "#" }, "Action"),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Another action"
+												),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Something else here"
+												),
+											]),
+										]),
+									]),
+								]
+							),
 						];
 					},
 				}),
@@ -89,12 +139,17 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.subtitle("Body scrolling"),
-				new e.text("Scrolling the {{<body>}} element is disabled when an offcanvas and its backdrop are visible. Use the {{scroll:true}} property to enable {{<body>}} scrolling."),
+				new e.text(
+					"Scrolling the {{<body>}} element is disabled when an offcanvas and its backdrop are visible. Use the {{scroll:true}} property to enable {{<body>}} scrolling."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ target: "#offcanvasScrolling", controlfor: "offcanvasScrolling" }, "Enable body scrolling"),
+							new b.offcanvas.button(
+								{ target: "#offcanvasScrolling", controlfor: "offcanvasScrolling" },
+								"Enable body scrolling"
+							),
 							new b.offcanvas.container(
 								{
 									id: "offcanvasScrolling",
@@ -102,7 +157,20 @@ export const offcanvas: IContent = {
 									backdrop: false,
 									labelledby: "offcanvasScrollingLabel",
 								},
-								[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasScrollingLabel" }, "Offcanvas with body scrolling"), new b.offcanvas.btnclose()]), new b.offcanvas.body(new h.p("Try scrolling the rest of the page to see this option in action."))]
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasScrollingLabel" },
+											"Offcanvas with body scrolling"
+										),
+										new b.offcanvas.btnclose(),
+									]),
+									new b.offcanvas.body(
+										new h.p(
+											"Try scrolling the rest of the page to see this option in action."
+										)
+									),
+								]
 							),
 						];
 					},
@@ -113,12 +181,20 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.subtitle("Body scrolling and backdrop"),
-				new e.text("You can also enable {{<body>}} scrolling with a visible backdrop by set {{scroll:true}} and {{backdrop:true}}."),
+				new e.text(
+					"You can also enable {{<body>}} scrolling with a visible backdrop by set {{scroll:true}} and {{backdrop:true}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ target: "#offcanvasWithBothOptions", controlfor: "offcanvasWithBothOptions" }, "Enable both scrolling & backdrop"),
+							new b.offcanvas.button(
+								{
+									target: "#offcanvasWithBothOptions",
+									controlfor: "offcanvasWithBothOptions",
+								},
+								"Enable both scrolling & backdrop"
+							),
 							new b.offcanvas.container(
 								{
 									id: "offcanvasWithBothOptions",
@@ -126,7 +202,20 @@ export const offcanvas: IContent = {
 									backdrop: true,
 									labelledby: "offcanvasWithBothOptionsLabel",
 								},
-								[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasWithBothOptionsLabel" }, "Backdrop with scrolling"), new b.offcanvas.btnclose()]), new b.offcanvas.body(new h.p("Try scrolling the rest of the page to see this option in action."))]
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasWithBothOptionsLabel" },
+											"Backdrop with scrolling"
+										),
+										new b.offcanvas.btnclose(),
+									]),
+									new b.offcanvas.body(
+										new h.p(
+											"Try scrolling the rest of the page to see this option in action."
+										)
+									),
+								]
 							),
 						];
 					},
@@ -137,19 +226,35 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.subtitle("Static backdrop"),
-				new e.text("When {{backdrop}} is set to {{static}}, the offcanvas will not close when clicking outside of it."),
+				new e.text(
+					"When {{backdrop}} is set to {{static}}, the offcanvas will not close when clicking outside of it."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ target: "#staticBackdrop", controlfor: "staticBackdrop" }, "Toggle static offcanvas"),
+							new b.offcanvas.button(
+								{ target: "#staticBackdrop", controlfor: "staticBackdrop" },
+								"Toggle static offcanvas"
+							),
 							new b.offcanvas.container(
 								{
 									id: "staticBackdrop",
 									backdrop: "static",
 									labelledby: "staticBackdropLabel",
 								},
-								[new b.offcanvas.header([new b.offcanvas.title({ id: "staticBackdropLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body(new h.div("I will not close if you click outside of me."))]
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "staticBackdropLabel" },
+											"Offcanvas"
+										),
+										new b.offcanvas.btnclose(),
+									]),
+									new b.offcanvas.body(
+										new h.div("I will not close if you click outside of me.")
+									),
+								]
 							),
 						];
 					},
@@ -160,8 +265,13 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.title("Dark offcanvas"),
-				new e.text("Change the appearance of offcanvases to dark by setting {{theme:'dark'}} to {{b.offcanvas.container}}."),
-				new e.alert({ color: "warning", callout: true }, "{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes."),
+				new e.text(
+					"Change the appearance of offcanvases to dark by setting {{theme:'dark'}} to {{b.offcanvas.container}}."
+				),
+				new e.alert(
+					{ color: "warning", callout: true },
+					"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes."
+				),
 				new e.code({
 					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary", padding: 0 },
@@ -173,7 +283,16 @@ export const offcanvas: IContent = {
 								theme: "dark",
 								labelledby: "offcanvasDarkLabel",
 							},
-							[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasDarkLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body("Place offcanvas content here.")]
+							[
+								new b.offcanvas.header([
+									new b.offcanvas.title(
+										{ id: "offcanvasDarkLabel" },
+										"Offcanvas"
+									),
+									new b.offcanvas.btnclose(),
+								]),
+								new b.offcanvas.body("Place offcanvas content here."),
+							]
 						);
 					},
 				}),
@@ -199,7 +318,10 @@ export const offcanvas: IContent = {
 								},
 								"Toggle offcanvas"
 							),
-							new b.alert.container({ color: "info", display: ["none", "lg-block"] }, "Resize your browser to show the responsive offcanvas toggle."),
+							new b.alert.container(
+								{ color: "info", display: ["none", "lg-block"] },
+								"Resize your browser to show the responsive offcanvas toggle."
+							),
 							new b.offcanvas.container(
 								{
 									id: "offcanvasResponsive",
@@ -207,14 +329,39 @@ export const offcanvas: IContent = {
 									show: "lg",
 									labelledby: "offcanvasResponsiveLabel",
 								},
-								[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasResponsiveLabel" }, "Responsive offcanvas"), new b.offcanvas.btnclose({ target: "#offcanvasResponsive" })]), new b.offcanvas.body(new h.p({ marginBottom: 0 }, "This is content within an {{show:lg}}."))]
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasResponsiveLabel" },
+											"Responsive offcanvas"
+										),
+										new b.offcanvas.btnclose({
+											target: "#offcanvasResponsive",
+										}),
+									]),
+									new b.offcanvas.body(
+										new h.p(
+											{ marginBottom: 0 },
+											"This is content within an {{show:lg}}."
+										)
+									),
+								]
 							),
 						];
 					},
 				}),
-				new e.text("Responsive offcanvas classes are available across for each breakpoint."),
+				new e.text(
+					"Responsive offcanvas classes are available across for each breakpoint."
+				),
 				new e.ul({
-					item: ["{{show:true}}", "{{show:'sm'}}", "{{show:'md'}}", "{{show:'lg'}}", "{{show:'xl'}}", "{{show:'xxl'}}"],
+					item: [
+						"{{show:true}}",
+						"{{show:'sm'}}",
+						"{{show:'md'}}",
+						"{{show:'lg'}}",
+						"{{show:'xl'}}",
+						"{{show:'xxl'}}",
+					],
 				}),
 			]),
 
@@ -222,7 +369,9 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.title("Placement"),
-				new e.text("There’s no default placement for offcanvas components, so you must add one of the modifier classes below."),
+				new e.text(
+					"There’s no default placement for offcanvas components, so you must add one of the modifier classes below."
+				),
 				new e.ul({
 					item: [
 						"{{placement:'start'}} places offcanvas on the left of the viewport (shown above)",
@@ -236,14 +385,26 @@ export const offcanvas: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ target: "#offcanvasTop", controlfor: "offcanvasTop" }, "Toggle top offcanvas"),
+							new b.offcanvas.button(
+								{ target: "#offcanvasTop", controlfor: "offcanvasTop" },
+								"Toggle top offcanvas"
+							),
 							new b.offcanvas.container(
 								{
 									id: "offcanvasTop",
 									placement: "top",
 									labelledby: "offcanvasTopLabel",
 								},
-								[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasTopLabel" }, "Offcanvas top"), new b.offcanvas.btnclose()]), new b.offcanvas.body("...")]
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasTopLabel" },
+											"Offcanvas top"
+										),
+										new b.offcanvas.btnclose(),
+									]),
+									new b.offcanvas.body("..."),
+								]
 							),
 						];
 					},
@@ -252,14 +413,26 @@ export const offcanvas: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ target: "#offcanvasEnd", controlfor: "offcanvasEnd" }, "Toggle end offcanvas"),
+							new b.offcanvas.button(
+								{ target: "#offcanvasEnd", controlfor: "offcanvasEnd" },
+								"Toggle end offcanvas"
+							),
 							new b.offcanvas.container(
 								{
 									id: "offcanvasEnd",
 									placement: "end",
 									labelledby: "offcanvasEndLabel",
 								},
-								[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasEndLabel" }, "Offcanvas end"), new b.offcanvas.btnclose()]), new b.offcanvas.body("...")]
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasEndLabel" },
+											"Offcanvas end"
+										),
+										new b.offcanvas.btnclose(),
+									]),
+									new b.offcanvas.body("..."),
+								]
 							),
 						];
 					},
@@ -268,14 +441,26 @@ export const offcanvas: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ target: "#offcanvasBottom", controlfor: "offcanvasBottom" }, "Toggle bottom offcanvas"),
+							new b.offcanvas.button(
+								{ target: "#offcanvasBottom", controlfor: "offcanvasBottom" },
+								"Toggle bottom offcanvas"
+							),
 							new b.offcanvas.container(
 								{
 									id: "offcanvasBottom",
 									placement: "bottom",
 									labelledby: "offcanvasBottomLabel",
 								},
-								[new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasBottomLabel" }, "Offcanvas bottom"), new b.offcanvas.btnclose()]), new b.offcanvas.body("...")]
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasBottomLabel" },
+											"Offcanvas bottom"
+										),
+										new b.offcanvas.btnclose(),
+									]),
+									new b.offcanvas.body("..."),
+								]
 							),
 						];
 					},
@@ -286,7 +471,9 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.title("Accessibility"),
-				new e.text("Since the offcanvas panel is conceptually a modal dialog, be sure to add {{labelledby:'...'}}—referencing the offcanvas title—to {{b.offcanvas.title(id)}}. Note that you don’t need to add {{role:'dialog'}} since Bootstrap already add it via JavaScript."),
+				new e.text(
+					"Since the offcanvas panel is conceptually a modal dialog, be sure to add {{labelledby:'...'}}—referencing the offcanvas title—to {{b.offcanvas.title(id)}}. Note that you don’t need to add {{role:'dialog'}} since Bootstrap already add it via JavaScript."
+				),
 			]),
 
 			//----------------------
@@ -297,7 +484,9 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, offcanvas now use local CSS variables on {{.offcanvas}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, offcanvas now use local CSS variables on {{.offcanvas}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -351,7 +540,9 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.title("Usage"),
-				new e.text("The offcanvas plugin utilizes a few classes and attributes to handle the heavy lifting:"),
+				new e.text(
+					"The offcanvas plugin utilizes a few classes and attributes to handle the heavy lifting:"
+				),
 				new e.ul({
 					item: [
 						"{{show:false}} hides the content",
@@ -362,7 +553,9 @@ export const offcanvas: IContent = {
 						"{{placement:'bottom'}} hides the offcanvas on the bottom",
 					],
 				}),
-				new e.text("Add a dismiss button with the {{dismiss:'offcanvas'}} property, which triggers the JavaScript functionality. Be sure to use the {{b.button}} component with it for proper behavior across all devices."),
+				new e.text(
+					"Add a dismiss button with the {{dismiss:'offcanvas'}} property, which triggers the JavaScript functionality. Be sure to use the {{b.button}} component with it for proper behavior across all devices."
+				),
 			]),
 
 			//----------------------
@@ -382,7 +575,9 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.xsubtitle("Dismiss"),
-				new e.text("Dismissal can be achieved with the {{dismiss}} property on a {{b.button}} {{b::within the offcanvas}} as demonstrated below:"),
+				new e.text(
+					"Dismissal can be achieved with the {{dismiss}} property on a {{b.button}} {{b::within the offcanvas}} as demonstrated below:"
+				),
 				new e.codepreview({
 					type: "js",
 					code: `
@@ -390,7 +585,9 @@ export const offcanvas: IContent = {
 						b.button({dismiss:"offcanvas"});
 					`,
 				}),
-				new e.text("or on a button {{outside the offcanvas}} using the additional {{data-bs-target}} as demonstrated below:"),
+				new e.text(
+					"or on a button {{outside the offcanvas}} using the additional {{data-bs-target}} as demonstrated below:"
+				),
 				new e.codepreview({
 					type: "js",
 					code: `
@@ -431,9 +628,24 @@ export const offcanvas: IContent = {
 				new e.table({
 					item: [
 						["Name", "Type", "Default", "Description"],
-						["{{backdrop}}", "boolean or the string {{static}}", "{{true}}", "Apply a backdrop on body while offcanvas is open. Alternatively, specify {{static}} for a backdrop which doesn’t close the offcanvas when clicked."],
-						["{{keyboard}}", "boolean", "{{true}}", "Closes the offcanvas when escape key is pressed."],
-						["{{scroll}}", "boolean", "{{false}}", "Allow body scrolling while offcanvas is open."],
+						[
+							"{{backdrop}}",
+							"boolean or the string {{static}}",
+							"{{true}}",
+							"Apply a backdrop on body while offcanvas is open. Alternatively, specify {{static}} for a backdrop which doesn’t close the offcanvas when clicked.",
+						],
+						[
+							"{{keyboard}}",
+							"boolean",
+							"{{true}}",
+							"Closes the offcanvas when escape key is pressed.",
+						],
+						[
+							"{{scroll}}",
+							"boolean",
+							"{{false}}",
+							"Allow body scrolling while offcanvas is open.",
+						],
 					],
 				}),
 			]),
@@ -446,8 +658,12 @@ export const offcanvas: IContent = {
 					{ color: "danger", callout: true },
 					"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
 				),
-				new e.text("Activates your content as an offcanvas element. Accepts an optional options {{object}}."),
-				new e.text("You can create an offcanvas instance with the constructor, for example:"),
+				new e.text(
+					"Activates your content as an offcanvas element. Accepts an optional options {{object}}."
+				),
+				new e.text(
+					"You can create an offcanvas instance with the constructor, for example:"
+				),
 				new e.codepreview({
 					type: "js",
 					code: `
@@ -457,11 +673,26 @@ export const offcanvas: IContent = {
 				new e.table({
 					item: [
 						["Method", "Description"],
-						["{{getInstance}}", "{{i::Static}} method which allows you to get the offcanvas instance associated with a DOM element."],
-						["{{getOrCreateInstance	}}", "{{i::Static}} method which allows you to get the offcanvas instance associated with a DOM element, or create a new one in case it wasn’t initialized."],
-						["{{hide}}", "Hides an offcanvas element. {{b::Returns to the caller before the offcanvas element has actually been hidden}} (i.e. before the {{hidden.bs.offcanvas}} event occurs)."],
-						["{{show}}", "Shows an offcanvas element. {{b::Returns to the caller before the offcanvas element has actually been shown}} (i.e. before the {{shown.bs.offcanvas}} event occurs)."],
-						["{{toggles}}", "Toggles an offcanvas element to shown or hidden. {{b::Returns to the caller before the offcanvas element has actually been shown or hidden}} (i.e. before the {{shown.bs.offcanvas}} or {{hidden.bs.offcanvas}} event occurs)."],
+						[
+							"{{getInstance}}",
+							"{{i::Static}} method which allows you to get the offcanvas instance associated with a DOM element.",
+						],
+						[
+							"{{getOrCreateInstance	}}",
+							"{{i::Static}} method which allows you to get the offcanvas instance associated with a DOM element, or create a new one in case it wasn’t initialized.",
+						],
+						[
+							"{{hide}}",
+							"Hides an offcanvas element. {{b::Returns to the caller before the offcanvas element has actually been hidden}} (i.e. before the {{hidden.bs.offcanvas}} event occurs).",
+						],
+						[
+							"{{show}}",
+							"Shows an offcanvas element. {{b::Returns to the caller before the offcanvas element has actually been shown}} (i.e. before the {{shown.bs.offcanvas}} event occurs).",
+						],
+						[
+							"{{toggles}}",
+							"Toggles an offcanvas element to shown or hidden. {{b::Returns to the caller before the offcanvas element has actually been shown or hidden}} (i.e. before the {{shown.bs.offcanvas}} or {{hidden.bs.offcanvas}} event occurs).",
+						],
 					],
 				}),
 
@@ -474,7 +705,18 @@ export const offcanvas: IContent = {
 								id: "example-offcanvas",
 								labelledby: "example-offcanvas-label",
 							},
-							[new b.offcanvas.header([new b.offcanvas.title({ id: "example-offcanvas-label" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body("Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.")]
+							[
+								new b.offcanvas.header([
+									new b.offcanvas.title(
+										{ id: "example-offcanvas-label" },
+										"Offcanvas"
+									),
+									new b.offcanvas.btnclose(),
+								]),
+								new b.offcanvas.body(
+									"Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here."
+								),
+							]
 						);
 
 						const initButton = new b.button(
@@ -487,7 +729,12 @@ export const offcanvas: IContent = {
 											backdrop: false,
 											scroll: true,
 										});
-										e.console(event.target as Element, "b.offcanvas.init", oc ? oc : "null", oc ? "success" : "danger");
+										e.console(
+											event.target as Element,
+											"b.offcanvas.init",
+											oc ? oc : "null",
+											oc ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -500,7 +747,12 @@ export const offcanvas: IContent = {
 								on: {
 									click: (event) => {
 										const oc = b.offcanvas.getInstance("#example-offcanvas");
-										e.console(event.target as Element, "b.offcanvas.getInstance", oc ? oc : "null", oc ? "success" : "danger");
+										e.console(
+											event.target as Element,
+											"b.offcanvas.getInstance",
+											oc ? oc : "null",
+											oc ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -512,8 +764,14 @@ export const offcanvas: IContent = {
 								color: "success",
 								on: {
 									click: (event) => {
-										const oc = b.offcanvas.getOrCreateInstance("#example-offcanvas");
-										e.console(event.target as Element, "b.offcanvas.getOrCreateInstance", oc ? oc : "null", oc ? "success" : "danger");
+										const oc =
+											b.offcanvas.getOrCreateInstance("#example-offcanvas");
+										e.console(
+											event.target as Element,
+											"b.offcanvas.getOrCreateInstance",
+											oc ? oc : "null",
+											oc ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -524,7 +782,10 @@ export const offcanvas: IContent = {
 							{
 								on: {
 									click: (event) => {
-										b.offcanvas.show("#example-offcanvas", event.target as HTMLElement);
+										b.offcanvas.show(
+											"#example-offcanvas",
+											event.target as HTMLElement
+										);
 									},
 								},
 							},
@@ -546,7 +807,10 @@ export const offcanvas: IContent = {
 							{
 								on: {
 									click: (event) => {
-										b.offcanvas.toggle("#example-offcanvas", event.target as HTMLElement);
+										b.offcanvas.toggle(
+											"#example-offcanvas",
+											event.target as HTMLElement
+										);
 									},
 								},
 							},
@@ -565,7 +829,15 @@ export const offcanvas: IContent = {
 							"dispose"
 						);
 
-						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, showButton, hideButton, toggleButton, disposeButton]);
+						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+							initButton,
+							getInstanceButton,
+							getOrCreateInstanceButton,
+							showButton,
+							hideButton,
+							toggleButton,
+							disposeButton,
+						]);
 
 						const previewContainer = new h.div(
 							{
@@ -584,7 +856,10 @@ export const offcanvas: IContent = {
 							buttonGroup
 						);
 
-						const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+						const mainContainer = new h.div({ display: "flex" }, [
+							previewContainer,
+							controlContainer,
+						]);
 
 						return [mainContainer];
 					},
@@ -595,15 +870,32 @@ export const offcanvas: IContent = {
 
 			new e.section([
 				new e.subtitle("Events"),
-				new e.text("Bootstrap’s offcanvas class exposes a few events for hooking into offcanvas functionality."),
+				new e.text(
+					"Bootstrap’s offcanvas class exposes a few events for hooking into offcanvas functionality."
+				),
 				new e.table({
 					item: [
 						["Event type", "Description"],
-						["{{hide.bs.offcanvas}}", "This event is fired immediately when the {{hide}} instance method has been called."],
-						["{{hidden.bs.offcanvas}}", "This event is fired when an offcanvas has finished being hidden from the user (will wait for CSS transitions to complete)."],
-						["{{hidePrevented.bs.offcanvas}}", "This event is fired when an offcanvas is shown, its backdrop is {{static}} and a click outside of the offcanvas is performed. The event is also fired when the escape key is pressed and the {{keyboard}} option is set to {{false}}."],
-						["{{show.bs.offcanvas}}", "This event fires immediately when the {{show}} instance method is called."],
-						["{{shown.bs.offcanvas}}", "This event is fired when an offcanvas element has been made visible to the user (will wait for CSS transitions to complete)."],
+						[
+							"{{hide.bs.offcanvas}}",
+							"This event is fired immediately when the {{hide}} instance method has been called.",
+						],
+						[
+							"{{hidden.bs.offcanvas}}",
+							"This event is fired when an offcanvas has finished being hidden from the user (will wait for CSS transitions to complete).",
+						],
+						[
+							"{{hidePrevented.bs.offcanvas}}",
+							"This event is fired when an offcanvas is shown, its backdrop is {{static}} and a click outside of the offcanvas is performed. The event is also fired when the escape key is pressed and the {{keyboard}} option is set to {{false}}.",
+						],
+						[
+							"{{show.bs.offcanvas}}",
+							"This event fires immediately when the {{show}} instance method is called.",
+						],
+						[
+							"{{shown.bs.offcanvas}}",
+							"This event is fired when an offcanvas element has been made visible to the user (will wait for CSS transitions to complete).",
+						],
 					],
 				}),
 
@@ -617,7 +909,13 @@ export const offcanvas: IContent = {
 						}
 
 						return [
-							new b.offcanvas.button({ target: "#offcanvasEventExample", controlfor: "offcanvasEventExample" }, "Show offcanvas event"),
+							new b.offcanvas.button(
+								{
+									target: "#offcanvasEventExample",
+									controlfor: "offcanvasEventExample",
+								},
+								"Show offcanvas event"
+							),
 							new b.offcanvas.container(
 								{
 									id: "offcanvasEventExample",
@@ -626,28 +924,68 @@ export const offcanvas: IContent = {
 									on: {
 										"shown.bs.offcanvas": (event) => {
 											const evnt = event as EventWithTargetAndRelatedTarget;
-											e.console(evnt.target, "shown.bs.offcanvas", `Target: {{b::${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(evnt.relatedTarget)}}}`, "success");
+											e.console(
+												evnt.target,
+												"shown.bs.offcanvas",
+												`Target: {{b::${core.elemInfo(
+													evnt.target
+												)}}}{{br}}RelatedTarget: {{b::${core.elemInfo(
+													evnt.relatedTarget
+												)}}}`,
+												"success"
+											);
 										},
 
 										"hidden.bs.offcanvas": (event) => {
 											const target = event.target as Element;
-											e.console(target, "hidden.bs.offcanvas", `Target: {{b::${core.elemInfo(target)}}}`, "danger");
+											e.console(
+												target,
+												"hidden.bs.offcanvas",
+												`Target: {{b::${core.elemInfo(target)}}}`,
+												"danger"
+											);
 										},
 
 										"hidePrevented.bs.offcanvas": (event) => {
 											const target = event.target as Element;
 
-											e.console(target, "hidePrevented.bs.offcanvas", `Target: {{b::${core.elemInfo(target)}}}`, "warning");
+											e.console(
+												target,
+												"hidePrevented.bs.offcanvas",
+												`Target: {{b::${core.elemInfo(target)}}}`,
+												"warning"
+											);
 										},
 									},
 								},
 								[
-									new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasEventExampleLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasEventExampleLabel" },
+											"Offcanvas"
+										),
+										new b.offcanvas.btnclose(),
+									]),
 									new b.offcanvas.body([
-										new h.div("Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."),
+										new h.div(
+											"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+										),
 										new b.dropdown.container({ marginTop: 3 }, [
-											new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
-											new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+											new b.dropdown.button(
+												{ color: "secondary" },
+												"Dropdown button"
+											),
+											new b.dropdown.menu([
+												new b.dropdown.item({ href: "#" }, "Action"),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Another action"
+												),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Something else here"
+												),
+											]),
 										]),
 									]),
 								]
@@ -658,5 +996,248 @@ export const offcanvas: IContent = {
 			]),
 		];
 	},
-
+	db: [
+		{
+			source: `() => {
+return new b.offcanvas.container({
+debug: true,
+labelledby: "offcanvasLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body("Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.")]);
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 }, "Link with href"),
+new b.offcanvas.button({ target: "#offcanvasExample", controlfor: "offcanvasExample" }, "Button with data-bs-target"),
+new b.offcanvas.container({ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" }, [
+new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
+new b.offcanvas.body([
+new h.div("Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."),
+new b.dropdown.container({ marginTop: 3 }, [
+new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+]),
+]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ target: "#offcanvasScrolling", controlfor: "offcanvasScrolling" }, "Enable body scrolling"),
+new b.offcanvas.container({
+id: "offcanvasScrolling",
+scroll: true,
+backdrop: false,
+labelledby: "offcanvasScrollingLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasScrollingLabel" }, "Offcanvas with body scrolling"), new b.offcanvas.btnclose()]), new b.offcanvas.body(new h.p("Try scrolling the rest of the page to see this option in action."))]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ target: "#offcanvasWithBothOptions", controlfor: "offcanvasWithBothOptions" }, "Enable both scrolling & backdrop"),
+new b.offcanvas.container({
+id: "offcanvasWithBothOptions",
+scroll: true,
+backdrop: true,
+labelledby: "offcanvasWithBothOptionsLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasWithBothOptionsLabel" }, "Backdrop with scrolling"), new b.offcanvas.btnclose()]), new b.offcanvas.body(new h.p("Try scrolling the rest of the page to see this option in action."))]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ target: "#staticBackdrop", controlfor: "staticBackdrop" }, "Toggle static offcanvas"),
+new b.offcanvas.container({
+id: "staticBackdrop",
+backdrop: "static",
+labelledby: "staticBackdropLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "staticBackdropLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body(new h.div("I will not close if you click outside of me."))]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return new b.offcanvas.container({
+debug: true,
+theme: "dark",
+labelledby: "offcanvasDarkLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasDarkLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body("Place offcanvas content here.")]);
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({
+target: "#offcanvasResponsive",
+controlfor: "offcanvasResponsive",
+display: "lg-none",
+}, "Toggle offcanvas"),
+new b.alert.container({ color: "info", display: ["none", "lg-block"] }, "Resize your browser to show the responsive offcanvas toggle."),
+new b.offcanvas.container({
+id: "offcanvasResponsive",
+placement: "end",
+show: "lg",
+labelledby: "offcanvasResponsiveLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasResponsiveLabel" }, "Responsive offcanvas"), new b.offcanvas.btnclose({ target: "#offcanvasResponsive" })]), new b.offcanvas.body(new h.p({ marginBottom: 0 }, "This is content within an {{show:lg}}."))]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ target: "#offcanvasTop", controlfor: "offcanvasTop" }, "Toggle top offcanvas"),
+new b.offcanvas.container({
+id: "offcanvasTop",
+placement: "top",
+labelledby: "offcanvasTopLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasTopLabel" }, "Offcanvas top"), new b.offcanvas.btnclose()]), new b.offcanvas.body("...")]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ target: "#offcanvasEnd", controlfor: "offcanvasEnd" }, "Toggle end offcanvas"),
+new b.offcanvas.container({
+id: "offcanvasEnd",
+placement: "end",
+labelledby: "offcanvasEndLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasEndLabel" }, "Offcanvas end"), new b.offcanvas.btnclose()]), new b.offcanvas.body("...")]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ target: "#offcanvasBottom", controlfor: "offcanvasBottom" }, "Toggle bottom offcanvas"),
+new b.offcanvas.container({
+id: "offcanvasBottom",
+placement: "bottom",
+labelledby: "offcanvasBottomLabel",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasBottomLabel" }, "Offcanvas bottom"), new b.offcanvas.btnclose()]), new b.offcanvas.body("...")]),
+];
+}`,
+		},
+		{
+			source: `() => {
+const offcanvasContainer = new b.offcanvas.container({
+id: "example-offcanvas",
+labelledby: "example-offcanvas-label",
+}, [new b.offcanvas.header([new b.offcanvas.title({ id: "example-offcanvas-label" }, "Offcanvas"), new b.offcanvas.btnclose()]), new b.offcanvas.body("Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.")]);
+const initButton = new b.button({
+color: "success",
+on: {
+click: (event) => {
+const oc = b.offcanvas.init("#example-offcanvas", {
+keyboard: false,
+backdrop: false,
+scroll: true,
+});
+e.console(event.target, "b.offcanvas.init", oc ? oc : "null", oc ? "success" : "danger");
+},
+},
+}, "init");
+const getInstanceButton = new b.button({
+color: "success",
+on: {
+click: (event) => {
+const oc = b.offcanvas.getInstance("#example-offcanvas");
+e.console(event.target, "b.offcanvas.getInstance", oc ? oc : "null", oc ? "success" : "danger");
+},
+},
+}, "getInstance");
+const getOrCreateInstanceButton = new b.button({
+color: "success",
+on: {
+click: (event) => {
+const oc = b.offcanvas.getOrCreateInstance("#example-offcanvas");
+e.console(event.target, "b.offcanvas.getOrCreateInstance", oc ? oc : "null", oc ? "success" : "danger");
+},
+},
+}, "getOrCreateInstance");
+const showButton = new b.button({
+on: {
+click: (event) => {
+b.offcanvas.show("#example-offcanvas", event.target);
+},
+},
+}, "show");
+const hideButton = new b.button({
+on: {
+click: () => {
+b.offcanvas.hide("#example-offcanvas");
+},
+},
+}, "hide");
+const toggleButton = new b.button({
+on: {
+click: (event) => {
+b.offcanvas.toggle("#example-offcanvas", event.target);
+},
+},
+}, "toggle");
+const disposeButton = new b.button({
+color: "danger",
+on: {
+click: () => {
+b.offcanvas.dispose("#example-offcanvas");
+},
+},
+}, "dispose");
+const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, showButton, hideButton, toggleButton, disposeButton]);
+const previewContainer = new h.div({
+width: 100,
+marginEnd: 3,
+bgColor: "body-tertiary",
+rounded: true,
+}, offcanvasContainer);
+const controlContainer = new h.div({
+marginStart: "auto",
+}, buttonGroup);
+const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+return [mainContainer];
+}`,
+		},
+		{
+			source: `() => {
+return [
+new b.offcanvas.button({ target: "#offcanvasEventExample", controlfor: "offcanvasEventExample" }, "Show offcanvas event"),
+new b.offcanvas.container({
+id: "offcanvasEventExample",
+labelledby: "offcanvasEventExampleLabel",
+backdrop: "static",
+on: {
+"shown.bs.offcanvas": (event) => {
+const evnt = event;
+e.console(evnt.target, "shown.bs.offcanvas", \`Target: {{b::\${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::\${core.elemInfo(evnt.relatedTarget)}}}\`, "success");
+},
+"hidden.bs.offcanvas": (event) => {
+const target = event.target;
+e.console(target, "hidden.bs.offcanvas", \`Target: {{b::\${core.elemInfo(target)}}}\`, "danger");
+},
+"hidePrevented.bs.offcanvas": (event) => {
+const target = event.target;
+e.console(target, "hidePrevented.bs.offcanvas", \`Target: {{b::\${core.elemInfo(target)}}}\`, "warning");
+},
+},
+}, [
+new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasEventExampleLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
+new b.offcanvas.body([
+new h.div("Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."),
+new b.dropdown.container({ marginTop: 3 }, [
+new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
+new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+]),
+]),
+]),
+];
+}`,
+		},
+	],
 };

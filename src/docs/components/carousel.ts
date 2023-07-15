@@ -4,7 +4,8 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const carousel: IContent = {
 	title: "Carousel",
-	description: "A slideshow component for cycling through elements—images or slides of text—like a carousel.",
+	description:
+		"A slideshow component for cycling through elements—images or slides of text—like a carousel.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
@@ -29,7 +30,9 @@ export const carousel: IContent = {
 
 			new e.section([
 				new e.title("Basic examples"),
-				new e.text("Here is a basic example of a carousel with three slides. Note the previous/next controls. Bootstrap recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."),
+				new e.text(
+					"Here is a basic example of a carousel with three slides. Note the previous/next controls. Bootstrap recommend using {{b.carousel.inner.control.prev}} and {{b.carousel.inner.control.next}} component, but you can also use {{h.a}} elements with {{role:'button'}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -45,12 +48,22 @@ export const carousel: IContent = {
 							),
 							new b.carousel.inner.container(
 								[0, 1, 2, 3, 4, 5, 6].map((i, ix) => {
-									return new b.carousel.inner.item.container({ active: ix === 0 ? true : undefined }, [
-										new b.carousel.inner.item.img({
-											src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
-										}),
-										new b.carousel.inner.item.caption([new h.h(5, `Slide #${ix + 1}`), new h.p(`Some representative placeholder content for the slide #${ix + 1}.`)]),
-									]);
+									return new b.carousel.inner.item.container(
+										{ active: ix === 0 ? true : undefined },
+										[
+											new b.carousel.inner.item.img({
+												src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
+											}),
+											new b.carousel.inner.item.caption([
+												new h.h(5, `Slide #${ix + 1}`),
+												new h.p(
+													`Some representative placeholder content for the slide #${
+														ix + 1
+													}.`
+												),
+											]),
+										]
+									);
 								})
 							),
 							new b.carousel.inner.control.prev({ target: "#carouselExample" }),
@@ -81,7 +94,14 @@ export const carousel: IContent = {
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
-									caption: [new h.h(5, `Slide #${i + 1}`), new h.p(`Some representative placeholder content for the slide #${i + 1}.`)],
+									caption: [
+										new h.h(5, `Slide #${i + 1}`),
+										new h.p(
+											`Some representative placeholder content for the slide #${
+												i + 1
+											}.`
+										),
+									],
 								};
 							}),
 						});
@@ -93,7 +113,9 @@ export const carousel: IContent = {
 
 			new e.section([
 				new e.subtitle("Indicators"),
-				new e.text("You can add indicators to the carousel using {{itemIndicator:true}}, alongside the previous/next controls using {{itemControl:true}}. The indicators let users jump directly to a particular slide."),
+				new e.text(
+					"You can add indicators to the carousel using {{itemIndicator:true}}, alongside the previous/next controls using {{itemControl:true}}. The indicators let users jump directly to a particular slide."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -126,7 +148,14 @@ export const carousel: IContent = {
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
-									caption: [new h.h(5, `Slide #${i + 1}`), new h.p(`Some representative placeholder content for the slide #${i + 1}.`)],
+									caption: [
+										new h.h(5, `Slide #${i + 1}`),
+										new h.p(
+											`Some representative placeholder content for the slide #${
+												i + 1
+											}.`
+										),
+									],
 								};
 							}),
 						});
@@ -166,8 +195,12 @@ export const carousel: IContent = {
 				),
 				new e.text("{{bsts}} automaticly handle this."),
 				new e.alert({ color: "info", callout: true }, [
-					new h.p("For accessibility reasons, Bootstrap recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, Bootstrap recommend providing an additional button or control to explicitly pause/stop the carousel."),
-					new h.p("See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."),
+					new h.p(
+						"For accessibility reasons, Bootstrap recommend avoiding the use of autoplaying carousels. If your page does include an autoplaying carousel, Bootstrap recommend providing an additional button or control to explicitly pause/stop the carousel."
+					),
+					new h.p(
+						"See {{https://www.w3.org/TR/WCAG21/#pause-stop-hide::WCAG 2.1 Success Criterion 2.2.2 Pause, Stop, Hide}}."
+					),
 				]),
 				new e.code({
 					db: getContentCode(db),
@@ -184,8 +217,12 @@ export const carousel: IContent = {
 					},
 				}),
 
-				new e.text("When the {{ride}} property is set to {{true}}, rather than {{carousel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."),
-				new e.text("By default {{bsts}} set {{ride:true}} if {{itemControl:true}} and {{ride:'carousel'}} if {{itemControl:false}}. So it will only start after first user intraction."),
+				new e.text(
+					"When the {{ride}} property is set to {{true}}, rather than {{carousel}}, the carousel won’t automatically start to cycle on page load. Instead, it will only start after the first user interaction."
+				),
+				new e.text(
+					"By default {{bsts}} set {{ride:true}} if {{itemControl:true}} and {{ride:'carousel'}} if {{itemControl:false}}. So it will only start after first user intraction."
+				),
 
 				new e.code({
 					db: getContentCode(db),
@@ -207,7 +244,9 @@ export const carousel: IContent = {
 
 			new e.section([
 				new e.subtitle("Individual {{.carousel-item}} interval"),
-				new e.text("Add {{interval='<milisecond>'}} to a {{b.carousel.inner.item.container}} to change the amount of time to delay between automatically cycling to the next item."),
+				new e.text(
+					"Add {{interval='<milisecond>'}} to a {{b.carousel.inner.item.container}} to change the amount of time to delay between automatically cycling to the next item."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -228,7 +267,9 @@ export const carousel: IContent = {
 
 			new e.section([
 				new e.subtitle("Autoplaying carousels without controls"),
-				new e.text("Here’s a carousel with slides only. Note the presence of the .d-block and .w-100 on carousel images to prevent browser default image alignment."),
+				new e.text(
+					"Here’s a carousel with slides only. Note the presence of the .d-block and .w-100 on carousel images to prevent browser default image alignment."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -249,7 +290,9 @@ export const carousel: IContent = {
 
 			new e.section([
 				new e.title("Disable touch swiping"),
-				new e.text("Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} property to {{false}}."),
+				new e.text(
+					"Carousels support swiping left/right on touchscreen devices to move between slides. This can be disabled by setting the {{touch}} property to {{false}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -285,7 +328,12 @@ export const carousel: IContent = {
 							item: ["first", "second", "third", "fourth", "fifth"].map((i, ix) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${ix}/710/400.webp`,
-									caption: [new h.h(5, `${core.uppercaseFirst(i)} slide label`), new h.p(`Some representative placeholder content for the ${i} slide.`)],
+									caption: [
+										new h.h(5, `${core.uppercaseFirst(i)} slide label`),
+										new h.p(
+											`Some representative placeholder content for the ${i} slide.`
+										),
+									],
 								};
 							}),
 						});
@@ -310,7 +358,9 @@ export const carousel: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, carousel now use local CSS variables on {{.carousel}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, carousel now use local CSS variables on {{.carousel}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -385,17 +435,42 @@ export const carousel: IContent = {
 				new e.table({
 					item: [
 						["Name", "Type", "Default", "Description"],
-						["{{interval}}", "number", "{{5000}}", "The amount of time to delay between automatically cycling an item."],
-						["{{keyboard}}", "boolean", "{{true}}", "Whether the carousel should react to keyboard events."],
+						[
+							"{{interval}}",
+							"number",
+							"{{5000}}",
+							"The amount of time to delay between automatically cycling an item.",
+						],
+						[
+							"{{keyboard}}",
+							"boolean",
+							"{{true}}",
+							"Whether the carousel should react to keyboard events.",
+						],
 						[
 							"{{pause}}",
 							"string, boolean",
 							"{{'hover'}}",
 							"If set to {{'hover'}}, pauses the cycling of the carousel on {{mouseenter}} and resumes the cycling of the carousel on {{mouseleave}}. If set to {{false}}, hovering over the carousel won’t pause it. On touch-enabled devices, when set to {{'hover'}}, cycling will pause on {{touchend}} (once the user finished interacting with the carousel) for two intervals, before automatically resuming. This is in addition to the mouse behavior.",
 						],
-						["{{ride}}", "string, boolean", "{{false}}", "If set to {{true}}, autoplays the carousel after the user manually cycles the first item. If set to {{'carousel'}}, autoplays the carousel on load."],
-						["{{touch}}", "boolean", "{{true}}", "Whether the carousel should support left/right swipe interactions on touchscreen devices."],
-						["{{wrap}}", "boolean", "{{true}}", "Whether the carousel should cycle continuously or have hard stops."],
+						[
+							"{{ride}}",
+							"string, boolean",
+							"{{false}}",
+							"If set to {{true}}, autoplays the carousel after the user manually cycles the first item. If set to {{'carousel'}}, autoplays the carousel on load.",
+						],
+						[
+							"{{touch}}",
+							"boolean",
+							"{{true}}",
+							"Whether the carousel should support left/right swipe interactions on touchscreen devices.",
+						],
+						[
+							"{{wrap}}",
+							"boolean",
+							"{{true}}",
+							"Whether the carousel should cycle continuously or have hard stops.",
+						],
 					],
 				}),
 			]),
@@ -425,15 +500,39 @@ export const carousel: IContent = {
 				new e.table({
 					item: [
 						["Method", "Description"],
-						["{{cycle}}", "Starts cycling through the carousel items from left to right."],
-						["{{dispose}}", "Destroys an element’s carousel. (Removes stored data on the DOM element)"],
-						["{{getInstance}}", "Static method which allows you to get the carousel instance associated to a DOM element. You can use it like this: {{bootstrap.Carousel.getInstance(element)}}."],
-						["{{getOrCreateInstance}}", "Static method which returns a carousel instance associated to a DOM element, or creates a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Carousel.getOrCreateInstance(element)}}."],
-						["{{next}}", "Cycles to the next item. {{b::Returns to the caller before the next item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs)."],
-						["{{nextWhenVisible}}", "Don’t cycle carousel to next when the page, the carousel, or the carousel’s parent aren’t visible. {{b::Returns to the caller before the target item has been shown}}."],
+						[
+							"{{cycle}}",
+							"Starts cycling through the carousel items from left to right.",
+						],
+						[
+							"{{dispose}}",
+							"Destroys an element’s carousel. (Removes stored data on the DOM element)",
+						],
+						[
+							"{{getInstance}}",
+							"Static method which allows you to get the carousel instance associated to a DOM element. You can use it like this: {{bootstrap.Carousel.getInstance(element)}}.",
+						],
+						[
+							"{{getOrCreateInstance}}",
+							"Static method which returns a carousel instance associated to a DOM element, or creates a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Carousel.getOrCreateInstance(element)}}.",
+						],
+						[
+							"{{next}}",
+							"Cycles to the next item. {{b::Returns to the caller before the next item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
+						],
+						[
+							"{{nextWhenVisible}}",
+							"Don’t cycle carousel to next when the page, the carousel, or the carousel’s parent aren’t visible. {{b::Returns to the caller before the target item has been shown}}.",
+						],
 						["{{pause}}", "Stops the carousel from cycling through items."],
-						["{{prev}}", "Cycles to the previous item. {{b::Returns to the caller before the previous item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs)."],
-						["{{to}}", "Cycles the carousel to a particular frame (0 based, similar to an array). {{b::Returns to the caller before the target item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs)."],
+						[
+							"{{prev}}",
+							"Cycles to the previous item. {{b::Returns to the caller before the previous item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
+						],
+						[
+							"{{to}}",
+							"Cycles the carousel to a particular frame (0 based, similar to an array). {{b::Returns to the caller before the target item has been shown}} (e.g., before the {{slid.bs.carousel}} event occurs).",
+						],
 					],
 				}),
 
@@ -472,11 +571,19 @@ export const carousel: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.carousel.init("#example-carousel", {
-															interval: 1500,
-														});
+														const elem = b.carousel.init(
+															"#example-carousel",
+															{
+																interval: 1500,
+															}
+														);
 
-														e.console(event.target as Element, "b.carousel.init", elem ? elem : "null", elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.carousel.init",
+															elem ? elem : "null",
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -487,9 +594,17 @@ export const carousel: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.carousel.getInstance("#example-carousel");
+														const elem =
+															b.carousel.getInstance(
+																"#example-carousel"
+															);
 
-														e.console(event.target as Element, "b.carousel.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.carousel.getInstance",
+															elem ? elem : "null",
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -500,9 +615,17 @@ export const carousel: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.carousel.getOrCreateInstance("#example-carousel");
+														const elem =
+															b.carousel.getOrCreateInstance(
+																"#example-carousel"
+															);
 
-														e.console(event.target as Element, "b.carousel.getOrCreateInstance", elem, elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.carousel.getOrCreateInstance",
+															elem,
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -522,7 +645,10 @@ export const carousel: IContent = {
 											{
 												on: {
 													click: () => {
-														b.carousel.pause("#example-carousel", false);
+														b.carousel.pause(
+															"#example-carousel",
+															false
+														);
 													},
 												},
 											},
@@ -542,7 +668,9 @@ export const carousel: IContent = {
 											{
 												on: {
 													click: () => {
-														b.carousel.nextWhenVisible("#example-carousel");
+														b.carousel.nextWhenVisible(
+															"#example-carousel"
+														);
 													},
 												},
 											},
@@ -562,7 +690,10 @@ export const carousel: IContent = {
 											{
 												on: {
 													click: () => {
-														b.carousel.to("#example-carousel", core.rndBetween(0, 6));
+														b.carousel.to(
+															"#example-carousel",
+															core.rndBetween(0, 6)
+														);
 													},
 												},
 											},
@@ -591,16 +722,31 @@ export const carousel: IContent = {
 
 			new e.section([
 				new e.subtitle("Events"),
-				new e.text("Bootstrap’s carousel class exposes two events for hooking into carousel functionality. Both events have the following additional properties:"),
+				new e.text(
+					"Bootstrap’s carousel class exposes two events for hooking into carousel functionality. Both events have the following additional properties:"
+				),
 				new e.ul({
-					item: ["{{direction}} : The direction in which the carousel is sliding (either 'left' or 'right').", "{{relatedTarget}} : The DOM element that is being slid into place as the active item.", "{{from}} : The index of the current item", "{{to}} : The index of the next item"],
+					item: [
+						"{{direction}} : The direction in which the carousel is sliding (either 'left' or 'right').",
+						"{{relatedTarget}} : The DOM element that is being slid into place as the active item.",
+						"{{from}} : The index of the current item",
+						"{{to}} : The index of the next item",
+					],
 				}),
-				new e.text("All carousel events are fired at the carousel itself (i.e. at the {{<div class='carousel'>}})."),
+				new e.text(
+					"All carousel events are fired at the carousel itself (i.e. at the {{<div class='carousel'>}})."
+				),
 				new e.table({
 					item: [
 						["Event type", "Description"],
-						["{{slid.bs.carousel}}", "Fired when the carousel has completed its slide transition."],
-						["{{slide.bs.carousel}}", "Fires immediately when the slide instance method is invoked."],
+						[
+							"{{slid.bs.carousel}}",
+							"Fired when the carousel has completed its slide transition.",
+						],
+						[
+							"{{slide.bs.carousel}}",
+							"Fires immediately when the slide instance method is invoked.",
+						],
 					],
 				}),
 
@@ -618,7 +764,9 @@ export const carousel: IContent = {
 							}),
 							on: {
 								"slide.bs.carousel": (event) => {
-									let carouselEvent = (<unknown>event) as bootstrap.Carousel.Event;
+									let carouselEvent = (<unknown>(
+										event
+									)) as bootstrap.Carousel.Event;
 
 									e.console(
 										event.target as Element,
@@ -637,4 +785,288 @@ export const carousel: IContent = {
 			]),
 		];
 	},
+	db: [
+		{
+			source: `() => {
+return new b.carousel.container({ id: "carouselExample" }, [
+new b.carousel.indicators.container([0, 1, 2, 3, 4, 5, 6].map((_i, ix) => {
+return new b.carousel.indicators.button({
+target: "#carouselExample",
+slide: ix,
+active: ix === 0 ? true : undefined,
+});
+})),
+new b.carousel.inner.container([0, 1, 2, 3, 4, 5, 6].map((i, ix) => {
+return new b.carousel.inner.item.container({ active: ix === 0 ? true : undefined }, [
+new b.carousel.inner.item.img({
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+}),
+new b.carousel.inner.item.caption([new h.h(5, \`Slide #\${ix + 1}\`), new h.p(\`Some representative placeholder content for the slide #\${ix + 1}.\`)]),
+]);
+})),
+new b.carousel.inner.control.prev({ target: "#carouselExample" }),
+new b.carousel.inner.control.next({ target: "#carouselExample" }),
+]);
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+itemControl: true,
+itemIndicator: true,
+item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+caption: [new h.h(5, \`Slide #\${i + 1}\`), new h.p(\`Some representative placeholder content for the slide #\${i + 1}.\`)],
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+itemControl: true,
+itemIndicator: true,
+item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+itemControl: true,
+itemIndicator: true,
+item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+caption: [new h.h(5, \`Slide #\${i + 1}\`), new h.p(\`Some representative placeholder content for the slide #\${i + 1}.\`)],
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+fade: true,
+itemControl: true,
+item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+ride: "carousel",
+itemControl: true,
+item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+ride: true,
+itemControl: true,
+item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+itemControl: true,
+item: [1000, 2000, 3000, 4000, 5000, 6000, 7000].map((i, ix) => {
+return {
+interval: i,
+src: \`https://picsum.photos/seed/bsts_\${ix}/710/400.webp\`,
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+ride: "carousel",
+itemControl: false,
+item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+touch: false,
+itemControl: true,
+item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+theme: "dark",
+itemControl: true,
+item: ["first", "second", "third", "fourth", "fifth"].map((i, ix) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${ix}/710/400.webp\`,
+caption: [new h.h(5, \`\${core.uppercaseFirst(i)} slide label\`), new h.p(\`Some representative placeholder content for the \${i} slide.\`)],
+};
+}),
+});
+}`,
+		},
+		{
+			source: `() => {
+return [
+new h.div({ display: "flex", overflow: "auto" }, [
+new h.div({
+width: 100,
+marginEnd: 3,
+bgColor: "body-tertiary",
+rounded: true,
+position: "relative",
+}, new h.div({ position: "absolute", top: 50, start: 50, tMiddle: true }, new b.carousel.container({
+id: "example-carousel",
+itemIndicator: true,
+item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+}))),
+new h.div({ marginStart: "auto" }, new b.btngroup({ vertical: true, weight: "sm" }, [
+new b.button({
+color: "success",
+on: {
+click: (event) => {
+const elem = b.carousel.init("#example-carousel", {
+interval: 1500,
+});
+e.console(event.target, "b.carousel.init", elem ? elem : "null", elem ? "success" : "danger");
+},
+},
+}, "init"),
+new b.button({
+color: "success",
+on: {
+click: (event) => {
+const elem = b.carousel.getInstance("#example-carousel");
+e.console(event.target, "b.carousel.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+},
+},
+}, "getInstance"),
+new b.button({
+color: "success",
+on: {
+click: (event) => {
+const elem = b.carousel.getOrCreateInstance("#example-carousel");
+e.console(event.target, "b.carousel.getOrCreateInstance", elem, elem ? "success" : "danger");
+},
+},
+}, "getOrCreateInstance"),
+new b.button({
+on: {
+click: () => {
+b.carousel.cycle("#example-carousel");
+},
+},
+}, "cycle"),
+new b.button({
+on: {
+click: () => {
+b.carousel.pause("#example-carousel", false);
+},
+},
+}, "pause"),
+new b.button({
+on: {
+click: () => {
+b.carousel.next("#example-carousel");
+},
+},
+}, "next"),
+new b.button({
+on: {
+click: () => {
+b.carousel.nextWhenVisible("#example-carousel");
+},
+},
+}, "nextWhenVisible"),
+new b.button({
+on: {
+click: () => {
+b.carousel.prev("#example-carousel");
+},
+},
+}, "prev"),
+new b.button({
+on: {
+click: () => {
+b.carousel.to("#example-carousel", core.rndBetween(0, 6));
+},
+},
+}, "to (random)"),
+new b.button({
+color: "danger",
+on: {
+click: () => {
+b.carousel.dispose("#example-carousel");
+},
+},
+}, "dispose"),
+])),
+]),
+];
+}`,
+		},
+		{
+			source: `() => {
+return new b.carousel.container({
+interval: 3000,
+itemControl: true,
+item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+return {
+src: \`https://picsum.photos/seed/bsts_\${i}/710/400.webp\`,
+};
+}),
+on: {
+"slide.bs.carousel": (event) => {
+let carouselEvent = event;
+e.console(event.target, "slide.bs.carousel", \`Direction: {{b::\${carouselEvent.direction}}}{{br}}
+															From: {{b::\${carouselEvent.from}}}{{br}}
+															To: {{b::\${carouselEvent.to}}}{{br}}
+															RelatedTarget: {{b::\${core.elemInfo(carouselEvent.relatedTarget)}}}\`, "info");
+},
+},
+});
+}`,
+		},
+	],
 };
