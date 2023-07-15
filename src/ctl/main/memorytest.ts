@@ -355,10 +355,6 @@ const runDownloadResource = (
 	}
 };
 
-declare var PR: {
-	prettyPrint: () => void;
-};
-
 const startMemoryTest = (arg: { testId: string; count: number; random: boolean; checkduplicateid: boolean; counttag: boolean; showchart: boolean }) => {
 	const container = document.getElementById("memory-test-dialog");
 	if (container) {

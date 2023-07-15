@@ -5,6 +5,7 @@ import { onBookmarkChange } from "./bookmark.js";
 import { getContent } from "./data.js";
 import { cookie } from "./cookie.js";
 import { pushState, replaceState } from "./history.js";
+import hljs from "highlight.js";
 
 export interface IContent {
 	loading?: boolean;
@@ -232,8 +233,16 @@ const setupContentPlaceholder = (contentbody: Element) => {
 	}
 };
 
-declare var PR: {
-	prettyPrint: () => void;
+// declare var PR: {
+// 	prettyPrint: () => void;
+// };
+
+const PR = {
+	prettyPrint: () => {
+		document.querySelectorAll("pre.example-preview code").forEach((el) => {
+			hljs.highlightElement(el as HTMLElement);
+		});
+	},
 };
 
 export const setupContentDocument = (value: string, state?: "push" | "replace", callback?: Function) => {
