@@ -4,7 +4,8 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const float: IContent = {
 	title: "Float",
-	description: "Toggle floats on any element, across any breakpoint, using Bootstrap responsive float utilities.",
+	description:
+		"Toggle floats on any element, across any breakpoint, using Bootstrap responsive float utilities.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
@@ -17,7 +18,13 @@ export const float: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [new h.div({ float: "start" }, "Float start on all viewport sizes"), new h.br(), new h.div({ float: "end" }, "Float end on all viewport sizes"), new h.br(), new h.div({ float: "none" }, "Don't float on all viewport sizes")];
+						return [
+							new h.div({ float: "start" }, "Float start on all viewport sizes"),
+							new h.br(),
+							new h.div({ float: "end" }, "Float end on all viewport sizes"),
+							new h.br(),
+							new h.div({ float: "none" }, "Don't float on all viewport sizes"),
+						];
 					},
 				}),
 			]),
@@ -32,13 +39,25 @@ export const float: IContent = {
 					showViewport: true,
 					output: () => {
 						return [
-							new h.div({ float: "sm-end" }, "Float end on viewports sized SM (small) or wider"),
+							new h.div(
+								{ float: "sm-end" },
+								"Float end on viewports sized SM (small) or wider"
+							),
 							new h.br(),
-							new h.div({ float: "md-end" }, "Float end on viewports sized MD (medium) or wider"),
+							new h.div(
+								{ float: "md-end" },
+								"Float end on viewports sized MD (medium) or wider"
+							),
 							new h.br(),
-							new h.div({ float: "lg-end" }, "Float end on viewports sized LG (large) or wider"),
+							new h.div(
+								{ float: "lg-end" },
+								"Float end on viewports sized LG (large) or wider"
+							),
 							new h.br(),
-							new h.div({ float: "xl-end" }, "Float end on viewports sized XL (extra-large) or wider"),
+							new h.div(
+								{ float: "xl-end" },
+								"Float end on viewports sized XL (extra-large) or wider"
+							),
 						];
 					},
 				}),
@@ -62,7 +81,9 @@ export const float: IContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text("Float utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Float utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
@@ -82,38 +103,4 @@ export const float: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return [new h.div({
-float: "start"
-}, "Float start on all viewport sizes"), new h.br(), new h.div({
-float: "end"
-}, "Float end on all viewport sizes"), new h.br(), new h.div({
-float: "none"
-}, "Don't float on all viewport sizes")];
-}`,
-		},
-		{
-			source: `() => {
-return [
-new h.div({
-float: "sm-end"
-}, "Float end on viewports sized SM (small) or wider"),
-new h.br(),
-new h.div({
-float: "md-end"
-}, "Float end on viewports sized MD (medium) or wider"),
-new h.br(),
-new h.div({
-float: "lg-end"
-}, "Float end on viewports sized LG (large) or wider"),
-new h.br(),
-new h.div({
-float: "xl-end"
-}, "Float end on viewports sized XL (extra-large) or wider"),
-];
-}`,
-		},
-	],
 };

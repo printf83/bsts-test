@@ -21,7 +21,25 @@ export const colored_links: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({ href: "#", linkColor: i as I.H.A["linkColor"] }, `${core.uppercaseFirst(i)} link`)));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"body-emphasis",
+						].map(
+							(i) =>
+								new h.p(
+									new h.a(
+										{ href: "#", linkColor: i as I.H.A["linkColor"] },
+										`${core.uppercaseFirst(i)} link`
+									)
+								)
+						);
 					},
 				}),
 				new e.alert(
@@ -34,11 +52,23 @@ export const colored_links: IContent = {
 
 			new e.section([
 				new e.title("Link utilities"),
-				new e.text("Colored links can also be modified by Bootstrap {{nav:docs/utilities/link::link utilities}}."),
+				new e.text(
+					"Colored links can also be modified by Bootstrap {{nav:docs/utilities/link::link utilities}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map(
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"body-emphasis",
+						].map(
 							(i) =>
 								new h.p(
 									new h.a(
@@ -58,25 +88,4 @@ export const colored_links: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({
-href: "#",
-linkColor: i
-}, \`\${core.uppercaseFirst(i)} link\`)));
-}`,
-		},
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "body-emphasis"].map((i) => new h.p(new h.a({
-href: "#",
-linkColor: i,
-linkOffset: 2,
-linkUnderlineOpacity: 25,
-linkUnderlineOpacityHover: 100,
-}, \`\${core.uppercaseFirst(i)} link\`)));
-}`,
-		},
-	],
 };

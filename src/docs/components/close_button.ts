@@ -26,7 +26,9 @@ export const close_button: IContent = {
 
 			new e.section([
 				new e.title("Disabled state"),
-				new e.text("Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."),
+				new e.text(
+					"Disabled close buttons change their {{opacity}}. Bootstrap’ve also applied {{pointer-events:}} none and {{user-select: none}} to preventing hover and active states from triggering."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -39,12 +41,17 @@ export const close_button: IContent = {
 
 			new e.section([
 				new e.title("Dark variant"),
-				new e.text("Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."),
+				new e.text(
+					"Add {{theme:'dark'}} to the {{b.btnclose}}, or to its parent element, to invert the close button. Bootstrap uses the {{filter}} property to invert the {{background-image}} without overriding its value."
+				),
 				new e.code({
 					db: getContentCode(db),
 					previewAttr: { bgColor: "dark" },
 					output: () => {
-						return new h.div({ theme: "dark" }, [new b.btnclose(), new b.btnclose({ disabled: true })]);
+						return new h.div({ theme: "dark" }, [
+							new b.btnclose(),
+							new b.btnclose({ disabled: true }),
+						]);
 					},
 				}),
 			]),
@@ -57,7 +64,9 @@ export const close_button: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, close button now use local CSS variables on {{.btn-close}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, close button now use local CSS variables on {{.btn-close}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -103,27 +112,4 @@ export const close_button: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return new b.btnclose();
-}`,
-		},
-		{
-			source: `() => {
-return new b.btnclose({
-disabled: true
-});
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-theme: "dark"
-}, [new b.btnclose(), new b.btnclose({
-disabled: true
-})]);
-}`,
-		},
-	],
 };

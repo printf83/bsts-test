@@ -20,12 +20,20 @@ export const background: IContent = {
 
 			new e.section([
 				new e.title("Background color"),
-				new e.text("Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::textColor}}, so in some cases you’ll want to use {{textColor}} {{nav:docs/utilities/colors::color utilities}}."),
-				new e.alert({ color: "info", callout: true }, " Background utilities like {{bgColor}} property that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{bgColor:'*-subtle'}} utility will. This will be resolved in v6. "),
+				new e.text(
+					"Similar to the contextual text color classes, set the background of an element to any contextual class. Background utilities {{b::do not set }}{{bc::textColor}}, so in some cases you’ll want to use {{textColor}} {{nav:docs/utilities/colors::color utilities}}."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					" Background utilities like {{bgColor}} property that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{bgColor:'*-subtle'}} utility will. This will be resolved in v6. "
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						const data: { bgColor: core.IAttr["bgColor"]; textColor?: core.IAttr["textColor"] }[] = [
+						const data: {
+							bgColor: core.IAttr["bgColor"];
+							textColor?: core.IAttr["textColor"];
+						}[] = [
 							{ bgColor: "primary", textColor: "white" },
 							{ bgColor: "primary-subtle", textColor: "primary-emphasis" },
 							{ bgColor: "secondary", textColor: "white" },
@@ -51,7 +59,15 @@ export const background: IContent = {
 						];
 
 						return data.map((i) => {
-							return new h.div({ padding: 3, marginBottom: 2, bgColor: i.bgColor, textColor: i.textColor }, `bgColor:'${i.bgColor}'`);
+							return new h.div(
+								{
+									padding: 3,
+									marginBottom: 2,
+									bgColor: i.bgColor,
+									textColor: i.textColor,
+								},
+								`bgColor:'${i.bgColor}'`
+							);
 						});
 					},
 				}),
@@ -61,12 +77,19 @@ export const background: IContent = {
 
 			new e.section([
 				new e.title("Background gradient"),
-				new e.text("By adding a {{bgGradient:true}} property, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom."),
-				new e.text("Do you need a gradient in your custom CSS? Just add {{background-image: var(--bs-gradient);}}."),
+				new e.text(
+					"By adding a {{bgGradient:true}} property, a linear gradient is added as background image to the backgrounds. This gradient starts with a semi-transparent white which fades out to the bottom."
+				),
+				new e.text(
+					"Do you need a gradient in your custom CSS? Just add {{background-image: var(--bs-gradient);}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						const data: { bgColor: core.IAttr["bgColor"]; textColor?: core.IAttr["textColor"] }[] = [
+						const data: {
+							bgColor: core.IAttr["bgColor"];
+							textColor?: core.IAttr["textColor"];
+						}[] = [
 							{ bgColor: "primary", textColor: "white" },
 							{ bgColor: "primary-subtle", textColor: "primary-emphasis" },
 							{ bgColor: "secondary", textColor: "white" },
@@ -109,7 +132,12 @@ export const background: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Opacity"), new e.text("As of v5.1.0, {{bgColor}} property are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.")]),
+			new e.section([
+				new e.title("Opacity"),
+				new e.text(
+					"As of v5.1.0, {{bgColor}} property are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
+				),
+			]),
 
 			//----------------------
 
@@ -134,12 +162,17 @@ export const background: IContent = {
 
 			new e.section([
 				new e.subtitle("Example"),
-				new e.text("To change that opacity, override {{style: { '--bs-bg-opacity': '.5' } }} via custom styles or inline styles."),
+				new e.text(
+					"To change that opacity, override {{style: { '--bs-bg-opacity': '.5' } }} via custom styles or inline styles."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new h.div({ bgColor: "success", textColor: "white", padding: 2 }, "This is default success background"),
+							new h.div(
+								{ bgColor: "success", textColor: "white", padding: 2 },
+								"This is default success background"
+							),
 							new h.div(
 								{
 									bgColor: "success",
@@ -173,13 +206,20 @@ export const background: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("CSS"), new e.text("In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more.")]),
+			new e.section([
+				new e.title("CSS"),
+				new e.text(
+					"In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text("Most {{background-color}} utilities are generated by Bootstrap theme colors, reassigned from Bootstrap generic color palette variables."),
+				new e.text(
+					"Most {{background-color}} utilities are generated by Bootstrap theme colors, reassigned from Bootstrap generic color palette variables."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -220,7 +260,9 @@ export const background: IContent = {
 						$gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0));
 					`,
 				}),
-				new e.text("Grayscale colors are also available, but only a subset are used to generate any utilities."),
+				new e.text(
+					"Grayscale colors are also available, but only a subset are used to generate any utilities."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -239,7 +281,9 @@ export const background: IContent = {
 						$black:    #000;
 					`,
 				}),
-				new e.text("Variables for setting {{background-color}} in {{.bg-*-subtle}} utilities in light and dark mode:"),
+				new e.text(
+					"Variables for setting {{background-color}} in {{.bg-*-subtle}} utilities in light and dark mode:"
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -276,7 +320,9 @@ export const background: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass maps"),
-				new e.text("Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."),
+				new e.text(
+					"Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -294,7 +340,9 @@ export const background: IContent = {
 						);
 					`,
 				}),
-				new e.text("Grayscale colors are also available as a Sass map. {{b::This map is not used to generate any utilities}}."),
+				new e.text(
+					"Grayscale colors are also available as a Sass map. {{b::This map is not used to generate any utilities}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -322,7 +370,9 @@ export const background: IContent = {
 						$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 					`,
 				}),
-				new e.text("Background color opacities build on that with their own map that’s consumed by the utilities API:"),
+				new e.text(
+					"Background color opacities build on that with their own map that’s consumed by the utilities API:"
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
@@ -391,7 +441,9 @@ export const background: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass mixins"),
-				new e.text("{{b::No mixins are used to generate Bootstrap background utilities}}, but Bootstrap do have some additional mixins for other situations where you’d like to create your own gradients."),
+				new e.text(
+					"{{b::No mixins are used to generate Bootstrap background utilities}}, but Bootstrap do have some additional mixins for other situations where you’d like to create your own gradients."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_gradients.scss",
@@ -452,7 +504,9 @@ export const background: IContent = {
 
 			new e.section([
 				new e.title("Utilities API"),
-				new e.text("Background utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Background utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
@@ -494,192 +548,4 @@ export const background: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-const data = [{
-bgColor: "primary",
-textColor: "white"
-}, {
-bgColor: "primary-subtle",
-textColor: "primary-emphasis"
-}, {
-bgColor: "secondary",
-textColor: "white"
-}, {
-bgColor: "secondary-subtle",
-textColor: "secondary-emphasis"
-}, {
-bgColor: "success",
-textColor: "white"
-}, {
-bgColor: "success-subtle",
-textColor: "success-emphasis"
-}, {
-bgColor: "danger",
-textColor: "white"
-}, {
-bgColor: "danger-subtle",
-textColor: "danger-emphasis"
-}, {
-bgColor: "warning",
-textColor: "dark"
-}, {
-bgColor: "warning-subtle",
-textColor: "warning-emphasis"
-}, {
-bgColor: "info",
-textColor: "dark"
-}, {
-bgColor: "info-subtle",
-textColor: "info-emphasis"
-}, {
-bgColor: "light",
-textColor: "dark"
-}, {
-bgColor: "light-subtle",
-textColor: "light-emphasis"
-}, {
-bgColor: "dark",
-textColor: "white"
-}, {
-bgColor: "dark-subtle",
-textColor: "dark-emphasis"
-}, {
-bgColor: "body-secondary"
-}, {
-bgColor: "body-tertiary"
-}, {
-bgColor: "body",
-textColor: "body"
-}, {
-bgColor: "black",
-textColor: "white"
-}, {
-bgColor: "white",
-textColor: "dark"
-}, {
-bgColor: "transparent",
-textColor: "body"
-}, ];
-return data.map((i) => {
-return new h.div({
-padding: 3,
-marginBottom: 2,
-bgColor: i.bgColor,
-textColor: i.textColor
-}, \`bgColor:'\${i.bgColor}'\`);
-});
-}`,
-		},
-		{
-			source: `() => {
-const data = [{
-bgColor: "primary",
-textColor: "white"
-}, {
-bgColor: "primary-subtle",
-textColor: "primary-emphasis"
-}, {
-bgColor: "secondary",
-textColor: "white"
-}, {
-bgColor: "secondary-subtle",
-textColor: "secondary-emphasis"
-}, {
-bgColor: "success",
-textColor: "white"
-}, {
-bgColor: "success-subtle",
-textColor: "success-emphasis"
-}, {
-bgColor: "danger",
-textColor: "white"
-}, {
-bgColor: "danger-subtle",
-textColor: "danger-emphasis"
-}, {
-bgColor: "warning",
-textColor: "dark"
-}, {
-bgColor: "warning-subtle",
-textColor: "warning-emphasis"
-}, {
-bgColor: "info",
-textColor: "dark"
-}, {
-bgColor: "info-subtle",
-textColor: "info-emphasis"
-}, {
-bgColor: "light",
-textColor: "dark"
-}, {
-bgColor: "light-subtle",
-textColor: "light-emphasis"
-}, {
-bgColor: "dark",
-textColor: "white"
-}, {
-bgColor: "dark-subtle",
-textColor: "dark-emphasis"
-}, {
-bgColor: "body-secondary"
-}, {
-bgColor: "body-tertiary"
-}, {
-bgColor: "body",
-textColor: "body"
-}, {
-bgColor: "black",
-textColor: "white"
-}, {
-bgColor: "white",
-textColor: "dark"
-}, {
-bgColor: "transparent",
-textColor: "body"
-}, ];
-return data.map((i) => {
-return new h.div({
-padding: 3,
-marginBottom: 2,
-bgColor: i.bgColor,
-textColor: i.textColor,
-bgGradient: true,
-}, \`bgColor: '\${i.bgColor}', bgGradient: true\`);
-});
-}`,
-		},
-		{
-			source: `() => {
-return [
-new h.div({
-bgColor: "success",
-textColor: "white",
-padding: 2
-}, "This is default success background"),
-new h.div({
-bgColor: "success",
-textColor: "white",
-padding: 2,
-style: {
-"--bs-bg-opacity": ".5"
-},
-}, "This is 50% opacity success background"),
-];
-}`,
-		},
-		{
-			source: `() => {
-return [undefined, 75, 50, 25, 10].map((i) => {
-return new h.div({
-bgColor: "success",
-textColor: i && i < 75 ? "body-emphasis" : "white",
-padding: 2,
-bgOpacity: i,
-}, \`This is \${i ? i + "% opacity" : "default"} success background\`);
-});
-}`,
-		},
-	],
 };

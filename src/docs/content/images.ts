@@ -4,14 +4,17 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 
 export const images: IContent = {
 	title: "Images",
-	description: "Documentation and examples for opting images into responsive behavior (so they never become wider than their parent) and add lightweight styles to them—all via classes.",
+	description:
+		"Documentation and examples for opting images into responsive behavior (so they never become wider than their parent) and add lightweight styles to them—all via classes.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
 			new e.section([
 				new e.title("Responsive images"),
-				new e.text("Images in Bootstrap are made responsive with {{.img-fluid}}. This applies {{max-width: 100%;}} and {{height: auto;}} to the image so that it scales with the parent width."),
+				new e.text(
+					"Images in Bootstrap are made responsive with {{.img-fluid}}. This applies {{max-width: 100%;}} and {{height: auto;}} to the image so that it scales with the parent width."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -28,7 +31,9 @@ export const images: IContent = {
 
 			new e.section([
 				new e.title("Image thumbnails"),
-				new e.text("In addition to Bootstrap {{nav:docs/utilities/borders::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."),
+				new e.text(
+					"In addition to Bootstrap {{nav:docs/utilities/borders::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -86,7 +91,9 @@ export const images: IContent = {
 
 			new e.section([
 				new e.title("Picture"),
-				new e.text("If you are using the {{<picture>}} element to specify multiple {{<source>}} elements for a specific {{<img>}}, make sure to add the {{.img-*}} classes to the {{<img>}} and not to the {{<picture>}} tag."),
+				new e.text(
+					"If you are using the {{<picture>}} element to specify multiple {{<source>}} elements for a specific {{<img>}}, make sure to add the {{.img-*}} classes to the {{<img>}} and not to the {{<picture>}} tag."
+				),
 				new e.code({
 					db: getContentCode(db),
 					showViewport: true,
@@ -136,73 +143,4 @@ export const images: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return new b.img({
-fluid: true,
-src: "https://picsum.photos/seed/bsts_0/820/250.webp",
-alt: "...",
-});
-}`,
-		},
-		{
-			source: `() => {
-return new b.img({
-thumbnail: true,
-src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-alt: "...",
-});
-}`,
-		},
-		{
-			source: `() => {
-return [
-new b.img({
-float: "start",
-rounded: true,
-src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-alt: "...",
-}),
-new b.img({
-float: "end",
-rounded: true,
-src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-alt: "...",
-}),
-];
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-textAlign: "center"
-}, new b.img({
-rounded: true,
-src: "https://picsum.photos/seed/bsts_0/200/200.webp",
-alt: "...",
-}));
-}`,
-		},
-		{
-			source: `() => {
-return new h.picture([
-new h.source({
-media: "(min-width:992px)",
-srcset: "https://picsum.photos/seed/bsts_0/820/250.webp",
-}),
-new h.source({
-media: "(min-width:768px)",
-srcset: "https://picsum.photos/seed/bsts_1/710/200.webp",
-}),
-new b.img({
-fluid: true,
-thumbnail: true,
-src: "https://picsum.photos/seed/bsts_2/450/200.webp",
-alt: "...",
-}),
-]);
-}`,
-		},
-	],
 };

@@ -10,8 +10,12 @@ export const opacity: IContent = {
 
 		return [
 			new e.section([
-				new e.text("The {{opacity}} property sets the opacity level for an element. The opacity level describes the transparency level, where {{1}} is not transparent at all, {{.5}} is 50% visible, and {{0}} is completely transparent."),
-				new e.text("Set the {{opacity}} of an element using {{.opacity-{value} }}utilities."),
+				new e.text(
+					"The {{opacity}} property sets the opacity level for an element. The opacity level describes the transparency level, where {{1}} is not transparent at all, {{.5}} is 50% visible, and {{0}} is completely transparent."
+				),
+				new e.text(
+					"Set the {{opacity}} of an element using {{.opacity-{value} }}utilities."
+				),
 
 				new e.code({
 					db: getContentCode(db),
@@ -39,7 +43,9 @@ export const opacity: IContent = {
 
 			new e.section([
 				new e.title("Utilities API"),
-				new e.text("Opacity utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Opacity utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
@@ -60,18 +66,4 @@ export const opacity: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return [100, 75, 50, 25].map((i) => new h.div({
-opacity: i,
-padding: 3,
-textBgColor: "primary",
-rounded: true,
-fontWeight: "bold",
-display: "inline-block",
-}, \`\${i}%\`));
-}`,
-		},
-	],
 };

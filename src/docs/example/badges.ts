@@ -15,8 +15,20 @@ export const badges: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-							return new b.badge({ textBgColor: i as core.Class["textBgColor"], rounded: "pill" }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
+							return new b.badge(
+								{ textBgColor: i as core.Class["textBgColor"], rounded: "pill" },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
@@ -30,7 +42,16 @@ export const badges: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -52,7 +73,16 @@ export const badges: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -76,7 +106,16 @@ export const badges: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i, ix) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -111,7 +150,16 @@ export const badges: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -132,7 +180,9 @@ export const badges: IContent = {
 										on: {
 											click: (event) => {
 												const target = event.target as Element;
-												core.removeElement(target.closest(".badge") as Element);
+												core.removeElement(
+													target.closest(".badge") as Element
+												);
 											},
 										},
 									}),
@@ -151,7 +201,16 @@ export const badges: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i, ix) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -179,7 +238,9 @@ export const badges: IContent = {
 										on: {
 											click: (event) => {
 												const target = event.target as Element;
-												core.removeElement(target.closest(".badge") as Element);
+												core.removeElement(
+													target.closest(".badge") as Element
+												);
 											},
 										},
 									}),
@@ -193,129 +254,4 @@ export const badges: IContent = {
 			//----------------------
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-return new b.badge({
-textBgColor: i,
-rounded: "pill"
-}, core.uppercaseFirst(i));
-});
-}`,
-		},
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-return new b.badge({
-bgColor: \`\${i}-subtle\`,
-textColor: \`\${i}-emphasis\`,
-rounded: "pill",
-}, core.uppercaseFirst(i));
-});
-}`,
-		},
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-return new b.badge({
-bgColor: \`\${i}-subtle\`,
-textColor: \`\${i}-emphasis\`,
-border: true,
-borderColor: \`\${i}-subtle\`,
-rounded: "pill",
-}, core.uppercaseFirst(i));
-});
-}`,
-		},
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
-return new b.badge({
-bgColor: \`\${i}-subtle\`,
-textColor: \`\${i}-emphasis\`,
-border: true,
-borderColor: \`\${i}-subtle\`,
-rounded: "pill",
-display: "flex",
-alignItem: "center",
-gap: 2,
-}, [
-new b.img({
-rounded: "circle",
-attrWidth: 24,
-attrHeight: 24,
-src: \`https://picsum.photos/seed/bsts_\${ix}/24/24.webp\`,
-}),
-core.uppercaseFirst(i),
-]);
-});
-}`,
-		},
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-return new b.badge({
-bgColor: \`\${i}-subtle\`,
-textColor: \`\${i}-emphasis\`,
-border: true,
-borderColor: \`\${i}-subtle\`,
-rounded: "pill",
-display: "flex",
-alignItem: "center",
-gap: 2,
-}, [
-core.uppercaseFirst(i),
-new b.icon({
-id: "x-circle-fill",
-fontSize: 6,
-pointerEvent: "auto",
-on: {
-click: (event) => {
-const target = event.target;
-core.removeElement(target.closest(".badge"));
-},
-},
-}),
-]);
-});
-}`,
-		},
-		{
-			source: `() => {
-return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
-return new b.badge({
-bgColor: \`\${i}-subtle\`,
-textColor: \`\${i}-emphasis\`,
-border: true,
-borderColor: \`\${i}-subtle\`,
-rounded: "pill",
-display: "flex",
-alignItem: "center",
-gap: 2,
-}, [
-new b.img({
-rounded: "circle",
-attrWidth: 24,
-attrHeight: 24,
-src: \`https://picsum.photos/seed/bsts_\${ix}/24/24.webp\`,
-}),
-core.uppercaseFirst(i),
-new b.verticalrule(),
-new b.icon({
-id: "x-circle-fill",
-fontSize: 6,
-pointerEvent: "auto",
-on: {
-click: (event) => {
-const target = event.target;
-core.removeElement(target.closest(".badge"));
-},
-},
-}),
-]);
-});
-}`,
-		},
-	],
 };

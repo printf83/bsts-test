@@ -10,29 +10,40 @@ const FLEXITEM = (length: number) => {
 
 export const flex: IContent = {
 	title: "Flex",
-	description: "Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary.",
+	description:
+		"Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary.",
 	item: (db?: e.IBsExampleData[]) => {
 		resetContentIndex();
 
 		return [
 			new e.section([
 				new e.title("Enable flex behaviors "),
-				new e.text("Apply {{display}} utilities to create a flexbox container and transform {{b::direct children elements}} into flex items. Flex containers and items are able to be modified further with additional flex properties."),
+				new e.text(
+					"Apply {{display}} utilities to create a flexbox container and transform {{b::direct children elements}} into flex items. Flex containers and items are able to be modified further with additional flex properties."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ display: "flex", padding: 2 }, "I'm a flexbox container!");
+						return new h.div(
+							{ display: "flex", padding: 2 },
+							"I'm a flexbox container!"
+						);
 					},
 				}),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ display: "inline-flex", padding: 2 }, "I'm a flexbox container!");
+						return new h.div(
+							{ display: "inline-flex", padding: 2 },
+							"I'm a flexbox container!"
+						);
 					},
 				}),
-				new e.text("Responsive variations also exist for {{.d-flex}} and {{.d-inline-flex}}."),
+				new e.text(
+					"Responsive variations also exist for {{.d-flex}} and {{.d-inline-flex}}."
+				),
 				new e.ul({
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
@@ -51,7 +62,9 @@ export const flex: IContent = {
 				new e.text(
 					"Set the direction of flex items in a flex container with direction utilities. In most cases you can omit the horizontal class here as the browser default is {{row}}. However, you may encounter situations where you needed to explicitly set this value (like responsive layouts)."
 				),
-				new e.text("Use {{.flex-row}} to set a horizontal direction (the browser default), or {{.flex-row-reverse}} to start the horizontal direction from the opposite side."),
+				new e.text(
+					"Use {{.flex-row}} to set a horizontal direction (the browser default), or {{.flex-row-reverse}} to start the horizontal direction from the opposite side."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
@@ -68,7 +81,9 @@ export const flex: IContent = {
 						];
 					},
 				}),
-				new e.text("Use {{.flex-column}} to set a vertical direction, or {{.flex-column-reverse}} to start the vertical direction from the opposite side."),
+				new e.text(
+					"Use {{.flex-column}} to set a vertical direction, or {{.flex-column-reverse}} to start the vertical direction from the opposite side."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
@@ -90,7 +105,9 @@ export const flex: IContent = {
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 							.map((i) => {
-								return ["row", "column", "row-reverse", "column-reverse"].map((j) => `{{.justify-content${i}-${j}}}`);
+								return ["row", "column", "row-reverse", "column-reverse"].map(
+									(j) => `{{.justify-content${i}-${j}}}`
+								);
 							})
 							.flat(),
 					],
@@ -109,16 +126,32 @@ export const flex: IContent = {
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
 					output: () => {
 						const item = (value: string) => {
-							return [new h.div({ padding: 2 }, "Justify"), new h.div({ padding: 2 }, "Content"), new h.div({ padding: 2 }, value)];
+							return [
+								new h.div({ padding: 2 }, "Justify"),
+								new h.div({ padding: 2 }, "Content"),
+								new h.div({ padding: 2 }, value),
+							];
 						};
 
 						return [
 							new h.div({ display: "flex", justifyContent: "start" }, item("Start")),
 							new h.div({ display: "flex", justifyContent: "end" }, item("End")),
-							new h.div({ display: "flex", justifyContent: "center" }, item("Center")),
-							new h.div({ display: "flex", justifyContent: "between" }, item("Between")),
-							new h.div({ display: "flex", justifyContent: "around" }, item("Around")),
-							new h.div({ display: "flex", justifyContent: "evenly" }, item("Evenly")),
+							new h.div(
+								{ display: "flex", justifyContent: "center" },
+								item("Center")
+							),
+							new h.div(
+								{ display: "flex", justifyContent: "between" },
+								item("Between")
+							),
+							new h.div(
+								{ display: "flex", justifyContent: "around" },
+								item("Around")
+							),
+							new h.div(
+								{ display: "flex", justifyContent: "evenly" },
+								item("Evenly")
+							),
 						];
 					},
 				}),
@@ -127,7 +160,14 @@ export const flex: IContent = {
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 							.map((i) => {
-								return ["start", "end", "center", "between", "around", "evenly"].map((j) => `{{.justify-content${i}-${j}}}`);
+								return [
+									"start",
+									"end",
+									"center",
+									"between",
+									"around",
+									"evenly",
+								].map((j) => `{{.justify-content${i}-${j}}}`);
 							})
 							.flat(),
 					],
@@ -138,19 +178,52 @@ export const flex: IContent = {
 
 			new e.section([
 				new e.title("Align items"),
-				new e.text("Use {{align-items}} utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if {{flex-direction: column}}). Choose from {{start}}, {{end}}, {{center}}, {{baseline}}, or {{stretch}} (browser default)."),
+				new e.text(
+					"Use {{align-items}} utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if {{flex-direction: column}}). Choose from {{start}}, {{end}}, {{center}}, {{baseline}}, or {{stretch}} (browser default)."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
 					output: () => {
-						const item = [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")];
+						const item = [
+							new h.div({ padding: 2 }, "Flex item"),
+							new h.div({ padding: 2 }, "Flex item"),
+							new h.div({ padding: 2 }, "Flex item"),
+						];
 
 						return [
-							new h.div({ display: "flex", alignItem: "start", style: { height: "100px" } }, item),
-							new h.div({ display: "flex", alignItem: "end", style: { height: "100px" } }, item),
-							new h.div({ display: "flex", alignItem: "center", style: { height: "100px" } }, item),
-							new h.div({ display: "flex", alignItem: "baseline", style: { height: "100px" } }, item),
-							new h.div({ display: "flex", alignItem: "stretch", style: { height: "100px" } }, item),
+							new h.div(
+								{ display: "flex", alignItem: "start", style: { height: "100px" } },
+								item
+							),
+							new h.div(
+								{ display: "flex", alignItem: "end", style: { height: "100px" } },
+								item
+							),
+							new h.div(
+								{
+									display: "flex",
+									alignItem: "center",
+									style: { height: "100px" },
+								},
+								item
+							),
+							new h.div(
+								{
+									display: "flex",
+									alignItem: "baseline",
+									style: { height: "100px" },
+								},
+								item
+							),
+							new h.div(
+								{
+									display: "flex",
+									alignItem: "stretch",
+									style: { height: "100px" },
+								},
+								item
+							),
 						];
 					},
 				}),
@@ -159,7 +232,9 @@ export const flex: IContent = {
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 							.map((i) => {
-								return ["start", "end", "center", "baseline", "stretch"].map((j) => `{{.align-items${i}-${j}}}`);
+								return ["start", "end", "center", "baseline", "stretch"].map(
+									(j) => `{{.align-items${i}-${j}}}`
+								);
 							})
 							.flat(),
 					],
@@ -178,10 +253,20 @@ export const flex: IContent = {
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
 					output: () => {
 						const item = (i: core.IAttr["alignSelf"]) => {
-							return [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2, alignSelf: i }, "Flex item"), new h.div({ padding: 2 }, "Flex item")];
+							return [
+								new h.div({ padding: 2 }, "Flex item"),
+								new h.div({ padding: 2, alignSelf: i }, "Flex item"),
+								new h.div({ padding: 2 }, "Flex item"),
+							];
 						};
 
-						return ["start", "end", "center", "baseline", "stretch"].map((i) => new h.div({ display: "flex", style: { height: "100px" } }, item(i as core.IAttr["alignSelf"])));
+						return ["start", "end", "center", "baseline", "stretch"].map(
+							(i) =>
+								new h.div(
+									{ display: "flex", style: { height: "100px" } },
+									item(i as core.IAttr["alignSelf"])
+								)
+						);
 					},
 				}),
 				new e.text("Responsive variations also exist for {{align-self}}."),
@@ -189,7 +274,9 @@ export const flex: IContent = {
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 							.map((i) => {
-								return ["start", "end", "center", "baseline", "stretch"].map((j) => `{{.align-self${i}-${j}}}`);
+								return ["start", "end", "center", "baseline", "stretch"].map(
+									(j) => `{{.align-self${i}-${j}}}`
+								);
 							})
 							.flat(),
 					],
@@ -200,17 +287,33 @@ export const flex: IContent = {
 
 			new e.section([
 				new e.title("Fill"),
-				new e.text("Use the {{.flex-fill}} class on a series of sibling elements to force them into widths equal to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available horizontal space."),
+				new e.text(
+					"Use the {{.flex-fill}} class on a series of sibling elements to force them into widths equal to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available horizontal space."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ display: "flex" }, [new h.div({ flex: "fill", padding: 2 }, "Flex item with a lot of content"), new h.div({ flex: "fill", padding: 2 }, "Flex item"), new h.div({ flex: "fill", padding: 2 }, "Flex item")]);
+						return new h.div({ display: "flex" }, [
+							new h.div(
+								{ flex: "fill", padding: 2 },
+								"Flex item with a lot of content"
+							),
+							new h.div({ flex: "fill", padding: 2 }, "Flex item"),
+							new h.div({ flex: "fill", padding: 2 }, "Flex item"),
+						]);
 					},
 				}),
 				new e.text("Responsive variations also exist for {{flex-fill}}."),
 				new e.ul({
-					item: ["{{.flex-fill}}", "{{.flex-sm-fill}}", "{{.flex-md-fill}}", "{{.flex-lg-fill}}", "{{.flex-xl-fill}}", "{{.flex-xxl-fill}}"],
+					item: [
+						"{{.flex-fill}}",
+						"{{.flex-sm-fill}}",
+						"{{.flex-md-fill}}",
+						"{{.flex-lg-fill}}",
+						"{{.flex-xl-fill}}",
+						"{{.flex-xxl-fill}}",
+					],
 				}),
 			]),
 
@@ -218,13 +321,19 @@ export const flex: IContent = {
 
 			new e.section([
 				new e.title("Grow and shrink"),
-				new e.text("Use {{.flex-grow-*}} utilities to toggle a flex item’s ability to grow to fill available space. In the example below, the {{.flex-grow-1}} elements uses all available space it can, while allowing the remaining two flex items their necessary space."),
+				new e.text(
+					"Use {{.flex-grow-*}} utilities to toggle a flex item’s ability to grow to fill available space. In the example below, the {{.flex-grow-1}} elements uses all available space it can, while allowing the remaining two flex items their necessary space."
+				),
 
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ display: "flex" }, [new h.div({ flex: "grow-1", padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Third flex item")]);
+						return new h.div({ display: "flex" }, [
+							new h.div({ flex: "grow-1", padding: 2 }, "Flex item"),
+							new h.div({ padding: 2 }, "Flex item"),
+							new h.div({ padding: 2 }, "Third flex item"),
+						]);
 					},
 				}),
 				new e.text(
@@ -234,15 +343,22 @@ export const flex: IContent = {
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ display: "flex" }, [new h.div({ width: 100, padding: 2 }, "Flex item"), new h.div({ flex: "shrink-1", padding: 2 }, "Flex item")]);
+						return new h.div({ display: "flex" }, [
+							new h.div({ width: 100, padding: 2 }, "Flex item"),
+							new h.div({ flex: "shrink-1", padding: 2 }, "Flex item"),
+						]);
 					},
 				}),
-				new e.text("Responsive variations also exist for {{flex-grow}} and {{flex-shrink}}."),
+				new e.text(
+					"Responsive variations also exist for {{flex-grow}} and {{flex-shrink}}."
+				),
 				new e.ul({
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 							.map((i) => {
-								return ["grow-0", "grow-1", "shrink-0", "shrink-1"].map((j) => `{{.flex${i}-${j}}}`);
+								return ["grow-0", "grow-1", "shrink-0", "shrink-1"].map(
+									(j) => `{{.flex${i}-${j}}}`
+								);
 							})
 							.flat(),
 					],
@@ -261,9 +377,21 @@ export const flex: IContent = {
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
 					output: () => {
 						return [
-							new h.div({ display: "flex" }, [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")]),
-							new h.div({ display: "flex" }, [new h.div({ padding: 2, marginEnd: "auto" }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")]),
-							new h.div({ display: "flex" }, [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2, marginStart: "auto" }, "Flex item")]),
+							new h.div({ display: "flex" }, [
+								new h.div({ padding: 2 }, "Flex item"),
+								new h.div({ padding: 2 }, "Flex item"),
+								new h.div({ padding: 2 }, "Flex item"),
+							]),
+							new h.div({ display: "flex" }, [
+								new h.div({ padding: 2, marginEnd: "auto" }, "Flex item"),
+								new h.div({ padding: 2 }, "Flex item"),
+								new h.div({ padding: 2 }, "Flex item"),
+							]),
+							new h.div({ display: "flex" }, [
+								new h.div({ padding: 2 }, "Flex item"),
+								new h.div({ padding: 2 }, "Flex item"),
+								new h.div({ padding: 2, marginStart: "auto" }, "Flex item"),
+							]),
 						];
 					},
 				}),
@@ -273,14 +401,40 @@ export const flex: IContent = {
 
 			new e.section([
 				new e.subtitle("With align-items"),
-				new e.text("Vertically move one flex item to the top or bottom of a container by mixing {{align-items}}, {{flex-direction: column}}, and {{margin-top: auto}} or {{margin-bottom: auto}}."),
+				new e.text(
+					"Vertically move one flex item to the top or bottom of a container by mixing {{align-items}}, {{flex-direction: column}}, and {{margin-top: auto}} or {{margin-bottom: auto}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
 					output: () => {
 						return [
-							new h.div({ display: "flex", alignItem: "start", flex: "column", style: { height: "200px" } }, [new h.div({ padding: 2, marginBottom: "auto" }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item")]),
-							new h.div({ display: "flex", alignItem: "end", flex: "column", style: { height: "200px" } }, [new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2 }, "Flex item"), new h.div({ padding: 2, marginTop: "auto" }, "Flex item")]),
+							new h.div(
+								{
+									display: "flex",
+									alignItem: "start",
+									flex: "column",
+									style: { height: "200px" },
+								},
+								[
+									new h.div({ padding: 2, marginBottom: "auto" }, "Flex item"),
+									new h.div({ padding: 2 }, "Flex item"),
+									new h.div({ padding: 2 }, "Flex item"),
+								]
+							),
+							new h.div(
+								{
+									display: "flex",
+									alignItem: "end",
+									flex: "column",
+									style: { height: "200px" },
+								},
+								[
+									new h.div({ padding: 2 }, "Flex item"),
+									new h.div({ padding: 2 }, "Flex item"),
+									new h.div({ padding: 2, marginTop: "auto" }, "Flex item"),
+								]
+							),
 						];
 					},
 				}),
@@ -290,13 +444,18 @@ export const flex: IContent = {
 
 			new e.section([
 				new e.title("Warp"),
-				new e.text("Change how flex items wrap in a flex container. Choose from no wrapping at all (the browser default) with {{.flex-nowrap}}, wrapping with {{.flex-wrap}}, or reverse wrapping with {{.flex-wrap-reverse}}."),
+				new e.text(
+					"Change how flex items wrap in a flex container. Choose from no wrapping at all (the browser default) with {{.flex-nowrap}}, wrapping with {{.flex-wrap}}, or reverse wrapping with {{.flex-wrap-reverse}}."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
 					output: () => {
-						return new h.div({ display: "flex", flex: "nowrap", style: { width: "8rem" } }, FLEXITEM(5));
+						return new h.div(
+							{ display: "flex", flex: "nowrap", style: { width: "8rem" } },
+							FLEXITEM(5)
+						);
 					},
 				}),
 				new e.code({
@@ -328,7 +487,9 @@ export const flex: IContent = {
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 							.map((i) => {
-								return ["nowarp", "wrap", "wrap-reverse"].map((j) => `{{.flex${i}-${j}}}`);
+								return ["nowarp", "wrap", "wrap-reverse"].map(
+									(j) => `{{.flex${i}-${j}}}`
+								);
 							})
 							.flat(),
 					],
@@ -346,7 +507,11 @@ export const flex: IContent = {
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
 					output: () => {
-						return new h.div({ display: "flex", flex: "nowrap" }, [new h.div({ padding: 2, order: 3 }, "First flex item"), new h.div({ padding: 2, order: 2 }, "Second flex item"), new h.div({ padding: 2, order: 1 }, "Third flex item")]);
+						return new h.div({ display: "flex", flex: "nowrap" }, [
+							new h.div({ padding: 2, order: 3 }, "First flex item"),
+							new h.div({ padding: 2, order: 2 }, "Second flex item"),
+							new h.div({ padding: 2, order: 1 }, "Third flex item"),
+						]);
 					},
 				}),
 				new e.text("Responsive variations also exist for {{order}}."),
@@ -359,7 +524,9 @@ export const flex: IContent = {
 							.flat(),
 					],
 				}),
-				new e.text("Additionally there are also responsive {{.order-first}} and {{.order-last}} classes that change the {{order}} of an element by applying {{order: -1}} and {{order: 6}}, respectively."),
+				new e.text(
+					"Additionally there are also responsive {{.order-first}} and {{.order-last}} classes that change the {{order}} of an element by applying {{order: -1}} and {{order: 6}}, respectively."
+				),
 				new e.ul({
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
@@ -378,7 +545,9 @@ export const flex: IContent = {
 				new e.text(
 					"Use {{align-content}} utilities on flexbox containers to align flex items together on the cross axis. Choose from {{start}} (browser default), {{end}}, {{center}}, {{between}}, {{around}}, or {{stretch}}. To demonstrate these utilities, Bootstrap enforced {{flex-wrap: wrap}} and increased the number of flex items."
 				),
-				new e.text("{{b::Heads up! }}This property has no effect on single rows of flex items."),
+				new e.text(
+					"{{b::Heads up! }}This property has no effect on single rows of flex items."
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
@@ -485,7 +654,14 @@ export const flex: IContent = {
 					item: [
 						...["", "-sm", "-md", "-lg", "-xl", "-xxl"]
 							.map((i) => {
-								return ["start", "end", "center", "between", "around", "stretch"].map((j) => `{{.align-content${i}-${j}}}`);
+								return [
+									"start",
+									"end",
+									"center",
+									"between",
+									"around",
+									"stretch",
+								].map((j) => `{{.align-content${i}-${j}}}`);
 							})
 							.flat(),
 					],
@@ -496,13 +672,24 @@ export const flex: IContent = {
 
 			new e.section([
 				new e.title("Media object"),
-				new e.text("Looking to replicate the {{https://getbootstrap.com/docs/4.6/components/media-object/::media object component}} from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before."),
+				new e.text(
+					"Looking to replicate the {{https://getbootstrap.com/docs/4.6/components/media-object/::media object component}} from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before."
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
 						return new h.div({ display: "flex" }, [
-							new h.div({ flex: "shrink-0" }, new h.img({ src: "https://picsum.photos/seed/bsts_0/100/100.webp", alt: "..." })),
-							new h.div({ flex: "grow-1", marginStart: 3 }, "This is some content from a media component. You can replace this with any content and adjust it as needed."),
+							new h.div(
+								{ flex: "shrink-0" },
+								new h.img({
+									src: "https://picsum.photos/seed/bsts_0/100/100.webp",
+									alt: "...",
+								})
+							),
+							new h.div(
+								{ flex: "grow-1", marginStart: 3 },
+								"This is some content from a media component. You can replace this with any content and adjust it as needed."
+							),
 						]);
 					},
 				}),
@@ -516,7 +703,9 @@ export const flex: IContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text("Flexbox utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Flexbox utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
@@ -623,473 +812,4 @@ export const flex: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-padding: 2
-}, "I'm a flexbox container!");
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "inline-flex",
-padding: 2
-}, "I'm a flexbox container!");
-}`,
-		},
-		{
-			source: `() => {
-return [
-new h.div({
-display: "flex",
-flex: "row"
-}, [1, 2, 3].map((i) => new h.div({
-padding: 2
-}, \`Flex item \${i}\`))),
-new h.div({
-display: "flex",
-flex: "row-reverse"
-}, [1, 2, 3].map((i) => new h.div({
-padding: 2
-}, \`Flex item \${i}\`))),
-];
-}`,
-		},
-		{
-			source: `() => {
-return [
-new h.div({
-display: "flex",
-flex: "column"
-}, [1, 2, 3].map((i) => new h.div({
-padding: 2
-}, \`Flex item \${i}\`))),
-new h.div({
-display: "flex",
-flex: "column-reverse"
-}, [1, 2, 3].map((i) => new h.div({
-padding: 2
-}, \`Flex item \${i}\`))),
-];
-}`,
-		},
-		{
-			source: `() => {
-const item = (value) => {
-return [new h.div({
-padding: 2
-}, "Justify"), new h.div({
-padding: 2
-}, "Content"), new h.div({
-padding: 2
-}, value)];
-};
-return [
-new h.div({
-display: "flex",
-justifyContent: "start"
-}, item("Start")),
-new h.div({
-display: "flex",
-justifyContent: "end"
-}, item("End")),
-new h.div({
-display: "flex",
-justifyContent: "center"
-}, item("Center")),
-new h.div({
-display: "flex",
-justifyContent: "between"
-}, item("Between")),
-new h.div({
-display: "flex",
-justifyContent: "around"
-}, item("Around")),
-new h.div({
-display: "flex",
-justifyContent: "evenly"
-}, item("Evenly")),
-];
-}`,
-		},
-		{
-			source: `() => {
-const item = [new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item")];
-return [
-new h.div({
-display: "flex",
-alignItem: "start",
-style: {
-height: "100px"
-}
-}, item),
-new h.div({
-display: "flex",
-alignItem: "end",
-style: {
-height: "100px"
-}
-}, item),
-new h.div({
-display: "flex",
-alignItem: "center",
-style: {
-height: "100px"
-}
-}, item),
-new h.div({
-display: "flex",
-alignItem: "baseline",
-style: {
-height: "100px"
-}
-}, item),
-new h.div({
-display: "flex",
-alignItem: "stretch",
-style: {
-height: "100px"
-}
-}, item),
-];
-}`,
-		},
-		{
-			source: `() => {
-const item = (i) => {
-return [new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2,
-alignSelf: i
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item")];
-};
-return ["start", "end", "center", "baseline", "stretch"].map((i) => new h.div({
-display: "flex",
-style: {
-height: "100px"
-}
-}, item(i)));
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex"
-}, [new h.div({
-flex: "fill",
-padding: 2
-}, "Flex item with a lot of content"), new h.div({
-flex: "fill",
-padding: 2
-}, "Flex item"), new h.div({
-flex: "fill",
-padding: 2
-}, "Flex item")]);
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex"
-}, [new h.div({
-flex: "grow-1",
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Third flex item")]);
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex"
-}, [new h.div({
-width: 100,
-padding: 2
-}, "Flex item"), new h.div({
-flex: "shrink-1",
-padding: 2
-}, "Flex item")]);
-}`,
-		},
-		{
-			source: `() => {
-return [
-new h.div({
-display: "flex"
-}, [new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item")]),
-new h.div({
-display: "flex"
-}, [new h.div({
-padding: 2,
-marginEnd: "auto"
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item")]),
-new h.div({
-display: "flex"
-}, [new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2,
-marginStart: "auto"
-}, "Flex item")]),
-];
-}`,
-		},
-		{
-			source: `() => {
-return [
-new h.div({
-display: "flex",
-alignItem: "start",
-flex: "column",
-style: {
-height: "200px"
-}
-}, [new h.div({
-padding: 2,
-marginBottom: "auto"
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item")]),
-new h.div({
-display: "flex",
-alignItem: "end",
-flex: "column",
-style: {
-height: "200px"
-}
-}, [new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2
-}, "Flex item"), new h.div({
-padding: 2,
-marginTop: "auto"
-}, "Flex item")]),
-];
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "nowrap",
-style: {
-width: "8rem"
-}
-}, FLEXITEM(5));
-}`,
-
-			extention: [
-				`(length) => {
-return Array(length).fill("").map(() => new h.div({
-padding: 2
-}, "Flex item"));
-}`,
-			],
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap"
-}, Array(14).fill("").map((_i, ix) => new h.div({
-padding: 2
-}, \`Flex item \${ix + 1}\`)));
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap-reverse"
-}, Array(14).fill("").map((_i, ix) => new h.div({
-padding: 2
-}, \`Flex item \${ix + 1}\`)));
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "nowrap"
-}, [new h.div({
-padding: 2,
-order: 3
-}, "First flex item"), new h.div({
-padding: 2,
-order: 2
-}, "Second flex item"), new h.div({
-padding: 2,
-order: 1
-}, "Third flex item")]);
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap",
-alignContent: "start",
-style: {
-height: "200px"
-},
-}, FLEXITEM(15));
-}`,
-
-			extention: [
-				`(length) => {
-return Array(length).fill("").map(() => new h.div({
-padding: 2
-}, "Flex item"));
-}`,
-			],
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap",
-alignContent: "end",
-style: {
-height: "200px"
-},
-}, FLEXITEM(15));
-}`,
-
-			extention: [
-				`(length) => {
-return Array(length).fill("").map(() => new h.div({
-padding: 2
-}, "Flex item"));
-}`,
-			],
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap",
-alignContent: "center",
-style: {
-height: "200px"
-},
-}, FLEXITEM(15));
-}`,
-
-			extention: [
-				`(length) => {
-return Array(length).fill("").map(() => new h.div({
-padding: 2
-}, "Flex item"));
-}`,
-			],
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap",
-alignContent: "between",
-style: {
-height: "200px"
-},
-}, FLEXITEM(15));
-}`,
-
-			extention: [
-				`(length) => {
-return Array(length).fill("").map(() => new h.div({
-padding: 2
-}, "Flex item"));
-}`,
-			],
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap",
-alignContent: "around",
-style: {
-height: "200px"
-},
-}, FLEXITEM(15));
-}`,
-
-			extention: [
-				`(length) => {
-return Array(length).fill("").map(() => new h.div({
-padding: 2
-}, "Flex item"));
-}`,
-			],
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex",
-flex: "wrap",
-alignContent: "stretch",
-style: {
-height: "200px"
-},
-}, FLEXITEM(15));
-}`,
-
-			extention: [
-				`(length) => {
-return Array(length).fill("").map(() => new h.div({
-padding: 2
-}, "Flex item"));
-}`,
-			],
-		},
-		{
-			source: `() => {
-return new h.div({
-display: "flex"
-}, [
-new h.div({
-flex: "shrink-0"
-}, new h.img({
-src: "https://picsum.photos/seed/bsts_0/100/100.webp",
-alt: "..."
-})),
-new h.div({
-flex: "grow-1",
-marginStart: 3
-}, "This is some content from a media component. You can replace this with any content and adjust it as needed."),
-]);
-}`,
-		},
-	],
 };
