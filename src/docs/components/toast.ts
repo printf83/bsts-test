@@ -1313,35 +1313,45 @@ for: "selectToastPlacement"
 new b.select({
 marginTop: 2,
 id: "selectToastPlacement",
-item: [{
+item: [
+{
 value: "",
 selected: true,
 elem: "Select a position..."
-}, {
+},
+{
 value: "top-start",
 elem: "Top start"
-}, {
+},
+{
 value: "top-end",
 elem: "Top end"
-}, {
+},
+{
 value: "top-center",
 elem: "Top center"
-}, {
+},
+{
 value: "middle-start",
 elem: "Middle start"
-}, {
+},
+{
 value: "middle-end",
 elem: "Middle end"
-}, {
+},
+{
 value: "middle-center",
 elem: "Middle center"
-}, {
+},
+{
 value: "bottom-start",
 elem: "Bottom start"
-}, {
+},
+{
 value: "bottom-end",
 elem: "Bottom end"
-}, {
+},
+{
 value: "bottom-center",
 elem: "Bottom center"
 }, ],

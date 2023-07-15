@@ -1680,24 +1680,31 @@ positioning: "static"
 		},
 		{
 			source: `() => {
-return [{
+return [
+{
 label: "Dropdown"
-}, {
+},
+{
 label: "Right-aligned menu",
 positionView: "end"
-}, {
+},
+{
 label: "Left-aligned, right-aligned lg",
 positionView: "lg-end"
-}, {
+},
+{
 label: "Right-aligned, left-aligned lg",
 positionView: ["end", "lg-start"]
-}, {
+},
+{
 label: "Dropstart",
 drop: "start"
-}, {
+},
+{
 label: "Dropend",
 drop: "end"
-}, {
+},
+{
 label: "Dropup",
 drop: "up"
 }, ].map((i) => {

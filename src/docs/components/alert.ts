@@ -576,16 +576,20 @@ icon: "info-circle-fill"
 		},
 		{
 			source: `() => {
-return [{
+return [
+{
 color: "info",
 icon: "info-circle-fill"
-}, {
+},
+{
 color: "success",
 icon: "check-circle-fill"
-}, {
+},
+{
 color: "warning",
 icon: "exclamation-triangle-fill"
-}, {
+},
+{
 color: "danger",
 icon: "x-circle-fill"
 }, ].map((i) => {

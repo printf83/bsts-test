@@ -1838,58 +1838,82 @@ new h.p(new h.em("This line rendered as italicized text.")),
 		},
 		{
 			source: `() => {
-const data = [{
+const data = [
+{
 textColor: "primary"
-}, {
+},
+{
 textColor: "primary-emphasis"
-}, {
+},
+{
 textColor: "secondary"
-}, {
+},
+{
 textColor: "secondary-emphasis"
-}, {
+},
+{
 textColor: "success"
-}, {
+},
+{
 textColor: "success-emphasis"
-}, {
+},
+{
 textColor: "danger"
-}, {
+},
+{
 textColor: "danger-emphasis"
-}, {
+},
+{
 textColor: "warning",
 bgColor: "dark"
-}, {
+},
+{
 textColor: "warning-emphasis"
-}, {
+},
+{
 textColor: "info",
 bgColor: "dark"
-}, {
+},
+{
 textColor: "info-emphasis"
-}, {
+},
+{
 textColor: "light",
 bgColor: "dark"
-}, {
+},
+{
 textColor: "light-emphasis"
-}, {
+},
+{
 textColor: "dark"
-}, {
+},
+{
 textColor: "dark-emphasis"
-}, {
+},
+{
 textColor: "body"
-}, {
+},
+{
 textColor: "body-emphasis"
-}, {
+},
+{
 textColor: "body-secondary"
-}, {
+},
+{
 textColor: "body-tertiary"
-}, {
+},
+{
 textColor: "black"
-}, {
+},
+{
 textColor: "white",
 bgColor: "dark"
-}, {
+},
+{
 textColor: "black",
 textOpacity: 50
-}, {
+},
+{
 textColor: "white",
 textOpacity: 50,
 bgColor: "dark"
@@ -1985,20 +2009,25 @@ container: {
 marginBottom: 3
 },
 label: "Example select",
-item: [{
+item: [
+{
 selected: true,
 value: "1",
 elem: "One"
-}, {
+},
+{
 value: "2",
 elem: "Two"
-}, {
+},
+{
 value: "3",
 elem: "Three"
-}, {
+},
+{
 value: "4",
 elem: "Four"
-}, {
+},
+{
 value: "5",
 elem: "Five"
 }, ],
@@ -2009,20 +2038,25 @@ container: {
 marginBottom: 3
 },
 label: "Example disable select",
-item: [{
+item: [
+{
 selected: true,
 value: "1",
 elem: "One"
-}, {
+},
+{
 value: "2",
 elem: "Two"
-}, {
+},
+{
 value: "3",
 elem: "Three"
-}, {
+},
+{
 value: "4",
 elem: "Four"
-}, {
+},
+{
 value: "5",
 elem: "Five"
 }, ],
@@ -2030,19 +2064,24 @@ elem: "Five"
 b.form.select({
 multiple: true,
 label: "Example multiple select",
-item: [{
+item: [
+{
 value: "1",
 elem: "One"
-}, {
+},
+{
 value: "2",
 elem: "Two"
-}, {
+},
+{
 value: "3",
 elem: "Three"
-}, {
+},
+{
 value: "4",
 elem: "Four"
-}, {
+},
+{
 value: "5",
 elem: "Five"
 }, ],
@@ -2272,17 +2311,21 @@ type: "password",
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return b.nav.tab({
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Contact",
 elem: content("Contact")
-}, {
+},
+{
 label: "Disabled",
 disabled: true,
 elem: content("Disabled")
@@ -2295,17 +2338,21 @@ elem: content("Disabled")
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return b.nav.tab({
 type: "pill",
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Contact",
 elem: content("Contact")
-}, {
+},
+{
 label: "Disabled",
 disabled: true,
 elem: content("Disabled")
@@ -2484,13 +2531,16 @@ return new b.list.container([new b.list.item("An item"), new b.list.item("A seco
 		},
 		{
 			source: `() => {
-return new b.list.container([{
+return new b.list.container([
+{
 label: "A list item",
 counter: 14
-}, {
+},
+{
 label: "A second list item",
 counter: 2
-}, {
+},
+{
 label: "A third list item",
 counter: 1
 }, ].map((i) => {
@@ -2645,14 +2695,17 @@ href: "#"
 		{
 			source: `() => {
 return new b.accordion.container({
-item: [{
+item: [
+{
 title: "Accordion Item #1",
 elem: "{{b::This is the first item's accordion body}}. It is shown by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
 show: true,
-}, {
+},
+{
 title: "Accordion Item #2",
 elem: "{{b::This is the second item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
-}, {
+},
+{
 title: "Accordion Item #3",
 elem: "{{b::This is the third item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
 }, ],

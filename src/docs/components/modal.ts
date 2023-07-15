@@ -1700,7 +1700,8 @@ elem: "Thank you for tick the checkbox.",
 }));
 //hide the modal because the checkbox is ticked
 b.modal.hide(container);
-} else {
+}
+else {
 b.toast.show(b.toast.create({
 title: "Simple modal example",
 color: "danger",
@@ -2341,13 +2342,16 @@ color: "primary"
 		},
 		{
 			source: `() => {
-const d = [{
+const d = [
+{
 weight: "xl",
 label: "Extra large modal"
-}, {
+},
+{
 weight: "lg",
 label: "Large modal"
-}, {
+},
+{
 weight: "sm",
 label: "Small modal"
 }, ];
@@ -2372,22 +2376,28 @@ id: \`\${i.weight}SizeModalLabel\`
 		},
 		{
 			source: `() => {
-const d = [{
+const d = [
+{
 fullscreen: true,
 label: "Full screen"
-}, {
+},
+{
 fullscreen: "sm",
 label: "Full screen below sm"
-}, {
+},
+{
 fullscreen: "md",
 label: "Full screen below md"
-}, {
+},
+{
 fullscreen: "lg",
 label: "Full screen below lg"
-}, {
+},
+{
 fullscreen: "xl",
 label: "Full screen below xl"
-}, {
+},
+{
 fullscreen: "xxl",
 label: "Full screen below xxl"
 }, ];

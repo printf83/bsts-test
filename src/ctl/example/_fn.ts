@@ -12,7 +12,12 @@ export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem) => {
 	);
 };
 
-export const console = (elem: Element, title?: string, msg?: string | object, color?: core.bootstrapType.textColor) => {
+export const console = (
+	elem: Element,
+	title?: string,
+	msg?: string | object,
+	color?: core.bootstrapType.textColor
+) => {
 	const exampleCodeContainer = elem.closest(".example-code");
 	if (exampleCodeContainer) {
 		if (typeof msg !== "string") {
@@ -72,7 +77,6 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 
 		default:
 			source_text = source_text.replace(/\};/g, "};\n");
-
 			return js_beautify(source_text, {
 				preserve_newlines: true,
 				end_with_newline: true,
@@ -83,7 +87,10 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 	}
 };
 
-export const codeBeautifyMinify = (type: codeBeautifyType | undefined, source_text: string): string => {
+export const codeBeautifyMinify = (
+	type: codeBeautifyType | undefined,
+	source_text: string
+): string => {
 	switch (type) {
 		case "html":
 			return html_beautify(source_text, {
@@ -104,7 +111,7 @@ export const codeBeautifyMinify = (type: codeBeautifyType | undefined, source_te
 				preserve_newlines: false,
 				end_with_newline: false,
 				indent_size: 0,
-				brace_style: "none",
+				brace_style: "preserve-inline",
 				unescape_strings: false,
 			}) as string;
 	}
@@ -496,7 +503,11 @@ const getLibBaseOnSourceIsContain = (str: string, find: string[]) => {
 	return found;
 };
 
-export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExtention?: string[]) => {
+export const getLibBaseOnSource = (
+	strCode?: string,
+	strManager?: string,
+	strExtention?: string[]
+) => {
 	let libImported: string[] = ["core"];
 	const libList: { find: string[]; lib: string }[] = [
 		{

@@ -1216,13 +1216,16 @@ color: i
 		},
 		{
 			source: `() => {
-return new b.list.container([{
+return new b.list.container([
+{
 label: "A list item",
 counter: 14
-}, {
+},
+{
 label: "A second list item",
 counter: 2
-}, {
+},
+{
 label: "A third list item",
 counter: 1
 }, ].map((i) => {

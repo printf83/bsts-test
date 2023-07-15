@@ -1386,17 +1386,21 @@ href: "#"
 		{
 			source: `() => {
 return new b.nav.header.container({
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1422,17 +1426,21 @@ href: "#"
 		{
 			source: `() => {
 return new b.nav.header.containerNav({
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1444,17 +1452,21 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 justifyContent: "center",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1466,17 +1478,21 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 justifyContent: "end",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1488,17 +1504,21 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 flex: "column",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1510,17 +1530,21 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.containerNav({
 flex: "column",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1532,17 +1556,21 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "tab",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1554,17 +1582,21 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "pill",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1576,17 +1608,21 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "underline",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1599,17 +1635,21 @@ elem: "Disabled"
 return new b.nav.header.container({
 type: "pill",
 itemWidth: "fill",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Much longer nav link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1622,17 +1662,21 @@ elem: "Disabled"
 return new b.nav.header.containerNav({
 type: "pill",
 itemWidth: "fill",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Much longer nav link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1645,17 +1689,21 @@ elem: "Disabled"
 return new b.nav.header.container({
 type: "pill",
 itemWidth: "justified",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Much longer nav link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1668,17 +1716,21 @@ elem: "Disabled"
 return new b.nav.header.containerNav({
 type: "pill",
 itemWidth: "justified",
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Much longer nav link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1691,17 +1743,21 @@ elem: "Disabled"
 return new b.nav.header.containerNav({
 type: "pill",
 flex: ["column", "sm-row"],
-link: [{
+link: [
+{
 active: true,
 href: "#",
 elem: "Active"
-}, {
+},
+{
 href: "#",
 elem: "Much longer nav link"
-}, {
+},
+{
 href: "#",
 elem: "Link"
-}, {
+},
+{
 disabled: true,
 href: "#",
 elem: "Disabled"
@@ -1748,13 +1804,15 @@ href: "#"
 			source: `() => {
 return new b.nav.header.container({
 type: "tab",
-item: [{
+item: [
+{
 link: {
 active: true,
 href: "#",
 elem: "Active"
 }
-}, {
+},
+{
 dropdown: true,
 elem: [
 new b.dropdown.button({
@@ -1776,12 +1834,14 @@ href: "#"
 }, "Separated link"),
 ]),
 ],
-}, {
+},
+{
 link: {
 href: "#",
 elem: "Link"
 }
-}, {
+},
+{
 link: {
 disabled: true,
 href: "#",
@@ -1795,13 +1855,15 @@ elem: "Disabled"
 			source: `() => {
 return new b.nav.header.container({
 type: "pill",
-item: [{
+item: [
+{
 link: {
 active: true,
 href: "#",
 elem: "Active"
 }
-}, {
+},
+{
 dropdown: true,
 elem: [
 new b.dropdown.button({
@@ -1823,12 +1885,14 @@ href: "#"
 }, "Separated link"),
 ]),
 ],
-}, {
+},
+{
 link: {
 href: "#",
 elem: "Link"
 }
-}, {
+},
+{
 link: {
 disabled: true,
 href: "#",
@@ -1841,17 +1905,21 @@ elem: "Disabled"
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
+const d = [
+{
 label: "Home",
 id: "home",
 active: true
-}, {
+},
+{
 label: "Profile",
 id: "profile"
-}, {
+},
+{
 label: "Contact",
 id: "contact"
-}, {
+},
+{
 label: "Disabled",
 id: "disabled",
 disabled: true
@@ -1890,17 +1958,21 @@ labelledby: \`\${i.id}-tab\`,
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
+const d = [
+{
 label: "Home",
 id: "home2",
 active: true
-}, {
+},
+{
 label: "Profile",
 id: "profile2"
-}, {
+},
+{
 label: "Contact",
 id: "contact2"
-}, {
+},
+{
 label: "Disabled",
 id: "disabled2",
 disabled: true
@@ -1937,17 +2009,21 @@ labelledby: \`nav-\${i.id}-tab\`,
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
+const d = [
+{
 label: "Home",
 id: "home3",
 active: true
-}, {
+},
+{
 label: "Profile",
 id: "profile3"
-}, {
+},
+{
 label: "Contact",
 id: "contact3"
-}, {
+},
+{
 label: "Disabled",
 id: "disabled3",
 disabled: true
@@ -1988,17 +2064,21 @@ labelledby: \`pills-\${i.id}-tab\`,
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return b.nav.tab({
 type: "pill",
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Contact",
 elem: content("Contact")
-}, {
+},
+{
 label: "Disabled",
 disabled: true,
 elem: content("Disabled")
@@ -2020,21 +2100,26 @@ marginEnd: "md-3",
 attrContent: {
 marginTop: [3, "md-0"]
 },
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Disabled",
 disabled: true,
 elem: content("Disabled")
-}, {
+},
+{
 label: "Messages",
 elem: content("Messages")
-}, {
+},
+{
 label: "Settings",
 elem: content("Settings")
 }, ],
@@ -2044,14 +2129,17 @@ elem: content("Settings")
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
+const d = [
+{
 label: "Home",
 id: "home4",
 active: true
-}, {
+},
+{
 label: "Profile",
 id: "profile4"
-}, {
+},
+{
 label: "Contact",
 id: "contact4"
 }, ];
@@ -2091,17 +2179,21 @@ labelledby: \`prop-\${i.id}-tab\`,
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return b.nav.tab({
 animation: false,
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Messages",
 elem: content("Messages")
-}, {
+},
+{
 label: "Settings",
 elem: content("Settings")
 }, ],
@@ -2113,14 +2205,17 @@ elem: content("Settings")
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
 return new b.card.container(b.nav.tab({
 card: true,
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Messages",
 elem: content("Messages")
 }, ],
@@ -2133,14 +2228,17 @@ const content = (title) => \`This is some placeholder content the {{b::\${title}
 return new b.card.container(b.nav.tab({
 card: true,
 type: "pill",
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Messages",
 elem: content("Messages")
 }, ],
@@ -2169,7 +2267,8 @@ const target = event.target.closest(".modal");
 b.modal.handleUpdate(target);
 },
 },
-item: [{
+item: [
+{
 label: new b.caption({
 icon: "house-fill",
 labelDisplay: ["none", "md-block"],
@@ -2177,14 +2276,16 @@ iconDisplay: "md-none",
 }, "Home"),
 active: true,
 elem: content("Home"),
-}, {
+},
+{
 label: new b.caption({
 icon: "person-vcard-fill",
 labelDisplay: ["none", "md-block"],
 iconDisplay: "md-none",
 }, "Profile"),
 elem: content("Profile"),
-}, {
+},
+{
 label: new b.caption({
 icon: "envelope-at-fill",
 labelDisplay: ["none", "md-block"],
@@ -2216,7 +2317,8 @@ const target = event.target.closest(".modal");
 b.modal.handleUpdate(target);
 },
 },
-item: [{
+item: [
+{
 label: new b.caption({
 icon: "house-fill",
 labelDisplay: ["none", "md-block"],
@@ -2224,14 +2326,16 @@ iconDisplay: "md-none",
 }, "Home"),
 active: true,
 elem: content("Home"),
-}, {
+},
+{
 label: new b.caption({
 icon: "person-vcard-fill",
 labelDisplay: ["none", "md-block"],
 iconDisplay: "md-none",
 }, "Profile"),
 elem: content("Profile"),
-}, {
+},
+{
 label: new b.caption({
 icon: "envelope-at-fill",
 labelDisplay: ["none", "md-block"],
@@ -2264,14 +2368,17 @@ event.preventDefault();
 b.tabList.show(event.target);
 };
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.\`;
-const d = [{
+const d = [
+{
 label: "1",
 id: "one",
 active: true
-}, {
+},
+{
 label: "2",
 id: "two"
-}, {
+},
+{
 label: "3",
 id: "three"
 }, ];
@@ -2373,17 +2480,21 @@ return [mainContainer];
 		{
 			source: `() => {
 const content = (title) => \`This is some placeholder content the {{b::\${title} tab's}} associated content.\`;
-const d = [{
+const d = [
+{
 label: "Home",
 id: "home5",
 active: true
-}, {
+},
+{
 label: "Profile",
 id: "profile5"
-}, {
+},
+{
 label: "Messages",
 id: "messages5"
-}, {
+},
+{
 label: "Settings",
 id: "settings5"
 }, ];
@@ -2440,17 +2551,21 @@ const evnt = event;
 e.console(evnt.target, "hidden.bs.tab", \`Target: {{b::\${core.elemInfo(evnt.target)}}}{{br}}RelatedTarget: {{b::\${core.elemInfo(evnt.relatedTarget)}}}\`, "danger");
 },
 },
-item: [{
+item: [
+{
 label: "Home",
 active: true,
 elem: content("Home")
-}, {
+},
+{
 label: "Profile",
 elem: content("Profile")
-}, {
+},
+{
 label: "Messages",
 elem: content("Messages")
-}, {
+},
+{
 label: "Settings",
 elem: content("Settings")
 }, ],
