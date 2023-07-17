@@ -244,15 +244,24 @@ export const test: IContent = {
 																			core.getCSSVar(
 																				"--bs-primary"
 																			),
-
-																		backgroundColor:
-																			core.getCSSVar(
+																		fill: {
+																			target: "origin",
+																			above: core.getCSSVar(
 																				"--bs-primary-bg-subtle"
 																			),
+																		},
 																	},
 																],
 															},
 															options: {
+																// elements: {
+																// 	line: {
+																// 		backgroundColor:
+																// core.getCSSVar(
+																// 	"--bs-primary-bg-subtle"
+																// ),
+																// 	},
+																// },
 																plugins: {
 																	legend: {
 																		display: false,

@@ -71,6 +71,10 @@ const setupChart = (container: HTMLCanvasElement) => {
 					pointRadius: 1.5,
 					tension: 0.5,
 					borderColor: core.getCSSVar("--bs-primary"),
+					fill: {
+						target: "origin",
+						above: core.getCSSVar("--bs-primary-bg-subtle"),
+					},
 				},
 			],
 		},
