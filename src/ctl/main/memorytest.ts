@@ -39,41 +39,31 @@ const checkDuplicateID = () => {
 	return duplicates;
 };
 
-// const RGBToHex = (r: number, g: number, b: number) => {
-// 	return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
-// };
-
-// const getCSSVar = (variableName: string) => {
-// 	let root = document.querySelector(":root") as HTMLStyleElement;
-// 	if (root) {
-// 		let value = getComputedStyle(root).getPropertyValue(variableName);
-// 		if (value.startsWith("#")) {
-// 			return value;
-// 		} else {
-// 			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
-// 			let result = RGBToHex(parseInt(v[0]), parseInt(v[1]), parseInt(v[2]));
-// 			return result;
-// 		}
-// 	} else {
-// 		return "#ffffff";
-// 	}
-// };
-
 const setupChart = (container: HTMLCanvasElement) => {
+	const { r, g, b } = core.getRGBVar("--bs-primary-bg-subtle");
+	let fillColor = `rgba(${r},${g},${b},.2)`;
+
 	return new Chart(container, {
 		type: "line",
 		data: {
 			labels: Array(30).fill(""),
 			datasets: [
 				{
-					data: [Array(30).fill(0), Array(30).fill(0)],
+					data: Array(30).fill(0),
+					borderWidth: 1,
+					pointRadius: 0,
+					borderColor: core.getCSSVar("--bs-primary"),
+					borderDash: [3, 3],
+				},
+				{
+					data: Array(30).fill(0),
 					borderWidth: 1,
 					pointRadius: 0,
 					tension: 0.5,
 					borderColor: core.getCSSVar("--bs-primary"),
 					fill: {
 						target: "origin",
-						above: core.getCSSVar("--bs-primary-bg-subtle"),
+						above: fillColor,
 					},
 				},
 			],
@@ -90,18 +80,12 @@ const setupChart = (container: HTMLCanvasElement) => {
 			scales: {
 				y: {
 					display: true,
-					min: 0,
-					title: {
-						display: false,
-						// text: "Speed (ms)",
-					},
 					beginAtZero: true,
 					grid: { color: core.getCSSVar("--bs-tertiary-bg") },
-					// ticks: { color: getCSSVar("--bs-tertiary-color") },
 				},
 				x: {
-					display: false,
-					// grid: { color: getCSSVar("--bs-tertiary-color") },
+					ticks: { display: false },
+					grid: { color: core.getCSSVar("--bs-tertiary-bg") },
 				},
 			},
 		},
@@ -156,10 +140,10 @@ const updateProgress = (arg: {
 		if (arg.chart && arg.chartData) {
 			arg.chart.data.labels?.shift();
 			arg.chart.data.labels?.push(arg.current);
-			arg.chart.data.datasets.forEach((dataset) => {
-				dataset.data.shift();
-				dataset.data.push(arg.chartData!);
-			});
+			arg.chart.data.datasets[1].data.shift();
+			arg.chart.data.datasets[1].data.push(arg.chartData);
+			arg.chart.data.datasets[0].data = Array(30).fill(arg.chartData);
+
 			arg.chart.update("none");
 		}
 
@@ -529,31 +513,41 @@ const startMemoryTest = (arg: {
 										//dialog show after 300 ms
 										setTimeout(
 											(target) => {
+												const { r, g, b } =
+													core.getRGBVar("--bs-primary-bg-subtle");
+												let fillColor = `rgba(${r},${g},${b},.2)`;
+
 												new Chart(target, {
-													type: "bar",
+													type: "line",
 													data: {
 														labels: speedDB.map((i) => i.title),
 														datasets: [
 															{
-																data: speedDB.map((i) => {
-																	if (i.data.length > 1) {
-																		let sum = i.data.reduce(
-																			(partialSum, a) =>
-																				partialSum + a,
-																			0
-																		);
-																		return sum / i.data.length;
-																	} else {
-																		return i.data[0];
-																	}
-																}),
-																borderWidth: 1.5,
+																data: speedDB
+																	.map((i) => {
+																		if (i.data.length > 1) {
+																			let sum = i.data.reduce(
+																				(partialSum, a) =>
+																					partialSum + a,
+																				0
+																			);
+																			return (
+																				sum / i.data.length
+																			);
+																		} else {
+																			return i.data[0];
+																		}
+																	})
+																	.sort((a, b) => a - b),
+																borderWidth: 1,
+																pointRadius: 1,
+																tension: 0.5,
 																borderColor:
 																	core.getCSSVar("--bs-primary"),
-																backgroundColor:
-																	core.getCSSVar(
-																		"--bs-primary-bg-subtle"
-																	),
+																fill: {
+																	target: "origin",
+																	above: fillColor,
+																},
 															},
 														],
 													},
