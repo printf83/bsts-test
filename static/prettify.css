@@ -151,7 +151,6 @@ li.L8 {
 
 .hljs {
     color: var(--bs-body-color);
-    background: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity));
 }
 
 .hljs-doctag,
