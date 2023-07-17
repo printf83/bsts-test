@@ -67,8 +67,8 @@ const setupChart = (container: HTMLCanvasElement) => {
 			datasets: [
 				{
 					data: Array(30).fill(0),
-					borderWidth: 1.5,
-					pointRadius: 1.5,
+					borderWidth: 1,
+					pointRadius: 0,
 					tension: 0.5,
 					borderColor: core.getCSSVar("--bs-primary"),
 					fill: {
