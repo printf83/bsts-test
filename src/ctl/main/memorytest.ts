@@ -66,7 +66,7 @@ const setupChart = (container: HTMLCanvasElement) => {
 			labels: Array(30).fill(""),
 			datasets: [
 				{
-					data: Array(30).fill(0),
+					data: [Array(30).fill(0), Array(30).fill(0)],
 					borderWidth: 1,
 					pointRadius: 0,
 					tension: 0.5,
