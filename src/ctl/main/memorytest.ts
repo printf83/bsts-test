@@ -40,8 +40,9 @@ const checkDuplicateID = () => {
 };
 
 const setupChart = (container: HTMLCanvasElement) => {
-	const { r, g, b } = core.getRGBVar("--bs-primary-bg-subtle");
-	let fillColor = `rgba(${r},${g},${b},.2)`;
+	const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle");
+	const lineColor = core.getCSSVarRgbColor("--bs-primary");
+	const gridColor = core.getCSSVarRgbColor("--bs-tertiary-bg");
 
 	return new Chart(container, {
 		type: "line",
@@ -52,7 +53,7 @@ const setupChart = (container: HTMLCanvasElement) => {
 					data: Array(30).fill(0),
 					borderWidth: 1,
 					pointRadius: 0,
-					borderColor: core.getCSSVar("--bs-primary"),
+					borderColor: lineColor,
 					borderDash: [3, 3],
 				},
 				{
@@ -60,7 +61,7 @@ const setupChart = (container: HTMLCanvasElement) => {
 					borderWidth: 1,
 					pointRadius: 0,
 					tension: 0.5,
-					borderColor: core.getCSSVar("--bs-primary"),
+					borderColor: lineColor,
 					fill: {
 						target: "origin",
 						above: fillColor,
@@ -81,11 +82,11 @@ const setupChart = (container: HTMLCanvasElement) => {
 				y: {
 					display: true,
 					beginAtZero: true,
-					grid: { color: core.getCSSVar("--bs-tertiary-bg") },
+					grid: { color: gridColor },
 				},
 				x: {
 					ticks: { display: false },
-					grid: { color: core.getCSSVar("--bs-tertiary-bg") },
+					grid: { color: gridColor },
 				},
 			},
 		},
@@ -513,9 +514,14 @@ const startMemoryTest = (arg: {
 										//dialog show after 300 ms
 										setTimeout(
 											(target) => {
-												const { r, g, b } =
-													core.getRGBVar("--bs-primary-bg-subtle");
-												let fillColor = `rgba(${r},${g},${b},.2)`;
+												const fillColor = core.getCSSVarRgbColor(
+													"--bs-primary-bg-subtle",
+													0.5
+												);
+												const lineColor =
+													core.getCSSVarRgbColor("--bs-primary");
+												const gridColor =
+													core.getCSSVarRgbColor("--bs-tertiary-bg");
 
 												new Chart(target, {
 													type: "line",
@@ -542,8 +548,7 @@ const startMemoryTest = (arg: {
 																borderWidth: 1,
 																pointRadius: 1,
 																tension: 0.5,
-																borderColor:
-																	core.getCSSVar("--bs-primary"),
+																borderColor: lineColor,
 																fill: {
 																	target: "origin",
 																	above: fillColor,
@@ -563,9 +568,7 @@ const startMemoryTest = (arg: {
 																display: true,
 																beginAtZero: true,
 																grid: {
-																	color: core.getCSSVar(
-																		"--bs-tertiary-bg"
-																	),
+																	color: gridColor,
 																},
 															},
 														},

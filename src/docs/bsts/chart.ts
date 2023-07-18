@@ -2,6 +2,7 @@ import { b, h, core } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 export const chart: IContent = {
 	title: "ChartJS",
@@ -17,9 +18,8 @@ export const chart: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						// const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
-						// let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
-						const lineColor = core.getCSSVar("--bs-primary");
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
+						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
 						const value = core.rndBetween(1, 100);
 						const data = [value, 100 - value];
 
@@ -39,9 +39,11 @@ export const chart: IContent = {
 													datasets: [
 														{
 															data: data,
-															borderWidth: 1,
-															borderColor: lineColor,
-															borderRadius: 2,
+															borderRadius: 50,
+															backgroundColor: [
+																lineColor,
+																lineColor2,
+															],
 														},
 													],
 												},
@@ -56,13 +58,87 @@ export const chart: IContent = {
 															display: false,
 														},
 													},
-													scales: {
-														x: { display: false },
-														y: {
+													// scales: {
+													// 	x: { display: false },
+													// 	y: {
+													// 		display: false,
+													// 		beginAtZero: true,
+													// 	},
+													// },
+												},
+											});
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Doughnut chart with label"),
+				new e.code({
+					db: getContentCode(db),
+					output: () => {
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
+						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
+						const value = core.rndBetween(1, 100);
+						const data = [value, 100 - value];
+
+						return new b.card.container(
+							{ style: { maxWidth: "200px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											Chart.register(ChartDataLabels);
+
+											new Chart(target, {
+												type: "doughnut",
+												data: {
+													labels: Array(data.length).fill(""),
+													datasets: [
+														{
+															data: data,
+															borderRadius: 50,
+															backgroundColor: [
+																lineColor,
+																lineColor2,
+															],
+														},
+													],
+												},
+
+												options: {
+													aspectRatio: 2, // cutout: "80%",
+													circumference: 180,
+													rotation: 270,
+													responsive: true,
+													plugins: {
+														legend: {
 															display: false,
-															beginAtZero: true,
+														},
+														datalabels: {
+															formatter: () => {
+																return `${50}%`;
+															},
+															color: lineColor,
+															backgroundColor: lineColor2,
 														},
 													},
+													// scales: {
+													// 	x: { display: false },
+													// 	y: {
+													// 		display: false,
+													// 		beginAtZero: true,
+													// 	},
+													// },
 												},
 											});
 										},
@@ -81,9 +157,8 @@ export const chart: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
-						let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
-						const lineColor = core.getCSSVar("--bs-primary");
+						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 
 						const data = Array(core.rndBetween(5, 10))
 							.fill("")
@@ -150,9 +225,9 @@ export const chart: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
-						let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
-						const lineColor = core.getCSSVar("--bs-primary");
+						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
+						const gridColor = core.getCSSVarRgbColor("--bs-tertiary-bg");
 
 						const data = Array(core.rndBetween(5, 10))
 							.fill("")
@@ -199,9 +274,15 @@ export const chart: IContent = {
 															ticks: {
 																display: false,
 															},
+															grid: {
+																color: gridColor,
+															},
 														},
 														y: {
 															beginAtZero: true,
+															grid: {
+																color: gridColor,
+															},
 														},
 													},
 												},
@@ -222,9 +303,8 @@ export const chart: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
-						let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
-						const lineColor = core.getCSSVar("--bs-primary");
+						let fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 
 						const item = (arg: { data: number[] }) => {
 							return new b.card.container(
@@ -244,7 +324,7 @@ export const chart: IContent = {
 														datasets: [
 															{
 																data: arg.data,
-																borderWidth: 1.5,
+																borderWidth: 1,
 																pointRadius: 0,
 																tension: 0.5,
 																borderColor: lineColor,

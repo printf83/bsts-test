@@ -57,7 +57,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 const colorpickerBg = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
 	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
-	let value = core.getCSSVar(firstVariableName);
+	let value = core.getCSSVarHexColor(firstVariableName);
 	return new h.div(
 		{ class: "swatch", rounded: true, border: true, style: { backgroundColor: value } },
 		[
@@ -89,7 +89,7 @@ const colorpickerBg = (variableName: string | string[]) => {
 const colorpickerBorder = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
 	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
-	let value = core.getCSSVar(firstVariableName);
+	let value = core.getCSSVarHexColor(firstVariableName);
 	return new h.div(
 		{
 			class: "swatch",
@@ -127,7 +127,7 @@ const colorpickerBorder = (variableName: string | string[]) => {
 const colorpickerText = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
 	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
-	let value = core.getCSSVar(firstVariableName);
+	let value = core.getCSSVarHexColor(firstVariableName);
 	return new h.div({ class: "swatch", position: "relative", style: { color: `${value}` } }, [
 		new h.span(
 			{
@@ -1235,5 +1235,4 @@ export const color: IContent = {
 			]),
 		];
 	},
-
 };
