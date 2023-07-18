@@ -282,26 +282,11 @@ export const setupContentDocument = (
 			//generate content
 			contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
 
-			//rename page title
-			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-			document.title = strPagetitle;
-
 			//set history
 			if (state === "push") {
-				pushState({
-					docId: docId,
-					anchorId: anchorId,
-					pagetitle: strPagetitle,
-					value: value,
-				});
+				pushState({});
 			} else if (state === "replace") {
-				replaceState({
-					docId: docId,
-					anchorId: anchorId,
-					pagetitle: strPagetitle,
-					value: value,
-				});
+				replaceState({});
 			}
 
 			focusToAnchor(anchorId);

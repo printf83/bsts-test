@@ -11,8 +11,7 @@ import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
 import { IBsMainContainer, container } from "./ctl/main/container.js";
 import { IContent, setupContentDocument } from "./ctl/main/content.js";
 import { setupState } from "./ctl/main/history.js";
-
-const DEFAULTDOCUMENT = "docs/gettingstarted/introduction";
+import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
 
 const loadDefaultDoc = () => {
 	const { search } = window.location;
