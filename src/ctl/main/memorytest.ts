@@ -40,7 +40,7 @@ const checkDuplicateID = () => {
 };
 
 const setupChart = (container: HTMLCanvasElement) => {
-	const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle");
+	const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
 	const lineColor = core.getCSSVarRgbColor("--bs-primary");
 	const gridColor = core.getCSSVarRgbColor("--bs-tertiary-bg");
 

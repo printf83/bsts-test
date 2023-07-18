@@ -2,7 +2,7 @@ import { b, h, core } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+// import ChartDataLabels from "chartjs-plugin-datalabels";
 
 export const chart: IContent = {
 	title: "ChartJS",
@@ -14,7 +14,7 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Doughnut chart"),
+				new e.title("Doughnut"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -24,7 +24,7 @@ export const chart: IContent = {
 						const data = [value, 100 - value];
 
 						return new b.card.container(
-							{ style: { maxWidth: "200px" } },
+							{ style: { maxWidth: "380px" } },
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
@@ -50,9 +50,8 @@ export const chart: IContent = {
 												options: {
 													aspectRatio: 2,
 													cutout: "80%",
-													circumference: 180,
 													rotation: 270,
-													responsive: true,
+													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
@@ -79,7 +78,7 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Doughnut chart with label"),
+				new e.title("Half doughnut"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -89,7 +88,7 @@ export const chart: IContent = {
 						const data = [value, 100 - value];
 
 						return new b.card.container(
-							{ style: { maxWidth: "200px" } },
+							{ style: { maxWidth: "380px" } },
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
@@ -97,7 +96,73 @@ export const chart: IContent = {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
 
-											Chart.register(ChartDataLabels);
+											new Chart(target, {
+												type: "doughnut",
+												data: {
+													labels: Array(data.length).fill(""),
+													datasets: [
+														{
+															data: data,
+															borderRadius: 50,
+															backgroundColor: [
+																lineColor,
+																lineColor2,
+															],
+														},
+													],
+												},
+												options: {
+													aspectRatio: 2,
+													cutout: "90%",
+													circumference: 180,
+													rotation: 270,
+													// responsive: true,
+													plugins: {
+														legend: {
+															display: false,
+														},
+													},
+													// scales: {
+													// 	x: { display: false },
+													// 	y: {
+													// 		display: false,
+													// 		beginAtZero: true,
+													// 	},
+													// },
+												},
+											});
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Half doughnut with label"),
+				new e.code({
+					db: getContentCode(db),
+					output: () => {
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
+						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
+						const value = core.rndBetween(1, 100);
+						const data = [value, 100 - value];
+
+						return new b.card.container(
+							{ style: { maxWidth: "380px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									ratio: "16x9",
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											// Chart.register(ChartDataLabels);
 
 											new Chart(target, {
 												type: "doughnut",
@@ -116,21 +181,22 @@ export const chart: IContent = {
 												},
 
 												options: {
-													aspectRatio: 2, // cutout: "80%",
+													aspectRatio: 2,
+													cutout: "90%",
 													circumference: 180,
 													rotation: 270,
-													responsive: true,
+													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
 														},
-														datalabels: {
-															formatter: () => {
-																return `${50}%`;
-															},
-															color: lineColor,
-															backgroundColor: lineColor2,
-														},
+														// datalabels: {
+														// 	formatter: () => {
+														// 		return `${50}%`;
+														// 	},
+														// 	color: lineColor,
+														// 	backgroundColor: lineColor2,
+														// },
 													},
 													// scales: {
 													// 	x: { display: false },
@@ -153,7 +219,7 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Line chart"),
+				new e.title("Line"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -167,10 +233,11 @@ export const chart: IContent = {
 							});
 
 						return new b.card.container(
-							{ style: { maxWidth: "200px" } },
+							{ style: { maxWidth: "380px" } },
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "16x9",
 									on: {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
@@ -194,7 +261,7 @@ export const chart: IContent = {
 													],
 												},
 												options: {
-													responsive: true,
+													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
@@ -221,7 +288,7 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Line chart with grid"),
+				new e.title("Line with grid"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -236,10 +303,11 @@ export const chart: IContent = {
 							});
 
 						return new b.card.container(
-							{ style: { maxWidth: "200px" } },
+							{ style: { maxWidth: "380px" } },
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "16x9",
 									on: {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
@@ -263,7 +331,7 @@ export const chart: IContent = {
 													],
 												},
 												options: {
-													responsive: true,
+													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
@@ -312,45 +380,54 @@ export const chart: IContent = {
 								new b.card.body(
 									{ padding: 2 },
 									new h.canvas({
+										ratio: "16x9",
 										on: {
 											build: (event) => {
 												const target = event.target as HTMLCanvasElement;
 
 												//dialog show after 300 ms
-												new Chart(target, {
-													type: "line",
-													data: {
-														labels: Array(arg.data.length).fill(""),
-														datasets: [
-															{
-																data: arg.data,
-																borderWidth: 1,
-																pointRadius: 0,
-																tension: 0.5,
-																borderColor: lineColor,
-																fill: {
-																	target: "origin",
-																	above: fillColor,
+												setTimeout(
+													(target) => {
+														new Chart(target, {
+															type: "line",
+															data: {
+																labels: Array(arg.data.length).fill(
+																	""
+																),
+																datasets: [
+																	{
+																		data: arg.data,
+																		borderWidth: 1,
+																		pointRadius: 0,
+																		tension: 0.5,
+																		borderColor: lineColor,
+																		fill: {
+																			target: "origin",
+																			above: fillColor,
+																		},
+																	},
+																],
+															},
+															options: {
+																// responsive: true,
+																plugins: {
+																	legend: {
+																		display: false,
+																	},
+																},
+																scales: {
+																	x: { display: false },
+																	y: {
+																		display: false,
+																		beginAtZero: true,
+																	},
 																},
 															},
-														],
+														});
 													},
-													options: {
-														responsive: true,
-														plugins: {
-															legend: {
-																display: false,
-															},
-														},
-														scales: {
-															x: { display: false },
-															y: {
-																display: false,
-																beginAtZero: true,
-															},
-														},
-													},
-												});
+													300,
+													target
+												);
 											},
 										},
 									})
