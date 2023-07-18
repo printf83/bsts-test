@@ -143,7 +143,17 @@ export const menu: IMenu[] = [
 			{ label: "Badges", value: "docs/example/badges" },
 			{ label: "Breadcrumbs", value: "docs/example/breadcrumbs" },
 			{ label: "Buttons", value: "docs/example/buttons" },
-			{ label: "Test", value: "docs/example/test" },
+		],
+	},
+	{
+		label: "More",
+		icon: { id: "hexagon-fill", textColor: "secondary" },
+		item: [
+			{ label: "Animation", value: "docs/bsts/animation" },
+			{ label: "Transform", value: "docs/bsts/transform" },
+			{ label: "Extended color", value: "docs/bsts/extended_color" },
+			{ label: "Chart", value: "docs/bsts/chart" },
+			{ label: "Test", value: "docs/bsts/test" },
 		],
 	},
 ];
