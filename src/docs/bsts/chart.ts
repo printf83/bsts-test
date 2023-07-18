@@ -13,23 +13,6 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Duplicate ID"),
-				new e.code({
-					db: getContentCode(db),
-					outputAttr: { display: "flex", gap: 2 },
-					output: () => {
-						return [
-							// new b.button({ id: "chart" }, "chart"),
-							// new b.button({ id: "duplicate_id" }, "duplicate_id"),
-							// new b.button({ id: "tooltip" }, "tooltip"),
-						];
-					},
-				}),
-			]),
-
-			//----------------------
-
-			new e.section([
 				new e.title("Chart"),
 				new e.code({
 					db: getContentCode(db),

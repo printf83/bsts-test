@@ -102,13 +102,15 @@ export const transform: IContent = {
 								style: { width: "8rem" },
 							},
 							new b.caption({
-								icon: new b.icon(
-									{
-										rotate: 135,
-										flip: "vertical",
-										fontSize: 1,
-									},
-									"at"
+								icon: new h.div(
+									{ rotate: 135 },
+									new b.icon(
+										{
+											flip: "vertical",
+											fontSize: 1,
+										},
+										"at"
+									)
 								),
 								iconPosition: "top",
 								elem: "rotate:135 & flip:vertical",
