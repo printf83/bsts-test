@@ -1,5 +1,7 @@
 import { IMenu } from "./menu.js";
 
+export const DEFAULTDOCUMENT = "docs/gettingstarted/introduction";
+
 export const menu: IMenu[] = [
 	{
 		label: "Getting started",

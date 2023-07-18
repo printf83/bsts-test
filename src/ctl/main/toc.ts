@@ -37,7 +37,10 @@ export const setupTOC = (content?: IContent) => {
 			const listOfHref = t.map((i) => i.item.href);
 			const duplicateItem = listOfHref.filter((i, ix) => listOfHref.indexOf(i) !== ix);
 			if (duplicateItem && duplicateItem.length > 0) {
-				console.warn(`Found ${duplicateItem.length} anchor in ${content.title}.`, duplicateItem);
+				console.warn(
+					`Found ${duplicateItem.length} anchor in ${content.title}.`,
+					duplicateItem
+				);
 			}
 
 			//arrange title
@@ -47,20 +50,27 @@ export const setupTOC = (content?: IContent) => {
 					if (i.deep === 0) {
 						u.push(i.item);
 					} else if (i.deep === 1) {
-						if (!u[u.length - 1].item) {
-							u[u.length - 1].item = [];
-						}
+						if (u[u.length - 1] !== undefined) {
+							if (!u[u.length - 1]!.item) {
+								u[u.length - 1]!.item = [];
+							}
 
-						u[u.length - 1].item!.push(i.item);
+							u[u.length - 1]!.item!.push(i.item);
+						}
 					} else if (i.deep === 2) {
 						let y = u.length - 1;
-						let x = u[y].item!.length - 1;
 
-						if (!u[y].item![x].item) {
-							u[y].item![x].item = [];
+						if (u[y] !== undefined) {
+							let x = u[y]!.item!.length - 1;
+
+							if (u[y]!.item![x] !== undefined) {
+								if (!u[y]!.item![x]!.item) {
+									u[y]!.item![x]!.item = [];
+								}
+
+								u[y]!.item![x]!.item!.push(i.item);
+							}
 						}
-
-						u[y].item![x].item!.push(i.item);
 					}
 				});
 			}
@@ -100,7 +110,11 @@ export const setupTOC = (content?: IContent) => {
 								}),
 							]
 						),
-						new h.h(5, { display: ["none", "md-block"], fontSize: 6, marginY: 2 }, "On this page"),
+						new h.h(
+							5,
+							{ display: ["none", "md-block"], fontSize: 6, marginY: 2 },
+							"On this page"
+						),
 						new h.hr({ display: ["none", "md-block"], marginY: 2 }),
 						new b.collapse.container(
 							{
@@ -115,7 +129,10 @@ export const setupTOC = (content?: IContent) => {
 									},
 									content.loading
 										? u.map((_i) => {
-												return new h.li({ loadingPlaceholderAnimation: "wave" }, core.placeholder(1, 3, 1, 3));
+												return new h.li(
+													{ loadingPlaceholderAnimation: "wave" },
+													core.placeholder(1, 3, 1, 3)
+												);
 										  })
 										: u.map((i) => {
 												return new h.li([
@@ -124,12 +141,24 @@ export const setupTOC = (content?: IContent) => {
 														? new h.ul(
 																i.item.map((j) => {
 																	return new h.li([
-																		new h.a({ href: j.href }, j.label),
+																		new h.a(
+																			{ href: j.href },
+																			j.label
+																		),
 																		j.item
 																			? new h.ul(
-																					j.item.map((k) => {
-																						return new h.li(new h.a({ href: k.href }, k.label));
-																					})
+																					j.item.map(
+																						(k) => {
+																							return new h.li(
+																								new h.a(
+																									{
+																										href: k.href,
+																									},
+																									k.label
+																								)
+																							);
+																						}
+																					)
 																			  )
 																			: "",
 																	]);

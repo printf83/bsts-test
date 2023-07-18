@@ -2,7 +2,7 @@ import { b, core, h } from "@printf83/bsts";
 import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
-import { menu } from "./_db.js";
+import { DEFAULTDOCUMENT, menu } from "./_db.js";
 import { setupContentContainerItem, setupContentDocument } from "./content.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
@@ -141,9 +141,9 @@ const updateProgress = (arg: {
 		if (arg.chart && arg.chartData) {
 			arg.chart.data.labels?.shift();
 			arg.chart.data.labels?.push(arg.current);
-			arg.chart.data.datasets[1].data.shift();
-			arg.chart.data.datasets[1].data.push(arg.chartData);
-			arg.chart.data.datasets[0].data = Array(30).fill(arg.chartData);
+			arg.chart.data.datasets[1]!.data.shift();
+			arg.chart.data.datasets[1]!.data.push(arg.chartData);
+			arg.chart.data.datasets[0]!.data = Array(30).fill(arg.chartData);
 
 			arg.chart.update("none");
 		}
@@ -240,7 +240,7 @@ let speedDB: { id: string; title: string; data: number[] }[];
 const addToSpeedDB = (id: string, title: string, data: number) => {
 	let index = speedDB.findIndex((i) => i.id === id);
 	if (index > -1) {
-		speedDB[index].data.push(data);
+		speedDB[index]!.data.push(data);
 	} else {
 		speedDB.push({ id: id, title: title, data: [data] });
 	}
@@ -263,6 +263,21 @@ const docDB = () => {
 	}
 };
 
+const getDocId = (random: boolean, max: number, count: number, mDB: string[]): string => {
+	const mDBLength = mDB.length;
+	let result = random ? mDB[core.rndBetween(0, mDBLength - 1)] : mDB[(max - count) % mDBLength];
+
+	if (result) {
+		return result;
+	} else {
+		if (random) {
+			return getDocId(random, max, count, mDB);
+		} else {
+			return DEFAULTDOCUMENT;
+		}
+	}
+};
+
 const runMemoryTest = (
 	arg: {
 		startTime: number;
@@ -276,13 +291,11 @@ const runMemoryTest = (
 	},
 	callback: (counter: number, docId: string) => void
 ) => {
+	arg.random ??= false;
 	arg.max ??= arg.count;
 
 	let mDB = docDB();
-	let mDBLength = mDB.length;
-	let docId = arg.random
-		? mDB[core.rndBetween(0, mDBLength - 1)]
-		: mDB[(arg.max - arg.count) % mDB.length];
+	let docId = getDocId(arg.random, arg.max, arg.count, mDB);
 
 	if (arg.count > 0) {
 		core.requestIdleCallback(() => {
@@ -394,13 +407,13 @@ const runDownloadResource = (
 ) => {
 	let count = arg.item.length - 1;
 	if (arg.index <= count) {
-		getContent(arg.item[arg.index].value, (_data) => {
+		getContent(arg.item[arg.index]!.value, (_data) => {
 			//calculate data
 			const currentTime = performance.now();
 			const dataChart = currentTime - lastTestTime;
 			const dataCount = arg.index + 1;
 			const dataProgress = (arg.index / count) * 100;
-			const dataCurrent = arg.item[arg.index].label ? arg.item[arg.index].label : "...";
+			const dataCurrent = arg.item[arg.index]!.label ? arg.item[arg.index]!.label : "...";
 
 			let dataSpeed: number | undefined;
 			let dataTime: number | undefined;
@@ -544,7 +557,10 @@ const startMemoryTest = (arg: {
 																			return i.data[0];
 																		}
 																	})
-																	.sort((a, b) => a - b),
+																	.sort(
+																		(a, b) =>
+																			(a ?? 0) - (b ?? 0)
+																	),
 																borderWidth: 1,
 																pointRadius: 1,
 																tension: 0.5,

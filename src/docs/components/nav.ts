@@ -1310,7 +1310,11 @@ export const nav: IContent = {
 									click: () => {
 										const elem =
 											document.querySelectorAll("#example-nav-tab button");
-										b.tabList.show(elem[core.rndBetween(0, elem.length - 1)]);
+
+										const rndElem = elem[core.rndBetween(0, elem.length - 1)];
+										if (rndElem) {
+											b.tabList.show(rndElem);
+										}
 									},
 								},
 							},

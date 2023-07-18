@@ -6,6 +6,7 @@ import { getContent } from "./data.js";
 import { cookie } from "./cookie.js";
 import { pushState, replaceState } from "./history.js";
 import hljs from "highlight.js";
+import { DEFAULTDOCUMENT } from "./_db.js";
 
 export interface IContent {
 	usedb?: boolean;
@@ -260,7 +261,7 @@ export const setupContentDocument = (
 
 	if (value.indexOf("#") > -1) {
 		let tempValue = value.split("#");
-		docId = tempValue[0];
+		docId = tempValue[0] || DEFAULTDOCUMENT;
 		anchorId = tempValue[1];
 	}
 
