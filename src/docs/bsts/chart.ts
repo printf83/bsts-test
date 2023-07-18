@@ -13,75 +13,264 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Chart"),
+				new e.title("Doughnut chart"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
+						// const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
+						// let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
+						const lineColor = core.getCSSVar("--bs-primary");
+						const value = core.rndBetween(1, 100);
+						const data = [value, 100 - value];
+
+						return new b.card.container(
+							{ style: { maxWidth: "200px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											new Chart(target, {
+												type: "doughnut",
+												data: {
+													labels: Array(data.length).fill(""),
+													datasets: [
+														{
+															data: data,
+															borderWidth: 1,
+															borderColor: lineColor,
+															borderRadius: 2,
+														},
+													],
+												},
+												options: {
+													aspectRatio: 2,
+													cutout: "80%",
+													circumference: 180,
+													rotation: 270,
+													responsive: true,
+													plugins: {
+														legend: {
+															display: false,
+														},
+													},
+													scales: {
+														x: { display: false },
+														y: {
+															display: false,
+															beginAtZero: true,
+														},
+													},
+												},
+											});
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Line chart"),
+				new e.code({
+					db: getContentCode(db),
+					output: () => {
+						const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
+						let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
+						const lineColor = core.getCSSVar("--bs-primary");
+
+						const data = Array(core.rndBetween(5, 10))
+							.fill("")
+							.map(() => {
+								return core.rndBetween(1, 10);
+							});
+
+						return new b.card.container(
+							{ style: { maxWidth: "200px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											new Chart(target, {
+												type: "line",
+												data: {
+													labels: Array(data.length).fill(""),
+													datasets: [
+														{
+															data: data,
+															borderWidth: 1,
+															pointRadius: 0,
+															tension: 0.5,
+															borderColor: lineColor,
+															fill: {
+																target: "origin",
+																above: fillColor,
+															},
+														},
+													],
+												},
+												options: {
+													responsive: true,
+													plugins: {
+														legend: {
+															display: false,
+														},
+													},
+													scales: {
+														x: { display: false },
+														y: {
+															display: false,
+															beginAtZero: true,
+														},
+													},
+												},
+											});
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Line chart with grid"),
+				new e.code({
+					db: getContentCode(db),
+					output: () => {
+						const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
+						let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
+						const lineColor = core.getCSSVar("--bs-primary");
+
+						const data = Array(core.rndBetween(5, 10))
+							.fill("")
+							.map(() => {
+								return core.rndBetween(1, 10);
+							});
+
+						return new b.card.container(
+							{ style: { maxWidth: "200px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											new Chart(target, {
+												type: "line",
+												data: {
+													labels: Array(data.length).fill(""),
+													datasets: [
+														{
+															data: data,
+															borderWidth: 1,
+															pointRadius: 0,
+															tension: 0.5,
+															borderColor: lineColor,
+															fill: {
+																target: "origin",
+																above: fillColor,
+															},
+														},
+													],
+												},
+												options: {
+													responsive: true,
+													plugins: {
+														legend: {
+															display: false,
+														},
+													},
+													scales: {
+														x: {
+															ticks: {
+																display: false,
+															},
+														},
+														y: {
+															beginAtZero: true,
+														},
+													},
+												},
+											});
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Chart in modal"),
+				new e.code({
+					db: getContentCode(db),
+					output: () => {
+						const primarySubtileRGB = core.getRGBVar("--bs-primary-bg-subtle");
+						let fillColor = `rgba(${primarySubtileRGB.r},${primarySubtileRGB.g},${primarySubtileRGB.b},.2)`;
+						const lineColor = core.getCSSVar("--bs-primary");
+
 						const item = (arg: { data: number[] }) => {
 							return new b.card.container(
-								{ style: { maxWidth: "120px" } },
+								{ col: [12, "sm-6", "lg-4", "xl-3"] },
 								new b.card.body(
+									{ padding: 2 },
 									new h.canvas({
-										ratio: "4x3",
 										on: {
 											build: (event) => {
 												const target = event.target as HTMLCanvasElement;
 
 												//dialog show after 300 ms
-												setTimeout(
-													(target) => {
-														new Chart(target, {
-															type: "line",
-															data: {
-																labels: Array(arg.data.length).fill(
-																	""
-																),
-																datasets: [
-																	{
-																		data: arg.data,
-																		borderWidth: 1.5,
-																		pointRadius: 0,
-																		tension: 0.5,
-																		borderColor:
-																			core.getCSSVar(
-																				"--bs-primary"
-																			),
-																		fill: {
-																			target: "origin",
-																			above: core.getCSSVar(
-																				"--bs-primary-bg-subtle"
-																			),
-																		},
-																	},
-																],
-															},
-															options: {
-																// elements: {
-																// 	line: {
-																// 		backgroundColor:
-																// core.getCSSVar(
-																// 	"--bs-primary-bg-subtle"
-																// ),
-																// 	},
-																// },
-																plugins: {
-																	legend: {
-																		display: false,
-																	},
-																},
-																scales: {
-																	x: { display: false },
-																	y: {
-																		display: false,
-																		beginAtZero: true,
-																	},
+												new Chart(target, {
+													type: "line",
+													data: {
+														labels: Array(arg.data.length).fill(""),
+														datasets: [
+															{
+																data: arg.data,
+																borderWidth: 1.5,
+																pointRadius: 0,
+																tension: 0.5,
+																borderColor: lineColor,
+																fill: {
+																	target: "origin",
+																	above: fillColor,
 																},
 															},
-														});
+														],
 													},
-													300,
-													target
-												);
+													options: {
+														responsive: true,
+														plugins: {
+															legend: {
+																display: false,
+															},
+														},
+														scales: {
+															x: { display: false },
+															y: {
+																display: false,
+																beginAtZero: true,
+															},
+														},
+													},
+												});
 											},
 										},
 									})
