@@ -13,7 +13,7 @@ import {
 } from "./_fn.js";
 import hljs from "highlight.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.14/+esm";
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.16/+esm";
 const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"];
 const BSCDNCSS = [
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
