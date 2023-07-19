@@ -39,7 +39,8 @@ export const chart: IContent = {
 													datasets: [
 														{
 															data: data,
-															borderRadius: 50,
+															// borderRadius: 50,
+															borderWidth: 0,
 															backgroundColor: [
 																lineColor,
 																lineColor2,
@@ -103,7 +104,8 @@ export const chart: IContent = {
 													datasets: [
 														{
 															data: data,
-															borderRadius: 50,
+															// borderRadius: 50,
+															borderWidth: 0,
 															backgroundColor: [
 																lineColor,
 																lineColor2,
@@ -171,7 +173,8 @@ export const chart: IContent = {
 													datasets: [
 														{
 															data: data,
-															borderRadius: 50,
+															// borderRadius: 50,
+															borderWidth: 0,
 															backgroundColor: [
 																lineColor,
 																lineColor2,
@@ -376,7 +379,6 @@ export const chart: IContent = {
 
 						const item = (arg: { data: number[] }) => {
 							return new b.card.container(
-								{ col: [12, "sm-6", "lg-4", "xl-3"] },
 								new b.card.body(
 									{ padding: 2 },
 									new h.canvas({
@@ -441,16 +443,13 @@ export const chart: IContent = {
 									click: () => {
 										b.modal.show(
 											b.modal.create({
-												customStyle: 2,
 												title: "Chatjs example",
 												scrollable: true,
 												elem: new h.div(
 													{
-														display: "flex",
-														gap: 3,
-														justifyContent: "center",
-														flex: "wrap",
-														marginTop: 3,
+														display: "grid",
+														gridTemplateColumns: "1fr 1fr",
+														gap: 2,
 													},
 													new Array(15).fill("").map(() => {
 														return item({
