@@ -46,16 +46,19 @@ function itemCodeCopy(e: Event) {
 	const card = target.closest(".card");
 
 	if (card) {
-		const text = card.getElementsByTagName("pre")[0].innerText;
-
-		navigator.clipboard.writeText(text).then(
-			() => {
-				successCopyCode(iconElem);
-			},
-			() => {
-				failCopyCode(iconElem);
-			}
-		);
+		const text = card.getElementsByTagName("pre")[0]?.innerText;
+		if (text) {
+			navigator.clipboard.writeText(text).then(
+				() => {
+					successCopyCode(iconElem);
+				},
+				() => {
+					failCopyCode(iconElem);
+				}
+			);
+		} else {
+			failCopyCode(iconElem);
+		}
 	} else {
 		failCopyCode(iconElem);
 	}
@@ -110,14 +113,22 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 										},
 										new h.small(attr.title)
 								  )
-								: new h.small({ monospace: true, textColor: "body-secondary" }, attr.title)
+								: new h.small(
+										{ monospace: true, textColor: "body-secondary" },
+										attr.title
+								  )
 						),
-						new h.div({ display: "flex" }, new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)),
+						new h.div(
+							{ display: "flex" },
+							new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)
+						),
 					]
 			  )
 			: "";
 		const cardBody = new b.card.body({ padding: 4 }, [
-			!attr.title ? new h.span({ position: "absolute", end: 0, marginEnd: 4 }, copyButton) : "",
+			!attr.title
+				? new h.span({ position: "absolute", end: 0, marginEnd: 4 }, copyButton)
+				: "",
 			new preview({ type: attr.type ? attr.type : "js", marginEnd: 4 }, attr.code),
 		]);
 

@@ -10,6 +10,7 @@
     "noUnusedParameters": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
     "skipLibCheck": true
   }
 }

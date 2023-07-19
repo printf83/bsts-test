@@ -1,6 +1,23 @@
 import { core, b, I, h } from "@printf83/bsts";
 import js_beautify from "js-beautify";
 import { css_beautify, html_beautify } from "js-beautify";
+import { pushState } from "../main/history.js";
+
+export const anchorOnClick = (event: Event) => {
+	event.preventDefault();
+	event.stopPropagation();
+
+	const target = event.target as Element;
+
+	let targetPosition = target.getBoundingClientRect().top;
+	let offsetElemPosition = targetPosition + window.scrollY - 60;
+	window.scrollTo(0, offsetElemPosition);
+
+	const href = target.getAttribute("href");
+	if (href) {
+		pushState({ anchorId: href.substring(1) });
+	}
+};
 
 export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem) => {
 	b.toast.show(

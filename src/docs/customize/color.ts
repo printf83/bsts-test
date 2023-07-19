@@ -2,61 +2,76 @@ import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
-const hexToRGB = (hex: string) => {
-	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-	hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
-		return r + r + g + g + b + b;
-	});
+// const hexToRGB = (hex: string) => {
+// 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+// 	hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
+// 		return r + r + g + g + b + b;
+// 	});
 
-	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	return result
-		? {
-				r: parseInt(result[1], 16),
-				g: parseInt(result[2], 16),
-				b: parseInt(result[3], 16),
-		  }
-		: null;
-};
+// 	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+// 	return result
+// 		? {
+// 				r: parseInt(result[1], 16),
+// 				g: parseInt(result[2], 16),
+// 				b: parseInt(result[3], 16),
+// 		  }
+// 		: null;
+// };
 
-const RGBToHex = (r: number, g: number, b: number) => {
-	return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
-};
+// const RGBToHex = (r: number, g: number, b: number) => {
+// 	return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
+// };
 
-const setCSSVar = (variableName: string, value: string) => {
-	let root = document.querySelector(":root") as HTMLStyleElement;
-	if (root) {
-		if (variableName.endsWith("-rgb") && value.startsWith("#")) {
-			let v = hexToRGB(value);
-			if (v) {
-				root.style.setProperty(variableName, `${v.r},${v.g},${v.b}`);
-			}
+// const setCSSVar = (variableName: string, value: string) => {
+// 	let root = document.querySelector(":root") as HTMLStyleElement;
+// 	if (root) {
+// 		if (variableName.endsWith("-rgb") && value.startsWith("#")) {
+// 			let v = hexToRGB(value);
+// 			if (v) {
+// 				root.style.setProperty(variableName, `${v.r},${v.g},${v.b}`);
+// 			}
+// 		} else {
+// 			root.style.setProperty(variableName, value);
+// 		}
+// 	}
+// };
+
+// const getCSSVar = (variableName: string) => {
+// 	let root = document.querySelector(":root") as HTMLStyleElement;
+// 	if (root) {
+// 		let value = getComputedStyle(root).getPropertyValue(variableName);
+// 		if (value.startsWith("#")) {
+// 			//console.log(`1. ${variableName}:${value}`);
+// 			return value;
+// 		} else {
+// 			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
+// 			let result = RGBToHex(parseInt(v[0]), parseInt(v[1]), parseInt(v[2]));
+// 			//console.log(`2. ${variableName}:${result}`);
+// 			return result;
+// 		}
+// 	} else {
+// 		return "#ffffff";
+// 	}
+// };
+
+const getFirstVariableName = (variableName: string | string[]): string => {
+	let arrVariableName = Array.isArray(variableName) ? variableName : [variableName];
+	if (arrVariableName.length > 0) {
+		if (arrVariableName[0]) {
+			return arrVariableName[0];
 		} else {
-			root.style.setProperty(variableName, value);
-		}
-	}
-};
-const getCSSVar = (variableName: string) => {
-	let root = document.querySelector(":root") as HTMLStyleElement;
-	if (root) {
-		let value = getComputedStyle(root).getPropertyValue(variableName);
-		if (value.startsWith("#")) {
-			//console.log(`1. ${variableName}:${value}`);
-			return value;
-		} else {
-			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
-			let result = RGBToHex(parseInt(v[0]), parseInt(v[1]), parseInt(v[2]));
-			//console.log(`2. ${variableName}:${result}`);
-			return result;
+			arrVariableName.shift();
+			return getFirstVariableName(arrVariableName);
 		}
 	} else {
-		return "#ffffff";
+		return "";
 	}
 };
 
 const colorpickerBg = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
-	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
-	let value = getCSSVar(firstVariableName);
+	let firstVariableName = getFirstVariableName(variableName);
+	let value = core.getCSSVarHexColor(firstVariableName);
 	return new h.div(
 		{ class: "swatch", rounded: true, border: true, style: { backgroundColor: value } },
 		[
@@ -74,7 +89,7 @@ const colorpickerBg = (variableName: string | string[]) => {
 								let container = target.closest(".swatch") as HTMLElement;
 								if (container) {
 									container.style.setProperty("background-color", value);
-									setCSSVar(i, value);
+									core.setCSSVar(i, value);
 								}
 							});
 						}
@@ -87,8 +102,8 @@ const colorpickerBg = (variableName: string | string[]) => {
 
 const colorpickerBorder = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
-	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
-	let value = getCSSVar(firstVariableName);
+	let firstVariableName = getFirstVariableName(variableName);
+	let value = core.getCSSVarHexColor(firstVariableName);
 	return new h.div(
 		{
 			class: "swatch",
@@ -112,7 +127,7 @@ const colorpickerBorder = (variableName: string | string[]) => {
 								let container = target.closest(".swatch") as HTMLElement;
 								if (container) {
 									container.style.setProperty("border-color", value, "important");
-									setCSSVar(i, value);
+									core.setCSSVar(i, value);
 								}
 							});
 						}
@@ -125,8 +140,8 @@ const colorpickerBorder = (variableName: string | string[]) => {
 
 const colorpickerText = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
-	let firstVariableName = Array.isArray(variableName) ? variableName[0] : variableName;
-	let value = getCSSVar(firstVariableName);
+	let firstVariableName = getFirstVariableName(variableName);
+	let value = core.getCSSVarHexColor(firstVariableName);
 	return new h.div({ class: "swatch", position: "relative", style: { color: `${value}` } }, [
 		new h.span(
 			{
@@ -156,7 +171,7 @@ const colorpickerText = (variableName: string | string[]) => {
 							let container = target.closest(".swatch") as HTMLElement;
 							if (container) {
 								container.style.setProperty("color", value);
-								setCSSVar(i, value);
+								core.setCSSVar(i, value);
 							}
 						});
 					}
@@ -1234,29 +1249,4 @@ export const color: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return new h.div({
-padding: 3,
-textColor: "primary-emphasis",
-bgColor: "primary-subtle",
-border: true,
-borderColor: "primary-subtle",
-roundedSize: 3,
-}, "Example element with utilities");
-}`,
-		},
-		{
-			source: `() => {
-return new h.div({ container: "fluid", margin: 0, padding: 0 }, new h.div({ row: true, gutter: 3 }, ["blue-100", "blue-200", "blue-300", "blue-400", "blue-500", "blue-600", "blue-700", "blue-800", "blue-900"].map((i) => new h.div({
-col: [12, "sm-6", "md-4"],
-}, new h.div({
-padding: 3,
-class: i,
-rounded: true,
-}, \`$\${i}\`)))));
-}`,
-		},
-	],
 };

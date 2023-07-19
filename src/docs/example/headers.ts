@@ -798,15 +798,17 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 						});
 					},
@@ -858,15 +860,17 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 						});
 					},
@@ -929,15 +933,17 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 							side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
 							main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
@@ -1023,15 +1029,18 @@ export const headers: IContent = {
 									event.preventDefault();
 									const target = event.target as Element;
 									const input = target.getElementsByTagName("input")[0];
-									e.console(
-										target,
-										"onsearch",
-										{
-											input: core.elemInfo(input),
-											value: input.value,
-										},
-										"success"
-									);
+
+									if (input) {
+										e.console(
+											target,
+											"onsearch",
+											{
+												input: core.elemInfo(input),
+												value: input.value,
+											},
+											"success"
+										);
+									}
 								},
 							}),
 						];
@@ -1108,15 +1117,18 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 						});
 					},

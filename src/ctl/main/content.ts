@@ -6,6 +6,7 @@ import { getContent } from "./data.js";
 import { cookie } from "./cookie.js";
 import { pushState, replaceState } from "./history.js";
 import hljs from "highlight.js";
+import { DEFAULTDOCUMENT } from "./_db.js";
 
 export interface IContent {
 	usedb?: boolean;
@@ -260,7 +261,7 @@ export const setupContentDocument = (
 
 	if (value.indexOf("#") > -1) {
 		let tempValue = value.split("#");
-		docId = tempValue[0];
+		docId = tempValue[0] || DEFAULTDOCUMENT;
 		anchorId = tempValue[1];
 	}
 
@@ -281,25 +282,29 @@ export const setupContentDocument = (
 			//generate content
 			contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
 
-			//rename page title
-			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-			document.title = strPagetitle;
+			//setup state value
+			const currentStatePage = document.querySelector(
+				"h1.display-5.page-title-text"
+			)?.textContent;
+			const currentStatePageTitle = currentStatePage
+				? `${currentStatePage} · Bootstrap TS`
+				: "Bootstrap TS";
+			const currentStateValue = `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`;
 
 			//set history
 			if (state === "push") {
 				pushState({
 					docId: docId,
 					anchorId: anchorId,
-					pagetitle: strPagetitle,
-					value: value,
+					pagetitle: currentStatePageTitle,
+					value: currentStateValue,
 				});
 			} else if (state === "replace") {
 				replaceState({
 					docId: docId,
 					anchorId: anchorId,
-					pagetitle: strPagetitle,
-					value: value,
+					pagetitle: currentStatePageTitle,
+					value: currentStateValue,
 				});
 			}
 
