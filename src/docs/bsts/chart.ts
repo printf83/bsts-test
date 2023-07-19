@@ -2,7 +2,6 @@ import { b, h, core } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
-// import ChartDataLabels from "chartjs-plugin-datalabels";
 
 export const chart: IContent = {
 	title: "ChartJS",
@@ -39,7 +38,6 @@ export const chart: IContent = {
 													datasets: [
 														{
 															data: data,
-															// borderRadius: 50,
 															borderWidth: 0,
 															backgroundColor: [
 																lineColor,
@@ -52,19 +50,11 @@ export const chart: IContent = {
 													aspectRatio: 2,
 													cutout: "80%",
 													rotation: 270,
-													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
 														},
 													},
-													// scales: {
-													// 	x: { display: false },
-													// 	y: {
-													// 		display: false,
-													// 		beginAtZero: true,
-													// 	},
-													// },
 												},
 											});
 										},
@@ -104,7 +94,6 @@ export const chart: IContent = {
 													datasets: [
 														{
 															data: data,
-															// borderRadius: 50,
 															borderWidth: 0,
 															backgroundColor: [
 																lineColor,
@@ -118,19 +107,11 @@ export const chart: IContent = {
 													cutout: "90%",
 													circumference: 180,
 													rotation: 270,
-													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
 														},
 													},
-													// scales: {
-													// 	x: { display: false },
-													// 	y: {
-													// 		display: false,
-													// 		beginAtZero: true,
-													// 	},
-													// },
 												},
 											});
 										},
@@ -164,8 +145,6 @@ export const chart: IContent = {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
 
-											// Chart.register(ChartDataLabels);
-
 											new Chart(target, {
 												type: "doughnut",
 												data: {
@@ -173,7 +152,6 @@ export const chart: IContent = {
 													datasets: [
 														{
 															data: data,
-															// borderRadius: 50,
 															borderWidth: 0,
 															backgroundColor: [
 																lineColor,
@@ -188,26 +166,11 @@ export const chart: IContent = {
 													cutout: "90%",
 													circumference: 180,
 													rotation: 270,
-													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
 														},
-														// datalabels: {
-														// 	formatter: () => {
-														// 		return `${50}%`;
-														// 	},
-														// 	color: lineColor,
-														// 	backgroundColor: lineColor2,
-														// },
 													},
-													// scales: {
-													// 	x: { display: false },
-													// 	y: {
-													// 		display: false,
-													// 		beginAtZero: true,
-													// 	},
-													// },
 												},
 											});
 										},
@@ -232,7 +195,7 @@ export const chart: IContent = {
 						const data = Array(core.rndBetween(5, 10))
 							.fill("")
 							.map(() => {
-								return core.rndBetween(1, 10);
+								return core.rndBetween(1, 9);
 							});
 
 						return new b.card.container(
@@ -264,7 +227,6 @@ export const chart: IContent = {
 													],
 												},
 												options: {
-													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
@@ -302,7 +264,7 @@ export const chart: IContent = {
 						const data = Array(core.rndBetween(5, 10))
 							.fill("")
 							.map(() => {
-								return core.rndBetween(1, 10);
+								return core.rndBetween(1, 9);
 							});
 
 						return new b.card.container(
@@ -334,7 +296,6 @@ export const chart: IContent = {
 													],
 												},
 												options: {
-													// responsive: true,
 													plugins: {
 														legend: {
 															display: false,
@@ -411,7 +372,6 @@ export const chart: IContent = {
 																],
 															},
 															options: {
-																// responsive: true,
 																plugins: {
 																	legend: {
 																		display: false,
@@ -453,10 +413,10 @@ export const chart: IContent = {
 													},
 													new Array(15).fill("").map(() => {
 														return item({
-															data: Array(core.rndBetween(5, 20))
+															data: Array(core.rndBetween(5, 10))
 																.fill("")
 																.map(() => {
-																	return core.rndBetween(1, 20);
+																	return core.rndBetween(1, 9);
 																}),
 														});
 													})

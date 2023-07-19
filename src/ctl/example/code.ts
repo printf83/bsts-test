@@ -14,6 +14,7 @@ import {
 import hljs from "highlight.js";
 
 const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.14/+esm";
+const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"];
 const BSCDNCSS = [
 	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
@@ -78,14 +79,15 @@ const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 		.closest(".example-code")
 		?.getElementsByClassName("example-output")[0]?.innerHTML;
 
-	if (html) {
-		core.replaceChild(target, new preview({ type: "html" }, html));
+	core.replaceChild(
+		target,
+		new preview({ type: "html", marginX: 4, marginY: 3 }, html ? html : "")
+	);
 
-		if (autoPrettyPrint) {
-			setTimeout(() => {
-				PR.prettyPrint();
-			}, 300);
-		}
+	if (html && autoPrettyPrint) {
+		core.requestIdleCallback(() => {
+			PR.prettyPrint();
+		}, 300);
 	}
 };
 
@@ -505,7 +507,7 @@ const itemCode = (arg: {
 		new b.list.item(
 			{
 				bgColor: "body-tertiary",
-				paddingX: 4,
+				padding: 0,
 				class: [arg.collapseable ? "collapse" : undefined],
 				id: arg.collapseable ? id : undefined,
 				on: {
@@ -513,21 +515,29 @@ const itemCode = (arg: {
 						arg.islast && !arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									core.replaceChild(target, arg.elem);
+									core.requestIdleCallback(() => {
+										core.replaceChild(target, arg.elem);
+									}, 300);
 							  }
 							: !arg.islast && arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									getOutputHTML(target, false);
+									core.requestIdleCallback(() => {
+										getOutputHTML(target, false);
+									}, 300);
 							  }
 							: arg.islast && arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									getOutputHTML(target, false);
+									core.requestIdleCallback(() => {
+										getOutputHTML(target, false);
+									}, 300);
 							  }
 							: (e) => {
 									const target = e.target as Element;
-									core.replaceChild(target, arg.elem);
+									core.requestIdleCallback(() => {
+										core.replaceChild(target, arg.elem);
+									}, 300);
 							  },
 					"show.bs.collapse":
 						arg.islast && !arg.allowrefresh
@@ -539,8 +549,7 @@ const itemCode = (arg: {
 									).classList.remove("rounded-bottom-2");
 
 									core.replaceChild(target, arg.elem);
-
-									setTimeout(() => {
+									core.requestIdleCallback(() => {
 										PR.prettyPrint();
 									}, 300);
 							  }
@@ -556,13 +565,14 @@ const itemCode = (arg: {
 										target.closest(".list-group-item")
 											?.previousSibling as Element
 									).classList.remove("rounded-bottom-2");
+
 									getOutputHTML(target);
 							  }
 							: (e) => {
 									const target = e.target as Element;
 									core.replaceChild(target, arg.elem);
 
-									setTimeout(() => {
+									core.requestIdleCallback(() => {
 										PR.prettyPrint();
 									}, 300);
 							  },
@@ -572,21 +582,55 @@ const itemCode = (arg: {
 								(
 									target.closest(".list-group-item")?.previousSibling as Element
 								).classList.add("rounded-bottom-2");
-								let preTag = target.getElementsByTagName("pre");
-								if (preTag && preTag.length > 0) {
-									preTag[0]!.remove();
-								}
+
+								setTimeout(
+									(target) => {
+										let preTag = target.getElementsByTagName("pre");
+										if (preTag && preTag.length > 0) {
+											core.replaceWith(
+												preTag[0] as Element,
+												new h.div(
+													{
+														class: "example-preview",
+														marginX: 4,
+														marginY: 3,
+													},
+													"Loading..."
+												)
+											);
+										}
+									},
+									300,
+									target
+								);
 						  }
 						: (e) => {
 								const target = e.target as Element;
-								let preTag = target.getElementsByTagName("pre");
-								if (preTag && preTag.length > 0) {
-									preTag[0]!.remove();
-								}
+
+								setTimeout(
+									(target) => {
+										let preTag = target.getElementsByTagName("pre");
+										if (preTag && preTag.length > 0) {
+											core.replaceWith(
+												preTag[0] as Element,
+												new h.div(
+													{
+														class: "example-preview",
+														marginX: 4,
+														marginY: 3,
+													},
+													"Loading..."
+												)
+											);
+										}
+									},
+									300,
+									target
+								);
 						  },
 				},
 			},
-			new h.div({ class: "example-preview" }, "Loading...")
+			new h.div({ class: "example-preview", marginX: 4, marginY: 3 }, "Loading...")
 		)
 	);
 
@@ -925,6 +969,7 @@ const generateCodePenData = (
 		editors: "001",
 		layout: "top",
 
+		js_external: strCodeResult.indexOf("Chart(") > -1 ? BSCDNJS : undefined,
 		css_external: BSCDNCSS,
 		css: strCSS ? codeBeautify("css", strCSS) : undefined,
 		head: codeBeautify(
@@ -955,9 +1000,9 @@ const convert = (attr: IBsExampleContainer) => {
 
 	attr.scriptConverter ??= (str: string) => {
 		return str
-			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_0__\./gm, "")
-			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__\./gm, "e.")
-			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_2__\[\"default\"\]\(/gm, "Chart(");
+			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
+			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
+			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
 	};
 
 	//setup strCode if db is provided
@@ -1014,7 +1059,7 @@ const convert = (attr: IBsExampleContainer) => {
 				header: e.length > 0,
 				allowrefresh: true,
 				title: "HTML",
-				elem: "Loading...",
+				elem: new h.div({ marginX: 4, marginY: 3 }, "Loading..."),
 			})
 		);
 	}
@@ -1037,7 +1082,7 @@ const convert = (attr: IBsExampleContainer) => {
 			...itemCode({
 				header: e.length > 0,
 				title: "CSS",
-				elem: new preview({ type: "css" }, strCSS),
+				elem: new preview({ type: "css", marginX: 4, marginY: 3 }, strCSS),
 			})
 		);
 	} else {
@@ -1047,7 +1092,7 @@ const convert = (attr: IBsExampleContainer) => {
 				...itemCode({
 					header: e.length > 0,
 					title: "CSS",
-					elem: new preview({ type: "css" }, strCSS),
+					elem: new preview({ type: "css", marginX: 4, marginY: 3 }, strCSS),
 				})
 			);
 		}
@@ -1105,7 +1150,7 @@ const convert = (attr: IBsExampleContainer) => {
 					...itemCode({
 						header: e.length > 0,
 						title: i.name,
-						elem: new preview({ type: "js" }, strCode!),
+						elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strCode!),
 					})
 				);
 			}
@@ -1132,7 +1177,7 @@ const convert = (attr: IBsExampleContainer) => {
 			...itemCode({
 				header: e.length > 0,
 				title: "MANAGER",
-				elem: new preview({ type: "js" }, strManager!),
+				elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strManager!),
 			})
 		);
 	}
@@ -1158,7 +1203,7 @@ const convert = (attr: IBsExampleContainer) => {
 					islast: true,
 					header: e.length > 0,
 					title: "SOURCE",
-					elem: new preview({ type: "js" }, strSource),
+					elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strSource),
 					onedit: attr.showCodepen
 						? () => {
 								codePen(
