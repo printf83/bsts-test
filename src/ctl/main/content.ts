@@ -282,11 +282,30 @@ export const setupContentDocument = (
 			//generate content
 			contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
 
+			//setup state value
+			const currentStatePage = document.querySelector(
+				"h1.display-5.page-title-text"
+			)?.textContent;
+			const currentStatePageTitle = currentStatePage
+				? `${currentStatePage} · Bootstrap TS`
+				: "Bootstrap TS";
+			const currentStateValue = `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`;
+
 			//set history
 			if (state === "push") {
-				pushState({});
+				pushState({
+					docId: docId,
+					anchorId: anchorId,
+					pagetitle: currentStatePageTitle,
+					value: currentStateValue,
+				});
 			} else if (state === "replace") {
-				replaceState({});
+				replaceState({
+					docId: docId,
+					anchorId: anchorId,
+					pagetitle: currentStatePageTitle,
+					value: currentStateValue,
+				});
 			}
 
 			focusToAnchor(anchorId);

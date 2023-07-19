@@ -7,22 +7,12 @@ export interface IWindowState {
 	anchorId?: string;
 }
 
-const getDocAndAnchorFromURL = (search: string) => {
+const getDocAndAnchorFromURL = (search: string, hash?: string) => {
 	if (search) {
-		if (search.startsWith("?d=")) {
-			search = search.substring(3);
-
-			if (search.indexOf("#") > -1) {
-				let splitSearch = search.split("#");
-				if (splitSearch && splitSearch.length === 2) {
-					return { docId: splitSearch[0], anchorId: splitSearch[1] };
-				} else {
-					return { docId: search, anchorId: undefined };
-				}
-			} else {
-				return { docId: search, anchorId: undefined };
-			}
-		}
+		return {
+			docId: search.startsWith("?d=") ? search.slice(3) : undefined,
+			anchorId: hash ? hash.slice(1) : undefined,
+		};
 	}
 
 	return undefined;
@@ -36,10 +26,14 @@ export const pushState = (arg: {
 	pathname?: string;
 	value?: string;
 }) => {
-	const { origin, pathname, search } = window.location;
-	const currentURL = getDocAndAnchorFromURL(search);
+	const { origin, pathname, search, hash } = window.location;
+	const currentURL = getDocAndAnchorFromURL(search, hash);
 	const currentPage = document.querySelector("h1.display-5.page-title-text")?.textContent;
-	const currentPageTitle = currentPage ? `${currentPage} · Bootstrap TS` : "Bootstrap TS";
+	const currentPageTitle = arg.pagetitle
+		? arg.pagetitle
+		: currentPage
+		? `${currentPage} · Bootstrap TS`
+		: "Bootstrap TS";
 
 	arg.origin ??= origin;
 	arg.pathname ??= pathname;
@@ -68,10 +62,14 @@ export const replaceState = (arg: {
 	pathname?: string;
 	value?: string;
 }) => {
-	const { origin, pathname, search } = window.location;
-	const currentURL = getDocAndAnchorFromURL(search);
+	const { origin, pathname, search, hash } = window.location;
+	const currentURL = getDocAndAnchorFromURL(search, hash);
 	const currentPage = document.querySelector("h1.display-5.page-title-text")?.textContent;
-	const currentPageTitle = currentPage ? `${currentPage} · Bootstrap TS` : "Bootstrap TS";
+	const currentPageTitle = arg.pagetitle
+		? arg.pagetitle
+		: currentPage
+		? `${currentPage} · Bootstrap TS`
+		: "Bootstrap TS";
 
 	arg.origin ??= origin;
 	arg.pathname ??= pathname;

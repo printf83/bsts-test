@@ -14,18 +14,10 @@ import { setupState } from "./ctl/main/history.js";
 import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
 
 const loadDefaultDoc = () => {
-	const { search } = window.location;
+	const { search, hash } = window.location;
 	if (search && search.startsWith("?d=")) {
 		let docId: string = search.slice(3);
-		let anchorId: string | undefined = undefined;
-
-		if (docId.indexOf("#") > -1) {
-			let tempValue = docId.split("#");
-			if (tempValue && tempValue.length >= 2) {
-				docId = tempValue[0] ?? DEFAULTDOCUMENT;
-				anchorId = tempValue[1] ?? undefined;
-			}
-		}
+		let anchorId: string | undefined = hash.slice(1);
 
 		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 		highlightMenu(docId);
