@@ -1,7 +1,7 @@
 import { b, h, core } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
-import { Chart } from "chart.js/auto";
+import Chart from "chart.js/auto";
 
 const randomDoughnutData = (id: string, chart?: Chart<"doughnut", number[], any>) => {
 	const canvas = document.getElementById(id);
@@ -71,7 +71,13 @@ export const chart: IContent = {
 				new e.title("Doughnut"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					extention: [
+						{
+							name: "RANDOMDATA",
+							rename: "randomDoughnutData",
+							output: randomDoughnutData,
+						},
+					],
 					output: () => {
 						const id = core.UUID();
 
@@ -133,7 +139,13 @@ export const chart: IContent = {
 				new e.title("Doughnut with label"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					extention: [
+						{
+							name: "RANDOMDATA",
+							rename: "randomDoughnutData",
+							output: randomDoughnutData,
+						},
+					],
 					output: () => {
 						const id = core.UUID();
 
@@ -143,8 +155,32 @@ export const chart: IContent = {
 
 						return new b.card.container(
 							{ style: { maxWidth: "380px" } },
-							new b.card.body(
-								{ padding: 2 },
+							new b.card.body({ padding: 2, position: "relative" }, [
+								//label
+								new h.div(
+									{
+										textColor: "primary",
+										position: "absolute",
+										bottom: 0,
+										start: 50,
+										tMiddle: "x",
+										textAlign: "center",
+										marginBottom: 4,
+									},
+									[
+										new b.caption(
+											{
+												icon: new b.icon({
+													id: "device-hdd-fill",
+												}),
+												marginBottom: 4,
+											},
+											"Storage"
+										),
+									]
+								),
+
+								//chart
 								new h.canvas({
 									id: id,
 									on: {
@@ -213,8 +249,8 @@ export const chart: IContent = {
 											randomDoughnutData(id, res);
 										},
 									},
-								})
-							)
+								}),
+							])
 						);
 					},
 				}),
@@ -223,10 +259,16 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Half doughnut"),
+				new e.title("180° doughnut"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					extention: [
+						{
+							name: "RANDOMDATA",
+							rename: "randomDoughnutData",
+							output: randomDoughnutData,
+						},
+					],
 					output: () => {
 						const id = core.UUID();
 
@@ -286,10 +328,16 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Half doughnut with label"),
+				new e.title("180° doughnut with label"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					extention: [
+						{
+							name: "RANDOMDATA",
+							rename: "randomDoughnutData",
+							output: randomDoughnutData,
+						},
+					],
 					output: () => {
 						const id = core.UUID();
 						const fontFamily = core.getCSSVar("--bs-font-sans-serif");
@@ -298,8 +346,32 @@ export const chart: IContent = {
 
 						return new b.card.container(
 							{ style: { maxWidth: "380px" } },
-							new b.card.body(
-								{ padding: 2 },
+							new b.card.body({ padding: 2, position: "relative" }, [
+								//label
+								new h.div(
+									{
+										textColor: "primary",
+										position: "absolute",
+										bottom: 0,
+										start: 50,
+										tMiddle: "x",
+										textAlign: "center",
+										marginBottom: 4,
+									},
+									[
+										new b.caption(
+											{
+												icon: new b.icon({
+													id: "memory",
+													fontSize: 3,
+												}),
+											},
+											"RAM Usage"
+										),
+									]
+								),
+
+								//chart
 								new h.canvas({
 									id: id,
 									on: {
@@ -323,7 +395,7 @@ export const chart: IContent = {
 													ctx.fillText(
 														`${chart.data.datasets[0]?.data[0]?.toString()}%`,
 														x,
-														y + approxFontHeight * 0.75
+														y + approxFontHeight * 0.35
 													);
 
 													// ctx.beginPath();
@@ -369,8 +441,8 @@ export const chart: IContent = {
 											randomDoughnutData(id, res);
 										},
 									},
-								})
-							)
+								}),
+							])
 						);
 					},
 				}),
@@ -379,10 +451,16 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Doughnut with icon"),
+				new e.title("315° doughnut"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					extention: [
+						{
+							name: "RANDOMDATA",
+							rename: "randomDoughnutData",
+							output: randomDoughnutData,
+						},
+					],
 					output: () => {
 						const id = core.UUID();
 
@@ -441,10 +519,16 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Doughnut with icon and label"),
+				new e.title("315° doughnut with icon and label"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					extention: [
+						{
+							name: "RANDOMDATA",
+							rename: "randomDoughnutData",
+							output: randomDoughnutData,
+						},
+					],
 					output: () => {
 						const id = core.UUID();
 
@@ -454,8 +538,32 @@ export const chart: IContent = {
 
 						return new b.card.container(
 							{ style: { maxWidth: "380px" } },
-							new b.card.body(
-								{ padding: 2 },
+							new b.card.body({ padding: 2, position: "relative" }, [
+								//label
+								new h.div(
+									{
+										textColor: "primary",
+										position: "absolute",
+										bottom: 0,
+										start: 50,
+										tMiddle: "x",
+										textAlign: "center",
+									},
+									[
+										new b.caption(
+											{
+												icon: new b.icon({
+													id: "cpu-fill",
+													fontSize: 3,
+												}),
+												iconPosition: "bottom",
+											},
+											"CPU Usage"
+										),
+									]
+								),
+
+								//chart
 								new h.canvas({
 									id: id,
 									on: {
@@ -525,8 +633,8 @@ export const chart: IContent = {
 											randomDoughnutData(id, res);
 										},
 									},
-								})
-							)
+								}),
+							])
 						);
 					},
 				}),
@@ -538,7 +646,9 @@ export const chart: IContent = {
 				new e.title("Line"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomLineData", output: randomLineData }],
+					extention: [
+						{ name: "RANDOMDATA", rename: "randomLineData", output: randomLineData },
+					],
 					output: () => {
 						const id = core.UUID();
 						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
@@ -613,7 +723,13 @@ export const chart: IContent = {
 				new e.title("Line with grid"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomLineData", output: randomLineData }],
+					extention: [
+						{
+							name: "RANDOMDATA",
+							rename: "randomLineData",
+							output: randomLineData,
+						},
+					],
 					output: () => {
 						const id = core.UUID();
 						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
@@ -698,7 +814,9 @@ export const chart: IContent = {
 				new e.title("Chart in modal"),
 				new e.code({
 					db: getContentCode(db),
-					extention: [{ name: "randomLineData", output: randomLineData }],
+					extention: [
+						{ name: "RANDOMDATA", rename: "randomLineData", output: randomLineData },
+					],
 					output: () => {
 						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
 						const lineColor = core.getCSSVarRgbColor("--bs-primary");
