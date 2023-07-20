@@ -60,10 +60,6 @@ export interface IBsExampleContainer extends core.IAttr {
 	zoom?: 25 | 50 | 75 | 100 | 125 | 150 | 200;
 }
 
-// declare var PR: {
-// 	prettyPrint: () => void;
-// };
-
 const PR = {
 	prettyPrint: () => {
 		document.querySelectorAll("pre.example-preview code").forEach((el) => {

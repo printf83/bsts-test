@@ -207,12 +207,7 @@ export const chart: IContent = {
 														y + approxFontHeight * 0.35
 													);
 
-													// ctx.beginPath();
-													// ctx.moveTo(x, 0);
-													// ctx.lineTo(x, h);
-													// ctx.moveTo(0, y);
-													// ctx.lineTo(w, y);
-													// ctx.stroke();
+
 												},
 											};
 
@@ -398,12 +393,6 @@ export const chart: IContent = {
 														y + approxFontHeight * 0.35
 													);
 
-													// ctx.beginPath();
-													// ctx.moveTo(x, 0);
-													// ctx.lineTo(x, h);
-													// ctx.moveTo(0, y);
-													// ctx.lineTo(w, y);
-													// ctx.stroke();
 												},
 											};
 
@@ -590,12 +579,6 @@ export const chart: IContent = {
 														y + approxFontHeight * 0.35
 													);
 
-													// ctx.beginPath();
-													// ctx.moveTo(x, 0);
-													// ctx.lineTo(x, h);
-													// ctx.moveTo(0, y);
-													// ctx.lineTo(w, y);
-													// ctx.stroke();
 												},
 											};
 
