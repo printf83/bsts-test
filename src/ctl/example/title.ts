@@ -63,6 +63,3 @@ export class title extends html.h {
 		super(2, convert(core.bsConstArg("elem", arg)));
 	}
 }
-
-export const Title = (AttrOrElem?: core.IAttr | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<title, core.IAttr>(title, AttrOrElem, Elem);

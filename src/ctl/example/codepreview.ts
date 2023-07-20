@@ -161,6 +161,3 @@ export class codepreview extends h.div {
 		super(core.bsConsNoElemArg<IBsExampleCodepreview>(convert, arg));
 	}
 }
-
-export const Codepreview = (Attr?: IBsExampleCodepreview) =>
-	core.genTagClass<codepreview, IBsExampleCodepreview>(codepreview, Attr);

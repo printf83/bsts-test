@@ -19,5 +19,3 @@ export class ol extends h.div {
 		super(convert(core.bsConstArg<I.H.Ol>("elem", arg)));
 	}
 }
-export const Ol = (AttrOrElem?: I.H.Ol | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<ol, I.H.Ol>(ol, AttrOrElem, Elem);

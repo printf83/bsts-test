@@ -63,6 +63,3 @@ export class subtitle extends html.h {
 		super(3, convert(core.bsConstArg("elem", arg)));
 	}
 }
-
-export const Subtitle = (AttrOrElem?: core.IAttr | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<subtitle, core.IAttr>(subtitle, AttrOrElem, Elem);

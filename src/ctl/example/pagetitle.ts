@@ -71,7 +71,9 @@ const convert = (attr: IBsExamplePagetitle) => {
 								textColorHover: "primary",
 								borderColorHover: "primary",
 								href: attr.sourceUrl,
-								title: `View and edit this file on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`,
+								title: `View and edit this file on ${
+									attr.sourceWeb ? attr.sourceWeb : "Github"
+								}`,
 								target: "_blank",
 							},
 							`View on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`
@@ -90,7 +92,9 @@ const convert = (attr: IBsExamplePagetitle) => {
 								title: `Add to bookmark`,
 								on: {
 									click: (e: Event) => {
-										const target = (e.target as Element).closest(".btn") as Element;
+										const target = (e.target as Element).closest(
+											".btn"
+										) as Element;
 										const icon = target.querySelector("i.bi") as Element;
 
 										if (target.classList.contains("active")) {
@@ -188,5 +192,3 @@ export class pagetitle extends h.div {
 		super(convert(core.bsConstArg<IBsExamplePagetitle>("elem", arg)));
 	}
 }
-export const Pagetitle = (AttrOrElem?: IBsExamplePagetitle | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<pagetitle, IBsExamplePagetitle>(pagetitle, AttrOrElem, Elem);
