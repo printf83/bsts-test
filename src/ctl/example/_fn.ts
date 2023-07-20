@@ -554,10 +554,6 @@ export const getLibBaseOnSource = (
 			find: [" I.", "(I."],
 			lib: "I",
 		},
-		{
-			find: [" $.", "($.", "...$."],
-			lib: "$",
-		},
 	];
 
 	if (strCode) {

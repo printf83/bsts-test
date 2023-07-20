@@ -235,10 +235,6 @@ export const introduction: IContent = {
 							"s",
 							"Class to allow HTML syntax and process by {{core.build}} as HTML. Example {{new s()}}.",
 						],
-						[
-							"$",
-							"Create bsts component wihthout {{new}} keyword. For example {{$.h.div()}}, {{$.b.button()}}, {{$.t()}} and {{$.s()}}",
-						],
 					],
 				}),
 
@@ -250,23 +246,6 @@ export const introduction: IContent = {
 
 						const Component1 = new h.p("Hello world");
 						const Component2 = new b.button({ color: "primary" }, "Button");
-
-						core.documentReady(() => {
-							core.replaceChild(document.getElementById("root"), [
-								Component1,
-								Component2,
-							]);
-						});
-						`,
-				}),
-				new e.text("Example usage without {{new}} keyword."),
-				new e.codepreview({
-					type: "js",
-					code: `
-						import {core, $} from "${BSTSCDN}";
-
-						const Component1 = $.h.p("Hello world");
-						const Component2 = $.b.button({ color: "primary" }, "Button");
 
 						core.documentReady(() => {
 							core.replaceChild(document.getElementById("root"), [
