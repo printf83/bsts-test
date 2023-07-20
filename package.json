@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "0.2.16",
+	"version": "0.3.0",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -49,6 +49,6 @@
 		"chart.js": "^4.3.0",
 		"chartjs-plugin-datalabels": "^2.2.0",
 		"highlight.js": "^11.8.0",
-		"js-beautify": "^1.14.8"
+		"js-beautify": "^1.14.9"
 	}
 }
