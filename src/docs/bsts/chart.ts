@@ -13,12 +13,42 @@ const randomDoughnutData = (id: string, chart?: Chart<"doughnut", number[], any>
 			chart.data.datasets[0] &&
 			chart.data.datasets[0].data
 		) {
-			const value = core.rndBetween(1, 100);
+			const value = core.rndBetween(0, 100);
 			chart.data.datasets[0].data = [value, 100 - value];
 			chart.update();
 			setTimeout(
 				(id, chart) => {
 					randomDoughnutData(id, chart);
+				},
+				1000,
+				id,
+				chart
+			);
+		}
+	}
+};
+
+const randomLineData = (id: string, chart?: Chart<"line", number[], any>) => {
+	const canvas = document.getElementById(id);
+	if (canvas) {
+		if (
+			chart &&
+			chart.data.datasets &&
+			chart.data.datasets.length >= 0 &&
+			chart.data.datasets[0] &&
+			chart.data.datasets[0].data
+		) {
+			const value = core.rndBetween(0, 100);
+
+			chart.data.labels?.shift();
+			chart.data.labels?.push("");
+
+			chart.data.datasets[0].data.push(value);
+			chart.data.datasets[0].data.shift();
+			chart.update("none");
+			setTimeout(
+				(id, chart) => {
+					randomLineData(id, chart);
 				},
 				1000,
 				id,
@@ -352,14 +382,16 @@ export const chart: IContent = {
 				new e.title("Line"),
 				new e.code({
 					db: getContentCode(db),
+					extention: [{ name: "randomLineData", output: randomLineData }],
 					output: () => {
+						const id = core.UUID();
 						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
 						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 
-						const data = Array(core.rndBetween(5, 10))
+						const data = Array(10)
 							.fill("")
 							.map(() => {
-								return core.rndBetween(1, 9);
+								return core.rndBetween(1, 100);
 							});
 
 						return new b.card.container(
@@ -367,12 +399,12 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
-									ratio: "16x9",
+									id: id,
 									on: {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
 
-											new Chart(target, {
+											const res = new Chart(target, {
 												type: "line",
 												data: {
 													labels: Array(data.length).fill(""),
@@ -408,6 +440,8 @@ export const chart: IContent = {
 													},
 												},
 											});
+
+											randomLineData(id, res);
 										},
 									},
 								})
@@ -423,15 +457,17 @@ export const chart: IContent = {
 				new e.title("Line with grid"),
 				new e.code({
 					db: getContentCode(db),
+					extention: [{ name: "randomLineData", output: randomLineData }],
 					output: () => {
+						const id = core.UUID();
 						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
 						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 						const gridColor = core.getCSSVarRgbColor("--bs-tertiary-bg");
 
-						const data = Array(core.rndBetween(5, 10))
+						const data = Array(10)
 							.fill("")
 							.map(() => {
-								return core.rndBetween(1, 9);
+								return core.rndBetween(0, 100);
 							});
 
 						return new b.card.container(
@@ -439,14 +475,15 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
-									ratio: "16x9",
+									id: id,
 									on: {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
 
-											new Chart(target, {
+											const res = new Chart(target, {
 												type: "line",
 												data: {
+													labels: Array(data.length).fill(""),
 													datasets: [
 														{
 															data: data,
@@ -488,6 +525,8 @@ export const chart: IContent = {
 													},
 												},
 											});
+
+											randomLineData(id, res);
 										},
 									},
 								})
@@ -503,26 +542,31 @@ export const chart: IContent = {
 				new e.title("Chart in modal"),
 				new e.code({
 					db: getContentCode(db),
+					extention: [{ name: "randomLineData", output: randomLineData }],
 					output: () => {
-						let fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
+						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
 						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 
 						const item = (arg: { data: number[] }) => {
+							const id = core.UUID();
 							return new b.card.container(
 								new b.card.body(
 									{ padding: 2 },
 									new h.canvas({
-										ratio: "16x9",
+										id: id,
 										on: {
 											build: (event) => {
 												const target = event.target as HTMLCanvasElement;
-
+												const id = target.id;
 												//dialog show after 300 ms
 												setTimeout(
-													(target) => {
-														new Chart(target, {
+													(target, id) => {
+														const res = new Chart(target, {
 															type: "line",
 															data: {
+																labels: Array(arg.data.length).fill(
+																	""
+																),
 																datasets: [
 																	{
 																		data: arg.data,
@@ -555,9 +599,12 @@ export const chart: IContent = {
 																},
 															},
 														});
+
+														randomLineData(id, res);
 													},
 													300,
-													target
+													target,
+													id
 												);
 											},
 										},
@@ -580,12 +627,12 @@ export const chart: IContent = {
 														gridTemplateColumns: "1fr 1fr",
 														gap: 2,
 													},
-													new Array(15).fill("").map(() => {
+													new Array(4).fill("").map(() => {
 														return item({
-															data: Array(core.rndBetween(5, 10))
+															data: Array(10)
 																.fill("")
 																.map(() => {
-																	return core.rndBetween(1, 9);
+																	return core.rndBetween(0, 100);
 																}),
 														});
 													})
