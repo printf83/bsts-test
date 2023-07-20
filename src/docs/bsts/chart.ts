@@ -379,6 +379,162 @@ export const chart: IContent = {
 			//----------------------
 
 			new e.section([
+				new e.title("Doughnut with icon"),
+				new e.code({
+					db: getContentCode(db),
+					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					output: () => {
+						const id = core.UUID();
+
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
+						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
+
+						return new b.card.container(
+							{ style: { maxWidth: "380px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									id: id,
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											const res = new Chart(target, {
+												type: "doughnut",
+												data: {
+													datasets: [
+														{
+															data: [0, 100],
+															borderWidth: 0,
+															backgroundColor: [
+																lineColor,
+																lineColor2,
+															],
+														},
+													],
+												},
+												options: {
+													aspectRatio: 2,
+													cutout: "80%",
+													circumference: 315,
+													rotation: 202.5,
+													plugins: {
+														legend: {
+															display: false,
+														},
+														tooltip: {
+															enabled: false,
+														},
+													},
+												},
+											});
+
+											randomDoughnutData(id, res);
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+			//----------------------
+
+			new e.section([
+				new e.title("Doughnut with icon and label"),
+				new e.code({
+					db: getContentCode(db),
+					extention: [{ name: "randomDoughnutData", output: randomDoughnutData }],
+					output: () => {
+						const id = core.UUID();
+
+						const fontFamily = core.getCSSVar("--bs-font-sans-serif");
+						const lineColor = core.getCSSVarRgbColor("--bs-primary");
+						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
+
+						return new b.card.container(
+							{ style: { maxWidth: "380px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									id: id,
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											const plugin = {
+												id: "bsts_draw_value",
+												afterDraw: (chart: Chart) => {
+													const ctx = chart.ctx;
+
+													const w = chart.width;
+													const h = chart.height;
+													const x = w * 0.5;
+													const y = h * 0.5;
+
+													ctx.font = `40px ${fontFamily}`;
+													const approxFontHeight = parseInt(ctx.font);
+													ctx.fillStyle = lineColor ? lineColor : "";
+													ctx.textAlign = "center";
+													ctx.fillText(
+														`${chart.data.datasets[0]?.data[0]?.toString()}%`,
+														x,
+														y + approxFontHeight * 0.35
+													);
+
+													// ctx.beginPath();
+													// ctx.moveTo(x, 0);
+													// ctx.lineTo(x, h);
+													// ctx.moveTo(0, y);
+													// ctx.lineTo(w, y);
+													// ctx.stroke();
+												},
+											};
+
+											const res = new Chart(target, {
+												type: "doughnut",
+												data: {
+													datasets: [
+														{
+															data: [0, 100],
+															borderWidth: 0,
+															backgroundColor: [
+																lineColor,
+																lineColor2,
+															],
+														},
+													],
+												},
+												plugins: [plugin],
+												options: {
+													aspectRatio: 2,
+													cutout: "80%",
+													circumference: 315,
+													rotation: 202.5,
+													plugins: {
+														legend: {
+															display: false,
+														},
+														tooltip: {
+															enabled: false,
+														},
+													},
+												},
+											});
+
+											randomDoughnutData(id, res);
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
 				new e.title("Line"),
 				new e.code({
 					db: getContentCode(db),
