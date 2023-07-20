@@ -170,72 +170,72 @@ const focusToAnchor = (anchorId?: string) => {
 	}
 };
 
-const setupContentPlaceholder = (contentbody: Element) => {
-	if (!contentbody.classList.contains("loading")) {
-		contentbody.classList.add("loading");
+// const setupContentPlaceholder = (contentbody: Element) => {
+// 	if (!contentbody.classList.contains("loading")) {
+// 		contentbody.classList.add("loading");
 
-		let a = [
-			".page-title-text",
-			".example-description",
-			".example-text",
-			".example-ul li",
-			".example-ol li",
-			".example-alert .alert",
-			".example-item",
-			".example-table .table td",
-			".example-table .table th",
-			".example-code .example-preview-container",
-			".example-code .font-monospace small",
-			".example-preview.card .card-header a.font-monospace",
-			".example-preview.card .card-body pre",
-			".example-title",
-			".example-subtitle",
-			".example-xsubtitle",
-			".bs-toc ul li",
-			".bs-toc h5",
-		];
+// 		let a = [
+// 			".page-title-text",
+// 			".example-description",
+// 			".example-text",
+// 			".example-ul li",
+// 			".example-ol li",
+// 			".example-alert .alert",
+// 			".example-item",
+// 			".example-table .table td",
+// 			".example-table .table th",
+// 			".example-code .example-preview-container",
+// 			".example-code .font-monospace small",
+// 			".example-preview.card .card-header a.font-monospace",
+// 			".example-preview.card .card-body pre",
+// 			".example-title",
+// 			".example-subtitle",
+// 			".example-xsubtitle",
+// 			".bs-toc ul li",
+// 			".bs-toc h5",
+// 		];
 
-		a.forEach((selector) => {
-			let m1: number = 10;
-			let m2: number = 20;
-			let m3: 1 | 2 | 3 | 4 | 5 | 6 = 1;
-			let m4: 1 | 2 | 3 | 4 | 5 | 6 = 6;
+// 		a.forEach((selector) => {
+// 			let m1: number = 10;
+// 			let m2: number = 20;
+// 			let m3: 1 | 2 | 3 | 4 | 5 | 6 = 1;
+// 			let m4: 1 | 2 | 3 | 4 | 5 | 6 = 6;
 
-			switch (selector) {
-				case ".example-table .table td":
-				case ".example-table .table th":
-				case ".bs-toc h5":
-				case ".bs-toc ul li":
-				case ".example-xsubtitle":
-				case ".example-subtitle":
-				case ".example-title":
-				case ".example-code .font-monospace small":
-				case ".example-preview.card .card-header a.font-monospace":
-				case ".page-title-text":
-					m1 = 3;
-					m2 = 3;
-					m3 = 1;
-					m4 = 4;
-					break;
-			}
+// 			switch (selector) {
+// 				case ".example-table .table td":
+// 				case ".example-table .table th":
+// 				case ".bs-toc h5":
+// 				case ".bs-toc ul li":
+// 				case ".example-xsubtitle":
+// 				case ".example-subtitle":
+// 				case ".example-title":
+// 				case ".example-code .font-monospace small":
+// 				case ".example-preview.card .card-header a.font-monospace":
+// 				case ".page-title-text":
+// 					m1 = 3;
+// 					m2 = 3;
+// 					m3 = 1;
+// 					m4 = 4;
+// 					break;
+// 			}
 
-			let elem = contentbody.querySelectorAll(selector);
-			if (elem) {
-				elem.forEach((i) => {
-					core.appendChild(
-						i,
-						new h.div(
-							{
-								loadingPlaceholderAnimation: "wave",
-							},
-							core.placeholder(m1, m2, m3, m4)
-						)
-					);
-				});
-			}
-		});
-	}
-};
+// 			let elem = contentbody.querySelectorAll(selector);
+// 			if (elem) {
+// 				elem.forEach((i) => {
+// 					core.appendChild(
+// 						i,
+// 						new h.div(
+// 							{
+// 								loadingPlaceholderAnimation: "wave",
+// 							},
+// 							core.placeholder(m1, m2, m3, m4)
+// 						)
+// 					);
+// 				});
+// 			}
+// 		});
+// 	}
+// };
 
 // declare var PR: {
 // 	prettyPrint: () => void;
@@ -268,7 +268,7 @@ export const setupContentDocument = (
 	let contentbody = document.getElementById("bs-main") as Element;
 
 	//set loading
-	setupContentPlaceholder(contentbody);
+	// setupContentPlaceholder(contentbody);
 
 	//show the loading before download new documentation
 	core.requestIdleCallback(() => {

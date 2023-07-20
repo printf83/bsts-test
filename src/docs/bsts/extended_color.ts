@@ -48,7 +48,7 @@ export const extended_color: IContent = {
 				new e.title("Hover"),
 				new e.code({
 					db: getContentCode(db),
-					outputAttr: { display: "flex", gap: 2 },
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
 							new h.a(

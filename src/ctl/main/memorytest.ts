@@ -77,6 +77,9 @@ const setupChart = (container: HTMLCanvasElement) => {
 				legend: {
 					display: false,
 				},
+				tooltip: {
+					enabled: false,
+				},
 			},
 			scales: {
 				y: {
