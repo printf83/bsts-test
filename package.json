@@ -21,15 +21,15 @@
 	"main": "dist/index.html",
 	"scripts": {
 		"link": "npm link @printf83/bsts",
-		"clean": "npx node scripts/clean.cjs",
-		"copy.static": "npx node scripts/copy.cjs",
-		"build.ts": "npx tsc",
-		"build": "npx webpack --stats-error-details && npm run copy.static",
+		"clean": "node scripts/clean.cjs",
+		"copy.static": "node scripts/copy.cjs",
+		"build.ts": "tsc",
+		"build": "webpack && npm run copy.static",
 		"rebuild": "npm run clean && npm run build",
-		"debug.ts": "npx tsc -w",
-		"debug": "npx webpack -w --stats-error-details",
+		"debug.ts": "tsc -w",
+		"debug": "webpack -w",
 		"predeploy": "npm run rebuild",
-		"deploy": "npx gh-pages -d dist"
+		"deploy": "gh-pages -d dist"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "^0.4.2",

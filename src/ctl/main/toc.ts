@@ -1,12 +1,23 @@
 import { core, h, b } from "@printf83/bsts";
 import * as e from "../example/_index.js";
 import { IContent } from "./content.js";
+import { pushState } from "./history.js";
 
 interface ITOCItem {
 	href: string;
 	label: string;
 	item?: ITOCItem[];
 }
+
+const linkOnClick = (event: Event) => {
+	const target = event.target as Element;
+	const href = target.getAttribute("href");
+	if (href) {
+		pushState({
+			anchorId: href.slice(1),
+		});
+	}
+};
 
 export const setupTOC = (content?: IContent) => {
 	if (content && typeof content.item === "function") {
@@ -136,13 +147,26 @@ export const setupTOC = (content?: IContent) => {
 										  })
 										: u.map((i) => {
 												return new h.li([
-													new h.a({ href: i.href }, i.label),
+													new h.a(
+														{
+															href: i.href,
+															on: {
+																click: linkOnClick,
+															},
+														},
+														i.label
+													),
 													i.item
 														? new h.ul(
 																i.item.map((j) => {
 																	return new h.li([
 																		new h.a(
-																			{ href: j.href },
+																			{
+																				href: j.href,
+																				on: {
+																					click: linkOnClick,
+																				},
+																			},
 																			j.label
 																		),
 																		j.item
@@ -153,6 +177,9 @@ export const setupTOC = (content?: IContent) => {
 																								new h.a(
 																									{
 																										href: k.href,
+																										on: {
+																											click: linkOnClick,
+																										},
 																									},
 																									k.label
 																								)
