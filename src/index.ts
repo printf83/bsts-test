@@ -10,7 +10,7 @@ import { setupSearchShortcut } from "./ctl/main/search.js";
 import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
 import { IBsMainContainer, container } from "./ctl/main/container.js";
 import { IContent, setupContentDocument } from "./ctl/main/content.js";
-import { setupState } from "./ctl/main/history.js";
+import { setupOnHistoryChange } from "./ctl/main/history.js";
 import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
 
 const loadDefaultDoc = () => {
@@ -297,7 +297,7 @@ core.documentReady(() => {
 
 		core.requestIdleCallback(() => {
 			setupSearchShortcut();
-			setupState();
+			setupOnHistoryChange();
 			setupBSNavigate();
 			setupThemeChanges();
 			setupCopyDataManager();

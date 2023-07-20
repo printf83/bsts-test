@@ -24,6 +24,3 @@ export class table extends b.table.responsive {
 		super(convert(core.bsConstArg<I.B.Table.Container>("elem", arg)));
 	}
 }
-
-export const Table = (AttrOrElem?: I.B.Table.Container | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<table, I.B.Table.Container>(table, AttrOrElem, Elem);

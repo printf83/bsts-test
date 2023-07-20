@@ -1,5 +1,6 @@
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
+import { b } from "@printf83/bsts";
 
 export const test: IContent = {
 	title: "Testing",
@@ -17,7 +18,7 @@ export const test: IContent = {
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
-							// new b.button({ id: "chart" }, "chart"),
+							new b.button({ id: "chart" }, "chart"),
 							// new b.button({ id: "duplicate_id" }, "duplicate_id"),
 							// new b.button({ id: "tooltip" }, "tooltip"),
 						];

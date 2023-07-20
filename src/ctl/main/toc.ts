@@ -1,7 +1,7 @@
 import { core, h, b } from "@printf83/bsts";
 import * as e from "../example/_index.js";
 import { IContent } from "./content.js";
-import { pushState } from "./history.js";
+import { addHistory } from "./history.js";
 
 interface ITOCItem {
 	href: string;
@@ -9,12 +9,18 @@ interface ITOCItem {
 	item?: ITOCItem[];
 }
 
-const linkOnClick = (event: Event) => {
+const tocItemOnClick = (event: Event) => {
 	const target = event.target as Element;
+
 	const href = target.getAttribute("href");
-	if (href) {
-		pushState({
-			anchorId: href.slice(1),
+	const docId = window.location.search;
+	const pagetitle = document.title;
+
+	if (docId && docId.startsWith("?d=") && href && href.startsWith("#")) {
+		addHistory({
+			docId: docId.substring(3),
+			anchorId: href.substring(1),
+			pagetitle: pagetitle,
 		});
 	}
 };
@@ -151,7 +157,7 @@ export const setupTOC = (content?: IContent) => {
 														{
 															href: i.href,
 															on: {
-																click: linkOnClick,
+																click: tocItemOnClick,
 															},
 														},
 														i.label
@@ -164,7 +170,7 @@ export const setupTOC = (content?: IContent) => {
 																			{
 																				href: j.href,
 																				on: {
-																					click: linkOnClick,
+																					click: tocItemOnClick,
 																				},
 																			},
 																			j.label
@@ -178,7 +184,7 @@ export const setupTOC = (content?: IContent) => {
 																									{
 																										href: k.href,
 																										on: {
-																											click: linkOnClick,
+																											click: tocItemOnClick,
 																										},
 																									},
 																									k.label

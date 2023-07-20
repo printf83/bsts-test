@@ -1,7 +1,7 @@
 import { core, b, I, h } from "@printf83/bsts";
 import js_beautify from "js-beautify";
 import { css_beautify, html_beautify } from "js-beautify";
-import { pushState } from "../main/history.js";
+import { addHistory } from "../main/history.js";
 
 export const anchorOnClick = (event: Event) => {
 	event.preventDefault();
@@ -14,8 +14,15 @@ export const anchorOnClick = (event: Event) => {
 	window.scrollTo(0, offsetElemPosition);
 
 	const href = target.getAttribute("href");
-	if (href) {
-		pushState({ anchorId: href.substring(1) });
+	const docId = window.location.search;
+	const pagetitle = document.title;
+
+	if (docId && docId.startsWith("?d=") && href && href.startsWith("#")) {
+		addHistory({
+			docId: docId.substring(3),
+			anchorId: href.substring(1),
+			pagetitle: pagetitle,
+		});
 	}
 };
 
@@ -546,10 +553,6 @@ export const getLibBaseOnSource = (
 		{
 			find: [" I.", "(I."],
 			lib: "I",
-		},
-		{
-			find: [" $.", "($.", "...$."],
-			lib: "$",
 		},
 	];
 

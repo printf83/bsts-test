@@ -41,20 +41,4 @@ export const text_truncation: IContent = {
 			]),
 		];
 	},
-	db: [
-		{
-			source: `() => {
-return [
-//Block level
-new h.div({ row: true }, new h.div({ col: 2, textTruncate: true }, "This text is quite long, and will be truncated once displayed.")),
-//Inline level
-new h.span({
-display: "inline-block",
-textTruncate: true,
-style: { maxWidth: "150px" },
-}, "This text is quite long, and will be truncated once displayed."),
-];
-}`,
-		},
-	],
 };

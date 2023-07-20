@@ -60,10 +60,6 @@ export interface IBsExampleContainer extends core.IAttr {
 	zoom?: 25 | 50 | 75 | 100 | 125 | 150 | 200;
 }
 
-// declare var PR: {
-// 	prettyPrint: () => void;
-// };
-
 const PR = {
 	prettyPrint: () => {
 		document.querySelectorAll("pre.example-preview code").forEach((el) => {
@@ -1297,6 +1293,3 @@ export class code extends h.div {
 		super(core.bsConsNoElemArg<IBsExampleContainer>(convert, arg));
 	}
 }
-
-export const Code = (Attr?: IBsExampleContainer) =>
-	core.genTagClass<code, IBsExampleContainer>(code, Attr);
