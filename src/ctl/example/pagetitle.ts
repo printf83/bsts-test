@@ -1,6 +1,6 @@
 import { core, h, t, b } from "@printf83/bsts";
 
-export interface IBsExamplePagetitle extends core.IAttr {
+export interface IPageTitle extends core.IAttr {
 	bookmark?: boolean;
 	docId?: string;
 	loading?: boolean;
@@ -9,7 +9,7 @@ export interface IBsExamplePagetitle extends core.IAttr {
 	addedVersion?: string;
 }
 
-const convert = (attr: IBsExamplePagetitle) => {
+const convert = (attr: IPageTitle) => {
 	attr = core.mergeObject(
 		{
 			class: "example-pagetitle",
@@ -185,10 +185,10 @@ const convert = (attr: IBsExamplePagetitle) => {
 
 export class pagetitle extends h.div {
 	constructor();
-	constructor(attr: IBsExamplePagetitle);
+	constructor(attr: IPageTitle);
 	constructor(elem: core.IElem);
-	constructor(attr: IBsExamplePagetitle, elem: core.IElem);
+	constructor(attr: IPageTitle, elem: core.IElem);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<IBsExamplePagetitle>("elem", arg)));
+		super(convert(core.bsConstArg<IPageTitle>("elem", arg)));
 	}
 }

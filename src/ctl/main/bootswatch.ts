@@ -1,7 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import { cookie } from "./cookie.js";
 
-export interface IAttrItemBootswatch {
+export interface IBootswatchItem {
 	value: string;
 	label: string;
 }
@@ -23,7 +23,10 @@ export const changeBootswatch = (value: string) => {
 		newActive.setAttribute("aria-current", "true");
 	}
 
-	core.replaceWith(bsBootswatchLabel, new h.span({ id: "bs-bootswatch-label" }, `${core.uppercaseFirst(value)}`));
+	core.replaceWith(
+		bsBootswatchLabel,
+		new h.span({ id: "bs-bootswatch-label" }, `${core.uppercaseFirst(value)}`)
+	);
 
 	onBootswatchChange(value);
 };
@@ -47,12 +50,19 @@ export const onBootswatchChange = (value: string) => {
 			bootstrapCssLink.setAttribute("href", "");
 		} else {
 			bootstrapCssLink.disabled = false;
-			bootstrapCssLink.setAttribute("href", `https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`);
+			bootstrapCssLink.setAttribute(
+				"href",
+				`https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`
+			);
 		}
 	}
 };
 
-export const genBootswatch = (textColor: core.bootstrapType.textColor, navbarItemBootswatch?: IAttrItemBootswatch[], currentBootswatch?: string) => {
+export const genBootswatch = (
+	textColor: core.bootstrapType.textColor,
+	navbarItemBootswatch?: IBootswatchItem[],
+	currentBootswatch?: string
+) => {
 	if (navbarItemBootswatch) {
 		return [
 			new b.navbar.item(
@@ -80,7 +90,15 @@ export const genBootswatch = (textColor: core.bootstrapType.textColor, navbarIte
 						textColor: textColor,
 						label: "Bootswatch theme",
 					},
-					[new h.span({ marginEnd: 2 }, new b.icon("palette2")), new h.span({ id: "bs-bootswatch-label" }, `${core.uppercaseFirst(currentBootswatch ? currentBootswatch : "Default")}`)]
+					[
+						new h.span({ marginEnd: 2 }, new b.icon("palette2")),
+						new h.span(
+							{ id: "bs-bootswatch-label" },
+							`${core.uppercaseFirst(
+								currentBootswatch ? currentBootswatch : "Default"
+							)}`
+						),
+					]
 				),
 				new b.dropdown.menu(
 					{

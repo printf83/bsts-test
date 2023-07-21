@@ -1,7 +1,7 @@
 import { core, b, h, I } from "@printf83/bsts";
-import { IAttrItemBootswatch, genBootswatch } from "./bootswatch.js";
+import { IBootswatchItem, genBootswatch } from "./bootswatch.js";
 import { ITheme, availabelTheme, setupTheme } from "./theme.js";
-import { IAttrItemInsideLink, setupInsideLink } from "./insidelink.js";
+import { IInsideLink, setupInsideLink } from "./insidelink.js";
 import { IOutsideLink, setupOutsideLink } from "./outsidelink.js";
 import { IMenu, setupMenu } from "./menu.js";
 import { IFooter, setupFooter } from "./footer.js";
@@ -22,7 +22,7 @@ export const dispatchCustomEvent = (root: Element | null, eventName: string, val
 	}
 };
 
-export interface IBsMainContainer extends core.IAttr {
+export interface IMainContainer extends core.IAttr {
 	icon?: I.B.Icon;
 	name?: string;
 
@@ -32,9 +32,9 @@ export interface IBsMainContainer extends core.IAttr {
 	itemOutsideLink?: IOutsideLink[];
 
 	itemMenu?: IMenu[];
-	itemInsideLink?: IAttrItemInsideLink[];
+	itemInsideLink?: IInsideLink[];
 	itemTheme?: ITheme[];
-	itemBootswatch?: IAttrItemBootswatch[];
+	itemBootswatch?: IBootswatchItem[];
 	itemFooter?: IFooter[];
 
 	currentMenu?: string;
@@ -45,7 +45,7 @@ export interface IBsMainContainer extends core.IAttr {
 	content?: IContent;
 }
 
-const convert = (attr: IBsMainContainer) => {
+const convert = (attr: IMainContainer) => {
 	attr.class = core.mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
 		new b.navbar.containerHeader(
@@ -375,8 +375,8 @@ const convert = (attr: IBsMainContainer) => {
 
 export class container extends h.div {
 	constructor();
-	constructor(attr: IBsMainContainer);
+	constructor(attr: IMainContainer);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IBsMainContainer>(convert, arg));
+		super(core.bsConsNoElemArg<IMainContainer>(convert, arg));
 	}
 }

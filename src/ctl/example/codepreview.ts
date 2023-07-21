@@ -66,14 +66,14 @@ function itemCodeCopy(e: Event) {
 	return false;
 }
 
-export interface IBsExampleCodepreview extends core.IAttr {
+export interface ICodePreview extends core.IAttr {
 	code?: string;
 	type?: "js" | "ts" | "css" | "html";
 	title?: string;
 	source?: string;
 }
 
-const convert = (attr: IBsExampleCodepreview): core.IAttr => {
+const convert = (attr: ICodePreview): core.IAttr => {
 	if (attr.code) {
 		const copyButton = new h.a(
 			{
@@ -156,8 +156,8 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 
 export class codepreview extends h.div {
 	constructor();
-	constructor(attr: IBsExampleCodepreview);
+	constructor(attr: ICodePreview);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IBsExampleCodepreview>(convert, arg));
+		super(core.bsConsNoElemArg<ICodePreview>(convert, arg));
 	}
 }
