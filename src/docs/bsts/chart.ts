@@ -89,6 +89,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -182,6 +183,7 @@ export const chart: IContent = {
 
 								//chart
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -206,8 +208,6 @@ export const chart: IContent = {
 														x,
 														y + approxFontHeight * 0.35
 													);
-
-
 												},
 											};
 
@@ -275,6 +275,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -368,6 +369,7 @@ export const chart: IContent = {
 
 								//chart
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -383,7 +385,7 @@ export const chart: IContent = {
 													const x = w * 0.5;
 													const y = h * 0.5;
 
-													ctx.font = `80px ${fontFamily}`;
+													ctx.font = `40px ${fontFamily}`;
 													const approxFontHeight = parseInt(ctx.font);
 													ctx.fillStyle = lineColor ? lineColor : "";
 													ctx.textAlign = "center";
@@ -392,7 +394,6 @@ export const chart: IContent = {
 														x,
 														y + approxFontHeight * 0.35
 													);
-
 												},
 											};
 
@@ -461,6 +462,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -554,6 +556,7 @@ export const chart: IContent = {
 
 								//chart
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -578,7 +581,6 @@ export const chart: IContent = {
 														x,
 														y + approxFontHeight * 0.35
 													);
-
 												},
 											};
 
@@ -648,6 +650,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -730,6 +733,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -810,6 +814,7 @@ export const chart: IContent = {
 								new b.card.body(
 									{ padding: 2 },
 									new h.canvas({
+										ratio: "21x9",
 										id: id,
 										on: {
 											build: (event) => {
