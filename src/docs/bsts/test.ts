@@ -18,7 +18,8 @@ export const test: IContent = {
 					outputAttr: { display: "flex", gap: 2 },
 					output: () => {
 						return [
-							new b.button({ id: "chart" }, "chart"),
+							new b.button("chart"),
+							// new b.button({ id: "chart" }, "chart"),
 							// new b.button({ id: "duplicate_id" }, "duplicate_id"),
 							// new b.button({ id: "tooltip" }, "tooltip"),
 						];
