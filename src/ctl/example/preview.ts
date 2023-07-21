@@ -1,11 +1,11 @@
 import { core, h } from "@printf83/bsts";
 import { codeBeautify, codeBeautifyType } from "./_fn.js";
 
-export interface IBsExampleCode extends core.IAttr {
+export interface IPreview extends core.IAttr {
 	type?: codeBeautifyType;
 }
 
-const convert = (attr: IBsExampleCode) => {
+const convert = (attr: IPreview) => {
 	attr = core.mergeObject(
 		{
 			class: "example-preview",
@@ -44,10 +44,10 @@ const convert = (attr: IBsExampleCode) => {
 
 export class preview extends h.pre {
 	constructor();
-	constructor(attr: IBsExampleCode);
+	constructor(attr: IPreview);
 	constructor(elem: core.IElem);
-	constructor(attr: IBsExampleCode, elem: core.IElem);
+	constructor(attr: IPreview, elem: core.IElem);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<IBsExampleCode>("elem", arg)));
+		super(convert(core.bsConstArg<IPreview>("elem", arg)));
 	}
 }

@@ -1,14 +1,13 @@
 import { b, core, h } from "@printf83/bsts";
 import { cookie } from "./ctl/main/cookie.js";
 import * as e from "./ctl/example/_index.js";
-
 import { onBootswatchChange, getSavedBootswatch } from "./ctl/main/bootswatch.js";
 import { menuWithBookmark } from "./ctl/main/bookmark.js";
 import { getSavedTheme, onThemeChange, setupThemeChanges } from "./ctl/main/theme.js";
 import { highlightMenu } from "./ctl/main/menu.js";
 import { setupSearchShortcut } from "./ctl/main/search.js";
 import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
-import { IBsMainContainer, container } from "./ctl/main/container.js";
+import { IMainContainer, container } from "./ctl/main/container.js";
 import { IContent, setupContentDocument } from "./ctl/main/content.js";
 import { setupOnHistoryChange } from "./ctl/main/history.js";
 import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
@@ -162,7 +161,7 @@ const mainContainer = () => {
 			{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
 			{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 		],
-		currentTheme: getSavedTheme() as IBsMainContainer["currentTheme"],
+		currentTheme: getSavedTheme() as IMainContainer["currentTheme"],
 		itemBootswatch: [
 			{
 				value: "default",

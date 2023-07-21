@@ -1,5 +1,5 @@
-import { code, IBsExampleContainer, IBsExampleExt, IBsExampleData } from "./code.js";
-import { codepreview, IBsExampleCodepreview } from "./codepreview.js";
+import { code, ICode, IExtention, ISourceDB } from "./code.js";
+import { codepreview, ICodePreview } from "./codepreview.js";
 import { description } from "./description.js";
 import { item } from "./item.js";
 import { pagetitle } from "./pagetitle.js";
@@ -34,8 +34,8 @@ export {
 	codePen,
 	codeBeautify,
 	ICodePen,
-	IBsExampleCodepreview,
-	IBsExampleContainer,
-	IBsExampleExt,
-	IBsExampleData,
+	ICodePreview as IBsExampleCodepreview,
+	ICode as IBsExampleContainer,
+	IExtention as IBsExampleExt,
+	ISourceDB as IBsExampleData,
 };

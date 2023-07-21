@@ -530,48 +530,31 @@ const startMemoryTest = (arg: {
 										//dialog show after 300 ms
 										setTimeout(
 											(target) => {
-												const fillColor = core.getCSSVarRgbColor(
-													"--bs-primary-bg-subtle",
-													0.5
-												);
 												const lineColor =
 													core.getCSSVarRgbColor("--bs-primary");
 												const gridColor =
 													core.getCSSVarRgbColor("--bs-tertiary-bg");
 
 												new Chart(target, {
-													type: "line",
+													type: "bar",
 													data: {
 														labels: speedDB.map((i) => i.title),
 														datasets: [
 															{
-																data: speedDB
-																	.map((i) => {
-																		if (i.data.length > 1) {
-																			let sum = i.data.reduce(
-																				(partialSum, a) =>
-																					partialSum + a,
-																				0
-																			);
-																			return (
-																				sum / i.data.length
-																			);
-																		} else {
-																			return i.data[0];
-																		}
-																	})
-																	.sort(
-																		(a, b) =>
-																			(a ?? 0) - (b ?? 0)
-																	),
-																borderWidth: 1,
-																pointRadius: 1,
-																tension: 0.5,
-																borderColor: lineColor,
-																fill: {
-																	target: "origin",
-																	above: fillColor,
-																},
+																data: speedDB.map((i) => {
+																	if (i.data.length > 1) {
+																		let sum = i.data.reduce(
+																			(partialSum, a) =>
+																				partialSum + a,
+																			0
+																		);
+																		return sum / i.data.length;
+																	} else {
+																		return i.data[0];
+																	}
+																}),
+																borderWidth: 0,
+																backgroundColor: lineColor,
 															},
 														],
 													},

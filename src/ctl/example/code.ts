@@ -20,28 +20,28 @@ const BSCDNCSS = [
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
 ];
 
-export interface IBsExampleData {
+export interface ISourceDB {
 	source?: string;
 	manager?: string;
 	extention?: string[];
 }
 
-export interface IBsExampleExt {
+export interface IExtention {
 	name?: string;
 	rename?: string;
 	output?: Function;
 	strOutput?: string;
 }
 
-export interface IBsExampleContainer extends core.IAttr {
-	db?: IBsExampleData;
+export interface ICode extends core.IAttr {
+	db?: ISourceDB;
 	strExtention?: string | string[];
 	strOutput?: string;
 	strManager?: string;
 
 	lib?: string | string[];
 	css?: string;
-	extention?: IBsExampleExt | IBsExampleExt[];
+	extention?: IExtention | IExtention[];
 	output?: Function;
 	manager?: Function;
 
@@ -985,7 +985,7 @@ const generateCodePenData = (
 	return result;
 };
 
-const convert = (attr: IBsExampleContainer) => {
+const convert = (attr: ICode) => {
 	let id = core.UUID();
 
 	attr.showOutput ??= true;
@@ -1096,7 +1096,7 @@ const convert = (attr: IBsExampleContainer) => {
 
 	let renameExtention: { find: string; replace: string }[] = [];
 	if (attr.extention) {
-		let f: IBsExampleExt[] = [];
+		let f: IExtention[] = [];
 		if (Array.isArray(attr.extention)) {
 			f = attr.extention;
 		} else {
@@ -1116,7 +1116,7 @@ const convert = (attr: IBsExampleContainer) => {
 	let strExtentionDB: string[] = [];
 
 	if (attr.extention) {
-		let f: IBsExampleExt[] = [];
+		let f: IExtention[] = [];
 		if (Array.isArray(attr.extention)) {
 			f = attr.extention;
 		} else {
@@ -1224,7 +1224,7 @@ const convert = (attr: IBsExampleContainer) => {
 			source: strSource ? codeBeautifyMinify("js", strSource) : undefined,
 			manager: strManager ? codeBeautifyMinify("js", strManager) : undefined,
 			extention: strExtentionDB && strExtentionDB.length > 0 ? strExtentionDB : undefined,
-		} satisfies IBsExampleData);
+		} satisfies ISourceDB);
 	}
 
 	attr.elem = [
@@ -1288,8 +1288,8 @@ const convert = (attr: IBsExampleContainer) => {
 
 export class code extends h.div {
 	constructor();
-	constructor(attr: IBsExampleContainer);
+	constructor(attr: ICode);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IBsExampleContainer>(convert, arg));
+		super(core.bsConsNoElemArg<ICode>(convert, arg));
 	}
 }

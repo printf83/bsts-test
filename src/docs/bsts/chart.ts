@@ -3,6 +3,30 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
 
+const drawValuePlugin = (fontFamily: string | undefined, lineColor: string | undefined) => {
+	return {
+		id: "bsts_draw_value",
+		afterDraw: (chart: Chart) => {
+			const ctx = chart.ctx;
+
+			const w = chart.width;
+			const h = chart.height;
+			const x = w * 0.5;
+			const y = h * 0.5;
+
+			ctx.font = `40px ${fontFamily ? fontFamily : "Arial"}`;
+			const approxFontHeight = parseInt(ctx.font);
+			ctx.fillStyle = lineColor ? lineColor : "";
+			ctx.textAlign = "center";
+			ctx.fillText(
+				`${chart.data.datasets[0]?.data[0]?.toString()}%`,
+				x,
+				y + approxFontHeight * 0.35
+			);
+		},
+	};
+};
+
 const randomDoughnutData = (id: string, chart?: Chart<"doughnut", number[], any>) => {
 	const canvas = document.getElementById(id);
 	if (canvas) {
@@ -89,6 +113,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -145,6 +170,11 @@ export const chart: IContent = {
 							rename: "randomDoughnutData",
 							output: randomDoughnutData,
 						},
+						{
+							name: "DRAWVALUE",
+							rename: "drawValuePlugin",
+							output: drawValuePlugin,
+						},
 					],
 					output: () => {
 						const id = core.UUID();
@@ -182,34 +212,11 @@ export const chart: IContent = {
 
 								//chart
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
-
-											const plugin = {
-												id: "bsts_draw_value",
-												afterDraw: (chart: Chart) => {
-													const ctx = chart.ctx;
-
-													const w = chart.width;
-													const h = chart.height;
-													const x = w * 0.5;
-													const y = h * 0.5;
-
-													ctx.font = `40px ${fontFamily}`;
-													const approxFontHeight = parseInt(ctx.font);
-													ctx.fillStyle = lineColor ? lineColor : "";
-													ctx.textAlign = "center";
-													ctx.fillText(
-														`${chart.data.datasets[0]?.data[0]?.toString()}%`,
-														x,
-														y + approxFontHeight * 0.35
-													);
-
-
-												},
-											};
 
 											const res = new Chart(target, {
 												type: "doughnut",
@@ -225,7 +232,7 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [plugin],
+												plugins: [drawValuePlugin(fontFamily, lineColor)],
 												options: {
 													aspectRatio: 2,
 													cutout: "80%",
@@ -275,6 +282,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -332,6 +340,11 @@ export const chart: IContent = {
 							rename: "randomDoughnutData",
 							output: randomDoughnutData,
 						},
+						{
+							name: "DRAWVALUE",
+							rename: "drawValuePlugin",
+							output: drawValuePlugin,
+						},
 					],
 					output: () => {
 						const id = core.UUID();
@@ -368,33 +381,11 @@ export const chart: IContent = {
 
 								//chart
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
-
-											const plugin = {
-												id: "bsts_draw_value",
-												afterDraw: (chart: Chart) => {
-													const ctx = chart.ctx;
-
-													const w = chart.width;
-													const h = chart.height;
-													const x = w * 0.5;
-													const y = h * 0.5;
-
-													ctx.font = `80px ${fontFamily}`;
-													const approxFontHeight = parseInt(ctx.font);
-													ctx.fillStyle = lineColor ? lineColor : "";
-													ctx.textAlign = "center";
-													ctx.fillText(
-														`${chart.data.datasets[0]?.data[0]?.toString()}%`,
-														x,
-														y + approxFontHeight * 0.35
-													);
-
-												},
-											};
 
 											const res = new Chart(target, {
 												type: "doughnut",
@@ -410,7 +401,7 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [plugin],
+												plugins: [drawValuePlugin(fontFamily, lineColor)],
 												options: {
 													aspectRatio: 1.75,
 													cutout: "90%",
@@ -461,6 +452,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -517,6 +509,11 @@ export const chart: IContent = {
 							rename: "randomDoughnutData",
 							output: randomDoughnutData,
 						},
+						{
+							name: "DRAWVALUE",
+							rename: "drawValuePlugin",
+							output: drawValuePlugin,
+						},
 					],
 					output: () => {
 						const id = core.UUID();
@@ -554,33 +551,11 @@ export const chart: IContent = {
 
 								//chart
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
 											const target = event.target as HTMLCanvasElement;
-
-											const plugin = {
-												id: "bsts_draw_value",
-												afterDraw: (chart: Chart) => {
-													const ctx = chart.ctx;
-
-													const w = chart.width;
-													const h = chart.height;
-													const x = w * 0.5;
-													const y = h * 0.5;
-
-													ctx.font = `40px ${fontFamily}`;
-													const approxFontHeight = parseInt(ctx.font);
-													ctx.fillStyle = lineColor ? lineColor : "";
-													ctx.textAlign = "center";
-													ctx.fillText(
-														`${chart.data.datasets[0]?.data[0]?.toString()}%`,
-														x,
-														y + approxFontHeight * 0.35
-													);
-
-												},
-											};
 
 											const res = new Chart(target, {
 												type: "doughnut",
@@ -596,7 +571,7 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [plugin],
+												plugins: [drawValuePlugin(fontFamily, lineColor)],
 												options: {
 													aspectRatio: 2,
 													cutout: "80%",
@@ -648,6 +623,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -730,6 +706,7 @@ export const chart: IContent = {
 							new b.card.body(
 								{ padding: 2 },
 								new h.canvas({
+									ratio: "21x9",
 									id: id,
 									on: {
 										build: (event) => {
@@ -810,6 +787,7 @@ export const chart: IContent = {
 								new b.card.body(
 									{ padding: 2 },
 									new h.canvas({
+										ratio: "21x9",
 										id: id,
 										on: {
 											build: (event) => {

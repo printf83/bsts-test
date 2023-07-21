@@ -1,7 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
 
-export interface IAttrItemInsideLink {
+export interface IInsideLink {
 	value: string;
 	label: string;
 }
@@ -22,7 +22,11 @@ const onInsideLinkClick = (value: string) => {
 	setupContentDocument(value);
 };
 
-export const setupInsideLink = (textColor: core.bootstrapType.textColor, itemInsideLink?: IAttrItemInsideLink[], currentInsideLink?: string) => {
+export const setupInsideLink = (
+	textColor: core.bootstrapType.textColor,
+	itemInsideLink?: IInsideLink[],
+	currentInsideLink?: string
+) => {
 	if (itemInsideLink) {
 		return [
 			new h.hr({ display: "lg-none", textColor: "light" }),
