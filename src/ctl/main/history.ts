@@ -1,4 +1,5 @@
 import { setupContentDocument } from "./content.js";
+import { cookie } from "./cookie.js";
 import { highlightMenu } from "./menu.js";
 
 export interface IWindowState {
@@ -46,6 +47,7 @@ export const setupOnHistoryChange = () => {
 	window.onpopstate = function (e) {
 		if (e.state) {
 			const state: IWindowState = e.state as IWindowState;
+			const currentDocId = cookie.get("current");
 
 			setupContentDocument(
 				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
