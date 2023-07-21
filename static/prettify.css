@@ -1,243 +1,66 @@
-/* 
-pre .str,
-code .str {
-    color: var(--bs-success);
-}
 
 
-pre .kwd,
-code .kwd {
-    color: var(--bs-danger);
-    font-style: italic;
-}
+/*
 
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
 
-pre .com,
-code .com {
-    color: var(--bs-secondary-color);
-    font-style: italic;
-}
-
-pre .typ,
-code .typ {
-    color: var(--bs-secondary);
-}
-
-pre .lit,
-code .lit {
-    color: var(--bs-info);
-}
-
-pre .pun,
-code .pun {
-    color: var(--bs-primary);
-}
-
-pre .pln,
-code .pln {
-    color: var(--bs-body-color);
-}
-
-pre .tag,
-code .tag {
-    color: var(--bs-primary);
-}
-
-pre .atn,
-code .atn {
-    color: var(--bs-info);
-}
-
-pre .atv,
-code .atv {
-    color: var(--bs-success);
-}
-
-pre .dec,
-code .dec {
-    color: var(--bs-success);
-}
-
-
-pre.prettyprint {
-    margin: 1em auto;
-    padding: 1em;
-    white-space: pre-wrap;
-}
-
-
-ol.linenums {
-    margin-top: 0;
-    margin-bottom: 0;
-    color: var(--bs-secondary)
-}
-
-
-li.L0,
-li.L1,
-li.L2,
-li.L3,
-li.L5,
-li.L6,
-li.L7,
-li.L8 {
-    list-style-type: none
-}
-
-@media print {
-
-    pre .str,
-    code .str {
-        color: #060;
-    }
-
-    pre .kwd,
-    code .kwd {
-        color: #006;
-        font-weight: bold;
-    }
-
-    pre .com,
-    code .com {
-        color: #600;
-        font-style: italic;
-    }
-
-    pre .typ,
-    code .typ {
-        color: #404;
-        font-weight: bold;
-    }
-
-    pre .lit,
-    code .lit {
-        color: #044;
-    }
-
-    pre .pun,
-    code .pun {
-        color: #440;
-    }
-
-    pre .pln,
-    code .pln {
-        color: #000;
-    }
-
-    pre .tag,
-    code .tag {
-        color: #006;
-        font-weight: bold;
-    }
-
-    pre .atn,
-    code .atn {
-        color: #404;
-    }
-
-    pre .atv,
-    code .atv {
-        color: #060;
-    }
-} */
-
-
-/**
- * Skipped minification because the original files appears to be already minified.
- * Original file: /npm/highlight.js@11.8.0/styles/github.css
- *
- * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
- */
-
+*/
 .hljs {
     color: var(--bs-body-color);
 }
 
-.hljs-doctag,
+.hljs-comment,
+.hljs-quote,
+.hljs-variable {
+    color: var(--bs-success);
+}
+
 .hljs-keyword,
-.hljs-meta .hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+    color: var(--bs-primary);
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
 .hljs-template-tag,
 .hljs-template-variable,
 .hljs-type,
-.hljs-variable.language_ {
+.hljs-addition {
     color: var(--bs-danger);
 }
 
-.hljs-title,
-.hljs-title.class_,
-.hljs-title.class_.inherited__,
-.hljs-title.function_ {
-    color: var(--bs-primary);
-}
-
-.hljs-attr,
-.hljs-attribute,
-.hljs-literal,
-.hljs-meta,
-.hljs-number,
-.hljs-operator,
+.hljs-deletion,
 .hljs-selector-attr,
-.hljs-selector-class,
-.hljs-selector-id,
-.hljs-variable {
-    color: var(--bs-body-color)
+.hljs-selector-pseudo,
+.hljs-meta {
+    color: var(--bs-info);
 }
 
-.hljs-meta .hljs-string,
-.hljs-regexp,
-.hljs-string {
-    color: var(--bs-success)
-}
-
-.hljs-built_in,
-.hljs-symbol {
-    color: var(--bs-warning);
-}
-
-.hljs-code,
-.hljs-comment,
-.hljs-formula {
+.hljs-doctag {
     color: var(--bs-secondary);
+}
+
+.hljs-attr {
+    color: var(--bs-danger);
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+    color: var(--bs-info);
+}
+
+
+.hljs-emphasis {
     font-style: italic;
 }
 
-.hljs-name,
-.hljs-quote,
-.hljs-selector-pseudo,
-.hljs-selector-tag {
-    color: var(--bs-success);
-}
-
-.hljs-subst {
-    color: var(--bs-success);
-    font-weight: bold;
-}
-
-.hljs-section {
-    color: var(--bs-primary);
-    font-weight: 700
-}
-
-.hljs-bullet {
-    color: var(--bs-warning)
-}
-
-.hljs-emphasis {
-    color: var(--bs-body-color);
-    font-style: italic
-}
-
 .hljs-strong {
-    color: var(--bs-body-color);
-    font-weight: 700
-}
-
-.hljs-addition {
-    color: var(--bs-success);;
-    background: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity));
-}
-
-.hljs-deletion {
-    color: var(--bs-danger);;
-    background: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity));
+    font-weight: bold;
 }

@@ -18,10 +18,10 @@ const loadDefaultDoc = () => {
 		let docId: string = search.slice(3);
 		let anchorId: string | undefined = hash.slice(1);
 
-		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, false);
 		highlightMenu(docId);
 	} else {
-		setupContentDocument(cookie.get("current_page") || DEFAULTDOCUMENT);
+		setupContentDocument(cookie.get("current_page") || DEFAULTDOCUMENT, false);
 		highlightMenu(cookie.get("current_page") || DEFAULTDOCUMENT);
 	}
 };
