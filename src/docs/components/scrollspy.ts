@@ -1,11 +1,14 @@
 import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const scrollspy: IContent = {
 	title: "Scrollspy",
-	description: "Automatically update Bootstrap navigation or list group components based on scroll position to indicate which link is currently active in the viewport.",
-	item: () => {
+	description:
+		"Automatically update Bootstrap navigation or list group components based on scroll position to indicate which link is currently active in the viewport.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
@@ -30,21 +33,35 @@ export const scrollspy: IContent = {
 
 			new e.section([
 				new e.subtitle("Navbar"),
-				new e.text("Scroll the area below the navbar and watch the active class change. Open the dropdown menu and watch the dropdown items be highlighted as well."),
+				new e.text(
+					"Scroll the area below the navbar and watch the active class change. Open the dropdown menu and watch the dropdown items be highlighted as well."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let headerItems = [
-							new b.nav.header.item(new b.nav.header.link({ href: "#scrollspyHeading1" }, "First")),
-							new b.nav.header.item(new b.nav.header.link({ href: "#scrollspyHeading2" }, "Second")),
+							new b.nav.header.item(
+								new b.nav.header.link({ href: "#scrollspyHeading1" }, "First")
+							),
+							new b.nav.header.item(
+								new b.nav.header.link({ href: "#scrollspyHeading2" }, "Second")
+							),
 							new b.nav.header.item({ dropdown: true }, [
 								new b.dropdown.button({ navItem: true, href: "#" }, "Dropdown"),
-								new b.dropdown.menu([new b.dropdown.item({ href: "#scrollspyHeading3" }, "Third"), new b.dropdown.item({ href: "#scrollspyHeading4" }, "Fourth"), new b.dropdown.divider(), new b.dropdown.item({ href: "#scrollspyHeading5" }, "Fifth")]),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#scrollspyHeading3" }, "Third"),
+									new b.dropdown.item({ href: "#scrollspyHeading4" }, "Fourth"),
+									new b.dropdown.divider(),
+									new b.dropdown.item({ href: "#scrollspyHeading5" }, "Fifth"),
+								]),
 							]),
 						];
 
 						let contentItems: core.tag[] = [];
 						["First", "Second", "Third", "Forth", "Fifth"].forEach((i, ix) => {
-							contentItems.push(new h.h(4, { id: `scrollspyHeading${ix + 1}` }, `${i} heading`));
+							contentItems.push(
+								new h.h(4, { id: `scrollspyHeading${ix + 1}` }, `${i} heading`)
+							);
 							contentItems.push(
 								new h.p(
 									"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
@@ -61,7 +78,10 @@ export const scrollspy: IContent = {
 									marginBottom: 3,
 									rounded: 2,
 								},
-								[new b.navbar.brand({ href: "#" }, "Navbar"), new b.nav.header.container({ type: "pill" }, headerItems)]
+								[
+									new b.navbar.brand({ href: "#" }, "Navbar"),
+									new b.nav.header.container({ type: "pill" }, headerItems),
+								]
 							),
 							new b.scrollspy(
 								{
@@ -85,8 +105,11 @@ export const scrollspy: IContent = {
 
 			new e.section([
 				new e.subtitle("Nested nav"),
-				new e.text("Scrollspy also works with nested {{.navs}}. If a nested {{.nav}} is {{.active}}, its parents will also be {{.active}}. Scroll the area next to the navbar and watch the active class change."),
+				new e.text(
+					"Scrollspy also works with nested {{.navs}}. If a nested {{.nav}} is {{.active}}, its parents will also be {{.active}}. Scroll the area next to the navbar and watch the active class change."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let headerItems = new b.nav.header.containerNav(
 							{
@@ -100,7 +123,16 @@ export const scrollspy: IContent = {
 										type: "pill",
 										flex: "column",
 									},
-									[new b.nav.header.link({ href: "#item-1-1", marginStart: 3, marginY: 1 }, "Item 1-1"), new b.nav.header.link({ href: "#item-1-2", marginStart: 3, marginY: 1 }, "Item 1-2")]
+									[
+										new b.nav.header.link(
+											{ href: "#item-1-1", marginStart: 3, marginY: 1 },
+											"Item 1-1"
+										),
+										new b.nav.header.link(
+											{ href: "#item-1-2", marginStart: 3, marginY: 1 },
+											"Item 1-2"
+										),
+									]
 								),
 								new b.nav.header.link({ href: "#item-2" }, "Item 2"),
 								new b.nav.header.link({ href: "#item-3" }, "Item 3"),
@@ -109,7 +141,16 @@ export const scrollspy: IContent = {
 										type: "pill",
 										flex: "column",
 									},
-									[new b.nav.header.link({ href: "#item-3-1", marginStart: 3, marginY: 1 }, "Item 3-1"), new b.nav.header.link({ href: "#item-3-2", marginStart: 3, marginY: 1 }, "Item 3-2")]
+									[
+										new b.nav.header.link(
+											{ href: "#item-3-1", marginStart: 3, marginY: 1 },
+											"Item 3-1"
+										),
+										new b.nav.header.link(
+											{ href: "#item-3-2", marginStart: 3, marginY: 1 },
+											"Item 3-2"
+										),
+									]
 								),
 							]
 						);
@@ -120,7 +161,9 @@ export const scrollspy: IContent = {
 								new h.p(
 									"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
 								),
-								new h.p("Keep in mind that the JavaScript plugin tries to pick the right element among all that may be visible. Multiple visible scrollspy targets at the same time may cause some issues."),
+								new h.p(
+									"Keep in mind that the JavaScript plugin tries to pick the right element among all that may be visible. Multiple visible scrollspy targets at the same time may cause some issues."
+								),
 							]);
 						});
 
@@ -160,12 +203,18 @@ export const scrollspy: IContent = {
 
 			new e.section([
 				new e.subtitle("List group"),
-				new e.text("Scrollspy also works with {{.list-groups}}. Scroll the area next to the list group and watch the active class change."),
+				new e.text(
+					"Scrollspy also works with {{.list-groups}}. Scroll the area next to the list group and watch the active class change."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let d = ["1", "2", "3", "4"];
 						let headerItems = d.map((i) => {
-							return new b.tabList.item({ action: true, href: `#list-item-${i}` }, `Item ${i}`);
+							return new b.tabList.item(
+								{ action: true, href: `#list-item-${i}` },
+								`Item ${i}`
+							);
 						});
 
 						let contentItems: core.tag[] = [];
@@ -209,8 +258,11 @@ export const scrollspy: IContent = {
 
 			new e.section([
 				new e.subtitle("Simple anchors"),
-				new e.text("Scrollspy is not limited to nav components and list groups, so it will work on any {{<a>}} anchor elements in the current document. Scroll the area and watch the {{.active}} class change."),
+				new e.text(
+					"Scrollspy is not limited to nav components and list groups, so it will work on any {{<a>}} anchor elements in the current document. Scroll the area and watch the {{.active}} class change."
+				),
 				new e.code({
+					db: getContentCode(db),
 					css: `
 					#simple-list-example a.active{
 						background-color: var(--bs-secondary-bg);
@@ -219,12 +271,17 @@ export const scrollspy: IContent = {
 					output: () => {
 						let d = ["1", "2", "3", "4", "5"];
 						let headerItems = d.map((i) => {
-							return new h.a({ href: `#simple-list-item-${i}`, padding: 2, rounded: true }, `Item ${i}`);
+							return new h.a(
+								{ href: `#simple-list-item-${i}`, padding: 2, rounded: true },
+								`Item ${i}`
+							);
 						});
 
 						let contentItems: core.tag[] = [];
 						d.forEach((i) => {
-							contentItems.push(new h.h(4, { id: `simple-list-item-${i}` }, `Item ${i}`));
+							contentItems.push(
+								new h.h(4, { id: `simple-list-item-${i}` }, `Item ${i}`)
+							);
 							contentItems.push(
 								new h.p(
 									"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
@@ -339,10 +396,30 @@ export const scrollspy: IContent = {
 				new e.table({
 					item: [
 						["Name", "Type", "Default", "Description"],
-						["{{rootMargin}}", "string", "{{0px 0px -25%}}", "Intersection Observer {{https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin::rootMargin}} valid units, when calculating scroll position."],
-						["{{smoothScroll}}", "boolean", "{{false}}", "Enables smooth scrolling when a user clicks on a link that refers to ScrollSpy observables."],
-						["{{target}}", "string, DOM element", "{{null}}", "Specifies element to apply Scrollspy plugin."],
-						["{{threshold}}", "array", "{{[0.1, 0.5, 1]}}", "{{IntersectionObserver}} {{https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver#threshold::threshold}} valid input, when calculating scroll position."],
+						[
+							"{{rootMargin}}",
+							"string",
+							"{{0px 0px -25%}}",
+							"Intersection Observer {{https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin::rootMargin}} valid units, when calculating scroll position.",
+						],
+						[
+							"{{smoothScroll}}",
+							"boolean",
+							"{{false}}",
+							"Enables smooth scrolling when a user clicks on a link that refers to ScrollSpy observables.",
+						],
+						[
+							"{{target}}",
+							"string, DOM element",
+							"{{null}}",
+							"Specifies element to apply Scrollspy plugin.",
+						],
+						[
+							"{{threshold}}",
+							"array",
+							"{{[0.1, 0.5, 1]}}",
+							"{{IntersectionObserver}} {{https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver#threshold::threshold}} valid input, when calculating scroll position.",
+						],
 					],
 				}),
 
@@ -359,10 +436,22 @@ export const scrollspy: IContent = {
 				new e.table({
 					item: [
 						["Method", "Description"],
-						["{{dispose}}", "Destroys an element’s scrollspy. (Removes stored data on the DOM element)"],
-						["{{getInstance}}", "{{i::Static}} method to get the scrollspy instance associated with a DOM element."],
-						["{{getOrCreateInstance}}", "{{i::Static}} method to get the scrollspy instance associated with a DOM element, or to create a new one in case it wasn’t initialized."],
-						["{{refresh}}", "When adding or removing elements in the DOM, you’ll need to call the refresh method."],
+						[
+							"{{dispose}}",
+							"Destroys an element’s scrollspy. (Removes stored data on the DOM element)",
+						],
+						[
+							"{{getInstance}}",
+							"{{i::Static}} method to get the scrollspy instance associated with a DOM element.",
+						],
+						[
+							"{{getOrCreateInstance}}",
+							"{{i::Static}} method to get the scrollspy instance associated with a DOM element, or to create a new one in case it wasn’t initialized.",
+						],
+						[
+							"{{refresh}}",
+							"When adding or removing elements in the DOM, you’ll need to call the refresh method.",
+						],
 					],
 				}),
 				new e.text("Here’s an example using the refresh method:"),
@@ -384,7 +473,10 @@ export const scrollspy: IContent = {
 				new e.table({
 					item: [
 						["Event", "Description"],
-						["{{activate.bs.scrollspy}}", "This event fires on the scroll element whenever an anchor is activated by the scrollspy."],
+						[
+							"{{activate.bs.scrollspy}}",
+							"This event fires on the scroll element whenever an anchor is activated by the scrollspy.",
+						],
 					],
 				}),
 				new e.codepreview({

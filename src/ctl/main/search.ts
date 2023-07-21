@@ -28,7 +28,7 @@ const isDocItemIndexed = (pageId: string) => {
 
 const indexDocMenu = (index: number, callback: () => void) => {
 	if (index < menu.length) {
-		indexDocItem(0, menu[index].label, menu[index].item, () => {
+		indexDocItem(0, menu[index]!.label, menu[index]!.item, () => {
 			indexDocMenu(index + 1, callback);
 		});
 	} else {
@@ -38,8 +38,8 @@ const indexDocMenu = (index: number, callback: () => void) => {
 
 const indexDocItem = (index: number, category: string, item: IMenuItem[], callback: () => void) => {
 	if (index < item.length) {
-		if (!isDocItemIndexed(item[index].value)) {
-			getContent(item[index].value, (data) => {
+		if (!isDocItemIndexed(item[index]!.value)) {
+			getContent(item[index]!.value, (data) => {
 				if (data && data.item) {
 					let contentItem = data.item();
 					if (contentItem) {
@@ -55,10 +55,19 @@ const indexDocItem = (index: number, category: string, item: IMenuItem[], callba
 									let textContent = i.textContent || undefined;
 									if (textContent) {
 										textContent = textContent.replace(/HTMLLoading\.\.\./g, "");
-										textContent = textContent.replace(/SOURCELoading\.\.\./g, "");
+										textContent = textContent.replace(
+											/SOURCELoading\.\.\./g,
+											""
+										);
 										textContent = textContent.replace(/CSSLoading\.\.\./g, "");
-										textContent = textContent.replace(/MANAGERLoading\.\.\./g, "");
-										textContent = textContent.replace(/VIEW PORTXSSMMDLGXLXXL/g, "");
+										textContent = textContent.replace(
+											/MANAGERLoading\.\.\./g,
+											""
+										);
+										textContent = textContent.replace(
+											/VIEW PORTXSSMMDLGXLXXL/g,
+											""
+										);
 										textContent = textContent.replace(/ZOOM25\%/g, "");
 										textContent = textContent.replace(/ZOOM50\%/g, "");
 										textContent = textContent.replace(/ZOOM75\%/g, "");
@@ -71,8 +80,8 @@ const indexDocItem = (index: number, category: string, item: IMenuItem[], callba
 									_docIndexDB.push({
 										category: category,
 
-										page: item[index].label,
-										pageId: item[index].value,
+										page: item[index]?.label ?? "Unknow",
+										pageId: item[index]?.value ?? "unknow",
 
 										section: i.getAttribute("data-title") || undefined,
 										sectionId: i.id,
@@ -144,7 +153,10 @@ const searchText = (value: string, valueRegEx: string, i: pageIndex) => {
 
 			let st = new RegExp(valueRegEx, "gmi").exec(text);
 			if (st) {
-				text = `${text.substring(0, st?.index)}{{m::${text.substring(st?.index, st?.index + value.length)}}}${text.substring(st?.index! + value.length)}`;
+				text = `${text.substring(0, st?.index)}{{m::${text.substring(
+					st?.index,
+					st?.index + value.length
+				)}}}${text.substring(st?.index! + value.length)}`;
 			} else {
 				text = text;
 			}
@@ -199,7 +211,7 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 						});
 					}
 
-					result[result.length - 1].item.push({
+					result[result.length - 1]?.item.push({
 						section: i.section,
 						sectionId: i.sectionId,
 						text: i.text,
@@ -232,18 +244,37 @@ const searchIndexOnClick = (event: Event) => {
 	}
 };
 
-const genSearchItem = (page: string | undefined, section: string | undefined, text: string | undefined) => {
+const genSearchItem = (
+	page: string | undefined,
+	section: string | undefined,
+	text: string | undefined
+) => {
 	if (text) {
 		if (section) {
-			return [new h.div({ fontSize: 4 }, new b.icon("list")), new h.div([new h.div({ fontWeight: "semibold" }, text), new h.div({ textColor: "secondary", small: true }, section)])];
+			return [
+				new h.div({ fontSize: 4 }, new b.icon("list")),
+				new h.div([
+					new h.div({ fontWeight: "semibold" }, text),
+					new h.div({ textColor: "secondary", small: true }, section),
+				]),
+			];
 		} else {
-			return [new h.div({ fontSize: 4 }, new b.icon("list")), new h.div([new h.div({ fontWeight: "semibold" }, text)])];
+			return [
+				new h.div({ fontSize: 4 }, new b.icon("list")),
+				new h.div([new h.div({ fontWeight: "semibold" }, text)]),
+			];
 		}
 	} else {
 		if (section) {
-			return [new h.div({ fontSize: 4 }, new b.icon("file-text")), new h.div([new h.div(section)])];
+			return [
+				new h.div({ fontSize: 4 }, new b.icon("file-text")),
+				new h.div([new h.div(section)]),
+			];
 		} else if (page) {
-			return [new h.div({ fontSize: 4 }, new b.icon("file-text")), new h.div([new h.div(page)])];
+			return [
+				new h.div({ fontSize: 4 }, new b.icon("file-text")),
+				new h.div([new h.div(page)]),
+			];
 		} else {
 			return [];
 		}
@@ -251,9 +282,13 @@ const genSearchItem = (page: string | undefined, section: string | undefined, te
 };
 const searchIndex = (searchId: string, value: string) => {
 	doSearch(value, (result) => {
-		const currentSearchId = document.getElementById("doc-search-input")?.getAttribute("data-searchId");
+		const currentSearchId = document
+			.getElementById("doc-search-input")
+			?.getAttribute("data-searchId");
 		if (searchId === currentSearchId) {
-			const searchResultContainer = document.getElementById("doc-search-result") as HTMLDivElement;
+			const searchResultContainer = document.getElementById(
+				"doc-search-result"
+			) as HTMLDivElement;
 
 			if (result && result.length > 0) {
 				core.replaceChild(
@@ -267,7 +302,10 @@ const searchIndex = (searchId: string, value: string) => {
 								},
 							},
 							[
-								new h.small({ textColor: "primary", fontWeight: "semibold" }, i.page),
+								new h.small(
+									{ textColor: "primary", fontWeight: "semibold" },
+									i.page
+								),
 								new b.list.containerDiv(
 									i.item.map((j) => {
 										return new b.list.itemLink(
@@ -299,7 +337,13 @@ const searchIndex = (searchId: string, value: string) => {
 					})
 				);
 			} else {
-				core.replaceChild(searchResultContainer, new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No result"));
+				core.replaceChild(
+					searchResultContainer,
+					new h.div(
+						{ textAlign: "center", textColor: "secondary", margin: "5" },
+						"No result"
+					)
+				);
 			}
 		}
 	});
@@ -318,7 +362,9 @@ export const showSearchDialog = () => {
 				contentAttr: { overflow: "hidden" },
 				on: {
 					"shown.bs.modal": (_event) => {
-						let searchInput = document.getElementById("doc-search-input") as HTMLInputElement;
+						let searchInput = document.getElementById(
+							"doc-search-input"
+						) as HTMLInputElement;
 						if (searchInput) {
 							if (!indexingInProgress) {
 								indexingInProgress = true;
@@ -336,20 +382,6 @@ export const showSearchDialog = () => {
 													gap: 2,
 													alignItem: "center",
 													lineHeight: 1,
-													on: {
-														click: () => {
-															b.modal.show(
-																b.modal.create({
-																	elem: b.form.textarea({
-																		label: "docIndexDB",
-																		rows: 10,
-																		value: JSON.stringify(_docIndexDB),
-																	}),
-																	btn: "ok",
-																})
-															);
-														},
-													},
 												},
 												[
 													"Search by ",
@@ -416,48 +448,82 @@ export const showSearchDialog = () => {
 								keydown: (event) => {
 									const ev = event as KeyboardEvent;
 
-									if (ev.key == "Enter" || ev.key == "ArrowDown" || ev.key == "ArrowUp") {
+									if (
+										ev.key == "Enter" ||
+										ev.key == "ArrowDown" ||
+										ev.key == "ArrowUp"
+									) {
 										event.stopPropagation();
 										event.preventDefault();
 
-										const docSearchResult = document.getElementById("doc-search-result");
+										const docSearchResult =
+											document.getElementById("doc-search-result");
 										if (docSearchResult) {
-											const docSearchItem = docSearchResult.querySelectorAll("a.list-group-item");
+											const docSearchItem =
+												docSearchResult.querySelectorAll(
+													"a.list-group-item"
+												);
 											if (docSearchItem && docSearchItem.length > 0) {
-												let currentActive = docSearchResult.querySelector("a.list-group-item.active") as Element;
+												let currentActive = docSearchResult.querySelector(
+													"a.list-group-item.active"
+												) as Element;
 
 												//active
 												let activeIndex = -1;
 												if (currentActive) {
-													activeIndex = Array.from(docSearchItem).indexOf(currentActive);
+													activeIndex =
+														Array.from(docSearchItem).indexOf(
+															currentActive
+														);
 
 													//do action
 													if (currentActive) {
 														if (ev.key == "Enter") {
-															currentActive.dispatchEvent(new Event("click"));
+															currentActive.dispatchEvent(
+																new Event("click")
+															);
 														} else if (ev.key == "ArrowDown") {
-															currentActive.classList.remove("active");
-															if (activeIndex + 1 > docSearchItem.length - 1) {
-																docSearchItem[0].classList.add("active");
+															currentActive.classList.remove(
+																"active"
+															);
+															if (
+																activeIndex + 1 >
+																docSearchItem.length - 1
+															) {
+																docSearchItem[0]?.classList.add(
+																	"active"
+																);
 															} else {
-																docSearchItem[activeIndex + 1].classList.add("active");
+																docSearchItem[
+																	activeIndex + 1
+																]?.classList.add("active");
 															}
 														} else if (ev.key == "ArrowUp") {
-															currentActive.classList.remove("active");
+															currentActive.classList.remove(
+																"active"
+															);
 															if (activeIndex - 1 < 0) {
-																docSearchItem[docSearchItem.length - 1].classList.add("active");
+																docSearchItem[
+																	docSearchItem.length - 1
+																]?.classList.add("active");
 															} else {
-																docSearchItem[activeIndex - 1].classList.add("active");
+																docSearchItem[
+																	activeIndex - 1
+																]?.classList.add("active");
 															}
 														}
 													}
 												} else {
-													docSearchItem[0].classList.add("active");
-													currentActive = docSearchResult.querySelector("a.list-group-item.active") as Element;
+													docSearchItem[0]?.classList.add("active");
+													currentActive = docSearchResult.querySelector(
+														"a.list-group-item.active"
+													) as Element;
 													activeIndex = 0;
 
 													if (ev.key == "Enter") {
-														currentActive?.dispatchEvent(new Event("click"));
+														currentActive?.dispatchEvent(
+															new Event("click")
+														);
 													}
 												}
 											}
@@ -466,7 +532,10 @@ export const showSearchDialog = () => {
 								},
 							},
 						}),
-						new b.button({ toggle: "modal", display: ["block", "sm-none"], weight: "lg" }, "Close"),
+						new b.button(
+							{ toggle: "modal", display: ["block", "sm-none"], weight: "lg" },
+							"Close"
+						),
 					])
 				),
 				new b.modal.body(
@@ -481,7 +550,12 @@ export const showSearchDialog = () => {
 						justifyContent: "start",
 						gap: 3,
 					},
-					[new h.div({ textAlign: "center", textColor: "secondary", margin: "5" }, "No recent search")]
+					[
+						new h.div(
+							{ textAlign: "center", textColor: "secondary", margin: "5" },
+							"No recent search"
+						),
+					]
 				),
 				new b.modal.footer(
 					{
@@ -495,15 +569,30 @@ export const showSearchDialog = () => {
 					},
 					[
 						new h.div({ display: ["none", "sm-flex"], gap: 2, alignItem: "center" }, [
-							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-return-left")),
+							new h.kbd(
+								{ padding: 1, lineHeight: 1 },
+								new b.icon("arrow-return-left")
+							),
 							" to select ",
 							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-up")),
 							new h.kbd({ padding: 1, lineHeight: 1 }, new b.icon("arrow-down")),
 							" to navigate ",
-							new h.kbd({ padding: 1, lineHeight: 1 }, new h.span({ style: { fontSize: "0.85em" } }, "ESC")),
+							new h.kbd(
+								{ padding: 1, lineHeight: 1 },
+								new h.span({ style: { fontSize: "0.85em" } }, "ESC")
+							),
 							" to close ",
 						]),
-						new h.div({ id: "doc-search-status", display: "flex", gap: 2, alignItem: "center", lineHeight: 1 }, ["Indexing ", new b.spinner({ small: true })]),
+						new h.div(
+							{
+								id: "doc-search-status",
+								display: "flex",
+								gap: 2,
+								alignItem: "center",
+								lineHeight: 1,
+							},
+							["Indexing ", new b.spinner({ small: true })]
+						),
 					]
 				),
 			]

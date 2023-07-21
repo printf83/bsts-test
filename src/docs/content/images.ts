@@ -1,16 +1,22 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const images: IContent = {
 	title: "Images",
-	description: "Documentation and examples for opting images into responsive behavior (so they never become wider than their parent) and add lightweight styles to them—all via classes.",
-	item: () => {
+	description:
+		"Documentation and examples for opting images into responsive behavior (so they never become wider than their parent) and add lightweight styles to them—all via classes.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Responsive images"),
-				new e.text("Images in Bootstrap are made responsive with {{.img-fluid}}. This applies {{max-width: 100%;}} and {{height: auto;}} to the image so that it scales with the parent width."),
+				new e.text(
+					"Images in Bootstrap are made responsive with {{.img-fluid}}. This applies {{max-width: 100%;}} and {{height: auto;}} to the image so that it scales with the parent width."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.img({
 							fluid: true,
@@ -25,8 +31,11 @@ export const images: IContent = {
 
 			new e.section([
 				new e.title("Image thumbnails"),
-				new e.text("In addition to Bootstrap {{nav:docs/utilities/borders::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."),
+				new e.text(
+					"In addition to Bootstrap {{nav:docs/utilities/borders::border-radius utilities}}, you can use {{.img-thumbnail}} to give an image a rounded 1px border appearance."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.img({
 							thumbnail: true,
@@ -45,6 +54,7 @@ export const images: IContent = {
 					"Align images with the {{nav:docs/utilities/float::helper float classes}} or {{nav:docs/utilities/text#text_alignment::text alignment classes}}. {{block}}-level images can be centered using the {{nav:docs/utilities/spacing#horizontal_centering::.mx-auto margin utility class}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.img({
@@ -63,6 +73,7 @@ export const images: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div(
 							{ textAlign: "center" },
@@ -80,8 +91,11 @@ export const images: IContent = {
 
 			new e.section([
 				new e.title("Picture"),
-				new e.text("If you are using the {{<picture>}} element to specify multiple {{<source>}} elements for a specific {{<img>}}, make sure to add the {{.img-*}} classes to the {{<img>}} and not to the {{<picture>}} tag."),
+				new e.text(
+					"If you are using the {{<picture>}} element to specify multiple {{<source>}} elements for a specific {{<img>}}, make sure to add the {{.img-*}} classes to the {{<img>}} and not to the {{<picture>}} tag."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new h.picture([

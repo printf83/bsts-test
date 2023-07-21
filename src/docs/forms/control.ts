@@ -1,32 +1,48 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const control: IContent = {
 	title: "Form controls",
-	description: "Give textual form controls like {{<input>}}s and {{<textarea>}}s an upgrade with custom styles, sizing, focus states, and more.",
-	item: () => {
+	description:
+		"Give textual form controls like {{<input>}}s and {{<textarea>}}s an upgrade with custom styles, sizing, focus states, and more.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example"),
-				new e.text("Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any customization method."),
+				new e.text(
+					"Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any customization method."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new h.div({ marginBottom: 3 }, [
-								new b.label({ for: "exampleFormControlInput1", class: "form-label" }, "Email address"),
+								new b.label(
+									{ for: "exampleFormControlInput1", class: "form-label" },
+									"Email address"
+								),
 								new b.input({
 									type: "email",
 									id: "exampleFormControlInput1",
 									placeholder: "name@example.com",
 								}),
 							]),
-							new h.div([new b.label({ for: "exampleFormControlTextarea1", class: "form-label" }, "Example textarea"), new b.textarea({ id: "exampleFormControlTextarea1" })]),
+							new h.div([
+								new b.label(
+									{ for: "exampleFormControlTextarea1", class: "form-label" },
+									"Example textarea"
+								),
+								new b.textarea({ id: "exampleFormControlTextarea1" }),
+							]),
 						];
 					},
 				}),
 				new e.text("Using {{b.form.input}} and {{b.form.textarea}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -47,8 +63,11 @@ export const control: IContent = {
 
 			new e.section([
 				new e.title("Sizing"),
-				new e.text("Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."),
+				new e.text(
+					"Set heights using classes like {{.form-control-lg}} and {{.form-control-sm}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -73,38 +92,61 @@ export const control: IContent = {
 
 			new e.section([
 				new e.title("Form text"),
-				new e.text("Block-level or inline-level form text can be created using {{.form-text}}."),
+				new e.text(
+					"Block-level or inline-level form text can be created using {{.form-text}}."
+				),
 				new e.alert(
 					{ color: "warning", callout: true },
 					"Form text should be explicitly associated with the form control it relates to using the {{aria-labelledby}} (for mandatory information such as data format) or {{aria-describedby}} (for complementary information) attribute. This will ensure that assistive technologies—such as screen readers—will announce this form text when the user focuses or enters the control."
 				),
 
-				new e.text("Form text below inputs can be styled with .form-text. If a block-level element will be used, a top margin is added for easy spacing from the inputs above."),
+				new e.text(
+					"Form text below inputs can be styled with .form-text. If a block-level element will be used, a top margin is added for easy spacing from the inputs above."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div([
 							new b.label({ for: "inputPassword5", class: "form-label" }, "Password"),
-							new b.input({ type: "password", id: "inputPassword5", describedby: "passwordHelpBlock" }),
-							new h.div({ id: "passwordHelpBlock", class: "form-text" }, "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji."),
+							new b.input({
+								type: "password",
+								id: "inputPassword5",
+								describedby: "passwordHelpBlock",
+							}),
+							new h.div(
+								{ id: "passwordHelpBlock", class: "form-text" },
+								"Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji."
+							),
 						]);
 					},
 				}),
 				new e.text("Using {{b.form.input}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Password",
 							type: "password",
-							description: "Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
+							description:
+								"Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
 						});
 					},
 				}),
 
-				new e.text("Inline text can use any typical inline HTML element (be it a {{<span>}}, {{<small>}}, or something else) with nothing more than the {{.form-text}} class."),
+				new e.text(
+					"Inline text can use any typical inline HTML element (be it a {{<span>}}, {{<small>}}, or something else) with nothing more than the {{.form-text}} class."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true, gutter: 3, alignItem: "center" }, [
-							new h.div({ col: "auto" }, new b.label({ for: "inputPassword6", class: "col-form-label" }, "Password")),
+							new h.div(
+								{ col: "auto" },
+								new b.label(
+									{ for: "inputPassword6", class: "col-form-label" },
+									"Password"
+								)
+							),
 							new h.div(
 								{ col: "auto" },
 								new b.input({
@@ -113,12 +155,19 @@ export const control: IContent = {
 									describedby: "passwordHelpBlock",
 								})
 							),
-							new h.div({ col: "auto" }, new h.span({ id: "passwordHelpInline", class: "form-text" }, " Must be 8-20 characters long. ")),
+							new h.div(
+								{ col: "auto" },
+								new h.span(
+									{ id: "passwordHelpInline", class: "form-text" },
+									" Must be 8-20 characters long. "
+								)
+							),
 						]);
 					},
 				}),
 				new e.text("Using {{b.form.input}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							container: { gutter: 3, alignItem: "center" },
@@ -137,8 +186,11 @@ export const control: IContent = {
 
 			new e.section([
 				new e.title("Disabled"),
-				new e.text("Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."),
+				new e.text(
+					"Add the {{disabled}} boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.input({
@@ -162,8 +214,11 @@ export const control: IContent = {
 
 			new e.section([
 				new e.title("Readonly"),
-				new e.text("Add the {{readonly}} boolean attribute on an input to prevent modification of the input’s value. {{readonly}} inputs can still be focused and selected, while {{disabled}} inputs cannot."),
+				new e.text(
+					"Add the {{readonly}} boolean attribute on an input to prevent modification of the input’s value. {{readonly}} inputs can still be focused and selected, while {{disabled}} inputs cannot."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							new b.input({
@@ -180,8 +235,11 @@ export const control: IContent = {
 
 			new e.section([
 				new e.title("Readonly plain text"),
-				new e.text("If you want to have {{<input readonly>}} elements in your form styled as plain text, replace {{.form-control}} with {{.form-control-plaintext}} to remove the default form field styling and preserve the correct {{margin}} and {{padding}}."),
+				new e.text(
+					"If you want to have {{<input readonly>}} elements in your form styled as plain text, replace {{.form-control}} with {{.form-control-plaintext}} to remove the default form field styling and preserve the correct {{margin}} and {{padding}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -202,6 +260,7 @@ export const control: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true }, [
 							b.form.input({
@@ -218,7 +277,10 @@ export const control: IContent = {
 								type: "password",
 								placeholder: "Password",
 							}),
-							new h.div({ col: "auto" }, new b.button({ type: "submit" }, "Confirm identity")),
+							new h.div(
+								{ col: "auto" },
+								new b.button({ type: "submit" }, "Confirm identity")
+							),
 						]);
 					},
 				}),
@@ -230,6 +292,7 @@ export const control: IContent = {
 				new e.title("File input"),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -269,9 +332,12 @@ export const control: IContent = {
 
 			new e.section([
 				new e.title("Color"),
-				new e.text("Set the {{type='color'}} and add {{.form-control-color}} to the {{<input>}}. Bootstrap use the modifier class to set fixed {{heights}} and override some inconsistencies between browsers."),
+				new e.text(
+					"Set the {{type='color'}} and add {{.form-control-color}} to the {{<input>}}. Bootstrap use the modifier class to set fixed {{heights}} and override some inconsistencies between browsers."
+				),
 				new e.text([new h.span({ class: "teal-700" }, "This teal-700")]),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Color picker",
@@ -289,15 +355,24 @@ export const control: IContent = {
 				new e.text(
 					"Datalists allow you to create a group of {{<option>}}s that can be accessed (and autocompleted) from within an {{<input>}}. These are similar to {{<select>}} elements, but come with more menu styling limitations and differences. While most browsers and operating systems include some support for {{<datalist>}} elements, their styling is inconsistent at best."
 				),
-				new e.text("Learn more about {{https://caniuse.com/datalist::support for datalist elements}}."),
+				new e.text(
+					"Learn more about {{https://caniuse.com/datalist::support for datalist elements}}."
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Datalist example",
 							type: "text",
 							placeholder: "Type to search...",
-							datalist: ["San Francisco", "New York", "Seattle", "Los Angeles", "Chicago"],
+							datalist: [
+								"San Francisco",
+								"New York",
+								"Seattle",
+								"Los Angeles",
+								"Chicago",
+							],
 						});
 					},
 				}),
@@ -311,7 +386,9 @@ export const control: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text("{{$input-*}} are shared across most of Bootstrap form controls (and not buttons)."),
+				new e.text(
+					"{{$input-*}} are shared across most of Bootstrap form controls (and not buttons)."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -370,7 +447,9 @@ export const control: IContent = {
 						$form-color-width:                      3rem;
 					`,
 				}),
-				new e.text("{{$form-label-*}} and {{$form-text-*}} are for Bootstrap {{<label>}}s and {{.form-text}} component."),
+				new e.text(
+					"{{$form-label-*}} and {{$form-text-*}} are for Bootstrap {{<label>}}s and {{.form-text}} component."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",

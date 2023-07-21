@@ -19,6 +19,3 @@ export class alert extends h.div {
 		super(convert(core.bsConstArg<I.B.Alert.Container>("elem", arg)));
 	}
 }
-
-export const Alert = (AttrOrElem?: I.B.Alert.Container | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<alert, I.B.Alert.Container>(alert, AttrOrElem, Elem);

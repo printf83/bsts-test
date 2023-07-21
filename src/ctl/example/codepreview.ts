@@ -46,16 +46,19 @@ function itemCodeCopy(e: Event) {
 	const card = target.closest(".card");
 
 	if (card) {
-		const text = card.getElementsByTagName("pre")[0].innerText;
-
-		navigator.clipboard.writeText(text).then(
-			() => {
-				successCopyCode(iconElem);
-			},
-			() => {
-				failCopyCode(iconElem);
-			}
-		);
+		const text = card.getElementsByTagName("pre")[0]?.innerText;
+		if (text) {
+			navigator.clipboard.writeText(text).then(
+				() => {
+					successCopyCode(iconElem);
+				},
+				() => {
+					failCopyCode(iconElem);
+				}
+			);
+		} else {
+			failCopyCode(iconElem);
+		}
 	} else {
 		failCopyCode(iconElem);
 	}
@@ -63,14 +66,14 @@ function itemCodeCopy(e: Event) {
 	return false;
 }
 
-export interface IBsExampleCodepreview extends core.IAttr {
+export interface ICodePreview extends core.IAttr {
 	code?: string;
 	type?: "js" | "ts" | "css" | "html";
 	title?: string;
 	source?: string;
 }
 
-const convert = (attr: IBsExampleCodepreview): core.IAttr => {
+const convert = (attr: ICodePreview): core.IAttr => {
 	if (attr.code) {
 		const copyButton = new h.a(
 			{
@@ -110,14 +113,22 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 										},
 										new h.small(attr.title)
 								  )
-								: new h.small({ monospace: true, textColor: "body-secondary" }, attr.title)
+								: new h.small(
+										{ monospace: true, textColor: "body-secondary" },
+										attr.title
+								  )
 						),
-						new h.div({ display: "flex" }, new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)),
+						new h.div(
+							{ display: "flex" },
+							new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)
+						),
 					]
 			  )
 			: "";
 		const cardBody = new b.card.body({ padding: 4 }, [
-			!attr.title ? new h.span({ position: "absolute", end: 0, marginEnd: 4 }, copyButton) : "",
+			!attr.title
+				? new h.span({ position: "absolute", end: 0, marginEnd: 4 }, copyButton)
+				: "",
 			new preview({ type: attr.type ? attr.type : "js", marginEnd: 4 }, attr.code),
 		]);
 
@@ -145,11 +156,8 @@ const convert = (attr: IBsExampleCodepreview): core.IAttr => {
 
 export class codepreview extends h.div {
 	constructor();
-	constructor(attr: IBsExampleCodepreview);
+	constructor(attr: ICodePreview);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IBsExampleCodepreview>(convert, arg));
+		super(core.bsConsNoElemArg<ICodePreview>(convert, arg));
 	}
 }
-
-export const Codepreview = (Attr?: IBsExampleCodepreview) =>
-	core.genTagClass<codepreview, IBsExampleCodepreview>(codepreview, Attr);

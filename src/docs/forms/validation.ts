@@ -1,11 +1,14 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const validation: IContent = {
 	title: "Validation",
-	description: "Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.",
-	item: () => {
+	description:
+		"Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.alert(
@@ -31,7 +34,9 @@ export const validation: IContent = {
 						"You may provide custom validity messages with {{setCustomValidity}} in JavaScript.",
 					],
 				}),
-				new e.text("With that in mind, consider the following demos for Bootstrap custom form validation styles, optional server-side classes, and browser defaults."),
+				new e.text(
+					"With that in mind, consider the following demos for Bootstrap custom form validation styles, optional server-side classes, and browser defaults."
+				),
 			]),
 
 			//----------------------
@@ -41,8 +46,11 @@ export const validation: IContent = {
 				new e.text(
 					"For custom Bootstrap form validation messages, you’ll need to add the {{novalidate}} boolean attribute to your {{<form>}}. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. Try to submit the form below; Bootstrap JavaScript will intercept the submit button and relay feedback to you. When attempting to submit, you’ll see the {{:invalid}} and {{:valid}} styles applied to your form controls."
 				),
-				new e.text("Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for {{<select>}}s are only available with {{.form-select}}, and not {{.form-control}}."),
+				new e.text(
+					"Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for {{<select>}}s are only available with {{.form-select}}, and not {{.form-control}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -119,13 +127,18 @@ export const validation: IContent = {
 									label: "Agree to terms and conditions",
 									invalidFeedback: "You must agree before sumbitting",
 								}),
-								new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+								new h.div(
+									{ col: 12 },
+									new b.button({ type: "submit" }, "Submit form")
+								),
 							]
 						);
 					},
 				}),
 
-				new e.text("Example starter JavaScript for disabling form submissions if there are invalid fields"),
+				new e.text(
+					"Example starter JavaScript for disabling form submissions if there are invalid fields"
+				),
 				new e.codepreview({
 					type: "js",
 					code: `
@@ -156,6 +169,7 @@ export const validation: IContent = {
 			new e.section([
 				new e.subtitle("Custom styles with floating label"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -232,7 +246,10 @@ export const validation: IContent = {
 									label: "Agree to terms and conditions",
 									invalidFeedback: "You must agree before sumbitting",
 								}),
-								new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+								new h.div(
+									{ col: 12 },
+									new b.button({ type: "submit" }, "Submit form")
+								),
 							]
 						);
 					},
@@ -243,9 +260,14 @@ export const validation: IContent = {
 
 			new e.section([
 				new e.title("Browser defaults"),
-				new e.text("Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you’ll see a slightly different style of feedback."),
-				new e.text("While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript."),
+				new e.text(
+					"Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you’ll see a slightly different style of feedback."
+				),
+				new e.text(
+					"While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -300,7 +322,10 @@ export const validation: IContent = {
 									required: true,
 									label: "Agree to terms and conditions",
 								}),
-								new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+								new h.div(
+									{ col: 12 },
+									new b.button({ type: "submit" }, "Submit form")
+								),
 							]
 						);
 					},
@@ -311,10 +336,17 @@ export const validation: IContent = {
 
 			new e.section([
 				new e.title("Server-side"),
-				new e.text("Bootstrap recommend using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with {{.is-invalid}} and {{.is-valid}}. Note that {{.invalid-feedback}} is also supported with these classes."),
-				new e.text("For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using {{aria-describedby}} (noting that this attribute allows more than one {{id}} to be referenced, in case the field already points to additional form text)."),
-				new e.text("To fix {{https://github.com/twbs/bootstrap/issues/25110::issues with border radius}}, input groups require an additional {{.has-validation}} class."),
+				new e.text(
+					"Bootstrap recommend using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with {{.is-invalid}} and {{.is-valid}}. Note that {{.invalid-feedback}} is also supported with these classes."
+				),
+				new e.text(
+					"For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using {{aria-describedby}} (noting that this attribute allows more than one {{id}} to be referenced, in case the field already points to additional form text)."
+				),
+				new e.text(
+					"To fix {{https://github.com/twbs/bootstrap/issues/25110::issues with border radius}}, input groups require an additional {{.has-validation}} class."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -383,7 +415,10 @@ export const validation: IContent = {
 									invalidFeedback: "You must agree before sumbitting",
 									isvalid: false,
 								}),
-								new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+								new h.div(
+									{ col: 12 },
+									new b.button({ type: "submit" }, "Submit form")
+								),
 							]
 						);
 					},
@@ -394,11 +429,18 @@ export const validation: IContent = {
 
 			new e.section([
 				new e.title("Supported elements"),
-				new e.text("Validation styles are available for the following form controls and components:"),
+				new e.text(
+					"Validation styles are available for the following form controls and components:"
+				),
 				new e.ul({
-					item: ["{{<input>}}s and {{<textarea>}}s with {{.form-control}} (including up to one {{.form-control}} in input groups)", "{{<select>}}s with {{.form-select}}", "{{.form-check}}s"],
+					item: [
+						"{{<input>}}s and {{<textarea>}}s with {{.form-control}} (including up to one {{.form-control}} in input groups)",
+						"{{<select>}}s with {{.form-select}}",
+						"{{.form-check}}s",
+					],
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form({ class: "was-validated" }, [
 							b.form.textarea({
@@ -449,7 +491,10 @@ export const validation: IContent = {
 								type: "file",
 								invalidFeedback: "Example invalid form file feedback",
 							}),
-							new h.div({ marginBottom: 3 }, new b.button({ type: "submit", disabled: true }, "Submit form")),
+							new h.div(
+								{ marginBottom: 3 },
+								new b.button({ type: "submit", disabled: true }, "Submit form")
+							),
 						]);
 					},
 				}),
@@ -463,6 +508,7 @@ export const validation: IContent = {
 					"If your form layout allows it, you can swap the {{.{valid|invalid}-feedback}} classes for {{.{valid|invalid}-tooltip}} classes to display validation feedback in a styled tooltip. Be sure to have a parent with {{position: relative}} on it for tooltip positioning. In the example below, Bootstrap column classes have this already, but your project may require an alternative setup."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -539,7 +585,10 @@ export const validation: IContent = {
 									label: "Agree to terms and conditions",
 									invalidTooltip: "You must agree before sumbitting",
 								}),
-								new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+								new h.div(
+									{ col: 12 },
+									new b.button({ type: "submit" }, "Submit form")
+								),
 							]
 						);
 					},
@@ -551,6 +600,7 @@ export const validation: IContent = {
 			new e.section([
 				new e.subtitle("Tooltips with floating label"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							{
@@ -627,7 +677,10 @@ export const validation: IContent = {
 									label: "Agree to terms and conditions",
 									invalidTooltip: "You must agree before sumbitting",
 								}),
-								new h.div({ col: 12 }, new b.button({ type: "submit" }, "Submit form")),
+								new h.div(
+									{ col: 12 },
+									new b.button({ type: "submit" }, "Submit form")
+								),
 							]
 						);
 					},
@@ -642,7 +695,9 @@ export const validation: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, forms now use local CSS variables for validation for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, forms now use local CSS variables for validation for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_root.scss",
@@ -654,7 +709,9 @@ export const validation: IContent = {
 						--#{$prefix}form-invalid-border-color: #{$form-invalid-border-color};
 					`,
 				}),
-				new e.text("These variables are also color mode adaptive, meaning they change color while in dark mode."),
+				new e.text(
+					"These variables are also color mode adaptive, meaning they change color while in dark mode."
+				),
 			]),
 
 			//----------------------
@@ -706,7 +763,9 @@ export const validation: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass mixins"),
-				new e.text("Two mixins are combined, through Bootstrap {{nav:docs/forms/validation#loop::loop}}, to generate Bootstrap form validation feedback styles."),
+				new e.text(
+					"Two mixins are combined, through Bootstrap {{nav:docs/forms/validation#loop::loop}}, to generate Bootstrap form validation feedback styles."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_forms.scss",
@@ -868,7 +927,9 @@ export const validation: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass map"),
-				new e.text("This is the validation Sass map from {{_variables.scss}}. Override or extend this to generate different or additional states."),
+				new e.text(
+					"This is the validation Sass map from {{_variables.scss}}. Override or extend this to generate different or additional states."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -894,14 +955,18 @@ export const validation: IContent = {
 						);
 					`,
 				}),
-				new e.text("Maps of {{$form-validation-states}} can contain three optional parameters to override tooltips and focus styles."),
+				new e.text(
+					"Maps of {{$form-validation-states}} can contain three optional parameters to override tooltips and focus styles."
+				),
 			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass loop"),
-				new e.text("Used to iterate over {{$form-validation-states}} map values to generate Bootstrap validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop."),
+				new e.text(
+					"Used to iterate over {{$form-validation-states}} map values to generate Bootstrap validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/forms/_validation.scss",

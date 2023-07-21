@@ -1,15 +1,20 @@
 import { b, h, s } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const position: IContent = {
 	title: "Position",
-	description: "Use these shorthand utilities for quickly configuring the position of an element.",
-	item: () => {
+	description:
+		"Use these shorthand utilities for quickly configuring the position of an element.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Position values"),
-				new e.text("Quick positioning classes are available, though they are not responsive."),
+				new e.text(
+					"Quick positioning classes are available, though they are not responsive."
+				),
 				new e.codepreview({
 					type: "html",
 					code: `
@@ -26,18 +31,32 @@ export const position: IContent = {
 
 			new e.section([
 				new e.title("Arrange elements"),
-				new e.text("Arrange elements easily with the edge positioning utilities. The format is{{ {property}-{position} }}."),
+				new e.text(
+					"Arrange elements easily with the edge positioning utilities. The format is{{ {property}-{position} }}."
+				),
 				new e.text("Where {{i::property}} is one of:"),
 				new e.ul({
-					item: ["{{top}} - for the vertical {{top}} position", "{{start}} - for the horizontal {{left}} position (in LTR)", "{{bottom}} - for the vertical {{bottom}} position", "{{end}} - for the horizontal {{right}} position (in LTR)"],
+					item: [
+						"{{top}} - for the vertical {{top}} position",
+						"{{start}} - for the horizontal {{left}} position (in LTR)",
+						"{{bottom}} - for the vertical {{bottom}} position",
+						"{{end}} - for the horizontal {{right}} position (in LTR)",
+					],
 				}),
 				new e.text("Where {{i::position}} is one of:"),
 				new e.ul({
-					item: ["{{0}} - for {{0}} edge position", "{{50}} - for {{50%}} edge position", "{{100}} - for {{100%}} edge position"],
+					item: [
+						"{{0}} - for {{0}} edge position",
+						"{{50}} - for {{50%}} edge position",
+						"{{100}} - for {{100%}} edge position",
+					],
 				}),
-				new e.text("(You can add more position values by adding entries to the {{$position-values}} Sass map variable.)"),
+				new e.text(
+					"(You can add more position values by adding entries to the {{$position-values}} Sass map variable.)"
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "position-box" },
 					output: () => {
 						return new h.div({ position: "relative" }, [
@@ -56,9 +75,14 @@ export const position: IContent = {
 
 			new e.section([
 				new e.title("Center elements"),
-				new e.text("In addition, you can also center the elements with the transform utility class {{.translate-middle}}."),
-				new e.text("This class applies the transformations {{translateX(-50%)}} and {{translateY(-50%)}} to the element which, in combination with the edge positioning utilities, allows you to absolute center an element."),
+				new e.text(
+					"In addition, you can also center the elements with the transform utility class {{.translate-middle}}."
+				),
+				new e.text(
+					"This class applies the transformations {{translateX(-50%)}} and {{translateY(-50%)}} to the element which, in combination with the edge positioning utilities, allows you to absolute center an element."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "position-box" },
 					output: () => {
 						return new h.div({ position: "relative" }, [
@@ -70,12 +94,20 @@ export const position: IContent = {
 							new h.div({ position: "absolute", top: 50, start: 100, tMiddle: true }),
 							new h.div({ position: "absolute", top: 100, start: 0, tMiddle: true }),
 							new h.div({ position: "absolute", top: 100, start: 50, tMiddle: true }),
-							new h.div({ position: "absolute", top: 100, start: 100, tMiddle: true }),
+							new h.div({
+								position: "absolute",
+								top: 100,
+								start: 100,
+								tMiddle: true,
+							}),
 						]);
 					},
 				}),
-				new e.text("By adding {{.translate-middle-x}} or {{.translate-middle-y}} classes, elements can be positioned only in horizontal or vertical direction."),
+				new e.text(
+					"By adding {{.translate-middle-x}} or {{.translate-middle-y}} classes, elements can be positioned only in horizontal or vertical direction."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "position-box" },
 					output: () => {
 						return new h.div({ position: "relative" }, [
@@ -99,6 +131,7 @@ export const position: IContent = {
 				new e.title("Examples"),
 				new e.text("Here are some real life examples of these classes:"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", justifyContent: "around" },
 					output: () => {
 						return [
@@ -159,8 +192,11 @@ export const position: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.text("You can use these classes with existing components to create new ones. Remember that you can extend its functionality by adding entries to the {{$position-values}} variable."),
+				new e.text(
+					"You can use these classes with existing components to create new ones. Remember that you can extend its functionality by adding entries to the {{$position-values}} variable."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ position: "relative", margin: 4 }, [
 							new b.progress.container(
@@ -223,7 +259,9 @@ export const position: IContent = {
 
 			new e.section([
 				new e.subtitle("Maps"),
-				new e.text("Default position utility values are declared in a Sass map, then used to generate Bootstrap utilities."),
+				new e.text(
+					"Default position utility values are declared in a Sass map, then used to generate Bootstrap utilities."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -242,7 +280,9 @@ export const position: IContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text("Position utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Position utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

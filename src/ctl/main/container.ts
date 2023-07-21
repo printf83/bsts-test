@@ -1,7 +1,7 @@
 import { core, b, h, I } from "@printf83/bsts";
-import { IAttrItemBootswatch, genBootswatch } from "./bootswatch.js";
+import { IBootswatchItem, genBootswatch } from "./bootswatch.js";
 import { ITheme, availabelTheme, setupTheme } from "./theme.js";
-import { IAttrItemInsideLink, setupInsideLink } from "./insidelink.js";
+import { IInsideLink, setupInsideLink } from "./insidelink.js";
 import { IOutsideLink, setupOutsideLink } from "./outsidelink.js";
 import { IMenu, setupMenu } from "./menu.js";
 import { IFooter, setupFooter } from "./footer.js";
@@ -22,7 +22,7 @@ export const dispatchCustomEvent = (root: Element | null, eventName: string, val
 	}
 };
 
-export interface IBsMainContainer extends core.IAttr {
+export interface IMainContainer extends core.IAttr {
 	icon?: I.B.Icon;
 	name?: string;
 
@@ -32,9 +32,9 @@ export interface IBsMainContainer extends core.IAttr {
 	itemOutsideLink?: IOutsideLink[];
 
 	itemMenu?: IMenu[];
-	itemInsideLink?: IAttrItemInsideLink[];
+	itemInsideLink?: IInsideLink[];
 	itemTheme?: ITheme[];
-	itemBootswatch?: IAttrItemBootswatch[];
+	itemBootswatch?: IBootswatchItem[];
 	itemFooter?: IFooter[];
 
 	currentMenu?: string;
@@ -45,7 +45,7 @@ export interface IBsMainContainer extends core.IAttr {
 	content?: IContent;
 }
 
-const convert = (attr: IBsMainContainer) => {
+const convert = (attr: IMainContainer) => {
 	attr.class = core.mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
 		new b.navbar.containerHeader(
@@ -95,7 +95,9 @@ const convert = (attr: IBsMainContainer) => {
 									},
 								},
 							},
-							attr.icon ? new b.icon(attr.icon) : new b.icon({ id: "bootstrap", fontSize: 3 })
+							attr.icon
+								? new b.icon(attr.icon)
+								: new b.icon({ id: "bootstrap", fontSize: 3 })
 						),
 
 						new h.div({ display: "flex", class: "bs-navbar-toggle" }, [
@@ -123,13 +125,34 @@ const convert = (attr: IBsMainContainer) => {
 											{
 												class: "bs-search-button-container",
 											},
-											[new b.icon({ class: "bs-search-icon", id: "search" }), new h.span({ class: "bs-search-button-placeholder", marginStart: 2 }, "Search")]
+											[
+												new b.icon({
+													class: "bs-search-icon",
+													id: "search",
+												}),
+												new h.span(
+													{
+														class: "bs-search-button-placeholder",
+														marginStart: 2,
+													},
+													"Search"
+												),
+											]
 										),
 										new h.span(
 											{
 												class: "bs-search-button-keys",
 											},
-											[new h.kbd({ class: "bs-search-button-key" }, new h.span({ style: { fontSize: "0.75em" } }, "CTRL")), new h.kbd({ class: "bs-search-button-key" }, "K")]
+											[
+												new h.kbd(
+													{ class: "bs-search-button-key" },
+													new h.span(
+														{ style: { fontSize: "0.75em" } },
+														"CTRL"
+													)
+												),
+												new h.kbd({ class: "bs-search-button-key" }, "K"),
+											]
 										),
 									]
 								)
@@ -159,16 +182,58 @@ const convert = (attr: IBsMainContainer) => {
 								scroll: true,
 							},
 							[
-								new b.offcanvas.header({ paddingX: 4, paddingBottom: 0, bgColor: attr.bgColor || "primary" }, [
-									new b.offcanvas.title({ id: "bsNavbarOffcanvasLabel", textColor: attr.textColor || "light" }, attr.name || "Bootstrap"),
-									new b.offcanvas.btnclose({ target: "#bsNavbar", white: true }),
-								]),
-								new b.offcanvas.body({ padding: [4, "lg-0"], paddingTop: 0, bgColor: attr.bgColor || "primary" }, [
-									...setupInsideLink(attr.textColor || "primary", attr.itemInsideLink, attr.currentInsideLink),
-									...(attr.itemOutsideLink || attr.itemTheme || attr.itemBootswatch
-										? setupOutsideLink(attr.textColor || "primary", attr.itemOutsideLink, genBootswatch(attr.textColor || "primary", attr.itemBootswatch, attr.currentBootswatch), setupTheme(attr.textColor || "primary", attr.itemTheme, attr.currentTheme))
-										: []),
-								]),
+								new b.offcanvas.header(
+									{
+										paddingX: 4,
+										paddingBottom: 0,
+										bgColor: attr.bgColor || "primary",
+									},
+									[
+										new b.offcanvas.title(
+											{
+												id: "bsNavbarOffcanvasLabel",
+												textColor: attr.textColor || "light",
+											},
+											attr.name || "Bootstrap"
+										),
+										new b.offcanvas.btnclose({
+											target: "#bsNavbar",
+											white: true,
+										}),
+									]
+								),
+								new b.offcanvas.body(
+									{
+										padding: [4, "lg-0"],
+										paddingTop: 0,
+										bgColor: attr.bgColor || "primary",
+									},
+									[
+										...setupInsideLink(
+											attr.textColor || "primary",
+											attr.itemInsideLink,
+											attr.currentInsideLink
+										),
+										...(attr.itemOutsideLink ||
+										attr.itemTheme ||
+										attr.itemBootswatch
+											? setupOutsideLink(
+													attr.textColor || "primary",
+													attr.itemOutsideLink,
+													genBootswatch(
+														attr.textColor || "primary",
+														attr.itemBootswatch,
+														attr.currentBootswatch
+													),
+													setupTheme(
+														attr.textColor || "primary",
+														attr.itemTheme,
+														attr.currentTheme
+													)
+											  )
+											: []),
+									]
+								),
 							]
 						),
 					]
@@ -176,46 +241,68 @@ const convert = (attr: IBsMainContainer) => {
 			]
 		),
 
-		new h.div({ class: ["bs-gutter", "bs-layout"], container: "xxl", marginTop: 3, marginY: "md-4" }, [
-			new h.aside({ class: "bs-sidebar" }, [
-				new b.offcanvas.container(
-					{
-						id: "bsSidebar",
-						show: "lg",
-						placement: "start",
-						labelledby: "bsSidebarOffcanvasLabel",
-					},
-					[
-						new b.offcanvas.header({ border: "bottom" }, [new b.offcanvas.title({ id: "bsSidebarOffcanvasLabel" }, "Browse docs"), new b.offcanvas.btnclose({ target: "#bsSidebar" })]),
-						new b.offcanvas.body([
-							new h.nav({ id: "bs-menu", class: "bs-links", width: 100, label: "Docs navication" }, [
-								new h.ul(
+		new h.div(
+			{ class: ["bs-gutter", "bs-layout"], container: "xxl", marginTop: 3, marginY: "md-4" },
+			[
+				new h.aside({ class: "bs-sidebar" }, [
+					new b.offcanvas.container(
+						{
+							id: "bsSidebar",
+							show: "lg",
+							placement: "start",
+							labelledby: "bsSidebarOffcanvasLabel",
+						},
+						[
+							new b.offcanvas.header({ border: "bottom" }, [
+								new b.offcanvas.title(
+									{ id: "bsSidebarOffcanvasLabel" },
+									"Browse docs"
+								),
+								new b.offcanvas.btnclose({ target: "#bsSidebar" }),
+							]),
+							new b.offcanvas.body([
+								new h.nav(
 									{
-										class: "bs-links-nav",
-										unstyle: true,
-										marginBottom: 0,
-										paddingBottom: [3, "md-2"],
-										paddingEnd: "lg-2",
-										data: {
-											"bs-dismiss": "offcanvas",
-											"bs-target": "#bsSidebar",
-										},
+										id: "bs-menu",
+										class: "bs-links",
+										width: 100,
+										label: "Docs navication",
 									},
+									[
+										new h.ul(
+											{
+												class: "bs-links-nav",
+												unstyle: true,
+												marginBottom: 0,
+												paddingBottom: [3, "md-2"],
+												paddingEnd: "lg-2",
+												data: {
+													"bs-dismiss": "offcanvas",
+													"bs-target": "#bsSidebar",
+												},
+											},
 
-									setupMenu(attr.itemMenu, attr.currentMenu)
+											setupMenu(attr.itemMenu, attr.currentMenu)
+										),
+									]
 								),
 							]),
-						]),
-					]
-				),
-			]),
+						]
+					),
+				]),
 
-			setupContentContainer(attr.content),
-		]),
+				setupContentContainer(attr.content),
+			]
+		),
 		new h.footer(
 			{ class: "bs-footer", paddingY: [4, "md-5"], marginTop: 5, bgColor: "body-tertiary" },
 			new h.div(
-				{ container: true, paddingY: 4, paddingX: [4, "md-3"], textColor: "body-secondary" },
+				{
+					container: true,
+					paddingY: 4,
+					paddingX: [4, "md-3"],
+					textColor: "body-secondary",
+				},
 				new h.div({ row: true }, [
 					new h.div({ col: "lg-3", marginBottom: 3 }, [
 						new h.a(
@@ -233,7 +320,15 @@ const convert = (attr: IBsMainContainer) => {
 									},
 								},
 							},
-							[attr.icon ? new b.icon(attr.icon) : new b.icon({ id: "bootstrap", fontSize: 3 }), new h.span({ fontSize: 5, marginStart: 2 }, attr.name || "Bootstrap")]
+							[
+								attr.icon
+									? new b.icon(attr.icon)
+									: new b.icon({ id: "bootstrap", fontSize: 3 }),
+								new h.span(
+									{ fontSize: 5, marginStart: 2 },
+									attr.name || "Bootstrap"
+								),
+							]
 						),
 						new h.ul({ unstyle: true, class: "small" }, [
 							new h.li({ marginBottom: 2 }, [
@@ -241,7 +336,10 @@ const convert = (attr: IBsMainContainer) => {
 								"This is {{s::not a real Bootstrap}} website. This is only a {{s::Bootstrap TS test website}} to test {{https://github.com/printf83/bsts::@printf83/bsts}} library and make sure it's fully support Bootstrap. ",
 								"Bootsrap is designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::Bootstrap contributors}}.",
 							]),
-							new h.li({ marginBottom: 2 }, "Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."),
+							new h.li(
+								{ marginBottom: 2 },
+								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
+							),
 							new h.li({ marginBottom: 2 }, "Currently v5.3.0."),
 						]),
 					]),
@@ -277,10 +375,8 @@ const convert = (attr: IBsMainContainer) => {
 
 export class container extends h.div {
 	constructor();
-	constructor(attr: IBsMainContainer);
+	constructor(attr: IMainContainer);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IBsMainContainer>(convert, arg));
+		super(core.bsConsNoElemArg<IMainContainer>(convert, arg));
 	}
 }
-
-export const Container = (Attr?: IBsMainContainer) => core.genTagClass<container, IBsMainContainer>(container, Attr);

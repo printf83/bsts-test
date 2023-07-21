@@ -6,41 +6,51 @@ export interface IWindowState {
 	anchorId?: string;
 }
 
-export const pushState = (arg: { docId: string; anchorId?: string; pagetitle: string; origin?: string; pathname?: string; value: string }) => {
+export const addHistory = (arg: {
+	action?: "push" | "replace";
+	docId: string;
+	anchorId?: string;
+	pagetitle: string;
+	origin?: string;
+	pathname?: string;
+}) => {
 	const { origin, pathname } = window.location;
+
+	arg.action ??= "push";
 	arg.origin ??= origin;
 	arg.pathname ??= pathname;
+	const value = `${arg.docId}${arg.anchorId ? "#" : ""}${arg.anchorId ? arg.anchorId : ""}`;
 
-	window.history.pushState(
-		{
-			docId: arg.docId,
-			anchorId: arg.anchorId,
-		} satisfies IWindowState,
-		arg.pagetitle,
-		`${arg.origin}${arg.pathname}?d=${arg.value}`
-	);
+	if (arg.action === "push") {
+		window.history.pushState(
+			{
+				docId: arg.docId,
+				anchorId: arg.anchorId,
+			} satisfies IWindowState,
+			arg.pagetitle,
+			`${arg.origin}${arg.pathname}?d=${value}`
+		);
+	} else {
+		window.history.replaceState(
+			{
+				docId: arg.docId,
+				anchorId: arg.anchorId,
+			} satisfies IWindowState,
+			arg.pagetitle,
+			`${arg.origin}${arg.pathname}?d=${value}`
+		);
+	}
 };
 
-export const replaceState = (arg: { docId: string; anchorId?: string; pagetitle: string; origin?: string; pathname?: string; value: string }) => {
-	const { origin, pathname } = window.location;
-	arg.origin ??= origin;
-	arg.pathname ??= pathname;
-
-	window.history.replaceState(
-		{
-			docId: arg.docId,
-			anchorId: arg.anchorId,
-		} satisfies IWindowState,
-		arg.pagetitle,
-		`${arg.origin}${arg.pathname}?d=${arg.value}`
-	);
-};
-
-export const setupState = () => {
+export const setupOnHistoryChange = () => {
 	window.onpopstate = function (e) {
 		if (e.state) {
 			const state: IWindowState = e.state as IWindowState;
-			setupContentDocument(`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`, "replace");
+
+			setupContentDocument(
+				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
+				"replace"
+			);
 			highlightMenu(state.docId);
 		}
 	};

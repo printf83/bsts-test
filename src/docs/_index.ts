@@ -7,10 +7,38 @@ import * as content from "./content/_index.js";
 import * as layout from "./layout/_index.js";
 import * as customize from "./customize/_index.js";
 import * as example from "./example/_index.js";
+import * as bsts from "./bsts/_index.js";
 import { IContent } from "../ctl/main/content.js";
 
 export const doc = (value: string, callback: (result: IContent | null) => void) => {
 	switch (value) {
+		//--------------------------
+		case "docs/bsts/animation":
+			bsts.animation().then((res) => {
+				callback(res.animation);
+			});
+			break;
+		case "docs/bsts/transform":
+			bsts.transform().then((res) => {
+				callback(res.transform);
+			});
+			break;
+		case "docs/bsts/extended_color":
+			bsts.extended_color().then((res) => {
+				callback(res.extended_color);
+			});
+			break;
+		case "docs/bsts/chart":
+			bsts.chart().then((res) => {
+				callback(res.chart);
+			});
+			break;
+		case "docs/bsts/test":
+			bsts.test().then((res) => {
+				callback(res.test);
+			});
+			break;
+
 		//--------------------------
 		case "docs/example/headers":
 			example.headers().then((res) => {
@@ -65,11 +93,6 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 		case "docs/example/buttons":
 			example.buttons().then((res) => {
 				callback(res.buttons);
-			});
-			break;
-		case "docs/example/test":
-			example.test().then((res) => {
-				callback(res.test);
 			});
 			break;
 
@@ -330,8 +353,8 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 			});
 			break;
 		case "docs/forms/check_radio":
-			forms.overview().then((res) => {
-				callback(res.overview);
+			forms.check_radio().then((res) => {
+				callback(res.check_radio);
 			});
 			break;
 		case "docs/forms/range":

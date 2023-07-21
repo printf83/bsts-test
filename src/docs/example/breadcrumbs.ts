@@ -1,17 +1,32 @@
 import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const breadcrumbs: IContent = {
 	title: "Breadcrumbs",
 	description: "Integrate custom icons and create stepper components.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Rounded padding"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.breadcrumb.container({ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 }, [new b.breadcrumb.item({ href: "#" }, "Home"), new b.breadcrumb.item({ href: "#" }, "Library"), new b.breadcrumb.item({ active: true, href: "#" }, "Data")]);
+						return new b.breadcrumb.container(
+							{
+								label: "breadcrumb",
+								bgColor: "body-tertiary",
+								rounded: 3,
+								padding: 3,
+							},
+							[
+								new b.breadcrumb.item({ href: "#" }, "Home"),
+								new b.breadcrumb.item({ href: "#" }, "Library"),
+								new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
+							]
+						);
 					},
 				}),
 			]),
@@ -21,28 +36,37 @@ export const breadcrumbs: IContent = {
 			new e.section([
 				new e.title("With icon"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.breadcrumb.container({ label: "breadcrumb", bgColor: "body-tertiary", rounded: 3, padding: 3 }, [
-							new b.breadcrumb.item(
-								{
-									textDecoration: "none",
-									fontWeight: "semibold",
-									linkColor: "body-emphasis",
-									href: "#",
-								},
-								new b.icon("house-fill")
-							),
-							new b.breadcrumb.item(
-								{
-									textDecoration: "none",
-									fontWeight: "semibold",
-									linkColor: "body-emphasis",
-									href: "#",
-								},
-								"Library"
-							),
-							new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
-						]);
+						return new b.breadcrumb.container(
+							{
+								label: "breadcrumb",
+								bgColor: "body-tertiary",
+								rounded: 3,
+								padding: 3,
+							},
+							[
+								new b.breadcrumb.item(
+									{
+										textDecoration: "none",
+										fontWeight: "semibold",
+										linkColor: "body-emphasis",
+										href: "#",
+									},
+									new b.icon("house-fill")
+								),
+								new b.breadcrumb.item(
+									{
+										textDecoration: "none",
+										fontWeight: "semibold",
+										linkColor: "body-emphasis",
+										href: "#",
+									},
+									"Library"
+								),
+								new b.breadcrumb.item({ active: true, href: "#" }, "Data"),
+							]
+						);
 					},
 				}),
 			]),
@@ -52,6 +76,7 @@ export const breadcrumbs: IContent = {
 			new e.section([
 				new e.title("Custom divider"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.breadcrumb.container(
 							{
@@ -92,6 +117,7 @@ export const breadcrumbs: IContent = {
 			new e.section([
 				new e.title("Flex"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.breadcrumb.container(
 							{

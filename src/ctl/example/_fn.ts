@@ -1,6 +1,30 @@
 import { core, b, I, h } from "@printf83/bsts";
 import js_beautify from "js-beautify";
 import { css_beautify, html_beautify } from "js-beautify";
+import { addHistory } from "../main/history.js";
+
+export const anchorOnClick = (event: Event) => {
+	event.preventDefault();
+	event.stopPropagation();
+
+	const target = event.target as Element;
+
+	let targetPosition = target.getBoundingClientRect().top;
+	let offsetElemPosition = targetPosition + window.scrollY - 60;
+	window.scrollTo(0, offsetElemPosition);
+
+	const href = target.getAttribute("href");
+	const docId = window.location.search;
+	const pagetitle = document.title;
+
+	if (docId && docId.startsWith("?d=") && href && href.startsWith("#")) {
+		addHistory({
+			docId: docId.substring(3),
+			anchorId: href.substring(1),
+			pagetitle: pagetitle,
+		});
+	}
+};
 
 export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem) => {
 	b.toast.show(
@@ -12,7 +36,12 @@ export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem) => {
 	);
 };
 
-export const console = (elem: Element, title?: string, msg?: string | object, color?: core.bootstrapType.textColor) => {
+export const console = (
+	elem: Element,
+	title?: string,
+	msg?: string | object,
+	color?: core.bootstrapType.textColor
+) => {
 	const exampleCodeContainer = elem.closest(".example-code");
 	if (exampleCodeContainer) {
 		if (typeof msg !== "string") {
@@ -72,11 +101,40 @@ export const codeBeautify = (type: codeBeautifyType | undefined, source_text: st
 
 		default:
 			source_text = source_text.replace(/\};/g, "};\n");
-
 			return js_beautify(source_text, {
 				preserve_newlines: true,
 				end_with_newline: true,
 				indent_size: 4,
+				brace_style: "preserve-inline",
+				unescape_strings: false,
+			}) as string;
+	}
+};
+
+export const codeBeautifyMinify = (
+	type: codeBeautifyType | undefined,
+	source_text: string
+): string => {
+	switch (type) {
+		case "html":
+			return html_beautify(source_text, {
+				preserve_newlines: false,
+				end_with_newline: false,
+				indent_size: 0,
+			}) as string;
+
+		case "css":
+			return css_beautify(source_text, {
+				preserve_newlines: false,
+				end_with_newline: false,
+				indent_size: 0,
+			}) as string;
+
+		default:
+			return js_beautify(source_text, {
+				preserve_newlines: true,
+				end_with_newline: false,
+				indent_size: 0,
 				brace_style: "preserve-inline",
 				unescape_strings: false,
 			}) as string;
@@ -469,7 +527,11 @@ const getLibBaseOnSourceIsContain = (str: string, find: string[]) => {
 	return found;
 };
 
-export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExtention?: string[]) => {
+export const getLibBaseOnSource = (
+	strCode?: string,
+	strManager?: string,
+	strExtention?: string[]
+) => {
 	let libImported: string[] = ["core"];
 	const libList: { find: string[]; lib: string }[] = [
 		{
@@ -491,10 +553,6 @@ export const getLibBaseOnSource = (strCode?: string, strManager?: string, strExt
 		{
 			find: [" I.", "(I."],
 			lib: "I",
-		},
-		{
-			find: [" $.", "($.", "...$."],
-			lib: "$",
 		},
 	];
 

@@ -1,11 +1,13 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const floating_label: IContent = {
 	title: "Floating labels",
 	description: "Create beautifully simple form labels that float over your input fields.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example"),
@@ -13,15 +15,31 @@ export const floating_label: IContent = {
 					"Wrap a pair of {{<input class='form-control'>}} and {{<label>}} elements in {{.form-floating}} to enable floating labels with Bootstrap’s textual form fields. A {{placeholder}} is required on each {{<input>}} as Bootstrap method of CSS-only floating labels uses the {{:placeholder-shown}} pseudo-element. Also note that the {{<input>}} must come first so Bootstrap can utilize a sibling selector (e.g., {{~}})."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.formfloating({ marginBottom: 3 }, [new b.input({ type: "email", id: "floatingInput", placeholder: "name@example.com" }), new b.label({ for: "floatingInput" }, "Email address")]),
-							new b.formfloating([new b.input({ type: "password", id: "floatingPassword", placeholder: "Password" }), new b.label({ for: "floatingPassword" }, "Password")]),
+							new b.formfloating({ marginBottom: 3 }, [
+								new b.input({
+									type: "email",
+									id: "floatingInput",
+									placeholder: "name@example.com",
+								}),
+								new b.label({ for: "floatingInput" }, "Email address"),
+							]),
+							new b.formfloating([
+								new b.input({
+									type: "password",
+									id: "floatingPassword",
+									placeholder: "Password",
+								}),
+								new b.label({ for: "floatingPassword" }, "Password"),
+							]),
 						];
 					},
 				}),
 				new e.text("Using {{b.form.floatinglabel.input}} :"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.floatinglabel.input({
@@ -37,8 +55,11 @@ export const floating_label: IContent = {
 						];
 					},
 				}),
-				new e.text("When there’s a {{value}} already defined, {{<label>}}s will automatically adjust to their floated position."),
+				new e.text(
+					"When there’s a {{value}} already defined, {{<label>}}s will automatically adjust to their floated position."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.floatinglabel.input({
 							type: "email",
@@ -49,6 +70,7 @@ export const floating_label: IContent = {
 				}),
 				new e.text("Form validation styles also work as expected."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.floatinglabel.input({
 							type: "email",
@@ -64,16 +86,22 @@ export const floating_label: IContent = {
 
 			new e.section([
 				new e.title("Textareas"),
-				new e.text("By default, {{<textarea>}}s with {{.form-control}} will be the same height as {{<input>}}s."),
+				new e.text(
+					"By default, {{<textarea>}}s with {{.form-control}} will be the same height as {{<input>}}s."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.floatinglabel.textarea({
 							label: "Comments",
 						});
 					},
 				}),
-				new e.text("To set a custom height on your {{<textarea>}}, do not use the {{rows}} attribute. Instead, set an explicit {{height}} (either inline or via custom CSS)."),
+				new e.text(
+					"To set a custom height on your {{<textarea>}}, do not use the {{rows}} attribute. Instead, set an explicit {{height}} (either inline or via custom CSS)."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.floatinglabel.textarea({
 							label: "Comments",
@@ -91,6 +119,7 @@ export const floating_label: IContent = {
 					"Other than {{.form-control}}, floating labels are only available on {{.form-selects}}. They work in the same way, but unlike {{<input>}}s, they’ll always show the {{<label>}} in its floated state. {{b::Selects with }}{{bc::size}}{{b:: and }}{{bc::multiple}}{{b:: are not supported}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.floatinglabel.select({
 							label: "Work with selects",
@@ -109,8 +138,11 @@ export const floating_label: IContent = {
 
 			new e.section([
 				new e.title("Disabled"),
-				new e.text("Add the {{disabled}} boolean attribute on an input, a textarea or a select to give it a grayed out appearance, remove pointer events, and prevent focusing."),
+				new e.text(
+					"Add the {{disabled}} boolean attribute on an input, a textarea or a select to give it a grayed out appearance, remove pointer events, and prevent focusing."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.floatinglabel.input({
@@ -149,8 +181,11 @@ export const floating_label: IContent = {
 
 			new e.section([
 				new e.title("Readonly plaintext"),
-				new e.text("Floating labels also support {{.form-control-plaintext}}, which can be helpful for toggling from an editable {{<input>}} to a plaintext value without affecting the page layout."),
+				new e.text(
+					"Floating labels also support {{.form-control-plaintext}}, which can be helpful for toggling from an editable {{<input>}} to a plaintext value without affecting the page layout."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.floatinglabel.input({
@@ -178,6 +213,7 @@ export const floating_label: IContent = {
 				new e.title("Input groups"),
 				new e.text("Floating labels also support {{.input-group}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.floatinglabel.input({
 							label: "Username",
@@ -187,8 +223,11 @@ export const floating_label: IContent = {
 					},
 				}),
 
-				new e.text("When using {{.input-group}} and {{.form-floating}} along with form validation, the {{-feedback}} should be placed outside of the {{.form-floating}}, but inside of the {{.input-group}}. This means that the feedback will need to be shown using javascript."),
+				new e.text(
+					"When using {{.input-group}} and {{.form-floating}} along with form validation, the {{-feedback}} should be placed outside of the {{.form-floating}}, but inside of the {{.input-group}}. This means that the feedback will need to be shown using javascript."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.floatinglabel.input({
 							invalidFeedback: "Please choose a username.",
@@ -206,8 +245,11 @@ export const floating_label: IContent = {
 
 			new e.section([
 				new e.title("Layout"),
-				new e.text("When working with the Bootstrap grid system, be sure to place form elements within column classes."),
+				new e.text(
+					"When working with the Bootstrap grid system, be sure to place form elements within column classes."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ row: true, gutter: 3 }, [
 							b.form.floatinglabel.input({

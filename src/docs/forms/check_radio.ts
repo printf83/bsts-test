@@ -1,11 +1,14 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const check_radio: IContent = {
 	title: "Checks and radios",
-	description: "Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap completely rewritten checks component.",
-	item: () => {
+	description:
+		"Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap completely rewritten checks component.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Approach"),
@@ -15,7 +18,9 @@ export const check_radio: IContent = {
 				new e.text(
 					"Structurally, Bootstrap {{<input>}}s and {{<label>}}s are sibling elements as opposed to an {{<input>}} within a {{<label>}}. This is slightly more verbose as you must specify {{id}} and {{for}} attributes to relate the {{<input>}} and {{<label>}}. Bootstrap use the sibling selector ({{~}}) for all Bootstrap {{<input>}} states, like {{:checked}} or {{:disabled}}. When combined with the {{.form-check-label}} class, Bootstrap can easily style the text for each item based on the {{<input>}}’s state."
 				),
-				new e.text("Bootstrap checks use custom Bootstrap icons to indicate checked or indeterminate states."),
+				new e.text(
+					"Bootstrap checks use custom Bootstrap icons to indicate checked or indeterminate states."
+				),
 			]),
 
 			//----------------------
@@ -23,17 +28,42 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.title("Checks"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckDefault" }), new b.label({ for: "flexCheckDefault", class: "form-check-label" }, "Default checkbox")]),
-							new h.div({ class: "form-check" }, [new b.input({ type: "checkbox", id: "flexCheckChecked", checked: true }), new b.label({ for: "flexCheckChecked", class: "form-check-label" }, "Checked checkbox")]),
+							new h.div({ class: "form-check" }, [
+								new b.input({ type: "checkbox", id: "flexCheckDefault" }),
+								new b.label(
+									{ for: "flexCheckDefault", class: "form-check-label" },
+									"Default checkbox"
+								),
+							]),
+							new h.div({ class: "form-check" }, [
+								new b.input({
+									type: "checkbox",
+									id: "flexCheckChecked",
+									checked: true,
+								}),
+								new b.label(
+									{ for: "flexCheckChecked", class: "form-check-label" },
+									"Checked checkbox"
+								),
+							]),
 						];
 					},
 				}),
 				new e.text("Using {{b.form.check}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Checked checkbox", checked: true })];
+						return [
+							b.form.check({ type: "checkbox", label: "Default checkbox" }),
+							b.form.check({
+								type: "checkbox",
+								label: "Checked checkbox",
+								checked: true,
+							}),
+						];
 					},
 				}),
 			]),
@@ -42,10 +72,17 @@ export const check_radio: IContent = {
 
 			new e.section([
 				new e.subtitle("Indeterminate"),
-				new e.text("Checkboxes can utilize the {{:indeterminate}} pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it)."),
+				new e.text(
+					"Checkboxes can utilize the {{:indeterminate}} pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it)."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return b.form.check({ type: "checkbox", label: "Indeterminate checkbox", indeterminate: true });
+						return b.form.check({
+							type: "checkbox",
+							label: "Indeterminate checkbox",
+							indeterminate: true,
+						});
 					},
 				}),
 			]),
@@ -54,8 +91,11 @@ export const check_radio: IContent = {
 
 			new e.section([
 				new e.subtitle("Disabled"),
-				new e.text("Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."),
+				new e.text(
+					"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -85,9 +125,20 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.title("Radios"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							new h.div({ class: "form-check" }, [new b.input({ type: "radio", id: "flexRadioDefault", name: "exampeRadioGroup1" }), new b.label({ for: "flexRadioDefault", class: "form-check-label" }, "Default radio")]),
+							new h.div({ class: "form-check" }, [
+								new b.input({
+									type: "radio",
+									id: "flexRadioDefault",
+									name: "exampeRadioGroup1",
+								}),
+								new b.label(
+									{ for: "flexRadioDefault", class: "form-check-label" },
+									"Default radio"
+								),
+							]),
 							new h.div({ class: "form-check" }, [
 								new b.input({
 									type: "radio",
@@ -95,16 +146,24 @@ export const check_radio: IContent = {
 									name: "exampeRadioGroup1",
 									checked: true,
 								}),
-								new b.label({ for: "flexRadioDefault2", class: "form-check-label" }, "Default checked radio"),
+								new b.label(
+									{ for: "flexRadioDefault2", class: "form-check-label" },
+									"Default checked radio"
+								),
 							]),
 						];
 					},
 				}),
 				new e.text("Using {{b.form.check}}"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							b.form.check({ type: "radio", name: "exampeRadioGroup2", label: "Default radio" }),
+							b.form.check({
+								type: "radio",
+								name: "exampeRadioGroup2",
+								label: "Default radio",
+							}),
 							b.form.check({
 								type: "radio",
 								name: "exampeRadioGroup2",
@@ -120,8 +179,11 @@ export const check_radio: IContent = {
 
 			new e.section({ id: "radio_disabled" }, [
 				new e.subtitle({ id: "radio_disabled" }, "Disabled"),
-				new e.text("Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."),
+				new e.text(
+					"Add the {{disabled}} attribute and the associated {{<label>}}s are automatically styled to match with a lighter color to help indicate the input’s state."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -150,9 +212,14 @@ export const check_radio: IContent = {
 					"A switch has the markup of a custom checkbox but uses the {{.form-switch}} class to render a toggle switch. Consider using {{role='switch'}} to more accurately convey the nature of the control to assistive technologies that support this role. In older assistive technologies, it will simply be announced as a regular checkbox as a fallback. Switches also support the {{disabled}} attribute."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							b.form.check({ type: "checkbox", switch: true, label: "Default switch checkbox input" }),
+							b.form.check({
+								type: "checkbox",
+								switch: true,
+								label: "Default switch checkbox input",
+							}),
 							b.form.check({
 								type: "checkbox",
 								switch: true,
@@ -181,13 +248,24 @@ export const check_radio: IContent = {
 
 			new e.section([
 				new e.title("Default (stacked)"),
-				new e.text("By default, any number of checkboxes and radios that are immediate sibling will be vertically stacked and appropriately spaced with {{.form-check}}."),
+				new e.text(
+					"By default, any number of checkboxes and radios that are immediate sibling will be vertically stacked and appropriately spaced with {{.form-check}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return [b.form.check({ type: "checkbox", label: "Default checkbox" }), b.form.check({ type: "checkbox", label: "Disabled checkbox", disabled: true })];
+						return [
+							b.form.check({ type: "checkbox", label: "Default checkbox" }),
+							b.form.check({
+								type: "checkbox",
+								label: "Disabled checkbox",
+								disabled: true,
+							}),
+						];
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -196,7 +274,11 @@ export const check_radio: IContent = {
 								label: "Default radio",
 								checked: true,
 							}),
-							b.form.check({ type: "radio", name: "exampeRadioGroup4", label: "Second default radio" }),
+							b.form.check({
+								type: "radio",
+								name: "exampeRadioGroup4",
+								label: "Second default radio",
+							}),
 							b.form.check({
 								type: "radio",
 								name: "exampeRadioGroup4",
@@ -212,19 +294,42 @@ export const check_radio: IContent = {
 
 			new e.section([
 				new e.title("Inline"),
-				new e.text("Group checkboxes or radios on the same horizontal row by adding {{.form-check-inline}} to any {{.form-check}}."),
+				new e.text(
+					"Group checkboxes or radios on the same horizontal row by adding {{.form-check-inline}} to any {{.form-check}}."
+				),
 				new e.code({
-					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
-					output: () => {
-						return [b.form.check({ type: "checkbox", label: "1", inline: true }), b.form.check({ type: "checkbox", label: "2", inline: true }), b.form.check({ type: "checkbox", label: "3 (disabled)", disabled: true, inline: true })];
-					},
-				}),
-				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
-							b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "1", inline: true }),
-							b.form.check({ type: "radio", name: "exampeRadioGroup5", label: "2", inline: true }),
+							b.form.check({ type: "checkbox", label: "1", inline: true }),
+							b.form.check({ type: "checkbox", label: "2", inline: true }),
+							b.form.check({
+								type: "checkbox",
+								label: "3 (disabled)",
+								disabled: true,
+								inline: true,
+							}),
+						];
+					},
+				}),
+				new e.code({
+					db: getContentCode(db),
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					output: () => {
+						return [
+							b.form.check({
+								type: "radio",
+								name: "exampeRadioGroup5",
+								label: "1",
+								inline: true,
+							}),
+							b.form.check({
+								type: "radio",
+								name: "exampeRadioGroup5",
+								label: "2",
+								inline: true,
+							}),
 							b.form.check({
 								type: "radio",
 								name: "exampeRadioGroup5",
@@ -241,11 +346,18 @@ export const check_radio: IContent = {
 
 			new e.section([
 				new e.title("Reverse"),
-				new e.text("Put your checkboxes, radios, and switches on the opposite side with the .form-check-reverse modifier class."),
+				new e.text(
+					"Put your checkboxes, radios, and switches on the opposite side with the .form-check-reverse modifier class."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							b.form.check({ type: "checkbox", label: "Reverse checkbox", reverse: true }),
+							b.form.check({
+								type: "checkbox",
+								label: "Reverse checkbox",
+								reverse: true,
+							}),
 							b.form.check({
 								type: "checkbox",
 								label: "Disabled reverse checkbox",
@@ -271,9 +383,14 @@ export const check_radio: IContent = {
 					"Omit the wrapping {{.form-check}} for checkboxes and radios that have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using {{aria-label}}). See the {{nav:docs/forms/overview#accessibility::forms overview accessibility}} section for details."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							b.form.check({ type: "checkbox", label: "Checkbox without label", hideLabel: true }),
+							b.form.check({
+								type: "checkbox",
+								label: "Checkbox without label",
+								hideLabel: true,
+							}),
 							b.form.check({
 								type: "radio",
 								label: "Radio without label",
@@ -295,8 +412,13 @@ export const check_radio: IContent = {
 
 			new e.section([
 				new e.title("Toggle buttons"),
-				new e.text("Create button-like checkboxes and radio buttons by using {{.btn}} styles rather than {{.form-check-label}} on the {{<label>}} elements. These toggle buttons can further be grouped in a {{nav:docs/components/button_group::button group}} if needed."),
-				new e.alert({ color: "danger", callout: true }, "{{b::Heads up!}} The {{b.form.toggle}} function return an array. You need to flat the array before add the result into your array. For this example, Bootstrap use the {{...}} to flatten the array."),
+				new e.text(
+					"Create button-like checkboxes and radio buttons by using {{.btn}} styles rather than {{.form-check-label}} on the {{<label>}} elements. These toggle buttons can further be grouped in a {{nav:docs/components/button_group::button group}} if needed."
+				),
+				new e.alert(
+					{ color: "danger", callout: true },
+					"{{b::Heads up!}} The {{b.form.toggle}} function return an array. You need to flat the array before add the result into your array. For this example, Bootstrap use the {{...}} to flatten the array."
+				),
 			]),
 
 			//----------------------
@@ -304,6 +426,7 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.subtitle("Checkbox toggle buttons"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.toggle({
 							type: "checkbox",
@@ -313,6 +436,7 @@ export const check_radio: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.toggle({
 							type: "checkbox",
@@ -323,6 +447,7 @@ export const check_radio: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.toggle({
 							type: "checkbox",
@@ -343,6 +468,7 @@ export const check_radio: IContent = {
 			new e.section([
 				new e.subtitle("Radio toggle buttons"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
@@ -381,8 +507,11 @@ export const check_radio: IContent = {
 
 			new e.section([
 				new e.subtitle("Outlined styles"),
-				new e.text("Different variants of {{.btn}}, such at the various outlined styles, are supported."),
+				new e.text(
+					"Different variants of {{.btn}}, such at the various outlined styles, are supported."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [

@@ -1,20 +1,39 @@
 import { b, h, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const button: IContent = {
 	title: "Buttons",
-	description: "Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.",
-	item: () => {
+	description:
+		"Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Examples"),
-				new e.text("Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control."),
+				new e.text(
+					"Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
-							return new b.button({ color: i as I.B.Button["color"] }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"link",
+						].map((i) => {
+							return new b.button(
+								{ color: i as I.B.Button["color"] },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
@@ -28,18 +47,28 @@ export const button: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Disable text wrapping"), new e.text("If you don’t want the button text to wrap, you can add the {{textWrap:false}} class to the button. In Sass, you can set {{$btn-white-space: nowrap}} to disable text wrapping for each button.")]),
+			new e.section([
+				new e.title("Disable text wrapping"),
+				new e.text(
+					"If you don’t want the button text to wrap, you can add the {{textWrap:false}} class to the button. In Sass, you can set {{$btn-white-space: nowrap}} to disable text wrapping for each button."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.title("Button tags"),
-				new e.text("{{b.button}} component automaticly add {{.btn}} class and retun a {{h.button}} component. If you provide {{href:<href>}} to the component, it will return {{h.a}} component."),
-				new e.text("The {{.btn}} classes are designed to be used with the {{h.button}} component. However, you can also use these classes on {{h.a}} or {{h.input}} component (though some browsers may apply a slightly different rendering)."),
+				new e.text(
+					"{{b.button}} component automaticly add {{.btn}} class and retun a {{h.button}} component. If you provide {{href:<href>}} to the component, it will return {{h.a}} component."
+				),
+				new e.text(
+					"The {{.btn}} classes are designed to be used with the {{h.button}} component. However, you can also use these classes on {{h.a}} or {{h.input}} component (though some browsers may apply a slightly different rendering)."
+				),
 				new e.text(
 					"When using button classes on {{h.a}} component that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a {{role:'button'}} to appropriately convey their purpose to assistive technologies such as screen readers."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						let id = core.UUID();
@@ -61,41 +90,71 @@ export const button: IContent = {
 
 			new e.section([
 				new e.title("Outline buttons"),
-				new e.text("In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the {{outline:true}} ones to remove all background images and colors on any {{b.button}}."),
+				new e.text(
+					"In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the {{outline:true}} ones to remove all background images and colors on any {{b.button}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
-							return new b.button({ color: i as I.B.Button["color"], outline: true }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"link",
+						].map((i) => {
+							return new b.button(
+								{ color: i as I.B.Button["color"], outline: true },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
-				new e.alert({ color: "info", callout: true }, "Some of the button styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast."),
+				new e.alert(
+					{ color: "info", callout: true },
+					"Some of the button styles use a relatively light foreground color, and should only be used on a dark background in order to have sufficient contrast."
+				),
 			]),
 
 			//----------------------
 
 			new e.section([
 				new e.title("Sizes"),
-				new e.text("Fancy larger or smaller buttons? Add {{weight:'lg'|'sm'}} for additional sizes."),
+				new e.text(
+					"Fancy larger or smaller buttons? Add {{weight:'lg'|'sm'}} for additional sizes."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: {
 						display: "flex",
 						flex: "wrap",
 						gap: 2,
 					},
 					output: () => {
-						return [new b.button({ weight: "lg", color: "primary" }, "Large button"), new b.button({ weight: "lg", color: "secondary" }, "Large button")];
+						return [
+							new b.button({ weight: "lg", color: "primary" }, "Large button"),
+							new b.button({ weight: "lg", color: "secondary" }, "Large button"),
+						];
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [new b.button({ weight: "sm", color: "primary" }, "Small button"), new b.button({ weight: "sm", color: "secondary" }, "Small button")];
+						return [
+							new b.button({ weight: "sm", color: "primary" }, "Small button"),
+							new b.button({ weight: "sm", color: "secondary" }, "Small button"),
+						];
 					},
 				}),
 				new e.text("You can even roll your own custom sizing with CSS variables:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -116,15 +175,24 @@ export const button: IContent = {
 
 			new e.section([
 				new e.title("Disabled state"),
-				new e.text("Make buttons look inactive by adding the {{disabled:true}} property to any {{h.button}} component. Disabled buttons have {{pointer-events: none}} applied to, preventing hover and active states from triggering."),
+				new e.text(
+					"Make buttons look inactive by adding the {{disabled:true}} property to any {{h.button}} component. Disabled buttons have {{pointer-events: none}} applied to, preventing hover and active states from triggering."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
 							new b.button({ color: "primary", disabled: true }, "Primary button"),
 							new b.button({ color: "secondary", disabled: true }, "Button"),
-							new b.button({ color: "primary", outline: true, disabled: true }, "Primary button"),
-							new b.button({ color: "secondary", outline: true, disabled: true }, "Button"),
+							new b.button(
+								{ color: "primary", outline: true, disabled: true },
+								"Primary button"
+							),
+							new b.button(
+								{ color: "secondary", outline: true, disabled: true },
+								"Button"
+							),
 						];
 					},
 				}),
@@ -139,9 +207,16 @@ export const button: IContent = {
 				}),
 				new e.text("{{bsts}} handle this if you using {{b.button({href:'#'})}} component"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"), new b.button({ color: "secondary", href: "#", disabled: true }, "Link")];
+						return [
+							new b.button(
+								{ color: "primary", href: "#", disabled: true },
+								"Primary link"
+							),
+							new b.button({ color: "secondary", href: "#", disabled: true }, "Link"),
+						];
 					},
 				}),
 			]),
@@ -155,9 +230,16 @@ export const button: IContent = {
 				),
 				new e.text("{{bsts}} handle this automaticly."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [new b.button({ color: "primary", href: "#", disabled: true }, "Primary link"), new b.button({ color: "secondary", href: "#", disabled: true }, "Link")];
+						return [
+							new b.button(
+								{ color: "primary", href: "#", disabled: true },
+								"Primary link"
+							),
+							new b.button({ color: "secondary", href: "#", disabled: true }, "Link"),
+						];
 					},
 				}),
 			]),
@@ -170,28 +252,50 @@ export const button: IContent = {
 					"Create responsive stacks of full-width, “block buttons” like those in Bootstrap 4 with a mix of Bootstrap display and gap utilities. By using utilities instead of button specific classes, Bootstrap have much greater control over spacing, alignment, and responsive behaviors."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new h.div({ display: "grid", gap: 2 }, [new b.button("Button"), new b.button("Button")]);
+						return new h.div({ display: "grid", gap: 2 }, [
+							new b.button("Button"),
+							new b.button("Button"),
+						]);
 					},
 				}),
-				new e.text("Here Bootstrap create a responsive variation, starting with vertically stacked buttons until the {{md}} breakpoint, where {{display:'md-block'}} replaces the {{display:'grid'}}, thus nullifying the {{gap:2}} utility. Resize your browser to see them change."),
+				new e.text(
+					"Here Bootstrap create a responsive variation, starting with vertically stacked buttons until the {{md}} breakpoint, where {{display:'md-block'}} replaces the {{display:'grid'}}, thus nullifying the {{gap:2}} utility. Resize your browser to see them change."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
-						return new h.div({ display: ["grid", "md-flex"], gap: 2 }, [new b.button("Button"), new b.button("Button")]);
+						return new h.div({ display: ["grid", "md-flex"], gap: 2 }, [
+							new b.button("Button"),
+							new b.button("Button"),
+						]);
 					},
 				}),
-				new e.text("You can adjust the width of your block buttons with grid column width classes. For example, for a half-width “block button”, use {{col:6}}. Center it horizontally with {{marginX:'auto'}}, too."),
+				new e.text(
+					"You can adjust the width of your block buttons with grid column width classes. For example, for a half-width “block button”, use {{col:6}}. Center it horizontally with {{marginX:'auto'}}, too."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new h.div({ display: "grid", gap: 2, col: 6, marginX: "auto" }, [new b.button("Button"), new b.button("Button")]);
+						return new h.div({ display: "grid", gap: 2, col: 6, marginX: "auto" }, [
+							new b.button("Button"),
+							new b.button("Button"),
+						]);
 					},
 				}),
-				new e.text("Additional utilities can be used to adjust the alignment of buttons when horizontal. Here Bootstrap taken Bootstrap previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."),
+				new e.text(
+					"Additional utilities can be used to adjust the alignment of buttons when horizontal. Here Bootstrap taken Bootstrap previous responsive example and added some flex utilities and a margin utility on the button to right align the buttons when they’re no longer stacked."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
-						return new h.div({ display: ["grid", "md-flex"], gap: 2, justifyContent: "md-end" }, [new b.button("Button"), new b.button("Button")]);
+						return new h.div(
+							{ display: ["grid", "md-flex"], gap: 2, justifyContent: "md-end" },
+							[new b.button("Button"), new b.button("Button")]
+						);
 					},
 				}),
 			]),
@@ -215,16 +319,35 @@ export const button: IContent = {
 					"Add {{toggle:true}} to toggle a button’s {{active}} state. If you’re pre-toggling a button, you must manually add the {{active:true}} property. The {{aria:{pressed:'true'/}/}} add automaticly by {{bsts}} to ensure that it is conveyed appropriately to assistive technologies."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [new b.button({ toggle: true }, "Toggle button"), new b.button({ toggle: true, active: true }, "Active toggle button"), new b.button({ toggle: true, disabled: true }, "Disabled toggle button")];
+						return [
+							new b.button({ toggle: true }, "Toggle button"),
+							new b.button({ toggle: true, active: true }, "Active toggle button"),
+							new b.button(
+								{ toggle: true, disabled: true },
+								"Disabled toggle button"
+							),
+						];
 					},
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [new b.button({ href: "#", toggle: true }, "Toggle button"), new b.button({ href: "#", toggle: true, active: true }, "Active toggle button"), new b.button({ href: "#", toggle: true, disabled: true }, "Disabled toggle button")];
+						return [
+							new b.button({ href: "#", toggle: true }, "Toggle button"),
+							new b.button(
+								{ href: "#", toggle: true, active: true },
+								"Active toggle button"
+							),
+							new b.button(
+								{ href: "#", toggle: true, disabled: true },
+								"Disabled toggle button"
+							),
+						];
 					},
 				}),
 			]),
@@ -233,7 +356,9 @@ export const button: IContent = {
 
 			new e.section([
 				new e.subtitle("Methods"),
-				new e.text("You can create a button instance with the button constructor, for example:"),
+				new e.text(
+					"You can create a button instance with the button constructor, for example:"
+				),
 				new e.codepreview({
 					type: "js",
 					code: `
@@ -243,10 +368,22 @@ export const button: IContent = {
 				new e.table({
 					item: [
 						["Method", "Description"],
-						["{{dispose}}", "Destroys an element’s button. (Removes stored data on the DOM element)"],
-						["{{getInstance}}", "Static method which allows you to get the button instance associated to a DOM element, you can use it like this: {{bootstrap.Button.getInstance(element)}}."],
-						["{{getOrCreateInstance}}", "Static method which returns a button instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Button.getOrCreateInstance(element)}}."],
-						["{{toggle}}", "Toggles push state. Gives the button the appearance that it has been activated."],
+						[
+							"{{dispose}}",
+							"Destroys an element’s button. (Removes stored data on the DOM element)",
+						],
+						[
+							"{{getInstance}}",
+							"Static method which allows you to get the button instance associated to a DOM element, you can use it like this: {{bootstrap.Button.getInstance(element)}}.",
+						],
+						[
+							"{{getOrCreateInstance}}",
+							"Static method which returns a button instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Button.getOrCreateInstance(element)}}.",
+						],
+						[
+							"{{toggle}}",
+							"Toggles push state. Gives the button the appearance that it has been activated.",
+						],
 					],
 				}),
 
@@ -261,6 +398,7 @@ export const button: IContent = {
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						return [
@@ -294,9 +432,15 @@ export const button: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.button.init("#example-button");
+														const elem =
+															b.button.init("#example-button");
 
-														e.console(event.target as Element, "b.button.init", elem ? elem : "null", elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.button.init",
+															elem ? elem : "null",
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -307,9 +451,15 @@ export const button: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.button.getInstance("#example-button");
+														const elem =
+															b.button.getInstance("#example-button");
 
-														e.console(event.target as Element, "b.button.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.button.getInstance",
+															elem ? elem : "null",
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -320,9 +470,17 @@ export const button: IContent = {
 												color: "success",
 												on: {
 													click: (event) => {
-														const elem = b.button.getOrCreateInstance("#example-button");
+														const elem =
+															b.button.getOrCreateInstance(
+																"#example-button"
+															);
 
-														e.console(event.target as Element, "b.button.getOrCreateInstance", elem, elem ? "success" : "danger");
+														e.console(
+															event.target as Element,
+															"b.button.getOrCreateInstance",
+															elem,
+															elem ? "success" : "danger"
+														);
 													},
 												},
 											},
@@ -365,7 +523,9 @@ export const button: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, buttons now use local CSS variables on {{.btn}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, buttons now use local CSS variables on {{.btn}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -389,10 +549,15 @@ export const button: IContent = {
 						--#{$prefix}btn-focus-box-shadow: 0 0 0 #{$btn-focus-width} rgba(var(--#{$prefix}btn-focus-shadow-rgb), .5);
 					`,
 				}),
-				new e.text("Each {{.btn-*}} modifier class updates the appropriate CSS variables to minimize additional CSS rules with Bootstrap {{button-variant()}}, {{button-outline-variant()}}, and {{button-size()}} mixins."),
-				new e.text("Here’s an example of building a custom {{.btn-*}} modifier class like Bootstrap do for the buttons unique to Bootstrap docs by reassigning Bootstrap’s CSS variables with a mixture of Bootstrap own CSS and Sass variables."),
+				new e.text(
+					"Each {{.btn-*}} modifier class updates the appropriate CSS variables to minimize additional CSS rules with Bootstrap {{button-variant()}}, {{button-outline-variant()}}, and {{button-size()}} mixins."
+				),
+				new e.text(
+					"Here’s an example of building a custom {{.btn-*}} modifier class like Bootstrap do for the buttons unique to Bootstrap docs by reassigning Bootstrap’s CSS variables with a mixture of Bootstrap own CSS and Sass variables."
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.button(
 							{
@@ -407,11 +572,13 @@ export const button: IContent = {
 									"--bs-btn-border-radius": ".5rem",
 									"--bs-btn-hover-color": "var(--bs-white)",
 									"--bs-btn-hover-bg": "#{shade-color($bd-violet, 10%)}",
-									"--bs-btn-hover-border-color": "#{shade-color($bd-violet, 10%)}",
+									"--bs-btn-hover-border-color":
+										"#{shade-color($bd-violet, 10%)}",
 									"--bs-btn-focus-shadow-rgb": "var(--bd-violet-rgb)",
 									"--bs-btn-active-color": "var(--bs-btn-hover-color)",
 									"--bs-btn-active-bg": "#{shade-color($bd-violet, 20%)}",
-									"--bs-btn-active-border-color": "#{shade-color($bd-violet, 20%)}",
+									"--bs-btn-active-border-color":
+										"#{shade-color($bd-violet, 20%)}",
 								},
 							},
 							"Custom button"
@@ -482,7 +649,9 @@ export const button: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass mixins"),
-				new e.text("There are three mixins for buttons: button and button outline variant mixins (both based on {{$theme-colors}}), plus a button size mixin."),
+				new e.text(
+					"There are three mixins for buttons: button and button outline variant mixins (both based on {{$theme-colors}}), plus a button size mixin."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_buttons.scss",
@@ -567,7 +736,9 @@ export const button: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass loops"),
-				new e.text("Button variants (for regular and outline buttons) use their respective mixins with Bootstrap {{$theme-colors}} map to generate the modifier classes in {{scss/_buttons.scss}}."),
+				new e.text(
+					"Button variants (for regular and outline buttons) use their respective mixins with Bootstrap {{$theme-colors}} map to generate the modifier classes in {{scss/_buttons.scss}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_buttons.scss",

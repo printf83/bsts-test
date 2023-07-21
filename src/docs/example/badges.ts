@@ -1,19 +1,34 @@
 import { b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const badges: IContent = {
 	title: "Badges",
 	description: "Make badges work with custom inner HTML and new looks.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Style 1"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-							return new b.badge({ textBgColor: i as core.Class["textBgColor"], rounded: "pill" }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
+							return new b.badge(
+								{ textBgColor: i as core.Class["textBgColor"], rounded: "pill" },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
@@ -24,9 +39,19 @@ export const badges: IContent = {
 			new e.section([
 				new e.title("Style 2"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -45,9 +70,19 @@ export const badges: IContent = {
 			new e.section([
 				new e.title("Style 3"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -68,9 +103,19 @@ export const badges: IContent = {
 			new e.section([
 				new e.title("With image"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i, ix) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -102,9 +147,19 @@ export const badges: IContent = {
 			new e.section([
 				new e.title("With close button"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -125,7 +180,9 @@ export const badges: IContent = {
 										on: {
 											click: (event) => {
 												const target = event.target as Element;
-												core.removeElement(target.closest(".badge") as Element);
+												core.removeElement(
+													target.closest(".badge") as Element
+												);
 											},
 										},
 									}),
@@ -141,9 +198,19 @@ export const badges: IContent = {
 			new e.section([
 				new e.title("With image and close button"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i, ix) => {
 							return new b.badge(
 								{
 									bgColor: `${i}-subtle` as core.Class["bgColor"],
@@ -171,7 +238,9 @@ export const badges: IContent = {
 										on: {
 											click: (event) => {
 												const target = event.target as Element;
-												core.removeElement(target.closest(".badge") as Element);
+												core.removeElement(
+													target.closest(".badge") as Element
+												);
 											},
 										},
 									}),

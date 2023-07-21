@@ -1,11 +1,14 @@
 import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const dropdown: IContent = {
 	title: "Dropdowns",
-	description: "Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin.",
-	item: () => {
+	description:
+		"Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Overview"),
@@ -27,7 +30,9 @@ export const dropdown: IContent = {
 				new e.text(
 					"Bootstrap’s dropdowns, on the other hand, are designed to be generic and applicable to a variety of situations and markup structures. For instance, it is possible to create dropdowns that contain additional inputs and form controls, such as search fields or login forms. For this reason, Bootstrap does not expect (nor automatically add) any of the {{role}} and {{aria-}} attributes required for true ARIA menus. Authors will have to include these more specific attributes themselves."
 				),
-				new e.text("However, Bootstrap does add built-in support for most standard keyboard menu interactions, such as the ability to move through individual {{b.dropdown.item}} elements using the cursor keys and close the menu with the {{k::Esc}} key."),
+				new e.text(
+					"However, Bootstrap does add built-in support for most standard keyboard menu interactions, such as the ability to move through individual {{b.dropdown.item}} elements using the cursor keys and close the menu with the {{k::Esc}} key."
+				),
 			]),
 
 			//----------------------
@@ -43,12 +48,19 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Single button"),
-				new e.text("Use {{b.dropdown.button}} like this to toggle the {{b.dropdown.menu}} component:"),
+				new e.text(
+					"Use {{b.dropdown.button}} like this to toggle the {{b.dropdown.menu}} component:"
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
 							new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
-							new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+							new b.dropdown.menu([
+								new b.dropdown.item({ href: "#" }, "Action"),
+								new b.dropdown.item({ href: "#" }, "Another action"),
+								new b.dropdown.item({ href: "#" }, "Something else here"),
+							]),
 						]);
 					},
 				}),
@@ -56,24 +68,46 @@ export const dropdown: IContent = {
 					"While {{b.dropdown.button}} is the recommended control for a dropdown toggle, there might be situations where you have to use an {{b.dropdown.button(href:'')}} component that create {{h.a}} component. {{bsts}} automaticly add {{role='button'}} property which recomended by Bootstrap to appropriately convey control’s purpose to assistive technologies such as screen readers."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
-							new b.dropdown.button({ color: "secondary", href: "#" }, "Dropdown link"),
-							new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+							new b.dropdown.button(
+								{ color: "secondary", href: "#" },
+								"Dropdown link"
+							),
+							new b.dropdown.menu([
+								new b.dropdown.item({ href: "#" }, "Action"),
+								new b.dropdown.item({ href: "#" }, "Another action"),
+								new b.dropdown.item({ href: "#" }, "Something else here"),
+							]),
 						]);
 					},
 				}),
 
-				new e.text("The best part is you can do this with any button {{color}} variant, too:"),
+				new e.text(
+					"The best part is you can do this with any button {{color}} variant, too:"
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-							return new b.dropdown.container([
-								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"] }, core.uppercaseFirst(i)),
-								new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
-							]);
-						});
+						return ["primary", "secondary", "success", "info", "warning", "danger"].map(
+							(i) => {
+								return new b.dropdown.container([
+									new b.dropdown.button(
+										{ color: i as I.B.Dropdown.Button["color"] },
+										core.uppercaseFirst(i)
+									),
+									new b.dropdown.menu([
+										new b.dropdown.item({ href: "#" }, "Action"),
+										new b.dropdown.item({ href: "#" }, "Another action"),
+										new b.dropdown.item({ href: "#" }, "Something else here"),
+										new b.dropdown.divider(),
+										new b.dropdown.item({ href: "#" }, "Separated link"),
+									]),
+								]);
+							}
+						);
 					},
 				}),
 			]),
@@ -82,20 +116,37 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Split button"),
-				new e.text("Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of {{b.dropdown.button({split:true})}} for proper spacing around the dropdown caret."),
+				new e.text(
+					"Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of {{b.dropdown.button({split:true})}} for proper spacing around the dropdown caret."
+				),
 				new e.text(
 					"Bootstrap use this extra property to reduce the horizontal {{padding}} on either side of the caret by 25% and remove the {{margin-left}} that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button."
 				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-							return new b.dropdown.container([
-								new b.button({ color: i as I.B.Button["color"] }, core.uppercaseFirst(i)),
-								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"], split: true }),
-								new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
-							]);
-						});
+						return ["primary", "secondary", "success", "info", "warning", "danger"].map(
+							(i) => {
+								return new b.dropdown.container([
+									new b.button(
+										{ color: i as I.B.Button["color"] },
+										core.uppercaseFirst(i)
+									),
+									new b.dropdown.button({
+										color: i as I.B.Dropdown.Button["color"],
+										split: true,
+									}),
+									new b.dropdown.menu([
+										new b.dropdown.item({ href: "#" }, "Action"),
+										new b.dropdown.item({ href: "#" }, "Another action"),
+										new b.dropdown.item({ href: "#" }, "Something else here"),
+										new b.dropdown.divider(),
+										new b.dropdown.item({ href: "#" }, "Separated link"),
+									]),
+								]);
+							}
+						);
 					},
 				}),
 			]),
@@ -104,27 +155,77 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.title("Sizing"),
-				new e.text("Button dropdowns work with buttons of all sizes, including default and split dropdown buttons."),
+				new e.text(
+					"Button dropdowns work with buttons of all sizes, including default and split dropdown buttons."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
+						let menu = new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Separated link"),
+						]);
 
 						return [
-							new b.dropdown.container([new b.dropdown.button({ color: "secondary", weight: "lg" }, "Large button "), menu]),
-							new b.dropdown.container([new b.button({ color: "secondary", weight: "lg" }, "Large split button"), new b.dropdown.button({ color: "secondary", weight: "lg", split: true }), menu]),
+							new b.dropdown.container([
+								new b.dropdown.button(
+									{ color: "secondary", weight: "lg" },
+									"Large button "
+								),
+								menu,
+							]),
+							new b.dropdown.container([
+								new b.button(
+									{ color: "secondary", weight: "lg" },
+									"Large split button"
+								),
+								new b.dropdown.button({
+									color: "secondary",
+									weight: "lg",
+									split: true,
+								}),
+								menu,
+							]),
 						];
 					},
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
+						let menu = new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Separated link"),
+						]);
 
 						return [
-							new b.dropdown.container([new b.dropdown.button({ color: "secondary", weight: "sm" }, "Small button "), menu]),
-							new b.dropdown.container([new b.button({ color: "secondary", weight: "sm" }, "Small split button"), new b.dropdown.button({ color: "secondary", weight: "sm", split: true }), menu]),
+							new b.dropdown.container([
+								new b.dropdown.button(
+									{ color: "secondary", weight: "sm" },
+									"Small button "
+								),
+								menu,
+							]),
+							new b.dropdown.container([
+								new b.button(
+									{ color: "secondary", weight: "sm" },
+									"Small split button"
+								),
+								new b.dropdown.button({
+									color: "secondary",
+									weight: "sm",
+									split: true,
+								}),
+								menu,
+							]),
 						];
 					},
 				}),
@@ -134,12 +235,15 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.title("Dark dropdowns"),
-				new e.text("Opt into darker dropdowns to match a dark navbar or custom style by adding {{.dropdown-menu-dark}} onto an existing {{.dropdown-menu}}. No changes are required to the dropdown items."),
+				new e.text(
+					"Opt into darker dropdowns to match a dark navbar or custom style by adding {{.dropdown-menu-dark}} onto an existing {{.dropdown-menu}}. No changes are required to the dropdown items."
+				),
 				new e.alert(
 					{ color: "warning", callout: true },
 					"{{b::Heads up!}} Dark variants for components were deprecated in v5.3.0 with the introduction of color modes. Instead of adding {{.dropdown-menu-dark}}, set {{theme:'dark'}} on {{b.dropdown.menu}} component, a parent wrapper ({{new b.dropdown.container}}), or the component itself."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
 							new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
@@ -157,6 +261,7 @@ export const dropdown: IContent = {
 				new e.text("And putting it to use in a navbar:"),
 
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "dark" },
 					output: () => {
 						return new b.navbar.container(
@@ -174,10 +279,19 @@ export const dropdown: IContent = {
 											new b.dropdown.button({ navItem: true }, "Dropdown"),
 											new b.dropdown.menu([
 												new b.dropdown.item({ href: "#" }, "Action"),
-												new b.dropdown.item({ href: "#" }, "Another action"),
-												new b.dropdown.item({ href: "#" }, "Something else here"),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Another action"
+												),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Something else here"
+												),
 												new b.dropdown.divider(),
-												new b.dropdown.item({ href: "#" }, "Separated link"),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Separated link"
+												),
 											]),
 										]),
 									])
@@ -190,19 +304,32 @@ export const dropdown: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Directions"), new e.alert({ color: "info", callout: true }, "{{b::Directions are flipped in RTL mode}}. As such, {{.dropstart}} will appear on the right side.")]),
+			new e.section([
+				new e.title("Directions"),
+				new e.alert(
+					{ color: "info", callout: true },
+					"{{b::Directions are flipped in RTL mode}}. As such, {{.dropstart}} will appear on the right side."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Centered"),
-				new e.text("Make the dropdown menu centered below the toggle with {{drop:'down-center'}} on the {{b.dropdown.container}} component."),
+				new e.text(
+					"Make the dropdown menu centered below the toggle with {{drop:'down-center'}} on the {{b.dropdown.container}} component."
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container({ drop: "down-center" }, [
 							new b.dropdown.button({ color: "secondary" }, "Centered dropdown"),
-							new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Action two"), new b.dropdown.item({ href: "#" }, "Action three")]),
+							new b.dropdown.menu([
+								new b.dropdown.item({ href: "#" }, "Action"),
+								new b.dropdown.item({ href: "#" }, "Action two"),
+								new b.dropdown.item({ href: "#" }, "Action three"),
+							]),
 						]);
 					},
 				}),
@@ -212,15 +339,31 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Dropup"),
-				new e.text("Trigger dropdown menus above elements by adding {{drop:'up'}} on the {{b.dropdown.container}} component."),
+				new e.text(
+					"Trigger dropdown menus above elements by adding {{drop:'up'}} on the {{b.dropdown.container}} component."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
+						let menu = new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Separated link"),
+						]);
 
 						return [
-							new b.dropdown.container({ drop: "up" }, [new b.dropdown.button({ color: "secondary" }, "Dropup "), menu]),
-							new b.dropdown.container({ drop: "up" }, [new b.button({ color: "secondary" }, "Split dropup"), new b.dropdown.button({ color: "secondary", split: true }), menu]),
+							new b.dropdown.container({ drop: "up" }, [
+								new b.dropdown.button({ color: "secondary" }, "Dropup "),
+								menu,
+							]),
+							new b.dropdown.container({ drop: "up" }, [
+								new b.button({ color: "secondary" }, "Split dropup"),
+								new b.dropdown.button({ color: "secondary", split: true }),
+								menu,
+							]),
 						];
 					},
 				}),
@@ -230,13 +373,20 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Dropup centered"),
-				new e.text("Make the dropup menu centered above the toggle with {{drop:'up-center'}} on the {{b.dropdown.container}} component."),
+				new e.text(
+					"Make the dropup menu centered above the toggle with {{drop:'up-center'}} on the {{b.dropdown.container}} component."
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container({ drop: "up-center" }, [
 							new b.dropdown.button({ color: "secondary" }, "Centered dropup"),
-							new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Action two"), new b.dropdown.item({ href: "#" }, "Action three")]),
+							new b.dropdown.menu([
+								new b.dropdown.item({ href: "#" }, "Action"),
+								new b.dropdown.item({ href: "#" }, "Action two"),
+								new b.dropdown.item({ href: "#" }, "Action three"),
+							]),
 						]);
 					},
 				}),
@@ -246,15 +396,31 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Dropend"),
-				new e.text("Trigger dropdown menus at the right of the elements by adding {{drop:'end'}} on the {{b.dropdown.container}} component."),
+				new e.text(
+					"Trigger dropdown menus at the right of the elements by adding {{drop:'end'}} on the {{b.dropdown.container}} component."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
+						let menu = new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Separated link"),
+						]);
 
 						return [
-							new b.dropdown.container({ drop: "end" }, [new b.dropdown.button({ color: "secondary" }, "Dropend "), menu]),
-							new b.dropdown.container({ drop: "end" }, [new b.button({ color: "secondary" }, "Split dropend"), new b.dropdown.button({ color: "secondary", split: true }), menu]),
+							new b.dropdown.container({ drop: "end" }, [
+								new b.dropdown.button({ color: "secondary" }, "Dropend "),
+								menu,
+							]),
+							new b.dropdown.container({ drop: "end" }, [
+								new b.button({ color: "secondary" }, "Split dropend"),
+								new b.dropdown.button({ color: "secondary", split: true }),
+								menu,
+							]),
 						];
 					},
 				}),
@@ -264,14 +430,26 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Dropstart"),
-				new e.text("Trigger dropdown menus at the left of the elements by adding {{drop:'start'}} on the {{b.dropdown.container}} component."),
+				new e.text(
+					"Trigger dropdown menus at the left of the elements by adding {{drop:'start'}} on the {{b.dropdown.container}} component."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
+						let menu = new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Separated link"),
+						]);
 
 						return [
-							new b.dropdown.container({ drop: "start" }, [new b.dropdown.button({ color: "secondary" }, " Dropstart"), menu]),
+							new b.dropdown.container({ drop: "start" }, [
+								new b.dropdown.button({ color: "secondary" }, " Dropstart"),
+								menu,
+							]),
 							new b.dropdown.container({ drop: "start" }, [
 								//the order is split -> menu -> button
 								new b.dropdown.button({ color: "secondary", split: true }),
@@ -289,17 +467,36 @@ export const dropdown: IContent = {
 				new e.title("Menu items"),
 				new e.text("You can use {{new b.dropdown.item}} elements as dropdown items."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.dropdown.container([new b.dropdown.button({ color: "secondary" }, "Dropdown button"), new b.dropdown.menu([new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")])]);
+						return new b.dropdown.container([
+							new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
+							new b.dropdown.menu([
+								new b.dropdown.item("Action"),
+								new b.dropdown.item("Another action"),
+								new b.dropdown.item("Something else here"),
+							]),
+						]);
 					},
 				}),
-				new e.text("You can also create non-interactive dropdown items with {{b.dropdown.text}}. Feel free to style further with custom CSS or text utilities."),
-				new e.alert({ color: "info", callout: true }, "{{b::Heads up!}} In this example, Bootstrap use {{debug='true'}} for documentation only."),
+				new e.text(
+					"You can also create non-interactive dropdown items with {{b.dropdown.text}}. Feel free to style further with custom CSS or text utilities."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					"{{b::Heads up!}} In this example, Bootstrap use {{debug='true'}} for documentation only."
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
-						return new b.dropdown.menu({ debug: true }, [new b.dropdown.text("Dropdown item text"), new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")]);
+						return new b.dropdown.menu({ debug: true }, [
+							new b.dropdown.text("Dropdown item text"),
+							new b.dropdown.item("Action"),
+							new b.dropdown.item("Another action"),
+							new b.dropdown.item("Something else here"),
+						]);
 					},
 				}),
 			]),
@@ -308,18 +505,35 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Active"),
-				new e.text("Add {{active:true}} to items in the {{b.dropdown.item}} to {{b::style them as active}}."),
+				new e.text(
+					"Add {{active:true}} to items in the {{b.dropdown.item}} to {{b::style them as active}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
-						return new b.dropdown.menu({ debug: true }, [new b.dropdown.item({ href: "#" }, "Regular link"), new b.dropdown.item({ href: "#", active: true }, "Active link"), new b.dropdown.item({ href: "#" }, "Another link")]);
+						return new b.dropdown.menu({ debug: true }, [
+							new b.dropdown.item({ href: "#" }, "Regular link"),
+							new b.dropdown.item({ href: "#", active: true }, "Active link"),
+							new b.dropdown.item({ href: "#" }, "Another link"),
+						]);
 					},
 				}),
-				new e.text("By default {{bsts}} set active item as {{aria-current:'true'}}. To convey the active state to assistive technologies, set {{current:'page'}} property — when you using the {{page}} value for the current page."),
+				new e.text(
+					"By default {{bsts}} set active item as {{aria-current:'true'}}. To convey the active state to assistive technologies, set {{current:'page'}} property — when you using the {{page}} value for the current page."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
-						return new b.dropdown.menu({ debug: true }, [new b.dropdown.item({ href: "#" }, "Regular link"), new b.dropdown.item({ href: "#", active: true, current: "page" }, "Active link"), new b.dropdown.item({ href: "#" }, "Another link")]);
+						return new b.dropdown.menu({ debug: true }, [
+							new b.dropdown.item({ href: "#" }, "Regular link"),
+							new b.dropdown.item(
+								{ href: "#", active: true, current: "page" },
+								"Active link"
+							),
+							new b.dropdown.item({ href: "#" }, "Another link"),
+						]);
 					},
 				}),
 			]),
@@ -328,11 +542,18 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Disabled"),
-				new e.text("Add {{disabled:true}} to {{b.dropdown.item}} in the {{b.dropdown.menu}} to {{b::style them as disabled}}."),
+				new e.text(
+					"Add {{disabled:true}} to {{b.dropdown.item}} in the {{b.dropdown.menu}} to {{b::style them as disabled}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
-						return new b.dropdown.menu({ debug: true }, [new b.dropdown.item({ href: "#" }, "Regular link"), new b.dropdown.item({ href: "#", disabled: true }, "Disabled link"), new b.dropdown.item({ href: "#" }, "Another link")]);
+						return new b.dropdown.menu({ debug: true }, [
+							new b.dropdown.item({ href: "#" }, "Regular link"),
+							new b.dropdown.item({ href: "#", disabled: true }, "Disabled link"),
+							new b.dropdown.item({ href: "#" }, "Another link"),
+						]);
 					},
 				}),
 			]),
@@ -341,12 +562,30 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.title("Menu alignment"),
-				new e.text("By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. You can change this with the directional .{{positionView}} property, but you can also control them with additional modifier classes."),
-				new e.text("Add {{positionView:'end'}} to a {{b.dropdown.menu}} to right align the dropdown menu. Directions are mirrored when using Bootstrap in RTL, meaning {{positionView:'end'}} will appear on the left side."),
-				new e.alert({ color: "info", callout: true }, "{{b::Heads up!}} Dropdowns are positioned thanks to Popper except when they are contained in a navbar."),
+				new e.text(
+					"By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. You can change this with the directional .{{positionView}} property, but you can also control them with additional modifier classes."
+				),
+				new e.text(
+					"Add {{positionView:'end'}} to a {{b.dropdown.menu}} to right align the dropdown menu. Directions are mirrored when using Bootstrap in RTL, meaning {{positionView:'end'}} will appear on the left side."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					"{{b::Heads up!}} Dropdowns are positioned thanks to Popper except when they are contained in a navbar."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.dropdown.container([new b.dropdown.button({ color: "secondary" }, "Right-aligned menu example"), new b.dropdown.menu({ positionView: "end" }, [new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")])]);
+						return new b.dropdown.container([
+							new b.dropdown.button(
+								{ color: "secondary" },
+								"Right-aligned menu example"
+							),
+							new b.dropdown.menu({ positionView: "end" }, [
+								new b.dropdown.item("Action"),
+								new b.dropdown.item("Another action"),
+								new b.dropdown.item("Something else here"),
+							]),
+						]);
 					},
 				}),
 			]),
@@ -355,43 +594,76 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Responsive alignment"),
-				new e.text("If you want to use responsive alignment, disable Popper dynamic positioning by set the {{dynamicPosition:false}} property and use the responsive variation classes."),
-				new e.text("To align {{b::right}} the dropdown menu with the given breakpoint or larger, set {{positionView:'{sm|md|lg|xl|xxl}-end'}}."),
+				new e.text(
+					"If you want to use responsive alignment, disable Popper dynamic positioning by set the {{dynamicPosition:false}} property and use the responsive variation classes."
+				),
+				new e.text(
+					"To align {{b::right}} the dropdown menu with the given breakpoint or larger, set {{positionView:'{sm|md|lg|xl|xxl}-end'}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.dropdown.container([
-							new b.dropdown.button({ color: "secondary" }, "Left-aligned but right aligned when large screen"),
-							new b.dropdown.menu({ positionView: "lg-end", positioning: "static" }, [new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")]),
+							new b.dropdown.button(
+								{ color: "secondary" },
+								"Left-aligned but right aligned when large screen"
+							),
+							new b.dropdown.menu({ positionView: "lg-end", positioning: "static" }, [
+								new b.dropdown.item("Action"),
+								new b.dropdown.item("Another action"),
+								new b.dropdown.item("Something else here"),
+							]),
 						]);
 					},
 				}),
-				new e.text("To align {{b::left}} the dropdown menu with the given breakpoint or larger, set {{positionView:['end','{sm|md|lg|xl|xxl}-start']}}."),
+				new e.text(
+					"To align {{b::left}} the dropdown menu with the given breakpoint or larger, set {{positionView:['end','{sm|md|lg|xl|xxl}-start']}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
 						return new b.dropdown.container([
-							new b.dropdown.button({ color: "secondary" }, "Right-aligned but left aligned when large screen"),
-							new b.dropdown.menu({ positionView: ["end", "lg-start"], positioning: "static" }, [new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")]),
+							new b.dropdown.button(
+								{ color: "secondary" },
+								"Right-aligned but left aligned when large screen"
+							),
+							new b.dropdown.menu(
+								{ positionView: ["end", "lg-start"], positioning: "static" },
+								[
+									new b.dropdown.item("Action"),
+									new b.dropdown.item("Another action"),
+									new b.dropdown.item("Something else here"),
+								]
+							),
 						]);
 					},
 				}),
-				new e.text("Note that you don’t need to add a {{dynamicPosition:false}} property to {{b.dropdown.menu}} in navbars, since Popper isn’t used in navbars."),
+				new e.text(
+					"Note that you don’t need to add a {{dynamicPosition:false}} property to {{b.dropdown.menu}} in navbars, since Popper isn’t used in navbars."
+				),
 			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Alignment options"),
-				new e.text("Taking most of the options shown above, here’s a small kitchen sink demo of various dropdown alignment options in one place."),
+				new e.text(
+					"Taking most of the options shown above, here’s a small kitchen sink demo of various dropdown alignment options in one place."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
 							{ label: "Dropdown" },
 							{ label: "Right-aligned menu", positionView: "end" },
 							{ label: "Left-aligned, right-aligned lg", positionView: "lg-end" },
-							{ label: "Right-aligned, left-aligned lg", positionView: ["end", "lg-start"] },
+							{
+								label: "Right-aligned, left-aligned lg",
+								positionView: ["end", "lg-start"],
+							},
 							{ label: "Dropstart", drop: "start" },
 							{ label: "Dropend", drop: "end" },
 							{ label: "Dropup", drop: "up" },
@@ -400,9 +672,15 @@ export const dropdown: IContent = {
 								new b.dropdown.button({ color: "secondary" }, i.label),
 								new b.dropdown.menu(
 									{
-										positionView: i.positionView as core.bootstrapType.dropdownMenuPositionView | core.bootstrapType.dropdownMenuPositionView[],
+										positionView: i.positionView as
+											| core.bootstrapType.dropdownMenuPositionView
+											| core.bootstrapType.dropdownMenuPositionView[],
 									},
-									[new b.dropdown.item("Action"), new b.dropdown.item("Another action"), new b.dropdown.item("Something else here")]
+									[
+										new b.dropdown.item("Action"),
+										new b.dropdown.item("Another action"),
+										new b.dropdown.item("Something else here"),
+									]
 								),
 							]);
 						});
@@ -418,11 +696,18 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Headers"),
-				new e.text("Add a {{b.dropdown.header}} to label sections of actions in any dropdown menu."),
+				new e.text(
+					"Add a {{b.dropdown.header}} to label sections of actions in any dropdown menu."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
-						return new b.dropdown.menu({ debug: true }, [new b.dropdown.header("Dropdown header"), new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action")]);
+						return new b.dropdown.menu({ debug: true }, [
+							new b.dropdown.header("Dropdown header"),
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+						]);
 					},
 				}),
 			]),
@@ -433,6 +718,7 @@ export const dropdown: IContent = {
 				new e.subtitle("Dividers"),
 				new e.text("Separate groups of related menu items with a {{b.dropdown.divider}}."),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu({ debug: true }, [
@@ -450,8 +736,11 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Text"),
-				new e.text("Place any freeform text within a dropdown menu with text and use {{nav:docs/utilities/spacing::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."),
+				new e.text(
+					"Place any freeform text within a dropdown menu with text and use {{nav:docs/utilities/spacing::spacing utilities}}. Note that you’ll likely need additional sizing styles to constrain the menu width."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu(
@@ -461,7 +750,12 @@ export const dropdown: IContent = {
 								textColor: "body-secondary",
 								style: { maxWidth: "200px" },
 							},
-							[new h.p("Some example text that's free-flowing within the dropdown menu."), new h.p({ marginBottom: 0 }, "And this is more example text.")]
+							[
+								new h.p(
+									"Some example text that's free-flowing within the dropdown menu."
+								),
+								new h.p({ marginBottom: 0 }, "And this is more example text."),
+							]
 						);
 					},
 				}),
@@ -471,8 +765,11 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Forms"),
-				new e.text("Put a form using {{h.form}} within a dropdown menu, or make it into a dropdown menu, and use {{nav:docs/utilities/spacing::margin or padding utilities}} to give it the negative space you require."),
+				new e.text(
+					"Put a form using {{h.form}} within a dropdown menu, or make it into a dropdown menu, and use {{nav:docs/utilities/spacing::margin or padding utilities}} to give it the negative space you require."
+				),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.dropdown.menu(
@@ -486,7 +783,10 @@ export const dropdown: IContent = {
 									},
 									[
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormEmail1" }, "Email address"),
+											new b.label(
+												{ for: "exampleDropdownFormEmail1" },
+												"Email address"
+											),
 											new b.input({
 												type: "email",
 												id: "exampleDropdownFormEmail1",
@@ -494,7 +794,10 @@ export const dropdown: IContent = {
 											}),
 										]),
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormPassword1" }, "Password"),
+											new b.label(
+												{ for: "exampleDropdownFormPassword1" },
+												"Password"
+											),
 											new b.input({
 												type: "email",
 												id: "exampleDropdownFormPassword1",
@@ -508,7 +811,10 @@ export const dropdown: IContent = {
 													id: "dropdownCheck",
 													placeholder: "email@example.com",
 												}),
-												new b.label({ for: "dropdownCheck" }, "Remember me"),
+												new b.label(
+													{ for: "dropdownCheck" },
+													"Remember me"
+												),
 											]),
 										]),
 										new b.button({ type: "submit" }, "Sign in"),
@@ -522,8 +828,11 @@ export const dropdown: IContent = {
 					},
 				}),
 
-				new e.text("Use {{h.div({class:'dropdown'})}} to prevent small form layout under menu:"),
+				new e.text(
+					"Use {{h.div({class:'dropdown'})}} to prevent small form layout under menu:"
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.div({ class: "dropdown" }, [
 							new b.dropdown.button({ autoClose: "outside" }, "Dropdown form"),
@@ -534,7 +843,10 @@ export const dropdown: IContent = {
 									},
 									[
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormEmail2" }, "Email address"),
+											new b.label(
+												{ for: "exampleDropdownFormEmail2" },
+												"Email address"
+											),
 											new b.input({
 												type: "email",
 												id: "exampleDropdownFormEmail2",
@@ -542,7 +854,10 @@ export const dropdown: IContent = {
 											}),
 										]),
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormPassword2" }, "Password"),
+											new b.label(
+												{ for: "exampleDropdownFormPassword2" },
+												"Password"
+											),
 											new b.input({
 												type: "email",
 												id: "exampleDropdownFormPassword2",
@@ -556,7 +871,10 @@ export const dropdown: IContent = {
 													id: "dropdownCheck2",
 													placeholder: "email@example.com",
 												}),
-												new b.label({ for: "dropdownCheck2" }, "Remember me"),
+												new b.label(
+													{ for: "dropdownCheck2" },
+													"Remember me"
+												),
 											]),
 										]),
 										new b.button({ type: "submit" }, "Sign in"),
@@ -566,8 +884,11 @@ export const dropdown: IContent = {
 						]);
 					},
 				}),
-				new e.text("Use {{b.dropdown.container}} and set{{ style:{width:''} }}property on {{b.dropdown.menu}} to prevent small form layout under menu:"),
+				new e.text(
+					"Use {{b.dropdown.container}} and set{{ style:{width:''} }}property on {{b.dropdown.menu}} to prevent small form layout under menu:"
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.dropdown.container([
 							new b.dropdown.button({ autoClose: "outside" }, "Dropdown form"),
@@ -579,7 +900,10 @@ export const dropdown: IContent = {
 									},
 									[
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormEmail3" }, "Email address"),
+											new b.label(
+												{ for: "exampleDropdownFormEmail3" },
+												"Email address"
+											),
 											new b.input({
 												type: "email",
 												id: "exampleDropdownFormEmail3",
@@ -587,7 +911,10 @@ export const dropdown: IContent = {
 											}),
 										]),
 										new h.div({ marginBottom: 3 }, [
-											new b.label({ for: "exampleDropdownFormPassword3" }, "Password"),
+											new b.label(
+												{ for: "exampleDropdownFormPassword3" },
+												"Password"
+											),
 											new b.input({
 												type: "email",
 												id: "exampleDropdownFormPassword3",
@@ -601,7 +928,10 @@ export const dropdown: IContent = {
 													id: "dropdownCheck3",
 													placeholder: "email@example.com",
 												}),
-												new b.label({ for: "dropdownCheck3" }, "Remember me"),
+												new b.label(
+													{ for: "dropdownCheck3" },
+													"Remember me"
+												),
 											]),
 										]),
 										new b.button({ type: "submit" }, "Sign in"),
@@ -617,15 +947,38 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.title("Dropdown options"),
-				new e.text("Use {{menuOffset}} or {{menuReference}} property on {{b.dropdown.button}} to change the location of the dropdown."),
+				new e.text(
+					"Use {{menuOffset}} or {{menuReference}} property on {{b.dropdown.button}} to change the location of the dropdown."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
+						let menu = new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Separated link"),
+						]);
 
 						return [
-							new b.dropdown.container([new b.dropdown.button({ color: "secondary", viewOffset: "10,20" }, "Offset "), menu]),
-							new b.dropdown.container([new b.button({ color: "secondary" }, "Reference"), new b.dropdown.button({ color: "secondary", split: true, reference: "parent" }), menu]),
+							new b.dropdown.container([
+								new b.dropdown.button(
+									{ color: "secondary", viewOffset: "10,20" },
+									"Offset "
+								),
+								menu,
+							]),
+							new b.dropdown.container([
+								new b.button({ color: "secondary" }, "Reference"),
+								new b.dropdown.button({
+									color: "secondary",
+									split: true,
+									reference: "parent",
+								}),
+								menu,
+							]),
 						];
 					},
 				}),
@@ -635,17 +988,47 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Auto close behavior"),
-				new e.text("By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{menuAutoClose}} option to change this behavior of the dropdown."),
+				new e.text(
+					"By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the {{menuAutoClose}} option to change this behavior of the dropdown."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let menu = new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]);
+						let menu = new b.dropdown.menu([
+							new b.dropdown.item({ href: "#" }, "Action"),
+							new b.dropdown.item({ href: "#" }, "Another action"),
+							new b.dropdown.item({ href: "#" }, "Something else here"),
+							new b.dropdown.divider(),
+							new b.dropdown.item({ href: "#" }, "Separated link"),
+						]);
 
 						return [
-							new b.dropdown.container([new b.dropdown.button({ color: "secondary" }, "Default dropdown "), menu]),
-							new b.dropdown.container([new b.dropdown.button({ color: "secondary", autoClose: "inside" }, "Clickable inside "), menu]),
-							new b.dropdown.container([new b.dropdown.button({ color: "secondary", autoClose: "outside" }, "Clickable outside "), menu]),
-							new b.dropdown.container([new b.dropdown.button({ color: "secondary", autoClose: "manual" }, "Manual close "), menu]),
+							new b.dropdown.container([
+								new b.dropdown.button({ color: "secondary" }, "Default dropdown "),
+								menu,
+							]),
+							new b.dropdown.container([
+								new b.dropdown.button(
+									{ color: "secondary", autoClose: "inside" },
+									"Clickable inside "
+								),
+								menu,
+							]),
+							new b.dropdown.container([
+								new b.dropdown.button(
+									{ color: "secondary", autoClose: "outside" },
+									"Clickable outside "
+								),
+								menu,
+							]),
+							new b.dropdown.container([
+								new b.dropdown.button(
+									{ color: "secondary", autoClose: "manual" },
+									"Manual close "
+								),
+								menu,
+							]),
 						];
 					},
 				}),
@@ -659,7 +1042,9 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, dropdowns now use local CSS variables on {{.dropdown-menu}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, dropdowns now use local CSS variables on {{.dropdown-menu}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -695,9 +1080,14 @@ export const dropdown: IContent = {
 					`,
 				}),
 
-				new e.alert({ color: "info", callout: true }, ["Dropdown items include at least one variable that is not set on {{.dropdown}}. This allows you to provide a new value while Bootstrap defaults to a fallback value.", new h.ul([new h.li("{{--bs-dropdown-item-border-radius}}")])]),
+				new e.alert({ color: "info", callout: true }, [
+					"Dropdown items include at least one variable that is not set on {{.dropdown}}. This allows you to provide a new value while Bootstrap defaults to a fallback value.",
+					new h.ul([new h.li("{{--bs-dropdown-item-border-radius}}")]),
+				]),
 
-				new e.text("Customization through CSS variables can be seen on the {{.dropdown-menu-dark}} class where Bootstrap override specific values without adding duplicate CSS selectors."),
+				new e.text(
+					"Customization through CSS variables can be seen on the {{.dropdown-menu-dark}} class where Bootstrap override specific values without adding duplicate CSS selectors."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -767,7 +1157,9 @@ export const dropdown: IContent = {
 					`,
 				}),
 
-				new e.text("Variables for the {{nav:docs/components/dropdowns#dark_dropdowns::dark dropdown}}:"),
+				new e.text(
+					"Variables for the {{nav:docs/components/dropdowns#dark_dropdowns::dark dropdown}}:"
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -789,7 +1181,9 @@ export const dropdown: IContent = {
 					`,
 				}),
 
-				new e.text("Variables for the CSS-based carets that indicate a dropdown’s interactivity:"),
+				new e.text(
+					"Variables for the CSS-based carets that indicate a dropdown’s interactivity:"
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -807,7 +1201,9 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass mixins"),
-				new e.text("Mixins are used to generate the CSS-based carets and can be found in {{scss/mixins/_caret.scss}}."),
+				new e.text(
+					"Mixins are used to generate the CSS-based carets and can be found in {{scss/mixins/_caret.scss}}."
+				),
 
 				new e.codepreview({
 					type: "css",
@@ -904,7 +1300,9 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Via data attributes"),
-				new e.text("Add {{data-bs-toggle='dropdown'}} to a link or button to toggle a dropdown."),
+				new e.text(
+					"Add {{data-bs-toggle='dropdown'}} to a link or button to toggle a dropdown."
+				),
 				new e.codepreview({
 					type: "html",
 					code: `
@@ -924,7 +1322,10 @@ export const dropdown: IContent = {
 
 			new e.section([
 				new e.subtitle("Via JavaScript"),
-				new e.alert({ color: "warning", callout: true }, "Dropdowns must have {{data-bs-toggle='dropdown'}} on their trigger element, regardless of whether you call your dropdown via JavaScript or use the data-api."),
+				new e.alert(
+					{ color: "warning", callout: true },
+					"Dropdowns must have {{data-bs-toggle='dropdown'}} on their trigger element, regardless of whether you call your dropdown via JavaScript or use the data-api."
+				),
 				new e.text("Call the dropdowns via JavaScript:"),
 				new e.codepreview({
 					type: "js",
@@ -955,10 +1356,18 @@ export const dropdown: IContent = {
 							[
 								"Configure the auto close behavior of the dropdown:",
 								new h.ul([
-									new h.li("{{true}} - the dropdown will be closed by clicking outside or inside the dropdown menu."),
-									new h.li("{{false}} - the dropdown will be closed by clicking the toggle button and manually calling hide or toggle method. (Also will not be closed by pressing {{k::Esc}} key)"),
-									new h.li("{{'inside'}} - the dropdown will be closed (only) by clicking inside the dropdown menu."),
-									new h.li("{{'outside'}} - the dropdown will be closed (only) by clicking outside the dropdown menu."),
+									new h.li(
+										"{{true}} - the dropdown will be closed by clicking outside or inside the dropdown menu."
+									),
+									new h.li(
+										"{{false}} - the dropdown will be closed by clicking the toggle button and manually calling hide or toggle method. (Also will not be closed by pressing {{k::Esc}} key)"
+									),
+									new h.li(
+										"{{'inside'}} - the dropdown will be closed (only) by clicking inside the dropdown menu."
+									),
+									new h.li(
+										"{{'outside'}} - the dropdown will be closed (only) by clicking outside the dropdown menu."
+									),
 								]),
 								"Note: the dropdown can always be closed with the {{k::Esc}} key.",
 							],
@@ -969,7 +1378,12 @@ export const dropdown: IContent = {
 							"{{'clippingParents'}}",
 							"Overflow constraint boundary of the dropdown menu (applies only to Popper’s preventOverflow modifier). By default it’s {{clippingParents}} and can accept an Element reference (via JavaScript only). For more information refer to Popper’s {{https://popper.js.org/docs/v2/utils/detect-overflow/#boundary::detectOverflow docs}}.",
 						],
-						["{{display}}", "string, element", "{{'dynamic'}}", "By default, Bootstrap use Popper for dynamic positioning. Disable this with {{static}}."],
+						[
+							"{{display}}",
+							"string, element",
+							"{{'dynamic'}}",
+							"By default, Bootstrap use Popper for dynamic positioning. Disable this with {{static}}.",
+						],
 						[
 							"{{offset}}",
 							"array, string, function",
@@ -1017,17 +1431,36 @@ export const dropdown: IContent = {
 				new e.table({
 					item: [
 						["Name", "Description"],
-						["{{dispose}}", "Destroys an element’s dropdown. (Removes stored data on the DOM element)"],
-						["{{getInstance}}", "Static method which allows you to get the dropdown instance associated to a DOM element, you can use it like this: {{bootstrap.Dropdown.getInstance(element)}}."],
-						["{{getOrCreateInstance}}", "Static method which returns a dropdown instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Dropdown.getOrCreateInstance(element)}}."],
-						["{{hide}}", "Hides the dropdown menu of a given navbar or tabbed navigation."],
-						["{{show}}", "Shows the dropdown menu of a given navbar or tabbed navigation."],
-						["{{toggle}}", "Toggles the dropdown menu of a given navbar or tabbed navigation."],
+						[
+							"{{dispose}}",
+							"Destroys an element’s dropdown. (Removes stored data on the DOM element)",
+						],
+						[
+							"{{getInstance}}",
+							"Static method which allows you to get the dropdown instance associated to a DOM element, you can use it like this: {{bootstrap.Dropdown.getInstance(element)}}.",
+						],
+						[
+							"{{getOrCreateInstance}}",
+							"Static method which returns a dropdown instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: {{bootstrap.Dropdown.getOrCreateInstance(element)}}.",
+						],
+						[
+							"{{hide}}",
+							"Hides the dropdown menu of a given navbar or tabbed navigation.",
+						],
+						[
+							"{{show}}",
+							"Shows the dropdown menu of a given navbar or tabbed navigation.",
+						],
+						[
+							"{{toggle}}",
+							"Toggles the dropdown menu of a given navbar or tabbed navigation.",
+						],
 						["{{update}}", "Updates the position of an element’s dropdown."],
 					],
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { position: "relative" },
 					showConsole: true,
 					output: () => {
@@ -1036,10 +1469,17 @@ export const dropdown: IContent = {
 								id: "example-dropdown",
 								reference: "parent",
 							},
-							[new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]
+							[
+								new b.dropdown.item({ href: "#" }, "Action"),
+								new b.dropdown.item({ href: "#" }, "Another action"),
+								new b.dropdown.item({ href: "#" }, "Something else here"),
+							]
 						);
 
-						const dropdownContainer = new b.dropdown.container([new b.dropdown.button("Dropdown button"), dropdownMenu]);
+						const dropdownContainer = new b.dropdown.container([
+							new b.dropdown.button("Dropdown button"),
+							dropdownMenu,
+						]);
 
 						const initButton = new b.button(
 							{
@@ -1047,7 +1487,12 @@ export const dropdown: IContent = {
 								on: {
 									click: (event) => {
 										const elem = b.dropdown.init("#example-dropdown");
-										e.console(event.target as Element, "b.dropdown.init", elem ? elem : "null", elem ? "success" : "danger");
+										e.console(
+											event.target as Element,
+											"b.dropdown.init",
+											elem ? elem : "null",
+											elem ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -1060,7 +1505,12 @@ export const dropdown: IContent = {
 								on: {
 									click: (event) => {
 										const elem = b.dropdown.getInstance("#example-dropdown");
-										e.console(event.target as Element, "b.dropdown.getInstance", elem ? elem : "null", elem ? "success" : "danger");
+										e.console(
+											event.target as Element,
+											"b.dropdown.getInstance",
+											elem ? elem : "null",
+											elem ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -1072,8 +1522,14 @@ export const dropdown: IContent = {
 								color: "success",
 								on: {
 									click: (event) => {
-										const elem = b.dropdown.getOrCreateInstance("#example-dropdown");
-										e.console(event.target as Element, "b.dropdown.getOrCreateInstance", elem, elem ? "success" : "danger");
+										const elem =
+											b.dropdown.getOrCreateInstance("#example-dropdown");
+										e.console(
+											event.target as Element,
+											"b.dropdown.getOrCreateInstance",
+											elem,
+											elem ? "success" : "danger"
+										);
 									},
 								},
 							},
@@ -1135,7 +1591,16 @@ export const dropdown: IContent = {
 							"dispose"
 						);
 
-						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [initButton, getInstanceButton, getOrCreateInstanceButton, hideButton, showButton, toggleButton, updateButton, disposeButton]);
+						const buttonGroup = new b.btngroup({ vertical: true, weight: "sm" }, [
+							initButton,
+							getInstanceButton,
+							getOrCreateInstanceButton,
+							hideButton,
+							showButton,
+							toggleButton,
+							updateButton,
+							disposeButton,
+						]);
 
 						const previewContainer = new h.div(
 							{
@@ -1165,7 +1630,10 @@ export const dropdown: IContent = {
 							buttonGroup
 						);
 
-						const mainContainer = new h.div({ display: "flex" }, [previewContainer, controlContainer]);
+						const mainContainer = new h.div({ display: "flex" }, [
+							previewContainer,
+							controlContainer,
+						]);
 
 						return [mainContainer];
 					},
@@ -1182,14 +1650,27 @@ export const dropdown: IContent = {
 				new e.table({
 					item: [
 						["Event type", "Description"],
-						["{{hide.bs.dropdown}}", "Fires immediately when the {{hide}} instance method has been called."],
-						["{{hidden.bs.dropdown}}", "Fired when the dropdown has finished being hidden from the user and CSS transitions have completed."],
-						["{{show.bs.dropdown}}", "Fires immediately when the {{show}} instance method is called."],
-						["{{shown.bs.dropdown}}", "Fired when the dropdown has been made visible to the user and CSS transitions have completed."],
+						[
+							"{{hide.bs.dropdown}}",
+							"Fires immediately when the {{hide}} instance method has been called.",
+						],
+						[
+							"{{hidden.bs.dropdown}}",
+							"Fired when the dropdown has finished being hidden from the user and CSS transitions have completed.",
+						],
+						[
+							"{{show.bs.dropdown}}",
+							"Fires immediately when the {{show}} instance method is called.",
+						],
+						[
+							"{{shown.bs.dropdown}}",
+							"Fired when the dropdown has been made visible to the user and CSS transitions have completed.",
+						],
 					],
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					output: () => {
 						interface EventWithTargetAndRelatedTarget extends Event {
@@ -1213,11 +1694,23 @@ export const dropdown: IContent = {
 
 									"hidden.bs.dropdown": (event) => {
 										const target = event.target as Element;
-										e.console(target, "hidden.bs.dropdown", `Target: {{b::${core.elemInfo(target)}}}`, "success");
+										e.console(
+											target,
+											"hidden.bs.dropdown",
+											`Target: {{b::${core.elemInfo(target)}}}`,
+											"success"
+										);
 									},
 								},
 							},
-							[new b.dropdown.button({ color: "secondary" }, "Dropdown button"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")])]
+							[
+								new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Action"),
+									new b.dropdown.item({ href: "#" }, "Another action"),
+									new b.dropdown.item({ href: "#" }, "Something else here"),
+								]),
+							]
 						);
 					},
 				}),

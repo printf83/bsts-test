@@ -1,17 +1,17 @@
-import { Code, code, IBsExampleContainer, IBsExampleExt } from "./code.js";
-import { Codepreview, codepreview, IBsExampleCodepreview } from "./codepreview.js";
-import { Description, description } from "./description.js";
-import { Item, item } from "./item.js";
-import { Pagetitle, pagetitle } from "./pagetitle.js";
-import { Subtitle, subtitle } from "./subtitle.js";
-import { Xsubtitle, xsubtitle } from "./xsubtitle.js";
-import { Section, section } from "./section.js";
-import { Text, text } from "./text.js";
-import { Title, title } from "./title.js";
-import { Table, table } from "./table.js";
-import { Ol, ol } from "./ol.js";
-import { Ul, ul } from "./ul.js";
-import { Alert, alert } from "./alert.js";
+import { code, ICode, IExtention, ISourceDB } from "./code.js";
+import { codepreview, ICodePreview } from "./codepreview.js";
+import { description } from "./description.js";
+import { item } from "./item.js";
+import { pagetitle } from "./pagetitle.js";
+import { subtitle } from "./subtitle.js";
+import { xsubtitle } from "./xsubtitle.js";
+import { section } from "./section.js";
+import { text } from "./text.js";
+import { title } from "./title.js";
+import { table } from "./table.js";
+import { ol } from "./ol.js";
+import { ul } from "./ul.js";
+import { alert } from "./alert.js";
 import { toast, console, codePen as codePen, ICodePen, codeBeautify } from "./_fn.js";
 
 export {
@@ -34,24 +34,8 @@ export {
 	codePen,
 	codeBeautify,
 	ICodePen,
-	IBsExampleCodepreview,
-	IBsExampleContainer,
-	IBsExampleExt,
-};
-
-export {
-	Code,
-	Codepreview,
-	Title,
-	Pagetitle,
-	Description,
-	Item,
-	Subtitle,
-	Xsubtitle,
-	Section,
-	Text,
-	Table,
-	Ol,
-	Ul,
-	Alert,
+	ICodePreview as IBsExampleCodepreview,
+	ICode as IBsExampleContainer,
+	IExtention as IBsExampleExt,
+	ISourceDB as IBsExampleData,
 };

@@ -1,4 +1,4 @@
-
+/* 
 pre .str,
 code .str {
     color: var(--bs-success);
@@ -72,7 +72,7 @@ ol.linenums {
     color: var(--bs-secondary)
 }
 
-/* IE indents via margin-left */
+
 li.L0,
 li.L1,
 li.L2,
@@ -83,13 +83,6 @@ li.L7,
 li.L8 {
     list-style-type: none
 }
-
-/* Alternate shading for lines */
-/* li.L1,
-li.L3,
-li.L5,
-li.L7,
-li.L9 {} */
 
 @media print {
 
@@ -146,4 +139,105 @@ li.L9 {} */
     code .atv {
         color: #060;
     }
+} */
+
+
+/**
+ * Skipped minification because the original files appears to be already minified.
+ * Original file: /npm/highlight.js@11.8.0/styles/github.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+
+.hljs {
+    color: var(--bs-body-color);
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+    color: var(--bs-danger);
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+    color: var(--bs-primary);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-variable {
+    color: var(--bs-body-color)
+}
+
+.hljs-meta .hljs-string,
+.hljs-regexp,
+.hljs-string {
+    color: var(--bs-success)
+}
+
+.hljs-built_in,
+.hljs-symbol {
+    color: var(--bs-warning);
+}
+
+.hljs-code,
+.hljs-comment,
+.hljs-formula {
+    color: var(--bs-secondary);
+    font-style: italic;
+}
+
+.hljs-name,
+.hljs-quote,
+.hljs-selector-pseudo,
+.hljs-selector-tag {
+    color: var(--bs-success);
+}
+
+.hljs-subst {
+    color: var(--bs-success);
+    font-weight: bold;
+}
+
+.hljs-section {
+    color: var(--bs-primary);
+    font-weight: 700
+}
+
+.hljs-bullet {
+    color: var(--bs-warning)
+}
+
+.hljs-emphasis {
+    color: var(--bs-body-color);
+    font-style: italic
+}
+
+.hljs-strong {
+    color: var(--bs-body-color);
+    font-weight: 700
+}
+
+.hljs-addition {
+    color: var(--bs-success);;
+    background: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity));
+}
+
+.hljs-deletion {
+    color: var(--bs-danger);;
+    background: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity));
 }

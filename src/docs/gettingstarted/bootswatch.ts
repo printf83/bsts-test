@@ -1,96 +1,18 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const bootswatch: IContent = {
 	title: "Bootswatch",
 	description: "Free themes for Bootstrap from Bootswatch",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
-			// disabled because cookies problem (try to create risk cookies)
-			// new e.section(
-			// 	new h.div(
-			// 		{ gap: 3, display: "flex", flex: "wrap", justifyContent: "evenly" },
-			// 		[
-			// 			{ value: "cerulean", label: "Cerulean" },
-			// 			{ value: "cosmo", label: "Cosmo" },
-			// 			{ value: "cyborg", label: "Cyborg" },
-			// 			{ value: "darkly", label: "Darkly" },
-			// 			{ value: "flatly", label: "Flatly" },
-			// 			{ value: "journal", label: "Journal" },
-			// 			{ value: "litera", label: "Litera" },
-			// 			{ value: "lumen", label: "Lumen" },
-			// 			{ value: "lux", label: "Lux" },
-			// 			{ value: "materia", label: "Materia" },
-			// 			{ value: "minty", label: "Minty" },
-			// 			{ value: "morph", label: "Morph" },
-			// 			{ value: "pulse", label: "Pulse" },
-			// 			{ value: "quartz", label: "Quartz" },
-			// 			{ value: "sandstone", label: "Sandstone" },
-			// 			{ value: "simplex", label: "Simplex" },
-			// 			{ value: "sketchy", label: "Sketchy" },
-			// 			{ value: "slate", label: "Slate" },
-			// 			{ value: "solar", label: "Solar" },
-			// 			{ value: "spacelab", label: "Spacelab" },
-			// 			{ value: "superhero", label: "Superhero" },
-			// 			{ value: "united", label: "United" },
-			// 			{ value: "vapor", label: "Vapor" },
-			// 			{ value: "yeti", label: "Yeti" },
-			// 			{ value: "zephyr", label: "Zephyr" },
-			// 		].map((i) => {
-			// 			return new h.a(
-			// 				{
-			// 					href: "#",
-			// 					col: ["lg-2", "md-3", "sm-4"],
-			// 					data: {
-			// 						value: i.value,
-			// 					},
-			// 					on: {
-			// 						click: (event) => {
-			// 							const target = event.currentTarget as Element;
-			// 							let value = target.getAttribute("data-value");
-
-			// 							//change menu bootswatch active
-			// 							if (value) {
-			// 								let bsBootswatch = document.getElementById("bs-bootswatch") as Element;
-			// 								let bsBootswatchMenu = bsBootswatch.nextSibling as Element;
-			// 								let bsBootswatchLabel = document.getElementById("bs-bootswatch-label") as Element;
-
-			// 								let lastActive = bsBootswatchMenu.querySelectorAll("a.active")[0];
-			// 								if (lastActive) {
-			// 									lastActive.classList.remove("active");
-			// 									lastActive.removeAttribute("aria-current");
-			// 								}
-
-			// 								let newActive = bsBootswatchMenu.querySelectorAll(`a[data-value='${value}']`)[0];
-			// 								if (newActive) {
-			// 									newActive.classList.add("active");
-			// 									newActive.setAttribute("aria-current", "true");
-			// 								}
-
-			// 								core.replaceWith(bsBootswatchLabel, new h.span({ id: "bs-bootswatch-label" }, `${core.uppercaseFirst(value)}`));
-
-			// 								//trigger event
-			// 								let root = target.closest(".bs-main-root") as Element;
-			// 								root.dispatchEvent(new CustomEvent("bs-bootswatch-change", { detail: value }));
-			// 							}
-			// 						},
-			// 					},
-			// 				},
-			// 				new b.img({
-			// 					src: `https://bootswatch.com/${i.value}/thumbnail.png`,
-			// 					thumbnail: true,
-			// 				})
-			// 			);
-			// 		})
-			// 	)
-			// ),
-
-			//----------------------
-
 			new e.section([
 				new e.title("Navbars"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
 						const navbarItem = (btnColor: I.B.Button["color"]) => {
@@ -103,16 +25,44 @@ export const bootswatch: IContent = {
 									label: "Toggle navigation",
 								}),
 								new b.navbar.collapse({ id: id }, [
-									new b.navbar.itemcontainer({ marginEnd: "auto", marginBottom: [2, "lg-0"] }, [
-										new b.navbar.item(new b.navbar.link({ href: "#", active: true }, "Home")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Features")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "Pricing")),
-										new b.navbar.item(new b.navbar.link({ href: "#" }, "About")),
-										new b.navbar.item({ dropdown: true }, [
-											new b.dropdown.button({ navItem: true }, "Dropdown"),
-											new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Something else here")]),
-										]),
-									]),
+									new b.navbar.itemcontainer(
+										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										[
+											new b.navbar.item(
+												new b.navbar.link(
+													{ href: "#", active: true },
+													"Home"
+												)
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Features")
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "Pricing")
+											),
+											new b.navbar.item(
+												new b.navbar.link({ href: "#" }, "About")
+											),
+											new b.navbar.item({ dropdown: true }, [
+												new b.dropdown.button(
+													{ navItem: true },
+													"Dropdown"
+												),
+												new b.dropdown.menu([
+													new b.dropdown.item({ href: "#" }, "Action"),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Another action"
+													),
+													new b.dropdown.divider(),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Something else here"
+													),
+												]),
+											]),
+										]
+									),
 									new h.form({ display: "flex", role: "search" }, [
 										new b.input({
 											type: "search",
@@ -120,13 +70,29 @@ export const bootswatch: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button({ type: "submit", color: btnColor, outline: true }, "Search"),
+										new b.button(
+											{ type: "submit", color: btnColor, outline: true },
+											"Search"
+										),
 									]),
 								]),
 							]);
 						};
 
-						return [new b.navbar.container({ bgColor: "primary", theme: "dark" }, navbarItem("light")), new b.navbar.container({ bgColor: "dark", theme: "dark" }, navbarItem("light")), new b.navbar.container({ bgColor: "light", theme: "light" }, navbarItem("dark"))];
+						return [
+							new b.navbar.container(
+								{ bgColor: "primary", theme: "dark" },
+								navbarItem("light")
+							),
+							new b.navbar.container(
+								{ bgColor: "dark", theme: "dark" },
+								navbarItem("light")
+							),
+							new b.navbar.container(
+								{ bgColor: "light", theme: "light" },
+								navbarItem("dark")
+							),
+						];
 					},
 				}),
 			]),
@@ -136,10 +102,24 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Buttons"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
-							return new b.button({ color: i as I.B.Button["color"] }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"link",
+						].map((i) => {
+							return new b.button(
+								{ color: i as I.B.Button["color"] },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
@@ -150,10 +130,24 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Disabled"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
-							return new b.button({ color: i as I.B.Button["color"], disabled: true }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"link",
+						].map((i) => {
+							return new b.button(
+								{ color: i as I.B.Button["color"], disabled: true },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
@@ -164,10 +158,24 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Outline"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark", "link"].map((i) => {
-							return new b.button({ color: i as I.B.Button["color"], outline: true }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"link",
+						].map((i) => {
+							return new b.button(
+								{ color: i as I.B.Button["color"], outline: true },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
@@ -178,6 +186,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Sizing"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: {
 						display: "flex",
 						flex: "wrap",
@@ -185,7 +194,11 @@ export const bootswatch: IContent = {
 						gap: 2,
 					},
 					output: () => {
-						return [new b.button({ weight: "lg" }, "Large button"), new b.button("Default button"), new b.button({ weight: "sm" }, "Small button")];
+						return [
+							new b.button({ weight: "lg" }, "Large button"),
+							new b.button("Default button"),
+							new b.button({ weight: "sm" }, "Small button"),
+						];
 					},
 				}),
 			]),
@@ -195,8 +208,12 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Block"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new h.div({ display: "grid", gap: 2 }, [new b.button("Button"), new b.button("Button")]);
+						return new h.div({ display: "grid", gap: 2 }, [
+							new b.button("Button"),
+							new b.button("Button"),
+						]);
 					},
 				}),
 			]),
@@ -206,8 +223,13 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Button group"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.btngroup({ label: "Basic example", role: "group" }, [new b.button("Left"), new b.button("Middle"), new b.button("Right")]);
+						return new b.btngroup({ label: "Basic example", role: "group" }, [
+							new b.button("Left"),
+							new b.button("Middle"),
+							new b.button("Right"),
+						]);
 					},
 				}),
 			]),
@@ -217,17 +239,30 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Checkbox"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
-							new b.input({ type: "checkbox", toggle: true, id: "btncheck1" }),
-							new b.label({ for: "btncheck1", color: "primary", outline: true }, "Checkbox 1"),
+						return new b.btngroup(
+							{ label: "Basic checkbox toggle button group", role: "group" },
+							[
+								new b.input({ type: "checkbox", toggle: true, id: "btncheck1" }),
+								new b.label(
+									{ for: "btncheck1", color: "primary", outline: true },
+									"Checkbox 1"
+								),
 
-							new b.input({ type: "checkbox", toggle: true, id: "btncheck2" }),
-							new b.label({ for: "btncheck2", color: "primary", outline: true }, "Checkbox 2"),
+								new b.input({ type: "checkbox", toggle: true, id: "btncheck2" }),
+								new b.label(
+									{ for: "btncheck2", color: "primary", outline: true },
+									"Checkbox 2"
+								),
 
-							new b.input({ type: "checkbox", toggle: true, id: "btncheck3" }),
-							new b.label({ for: "btncheck3", color: "primary", outline: true }, "Checkbox 3"),
-						]);
+								new b.input({ type: "checkbox", toggle: true, id: "btncheck3" }),
+								new b.label(
+									{ for: "btncheck3", color: "primary", outline: true },
+									"Checkbox 3"
+								),
+							]
+						);
 					},
 				}),
 			]),
@@ -237,23 +272,46 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Radio"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.btngroup({ label: "Basic checkbox toggle button group", role: "group" }, [
-							new b.input({
-								type: "radio",
-								toggle: true,
-								id: "btnradio1",
-								name: "btnradio",
-								checked: true,
-							}),
-							new b.label({ for: "btnradio1", color: "primary", outline: true }, "Radio 1"),
+						return new b.btngroup(
+							{ label: "Basic checkbox toggle button group", role: "group" },
+							[
+								new b.input({
+									type: "radio",
+									toggle: true,
+									id: "btnradio1",
+									name: "btnradio",
+									checked: true,
+								}),
+								new b.label(
+									{ for: "btnradio1", color: "primary", outline: true },
+									"Radio 1"
+								),
 
-							new b.input({ type: "radio", toggle: true, id: "btnradio2", name: "btnradio" }),
-							new b.label({ for: "btnradio2", color: "primary", outline: true }, "Radio 2"),
+								new b.input({
+									type: "radio",
+									toggle: true,
+									id: "btnradio2",
+									name: "btnradio",
+								}),
+								new b.label(
+									{ for: "btnradio2", color: "primary", outline: true },
+									"Radio 2"
+								),
 
-							new b.input({ type: "radio", toggle: true, id: "btnradio3", name: "btnradio" }),
-							new b.label({ for: "btnradio3", color: "primary", outline: true }, "Radio 3"),
-						]);
+								new b.input({
+									type: "radio",
+									toggle: true,
+									id: "btnradio3",
+									name: "btnradio",
+								}),
+								new b.label(
+									{ for: "btnradio3", color: "primary", outline: true },
+									"Radio 3"
+								),
+							]
+						);
 					},
 				}),
 			]),
@@ -263,21 +321,27 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Toolbar"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.btngroup({ label: "Toolbar with button groups", role: "toolbar" }, [
-							new b.btngroup(
-								{ label: "First group", marginEnd: 2 },
-								["1", "2", "3", "4"].map((i) => new b.button(i))
-							),
-							new b.btngroup(
-								{ label: "Second group", marginEnd: 2 },
-								["5", "6", "7"].map((i) => new b.button({ color: "secondary" }, i))
-							),
-							new b.btngroup(
-								{ label: "Third group" },
-								["8"].map((i) => new b.button({ color: "info" }, i))
-							),
-						]);
+						return new b.btngroup(
+							{ label: "Toolbar with button groups", role: "toolbar" },
+							[
+								new b.btngroup(
+									{ label: "First group", marginEnd: 2 },
+									["1", "2", "3", "4"].map((i) => new b.button(i))
+								),
+								new b.btngroup(
+									{ label: "Second group", marginEnd: 2 },
+									["5", "6", "7"].map(
+										(i) => new b.button({ color: "secondary" }, i)
+									)
+								),
+								new b.btngroup(
+									{ label: "Third group" },
+									["8"].map((i) => new b.button({ color: "info" }, i))
+								),
+							]
+						);
 					},
 				}),
 			]),
@@ -287,16 +351,41 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Vertical"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.btngroup({ label: "Vertical button group", vertical: true }, [
 							new b.button("Button"),
 							new b.button("Button"),
-							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+							new b.btngroup([
+								new b.dropdown.button({}, "Dropdown"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
+								]),
+							]),
 							new b.button("Button"),
 							new b.button("Button"),
-							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
-							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
-							new b.btngroup([new b.dropdown.button({}, "Dropdown"), new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Dropdown link 1"), new b.dropdown.item({ href: "#" }, "Dropdown link 2")])]),
+							new b.btngroup([
+								new b.dropdown.button({}, "Dropdown"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
+								]),
+							]),
+							new b.btngroup([
+								new b.dropdown.button({}, "Dropdown"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
+								]),
+							]),
+							new b.btngroup([
+								new b.dropdown.button({}, "Dropdown"),
+								new b.dropdown.menu([
+									new b.dropdown.item({ href: "#" }, "Dropdown link 1"),
+									new b.dropdown.item({ href: "#" }, "Dropdown link 2"),
+								]),
+							]),
 						]);
 					},
 				}),
@@ -307,14 +396,26 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Dropdown"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-							return new b.dropdown.container([
-								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"] }, core.uppercaseFirst(i)),
-								new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
-							]);
-						});
+						return ["primary", "secondary", "success", "info", "warning", "danger"].map(
+							(i) => {
+								return new b.dropdown.container([
+									new b.dropdown.button(
+										{ color: i as I.B.Dropdown.Button["color"] },
+										core.uppercaseFirst(i)
+									),
+									new b.dropdown.menu([
+										new b.dropdown.item({ href: "#" }, "Action"),
+										new b.dropdown.item({ href: "#" }, "Another action"),
+										new b.dropdown.item({ href: "#" }, "Something else here"),
+										new b.dropdown.divider(),
+										new b.dropdown.item({ href: "#" }, "Separated link"),
+									]),
+								]);
+							}
+						);
 					},
 				}),
 			]),
@@ -324,15 +425,30 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Split button"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "info", "warning", "danger"].map((i) => {
-							return new b.dropdown.container([
-								new b.button({ color: i as I.B.Dropdown.Button["color"] }, core.uppercaseFirst(i)),
-								new b.dropdown.button({ color: i as I.B.Dropdown.Button["color"], split: true }),
-								new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Separated link")]),
-							]);
-						});
+						return ["primary", "secondary", "success", "info", "warning", "danger"].map(
+							(i) => {
+								return new b.dropdown.container([
+									new b.button(
+										{ color: i as I.B.Dropdown.Button["color"] },
+										core.uppercaseFirst(i)
+									),
+									new b.dropdown.button({
+										color: i as I.B.Dropdown.Button["color"],
+										split: true,
+									}),
+									new b.dropdown.menu([
+										new b.dropdown.item({ href: "#" }, "Action"),
+										new b.dropdown.item({ href: "#" }, "Another action"),
+										new b.dropdown.item({ href: "#" }, "Something else here"),
+										new b.dropdown.divider(),
+										new b.dropdown.item({ href: "#" }, "Separated link"),
+									]),
+								]);
+							}
+						);
 					},
 				}),
 			]),
@@ -342,8 +458,11 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Typography"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as I.H.HLevel, `h${i}. Bootstrap heading`));
+						return [1, 2, 3, 4, 5, 6].map(
+							(i) => new h.h(i as I.H.HLevel, `h${i}. Bootstrap heading`)
+						);
 					},
 				}),
 			]),
@@ -353,8 +472,18 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("With secondary text"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map((i) => new h.h(i as I.H.HLevel, [`h${i}. Heading`, new h.small({ textColor: "body-secondary" }, " with faded secondary text")]));
+						return [1, 2, 3, 4, 5, 6].map(
+							(i) =>
+								new h.h(i as I.H.HLevel, [
+									`h${i}. Heading`,
+									new h.small(
+										{ textColor: "body-secondary" },
+										" with faded secondary text"
+									),
+								])
+						);
 					},
 				}),
 			]),
@@ -364,8 +493,12 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Lead paragraph"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new h.p({ lead: true }, "This is a lead paragraph. It stands out from regular paragraphs.");
+						return new h.p(
+							{ lead: true },
+							"This is a lead paragraph. It stands out from regular paragraphs."
+						);
 					},
 				}),
 			]),
@@ -375,14 +508,35 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Body text"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							new h.p(["You can use the mark tag to ", new h.mark("highlight"), " text."]),
-							new h.p(new h.del("This line of text is meant to be treated as deleted text.")),
-							new h.p(new h.s("This line of text is meant to be treated as no longer accurate.")),
-							new h.p(new h.ins("This line of text is meant to be treated as an addition to the document.")),
+							new h.p([
+								"You can use the mark tag to ",
+								new h.mark("highlight"),
+								" text.",
+							]),
+							new h.p(
+								new h.del(
+									"This line of text is meant to be treated as deleted text."
+								)
+							),
+							new h.p(
+								new h.s(
+									"This line of text is meant to be treated as no longer accurate."
+								)
+							),
+							new h.p(
+								new h.ins(
+									"This line of text is meant to be treated as an addition to the document."
+								)
+							),
 							new h.p(new h.u("This line of text will render as underlined.")),
-							new h.p(new h.small("This line of text is meant to be treated as fine print.")),
+							new h.p(
+								new h.small(
+									"This line of text is meant to be treated as fine print."
+								)
+							),
 							new h.p(new h.strong("This line rendered as bold text.")),
 							new h.p(new h.em("This line rendered as italicized text.")),
 						];
@@ -395,6 +549,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Text color"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const data: {
 							textColor: core.IAttr["textColor"];
@@ -430,7 +585,17 @@ export const bootswatch: IContent = {
 						];
 
 						return data.map((i) => {
-							return new h.p({ bgColor: i.bgColor, textColor: i.textColor, textOpacity: i.textOpacity }, [`.text-${i.textColor}`, i.textOpacity ? `.text-opacity-${i.textOpacity}` : ""]);
+							return new h.p(
+								{
+									bgColor: i.bgColor,
+									textColor: i.textColor,
+									textOpacity: i.textOpacity,
+								},
+								[
+									`.text-${i.textColor}`,
+									i.textOpacity ? `.text-opacity-${i.textOpacity}` : "",
+								]
+							);
 						});
 					},
 				}),
@@ -441,18 +606,45 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Blockquote"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new h.figure([new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
+						return new h.figure([
+							new b.blockquote.container(
+								new h.p("A well-known quote, contained in a blockquote element.")
+							),
+							new b.blockquote.caption([
+								"Someone famous in ",
+								new h.cite({ title: "Source Title" }, "Source Title"),
+							]),
+						]);
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new h.figure({ textAlign: "center" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
+						return new h.figure({ textAlign: "center" }, [
+							new b.blockquote.container(
+								new h.p("A well-known quote, contained in a blockquote element.")
+							),
+							new b.blockquote.caption([
+								"Someone famous in ",
+								new h.cite({ title: "Source Title" }, "Source Title"),
+							]),
+						]);
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new h.figure({ textAlign: "end" }, [new b.blockquote.container(new h.p("A well-known quote, contained in a blockquote element.")), new b.blockquote.caption(["Someone famous in ", new h.cite({ title: "Source Title" }, "Source Title")])]);
+						return new h.figure({ textAlign: "end" }, [
+							new b.blockquote.container(
+								new h.p("A well-known quote, contained in a blockquote element.")
+							),
+							new b.blockquote.caption([
+								"Someone famous in ",
+								new h.cite({ title: "Source Title" }, "Source Title"),
+							]),
+						]);
 					},
 				}),
 			]),
@@ -462,13 +654,38 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Table"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
 					output: () => {
 						return new b.table.container([
-							new b.table.thead(new b.table.tr([new b.table.th({ scope: "col" }, "Class"), new b.table.th({ scope: "col" }, "Heading"), new b.table.th({ scope: "col" }, "Heading")])),
+							new b.table.thead(
+								new b.table.tr([
+									new b.table.th({ scope: "col" }, "Class"),
+									new b.table.th({ scope: "col" }, "Heading"),
+									new b.table.th({ scope: "col" }, "Heading"),
+								])
+							),
 							new b.table.tbody(
-								[undefined, "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map(
-									(i) => new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [new b.table.th({ scope: "row" }, i ? core.uppercaseFirst(i) : "Default"), new b.table.td("Cell"), new b.table.td("Cell")])
+								[
+									undefined,
+									"primary",
+									"secondary",
+									"success",
+									"danger",
+									"warning",
+									"info",
+									"light",
+									"dark",
+								].map(
+									(i) =>
+										new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [
+											new b.table.th(
+												{ scope: "row" },
+												i ? core.uppercaseFirst(i) : "Default"
+											),
+											new b.table.td("Cell"),
+											new b.table.td("Cell"),
+										])
 								)
 							),
 						]);
@@ -481,6 +698,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("Forms"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new h.form(
 							new h.fieldset([
@@ -516,6 +734,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Select"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.select({
@@ -562,6 +781,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Textarea"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.textarea({
 							label: "Example textarea",
@@ -575,6 +795,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("File input"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return b.form.input({
 							label: "Default file input exampe",
@@ -589,6 +810,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Radio buttons"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -618,6 +840,7 @@ export const bootswatch: IContent = {
 			new e.section({ id: "checkbox2" }, [
 				new e.subtitle({ id: "checkbox2" }, "Checkbox"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -645,6 +868,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Switch"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.check({
@@ -671,6 +895,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Range"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -702,9 +927,14 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Button"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return [new b.button({ type: "submit" }, "Submit"), new b.button({ type: "reset" }, "Reset"), new b.button({ type: "button" }, "Button")];
+						return [
+							new b.button({ type: "submit" }, "Submit"),
+							new b.button({ type: "reset" }, "Reset"),
+							new b.button({ type: "button" }, "Button"),
+						];
 					},
 				}),
 			]),
@@ -714,6 +944,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Disable & readonly"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -737,6 +968,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Validation"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -762,6 +994,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Weight"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -789,6 +1022,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Input addon"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.input({
@@ -810,6 +1044,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Floating label"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
 							b.form.floatinglabel.input({
@@ -835,6 +1070,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Tabs"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -856,6 +1092,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Pills"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const content = (title: string) =>
 							`This is some placeholder content the {{b::${title} tab's}} associated content. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling. You can use it with tabs, pills, and any other {{type:'tab|pill|underline'}}powered navigation.`;
@@ -878,16 +1115,22 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Breadcrumbs"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
-						return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map((i) => {
-							return new b.breadcrumb.container(
-								{ label: "breadcrumb" },
-								i.map((j, jx) => {
-									return new b.breadcrumb.item({ active: jx === i.length - 1, href: "#" }, j);
-								})
-							);
-						});
+						return [["Home"], ["Home", "Library"], ["Home", "Library", "Data"]].map(
+							(i) => {
+								return new b.breadcrumb.container(
+									{ label: "breadcrumb" },
+									i.map((j, jx) => {
+										return new b.breadcrumb.item(
+											{ active: jx === i.length - 1, href: "#" },
+											j
+										);
+									})
+								);
+							}
+						);
 					},
 				}),
 			]),
@@ -897,6 +1140,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Pagination"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3, overflowX: "auto" },
 					output: () => {
 						return [
@@ -933,9 +1177,22 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Alerts"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-							return new b.alert.container({ dismissible: true, color: i as I.B.Alert.Container["color"] }, `A simple ${i} alert—check it out!`);
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
+							return new b.alert.container(
+								{ dismissible: true, color: i as I.B.Alert.Container["color"] },
+								`A simple ${i} alert—check it out!`
+							);
 						});
 					},
 				}),
@@ -946,9 +1203,22 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Callout"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-							return new b.alert.container({ callout: true, color: i as I.B.Alert.Container["color"] }, `A simple ${i} alert—check it out!`);
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
+							return new b.alert.container(
+								{ callout: true, color: i as I.B.Alert.Container["color"] },
+								`A simple ${i} alert—check it out!`
+							);
 						});
 					},
 				}),
@@ -959,10 +1229,23 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Badges"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
-							return new b.badge({ textBgColor: i as core.Class["textBgColor"] }, core.uppercaseFirst(i));
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
+							return new b.badge(
+								{ textBgColor: i as core.Class["textBgColor"] },
+								core.uppercaseFirst(i)
+							);
 						});
 					},
 				}),
@@ -973,9 +1256,19 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Rounded pill"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i) => {
 							return new b.badge(
 								{
 									textBgColor: i as core.Class["textBgColor"],
@@ -997,6 +1290,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Basic"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							value: 25,
@@ -1010,12 +1304,18 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Contextual alternatives"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [25, 50, 75, 100][ix];
 							return new b.progress.container(
-								{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+								{
+									label: `${core.uppercaseFirst(i)} example`,
+									value: val,
+									min: 0,
+									max: 100,
+								},
 								new b.progress.bar({
 									color: i as I.B.Progress.Bar["color"],
 									style: { width: `${val}%` },
@@ -1031,6 +1331,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Multiple bars"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.stacked([
 							new b.progress.container({
@@ -1066,13 +1367,16 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Striped"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [10, 25, 50, 75, 100][ix];
 							return new b.progress.container(
 								{
-									label: `${i ? core.uppercaseFirst(i) : "Default"} striped example`,
+									label: `${
+										i ? core.uppercaseFirst(i) : "Default"
+									} striped example`,
 									value: val,
 									min: 0,
 									max: 100,
@@ -1093,6 +1397,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Animated"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							value: 75,
@@ -1108,9 +1413,16 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.title("List groups"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
-						return new b.list.container([new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item"), new b.list.item("A fourth item"), new b.list.item("And a fifth one")]);
+						return new b.list.container([
+							new b.list.item("An item"),
+							new b.list.item("A second item"),
+							new b.list.item("A third item"),
+							new b.list.item("A fourth item"),
+							new b.list.item("And a fifth one"),
+						]);
 					},
 				}),
 			]),
@@ -1120,6 +1432,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("With badge"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
@@ -1128,7 +1441,20 @@ export const bootswatch: IContent = {
 								{ label: "A second list item", counter: 2 },
 								{ label: "A third list item", counter: 1 },
 							].map((i) => {
-								return new b.list.item({ display: "flex", justifyContent: "between", alignItem: "center" }, [i.label, new b.badge({ bgColor: "primary", rounded: "pill" }, i.counter.toString())]);
+								return new b.list.item(
+									{
+										display: "flex",
+										justifyContent: "between",
+										alignItem: "center",
+									},
+									[
+										i.label,
+										new b.badge(
+											{ bgColor: "primary", rounded: "pill" },
+											i.counter.toString()
+										),
+									]
+								);
 							})
 						);
 					},
@@ -1140,10 +1466,20 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Color"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
-							["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i) => {
+							[
+								"primary",
+								"secondary",
+								"success",
+								"danger",
+								"warning",
+								"info",
+								"light",
+								"dark",
+							].map((i) => {
 								return new b.list.item(
 									{
 										color: i as I.B.List.Item["color"],
@@ -1151,7 +1487,16 @@ export const bootswatch: IContent = {
 										justifyContent: "between",
 										alignItem: "center",
 									},
-									[core.uppercaseFirst(i), new b.badge({ textBgColor: i as core.Class["textBgColor"], rounded: "pill" }, core.rndBetween(1, 20).toString())]
+									[
+										core.uppercaseFirst(i),
+										new b.badge(
+											{
+												textBgColor: i as core.Class["textBgColor"],
+												rounded: "pill",
+											},
+											core.rndBetween(1, 20).toString()
+										),
+									]
 								);
 							})
 						);
@@ -1164,11 +1509,21 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Active action"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.list.container(
-							["An item", "A second item", "A third item", "A fourth item", "And a fifth one"].map((i, ix) => {
-								return new b.list.item({ action: true, handleActive: true, active: ix === 0 }, i);
+							[
+								"An item",
+								"A second item",
+								"A third item",
+								"A fourth item",
+								"And a fifth one",
+							].map((i, ix) => {
+								return new b.list.item(
+									{ action: true, handleActive: true, active: ix === 0 },
+									i
+								);
 							})
 						);
 					},
@@ -1180,16 +1535,51 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Custom content"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
 					output: () => {
 						return new b.tabList.container(
 							{ style: { maxWidth: "400px" } },
-							[{ label: "And some small print", active: true }, { label: "And some muted small print" }, { label: "And some muted small print" }].map((i) => {
-								return new b.tabList.item({ href: "#", action: true, active: i.active }, [
-									new h.div({ display: "flex", width: 100, justifyContent: "between" }, [new h.h(5, { marginBottom: 1 }, "List group item heading"), new h.small({ textColor: !i.active ? "body-secondary" : undefined }, "3 days ago")]),
-									new h.p({ marginBottom: 1 }, "Some placeholder content in a paragraph."),
-									new h.small({ textColor: !i.active ? "body-secondary" : undefined }, i.label),
-								]);
+							[
+								{ label: "And some small print", active: true },
+								{ label: "And some muted small print" },
+								{ label: "And some muted small print" },
+							].map((i) => {
+								return new b.tabList.item(
+									{ href: "#", action: true, active: i.active },
+									[
+										new h.div(
+											{
+												display: "flex",
+												width: 100,
+												justifyContent: "between",
+											},
+											[
+												new h.h(
+													5,
+													{ marginBottom: 1 },
+													"List group item heading"
+												),
+												new h.small(
+													{
+														textColor: !i.active
+															? "body-secondary"
+															: undefined,
+													},
+													"3 days ago"
+												),
+											]
+										),
+										new h.p(
+											{ marginBottom: 1 },
+											"Some placeholder content in a paragraph."
+										),
+										new h.small(
+											{ textColor: !i.active ? "body-secondary" : undefined },
+											i.label
+										),
+									]
+								);
 							})
 						);
 					},
@@ -1205,15 +1595,33 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Card"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i, ix) => {
 							return new b.card.container(
 								{
 									textBgColor: i as core.Class["textBgColor"],
 									marginTop: ix !== 0 ? 3 : undefined,
 									style: { width: "18rem" },
 								},
-								[new b.card.header("Header"), new b.card.body([new b.card.title(`${core.uppercaseFirst(i)} card title`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]
+								[
+									new b.card.header("Header"),
+									new b.card.body([
+										new b.card.title(`${core.uppercaseFirst(i)} card title`),
+										new b.card.text(
+											"Some quick example text to build on the card title and make up the bulk of the card's content."
+										),
+									]),
+								]
 							);
 						});
 					},
@@ -1225,15 +1633,33 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Card outline"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].map((i, ix) => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+						].map((i, ix) => {
 							return new b.card.container(
 								{
 									borderColor: i as core.Class["borderColor"],
 									marginTop: ix !== 0 ? 3 : undefined,
 									style: { width: "18rem" },
 								},
-								[new b.card.header("Header"), new b.card.body({ textColor: i as core.Class["textColor"] }, [new b.card.title(`${core.uppercaseFirst(i)} card title`), new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")])]
+								[
+									new b.card.header("Header"),
+									new b.card.body({ textColor: i as core.Class["textColor"] }, [
+										new b.card.title(`${core.uppercaseFirst(i)} card title`),
+										new b.card.text(
+											"Some quick example text to build on the card title and make up the bulk of the card's content."
+										),
+									]),
+								]
 							);
 						});
 					},
@@ -1245,31 +1671,49 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.xsubtitle("Kitchen sink"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container({ style: { width: "18rem" } }, [
 							new b.card.header("Header"),
 
-							new b.card.body([new b.card.title("Card title"), new b.card.subtitle("Card subtitle.")]),
+							new b.card.body([
+								new b.card.title("Card title"),
+								new b.card.subtitle("Card subtitle."),
+							]),
 							new b.card.img({
 								src: "https://picsum.photos/seed/bsts_0/286/180.webp",
 								alt: "Image cap",
 							}),
-							new b.card.body([new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content.")]),
-							new b.list.container({ flush: true }, [new b.list.item("An item"), new b.list.item("A second item"), new b.list.item("A third item")]),
-							new b.card.body([new b.card.link({ href: "#" }, "Card link"), new b.card.link({ href: "#" }, "Another link")]),
+							new b.card.body([
+								new b.card.text(
+									"Some quick example text to build on the card title and make up the bulk of the card's content."
+								),
+							]),
+							new b.list.container({ flush: true }, [
+								new b.list.item("An item"),
+								new b.list.item("A second item"),
+								new b.list.item("A third item"),
+							]),
+							new b.card.body([
+								new b.card.link({ href: "#" }, "Card link"),
+								new b.card.link({ href: "#" }, "Another link"),
+							]),
 							new b.card.footer("2 days ago"),
 						]);
 					},
 				}),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.card.container(
 							{ style: { width: "18rem" } },
 							new b.card.body([
 								new b.card.title("Card title"),
 								new b.card.subtitle("Card subtitle"),
-								new b.card.text("Some quick example text to build on the card title and make up the bulk of the card's content."),
+								new b.card.text(
+									"Some quick example text to build on the card title and make up the bulk of the card's content."
+								),
 								new b.card.link({ href: "#" }, "Card link"),
 								new b.card.link({ href: "#" }, "Another link"),
 							])
@@ -1283,6 +1727,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Accordion"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							item: [
@@ -1314,13 +1759,17 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Modal"),
 				new e.code({
+					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
 					showCodepen: false,
 					output: () => {
 						return new b.modal.container({ debug: true }, [
 							new b.modal.header({ close: true }, new b.modal.title("Modal title")),
 							new b.modal.body(new h.p("Modal body text gose here")),
-							new b.modal.footer([new b.button({ dismiss: "modal", color: "secondary" }, "Close"), new b.button({ color: "primary" }, "Save changes")]),
+							new b.modal.footer([
+								new b.button({ dismiss: "modal", color: "secondary" }, "Close"),
+								new b.button({ color: "primary" }, "Save changes"),
+							]),
 						]);
 					},
 				}),
@@ -1331,20 +1780,55 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Offcanvas"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [
-							new b.offcanvas.button({ href: "#offcanvasExample", controlfor: "offcanvasExample", marginEnd: 2 }, "Link with href"),
-							new b.offcanvas.button({ target: "#offcanvasExample", controlfor: "offcanvasExample" }, "Button with data-bs-target"),
-							new b.offcanvas.container({ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" }, [
-								new b.offcanvas.header([new b.offcanvas.title({ id: "offcanvasExampleLabel" }, "Offcanvas"), new b.offcanvas.btnclose()]),
-								new b.offcanvas.body([
-									new h.div("Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."),
-									new b.dropdown.container({ marginTop: 3 }, [
-										new b.dropdown.button({ color: "secondary" }, "Dropdown button"),
-										new b.dropdown.menu([new b.dropdown.item({ href: "#" }, "Action"), new b.dropdown.item({ href: "#" }, "Another action"), new b.dropdown.item({ href: "#" }, "Something else here")]),
+							new b.offcanvas.button(
+								{
+									href: "#offcanvasExample",
+									controlfor: "offcanvasExample",
+									marginEnd: 2,
+								},
+								"Link with href"
+							),
+							new b.offcanvas.button(
+								{ target: "#offcanvasExample", controlfor: "offcanvasExample" },
+								"Button with data-bs-target"
+							),
+							new b.offcanvas.container(
+								{ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" },
+								[
+									new b.offcanvas.header([
+										new b.offcanvas.title(
+											{ id: "offcanvasExampleLabel" },
+											"Offcanvas"
+										),
+										new b.offcanvas.btnclose(),
 									]),
-								]),
-							]),
+									new b.offcanvas.body([
+										new h.div(
+											"Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc."
+										),
+										new b.dropdown.container({ marginTop: 3 }, [
+											new b.dropdown.button(
+												{ color: "secondary" },
+												"Dropdown button"
+											),
+											new b.dropdown.menu([
+												new b.dropdown.item({ href: "#" }, "Action"),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Another action"
+												),
+												new b.dropdown.item(
+													{ href: "#" },
+													"Something else here"
+												),
+											]),
+										]),
+									]),
+								]
+							),
 						];
 					},
 				}),
@@ -1355,6 +1839,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Popovers"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -1375,6 +1860,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Tooltips"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return ["top", "right", "bottom", "left"].map((i) => {
@@ -1395,6 +1881,7 @@ export const bootswatch: IContent = {
 			new e.section([
 				new e.subtitle("Toasts"),
 				new e.code({
+					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
 						return new b.toast.item({ debug: true, live: "assertive", atomic: true }, [

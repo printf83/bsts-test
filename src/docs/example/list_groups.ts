@@ -1,21 +1,36 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { img: string; title: string; details: string; date: string; href: string }) => {
-		return new b.list.itemLink({ action: true, display: "flex", gap: 3, paddingY: 3, href: arg.href }, [
-			new h.img({
-				rounded: "circle",
-				flex: "shrink-0",
-				src: arg.img,
-				attrWidth: 32,
-				attrHeight: 32,
-			}),
-			new h.div({ display: "flex", gap: 2, width: 100, justifyContent: "between" }, [new h.div([new h.h(6, { marginBottom: 0 }, arg.title), new h.p({ marginBottom: 0, opacity: 75 }, arg.details)]), new h.small({ opacity: 50, textWrap: false }, arg.date)]),
-		]);
+		return new b.list.itemLink(
+			{ action: true, display: "flex", gap: 3, paddingY: 3, href: arg.href },
+			[
+				new h.img({
+					rounded: "circle",
+					flex: "shrink-0",
+					src: arg.img,
+					attrWidth: 32,
+					attrHeight: 32,
+				}),
+				new h.div({ display: "flex", gap: 2, width: 100, justifyContent: "between" }, [
+					new h.div([
+						new h.h(6, { marginBottom: 0 }, arg.title),
+						new h.p({ marginBottom: 0, opacity: 75 }, arg.details),
+					]),
+					new h.small({ opacity: 50, textWrap: false }, arg.date),
+				]),
+			]
+		);
 	},
-	c2: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; name?: string }) => {
+	c2: (arg: {
+		type: "checkbox" | "radio";
+		label: string;
+		description: string;
+		checked?: boolean;
+		name?: string;
+	}) => {
 		return new b.list.itemLabel(
 			{
 				display: "flex",
@@ -28,11 +43,21 @@ const ex = {
 					checked: arg.checked,
 					name: arg.name,
 				}),
-				new h.span([arg.label, new h.small({ display: "block", textColor: "body-secondary" }, arg.description)]),
+				new h.span([
+					arg.label,
+					new h.small({ display: "block", textColor: "body-secondary" }, arg.description),
+				]),
 			]
 		);
 	},
-	c3: (arg: { icon: string; label: string; description: string; checked?: boolean; name?: string; isadd?: boolean }) => {
+	c3: (arg: {
+		icon: string;
+		label: string;
+		description: string;
+		checked?: boolean;
+		name?: string;
+		isadd?: boolean;
+	}) => {
 		return new b.list.itemLabel(
 			{
 				display: "flex",
@@ -52,11 +77,24 @@ const ex = {
 						opacity: arg.isadd ? "0.5" : undefined,
 					},
 				}),
-				new h.span({ paddingTop: 1, class: "form-cheked-content" }, [new h.b(arg.label), new h.small({ display: "block", textColor: "body-secondary" }, new b.caption({ icon: arg.icon }, arg.description))]),
+				new h.span({ paddingTop: 1, class: "form-cheked-content" }, [
+					new h.b(arg.label),
+					new h.small(
+						{ display: "block", textColor: "body-secondary" },
+						new b.caption({ icon: arg.icon }, arg.description)
+					),
+				]),
 			]
 		);
 	},
-	c4: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; disabled?: boolean; name?: string }) => {
+	c4: (arg: {
+		type: "checkbox" | "radio";
+		label: string;
+		description: string;
+		checked?: boolean;
+		disabled?: boolean;
+		name?: string;
+	}) => {
 		const id = core.UUID();
 		return [
 			new b.input({
@@ -74,11 +112,21 @@ const ex = {
 					rounded: 3,
 					paddingY: 3,
 				},
-				[arg.label, new h.span({ display: "block", small: true, opacity: 50 }, arg.description)]
+				[
+					arg.label,
+					new h.span({ display: "block", small: true, opacity: 50 }, arg.description),
+				]
 			),
 		];
 	},
-	c5: (arg: { type: "checkbox" | "radio"; label: string; description: string; checked?: boolean; disabled?: boolean; name?: string }) => {
+	c5: (arg: {
+		type: "checkbox" | "radio";
+		label: string;
+		description: string;
+		checked?: boolean;
+		disabled?: boolean;
+		name?: string;
+	}) => {
 		const id = core.UUID();
 		return new b.list.itemDiv(
 			{ display: "grid", gap: 2, border: false },
@@ -103,7 +151,10 @@ const ex = {
 						paddingY: 3,
 						paddingEnd: 5,
 					},
-					[new h.b({ fontWeight: "semibold" }, arg.label), new h.span({ display: "block", small: true, opacity: 75 }, arg.description)]
+					[
+						new h.b({ fontWeight: "semibold" }, arg.label),
+						new h.span({ display: "block", small: true, opacity: 75 }, arg.description),
+					]
 				),
 			])
 		);
@@ -112,11 +163,14 @@ const ex = {
 export const list_groups: IContent = {
 	title: "List groups",
 	description: "Extend list groups with utilities and custom styles for any content.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("List with icon"),
 				new e.code({
+					db: getContentCode(db),
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
 					output: () => {
 						return new b.list.containerDiv({ style: { maxWidth: "460px" } }, [
@@ -131,7 +185,8 @@ export const list_groups: IContent = {
 								href: "#",
 								img: "https://picsum.photos/seed/bsts_1/32/32.webp",
 								title: "Another title here",
-								details: "Some placeholder content in a paragraph that gose a little longer so it wraps to a new line.",
+								details:
+									"Some placeholder content in a paragraph that gose a little longer so it wraps to a new line.",
 								date: "3d",
 							}),
 							ex.c1({
@@ -151,6 +206,7 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Checkbox and radio"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
 					output: () => {
@@ -204,6 +260,7 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Todo list"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "todo-list" },
 					extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 					output: () => {
@@ -244,7 +301,13 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Checkable list"),
 				new e.code({
-					outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
+					db: getContentCode(db),
+					outputAttr: {
+						class: "list-group-item-check",
+						display: "flex",
+						flex: "wrap",
+						gap: 3,
+					},
 					extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 					output: () => {
 						return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
@@ -276,7 +339,13 @@ export const list_groups: IContent = {
 
 				new e.text("Radio"),
 				new e.code({
-					outputAttr: { class: "list-group-item-check", display: "flex", flex: "wrap", gap: 3 },
+					db: getContentCode(db),
+					outputAttr: {
+						class: "list-group-item-check",
+						display: "flex",
+						flex: "wrap",
+						gap: 3,
+					},
 					extention: [{ name: "COMPONENT", rename: "ex.c4", output: ex.c4 }],
 					output: () => {
 						return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
@@ -316,7 +385,13 @@ export const list_groups: IContent = {
 			new e.section([
 				new e.title("Checkable list 2"),
 				new e.code({
-					outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
+					db: getContentCode(db),
+					outputAttr: {
+						class: "list-group-item-check-2",
+						display: "flex",
+						flex: "wrap",
+						gap: 3,
+					},
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 					output: () => {
 						return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [
@@ -347,7 +422,13 @@ export const list_groups: IContent = {
 				}),
 				new e.text("Radio"),
 				new e.code({
-					outputAttr: { class: "list-group-item-check-2", display: "flex", flex: "wrap", gap: 3 },
+					db: getContentCode(db),
+					outputAttr: {
+						class: "list-group-item-check-2",
+						display: "flex",
+						flex: "wrap",
+						gap: 3,
+					},
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
 					output: () => {
 						return new b.list.containerDiv({ display: "grid", gap: 2, border: false }, [

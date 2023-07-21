@@ -88,6 +88,3 @@ export class section extends h.section {
 		super(convert(core.bsConstArg("elem", arg)));
 	}
 }
-
-export const Section = (AttrOrElem?: core.IAttr | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<section, core.IAttr>(section, AttrOrElem, Elem);

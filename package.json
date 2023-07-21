@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "0.2.11",
+	"version": "0.3.0",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -21,29 +21,34 @@
 	"main": "dist/index.html",
 	"scripts": {
 		"link": "npm link @printf83/bsts",
-		"clean": "npx node scripts/clean.cjs",
-		"copy.static": "npx node scripts/copy.cjs",
-		"build.ts": "npx tsc",
-		"build": "npx webpack --stats-error-details && npm run copy.static",
+		"clean": "node scripts/clean.cjs",
+		"copy.static": "node scripts/copy.cjs",
+		"build.ts": "tsc",
+		"build": "webpack && npm run copy.static",
 		"rebuild": "npm run clean && npm run build",
-		"debug.ts": "npx tsc -w",
-		"debug": "npx webpack -w --stats-error-details",
+		"debug.ts": "tsc -w",
+		"debug": "webpack -w",
 		"predeploy": "npm run rebuild",
-		"deploy": "npx gh-pages -d dist"
+		"deploy": "gh-pages -d dist"
 	},
 	"devDependencies": {
+		"@total-typescript/ts-reset": "^0.4.2",
 		"@types/bootstrap": "^5.2.6",
 		"@types/js-beautify": "^1.13.3",
+		"compression-webpack-plugin": "^10.0.0",
 		"gh-pages": "^5.0.0",
+		"terser-webpack-plugin": "^5.3.9",
 		"ts-loader": "^9.4.4",
 		"typescript": "^5.1.6",
-		"webpack": "^5.88.1",
+		"webpack": "^5.88.2",
 		"webpack-cli": "^5.1.4"
 	},
 	"dependencies": {
-		"@printf83/bsts": "^0.2.11",
+		"@printf83/bsts": "^0.2.16",
 		"bootstrap": "^5.3.0",
 		"chart.js": "^4.3.0",
-		"js-beautify": "^1.14.8"
+		"chartjs-plugin-datalabels": "^2.2.0",
+		"highlight.js": "^11.8.0",
+		"js-beautify": "^1.14.9"
 	}
 }

@@ -1,6 +1,6 @@
 import { I, b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: { copyright: string; icon: string; link: I.B.Nav.Header.Link[] }) => {
@@ -15,7 +15,10 @@ const ex = {
 				border: "top",
 			},
 			[
-				new h.p({ col: "md-4", marginBottom: 0, textColor: "body-secondary" }, arg.copyright),
+				new h.p(
+					{ col: "md-4", marginBottom: 0, textColor: "body-secondary" },
+					arg.copyright
+				),
 				new h.a(
 					{
 						href: "#",
@@ -70,7 +73,10 @@ const ex = {
 						},
 						new b.icon({ id: arg.icon, fontSize: 2 })
 					),
-					new h.span({ marginBottom: [3, "md-0"], textColor: "body-tertiary" }, arg.copyright),
+					new h.span(
+						{ marginBottom: [3, "md-0"], textColor: "body-tertiary" },
+						arg.copyright
+					),
 				]),
 
 				new h.ul({
@@ -78,7 +84,17 @@ const ex = {
 					justifyContent: "end",
 					display: "flex",
 					item: arg.link.map((i) => {
-						return new h.li({ marginStart: 3 }, new h.a({ href: i.href, textColor: "body-tertiary", textColorHover: "body-emphasis" }, new b.icon({ id: i.icon, fontSize: 2 })));
+						return new h.li(
+							{ marginStart: 3 },
+							new h.a(
+								{
+									href: i.href,
+									textColor: "body-tertiary",
+									textColorHover: "body-emphasis",
+								},
+								new b.icon({ id: i.icon, fontSize: 2 })
+							)
+						);
 					}),
 					unstyle: true,
 				}),
@@ -153,7 +169,12 @@ const ex = {
 			]
 		);
 	},
-	c5: (arg: { copyright: string; link: (undefined | t[])[]; linkicon: { icon: string; href: string }[]; onsubscribe: EventListener }) => {
+	c5: (arg: {
+		copyright: string;
+		link: (undefined | t[])[];
+		linkicon: { icon: string; href: string }[];
+		onsubscribe: EventListener;
+	}) => {
 		return new h.footer(
 			{
 				paddingY: 5,
@@ -204,7 +225,13 @@ const ex = {
 						new h.ul({
 							display: "flex",
 							item: arg.linkicon.map((i) => {
-								return new h.li({ marginStart: 3 }, new h.a({ href: i.href }, new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })));
+								return new h.li(
+									{ marginStart: 3 },
+									new h.a(
+										{ href: i.href },
+										new b.icon({ id: i.icon, fontSize: 3, textColor: "body" })
+									)
+								);
 							}),
 							unstyle: true,
 						}),
@@ -217,11 +244,14 @@ const ex = {
 export const footers: IContent = {
 	title: "Footers",
 	description: "Finish every page strong with an awesome footer, big or small.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example footer 1"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },
 					extention: [{ name: "COMPONENT", rename: "ex.c1", output: ex.c1 }],
@@ -246,6 +276,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 2"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -268,6 +299,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 3"),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { class: "nav-custom-4" },
 					extention: [{ name: "COMPONENT", rename: "ex.c3", output: ex.c3 }],
 					output: () => {
@@ -290,6 +322,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 4"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },
 					extention: [
@@ -343,6 +376,7 @@ export const footers: IContent = {
 			new e.section([
 				new e.title("Example footer 5"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					outputAttr: { class: "nav-custom-4" },
@@ -394,7 +428,9 @@ export const footers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								if (target) {
-									const input = target.querySelector("input[name='subcribe']") as HTMLInputElement;
+									const input = target.querySelector(
+										"input[name='subcribe']"
+									) as HTMLInputElement;
 									if (input) {
 										const email = (input as HTMLInputElement).value;
 										e.console(target, "onsubscribe", { email: email }, "info");

@@ -1,16 +1,24 @@
 import { b, core } from "@printf83/bsts";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 
 export const accordion: IContent = {
 	title: "Accordion",
-	description: "Build vertically collapsing accordions in combination with Bootstrap Collapse JavaScript plugin.",
-	item: () => {
+	description:
+		"Build vertically collapsing accordions in combination with Bootstrap Collapse JavaScript plugin.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("How it works"),
-				new e.text("The accordion ({{b.accordion.container}) uses {{nav:docs/components/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{show:true}} property on the {{b.accordion.item}}."),
-				new e.alert({ color: "info", callout: true }, "The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{nav:docs/gettingstarted/accessibility#reduce_motion::reduced motion section of Bootstrap accessibility documentation}}. "),
+				new e.text(
+					"The accordion ({{b.accordion.container}) uses {{nav:docs/components/collapse::collapse}} internally to make it collapsible. To render an accordion that’s expanded, add the {{show:true}} property on the {{b.accordion.item}}."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{nav:docs/gettingstarted/accessibility#reduce_motion::reduced motion section of Bootstrap accessibility documentation}}. "
+				),
 			]),
 
 			//----------------------
@@ -19,6 +27,7 @@ export const accordion: IContent = {
 				new e.title("Example"),
 				new e.text("Click the accordions below to expand/collapse the accordion content."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						let mainID = core.UUID();
 
@@ -51,7 +60,14 @@ export const accordion: IContent = {
 										},
 										i.title
 									),
-									new b.accordion.body({ id: `collapse-${itemID}`, parent: `#${mainID}`, show: i.show }, i.elem),
+									new b.accordion.body(
+										{
+											id: `collapse-${itemID}`,
+											parent: `#${mainID}`,
+											show: i.show,
+										},
+										i.elem
+									),
 								]);
 							})
 						);
@@ -65,6 +81,7 @@ export const accordion: IContent = {
 				new e.subtitle("Using item"),
 				new e.text("Same as above but more easy."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							item: [
@@ -91,8 +108,11 @@ export const accordion: IContent = {
 
 			new e.section([
 				new e.subtitle("Flush"),
-				new e.text("Add {{flush:true}} to {{b.accordion.container}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."),
+				new e.text(
+					"Add {{flush:true}} to {{b.accordion.container}} to remove the default {{background-color}}, some borders, and some rounded corners to render accordions edge-to-edge with their parent container."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							flush: true,
@@ -120,8 +140,11 @@ export const accordion: IContent = {
 
 			new e.section([
 				new e.subtitle("Always open"),
-				new e.text("Add {{alwaysOpen:true}} to {{b.accordion.container}} to make accordion items stay open when another item is opened."),
+				new e.text(
+					"Add {{alwaysOpen:true}} to {{b.accordion.container}} to make accordion items stay open when another item is opened."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.accordion.container({
 							alwaysOpen: true,
@@ -147,7 +170,12 @@ export const accordion: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Accessibility"), new e.text("Please read the {{nav:docs/components/collapse#accessibility::collapse accessibility section}} for more information.")]),
+			new e.section([
+				new e.title("Accessibility"),
+				new e.text(
+					"Please read the {{nav:docs/components/collapse#accessibility::collapse accessibility section}} for more information."
+				),
+			]),
 
 			//----------------------
 
@@ -157,7 +185,9 @@ export const accordion: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, accordions now use local CSS variables on {{.accordion}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, accordions now use local CSS variables on {{.accordion}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 
 				new e.codepreview({
 					type: "css",

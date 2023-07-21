@@ -1,6 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
 	c1: (arg: {
@@ -372,7 +372,10 @@ const ex = {
 				new h.ul(
 					{ unstyle: true, paddingStart: 0 },
 					new h.li({ marginBottom: 1 }, [
-						new b.collapse.button({ href: `#usermenu`, class: "btn", icon: true, defColor: false }, "Account"),
+						new b.collapse.button(
+							{ href: `#usermenu`, class: "btn", icon: true, defColor: false },
+							"Account"
+						),
 						new b.collapse.container(
 							{ id: "usermenu" },
 							new h.ul(
@@ -452,7 +455,18 @@ const ex = {
 								lineHeight: "sm",
 								autoInit: true,
 							},
-							[new h.div({ display: "flex", width: 100, alignItem: "center", justifyContent: "between" }, [new h.b(i.title), new h.small(i.date)]), new h.div({ col: 10, marginBottom: 1, small: true }, i.description)]
+							[
+								new h.div(
+									{
+										display: "flex",
+										width: 100,
+										alignItem: "center",
+										justifyContent: "between",
+									},
+									[new h.b(i.title), new h.small(i.date)]
+								),
+								new h.div({ col: 10, marginBottom: 1, small: true }, i.description),
+							]
 						);
 					})
 				),
@@ -463,11 +477,14 @@ const ex = {
 export const sidebars: IContent = {
 	title: "Sidebars",
 	description: "Common navigation patterns ideal for offcanvas or multi-column layouts.",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Dark"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -485,7 +502,13 @@ export const sidebars: IContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -509,6 +532,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("Light"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -526,7 +550,13 @@ export const sidebars: IContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -550,6 +580,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("Compact"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -565,7 +596,13 @@ export const sidebars: IContent = {
 								{ href: "#", icon: "grid", label: "Products" },
 								{ href: "#", icon: "person-circle", label: "Customers" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -589,6 +626,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("Collapsible"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -643,7 +681,9 @@ export const sidebars: IContent = {
 									"onlinkchange",
 									{
 										target: core.elemInfo(detail.target),
-										relatedTarget: detail.relatedTarget ? core.elemInfo(detail.relatedTarget) : "null",
+										relatedTarget: detail.relatedTarget
+											? core.elemInfo(detail.relatedTarget)
+											: "null",
 									},
 									"info"
 								);
@@ -658,6 +698,7 @@ export const sidebars: IContent = {
 			new e.section([
 				new e.title("List group"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
 					extention: [{ name: "COMPONENT", rename: "ex.c5", output: ex.c5 }],
@@ -668,77 +709,92 @@ export const sidebars: IContent = {
 							item: [
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Wed",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Tues",
 								},
 								{
 									title: "List group item heading",
-									description: "Some placeholder content in a paragraph below the heading and date.",
+									description:
+										"Some placeholder content in a paragraph below the heading and date.",
 									date: "Mon",
 								},
 							],

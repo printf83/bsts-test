@@ -1,11 +1,14 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const colors: IContent = {
 	title: "Colors",
-	description: "Convey meaning through {{color}} with a handful of color utility classes. Includes support for styling links with hover states, too.",
-	item: () => {
+	description:
+		"Convey meaning through {{color}} with a handful of color utility classes. Includes support for styling links with hover states, too.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.alert(
@@ -18,9 +21,15 @@ export const colors: IContent = {
 
 			new e.section([
 				new e.title("Colors"),
-				new e.text("Colorize text with color utilities. If you want to colorize links, you can use the {{nav:docs/helpers/colored_links::linkColor helper property}} which have {{:hover}} and {{:focus}} states."),
-				new e.alert({ color: "info", callout: true }, "Color utilities like {{.text-*}} that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{.text-*-emphasis}} utility will. This will be resolved in v6. "),
+				new e.text(
+					"Colorize text with color utilities. If you want to colorize links, you can use the {{nav:docs/helpers/colored_links::linkColor helper property}} which have {{:hover}} and {{:focus}} states."
+				),
+				new e.alert(
+					{ color: "info", callout: true },
+					"Color utilities like {{.text-*}} that generated from Bootstrap original {{$theme-colors}} Sass map don’t yet respond to color modes, however, any {{.text-*-emphasis}} utility will. This will be resolved in v6. "
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						const data: {
 							textColor: core.IAttr["textColor"];
@@ -56,12 +65,25 @@ export const colors: IContent = {
 						];
 
 						return data.map((i) => {
-							return new h.p({ bgColor: i.bgColor, textColor: i.textColor, textOpacity: i.textOpacity }, [`.text-${i.textColor}`, i.textOpacity ? `.text-opacity-${i.textOpacity}` : ""]);
+							return new h.p(
+								{
+									bgColor: i.bgColor,
+									textColor: i.textColor,
+									textOpacity: i.textOpacity,
+								},
+								[
+									`.text-${i.textColor}`,
+									i.textOpacity ? `.text-opacity-${i.textOpacity}` : "",
+								]
+							);
 						});
 					},
 				}),
 
-				new e.alert({ color: "warning", callout: true }, "{{b::Deprecation:}} With the addition of {{.text-opacity-*}} utilities and CSS variables for text utilities, {{.text-black-50}} and {{.text-white-50}} are deprecated as of v5.1.0. They’ll be removed in v6.0.0. "),
+				new e.alert(
+					{ color: "warning", callout: true },
+					"{{b::Deprecation:}} With the addition of {{.text-opacity-*}} utilities and CSS variables for text utilities, {{.text-black-50}} and {{.text-white-50}} are deprecated as of v5.1.0. They’ll be removed in v6.0.0. "
+				),
 
 				new e.alert(
 					{ color: "warning", callout: true },
@@ -71,7 +93,12 @@ export const colors: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Opacity"), new e.text("As of v5.1.0, {{text-color}} utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes.")]),
+			new e.section([
+				new e.title("Opacity"),
+				new e.text(
+					"As of v5.1.0, {{text-color}} utilities are generated with Sass using CSS variables. This allows for real-time color changes without compilation and dynamic alpha transparency changes."
+				),
+			]),
 
 			//----------------------
 
@@ -96,14 +123,24 @@ export const colors: IContent = {
 
 			new e.section([
 				new e.subtitle("Example"),
-				new e.text("To change that opacity, override {{style: { '--bs-text-opacity': '.5' } }} via custom styles or inline styles."),
+				new e.text(
+					"To change that opacity, override {{style: { '--bs-text-opacity': '.5' } }} via custom styles or inline styles."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return [new h.div({ textColor: "primary" }, "This is default primary text"), new h.div({ textColor: "primary", style: { "--bs-text-opacity": ".5" } }, "This is 50% opacity primary text")];
+						return [
+							new h.div({ textColor: "primary" }, "This is default primary text"),
+							new h.div(
+								{ textColor: "primary", style: { "--bs-text-opacity": ".5" } },
+								"This is 50% opacity primary text"
+							),
+						];
 					},
 				}),
 				new e.text("Or, choose from any of the {{textOpacity}} property:"),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return [undefined, 75, 50, 25].map((i) => {
 							return new h.div(
@@ -120,17 +157,29 @@ export const colors: IContent = {
 
 			//----------------------
 
-			new e.section([new e.title("Specificity"), new e.text("Sometimes contextual classes cannot be applied due to the specificity of another selector. In some cases, a sufficient workaround is to wrap your element’s content in a {{<div>}} or more semantic element with the desired class.")]),
+			new e.section([
+				new e.title("Specificity"),
+				new e.text(
+					"Sometimes contextual classes cannot be applied due to the specificity of another selector. In some cases, a sufficient workaround is to wrap your element’s content in a {{<div>}} or more semantic element with the desired class."
+				),
+			]),
 
 			//----------------------
 
-			new e.section([new e.title("CSS"), new e.text("In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more.")]),
+			new e.section([
+				new e.title("CSS"),
+				new e.text(
+					"In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
+				),
+			]),
 
 			//----------------------
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text("Most {{color}} utilities are generated by Bootstrap theme colors, reassigned from Bootstrap generic color palette variables."),
+				new e.text(
+					"Most {{color}} utilities are generated by Bootstrap theme colors, reassigned from Bootstrap generic color palette variables."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -163,7 +212,9 @@ export const colors: IContent = {
 						$dark:          $gray-900;
 					`,
 				}),
-				new e.text("Grayscale colors are also available, but only a subset are used to generate any utilities."),
+				new e.text(
+					"Grayscale colors are also available, but only a subset are used to generate any utilities."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -200,7 +251,9 @@ export const colors: IContent = {
 					`,
 				}),
 
-				new e.text("Variables for setting colors in {{.text-*-emphasis}} utilities in light and dark mode:"),
+				new e.text(
+					"Variables for setting colors in {{.text-*-emphasis}} utilities in light and dark mode:"
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -237,7 +290,9 @@ export const colors: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass maps"),
-				new e.text("Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."),
+				new e.text(
+					"Theme colors are then put into a Sass map so Bootstrap can loop over them to generate Bootstrap utilities, component modifiers, and more."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -255,7 +310,9 @@ export const colors: IContent = {
 						);
 					`,
 				}),
-				new e.text("Grayscale colors are also available as a Sass map. {{b::This map is not used to generate any utilities}}."),
+				new e.text(
+					"Grayscale colors are also available as a Sass map. {{b::This map is not used to generate any utilities}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -283,7 +340,9 @@ export const colors: IContent = {
 						$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 					`,
 				}),
-				new e.text("Color opacities build on that with their own map that’s consumed by the utilities API:"),
+				new e.text(
+					"Color opacities build on that with their own map that’s consumed by the utilities API:"
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
@@ -352,7 +411,9 @@ export const colors: IContent = {
 
 			new e.section([
 				new e.subtitle("Utilities API"),
-				new e.text("Color utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."),
+				new e.text(
+					"Color utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",

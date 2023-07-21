@@ -1,34 +1,28 @@
 import { b, core, h } from "@printf83/bsts";
 import { cookie } from "./ctl/main/cookie.js";
 import * as e from "./ctl/example/_index.js";
-
 import { onBootswatchChange, getSavedBootswatch } from "./ctl/main/bootswatch.js";
 import { menuWithBookmark } from "./ctl/main/bookmark.js";
 import { getSavedTheme, onThemeChange, setupThemeChanges } from "./ctl/main/theme.js";
 import { highlightMenu } from "./ctl/main/menu.js";
 import { setupSearchShortcut } from "./ctl/main/search.js";
 import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
-import { IBsMainContainer, container } from "./ctl/main/container.js";
+import { IMainContainer, container } from "./ctl/main/container.js";
 import { IContent, setupContentDocument } from "./ctl/main/content.js";
-import { setupState } from "./ctl/main/history.js";
+import { setupOnHistoryChange } from "./ctl/main/history.js";
+import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
 
 const loadDefaultDoc = () => {
-	const { search } = window.location;
+	const { search, hash } = window.location;
 	if (search && search.startsWith("?d=")) {
 		let docId: string = search.slice(3);
-		let anchorId: string | null = null;
-
-		if (docId.indexOf("#") > -1) {
-			let tempValue = docId.split("#");
-			docId = tempValue[0];
-			anchorId = tempValue[1];
-		}
+		let anchorId: string | undefined = hash.slice(1);
 
 		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 		highlightMenu(docId);
 	} else {
-		setupContentDocument(cookie.get("current_page") || "docs/gettingstarted/introduction");
-		highlightMenu(cookie.get("current_page") || "docs/gettingstarted/introduction");
+		setupContentDocument(cookie.get("current_page") || DEFAULTDOCUMENT);
+		highlightMenu(cookie.get("current_page") || DEFAULTDOCUMENT);
 	}
 };
 
@@ -44,12 +38,106 @@ const setupBSNavigate = () => {
 	);
 };
 
+const escapeBackQuote = (str: string) => {
+	return str.replaceAll("`", "\\`").replaceAll("${", "\\${");
+};
+
+const setupCopyDataManager = () => {
+	document.addEventListener("keydown", (event: KeyboardEvent) => {
+		if (event.ctrlKey && event.key == "l") {
+			event.stopPropagation();
+			event.preventDefault();
+
+			let listOfCodePreview = document.getElementsByClassName("example-code");
+			if (listOfCodePreview && listOfCodePreview.length > 0) {
+				let codeData = Array.from(listOfCodePreview)
+					.map((i) => {
+						let id = `code-${i.id}`;
+						if (core.dataManager.exists(id)) {
+							let dmCode = core.dataManager.get(id) as e.IBsExampleData;
+							if (dmCode) {
+								let source = dmCode.source
+									? `source: \`${escapeBackQuote(dmCode.source)}\`,`
+									: "";
+								let manager = dmCode.manager
+									? `manager: \`${escapeBackQuote(dmCode.manager)}\`,`
+									: "";
+								let extention = "";
+
+								if (dmCode.extention && dmCode.extention.length > 0) {
+									extention = `extention: [\`${dmCode.extention
+										.map((j) => {
+											return escapeBackQuote(j);
+										})
+										.join("`,`")}\`] ,`;
+								}
+
+								return `{
+									${source}
+									${manager}
+									${extention}
+								},
+								`;
+							}
+						}
+
+						return undefined;
+					})
+					.filter(Boolean)
+					.join("");
+
+				if (codeData) {
+					navigator.clipboard.writeText(`db: [${codeData}],`).then(
+						() => {
+							b.toast.show(
+								b.toast.create({
+									color: "success",
+									title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"),
+									elem: "Code added to clipboard",
+								})
+							);
+						},
+						() => {
+							b.toast.show(
+								b.toast.create({
+									color: "danger",
+									title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"),
+									elem: "Fail add code to clipboard",
+								})
+							);
+						}
+					);
+				} else {
+					b.toast.show(
+						b.toast.create({
+							color: "info",
+							title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"),
+							elem: "Code already added",
+						})
+					);
+				}
+			} else {
+				b.toast.show(
+					b.toast.create({
+						color: "warning",
+						title: new b.caption({ icon: "hexagon-fill" }, "Bootstrap TS"),
+						elem: "This document not have any code",
+					})
+				);
+			}
+		}
+	});
+};
+
 const mainContainer = () => {
 	return new container({
 		name: "Bootstrap TS",
 		bgColor: "primary",
 		textColor: "light",
-		icon: new h.div({ class: "animated-icon", fontSize: 3 }, new b.icon({ id: "hexagon-fill" })),
+		icon: new h.div(
+			{ class: "animated-icon", fontSize: 3 },
+			new b.icon({ id: "hexagon-fill" })
+		),
 		itemMenu: menuWithBookmark(),
 		itemInsideLink: [{ value: "doc", label: "Docs" }],
 		currentInsideLink: "doc",
@@ -73,7 +161,7 @@ const mainContainer = () => {
 			{ value: "dark", icon: { id: "moon-stars-fill" }, label: "Dark" },
 			{ value: "auto", icon: { id: "circle-half" }, label: "Auto" },
 		],
-		currentTheme: getSavedTheme() as IBsMainContainer["currentTheme"],
+		currentTheme: getSavedTheme() as IMainContainer["currentTheme"],
 		itemBootswatch: [
 			{
 				value: "default",
@@ -113,13 +201,24 @@ const mainContainer = () => {
 					.fill("")
 					.map(() => {
 						return new e.section([
-							new e.title({ loadingPlaceholderAnimation: "wave" }, core.placeholder(3, 6, 1, 3)),
+							new e.title(
+								{ loadingPlaceholderAnimation: "wave" },
+								core.placeholder(3, 6, 1, 3)
+							),
 							...Array(core.rndBetween(1, 3))
 								.fill("")
 								.map(() => {
-									return new e.text({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 20));
+									return new e.text(
+										{ loadingPlaceholderAnimation: "wave" },
+										core.placeholder(10, 20)
+									);
 								}),
-							new e.item(new b.card.container({ style: { minHeight: "18rem" } }, new b.card.body(""))),
+							new e.item(
+								new b.card.container(
+									{ style: { minHeight: "18rem" } },
+									new b.card.body("")
+								)
+							),
 						]);
 					})
 					.flat();
@@ -141,11 +240,26 @@ const mainContainer = () => {
 			{
 				title: "Guides",
 				item: [
-					{ href: "https://getbootstrap.com/docs/5.3/getting-started/", label: "Getting started" },
-					{ href: "https://getbootstrap.com/docs/5.3/examples/starter-template/", label: "Starter template" },
-					{ href: "https://getbootstrap.com/docs/5.3/getting-started/webpack/", label: "Webpack" },
-					{ href: "https://getbootstrap.com/docs/5.3/getting-started/parcel/", label: "Parcel" },
-					{ href: "https://getbootstrap.com/docs/5.3/getting-started/vite/", label: "Vite" },
+					{
+						href: "https://getbootstrap.com/docs/5.3/getting-started/",
+						label: "Getting started",
+					},
+					{
+						href: "https://getbootstrap.com/docs/5.3/examples/starter-template/",
+						label: "Starter template",
+					},
+					{
+						href: "https://getbootstrap.com/docs/5.3/getting-started/webpack/",
+						label: "Webpack",
+					},
+					{
+						href: "https://getbootstrap.com/docs/5.3/getting-started/parcel/",
+						label: "Parcel",
+					},
+					{
+						href: "https://getbootstrap.com/docs/5.3/getting-started/vite/",
+						label: "Vite",
+					},
 				],
 			},
 			{
@@ -182,9 +296,10 @@ core.documentReady(() => {
 
 		core.requestIdleCallback(() => {
 			setupSearchShortcut();
-			setupState();
+			setupOnHistoryChange();
 			setupBSNavigate();
 			setupThemeChanges();
+			setupCopyDataManager();
 			core.requestIdleCallback(() => {
 				loadDefaultDoc();
 			}, 300);

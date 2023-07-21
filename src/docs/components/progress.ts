@@ -1,11 +1,14 @@
 import { I, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const progress: IContent = {
 	title: "Progress",
-	description: "Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels.",
-	item: () => {
+	description:
+		"Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.alert(
@@ -28,16 +31,21 @@ export const progress: IContent = {
 				}),
 				new e.text("Put that all together, and you have the following examples."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [0, 25, 50, 75, 100].map((i) => {
-							return new b.progress.container({ label: "Basic example", value: i, min: 0, max: 100 }, new b.progress.bar({ style: { width: `${i}%` } }));
+							return new b.progress.container(
+								{ label: "Basic example", value: i, min: 0, max: 100 },
+								new b.progress.bar({ style: { width: `${i}%` } })
+							);
 						});
 					},
 				}),
 
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [0, 25, 50, 75, 100].map((i) => {
@@ -60,17 +68,29 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Width"),
-				new e.text("Bootstrap provides a handful of {{nav:docs/utilities/sizing::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{b.progress.bar}}."),
+				new e.text(
+					"Bootstrap provides a handful of {{nav:docs/utilities/sizing::utilities for setting width}}. Depending on your needs, these may help with quickly configuring the width of the {{b.progress.bar}}."
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Basic example", value: 75, min: 0, max: 100 }, new b.progress.bar({ width: 75 }));
+						return new b.progress.container(
+							{ label: "Basic example", value: 75, min: 0, max: 100 },
+							new b.progress.bar({ width: 75 })
+						);
 					},
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Basic example", value: 75, min: 0, max: 100 });
+						return new b.progress.container({
+							label: "Basic example",
+							value: 75,
+							min: 0,
+							max: 100,
+						});
 					},
 				}),
 			]),
@@ -79,19 +99,41 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Height"),
-				new e.text("You only set a {{height}} value on the {{b.progress.container}} component, so if you change that value, the inner {{b.progress.bar}} will automatically resize accordingly."),
+				new e.text(
+					"You only set a {{height}} value on the {{b.progress.container}} component, so if you change that value, the inner {{b.progress.bar}} will automatically resize accordingly."
+				),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [
-							new b.progress.container({ label: "Example 1px high", value: 25, min: 0, max: 100, style: { height: "1px" } }, new b.progress.bar({ style: { width: "25%" } })),
-							new b.progress.container({ label: "Example 20px high", value: 25, min: 0, max: 100, style: { height: "20px" } }, new b.progress.bar({ style: { width: "25%" } })),
+							new b.progress.container(
+								{
+									label: "Example 1px high",
+									value: 25,
+									min: 0,
+									max: 100,
+									style: { height: "1px" },
+								},
+								new b.progress.bar({ style: { width: "25%" } })
+							),
+							new b.progress.container(
+								{
+									label: "Example 20px high",
+									value: 25,
+									min: 0,
+									max: 100,
+									style: { height: "20px" },
+								},
+								new b.progress.bar({ style: { width: "25%" } })
+							),
 						];
 					},
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [
@@ -118,14 +160,21 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Labels"),
-				new e.text("Add labels to your progress bars by placing text within the {{b.progress.bar}}."),
+				new e.text(
+					"Add labels to your progress bars by placing text within the {{b.progress.bar}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Example with label", value: 25, min: 0, max: 100 }, new b.progress.bar({ style: { width: "25%" } }, "25%"));
+						return new b.progress.container(
+							{ label: "Example with label", value: 25, min: 0, max: 100 },
+							new b.progress.bar({ style: { width: "25%" } }, "25%")
+						);
 					},
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							label: "Example with label",
@@ -137,6 +186,7 @@ export const progress: IContent = {
 					},
 				}),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							label: "Example with label",
@@ -151,12 +201,20 @@ export const progress: IContent = {
 					"Note that by default, the content inside the {{b.progress.bar}} is controlled with {{overflow: hidden}}, so it doesn’t bleed out of the bar. If your progress bar is shorter than its label, the content will be capped and may become unreadable. To change this behavior, you can use {{overflow:'visible'}} from the {{nav:docs/utilities/overflow::overflow utilities}}, but make sure to also define an explicit {{nav:docs/utilities/colors#colors::text color}} so the text remains readable. Be aware though that currently this approach does not take into account {{https://getbootstrap.com/docs/5.3/customize/color-modes/::color modes}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
-						return new b.progress.container({ label: "Example with label", value: 10, min: 0, max: 100 }, new b.progress.bar({ style: { width: "10%" }, overflow: "visible", textColor: "dark" }, "Long label text for the progress bar, set to a dark color"));
+						return new b.progress.container(
+							{ label: "Example with label", value: 10, min: 0, max: 100 },
+							new b.progress.bar(
+								{ style: { width: "10%" }, overflow: "visible", textColor: "dark" },
+								"Long label text for the progress bar, set to a dark color"
+							)
+						);
 					},
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							label: "Example with label",
@@ -173,14 +231,22 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Backgrounds"),
-				new e.text("Use background utility classes to change the appearance of individual progress bars."),
+				new e.text(
+					"Use background utility classes to change the appearance of individual progress bars."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [25, 50, 75, 100][ix];
 							return new b.progress.container(
-								{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+								{
+									label: `${core.uppercaseFirst(i)} example`,
+									value: val,
+									min: 0,
+									max: 100,
+								},
 								new b.progress.bar({
 									color: i as I.B.Progress.Bar["color"],
 									style: { width: `${val}%` },
@@ -191,6 +257,7 @@ export const progress: IContent = {
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
@@ -209,15 +276,23 @@ export const progress: IContent = {
 					{ color: "info", callout: true },
 					"{{b::Accessibility tip:}} Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text) or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 				),
-				new e.text("If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{textColor}}, so the labels remain readable and have sufficient contrast."),
+				new e.text(
+					"If you’re adding labels to progress bars with a custom background color, make sure to also set an appropriate {{textColor}}, so the labels remain readable and have sufficient contrast."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [25, 50, 75, 100][ix];
 							let text = ["light", "dark", "dark", "light"][ix];
 							return new b.progress.container(
-								{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+								{
+									label: `${core.uppercaseFirst(i)} example`,
+									value: val,
+									min: 0,
+									max: 100,
+								},
 								new b.progress.bar(
 									{
 										color: i as I.B.Progress.Bar["color"],
@@ -233,6 +308,7 @@ export const progress: IContent = {
 				new e.text("Or without {{b.progress.bar}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
@@ -248,14 +324,22 @@ export const progress: IContent = {
 						});
 					},
 				}),
-				new e.text("Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} property. Without {{b.progress.bar}} the {{textBgColor}} will be used."),
+				new e.text(
+					"Alternatively, you can use the new combined {{nav:docs/helpers/color_background::color and background}} property. Without {{b.progress.bar}} the {{textBgColor}} will be used."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [25, 50, 75, 100][ix];
 							return new b.progress.container(
-								{ label: `${core.uppercaseFirst(i)} example`, value: val, min: 0, max: 100 },
+								{
+									label: `${core.uppercaseFirst(i)} example`,
+									value: val,
+									min: 0,
+									max: 100,
+								},
 								new b.progress.bar(
 									{
 										textBgColor: i as I.B.Progress.Bar["textBgColor"],
@@ -277,6 +361,7 @@ export const progress: IContent = {
 					"You can include multiple progress components inside a container with {{B.progress.stacked}} to create a single stacked progress bar. Note that in this case, the styling to set the visual width of the progress bar must be applied to the {{b.progress.container}} component, rather than the {{b.progress.bar}}."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.stacked([
 							new b.progress.container(
@@ -314,6 +399,7 @@ export const progress: IContent = {
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.stacked([
 							new b.progress.container({
@@ -348,15 +434,20 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Striped"),
-				new e.text("Add {{striped:true}} to any {{b.progress.bar}} to apply a stripe via CSS gradient over the progress bar’s background color."),
+				new e.text(
+					"Add {{striped:true}} to any {{b.progress.bar}} to apply a stripe via CSS gradient over the progress bar’s background color."
+				),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
 							let val = [10, 25, 50, 75, 100][ix];
 							return new b.progress.container(
 								{
-									label: `${i ? core.uppercaseFirst(i) : "Default"} striped example`,
+									label: `${
+										i ? core.uppercaseFirst(i) : "Default"
+									} striped example`,
 									value: val,
 									min: 0,
 									max: 100,
@@ -372,6 +463,7 @@ export const progress: IContent = {
 				}),
 				new e.text("Or without {{b.progress.bar}}."),
 				new e.code({
+					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
@@ -393,8 +485,11 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.title("Animated stripes"),
-				new e.text("The striped gradient can also be animated. Add {{striped:true}} and {{animated:true}} togather to {{b.progress.bar}} to animate the stripes right to left via CSS3 animations."),
+				new e.text(
+					"The striped gradient can also be animated. Add {{striped:true}} and {{animated:true}} togather to {{b.progress.bar}} to animate the stripes right to left via CSS3 animations."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container(
 							{
@@ -414,6 +509,7 @@ export const progress: IContent = {
 				new e.text("Or without {{b.progress.bar}}."),
 
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.progress.container({
 							label: `Animated striped example`,
@@ -435,7 +531,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_progress.scss",
@@ -457,7 +555,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Sass variables"),
-				new e.text("As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."),
+				new e.text(
+					"As part of Bootstrap’s evolving CSS variables approach, progress bars now use local CSS variables on {{.progress}} for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
@@ -480,7 +580,9 @@ export const progress: IContent = {
 
 			new e.section([
 				new e.subtitle("Keyframes"),
-				new e.text("Used for creating the CSS animations for {{.progress-bar-animated}}. Included in {{scss/_progress-bar.scss}}."),
+				new e.text(
+					"Used for creating the CSS animations for {{.progress-bar-animated}}. Included in {{scss/_progress-bar.scss}}."
+				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_progress.scss",

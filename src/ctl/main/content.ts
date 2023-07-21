@@ -4,9 +4,12 @@ import * as e from "../example/_index.js";
 import { onBookmarkChange } from "./bookmark.js";
 import { getContent } from "./data.js";
 import { cookie } from "./cookie.js";
-import { pushState, replaceState } from "./history.js";
+import { addHistory } from "./history.js";
+import hljs from "highlight.js";
+import { DEFAULTDOCUMENT } from "./_db.js";
 
 export interface IContent {
+	usedb?: boolean;
 	loading?: boolean;
 
 	bookmark?: boolean;
@@ -19,8 +22,28 @@ export interface IContent {
 
 	description?: string;
 
-	item?: () => core.IElem;
+	item?: (db?: e.IBsExampleData[]) => core.IElem;
+	db?: e.IBsExampleData[];
 }
+
+let contentIndex: number = 0;
+export const resetContentIndex = () => {
+	contentIndex = 0;
+};
+
+export const getContentCode = (db?: e.IBsExampleData[]) => {
+	if (db && db.length > 0) {
+		if (contentIndex < db.length) {
+			contentIndex = contentIndex + 1;
+			return db[contentIndex - 1];
+		} else {
+			console.warn(`Invalid content code index`);
+			return undefined;
+		}
+	} else {
+		return undefined;
+	}
+};
 
 const setupIntro = (content?: IContent) => {
 	if (content) {
@@ -32,7 +55,10 @@ const setupIntro = (content?: IContent) => {
 					},
 					core.placeholder(1, 3)
 				),
-				new e.description({ loadingPlaceholderAnimation: "wave" }, core.placeholder(10, 15)),
+				new e.description(
+					{ loadingPlaceholderAnimation: "wave" },
+					core.placeholder(10, 15)
+				),
 			]);
 		} else {
 			return new h.div({ class: "bs-intro", paddingTop: 2, paddingStart: "lg-2" }, [
@@ -72,7 +98,7 @@ const setupContent = (content?: IContent) => {
 				class: "bs-content",
 				paddingStart: "lg-2",
 			},
-			content.item()
+			content.item(content.usedb ? content.db : undefined)
 		);
 	} else {
 		return "";
@@ -144,78 +170,19 @@ const focusToAnchor = (anchorId?: string) => {
 	}
 };
 
-const setupContentPlaceholder = (contentbody: Element) => {
-	if (!contentbody.classList.contains("loading")) {
-		contentbody.classList.add("loading");
-
-		let a = [
-			".page-title-text",
-			".example-description",
-			".example-text",
-			".example-ul li",
-			".example-ol li",
-			".example-alert .alert",
-			".example-item",
-			".example-table .table td",
-			".example-table .table th",
-			".example-code .example-preview-container",
-			".example-code .font-monospace small",
-			".example-preview.card .card-header a.font-monospace",
-			".example-preview.card .card-body pre",
-			".example-title",
-			".example-subtitle",
-			".example-xsubtitle",
-			".bs-toc ul li",
-			".bs-toc h5",
-		];
-
-		a.forEach((selector) => {
-			let m1: number = 10;
-			let m2: number = 20;
-			let m3: 1 | 2 | 3 | 4 | 5 | 6 = 1;
-			let m4: 1 | 2 | 3 | 4 | 5 | 6 = 6;
-
-			switch (selector) {
-				case ".example-table .table td":
-				case ".example-table .table th":
-				case ".bs-toc h5":
-				case ".bs-toc ul li":
-				case ".example-xsubtitle":
-				case ".example-subtitle":
-				case ".example-title":
-				case ".example-code .font-monospace small":
-				case ".example-preview.card .card-header a.font-monospace":
-				case ".page-title-text":
-					m1 = 3;
-					m2 = 3;
-					m3 = 1;
-					m4 = 4;
-					break;
-			}
-
-			let elem = contentbody.querySelectorAll(selector);
-			if (elem) {
-				elem.forEach((i) => {
-					core.appendChild(
-						i,
-						new h.div(
-							{
-								loadingPlaceholderAnimation: "wave",
-							},
-							core.placeholder(m1, m2, m3, m4)
-						)
-					);
-				});
-			}
+const PR = {
+	prettyPrint: () => {
+		document.querySelectorAll("pre.example-preview code").forEach((el) => {
+			hljs.highlightElement(el as HTMLElement);
 		});
-	}
+	},
 };
 
-declare var PR: {
-	prettyPrint: () => void;
-};
-
-export const setupContentDocument = (value: string, state?: "push" | "replace", callback?: Function) => {
+export const setupContentDocument = (
+	value: string,
+	state?: "push" | "replace",
+	callback?: Function
+) => {
 	state ??= "push";
 
 	let docId: string = value;
@@ -223,48 +190,48 @@ export const setupContentDocument = (value: string, state?: "push" | "replace", 
 
 	if (value.indexOf("#") > -1) {
 		let tempValue = value.split("#");
-		docId = tempValue[0];
+		docId = tempValue[0] || DEFAULTDOCUMENT;
 		anchorId = tempValue[1];
 	}
 
 	let contentbody = document.getElementById("bs-main") as Element;
 
-	//set loading
-	setupContentPlaceholder(contentbody);
+	getContent(docId, (docData) => {
+		//keep current page in cookie
+		cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-	//show the loading before download new documentation
-	core.requestIdleCallback(() => {
-		getContent(docId, (docData) => {
-			//keep current page in cookie
-			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+		//remove active popup
+		core.removeAllActivePopup();
 
-			//remove active popup
-			core.removeAllActivePopup();
+		//generate content
+		contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
 
-			//generate content
-			contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
+		//setup state value
+		const currentStatePage = document.querySelector(
+			"h1.display-5.page-title-text"
+		)?.textContent;
+		const currentStatePageTitle = currentStatePage
+			? `${currentStatePage} · Bootstrap TS`
+			: "Bootstrap TS";
 
-			//rename page title
-			const pagetitle = document.querySelector("h1.display-5.page-title-text")?.textContent;
-			const strPagetitle = pagetitle ? `${pagetitle} · Bootstrap TS` : "Bootstrap TS";
-			document.title = strPagetitle;
+		document.title = currentStatePageTitle;
 
-			//set history
-			if (state === "push") {
-				pushState({ docId: docId, anchorId: anchorId, pagetitle: strPagetitle, value: value });
-			} else if (state === "replace") {
-				replaceState({ docId: docId, anchorId: anchorId, pagetitle: strPagetitle, value: value });
-			}
+		//set history
+		addHistory({
+			action: state,
+			docId: docId,
+			anchorId: anchorId,
+			pagetitle: currentStatePageTitle,
+		});
 
+		core.requestIdleCallback(() => {
 			focusToAnchor(anchorId);
 
-			core.requestIdleCallback(() => {
-				PR.prettyPrint();
+			PR.prettyPrint();
 
-				if (typeof callback === "function") {
-					callback();
-				}
-			}, 300);
-		});
-	}, 300);
+			if (typeof callback === "function") {
+				callback();
+			}
+		}, 300);
+	});
 };

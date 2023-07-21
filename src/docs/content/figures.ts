@@ -1,18 +1,24 @@
 import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const figures: IContent = {
 	title: "Figures",
-	description: "Documentation and examples for displaying related images and text with the figure component in Bootstrap.",
-	item: () => {
+	description:
+		"Documentation and examples for displaying related images and text with the figure component in Bootstrap.",
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
-				new e.text("Anytime you need to display a piece of content—like an image with an optional caption, consider using a {{<figure>}}."),
+				new e.text(
+					"Anytime you need to display a piece of content—like an image with an optional caption, consider using a {{<figure>}}."
+				),
 				new e.text(
 					"Use the included {{.figure}}, {{.figure-img}} and {{.figure-caption}} classes to provide some baseline styles for the HTML5 {{<figure>}} and {{<figcaption>}} elements. Images in figures have no explicit size, so be sure to add the {{.img-fluid}} class to your {{<img>}} to make it responsive."
 				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.figure.container([
 							new b.figure.img({
@@ -25,8 +31,11 @@ export const figures: IContent = {
 						]);
 					},
 				}),
-				new e.text("Aligning the figure’s caption is easy with Bootstrap {{nav:docs/utilities/text#text_alignment::text utilities}}."),
+				new e.text(
+					"Aligning the figure’s caption is easy with Bootstrap {{nav:docs/utilities/text#text_alignment::text utilities}}."
+				),
 				new e.code({
+					db: getContentCode(db),
 					output: () => {
 						return new b.figure.container([
 							new b.figure.img({
@@ -35,7 +44,10 @@ export const figures: IContent = {
 								src: "https://picsum.photos/seed/bsts_0/400/300.webp",
 								alt: "...",
 							}),
-							new b.figure.caption({ textAlign: "end" }, "A caption for the above image"),
+							new b.figure.caption(
+								{ textAlign: "end" },
+								"A caption for the above image"
+							),
 						]);
 					},
 				}),

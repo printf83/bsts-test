@@ -31,6 +31,3 @@ export const breadcrumbs = () => {
 export const buttons = () => {
 	return import("./buttons.js");
 };
-export const test = () => {
-	return import("./test.js");
-};

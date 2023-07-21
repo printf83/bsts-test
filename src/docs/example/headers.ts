@@ -1,9 +1,14 @@
 import { I, b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
-import { IContent } from "../../ctl/main/content.js";
+import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
-	c1: (arg: { icon: string; title: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
+	c1: (arg: {
+		icon: string;
+		title: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+	}) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -75,7 +80,13 @@ const ex = {
 			)
 		);
 	},
-	c3: (arg: { icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener }) => {
+	c3: (arg: {
+		icon: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+		onlogin?: EventListener;
+		onsignup?: EventListener;
+	}) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -120,12 +131,25 @@ const ex = {
 						},
 					}),
 
-					new h.div({ col: "md-3", textAlign: "end" }, [new b.button({ outline: true, marginEnd: 2, on: { click: arg.onlogin } }, "Login"), new b.button({ on: { click: arg.onsignup } }, "Sign-up")]),
+					new h.div({ col: "md-3", textAlign: "end" }, [
+						new b.button(
+							{ outline: true, marginEnd: 2, on: { click: arg.onlogin } },
+							"Login"
+						),
+						new b.button({ on: { click: arg.onsignup } }, "Sign-up"),
+					]),
 				]
 			)
 		);
 	},
-	c4: (arg: { icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener; onsearch?: EventListener }) => {
+	c4: (arg: {
+		icon: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+		onlogin?: EventListener;
+		onsignup?: EventListener;
+		onsearch?: EventListener;
+	}) => {
 		return new h.header(
 			{
 				padding: 3,
@@ -197,14 +221,24 @@ const ex = {
 								},
 								"Login"
 							),
-							new b.button({ color: "warning", on: { click: arg.onsignup } }, "Sign-up"),
+							new b.button(
+								{ color: "warning", on: { click: arg.onsignup } },
+								"Sign-up"
+							),
 						]),
 					]
 				)
 			)
 		);
 	},
-	c5: (arg: { img: string; icon: string; link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener; menu?: core.IElem; onsearch?: EventListener }) => {
+	c5: (arg: {
+		img: string;
+		icon: string;
+		link?: I.B.Nav.Header.Link[];
+		onlinkchange?: EventListener;
+		menu?: core.IElem;
+		onsearch?: EventListener;
+	}) => {
 		return new h.header(
 			{
 				padding: 3,
@@ -294,7 +328,14 @@ const ex = {
 			)
 		);
 	},
-	c6Header: (arg: { img: string; icon: string; link?: core.IElem; menu?: core.IElem; onsearch?: EventListener; onlinkchange?: EventListener }) => {
+	c6Header: (arg: {
+		img: string;
+		icon: string;
+		link?: core.IElem;
+		menu?: core.IElem;
+		onsearch?: EventListener;
+		onlinkchange?: EventListener;
+	}) => {
 		return new h.header(
 			{
 				paddingY: 3,
@@ -374,13 +415,35 @@ const ex = {
 	c6Body: (arg: { side?: core.IElem; main?: core.IElem }) => {
 		return new h.div(
 			{ container: "fluid", paddingBottom: 3 },
-			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.side ? arg.side : ""), new h.div({ bgColor: "body-tertiary", border: true, rounded: 3 }, arg.main ? arg.main : "")])
+			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [
+				new h.div(
+					{ bgColor: "body-tertiary", border: true, rounded: 3 },
+					arg.side ? arg.side : ""
+				),
+				new h.div(
+					{ bgColor: "body-tertiary", border: true, rounded: 3 },
+					arg.main ? arg.main : ""
+				),
+			])
 		);
 	},
-	c6: (arg: { img: string; icon: string; link?: core.IElem; menu?: core.IElem; onsearch?: EventListener; onlinkchange?: EventListener; side?: core.IElem; main?: core.IElem }) => {
+	c6: (arg: {
+		img: string;
+		icon: string;
+		link?: core.IElem;
+		menu?: core.IElem;
+		onsearch?: EventListener;
+		onlinkchange?: EventListener;
+		side?: core.IElem;
+		main?: core.IElem;
+	}) => {
 		return [ex.c6Header(arg), ex.c6Body(arg)];
 	},
-	c7Nav: (arg: { startMenu?: I.B.Nav.Header.Link[]; endMenu?: I.B.Nav.Header.Link[]; onstarmenuchange?: EventListener }) => {
+	c7Nav: (arg: {
+		startMenu?: I.B.Nav.Header.Link[];
+		endMenu?: I.B.Nav.Header.Link[];
+		onstarmenuchange?: EventListener;
+	}) => {
 		return new h.nav(
 			{ paddingY: 2, bgColor: "body-secondary", border: "bottom" },
 			new h.div(
@@ -416,40 +479,50 @@ const ex = {
 	c7Header: (arg: { icon: string; title: string; onsearch?: EventListener }) => {
 		return new h.header(
 			{ paddingY: 3, marginBottom: 4, border: "bottom" },
-			new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
-				new h.a(
-					{
-						href: "#",
-						display: "flex",
-						alignItem: "center",
-						marginBottom: [3, "lg-0"],
-						marginEnd: "lg-auto",
-						linkColor: "body-emphasis",
-						textDecoration: "none",
-					},
-					new b.caption(
+			new h.div(
+				{ container: true, display: "flex", flex: "wrap", justifyContent: "center" },
+				[
+					new h.a(
 						{
-							icon: new b.icon({ id: arg.icon }),
-							fontSize: 4,
+							href: "#",
+							display: "flex",
+							alignItem: "center",
+							marginBottom: [3, "lg-0"],
+							marginEnd: "lg-auto",
+							linkColor: "body-emphasis",
+							textDecoration: "none",
 						},
-						arg.title
-					)
-				),
-				new h.form(
-					{
-						col: [12, "lg-auto"],
-						marginBottom: [3, "lg-0"],
-						role: "search",
-						on: {
-							submit: arg.onsearch ? arg.onsearch : undefined,
+						new b.caption(
+							{
+								icon: new b.icon({ id: arg.icon }),
+								fontSize: 4,
+							},
+							arg.title
+						)
+					),
+					new h.form(
+						{
+							col: [12, "lg-auto"],
+							marginBottom: [3, "lg-0"],
+							role: "search",
+							on: {
+								submit: arg.onsearch ? arg.onsearch : undefined,
+							},
 						},
-					},
-					new b.input({ type: "search", placeholder: "Search..." })
-				),
-			])
+						new b.input({ type: "search", placeholder: "Search..." })
+					),
+				]
+			)
 		);
 	},
-	c8: (arg: { icon: string; link: { href: string; icon: string; label: string; active?: boolean }[]; onlinkchange?: EventListener; onlogin?: EventListener; onsignup?: EventListener; onsearch?: EventListener }) => {
+	c8: (arg: {
+		icon: string;
+		link: { href: string; icon: string; label: string; active?: boolean }[];
+		onlinkchange?: EventListener;
+		onlogin?: EventListener;
+		onsignup?: EventListener;
+		onsearch?: EventListener;
+	}) => {
 		return new h.header([
 			new h.div(
 				{ paddingX: 3, paddingY: 2, textBgColor: "dark", theme: "dark" },
@@ -510,31 +583,41 @@ const ex = {
 			),
 			new h.div(
 				{ paddingX: 3, paddingY: 2, border: "bottom", marginBottom: 3 },
-				new h.div({ container: true, display: "flex", flex: "wrap", justifyContent: "center" }, [
-					new h.form(
-						{
-							col: [12, "lg-auto"],
-							marginBottom: [2, "lg-0"],
-							marginEnd: "lg-auto",
-							role: "search",
-							on: {
-								submit: arg.onsearch ? arg.onsearch : undefined,
-							},
-						},
-						new b.input({ type: "search", label: "Search", placeholder: "Search..." })
-					),
-					new h.div({ textAlign: "end" }, [
-						new b.button(
+				new h.div(
+					{ container: true, display: "flex", flex: "wrap", justifyContent: "center" },
+					[
+						new h.form(
 							{
-								color: "light",
-								marginEnd: 2,
-								on: { click: arg.onlogin },
+								col: [12, "lg-auto"],
+								marginBottom: [2, "lg-0"],
+								marginEnd: "lg-auto",
+								role: "search",
+								on: {
+									submit: arg.onsearch ? arg.onsearch : undefined,
+								},
 							},
-							"Login"
+							new b.input({
+								type: "search",
+								label: "Search",
+								placeholder: "Search...",
+							})
 						),
-						new b.button({ color: "primary", on: { click: arg.onsignup } }, "Sign-up"),
-					]),
-				])
+						new h.div({ textAlign: "end" }, [
+							new b.button(
+								{
+									color: "light",
+									marginEnd: 2,
+									on: { click: arg.onlogin },
+								},
+								"Login"
+							),
+							new b.button(
+								{ color: "primary", on: { click: arg.onsignup } },
+								"Sign-up"
+							),
+						]),
+					]
+				)
 			),
 		]);
 	},
@@ -543,11 +626,14 @@ const ex = {
 export const headers: IContent = {
 	title: "Headers",
 	description: "Display your branding, navigation, search, and more with these header components",
-	item: () => {
+	item: (db?: e.IBsExampleData[]) => {
+		resetContentIndex();
+
 		return [
 			new e.section([
 				new e.title("Example header 1"),
 				new e.code({
+					db: getContentCode(db),
 					showViewport: true,
 					showConsole: true,
 					previewAttr: { padding: 0 },
@@ -586,6 +672,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 2"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					previewAttr: { padding: 0 },
 					extention: [{ name: "COMPONENT", rename: "ex.c2", output: ex.c2 }],
@@ -621,6 +708,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 3"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -668,6 +756,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 4"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { bgColor: "dark", padding: 0 },
@@ -709,15 +798,17 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 						});
 					},
@@ -729,6 +820,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 5"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -743,7 +835,13 @@ export const headers: IContent = {
 								{ href: "#", elem: "Customers" },
 								{ href: "#", elem: "Products" },
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -762,15 +860,17 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 						});
 					},
@@ -782,6 +882,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 6"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -796,7 +897,10 @@ export const headers: IContent = {
 							img: "https://picsum.photos/seed/bsts_0/32/32.webp",
 							icon: "hexagon-fill",
 							link: [
-								new b.dropdown.item({ href: "#", active: true, handleActive: true }, "Overview"),
+								new b.dropdown.item(
+									{ href: "#", active: true, handleActive: true },
+									"Overview"
+								),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Inventory"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Customers"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Products"),
@@ -804,7 +908,13 @@ export const headers: IContent = {
 								new b.dropdown.item({ href: "#", handleActive: true }, "Reports"),
 								new b.dropdown.item({ href: "#", handleActive: true }, "Analytics"),
 							],
-							menu: [new b.dropdown.item({ href: "#" }, "New project..."), new b.dropdown.item({ href: "#" }, "Setting"), new b.dropdown.item({ href: "#" }, "Profile"), new b.dropdown.divider(), new b.dropdown.item({ href: "#" }, "Sign out")],
+							menu: [
+								new b.dropdown.item({ href: "#" }, "New project..."),
+								new b.dropdown.item({ href: "#" }, "Setting"),
+								new b.dropdown.item({ href: "#" }, "Profile"),
+								new b.dropdown.divider(),
+								new b.dropdown.item({ href: "#" }, "Sign out"),
+							],
 							onlinkchange: (event) => {
 								const target = event.target as Element;
 								const detail = (event as CustomEvent).detail;
@@ -823,15 +933,17 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 							side: new h.div({ padding: 2, style: { height: "200px" } }, "@side"),
 							main: new h.div({ padding: 2, style: { height: "200px" } }, "@main"),
@@ -845,6 +957,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 7"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0 },
@@ -881,7 +994,12 @@ export const headers: IContent = {
 											click: (event) => {
 												//do login
 												const target = event.target as Element;
-												e.console(target, "login", core.elemInfo(target), "secondary");
+												e.console(
+													target,
+													"login",
+													core.elemInfo(target),
+													"secondary"
+												);
 											},
 										},
 										elem: "Login",
@@ -891,7 +1009,12 @@ export const headers: IContent = {
 											click: (event) => {
 												//do signup
 												const target = event.target as Element;
-												e.console(target, "signup", core.elemInfo(target), "secondary");
+												e.console(
+													target,
+													"signup",
+													core.elemInfo(target),
+													"secondary"
+												);
 											},
 										},
 										elem: "Sign up",
@@ -906,15 +1029,18 @@ export const headers: IContent = {
 									event.preventDefault();
 									const target = event.target as Element;
 									const input = target.getElementsByTagName("input")[0];
-									e.console(
-										target,
-										"onsearch",
-										{
-											input: core.elemInfo(input),
-											value: input.value,
-										},
-										"success"
-									);
+
+									if (input) {
+										e.console(
+											target,
+											"onsearch",
+											{
+												input: core.elemInfo(input),
+												value: input.value,
+											},
+											"success"
+										);
+									}
 								},
 							}),
 						];
@@ -927,6 +1053,7 @@ export const headers: IContent = {
 			new e.section([
 				new e.title("Example header 8"),
 				new e.code({
+					db: getContentCode(db),
 					showConsole: true,
 					showViewport: true,
 					previewAttr: { padding: 0, overflow: "hidden" },
@@ -990,15 +1117,18 @@ export const headers: IContent = {
 								event.preventDefault();
 								const target = event.target as Element;
 								const input = target.getElementsByTagName("input")[0];
-								e.console(
-									target,
-									"onsearch",
-									{
-										input: core.elemInfo(input),
-										value: input.value,
-									},
-									"success"
-								);
+
+								if (input) {
+									e.console(
+										target,
+										"onsearch",
+										{
+											input: core.elemInfo(input),
+											value: input.value,
+										},
+										"success"
+									);
+								}
 							},
 						});
 					},

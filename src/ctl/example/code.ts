@@ -1,25 +1,50 @@
 import { b, h, t, core } from "@printf83/bsts";
 import { preview } from "./preview.js";
-import { ICodePen, codeBeautify, codePen, getCSSBaseOnSource, getRootBaseOnSource, getLibBaseOnSource, replaceEConsole, replaceExtention } from "./_fn.js";
+import {
+	ICodePen,
+	codeBeautify,
+	codePen,
+	getCSSBaseOnSource,
+	getRootBaseOnSource,
+	getLibBaseOnSource,
+	replaceEConsole,
+	replaceExtention,
+	codeBeautifyMinify,
+} from "./_fn.js";
+import hljs from "highlight.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.2.11/+esm";
-const BSCDNCSS = ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"];
+const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.3.0/+esm";
+const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"];
+const BSCDNCSS = [
+	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
+];
 
-export interface IBsExampleExt {
+export interface ISourceDB {
+	source?: string;
+	manager?: string;
+	extention?: string[];
+}
+
+export interface IExtention {
 	name?: string;
 	rename?: string;
 	output?: Function;
 	strOutput?: string;
 }
 
-export interface IBsExampleContainer extends core.IAttr {
-	lib?: string | string[];
-	css?: string;
-	extention?: IBsExampleExt | IBsExampleExt[];
-	output?: Function;
-	manager?: Function;
+export interface ICode extends core.IAttr {
+	db?: ISourceDB;
+	strExtention?: string | string[];
 	strOutput?: string;
 	strManager?: string;
+
+	lib?: string | string[];
+	css?: string;
+	extention?: IExtention | IExtention[];
+	output?: Function;
+	manager?: Function;
+
 	scriptConverter?: Function;
 
 	showCodepen?: boolean;
@@ -35,17 +60,27 @@ export interface IBsExampleContainer extends core.IAttr {
 	zoom?: 25 | 50 | 75 | 100 | 125 | 150 | 200;
 }
 
-declare var PR: {
-	prettyPrint: () => void;
+const PR = {
+	prettyPrint: () => {
+		document.querySelectorAll("pre.example-preview code").forEach((el) => {
+			hljs.highlightElement(el as HTMLElement);
+		});
+	},
 };
 
 const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	autoPrettyPrint ??= true;
 
-	let html = target.closest(".example-code")?.getElementsByClassName("example-output")[0].innerHTML;
-	core.replaceChild(target, new preview({ type: "html" }, html ? html : ""));
+	let html = target
+		.closest(".example-code")
+		?.getElementsByClassName("example-output")[0]?.innerHTML;
 
-	if (autoPrettyPrint) {
+	core.replaceChild(
+		target,
+		new preview({ type: "html", marginX: 4, marginY: 3 }, html ? html : "")
+	);
+
+	if (html && autoPrettyPrint) {
 		core.requestIdleCallback(() => {
 			PR.prettyPrint();
 		}, 300);
@@ -109,15 +144,20 @@ function itemCodeCopy(e: Event) {
 					setTimeout(
 						(iconElem, preTag, nextListGroupItem) => {
 							preTag = nextListGroupItem.getElementsByTagName("pre");
-							const text = preTag[0].innerText;
-							navigator.clipboard.writeText(text).then(
-								() => {
-									successCopyCode(iconElem);
-								},
-								() => {
-									failCopyCode(iconElem);
-								}
-							);
+							const text = preTag[0]?.innerText;
+
+							if (text) {
+								navigator.clipboard.writeText(text).then(
+									() => {
+										successCopyCode(iconElem);
+									},
+									() => {
+										failCopyCode(iconElem);
+									}
+								);
+							} else {
+								failCopyCode(iconElem);
+							}
 						},
 						300,
 						iconElem,
@@ -125,16 +165,20 @@ function itemCodeCopy(e: Event) {
 						nextListGroupItem
 					);
 				} else {
-					const text = preTag[0].innerText;
+					const text = preTag[0]?.innerText;
 
-					navigator.clipboard.writeText(text).then(
-						() => {
-							successCopyCode(iconElem);
-						},
-						() => {
-							failCopyCode(iconElem);
-						}
-					);
+					if (text) {
+						navigator.clipboard.writeText(text).then(
+							() => {
+								successCopyCode(iconElem);
+							},
+							() => {
+								failCopyCode(iconElem);
+							}
+						);
+					} else {
+						failCopyCode(iconElem);
+					}
 				}
 			} catch (error) {
 				failCopyCode(iconElem);
@@ -179,9 +223,10 @@ function clearConsoleLog(e: Event) {
 		const nextListGroupItem = listGroupItem.nextElementSibling;
 		if (nextListGroupItem) {
 			const exampleConsole = nextListGroupItem.getElementsByClassName("example-console")[0];
-
-			while (exampleConsole.firstChild) {
-				exampleConsole.firstChild.remove();
+			if (exampleConsole) {
+				while (exampleConsole.firstChild) {
+					exampleConsole.firstChild.remove();
+				}
 			}
 
 			successClearConsoleLog(iconElem);
@@ -191,7 +236,12 @@ function clearConsoleLog(e: Event) {
 	return;
 }
 
-function addConsoleLog(elem: Element, title: string, msg: string, color?: core.bootstrapType.textColor) {
+function addConsoleLog(
+	elem: Element,
+	title: string,
+	msg: string,
+	color?: core.bootstrapType.textColor
+) {
 	const exampleConsole = elem.getElementsByClassName("example-console")[0];
 	if (exampleConsole) {
 		//add log
@@ -199,7 +249,11 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 		const hour = n.getHours();
 		const minute = n.getMinutes();
 		const second = n.getSeconds();
-		const strNow = `${(hour >= 12 ? hour - 12 : hour === 0 ? 12 : hour).toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
+		const strNow = `${(hour >= 12 ? hour - 12 : hour === 0 ? 12 : hour)
+			.toString()
+			.padStart(2, "0")}:${minute.toString().padStart(2, "0")}:${second
+			.toString()
+			.padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
 		core.prependChild(
 			exampleConsole,
 			new h.div(
@@ -210,7 +264,11 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 					gap: [0, "md-2"],
 					marginBottom: [3, "md-0"],
 				},
-				[new h.span({ textColor: "secondary", textWrap: false }, `[${strNow}]`), new h.span({ textColor: color }, `{{b::${title}}}`), new h.span(`${msg}`)]
+				[
+					new h.span({ textColor: "secondary", textWrap: false }, `[${strNow}]`),
+					new h.span({ textColor: color }, `{{b::${title}}}`),
+					new h.span(`${msg}`),
+				]
 			)
 		);
 
@@ -220,7 +278,9 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 			if (!listGroupItem.classList.contains("show")) {
 				const codeContainer = listGroupItem.closest(".example-code");
 				if (codeContainer) {
-					const noti = codeContainer.getElementsByClassName("example-console-notification")[0];
+					const noti = codeContainer.getElementsByClassName(
+						"example-console-notification"
+					)[0];
 					if (noti) {
 						const hash = core.UUID();
 
@@ -335,22 +395,34 @@ const itemCode = (arg: {
 											on: {
 												click: (e) => {
 													const target = e.target as Element;
-													const iconElem = target.closest(".bi") as Element;
-													const container = target.closest(".list-group-item")?.nextSibling as Element;
+													const iconElem = target.closest(
+														".bi"
+													) as Element;
+													const container = target.closest(
+														".list-group-item"
+													)?.nextSibling as Element;
 
 													container.setAttribute("data-loaded", "true");
 													getOutputHTML(container);
 
 													if (iconElem) {
-														iconElem.classList.remove("arrow-clockwise");
+														iconElem.classList.remove(
+															"arrow-clockwise"
+														);
 														iconElem.classList.add("bi-check2");
 														iconElem.classList.add("text-success");
 
 														setTimeout(
 															(iconElem) => {
-																iconElem.classList.remove("text-success");
-																iconElem.classList.remove("bi-check2");
-																iconElem.classList.add("arrow-clockwise");
+																iconElem.classList.remove(
+																	"text-success"
+																);
+																iconElem.classList.remove(
+																	"bi-check2"
+																);
+																iconElem.classList.add(
+																	"arrow-clockwise"
+																);
 															},
 															1000,
 															iconElem
@@ -431,7 +503,7 @@ const itemCode = (arg: {
 		new b.list.item(
 			{
 				bgColor: "body-tertiary",
-				paddingX: 4,
+				padding: 0,
 				class: [arg.collapseable ? "collapse" : undefined],
 				id: arg.collapseable ? id : undefined,
 				on: {
@@ -439,30 +511,40 @@ const itemCode = (arg: {
 						arg.islast && !arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									core.replaceChild(target, arg.elem);
+									core.requestIdleCallback(() => {
+										core.replaceChild(target, arg.elem);
+									}, 300);
 							  }
 							: !arg.islast && arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									getOutputHTML(target, false);
+									core.requestIdleCallback(() => {
+										getOutputHTML(target, false);
+									}, 300);
 							  }
 							: arg.islast && arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									getOutputHTML(target, false);
+									core.requestIdleCallback(() => {
+										getOutputHTML(target, false);
+									}, 300);
 							  }
 							: (e) => {
 									const target = e.target as Element;
-									core.replaceChild(target, arg.elem);
+									core.requestIdleCallback(() => {
+										core.replaceChild(target, arg.elem);
+									}, 300);
 							  },
 					"show.bs.collapse":
 						arg.islast && !arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove("rounded-bottom-2");
+									(
+										target.closest(".list-group-item")
+											?.previousSibling as Element
+									).classList.remove("rounded-bottom-2");
 
 									core.replaceChild(target, arg.elem);
-
 									core.requestIdleCallback(() => {
 										PR.prettyPrint();
 									}, 300);
@@ -475,7 +557,11 @@ const itemCode = (arg: {
 							: arg.islast && arg.allowrefresh
 							? (e) => {
 									const target = e.target as Element;
-									(target.closest(".list-group-item")?.previousSibling as Element).classList.remove("rounded-bottom-2");
+									(
+										target.closest(".list-group-item")
+											?.previousSibling as Element
+									).classList.remove("rounded-bottom-2");
+
 									getOutputHTML(target);
 							  }
 							: (e) => {
@@ -489,40 +575,105 @@ const itemCode = (arg: {
 					"hidden.bs.collapse": arg.islast
 						? (e) => {
 								const target = e.target as Element;
-								(target.closest(".list-group-item")?.previousSibling as Element).classList.add("rounded-bottom-2");
-								let preTag = target.getElementsByTagName("pre");
-								if (preTag && preTag.length > 0) {
-									preTag![0].remove();
-								}
+								(
+									target.closest(".list-group-item")?.previousSibling as Element
+								).classList.add("rounded-bottom-2");
+
+								setTimeout(
+									(target) => {
+										let preTag = target.getElementsByTagName("pre");
+										if (preTag && preTag.length > 0) {
+											core.replaceWith(
+												preTag[0] as Element,
+												new h.div(
+													{
+														class: "example-preview",
+														marginX: 4,
+														marginY: 3,
+													},
+													"Loading..."
+												)
+											);
+										}
+									},
+									300,
+									target
+								);
 						  }
 						: (e) => {
 								const target = e.target as Element;
-								let preTag = target.getElementsByTagName("pre");
-								if (preTag && preTag.length > 0) {
-									preTag![0].remove();
-								}
+
+								setTimeout(
+									(target) => {
+										let preTag = target.getElementsByTagName("pre");
+										if (preTag && preTag.length > 0) {
+											core.replaceWith(
+												preTag[0] as Element,
+												new h.div(
+													{
+														class: "example-preview",
+														marginX: 4,
+														marginY: 3,
+													},
+													"Loading..."
+												)
+											);
+										}
+									},
+									300,
+									target
+								);
 						  },
 				},
 			},
-			new h.div({ class: "example-preview" }, "Loading...")
+			new h.div({ class: "example-preview", marginX: 4, marginY: 3 }, "Loading...")
 		)
 	);
 
 	return res;
 };
 
-const itemOutput = (zoom: 25 | 50 | 75 | 100 | 125 | 150 | 200 | undefined, previewAttr: core.IAttr | undefined, outputAttr: core.IAttr | undefined, str: string) => {
+const itemOutput = (
+	zoom: 25 | 50 | 75 | 100 | 125 | 150 | 200 | undefined,
+	previewAttr: core.IAttr | undefined,
+	outputAttr: core.IAttr | undefined,
+	str: string
+) => {
 	if (previewAttr) {
 		if (outputAttr) {
-			return new b.list.item(core.mergeObject({ padding: 4 }, previewAttr), new h.div(core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr), str));
+			return new b.list.item(
+				core.mergeObject({ padding: 4 }, previewAttr),
+				new h.div(
+					core.mergeObject(
+						{ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] },
+						outputAttr
+					),
+					str
+				)
+			);
 		} else {
-			return new b.list.item(core.mergeObject({ padding: 4 }, previewAttr), new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str));
+			return new b.list.item(
+				core.mergeObject({ padding: 4 }, previewAttr),
+				new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str)
+			);
 		}
 	} else {
 		if (outputAttr) {
-			return new b.list.item({ padding: 4 }, new h.div(core.mergeObject({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, outputAttr), str));
+			return new b.list.item(
+				{ padding: 4 },
+				new h.div(
+					core.mergeObject(
+						{ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] },
+						outputAttr
+					),
+					str
+				)
+			);
 		} else {
-			return new b.list.item({ padding: 4 }, new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str));
+			return new b.list.item(
+				{ padding: 4 },
+				new h.div({ class: [`example-output`, zoom ? `zoom-${zoom}` : undefined] }, str)
+			);
 		}
 	}
 };
@@ -561,7 +712,16 @@ const itemConsole = () => {
 					new h.small("CONSOLE")
 				),
 
-				new h.div({ display: "flex" }, new h.div({ paddingTop: 2, paddingEnd: 2 }, new h.span({ class: "example-console-notification", textColor: "primary" }, b.icon.bi("asterisk")))),
+				new h.div(
+					{ display: "flex" },
+					new h.div(
+						{ paddingTop: 2, paddingEnd: 2 },
+						new h.span(
+							{ class: "example-console-notification", textColor: "primary" },
+							b.icon.bi("asterisk")
+						)
+					)
+				),
 
 				new h.div(
 					{ display: "flex" },
@@ -698,7 +858,9 @@ const itemZoom = (zoom: number) => {
 								on: {
 									click: (event) => {
 										const target = event.target as Element;
-										const exampleOutput = target.closest(".card")?.querySelector(".example-output");
+										const exampleOutput = target
+											.closest(".card")
+											?.querySelector(".example-output");
 										if (exampleOutput) {
 											const val = target.getAttribute("data-bs-zoom");
 											if (val) {
@@ -760,7 +922,14 @@ const itemZoom = (zoom: number) => {
 	);
 };
 
-const generateCodePenData = (strLib: string, strCode: string, strManager?: string, strExtention?: string[], strCSS?: string, strRoot?: string) => {
+const generateCodePenData = (
+	strLib: string,
+	strCode: string,
+	strManager?: string,
+	strExtention?: string[],
+	strCSS?: string,
+	strRoot?: string
+) => {
 	let strCodeResult = "";
 
 	if (strCode !== "") {
@@ -796,6 +965,7 @@ const generateCodePenData = (strLib: string, strCode: string, strManager?: strin
 		editors: "001",
 		layout: "top",
 
+		js_external: strCodeResult.indexOf("Chart(") > -1 ? BSCDNJS : undefined,
 		css_external: BSCDNCSS,
 		css: strCSS ? codeBeautify("css", strCSS) : undefined,
 		head: codeBeautify(
@@ -804,7 +974,10 @@ const generateCodePenData = (strLib: string, strCode: string, strManager?: strin
 			<meta name="viewport" content="width=device-width, initial-scale=1">`
 		),
 
-		html: codeBeautify("html", strRoot ? strRoot : `<div class="p-4"><div id="root"></div></div>`),
+		html: codeBeautify(
+			"html",
+			strRoot ? strRoot : `<div class="p-4"><div id="root"></div></div>`
+		),
 
 		js: codeBeautify("js", strCodeResult),
 	} satisfies ICodePen;
@@ -812,7 +985,7 @@ const generateCodePenData = (strLib: string, strCode: string, strManager?: strin
 	return result;
 };
 
-const convert = (attr: IBsExampleContainer) => {
+const convert = (attr: ICode) => {
 	let id = core.UUID();
 
 	attr.showOutput ??= true;
@@ -823,16 +996,42 @@ const convert = (attr: IBsExampleContainer) => {
 
 	attr.scriptConverter ??= (str: string) => {
 		return str
-			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_0__\./gm, "")
-			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_1__\./gm, "e.")
-			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_2__\[\"default\"\]\(/gm, "Chart(");
+			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
+			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
+			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
 	};
 
+	//setup strCode if db is provided
+	if (attr.db) {
+		if (attr.extention) {
+			if (!Array.isArray(attr.extention)) {
+				attr.extention = [attr.extention];
+			}
+
+			if (attr.db.extention && attr.db.extention.length === attr.extention.length) {
+				attr.extention = attr.extention.map((i, ix) => {
+					i.strOutput = attr.db?.extention ? attr.db?.extention[ix] : undefined;
+					return i;
+				});
+			}
+		}
+		attr.strManager = attr.db.manager;
+		attr.strOutput = attr.db.source;
+	}
+
+	//start create element
 	let e: t[] = [];
 
 	if (attr.output && attr.showOutput) {
 		if (attr.manager) {
-			e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, attr.manager(attr.output())));
+			e.push(
+				itemOutput(
+					attr.zoom,
+					attr.previewAttr,
+					attr.outputAttr,
+					attr.manager(attr.output())
+				)
+			);
 		} else {
 			e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, attr.output()));
 		}
@@ -856,7 +1055,7 @@ const convert = (attr: IBsExampleContainer) => {
 				header: e.length > 0,
 				allowrefresh: true,
 				title: "HTML",
-				elem: "Loading...",
+				elem: new h.div({ marginX: 4, marginY: 3 }, "Loading..."),
 			})
 		);
 	}
@@ -879,7 +1078,7 @@ const convert = (attr: IBsExampleContainer) => {
 			...itemCode({
 				header: e.length > 0,
 				title: "CSS",
-				elem: new preview({ type: "css" }, strCSS),
+				elem: new preview({ type: "css", marginX: 4, marginY: 3 }, strCSS),
 			})
 		);
 	} else {
@@ -889,7 +1088,7 @@ const convert = (attr: IBsExampleContainer) => {
 				...itemCode({
 					header: e.length > 0,
 					title: "CSS",
-					elem: new preview({ type: "css" }, strCSS),
+					elem: new preview({ type: "css", marginX: 4, marginY: 3 }, strCSS),
 				})
 			);
 		}
@@ -897,7 +1096,7 @@ const convert = (attr: IBsExampleContainer) => {
 
 	let renameExtention: { find: string; replace: string }[] = [];
 	if (attr.extention) {
-		let f: IBsExampleExt[] = [];
+		let f: IExtention[] = [];
 		if (Array.isArray(attr.extention)) {
 			f = attr.extention;
 		} else {
@@ -914,9 +1113,10 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	let strExtention: string[] = [];
+	let strExtentionDB: string[] = [];
 
 	if (attr.extention) {
-		let f: IBsExampleExt[] = [];
+		let f: IExtention[] = [];
 		if (Array.isArray(attr.extention)) {
 			f = attr.extention;
 		} else {
@@ -925,9 +1125,19 @@ const convert = (attr: IBsExampleContainer) => {
 
 		f.forEach((i) => {
 			if (i && i.name && (i.output || i.strOutput)) {
-				let strCode = i.strOutput ? i.strOutput : attr.scriptConverter ? attr.scriptConverter(i.output!.toString()) : i.output!.toString();
+				let strCode: string | undefined = undefined;
 
-				strCode = replaceExtention(renameExtention, strCode);
+				if (i.strOutput) {
+					strCode = i.strOutput;
+				} else {
+					strCode = attr.scriptConverter
+						? attr.scriptConverter(i.output!.toString())
+						: i.output!.toString();
+					strCode = replaceExtention(renameExtention, strCode);
+					if (!attr.db && strCode) {
+						strExtentionDB.push(codeBeautifyMinify("js", strCode));
+					}
+				}
 
 				strExtention.push(`
 						const ${i.name} = ${strCode};`);
@@ -936,7 +1146,7 @@ const convert = (attr: IBsExampleContainer) => {
 					...itemCode({
 						header: e.length > 0,
 						title: i.name,
-						elem: new preview({ type: i.strOutput ? "ts" : "js" }, strCode),
+						elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strCode!),
 					})
 				);
 			}
@@ -944,40 +1154,77 @@ const convert = (attr: IBsExampleContainer) => {
 	}
 
 	let strManager: string | undefined = undefined;
-	if ((attr.output || attr.strOutput) && attr.showScript && (attr.manager || attr.strManager) && attr.showManager) {
-		strManager = attr.strManager ? attr.strManager : attr.scriptConverter ? attr.scriptConverter(attr.manager!.toString()) : attr.manager!.toString();
-
-		strManager = replaceExtention(renameExtention, strManager);
+	if (
+		(attr.output || attr.strOutput) &&
+		attr.showScript &&
+		(attr.manager || attr.strManager) &&
+		attr.showManager
+	) {
+		if (attr.strManager) {
+			strManager = attr.strManager;
+		} else {
+			strManager = attr.scriptConverter
+				? attr.scriptConverter(attr.manager!.toString())
+				: attr.manager!.toString();
+			strManager = replaceExtention(renameExtention, strManager);
+		}
 
 		e.push(
 			...itemCode({
 				header: e.length > 0,
 				title: "MANAGER",
-				elem: new preview({ type: attr.strManager ? "ts" : "js" }, strManager!),
+				elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strManager!),
 			})
 		);
 	}
 
+	let strSource: string | undefined = undefined;
+	let strRoot: string | undefined = undefined;
+
 	if ((attr.output || attr.strOutput) && attr.showScript) {
-		let strSource = attr.strOutput ? attr.strOutput : attr.scriptConverter ? attr.scriptConverter(attr.output!.toString()) : attr.output!.toString();
+		strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
 
-		let strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
+		if (attr.strOutput) {
+			strSource = attr.strOutput;
+		} else {
+			strSource = attr.scriptConverter
+				? attr.scriptConverter(attr.output!.toString())
+				: attr.output!.toString();
+			strSource = replaceExtention(renameExtention, strSource);
+		}
 
-		strSource = replaceExtention(renameExtention, strSource);
+		if (strSource) {
+			e.push(
+				...itemCode({
+					islast: true,
+					header: e.length > 0,
+					title: "SOURCE",
+					elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strSource),
+					onedit: attr.showCodepen
+						? () => {
+								codePen(
+									generateCodePenData(
+										getLibBaseOnSource(strSource, strManager, strExtention),
+										strSource!,
+										strManager,
+										strExtention,
+										strCSS,
+										strRoot
+									)
+								);
+						  }
+						: undefined,
+				})
+			);
+		}
+	}
 
-		e.push(
-			...itemCode({
-				islast: true,
-				header: e.length > 0,
-				title: "SOURCE",
-				elem: new preview({ type: attr.strOutput ? "ts" : "js" }, strSource),
-				onedit: attr.showCodepen
-					? () => {
-							codePen(generateCodePenData(getLibBaseOnSource(strSource, strManager, strExtention), strSource, strManager, strExtention, strCSS, strRoot));
-					  }
-					: undefined,
-			})
-		);
+	if (!attr.db) {
+		core.dataManager.set(`code-${id}`, {
+			source: strSource ? codeBeautifyMinify("js", strSource) : undefined,
+			manager: strManager ? codeBeautifyMinify("js", strManager) : undefined,
+			extention: strExtentionDB && strExtentionDB.length > 0 ? strExtentionDB : undefined,
+		} satisfies ISourceDB);
 	}
 
 	attr.elem = [
@@ -995,14 +1242,26 @@ const convert = (attr: IBsExampleContainer) => {
 									msg: string;
 									color?: core.bootstrapType.textColor;
 								}>;
-								addConsoleLog(ce.target as Element, ce.detail.title, ce.detail.msg, ce.detail.color);
+								addConsoleLog(
+									ce.target as Element,
+									ce.detail.title,
+									ce.detail.msg,
+									ce.detail.color
+								);
 						  }
 						: undefined,
+					destroy: (event: Event) => {
+						const target = event.currentTarget as Element;
+						const id = target.id;
+						core.dataManager.remove(`code-${id}`);
+					},
 				},
 			},
 			new b.card.body({ padding: 0 }, [new b.list.container(e)])
 		),
 	];
+
+	delete attr.db;
 
 	delete attr.lib;
 	delete attr.css;
@@ -1029,10 +1288,8 @@ const convert = (attr: IBsExampleContainer) => {
 
 export class code extends h.div {
 	constructor();
-	constructor(attr: IBsExampleContainer);
+	constructor(attr: ICode);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IBsExampleContainer>(convert, arg));
+		super(core.bsConsNoElemArg<ICode>(convert, arg));
 	}
 }
-
-export const Code = (Attr?: IBsExampleContainer) => core.genTagClass<code, IBsExampleContainer>(code, Attr);

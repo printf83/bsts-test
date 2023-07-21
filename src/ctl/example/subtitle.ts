@@ -1,4 +1,5 @@
 import { core, h as html, t, s } from "@printf83/bsts";
+import { anchorOnClick } from "./_fn.js";
 
 const genIDFromElem = (attr: core.IAttr) => {
 	if (!attr.id) {
@@ -37,6 +38,9 @@ const convert = (attr: core.IAttr) => {
 					class: "anchor-link",
 					href: `#${attr.id}`,
 					aria: { label: `Link to this section: ${strElem}` },
+					on: {
+						click: anchorOnClick,
+					},
 				},
 				""
 			)
@@ -59,6 +63,3 @@ export class subtitle extends html.h {
 		super(3, convert(core.bsConstArg("elem", arg)));
 	}
 }
-
-export const Subtitle = (AttrOrElem?: core.IAttr | core.IElem, Elem?: core.IElem) =>
-	core.genTagClass<subtitle, core.IAttr>(subtitle, AttrOrElem, Elem);
