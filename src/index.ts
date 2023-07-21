@@ -1,7 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import { cookie } from "./ctl/main/cookie.js";
 import * as e from "./ctl/example/_index.js";
-
 import { onBootswatchChange, getSavedBootswatch } from "./ctl/main/bootswatch.js";
 import { menuWithBookmark } from "./ctl/main/bookmark.js";
 import { getSavedTheme, onThemeChange, setupThemeChanges } from "./ctl/main/theme.js";
