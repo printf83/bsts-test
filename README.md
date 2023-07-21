@@ -19,3 +19,4 @@ core.documentReady(() => {
 ```
 
 Check [bsts on github](https://github.com/printf83/bsts) for framework source code
+Update : 21/07/2023
