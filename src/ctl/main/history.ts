@@ -1,4 +1,4 @@
-import { setupContentDocument } from "./content.js";
+import { focusToAnchor, setupContentDocument } from "./content.js";
 import { cookie } from "./cookie.js";
 import { highlightMenu } from "./menu.js";
 
@@ -47,13 +47,24 @@ export const setupOnHistoryChange = () => {
 	window.onpopstate = function (e) {
 		if (e.state) {
 			const state: IWindowState = e.state as IWindowState;
-			const currentDocId = cookie.get("current");
+			const currentDocId = cookie.get("current_page");
 
-			setupContentDocument(
-				`${state.docId}${state.anchorId ? "#" : ""}${state.anchorId ? state.anchorId : ""}`,
-				"replace"
-			);
-			highlightMenu(state.docId);
+			if (currentDocId === state.docId) {
+				if (state.anchorId) {
+					focusToAnchor(state.anchorId);
+				} else {
+					setupContentDocument(state.docId, false);
+					highlightMenu(state.docId);
+				}
+			} else {
+				setupContentDocument(
+					`${state.docId}${state.anchorId ? "#" : ""}${
+						state.anchorId ? state.anchorId : ""
+					}`,
+					false
+				);
+				highlightMenu(state.docId);
+			}
 		}
 	};
 };

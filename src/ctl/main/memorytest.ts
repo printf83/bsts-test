@@ -654,7 +654,7 @@ const startMemoryTest = (arg: {
 
 											core.requestIdleCallback(() => {
 												highlightMenu(docId);
-												setupContentDocument(docId, "push");
+												setupContentDocument(docId);
 											}, 300);
 										},
 									},

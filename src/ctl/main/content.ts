@@ -156,7 +156,7 @@ export const setupContentContainerItem = (content?: IContent) => {
 	return [setupIntro(content), setupTOC(content), setupContent(content)];
 };
 
-const focusToAnchor = (anchorId?: string) => {
+export const focusToAnchor = (anchorId?: string) => {
 	if (anchorId) {
 		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
 		if (anchorNode) {
@@ -180,10 +180,10 @@ const PR = {
 
 export const setupContentDocument = (
 	value: string,
-	state?: "push" | "replace",
+	addToHistory?: boolean,
 	callback?: Function
 ) => {
-	state ??= "push";
+	addToHistory ??= true;
 
 	let docId: string = value;
 	let anchorId: string | undefined;
@@ -217,12 +217,14 @@ export const setupContentDocument = (
 		document.title = currentStatePageTitle;
 
 		//set history
-		addHistory({
-			action: state,
-			docId: docId,
-			anchorId: anchorId,
-			pagetitle: currentStatePageTitle,
-		});
+		if (addToHistory) {
+			addHistory({
+				action: "push",
+				docId: docId,
+				anchorId: anchorId,
+				pagetitle: currentStatePageTitle,
+			});
+		}
 
 		core.requestIdleCallback(() => {
 			focusToAnchor(anchorId);
