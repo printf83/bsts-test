@@ -145,6 +145,7 @@ export const menu: IMenu[] = [
 			{ label: "Badges", value: "docs/example/badges" },
 			{ label: "Breadcrumbs", value: "docs/example/breadcrumbs" },
 			{ label: "Buttons", value: "docs/example/buttons" },
+			{ label: "Jumbotrons", value: "docs/example/jumbotrons" },
 		],
 	},
 	{

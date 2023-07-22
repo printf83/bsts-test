@@ -95,6 +95,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.buttons);
 			});
 			break;
+		case "docs/example/jumbotrons":
+			example.jumbotrons().then((res) => {
+				callback(res.jumbotrons);
+			});
+			break;
 
 		//--------------------------
 		case "docs/customize/color":
