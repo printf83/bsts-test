@@ -3,7 +3,17 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 import * as e from "../../ctl/example/_index.js";
 import Chart from "chart.js/auto";
 
-const drawValuePlugin = (fontFamily: string | undefined, lineColor: string | undefined) => {
+const drawValuePlugin = (arg: {
+	fontFamily?: string;
+	fontSize?: number;
+	fonstSizeAdjustment?: number;
+	lineColor?: string;
+}) => {
+	arg.fonstSizeAdjustment ??= 0.35;
+	arg.fontFamily ??= "Arial";
+	arg.fontSize ??= 40;
+	arg.lineColor ??= core.getCSSVarHexColor("--bs-body");
+
 	return {
 		id: "bsts_draw_value",
 		afterDraw: (chart: Chart) => {
@@ -14,14 +24,14 @@ const drawValuePlugin = (fontFamily: string | undefined, lineColor: string | und
 			const x = w * 0.5;
 			const y = h * 0.5;
 
-			ctx.font = `40px ${fontFamily ? fontFamily : "Arial"}`;
+			ctx.font = `${arg.fontSize}px ${arg.fontFamily}`;
 			const approxFontHeight = parseInt(ctx.font);
-			ctx.fillStyle = lineColor ? lineColor : "";
+			ctx.fillStyle = arg.lineColor ? arg.lineColor : "#000";
 			ctx.textAlign = "center";
 			ctx.fillText(
 				`${chart.data.datasets[0]?.data[0]?.toString()}%`,
 				x,
-				y + approxFontHeight * 0.35
+				y + approxFontHeight * arg.fonstSizeAdjustment!
 			);
 		},
 	};
@@ -191,22 +201,19 @@ export const chart: IContent = {
 									{
 										textColor: "primary",
 										position: "absolute",
-										bottom: 0,
+										top: 50,
 										start: 50,
 										tMiddle: "x",
 										textAlign: "center",
-										marginBottom: 4,
 									},
 									[
-										new b.caption(
-											{
-												icon: new b.icon({
-													id: "device-hdd-fill",
-												}),
-												marginBottom: 4,
-											},
-											"Storage"
-										),
+										new b.caption({
+											icon: new b.icon({
+												id: "device-hdd-fill",
+												fontSize: 3,
+											}),
+											iconPosition: "bottom",
+										}),
 									]
 								),
 
@@ -232,7 +239,13 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [drawValuePlugin(fontFamily, lineColor)],
+												plugins: [
+													drawValuePlugin({
+														fontFamily,
+														lineColor,
+														fonstSizeAdjustment: -0.15,
+													}),
+												],
 												options: {
 													aspectRatio: 2,
 													cutout: "80%",
@@ -401,7 +414,13 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [drawValuePlugin(fontFamily, lineColor)],
+												plugins: [
+													drawValuePlugin({
+														fontFamily,
+														lineColor,
+														fontSize: 60,
+													}),
+												],
 												options: {
 													aspectRatio: 1.75,
 													cutout: "90%",
@@ -571,7 +590,9 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [drawValuePlugin(fontFamily, lineColor)],
+												plugins: [
+													drawValuePlugin({ fontFamily, lineColor }),
+												],
 												options: {
 													aspectRatio: 2,
 													cutout: "80%",

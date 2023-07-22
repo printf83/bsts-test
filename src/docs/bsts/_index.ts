@@ -4,8 +4,8 @@ export const animation = () => {
 export const transform = () => {
 	return import("./transform.js");
 };
-export const extended_color = () => {
-	return import("./extended_color.js");
+export const extended_prop = () => {
+	return import("./extended_prop.js");
 };
 export const chart = () => {
 	return import("./chart.js");

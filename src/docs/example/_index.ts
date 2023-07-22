@@ -31,3 +31,6 @@ export const breadcrumbs = () => {
 export const buttons = () => {
 	return import("./buttons.js");
 };
+export const jumbotrons = () => {
+	return import("./jumbotrons.js");
+};
