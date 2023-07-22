@@ -40,31 +40,40 @@ export const jumbotrons: IContent = {
 									},
 									"This is a custom jumbotron featuring an SVG image at the top, some longer text that wraps early thanks to a responsive {{.col-*}} class, and a customized call to action."
 								),
-								new h.div({ display: "inline-flex", gap: 2, marginBottom: 5 }, [
-									new b.button(
-										{
-											display: "inline-flex",
-											alignItem: "center",
-											weight: "lg",
-											rounded: "pill",
-										},
-										new b.caption(
-											{ icon: "arrow-right", iconPosition: "end" },
-											"Call to action"
-										)
-									),
-									new b.button(
-										{
-											display: "inline-flex",
-											alignItem: "center",
-											weight: "lg",
-											rounded: "pill",
-											outline: true,
-											color: "secondary",
-										},
-										"Secondary link"
-									),
-								]),
+								new h.div(
+									{
+										display: "inline-flex",
+										flex: "wrap",
+										justifyContent: "center",
+										gap: 2,
+										marginBottom: 5,
+									},
+									[
+										new b.button(
+											{
+												display: "inline-flex",
+												alignItem: "center",
+												weight: "lg",
+												rounded: "pill",
+											},
+											new b.caption(
+												{ icon: "arrow-right", iconPosition: "end" },
+												"Call to action"
+											)
+										),
+										new b.button(
+											{
+												display: "inline-flex",
+												alignItem: "center",
+												weight: "lg",
+												rounded: "pill",
+												outline: true,
+												color: "secondary",
+											},
+											"Secondary link"
+										),
+									]
+								),
 							]
 						);
 					},

@@ -23,9 +23,9 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.transform);
 			});
 			break;
-		case "docs/bsts/extended_color":
-			bsts.extended_color().then((res) => {
-				callback(res.extended_color);
+		case "docs/bsts/extended_prop":
+			bsts.extended_prop().then((res) => {
+				callback(res.extended_prop);
 			});
 			break;
 		case "docs/bsts/chart":

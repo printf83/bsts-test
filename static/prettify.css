@@ -9,6 +9,7 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
     color: var(--bs-body-color);
 }
 
+.hljs-string,
 .hljs-comment,
 .hljs-quote,
 .hljs-variable {
@@ -23,7 +24,6 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
     color: var(--bs-primary);
 }
 
-.hljs-string,
 .hljs-title,
 .hljs-section,
 .hljs-attribute,
