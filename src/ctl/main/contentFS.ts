@@ -7,43 +7,7 @@ import { cookie } from "./cookie.js";
 import { addHistory } from "./history.js";
 import hljs from "highlight.js";
 import { DEFAULTDOCUMENT } from "./_db.js";
-
-export interface IContent {
-	usedb?: boolean;
-	loading?: boolean;
-
-	bookmark?: boolean;
-	docId?: string;
-
-	title?: string;
-	sourceUrl?: string;
-	sourceWeb?: string;
-	addedVersion?: string;
-
-	description?: string;
-
-	item?: (db?: e.ISourceDB[]) => core.IElem;
-	db?: e.ISourceDB[];
-}
-
-let contentIndex: number = 0;
-export const resetContentIndex = () => {
-	contentIndex = 0;
-};
-
-export const getContentCode = (db?: e.ISourceDB[]) => {
-	if (db && db.length > 0) {
-		if (contentIndex < db.length) {
-			contentIndex = contentIndex + 1;
-			return db[contentIndex - 1];
-		} else {
-			console.warn(`Invalid content code index`);
-			return undefined;
-		}
-	} else {
-		return undefined;
-	}
-};
+import { IContent } from "./content.js";
 
 const setupIntro = (content?: IContent) => {
 	if (content) {
@@ -95,7 +59,7 @@ const setupContent = (content?: IContent) => {
 	if (content && content.item) {
 		return new h.div(
 			{
-				class: "bs-content",
+				class: "bs-content-fs",
 				paddingStart: "lg-2",
 			},
 			content.item(content.usedb ? content.db : undefined)
@@ -109,31 +73,31 @@ export const setupContentContainer = (content?: IContent) => {
 	return new h.main(
 		{
 			order: 1,
-			class: "bs-main",
-			id: "bs-main",
+			class: "bs-main-fs",
+			id: "bs-main-fs",
 			data: {
-				"bs-target": "#bs-toc",
+				"bs-target": "#bs-toc-fs",
 				"bs-smooth-scroll": "true",
 				"bs-root-margin": "0px 0px -40%",
 			},
 			tabindex: 0,
 			on: {
 				build: (_event) => {
-					const target = document.getElementById("bs-main");
+					const target = document.getElementById("bs-main-fs");
 
 					if (target) {
 						const id = core.UUID();
 						target.setAttribute("data-build-id", id);
 
 						core.requestIdleCallback(() => {
-							const target = document.getElementById("bs-main");
-							const bstoc = document.getElementById("bs-toc");
+							const target = document.getElementById("bs-main-fs");
+							const bstoc = document.getElementById("bs-toc-fs");
 
 							if (target && bstoc) {
 								if (target.getAttribute("data-build-id") === id) {
 									target.removeAttribute("data-build-id");
 									b.scrollspy.init(target, {
-										target: "#bs-toc",
+										target: "#bs-toc-fs",
 										smoothScroll: true,
 										rootMargin: "0px 0px -40%",
 									});
@@ -156,7 +120,7 @@ export const setupContentContainerItem = (content?: IContent) => {
 	return [setupIntro(content), setupTOC(content), setupContent(content)];
 };
 
-export const focusToAnchor = (anchorId?: string) => {
+export const focusToAnchorFS = (anchorId?: string) => {
 	if (anchorId) {
 		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
 		if (anchorNode) {
@@ -178,7 +142,7 @@ const PR = {
 	},
 };
 
-export const setupContentDocument = (
+export const setupContentDocumentFS = (
 	value: string,
 	addToHistory?: boolean,
 	callback?: Function
@@ -202,7 +166,7 @@ export const setupContentDocument = (
 		core.removeAllActivePopup();
 
 		//generate content
-		let contentbody = document.getElementById("bs-main") as Element;
+		let contentbody = document.getElementById("bs-main-fs") as Element;
 		contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
 
 		//setup state value
@@ -224,7 +188,7 @@ export const setupContentDocument = (
 		}
 
 		core.requestIdleCallback(() => {
-			focusToAnchor(anchorId);
+			focusToAnchorFS(anchorId);
 
 			PR.prettyPrint();
 

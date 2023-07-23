@@ -10,19 +10,34 @@ import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
 import { IMainContainer, container } from "./ctl/main/container.js";
 import { IContent, setupContentDocument } from "./ctl/main/content.js";
 import { setupOnHistoryChange } from "./ctl/main/history.js";
-import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
+import { DEFAULTDOCUMENT, isFullscreen } from "./ctl/main/_db.js";
+import { setupContentDocumentFS } from "./ctl/main/contentFS.js";
 
 const loadDefaultDoc = () => {
 	const { search, hash } = window.location;
 	if (search && search.startsWith("?d=")) {
 		let docId: string = search.slice(3);
 		let anchorId: string | undefined = hash.slice(1);
-
-		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, false);
-		highlightMenu(docId);
+		if (isFullscreen(docId)) {
+			setupContentDocumentFS(
+				`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`,
+				false
+			);
+		} else {
+			setupContentDocument(
+				`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`,
+				false
+			);
+			highlightMenu(docId);
+		}
 	} else {
-		setupContentDocument(cookie.get("current_page") || DEFAULTDOCUMENT, false);
-		highlightMenu(cookie.get("current_page") || DEFAULTDOCUMENT);
+		let docId = cookie.get("current_page") || DEFAULTDOCUMENT;
+		if (isFullscreen(docId)) {
+			setupContentDocumentFS(docId, false);
+		} else {
+			setupContentDocument(docId, false);
+			highlightMenu(docId);
+		}
 	}
 };
 
@@ -286,13 +301,17 @@ const mainContainer = () => {
 	});
 };
 
+const mainContainerFS = () => {
+	return new h.div({ id: "bs-main-root-fs" });
+};
+
 core.documentReady(() => {
 	onThemeChange(getSavedTheme());
 	onBootswatchChange(getSavedBootswatch());
 
 	core.requestIdleCallback(() => {
 		let body = document.getElementById("main") as Element;
-		core.replaceChild(body, mainContainer());
+		core.replaceChild(body, [mainContainer(), mainContainerFS()]);
 
 		core.requestIdleCallback(() => {
 			setupSearchShortcut();

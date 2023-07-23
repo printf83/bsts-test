@@ -2,8 +2,9 @@ import { b, core, h } from "@printf83/bsts";
 import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
-import { DEFAULTDOCUMENT, menu } from "./_db.js";
+import { DEFAULTDOCUMENT, isFullscreen, menu } from "./_db.js";
 import { setupContentContainerItem, setupContentDocument } from "./content.js";
+import { setupContentDocumentFS } from "./contentFS.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -307,9 +308,7 @@ const runMemoryTest = (
 				let contentbody = document.getElementById("bs-main") as Element;
 				contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
 				highlightMenu(docId);
-				const pagetitle = document.querySelector(
-					"h1.display-5.page-title-text"
-				)?.textContent;
+				const pagetitle = docData.title;
 
 				//get duplicate id
 				if (arg.checkduplicateid) {
@@ -653,8 +652,12 @@ const startMemoryTest = (arg: {
 											b.modal.hide(target);
 
 											core.requestIdleCallback(() => {
-												highlightMenu(docId);
-												setupContentDocument(docId);
+												if (isFullscreen(docId)) {
+													setupContentDocumentFS(docId);
+												} else {
+													setupContentDocument(docId);
+													highlightMenu(docId);
+												}
 											}, 300);
 										},
 									},

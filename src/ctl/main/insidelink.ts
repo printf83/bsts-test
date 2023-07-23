@@ -1,5 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
+import { isFullscreen } from "./_db.js";
+import { setupContentDocumentFS } from "./contentFS.js";
 
 export interface IInsideLink {
 	value: string;
@@ -19,7 +21,11 @@ const onInsideLinkClick = (value: string) => {
 		newActive.classList.add("active");
 	}
 
-	setupContentDocument(value);
+	if (isFullscreen(value)) {
+		setupContentDocumentFS(value);
+	} else {
+		setupContentDocument(value);
+	}
 };
 
 export const setupInsideLink = (

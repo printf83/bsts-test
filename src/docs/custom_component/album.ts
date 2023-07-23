@@ -1,3 +1,4 @@
+import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -9,8 +10,8 @@ export const album: IContent = {
 
 		return [
 			new e.section([
-				new e.title(""),
-				new e.text(""),
+				new e.title("Test title"),
+				new e.text("test text"),
 				new e.ul({
 					item: [
 						"aaaaaaaaaaaaaaaaaaaaaaaa",
@@ -19,11 +20,11 @@ export const album: IContent = {
 						"aaaaaaaaaaaaaaaaaaaaaaaa",
 					],
 				}),
-				new e.alert({ color: "info", callout: true }, ""),
+				new e.alert({ color: "info", callout: true }, "This is alert"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [];
+						return [new b.button("Hello world")];
 					},
 				}),
 			]),
@@ -31,45 +32,17 @@ export const album: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title(""),
-				new e.text(""),
+				new e.title("Test title 2"),
+				new e.text("test text 2"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [];
+						return [new b.button("Hello world2")];
 					},
 				}),
 			]),
 
 			//----------------------
-
-			new e.section([
-				new e.subtitle(""),
-				new e.text(""),
-				new e.codepreview({
-					type: "css",
-					code: `
-						`,
-				}),
-			]),
-
-			//----------------------
-
-			new e.section([new e.title("CSS"), new e.text("")]),
-
-			//----------------------
-
-			new e.section([
-				new e.subtitle("Sass variables"),
-				new e.text(""),
-				new e.codepreview({
-					type: "css",
-					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
-					code: `
-					`,
-				}),
-			]),
 		];
 	},
 };

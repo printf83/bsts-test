@@ -1,5 +1,6 @@
 import { I, b, core, h } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
+import { setupContentDocumentFS } from "./contentFS.js";
 
 export interface IMenu {
 	label: string;
@@ -10,6 +11,7 @@ export interface IMenu {
 export interface IMenuItem {
 	label: string;
 	value: string;
+	fullscreen?: boolean;
 }
 
 export const highlightMenu = (docId?: string) => {
@@ -53,6 +55,8 @@ export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
 					i.item.map((j) => {
 						let itemValue = j.value;
 						let itemLabel = j.label;
+						let itemFullscreen = j.fullscreen;
+
 						let active = itemValue === currentMenu ? true : false;
 
 						return new h.li(
@@ -65,6 +69,7 @@ export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
 									aria: { current: active ? "page" : undefined },
 									data: {
 										value: itemValue,
+										fullscreen: itemFullscreen,
 									},
 									on: {
 										click: (event) => {
@@ -72,9 +77,16 @@ export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
 											event.stopPropagation();
 											const target = event.target as Element;
 											const itemValue = target.getAttribute("data-value");
+											const itemFullscreen =
+												target.getAttribute("data-fullscreen");
+
 											if (itemValue) {
-												highlightMenu(itemValue);
-												setupContentDocument(itemValue);
+												if (itemFullscreen === "true") {
+													setupContentDocumentFS(itemValue);
+												} else {
+													highlightMenu(itemValue);
+													setupContentDocument(itemValue);
+												}
 											}
 										},
 									},

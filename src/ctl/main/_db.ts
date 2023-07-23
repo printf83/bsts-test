@@ -151,7 +151,7 @@ export const menu: IMenu[] = [
 	{
 		label: "Custom component",
 		icon: { id: "archive-fill", textColor: "secondary" },
-		item: [{ label: "Album", value: "docs/custom_component/album" }],
+		item: [{ label: "Album", value: "docs/custom_component/album", fullscreen: true }],
 	},
 	{
 		label: "More",
@@ -165,3 +165,28 @@ export const menu: IMenu[] = [
 		],
 	},
 ];
+
+export const isFullscreen = (docId: string) => {
+	let found = false;
+	let result = false;
+
+	for (let i = 0; i < menu.length; i++) {
+		const m = menu[i];
+		if (m?.item && m.item.length > 0) {
+			for (let j = 0; j < m.item.length; j++) {
+				const n = m.item[j];
+				if (n?.value === docId) {
+					found = true;
+					result = n.fullscreen ? n.fullscreen : false;
+					break;
+				}
+			}
+		}
+
+		if (found) {
+			break;
+		}
+	}
+
+	return result;
+};

@@ -2,7 +2,8 @@ import { b, h, core } from "@printf83/bsts";
 import { getContent } from "./data.js";
 import { IMenuItem, highlightMenu } from "./menu.js";
 import { setupContentDocument } from "./content.js";
-import { menu } from "./_db.js";
+import { isFullscreen, menu } from "./_db.js";
+import { setupContentDocumentFS } from "./contentFS.js";
 
 interface pageIndex {
 	category: string;
@@ -238,8 +239,12 @@ const searchIndexOnClick = (event: Event) => {
 			const pageId = listGroup.getAttribute("data-pageId");
 			const value = `${pageId}${sectionId ? "#" : ""}${sectionId}`;
 
-			highlightMenu(value);
-			setupContentDocument(value);
+			if (isFullscreen(value)) {
+				setupContentDocumentFS(value);
+			} else {
+				setupContentDocument(value);
+				highlightMenu(value);
+			}
 		}
 	}
 };
