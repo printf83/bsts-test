@@ -6,7 +6,7 @@ export const collapse: IContent = {
 	title: "Collapse",
 	description:
 		"Toggle the visibility of content across your project with a few classes and Bootstrap JavaScript plugins.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

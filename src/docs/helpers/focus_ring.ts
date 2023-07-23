@@ -6,7 +6,7 @@ export const focus_ring: IContent = {
 	title: "Focus ring",
 	description:
 		"Utility classes that allows you to add and modify custom focus ring styles to elements and components.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

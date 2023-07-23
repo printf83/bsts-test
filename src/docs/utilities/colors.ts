@@ -6,7 +6,7 @@ export const colors: IContent = {
 	title: "Colors",
 	description:
 		"Convey meaning through {{color}} with a handful of color utility classes. Includes support for styling links with hover states, too.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

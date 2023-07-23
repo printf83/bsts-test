@@ -5,7 +5,7 @@ import * as e from "../../ctl/example/_index.js";
 export const extended_prop: IContent = {
 	title: "Extended property",
 	description: "Extend some property to make it avilable on hover, focus and active",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

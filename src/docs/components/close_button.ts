@@ -5,7 +5,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 export const close_button: IContent = {
 	title: "Close button",
 	description: "A generic close button for dismissing content like modals and alerts.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

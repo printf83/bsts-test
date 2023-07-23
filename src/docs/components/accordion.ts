@@ -6,7 +6,7 @@ export const accordion: IContent = {
 	title: "Accordion",
 	description:
 		"Build vertically collapsing accordions in combination with Bootstrap Collapse JavaScript plugin.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

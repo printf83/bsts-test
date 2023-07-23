@@ -6,7 +6,7 @@ export const card: IContent = {
 	title: "Cards",
 	description:
 		"Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

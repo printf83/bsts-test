@@ -280,7 +280,7 @@ const ex = {
 export const heroes: IContent = {
 	title: "Heroes",
 	description: "Set the stage on your homepage with heroes that feature clear calls to action.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

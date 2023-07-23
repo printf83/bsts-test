@@ -6,7 +6,7 @@ export const spacing: IContent = {
 	title: "Spacing",
 	description:
 		"Bootstrap includes a wide range of shorthand responsive margin, padding, and gap utility classes to modify an element’s appearance.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -6,7 +6,7 @@ export const visibility: IContent = {
 	title: "Visibility",
 	description:
 		"Control the visibility of elements, without modifying their display, with visibility utilities.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -4,7 +4,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 export const _template: IContent = {
 	title: "",
 	description: "",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [
@@ -12,7 +12,12 @@ export const _template: IContent = {
 				new e.title(""),
 				new e.text(""),
 				new e.ul({
-					item: ["aaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaa"],
+					item: [
+						"aaaaaaaaaaaaaaaaaaaaaaaa",
+						"aaaaaaaaaaaaaaaaaaaaaaaa",
+						"aaaaaaaaaaaaaaaaaaaaaaaa",
+						"aaaaaaaaaaaaaaaaaaaaaaaa",
+					],
 				}),
 				new e.alert({ color: "info", callout: true }, ""),
 				new e.code({

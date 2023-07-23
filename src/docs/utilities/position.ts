@@ -6,7 +6,7 @@ export const position: IContent = {
 	title: "Position",
 	description:
 		"Use these shorthand utilities for quickly configuring the position of an element.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

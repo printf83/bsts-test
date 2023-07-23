@@ -5,7 +5,7 @@ import { b, h } from "@printf83/bsts";
 export const test: IContent = {
 	title: "Testing",
 	description: "This is testing page to test our library one by one",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

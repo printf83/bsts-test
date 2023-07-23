@@ -6,7 +6,7 @@ export const visually_hidden: IContent = {
 	title: "Visually hidden",
 	description:
 		"Use these helpers to visually hide elements but keep them accessible to assistive technologies.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

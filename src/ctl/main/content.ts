@@ -9,6 +9,8 @@ import hljs from "highlight.js";
 import { DEFAULTDOCUMENT } from "./_db.js";
 
 export interface IContent {
+	fullscreen?: boolean;
+
 	usedb?: boolean;
 	loading?: boolean;
 
@@ -22,8 +24,8 @@ export interface IContent {
 
 	description?: string;
 
-	item?: (db?: e.IBsExampleData[]) => core.IElem;
-	db?: e.IBsExampleData[];
+	item?: (db?: e.ISourceDB[]) => core.IElem;
+	db?: e.ISourceDB[];
 }
 
 let contentIndex: number = 0;
@@ -31,7 +33,7 @@ export const resetContentIndex = () => {
 	contentIndex = 0;
 };
 
-export const getContentCode = (db?: e.IBsExampleData[]) => {
+export const getContentCode = (db?: e.ISourceDB[]) => {
 	if (db && db.length > 0) {
 		if (contentIndex < db.length) {
 			contentIndex = contentIndex + 1;

@@ -220,7 +220,7 @@ const ex = {
 export const features: IContent = {
 	title: "Features",
 	description: "Explain the features, benefits, or other details in your marketing content.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

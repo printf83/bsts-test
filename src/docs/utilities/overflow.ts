@@ -6,7 +6,7 @@ export const overflow: IContent = {
 	title: "Overflow",
 	description:
 		"Use these shorthand utilities for quickly configuring how content overflows an element.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

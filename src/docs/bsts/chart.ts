@@ -95,7 +95,7 @@ const randomLineData = (id: string, chart?: Chart<"line", number[], any>) => {
 export const chart: IContent = {
 	title: "ChartJS",
 	description: "Example using bsts with Chart.js",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

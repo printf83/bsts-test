@@ -6,7 +6,7 @@ export const range: IContent = {
 	title: "Range",
 	description:
 		"Use Bootstrap custom range inputs for consistent cross-browser styling and built-in customization.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

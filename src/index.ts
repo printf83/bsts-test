@@ -54,7 +54,7 @@ const setupCopyDataManager = () => {
 					.map((i) => {
 						let id = `code-${i.id}`;
 						if (core.dataManager.exists(id)) {
-							let dmCode = core.dataManager.get(id) as e.IBsExampleData;
+							let dmCode = core.dataManager.get(id) as e.ISourceDB;
 							if (dmCode) {
 								let source = dmCode.source
 									? `source: \`${escapeBackQuote(dmCode.source)}\`,`

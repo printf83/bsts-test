@@ -5,7 +5,7 @@ import * as e from "../../ctl/example/_index.js";
 export const animation: IContent = {
 	title: "Animation",
 	description: "Add animation to element",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

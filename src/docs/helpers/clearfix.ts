@@ -6,7 +6,7 @@ export const clearfix: IContent = {
 	title: "Clearfix",
 	description:
 		"Quickly and easily clear floated content within a container by adding a clearfix utility.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

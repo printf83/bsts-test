@@ -6,7 +6,7 @@ export const alert: IContent = {
 	title: "Alert",
 	description:
 		"Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -6,7 +6,7 @@ export const gutters: IContent = {
 	title: "Gutters",
 	description:
 		"Gutters are the padding between your columns, used to responsively space and align content in the Bootstrap grid system.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -6,7 +6,7 @@ export const spinner: IContent = {
 	title: "Spinner",
 	description:
 		"Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

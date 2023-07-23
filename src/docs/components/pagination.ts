@@ -6,7 +6,7 @@ export const pagination: IContent = {
 	title: "Pagination",
 	description:
 		"Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

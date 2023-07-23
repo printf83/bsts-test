@@ -6,7 +6,7 @@ export const figures: IContent = {
 	title: "Figures",
 	description:
 		"Documentation and examples for displaying related images and text with the figure component in Bootstrap.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

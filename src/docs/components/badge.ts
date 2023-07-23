@@ -6,7 +6,7 @@ export const badge: IContent = {
 	title: "Badges",
 	description:
 		"Documentation and examples for badges, Bootstrap small count and labeling component.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

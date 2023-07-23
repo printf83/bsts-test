@@ -6,7 +6,7 @@ export const overview: IContent = {
 	title: "Forms",
 	description:
 		"Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [
