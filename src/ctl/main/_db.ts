@@ -149,8 +149,13 @@ export const menu: IMenu[] = [
 		],
 	},
 	{
+		label: "Custom component",
+		icon: { id: "archive-fill", textColor: "secondary" },
+		item: [{ label: "Album", value: "docs/custom_component/album" }],
+	},
+	{
 		label: "More",
-		icon: { id: "hexagon-fill", textColor: "secondary" },
+		icon: { id: "hexagon-fill", textColor: "primary" },
 		item: [
 			{ label: "Animation", value: "docs/bsts/animation" },
 			{ label: "Transform", value: "docs/bsts/transform" },

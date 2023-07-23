@@ -8,11 +8,21 @@ import * as layout from "./layout/_index.js";
 import * as customize from "./customize/_index.js";
 import * as example from "./example/_index.js";
 import * as bsts from "./bsts/_index.js";
+import * as custom_component from "./custom_component/_index.js";
 import { IContent } from "../ctl/main/content.js";
 
 export const doc = (value: string, callback: (result: IContent | null) => void) => {
 	switch (value) {
 		//--------------------------
+
+		case "docs/custom_component/album":
+			custom_component.album().then((res) => {
+				callback(res.album);
+			});
+			break;
+
+		//--------------------------
+
 		case "docs/bsts/animation":
 			bsts.animation().then((res) => {
 				callback(res.animation);
