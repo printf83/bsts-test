@@ -1,177 +1,296 @@
-import { b, h } from "@printf83/bsts";
+import { I, b, core, h } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
 
 export const pricing: IContent = {
 	fullscreen: true,
 	title: "Pricing",
 	item: () => {
-		const header = new h.header([
-			new b.collapse.container(
-				{ id: "navbarContent" },
-				new h.div(
-					{ theme: "dark", textBgColor: "dark" },
-					new h.div(
-						{ container: true },
-						new h.div({ row: true }, [
-							new h.div({ col: ["sm-8", "md-7"], paddingY: 4 }, [
-								new h.h(4, "About"),
-								new h.p(
-									{ textColor: "body-secondary" },
-									"Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information."
-								),
-							]),
-							new h.div({ col: "sm-4", offset: "md-1", paddingY: 4 }, [
-								new h.h(4, "Contact"),
-								new h.ul({
-									unstyle: true,
-									item: [
-										new h.a(
-											{ href: "#", textColor: "body-emphasis" },
-											"Follow on Twitter"
-										),
-										new h.a(
-											{ href: "#", textColor: "body-emphasis" },
-											"Like on Facebook"
-										),
-										new h.a(
-											{ href: "#", textColor: "body-emphasis" },
-											"Email me"
-										),
-									],
-								}),
-							]),
-						])
+		const header = new h.header(
+			{
+				display: "flex",
+				flex: "wrap",
+				justifyContent: "center",
+				paddingY: 3,
+				marginBottom: 4,
+				border: "bottom",
+				container: true,
+			},
+			[
+				new h.a(
+					{
+						href: "#",
+						display: "flex",
+						alignItem: "center",
+						marginBottom: [3, "md-0"],
+						marginEnd: "md-auto",
+						linkColor: "body-emphasis",
+						textDecoration: "none",
+					},
+					new b.caption(
+						{
+							icon: new b.icon({ id: "hexagon-fill", marginBottom: 0 }),
+							fontSize: 4,
+						},
+						"Pricing example"
 					)
-				)
-			),
-			new b.navbar.container(
-				{ theme: "dark", textBgColor: "dark" },
-				new b.navbar.innercontainer({ container: true }, [
-					new b.navbar.brand({ href: "#" }, new b.caption({ icon: "camera" }, "Album")),
-					new b.navbar.toggle.collapse({
-						target: "#navbarContent",
-						controlfor: "navbarContent",
-						label: "Toggle navigation",
-					}),
-				])
-			),
-		]);
+				),
+
+				new b.nav.header.container({
+					link: [
+						{ href: "#", textColor: "body", elem: "Features" },
+						{ href: "#", textColor: "body", elem: "Enterprise" },
+						{ href: "#", textColor: "body", elem: "Support" },
+						{ href: "#", textColor: "body", elem: "Pricing" },
+					],
+				}),
+			]
+		);
 
 		const jumbotron = new h.section(
-			{
-				bgColor: "body",
-			},
 			new h.div({ container: true, textAlign: "center", paddingX: 5 }, [
-				new h.h(
-					1,
-					{ textColor: "body-emphasis", marginTop: 4, fontDisplay: 3 },
-					"Album example"
-				),
+				new h.h(1, { textColor: "body-emphasis", marginTop: 4, fontDisplay: 3 }, "Pricing"),
 				new h.p(
 					{ lead: true },
-					"Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely."
-				),
-				new h.div(
-					{
-						display: "inline-flex",
-						flex: "wrap",
-						justifyContent: "center",
-						gap: 2,
-						marginBottom: 5,
-					},
-					[
-						new b.button("Main call to action"),
-						new b.button(
-							{
-								color: "secondary",
-							},
-							"Secondary action"
-						),
-					]
+					"Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization."
 				),
 			])
 		);
 
-		const thumbnail = (img: string) => {
+		const plan = (arg: {
+			name: string;
+			price: number;
+			item: core.IElem;
+			button: core.tag;
+			borderColor?: core.bootstrapType.borderColor;
+			headerColor?: core.bootstrapType.textBgColor;
+		}) => {
 			return new h.div(
 				{ col: true },
-				new b.card.container({ shadow: "sm" }, [
-					new b.card.img({ src: img, location: "top", alt: "Image" }),
-					new b.card.body([
-						new b.card.text(
-							"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-						),
-						new h.div(
-							{ display: "flex", justifyContent: "between", alignItem: "center" },
-							[
-								new b.btngroup([
-									new b.button(
-										{ weight: "sm", outline: true, color: "secondary" },
-										"View"
-									),
-									new b.button(
-										{ weight: "sm", outline: true, color: "secondary" },
-										"Edit"
-									),
-								]),
-								new h.small({ textColor: "body-secondary" }, "9 mins"),
-							]
-						),
-					]),
-				])
+				new b.card.container(
+					{
+						shadow: true,
+						textAlign: "center",
+						borderColor: arg.borderColor,
+					},
+					[
+						new b.card.header({ fontSize: 4, textBgColor: arg.headerColor }, arg.name),
+						new b.card.body([
+							new b.card.title({ fontDisplay: 5 }, [
+								`$${arg.price}`,
+								new h.small(
+									{ textColor: "body-secondary", fontWeight: "light" },
+									"/mo"
+								),
+							]),
+							new h.ul({
+								unstyle: true,
+								marginTop: 3,
+								marginBottom: 4,
+								item: arg.item,
+							}),
+
+							new h.div({ display: "grid" }, arg.button),
+						]),
+					]
+				)
 			);
 		};
 
-		const album = new h.main(
+		const plan_container = new h.main(
 			{
-				bgColor: "body-tertiary",
 				paddingY: 5,
 			},
 			new h.div(
 				{ container: true },
-				new h.div(
-					{ row: true, rowCol: ["1", "sm-2", "md-3"], gutter: 3 },
-					Array(12)
-						.fill("")
-						.map((_i, ix) => {
-							return thumbnail(`https://picsum.photos/seed/bsts_${ix}/210/210.webp`);
-						})
-				)
+				new h.div({ row: true, rowCol: ["1", "md-3"], gutter: 4 }, [
+					plan({
+						name: "Free",
+						price: 0,
+						item: [
+							"10 users included",
+							"2 GB of storage",
+							"Email support",
+							"Help center access",
+						],
+						button: new b.button({ outline: true, weight: "lg" }, "Sign up for free"),
+					}),
+					plan({
+						name: "Pro",
+						price: 15,
+						item: [
+							"20 users included",
+							"10 GB of storage",
+							"Priority email support",
+							"Help center access",
+						],
+						button: new b.button({ weight: "lg" }, "Get started"),
+						borderColor: "primary",
+					}),
+					plan({
+						name: "Enterprise",
+						price: 29,
+						item: [
+							"30 users included",
+							"15 GB of storage",
+							"Phone and email support",
+							"Help center access",
+						],
+						button: new b.button({ weight: "lg" }, "Contact us"),
+						borderColor: "primary",
+						headerColor: "primary",
+					}),
+				])
 			)
 		);
 
+		const check_icon = new b.icon({ id: "check2", fontSize: 4 });
+		const plan_compare = new h.section({ container: true }, [
+			new h.h(2, { fontDisplay: 6, textAlign: "center", marginBottom: 4 }, "Compare plans"),
+			new b.table.responsive(
+				new b.table.container(
+					{
+						textAlign: "center",
+					},
+					[
+						new b.table.thead(
+							new b.table.tr([
+								new b.table.th({ scope: "col", style: { width: "34%" } }, ""),
+								new b.table.th({ scope: "col", style: { width: "22%" } }, "Free"),
+								new b.table.th({ scope: "col", style: { width: "22%" } }, "Pro"),
+								new b.table.th(
+									{ scope: "col", style: { width: "22%" } },
+									"Enterprise"
+								),
+							])
+						),
+						new b.table.tbody([
+							new b.table.tr([
+								new b.table.th({ scope: "row", textAlign: "start" }, "Public"),
+								new b.table.td(check_icon),
+								new b.table.td(check_icon),
+								new b.table.td(check_icon),
+							]),
+							new b.table.tr([
+								new b.table.th({ scope: "row", textAlign: "start" }, "Private"),
+								new b.table.td(""),
+								new b.table.td(check_icon),
+								new b.table.td(check_icon),
+							]),
+							new b.table.tr([
+								new b.table.th({ scope: "row", textAlign: "start" }, "Permission"),
+								new b.table.td(check_icon),
+								new b.table.td(check_icon),
+								new b.table.td(check_icon),
+							]),
+							new b.table.tr([
+								new b.table.th({ scope: "row", textAlign: "start" }, "Sharing"),
+								new b.table.td(""),
+								new b.table.td(check_icon),
+								new b.table.td(check_icon),
+							]),
+							new b.table.tr([
+								new b.table.th(
+									{ scope: "row", textAlign: "start" },
+									"Unlimited members"
+								),
+								new b.table.td(""),
+								new b.table.td(check_icon),
+								new b.table.td(check_icon),
+							]),
+							new b.table.tr([
+								new b.table.th(
+									{ scope: "row", textAlign: "start" },
+									"Extra security"
+								),
+								new b.table.td(""),
+								new b.table.td(""),
+								new b.table.td(check_icon),
+							]),
+						]),
+					]
+				)
+			),
+		]);
+
+		const section = (arg: { title: string; link: I.B.Nav.Header.Link[] }) => {
+			return [
+				new h.h(5, arg.title),
+				new b.nav.header.container({
+					flex: "column",
+					elem: arg.link.map((i) => {
+						return new b.nav.header.item(
+							{ marginBottom: 2 },
+							new b.nav.header.link({
+								textColor: "secondary",
+								textColorHover: "primary-emphasis",
+								href: i.href,
+								elem: i.elem,
+								padding: 0,
+							})
+						);
+					}),
+				}),
+			];
+		};
+
 		const footer = new h.footer(
 			{
-				bgColor: "body",
-				textColor: "body-secondary",
-				paddingY: 5,
+				container: true,
 			},
-			new h.div({ container: true }, [
-				new h.p(
-					{ float: "end", marginBottom: 1 },
-					new h.a(
-						{
-							href: "#",
-							on: {
-								click: () => {
-									window.scrollTo(0, 0);
-								},
+			new h.div(
+				{ row: true, rowCol: [1, "sm-2", "md-5"], paddingY: 5, marginY: 5, border: "top" },
+				[
+					new h.div({ col: true, marginBottom: 3 }, [
+						new h.a(
+							{
+								href: "#",
+								display: "flex",
+								alignItem: "center",
+								marginBottom: 3,
+								textDecoration: "none",
 							},
-						},
-						"Back to top"
-					)
-				),
-				new h.p(
-					{ marginBottom: 1 },
-					"Album example is © Bootstrap, but please download and customize it for yourself!"
-				),
-				new h.p(
-					{ marginBottom: 0 },
-					"New to Bootstrap? {{nav:docs/gettingstarted/introduction::Visit the homepage}} or read our {{nav:docs/gettingstarted/introduction::getting started guide}}."
-				),
-			])
+							new b.icon({ id: "hexagon-fill", fontSize: 5, textColor: "body" })
+						),
+						new h.p({ textColor: "body-tertiary" }, "© 2017–2023"),
+					]),
+					...[
+						undefined,
+						section({
+							title: "Features",
+							link: [
+								{ href: "#", elem: "Cool stuff" },
+								{ href: "#", elem: "Random feature" },
+								{ href: "#", elem: "Team feature" },
+								{ href: "#", elem: "Stuff for developers" },
+								{ href: "#", elem: "Another one" },
+								{ href: "#", elem: "Last time" },
+							],
+						}),
+						section({
+							title: "Resources",
+							link: [
+								{ href: "#", elem: "Resource" },
+								{ href: "#", elem: "Resource name" },
+								{ href: "#", elem: "Another resource" },
+								{ href: "#", elem: "Final resource" },
+							],
+						}),
+						section({
+							title: "About",
+							link: [
+								{ href: "#", elem: "Team" },
+								{ href: "#", elem: "Locations" },
+								{ href: "#", elem: "Privacy" },
+								{ href: "#", elem: "Terms" },
+							],
+						}),
+					].map((i) => {
+						return new h.div({ col: true, marginBottom: 3 }, i);
+					}),
+				]
+			)
 		);
 
-		return [header, jumbotron, album, footer];
+		return [header, jumbotron, plan_container, plan_compare, footer];
 	},
 };
