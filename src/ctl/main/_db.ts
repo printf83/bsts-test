@@ -1,6 +1,7 @@
 import { IMenu } from "./menu.js";
 
 export const DEFAULTDOCUMENT = "docs/gettingstarted/introduction";
+export const CURRENTVERSION = "0.3.2";
 
 export const menu: IMenu[] = [
 	{
@@ -151,7 +152,10 @@ export const menu: IMenu[] = [
 	{
 		label: "Custom component",
 		icon: { id: "archive-fill", textColor: "secondary" },
-		item: [{ label: "Album", value: "docs/custom_component/album" }],
+		item: [
+			{ label: "Album", value: "docs/custom_component/album" },
+			{ label: "Pricing", value: "docs/custom_component/pricing" },
+		],
 	},
 	{
 		label: "More",

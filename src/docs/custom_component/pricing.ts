@@ -1,9 +1,9 @@
 import { b, h } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
 
-export const album: IContent = {
+export const pricing: IContent = {
 	fullscreen: true,
-	title: "Album",
+	title: "Pricing",
 	item: () => {
 		const header = new h.header([
 			new b.collapse.container(

@@ -20,6 +20,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.album);
 			});
 			break;
+		case "docs/custom_component/pricing":
+			custom_component.pricing().then((res) => {
+				callback(res.pricing);
+			});
+			break;
 
 		//--------------------------
 
