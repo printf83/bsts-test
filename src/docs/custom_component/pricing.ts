@@ -285,7 +285,7 @@ export const pricing: IContent = {
 							],
 						}),
 					].map((i) => {
-						return new h.div({ col: true, marginBottom: 3 }, i);
+						return new h.div({ col: true, marginBottom: 3 }, i ? i : "");
 					}),
 				]
 			)
