@@ -8,7 +8,7 @@ import { highlightMenu } from "./ctl/main/menu.js";
 import { setupSearchShortcut } from "./ctl/main/search.js";
 import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
 import { IMainContainer, container } from "./ctl/main/container.js";
-import { IContent, setupContentDocument } from "./ctl/main/content.js";
+import { setupContentDocument } from "./ctl/main/content.js";
 import { setupOnHistoryChange } from "./ctl/main/history.js";
 import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
 
