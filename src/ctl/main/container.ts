@@ -46,6 +46,9 @@ export interface IMainContainer extends core.IAttr {
 }
 
 const convert = (attr: IMainContainer) => {
+	attr.id ??= "bs-main-root";
+	attr.display ??= "none";
+
 	attr.class = core.mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
 		new b.navbar.containerHeader(

@@ -194,36 +194,36 @@ const mainContainer = () => {
 			{ value: "zephyr", label: "Zephyr" },
 		],
 		currentBootswatch: getSavedBootswatch(),
-		content: {
-			loading: true,
-			item: () => {
-				return Array(core.rndBetween(3, 10))
-					.fill("")
-					.map(() => {
-						return new e.section([
-							new e.title(
-								{ loadingPlaceholderAnimation: "wave" },
-								core.placeholder(3, 6, 1, 3)
-							),
-							...Array(core.rndBetween(1, 3))
-								.fill("")
-								.map(() => {
-									return new e.text(
-										{ loadingPlaceholderAnimation: "wave" },
-										core.placeholder(10, 20)
-									);
-								}),
-							new e.item(
-								new b.card.container(
-									{ style: { minHeight: "18rem" } },
-									new b.card.body("")
-								)
-							),
-						]);
-					})
-					.flat();
-			},
-		} as IContent,
+		// content: {
+		// 	loading: true,
+		// 	item: () => {
+		// 		return Array(core.rndBetween(3, 10))
+		// 			.fill("")
+		// 			.map(() => {
+		// 				return new e.section([
+		// 					new e.title(
+		// 						{ loadingPlaceholderAnimation: "wave" },
+		// 						core.placeholder(3, 6, 1, 3)
+		// 					),
+		// 					...Array(core.rndBetween(1, 3))
+		// 						.fill("")
+		// 						.map(() => {
+		// 							return new e.text(
+		// 								{ loadingPlaceholderAnimation: "wave" },
+		// 								core.placeholder(10, 20)
+		// 							);
+		// 						}),
+		// 					new e.item(
+		// 						new b.card.container(
+		// 							{ style: { minHeight: "18rem" } },
+		// 							new b.card.body("")
+		// 						)
+		// 					),
+		// 				]);
+		// 			})
+		// 			.flat();
+		// 	},
+		// } as IContent,
 		itemFooter: [
 			{
 				title: "Links",
@@ -287,7 +287,10 @@ const mainContainer = () => {
 };
 
 const mainContainerFS = () => {
-	return new h.div({ id: "bs-main-root-fs" });
+	return new h.div(
+		{ id: "bs-main-root-fs", class: "bs-main-root-fs", display: "none" },
+		new h.div({ id: "bs-main-fs", class: "bs-main-fs" })
+	);
 };
 
 core.documentReady(() => {

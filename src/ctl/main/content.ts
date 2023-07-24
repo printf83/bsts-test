@@ -197,42 +197,58 @@ export const setupContentDocument = (
 	}
 
 	getContent(docId, (docData) => {
-		//keep current page in cookie
-		cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+		if (docData) {
+			//keep current page in cookie
+			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-		//remove active popup
-		core.removeAllActivePopup();
+			//remove active popup
+			core.removeAllActivePopup();
 
-		//generate content
-		let contentbody = document.getElementById("bs-main") as Element;
-		contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
+			//generate content
+			let bsMainRoot = document.getElementById("bs-main-root") as Element;
+			let bsMainRootFS = document.getElementById("bs-main-root-fs") as Element;
 
-		//setup state value
-		const currentStatePage = docData.title;
-		const currentStatePageTitle = currentStatePage
-			? `${currentStatePage} · Bootstrap TS`
-			: "Bootstrap TS";
+			if (docData.fullscreen) {
+				let bsMainFS = document.getElementById("bs-main-fs") as Element;
 
-		document.title = currentStatePageTitle;
+				bsMainRoot.classList.add("d-none");
+				bsMainRootFS.classList.remove("d-none");
+				core.replaceChild(bsMainFS, docData.item ? docData.item() : "No data");
+			} else {
+				let bsMain = document.getElementById("bs-main") as Element;
 
-		//set history
-		if (addToHistory) {
-			addHistory({
-				action: "push",
-				docId: docId,
-				anchorId: anchorId,
-				pagetitle: currentStatePageTitle,
-			});
-		}
-
-		core.requestIdleCallback(() => {
-			focusToAnchor(anchorId);
-
-			PR.prettyPrint();
-
-			if (typeof callback === "function") {
-				callback();
+				bsMainRootFS.classList.add("d-none");
+				bsMainRoot.classList.remove("d-none");
+				core.replaceWith(bsMain, setupContentContainer(docData))!;
 			}
-		}, 300);
+
+			//setup state value
+			const currentStatePage = docData.title;
+			const currentStatePageTitle = currentStatePage
+				? `${currentStatePage} · Bootstrap TS`
+				: "Bootstrap TS";
+
+			document.title = currentStatePageTitle;
+
+			//set history
+			if (addToHistory) {
+				addHistory({
+					action: "push",
+					docId: docId,
+					anchorId: anchorId,
+					pagetitle: currentStatePageTitle,
+				});
+			}
+
+			core.requestIdleCallback(() => {
+				focusToAnchor(anchorId);
+
+				PR.prettyPrint();
+
+				if (typeof callback === "function") {
+					callback();
+				}
+			}, 300);
+		}
 	});
 };
