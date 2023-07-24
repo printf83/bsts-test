@@ -1,6 +1,5 @@
 import { I, b, core, h } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
-import { setupContentDocumentFS } from "./contentFS.js";
 
 export interface IMenu {
 	label: string;
@@ -77,16 +76,9 @@ export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
 											event.stopPropagation();
 											const target = event.target as Element;
 											const itemValue = target.getAttribute("data-value");
-											const itemFullscreen =
-												target.getAttribute("data-fullscreen");
-
 											if (itemValue) {
-												if (itemFullscreen === "true") {
-													setupContentDocumentFS(itemValue);
-												} else {
-													highlightMenu(itemValue);
-													setupContentDocument(itemValue);
-												}
+												setupContentDocument(itemValue);
+												highlightMenu(itemValue);
 											}
 										},
 									},

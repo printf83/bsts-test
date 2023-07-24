@@ -10,34 +10,19 @@ import { showMemoryTestDialog } from "./ctl/main/memorytest.js";
 import { IMainContainer, container } from "./ctl/main/container.js";
 import { IContent, setupContentDocument } from "./ctl/main/content.js";
 import { setupOnHistoryChange } from "./ctl/main/history.js";
-import { DEFAULTDOCUMENT, isFullscreen } from "./ctl/main/_db.js";
-import { setupContentDocumentFS } from "./ctl/main/contentFS.js";
+import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
 
 const loadDefaultDoc = () => {
 	const { search, hash } = window.location;
 	if (search && search.startsWith("?d=")) {
 		let docId: string = search.slice(3);
 		let anchorId: string | undefined = hash.slice(1);
-		if (isFullscreen(docId)) {
-			setupContentDocumentFS(
-				`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`,
-				false
-			);
-		} else {
-			setupContentDocument(
-				`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`,
-				false
-			);
-			highlightMenu(docId);
-		}
+		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, false);
+		highlightMenu(docId);
 	} else {
 		let docId = cookie.get("current_page") || DEFAULTDOCUMENT;
-		if (isFullscreen(docId)) {
-			setupContentDocumentFS(docId, false);
-		} else {
-			setupContentDocument(docId, false);
-			highlightMenu(docId);
-		}
+		setupContentDocument(docId, false);
+		highlightMenu(docId);
 	}
 };
 

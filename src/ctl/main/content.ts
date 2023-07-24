@@ -9,6 +9,8 @@ import hljs from "highlight.js";
 import { DEFAULTDOCUMENT } from "./_db.js";
 
 export interface IContent {
+	fullscreen?: boolean;
+
 	usedb?: boolean;
 	loading?: boolean;
 

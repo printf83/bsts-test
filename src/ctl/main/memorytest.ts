@@ -2,9 +2,8 @@ import { b, core, h } from "@printf83/bsts";
 import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
-import { DEFAULTDOCUMENT, isFullscreen, menu } from "./_db.js";
+import { DEFAULTDOCUMENT, menu } from "./_db.js";
 import { setupContentContainerItem, setupContentDocument } from "./content.js";
-import { setupContentDocumentFS } from "./contentFS.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -652,12 +651,8 @@ const startMemoryTest = (arg: {
 											b.modal.hide(target);
 
 											core.requestIdleCallback(() => {
-												if (isFullscreen(docId)) {
-													setupContentDocumentFS(docId);
-												} else {
-													setupContentDocument(docId);
-													highlightMenu(docId);
-												}
+												setupContentDocument(docId);
+												highlightMenu(docId);
 											}, 300);
 										},
 									},

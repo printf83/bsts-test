@@ -3,6 +3,7 @@ import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 export const album: IContent = {
+	fullscreen: true,
 	title: "Album",
 	description: "Fullscreen doc example",
 	item: (db?: e.ISourceDB[]) => {
