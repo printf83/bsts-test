@@ -291,106 +291,133 @@ const runMemoryTest = (
 		checkduplicateid?: boolean;
 		counttag?: boolean;
 		max?: number;
+		waitonesec?: boolean;
 	},
 	callback: (counter: number, docId: string) => void
 ) => {
 	arg.random ??= false;
+	arg.waitonesec ??= false;
 	arg.max ??= arg.count;
 
 	let mDB = docDB();
 	let docId = getDocId(arg.random, arg.max, arg.count, mDB);
 
 	if (arg.count > 0) {
-		core.requestIdleCallback(() => {
-			getContent(docId, (docData) => {
-				//add to page
-				let contentbody = document.getElementById("bs-main") as Element;
-				contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
-				highlightMenu(docId);
-				const pagetitle = docData.title;
+		getContent(docId, (docData) => {
+			//add to page
+			let contentbody = document.getElementById("bs-main") as Element;
+			contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
+			highlightMenu(docId);
+			const pagetitle = docData.title;
 
-				//get duplicate id
-				if (arg.checkduplicateid) {
-					const duplicateID = checkDuplicateID();
-					const duplicateIDCount = duplicateID.length;
-					if (duplicateIDCount > 0) {
-						console.warn(
-							`${pagetitle} have ${duplicateIDCount} duplicate key${
-								duplicateIDCount > 1 ? "s" : ""
-							}`,
-							duplicateID
-						);
-					}
-				}
-
-				let tagCount: number | undefined;
-				//count tag
-				if (arg.counttag) {
-					tagCount = contentbody.getElementsByTagName("*").length;
-					if (tagCount > MOSTTAG.count) {
-						MOSTTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
-						MOSTTAG.count = tagCount;
-					}
-
-					if (tagCount < LESSTAG.count) {
-						LESSTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
-						LESSTAG.count = tagCount;
-					}
-				}
-
-				//calculate data
-				const currentTime = performance.now();
-				const dataChart = currentTime - lastTestTime;
-				const dataCount = arg.max! - arg.count;
-				const dataProgress = (dataCount / arg.max!) * 100;
-				const dataCurrent = tagCount
-					? `${pagetitle ? pagetitle : "..."} (${tagCount} tag)`
-					: pagetitle;
-				let dataSpeed: number | undefined;
-				let dataTime: number | undefined;
-				if (currentTime > lastEstimateTest + 1000) {
-					lastEstimateTest = currentTime;
-					dataSpeed = ~~(((arg.max! - arg.count) / (currentTime - arg.startTime)) * 1000);
-					dataTime = ~~(
-						(((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) /
-						1000
+			//get duplicate id
+			if (arg.checkduplicateid) {
+				const duplicateID = checkDuplicateID();
+				const duplicateIDCount = duplicateID.length;
+				if (duplicateIDCount > 0) {
+					console.warn(
+						`${pagetitle} have ${duplicateIDCount} duplicate key${
+							duplicateIDCount > 1 ? "s" : ""
+						}`,
+						duplicateID
 					);
 				}
+			}
 
-				//keep speed result
-				addToSpeedDB(docId, pagetitle ? pagetitle : "...", dataChart);
+			let tagCount: number | undefined;
+			//count tag
+			if (arg.counttag) {
+				tagCount = contentbody.getElementsByTagName("*").length;
+				if (tagCount > MOSTTAG.count) {
+					MOSTTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+					MOSTTAG.count = tagCount;
+				}
 
-				if (
-					updateProgress({
-						testId: arg.testId,
-						chart: arg.chart,
-						chartData: dataChart,
-						count: dataCount,
-						progress: dataProgress,
-						current: dataCurrent,
-						speed: dataSpeed,
-						time: dataTime,
-					})
-				) {
-					lastTestTime = currentTime;
-					runMemoryTest(
-						{
-							startTime: arg.startTime,
-							chart: arg.chart,
-							testId: arg.testId,
-							count: arg.count - 1,
-							random: arg.random,
-							checkduplicateid: arg.checkduplicateid,
-							counttag: arg.counttag,
-							max: arg.max,
+				if (tagCount < LESSTAG.count) {
+					LESSTAG.title = pagetitle ? pagetitle : "Bootstrap TS";
+					LESSTAG.count = tagCount;
+				}
+			}
+
+			//calculate data
+			const currentTime = performance.now();
+			const dataChart = currentTime - lastTestTime;
+			const dataCount = arg.max! - arg.count;
+			const dataProgress = (dataCount / arg.max!) * 100;
+			const dataCurrent = tagCount
+				? `${pagetitle ? pagetitle : "..."} (${tagCount} tag)`
+				: pagetitle;
+			let dataSpeed: number | undefined;
+			let dataTime: number | undefined;
+			if (currentTime > lastEstimateTest + 1000) {
+				lastEstimateTest = currentTime;
+				dataSpeed = ~~(((arg.max! - arg.count) / (currentTime - arg.startTime)) * 1000);
+				dataTime = ~~(
+					(((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) /
+					1000
+				);
+			}
+
+			//keep speed result
+			addToSpeedDB(docId, pagetitle ? pagetitle : "...", dataChart);
+
+			if (
+				updateProgress({
+					testId: arg.testId,
+					chart: arg.chart,
+					chartData: dataChart,
+					count: dataCount,
+					progress: dataProgress,
+					current: dataCurrent,
+					speed: dataSpeed,
+					time: dataTime,
+				})
+			) {
+				lastTestTime = currentTime;
+
+				if (arg.waitonesec) {
+					setTimeout(
+						(arg) => {
+							runMemoryTest(
+								{
+									startTime: arg.startTime,
+									chart: arg.chart,
+									testId: arg.testId,
+									count: arg.count - 1,
+									random: arg.random,
+									checkduplicateid: arg.checkduplicateid,
+									counttag: arg.counttag,
+									max: arg.max,
+									waitonesec: arg.waitonesec,
+								},
+								callback
+							);
 						},
-						callback
+						1000,
+						arg
 					);
 				} else {
-					callback(arg.max! - arg.count, docId);
+					core.requestIdleCallback(() => {
+						runMemoryTest(
+							{
+								startTime: arg.startTime,
+								chart: arg.chart,
+								testId: arg.testId,
+								count: arg.count - 1,
+								random: arg.random,
+								checkduplicateid: arg.checkduplicateid,
+								counttag: arg.counttag,
+								max: arg.max,
+								waitonesec: arg.waitonesec,
+							},
+							callback
+						);
+					}, 300);
 				}
-			});
-		}, 300);
+			} else {
+				callback(arg.max! - arg.count, docId);
+			}
+		});
 	} else {
 		callback(arg.max! - arg.count, docId);
 	}
@@ -468,6 +495,7 @@ const startMemoryTest = (arg: {
 	checkduplicateid: boolean;
 	counttag: boolean;
 	showchart: boolean;
+	waitonesec: boolean;
 }) => {
 	const container = document.getElementById("memory-test-dialog");
 	if (container) {
@@ -503,6 +531,7 @@ const startMemoryTest = (arg: {
 				random: arg.random,
 				checkduplicateid: arg.checkduplicateid,
 				counttag: arg.counttag,
+				waitonesec: arg.waitonesec,
 			},
 			(docCount: number, docId: string) => {
 				const endTime = performance.now();
@@ -636,6 +665,7 @@ const startMemoryTest = (arg: {
 												counttag: arg.counttag,
 												random: arg.random,
 												showchart: arg.showchart,
+												waitonesec: arg.waitonesec,
 											});
 										},
 									},
@@ -724,6 +754,7 @@ const btnStartTest = (event: Event) => {
 	const counttag = (document.getElementById("memory-test-counttag") as HTMLInputElement).checked;
 	const showchart = (document.getElementById("memory-test-showchart") as HTMLInputElement)
 		.checked;
+	const waitonesec = (document.getElementById("memory-test-wait") as HTMLInputElement).checked;
 
 	if (downloadfirst) {
 		startDownloadResource(core.UUID(), showchart, () => {
@@ -734,6 +765,7 @@ const btnStartTest = (event: Event) => {
 				checkduplicateid: checkduplicateid,
 				counttag: counttag,
 				showchart: showchart,
+				waitonesec: waitonesec,
 			});
 		});
 	} else {
@@ -744,6 +776,7 @@ const btnStartTest = (event: Event) => {
 			checkduplicateid: checkduplicateid,
 			counttag: counttag,
 			showchart: showchart,
+			waitonesec: waitonesec,
 		});
 	}
 };
@@ -777,6 +810,13 @@ export const showMemoryTestDialog = () => {
 						label: "Random page",
 						checked: false,
 						id: "memory-test-random",
+					}),
+					b.form.check({
+						type: "checkbox",
+						switch: true,
+						label: "Wait 1 second for each page",
+						checked: false,
+						id: "memory-test-wait",
 					}),
 					b.form.check({
 						type: "checkbox",
