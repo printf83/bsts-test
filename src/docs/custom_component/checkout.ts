@@ -205,9 +205,29 @@ export const checkout: IContent = {
 			new h.section({ col: ["md-7", "lg-8"] }, billing_address),
 		]);
 
-		const footer = new h.footer({
-			container: true,
-		});
+		const footer = new h.footer(
+			{
+				paddingY: 3,
+				marginY: 4,
+			},
+			[
+				new h.div(
+					{ textAlign: "center", textColor: "body-tertiary" },
+					"© 2017–2023 Company Name"
+				),
+				new b.nav.header.container({
+					paddingBottom: 3,
+					marginBottom: 3,
+					justifyContent: "center",
+					textColor: "secondary",
+					link: [
+						{ href: "#", elem: "Privacy" },
+						{ href: "#", elem: "Terms" },
+						{ href: "#", elem: "Support" },
+					],
+				}),
+			]
+		);
 
 		return new h.div(
 			{ bgColor: "body-tertiary" },
