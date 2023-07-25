@@ -155,6 +155,7 @@ export const menu: IMenu[] = [
 		item: [
 			{ label: "Album", value: "docs/custom_component/album" },
 			{ label: "Pricing", value: "docs/custom_component/pricing" },
+			{ label: "Checkout", value: "docs/custom_component/checkout" },
 		],
 	},
 	{

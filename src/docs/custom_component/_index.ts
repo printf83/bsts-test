@@ -4,3 +4,6 @@ export const album = () => {
 export const pricing = () => {
 	return import("./pricing.js");
 };
+export const checkout = () => {
+	return import("./checkout.js");
+};

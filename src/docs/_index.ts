@@ -25,6 +25,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.pricing);
 			});
 			break;
+		case "docs/custom_component/checkout":
+			custom_component.checkout().then((res) => {
+				callback(res.checkout);
+			});
+			break;
 
 		//--------------------------
 
