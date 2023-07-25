@@ -17,11 +17,11 @@ const loadDefaultDoc = () => {
 	if (search && search.startsWith("?d=")) {
 		let docId: string = search.slice(3);
 		let anchorId: string | undefined = hash.slice(1);
-		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`, false);
+		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 		highlightMenu(docId);
 	} else {
 		let docId = cookie.get("current_page") || DEFAULTDOCUMENT;
-		setupContentDocument(docId, false);
+		setupContentDocument(docId);
 		highlightMenu(docId);
 	}
 };
