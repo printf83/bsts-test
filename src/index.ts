@@ -298,6 +298,8 @@ const mainContainerFS = () => {
 					padding: 2,
 					style: { width: "3rem", height: "3rem" },
 					shadow: true,
+					zIndex: 3,
+					weight: "lg",
 				},
 				new b.icon({ id: "list" })
 			)
@@ -307,8 +309,36 @@ const mainContainerFS = () => {
 				id: "bs-main-fs-modal",
 				weight: "lg",
 				scrollable: true,
+				fullscreen: "sm",
 			},
-			new b.modal.body(new e.codepreview({ id: "bs-main-fs-code" }))
+			[
+				new b.modal.header({ close: true }, "Source code"),
+				new b.modal.body([
+					new h.div(
+						{ textAlign: "end" },
+						new b.btngroup({ marginBottom: 3, weight: "sm" }, [
+							new b.button(
+								{
+									href: "?d=docs/gettingstarted/introduction",
+									outline: true,
+									color: "secondary",
+								},
+								"Home"
+							),
+							new b.button(
+								{
+									href: "?d=docs/gettingstarted/introduction",
+									outline: true,
+									color: "secondary",
+								},
+								"Edit on CodePen"
+							),
+						])
+					),
+
+					new h.div({ id: "bs-main-fs-code" }),
+				]),
+			]
 		),
 		new h.div({ id: "bs-main-fs", class: "bs-main-fs" }),
 	]);

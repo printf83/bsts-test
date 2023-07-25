@@ -7,7 +7,7 @@ import { cookie } from "./cookie.js";
 import { addHistory } from "./history.js";
 import hljs from "highlight.js";
 import { DEFAULTDOCUMENT } from "./_db.js";
-import { codeBeautifyMinify } from "../example/_fn.js";
+import { codeBeautify } from "../example/_fn.js";
 import { scriptConverter } from "../example/code.js";
 
 export interface IContent {
@@ -175,11 +175,40 @@ export const focusToAnchor = (anchorId?: string) => {
 };
 
 const PR = {
-	prettyPrint: () => {
-		document.querySelectorAll("pre.example-preview code").forEach((el) => {
+	prettyPrint: (selector?: string) => {
+		selector ??= "pre.example-preview code";
+		document.querySelectorAll(selector).forEach((el) => {
 			hljs.highlightElement(el as HTMLElement);
 		});
 	},
+};
+
+const codeContainerFS = (code: string) => {
+	return new h.pre(
+		{
+			id: "bs-main-fs-code",
+			display: "block",
+			overflow: "auto",
+			tabindex: 0,
+			margin: 0,
+			padding: 2,
+			bgColor: "body-tertiary",
+			border: false,
+		},
+		new h.code(
+			{
+				class: ["", "lang-js"],
+				lang: "js",
+				border: false,
+				on: {
+					build: () => {
+						PR.prettyPrint("#bs-main-fs-code");
+					},
+				},
+			},
+			codeBeautify("js", scriptConverter(code))
+		)
+	);
 };
 
 export const setupContentDocument = (
@@ -218,15 +247,7 @@ export const setupContentDocument = (
 				bsMainFSRoot.classList.remove("d-none");
 
 				core.replaceChild(bsMainFS, docData.item());
-				core.replaceWith(
-					bsMainFSCode,
-					new e.codepreview({
-						id: "bs-main-fs-code",
-						paddingBottom: 0,
-						type: "js",
-						code: codeBeautifyMinify("js", scriptConverter(docData.item.toString())),
-					})
-				);
+				core.replaceWith(bsMainFSCode, codeContainerFS(docData.item.toString()));
 			} else {
 				let bsMain = document.getElementById("bs-main") as Element;
 
