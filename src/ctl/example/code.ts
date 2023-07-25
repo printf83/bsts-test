@@ -986,6 +986,13 @@ const generateCodePenData = (
 	return result;
 };
 
+export const scriptConverter = (str: string) => {
+	return str
+		.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
+		.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
+		.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
+};
+
 const convert = (attr: ICode) => {
 	let id = core.UUID();
 
@@ -995,12 +1002,7 @@ const convert = (attr: ICode) => {
 	attr.showManager ??= true;
 	attr.showCodepen ??= attr.showScript;
 
-	attr.scriptConverter ??= (str: string) => {
-		return str
-			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
-			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
-			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
-	};
+	attr.scriptConverter ??= scriptConverter;
 
 	//setup strCode if db is provided
 	if (attr.db) {

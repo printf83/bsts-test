@@ -120,7 +120,7 @@ export const checkout: IContent = {
 
 				new h.div(
 					{ display: "grid" },
-					new b.button({ weight: "lg" }, "Continue to checkout")
+					new b.button({ weight: "lg", type: "submit" }, "Continue to checkout")
 				),
 			]),
 		];
@@ -131,7 +131,7 @@ export const checkout: IContent = {
 				new h.form(
 					new b.inputgroup.container([
 						new b.input({ placeholder: "Promo code" }),
-						new b.button({ color: "secondary" }, "Redeem"),
+						new b.button({ color: "secondary", type: "submit" }, "Redeem"),
 					])
 				)
 			)
@@ -208,7 +208,6 @@ export const checkout: IContent = {
 		const footer = new h.footer(
 			{
 				paddingY: 3,
-				marginY: 4,
 			},
 			[
 				new h.div(

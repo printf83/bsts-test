@@ -7,6 +7,8 @@ import { cookie } from "./cookie.js";
 import { addHistory } from "./history.js";
 import hljs from "highlight.js";
 import { DEFAULTDOCUMENT } from "./_db.js";
+import { codeBeautifyMinify } from "../example/_fn.js";
+import { scriptConverter } from "../example/code.js";
 
 export interface IContent {
 	fullscreen?: boolean;
@@ -206,18 +208,29 @@ export const setupContentDocument = (
 
 			//generate content
 			let bsMainRoot = document.getElementById("bs-main-root") as Element;
-			let bsMainRootFS = document.getElementById("bs-main-root-fs") as Element;
+			let bsMainFSRoot = document.getElementById("bs-main-fs-root") as Element;
 
-			if (docData.fullscreen) {
+			if (docData.fullscreen && docData.item) {
 				let bsMainFS = document.getElementById("bs-main-fs") as Element;
+				let bsMainFSCode = document.getElementById("bs-main-fs-code") as Element;
 
 				bsMainRoot.classList.add("d-none");
-				bsMainRootFS.classList.remove("d-none");
-				core.replaceChild(bsMainFS, docData.item ? docData.item() : "No data");
+				bsMainFSRoot.classList.remove("d-none");
+
+				core.replaceChild(bsMainFS, docData.item());
+				core.replaceWith(
+					bsMainFSCode,
+					new e.codepreview({
+						id: "bs-main-fs-code",
+						paddingBottom: 0,
+						type: "js",
+						code: codeBeautifyMinify("js", scriptConverter(docData.item.toString())),
+					})
+				);
 			} else {
 				let bsMain = document.getElementById("bs-main") as Element;
 
-				bsMainRootFS.classList.add("d-none");
+				bsMainFSRoot.classList.add("d-none");
 				bsMainRoot.classList.remove("d-none");
 				core.replaceWith(bsMain, setupContentContainer(docData))!;
 			}

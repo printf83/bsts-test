@@ -287,10 +287,31 @@ const mainContainer = () => {
 };
 
 const mainContainerFS = () => {
-	return new h.div(
-		{ id: "bs-main-root-fs", class: "bs-main-root-fs", display: "none" },
-		new h.div({ id: "bs-main-fs", class: "bs-main-fs" })
-	);
+	return new h.div({ id: "bs-main-fs-root", display: "none", position: "relative" }, [
+		new h.div(
+			{ position: "fixed", end: 0, bottom: 0, marginEnd: 5, marginBottom: 5 },
+			new b.button(
+				{
+					target: "#bs-main-fs-modal",
+					toggle: "modal",
+					rounded: "circle",
+					padding: 2,
+					style: { width: "3rem", height: "3rem" },
+					shadow: true,
+				},
+				new b.icon({ id: "list" })
+			)
+		),
+		new b.modal.container(
+			{
+				id: "bs-main-fs-modal",
+				weight: "lg",
+				scrollable: true,
+			},
+			new b.modal.body(new e.codepreview({ id: "bs-main-fs-code" }))
+		),
+		new h.div({ id: "bs-main-fs", class: "bs-main-fs" }),
+	]);
 };
 
 core.documentReady(() => {
