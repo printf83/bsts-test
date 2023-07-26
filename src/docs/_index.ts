@@ -30,7 +30,7 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.checkout);
 			});
 			break;
-		case "docs/example/checkout":
+		case "docs/example/product":
 			example.product().then((res) => {
 				callback(res.product);
 			});

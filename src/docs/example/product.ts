@@ -5,57 +5,44 @@ export const product: IContent = {
 	fullscreen: true,
 	title: "Product",
 	item: () => {
-		const header = new h.header([
-			new b.collapse.container(
-				{ id: "navbarContent" },
-				new h.div(
-					{ theme: "dark", textBgColor: "dark" },
-					new h.div(
-						{ container: true },
-						new h.div({ row: true }, [
-							new h.div({ col: ["sm-8", "md-7"], paddingY: 4 }, [
-								new h.h(4, "About"),
-								new h.p(
-									{ textColor: "body-secondary" },
-									"Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information."
-								),
-							]),
-							new h.div({ col: "sm-4", offset: "md-1", paddingY: 4 }, [
-								new h.h(4, "Contact"),
-								new h.ul({
-									unstyle: true,
-									item: [
-										new h.a(
-											{ href: "#", textColor: "body-emphasis" },
-											"Follow on Twitter"
-										),
-										new h.a(
-											{ href: "#", textColor: "body-emphasis" },
-											"Like on Facebook"
-										),
-										new h.a(
-											{ href: "#", textColor: "body-emphasis" },
-											"Email me"
-										),
-									],
-								}),
-							]),
-						])
-					)
-				)
-			),
-			new b.navbar.container(
-				{ theme: "dark", textBgColor: "dark" },
-				new b.navbar.innercontainer({ container: true }, [
-					new b.navbar.brand({ href: "#" }, new b.caption({ icon: "camera" }, "Album")),
-					new b.navbar.toggle.collapse({
-						target: "#navbarContent",
-						controlfor: "navbarContent",
-						label: "Toggle navigation",
-					}),
-				])
-			),
-		]);
+		const header = new b.navbar.containerHeader(
+			{
+				theme: "dark",
+				expand: "md",
+				sticky: "top",
+				border: "bottom",
+			},
+			new b.navbar.innercontainerNav({ container: true }, [
+				new b.navbar.brand(
+					{ display: "md-none", href: "#" },
+					new b.caption({ icon: "aperture" }, "Aperture")
+				),
+				new b.navbar.toggle.offcanvas({
+					target: "#offcanvas",
+					controlfor: "#offcanvas",
+					label: "Toggle navigation",
+				}),
+				new b.offcanvas.container(
+					{
+						tabindex: -1,
+						id: "offcanvas",
+						labelledby: "#offcanvasLabel",
+					},
+					[
+						new b.offcanvas.header([
+							new b.offcanvas.title({ id: "offcanvasLabel" }, "Aperture"),
+							new b.offcanvas.btnclose(),
+						]),
+						new b.offcanvas.body(
+							new b.navbar.innercontainer(
+								{ flex: "grow-1", justifyContent: "between" },
+								[new b.navbar.itemcontainer({}, new b.navbar.item())]
+							)
+						),
+					]
+				),
+			])
+		);
 
 		const jumbotron = new h.section(
 			{
