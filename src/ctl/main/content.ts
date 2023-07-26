@@ -188,21 +188,24 @@ const codeContainerFS = (code: string) => {
 		{
 			id: "bs-main-fs-code",
 			display: "block",
-			overflow: "auto",
 			tabindex: 0,
 			margin: 0,
-			padding: 2,
+			padding: 3,
 			bgColor: "body-tertiary",
 			border: false,
+			rounded: 3,
 		},
 		new h.code(
 			{
 				class: ["", "lang-js"],
 				lang: "js",
 				border: false,
+				overflow: "auto",
+				style: { maxHeight: "calc(100vh - 230px)" },
+				display: "block",
 				on: {
 					build: () => {
-						PR.prettyPrint("#bs-main-fs-code");
+						PR.prettyPrint("#bs-main-fs-code code");
 					},
 				},
 			},

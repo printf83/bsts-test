@@ -289,7 +289,7 @@ const mainContainer = () => {
 const mainContainerFS = () => {
 	return new h.div({ id: "bs-main-fs-root", display: "none", position: "relative" }, [
 		new h.div(
-			{ position: "fixed", end: 0, bottom: 0, marginEnd: 5, marginBottom: 5 },
+			{ position: "fixed", end: 0, bottom: 0, marginEnd: 5, marginBottom: 5, zIndex: 3 },
 			new b.button(
 				{
 					target: "#bs-main-fs-modal",
@@ -298,7 +298,6 @@ const mainContainerFS = () => {
 					padding: 2,
 					style: { width: "3rem", height: "3rem" },
 					shadow: true,
-					zIndex: 3,
 					weight: "lg",
 				},
 				new b.icon({ id: "list" })
@@ -315,28 +314,44 @@ const mainContainerFS = () => {
 				new b.modal.header({ close: true }, "Source code"),
 				new b.modal.body([
 					new h.div(
-						{ textAlign: "end" },
-						new b.btngroup({ marginBottom: 3, weight: "sm" }, [
+						{
+							display: "flex",
+							justifyContent: "between",
+							alignContent: "center",
+							marginBottom: 3,
+						},
+						[
 							new b.button(
 								{
 									href: "?d=docs/gettingstarted/introduction",
 									outline: true,
 									color: "secondary",
+									weight: "sm",
 								},
 								"Home"
 							),
-							new b.button(
-								{
-									href: "?d=docs/gettingstarted/introduction",
-									outline: true,
-									color: "secondary",
-								},
-								"Edit on CodePen"
-							),
-						])
+
+							new b.btngroup({ weight: "sm" }, [
+								new b.button(
+									{
+										outline: true,
+										color: "secondary",
+									},
+									"Copy"
+								),
+								new b.button(
+									{
+										href: "?d=docs/gettingstarted/introduction",
+										outline: true,
+										color: "secondary",
+									},
+									"Edit on CodePen"
+								),
+							]),
+						]
 					),
 
-					new h.div({ id: "bs-main-fs-code" }),
+					new h.div({ id: "bs-main-fs-code", rounded: 3 }),
 				]),
 			]
 		),
