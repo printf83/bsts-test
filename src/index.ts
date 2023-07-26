@@ -139,8 +139,11 @@ const mainContainer = () => {
 			new b.icon({ id: "hexagon-fill" })
 		),
 		itemMenu: menuWithBookmark(),
-		itemInsideLink: [{ value: "doc", label: "Docs" }],
-		currentInsideLink: "doc",
+		itemInsideLink: [
+			{ value: "docs/gettingstarted/home", label: "Home" },
+			{ value: "docs/gettingstarted/introduction", label: "Docs" },
+		],
+		currentInsideLink: "docs",
 		itemOutsideLink: [
 			{
 				href: "#",
@@ -289,7 +292,15 @@ const mainContainer = () => {
 const mainContainerFS = () => {
 	return new h.div({ id: "bs-main-fs-root", display: "none", position: "relative" }, [
 		new h.div(
-			{ position: "fixed", end: 0, bottom: 0, marginEnd: 3, marginBottom: 3, zIndex: 3 },
+			{
+				id: "bs-main-fs-toggle",
+				position: "fixed",
+				end: 0,
+				bottom: 0,
+				marginEnd: 3,
+				marginBottom: 3,
+				zIndex: 3,
+			},
 			new b.button(
 				{
 					target: "#bs-main-fs-modal",

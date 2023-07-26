@@ -1,6 +1,6 @@
 import { IMenu } from "./menu.js";
 
-export const DEFAULTDOCUMENT = "docs/gettingstarted/introduction";
+export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
 export const CURRENTVERSION = "0.3.2";
 
 export const menu: IMenu[] = [
