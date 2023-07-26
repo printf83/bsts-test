@@ -17,6 +17,7 @@ export const home: IContent = {
 				new b.icon({
 					id: "hexagon-fill",
 					marginBottom: 3,
+					textColor: "primary-emphasis",
 					style: { fontSize: "10rem" },
 				}),
 
