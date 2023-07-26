@@ -24,7 +24,7 @@ export const home: IContent = {
 				new h.h(
 					1,
 					{ fontWeight: "bolder", marginBottom: 3 },
-					"Build fast, responsive sites with Bootstrap TS"
+					"Build fast, responsive sites with BSTS"
 				),
 				new h.p(
 					{ lead: true, fontWeight: "medium", marginBottom: 3 },
@@ -59,13 +59,18 @@ export const home: IContent = {
 						),
 					]
 				),
-				new h.div([
+				new h.div({ marginBottom: 3 }, [
 					"Currently ",
 					new h.b(`v${CURRENTVERSION}`),
 					" · ",
 					new h.a({ href: "#" }, "Download"),
 					" · ",
 					new h.a({ href: "#" }, "All releases"),
+				]),
+
+				new b.alert.container({ color: "warning", callout: true }, [
+					new b.alert.header(3, "Disclaimer"),
+					"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
 				]),
 			])
 		);
@@ -74,7 +79,6 @@ export const home: IContent = {
 			{
 				viewWidth: "100",
 				viewHeight: "100",
-				theme: "dark",
 				style: {
 					backgroundImage:
 						"linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bs-success-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bs-danger-rgb), 0.5), transparent 50%)",
