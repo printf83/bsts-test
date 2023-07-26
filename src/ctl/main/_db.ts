@@ -150,12 +150,13 @@ export const menu: IMenu[] = [
 		],
 	},
 	{
-		label: "Custom component",
+		label: "Example",
 		icon: { id: "archive-fill", textColor: "secondary" },
 		item: [
-			{ label: "Album", value: "docs/custom_component/album" },
-			{ label: "Pricing", value: "docs/custom_component/pricing" },
-			{ label: "Checkout", value: "docs/custom_component/checkout" },
+			{ label: "Album", value: "docs/example/album" },
+			{ label: "Pricing", value: "docs/example/pricing" },
+			{ label: "Checkout", value: "docs/example/checkout" },
+			{ label: "Product", value: "docs/example/checkout" },
 		],
 	},
 	{

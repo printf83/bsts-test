@@ -8,26 +8,31 @@ import * as layout from "./layout/_index.js";
 import * as customize from "./customize/_index.js";
 import * as snippets from "./snippets/_index.js";
 import * as bsts from "./bsts/_index.js";
-import * as custom_component from "./custom_component/_index.js";
+import * as example from "./example/_index.js";
 import { IContent } from "../ctl/main/content.js";
 
 export const doc = (value: string, callback: (result: IContent | null) => void) => {
 	switch (value) {
 		//--------------------------
 
-		case "docs/custom_component/album":
-			custom_component.album().then((res) => {
+		case "docs/example/album":
+			example.album().then((res) => {
 				callback(res.album);
 			});
 			break;
-		case "docs/custom_component/pricing":
-			custom_component.pricing().then((res) => {
+		case "docs/example/pricing":
+			example.pricing().then((res) => {
 				callback(res.pricing);
 			});
 			break;
-		case "docs/custom_component/checkout":
-			custom_component.checkout().then((res) => {
+		case "docs/example/checkout":
+			example.checkout().then((res) => {
 				callback(res.checkout);
+			});
+			break;
+		case "docs/example/checkout":
+			example.product().then((res) => {
+				callback(res.product);
 			});
 			break;
 

@@ -7,3 +7,6 @@ export const pricing = () => {
 export const checkout = () => {
 	return import("./checkout.js");
 };
+export const product = () => {
+	return import("./product.js");
+};
