@@ -289,7 +289,7 @@ const mainContainer = () => {
 const mainContainerFS = () => {
 	return new h.div({ id: "bs-main-fs-root", display: "none", position: "relative" }, [
 		new h.div(
-			{ position: "fixed", end: 0, bottom: 0, marginEnd: 5, marginBottom: 5, zIndex: 3 },
+			{ position: "fixed", end: 0, bottom: 0, marginEnd: 3, marginBottom: 3, zIndex: 3 },
 			new b.button(
 				{
 					target: "#bs-main-fs-modal",
