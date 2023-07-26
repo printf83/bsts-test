@@ -15,62 +15,62 @@ export const introduction: IContent = {
 		"Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.",
 	item: () => {
 		return [
-			new e.section([
-				new e.alert({ color: "warning", callout: true }, [
-					new b.alert.header(3, "Disclaimer"),
-					"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
-				]),
-			]),
+			// new e.section([
+			// 	new e.alert({ color: "warning", callout: true }, [
+			// 		new b.alert.header(3, "Disclaimer"),
+			// 		"This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap.",
+			// 	]),
+			// ]),
 
 			//----------------------
 
-			new e.section([
-				new e.title("Current version"),
-				new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [
-					new b.tooltip(
-						{ content: "@printf83/bsts" },
-						new h.a(
-							{ href: "https://github.com/printf83/bsts", target: "_blank" },
-							new b.pill(
-								{ icon: "github", color: "danger", weight: "lg" },
-								`v${CURRENTVERSION}`
-							)
-						)
-					),
-				]),
+			// new e.section([
+			// 	new e.title("Current version"),
+			// 	new e.item({ display: "flex", gap: 3, justifyContent: "center" }, [
+			// 		new b.tooltip(
+			// 			{ content: "@printf83/bsts" },
+			// 			new h.a(
+			// 				{ href: "https://github.com/printf83/bsts", target: "_blank" },
+			// 				new b.pill(
+			// 					{ icon: "github", color: "danger", weight: "lg" },
+			// 					`v${CURRENTVERSION}`
+			// 				)
+			// 			)
+			// 		),
+			// 	]),
 
-				new e.text(
-					{ textAlign: "center" },
-					"{{bsts}} couldn't have done without this awesome library. Thanks for your hard work on this."
-				),
+			// 	new e.text(
+			// 		{ textAlign: "center" },
+			// 		"{{bsts}} couldn't have done without this awesome library. Thanks for your hard work on this."
+			// 	),
 
-				new e.item(
-					{ display: "flex", flex: ["wrap", "md-row"], gap: 3, justifyContent: "center" },
-					[
-						new b.tooltip(
-							{ content: "Bootstrap" },
-							new h.a(
-								{ href: "https://getbootstrap.com/", target: "_blank" },
-								new b.pill({ icon: "bootstrap", color: "primary" }, "v5.3")
-							)
-						),
-						new b.tooltip(
-							{ content: "Bootstrap Icon" },
-							new h.a(
-								{ href: "https://icons.getbootstrap.com/", target: "_blank" },
-								new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10")
-							)
-						),
-						new b.tooltip(
-							{ content: "Bootswatch" },
-							new h.a(
-								{ href: "https://bootswatch.com/", target: "_blank" },
-								new b.pill({ icon: "palette2", color: "success" }, "v5.3")
-							)
-						),
-					]
-				),
-			]),
+			// 	new e.item(
+			// 		{ display: "flex", flex: ["wrap", "md-row"], gap: 3, justifyContent: "center" },
+			// 		[
+			// 			new b.tooltip(
+			// 				{ content: "Bootstrap" },
+			// 				new h.a(
+			// 					{ href: "https://getbootstrap.com/", target: "_blank" },
+			// 					new b.pill({ icon: "bootstrap", color: "primary" }, "v5.3")
+			// 				)
+			// 			),
+			// 			new b.tooltip(
+			// 				{ content: "Bootstrap Icon" },
+			// 				new h.a(
+			// 					{ href: "https://icons.getbootstrap.com/", target: "_blank" },
+			// 					new b.pill({ icon: "bootstrap", color: "warning" }, "v1.10")
+			// 				)
+			// 			),
+			// 			new b.tooltip(
+			// 				{ content: "Bootswatch" },
+			// 				new h.a(
+			// 					{ href: "https://bootswatch.com/", target: "_blank" },
+			// 					new b.pill({ icon: "palette2", color: "success" }, "v5.3")
+			// 				)
+			// 			),
+			// 		]
+			// 	),
+			// ]),
 
 			//----------------------
 
