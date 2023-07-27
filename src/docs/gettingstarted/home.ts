@@ -407,9 +407,11 @@ export const home: IContent = {
 													href: "#",
 													icon: { id: "speedometer" },
 													label: "Memory test",
-													onclick: (_event) => {
-														const offcanvas = document.getElementById(
-															bsNavbar
+													onclick: (event) => {
+														const target =
+															event.currentTarget as Element;
+														const offcanvas = target.closest(
+															".offcanvas-lg"
 														) as Element;
 														b.offcanvas.hide(offcanvas);
 														showMemoryTestDialog();

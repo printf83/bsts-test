@@ -203,7 +203,7 @@ const convert = (attr: IMainContainer) => {
 											attr.name || "Bootstrap"
 										),
 										new b.offcanvas.btnclose({
-											target: "#bsNavbar",
+											target: `#${bsNavbar}`,
 											white: true,
 										}),
 									]
