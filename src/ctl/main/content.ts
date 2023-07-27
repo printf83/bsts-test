@@ -12,6 +12,7 @@ import { scriptConverter } from "../example/code.js";
 
 export interface IContent {
 	fullscreen?: boolean;
+	fullscreencode?: boolean;
 
 	usedb?: boolean;
 	loading?: boolean;
@@ -244,13 +245,23 @@ export const setupContentDocument = (
 
 			if (docData.fullscreen && docData.item) {
 				let bsMainFS = document.getElementById("bs-main-fs") as Element;
-				let bsMainFSCode = document.getElementById("bs-main-fs-code") as Element;
 
 				bsMainRoot.classList.add("d-none");
 				bsMainFSRoot.classList.remove("d-none");
 
 				core.replaceChild(bsMainFS, docData.item());
-				core.replaceWith(bsMainFSCode, codeContainerFS(docData.item.toString()));
+
+				let bsMainFSToggle = document.getElementById("bs-main-fs-toggle") as Element;
+
+				docData.fullscreencode ??= true;
+				if (docData.fullscreencode) {
+					let bsMainFSCode = document.getElementById("bs-main-fs-code") as Element;
+					core.replaceWith(bsMainFSCode, codeContainerFS(docData.item.toString()));
+
+					bsMainFSToggle.classList.remove("d-none");
+				} else {
+					bsMainFSToggle.classList.add("d-none");
+				}
 			} else {
 				let bsMain = document.getElementById("bs-main") as Element;
 

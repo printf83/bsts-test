@@ -536,6 +536,7 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 			break;
 
 		//--------------------------
+		case "docs":
 		case "docs/gettingstarted/introduction":
 			gettingstarted.introduction().then((res) => {
 				callback(res.introduction);
@@ -544,6 +545,14 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 		case "docs/gettingstarted/bootswatch":
 			gettingstarted.bootswatch().then((res) => {
 				callback(res.bootswatch);
+			});
+			break;
+
+		//--------------------------
+		case "home":
+		case "docs/gettingstarted/home":
+			gettingstarted.home().then((res) => {
+				callback(res.home);
 			});
 			break;
 
