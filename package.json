@@ -46,7 +46,7 @@
 	"dependencies": {
 		"@printf83/bsts": "^0.3.3",
 		"bootstrap": "^5.3.1",
-		"chart.js": "^4.3.1",
+		"chart.js": "^4.3.2",
 		"chartjs-plugin-datalabels": "^2.2.0",
 		"highlight.js": "^11.8.0",
 		"js-beautify": "^1.14.9"

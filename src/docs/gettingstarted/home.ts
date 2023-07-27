@@ -32,30 +32,26 @@ export const home: IContent = {
 				),
 				new h.div(
 					{
-						display: "flex",
+						display: ["grid", "md-flex"],
 						flex: "wrap",
-						justifyContent: "center",
+						justifyContent: ["evenly", "md-center"],
 						gap: 3,
 						marginBottom: 3,
 					},
 					[
 						new h.div(
-							{ marginX: ["auto", "md-0"] },
 							new b.inputgroup.container({ weight: "lg" }, [
 								new b.inputgroup.text("$"),
 								new b.inputgroup.text(`npm i @printf83/bsts@${CURRENTVERSION}`),
 								new b.inputgroup.text(new b.icon("clipboard")),
 							])
 						),
-						new h.div(
-							{ marginX: ["auto", "md-0"] },
-							new b.button(
-								{
-									weight: "lg",
-									href: "?d=docs/gettingstarted/introduction",
-								},
-								new b.caption({ icon: "book" }, "Read the docs")
-							)
+						new b.button(
+							{
+								weight: "lg",
+								href: "?d=docs/gettingstarted/introduction",
+							},
+							new b.caption({ icon: "book" }, "Read the docs")
 						),
 					]
 				),
