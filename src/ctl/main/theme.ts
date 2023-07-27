@@ -42,26 +42,33 @@ export interface ITheme {
 }
 
 const highlghtTheme = (value: string, icon: I.B.Icon) => {
-	let bsTheme = document.getElementById("bs-theme") as Element;
-	let bsThemeMenu = bsTheme.nextSibling as Element;
+	let bsTheme = document.getElementsByClassName("bs-theme");
+	if (bsTheme && bsTheme.length > 0) {
+		Array.from(bsTheme).forEach((elem) => {
+			let bsThemeMenu = elem.nextSibling as Element;
 
-	let lastActive = bsThemeMenu.querySelectorAll(".dropdown-item.active")[0];
-	if (lastActive) {
-		lastActive.classList.remove("active");
-		lastActive.removeAttribute("aria-current");
+			let lastActive = bsThemeMenu.querySelectorAll(".dropdown-item.active")[0];
+			if (lastActive) {
+				lastActive.classList.remove("active");
+				lastActive.removeAttribute("aria-current");
+			}
+
+			let newActive = bsThemeMenu.querySelectorAll(
+				`.dropdown-item[data-value='${value}']`
+			)[0];
+			if (newActive) {
+				newActive.classList.add("active");
+				newActive.setAttribute("aria-current", "true");
+			}
+
+			core.replaceChild(
+				elem,
+				new b.caption({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme")
+			);
+		});
 	}
 
-	let newActive = bsThemeMenu.querySelectorAll(`.dropdown-item[data-value='${value}']`)[0];
-	if (newActive) {
-		newActive.classList.add("active");
-		newActive.setAttribute("aria-current", "true");
-	}
-
-	core.replaceChild(
-		bsTheme,
-		new b.caption({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme")
-	);
-
+	//raise event
 	onThemeChange(value);
 };
 
@@ -70,6 +77,8 @@ export const setupTheme = (
 	navbarItemTheme?: ITheme[],
 	currentTheme?: string
 ) => {
+	const bsTheme = core.UUID();
+
 	if (navbarItemTheme) {
 		let indexIcon = -1;
 		navbarItemTheme.forEach((i, ix) => {
@@ -103,7 +112,8 @@ export const setupTheme = (
 						new b.dropdown.button(
 							{
 								navItem: true,
-								id: "bs-theme",
+								id: bsTheme,
+								class: "bs-theme",
 								paddingY: 2,
 								paddingX: [0, "lg-2"],
 								display: "flex",

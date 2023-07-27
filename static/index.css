@@ -806,6 +806,7 @@ strong,
 
 /* animate icon */
 .animated-icon:hover{
+    display: inline-block;
     transition: transform 0.25s ease-in-out;
     transform: rotate(-10deg) scale(1.3);
 }

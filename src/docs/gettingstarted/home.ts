@@ -1,4 +1,4 @@
-import { h, b } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
 import { CURRENTVERSION } from "../../ctl/main/_db.js";
 import { setupFooter } from "../../ctl/main/footer.js";
@@ -22,12 +22,19 @@ export const home: IContent = {
 				textColor: "body-emphasis",
 			},
 			new h.div({ col: "md-8", marginX: "auto", textAlign: "center" }, [
-				new b.icon({
-					id: "hexagon-fill",
-					marginBottom: 3,
-					textColor: "primary-emphasis",
-					style: { fontSize: "10rem" },
-				}),
+				new h.div(
+					{ style: { height: "15rem" } },
+					new b.icon({
+						id: "hexagon-fill",
+						class: "animated-icon",
+						marginBottom: 3,
+						textColor: "primary-emphasis",
+						style: {
+							fontSize: "10rem",
+							textShadow: "0 0 0.5rem var(--bs-primary-border-subtle)",
+						},
+					})
+				),
 
 				new h.h(
 					1,
@@ -55,8 +62,8 @@ export const home: IContent = {
 								justifyContent: "center",
 								alignItem: "center",
 								gap: 2,
-								paddingX: 3,
-								paddingY: 2,
+								paddingX: 4,
+								paddingY: 3,
 								bgColor: "body-tertiary",
 							},
 							[
@@ -68,6 +75,9 @@ export const home: IContent = {
 						new b.button(
 							{
 								weight: "lg",
+								display: "flex",
+								justifyContent: "center",
+								alignItem: "center",
 								href: "?d=docs/gettingstarted/introduction",
 							},
 							new b.caption({ icon: "book" }, "Read the docs")
@@ -111,7 +121,17 @@ export const home: IContent = {
 									},
 								},
 							},
-							[new b.icon("hexagon-fill"), "Bootstrap TS"]
+							[
+								new h.i(
+									{ marginEnd: 2 },
+									new b.icon({
+										id: "hexagon-fill",
+										class: "animated-icon",
+										fontSize: 3,
+									})
+								),
+								"Bootstrap TS",
+							]
 						),
 						new h.ul({ unstyle: true, class: "small" }, [
 							new h.li({ marginBottom: 2 }, [
@@ -198,6 +218,11 @@ export const home: IContent = {
 			)
 		);
 
+		const bsNavbar = core.UUID();
+		const bsNavbarOffcanvasLabel = core.UUID();
+		const bsSidebar = core.UUID();
+		// const bsSidebarOffcanvasLabel = core.UUID();
+
 		const header = new b.navbar.containerHeader(
 			{
 				expand: "lg",
@@ -222,8 +247,8 @@ export const home: IContent = {
 								{
 									class: "bs-noshadow",
 									padding: 2,
-									target: "#bsSidebar",
-									controlfor: "bsSidebar",
+									target: `#${bsSidebar}`,
+									controlfor: bsSidebar,
 									label: "Toggle docs navigation",
 									textColor: "light",
 								},
@@ -245,7 +270,11 @@ export const home: IContent = {
 									},
 								},
 							},
-							new b.icon("hexagon-fill")
+							new b.icon({
+								id: "hexagon-fill",
+								class: "animated-icon",
+								fontSize: 3,
+							})
 						),
 
 						new h.div({ display: "flex", class: "bs-navbar-toggle" }, [
@@ -312,8 +341,8 @@ export const home: IContent = {
 									display: ["flex", "lg-none"],
 									order: 3,
 									padding: 2,
-									target: "#bsNavbar",
-									controlfor: "bsNavbar",
+									target: `#${bsNavbar}`,
+									controlfor: bsNavbar,
 									label: "Toggle navigation",
 									textColor: "light",
 								},
@@ -322,11 +351,11 @@ export const home: IContent = {
 						]),
 						new b.offcanvas.container(
 							{
-								id: "bsNavbar",
+								id: bsNavbar,
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
-								labelledby: "bsNavbarOffcanvasLabel",
+								labelledby: bsNavbarOffcanvasLabel,
 								scroll: true,
 							},
 							[
@@ -339,13 +368,13 @@ export const home: IContent = {
 									[
 										new b.offcanvas.title(
 											{
-												id: "bsNavbarOffcanvasLabel",
+												id: bsNavbarOffcanvasLabel,
 												textColor: "light",
 											},
 											"Bootstrap TS"
 										),
 										new b.offcanvas.btnclose({
-											target: "#bsNavbar",
+											target: `#${bsNavbar}`,
 											white: true,
 										}),
 									]
@@ -358,7 +387,7 @@ export const home: IContent = {
 									},
 									[
 										...setupInsideLink(
-											"primary",
+											"light",
 											[
 												{
 													value: "docs/gettingstarted/home",
@@ -369,10 +398,10 @@ export const home: IContent = {
 													label: "Docs",
 												},
 											],
-											"home"
+											"docs/gettingstarted/home"
 										),
 										...setupOutsideLink(
-											"primary",
+											"light",
 											[
 												{
 													href: "#",
@@ -380,7 +409,7 @@ export const home: IContent = {
 													label: "Memory test",
 													onclick: (_event) => {
 														const offcanvas = document.getElementById(
-															"bsNavbar"
+															bsNavbar
 														) as Element;
 														b.offcanvas.hide(offcanvas);
 														showMemoryTestDialog();
@@ -403,7 +432,7 @@ export const home: IContent = {
 												},
 											],
 											genBootswatch(
-												"primary",
+												"light",
 												[
 													{
 														value: "default",
@@ -438,7 +467,7 @@ export const home: IContent = {
 												getSavedBootswatch()
 											),
 											setupTheme(
-												"primary",
+												"light",
 												[
 													{
 														value: "light",
