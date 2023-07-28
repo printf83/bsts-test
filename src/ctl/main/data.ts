@@ -2,7 +2,6 @@ import { doc } from "../../docs/_index.js";
 import { isInBookmark } from "./bookmark.js";
 import { IContent } from "./content.js";
 import * as e from "../example/_index.js";
-import { b, h } from "@printf83/bsts";
 
 const contentNotFound = (key: string) => {
 	return {
