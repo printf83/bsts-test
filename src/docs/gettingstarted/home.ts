@@ -79,6 +79,7 @@ export const home: IContent = {
 								justifyContent: "center",
 								alignItem: "center",
 								href: "?d=docs/gettingstarted/introduction",
+								paddingX: 5,
 							},
 							new b.caption({ icon: "book" }, "Read the docs")
 						),
@@ -220,8 +221,6 @@ export const home: IContent = {
 
 		const bsNavbar = core.UUID();
 		const bsNavbarOffcanvasLabel = core.UUID();
-		const bsSidebar = core.UUID();
-		// const bsSidebarOffcanvasLabel = core.UUID();
 
 		const header = new b.navbar.containerHeader(
 			{
@@ -242,27 +241,14 @@ export const home: IContent = {
 						label: "Main navigation",
 					},
 					[
-						new h.div({ class: "bs-navbar-toggle" }, [
-							new b.navbar.toggle.offcanvas(
-								{
-									class: "bs-noshadow",
-									padding: 2,
-									target: `#${bsSidebar}`,
-									controlfor: bsSidebar,
-									label: "Toggle docs navigation",
-									textColor: "light",
-								},
-								b.icon.bi("list")
-							),
-						]),
-
 						new b.navbar.brand(
 							{
 								href: "#",
 								label: "Bootstrap TS",
-								marginEnd: ["lg-2", 0],
+								marginEnd: "lg-2",
 								fontSize: 6,
 								padding: 0,
+								marginStart: ["lg-0", "2"],
 								textColor: "light",
 								on: {
 									click: () => {

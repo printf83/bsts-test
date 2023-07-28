@@ -33,6 +33,8 @@ export const setupInsideLink = (
 			new b.navbar.itemcontainer(
 				{ flex: ["wrap", "row"], class: "bs-navbar-nav", id: "bs-inside-link" },
 				itemInsideLink.map((i) => {
+					console.log(i.value, currentInsideLink);
+
 					return new b.navbar.item({ col: [6, "lg-auto"] }, [
 						new b.navbar.link(
 							{

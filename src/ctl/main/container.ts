@@ -48,8 +48,8 @@ export interface IMainContainer extends core.IAttr {
 const convert = (attr: IMainContainer) => {
 	const bsNavbar = core.UUID();
 	const bsNavbarOffcanvasLabel = core.UUID();
-	const bsSidebar = core.UUID();
-	const bsSidebarOffcanvasLabel = core.UUID();
+	const bsSidebar = "bsSidebar";
+	const bsSidebarOffcanvasLabel = "bsSidebarOffcanvasLabel";
 
 	attr.id ??= "bs-main-root";
 	attr.display ??= "none";
@@ -80,8 +80,8 @@ const convert = (attr: IMainContainer) => {
 								{
 									class: "bs-noshadow",
 									padding: 2,
-									target: "#bsSidebar",
-									controlfor: "bsSidebar",
+									target: `#${bsSidebar}`,
+									controlfor: bsSidebar,
 									label: "Toggle docs navigation",
 									textColor: attr.textColor || "light",
 								},
@@ -269,7 +269,6 @@ const convert = (attr: IMainContainer) => {
 							new b.offcanvas.body([
 								new h.nav(
 									{
-										id: "bs-menu",
 										class: "bs-links",
 										width: 100,
 										label: "Docs navigation",

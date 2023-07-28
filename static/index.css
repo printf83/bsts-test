@@ -949,7 +949,7 @@ strong,
 .bs-links-link {
     padding: .1875rem .5rem;
     margin-top: .125rem;
-    margin-left: 1.125rem;
+    /* margin-left: 1.125rem; */
     color: var(--bs-body-color);
     text-decoration: none
 }

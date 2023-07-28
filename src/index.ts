@@ -143,7 +143,7 @@ const mainContainer = () => {
 			{ value: "docs/gettingstarted/home", label: "Home" },
 			{ value: "docs/gettingstarted/introduction", label: "Docs" },
 		],
-		currentInsideLink: "docs",
+		currentInsideLink: "docs/gettingstarted/introduction",
 		itemOutsideLink: [
 			{
 				href: "#",
