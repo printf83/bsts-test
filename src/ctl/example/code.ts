@@ -88,7 +88,7 @@ const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	}
 };
 
-function successCopyCode(iconElem?: Element) {
+export function successCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-check2");
@@ -106,7 +106,7 @@ function successCopyCode(iconElem?: Element) {
 	}
 }
 
-function failCopyCode(iconElem?: Element) {
+export function failCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-exclamation-triangle");

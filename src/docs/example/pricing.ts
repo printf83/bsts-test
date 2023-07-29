@@ -249,7 +249,7 @@ export const pricing: IContent = {
 								marginBottom: 3,
 								textDecoration: "none",
 							},
-							new b.icon({ id: "hexagon-fill", fontSize: 5, textColor: "body" })
+							new b.icon({ id: "hexagon-fill", fontSize: 3, textColor: "body" })
 						),
 						new h.p({ textColor: "body-tertiary" }, "© 2017–2023"),
 					]),

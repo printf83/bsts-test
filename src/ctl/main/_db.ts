@@ -3,6 +3,63 @@ import { IMenu } from "./menu.js";
 export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
 export const CURRENTVERSION = "0.3.4";
 
+export const THEMEDB = [
+	{
+		value: "light",
+		icon: { id: "sun-fill" },
+		label: "Light",
+	},
+	{
+		value: "dark",
+		icon: { id: "moon-stars-fill" },
+		label: "Dark",
+	},
+	{
+		value: "auto",
+		icon: { id: "circle-half" },
+		label: "Auto",
+	},
+];
+
+export const BOOTSWATCHDB = [
+	{
+		value: "default",
+		label: "Default",
+	},
+	{ value: "cerulean", label: "Cerulean" },
+	{ value: "cosmo", label: "Cosmo" },
+	{ value: "cyborg", label: "Cyborg" },
+	{ value: "darkly", label: "Darkly" },
+	{ value: "flatly", label: "Flatly" },
+	{ value: "journal", label: "Journal" },
+	{ value: "litera", label: "Litera" },
+	{ value: "lumen", label: "Lumen" },
+	{ value: "lux", label: "Lux" },
+	{ value: "materia", label: "Materia" },
+	{ value: "minty", label: "Minty" },
+	{ value: "morph", label: "Morph" },
+	{ value: "pulse", label: "Pulse" },
+	{ value: "quartz", label: "Quartz" },
+	{ value: "sandstone", label: "Sandstone" },
+	{ value: "simplex", label: "Simplex" },
+	{ value: "sketchy", label: "Sketchy" },
+	{ value: "slate", label: "Slate" },
+	{ value: "solar", label: "Solar" },
+	{ value: "spacelab", label: "Spacelab" },
+	{ value: "superhero", label: "Superhero" },
+	{ value: "united", label: "United" },
+	{ value: "vapor", label: "Vapor" },
+	{ value: "yeti", label: "Yeti" },
+	{ value: "zephyr", label: "Zephyr" },
+];
+
+export const menuFS = [
+	{ label: "Album", value: "docs/example/album" },
+	{ label: "Pricing", value: "docs/example/pricing" },
+	{ label: "Checkout", value: "docs/example/checkout" },
+	{ label: "Product", value: "docs/example/product" },
+];
+
 export const menu: IMenu[] = [
 	{
 		label: "Getting started",
@@ -152,12 +209,7 @@ export const menu: IMenu[] = [
 	{
 		label: "Example",
 		icon: { id: "archive-fill", textColor: "secondary" },
-		item: [
-			{ label: "Album", value: "docs/example/album" },
-			{ label: "Pricing", value: "docs/example/pricing" },
-			{ label: "Checkout", value: "docs/example/checkout" },
-			{ label: "Product", value: "docs/example/product" },
-		],
+		item: menuFS,
 	},
 	{
 		label: "More",

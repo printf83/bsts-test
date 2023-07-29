@@ -202,7 +202,6 @@ const codeContainerFS = (code: string) => {
 				lang: "js",
 				border: false,
 				overflow: "auto",
-				style: { maxHeight: "calc(100vh - 230px)" },
 				display: "block",
 				on: {
 					build: () => {
@@ -240,22 +239,34 @@ export const setupContentDocument = (
 			core.removeAllActivePopup();
 
 			//generate content
-			let bsMainRoot = document.getElementById("bs-main-root") as Element;
-			let bsMainFSRoot = document.getElementById("bs-main-fs-root") as Element;
+			const bsMainRoot = document.getElementById("bs-main-root") as Element;
+			const bsMainFSRoot = document.getElementById("bs-main-fs-root") as Element;
 
 			if (docData.fullscreen && docData.item) {
-				let bsMainFS = document.getElementById("bs-main-fs") as Element;
+				const bsMainFS = document.getElementById("bs-main-fs") as Element;
 
 				bsMainRoot.classList.add("d-none");
 				bsMainFSRoot.classList.remove("d-none");
 
 				core.replaceChild(bsMainFS, docData.item());
 
-				let bsMainFSToggle = document.getElementById("bs-main-fs-toggle") as Element;
+				const bsMainFSToggle = document.getElementById("bs-main-fs-toggle") as Element;
 
 				docData.fullscreencode ??= true;
 				if (docData.fullscreencode) {
-					let bsMainFSCode = document.getElementById("bs-main-fs-code") as Element;
+					//title
+					const bsMainFSTitle = document.getElementById("bs-main-fs-title") as Element;
+					bsMainFSTitle.innerHTML = docData.title ? docData.title : "Unknow";
+
+					//menu
+					const bsMainFSMenu = document.getElementById("bs-main-fs-menu") as Element;
+					bsMainFSMenu.querySelector(".active")?.classList.remove("active");
+					bsMainFSMenu
+						.querySelector(`.dropdown-item[data-value='${docId}']`)
+						?.classList.add("active");
+
+					//document
+					const bsMainFSCode = document.getElementById("bs-main-fs-code") as Element;
 					core.replaceWith(bsMainFSCode, codeContainerFS(docData.item.toString()));
 
 					bsMainFSToggle.classList.remove("d-none");
@@ -263,11 +274,18 @@ export const setupContentDocument = (
 					bsMainFSToggle.classList.add("d-none");
 				}
 			} else {
-				let bsMain = document.getElementById("bs-main") as Element;
+				const bsMain = document.getElementById("bs-main") as Element;
 
 				bsMainFSRoot.classList.add("d-none");
 				bsMainRoot.classList.remove("d-none");
 				core.replaceWith(bsMain, setupContentContainer(docData))!;
+
+				//setup back button for fullscree doc
+				const fsbackbutton = document.getElementById("btn-last-non-fs-page") as Element;
+				fsbackbutton.setAttribute(
+					"data-docId",
+					`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`
+				);
 			}
 
 			//setup state value

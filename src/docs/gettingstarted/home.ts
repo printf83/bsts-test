@@ -1,6 +1,6 @@
 import { h, b, core } from "@printf83/bsts";
-import { IContent } from "../../ctl/main/content.js";
-import { CURRENTVERSION } from "../../ctl/main/_db.js";
+import { IContent, setupContentDocument } from "../../ctl/main/content.js";
+import { BOOTSWATCHDB, CURRENTVERSION, THEMEDB } from "../../ctl/main/_db.js";
 import { setupFooter } from "../../ctl/main/footer.js";
 import { setupOutsideLink } from "../../ctl/main/outsidelink.js";
 import { genBootswatch, getSavedBootswatch } from "../../ctl/main/bootswatch.js";
@@ -9,6 +9,32 @@ import { showSearchDialog } from "../../ctl/main/search.js";
 import { getSavedTheme, setupTheme } from "../../ctl/main/theme.js";
 import { showMemoryTestDialog } from "../../ctl/main/memorytest.js";
 import { IMainContainer } from "../../ctl/main/container.js";
+import { failCopyCode, successCopyCode } from "../../ctl/example/code.js";
+import { highlightMenu } from "../../ctl/main/menu.js";
+
+function itemCodeCopy(e: Event) {
+	e.stopPropagation();
+	e.stopImmediatePropagation();
+
+	const target = e.currentTarget as Element;
+	const iconElem = target.firstChild as Element;
+	const text = target.previousSibling?.textContent;
+
+	if (text) {
+		navigator.clipboard.writeText(text).then(
+			() => {
+				successCopyCode(iconElem);
+			},
+			() => {
+				failCopyCode(iconElem);
+			}
+		);
+	} else {
+		failCopyCode(iconElem);
+	}
+
+	return false;
+}
 
 export const home: IContent = {
 	fullscreen: true,
@@ -43,7 +69,11 @@ export const home: IContent = {
 				),
 				new h.p(
 					{ lead: true, fontWeight: "medium", marginBottom: 3 },
-					"Disclaimer! This is {{b::not a real Bootstrap}} website. This is only a {{b::Bootstrap TS test website}} to test {{b::Bootstrap TS library}} {{bc::(bsts)}} and make sure it's fully support Bootstrap because we love it."
+					"Please be advised that the content of this website is solely for testing purposes and is not a genuine Bootstrap website. It has been developed exclusively to evaluate the functionality of the Bootstrap TS library (bsts) and ensure seamless compatibility with the Bootstrap framework, which we deeply admire. This website has been meticulously reconstructed utilizing the bsts library, thereby creating an HTML website using Typescript. Rest assured, any resemblance to real-world websites is purely coincidental, as this is merely an experimental platform for our internal testing and development."
+				),
+				new h.p(
+					{ lead: true, fontWeight: "medium", marginBottom: 3 },
+					"{{b::Note:}} This website is for testing and demonstration purposes only and does not represent any official product or service."
 				),
 				new h.div(
 					{
@@ -65,11 +95,22 @@ export const home: IContent = {
 								paddingX: 4,
 								paddingY: 3,
 								bgColor: "body-tertiary",
+								textColor: "body-emphasis",
 							},
 							[
 								"$",
 								new h.span(`npm i @printf83/bsts@${CURRENTVERSION}`),
-								new b.icon("clipboard"),
+								new h.a(
+									{
+										textDecoration: "none",
+										textColor: "body-emphasis",
+										textColorHover: "primary",
+										on: {
+											click: itemCodeCopy,
+										},
+									},
+									new b.icon({ id: "clipboard" })
+								),
 							]
 						),
 						new b.button(
@@ -78,8 +119,14 @@ export const home: IContent = {
 								display: "flex",
 								justifyContent: "center",
 								alignItem: "center",
-								href: "?d=docs/gettingstarted/introduction",
 								paddingX: 5,
+								paddingY: 3,
+								on: {
+									click: () => {
+										setupContentDocument("docs/gettingstarted/introduction");
+										highlightMenu("docs/gettingstarted/introduction");
+									},
+								},
 							},
 							new b.caption({ icon: "book" }, "Read the docs")
 						),
@@ -421,58 +468,12 @@ export const home: IContent = {
 											],
 											genBootswatch(
 												"light",
-												[
-													{
-														value: "default",
-														label: "Default",
-													},
-													{ value: "cerulean", label: "Cerulean" },
-													{ value: "cosmo", label: "Cosmo" },
-													{ value: "cyborg", label: "Cyborg" },
-													{ value: "darkly", label: "Darkly" },
-													{ value: "flatly", label: "Flatly" },
-													{ value: "journal", label: "Journal" },
-													{ value: "litera", label: "Litera" },
-													{ value: "lumen", label: "Lumen" },
-													{ value: "lux", label: "Lux" },
-													{ value: "materia", label: "Materia" },
-													{ value: "minty", label: "Minty" },
-													{ value: "morph", label: "Morph" },
-													{ value: "pulse", label: "Pulse" },
-													{ value: "quartz", label: "Quartz" },
-													{ value: "sandstone", label: "Sandstone" },
-													{ value: "simplex", label: "Simplex" },
-													{ value: "sketchy", label: "Sketchy" },
-													{ value: "slate", label: "Slate" },
-													{ value: "solar", label: "Solar" },
-													{ value: "spacelab", label: "Spacelab" },
-													{ value: "superhero", label: "Superhero" },
-													{ value: "united", label: "United" },
-													{ value: "vapor", label: "Vapor" },
-													{ value: "yeti", label: "Yeti" },
-													{ value: "zephyr", label: "Zephyr" },
-												],
+												BOOTSWATCHDB,
 												getSavedBootswatch()
 											),
 											setupTheme(
 												"light",
-												[
-													{
-														value: "light",
-														icon: { id: "sun-fill" },
-														label: "Light",
-													},
-													{
-														value: "dark",
-														icon: { id: "moon-stars-fill" },
-														label: "Dark",
-													},
-													{
-														value: "auto",
-														icon: { id: "circle-half" },
-														label: "Auto",
-													},
-												],
+												THEMEDB,
 												getSavedTheme() as IMainContainer["currentTheme"]
 											)
 										),

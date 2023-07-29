@@ -41,7 +41,7 @@ export interface ITheme {
 	label: string;
 }
 
-const highlghtTheme = (value: string, icon: I.B.Icon) => {
+export const highlghtTheme = (value: string, icon: I.B.Icon) => {
 	let bsTheme = document.getElementsByClassName("bs-theme");
 	if (bsTheme && bsTheme.length > 0) {
 		Array.from(bsTheme).forEach((elem) => {
@@ -80,78 +80,69 @@ export const setupTheme = (
 	const bsTheme = core.UUID();
 
 	if (navbarItemTheme) {
-		let indexIcon = -1;
+		let currentThemeIcon: I.B.Icon | undefined;
 		navbarItemTheme.forEach((i, ix) => {
 			if (i.value === currentTheme) {
-				indexIcon = ix;
+				currentThemeIcon = navbarItemTheme[ix]?.icon;
 			}
 		});
-		if (indexIcon > -1) {
-			let getCurrentIconIndex = navbarItemTheme[indexIcon];
 
-			if (getCurrentIconIndex) {
-				let currentIcon = getCurrentIconIndex.icon;
-
-				return [
-					new b.navbar.item(
+		return [
+			new b.navbar.item(
+				{
+					paddingY: [2, "lg-1"],
+					col: [12, "lg-auto"],
+				},
+				[
+					new b.verticalrule({
+						display: ["none", "lg-flex"],
+						height: 100,
+						marginX: "lg-2",
+						textColor: textColor,
+					}),
+					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+				]
+			),
+			new b.navbar.item({ dropdown: true }, [
+				new b.dropdown.button(
+					{
+						navItem: true,
+						id: bsTheme,
+						class: "bs-theme",
+						paddingY: 2,
+						paddingX: [0, "lg-2"],
+						display: "flex",
+						alignItem: "center",
+						textColor: textColor,
+						label: "Toggle theme",
+					},
+					new b.caption(
 						{
-							paddingY: [2, "lg-1"],
-							col: [12, "lg-auto"],
+							icon: currentThemeIcon,
+							labelDisplay: "lg-none",
 						},
-						[
-							new b.verticalrule({
-								display: ["none", "lg-flex"],
-								height: 100,
-								marginX: "lg-2",
-								textColor: textColor,
-							}),
-							new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
-						]
-					),
-					new b.navbar.item({ dropdown: true }, [
-						new b.dropdown.button(
+						"Toggle theme"
+					)
+				),
+				new b.dropdown.menu(
+					{ positionView: "end", customStyle: 1 },
+					navbarItemTheme.map((i) => {
+						return new b.dropdown.item(
 							{
-								navItem: true,
-								id: bsTheme,
-								class: "bs-theme",
-								paddingY: 2,
-								paddingX: [0, "lg-2"],
-								display: "flex",
-								alignItem: "center",
-								textColor: textColor,
-								label: "Toggle theme",
-							},
-							new b.caption(
-								{
-									icon: currentIcon,
-									labelDisplay: "lg-none",
-								},
-								"Toggle theme"
-							)
-						),
-						new b.dropdown.menu(
-							{ positionView: "end", customStyle: 1 },
-							navbarItemTheme.map((i) => {
-								return new b.dropdown.item(
-									{
-										on: {
-											click: (_e) => {
-												highlghtTheme(i.value, i.icon);
-											},
-										},
-										active: i.value === currentTheme,
-										data: { value: i.value },
+								on: {
+									click: (_e) => {
+										highlghtTheme(i.value, i.icon);
 									},
-									new b.caption({ icon: i.icon }, i.label)
-								);
-							})
-						),
-					]),
-				];
-			}
-		} else {
-			return [];
-		}
+								},
+								active: i.value === currentTheme,
+								data: { value: i.value },
+							},
+							new b.caption({ icon: i.icon }, i.label)
+						);
+					})
+				),
+			]),
+		];
 	} else {
 		return [];
 	}
