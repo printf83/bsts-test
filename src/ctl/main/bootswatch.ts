@@ -30,13 +30,7 @@ export const changeBootswatch = (value: string) => {
 	let bsBootswatchLabel = document.getElementsByClassName("bs-bootswatch-label");
 	if (bsBootswatchLabel && bsBootswatchLabel.length > 0) {
 		Array.from(bsBootswatchLabel).forEach((elem) => {
-			core.replaceWith(
-				elem,
-				new h.span(
-					{ id: elem.id, class: "bs-bootswatch-label" },
-					`${core.uppercaseFirst(value)}`
-				)
-			);
+			elem.innerHTML = `${core.uppercaseFirst(value)}`;
 		});
 	}
 

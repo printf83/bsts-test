@@ -62,17 +62,13 @@ export const home: IContent = {
 					})
 				),
 
-				new h.h(
-					1,
-					{ fontWeight: "bolder", marginBottom: 3 },
-					"Testing Bootstrap TS (BSTS)"
-				),
+				new h.h(1, { marginBottom: 3 }, "Testing Bootstrap TS (BSTS)"),
 				new h.p(
-					{ lead: true, fontWeight: "medium", marginBottom: 3 },
+					{ lead: true, marginBottom: 3 },
 					"Please be advised that the content of this website is solely for testing purposes and is not a genuine Bootstrap website. It has been developed exclusively to evaluate the functionality of the Bootstrap TS library (bsts) and ensure seamless compatibility with the Bootstrap framework, which we deeply admire. This website has been meticulously reconstructed utilizing the bsts library, thereby creating an HTML website using Typescript. Rest assured, any resemblance to real-world websites is purely coincidental, as this is merely an experimental platform for our internal testing and development."
 				),
 				new h.p(
-					{ lead: true, fontWeight: "medium", marginBottom: 3 },
+					{ lead: true, marginBottom: 3 },
 					"{{b::Note:}} This website is for testing and demonstration purposes only and does not represent any official product or service."
 				),
 				new h.div(

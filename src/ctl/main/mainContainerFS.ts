@@ -99,7 +99,8 @@ export const mainContainerFS = () => {
 					{
 						close: false,
 						display: "flex",
-						justifyContent: "between",
+						flex: ["column", "md-row"],
+						justifyContent: ["md-between"],
 						alignContent: "center",
 						bgColor: "primary",
 						bgGradient: true,
@@ -108,190 +109,219 @@ export const mainContainerFS = () => {
 						zIndex: 3,
 					},
 					[
-						new h.div([
-							new b.button(
+						new h.div(
+							{
+								flex: "fill",
+							},
+							new h.div(
 								{
-									id: "btn-last-non-fs-page",
-									data: { docId: "docs/gettingstarted/home" },
-
-									color: "transparent",
-									textColor: "light",
-
-									on: {
-										click: (event) => {
-											const target = event.currentTarget as Element;
-											const docId = target.getAttribute("data-docId");
-											if (docId) {
-												setupContentDocument(docId);
-												highlightMenu(docId);
-											} else {
-												setupContentDocument(DEFAULTDOCUMENT);
-												highlightMenu(DEFAULTDOCUMENT);
-											}
-										},
-									},
+									display: "flex",
+									flex: "fill",
+									justifyContent: ["between", "md-start"],
 								},
-								new b.caption({ icon: "chevron-left" }, "Back")
-							),
-							new b.dropdown.container([
-								new b.dropdown.button(
-									{
-										color: "transparent",
-										textColor: "light",
-										id: "bs-main-fs-title",
-									},
-									"Button"
-								),
-								new b.dropdown.menu(
-									{ customStyle: 1, id: "bs-main-fs-menu" },
-									menuFS.map((i) => {
-										return new b.dropdown.item(
-											{
-												data: { value: i.value },
-												on: { click: navigateToDoc },
+								[
+									new b.button(
+										{
+											id: "btn-last-non-fs-page",
+											data: { docId: "docs/gettingstarted/home" },
+
+											color: "transparent",
+											textColor: "light",
+
+											on: {
+												click: (event) => {
+													const target = event.currentTarget as Element;
+													const docId = target.getAttribute("data-docId");
+													if (docId) {
+														setupContentDocument(docId);
+														highlightMenu(docId);
+													} else {
+														setupContentDocument(DEFAULTDOCUMENT);
+														highlightMenu(DEFAULTDOCUMENT);
+													}
+												},
 											},
-											i.label
-										);
-									})
-								),
-							]),
-						]),
-						new h.div([
-							new b.dropdown.container([
-								new b.dropdown.button(
-									{
-										class: "bs-bootswatch",
-										label: "Bootswatch theme",
-										color: "transparent",
-										textColor: "light",
-									},
-									[
-										new h.span({ marginEnd: 2 }, new b.icon("palette2")),
-										new h.span(
-											{ class: "bs-bootswatch-label" },
-											`${core.uppercaseFirst(
-												currentBootswatch ? currentBootswatch : "Default"
-											)}`
+										},
+										new b.caption({ icon: "chevron-left" }, "Back")
+									),
+									new b.dropdown.container([
+										new b.dropdown.button(
+											{
+												color: "transparent",
+												textColor: "light",
+												id: "bs-main-fs-title",
+											},
+											"Button"
 										),
-									]
-								),
-								new b.dropdown.menu(
-									{
-										positionView: "end",
-										customStyle: 1,
-										style: { minWidth: "20rem" },
-									},
-									new h.div(
-										{
-											class: "bs-bootswatch-menu",
-											display: "grid",
-											gridTemplateColumns: "1fr 1fr 1fr",
-											gap: 1,
-										},
-										BOOTSWATCHDB.map((i) => {
-											return new h.a(
-												{
-													on: {
-														click: (_e) => {
-															changeBootswatch(i.value);
-														},
+										new b.dropdown.menu(
+											{ customStyle: 1, id: "bs-main-fs-menu" },
+											menuFS.map((i) => {
+												return new b.dropdown.item(
+													{
+														data: { value: i.value },
+														on: { click: navigateToDoc },
 													},
-													class: [
-														i.value === currentBootswatch
-															? "active"
-															: undefined,
-													],
-													data: { value: i.value },
-												},
-												i.label
-											);
-										})
-									)
-								),
-							]),
-							new b.dropdown.container([
-								new b.dropdown.button(
-									{
-										color: "transparent",
-										textColor: "light",
-
-										class: "bs-theme",
-										display: "flex",
-										alignItem: "center",
-										label: "Toggle theme",
-									},
-									new b.caption(
-										{
-											icon: currentThemeIcon,
-											labelDisplay: "lg-none",
-										},
-										"Toggle theme"
-									)
-								),
-								new b.dropdown.menu(
-									{ positionView: "end", customStyle: 1 },
-									THEMEDB.map((i) => {
-										return new b.dropdown.item(
+													i.label
+												);
+											})
+										),
+									]),
+								]
+							)
+						),
+						new h.div(
+							{ flex: "fill" },
+							new h.div({ display: "flex", justifyContent: ["between", "md-end"] }, [
+								new h.div([
+									new b.dropdown.container([
+										new b.dropdown.button(
 											{
-												on: {
-													click: (_e) => {
-														highlghtTheme(i.value, i.icon);
-													},
-												},
-												active: i.value === currentTheme,
-												data: { value: i.value },
+												class: "bs-bootswatch",
+												label: "Bootswatch theme",
+												color: "transparent",
+												textColor: "light",
 											},
-											new b.caption({ icon: i.icon }, i.label)
-										);
-									})
-								),
-							]),
+											[
+												new h.span(
+													{ marginX: ["lg-2", 0] },
+													new b.icon("palette2")
+												),
+												new h.span(
+													{
+														class: "bs-bootswatch-label",
+														display: ["lg-inline", "none"],
+													},
+													`${core.uppercaseFirst(
+														currentBootswatch
+															? currentBootswatch
+															: "Default"
+													)}`
+												),
+											]
+										),
+										new b.dropdown.menu(
+											{
+												positionView: "end",
+												customStyle: 1,
+												style: { minWidth: "20rem" },
+											},
+											new h.div(
+												{
+													class: "bs-bootswatch-menu",
+													display: "grid",
+													gridTemplateColumns: "1fr 1fr 1fr",
+													gap: 1,
+												},
+												BOOTSWATCHDB.map((i) => {
+													return new h.a(
+														{
+															on: {
+																click: (_e) => {
+																	changeBootswatch(i.value);
+																},
+															},
+															class: [
+																i.value === currentBootswatch
+																	? "active"
+																	: undefined,
+															],
+															data: { value: i.value },
+														},
+														i.label
+													);
+												})
+											)
+										),
+									]),
+									new b.dropdown.container([
+										new b.dropdown.button(
+											{
+												color: "transparent",
+												textColor: "light",
 
-							new b.button(
-								{
-									color: "transparent",
-									textColor: "light",
+												class: "bs-theme",
+												display: "flex",
+												alignItem: "center",
+												label: "Toggle theme",
+											},
+											new b.caption(
+												{
+													icon: currentThemeIcon,
+													labelDisplay: "none",
+												},
+												"Toggle theme"
+											)
+										),
+										new b.dropdown.menu(
+											{ positionView: "end", customStyle: 1 },
+											THEMEDB.map((i) => {
+												return new b.dropdown.item(
+													{
+														on: {
+															click: (_e) => {
+																highlghtTheme(i.value, i.icon);
+															},
+														},
+														active: i.value === currentTheme,
+														data: { value: i.value },
+													},
+													new b.caption({ icon: i.icon }, i.label)
+												);
+											})
+										),
+									]),
+								]),
 
-									on: { click: itemCodeCopy },
-								},
-								new b.icon("clipboard")
-							),
-							new b.button(
-								{
-									color: "transparent",
-									textColor: "light",
-
-									title: "Edit on CodePen",
-									on: {
-										click: (event) => {
-											const target = event.currentTarget as Element;
-											const container = target.closest(".modal") as Element;
-
-											const strSource =
-												container.getElementsByTagName("pre")[0]?.innerText;
-
-											codePen(
-												generateCodePenData(
-													getLibBaseOnSource(strSource),
-													strSource!
-												)
-											);
+								new h.div([
+									new b.button(
+										{
+											color: "transparent",
+											textColor: "light",
+											on: { click: itemCodeCopy },
 										},
-									},
-								},
-								new b.icon("lightning-charge-fill")
-							),
-							new b.button(
-								{
-									color: "transparent",
-									textColor: "light",
+										new b.icon("clipboard")
+									),
+									new b.button(
+										{
+											color: "transparent",
+											textColor: "light",
 
-									toggle: "modal",
-									target: "#bs-main-fs-modal",
-								},
-								new b.icon("x-lg")
-							),
-						]),
+											title: "Edit on CodePen",
+											on: {
+												click: (event) => {
+													const target = event.currentTarget as Element;
+													const container = target.closest(
+														".modal"
+													) as Element;
+
+													const strSource =
+														container.getElementsByTagName("pre")[0]
+															?.innerText;
+
+													codePen(
+														generateCodePenData(
+															getLibBaseOnSource(strSource),
+															strSource!
+														)
+													);
+												},
+											},
+										},
+										new b.icon("lightning-charge-fill")
+									),
+									new b.button(
+										{
+											color: "transparent",
+											textColor: "light",
+
+											toggle: "modal",
+											target: "#bs-main-fs-modal",
+										},
+										new b.icon("x-lg")
+									),
+								]),
+							])
+						),
 					]
 				),
 				new b.modal.body({ zIndex: 0 }, [new h.div({ id: "bs-main-fs-code", rounded: 3 })]),

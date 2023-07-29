@@ -61,10 +61,8 @@ export const highlghtTheme = (value: string, icon: I.B.Icon) => {
 				newActive.setAttribute("aria-current", "true");
 			}
 
-			core.replaceChild(
-				elem,
-				new b.caption({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme")
-			);
+			const elemIcon = elem.getElementsByTagName("i")[0] as Element;
+			core.replaceWith(elemIcon, new b.icon(icon));
 		});
 	}
 
