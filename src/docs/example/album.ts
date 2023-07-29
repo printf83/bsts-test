@@ -134,7 +134,7 @@ export const album: IContent = {
 					Array(12)
 						.fill("")
 						.map((_i, ix) => {
-							return thumbnail(`https://picsum.photos/seed/bsts_${ix}/210/210.webp`);
+							return thumbnail(`https://picsum.photos/seed/bsts_${ix}/419/419.webp`);
 						})
 				)
 			)
