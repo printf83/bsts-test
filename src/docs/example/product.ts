@@ -1,4 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
+import { I, b, core, h } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
 
 export const product: IContent = {
