@@ -163,7 +163,7 @@ const ex = {
 export const list_groups: IContent = {
 	title: "List groups",
 	description: "Extend list groups with utilities and custom styles for any content.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -6,7 +6,7 @@ export const text: IContent = {
 	title: "Text",
 	description:
 		"Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

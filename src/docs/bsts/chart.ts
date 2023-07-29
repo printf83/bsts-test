@@ -95,7 +95,7 @@ const randomLineData = (id: string, chart?: Chart<"line", number[], any>) => {
 export const chart: IContent = {
 	title: "ChartJS",
 	description: "Example using bsts with Chart.js",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [
@@ -273,8 +273,8 @@ export const chart: IContent = {
 
 			//----------------------
 
-			new e.section([
-				new e.title("180° doughnut"),
+			new e.section({ id: "doughnut_180" }, [
+				new e.title({ id: "doughnut_180" }, "180° doughnut"),
 				new e.code({
 					db: getContentCode(db),
 					extention: [
@@ -343,8 +343,8 @@ export const chart: IContent = {
 
 			//----------------------
 
-			new e.section([
-				new e.title("180° doughnut with label"),
+			new e.section({ id: "doughnut_180_label" }, [
+				new e.title({ id: "doughnut_180_label" }, "180° doughnut with label"),
 				new e.code({
 					db: getContentCode(db),
 					extention: [
@@ -449,8 +449,8 @@ export const chart: IContent = {
 
 			//----------------------
 
-			new e.section([
-				new e.title("315° doughnut"),
+			new e.section({ id: "doughnut_315" }, [
+				new e.title({ id: "doughnut_315" }, "315° doughnut"),
 				new e.code({
 					db: getContentCode(db),
 					extention: [
@@ -518,8 +518,8 @@ export const chart: IContent = {
 			]),
 			//----------------------
 
-			new e.section([
-				new e.title("315° doughnut with icon and label"),
+			new e.section({ id: "doughnut_315_label" }, [
+				new e.title({ id: "doughnut_315_label" }, "315° doughnut with icon and label"),
 				new e.code({
 					db: getContentCode(db),
 					extention: [

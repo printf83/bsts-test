@@ -37,7 +37,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "white",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 5 }, arg.title)
 				),
 				new h.hr(),
 				new b.nav.header.container({
@@ -115,7 +115,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "body-emphasis",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 5 }, arg.title)
 				),
 				new h.hr(),
 				new b.nav.header.container({
@@ -193,8 +193,9 @@ const ex = {
 						textColor: "body-emphasis",
 						paddingX: 4,
 						paddingY: 3,
+						fontSize: 4,
 					},
-					new b.icon({ id: arg.icon, h: 4 })
+					new b.icon({ id: arg.icon })
 				),
 				new h.div(
 					{ marginBottom: "auto" },
@@ -217,7 +218,7 @@ const ex = {
 									},
 									new b.icon({
 										id: i.icon,
-										fontSize: 4,
+										fontSize: 5,
 									})
 								),
 								padding: 0,
@@ -318,7 +319,7 @@ const ex = {
 						textDecoration: "none",
 						textColor: "body-emphasis",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 5 }, arg.title)
 				),
 				new h.hr(),
 				new h.ul(
@@ -442,7 +443,7 @@ const ex = {
 						padding: 3,
 						border: "bottom",
 					},
-					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 4 }, arg.title)
+					new b.caption({ icon: new b.icon({ id: arg.icon }), fontSize: 5 }, arg.title)
 				),
 				new b.tabList.container(
 					{ flush: true, overflowY: "auto" },
@@ -477,7 +478,7 @@ const ex = {
 export const sidebars: IContent = {
 	title: "Sidebars",
 	description: "Common navigation patterns ideal for offcanvas or multi-column layouts.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

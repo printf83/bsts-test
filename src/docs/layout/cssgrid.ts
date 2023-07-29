@@ -6,7 +6,7 @@ export const cssgrid: IContent = {
 	title: "CSS Grid",
 	description:
 		"Learn how to enable, use, and customize Bootstrap alternate layout system built on CSS Grid with examples and code snippets.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

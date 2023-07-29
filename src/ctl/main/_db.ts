@@ -1,6 +1,64 @@
 import { IMenu } from "./menu.js";
 
-export const DEFAULTDOCUMENT = "docs/gettingstarted/introduction";
+export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
+export const CURRENTVERSION = "0.3.4";
+
+export const THEMEDB = [
+	{
+		value: "light",
+		icon: { id: "sun-fill" },
+		label: "Light",
+	},
+	{
+		value: "dark",
+		icon: { id: "moon-stars-fill" },
+		label: "Dark",
+	},
+	{
+		value: "auto",
+		icon: { id: "circle-half" },
+		label: "Auto",
+	},
+];
+
+export const BOOTSWATCHDB = [
+	{
+		value: "default",
+		label: "Default",
+	},
+	{ value: "cerulean", label: "Cerulean" },
+	{ value: "cosmo", label: "Cosmo" },
+	{ value: "cyborg", label: "Cyborg" },
+	{ value: "darkly", label: "Darkly" },
+	{ value: "flatly", label: "Flatly" },
+	{ value: "journal", label: "Journal" },
+	{ value: "litera", label: "Litera" },
+	{ value: "lumen", label: "Lumen" },
+	{ value: "lux", label: "Lux" },
+	{ value: "materia", label: "Materia" },
+	{ value: "minty", label: "Minty" },
+	{ value: "morph", label: "Morph" },
+	{ value: "pulse", label: "Pulse" },
+	{ value: "quartz", label: "Quartz" },
+	{ value: "sandstone", label: "Sandstone" },
+	{ value: "simplex", label: "Simplex" },
+	{ value: "sketchy", label: "Sketchy" },
+	{ value: "slate", label: "Slate" },
+	{ value: "solar", label: "Solar" },
+	{ value: "spacelab", label: "Spacelab" },
+	{ value: "superhero", label: "Superhero" },
+	{ value: "united", label: "United" },
+	{ value: "vapor", label: "Vapor" },
+	{ value: "yeti", label: "Yeti" },
+	{ value: "zephyr", label: "Zephyr" },
+];
+
+export const menuFS = [
+	{ label: "Album", value: "docs/example/album" },
+	{ label: "Pricing", value: "docs/example/pricing" },
+	{ label: "Checkout", value: "docs/example/checkout" },
+	{ label: "Product", value: "docs/example/product" },
+];
 
 export const menu: IMenu[] = [
 	{
@@ -131,26 +189,31 @@ export const menu: IMenu[] = [
 		],
 	},
 	{
-		label: "Example",
+		label: "Snippets",
 		icon: { id: "code", textColor: "success" },
 		item: [
-			{ label: "Headers", value: "docs/example/headers" },
-			{ label: "Heroes", value: "docs/example/heroes" },
-			{ label: "Features", value: "docs/example/features" },
-			{ label: "Sidebars", value: "docs/example/sidebars" },
-			{ label: "Footers", value: "docs/example/footers" },
-			{ label: "Dropdowns", value: "docs/example/dropdowns" },
-			{ label: "List groups", value: "docs/example/list_groups" },
-			{ label: "Modals", value: "docs/example/modals" },
-			{ label: "Badges", value: "docs/example/badges" },
-			{ label: "Breadcrumbs", value: "docs/example/breadcrumbs" },
-			{ label: "Buttons", value: "docs/example/buttons" },
-			{ label: "Jumbotrons", value: "docs/example/jumbotrons" },
+			{ label: "Headers", value: "docs/snippets/headers" },
+			{ label: "Heroes", value: "docs/snippets/heroes" },
+			{ label: "Features", value: "docs/snippets/features" },
+			{ label: "Sidebars", value: "docs/snippets/sidebars" },
+			{ label: "Footers", value: "docs/snippets/footers" },
+			{ label: "Dropdowns", value: "docs/snippets/dropdowns" },
+			{ label: "List groups", value: "docs/snippets/list_groups" },
+			{ label: "Modals", value: "docs/snippets/modals" },
+			{ label: "Badges", value: "docs/snippets/badges" },
+			{ label: "Breadcrumbs", value: "docs/snippets/breadcrumbs" },
+			{ label: "Buttons", value: "docs/snippets/buttons" },
+			{ label: "Jumbotrons", value: "docs/snippets/jumbotrons" },
 		],
 	},
 	{
+		label: "Example",
+		icon: { id: "archive-fill", textColor: "secondary" },
+		item: menuFS,
+	},
+	{
 		label: "More",
-		icon: { id: "hexagon-fill", textColor: "secondary" },
+		icon: { id: "hexagon-fill", textColor: "primary" },
 		item: [
 			{ label: "Animation", value: "docs/bsts/animation" },
 			{ label: "Transform", value: "docs/bsts/transform" },

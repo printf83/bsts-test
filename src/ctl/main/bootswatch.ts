@@ -7,27 +7,34 @@ export interface IBootswatchItem {
 }
 
 export const changeBootswatch = (value: string) => {
-	let bsBootswatch = document.getElementById("bs-bootswatch") as Element;
-	let bsBootswatchMenu = bsBootswatch.nextSibling as Element;
-	let bsBootswatchLabel = document.getElementById("bs-bootswatch-label") as Element;
+	//change menu
+	let bsBootswatch = document.getElementsByClassName("bs-bootswatch");
+	if (bsBootswatch && bsBootswatch.length > 0) {
+		Array.from(bsBootswatch).forEach((elem) => {
+			let bsBootswatchMenu = elem.nextSibling as Element;
+			let lastActive = bsBootswatchMenu.querySelectorAll("a.active")[0];
+			if (lastActive) {
+				lastActive.classList.remove("active");
+				lastActive.removeAttribute("aria-current");
+			}
 
-	let lastActive = bsBootswatchMenu.querySelectorAll("a.active")[0];
-	if (lastActive) {
-		lastActive.classList.remove("active");
-		lastActive.removeAttribute("aria-current");
+			let newActive = bsBootswatchMenu.querySelectorAll(`a[data-value='${value}']`)[0];
+			if (newActive) {
+				newActive.classList.add("active");
+				newActive.setAttribute("aria-current", "true");
+			}
+		});
 	}
 
-	let newActive = bsBootswatchMenu.querySelectorAll(`a[data-value='${value}']`)[0];
-	if (newActive) {
-		newActive.classList.add("active");
-		newActive.setAttribute("aria-current", "true");
+	//change label
+	let bsBootswatchLabel = document.getElementsByClassName("bs-bootswatch-label");
+	if (bsBootswatchLabel && bsBootswatchLabel.length > 0) {
+		Array.from(bsBootswatchLabel).forEach((elem) => {
+			elem.innerHTML = `${core.uppercaseFirst(value)}`;
+		});
 	}
 
-	core.replaceWith(
-		bsBootswatchLabel,
-		new h.span({ id: "bs-bootswatch-label" }, `${core.uppercaseFirst(value)}`)
-	);
-
+	//raise event
 	onBootswatchChange(value);
 };
 
@@ -63,6 +70,9 @@ export const genBootswatch = (
 	navbarItemBootswatch?: IBootswatchItem[],
 	currentBootswatch?: string
 ) => {
+	const bsBootswatch = core.UUID();
+	const bsBootswatchLabel = core.UUID();
+
 	if (navbarItemBootswatch) {
 		return [
 			new b.navbar.item(
@@ -84,7 +94,8 @@ export const genBootswatch = (
 				new b.dropdown.button(
 					{
 						navItem: true,
-						id: "bs-bootswatch",
+						id: bsBootswatch,
+						class: "bs-bootswatch",
 						paddingY: 2,
 						paddingX: [0, "lg-2"],
 						textColor: textColor,
@@ -93,7 +104,7 @@ export const genBootswatch = (
 					[
 						new h.span({ marginEnd: 2 }, new b.icon("palette2")),
 						new h.span(
-							{ id: "bs-bootswatch-label" },
+							{ id: bsBootswatchLabel, class: "bs-bootswatch-label" },
 							`${core.uppercaseFirst(
 								currentBootswatch ? currentBootswatch : "Default"
 							)}`

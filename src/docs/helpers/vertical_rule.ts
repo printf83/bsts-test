@@ -6,7 +6,7 @@ export const vertical_rule: IContent = {
 	title: "Vertical rule",
 	description:
 		"Use the custom vertical rule helper to create vertical dividers like the {{<hr>}} element.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

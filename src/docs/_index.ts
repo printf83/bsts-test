@@ -6,13 +6,38 @@ import * as helpers from "./helpers/_index.js";
 import * as content from "./content/_index.js";
 import * as layout from "./layout/_index.js";
 import * as customize from "./customize/_index.js";
-import * as example from "./example/_index.js";
+import * as snippets from "./snippets/_index.js";
 import * as bsts from "./bsts/_index.js";
+import * as example from "./example/_index.js";
 import { IContent } from "../ctl/main/content.js";
 
 export const doc = (value: string, callback: (result: IContent | null) => void) => {
 	switch (value) {
 		//--------------------------
+
+		case "docs/example/album":
+			example.album().then((res) => {
+				callback(res.album);
+			});
+			break;
+		case "docs/example/pricing":
+			example.pricing().then((res) => {
+				callback(res.pricing);
+			});
+			break;
+		case "docs/example/checkout":
+			example.checkout().then((res) => {
+				callback(res.checkout);
+			});
+			break;
+		case "docs/example/product":
+			example.product().then((res) => {
+				callback(res.product);
+			});
+			break;
+
+		//--------------------------
+
 		case "docs/bsts/animation":
 			bsts.animation().then((res) => {
 				callback(res.animation);
@@ -40,63 +65,63 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 			break;
 
 		//--------------------------
-		case "docs/example/headers":
-			example.headers().then((res) => {
+		case "docs/snippets/headers":
+			snippets.headers().then((res) => {
 				callback(res.headers);
 			});
 			break;
-		case "docs/example/heroes":
-			example.heroes().then((res) => {
+		case "docs/snippets/heroes":
+			snippets.heroes().then((res) => {
 				callback(res.heroes);
 			});
 			break;
-		case "docs/example/features":
-			example.features().then((res) => {
+		case "docs/snippets/features":
+			snippets.features().then((res) => {
 				callback(res.features);
 			});
 			break;
-		case "docs/example/sidebars":
-			example.sidebars().then((res) => {
+		case "docs/snippets/sidebars":
+			snippets.sidebars().then((res) => {
 				callback(res.sidebars);
 			});
 			break;
-		case "docs/example/footers":
-			example.footers().then((res) => {
+		case "docs/snippets/footers":
+			snippets.footers().then((res) => {
 				callback(res.footers);
 			});
 			break;
-		case "docs/example/dropdowns":
-			example.dropdowns().then((res) => {
+		case "docs/snippets/dropdowns":
+			snippets.dropdowns().then((res) => {
 				callback(res.dropdowns);
 			});
 			break;
-		case "docs/example/list_groups":
-			example.list_groups().then((res) => {
+		case "docs/snippets/list_groups":
+			snippets.list_groups().then((res) => {
 				callback(res.list_groups);
 			});
 			break;
-		case "docs/example/modals":
-			example.modals().then((res) => {
+		case "docs/snippets/modals":
+			snippets.modals().then((res) => {
 				callback(res.modals);
 			});
 			break;
-		case "docs/example/badges":
-			example.badges().then((res) => {
+		case "docs/snippets/badges":
+			snippets.badges().then((res) => {
 				callback(res.badges);
 			});
 			break;
-		case "docs/example/breadcrumbs":
-			example.breadcrumbs().then((res) => {
+		case "docs/snippets/breadcrumbs":
+			snippets.breadcrumbs().then((res) => {
 				callback(res.breadcrumbs);
 			});
 			break;
-		case "docs/example/buttons":
-			example.buttons().then((res) => {
+		case "docs/snippets/buttons":
+			snippets.buttons().then((res) => {
 				callback(res.buttons);
 			});
 			break;
-		case "docs/example/jumbotrons":
-			example.jumbotrons().then((res) => {
+		case "docs/snippets/jumbotrons":
+			snippets.jumbotrons().then((res) => {
 				callback(res.jumbotrons);
 			});
 			break;
@@ -511,6 +536,7 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 			break;
 
 		//--------------------------
+		case "docs":
 		case "docs/gettingstarted/introduction":
 			gettingstarted.introduction().then((res) => {
 				callback(res.introduction);
@@ -519,6 +545,14 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 		case "docs/gettingstarted/bootswatch":
 			gettingstarted.bootswatch().then((res) => {
 				callback(res.bootswatch);
+			});
+			break;
+
+		//--------------------------
+		case "home":
+		case "docs/gettingstarted/home":
+			gettingstarted.home().then((res) => {
+				callback(res.home);
 			});
 			break;
 

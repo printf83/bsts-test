@@ -115,7 +115,7 @@ const menuItem = () => {
 export const dropdowns: IContent = {
 	title: "Dropdowns",
 	description: "Enhance your dropdowns with filters, icons, custom styles, and more.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

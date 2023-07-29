@@ -238,8 +238,8 @@ const searchIndexOnClick = (event: Event) => {
 			const pageId = listGroup.getAttribute("data-pageId");
 			const value = `${pageId}${sectionId ? "#" : ""}${sectionId}`;
 
-			highlightMenu(value);
 			setupContentDocument(value);
+			highlightMenu(value);
 		}
 	}
 };

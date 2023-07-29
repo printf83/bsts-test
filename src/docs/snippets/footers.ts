@@ -244,7 +244,7 @@ const ex = {
 export const footers: IContent = {
 	title: "Footers",
 	description: "Finish every page strong with an awesome footer, big or small.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

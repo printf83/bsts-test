@@ -6,7 +6,7 @@ export const select: IContent = {
 	title: "Select",
 	description:
 		"Customize the native {{<select>}}s with custom CSS that changes the element’s initial appearance.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

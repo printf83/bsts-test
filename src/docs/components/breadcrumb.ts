@@ -6,7 +6,7 @@ export const breadcrumb: IContent = {
 	title: "Breadcrumb",
 	description:
 		"Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

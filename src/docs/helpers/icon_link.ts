@@ -5,7 +5,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 export const icon_link: IContent = {
 	title: "Icon link",
 	description: "Quickly create stylized hyperlinks with Bootstrap Icons or other icons.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

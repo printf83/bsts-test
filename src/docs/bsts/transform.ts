@@ -5,7 +5,7 @@ import * as e from "../../ctl/example/_index.js";
 export const transform: IContent = {
 	title: "Transform",
 	description: "Change element rotation and flip",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

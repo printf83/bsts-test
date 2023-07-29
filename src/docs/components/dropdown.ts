@@ -6,7 +6,7 @@ export const dropdown: IContent = {
 	title: "Dropdowns",
 	description:
 		"Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

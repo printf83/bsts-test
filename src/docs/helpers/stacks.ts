@@ -6,7 +6,7 @@ export const stacks: IContent = {
 	title: "Stacks",
 	description:
 		"Shorthand helpers that build on top of Bootstrap flexbox utilities to make component layout faster and easier than ever.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

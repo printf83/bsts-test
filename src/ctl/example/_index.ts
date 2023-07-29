@@ -34,8 +34,8 @@ export {
 	codePen,
 	codeBeautify,
 	ICodePen,
-	ICodePreview as IBsExampleCodepreview,
-	ICode as IBsExampleContainer,
-	IExtention as IBsExampleExt,
-	ISourceDB as IBsExampleData,
+	ICodePreview,
+	ICode,
+	IExtention,
+	ISourceDB,
 };

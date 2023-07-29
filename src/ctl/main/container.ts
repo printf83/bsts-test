@@ -1,4 +1,4 @@
-import { core, b, h, I } from "@printf83/bsts";
+import { core, b, h } from "@printf83/bsts";
 import { IBootswatchItem, genBootswatch } from "./bootswatch.js";
 import { ITheme, availabelTheme, setupTheme } from "./theme.js";
 import { IInsideLink, setupInsideLink } from "./insidelink.js";
@@ -23,7 +23,7 @@ export const dispatchCustomEvent = (root: Element | null, eventName: string, val
 };
 
 export interface IMainContainer extends core.IAttr {
-	icon?: I.B.Icon;
+	icon?: core.tag;
 	name?: string;
 
 	textColor?: core.bootstrapType.textColor;
@@ -46,6 +46,14 @@ export interface IMainContainer extends core.IAttr {
 }
 
 const convert = (attr: IMainContainer) => {
+	const bsNavbar = core.UUID();
+	const bsNavbarOffcanvasLabel = core.UUID();
+	const bsSidebar = "bsSidebar";
+	const bsSidebarOffcanvasLabel = "bsSidebarOffcanvasLabel";
+
+	attr.id ??= "bs-main-root";
+	attr.display ??= "none";
+
 	attr.class = core.mergeClass(attr.class, "bs-main-root");
 	attr.elem = [
 		new b.navbar.containerHeader(
@@ -72,8 +80,8 @@ const convert = (attr: IMainContainer) => {
 								{
 									class: "bs-noshadow",
 									padding: 2,
-									target: "#bsSidebar",
-									controlfor: "bsSidebar",
+									target: `#${bsSidebar}`,
+									controlfor: bsSidebar,
 									label: "Toggle docs navigation",
 									textColor: attr.textColor || "light",
 								},
@@ -95,9 +103,7 @@ const convert = (attr: IMainContainer) => {
 									},
 								},
 							},
-							attr.icon
-								? new b.icon(attr.icon)
-								: new b.icon({ id: "bootstrap", fontSize: 3 })
+							attr.icon ? attr.icon : ""
 						),
 
 						new h.div({ display: "flex", class: "bs-navbar-toggle" }, [
@@ -164,8 +170,8 @@ const convert = (attr: IMainContainer) => {
 									display: ["flex", "lg-none"],
 									order: 3,
 									padding: 2,
-									target: "#bsNavbar",
-									controlfor: "bsNavbar",
+									target: `#${bsNavbar}`,
+									controlfor: bsNavbar,
 									label: "Toggle navigation",
 									textColor: attr.textColor || "light",
 								},
@@ -174,11 +180,11 @@ const convert = (attr: IMainContainer) => {
 						]),
 						new b.offcanvas.container(
 							{
-								id: "bsNavbar",
+								id: bsNavbar,
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
-								labelledby: "bsNavbarOffcanvasLabel",
+								labelledby: bsNavbarOffcanvasLabel,
 								scroll: true,
 							},
 							[
@@ -191,13 +197,13 @@ const convert = (attr: IMainContainer) => {
 									[
 										new b.offcanvas.title(
 											{
-												id: "bsNavbarOffcanvasLabel",
+												id: bsNavbarOffcanvasLabel,
 												textColor: attr.textColor || "light",
 											},
 											attr.name || "Bootstrap"
 										),
 										new b.offcanvas.btnclose({
-											target: "#bsNavbar",
+											target: `#${bsNavbar}`,
 											white: true,
 										}),
 									]
@@ -247,26 +253,25 @@ const convert = (attr: IMainContainer) => {
 				new h.aside({ class: "bs-sidebar" }, [
 					new b.offcanvas.container(
 						{
-							id: "bsSidebar",
+							id: bsSidebar,
 							show: "lg",
 							placement: "start",
-							labelledby: "bsSidebarOffcanvasLabel",
+							labelledby: bsSidebarOffcanvasLabel,
 						},
 						[
 							new b.offcanvas.header({ border: "bottom" }, [
 								new b.offcanvas.title(
-									{ id: "bsSidebarOffcanvasLabel" },
+									{ id: bsSidebarOffcanvasLabel },
 									"Browse docs"
 								),
-								new b.offcanvas.btnclose({ target: "#bsSidebar" }),
+								new b.offcanvas.btnclose({ target: `#${bsSidebar}` }),
 							]),
 							new b.offcanvas.body([
 								new h.nav(
 									{
-										id: "bs-menu",
 										class: "bs-links",
 										width: 100,
-										label: "Docs navication",
+										label: "Docs navigation",
 									},
 									[
 										new h.ul(
@@ -278,7 +283,7 @@ const convert = (attr: IMainContainer) => {
 												paddingEnd: "lg-2",
 												data: {
 													"bs-dismiss": "offcanvas",
-													"bs-target": "#bsSidebar",
+													"bs-target": `#${bsSidebar}`,
 												},
 											},
 
@@ -321,12 +326,10 @@ const convert = (attr: IMainContainer) => {
 								},
 							},
 							[
-								attr.icon
-									? new b.icon(attr.icon)
-									: new b.icon({ id: "bootstrap", fontSize: 3 }),
+								attr.icon ? attr.icon : "",
 								new h.span(
 									{ fontSize: 5, marginStart: 2 },
-									attr.name || "Bootstrap"
+									attr.name ? attr.name : ""
 								),
 							]
 						),

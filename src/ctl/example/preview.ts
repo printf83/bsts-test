@@ -14,6 +14,7 @@ const convert = (attr: IPreview) => {
 			tabindex: 0,
 			marginX: 0,
 			marginY: 1,
+			border: false,
 		},
 		attr
 	);

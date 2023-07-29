@@ -6,7 +6,7 @@ export const vertical_align: IContent = {
 	title: "Vertical alignment",
 	description:
 		"Easily change the vertical alignment of inline, inline-block, inline-table, and table cell elements.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

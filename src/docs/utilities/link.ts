@@ -7,7 +7,7 @@ export const link: IContent = {
 	title: "Link",
 	description:
 		"Link utilities are used to stylize your anchors to adjust their color, opacity, underline offset, underline color, and more.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

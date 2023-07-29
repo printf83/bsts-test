@@ -6,7 +6,7 @@ export const sizing: IContent = {
 	title: "Sizing",
 	description:
 		"Easily make an element as wide or as tall with Bootstrap width and height utilities.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

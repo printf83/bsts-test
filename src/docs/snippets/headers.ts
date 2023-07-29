@@ -626,7 +626,7 @@ const ex = {
 export const headers: IContent = {
 	title: "Headers",
 	description: "Display your branding, navigation, search, and more with these header components",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [
