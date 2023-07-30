@@ -5,6 +5,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 interface variableItem {
 	variableName: string;
 	selector?: string;
+	value?: string;
 }
 
 const getFirstVariableName = (
@@ -23,17 +24,88 @@ const getFirstVariableName = (
 	}
 };
 
+const CUSTOMCSSVARDB: variableItem[] = [];
+
+const setCustomCSSVar = (variableName: string, value: string, selector?: string) => {
+	//find index
+	const index = CUSTOMCSSVARDB.findIndex((i) => {
+		return i.variableName === variableName && i.selector === selector;
+	});
+
+	//add, remove or change value
+	if (index > -1) {
+		if (value) {
+			CUSTOMCSSVARDB[index]!.value = value;
+		} else {
+			CUSTOMCSSVARDB.splice(index, 1);
+		}
+	} else {
+		if (value) {
+			CUSTOMCSSVARDB.push({
+				variableName: variableName,
+				selector: selector,
+				value: value,
+			});
+		}
+	}
+
+	//sort
+	CUSTOMCSSVARDB.sort((a, b) =>
+		`${a.selector}${a.variableName}` > `${b.selector}${b.variableName}` ? -1 : 1
+	);
+
+	//gen css
+	const CSS: string[] = [];
+	let lastSelector: string | null = null;
+
+	CUSTOMCSSVARDB.forEach((i) => {
+		const sel = i.selector ? i.selector : ":root";
+
+		if (lastSelector !== sel) {
+			if (lastSelector !== null) {
+				CSS.push("}\n");
+			}
+
+			CSS.push(`${sel} {\n`);
+			lastSelector = sel;
+		}
+
+		CSS.push(`\t${i.variableName}: ${i.value};\n`);
+	});
+
+	if (CSS && CSS.length > 0) {
+		CSS.push("}\n");
+	}
+
+	//add to custom stylesheet
+	let bstsCustomVarContainer = document.getElementById("bsts-custom-var-container");
+	if (!bstsCustomVarContainer) {
+		core.appendChild(
+			document.head,
+			new h.style({ id: "bsts-custom-var-container" }, CSS.join(""))
+		);
+	} else {
+		core.replaceWith(
+			bstsCustomVarContainer,
+			new h.style({ id: "bsts-custom-var-container" }, CSS.join(""))
+		);
+	}
+};
+
 const setCSSVar = (variableName: string, value: string, selector?: string) => {
 	if (variableName.endsWith("-rgb")) {
 		let rgbValue = core.hexToRGB(value);
 
 		if (rgbValue) {
-			core.setCSSVar(variableName, `${rgbValue.r},${rgbValue.g},${rgbValue.b}`, selector);
+			//core.setCSSVar(variableName, `${rgbValue.r},${rgbValue.g},${rgbValue.b}`, selector);
+			setCustomCSSVar(variableName, `${rgbValue.r},${rgbValue.g},${rgbValue.b}`, selector);
 		} else {
-			core.setCSSVar(variableName, value, selector);
+			//core.setCSSVar(variableName, value, selector);
+			setCustomCSSVar(variableName, value, selector);
 		}
 	} else {
-		core.setCSSVar(variableName, value, selector);
+		//core.setCSSVar(variableName, value, selector);
+		setCustomCSSVar(variableName, value, selector);
 	}
 };
 
