@@ -512,13 +512,70 @@ export const color: IContent = {
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 									colorpickerBg([
-										{ variableName: "--bs-primary" },
-										{ variableName: "--bs-primary-rgb" },
-
-										// TODO: SELECTOR NOT WORKING
+										// ROOT
 										// ==========================
+										{
+											variableName: "--bs-primary",
+											selector: ":root, [data-bs-theme='light']",
+										},
+										{
+											variableName: "--bs-primary-rgb",
+											selector: ":root, [data-bs-theme='light']",
+										},
 
 										// DROPDOWN
+										// ==========================
+										{
+											variableName: "--bs-dropdown-link-active-bg",
+											selector:
+												":root .dropdown-item, [data-bs-theme='light']",
+										},
+
+										// LIST
+										// ==========================
+
+										{
+											variableName: "--bs-list-group-active-bg",
+											selector: ":root .list-group, [data-bs-theme='light']",
+										},
+										{
+											variableName: "--bs-list-group-active-border-color",
+											selector: ":root .list-group, [data-bs-theme='light']",
+										},
+
+										// BUTTON
+										// ==========================
+										{
+											variableName: "--bs-btn-bg",
+											selector: ":root .btn-primary, [data-bs-theme='light']",
+										},
+										{
+											variableName: "--bs-btn-border-color",
+											selector: ":root .btn-primary, [data-bs-theme='light']",
+										},
+										{
+											variableName: "--bs-btn-hover-bg",
+											selector: ":root .btn-primary, [data-bs-theme='light']",
+										},
+										{
+											variableName: "--bs-btn-hover-border-color",
+											selector: ":root .btn-primary, [data-bs-theme='light']",
+										},
+
+										// ==========================
+										// ROOT
+										// ==========================
+										{
+											variableName: "--bs-primary",
+											selector: ":root",
+										},
+										{
+											variableName: "--bs-primary-rgb",
+											selector: ":root",
+										},
+
+										// DROPDOWN
+										// ==========================
 										{
 											variableName: "--bs-dropdown-link-active-bg",
 											selector: ":root .dropdown-item",
