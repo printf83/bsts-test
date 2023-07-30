@@ -2,59 +2,14 @@ import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
-// const hexToRGB = (hex: string) => {
-// 	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-// 	hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
-// 		return r + r + g + g + b + b;
-// 	});
+interface variableItem {
+	variableName: string;
+	selector?: string;
+}
 
-// 	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-// 	return result
-// 		? {
-// 				r: parseInt(result[1], 16),
-// 				g: parseInt(result[2], 16),
-// 				b: parseInt(result[3], 16),
-// 		  }
-// 		: null;
-// };
-
-// const RGBToHex = (r: number, g: number, b: number) => {
-// 	return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
-// };
-
-// const setCSSVar = (variableName: string, value: string) => {
-// 	let root = document.querySelector(":root") as HTMLStyleElement;
-// 	if (root) {
-// 		if (variableName.endsWith("-rgb") && value.startsWith("#")) {
-// 			let v = hexToRGB(value);
-// 			if (v) {
-// 				root.style.setProperty(variableName, `${v.r},${v.g},${v.b}`);
-// 			}
-// 		} else {
-// 			root.style.setProperty(variableName, value);
-// 		}
-// 	}
-// };
-
-// const getCSSVar = (variableName: string) => {
-// 	let root = document.querySelector(":root") as HTMLStyleElement;
-// 	if (root) {
-// 		let value = getComputedStyle(root).getPropertyValue(variableName);
-// 		if (value.startsWith("#")) {
-// 			//console.log(`1. ${variableName}:${value}`);
-// 			return value;
-// 		} else {
-// 			let v = value.replace(/^rgba?\(|\s+|\)$/g, "").split(",");
-// 			let result = RGBToHex(parseInt(v[0]), parseInt(v[1]), parseInt(v[2]));
-// 			//console.log(`2. ${variableName}:${result}`);
-// 			return result;
-// 		}
-// 	} else {
-// 		return "#ffffff";
-// 	}
-// };
-
-const getFirstVariableName = (variableName: string | string[]): string => {
+const getFirstVariableName = (
+	variableName: variableItem | variableItem[]
+): variableItem | undefined => {
 	let arrVariableName = Array.isArray(variableName) ? variableName : [variableName];
 	if (arrVariableName.length > 0) {
 		if (arrVariableName[0]) {
@@ -64,135 +19,138 @@ const getFirstVariableName = (variableName: string | string[]): string => {
 			return getFirstVariableName(arrVariableName);
 		}
 	} else {
-		return "";
+		return undefined;
 	}
 };
 
-const setCSSVar = (variableName: string, value: string) => {
+const setCSSVar = (variableName: string, value: string, selector?: string) => {
 	if (variableName.endsWith("-rgb")) {
 		let rgbValue = core.hexToRGB(value);
 
 		if (rgbValue) {
-			core.setCSSVar(variableName, `${rgbValue.r},${rgbValue.g},${rgbValue.b}`);
+			core.setCSSVar(variableName, `${rgbValue.r},${rgbValue.g},${rgbValue.b}`, selector);
 		} else {
-			core.setCSSVar(variableName, value);
+			core.setCSSVar(variableName, value, selector);
 		}
 	} else {
-		core.setCSSVar(variableName, value);
+		core.setCSSVar(variableName, value, selector);
 	}
 };
 
-const colorpickerBg = (variableName: string | string[]) => {
-	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
-	let firstVariableName = getFirstVariableName(variableName);
-	let value = core.getCSSVarHexColor(firstVariableName);
-	return new h.div(
-		{ class: "swatch", rounded: true, border: true, style: { backgroundColor: value } },
-		[
-			new b.input({
-				type: "color",
-				value: value,
-				on: {
-					input: (e) => {
-						let target = e.target as HTMLInputElement;
-						let value = target.value;
-						let bsVar = v; //target.getAttribute("data-bs-var");
-						if (bsVar) {
-							let varList = bsVar.split(",");
+const colorpickerBg = (variable: variableItem | variableItem[]) => {
+	let varList = Array.isArray(variable) ? variable : [variable];
+	let firstVariable = getFirstVariableName(variable);
+
+	if (firstVariable) {
+		let value = core.getCSSVarHexColor(firstVariable.variableName, firstVariable.selector);
+		return new h.div(
+			{ class: "swatch", rounded: true, border: true, style: { backgroundColor: value } },
+			[
+				new b.input({
+					type: "color",
+					value: value,
+					on: {
+						input: (e) => {
+							let target = e.target as HTMLInputElement;
+							let value = target.value;
 							varList.forEach((i) => {
 								let container = target.closest(".swatch") as HTMLElement;
 								if (container) {
 									container.style.setProperty("background-color", value);
-									setCSSVar(i, value);
+									setCSSVar(i.variableName, value, i.selector);
 								}
 							});
-						}
+						},
 					},
-				},
-			}),
-		]
-	);
+				}),
+			]
+		);
+	} else {
+		return new h.div("ERROR");
+	}
 };
 
-const colorpickerBorder = (variableName: string | string[]) => {
-	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
-	let firstVariableName = getFirstVariableName(variableName);
-	let value = core.getCSSVarHexColor(firstVariableName);
-	return new h.div(
-		{
-			class: "swatch",
-			rounded: true,
-			border: true,
-			borderWidth: 5,
-			style: { borderColor: `${value} !important` },
-		},
-		[
+const colorpickerBorder = (variable: variableItem | variableItem[]) => {
+	let varList = Array.isArray(variable) ? variable : [variable];
+	let firstVariable = getFirstVariableName(variable);
+
+	if (firstVariable) {
+		let value = core.getCSSVarHexColor(firstVariable.variableName, firstVariable.selector);
+		return new h.div(
+			{
+				class: "swatch",
+				rounded: true,
+				border: true,
+				borderWidth: 5,
+				style: { borderColor: `${value} !important` },
+			},
+			[
+				new b.input({
+					type: "color",
+					value: value,
+					on: {
+						input: (e) => {
+							let target = e.target as HTMLInputElement;
+							let value = target.value;
+							varList.forEach((i) => {
+								let container = target.closest(".swatch") as HTMLElement;
+								if (container) {
+									container.style.setProperty("border-color", value, "important");
+									setCSSVar(i.variableName, value, i.selector);
+								}
+							});
+						},
+					},
+				}),
+			]
+		);
+	} else {
+		return new h.div("ERROR");
+	}
+};
+
+const colorpickerText = (variable: variableItem | variableItem[]) => {
+	let varList = Array.isArray(variable) ? variable : [variable];
+	let firstVariable = getFirstVariableName(variable);
+
+	if (firstVariable) {
+		let value = core.getCSSVarHexColor(firstVariable.variableName, firstVariable.selector);
+		return new h.div({ class: "swatch", position: "relative", style: { color: `${value}` } }, [
+			new h.span(
+				{
+					h: 4,
+					fontWeight: "bolder",
+					position: "absolute",
+					width: 100,
+					zIndex: 0,
+					textAlign: "center",
+					marginTop: 2,
+					paddingTop: 1,
+				},
+				"Text"
+			),
 			new b.input({
 				type: "color",
+				zIndex: 1,
 				value: value,
 				on: {
 					input: (e) => {
 						let target = e.target as HTMLInputElement;
 						let value = target.value;
-						let bsVar = v; //target.getAttribute("data-bs-var");
-						if (bsVar) {
-							let varList = bsVar.split(",");
-							varList.forEach((i) => {
-								let container = target.closest(".swatch") as HTMLElement;
-								if (container) {
-									container.style.setProperty("border-color", value, "important");
-									setCSSVar(i, value);
-								}
-							});
-						}
-					},
-				},
-			}),
-		]
-	);
-};
-
-const colorpickerText = (variableName: string | string[]) => {
-	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
-	let firstVariableName = getFirstVariableName(variableName);
-	let value = core.getCSSVarHexColor(firstVariableName);
-	return new h.div({ class: "swatch", position: "relative", style: { color: `${value}` } }, [
-		new h.span(
-			{
-				h: 4,
-				fontWeight: "bolder",
-				position: "absolute",
-				width: 100,
-				zIndex: 0,
-				textAlign: "center",
-				marginTop: 2,
-				paddingTop: 1,
-			},
-			"Text"
-		),
-		new b.input({
-			type: "color",
-			zIndex: 1,
-			value: value,
-			on: {
-				input: (e) => {
-					let target = e.target as HTMLInputElement;
-					let value = target.value;
-					let bsVar = v; //target.getAttribute("data-bs-var");
-					if (bsVar) {
-						let varList = bsVar.split(",");
 						varList.forEach((i) => {
 							let container = target.closest(".swatch") as HTMLElement;
 							if (container) {
 								container.style.setProperty("color", value);
-								setCSSVar(i, value);
+								setCSSVar(i.variableName, value, i.selector);
 							}
 						});
-					}
+					},
 				},
-			},
-		}),
-	]);
+			}),
+		]);
+	} else {
+		return new h.div("ERROR");
+	}
 };
 
 export const color: IContent = {
@@ -248,7 +206,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-body-color", "--bs-body-color-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-body-color" },
+										{ variableName: "--bs-body-color-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -271,7 +232,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-body-bg", "--bs-body-bg-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-body-bg" },
+										{ variableName: "--bs-body-bg-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -298,8 +262,8 @@ export const color: IContent = {
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 									colorpickerBg([
-										"--bs-secondary-color",
-										"--bs-secondary-color-rgb",
+										{ variableName: "--bs-secondary-color" },
+										{ variableName: "--bs-secondary-color-rgb" },
 									])
 								),
 								new b.table.td(
@@ -325,7 +289,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-secondary-bg", "--bs-secondary-bg-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-secondary-bg" },
+										{ variableName: "--bs-secondary-bg-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -354,8 +321,8 @@ export const color: IContent = {
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 									colorpickerBg([
-										"--bs-tertiary-color",
-										"--bs-tertiary-color-rgb",
+										{ variableName: "--bs-tertiary-color" },
+										{ variableName: "--bs-tertiary-color-rgb" },
 									])
 								),
 								new b.table.td(
@@ -381,7 +348,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-tertiary-bg", "--bs-tertiary-bg-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-tertiary-bg" },
+										{ variableName: "--bs-tertiary-bg-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -409,8 +379,8 @@ export const color: IContent = {
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 									colorpickerBg([
-										"--bs-emphasis-color",
-										"--bs-emphasis-color-rgb",
+										{ variableName: "--bs-emphasis-color" },
+										{ variableName: "--bs-emphasis-color-rgb" },
 									])
 								),
 								new b.table.td(
@@ -438,7 +408,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-border-color", "--bs-border-color-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-border-color" },
+										{ variableName: "--bs-border-color-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -467,9 +440,42 @@ export const color: IContent = {
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
 									colorpickerBg([
-										"--bs-primary",
-										"--bs-primary-rgb",
-										"--bs-dropdown-link-active-bg",
+										{ variableName: "--bs-primary" },
+										{ variableName: "--bs-primary-rgb" },
+										{ variableName: "--bs-dropdown-link-active-bg" },
+
+										// TODO: SELECTOR NOT WORKING
+										// ==========================
+										// LIST
+										// ==========================
+
+										{
+											variableName: "--bs-list-group-active-bg",
+											selector: ":root .list-group",
+										},
+										{
+											variableName: "--bs-list-group-active-border-color",
+											selector: ":root .list-group",
+										},
+
+										// BUTTON
+										// ==========================
+										{
+											variableName: "--bs-btn-bg",
+											selector: ":root .btn-primary",
+										},
+										{
+											variableName: "--bs-btn-border-color",
+											selector: ":root .btn-primary",
+										},
+										{
+											variableName: "--bs-btn-hover-bg",
+											selector: ":root .btn-primary",
+										},
+										{
+											variableName: "--bs-btn-hover-border-color",
+											selector: ":root .btn-primary",
+										},
 									])
 								),
 								new b.table.td(
@@ -493,7 +499,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg("--bs-primary-bg-subtle")
+									colorpickerBg({ variableName: "--bs-primary-bg-subtle" })
 								),
 								new b.table.td(
 									{
@@ -516,7 +522,9 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBorder("--bs-primary-border-subtle")
+									colorpickerBorder({
+										variableName: "--bs-primary-border-subtle",
+									})
 								),
 								new b.table.td(
 									{
@@ -539,7 +547,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerText("--bs-primary-text-emphasis")
+									colorpickerText({ variableName: "--bs-primary-text-emphasis" })
 								),
 								new b.table.td(
 									{
@@ -565,7 +573,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-success", "--bs-success-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-success" },
+										{ variableName: "--bs-success-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -588,7 +599,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg("--bs-success-bg-subtle")
+									colorpickerBg({ variableName: "--bs-success-bg-subtle" })
 								),
 								new b.table.td(
 									{
@@ -611,7 +622,9 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBorder("--bs-success-border-subtle")
+									colorpickerBorder({
+										variableName: "--bs-success-border-subtle",
+									})
 								),
 								new b.table.td(
 									{
@@ -634,7 +647,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerText("--bs-success-text-emphasis")
+									colorpickerText({ variableName: "--bs-success-text-emphasis" })
 								),
 								new b.table.td(
 									{
@@ -660,7 +673,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-danger", "--bs-danger-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-danger" },
+										{ variableName: "--bs-danger-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -683,7 +699,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg("--bs-danger-bg-subtle")
+									colorpickerBg({ variableName: "--bs-danger-bg-subtle" })
 								),
 								new b.table.td(
 									{
@@ -706,7 +722,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBorder("--bs-danger-border-subtle")
+									colorpickerBorder({ variableName: "--bs-danger-border-subtle" })
 								),
 								new b.table.td(
 									{
@@ -729,7 +745,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerText("--bs-danger-text-emphasis")
+									colorpickerText({ variableName: "--bs-danger-text-emphasis" })
 								),
 								new b.table.td(
 									{
@@ -755,7 +771,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-warning", "--bs-warning-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-warning" },
+										{ variableName: "--bs-warning-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -778,7 +797,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg("--bs-warning-bg-subtle")
+									colorpickerBg({ variableName: "--bs-warning-bg-subtle" })
 								),
 								new b.table.td(
 									{
@@ -801,7 +820,9 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBorder("--bs-warning-border-subtle")
+									colorpickerBorder({
+										variableName: "--bs-warning-border-subtle",
+									})
 								),
 								new b.table.td(
 									{
@@ -824,7 +845,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerText("--bs-warning-text-emphasis")
+									colorpickerText({ variableName: "--bs-warning-text-emphasis" })
 								),
 								new b.table.td(
 									{
@@ -850,7 +871,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-info", "--bs-info-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-info" },
+										{ variableName: "--bs-info-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -873,7 +897,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg("--bs-info-bg-subtle")
+									colorpickerBg({ variableName: "--bs-info-bg-subtle" })
 								),
 								new b.table.td(
 									{
@@ -896,7 +920,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBorder("--bs-info-border-subtle")
+									colorpickerBorder({ variableName: "--bs-info-border-subtle" })
 								),
 								new b.table.td(
 									{
@@ -919,7 +943,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerText("--bs-info-text-emphasis")
+									colorpickerText({ variableName: "--bs-info-text-emphasis" })
 								),
 								new b.table.td(
 									{
@@ -945,7 +969,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-light", "--bs-light-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-light" },
+										{ variableName: "--bs-light-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -968,7 +995,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg("--bs-light-bg-subtle")
+									colorpickerBg({ variableName: "--bs-light-bg-subtle" })
 								),
 								new b.table.td(
 									{
@@ -991,7 +1018,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBorder("--bs-light-border-subtle")
+									colorpickerBorder({ variableName: "--bs-light-border-subtle" })
 								),
 								new b.table.td(
 									{
@@ -1012,7 +1039,9 @@ export const color: IContent = {
 										"{{b::Light — }}Additional theme option for less contrasting colors."
 									)
 								),
-								new b.table.td(colorpickerText("--bs-light-text-emphasis")),
+								new b.table.td(
+									colorpickerText({ variableName: "--bs-light-text-emphasis" })
+								),
 								new b.table.td(
 									{
 										responsiveAttr: "bs-title-name",
@@ -1037,7 +1066,10 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg(["--bs-dark", "--bs-dark-rgb"])
+									colorpickerBg([
+										{ variableName: "--bs-dark" },
+										{ variableName: "--bs-dark-rgb" },
+									])
 								),
 								new b.table.td(
 									{
@@ -1060,7 +1092,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBg("--bs-dark-bg-subtle")
+									colorpickerBg({ variableName: "--bs-dark-bg-subtle" })
 								),
 								new b.table.td(
 									{
@@ -1083,7 +1115,7 @@ export const color: IContent = {
 								),
 								new b.table.td(
 									{ responsiveAttr: "bs-title-name", responsiveTitle: "Swatch" },
-									colorpickerBorder("--bs-dark-border-subtle")
+									colorpickerBorder({ variableName: "--bs-dark-border-subtle" })
 								),
 								new b.table.td(
 									{
@@ -1104,7 +1136,9 @@ export const color: IContent = {
 										"{{b::Dark — }}Additional theme option for higher contrasting colors."
 									)
 								),
-								new b.table.td(colorpickerText("--bs-dark-text-emphasis")),
+								new b.table.td(
+									colorpickerText({ variableName: "--bs-dark-text-emphasis" })
+								),
 								new b.table.td(
 									{
 										responsiveAttr: "bs-title-name",

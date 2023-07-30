@@ -1,7 +1,7 @@
 import { IMenu } from "./menu.js";
 
 export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
-export const CURRENTVERSION = "0.3.4";
+export const CURRENTVERSION = "0.3.5";
 
 export const THEMEDB = [
 	{
