@@ -68,6 +68,20 @@ const getFirstVariableName = (variableName: string | string[]): string => {
 	}
 };
 
+const setCSSVar = (variableName: string, value: string) => {
+	if (variableName.endsWith("-rgb")) {
+		let rgbValue = core.hexToRGB(value);
+
+		if (rgbValue) {
+			core.setCSSVar(variableName, `${rgbValue.r},${rgbValue.g},${rgbValue.b}`);
+		} else {
+			core.setCSSVar(variableName, value);
+		}
+	} else {
+		core.setCSSVar(variableName, value);
+	}
+};
+
 const colorpickerBg = (variableName: string | string[]) => {
 	let v = Array.isArray(variableName) ? variableName.join(",") : variableName;
 	let firstVariableName = getFirstVariableName(variableName);
@@ -89,7 +103,7 @@ const colorpickerBg = (variableName: string | string[]) => {
 								let container = target.closest(".swatch") as HTMLElement;
 								if (container) {
 									container.style.setProperty("background-color", value);
-									core.setCSSVar(i, value);
+									setCSSVar(i, value);
 								}
 							});
 						}
@@ -127,7 +141,7 @@ const colorpickerBorder = (variableName: string | string[]) => {
 								let container = target.closest(".swatch") as HTMLElement;
 								if (container) {
 									container.style.setProperty("border-color", value, "important");
-									core.setCSSVar(i, value);
+									setCSSVar(i, value);
 								}
 							});
 						}
@@ -171,7 +185,7 @@ const colorpickerText = (variableName: string | string[]) => {
 							let container = target.closest(".swatch") as HTMLElement;
 							if (container) {
 								container.style.setProperty("color", value);
-								core.setCSSVar(i, value);
+								setCSSVar(i, value);
 							}
 						});
 					}
