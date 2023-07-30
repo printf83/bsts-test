@@ -442,10 +442,16 @@ export const color: IContent = {
 									colorpickerBg([
 										{ variableName: "--bs-primary" },
 										{ variableName: "--bs-primary-rgb" },
-										{ variableName: "--bs-dropdown-link-active-bg" },
 
 										// TODO: SELECTOR NOT WORKING
 										// ==========================
+
+										// DROPDOWN
+										{
+											variableName: "--bs-dropdown-link-active-bg",
+											selector: ":root .dropdown-item",
+										},
+
 										// LIST
 										// ==========================
 
