@@ -82,8 +82,16 @@ const setupCustomCSSVar = (hex: string) => {
 	const rgb = core.hexToRGB(hex);
 	const sRGB = `${rgb?.r},${rgb?.g},${rgb?.b}`;
 
+	addCustomCSSVar(
+		"background-color",
+		`rgba(${rgb?.r},${rgb?.g},${rgb?.b},var(--bs-bg-opacity,1)) !important`,
+		".text-bg-primary"
+	);
+
 	addCustomCSSVar("--bs-primary", hex);
+	addCustomCSSVar("--bs-link-color", hex);
 	addCustomCSSVar("--bs-primary-rgb", sRGB);
+	addCustomCSSVar("--bs-link-color-rgb", sRGB);
 
 	addCustomCSSVar("--bs-dropdown-link-active-bg", hex, ".dropdown-item");
 
@@ -92,6 +100,23 @@ const setupCustomCSSVar = (hex: string) => {
 
 	addCustomCSSVar("--bs-btn-bg", hex, ".btn-primary");
 	addCustomCSSVar("--bs-btn-border-color", hex, ".btn-primary");
+
+	addCustomCSSVar("--bs-btn-color", hex, ".btn-outline-primary");
+	addCustomCSSVar("--bs-btn-border-color", hex, ".btn-outline-primary");
+
+	addCustomCSSVar("--bs-progress-bar-bg", hex, ".progress, .progress-stacked");
+
+	addCustomCSSVar("--bs-nav-pills-link-active-bg", hex, ".nav-pills");
+
+	addCustomCSSVar("--bs-pagination-color", hex, ".pagination");
+	addCustomCSSVar("--bs-pagination-active-bg", hex, ".pagination");
+	addCustomCSSVar("--bs-pagination-active-border-color", hex, ".pagination");
+
+	addCustomCSSVar("background-color", hex, ".form-check-input:checked");
+	addCustomCSSVar("border-color", hex, ".form-check-input:checked");
+
+	addCustomCSSVar("background-color", hex, ".form-check-input[type=checkbox]:indeterminate");
+	addCustomCSSVar("border-color", hex, ".form-check-input[type=checkbox]:indeterminate");
 
 	setCustomCSSVar();
 };
