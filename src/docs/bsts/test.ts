@@ -10,7 +10,7 @@ interface variableItem {
 
 const CUSTOMCSSVARDB: variableItem[] = [];
 
-const addCustomCSSVar = (variableName: string, value: string, selector?: string) => {
+const addCustomCSSVar = (selector: string, variableName: string, value: string) => {
 	//find index
 	const index = CUSTOMCSSVARDB.findIndex((i) => {
 		return i.variableName === variableName && i.selector === selector;
@@ -178,52 +178,80 @@ const setupCustomCSSVar = (hex: string) => {
 	const sRGB = `${rgb?.r},${rgb?.g},${rgb?.b}`;
 
 	addCustomCSSVar(
+		".text-bg-primary",
 		"background-color",
-		`rgba(${rgb?.r},${rgb?.g},${rgb?.b},var(--bs-bg-opacity,1)) !important`,
-		".text-bg-primary"
+		`rgba(${rgb?.r},${rgb?.g},${rgb?.b},var(--bs-bg-opacity,1)) !important`
 	);
 
-	addCustomCSSVar("--bs-primary", hex);
-	addCustomCSSVar("--bs-link-color", hex);
-	addCustomCSSVar("--bs-primary-rgb", sRGB);
-	addCustomCSSVar("--bs-link-color-rgb", sRGB);
+	addCustomCSSVar(":root", "--bs-primary", hex);
+	addCustomCSSVar(":root", "--bs-link-color", hex);
+	addCustomCSSVar(":root", "--bs-primary-rgb", sRGB);
+	addCustomCSSVar(":root", "--bs-link-color-rgb", sRGB);
 
-	addCustomCSSVar("--bs-dropdown-link-active-bg", hex, ".dropdown-item");
+	addCustomCSSVar(".dropdown-item", "--bs-dropdown-link-active-bg", hex);
 
-	addCustomCSSVar("--bs-list-group-active-bg", hex, ".list-group");
-	addCustomCSSVar("--bs-list-group-active-border-color", hex, ".list-group");
+	addCustomCSSVar(".list-group", "--bs-list-group-active-bg", hex);
+	addCustomCSSVar(".list-group", "--bs-list-group-active-border-color", hex);
 
-	addCustomCSSVar("--bs-btn-color", btnColorNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-bg", hex, ".btn-primary");
-	addCustomCSSVar("--bs-btn-border-color", btnBorderNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-hover-color", btnHoverColorNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-hover-bg", btnHoverBgNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-hover-border-color", btnHoverBorderNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-focus-shadow-rgb", sRGB, ".btn-primary");
-	addCustomCSSVar("--bs-btn-active-color", btnActiveColorNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-active-bg", btnActiveBgNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-active-border-color", btnActiveBorderNew, ".btn-primary");
-	// addCustomCSSVar("--bs-btn-active-shadow", btnBorderNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-disabled-color", btnDisabledColorNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-disabled-bg", btnDisabledBgNew, ".btn-primary");
-	addCustomCSSVar("--bs-btn-disabled-border-color", btnDisabledBorderNew, ".btn-primary");
+	addCustomCSSVar(".btn-primary", "--bs-btn-color", btnColorNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-bg", hex);
+	addCustomCSSVar(".btn-primary", "--bs-btn-border-color", btnBorderNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-hover-color", btnHoverColorNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-hover-bg", btnHoverBgNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-hover-border-color", btnHoverBorderNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-focus-shadow-rgb", sRGB);
+	addCustomCSSVar(".btn-primary", "--bs-btn-active-color", btnActiveColorNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-active-bg", btnActiveBgNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-active-border-color", btnActiveBorderNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-color", btnDisabledColorNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-bg", btnDisabledBgNew);
+	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-border-color", btnDisabledBorderNew);
 
-	addCustomCSSVar("--bs-btn-color", hex, ".btn-outline-primary");
-	addCustomCSSVar("--bs-btn-border-color", hex, ".btn-outline-primary");
+	// addCustomCSSVar(".btn-primary", "--bs-btn-active-shadow", "inset 0 3px 5px rgba(0, 0, 0, 0.125)");
 
-	addCustomCSSVar("--bs-progress-bar-bg", hex, ".progress, .progress-stacked");
+	// 	btn-outline-primary {
+	//   --bs-btn-color: #0d6efd;
+	//   --bs-btn-border-color: #0d6efd;
+	//   --bs-btn-hover-color: #fff;
+	//   --bs-btn-hover-bg: #0d6efd;
+	//   --bs-btn-hover-border-color: #0d6efd;
+	//   --bs-btn-focus-shadow-rgb: 13,110,253;
+	//   --bs-btn-active-color: #fff;
+	//   --bs-btn-active-bg: #0d6efd;
+	//   --bs-btn-active-border-color: #0d6efd;
+	//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	//   --bs-btn-disabled-color: #0d6efd;
+	//   --bs-btn-disabled-bg: transparent;
+	//   --bs-btn-disabled-border-color: #0d6efd;
+	//   --bs-gradient: none;
 
-	addCustomCSSVar("--bs-nav-pills-link-active-bg", hex, ".nav-pills");
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-color", hex);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-border-color", btnBorderNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-hover-color", btnHoverColorNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-hover-bg", btnHoverBgNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-hover-border-color", btnHoverBorderNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-focus-shadow-rgb", sRGB);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-active-color", btnActiveColorNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-active-bg", btnActiveBgNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-active-border-color", btnActiveBorderNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-disabled-color", btnDisabledColorNew);
+	addCustomCSSVar(".btn-outline-primary", "--bs-btn-disabled-border-color", btnDisabledBorderNew);
 
-	addCustomCSSVar("--bs-pagination-color", hex, ".pagination");
-	addCustomCSSVar("--bs-pagination-active-bg", hex, ".pagination");
-	addCustomCSSVar("--bs-pagination-active-border-color", hex, ".pagination");
+	// ========
 
-	addCustomCSSVar("background-color", hex, ".form-check-input:checked");
-	addCustomCSSVar("border-color", hex, ".form-check-input:checked");
+	addCustomCSSVar(".progress, .progress-stacked", "--bs-progress-bar-bg", hex);
 
-	addCustomCSSVar("background-color", hex, ".form-check-input[type=checkbox]:indeterminate");
-	addCustomCSSVar("border-color", hex, ".form-check-input[type=checkbox]:indeterminate");
+	addCustomCSSVar(".nav-pills", "--bs-nav-pills-link-active-bg", hex);
+
+	addCustomCSSVar(".pagination", "--bs-pagination-color", hex);
+	addCustomCSSVar(".pagination", "--bs-pagination-active-bg", hex);
+	addCustomCSSVar(".pagination", "--bs-pagination-active-border-color", hex);
+
+	addCustomCSSVar(".form-check-input:checked", "background-color", hex);
+	addCustomCSSVar(".form-check-input:checked", "border-color", hex);
+
+	addCustomCSSVar(".form-check-input[type=checkbox]:indeterminate", "background-color", hex);
+	addCustomCSSVar(".form-check-input[type=checkbox]:indeterminate", "border-color", hex);
 
 	setCustomCSSVar();
 };
