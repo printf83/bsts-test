@@ -78,7 +78,102 @@ const setCustomCSSVar = () => {
 	}
 };
 
+const getHSLDistance = (fromHex: string, toHex: string) => {
+	const fromHSL = core.hexToHSL(fromHex);
+	const toHSL = core.hexToHSL(toHex);
+
+	if (fromHSL && toHSL) {
+		return {
+			h: fromHSL.h - toHSL.h,
+			s: fromHSL.s - toHSL.s,
+			l: fromHSL.l - toHSL.l,
+		};
+	} else {
+		return {
+			h: 0,
+			s: 0,
+			l: 0,
+		};
+	}
+};
+
+const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: number }) => {
+	const HSL = core.hexToHSL(hex);
+
+	if (HSL) {
+		const calc = (val: number, max: number) => {
+			if (val > max) {
+				val = max - val;
+			}
+
+			if (val < 0) {
+				val = max + val;
+			}
+
+			return val;
+		};
+
+		return {
+			h: calc(HSL.h + distanceHSL.h, 360),
+			s: calc(HSL.s + distanceHSL.s, 100),
+			l: calc(HSL.l + distanceHSL.l, 100),
+		};
+	} else {
+		return {
+			h: 0,
+			s: 0,
+			l: 0,
+		};
+	}
+};
+
+const getNewHex = (mainHex: string, refHex: string, hex: string) => {
+	return core.hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
+};
+
 const setupCustomCSSVar = (hex: string) => {
+	// --bs-btn-color: #fff;
+	// --bs-btn-bg: #0d6efd;
+	// --bs-btn-border-color: #0d6efd;
+	// --bs-btn-hover-color: #fff;
+	// --bs-btn-hover-bg: #0b5ed7;
+	// --bs-btn-hover-border-color: #0a58ca;
+	// --bs-btn-focus-shadow-rgb: 49,132,253;
+	// --bs-btn-active-color: #fff;
+	// --bs-btn-active-bg: #0a58ca;
+	// --bs-btn-active-border-color: #0a53be;
+	// --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	// --bs-btn-disabled-color: #fff;
+	// --bs-btn-disabled-bg: #0d6efd;
+	// --bs - btn - disabled - border - color: #0d6efd;
+
+	const btnBg = "#0d6efd"; //main
+	const btnColorNew = core.hexIsDark(hex) ? "#fff" : "#000";
+
+	const btnBorder = "#0d6efd";
+	const btnBorderNew = getNewHex(btnBg, btnBorder, hex);
+
+	const btnHoverBg = "#0b5ed7";
+	const btnHoverBgNew = getNewHex(btnBg, btnHoverBg, hex);
+	const btnHoverColorNew = core.hexIsDark(btnHoverBgNew) ? "#fff" : "#000";
+
+	const btnHoverBorder = "#0a58ca";
+	const btnHoverBorderNew = getNewHex(btnBg, btnHoverBorder, hex);
+
+	const btnActiveBg = "#0a58ca";
+	const btnActiveBgNew = getNewHex(btnBg, btnActiveBg, hex);
+	const btnActiveColorNew = core.hexIsDark(btnActiveBgNew) ? "#fff" : "#000";
+
+	const btnActiveBorder = "#0a53be";
+	const btnActiveBorderNew = getNewHex(btnBg, btnActiveBorder, hex);
+
+	const btnDisabledBg = "#0d6efd";
+	const btnDisabledBgNew = getNewHex(btnBg, btnDisabledBg, hex);
+	const btnDisabledColorNew = core.hexIsDark(btnDisabledBgNew) ? "#fff" : "#000";
+
+	const btnDisabledBorder = "#0d6efd";
+	const btnDisabledBorderNew = getNewHex(btnBg, btnDisabledBorder, hex);
+
 	const rgb = core.hexToRGB(hex);
 	const sRGB = `${rgb?.r},${rgb?.g},${rgb?.b}`;
 
@@ -98,8 +193,20 @@ const setupCustomCSSVar = (hex: string) => {
 	addCustomCSSVar("--bs-list-group-active-bg", hex, ".list-group");
 	addCustomCSSVar("--bs-list-group-active-border-color", hex, ".list-group");
 
+	addCustomCSSVar("--bs-btn-color", btnColorNew, ".btn-primary");
 	addCustomCSSVar("--bs-btn-bg", hex, ".btn-primary");
-	addCustomCSSVar("--bs-btn-border-color", hex, ".btn-primary");
+	addCustomCSSVar("--bs-btn-border-color", btnBorderNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-hover-color", btnHoverColorNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-hover-bg", btnHoverBgNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-hover-border-color", btnHoverBorderNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-focus-shadow-rgb", sRGB, ".btn-primary");
+	addCustomCSSVar("--bs-btn-active-color", btnActiveColorNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-active-bg", btnActiveBgNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-active-border-color", btnActiveBorderNew, ".btn-primary");
+	// addCustomCSSVar("--bs-btn-active-shadow", btnBorderNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-disabled-color", btnDisabledColorNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-disabled-bg", btnDisabledBgNew, ".btn-primary");
+	addCustomCSSVar("--bs-btn-disabled-border-color", btnDisabledBorderNew, ".btn-primary");
 
 	addCustomCSSVar("--bs-btn-color", hex, ".btn-outline-primary");
 	addCustomCSSVar("--bs-btn-border-color", hex, ".btn-outline-primary");
