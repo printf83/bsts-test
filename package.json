@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "0.3.5",
+	"version": "0.3.7",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -44,7 +44,7 @@
 		"webpack-cli": "^5.1.4"
 	},
 	"dependencies": {
-		"@printf83/bsts": "^0.3.5",
+		"@printf83/bsts": "^0.3.7",
 		"bootstrap": "^5.3.1",
 		"chart.js": "^4.3.2",
 		"chartjs-plugin-datalabels": "^2.2.0",
