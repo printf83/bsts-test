@@ -113,13 +113,25 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 			return val;
 		};
 
-		const calcStop = (val: number, max: number) => {
+		// const calcStop = (val: number, max: number) => {
+		// 	if (val > max) {
+		// 		val = max;
+		// 	}
+
+		// 	if (val < 0) {
+		// 		val = 0;
+		// 	}
+
+		// 	return val;
+		// };
+
+		const calcBounce = (val: number, max: number) => {
 			if (val > max) {
-				val = max;
+				val = max - (val-max);
 			}
 
 			if (val < 0) {
-				val = 0;
+				val = -val;
 			}
 
 			return val;
@@ -127,8 +139,8 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 
 		return {
 			h: calcLoop(HSL.h - distanceHSL.h, 360),
-			s: calcStop(HSL.s - distanceHSL.s, 100),
-			l: calcStop(HSL.l - distanceHSL.l, 100),
+			s: calcBounce(HSL.s - distanceHSL.s, 100),
+			l: calcBounce(HSL.l - distanceHSL.l, 100),
 		};
 	} else {
 		return {
@@ -179,8 +191,8 @@ const setupCustomCSSVar = (hex: string) => {
 	const rgb = core.hexToRGB(hex);
 	const sRGB = `${rgb?.r},${rgb?.g},${rgb?.b}`;
 
-	addCustomCSSVar(":root", "--bs-primary", hex);
-	addCustomCSSVar(":root", "--bs-primary-rgb", sRGB);
+	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-primary", hex);
+	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-primary-rgb", sRGB);
 
 	addCustomCSSVar(
 		".text-bg-primary",
@@ -256,10 +268,10 @@ const setupCustomCSSVar = (hex: string) => {
 	 *	  --bs-link-hover-color-rgb: 10,88,202;
 	 */
 
-	const bsDarkPrimaryTextEmphasis = "#031633";
+	const bsDarkPrimaryTextEmphasis = "#6ea8fe";
 	const bsDarkPrimaryTextEmphasisNew = getNewHex(btnBg, bsDarkPrimaryTextEmphasis, hex);
 
-	const bsDarkPrimaryBgSubtle = "#6ea8fe";
+	const bsDarkPrimaryBgSubtle = "#031633";
 	const bsDarkPrimaryBgSubtleNew = getNewHex(btnBg, bsDarkPrimaryBgSubtle, hex);
 
 	const bsDarkPrimaryBorderSubtle = "#084298";
@@ -336,7 +348,49 @@ const setupCustomCSSVar = (hex: string) => {
 	addCustomCSSVar(".table-primary", "--bs-table-hover-bg", bsTableHoverBgNew);
 	addCustomCSSVar(".table-primary", "--bs-table-hover-color", bsTableHoverColorNew);
 
+	// Form control
+	/**
+	border-color: #86b7fe;
+	box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
+	 */
+	const bsFormControlFocusBorder = "#86b7fe";
+	const bsFormControlFocusBorderNew = getNewHex(btnBg, bsFormControlFocusBorder, hex);
+	
+	addCustomCSSVar(".form-control:focus, .form-select:focus, .form-check-input:focus", "border-color", bsFormControlFocusBorderNew);
+	addCustomCSSVar(".form-control:focus, .form-select:focus, .form-check-input:focus", "box-shadow", `0 0 0 .25rem rgba(${sRGB},.25)`);
+
+	/**
+	 
+	 */
+	// .form-switch .form-check-input:focus {
+	// --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e");
+	// }
+
+	addCustomCSSVar(".form-switch .form-check-input:focus", "--bs-form-switch-bg", `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(bsFormControlFocusBorderNew)}'/%3e%3c/svg%3e")`);
+
+
+	/**
+	.form-switch .form-check-input:checked {
+		background-position: right center;
+		--bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+	}
+	.form-check-input:checked[type="checkbox"] {
+	--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+	}	 
+	 */
+
+	addCustomCSSVar(".form-switch .form-check-input:checked", "--bs-form-switch-bg", `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(btnColorNew)}'/%3e%3c/svg%3e")`);
+	
+	addCustomCSSVar(".form-check-input:checked[type='checkbox']", "--bs-form-check-bg-image", `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${encodeURIComponent(btnColorNew)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e")`);
+
+
 	// Others
+	addCustomCSSVar(".form-range::-moz-range-thumb", "background-color", hex);
+	addCustomCSSVar(".form-range:focus::-moz-range-thumb", "box-shadow", `0 0 0 .25rem rgba(${sRGB},.25)`);
+
+	addCustomCSSVar(".form-range::-webkit-slider-thumb", "background-color", hex);
+	addCustomCSSVar(".form-range:focus::-webkit-slider-thumb", "box-shadow", `0 0 0 .25rem rgba(${sRGB},.25)`);
+	
 	addCustomCSSVar(".dropdown-item", "--bs-dropdown-link-active-bg", hex);
 
 	addCustomCSSVar(".list-group", "--bs-list-group-active-bg", hex);
