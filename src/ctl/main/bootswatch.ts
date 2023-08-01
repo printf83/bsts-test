@@ -117,22 +117,43 @@ export const genBootswatch = (
 						customStyle: 1,
 						style: { minWidth: "20rem" },
 					},
+					// new h.div(
+					// 	{
+					// 		class: "bs-bootswatch-menu",
+					// 		display: "grid",
+					// 		gridTemplateColumns: "1fr 1fr 1fr",
+					// 		gap: 1,
+					// 	},
+					// 	navbarItemBootswatch.map((i) => {
+					// 		return new h.a(
+					// 			{
+					// 				on: {
+					// 					click: (_e) => {
+					// 						changeBootswatch(i.value);
+					// 					},
+					// 				},
+					// 				class: [i.value === currentBootswatch ? "active" : undefined],
+					// 				data: { value: i.value },
+					// 			},
+					// 			i.label
+					// 		);
+					// 	})
+					// )
 					new h.div(
 						{
-							class: "bs-bootswatch-menu",
 							display: "grid",
 							gridTemplateColumns: "1fr 1fr 1fr",
 							gap: 1,
 						},
 						navbarItemBootswatch.map((i) => {
-							return new h.a(
+							return new b.dropdown.item(
 								{
 									on: {
 										click: (_e) => {
 											changeBootswatch(i.value);
 										},
 									},
-									class: [i.value === currentBootswatch ? "active" : undefined],
+									active: i.value === currentBootswatch,
 									data: { value: i.value },
 								},
 								i.label

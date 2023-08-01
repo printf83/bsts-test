@@ -123,7 +123,10 @@ export const setupTheme = (
 					)
 				),
 				new b.dropdown.menu(
-					{ positionView: "end", customStyle: 1 },
+					{
+						positionView: "end",
+						customStyle: 1,
+					},
 					navbarItemTheme.map((i) => {
 						return new b.dropdown.item(
 							{

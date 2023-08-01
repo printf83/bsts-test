@@ -37,7 +37,7 @@ const addCustomCSSVar = (selector: string, variableName: string, value: string) 
 const setCustomCSSVar = () => {
 	//sort
 	CUSTOMCSSVARDB.sort((a, b) =>
-		`${a.selector}${a.variableName}` > `${b.selector}${b.variableName}` ? -1 : 1
+		`${a.selector}${a.variableName}` > `${b.selector}${b.variableName}` ? 1 : -1
 	);
 
 	//gen css
@@ -113,22 +113,22 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 			return val;
 		};
 
-		// const calcStop = (val: number, max: number) => {
-		// 	if (val > max) {
-		// 		val = max;
-		// 	}
+		const calcStop = (val: number, max: number) => {
+			if (val > max) {
+				val = max;
+			}
 
-		// 	if (val < 0) {
-		// 		val = 0;
-		// 	}
+			if (val < 0) {
+				val = 0;
+			}
 
-		// 	return val;
-		// };
+			return val;
+		};
 
 		return {
 			h: calcLoop(HSL.h - distanceHSL.h, 360),
-			s: calcLoop(HSL.s - distanceHSL.s, 100),
-			l: calcLoop(HSL.l - distanceHSL.l, 100),
+			s: calcStop(HSL.s - distanceHSL.s, 100),
+			l: calcStop(HSL.l - distanceHSL.l, 100),
 		};
 	} else {
 		return {
@@ -219,22 +219,26 @@ const setupCustomCSSVar = (hex: string) => {
 	const bsLinkHoverColorRGB = core.hexToRGB(bsLinkHoverColorNew);
 	const bsLinkHoverColorRGBNew = `${bsLinkHoverColorRGB?.r},${bsLinkHoverColorRGB?.g},${bsLinkHoverColorRGB?.b}`;
 
-	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-link-color", bsLinkColorNew);
-	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-link-color-rgb", bsLinkColorRGBNew);
-	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-link-hover-color", bsLinkHoverColorNew);
+	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-link-color", bsLinkColorNew);
+	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-link-color-rgb", bsLinkColorRGBNew);
+	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-link-hover-color", bsLinkHoverColorNew);
 	addCustomCSSVar(
-		":root, [data-bs-theme=light]",
+		":root, [data-bs-theme='light']",
 		"--bs-link-hover-color-rgb",
 		bsLinkHoverColorRGBNew
 	);
 	addCustomCSSVar(
-		":root, [data-bs-theme=light]",
+		":root, [data-bs-theme='light']",
 		"--bs-primary-text-emphasis",
 		bsPrimaryTextEmphasisNew
 	);
-	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-primary-bg-subtle", bsPrimaryBgSubtleNew);
 	addCustomCSSVar(
-		":root, [data-bs-theme=light]",
+		":root, [data-bs-theme='light']",
+		"--bs-primary-bg-subtle",
+		bsPrimaryBgSubtleNew
+	);
+	addCustomCSSVar(
+		":root, [data-bs-theme='light']",
 		"--bs-primary-border-subtle",
 		bsPrimaryBorderSubtleNew
 	);
@@ -271,22 +275,22 @@ const setupCustomCSSVar = (hex: string) => {
 	const bsDarkLinkHoverColorRGB = core.hexToRGB(bsDarkLinkHoverColorNew);
 	const bsDarkLinkHoverColorRGBNew = `${bsDarkLinkHoverColorRGB?.r},${bsDarkLinkHoverColorRGB?.g},${bsDarkLinkHoverColorRGB?.b}`;
 
-	addCustomCSSVar("[data-bs-theme=dark]", "--bs-link-color", bsDarkLinkColorNew);
-	addCustomCSSVar("[data-bs-theme=dark]", "--bs-link-color-rgb", bsDarkLinkColorRGBNew);
-	addCustomCSSVar("[data-bs-theme=dark]", "--bs-link-hover-color", bsDarkLinkHoverColorNew);
+	addCustomCSSVar("[data-bs-theme='dark']", "--bs-link-color", bsDarkLinkColorNew);
+	addCustomCSSVar("[data-bs-theme='dark']", "--bs-link-color-rgb", bsDarkLinkColorRGBNew);
+	addCustomCSSVar("[data-bs-theme='dark']", "--bs-link-hover-color", bsDarkLinkHoverColorNew);
 	addCustomCSSVar(
-		"[data-bs-theme=dark]",
+		"[data-bs-theme='dark']",
 		"--bs-link-hover-color-rgb",
 		bsDarkLinkHoverColorRGBNew
 	);
 	addCustomCSSVar(
-		"[data-bs-theme=dark]",
+		"[data-bs-theme='dark']",
 		"--bs-primary-text-emphasis",
 		bsDarkPrimaryTextEmphasisNew
 	);
-	addCustomCSSVar("[data-bs-theme=dark]", "--bs-primary-bg-subtle", bsDarkPrimaryBgSubtleNew);
+	addCustomCSSVar("[data-bs-theme='dark']", "--bs-primary-bg-subtle", bsDarkPrimaryBgSubtleNew);
 	addCustomCSSVar(
-		"[data-bs-theme=dark]",
+		"[data-bs-theme='dark']",
 		"--bs-primary-border-subtle",
 		bsDarkPrimaryBorderSubtleNew
 	);
