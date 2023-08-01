@@ -2,82 +2,6 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 import * as e from "../../ctl/example/_index.js";
 import { b, core, h } from "@printf83/bsts";
 
-interface variableItem {
-	variableName: string;
-	selector?: string;
-	value?: string;
-}
-
-const CUSTOMCSSVARDB: variableItem[] = [];
-
-const addCustomCSSVar = (selector: string, variableName: string, value: string) => {
-	//find index
-	const index = CUSTOMCSSVARDB.findIndex((i) => {
-		return i.variableName === variableName && i.selector === selector;
-	});
-
-	//add, remove or change value
-	if (index > -1) {
-		if (value) {
-			CUSTOMCSSVARDB[index]!.value = value;
-		} else {
-			CUSTOMCSSVARDB.splice(index, 1);
-		}
-	} else {
-		if (value) {
-			CUSTOMCSSVARDB.push({
-				variableName: variableName,
-				selector: selector,
-				value: value,
-			});
-		}
-	}
-};
-
-const setCustomCSSVar = () => {
-	//sort
-	CUSTOMCSSVARDB.sort((a, b) =>
-		`${a.selector}${a.variableName}` > `${b.selector}${b.variableName}` ? 1 : -1
-	);
-
-	//gen css
-	const CSS: string[] = [];
-	let lastSelector: string | null = null;
-
-	CUSTOMCSSVARDB.forEach((i) => {
-		const sel = i.selector ? i.selector : ":root";
-
-		if (lastSelector !== sel) {
-			if (lastSelector !== null) {
-				CSS.push("}\n");
-			}
-
-			CSS.push(`${sel} {\n`);
-			lastSelector = sel;
-		}
-
-		CSS.push(`\t${i.variableName}: ${i.value};\n`);
-	});
-
-	if (CSS && CSS.length > 0) {
-		CSS.push("}\n");
-	}
-
-	//add to custom stylesheet
-	let bstsCustomVarContainer = document.getElementById("bsts-custom-var-container");
-	if (!bstsCustomVarContainer) {
-		core.appendChild(
-			document.head,
-			new h.style({ id: "bsts-custom-var-container" }, CSS.join(""))
-		);
-	} else {
-		core.replaceWith(
-			bstsCustomVarContainer,
-			new h.style({ id: "bsts-custom-var-container" }, CSS.join(""))
-		);
-	}
-};
-
 const getHSLDistance = (fromHex: string, toHex: string) => {
 	const fromHSL = core.hexToHSL(fromHex);
 	const toHSL = core.hexToHSL(toHex);
@@ -127,7 +51,7 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 
 		const calcBounce = (val: number, max: number) => {
 			if (val > max) {
-				val = max - (val-max);
+				val = max - (val - max);
 			}
 
 			if (val < 0) {
@@ -151,294 +75,221 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 	}
 };
 
-const getNewHex = (mainHex: string, refHex: string, hex: string) => {
-	const HSLDistance = getHSLDistance(mainHex, refHex);
-	const addedDistance = addDistanceHex(hex, HSLDistance);
-	const result = core.hslToHex(addedDistance);
-	return result;
-	// return core.hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
+const getHex = (mainHex: string, refHex: string, hex: string) => {
+	return core.hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
+};
+
+const getHexDark = (hex: string, light?: string, dark?: string) => {
+	light ??= "#fff";
+	dark ??= "#000";
+	return core.hexIsDark(hex) ? light : dark;
+};
+
+const getRGB = (hex: string) => {
+	const rgb = core.hexToRGB(hex);
+	return `${rgb?.r},${rgb?.g},${rgb?.b}`;
 };
 
 const setupCustomCSSVar = (hex: string) => {
-	const btnBg = "#0d6efd"; //main
-	const btnColorNew = core.hexIsDark(hex) ? "#fff" : "#000";
-
-	const btnBorder = "#0d6efd";
-	const btnBorderNew = getNewHex(btnBg, btnBorder, hex);
-
-	const btnHoverBg = "#0b5ed7";
-	const btnHoverBgNew = getNewHex(btnBg, btnHoverBg, hex);
-	const btnHoverColorNew = core.hexIsDark(btnHoverBgNew) ? "#fff" : "#000";
-
-	const btnHoverBorder = "#0a58ca";
-	const btnHoverBorderNew = getNewHex(btnBg, btnHoverBorder, hex);
-
-	const btnActiveBg = "#0a58ca";
-	const btnActiveBgNew = getNewHex(btnBg, btnActiveBg, hex);
-	const btnActiveColorNew = core.hexIsDark(btnActiveBgNew) ? "#fff" : "#000";
-
-	const btnActiveBorder = "#0a53be";
-	const btnActiveBorderNew = getNewHex(btnBg, btnActiveBorder, hex);
-
-	const btnDisabledBg = "#0d6efd";
-	const btnDisabledBgNew = getNewHex(btnBg, btnDisabledBg, hex);
-	const btnDisabledColorNew = core.hexIsDark(btnDisabledBgNew) ? "#fff" : "#000";
-
-	const btnDisabledBorder = "#0d6efd";
-	const btnDisabledBorderNew = getNewHex(btnBg, btnDisabledBorder, hex);
-
 	// Normal
-	const rgb = core.hexToRGB(hex);
-	const sRGB = `${rgb?.r},${rgb?.g},${rgb?.b}`;
+	const rgb = getRGB(hex);
 
-	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-primary", hex);
-	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-primary-rgb", sRGB);
+	const baseColor = "#0d6efd"; //main
+	const btnColor = getHexDark(hex);
+	const btnBorder = getHex(baseColor, "#0d6efd", hex);
+	const btnHoverBg = getHex(baseColor, "#0b5ed7", hex);
+	const btnHoverColor = getHexDark(btnHoverBg);
+	const btnHoverBorder = getHex(baseColor, "#0a58ca", hex);
+	const btnActiveBg = getHex(baseColor, "#0a58ca", hex);
+	const btnActiveColor = getHexDark(btnActiveBg);
+	const btnActiveBorder = getHex(baseColor, "#0a53be", hex);
+	const btnDisabledBg = getHex(baseColor, "#0d6efd", hex);
+	const btnDisabledColor = getHexDark(btnDisabledBg);
+	const btnDisabledBorder = getHex(baseColor, "#0d6efd", hex);
 
-	addCustomCSSVar(
-		".text-bg-primary",
-		"background-color",
-		`rgba(${sRGB},var(--bs-bg-opacity,1)) !important`
-	);
+	const bsPrimaryTextEmphasis = getHex(baseColor, "#052c65", hex);
+	const bsPrimaryBgSubtle = getHex(baseColor, "#cfe2ff", hex);
+	const bsPrimaryBorderSubtle = getHex(baseColor, "#9ec5fe", hex);
 
-	/**
-	 * LIGHT
-	 *    --bs-primary-text-emphasis: #052c65;
-	 *    --bs-primary-bg-subtle: #cfe2ff;
-	 *    --bs-primary-border-subtle: #9ec5fe;
-	 * 	  --bs-link-color: #0d6efd;
-	 *    --bs-link-hover-color: #0a58ca;
-	 * 	  --bs-link-color-rgb: 13,110,253;
-	 *	  --bs-link-hover-color-rgb: 10,88,202;
-	 *
-	 */
+	const bsLinkColor = getHex(baseColor, "#0d6efd", hex);
+	const bsLinkColorRGB = getRGB(bsLinkColor);
+	const bsLinkHoverColor = getHex(baseColor, "#0a58ca", hex);
+	const bsLinkHoverColorRGB = getRGB(bsLinkHoverColor);
 
-	const bsPrimaryTextEmphasis = "#052c65";
-	const bsPrimaryTextEmphasisNew = getNewHex(btnBg, bsPrimaryTextEmphasis, hex);
+	const bsDarkPrimaryTextEmphasis = getHex(baseColor, "#6ea8fe", hex);
+	const bsDarkPrimaryBgSubtle = getHex(baseColor, "#031633", hex);
+	const bsDarkPrimaryBorderSubtle = getHex(baseColor, "#084298", hex);
+	const bsDarkLinkColor = getHex(baseColor, "#6ea8fe", hex);
+	const bsDarkLinkColorRGB = getRGB(bsDarkLinkColor);
+	const bsDarkLinkHoverColor = getHex(baseColor, "#8bb9fe", hex);
+	const bsDarkLinkHoverColorRGB = getRGB(bsDarkLinkHoverColor);
 
-	const bsPrimaryBgSubtle = "#cfe2ff";
-	const bsPrimaryBgSubtleNew = getNewHex(btnBg, bsPrimaryBgSubtle, hex);
+	const bsTableBg = getHex(baseColor, "#cfe2ff", hex);
+	const bsTableColor = getHexDark(bsTableBg);
+	const bsTableBorderColor = getHex(baseColor, "#bacbe6", hex);
+	const bsTableStripedBg = getHex(baseColor, "#c5d7f2", hex);
+	const bsTableStripedColor = getHexDark(bsTableStripedBg);
+	const bsTableActiveBg = getHex(baseColor, "#bacbe6", hex);
+	const bsTableActiveColor = getHexDark(bsTableActiveBg);
+	const bsTableHoverBg = getHex(baseColor, "#bfd1ec", hex);
+	const bsTableHoverColor = getHexDark(bsTableHoverBg);
 
-	const bsPrimaryBorderSubtle = "#9ec5fe";
-	const bsPrimaryBorderSubtleNew = getNewHex(btnBg, bsPrimaryBorderSubtle, hex);
+	const bsFormControlFocusBorder = getHex(baseColor, "#86b7fe", hex);
 
-	const bsLinkColor = "#0d6efd";
-	const bsLinkColorNew = getNewHex(btnBg, bsLinkColor, hex);
-	const bsLinkColorRGB = core.hexToRGB(bsLinkColorNew);
-	const bsLinkColorRGBNew = `${bsLinkColorRGB?.r},${bsLinkColorRGB?.g},${bsLinkColorRGB?.b}`;
+	const css = `
+		[data-bs-theme='dark'] {
+			--bs-primary-text-emphasis: ${bsDarkPrimaryTextEmphasis};
+			--bs-primary-bg-subtle: ${bsDarkPrimaryBgSubtle};
+			--bs-primary-border-subtle: ${bsDarkPrimaryBorderSubtle};
 
-	const bsLinkHoverColor = "#0a58ca";
-	const bsLinkHoverColorNew = getNewHex(btnBg, bsLinkHoverColor, hex);
-	const bsLinkHoverColorRGB = core.hexToRGB(bsLinkHoverColorNew);
-	const bsLinkHoverColorRGBNew = `${bsLinkHoverColorRGB?.r},${bsLinkHoverColorRGB?.g},${bsLinkHoverColorRGB?.b}`;
+			--bs-link-color: ${bsDarkLinkColor};
+			--bs-link-color-rgb: ${bsDarkLinkColorRGB};
+			--bs-link-hover-color: ${bsDarkLinkHoverColor};
+			--bs-link-hover-color-rgb: ${bsDarkLinkHoverColorRGB};
+		}
 
-	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-link-color", bsLinkColorNew);
-	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-link-color-rgb", bsLinkColorRGBNew);
-	addCustomCSSVar(":root, [data-bs-theme='light']", "--bs-link-hover-color", bsLinkHoverColorNew);
-	addCustomCSSVar(
-		":root, [data-bs-theme='light']",
-		"--bs-link-hover-color-rgb",
-		bsLinkHoverColorRGBNew
-	);
-	addCustomCSSVar(
-		":root, [data-bs-theme='light']",
-		"--bs-primary-text-emphasis",
-		bsPrimaryTextEmphasisNew
-	);
-	addCustomCSSVar(
-		":root, [data-bs-theme='light']",
-		"--bs-primary-bg-subtle",
-		bsPrimaryBgSubtleNew
-	);
-	addCustomCSSVar(
-		":root, [data-bs-theme='light']",
-		"--bs-primary-border-subtle",
-		bsPrimaryBorderSubtleNew
-	);
+		:root, [data-bs-theme='light'] {
+			--bs-primary: ${hex};
+			--bs-primary-rgb: ${rgb};
+			--bs-focus-ring-color: rgba(${rgb}, 0.25);
 
-	/**
-	 *
-	 * DARK
-	 *
-	 *    --bs-primary-text-emphasis: #6ea8fe;
-	 *    --bs-primary-bg-subtle: #031633;
-	 *    --bs-primary-border-subtle: #084298;
-	 *    --bs-link-color: #6ea8fe;
-	 *    --bs-link-hover-color: #8bb9fe;
-	 * 	  --bs-link-color-rgb: 13,110,253;
-	 *	  --bs-link-hover-color-rgb: 10,88,202;
-	 */
+			--bs-primary-text-emphasis: ${bsPrimaryTextEmphasis};
+			--bs-primary-bg-subtle: ${bsPrimaryBgSubtle};
+			--bs-primary-border-subtle: ${bsPrimaryBorderSubtle};
 
-	const bsDarkPrimaryTextEmphasis = "#6ea8fe";
-	const bsDarkPrimaryTextEmphasisNew = getNewHex(btnBg, bsDarkPrimaryTextEmphasis, hex);
+			--bs-link-color: ${bsLinkColor};
+			--bs-link-color-rgb: ${bsLinkColorRGB};
+			--bs-link-hover-color: ${bsLinkHoverColor};
+			--bs-link-hover-color-rgb: ${bsLinkHoverColorRGB};
+		}
 
-	const bsDarkPrimaryBgSubtle = "#031633";
-	const bsDarkPrimaryBgSubtleNew = getNewHex(btnBg, bsDarkPrimaryBgSubtle, hex);
+		.table-primary {
+			--bs-table-bg: ${bsTableBg};
+			--bs-table-color: ${bsTableColor};
+			--bs-table-border-color: ${bsTableBorderColor};
+			--bs-table-striped-bg: ${bsTableStripedBg};
+			--bs-table-striped-color: ${bsTableStripedColor};
+			--bs-table-active-bg: ${bsTableActiveBg};
+			--bs-table-active-color: ${bsTableActiveColor};
+			--bs-table-hover-bg: ${bsTableHoverBg};
+			--bs-table-hover-color: ${bsTableHoverColor};
+		}
 
-	const bsDarkPrimaryBorderSubtle = "#084298";
-	const bsDarkPrimaryBorderSubtleNew = getNewHex(btnBg, bsDarkPrimaryBorderSubtle, hex);
+		.form-control:focus, .form-select:focus, .form-check-input:focus {
+			border-color: ${bsFormControlFocusBorder};
+			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
+		}
 
-	const bsDarkLinkColor = "#6ea8fe";
-	const bsDarkLinkColorNew = getNewHex(btnBg, bsDarkLinkColor, hex);
-	const bsDarkLinkColorRGB = core.hexToRGB(bsDarkLinkColorNew);
-	const bsDarkLinkColorRGBNew = `${bsDarkLinkColorRGB?.r},${bsDarkLinkColorRGB?.g},${bsDarkLinkColorRGB?.b}`;
+		.form-switch .form-check-input:focus {
+			--bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(
+				bsFormControlFocusBorder
+			)}'/%3e%3c/svg%3e");
+		}
 
-	const bsDarkLinkHoverColor = "#8bb9fe";
-	const bsDarkLinkHoverColorNew = getNewHex(btnBg, bsDarkLinkHoverColor, hex);
-	const bsDarkLinkHoverColorRGB = core.hexToRGB(bsDarkLinkHoverColorNew);
-	const bsDarkLinkHoverColorRGBNew = `${bsDarkLinkHoverColorRGB?.r},${bsDarkLinkHoverColorRGB?.g},${bsDarkLinkHoverColorRGB?.b}`;
+		.form-switch .form-check-input:checked {
+			--bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(
+				btnColor
+			)}'/%3e%3c/svg%3e");
+		}
 
-	addCustomCSSVar("[data-bs-theme='dark']", "--bs-link-color", bsDarkLinkColorNew);
-	addCustomCSSVar("[data-bs-theme='dark']", "--bs-link-color-rgb", bsDarkLinkColorRGBNew);
-	addCustomCSSVar("[data-bs-theme='dark']", "--bs-link-hover-color", bsDarkLinkHoverColorNew);
-	addCustomCSSVar(
-		"[data-bs-theme='dark']",
-		"--bs-link-hover-color-rgb",
-		bsDarkLinkHoverColorRGBNew
-	);
-	addCustomCSSVar(
-		"[data-bs-theme='dark']",
-		"--bs-primary-text-emphasis",
-		bsDarkPrimaryTextEmphasisNew
-	);
-	addCustomCSSVar("[data-bs-theme='dark']", "--bs-primary-bg-subtle", bsDarkPrimaryBgSubtleNew);
-	addCustomCSSVar(
-		"[data-bs-theme='dark']",
-		"--bs-primary-border-subtle",
-		bsDarkPrimaryBorderSubtleNew
-	);
+		.form-check-input:checked[type='checkbox'] {
+			--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${encodeURIComponent(
+				btnColor
+			)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+		}
 
-	/**
-	--bs-table-color: #000;
-    --bs-table-bg: #cfe2ff;
-    --bs-table-border-color: #bacbe6;
-    --bs-table-striped-bg: #c5d7f2;
-    --bs-table-striped-color: #000;
-    --bs-table-active-bg: #bacbe6;
-    --bs-table-active-color: #000;
-    --bs-table-hover-bg: #bfd1ec;
-    --bs-table-hover-color: #000;
-	 */
+		.form-check-input:checked {
+			background-color: ${hex};
+			border-color: ${hex};
+		}
 
-	const bsTableBg = "#cfe2ff";
-	const bsTableBgNew = getNewHex(btnBg, bsTableBg, hex);
-	const bsTableColorNew = core.hexIsDark(bsTableBgNew) ? "#fff" : "#000";
+		.form-check-input[type=checkbox]:indeterminate {
+			background-color: ${hex};
+			border-color: ${hex};
+		}
 
-	const bsTableBorderColor = "#bacbe6";
-	const bsTableBorderColorNew = getNewHex(btnBg, bsTableBorderColor, hex);
+		.form-range::-moz-range-thumb, .form-range::-webkit-slider-thumb {
+			background-color: ${hex};
+		}
 
-	const bsTableStripedBg = "#c5d7f2";
-	const bsTableStripedBgNew = getNewHex(btnBg, bsTableStripedBg, hex);
-	const bsTableStripedColorNew = core.hexIsDark(bsTableStripedBgNew) ? "#fff" : "#000";
+		.form-range:focus::-moz-range-thumb, .form-range:focus::-webkit-slider-thumb {
+			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
+		}
 
-	const bsTableActiveBg = "#bacbe6";
-	const bsTableActiveBgNew = getNewHex(btnBg, bsTableActiveBg, hex);
-	const bsTableActiveColorNew = core.hexIsDark(bsTableActiveBgNew) ? "#fff" : "#000";
+		.dropdown-item {
+			--bs-dropdown-link-active-bg: ${hex};
+		}
 
-	const bsTableHoverBg = "#bfd1ec";
-	const bsTableHoverBgNew = getNewHex(btnBg, bsTableHoverBg, hex);
-	const bsTableHoverColorNew = core.hexIsDark(bsTableHoverBgNew) ? "#fff" : "#000";
+		.list-group {
+			--bs-list-group-active-bg: ${hex};
+			--bs-list-group-active-border-color: ${hex};
+		}
 
-	addCustomCSSVar(".table-primary", "--bs-table-bg", bsTableBgNew);
-	addCustomCSSVar(".table-primary", "--bs-table-color", bsTableColorNew);
-	addCustomCSSVar(".table-primary", "--bs-table-border-color", bsTableBorderColorNew);
-	addCustomCSSVar(".table-primary", "--bs-table-striped-bg", bsTableStripedBgNew);
-	addCustomCSSVar(".table-primary", "--bs-table-striped-color", bsTableStripedColorNew);
-	addCustomCSSVar(".table-primary", "--bs-table-active-bg", bsTableActiveBgNew);
-	addCustomCSSVar(".table-primary", "--bs-table-active-color", bsTableActiveColorNew);
-	addCustomCSSVar(".table-primary", "--bs-table-hover-bg", bsTableHoverBgNew);
-	addCustomCSSVar(".table-primary", "--bs-table-hover-color", bsTableHoverColorNew);
+		.text-bg-primary{
+			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
+		}
 
-	// Form control
-	/**
-	border-color: #86b7fe;
-	box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
-	 */
-	const bsFormControlFocusBorder = "#86b7fe";
-	const bsFormControlFocusBorderNew = getNewHex(btnBg, bsFormControlFocusBorder, hex);
-	
-	addCustomCSSVar(".form-control:focus, .form-select:focus, .form-check-input:focus", "border-color", bsFormControlFocusBorderNew);
-	addCustomCSSVar(".form-control:focus, .form-select:focus, .form-check-input:focus", "box-shadow", `0 0 0 .25rem rgba(${sRGB},.25)`);
+		.btn-primary {
+			--bs-btn-color: ${btnColor};
+			--bs-btn-bg: ${hex};
+			--bs-btn-border-color: ${btnBorder};
+			--bs-btn-hover-color: ${btnHoverColor};
+			--bs-btn-hover-bg: ${btnHoverBg};
+			--bs-btn-hover-border-color: ${btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btnActiveColor};
+			--bs-btn-active-bg: ${btnActiveBg};
+			--bs-btn-active-border-color: ${btnActiveBorder};
+			--bs-btn-disabled-color: ${btnDisabledColor};
+			--bs-btn-disabled-bg: ${btnDisabledBg};
+			--bs-btn-disabled-border-color: ${btnDisabledBorder};
+		}
 
-	/**
-	 
-	 */
-	// .form-switch .form-check-input:focus {
-	// --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e");
-	// }
+		.btn-outline-primary {
+			--bs-btn-color: ${hex};
+			--bs-btn-border-color: ${btnBorder};
+			--bs-btn-hover-color: ${btnHoverColor};
+			--bs-btn-hover-bg: ${btnHoverBg};
+			--bs-btn-hover-border-color: ${btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btnActiveColor};
+			--bs-btn-active-bg: ${btnActiveBg};
+			--bs-btn-active-border-color: ${btnActiveBorder};
+			--bs-btn-disabled-color: ${btnDisabledColor};
+			--bs-btn-disabled-border-color: ${btnDisabledBorder};
+		}
 
-	addCustomCSSVar(".form-switch .form-check-input:focus", "--bs-form-switch-bg", `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(bsFormControlFocusBorderNew)}'/%3e%3c/svg%3e")`);
+		.progress, .progress-stacked {
+			--bs-progress-bar-bg: ${hex};
+		}
 
+		.nav-pills {
+			--bs-nav-pills-link-active-bg: ${hex};
+		}
 
-	/**
-	.form-switch .form-check-input:checked {
-		background-position: right center;
-		--bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+		.pagination {
+			--bs-pagination-color: ${hex};
+			--bs-pagination-active-bg: ${hex};
+			--bs-pagination-active-border-color: ${hex};
+			--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(${rgb}, 0.25);
+		}
+
+		
+	`;
+
+	//add to custom stylesheet
+	let bstsCustomVarContainer = document.getElementById("bsts-custom-primary-var-container");
+	if (!bstsCustomVarContainer) {
+		core.appendChild(
+			document.head,
+			new h.style({ id: "bsts-custom-primary-var-container" }, css)
+		);
+	} else {
+		core.replaceWith(
+			bstsCustomVarContainer,
+			new h.style({ id: "bsts-custom-primary-var-container" }, css)
+		);
 	}
-	.form-check-input:checked[type="checkbox"] {
-	--bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
-	}	 
-	 */
-
-	addCustomCSSVar(".form-switch .form-check-input:checked", "--bs-form-switch-bg", `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(btnColorNew)}'/%3e%3c/svg%3e")`);
-	
-	addCustomCSSVar(".form-check-input:checked[type='checkbox']", "--bs-form-check-bg-image", `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${encodeURIComponent(btnColorNew)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e")`);
-
-
-	// Others
-	addCustomCSSVar(".form-range::-moz-range-thumb", "background-color", hex);
-	addCustomCSSVar(".form-range:focus::-moz-range-thumb", "box-shadow", `0 0 0 .25rem rgba(${sRGB},.25)`);
-
-	addCustomCSSVar(".form-range::-webkit-slider-thumb", "background-color", hex);
-	addCustomCSSVar(".form-range:focus::-webkit-slider-thumb", "box-shadow", `0 0 0 .25rem rgba(${sRGB},.25)`);
-	
-	addCustomCSSVar(".dropdown-item", "--bs-dropdown-link-active-bg", hex);
-
-	addCustomCSSVar(".list-group", "--bs-list-group-active-bg", hex);
-	addCustomCSSVar(".list-group", "--bs-list-group-active-border-color", hex);
-
-	addCustomCSSVar(".btn-primary", "--bs-btn-color", btnColorNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-bg", hex);
-	addCustomCSSVar(".btn-primary", "--bs-btn-border-color", btnBorderNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-hover-color", btnHoverColorNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-hover-bg", btnHoverBgNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-hover-border-color", btnHoverBorderNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-focus-shadow-rgb", sRGB);
-	addCustomCSSVar(".btn-primary", "--bs-btn-active-color", btnActiveColorNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-active-bg", btnActiveBgNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-active-border-color", btnActiveBorderNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-color", btnDisabledColorNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-bg", btnDisabledBgNew);
-	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-border-color", btnDisabledBorderNew);
-
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-color", hex);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-border-color", btnBorderNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-hover-color", btnHoverColorNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-hover-bg", btnHoverBgNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-hover-border-color", btnHoverBorderNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-focus-shadow-rgb", sRGB);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-active-color", btnActiveColorNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-active-bg", btnActiveBgNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-active-border-color", btnActiveBorderNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-disabled-color", btnDisabledColorNew);
-	addCustomCSSVar(".btn-outline-primary", "--bs-btn-disabled-border-color", btnDisabledBorderNew);
-
-	// ========
-
-	addCustomCSSVar(".progress, .progress-stacked", "--bs-progress-bar-bg", hex);
-
-	addCustomCSSVar(".nav-pills", "--bs-nav-pills-link-active-bg", hex);
-
-	addCustomCSSVar(".pagination", "--bs-pagination-color", hex);
-	addCustomCSSVar(".pagination", "--bs-pagination-active-bg", hex);
-	addCustomCSSVar(".pagination", "--bs-pagination-active-border-color", hex);
-
-	addCustomCSSVar(".form-check-input:checked", "background-color", hex);
-	addCustomCSSVar(".form-check-input:checked", "border-color", hex);
-
-	addCustomCSSVar(".form-check-input[type=checkbox]:indeterminate", "background-color", hex);
-	addCustomCSSVar(".form-check-input[type=checkbox]:indeterminate", "border-color", hex);
-
-	setCustomCSSVar();
 };
 
 export const test: IContent = {
