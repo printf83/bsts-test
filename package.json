@@ -34,7 +34,7 @@
 	"devDependencies": {
 		"@total-typescript/ts-reset": "^0.4.2",
 		"@types/bootstrap": "^5.2.6",
-		"@types/js-beautify": "^1.13.3",
+		"@types/js-beautify": "^1.14.0",
 		"compression-webpack-plugin": "^10.0.0",
 		"gh-pages": "^5.0.0",
 		"terser-webpack-plugin": "^5.3.9",

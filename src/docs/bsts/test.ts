@@ -101,9 +101,9 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 	const HSL = core.hexToHSL(hex);
 
 	if (HSL) {
-		const calc = (val: number, max: number) => {
+		const calcLoop = (val: number, max: number) => {
 			if (val > max) {
-				val = max - val;
+				val = val - max;
 			}
 
 			if (val < 0) {
@@ -113,10 +113,22 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 			return val;
 		};
 
+		// const calcStop = (val: number, max: number) => {
+		// 	if (val > max) {
+		// 		val = max;
+		// 	}
+
+		// 	if (val < 0) {
+		// 		val = 0;
+		// 	}
+
+		// 	return val;
+		// };
+
 		return {
-			h: calc(HSL.h + distanceHSL.h, 360),
-			s: calc(HSL.s + distanceHSL.s, 100),
-			l: calc(HSL.l + distanceHSL.l, 100),
+			h: calcLoop(HSL.h - distanceHSL.h, 360),
+			s: calcLoop(HSL.s - distanceHSL.s, 100),
+			l: calcLoop(HSL.l - distanceHSL.l, 100),
 		};
 	} else {
 		return {
@@ -128,25 +140,14 @@ const addDistanceHex = (hex: string, distanceHSL: { h: number; s: number; l: num
 };
 
 const getNewHex = (mainHex: string, refHex: string, hex: string) => {
-	return core.hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
+	const HSLDistance = getHSLDistance(mainHex, refHex);
+	const addedDistance = addDistanceHex(hex, HSLDistance);
+	const result = core.hslToHex(addedDistance);
+	return result;
+	// return core.hslToHex(addDistanceHex(hex, getHSLDistance(mainHex, refHex)));
 };
 
 const setupCustomCSSVar = (hex: string) => {
-	// --bs-btn-color: #fff;
-	// --bs-btn-bg: #0d6efd;
-	// --bs-btn-border-color: #0d6efd;
-	// --bs-btn-hover-color: #fff;
-	// --bs-btn-hover-bg: #0b5ed7;
-	// --bs-btn-hover-border-color: #0a58ca;
-	// --bs-btn-focus-shadow-rgb: 49,132,253;
-	// --bs-btn-active-color: #fff;
-	// --bs-btn-active-bg: #0a58ca;
-	// --bs-btn-active-border-color: #0a53be;
-	// --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-	// --bs-btn-disabled-color: #fff;
-	// --bs-btn-disabled-bg: #0d6efd;
-	// --bs - btn - disabled - border - color: #0d6efd;
-
 	const btnBg = "#0d6efd"; //main
 	const btnColorNew = core.hexIsDark(hex) ? "#fff" : "#000";
 
@@ -174,20 +175,164 @@ const setupCustomCSSVar = (hex: string) => {
 	const btnDisabledBorder = "#0d6efd";
 	const btnDisabledBorderNew = getNewHex(btnBg, btnDisabledBorder, hex);
 
+	// Normal
 	const rgb = core.hexToRGB(hex);
 	const sRGB = `${rgb?.r},${rgb?.g},${rgb?.b}`;
+
+	addCustomCSSVar(":root", "--bs-primary", hex);
+	addCustomCSSVar(":root", "--bs-primary-rgb", sRGB);
 
 	addCustomCSSVar(
 		".text-bg-primary",
 		"background-color",
-		`rgba(${rgb?.r},${rgb?.g},${rgb?.b},var(--bs-bg-opacity,1)) !important`
+		`rgba(${sRGB},var(--bs-bg-opacity,1)) !important`
 	);
 
-	addCustomCSSVar(":root", "--bs-primary", hex);
-	addCustomCSSVar(":root", "--bs-link-color", hex);
-	addCustomCSSVar(":root", "--bs-primary-rgb", sRGB);
-	addCustomCSSVar(":root", "--bs-link-color-rgb", sRGB);
+	/**
+	 * LIGHT
+	 *    --bs-primary-text-emphasis: #052c65;
+	 *    --bs-primary-bg-subtle: #cfe2ff;
+	 *    --bs-primary-border-subtle: #9ec5fe;
+	 * 	  --bs-link-color: #0d6efd;
+	 *    --bs-link-hover-color: #0a58ca;
+	 * 	  --bs-link-color-rgb: 13,110,253;
+	 *	  --bs-link-hover-color-rgb: 10,88,202;
+	 *
+	 */
 
+	const bsPrimaryTextEmphasis = "#052c65";
+	const bsPrimaryTextEmphasisNew = getNewHex(btnBg, bsPrimaryTextEmphasis, hex);
+
+	const bsPrimaryBgSubtle = "#cfe2ff";
+	const bsPrimaryBgSubtleNew = getNewHex(btnBg, bsPrimaryBgSubtle, hex);
+
+	const bsPrimaryBorderSubtle = "#9ec5fe";
+	const bsPrimaryBorderSubtleNew = getNewHex(btnBg, bsPrimaryBorderSubtle, hex);
+
+	const bsLinkColor = "#0d6efd";
+	const bsLinkColorNew = getNewHex(btnBg, bsLinkColor, hex);
+	const bsLinkColorRGB = core.hexToRGB(bsLinkColorNew);
+	const bsLinkColorRGBNew = `${bsLinkColorRGB?.r},${bsLinkColorRGB?.g},${bsLinkColorRGB?.b}`;
+
+	const bsLinkHoverColor = "#0a58ca";
+	const bsLinkHoverColorNew = getNewHex(btnBg, bsLinkHoverColor, hex);
+	const bsLinkHoverColorRGB = core.hexToRGB(bsLinkHoverColorNew);
+	const bsLinkHoverColorRGBNew = `${bsLinkHoverColorRGB?.r},${bsLinkHoverColorRGB?.g},${bsLinkHoverColorRGB?.b}`;
+
+	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-link-color", bsLinkColorNew);
+	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-link-color-rgb", bsLinkColorRGBNew);
+	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-link-hover-color", bsLinkHoverColorNew);
+	addCustomCSSVar(
+		":root, [data-bs-theme=light]",
+		"--bs-link-hover-color-rgb",
+		bsLinkHoverColorRGBNew
+	);
+	addCustomCSSVar(
+		":root, [data-bs-theme=light]",
+		"--bs-primary-text-emphasis",
+		bsPrimaryTextEmphasisNew
+	);
+	addCustomCSSVar(":root, [data-bs-theme=light]", "--bs-primary-bg-subtle", bsPrimaryBgSubtleNew);
+	addCustomCSSVar(
+		":root, [data-bs-theme=light]",
+		"--bs-primary-border-subtle",
+		bsPrimaryBorderSubtleNew
+	);
+
+	/**
+	 *
+	 * DARK
+	 *
+	 *    --bs-primary-text-emphasis: #6ea8fe;
+	 *    --bs-primary-bg-subtle: #031633;
+	 *    --bs-primary-border-subtle: #084298;
+	 *    --bs-link-color: #6ea8fe;
+	 *    --bs-link-hover-color: #8bb9fe;
+	 * 	  --bs-link-color-rgb: 13,110,253;
+	 *	  --bs-link-hover-color-rgb: 10,88,202;
+	 */
+
+	const bsDarkPrimaryTextEmphasis = "#031633";
+	const bsDarkPrimaryTextEmphasisNew = getNewHex(btnBg, bsDarkPrimaryTextEmphasis, hex);
+
+	const bsDarkPrimaryBgSubtle = "#6ea8fe";
+	const bsDarkPrimaryBgSubtleNew = getNewHex(btnBg, bsDarkPrimaryBgSubtle, hex);
+
+	const bsDarkPrimaryBorderSubtle = "#084298";
+	const bsDarkPrimaryBorderSubtleNew = getNewHex(btnBg, bsDarkPrimaryBorderSubtle, hex);
+
+	const bsDarkLinkColor = "#6ea8fe";
+	const bsDarkLinkColorNew = getNewHex(btnBg, bsDarkLinkColor, hex);
+	const bsDarkLinkColorRGB = core.hexToRGB(bsDarkLinkColorNew);
+	const bsDarkLinkColorRGBNew = `${bsDarkLinkColorRGB?.r},${bsDarkLinkColorRGB?.g},${bsDarkLinkColorRGB?.b}`;
+
+	const bsDarkLinkHoverColor = "#8bb9fe";
+	const bsDarkLinkHoverColorNew = getNewHex(btnBg, bsDarkLinkHoverColor, hex);
+	const bsDarkLinkHoverColorRGB = core.hexToRGB(bsDarkLinkHoverColorNew);
+	const bsDarkLinkHoverColorRGBNew = `${bsDarkLinkHoverColorRGB?.r},${bsDarkLinkHoverColorRGB?.g},${bsDarkLinkHoverColorRGB?.b}`;
+
+	addCustomCSSVar("[data-bs-theme=dark]", "--bs-link-color", bsDarkLinkColorNew);
+	addCustomCSSVar("[data-bs-theme=dark]", "--bs-link-color-rgb", bsDarkLinkColorRGBNew);
+	addCustomCSSVar("[data-bs-theme=dark]", "--bs-link-hover-color", bsDarkLinkHoverColorNew);
+	addCustomCSSVar(
+		"[data-bs-theme=dark]",
+		"--bs-link-hover-color-rgb",
+		bsDarkLinkHoverColorRGBNew
+	);
+	addCustomCSSVar(
+		"[data-bs-theme=dark]",
+		"--bs-primary-text-emphasis",
+		bsDarkPrimaryTextEmphasisNew
+	);
+	addCustomCSSVar("[data-bs-theme=dark]", "--bs-primary-bg-subtle", bsDarkPrimaryBgSubtleNew);
+	addCustomCSSVar(
+		"[data-bs-theme=dark]",
+		"--bs-primary-border-subtle",
+		bsDarkPrimaryBorderSubtleNew
+	);
+
+	/**
+	--bs-table-color: #000;
+    --bs-table-bg: #cfe2ff;
+    --bs-table-border-color: #bacbe6;
+    --bs-table-striped-bg: #c5d7f2;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #bacbe6;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #bfd1ec;
+    --bs-table-hover-color: #000;
+	 */
+
+	const bsTableBg = "#cfe2ff";
+	const bsTableBgNew = getNewHex(btnBg, bsTableBg, hex);
+	const bsTableColorNew = core.hexIsDark(bsTableBgNew) ? "#fff" : "#000";
+
+	const bsTableBorderColor = "#bacbe6";
+	const bsTableBorderColorNew = getNewHex(btnBg, bsTableBorderColor, hex);
+
+	const bsTableStripedBg = "#c5d7f2";
+	const bsTableStripedBgNew = getNewHex(btnBg, bsTableStripedBg, hex);
+	const bsTableStripedColorNew = core.hexIsDark(bsTableStripedBgNew) ? "#fff" : "#000";
+
+	const bsTableActiveBg = "#bacbe6";
+	const bsTableActiveBgNew = getNewHex(btnBg, bsTableActiveBg, hex);
+	const bsTableActiveColorNew = core.hexIsDark(bsTableActiveBgNew) ? "#fff" : "#000";
+
+	const bsTableHoverBg = "#bfd1ec";
+	const bsTableHoverBgNew = getNewHex(btnBg, bsTableHoverBg, hex);
+	const bsTableHoverColorNew = core.hexIsDark(bsTableHoverBgNew) ? "#fff" : "#000";
+
+	addCustomCSSVar(".table-primary", "--bs-table-bg", bsTableBgNew);
+	addCustomCSSVar(".table-primary", "--bs-table-color", bsTableColorNew);
+	addCustomCSSVar(".table-primary", "--bs-table-border-color", bsTableBorderColorNew);
+	addCustomCSSVar(".table-primary", "--bs-table-striped-bg", bsTableStripedBgNew);
+	addCustomCSSVar(".table-primary", "--bs-table-striped-color", bsTableStripedColorNew);
+	addCustomCSSVar(".table-primary", "--bs-table-active-bg", bsTableActiveBgNew);
+	addCustomCSSVar(".table-primary", "--bs-table-active-color", bsTableActiveColorNew);
+	addCustomCSSVar(".table-primary", "--bs-table-hover-bg", bsTableHoverBgNew);
+	addCustomCSSVar(".table-primary", "--bs-table-hover-color", bsTableHoverColorNew);
+
+	// Others
 	addCustomCSSVar(".dropdown-item", "--bs-dropdown-link-active-bg", hex);
 
 	addCustomCSSVar(".list-group", "--bs-list-group-active-bg", hex);
@@ -206,24 +351,6 @@ const setupCustomCSSVar = (hex: string) => {
 	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-color", btnDisabledColorNew);
 	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-bg", btnDisabledBgNew);
 	addCustomCSSVar(".btn-primary", "--bs-btn-disabled-border-color", btnDisabledBorderNew);
-
-	// addCustomCSSVar(".btn-primary", "--bs-btn-active-shadow", "inset 0 3px 5px rgba(0, 0, 0, 0.125)");
-
-	// 	btn-outline-primary {
-	//   --bs-btn-color: #0d6efd;
-	//   --bs-btn-border-color: #0d6efd;
-	//   --bs-btn-hover-color: #fff;
-	//   --bs-btn-hover-bg: #0d6efd;
-	//   --bs-btn-hover-border-color: #0d6efd;
-	//   --bs-btn-focus-shadow-rgb: 13,110,253;
-	//   --bs-btn-active-color: #fff;
-	//   --bs-btn-active-bg: #0d6efd;
-	//   --bs-btn-active-border-color: #0d6efd;
-	//   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-	//   --bs-btn-disabled-color: #0d6efd;
-	//   --bs-btn-disabled-bg: transparent;
-	//   --bs-btn-disabled-border-color: #0d6efd;
-	//   --bs-gradient: none;
 
 	addCustomCSSVar(".btn-outline-primary", "--bs-btn-color", hex);
 	addCustomCSSVar(".btn-outline-primary", "--bs-btn-border-color", btnBorderNew);
