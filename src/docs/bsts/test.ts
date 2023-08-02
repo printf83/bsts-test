@@ -1,6 +1,6 @@
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
-import { b, core, h } from "@printf83/bsts";
+import { I, b, core, h } from "@printf83/bsts";
 
 const getHSLDistance = (fromHex: string, toHex: string) => {
 	const fromHSL = core.hexToHSL(fromHex);
@@ -90,6 +90,249 @@ const getRGB = (hex: string) => {
 	return `${rgb?.r},${rgb?.g},${rgb?.b}`;
 };
 
+const setupCustomWarningCSSVar = (hex: string) => {
+	//:root, [data-bs-theme=light]
+	const baseColor = "#ffc107"; //--bs-warning
+	const rgb = getRGB(hex); //--bs-warning-rgb
+
+	//.btn-warning
+	//--bs-btn-focus-shadow-rgb: 11,172,204;
+	const btnColor = getHexDark(hex); //--bs-btn-color
+	const btnBorder = getHex(baseColor, "#ffc107", hex); //--bs-btn-border-color
+	const btnHoverBg = getHex(baseColor, "#ffca2c", hex); //--bs-btn-hover-bg
+	const btnHoverColor = getHexDark(btnHoverBg); //--bs-btn-hover-color
+	const btnHoverBorder = getHex(baseColor, "#ffc720", hex); //--bs-btn-hover-border-color
+	const btnActiveBg = getHex(baseColor, "#ffcd39", hex); //--bs-btn-active-bg
+	const btnActiveColor = getHexDark(btnActiveBg); //--bs-btn-active-color
+	const btnActiveBorder = getHex(baseColor, "#ffc720", hex); //--bs-btn-active-border-color
+	const btnDisabledBg = getHex(baseColor, "#ffc107", hex); //--bs-btn-disabled-bg
+	const btnDisabledColor = getHexDark(btnDisabledBg); //--bs-btn-disabled-color
+	const btnDisabledBorder = getHex(baseColor, "#ffc107", hex); //--bs-btn-disabled-border-color
+
+	//:root, [data-bs-theme=light]
+	const bsTextEmphasis = getHex(baseColor, "#664d03", hex); //--bs-warning-text-emphasis
+	const bsBgSubtle = getHex(baseColor, "#fff3cd", hex); //--bs-warning-bg-subtle
+	const bsBorderSubtle = getHex(baseColor, "#ffe69c", hex); //--bs-warning-border-subtle
+
+	//[data-bs-theme=dark]
+	const bsDarkTextEmphasis = getHex(baseColor, "#ffda6a", hex); //--bs-warning-text-emphasis
+	const bsDarkBgSubtle = getHex(baseColor, "#332701", hex); //--bs-warning-bg-subtle
+	const bsDarkBorderSubtle = getHex(baseColor, "#997404", hex); //--bs-warning-border-subtle
+
+	//.table-warning
+	const bsTableBg = getHex(baseColor, "#fff3cd", hex); //--bs-table-bg
+	const bsTableColor = getHexDark(bsTableBg); //--bs-table-color
+	const bsTableBorderColor = getHex(baseColor, "#e6dbb9", hex); //--bs-table-border-color
+	const bsTableStripedBg = getHex(baseColor, "#f2e7c3", hex); //--bs-table-striped-bg
+	const bsTableStripedColor = getHexDark(bsTableStripedBg); //--bs-table-striped-color
+	const bsTableActiveBg = getHex(baseColor, "#e6dbb9", hex); //--bs-table-active-bg
+	const bsTableActiveColor = getHexDark(bsTableActiveBg); //--bs-table-active-color
+	const bsTableHoverBg = getHex(baseColor, "#ece1be", hex); //--bs-table-hover-bg
+	const bsTableHoverColor = getHexDark(bsTableHoverBg); //--bs-table-hover-color
+
+	const css = `
+		
+
+		:root, [data-bs-theme='light'] {
+			--bs-warning: ${hex};
+			--bs-warning-rgb: ${rgb};
+
+			--bs-warning-text-emphasis: ${bsTextEmphasis};
+			--bs-warning-bg-subtle: ${bsBgSubtle};
+			--bs-warning-border-subtle: ${bsBorderSubtle};
+		}
+
+		[data-bs-theme='dark'] {
+			--bs-warning-text-emphasis: ${bsDarkTextEmphasis};
+			--bs-warning-bg-subtle: ${bsDarkBgSubtle};
+			--bs-warning-border-subtle: ${bsDarkBorderSubtle};
+		}
+
+		.table-warning {
+			--bs-table-bg: ${bsTableBg};
+			--bs-table-color: ${bsTableColor};
+			--bs-table-border-color: ${bsTableBorderColor};
+			--bs-table-striped-bg: ${bsTableStripedBg};
+			--bs-table-striped-color: ${bsTableStripedColor};
+			--bs-table-active-bg: ${bsTableActiveBg};
+			--bs-table-active-color: ${bsTableActiveColor};
+			--bs-table-hover-bg: ${bsTableHoverBg};
+			--bs-table-hover-color: ${bsTableHoverColor};
+		}
+		
+		.text-bg-warning {
+			color: ${btnColor} !important;
+			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
+		}
+
+		.btn-warning {
+			--bs-btn-color: ${btnColor};
+			--bs-btn-bg: ${hex};
+			--bs-btn-border-color: ${btnBorder};
+			--bs-btn-hover-color: ${btnHoverColor};
+			--bs-btn-hover-bg: ${btnHoverBg};
+			--bs-btn-hover-border-color: ${btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btnActiveColor};
+			--bs-btn-active-bg: ${btnActiveBg};
+			--bs-btn-active-border-color: ${btnActiveBorder};
+			--bs-btn-disabled-color: ${btnDisabledColor};
+			--bs-btn-disabled-bg: ${btnDisabledBg};
+			--bs-btn-disabled-border-color: ${btnDisabledBorder};
+		}
+
+		.btn-outline-warning {
+			--bs-btn-color: ${hex};
+			--bs-btn-border-color: ${btnBorder};
+			--bs-btn-hover-color: ${btnHoverColor};
+			--bs-btn-hover-bg: ${btnHoverBg};
+			--bs-btn-hover-border-color: ${btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btnActiveColor};
+			--bs-btn-active-bg: ${btnActiveBg};
+			--bs-btn-active-border-color: ${btnActiveBorder};
+			--bs-btn-disabled-color: ${btnDisabledColor};
+			--bs-btn-disabled-border-color: ${btnDisabledBorder};
+		}
+
+		
+	`;
+
+	//add to custom stylesheet
+	let bstsCustomVarContainer = document.getElementById("bsts-custom-warning-var-container");
+	if (!bstsCustomVarContainer) {
+		core.appendChild(
+			document.head,
+			new h.style({ id: "bsts-custom-warning-var-container" }, css)
+		);
+	} else {
+		core.replaceWith(
+			bstsCustomVarContainer,
+			new h.style({ id: "bsts-custom-warning-var-container" }, css)
+		);
+	}
+};
+
+const setupCustomInfoCSSVar = (hex: string) => {
+	//:root, [data-bs-theme=light]
+	const baseColor = "#0dcaf0"; //--bs-info
+	const rgb = getRGB(hex); //--bs-info-rgb
+
+	//.btn-info
+	//--bs-btn-focus-shadow-rgb: 11,172,204;
+	const btnColor = getHexDark(hex); //--bs-btn-color
+	const btnBorder = getHex(baseColor, "#0dcaf0", hex); //--bs-btn-border-color
+	const btnHoverBg = getHex(baseColor, "#31d2f2", hex); //--bs-btn-hover-bg
+	const btnHoverColor = getHexDark(btnHoverBg); //--bs-btn-hover-color
+	const btnHoverBorder = getHex(baseColor, "#25cff2", hex); //--bs-btn-hover-border-color
+	const btnActiveBg = getHex(baseColor, "#3dd5f3", hex); //--bs-btn-active-bg
+	const btnActiveColor = getHexDark(btnActiveBg); //--bs-btn-active-color
+	const btnActiveBorder = getHex(baseColor, "#25cff2", hex); //--bs-btn-active-border-color
+	const btnDisabledBg = getHex(baseColor, "#0dcaf0", hex); //--bs-btn-disabled-bg
+	const btnDisabledColor = getHexDark(btnDisabledBg); //--bs-btn-disabled-color
+	const btnDisabledBorder = getHex(baseColor, "#0dcaf0", hex); //--bs-btn-disabled-border-color
+
+	//:root, [data-bs-theme=light]
+	const bsTextEmphasis = getHex(baseColor, "#58151c", hex); //--bs-info-text-emphasis
+	const bsBgSubtle = getHex(baseColor, "#cff4fc", hex); //--bs-info-bg-subtle
+	const bsBorderSubtle = getHex(baseColor, "#9eeaf9", hex); //--bs-info-border-subtle
+
+	//[data-bs-theme=dark]
+	const bsDarkTextEmphasis = getHex(baseColor, "#6edff6", hex); //--bs-info-text-emphasis
+	const bsDarkBgSubtle = getHex(baseColor, "#032830", hex); //--bs-info-bg-subtle
+	const bsDarkBorderSubtle = getHex(baseColor, "#087990", hex); //--bs-info-border-subtle
+
+	//.table-info
+	const bsTableBg = getHex(baseColor, "#cff4fc", hex); //--bs-table-bg
+	const bsTableColor = getHexDark(bsTableBg); //--bs-table-color
+	const bsTableBorderColor = getHex(baseColor, "#badce3", hex); //--bs-table-border-color
+	const bsTableStripedBg = getHex(baseColor, "#c5e8ef", hex); //--bs-table-striped-bg
+	const bsTableStripedColor = getHexDark(bsTableStripedBg); //--bs-table-striped-color
+	const bsTableActiveBg = getHex(baseColor, "#badce3", hex); //--bs-table-active-bg
+	const bsTableActiveColor = getHexDark(bsTableActiveBg); //--bs-table-active-color
+	const bsTableHoverBg = getHex(baseColor, "#bfe2e9", hex); //--bs-table-hover-bg
+	const bsTableHoverColor = getHexDark(bsTableHoverBg); //--bs-table-hover-color
+
+	const css = `
+		
+
+		:root, [data-bs-theme='light'] {
+			--bs-info: ${hex};
+			--bs-info-rgb: ${rgb};
+
+			--bs-info-text-emphasis: ${bsTextEmphasis};
+			--bs-info-bg-subtle: ${bsBgSubtle};
+			--bs-info-border-subtle: ${bsBorderSubtle};
+		}
+
+		[data-bs-theme='dark'] {
+			--bs-info-text-emphasis: ${bsDarkTextEmphasis};
+			--bs-info-bg-subtle: ${bsDarkBgSubtle};
+			--bs-info-border-subtle: ${bsDarkBorderSubtle};
+		}
+
+		.table-info {
+			--bs-table-bg: ${bsTableBg};
+			--bs-table-color: ${bsTableColor};
+			--bs-table-border-color: ${bsTableBorderColor};
+			--bs-table-striped-bg: ${bsTableStripedBg};
+			--bs-table-striped-color: ${bsTableStripedColor};
+			--bs-table-active-bg: ${bsTableActiveBg};
+			--bs-table-active-color: ${bsTableActiveColor};
+			--bs-table-hover-bg: ${bsTableHoverBg};
+			--bs-table-hover-color: ${bsTableHoverColor};
+		}
+		
+		.text-bg-info {
+			color: ${btnColor} !important;
+			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
+		}
+
+		.btn-info {
+			--bs-btn-color: ${btnColor};
+			--bs-btn-bg: ${hex};
+			--bs-btn-border-color: ${btnBorder};
+			--bs-btn-hover-color: ${btnHoverColor};
+			--bs-btn-hover-bg: ${btnHoverBg};
+			--bs-btn-hover-border-color: ${btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btnActiveColor};
+			--bs-btn-active-bg: ${btnActiveBg};
+			--bs-btn-active-border-color: ${btnActiveBorder};
+			--bs-btn-disabled-color: ${btnDisabledColor};
+			--bs-btn-disabled-bg: ${btnDisabledBg};
+			--bs-btn-disabled-border-color: ${btnDisabledBorder};
+		}
+
+		.btn-outline-info {
+			--bs-btn-color: ${hex};
+			--bs-btn-border-color: ${btnBorder};
+			--bs-btn-hover-color: ${btnHoverColor};
+			--bs-btn-hover-bg: ${btnHoverBg};
+			--bs-btn-hover-border-color: ${btnHoverBorder};
+			--bs-btn-focus-shadow-rgb: ${rgb};
+			--bs-btn-active-color: ${btnActiveColor};
+			--bs-btn-active-bg: ${btnActiveBg};
+			--bs-btn-active-border-color: ${btnActiveBorder};
+			--bs-btn-disabled-color: ${btnDisabledColor};
+			--bs-btn-disabled-border-color: ${btnDisabledBorder};
+		}
+
+		
+	`;
+
+	//add to custom stylesheet
+	let bstsCustomVarContainer = document.getElementById("bsts-custom-info-var-container");
+	if (!bstsCustomVarContainer) {
+		core.appendChild(document.head, new h.style({ id: "bsts-custom-info-var-container" }, css));
+	} else {
+		core.replaceWith(
+			bstsCustomVarContainer,
+			new h.style({ id: "bsts-custom-info-var-container" }, css)
+		);
+	}
+};
+
 const setupCustomDangerCSSVar = (hex: string) => {
 	//:root, [data-bs-theme=light]
 	const baseColor = "#dc3545"; //--bs-danger
@@ -171,13 +414,22 @@ const setupCustomDangerCSSVar = (hex: string) => {
 
 		.form-control.is-invalid, .was-validated .form-control:invalid {
 			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${encodeURIComponent(
-				hex
+				bsDarkFormInvalidBorder
 			)}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${encodeURIComponent(
-		hex
-	)}' stroke='none'/%3e%3c/svg%3e")' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+		bsDarkFormInvalidBorder
+	)}' stroke='none'/%3e%3c/svg%3e");
+		}
+
+		.form-select.is-invalid:not([multiple]):not([size]), .form-select.is-invalid:not([multiple])[size="1"], .was-validated .form-select:invalid:not([multiple]):not([size]), .was-validated .form-select:invalid:not([multiple])[size="1"]{
+			--bs-form-select-bg-icon:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='${encodeURIComponent(
+				bsDarkFormInvalidBorder
+			)}'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='${encodeURIComponent(
+		bsDarkFormInvalidBorder
+	)}' stroke='none'/%3e%3c/svg%3e");
 		}
 		
-		.text-bg-danger{
+		.text-bg-danger {
+			color: ${btnColor} !important;
 			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
 		}
 
@@ -310,11 +562,18 @@ const setupCustomSuccessCSSVar = (hex: string) => {
 
 		.form-control.is-valid, .was-validated .form-control:valid {
 			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${encodeURIComponent(
-				hex
+				bsDarkFormValidBorder
+			)}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+		}
+
+		.form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"], .was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"]{
+			--bs-form-select-bg-icon:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='${encodeURIComponent(
+				bsDarkFormValidBorder
 			)}' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
 		}
 		
-		.text-bg-success{
+		.text-bg-success {
+			color: ${btnColor} !important;
 			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
 		}
 
@@ -370,6 +629,7 @@ const setupCustomPrimaryCSSVar = (hex: string) => {
 	//:root, [data-bs-theme=light]
 	const baseColor = "#0d6efd"; //--bs-primary
 	const rgb = getRGB(hex); //--bs-primary-rgb
+	const bsFocusBorder = getHex(baseColor, "#86b7fe", hex); //form-control-focus
 
 	//.btn-primary
 	const btnColor = getHexDark(hex); //--bs-btn-color
@@ -413,10 +673,12 @@ const setupCustomPrimaryCSSVar = (hex: string) => {
 	const bsTableHoverBg = getHex(baseColor, "#bfd1ec", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg); //--bs-table-hover-color
 
-	const bsFormControlFocusBorder = getHex(baseColor, "#86b7fe", hex); //form-control-focus
-
 	const css = `
 		
+		::selection {
+			color: ${btnColor};
+  			background-color: ${hex};
+		}
 
 		:root, [data-bs-theme='light'] {
 			--bs-primary: ${hex};
@@ -457,13 +719,13 @@ const setupCustomPrimaryCSSVar = (hex: string) => {
 		}
 
 		.form-control:focus, .form-select:focus, .form-check-input:focus {
-			border-color: ${bsFormControlFocusBorder};
+			border-color: ${bsFocusBorder};
 			box-shadow: 0 0 0 .25rem rgba(${rgb},.25);
 		}
 
 		.form-switch .form-check-input:focus {
 			--bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='${encodeURIComponent(
-				bsFormControlFocusBorder
+				bsFocusBorder
 			)}'/%3e%3c/svg%3e");
 		}
 
@@ -506,7 +768,9 @@ const setupCustomPrimaryCSSVar = (hex: string) => {
 			--bs-list-group-active-border-color: ${hex};
 		}
 
-		.text-bg-primary{
+
+		.text-bg-primary {
+			color: ${btnColor} !important;
 			background-color: rgba(${rgb},var(--bs-bg-opacity,1)) !important;
 		}
 
@@ -555,7 +819,14 @@ const setupCustomPrimaryCSSVar = (hex: string) => {
 			--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(${rgb}, 0.25);
 		}
 
-		
+		.accordion {
+			--bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+			--bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+				bsTextEmphasis
+			)}'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+			--bs-accordion-btn-focus-border-color: ${bsFocusBorder};
+    		--bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(${rgb}, 0.25);
+		}
 	`;
 
 	//add to custom stylesheet
@@ -573,6 +844,20 @@ const setupCustomPrimaryCSSVar = (hex: string) => {
 	}
 };
 
+const setupCustomAccentCSSVar = (hex: string) => {
+	const basePrimary = "#0d6efd";
+	const baseSuccess = "#198754";
+	const baseDanger = "#dc3545";
+	const baseInfo = "#0dcaf0";
+	const baseWarning = "#ffc107";
+
+	setupCustomPrimaryCSSVar(hex);
+	setupCustomSuccessCSSVar(getHex(basePrimary, baseSuccess, hex));
+	setupCustomDangerCSSVar(getHex(basePrimary, baseDanger, hex));
+	setupCustomInfoCSSVar(getHex(basePrimary, baseInfo, hex));
+	setupCustomWarningCSSVar(getHex(basePrimary, baseWarning, hex));
+};
+
 export const test: IContent = {
 	title: "Testing",
 	description: "This is testing page to test our library one by one",
@@ -580,8 +865,10 @@ export const test: IContent = {
 		resetContentIndex();
 
 		const cssBsPrimary = core.getCSSVarHexColor("--bs-primary");
-		const cssBsSuccess = core.getCSSVarHexColor("--bs-success");
-		const cssBsDanger = core.getCSSVarHexColor("--bs-danger");
+		// const cssBsSuccess = core.getCSSVarHexColor("--bs-success");
+		// const cssBsDanger = core.getCSSVarHexColor("--bs-danger");
+		// const cssBsInfo = core.getCSSVarHexColor("--bs-info");
+		// const cssBsWarning = core.getCSSVarHexColor("--bs-warning");
 
 		return [
 			//----------------------
@@ -590,11 +877,11 @@ export const test: IContent = {
 				new e.title("Accent color"),
 				new e.code({
 					db: getContentCode(db),
-					outputAttr: { display: "flex", gap: 2 },
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return [
 							new h.div([
-								"Primary",
+								"Accent color",
 								new h.div(
 									{
 										class: "swatch",
@@ -619,80 +906,205 @@ export const test: IContent = {
 														"background-color",
 														value
 													);
-													setupCustomPrimaryCSSVar(value);
+													setupCustomAccentCSSVar(value);
 												}
 											},
 										},
 									})
 								),
 							]),
-							new h.div([
-								"Success",
-								new h.div(
-									{
-										class: "swatch",
-										rounded: true,
-										border: true,
-										style: { backgroundColor: cssBsSuccess },
-									},
+							// new h.div([
+							// 	"Primary",
+							// 	new h.div(
+							// 		{
+							// 			class: "swatch",
+							// 			rounded: true,
+							// 			border: true,
+							// 			style: { backgroundColor: cssBsPrimary },
+							// 		},
 
-									new b.input({
-										type: "color",
-										value: cssBsSuccess,
-										on: {
-											input: (e) => {
-												let target = e.target as HTMLInputElement;
-												let value = target.value;
-												let container = target.closest(
-													".swatch"
-												) as HTMLElement;
+							// 		new b.input({
+							// 			type: "color",
+							// 			value: cssBsPrimary,
+							// 			on: {
+							// 				input: (e) => {
+							// 					let target = e.target as HTMLInputElement;
+							// 					let value = target.value;
+							// 					let container = target.closest(
+							// 						".swatch"
+							// 					) as HTMLElement;
 
-												if (container) {
-													container.style.setProperty(
-														"background-color",
-														value
-													);
-													setupCustomSuccessCSSVar(value);
-												}
-											},
-										},
-									})
-								),
-							]),
-							new h.div([
-								"Danger",
-								new h.div(
-									{
-										class: "swatch",
-										rounded: true,
-										border: true,
-										style: { backgroundColor: cssBsDanger },
-									},
+							// 					if (container) {
+							// 						container.style.setProperty(
+							// 							"background-color",
+							// 							value
+							// 						);
+							// 						setupCustomPrimaryCSSVar(value);
+							// 					}
+							// 				},
+							// 			},
+							// 		})
+							// 	),
+							// ]),
+							// new h.div([
+							// 	"Success",
+							// 	new h.div(
+							// 		{
+							// 			class: "swatch",
+							// 			rounded: true,
+							// 			border: true,
+							// 			style: { backgroundColor: cssBsSuccess },
+							// 		},
 
-									new b.input({
-										type: "color",
-										value: cssBsDanger,
-										on: {
-											input: (e) => {
-												let target = e.target as HTMLInputElement;
-												let value = target.value;
-												let container = target.closest(
-													".swatch"
-												) as HTMLElement;
+							// 		new b.input({
+							// 			type: "color",
+							// 			value: cssBsSuccess,
+							// 			on: {
+							// 				input: (e) => {
+							// 					let target = e.target as HTMLInputElement;
+							// 					let value = target.value;
+							// 					let container = target.closest(
+							// 						".swatch"
+							// 					) as HTMLElement;
 
-												if (container) {
-													container.style.setProperty(
-														"background-color",
-														value
-													);
-													setupCustomDangerCSSVar(value);
-												}
-											},
-										},
-									})
-								),
-							]),
+							// 					if (container) {
+							// 						container.style.setProperty(
+							// 							"background-color",
+							// 							value
+							// 						);
+							// 						setupCustomSuccessCSSVar(value);
+							// 					}
+							// 				},
+							// 			},
+							// 		})
+							// 	),
+							// ]),
+							// new h.div([
+							// 	"Danger",
+							// 	new h.div(
+							// 		{
+							// 			class: "swatch",
+							// 			rounded: true,
+							// 			border: true,
+							// 			style: { backgroundColor: cssBsDanger },
+							// 		},
+
+							// 		new b.input({
+							// 			type: "color",
+							// 			value: cssBsDanger,
+							// 			on: {
+							// 				input: (e) => {
+							// 					let target = e.target as HTMLInputElement;
+							// 					let value = target.value;
+							// 					let container = target.closest(
+							// 						".swatch"
+							// 					) as HTMLElement;
+
+							// 					if (container) {
+							// 						container.style.setProperty(
+							// 							"background-color",
+							// 							value
+							// 						);
+							// 						setupCustomDangerCSSVar(value);
+							// 					}
+							// 				},
+							// 			},
+							// 		})
+							// 	),
+							// ]),
+							// new h.div([
+							// 	"Info",
+							// 	new h.div(
+							// 		{
+							// 			class: "swatch",
+							// 			rounded: true,
+							// 			border: true,
+							// 			style: { backgroundColor: cssBsInfo },
+							// 		},
+
+							// 		new b.input({
+							// 			type: "color",
+							// 			value: cssBsInfo,
+							// 			on: {
+							// 				input: (e) => {
+							// 					let target = e.target as HTMLInputElement;
+							// 					let value = target.value;
+							// 					let container = target.closest(
+							// 						".swatch"
+							// 					) as HTMLElement;
+
+							// 					if (container) {
+							// 						container.style.setProperty(
+							// 							"background-color",
+							// 							value
+							// 						);
+							// 						setupCustomInfoCSSVar(value);
+							// 					}
+							// 				},
+							// 			},
+							// 		})
+							// 	),
+							// ]),
+							// new h.div([
+							// 	"Warning",
+							// 	new h.div(
+							// 		{
+							// 			class: "swatch",
+							// 			rounded: true,
+							// 			border: true,
+							// 			style: { backgroundColor: cssBsWarning },
+							// 		},
+
+							// 		new b.input({
+							// 			type: "color",
+							// 			value: cssBsWarning,
+							// 			on: {
+							// 				input: (e) => {
+							// 					let target = e.target as HTMLInputElement;
+							// 					let value = target.value;
+							// 					let container = target.closest(
+							// 						".swatch"
+							// 					) as HTMLElement;
+
+							// 					if (container) {
+							// 						container.style.setProperty(
+							// 							"background-color",
+							// 							value
+							// 						);
+							// 						setupCustomWarningCSSVar(value);
+							// 					}
+							// 				},
+							// 			},
+							// 		})
+							// 	),
+							// ]),
 						];
+					},
+				}),
+			]),
+
+			new e.section([
+				new e.title("Accent color preview"),
+				new e.code({
+					db: getContentCode(db),
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					output: () => {
+						return [
+							"primary",
+							"secondary",
+							"success",
+							"danger",
+							"warning",
+							"info",
+							"light",
+							"dark",
+							"link",
+						].map((i) => {
+							return new b.button(
+								{ color: i as I.B.Button["color"] },
+								core.uppercaseFirst(i)
+							);
+						});
 					},
 				}),
 			]),
