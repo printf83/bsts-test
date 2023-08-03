@@ -471,11 +471,13 @@ const setupCustomWarningCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTextEmphasis = getHex(baseColor, "#664d03", hex); //--bs-warning-text-emphasis
 	const bsBgSubtle = getHex(baseColor, "#fff3cd", hex); //--bs-warning-bg-subtle
 	const bsBorderSubtle = getHex(baseColor, "#ffe69c", hex); //--bs-warning-border-subtle
+	const bsHighlightBg = getHex(baseColor, "#fff3cd", hex); //--bs-highlight-bg
 
 	//[data-bs-theme=dark]
 	const bsDarkTextEmphasis = getHex(baseColor, "#ffda6a", hex); //--bs-warning-text-emphasis
 	const bsDarkBgSubtle = getHex(baseColor, "#332701", hex); //--bs-warning-bg-subtle
 	const bsDarkBorderSubtle = getHex(baseColor, "#997404", hex); //--bs-warning-border-subtle
+	const bsDarkHighlightBg = getHex(baseColor, "#ffe69c", hex); //--bs-highlight-bg
 
 	//.table-warning
 	const bsTableBg = getHex(baseColor, "#fff3cd", hex); //--bs-table-bg
@@ -498,12 +500,16 @@ const setupCustomWarningCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-warning-text-emphasis: ${bsTextEmphasis};
 			--bs-warning-bg-subtle: ${bsBgSubtle};
 			--bs-warning-border-subtle: ${bsBorderSubtle};
+
+			--bs-highlight-bg: ${bsHighlightBg};
 		}
 
 		[data-bs-theme='dark'] {
 			--bs-warning-text-emphasis: ${bsDarkTextEmphasis};
 			--bs-warning-bg-subtle: ${bsDarkBgSubtle};
 			--bs-warning-border-subtle: ${bsDarkBorderSubtle};
+
+			--bs-highlight-bg: ${bsDarkHighlightBg};
 		}
 
 		.table-warning {
@@ -714,6 +720,7 @@ const setupCustomDangerCSSVar = (hex: string, light: string, dark: string) => {
 	const bsBorderSubtle = getHex(baseColor, "#f1aeb5", hex); //--bs-danger-border-subtle
 	const bsFormInvalid = getHex(baseColor, "#dc3545", hex); //--bs-form-invalid-color
 	const bsFormInvalidBorder = getHex(baseColor, "#dc3545", hex); //--bs-form-invalid-border-color
+	const bsCodeColor = getHex(baseColor, "#d63384", hex); //--bs-code-color
 
 	//[data-bs-theme=dark]
 	const bsDarkTextEmphasis = getHex(baseColor, "#ea868f", hex); //--bs-danger-text-emphasis
@@ -721,6 +728,7 @@ const setupCustomDangerCSSVar = (hex: string, light: string, dark: string) => {
 	const bsDarkBorderSubtle = getHex(baseColor, "#842029", hex); //--bs-danger-border-subtle
 	const bsDarkFormInvalid = getHex(baseColor, "#ea868f", hex); //--bs-form-invalid-color
 	const bsDarkFormInvalidBorder = getHex(baseColor, "#ea868f", hex); //--bs-form-invalid-border-color
+	const bsDarkCodeColor = getHex(baseColor, "#e685b5", hex); //--bs-code-color
 
 	//.table-danger
 	const bsTableBg = getHex(baseColor, "#f8d7da", hex); //--bs-table-bg
@@ -746,6 +754,8 @@ const setupCustomDangerCSSVar = (hex: string, light: string, dark: string) => {
 
 			--bs-form-invalid-color: ${bsFormInvalid};
 			--bs-form-invalid-border-color: ${bsFormInvalidBorder};
+
+			--bs-code-color: ${bsCodeColor};
 		}
 
 		[data-bs-theme='dark'] {
@@ -755,6 +765,8 @@ const setupCustomDangerCSSVar = (hex: string, light: string, dark: string) => {
 
 			--bs-form-invalid-color: ${bsDarkFormInvalid};
 			--bs-form-invalid-border-color: ${bsDarkFormInvalidBorder};
+
+			--bs-code-color: ${bsDarkCodeColor};
 		}
 
 		.table-danger {
@@ -1209,88 +1221,93 @@ const setupCustomPrimaryCSSVar = (hex: string, light: string, dark: string) => {
 // 	return { light: bsBodyColor, dark: bsDarkBodyColor };
 // };
 
-// const setupCustomBodyCSSVar = (hex: string) => {
-// 	//:root, [data-bs-theme=light]
-// 	const baseColor = "#ffffff"; //--bs-body-bg
-// 	const rgb = getRGB(hex); //--bs-body-bg-rgb
+const setupCustomBodyCSSVar = (hex: string) => {
+	//:root, [data-bs-theme=light]
+	const baseColor = "#ffffff"; //--bs-body-bg
+	const rgb = getRGB(hex); //--bs-body-bg-rgb
 
-// 	const bsBodyColor = getHex(baseColor, "#212529", hex); //--bs-body-color
-// 	const bsBodyColorRGB = getRGB(bsBodyColor); //--bs-body-color-rgb
-// 	const bsEmphasisColor = getHex(baseColor, "#000000", hex); //--bs-emphasis-color
-// 	const bsEmphasisColorRGB = getRGB(bsEmphasisColor); //--bs-emphasis-color-rgb
-// 	const bsSecondaryColor = `rgba(${bsBodyColorRGB}, 0.75)`; //--bs-secondary-color
-// 	const bsSecondaryColorRGB = bsBodyColorRGB; //--bs-secondary-color-rgb
-// 	const bsSecondaryBg = getHex(baseColor, "#e9ecef", hex); //--bs-secondary-bg
-// 	const bsSecondaryBgRGB = getRGB(bsSecondaryBg); //--bs-secondary-bg-rgb
-// 	const bsTertiaryColor = `rgba(${bsBodyColorRGB}, 0.5)`; //--bs-tertiary-color
-// 	const bsTertiaryColorRGB = bsBodyColorRGB; //--bs-tertiary-color-rgb
-// 	const bsTertiaryBg = getHex(baseColor, "#f8f9fa", hex); //--bs-secondary-bg
-// 	const bsTertiaryBgRGB = getRGB(bsTertiaryBg); //--bs-secondary-bg-rgb
+	const bsBodyColor = getHex(baseColor, "#212529", hex); //--bs-body-color
+	const bsBodyColorRGB = getRGB(bsBodyColor); //--bs-body-color-rgb
+	const bsEmphasisColor = getHex(baseColor, "#000000", hex); //--bs-emphasis-color
+	const bsEmphasisColorRGB = getRGB(bsEmphasisColor); //--bs-emphasis-color-rgb
+	const bsSecondaryColor = `rgba(${bsBodyColorRGB}, 0.75)`; //--bs-secondary-color
+	const bsSecondaryColorRGB = bsBodyColorRGB; //--bs-secondary-color-rgb
+	const bsSecondaryBg = getHex(baseColor, "#e9ecef", hex); //--bs-secondary-bg
+	const bsSecondaryBgRGB = getRGB(bsSecondaryBg); //--bs-secondary-bg-rgb
+	const bsTertiaryColor = `rgba(${bsBodyColorRGB}, 0.5)`; //--bs-tertiary-color
+	const bsTertiaryColorRGB = bsBodyColorRGB; //--bs-tertiary-color-rgb
+	const bsTertiaryBg = getHex(baseColor, "#f8f9fa", hex); //--bs-secondary-bg
+	const bsTertiaryBgRGB = getRGB(bsTertiaryBg); //--bs-secondary-bg-rgb
+	const bsBorderColor = getHex(baseColor, "#dee2e6", hex); //--bs-border-color
 
-// 	//[data-bs-theme="dark"]
-// 	const bsDarkBodyBg = getHex(baseColor, "#212529", hex); //--bs-body-bg
-// 	const rgbDark = getRGB(bsDarkBodyBg); //--bs-body-bg-rgb
+	//[data-bs-theme="dark"]
+	const bsDarkBodyBg = getHex(baseColor, "#212529", hex); //--bs-body-bg
+	const rgbDark = getRGB(bsDarkBodyBg); //--bs-body-bg-rgb
 
-// 	const bsDarkBodyColor = getHex(baseColor, "#dee2e6", hex); //--bs-body-color
-// 	const bsDarkBodyColorRGB = getRGB(bsDarkBodyColor); //--bs-body-color-rgb
-// 	const bsDarkEmphasisColor = getHex(baseColor, "#ffffff", hex); //--bs-emphasis-color
-// 	const bsDarkEmphasisColorRGB = getRGB(bsDarkEmphasisColor); //--bs-emphasis-color-rgb
-// 	const bsDarkSecondaryColor = `rgba(${bsDarkBodyColorRGB}, 0.75)`; //--bs-secondary-color
-// 	const bsDarkSecondaryColorRGB = bsDarkBodyColorRGB; //--bs-secondary-color-rgb
-// 	const bsDarkSecondaryBg = getHex(baseColor, "#343a40", hex); //--bs-secondary-bg
-// 	const bsDarkSecondaryBgRGB = getRGB(bsDarkSecondaryBg); //--bs-secondary-bg-rgb
-// 	const bsDarkTertiaryColor = `rgba(${bsDarkBodyColorRGB}, 0.5)`; //--bs-tertiary-color
-// 	const bsDarkTertiaryColorRGB = bsDarkBodyColorRGB; //--bs-tertiary-color-rgb
-// 	const bsDarkTertiaryBg = getHex(baseColor, "#2b3035", hex); //--bs-secondary-bg
-// 	const bsDarkTertiaryBgRGB = getRGB(bsDarkTertiaryBg); //--bs-secondary-bg-rgb
+	const bsDarkBodyColor = getHex(baseColor, "#dee2e6", hex); //--bs-body-color
+	const bsDarkBodyColorRGB = getRGB(bsDarkBodyColor); //--bs-body-color-rgb
+	const bsDarkEmphasisColor = getHex(baseColor, "#ffffff", hex); //--bs-emphasis-color
+	const bsDarkEmphasisColorRGB = getRGB(bsDarkEmphasisColor); //--bs-emphasis-color-rgb
+	const bsDarkSecondaryColor = `rgba(${bsDarkBodyColorRGB}, 0.75)`; //--bs-secondary-color
+	const bsDarkSecondaryColorRGB = bsDarkBodyColorRGB; //--bs-secondary-color-rgb
+	const bsDarkSecondaryBg = getHex(baseColor, "#343a40", hex); //--bs-secondary-bg
+	const bsDarkSecondaryBgRGB = getRGB(bsDarkSecondaryBg); //--bs-secondary-bg-rgb
+	const bsDarkTertiaryColor = `rgba(${bsDarkBodyColorRGB}, 0.5)`; //--bs-tertiary-color
+	const bsDarkTertiaryColorRGB = bsDarkBodyColorRGB; //--bs-tertiary-color-rgb
+	const bsDarkTertiaryBg = getHex(baseColor, "#2b3035", hex); //--bs-secondary-bg
+	const bsDarkTertiaryBgRGB = getRGB(bsDarkTertiaryBg); //--bs-secondary-bg-rgb
+	const bsDarkBorderColor = getHex(baseColor, "#495057", hex); //--bs-border-color
 
-// 	const css = `
-// 		:root, [data-bs-theme='light'] {
-// 			--bs-body-bg: ${hex};
-// 			--bs-body-bg-rgb: ${rgb};
-// 			--bs-body-color: ${bsBodyColor};
-// 			--bs-body-color-rgb: ${bsBodyColorRGB};
-// 			--bs-emphasis-color: ${bsEmphasisColor};
-// 			--bs-emphasis-color-rgb: ${bsEmphasisColorRGB};
-// 			--bs-secondary-color: ${bsSecondaryColor};
-// 			--bs-secondary-color-rgb: ${bsSecondaryColorRGB};
-// 			--bs-secondary-bg: ${bsSecondaryBg};
-// 			--bs-secondary-bg-rgb: ${bsSecondaryBgRGB};
-// 			--bs-tertiary-color: ${bsTertiaryColor};
-// 			--bs-tertiary-color-rgb: ${bsTertiaryColorRGB};
-// 			--bs-tertiary-bg: ${bsTertiaryBg};
-// 			--bs-tertiary-bg-rgb: ${bsTertiaryBgRGB};
-// 		}
+	const css = `
+		:root, [data-bs-theme='light'] {
+			--bs-body-bg: ${hex};
+			--bs-body-bg-rgb: ${rgb};
+			--bs-body-color: ${bsBodyColor};
+			--bs-body-color-rgb: ${bsBodyColorRGB};
+			--bs-emphasis-color: ${bsEmphasisColor};
+			--bs-emphasis-color-rgb: ${bsEmphasisColorRGB};
+			--bs-secondary-color: ${bsSecondaryColor};
+			--bs-secondary-color-rgb: ${bsSecondaryColorRGB};
+			--bs-secondary-bg: ${bsSecondaryBg};
+			--bs-secondary-bg-rgb: ${bsSecondaryBgRGB};
+			--bs-tertiary-color: ${bsTertiaryColor};
+			--bs-tertiary-color-rgb: ${bsTertiaryColorRGB};
+			--bs-tertiary-bg: ${bsTertiaryBg};
+			--bs-tertiary-bg-rgb: ${bsTertiaryBgRGB};
+			--bs-border-color: ${bsBorderColor};
+			
+		}
 
-// 		[data-bs-theme='dark'] {
-// 			--bs-body-bg: ${bsDarkBodyBg};
-// 			--bs-body-bg-rgb: ${rgbDark};
-// 			--bs-body-color: ${bsDarkBodyColor};
-// 			--bs-body-color-rgb: ${bsDarkBodyColorRGB};
-// 			--bs-emphasis-color: ${bsDarkEmphasisColor};
-// 			--bs-emphasis-color-rgb: ${bsDarkEmphasisColorRGB};
-// 			--bs-secondary-color: ${bsDarkSecondaryColor};
-// 			--bs-secondary-color-rgb: ${bsDarkSecondaryColorRGB};
-// 			--bs-secondary-bg: ${bsDarkSecondaryBg};
-// 			--bs-secondary-bg-rgb: ${bsDarkSecondaryBgRGB};
-// 			--bs-tertiary-color: ${bsDarkTertiaryColor};
-// 			--bs-tertiary-color-rgb: ${bsDarkTertiaryColorRGB};
-// 			--bs-tertiary-bg: ${bsDarkTertiaryBg};
-// 			--bs-tertiary-bg-rgb: ${bsDarkTertiaryBgRGB};
-// 		}
-// 	`;
+		[data-bs-theme='dark'] {
+			--bs-body-bg: ${bsDarkBodyBg};
+			--bs-body-bg-rgb: ${rgbDark};
+			--bs-body-color: ${bsDarkBodyColor};
+			--bs-body-color-rgb: ${bsDarkBodyColorRGB};
+			--bs-emphasis-color: ${bsDarkEmphasisColor};
+			--bs-emphasis-color-rgb: ${bsDarkEmphasisColorRGB};
+			--bs-secondary-color: ${bsDarkSecondaryColor};
+			--bs-secondary-color-rgb: ${bsDarkSecondaryColorRGB};
+			--bs-secondary-bg: ${bsDarkSecondaryBg};
+			--bs-secondary-bg-rgb: ${bsDarkSecondaryBgRGB};
+			--bs-tertiary-color: ${bsDarkTertiaryColor};
+			--bs-tertiary-color-rgb: ${bsDarkTertiaryColorRGB};
+			--bs-tertiary-bg: ${bsDarkTertiaryBg};
+			--bs-tertiary-bg-rgb: ${bsDarkTertiaryBgRGB};
+			--bs-border-color: ${bsDarkBorderColor};
+		}
+	`;
 
-// 	//add to custom stylesheet
-// 	let bstsCustomVarContainer = document.getElementById("bsts-custom-body-var-container");
-// 	if (!bstsCustomVarContainer) {
-// 		core.appendChild(document.head, new h.style({ id: "bsts-custom-body-var-container" }, css));
-// 	} else {
-// 		core.replaceWith(
-// 			bstsCustomVarContainer,
-// 			new h.style({ id: "bsts-custom-body-var-container" }, css)
-// 		);
-// 	}
-// };
+	//add to custom stylesheet
+	let bstsCustomVarContainer = document.getElementById("bsts-custom-body-var-container");
+	if (!bstsCustomVarContainer) {
+		core.appendChild(document.head, new h.style({ id: "bsts-custom-body-var-container" }, css));
+	} else {
+		core.replaceWith(
+			bstsCustomVarContainer,
+			new h.style({ id: "bsts-custom-body-var-container" }, css)
+		);
+	}
+};
 
 const setupCustomAccentCSSVar = (hex: string) => {
 	const basePrimary = "#0d6efd";
@@ -1301,10 +1318,7 @@ const setupCustomAccentCSSVar = (hex: string) => {
 	const baseSecondary = "#6c757d";
 	const baseLight = "#f8f9fa";
 	const baseDark = "#212529";
-	// const baseBody = "#ffffff";
 
-	// const hexBody = "#00000";
-	// const { dark, light } = getLightDarkFontColor(hexBody);
 	const dark = "#000";
 	const light = "#fff";
 
@@ -1316,7 +1330,6 @@ const setupCustomAccentCSSVar = (hex: string) => {
 	setupCustomSecondaryCSSVar(getHex(basePrimary, baseSecondary, hex), light, dark);
 	setupCustomLightCSSVar(getHex(basePrimary, baseLight, hex), light, dark);
 	setupCustomDarkCSSVar(getHex(basePrimary, baseDark, hex), light, dark);
-	// setupCustomBodyCSSVar(getHex(basePrimary, baseBody, hexBody));
 };
 
 export const test: IContent = {
@@ -1326,6 +1339,7 @@ export const test: IContent = {
 		resetContentIndex();
 
 		const cssBsPrimary = core.getCSSVarHexColor("--bs-primary");
+		const cssBsBodyBg = core.getCSSVarHexColor("--bs-body-bg");
 		// const cssBsSuccess = core.getCSSVarHexColor("--bs-success");
 		// const cssBsDanger = core.getCSSVarHexColor("--bs-danger");
 		// const cssBsInfo = core.getCSSVarHexColor("--bs-info");
@@ -1368,6 +1382,39 @@ export const test: IContent = {
 														value
 													);
 													setupCustomAccentCSSVar(value);
+												}
+											},
+										},
+									})
+								),
+							]),
+							new h.div([
+								"Body color",
+								new h.div(
+									{
+										class: "swatch",
+										rounded: true,
+										border: true,
+										style: { backgroundColor: cssBsBodyBg },
+									},
+
+									new b.input({
+										type: "color",
+										value: cssBsBodyBg,
+										on: {
+											input: (e) => {
+												let target = e.target as HTMLInputElement;
+												let value = target.value;
+												let container = target.closest(
+													".swatch"
+												) as HTMLElement;
+
+												if (container) {
+													container.style.setProperty(
+														"background-color",
+														value
+													);
+													setupCustomBodyCSSVar(value);
 												}
 											},
 										},
