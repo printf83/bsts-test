@@ -56,13 +56,13 @@
 .bs-search-button .bs-search-icon,
 .bs-search-button .bs-search-button-placeholder {
     opacity: .65;
-    color: rgba(var(--bs-light-rgb), var(--bs-text-opacity));
+    color: var(--bs-body-bg);
 }
 
 .bs-search-button:active,
 .bs-search-button:focus,
 .bs-search-button:hover {
-    box-shadow: 0 0 0 0.25rem rgba(var(--bs-light-rgb), 0.15);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-body-bg), 0.15);
 }
 
 .bs-search-button:active .bs-search-icon,
@@ -901,7 +901,38 @@ strong,
     content: "#";
 }
 
+/* color-pallet */
+.color-pallet {
+    display: flex;
+}
+
+.color-pallet div {
+    width:20%;
+    height: 1.5rem;
+}
+
+
 /* navbar */
+.bs-main-navbar, 
+.bs-main-navbar-offcanvas .offcanvas-header, 
+.bs-main-navbar-offcanvas .offcanvas-body
+{
+    background-color: var(--bs-primary);
+    color:var(--bs-body-bg);
+}
+
+.bs-main-navbar .btn,
+.bs-main-navbar .nav-link,
+.bs-main-navbar .navbar-brand,
+.bs-main-navbar .navbar-toggler {
+    color: var(--bs-body-bg);
+}
+
+.bs-main-navbar .nav-link.active,
+.bs-main-navbar .dropdown-toggle.show {
+    color: rgba(var(--bs-body-bg),0.75);
+}
+
 @media (max-width: 991.98px) {
     .bs-navbar-toggle {
         width: 4.25rem;

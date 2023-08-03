@@ -9,8 +9,6 @@ import { BOOTSWATCHDB, THEMEDB } from "./_db.js";
 export const mainContainer = () => {
 	return new container({
 		name: "Bootstrap TS",
-		bgColor: "primary",
-		textColor: "light",
 		icon: new h.div(
 			{ class: "animated-icon", fontSize: 3 },
 			new b.icon({ id: "hexagon-fill" })

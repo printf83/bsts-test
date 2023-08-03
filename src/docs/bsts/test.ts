@@ -1332,6 +1332,34 @@ const setupCustomAccentCSSVar = (hex: string) => {
 	setupCustomDarkCSSVar(getHex(basePrimary, baseDark, hex), light, dark);
 };
 
+const buildColorPalletItem = (value: string[]) => {
+	return new h.div({ class: "color-pallet" }, [
+		new h.div({ style: { backgroundColor: value[0] } }),
+		new h.div({ style: { backgroundColor: value[1] } }),
+		new h.div({ style: { backgroundColor: value[2] } }),
+		new h.div({ style: { backgroundColor: value[3] } }),
+		new h.div({ style: { backgroundColor: value[4] } }),
+	]);
+};
+
+const colorPalletChange = (event: Event) => {
+	const target = event.currentTarget as Element;
+	const dataValue = target.getAttribute("data-value");
+	if (dataValue) {
+		const value: string[] = JSON.parse(dataValue) as string[];
+		if (value) {
+			const dark = "#000";
+			const light = "#fff";
+
+			setupCustomPrimaryCSSVar(value[0]!, light, dark);
+			setupCustomSuccessCSSVar(value[1]!, light, dark);
+			setupCustomDangerCSSVar(value[2]!, light, dark);
+			setupCustomWarningCSSVar(value[3]!, light, dark);
+			setupCustomInfoCSSVar(value[4]!, light, dark);
+		}
+	}
+};
+
 export const test: IContent = {
 	title: "Testing",
 	description: "This is testing page to test our library one by one",
@@ -1421,175 +1449,52 @@ export const test: IContent = {
 									})
 								),
 							]),
-							// new h.div([
-							// 	"Primary",
-							// 	new h.div(
-							// 		{
-							// 			class: "swatch",
-							// 			rounded: true,
-							// 			border: true,
-							// 			style: { backgroundColor: cssBsPrimary },
-							// 		},
-
-							// 		new b.input({
-							// 			type: "color",
-							// 			value: cssBsPrimary,
-							// 			on: {
-							// 				input: (e) => {
-							// 					let target = e.target as HTMLInputElement;
-							// 					let value = target.value;
-							// 					let container = target.closest(
-							// 						".swatch"
-							// 					) as HTMLElement;
-
-							// 					if (container) {
-							// 						container.style.setProperty(
-							// 							"background-color",
-							// 							value
-							// 						);
-							// 						setupCustomPrimaryCSSVar(value);
-							// 					}
-							// 				},
-							// 			},
-							// 		})
-							// 	),
-							// ]),
-							// new h.div([
-							// 	"Success",
-							// 	new h.div(
-							// 		{
-							// 			class: "swatch",
-							// 			rounded: true,
-							// 			border: true,
-							// 			style: { backgroundColor: cssBsSuccess },
-							// 		},
-
-							// 		new b.input({
-							// 			type: "color",
-							// 			value: cssBsSuccess,
-							// 			on: {
-							// 				input: (e) => {
-							// 					let target = e.target as HTMLInputElement;
-							// 					let value = target.value;
-							// 					let container = target.closest(
-							// 						".swatch"
-							// 					) as HTMLElement;
-
-							// 					if (container) {
-							// 						container.style.setProperty(
-							// 							"background-color",
-							// 							value
-							// 						);
-							// 						setupCustomSuccessCSSVar(value);
-							// 					}
-							// 				},
-							// 			},
-							// 		})
-							// 	),
-							// ]),
-							// new h.div([
-							// 	"Danger",
-							// 	new h.div(
-							// 		{
-							// 			class: "swatch",
-							// 			rounded: true,
-							// 			border: true,
-							// 			style: { backgroundColor: cssBsDanger },
-							// 		},
-
-							// 		new b.input({
-							// 			type: "color",
-							// 			value: cssBsDanger,
-							// 			on: {
-							// 				input: (e) => {
-							// 					let target = e.target as HTMLInputElement;
-							// 					let value = target.value;
-							// 					let container = target.closest(
-							// 						".swatch"
-							// 					) as HTMLElement;
-
-							// 					if (container) {
-							// 						container.style.setProperty(
-							// 							"background-color",
-							// 							value
-							// 						);
-							// 						setupCustomDangerCSSVar(value);
-							// 					}
-							// 				},
-							// 			},
-							// 		})
-							// 	),
-							// ]),
-							// new h.div([
-							// 	"Info",
-							// 	new h.div(
-							// 		{
-							// 			class: "swatch",
-							// 			rounded: true,
-							// 			border: true,
-							// 			style: { backgroundColor: cssBsInfo },
-							// 		},
-
-							// 		new b.input({
-							// 			type: "color",
-							// 			value: cssBsInfo,
-							// 			on: {
-							// 				input: (e) => {
-							// 					let target = e.target as HTMLInputElement;
-							// 					let value = target.value;
-							// 					let container = target.closest(
-							// 						".swatch"
-							// 					) as HTMLElement;
-
-							// 					if (container) {
-							// 						container.style.setProperty(
-							// 							"background-color",
-							// 							value
-							// 						);
-							// 						setupCustomInfoCSSVar(value);
-							// 					}
-							// 				},
-							// 			},
-							// 		})
-							// 	),
-							// ]),
-							// new h.div([
-							// 	"Warning",
-							// 	new h.div(
-							// 		{
-							// 			class: "swatch",
-							// 			rounded: true,
-							// 			border: true,
-							// 			style: { backgroundColor: cssBsWarning },
-							// 		},
-
-							// 		new b.input({
-							// 			type: "color",
-							// 			value: cssBsWarning,
-							// 			on: {
-							// 				input: (e) => {
-							// 					let target = e.target as HTMLInputElement;
-							// 					let value = target.value;
-							// 					let container = target.closest(
-							// 						".swatch"
-							// 					) as HTMLElement;
-
-							// 					if (container) {
-							// 						container.style.setProperty(
-							// 							"background-color",
-							// 							value
-							// 						);
-							// 						setupCustomWarningCSSVar(value);
-							// 					}
-							// 				},
-							// 			},
-							// 		})
-							// 	),
-							// ]),
 						];
 					},
 				}),
 			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Color pallet"),
+				new e.code({
+					db: getContentCode(db),
+					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					output: () => {
+						return new b.dropdown.container([
+							new b.dropdown.button({ color: "secondary" }, "Color pallet"),
+							new b.dropdown.menu(
+								[
+									["#0d6efd", "#198754", "#dc3545", "#ffc107", "#0dcaf0"],
+									["#E6E1C5", "#D4CB92", "#395C6B", "#80A4ED", "#BCD3F2"],
+									["#42253B", "#4C2C69", "#95A3B3", "#ABFAA9", "#82D173"],
+									["#3891A6", "#4C5B5C", "#FDE74C", "#DB5461", "#E3655B"],
+								].map((i) => {
+									return new b.dropdown.item(
+										{
+											data: {
+												value: JSON.stringify(i),
+											},
+											on: {
+												click: colorPalletChange,
+											},
+										},
+										buildColorPalletItem(i)
+									);
+								})
+								// [
+								// 	new b.dropdown.item({ href: "#" }, "Action"),
+								// 	new b.dropdown.item({ href: "#" }, "Another action"),
+								// 	new b.dropdown.item({ href: "#" }, "Something else here"),
+								// ]
+							),
+						]);
+					},
+				}),
+			]),
+
+			//----------------------
 
 			new e.section([
 				new e.title("Accent color preview"),

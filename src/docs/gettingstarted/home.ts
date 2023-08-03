@@ -267,6 +267,7 @@ export const home: IContent = {
 
 		const header = new b.navbar.containerHeader(
 			{
+				class: "bs-main-navbar",
 				expand: "lg",
 				sticky: "top",
 				bgColor: "primary",
@@ -292,7 +293,6 @@ export const home: IContent = {
 								fontSize: 6,
 								padding: 0,
 								marginStart: ["lg-0", "2"],
-								textColor: "light",
 								on: {
 									click: () => {
 										window.scrollTo(0, 0);
@@ -373,7 +373,6 @@ export const home: IContent = {
 									target: `#${bsNavbar}`,
 									controlfor: bsNavbar,
 									label: "Toggle navigation",
-									textColor: "light",
 								},
 								b.icon.bi("three-dots")
 							),
@@ -381,6 +380,7 @@ export const home: IContent = {
 						new b.offcanvas.container(
 							{
 								id: bsNavbar,
+								class: "bs-main-navbar-offcanvas",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
@@ -398,7 +398,6 @@ export const home: IContent = {
 										new b.offcanvas.title(
 											{
 												id: bsNavbarOffcanvasLabel,
-												textColor: "light",
 											},
 											"Bootstrap TS"
 										),
@@ -416,7 +415,6 @@ export const home: IContent = {
 									},
 									[
 										...setupInsideLink(
-											"light",
 											[
 												{
 													value: "docs/gettingstarted/home",
@@ -430,7 +428,6 @@ export const home: IContent = {
 											"docs/gettingstarted/home"
 										),
 										...setupOutsideLink(
-											"light",
 											[
 												{
 													href: "#",
@@ -462,13 +459,8 @@ export const home: IContent = {
 													label: "Bootstrap",
 												},
 											],
-											genBootswatch(
-												"light",
-												BOOTSWATCHDB,
-												getSavedBootswatch()
-											),
+											genBootswatch(BOOTSWATCHDB, getSavedBootswatch()),
 											setupTheme(
-												"light",
 												THEMEDB,
 												getSavedTheme() as IMainContainer["currentTheme"]
 											)
