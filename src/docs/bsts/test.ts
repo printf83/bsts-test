@@ -140,7 +140,7 @@ const setupCustomDarkCSSVar = (hex: string, light: string, dark: string) => {
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-dark
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
@@ -309,7 +309,7 @@ const setupCustomLightCSSVar = (hex: string, light: string, dark: string) => {
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-light
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
@@ -479,7 +479,7 @@ const setupCustomSecondaryCSSVar = (hex: string, light: string, dark: string) =>
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-secondary
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
@@ -653,7 +653,7 @@ const setupCustomWarningCSSVar = (hex: string, light: string, dark: string) => {
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-warning
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
@@ -829,7 +829,7 @@ const setupCustomInfoCSSVar = (hex: string, light: string, dark: string) => {
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-info
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
@@ -1002,7 +1002,7 @@ const setupCustomDangerCSSVar = (hex: string, light: string, dark: string) => {
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-danger
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
@@ -1204,7 +1204,7 @@ const setupCustomSuccessCSSVar = (hex: string, light: string, dark: string) => {
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-success
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
@@ -1403,7 +1403,7 @@ const setupCustomPrimaryCSSVar = (hex: string, light: string, dark: string) => {
 	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
 	//.offcanvas-primary
-	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasBg = hex; //--bs-offcanvas-bg
 	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
 
 	//.btn-close
