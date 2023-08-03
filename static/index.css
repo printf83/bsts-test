@@ -913,7 +913,7 @@ strong,
 
 
 /* navbar */
-.bs-main-navbar, 
+/* .bs-main-navbar, 
 .bs-main-navbar-offcanvas .offcanvas-header, 
 .bs-main-navbar-offcanvas .offcanvas-body
 {
@@ -931,7 +931,7 @@ strong,
 .bs-main-navbar .nav-link.active,
 .bs-main-navbar .dropdown-toggle.show {
     color: rgba(var(--bs-body-bg),0.75);
-}
+} */
 
 @media (max-width: 991.98px) {
     .bs-navbar-toggle {

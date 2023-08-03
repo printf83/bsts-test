@@ -267,7 +267,8 @@ export const home: IContent = {
 
 		const header = new b.navbar.containerHeader(
 			{
-				class: "bs-main-navbar",
+				// class: "bs-main-navbar",
+				class: "navbar-primary",
 				expand: "lg",
 				sticky: "top",
 				bgColor: "primary",
@@ -380,7 +381,8 @@ export const home: IContent = {
 						new b.offcanvas.container(
 							{
 								id: bsNavbar,
-								class: "bs-main-navbar-offcanvas",
+								// class: "bs-main-navbar-offcanvas",
+								class: "offcanvas-primary",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",

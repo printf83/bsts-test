@@ -55,7 +55,8 @@ const convert = (attr: IMainContainer) => {
 	attr.elem = [
 		new b.navbar.containerHeader(
 			{
-				class: "bs-main-navbar",
+				// class: "bs-main-navbar",
+				class: "navbar-primary",
 				expand: "lg",
 				sticky: "top",
 				bgGradient: true,
@@ -175,7 +176,8 @@ const convert = (attr: IMainContainer) => {
 						new b.offcanvas.container(
 							{
 								id: bsNavbar,
-								class: "bs-main-navbar-offcanvas",
+								// class: "bs-main-navbar-offcanvas",
+								class: "offcanvas-primary",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",

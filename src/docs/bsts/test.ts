@@ -127,6 +127,29 @@ const setupCustomDarkCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTableHoverBg = getHex(baseColor, "#323539", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
 
+	//.navbar-dark
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
+
+	//.offcanvas-dark
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
+
 	const css = `
 		
 
@@ -192,7 +215,34 @@ const setupCustomDarkCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
 		}
 
-		
+		.navbar-dark {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-dark {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-dark .btn-close,
+		.badge-dark .btn-close,
+		.offcanvas-dark .btn-close,
+		.bg-dark .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
+		}
 	`;
 
 	//add to custom stylesheet
@@ -245,6 +295,29 @@ const setupCustomLightCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTableActiveColor = getHexDark(bsTableActiveBg, light, dark); //--bs-table-active-color
 	const bsTableHoverBg = getHex(baseColor, "#e5e6e7", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
+
+	//.navbar-light
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
+
+	//.offcanvas-light
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
 
 	const css = `	
 		:root, [data-bs-theme='light'] {
@@ -309,7 +382,34 @@ const setupCustomLightCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
 		}
 
-		
+		.navbar-light {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-light {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-light .btn-close,
+		.badge-light .btn-close,
+		.offcanvas-light .btn-close,
+		.bg-light .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
+		}
 	`;
 
 	//add to custom stylesheet
@@ -365,6 +465,29 @@ const setupCustomSecondaryCSSVar = (hex: string, light: string, dark: string) =>
 	const bsTableActiveColor = getHexDark(bsTableActiveBg, light, dark); //--bs-table-active-color
 	const bsTableHoverBg = getHex(baseColor, "#d1d2d4", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
+
+	//.navbar-secondary
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
+
+	//.offcanvas-secondary
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
 
 	const css = `
 		
@@ -431,7 +554,34 @@ const setupCustomSecondaryCSSVar = (hex: string, light: string, dark: string) =>
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
 		}
 
-		
+		.navbar-secondary {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-secondary {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-secondary .btn-close,
+		.badge-secondary .btn-close,
+		.offcanvas-secondary .btn-close,
+		.bg-secondary .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
+		}
 	`;
 
 	//add to custom stylesheet
@@ -489,6 +639,29 @@ const setupCustomWarningCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTableActiveColor = getHexDark(bsTableActiveBg, light, dark); //--bs-table-active-color
 	const bsTableHoverBg = getHex(baseColor, "#ece1be", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
+
+	//.navbar-warning
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
+
+	//.offcanvas-warning
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
 
 	const css = `
 		
@@ -559,7 +732,34 @@ const setupCustomWarningCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
 		}
 
-		
+		.navbar-warning {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-warning {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-warning .btn-close,
+		.badge-warning .btn-close,
+		.offcanvas-warning .btn-close,
+		.bg-warning .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
+		}
 	`;
 
 	//add to custom stylesheet
@@ -616,9 +816,30 @@ const setupCustomInfoCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTableHoverBg = getHex(baseColor, "#bfe2e9", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
 
-	const css = `
-		
+	//.navbar-info
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
 
+	//.offcanvas-info
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
+
+	const css = `
 		:root, [data-bs-theme='light'] {
 			--bs-info: ${hex};
 			--bs-info-rgb: ${rgb};
@@ -681,7 +902,34 @@ const setupCustomInfoCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
 		}
 
-		
+		.navbar-info {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-info {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-info .btn-close,
+		.badge-info .btn-close,
+		.offcanvas-info .btn-close,
+		.bg-info .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
+		}
 	`;
 
 	//add to custom stylesheet
@@ -740,6 +988,29 @@ const setupCustomDangerCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTableActiveColor = getHexDark(bsTableActiveBg, light, dark); //--bs-table-active-color
 	const bsTableHoverBg = getHex(baseColor, "#e5c7ca", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
+
+	//.navbar-danger
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
+
+	//.offcanvas-danger
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
 
 	const css = `
 		
@@ -831,8 +1102,35 @@ const setupCustomDangerCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-btn-disabled-color: ${hex};
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
 		}
-
 		
+		.navbar-danger {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-danger {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-danger .btn-close,
+		.badge-danger .btn-close,
+		.offcanvas-danger .btn-close,
+		.bg-danger .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
+		}
 	`;
 
 	//add to custom stylesheet
@@ -892,6 +1190,29 @@ const setupCustomSuccessCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTableActiveColor = getHexDark(bsTableActiveBg, light, dark); //--bs-table-active-color
 	const bsTableHoverBg = getHex(baseColor, "#c1d6cc", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
+
+	//.navbar-success
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
+
+	//.offcanvas-success
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
 
 	const css = `
 		
@@ -976,7 +1297,34 @@ const setupCustomSuccessCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
 		}
 
-		
+		.navbar-success {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-success {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-success .btn-close,
+		.badge-success .btn-close,
+		.offcanvas-success .btn-close,
+		.bg-success .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
+		}
 	`;
 
 	//add to custom stylesheet
@@ -1042,8 +1390,32 @@ const setupCustomPrimaryCSSVar = (hex: string, light: string, dark: string) => {
 	const bsTableHoverBg = getHex(baseColor, "#bfd1ec", hex); //--bs-table-hover-bg
 	const bsTableHoverColor = getHexDark(bsTableHoverBg, light, dark); //--bs-table-hover-color
 
+	//.navbar-primary
+	const btnColorRGB = getRGB(btnColor);
+	const bsNavbarBg = hex; //--bs-navbar-bg
+	const bsNavbarColor = btnColor; //--bs-navbar-color
+	const bsNavbarHoverColor = btnHoverColor; //--bs-navbar-hover-color
+	const bsNavbarDisabledColor = btnDisabledColor; //--bs-navbar-disabled-color
+	const bsNavbarActiveColor = btnActiveColor; //--bs-navbar-active-color
+	const bsNavbarBrandColor = btnColor; //--bs-navbar-brand-color
+	const bsNavbarBrandHoverColor = btnHoverColor; //--bs-navbar-brand-hover-color
+	const bsNavbarTogglerIconBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${btnColorRGB}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`; //--bs-navbar-toggler-icon-bg
+	const bsNavbarTogglerBorderColor = `rgba(var(${btnColorRGB}), 0.15)`; //--bs-navbar-toggler-border-color
+
+	//.offcanvas-primary
+	const bsOffcanvasBg = baseColor; //--bs-offcanvas-bg
+	const bsOffcanvasColor = btnColor; //--bs-offcanvas-color
+
+	//.btn-close
+	const bsBtnCloseColor = btnColor; //--bs-btn-close-color
+	const bsBtnCloseBg = `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(
+		btnColor
+	)}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")`; //--bs-btn-close-bg
+	const bsBtnCLoseFocusShadow = `0 0 0 0.25rem rgba(${rgb}, 0.25)`; //--bs-btn-close-focus-shadow
+
 	const css = `
 		
+
 		::selection {
 			color: ${btnColor};
   			background-color: ${hex};
@@ -1171,6 +1543,35 @@ const setupCustomPrimaryCSSVar = (hex: string, light: string, dark: string) => {
 			--bs-btn-active-border-color: ${btnActiveBorder};
 			--bs-btn-disabled-color: ${hex};
 			--bs-btn-disabled-border-color: ${btnDisabledBorder};
+		}
+
+		.navbar-primary {
+			--bs-navbar-bg: ${bsNavbarBg};
+			--bs-navbar-color: ${bsNavbarColor};
+			--bs-navbar-hover-color: ${bsNavbarHoverColor};
+			--bs-navbar-disabled-color: ${bsNavbarDisabledColor};
+			--bs-navbar-active-color: ${bsNavbarActiveColor};
+			--bs-navbar-brand-color: ${bsNavbarBrandColor};
+			--bs-navbar-brand-hover-color: ${bsNavbarBrandHoverColor};
+			--bs-navbar-toggler-icon-bg: ${bsNavbarTogglerIconBg};
+			--bs-navbar-toggler-border-color: ${bsNavbarTogglerBorderColor};
+			background-color:var(--bs-navbar-bg);
+		}
+
+		.offcanvas-primary {
+			--bs-offcanvas-bg: ${bsOffcanvasBg};
+			--bs-offcanvas-color: ${bsOffcanvasColor};
+			background-color: var(--bs-offcanvas-bg);
+			color: var(--bs-offcanvas-color);
+		}
+
+		.alert-primary .btn-close,
+		.badge-primary .btn-close,
+		.offcanvas-primary .btn-close,
+		.bg-primary .btn-close {
+			--bs-btn-close-color: ${bsBtnCloseColor};
+			--bs-btn-close-bg: ${bsBtnCloseBg};
+			--bs-btn-close-focus-shadow: ${bsBtnCLoseFocusShadow};
 		}
 
 		.progress, .progress-stacked {
@@ -1498,6 +1899,16 @@ export const test: IContent = {
 										success: "#198754",
 										warning: "#ffc107",
 										danger: "#dc3545",
+									},
+									{
+										light: "#add4cd",
+										dark: "#290405",
+										primary: "#610ebb",
+										secondary: "#e85129",
+										info: "#e5a832",
+										success: "#0cad69",
+										warning: "#e2ce0b",
+										danger: "#f22704",
 									},
 									{
 										light: "#c1f0fa",
