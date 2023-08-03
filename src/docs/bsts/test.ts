@@ -1213,13 +1213,13 @@ const setupCustomPrimaryCSSVar = (hex: string, light: string, dark: string) => {
 	}
 };
 
-const getLightDarkFontColor = (hex: string) => {
-	const baseColor = "#ffffff"; //--bs-body-bg
-	const bsBodyColor = getHex(baseColor, "#212529", hex); //--bs-body-color
-	const bsDarkBodyColor = getHex(baseColor, "#dee2e6", hex); //--bs-body-color
+// const getLightDarkFontColor = (hex: string) => {
+// 	const baseColor = "#ffffff"; //--bs-body-bg
+// 	const bsBodyColor = getHex(baseColor, "#212529", hex); //--bs-body-color
+// 	const bsDarkBodyColor = getHex(baseColor, "#dee2e6", hex); //--bs-body-color
 
-	return { light: bsBodyColor, dark: bsDarkBodyColor };
-};
+// 	return { light: bsBodyColor, dark: bsDarkBodyColor };
+// };
 
 const setupCustomBodyCSSVar = (hex: string) => {
 	//:root, [data-bs-theme=light]
