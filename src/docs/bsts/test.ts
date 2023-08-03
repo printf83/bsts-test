@@ -1213,13 +1213,13 @@ const setupCustomPrimaryCSSVar = (hex: string, light: string, dark: string) => {
 	}
 };
 
-// const getLightDarkFontColor = (hex: string) => {
-// 	const baseColor = "#ffffff"; //--bs-body-bg
-// 	const bsBodyColor = getHex(baseColor, "#212529", hex); //--bs-body-color
-// 	const bsDarkBodyColor = getHex(baseColor, "#dee2e6", hex); //--bs-body-color
+const getLightDarkFontColor = (hex: string) => {
+	const baseColor = "#ffffff"; //--bs-body-bg
+	const bsBodyColor = getHex(baseColor, "#212529", hex); //--bs-body-color
+	const bsDarkBodyColor = getHex(baseColor, "#dee2e6", hex); //--bs-body-color
 
-// 	return { light: bsBodyColor, dark: bsDarkBodyColor };
-// };
+	return { light: bsBodyColor, dark: bsDarkBodyColor };
+};
 
 const setupCustomBodyCSSVar = (hex: string) => {
 	//:root, [data-bs-theme=light]
@@ -1332,13 +1332,27 @@ const setupCustomAccentCSSVar = (hex: string) => {
 	setupCustomDarkCSSVar(getHex(basePrimary, baseDark, hex), light, dark);
 };
 
-const buildColorPalletItem = (value: string[]) => {
-	return new h.div({ class: "color-pallet" }, [
-		new h.div({ style: { backgroundColor: value[0] } }),
-		new h.div({ style: { backgroundColor: value[1] } }),
-		new h.div({ style: { backgroundColor: value[2] } }),
-		new h.div({ style: { backgroundColor: value[3] } }),
-		new h.div({ style: { backgroundColor: value[4] } }),
+type colorPalletItem = {
+	light: string;
+	dark: string;
+	primary: string;
+	secondary: string;
+	info: string;
+	success: string;
+	warning: string;
+	danger: string;
+};
+
+const buildColorPalletItem = (value: colorPalletItem) => {
+	return new h.div({ class: "color-pallet", marginX: 1 }, [
+		new h.div({ style: { backgroundColor: value.primary } }),
+		new h.div({ style: { backgroundColor: value.secondary } }),
+		new h.div({ style: { backgroundColor: value.success } }),
+		new h.div({ style: { backgroundColor: value.danger } }),
+		new h.div({ style: { backgroundColor: value.warning } }),
+		new h.div({ style: { backgroundColor: value.info } }),
+		new h.div({ style: { backgroundColor: value.light } }),
+		new h.div({ style: { backgroundColor: value.dark } }),
 	]);
 };
 
@@ -1346,16 +1360,22 @@ const colorPalletChange = (event: Event) => {
 	const target = event.currentTarget as Element;
 	const dataValue = target.getAttribute("data-value");
 	if (dataValue) {
-		const value: string[] = JSON.parse(dataValue) as string[];
+		const value: colorPalletItem = JSON.parse(dataValue) as colorPalletItem;
 		if (value) {
 			const dark = "#000";
 			const light = "#fff";
 
-			setupCustomPrimaryCSSVar(value[0]!, light, dark);
-			setupCustomSuccessCSSVar(value[1]!, light, dark);
-			setupCustomDangerCSSVar(value[2]!, light, dark);
-			setupCustomWarningCSSVar(value[3]!, light, dark);
-			setupCustomInfoCSSVar(value[4]!, light, dark);
+			setupCustomLightCSSVar(value.light, light, dark);
+			setupCustomDarkCSSVar(value.dark, light, dark);
+			setupCustomPrimaryCSSVar(value.primary, light, dark);
+			setupCustomSecondaryCSSVar(value.secondary, light, dark);
+			setupCustomInfoCSSVar(value.info, light, dark);
+			setupCustomSuccessCSSVar(value.success, light, dark);
+			setupCustomWarningCSSVar(value.warning, light, dark);
+			setupCustomDangerCSSVar(value.danger, light, dark);
+
+			const btnPallet = target.closest(".dropdown-menu")?.previousSibling as Element;
+			core.replaceChild(btnPallet, buildColorPalletItem(value));
 		}
 	}
 };
@@ -1368,10 +1388,6 @@ export const test: IContent = {
 
 		const cssBsPrimary = core.getCSSVarHexColor("--bs-primary");
 		const cssBsBodyBg = core.getCSSVarHexColor("--bs-body-bg");
-		// const cssBsSuccess = core.getCSSVarHexColor("--bs-success");
-		// const cssBsDanger = core.getCSSVarHexColor("--bs-danger");
-		// const cssBsInfo = core.getCSSVarHexColor("--bs-info");
-		// const cssBsWarning = core.getCSSVarHexColor("--bs-warning");
 
 		return [
 			//----------------------
@@ -1463,13 +1479,116 @@ export const test: IContent = {
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						return new b.dropdown.container([
-							new b.dropdown.button({ color: "secondary" }, "Color pallet"),
+							new b.dropdown.button(
+								{
+									color: "secondary",
+									display: "flex",
+									alignItem: "center",
+								},
+								"Color pallet"
+							),
 							new b.dropdown.menu(
 								[
-									["#0d6efd", "#198754", "#dc3545", "#ffc107", "#0dcaf0"],
-									["#E6E1C5", "#D4CB92", "#395C6B", "#80A4ED", "#BCD3F2"],
-									["#42253B", "#4C2C69", "#95A3B3", "#ABFAA9", "#82D173"],
-									["#3891A6", "#4C5B5C", "#FDE74C", "#DB5461", "#E3655B"],
+									{
+										light: "#f8f9fa",
+										dark: "#212529",
+										primary: "#0d6efd",
+										secondary: "#6c757d",
+										info: "#0dcaf0",
+										success: "#198754",
+										warning: "#ffc107",
+										danger: "#dc3545",
+									},
+									{
+										light: "#c1f0fa",
+										dark: "#0b0d0e",
+										primary: "#731949",
+										secondary: "#e62c74",
+										info: "#dcb0a9",
+										success: "#1fa976",
+										warning: "#d6d11e",
+										danger: "#e2410e",
+									},
+									{
+										light: "#f9e6c1",
+										dark: "#2b170b",
+										primary: "#0d4a3c",
+										secondary: "#42878a",
+										info: "#00e0e2",
+										success: "#00b03b",
+										warning: "#f5c800",
+										danger: "#f8003f",
+									},
+									{
+										light: "#d9f8fe",
+										dark: "#00263c",
+										primary: "#043150",
+										secondary: "#ea1570",
+										info: "#f4d1c6",
+										success: "#0cac60",
+										warning: "#e7cc0b",
+										danger: "#f80804",
+									},
+									{
+										light: "#f5c8c3",
+										dark: "#070706",
+										primary: "#c4a04d",
+										secondary: "#504e3e",
+										info: "#be5c56",
+										success: "#51a629",
+										warning: "#fdc151",
+										danger: "#f0175d",
+									},
+									{
+										light: "#e0e6f2",
+										dark: "#20095d",
+										primary: "#3300f5",
+										secondary: "#c8787b",
+										info: "#fad9cf",
+										success: "#00ba6e",
+										warning: "#e7d100",
+										danger: "#fa2100",
+									},
+									{
+										light: "#cfd2f2",
+										dark: "#040f28",
+										primary: "#63c3d2",
+										secondary: "#136364",
+										info: "#a85b89",
+										success: "#14af55",
+										warning: "#edcb13",
+										danger: "#f8082c",
+									},
+									{
+										light: "#d1efee",
+										dark: "#040530",
+										primary: "#3840b4",
+										secondary: "#d83e88",
+										info: "#ebba9f",
+										success: "#2daf6c",
+										warning: "#e4cf2b",
+										danger: "#f32817",
+									},
+									{
+										light: "#f1e5aa",
+										dark: "#0a0807",
+										primary: "#5f3527",
+										secondary: "#954527",
+										info: "#d50031",
+										success: "#4e9400",
+										warning: "#ffba43",
+										danger: "#ea0060",
+									},
+									{
+										light: "#e4d8d1",
+										dark: "#191728",
+										primary: "#483b2a",
+										secondary: "#e7342e",
+										info: "#f94134",
+										success: "#4a9d13",
+										warning: "#febd37",
+										danger: "#ed095c",
+									},
 								].map((i) => {
 									return new b.dropdown.item(
 										{
@@ -1483,11 +1602,6 @@ export const test: IContent = {
 										buildColorPalletItem(i)
 									);
 								})
-								// [
-								// 	new b.dropdown.item({ href: "#" }, "Action"),
-								// 	new b.dropdown.item({ href: "#" }, "Another action"),
-								// 	new b.dropdown.item({ href: "#" }, "Something else here"),
-								// ]
 							),
 						]);
 					},

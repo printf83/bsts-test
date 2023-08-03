@@ -907,7 +907,7 @@ strong,
 }
 
 .color-pallet div {
-    width:20%;
+    width: 1.5rem;
     height: 1.5rem;
 }
 
@@ -918,14 +918,14 @@ strong,
 .bs-main-navbar-offcanvas .offcanvas-body
 {
     background-color: var(--bs-primary);
-    color:var(--bs-body-bg);
+    color:var(--bs-white);
 }
 
 .bs-main-navbar .btn,
 .bs-main-navbar .nav-link,
 .bs-main-navbar .navbar-brand,
 .bs-main-navbar .navbar-toggler {
-    color: var(--bs-body-bg);
+    color: var(--bs-white);
 }
 
 .bs-main-navbar .nav-link.active,
