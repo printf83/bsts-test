@@ -2044,38 +2044,38 @@ export const test: IContent = {
 								"Choose color pallet"
 							),
 							new b.dropdown.menu(
-								new h.div(
-									{
-										display: "grid",
-										gap: 1,
-										gridTemplateColumns: "1fr 1fr 1fr",
-										overflowX: "auto",
-									},
-									COLORPALLETDB().map(
-										(i: {
-											light: string;
-											dark: string;
-											primary: string;
-											secondary: string;
-											info: string;
-											success: string;
-											warning: string;
-											danger: string;
-										}) => {
-											return new b.dropdown.item(
-												{
-													data: {
-														value: JSON.stringify(i),
-													},
-													on: {
-														click: colorPalletChange,
-													},
+								// new h.div(
+								// 	{
+								// 		display: "grid",
+								// 		gap: 1,
+								// 		gridTemplateColumns: "1fr 1fr 1fr",
+								// 		overflowX: "auto",
+								// 	},
+								COLORPALLETDB().map(
+									(i: {
+										light: string;
+										dark: string;
+										primary: string;
+										secondary: string;
+										info: string;
+										success: string;
+										warning: string;
+										danger: string;
+									}) => {
+										return new b.dropdown.item(
+											{
+												data: {
+													value: JSON.stringify(i),
 												},
-												colorPalletItem(i)
-											);
-										}
-									)
+												on: {
+													click: colorPalletChange,
+												},
+											},
+											colorPalletItem(i)
+										);
+									}
 								)
+								// )
 							),
 						]);
 					},
