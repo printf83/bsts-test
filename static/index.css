@@ -907,10 +907,10 @@ strong,
 }
 
 .color-pallet div {
-    width: 1rem;
-    height: 1rem;
-    margin-left: -0.5rem;
-    border-radius: var(--bs-border-radius-sm);
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: -0.75rem;
+    border-radius: var(--bs-border-radius-pill);
     border-width: var(--bs-border-width);
     border-style: var(--bs-border-style);
     border-color: var(--bs-border-color);}
