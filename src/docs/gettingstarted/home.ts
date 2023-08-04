@@ -267,8 +267,8 @@ export const home: IContent = {
 
 		const header = new b.navbar.containerHeader(
 			{
-				// class: "bs-main-navbar",
-				class: "navbar-primary",
+				class: "bs-main-navbar",
+				// class: "navbar-primary",
 				expand: "lg",
 				sticky: "top",
 				bgColor: "primary",
@@ -381,8 +381,8 @@ export const home: IContent = {
 						new b.offcanvas.container(
 							{
 								id: bsNavbar,
-								// class: "bs-main-navbar-offcanvas",
-								class: "offcanvas-primary",
+								class: "bs-main-navbar-offcanvas",
+								// class: "offcanvas-primary",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
@@ -394,7 +394,7 @@ export const home: IContent = {
 									{
 										paddingX: 4,
 										paddingBottom: 0,
-										bgColor: "primary",
+										// bgColor: "primary",
 									},
 									[
 										new b.offcanvas.title(
@@ -413,7 +413,7 @@ export const home: IContent = {
 									{
 										padding: [4, "lg-0"],
 										paddingTop: 0,
-										bgColor: "primary",
+										// bgColor: "primary",
 									},
 									[
 										...setupInsideLink(
