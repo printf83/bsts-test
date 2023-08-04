@@ -1703,60 +1703,48 @@ import { I, b, core, h } from "@printf83/bsts";
 // 	}
 // };
 
-const setupCustomAccentCSSVar = (hex: string) => {
-	const basePrimary = "#0d6efd";
-	const baseSuccess = "#198754";
-	const baseDanger = "#dc3545";
-	const baseInfo = "#0dcaf0";
-	const baseWarning = "#ffc107";
-	const baseSecondary = "#6c757d";
-	const baseLight = "#f8f9fa";
-	const baseDark = "#212529";
+// const setupCustomAccentCSSVar = (hex: string) => {
+// 	const basePrimary = "#0d6efd";
+// 	const baseSuccess = "#198754";
+// 	const baseDanger = "#dc3545";
+// 	const baseInfo = "#0dcaf0";
+// 	const baseWarning = "#ffc107";
+// 	const baseSecondary = "#6c757d";
+// 	const baseLight = "#f8f9fa";
+// 	const baseDark = "#212529";
 
-	const dark = "#000";
-	const light = "#fff";
+// 	const dark = "#000";
+// 	const light = "#fff";
 
-	const css = [
-		core.accentColor.primaryCSSVar(hex, light, dark),
-		core.accentColor.successCSSVar(
-			core.accentColor.getHex(basePrimary, baseSuccess, hex),
-			light,
-			dark
-		),
-		core.accentColor.dangerCSSVar(
-			core.accentColor.getHex(basePrimary, baseDanger, hex),
-			light,
-			dark
-		),
-		core.accentColor.infoCSSVar(
-			core.accentColor.getHex(basePrimary, baseInfo, hex),
-			light,
-			dark
-		),
-		core.accentColor.warningCSSVar(
-			core.accentColor.getHex(basePrimary, baseWarning, hex),
-			light,
-			dark
-		),
-		core.accentColor.secondaryCSSVar(
-			core.accentColor.getHex(basePrimary, baseSecondary, hex),
-			light,
-			dark
-		),
-		core.accentColor.lightCSSVar(
-			core.accentColor.getHex(basePrimary, baseLight, hex),
-			light,
-			dark
-		),
-		core.accentColor.darkCSSVar(
-			core.accentColor.getHex(basePrimary, baseDark, hex),
-			light,
-			dark
-		),
-	];
+// 	const css = [
+// 		core.accentColor.primary(hex, light, dark),
+// 		core.accentColor.success(
+// 			core.accentColor.calcHex(basePrimary, baseSuccess, hex),
+// 			light,
+// 			dark
+// 		),
+// 		core.accentColor.danger(
+// 			core.accentColor.calcHex(basePrimary, baseDanger, hex),
+// 			light,
+// 			dark
+// 		),
+// 		core.accentColor.info(core.accentColor.calcHex(basePrimary, baseInfo, hex), light, dark),
+// 		core.accentColor.warning(
+// 			core.accentColor.calcHex(basePrimary, baseWarning, hex),
+// 			light,
+// 			dark
+// 		),
+// 		core.accentColor.secondary(
+// 			core.accentColor.calcHex(basePrimary, baseSecondary, hex),
+// 			light,
+// 			dark
+// 		),
+// 		core.accentColor.light(core.accentColor.calcHex(basePrimary, baseLight, hex), light, dark),
+// 		core.accentColor.dark(core.accentColor.calcHex(basePrimary, baseDark, hex), light, dark),
+// 	];
 
-	core.accentColor.addCSSVar(css.join("\n"));
-};
+// 	core.accentColor.apply(css.join("\n"));
+// };
 
 type colorPalletItem = {
 	light: string;
@@ -1769,46 +1757,46 @@ type colorPalletItem = {
 	danger: string;
 };
 
-const buildColorPalletItem = (value: colorPalletItem) => {
-	return new h.div({ class: "color-pallet", marginX: 1 }, [
-		new h.div({ style: { backgroundColor: value.primary } }),
-		new h.div({ style: { backgroundColor: value.secondary } }),
-		new h.div({ style: { backgroundColor: value.success } }),
-		new h.div({ style: { backgroundColor: value.danger } }),
-		new h.div({ style: { backgroundColor: value.warning } }),
-		new h.div({ style: { backgroundColor: value.info } }),
-		new h.div({ style: { backgroundColor: value.light } }),
-		new h.div({ style: { backgroundColor: value.dark } }),
-	]);
-};
+// const buildColorPalletItem = (value: colorPalletItem) => {
+// 	return new h.div({ class: "color-pallet", marginX: 1 }, [
+// 		new h.div({ style: { backgroundColor: value.primary } }),
+// 		new h.div({ style: { backgroundColor: value.secondary } }),
+// 		new h.div({ style: { backgroundColor: value.success } }),
+// 		new h.div({ style: { backgroundColor: value.danger } }),
+// 		new h.div({ style: { backgroundColor: value.warning } }),
+// 		new h.div({ style: { backgroundColor: value.info } }),
+// 		new h.div({ style: { backgroundColor: value.light } }),
+// 		new h.div({ style: { backgroundColor: value.dark } }),
+// 	]);
+// };
 
-const colorPalletChange = (event: Event) => {
-	const target = event.currentTarget as Element;
-	const dataValue = target.getAttribute("data-value");
-	if (dataValue) {
-		const value: colorPalletItem = JSON.parse(dataValue) as colorPalletItem;
-		if (value) {
-			const dark = "#000";
-			const light = "#fff";
+// const colorPalletChange = (event: Event) => {
+// 	const target = event.currentTarget as Element;
+// 	const dataValue = target.getAttribute("data-value");
+// 	if (dataValue) {
+// 		const value: colorPalletItem = JSON.parse(dataValue) as colorPalletItem;
+// 		if (value) {
+// 			const dark = "#000";
+// 			const light = "#fff";
 
-			const css = [
-				core.accentColor.primaryCSSVar(value.primary, light, dark),
-				core.accentColor.successCSSVar(value.success, light, dark),
-				core.accentColor.dangerCSSVar(value.danger, light, dark),
-				core.accentColor.infoCSSVar(value.info, light, dark),
-				core.accentColor.warningCSSVar(value.warning, light, dark),
-				core.accentColor.secondaryCSSVar(value.secondary, light, dark),
-				core.accentColor.lightCSSVar(value.light, light, dark),
-				core.accentColor.darkCSSVar(value.dark, light, dark),
-			];
+// 			const css = [
+// 				core.accentColor.primary(value.primary, light, dark),
+// 				core.accentColor.success(value.success, light, dark),
+// 				core.accentColor.danger(value.danger, light, dark),
+// 				core.accentColor.info(value.info, light, dark),
+// 				core.accentColor.warning(value.warning, light, dark),
+// 				core.accentColor.secondary(value.secondary, light, dark),
+// 				core.accentColor.light(value.light, light, dark),
+// 				core.accentColor.dark(value.dark, light, dark),
+// 			];
 
-			core.accentColor.addCSSVar(css.join("\n"));
+// 			core.accentColor.apply(css.join("\n"));
 
-			const btnPallet = target.closest(".dropdown-menu")?.previousSibling as Element;
-			core.replaceChild(btnPallet, buildColorPalletItem(value));
-		}
-	}
-};
+// 			const btnPallet = target.closest(".dropdown-menu")?.previousSibling as Element;
+// 			core.replaceChild(btnPallet, buildColorPalletItem(value));
+// 		}
+// 	}
+// };
 
 export const test: IContent = {
 	title: "Testing",
@@ -1855,7 +1843,91 @@ export const test: IContent = {
 														"background-color",
 														value
 													);
-													setupCustomAccentCSSVar(value);
+
+													const basePrimary = "#0d6efd";
+													const baseSuccess = "#198754";
+													const baseDanger = "#dc3545";
+													const baseInfo = "#0dcaf0";
+													const baseWarning = "#ffc107";
+													const baseSecondary = "#6c757d";
+													const baseLight = "#f8f9fa";
+													const baseDark = "#212529";
+
+													const dark = "#000";
+													const light = "#fff";
+
+													const css = [
+														core.accentColor.primary(
+															value,
+															light,
+															dark
+														),
+														core.accentColor.success(
+															core.accentColor.calcHex(
+																basePrimary,
+																baseSuccess,
+																value
+															),
+															light,
+															dark
+														),
+														core.accentColor.danger(
+															core.accentColor.calcHex(
+																basePrimary,
+																baseDanger,
+																value
+															),
+															light,
+															dark
+														),
+														core.accentColor.info(
+															core.accentColor.calcHex(
+																basePrimary,
+																baseInfo,
+																value
+															),
+															light,
+															dark
+														),
+														core.accentColor.warning(
+															core.accentColor.calcHex(
+																basePrimary,
+																baseWarning,
+																value
+															),
+															light,
+															dark
+														),
+														core.accentColor.secondary(
+															core.accentColor.calcHex(
+																basePrimary,
+																baseSecondary,
+																value
+															),
+															light,
+															dark
+														),
+														core.accentColor.light(
+															core.accentColor.calcHex(
+																basePrimary,
+																baseLight,
+																value
+															),
+															light,
+															dark
+														),
+														core.accentColor.dark(
+															core.accentColor.calcHex(
+																basePrimary,
+																baseDark,
+																value
+															),
+															light,
+															dark
+														),
+													];
+
+													core.accentColor.apply(css.join("\n"));
 												}
 											},
 										},
@@ -1888,7 +1960,10 @@ export const test: IContent = {
 														"background-color",
 														value
 													);
-													core.accentColor.bodyCSSVar(value);
+													core.accentColor.apply(
+														core.accentColor.body(value),
+														"bsts-custom-body-var-container"
+													);
 												}
 											},
 										},
@@ -1908,6 +1983,50 @@ export const test: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
+						const colorPalletItem = (value: colorPalletItem) => {
+							return new h.div({ class: "color-pallet", marginX: 1 }, [
+								new h.div({ style: { backgroundColor: value.primary } }),
+								new h.div({ style: { backgroundColor: value.secondary } }),
+								new h.div({ style: { backgroundColor: value.success } }),
+								new h.div({ style: { backgroundColor: value.danger } }),
+								new h.div({ style: { backgroundColor: value.warning } }),
+								new h.div({ style: { backgroundColor: value.info } }),
+								new h.div({ style: { backgroundColor: value.light } }),
+								new h.div({ style: { backgroundColor: value.dark } }),
+							]);
+						};
+
+						const colorPalletChange = (event: Event) => {
+							const target = event.currentTarget as Element;
+							const dataValue = target.getAttribute("data-value");
+							if (dataValue) {
+								const value: colorPalletItem = JSON.parse(
+									dataValue
+								) as colorPalletItem;
+								if (value) {
+									const dark = "#000";
+									const light = "#fff";
+
+									const css = [
+										core.accentColor.primary(value.primary, light, dark),
+										core.accentColor.success(value.success, light, dark),
+										core.accentColor.danger(value.danger, light, dark),
+										core.accentColor.info(value.info, light, dark),
+										core.accentColor.warning(value.warning, light, dark),
+										core.accentColor.secondary(value.secondary, light, dark),
+										core.accentColor.light(value.light, light, dark),
+										core.accentColor.dark(value.dark, light, dark),
+									];
+
+									core.accentColor.apply(css.join("\n"));
+
+									const btnPallet = target.closest(".dropdown-menu")
+										?.previousSibling as Element;
+									core.replaceChild(btnPallet, colorPalletItem(value));
+								}
+							}
+						};
+
 						return new b.dropdown.container([
 							new b.dropdown.button(
 								{
@@ -1915,7 +2034,7 @@ export const test: IContent = {
 									display: "flex",
 									alignItem: "center",
 								},
-								"Color pallet"
+								"Choose color pallet"
 							),
 							new b.dropdown.menu(
 								[
@@ -2039,7 +2158,7 @@ export const test: IContent = {
 												click: colorPalletChange,
 											},
 										},
-										buildColorPalletItem(i)
+										colorPalletItem(i)
 									);
 								})
 							),
