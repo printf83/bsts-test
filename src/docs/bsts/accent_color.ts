@@ -1,6 +1,7 @@
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 import { I, b, core, h } from "@printf83/bsts";
+import { cookie } from "../../ctl/main/cookie.js";
 
 type colorPalletItem = {
 	light: string;
@@ -19,6 +20,16 @@ const COLORPALLETDB = (): colorPalletItem[] => {
 			light: "#f8f9fa",
 			dark: "#212529",
 			primary: "#0d6efd",
+			secondary: "#6c757d",
+			info: "#0dcaf0",
+			success: "#198754",
+			warning: "#ffc107",
+			danger: "#dc3545",
+		},
+		{
+			light: "#f8f9fa",
+			dark: "#212529",
+			primary: "#712cf9",
 			secondary: "#6c757d",
 			info: "#0dcaf0",
 			success: "#198754",
@@ -469,7 +480,11 @@ export const accent_color: IContent = {
 						const onclick = (e: Event) => {
 							const target = e.currentTarget as HTMLInputElement;
 							const key = target.getAttribute("data-key");
-							const bsBgColor = core.getCSSVarHexColor(`--bs-${key}-bg`);
+
+							const bsBgColor = core.getCSSVarHexColor(
+								`--bs-${key === "body" ? "body-bg" : key}`
+							);
+
 							target.value = bsBgColor ? bsBgColor : "#000000";
 						};
 
@@ -651,53 +666,110 @@ export const accent_color: IContent = {
 									const btnPallet = target.closest(".dropdown-menu")
 										?.previousSibling as Element;
 									core.replaceChild(btnPallet, colorPalletItem(value));
+
+									//update selected value for remember my pallet
+									btnPallet.setAttribute("data-value", dataValue);
 								}
 							}
 						};
 
-						return new b.dropdown.container([
-							new b.dropdown.button(
-								{
-									display: "flex",
-									alignItem: "center",
-								},
-								"Choose color pallet"
-							),
-							new b.dropdown.menu(
-								new h.div(
+						return [
+							new b.dropdown.container([
+								new b.dropdown.button(
 									{
-										display: "grid",
-										gap: 1,
-										gridTemplateColumns: "1fr 1fr 1fr",
-										overflowX: "auto",
+										id: "btn-color-pallet",
+										display: "flex",
+										alignItem: "center",
 									},
-									COLORPALLETDB().map(
-										(i: {
-											light: string;
-											dark: string;
-											primary: string;
-											secondary: string;
-											info: string;
-											success: string;
-											warning: string;
-											danger: string;
-										}) => {
-											return new b.dropdown.item(
-												{
-													data: {
-														value: JSON.stringify(i),
+									"Choose color pallet"
+								),
+								new b.dropdown.menu(
+									new h.div(
+										{
+											display: "grid",
+											gap: 1,
+											gridTemplateColumns: "1fr 1fr 1fr",
+											overflowX: "auto",
+										},
+										COLORPALLETDB().map(
+											(i: {
+												light: string;
+												dark: string;
+												primary: string;
+												secondary: string;
+												info: string;
+												success: string;
+												warning: string;
+												danger: string;
+											}) => {
+												return new b.dropdown.item(
+													{
+														data: {
+															value: JSON.stringify(i),
+														},
+														on: {
+															click: colorPalletChange,
+														},
 													},
-													on: {
-														click: colorPalletChange,
-													},
-												},
-												colorPalletItem(i)
-											);
-										}
+													colorPalletItem(i)
+												);
+											}
+										)
 									)
-								)
+								),
+							]),
+							new b.button(
+								{
+									color: "success",
+									on: {
+										click: () => {
+											const btn = document.getElementById("btn-color-pallet");
+											if (btn) {
+												const value = btn.getAttribute("data-value");
+
+												if (value) {
+													cookie.set("COLOR_PALLET", value);
+													b.toast.show(
+														b.toast.create({
+															color: "primary",
+															title: document.title,
+															elem: "Current color pallet has been saved",
+														})
+													);
+												} else {
+													b.toast.show(
+														b.toast.create({
+															color: "danger",
+															title: document.title,
+															elem: "Please choose color pallet to save",
+														})
+													);
+												}
+											}
+										},
+									},
+								},
+								new b.caption({ icon: "save" }, "Remember this pallet")
 							),
-						]);
+							new b.button(
+								{
+									color: "danger",
+									on: {
+										click: () => {
+											const btn = document.getElementById("btn-color-pallet");
+
+											if (btn) {
+												btn.setAttribute("data-value", "");
+												btn.innerText = "Choose color pallet";
+												cookie.set("COLOR_PALLET", "");
+												REMOVEALLCUSTOMVAR();
+											}
+										},
+									},
+								},
+								new b.caption({ icon: "eraser-fill" }, "Reset")
+							),
+						];
 					},
 				}),
 			]),

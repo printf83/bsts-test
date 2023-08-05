@@ -128,7 +128,45 @@ const setupCopyDataManager = () => {
 	});
 };
 
+type colorPalletItem = {
+	light: string;
+	dark: string;
+	primary: string;
+	secondary: string;
+	info: string;
+	success: string;
+	warning: string;
+	danger: string;
+};
+
+const updateColorPallet = () => {
+	const colorPallet = cookie.get("COLOR_PALLET");
+	if (colorPallet) {
+		const value: colorPalletItem = JSON.parse(colorPallet) as colorPalletItem;
+
+		if (value) {
+			const light = "#fff";
+			const dark = "#000";
+
+			const css = [
+				core.accentColor.primary(value.primary, light, dark),
+				core.accentColor.success(value.success, light, dark),
+				core.accentColor.danger(value.danger, light, dark),
+				core.accentColor.info(value.info, light, dark),
+				core.accentColor.warning(value.warning, light, dark),
+				core.accentColor.secondary(value.secondary, light, dark),
+				core.accentColor.light(value.light, light, dark),
+				core.accentColor.dark(value.dark, light, dark),
+			];
+
+			//add bsts-custom-var-container to head
+			core.accentColor.apply(css.join("\n"));
+		}
+	}
+};
+
 core.documentReady(() => {
+	updateColorPallet();
 	onThemeChange(getSavedTheme());
 	onBootswatchChange(getSavedBootswatch());
 

@@ -79,12 +79,13 @@ export const mainContainerFS = () => {
 					target: "#bs-main-fs-modal",
 					toggle: "modal",
 					rounded: "circle",
-					padding: 2,
-					style: { width: "3rem", height: "3rem" },
+					style: { width: "4rem", height: "4rem" },
 					shadow: true,
 					weight: "lg",
+					border: true,
+					borderWidth: 2,
 				},
-				new b.icon({ id: "list" })
+				new b.icon({ id: "list", fontWeight: "bolder" })
 			)
 		),
 		new b.modal.container(

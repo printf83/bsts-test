@@ -62,14 +62,18 @@ export const home: IContent = {
 					})
 				),
 
-				new h.h(1, { marginBottom: 3 }, "Testing Bootstrap TS (BSTS)"),
+				new h.h(1, { marginBottom: 5 }, "Testing Bootstrap TS (BSTS)"),
+				// new h.p(
+				// 	{ lead: true, marginBottom: 3 },
+				// 	"Please be advised that the content of this website is solely for testing purposes and is not a genuine Bootstrap website. It has been developed exclusively to evaluate the functionality of the Bootstrap TS library (bsts) and ensure seamless compatibility with the Bootstrap framework, which we deeply admire. This website has been meticulously reconstructed utilizing the bsts library, thereby creating an HTML website using Typescript. Rest assured, any resemblance to real-world websites is purely coincidental, as this is merely an experimental platform for our internal testing and development."
+				// ),
+				// new h.p(
+				// 	{ lead: true, marginBottom: 3 },
+				// 	"{{b::Note:}} This website is for testing and demonstration purposes only and does not represent any official product or service."
+				// ),
 				new h.p(
-					{ lead: true, marginBottom: 3 },
-					"Please be advised that the content of this website is solely for testing purposes and is not a genuine Bootstrap website. It has been developed exclusively to evaluate the functionality of the Bootstrap TS library (bsts) and ensure seamless compatibility with the Bootstrap framework, which we deeply admire. This website has been meticulously reconstructed utilizing the bsts library, thereby creating an HTML website using Typescript. Rest assured, any resemblance to real-world websites is purely coincidental, as this is merely an experimental platform for our internal testing and development."
-				),
-				new h.p(
-					{ lead: true, marginBottom: 3 },
-					"{{b::Note:}} This website is for testing and demonstration purposes only and does not represent any official product or service."
+					{ lead: true, marginBottom: 5 },
+					"{{b::Note:}} This is not a real Bootstrap website. This is only a Bootstrap TS test website to test {{https://github.com/printf83/bsts::@printf83/bsts}} library and make sure it's fully support Bootstrap."
 				),
 				new h.div(
 					{
@@ -77,7 +81,7 @@ export const home: IContent = {
 						flex: "wrap",
 						justifyContent: ["evenly", "md-center"],
 						gap: 3,
-						marginBottom: 3,
+						marginBottom: 5,
 					},
 					[
 						new h.div(
@@ -476,6 +480,58 @@ export const home: IContent = {
 			]
 		);
 
+		const feature = (arg: {
+			icon: string;
+			title: string;
+			description: string;
+			elem?: core.IElem;
+		}) => {
+			return new h.div({ col: true, marginBottom: 5 }, [
+				new h.div(
+					{
+						display: "inline-flex",
+						alignItem: "center",
+						justifyContent: "center",
+						textBgColor: "primary",
+						bgGradient: true,
+						fontSize: 2,
+						marginBottom: 3,
+						paddingX: 3,
+						paddingY: 2,
+						rounded: 3,
+					},
+					new b.icon(arg.icon)
+				),
+				new h.h(3, { fontSize: 2 }, arg.title),
+				new h.p(arg.description),
+				new h.div(arg.elem ? arg.elem : ""),
+			]);
+		};
+
+		const main = new h.div(
+			{ container: true, paddingY: 4, paddingX: [4, "md-3"], textAlign: "center" },
+			[
+				{
+					icon: "palette2",
+					title: "Accent color support",
+					description: "We make it easy for changing accent color",
+				},
+				{
+					icon: "speedometer",
+					title: "Speed in mind",
+					description:
+						"We try our best to make it even faster and manage memory leak is our priority.",
+				},
+			].map((i: { icon: string; title: string; description: string; elem?: core.IElem }) => {
+				return feature({
+					icon: i.icon,
+					title: i.title,
+					description: i.description,
+					elem: i.elem,
+				});
+			})
+		);
+
 		const bg = new h.div(
 			{
 				viewWidth: "100",
@@ -485,7 +541,7 @@ export const home: IContent = {
 						"linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bs-success-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bs-danger-rgb), 0.5), transparent 50%)",
 				},
 			},
-			[header, jumbotrons, footer]
+			[header, jumbotrons, main, footer]
 		);
 
 		return [bg];
