@@ -44,7 +44,7 @@
 		"webpack-cli": "^5.1.4"
 	},
 	"dependencies": {
-		"@printf83/bsts": "^0.3.8",
+		"@printf83/bsts": "^0.3.9",
 		"bootstrap": "^5.3.1",
 		"chart.js": "^4.3.3",
 		"chartjs-plugin-datalabels": "^2.2.0",
