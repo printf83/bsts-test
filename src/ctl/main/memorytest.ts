@@ -782,6 +782,8 @@ const btnStartTest = (event: Event) => {
 };
 
 export const showMemoryTestDialog = () => {
+	const docCounter = menu.map((i) => i.item).flat().length;
+
 	b.modal.show(
 		new b.modal.container({ backdrop: "static", view: "center", scrollable: true }, [
 			new b.modal.body({ id: "memory-test-dialog" }, [
@@ -839,7 +841,17 @@ export const showMemoryTestDialog = () => {
 							gridTemplateColumns: "1fr 1fr 1fr",
 							gap: 2,
 						},
-						[10, 30, 50, 100, 300, 500, 1000, 3000, 5000].map((i) => {
+						[
+							~~(docCounter * 0.1),
+							~~(docCounter * 0.3),
+							~~(docCounter * 0.5),
+							docCounter,
+							docCounter * 3,
+							docCounter * 5,
+							docCounter * 10,
+							docCounter * 30,
+							docCounter * 50,
+						].map((i) => {
 							return new b.button(
 								{
 									outline: true,

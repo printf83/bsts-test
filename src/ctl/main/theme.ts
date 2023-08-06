@@ -70,11 +70,7 @@ export const highlghtTheme = (value: string, icon: I.B.Icon) => {
 	onThemeChange(value);
 };
 
-export const setupTheme = (
-	textColor: core.bootstrapType.textColor,
-	navbarItemTheme?: ITheme[],
-	currentTheme?: string
-) => {
+export const setupTheme = (navbarItemTheme?: ITheme[], currentTheme?: string) => {
 	const bsTheme = core.UUID();
 
 	if (navbarItemTheme) {
@@ -96,9 +92,8 @@ export const setupTheme = (
 						display: ["none", "lg-flex"],
 						height: 100,
 						marginX: "lg-2",
-						textColor: textColor,
 					}),
-					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+					new h.hr({ display: "lg-none", marginY: 2 }),
 				]
 			),
 			new b.navbar.item({ dropdown: true }, [
@@ -111,7 +106,6 @@ export const setupTheme = (
 						paddingX: [0, "lg-2"],
 						display: "flex",
 						alignItem: "center",
-						textColor: textColor,
 						label: "Toggle theme",
 					},
 					new b.caption(
@@ -123,7 +117,10 @@ export const setupTheme = (
 					)
 				),
 				new b.dropdown.menu(
-					{ positionView: "end", customStyle: 1 },
+					{
+						positionView: "end",
+						customStyle: 1,
+					},
 					navbarItemTheme.map((i) => {
 						return new b.dropdown.item(
 							{

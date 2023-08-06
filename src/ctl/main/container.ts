@@ -26,9 +26,6 @@ export interface IMainContainer extends core.IAttr {
 	icon?: core.tag;
 	name?: string;
 
-	textColor?: core.bootstrapType.textColor;
-	bgColor?: core.bootstrapType.bgColor;
-
 	itemOutsideLink?: IOutsideLink[];
 
 	itemMenu?: IMenu[];
@@ -58,9 +55,10 @@ const convert = (attr: IMainContainer) => {
 	attr.elem = [
 		new b.navbar.containerHeader(
 			{
+				class: "bs-main-navbar",
+				// class: "navbar-primary",
 				expand: "lg",
 				sticky: "top",
-				bgColor: attr.bgColor || "primary",
 				bgGradient: true,
 				shadow: true,
 				padding: 2,
@@ -83,7 +81,6 @@ const convert = (attr: IMainContainer) => {
 									target: `#${bsSidebar}`,
 									controlfor: bsSidebar,
 									label: "Toggle docs navigation",
-									textColor: attr.textColor || "light",
 								},
 								b.icon.bi("list")
 							),
@@ -96,7 +93,6 @@ const convert = (attr: IMainContainer) => {
 								marginEnd: ["lg-2", 0],
 								fontSize: 6,
 								padding: 0,
-								textColor: attr.textColor || "light",
 								on: {
 									click: () => {
 										window.scrollTo(0, 0);
@@ -173,7 +169,6 @@ const convert = (attr: IMainContainer) => {
 									target: `#${bsNavbar}`,
 									controlfor: bsNavbar,
 									label: "Toggle navigation",
-									textColor: attr.textColor || "light",
 								},
 								b.icon.bi("three-dots")
 							),
@@ -181,6 +176,8 @@ const convert = (attr: IMainContainer) => {
 						new b.offcanvas.container(
 							{
 								id: bsNavbar,
+								class: "bs-main-navbar-offcanvas",
+								// class: "offcanvas-primary",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
@@ -192,13 +189,11 @@ const convert = (attr: IMainContainer) => {
 									{
 										paddingX: 4,
 										paddingBottom: 0,
-										bgColor: attr.bgColor || "primary",
 									},
 									[
 										new b.offcanvas.title(
 											{
 												id: bsNavbarOffcanvasLabel,
-												textColor: attr.textColor || "light",
 											},
 											attr.name || "Bootstrap"
 										),
@@ -212,11 +207,9 @@ const convert = (attr: IMainContainer) => {
 									{
 										padding: [4, "lg-0"],
 										paddingTop: 0,
-										bgColor: attr.bgColor || "primary",
 									},
 									[
 										...setupInsideLink(
-											attr.textColor || "primary",
 											attr.itemInsideLink,
 											attr.currentInsideLink
 										),
@@ -224,18 +217,12 @@ const convert = (attr: IMainContainer) => {
 										attr.itemTheme ||
 										attr.itemBootswatch
 											? setupOutsideLink(
-													attr.textColor || "primary",
 													attr.itemOutsideLink,
 													genBootswatch(
-														attr.textColor || "primary",
 														attr.itemBootswatch,
 														attr.currentBootswatch
 													),
-													setupTheme(
-														attr.textColor || "primary",
-														attr.itemTheme,
-														attr.currentTheme
-													)
+													setupTheme(attr.itemTheme, attr.currentTheme)
 											  )
 											: []),
 									]
@@ -354,9 +341,6 @@ const convert = (attr: IMainContainer) => {
 
 	delete attr.icon;
 	delete attr.name;
-
-	delete attr.textColor;
-	delete attr.bgColor;
 
 	delete attr.itemOutsideLink;
 

@@ -1,7 +1,7 @@
 import { IMenu } from "./menu.js";
 
 export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
-export const CURRENTVERSION = "0.3.7";
+export const CURRENTVERSION = "0.3.9";
 
 export const THEMEDB = [
 	{
@@ -219,6 +219,7 @@ export const menu: IMenu[] = [
 			{ label: "Transform", value: "docs/bsts/transform" },
 			{ label: "Extended property", value: "docs/bsts/extended_prop" },
 			{ label: "Chart", value: "docs/bsts/chart" },
+			{ label: "Accent color", value: "docs/bsts/accent_color" },
 			{ label: "Test", value: "docs/bsts/test" },
 		],
 	},

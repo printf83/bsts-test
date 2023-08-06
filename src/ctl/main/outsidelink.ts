@@ -1,4 +1,4 @@
-import { I, b, core, h, t } from "@printf83/bsts";
+import { I, b, h, t } from "@printf83/bsts";
 
 export interface IOutsideLink {
 	href: string;
@@ -7,9 +7,13 @@ export interface IOutsideLink {
 	onclick?: EventListener;
 }
 
-export const setupOutsideLink = (textColor: core.bootstrapType.textColor, itemOutsideLink?: IOutsideLink[], itemBootswatch?: t[], itemTheme?: t[]) => {
+export const setupOutsideLink = (
+	itemOutsideLink?: IOutsideLink[],
+	itemBootswatch?: t[],
+	itemTheme?: t[]
+) => {
 	return [
-		new h.hr({ display: "lg-none", textColor: "light" }),
+		new h.hr({ display: "lg-none" }),
 		new b.navbar.itemcontainer({ flex: ["row", "wrap"], marginStart: "md-auto" }, [
 			...(itemOutsideLink
 				? itemOutsideLink.map((i) => {
@@ -18,7 +22,6 @@ export const setupOutsideLink = (textColor: core.bootstrapType.textColor, itemOu
 								{
 									paddingY: 2,
 									paddingX: [0, "lg-2"],
-									textColor: textColor,
 									href: i.href,
 									target: i.onclick ? undefined : "_blank",
 									aria: { label: i.label },

@@ -66,7 +66,6 @@ export const onBootswatchChange = (value: string) => {
 };
 
 export const genBootswatch = (
-	textColor: core.bootstrapType.textColor,
 	navbarItemBootswatch?: IBootswatchItem[],
 	currentBootswatch?: string
 ) => {
@@ -85,9 +84,8 @@ export const genBootswatch = (
 						display: ["none", "lg-flex"],
 						height: 100,
 						marginX: "lg-2",
-						textColor: textColor,
 					}),
-					new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
+					new h.hr({ display: "lg-none", marginY: 2 }),
 				]
 			),
 			new b.navbar.item({ dropdown: true }, [
@@ -98,7 +96,6 @@ export const genBootswatch = (
 						class: "bs-bootswatch",
 						paddingY: 2,
 						paddingX: [0, "lg-2"],
-						textColor: textColor,
 						label: "Bootswatch theme",
 					},
 					[
@@ -119,20 +116,19 @@ export const genBootswatch = (
 					},
 					new h.div(
 						{
-							class: "bs-bootswatch-menu",
 							display: "grid",
 							gridTemplateColumns: "1fr 1fr 1fr",
 							gap: 1,
 						},
 						navbarItemBootswatch.map((i) => {
-							return new h.a(
+							return new b.dropdown.item(
 								{
 									on: {
 										click: (_e) => {
 											changeBootswatch(i.value);
 										},
 									},
-									class: [i.value === currentBootswatch ? "active" : undefined],
+									active: i.value === currentBootswatch,
 									data: { value: i.value },
 								},
 								i.label

@@ -1,4 +1,4 @@
-import { b, core, h } from "@printf83/bsts";
+import { b, h } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
 
 export interface IInsideLink {
@@ -22,14 +22,10 @@ const onInsideLinkClick = (value: string) => {
 	setupContentDocument(value);
 };
 
-export const setupInsideLink = (
-	textColor: core.bootstrapType.textColor,
-	itemInsideLink?: IInsideLink[],
-	currentInsideLink?: string
-) => {
+export const setupInsideLink = (itemInsideLink?: IInsideLink[], currentInsideLink?: string) => {
 	if (itemInsideLink) {
 		return [
-			new h.hr({ display: "lg-none", textColor: "light" }),
+			new h.hr({ display: "lg-none" }),
 			new b.navbar.itemcontainer(
 				{ flex: ["wrap", "row"], class: "bs-navbar-nav", id: "bs-inside-link" },
 				itemInsideLink.map((i) => {
@@ -40,7 +36,6 @@ export const setupInsideLink = (
 								paddingX: [0, "lg-2"],
 								href: "#",
 								active: i.value === currentInsideLink,
-								textColor: textColor,
 								data: { value: i.value },
 								on: {
 									click: (_e) => {

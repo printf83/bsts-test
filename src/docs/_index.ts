@@ -58,6 +58,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.chart);
 			});
 			break;
+		case "docs/bsts/accent_color":
+			bsts.accent_color().then((res) => {
+				callback(res.accent_color);
+			});
+			break;
 		case "docs/bsts/test":
 			bsts.test().then((res) => {
 				callback(res.test);

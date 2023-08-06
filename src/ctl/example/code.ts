@@ -990,6 +990,7 @@ export const scriptConverter = (str: string) => {
 	return str
 		.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
 		.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
+		.replace(/_ctl_main_cookie_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
 		.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
 };
 

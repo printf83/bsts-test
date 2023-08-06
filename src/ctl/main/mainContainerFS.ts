@@ -79,12 +79,13 @@ export const mainContainerFS = () => {
 					target: "#bs-main-fs-modal",
 					toggle: "modal",
 					rounded: "circle",
-					padding: 2,
-					style: { width: "3rem", height: "3rem" },
+					style: { width: "4rem", height: "4rem" },
 					shadow: true,
 					weight: "lg",
+					border: true,
+					borderWidth: 2,
 				},
-				new b.icon({ id: "list" })
+				new b.icon({ id: "list", fontWeight: "bolder" })
 			)
 		),
 		new b.modal.container(
@@ -107,6 +108,7 @@ export const mainContainerFS = () => {
 						borderNone: "bottom",
 						shadow: true,
 						zIndex: 3,
+						class: "bs-main-navbar",
 					},
 					[
 						new h.div(
@@ -126,7 +128,6 @@ export const mainContainerFS = () => {
 											data: { docId: "docs/gettingstarted/home" },
 
 											color: "transparent",
-											textColor: "light",
 
 											on: {
 												click: (event) => {
@@ -148,7 +149,6 @@ export const mainContainerFS = () => {
 										new b.dropdown.button(
 											{
 												color: "transparent",
-												textColor: "light",
 												id: "bs-main-fs-title",
 											},
 											"Button"
@@ -179,7 +179,6 @@ export const mainContainerFS = () => {
 												class: "bs-bootswatch",
 												label: "Bootswatch theme",
 												color: "transparent",
-												textColor: "light",
 											},
 											[
 												new h.span(
@@ -207,24 +206,19 @@ export const mainContainerFS = () => {
 											},
 											new h.div(
 												{
-													class: "bs-bootswatch-menu",
 													display: "grid",
 													gridTemplateColumns: "1fr 1fr 1fr",
 													gap: 1,
 												},
 												BOOTSWATCHDB.map((i) => {
-													return new h.a(
+													return new b.dropdown.item(
 														{
 															on: {
 																click: (_e) => {
 																	changeBootswatch(i.value);
 																},
 															},
-															class: [
-																i.value === currentBootswatch
-																	? "active"
-																	: undefined,
-															],
+															active: i.value === currentBootswatch,
 															data: { value: i.value },
 														},
 														i.label
@@ -237,7 +231,6 @@ export const mainContainerFS = () => {
 										new b.dropdown.button(
 											{
 												color: "transparent",
-												textColor: "light",
 
 												class: "bs-theme",
 												display: "flex",
@@ -276,7 +269,6 @@ export const mainContainerFS = () => {
 									new b.button(
 										{
 											color: "transparent",
-											textColor: "light",
 											on: { click: itemCodeCopy },
 										},
 										new b.icon("clipboard")
@@ -284,7 +276,6 @@ export const mainContainerFS = () => {
 									new b.button(
 										{
 											color: "transparent",
-											textColor: "light",
 
 											title: "Edit on CodePen",
 											on: {
@@ -312,7 +303,6 @@ export const mainContainerFS = () => {
 									new b.button(
 										{
 											color: "transparent",
-											textColor: "light",
 
 											toggle: "modal",
 											target: "#bs-main-fs-modal",

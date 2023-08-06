@@ -10,6 +10,9 @@ export const extended_prop = () => {
 export const chart = () => {
 	return import("./chart.js");
 };
+export const accent_color = () => {
+	return import("./accent_color.js");
+};
 export const test = () => {
 	return import("./test.js");
 };
