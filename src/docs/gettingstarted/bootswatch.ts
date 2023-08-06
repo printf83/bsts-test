@@ -9,6 +9,8 @@ export const bootswatch: IContent = {
 		resetContentIndex();
 
 		return [
+			new e.section(),
+
 			new e.section([
 				new e.title("Navbars"),
 				new e.code({

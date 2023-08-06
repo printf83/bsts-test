@@ -3,7 +3,7 @@ import * as e from "../../ctl/example/_index.js";
 import { I, b, core, h } from "@printf83/bsts";
 import { cookie } from "../../ctl/main/cookie.js";
 
-type colorPalletItem = {
+interface colorPalletItem {
 	light: string;
 	dark: string;
 	primary: string;
@@ -12,7 +12,7 @@ type colorPalletItem = {
 	success: string;
 	warning: string;
 	danger: string;
-};
+}
 
 const COLORPALLETDB = (): colorPalletItem[] => {
 	return [
@@ -279,7 +279,7 @@ const COLORPALLETDB = (): colorPalletItem[] => {
 	];
 };
 
-const REMOVECUSTOMVARCONTAINER = (name?: string) => {
+const removeCustomVarContainer = (name?: string) => {
 	const customVarContainer = document.getElementById(
 		`bsts-custom${name ? "-" + name : ""}-var-container`
 	);
@@ -289,17 +289,17 @@ const REMOVECUSTOMVARCONTAINER = (name?: string) => {
 	}
 };
 
-const REMOVEALLCUSTOMVAR = () => {
-	REMOVECUSTOMVARCONTAINER("primary");
-	REMOVECUSTOMVARCONTAINER("secondary");
-	REMOVECUSTOMVARCONTAINER("success");
-	REMOVECUSTOMVARCONTAINER("info");
-	REMOVECUSTOMVARCONTAINER("warning");
-	REMOVECUSTOMVARCONTAINER("danger");
-	REMOVECUSTOMVARCONTAINER("dark");
-	REMOVECUSTOMVARCONTAINER("light");
-	REMOVECUSTOMVARCONTAINER("body");
-	REMOVECUSTOMVARCONTAINER();
+const removeAllCustomVar = () => {
+	removeCustomVarContainer("primary");
+	removeCustomVarContainer("secondary");
+	removeCustomVarContainer("success");
+	removeCustomVarContainer("info");
+	removeCustomVarContainer("warning");
+	removeCustomVarContainer("danger");
+	removeCustomVarContainer("dark");
+	removeCustomVarContainer("light");
+	removeCustomVarContainer("body");
+	removeCustomVarContainer();
 };
 
 export const accent_color: IContent = {
@@ -343,9 +343,14 @@ export const accent_color: IContent = {
 					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
 					extention: [
 						{
+							name: "REMOVECUSTOMVARCONTAINER",
+							rename: "removeCustomVarContainer",
+							output: removeCustomVarContainer,
+						},
+						{
 							name: "REMOVEALLCUSTOMVAR",
-							rename: "REMOVEALLCUSTOMVAR",
-							output: REMOVEALLCUSTOMVAR,
+							rename: "removeAllCustomVar",
+							output: removeAllCustomVar,
 						},
 					],
 					output: () => {
@@ -455,7 +460,7 @@ export const accent_color: IContent = {
 											];
 
 											//remove custom var
-											REMOVEALLCUSTOMVAR();
+											removeAllCustomVar();
 
 											//add custom var
 											core.accentColor.apply(css.join("\n"));
@@ -612,9 +617,14 @@ export const accent_color: IContent = {
 							output: COLORPALLETDB,
 						},
 						{
+							name: "REMOVECUSTOMVARCONTAINER",
+							rename: "removeCustomVarContainer",
+							output: removeCustomVarContainer,
+						},
+						{
 							name: "REMOVEALLCUSTOMVAR",
-							rename: "REMOVEALLCUSTOMVAR",
-							output: REMOVEALLCUSTOMVAR,
+							rename: "removeAllCustomVar",
+							output: removeAllCustomVar,
 						},
 					],
 					output: () => {
@@ -657,7 +667,7 @@ export const accent_color: IContent = {
 									];
 
 									//remove all custom var container
-									REMOVEALLCUSTOMVAR();
+									removeAllCustomVar();
 
 									//add bsts-custom-var-container to head
 									core.accentColor.apply(css.join("\n"));
@@ -728,7 +738,9 @@ export const accent_color: IContent = {
 												const value = btn.getAttribute("data-value");
 
 												if (value) {
+													//its up to you to handle the color pallet
 													cookie.set("COLOR_PALLET", value);
+
 													b.toast.show(
 														b.toast.create({
 															color: "primary",
@@ -761,8 +773,11 @@ export const accent_color: IContent = {
 											if (btn) {
 												btn.setAttribute("data-value", "");
 												btn.innerText = "Choose color pallet";
+
+												//its up to you to handle the color pallet
 												cookie.set("COLOR_PALLET", "");
-												REMOVEALLCUSTOMVAR();
+
+												removeAllCustomVar();
 											}
 										},
 									},
