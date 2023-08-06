@@ -698,7 +698,7 @@ export const accent_color: IContent = {
 										{
 											display: "grid",
 											gap: 1,
-											gridTemplateColumns: "1fr 1fr 1fr",
+											gridTemplateColumns: "1fr 1fr",
 											overflowX: "auto",
 										},
 										COLORPALLETDB().map(
@@ -714,6 +714,7 @@ export const accent_color: IContent = {
 											}) => {
 												return new b.dropdown.item(
 													{
+														paddingX: 1,
 														data: {
 															value: JSON.stringify(i),
 														},
