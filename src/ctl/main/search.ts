@@ -28,6 +28,11 @@ const isDocItemIndexed = (pageId: string) => {
 
 const indexDocMenu = (index: number, callback: () => void) => {
 	if (index < menu.length) {
+		const docSearchProgress = document.getElementById("doc-search-progress");
+		if (docSearchProgress) {
+			docSearchProgress.style.width = `${(index / menu.length) * 100}px`;
+		}
+
 		indexDocItem(0, menu[index]!.label, menu[index]!.item, () => {
 			indexDocMenu(index + 1, callback);
 		});
@@ -588,10 +593,24 @@ export const showSearchDialog = () => {
 								id: "doc-search-status",
 								display: "flex",
 								gap: 2,
-								alignItem: "center",
-								lineHeight: 1,
+								alignItem: "end",
 							},
-							["Indexing ", new b.spinner({ small: true })]
+							// ["Indexing ", new b.spinner({ small: true })]
+							new h.div(
+								{
+									display: "flex",
+									justifyContent: "start",
+									alignItem: "center",
+									style: { height: "1.25rem" },
+								},
+
+								new h.div(
+									{ style: { width: "6rem" } },
+									new b.progress.container(
+										new b.progress.bar({ id: "doc-search-progress" })
+									)
+								)
+							)
 						),
 					]
 				),
