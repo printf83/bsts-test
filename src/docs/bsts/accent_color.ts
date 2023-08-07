@@ -664,6 +664,7 @@ export const accent_color: IContent = {
 										core.accentColor.secondary(value.secondary, light, dark),
 										core.accentColor.light(value.light, light, dark),
 										core.accentColor.dark(value.dark, light, dark),
+										core.accentColor.body("#ffffff"),
 									];
 
 									//remove all custom var container
