@@ -3,7 +3,7 @@ import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
 import { DEFAULTDOCUMENT, menu } from "./_db.js";
-import { setupContentContainerItem, setupContentDocument } from "./content.js";
+import { setupContentContainerItem } from "./content.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -533,7 +533,7 @@ const startMemoryTest = (arg: {
 				counttag: arg.counttag,
 				waitonesec: arg.waitonesec,
 			},
-			(docCount: number, docId: string) => {
+			(docCount: number) => {
 				const endTime = performance.now();
 				let detailReport: core.IElem;
 
@@ -680,10 +680,10 @@ const startMemoryTest = (arg: {
 											const target = event.target as Element;
 											b.modal.hide(target);
 
-											core.requestIdleCallback(() => {
-												setupContentDocument(docId);
-												highlightMenu(docId);
-											}, 300);
+											// core.requestIdleCallback(() => {
+											// 	setupContentDocument(docId);
+											// 	highlightMenu(docId);
+											// }, 300);
 										},
 									},
 								},
