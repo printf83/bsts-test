@@ -157,6 +157,7 @@ const updateColorPallet = () => {
 				core.accentColor.secondary(value.secondary, light, dark),
 				core.accentColor.light(value.light, light, dark),
 				core.accentColor.dark(value.dark, light, dark),
+				core.accentColor.body("#ffffff"),
 			];
 
 			//add bsts-custom-var-container to head

@@ -2,8 +2,8 @@ import { b, core, h } from "@printf83/bsts";
 import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
-import { DEFAULTDOCUMENT, menu } from "./_db.js";
-import { setupContentContainerItem, setupContentDocument } from "./content.js";
+import { DEFAULTDOCUMENT, menu, menuItem } from "./_db.js";
+import { setupContentContainerItem } from "./content.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -533,7 +533,7 @@ const startMemoryTest = (arg: {
 				counttag: arg.counttag,
 				waitonesec: arg.waitonesec,
 			},
-			(docCount: number, docId: string) => {
+			(docCount: number) => {
 				const endTime = performance.now();
 				let detailReport: core.IElem;
 
@@ -680,10 +680,10 @@ const startMemoryTest = (arg: {
 											const target = event.target as Element;
 											b.modal.hide(target);
 
-											core.requestIdleCallback(() => {
-												setupContentDocument(docId);
-												highlightMenu(docId);
-											}, 300);
+											// core.requestIdleCallback(() => {
+											// 	setupContentDocument(docId);
+											// 	highlightMenu(docId);
+											// }, 300);
 										},
 									},
 								},
@@ -703,7 +703,7 @@ const startMemoryTest = (arg: {
 };
 
 const startDownloadResource = (testId: string, showchart: boolean, callback: () => void) => {
-	const item = menu.map((i) => i.item).flat();
+	const item = menuItem();
 
 	core.replaceChild(
 		document.getElementById("memory-test-dialog") as Element,
@@ -782,7 +782,7 @@ const btnStartTest = (event: Event) => {
 };
 
 export const showMemoryTestDialog = () => {
-	const docCounter = menu.map((i) => i.item).flat().length;
+	const docCounter = menuItem().length;
 
 	b.modal.show(
 		new b.modal.container({ backdrop: "static", view: "center", scrollable: true }, [

@@ -1,7 +1,7 @@
-import { IMenu } from "./menu.js";
+import { IMenu, IMenuItem } from "./menu.js";
 
 export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
-export const CURRENTVERSION = "0.3.9";
+export const CURRENTVERSION = "0.3.10";
 
 export const THEMEDB = [
 	{
@@ -218,9 +218,19 @@ export const menu: IMenu[] = [
 			{ label: "Animation", value: "docs/bsts/animation" },
 			{ label: "Transform", value: "docs/bsts/transform" },
 			{ label: "Extended property", value: "docs/bsts/extended_prop" },
-			{ label: "Chart", value: "docs/bsts/chart" },
+			{ label: "ChartJS", value: "docs/bsts/chart" },
 			{ label: "Accent color", value: "docs/bsts/accent_color" },
 			{ label: "Test", value: "docs/bsts/test" },
 		],
 	},
 ];
+
+let menuItemDB: IMenuItem[] = [];
+export const menuItem = (): IMenuItem[] => {
+	if (menuItemDB && menuItemDB.length > 0) {
+		return menuItemDB;
+	} else {
+		menuItemDB = menu.map((i) => i.item).flat();
+		return menuItem();
+	}
+};
