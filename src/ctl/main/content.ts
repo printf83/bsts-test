@@ -9,6 +9,7 @@ import hljs from "highlight.js";
 import { DEFAULTDOCUMENT } from "./_db.js";
 import { codeBeautify } from "../example/_fn.js";
 import { scriptConverter } from "../example/code.js";
+import { highlightMenu } from "./menu.js";
 
 export interface IContent {
 	fullscreen?: boolean;
@@ -26,6 +27,11 @@ export interface IContent {
 	addedVersion?: string;
 
 	description?: string;
+
+	prevDocId?: string;
+	prevTitle?: string;
+	nextDocId?: string;
+	nextTitle?: string;
 
 	item?: (db?: e.ISourceDB[]) => core.IElem;
 	db?: e.ISourceDB[];
@@ -47,6 +53,88 @@ export const getContentCode = (db?: e.ISourceDB[]) => {
 		}
 	} else {
 		return undefined;
+	}
+};
+
+const setupNavDoc = (content?: IContent) => {
+	if (content) {
+		if ((content.prevDocId && content.prevTitle) || (content.nextDocId && content.nextTitle)) {
+			let prevButton =
+				content.prevDocId && content.prevTitle
+					? new h.a(
+							{
+								textColor: "body",
+								textDecoration: "none",
+								textColorHover: "primary",
+								lineHeight: 1,
+								display: "inline-block",
+								data: { value: content.prevDocId },
+								on: {
+									click: (event: Event) => {
+										const target = event.currentTarget as Element;
+										const value = target.getAttribute("data-value");
+										if (value) {
+											setupContentDocument(value);
+											highlightMenu(value);
+										}
+									},
+								},
+							},
+							new b.caption({
+								icon: new b.icon({ id: "chevron-left", fontDisplay: 6 }),
+								elem: new h.div([
+									new h.div({ fontWeight: "bold" }, "Previous"),
+									new h.small(content.prevTitle),
+								]),
+							})
+					  )
+					: "";
+
+			let nextButton =
+				content.nextDocId && content.nextTitle
+					? new h.a(
+							{
+								textColor: "body",
+								textDecoration: "none",
+								textColorHover: "primary",
+								display: "inline-block",
+								lineHeight: 1,
+								data: { value: content.nextDocId },
+								on: {
+									click: (event: Event) => {
+										const target = event.currentTarget as Element;
+										const value = target.getAttribute("data-value");
+										if (value) {
+											setupContentDocument(value);
+											highlightMenu(value);
+										}
+									},
+								},
+							},
+							new b.caption({
+								icon: new b.icon({ id: "chevron-right", fontDisplay: 6 }),
+								iconPosition: "end",
+								elem: new h.div([
+									new h.div({ fontWeight: "bold" }, "Next"),
+									new h.small(content.nextTitle),
+								]),
+							})
+					  )
+					: "";
+
+			return new h.div(
+				{
+					display: "flex",
+					justifyContent: "between",
+					marginTop: 5,
+				},
+				[prevButton, nextButton]
+			);
+		} else {
+			return new h.div({ marginTop: 5 }, "");
+		}
+	} else {
+		return "";
 	}
 };
 
@@ -103,7 +191,7 @@ const setupContent = (content?: IContent) => {
 				class: "bs-content",
 				paddingStart: "lg-2",
 			},
-			content.item(content.usedb ? content.db : undefined)
+			[new h.div(content.item(content.usedb ? content.db : undefined)), setupNavDoc(content)]
 		);
 	} else {
 		return "";

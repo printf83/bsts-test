@@ -1,4 +1,4 @@
-import { IMenu } from "./menu.js";
+import { IMenu, IMenuItem } from "./menu.js";
 
 export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
 export const CURRENTVERSION = "0.3.10";
@@ -224,3 +224,13 @@ export const menu: IMenu[] = [
 		],
 	},
 ];
+
+let menuItemDB: IMenuItem[] = [];
+export const menuItem = (): IMenuItem[] => {
+	if (menuItemDB && menuItemDB.length > 0) {
+		return menuItemDB;
+	} else {
+		menuItemDB = menu.map((i) => i.item).flat();
+		return menuItem();
+	}
+};

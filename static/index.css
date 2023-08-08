@@ -1062,7 +1062,7 @@ strong,
 
 @media (min-width: 992px) {
     .bs-main {
-        grid-template-areas: "intro   toc" "content toc";
+        grid-template-areas: "intro toc" "content toc";
         grid-template-rows: auto 1fr;
         grid-template-columns: 4fr 1fr
     }
@@ -1082,6 +1082,8 @@ strong,
 .bs-toc {
     grid-area: toc
 }
+
+
 
 @media (min-width: 992px) {
     .bs-toc {

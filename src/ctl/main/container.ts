@@ -287,7 +287,7 @@ const convert = (attr: IMainContainer) => {
 			]
 		),
 		new h.footer(
-			{ class: "bs-footer", paddingY: [4, "md-5"], marginTop: 5, bgColor: "body-tertiary" },
+			{ class: "bs-footer", paddingY: [4, "md-5"], bgColor: "body-tertiary" },
 			new h.div(
 				{
 					container: true,
