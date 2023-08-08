@@ -92,6 +92,41 @@ const randomLineData = (id: string, chart?: Chart<"line", number[], any>) => {
 	}
 };
 
+const randomBarData = (id: string, chart?: Chart<"bar", number[], any>) => {
+	const canvas = document.getElementById(id);
+	if (canvas) {
+		if (
+			chart &&
+			chart.data.datasets &&
+			chart.data.datasets.length >= 0 &&
+			chart.data.datasets[0] &&
+			chart.data.datasets[0].data &&
+			chart.data.datasets[1] &&
+			chart.data.datasets[1].data
+		) {
+			const value = core.rndBetween(0, 100);
+
+			chart.data.labels?.shift();
+			chart.data.labels?.push("");
+
+			chart.data.datasets[0].data.push(value);
+			chart.data.datasets[0].data.shift();
+			chart.data.datasets[1].data.push(100 - value);
+			chart.data.datasets[1].data.shift();
+
+			chart.update("none");
+			setTimeout(
+				(id, chart) => {
+					randomBarData(id, chart);
+				},
+				1000,
+				id,
+				chart
+			);
+		}
+	}
+};
+
 export const chart: IContent = {
 	title: "ChartJS",
 	description: "Example using bsts with Chart.js",
@@ -688,6 +723,86 @@ export const chart: IContent = {
 											});
 
 											randomLineData(id, res);
+										},
+									},
+								})
+							)
+						);
+					},
+				}),
+			]),
+
+			//----------------------
+
+			new e.section([
+				new e.title("Bar"),
+				new e.code({
+					db: getContentCode(db),
+					extention: [
+						{ name: "RANDOMDATA", rename: "randomLineData", output: randomLineData },
+					],
+					output: () => {
+						const id = core.UUID();
+						const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
+						const backgroundColor = core.getCSSVarRgbColor("--bs-primary");
+
+						const data = Array(30)
+							.fill("")
+							.map(() => {
+								return core.rndBetween(1, 100);
+							});
+
+						const data2 = data.map((i) => {
+							return 100 - i;
+						});
+
+						return new b.card.container(
+							{ style: { maxWidth: "380px" } },
+							new b.card.body(
+								{ padding: 2 },
+								new h.canvas({
+									ratio: "21x9",
+									id: id,
+									on: {
+										build: (event) => {
+											const target = event.target as HTMLCanvasElement;
+
+											const res = new Chart(target, {
+												type: "bar",
+												data: {
+													labels: Array(data.length).fill(""),
+													datasets: [
+														{
+															data: data,
+															backgroundColor: backgroundColor,
+														},
+														{
+															data: data2,
+															backgroundColor: fillColor,
+														},
+													],
+												},
+												options: {
+													plugins: {
+														legend: {
+															display: false,
+														},
+														tooltip: {
+															enabled: false,
+														},
+													},
+													scales: {
+														x: { display: false, stacked: true },
+														y: {
+															stacked: true,
+															display: false,
+															beginAtZero: true,
+														},
+													},
+												},
+											});
+
+											randomBarData(id, res);
 										},
 									},
 								})

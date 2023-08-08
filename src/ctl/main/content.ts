@@ -63,9 +63,14 @@ const setupNavDoc = (content?: IContent) => {
 				content.prevDocId && content.prevTitle
 					? new h.a(
 							{
+								rounded: true,
+								paddingStart: 1,
+								paddingEnd: 3,
+								paddingY: 2,
 								textColor: "body",
 								textDecoration: "none",
 								textColorHover: "primary",
+								bgColorHover: "body-tertiary",
 								lineHeight: 1,
 								display: "inline-block",
 								data: { value: content.prevDocId },
@@ -94,9 +99,14 @@ const setupNavDoc = (content?: IContent) => {
 				content.nextDocId && content.nextTitle
 					? new h.a(
 							{
+								rounded: true,
+								paddingStart: 3,
+								paddingEnd: 1,
+								paddingY: 2,
 								textColor: "body",
 								textDecoration: "none",
 								textColorHover: "primary",
+								bgColorHover: "body-tertiary",
 								display: "inline-block",
 								lineHeight: 1,
 								data: { value: content.nextDocId },
@@ -114,7 +124,7 @@ const setupNavDoc = (content?: IContent) => {
 							new b.caption({
 								icon: new b.icon({ id: "chevron-right", fontDisplay: 6 }),
 								iconPosition: "end",
-								elem: new h.div([
+								elem: new h.div({ textAlign: "end" }, [
 									new h.div({ fontWeight: "bold" }, "Next"),
 									new h.small(content.nextTitle),
 								]),

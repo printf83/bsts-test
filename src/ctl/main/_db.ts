@@ -218,7 +218,7 @@ export const menu: IMenu[] = [
 			{ label: "Animation", value: "docs/bsts/animation" },
 			{ label: "Transform", value: "docs/bsts/transform" },
 			{ label: "Extended property", value: "docs/bsts/extended_prop" },
-			{ label: "Chart", value: "docs/bsts/chart" },
+			{ label: "ChartJS", value: "docs/bsts/chart" },
 			{ label: "Accent color", value: "docs/bsts/accent_color" },
 			{ label: "Test", value: "docs/bsts/test" },
 		],
