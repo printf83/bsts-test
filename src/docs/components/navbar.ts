@@ -1,4 +1,4 @@
-import { core, h, b, I } from "@printf83/bsts";
+import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -6,7 +6,7 @@ export const navbar: IContent = {
 	title: "Navbar",
 	description:
 		"Documentation and examples for Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for Bootstrap collapse plugin.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [
@@ -119,6 +119,98 @@ export const navbar: IContent = {
 							])
 						);
 					},
+					// outputAttr: { display: "grid", gap: 3 },
+					// output: () => {
+					// 	const navbarItem = () => {
+					// 		const id = core.UUID();
+
+					// 		return new b.navbar.innercontainer({ container: "fluid" }, [
+					// 			new b.navbar.brand({ href: "#" }, "Navbar"),
+					// 			new b.navbar.toggle.collapse({
+					// 				target: `#${id}`,
+					// 				controlfor: id,
+					// 				label: "Toggle navigation",
+					// 			}),
+					// 			new b.navbar.collapse({ id: id }, [
+					// 				new b.navbar.itemcontainer(
+					// 					{
+					// 						marginEnd: "auto",
+					// 						marginBottom: [2, "lg-0"],
+					// 					},
+					// 					[
+					// 						new b.navbar.item(
+					// 							new b.navbar.link(
+					// 								{ href: "#", active: true },
+					// 								"Home"
+					// 							)
+					// 						),
+					// 						new b.navbar.item(
+					// 							new b.navbar.link({ href: "#" }, "Features")
+					// 						),
+					// 						new b.navbar.item(
+					// 							new b.navbar.link({ href: "#" }, "Pricing")
+					// 						),
+					// 						new b.navbar.item(
+					// 							new b.navbar.link({ href: "#" }, "About")
+					// 						),
+					// 						new b.navbar.item({ dropdown: true }, [
+					// 							new b.dropdown.button(
+					// 								{ navItem: true },
+					// 								"Dropdown"
+					// 							),
+					// 							new b.dropdown.menu([
+					// 								new b.dropdown.item({ href: "#" }, "Action"),
+					// 								new b.dropdown.item(
+					// 									{ href: "#" },
+					// 									"Another action"
+					// 								),
+					// 								new b.dropdown.divider(),
+					// 								new b.dropdown.item(
+					// 									{ href: "#" },
+					// 									"Something else here"
+					// 								),
+					// 							]),
+					// 						]),
+					// 					]
+					// 				),
+					// 				new h.form({ display: "flex", role: "search" }, [
+					// 					new b.input({
+					// 						type: "search",
+					// 						marginEnd: 2,
+					// 						placeholder: "Search",
+					// 						label: "Search",
+					// 					}),
+					// 					new b.button(
+					// 						{
+					// 							type: "submit",
+					// 							// outline: true
+					// 						},
+					// 						"Search"
+					// 					),
+					// 				]),
+					// 			]),
+					// 		]);
+					// 	};
+
+					// 	const bsWhiteRGB = core.getCSSVar("--bs-white-rgb");
+					// 	return [
+					// 		new b.navbar.container(
+					// 			{
+					// 				bgColor: "primary",
+					// 				textColorRGB: bsWhiteRGB,
+					// 			},
+					// 			navbarItem()
+					// 		),
+					// 		new b.navbar.container(
+					// 			{
+					// 				bgColor: "dark",
+					// 				textColorRGB: bsWhiteRGB,
+					// 			},
+					// 			navbarItem()
+					// 		),
+					// 		new b.navbar.container({ bgColor: "light" }, navbarItem()),
+					// 	];
+					// },
 				}),
 				new e.text(
 					"This example uses {{nav:docs/utilities/background::background}} ({{bgColor:'body-tertiary'}}) and {{nav:docs/utilities/spacing::spacing}} ({{marginEnd:'auto'}}, {{marginBottom:[2,'lg-0']}}, {{marginEnd:2}}) utility property."
@@ -527,9 +619,72 @@ export const navbar: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
+					// output: () => {
+					// 	const navbarItem = (btnColor: I.B.Button["color"]) => {
+					// 		let id = core.UUID();
+					// 		return new b.navbar.innercontainer({ container: "fluid" }, [
+					// 			new b.navbar.brand({ href: "#" }, "Navbar"),
+					// 			new b.navbar.toggle.collapse({
+					// 				target: `#${id}`,
+					// 				controlfor: id,
+					// 				label: "Toggle navigation",
+					// 			}),
+					// 			new b.navbar.collapse({ id: id }, [
+					// 				new b.navbar.itemcontainer(
+					// 					{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+					// 					[
+					// 						new b.navbar.item(
+					// 							new b.navbar.link(
+					// 								{ href: "#", active: true },
+					// 								"Home"
+					// 							)
+					// 						),
+					// 						new b.navbar.item(
+					// 							new b.navbar.link({ href: "#" }, "Features")
+					// 						),
+					// 						new b.navbar.item(
+					// 							new b.navbar.link({ href: "#" }, "Pricing")
+					// 						),
+					// 						new b.navbar.item(
+					// 							new b.navbar.link({ href: "#" }, "About")
+					// 						),
+					// 					]
+					// 				),
+					// 				new h.form({ display: "flex", role: "search" }, [
+					// 					new b.input({
+					// 						type: "search",
+					// 						marginEnd: 2,
+					// 						placeholder: "Search",
+					// 						label: "Search",
+					// 					}),
+					// 					new b.button(
+					// 						{ type: "submit", color: btnColor, outline: true },
+					// 						"Search"
+					// 					),
+					// 				]),
+					// 			]),
+					// 		]);
+					// 	};
+
+					// 	return [
+					// 		new b.navbar.container(
+					// 			{ bgColor: "dark", theme: "dark" },
+					// 			navbarItem("light")
+					// 		),
+					// 		new b.navbar.container(
+					// 			{ bgColor: "primary", theme: "dark" },
+					// 			navbarItem("light")
+					// 		),
+					// 		new b.navbar.container(
+					// 			{ style: { backgroundColor: "#e3f2fd" } },
+					// 			navbarItem("primary")
+					// 		),
+					// 	];
+					// },
 					output: () => {
-						const navbarItem = (btnColor: I.B.Button["color"]) => {
-							let id = core.UUID();
+						const navbarItem = () => {
+							const id = core.UUID();
+
 							return new b.navbar.innercontainer({ container: "fluid" }, [
 								new b.navbar.brand({ href: "#" }, "Navbar"),
 								new b.navbar.toggle.collapse({
@@ -539,7 +694,10 @@ export const navbar: IContent = {
 								}),
 								new b.navbar.collapse({ id: id }, [
 									new b.navbar.itemcontainer(
-										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										{
+											marginEnd: "auto",
+											marginBottom: [2, "lg-0"],
+										},
 										[
 											new b.navbar.item(
 												new b.navbar.link(
@@ -556,6 +714,24 @@ export const navbar: IContent = {
 											new b.navbar.item(
 												new b.navbar.link({ href: "#" }, "About")
 											),
+											new b.navbar.item({ dropdown: true }, [
+												new b.dropdown.button(
+													{ navItem: true },
+													"Dropdown"
+												),
+												new b.dropdown.menu([
+													new b.dropdown.item({ href: "#" }, "Action"),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Another action"
+													),
+													new b.dropdown.divider(),
+													new b.dropdown.item(
+														{ href: "#" },
+														"Something else here"
+													),
+												]),
+											]),
 										]
 									),
 									new h.form({ display: "flex", role: "search" }, [
@@ -566,7 +742,10 @@ export const navbar: IContent = {
 											label: "Search",
 										}),
 										new b.button(
-											{ type: "submit", color: btnColor, outline: true },
+											{
+												type: "submit",
+												// outline: true
+											},
 											"Search"
 										),
 									]),
@@ -574,18 +753,25 @@ export const navbar: IContent = {
 							]);
 						};
 
+						const bsWhiteRGB = core.getCSSVar("--bs-white-rgb");
 						return [
 							new b.navbar.container(
-								{ bgColor: "dark", theme: "dark" },
-								navbarItem("light")
+								{
+									bgColor: "primary",
+									textColorRGB: bsWhiteRGB,
+								},
+								navbarItem()
 							),
 							new b.navbar.container(
-								{ bgColor: "primary", theme: "dark" },
-								navbarItem("light")
+								{
+									bgColor: "dark",
+									textColorRGB: bsWhiteRGB,
+								},
+								navbarItem()
 							),
 							new b.navbar.container(
 								{ style: { backgroundColor: "#e3f2fd" } },
-								navbarItem("primary")
+								navbarItem()
 							),
 						];
 					},

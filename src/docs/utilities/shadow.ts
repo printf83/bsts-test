@@ -5,7 +5,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 export const shadow: IContent = {
 	title: "Shadows",
 	description: "Add or remove shadows to elements with box-shadow utilities.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

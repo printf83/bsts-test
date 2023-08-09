@@ -7,8 +7,14 @@ import { cookie } from "./cookie.js";
 import { addHistory } from "./history.js";
 import hljs from "highlight.js";
 import { DEFAULTDOCUMENT } from "./_db.js";
+import { codeBeautify } from "../example/_fn.js";
+import { scriptConverter } from "../example/code.js";
+import { highlightMenu } from "./menu.js";
 
 export interface IContent {
+	fullscreen?: boolean;
+	fullscreencode?: boolean;
+
 	usedb?: boolean;
 	loading?: boolean;
 
@@ -22,8 +28,13 @@ export interface IContent {
 
 	description?: string;
 
-	item?: (db?: e.IBsExampleData[]) => core.IElem;
-	db?: e.IBsExampleData[];
+	prevDocId?: string;
+	prevTitle?: string;
+	nextDocId?: string;
+	nextTitle?: string;
+
+	item?: (db?: e.ISourceDB[]) => core.IElem;
+	db?: e.ISourceDB[];
 }
 
 let contentIndex: number = 0;
@@ -31,7 +42,7 @@ export const resetContentIndex = () => {
 	contentIndex = 0;
 };
 
-export const getContentCode = (db?: e.IBsExampleData[]) => {
+export const getContentCode = (db?: e.ISourceDB[]) => {
 	if (db && db.length > 0) {
 		if (contentIndex < db.length) {
 			contentIndex = contentIndex + 1;
@@ -42,6 +53,98 @@ export const getContentCode = (db?: e.IBsExampleData[]) => {
 		}
 	} else {
 		return undefined;
+	}
+};
+
+const setupNavDoc = (content?: IContent) => {
+	if (content) {
+		if ((content.prevDocId && content.prevTitle) || (content.nextDocId && content.nextTitle)) {
+			let prevButton =
+				content.prevDocId && content.prevTitle
+					? new h.a(
+							{
+								rounded: true,
+								paddingStart: 1,
+								paddingEnd: 3,
+								paddingY: 2,
+								textColor: "body",
+								textDecoration: "none",
+								textColorHover: "primary",
+								bgColorHover: "body-tertiary",
+								lineHeight: 1,
+								display: "inline-block",
+								data: { value: content.prevDocId },
+								on: {
+									click: (event: Event) => {
+										const target = event.currentTarget as Element;
+										const value = target.getAttribute("data-value");
+										if (value) {
+											setupContentDocument(value);
+											highlightMenu(value);
+										}
+									},
+								},
+							},
+							new b.caption({
+								icon: new b.icon({ id: "chevron-left", fontDisplay: 6 }),
+								elem: new h.div([
+									new h.div({ fontWeight: "bold" }, "Previous"),
+									new h.small(content.prevTitle),
+								]),
+							})
+					  )
+					: "";
+
+			let nextButton =
+				content.nextDocId && content.nextTitle
+					? new h.a(
+							{
+								rounded: true,
+								paddingStart: 3,
+								paddingEnd: 1,
+								paddingY: 2,
+								textColor: "body",
+								textDecoration: "none",
+								textColorHover: "primary",
+								bgColorHover: "body-tertiary",
+								display: "inline-block",
+								lineHeight: 1,
+								data: { value: content.nextDocId },
+								on: {
+									click: (event: Event) => {
+										const target = event.currentTarget as Element;
+										const value = target.getAttribute("data-value");
+										if (value) {
+											setupContentDocument(value);
+											highlightMenu(value);
+										}
+									},
+								},
+							},
+							new b.caption({
+								icon: new b.icon({ id: "chevron-right", fontDisplay: 6 }),
+								iconPosition: "end",
+								elem: new h.div({ textAlign: "end" }, [
+									new h.div({ fontWeight: "bold" }, "Next"),
+									new h.small(content.nextTitle),
+								]),
+							})
+					  )
+					: "";
+
+			return new h.div(
+				{
+					display: "flex",
+					justifyContent: "between",
+					marginTop: 5,
+				},
+				[prevButton, nextButton]
+			);
+		} else {
+			return new h.div({ marginTop: 5 }, "");
+		}
+	} else {
+		return "";
 	}
 };
 
@@ -98,7 +201,7 @@ const setupContent = (content?: IContent) => {
 				class: "bs-content",
 				paddingStart: "lg-2",
 			},
-			content.item(content.usedb ? content.db : undefined)
+			[new h.div(content.item(content.usedb ? content.db : undefined)), setupNavDoc(content)]
 		);
 	} else {
 		return "";
@@ -171,11 +274,42 @@ export const focusToAnchor = (anchorId?: string) => {
 };
 
 const PR = {
-	prettyPrint: () => {
-		document.querySelectorAll("pre.example-preview code").forEach((el) => {
+	prettyPrint: (selector?: string) => {
+		selector ??= "pre.example-preview code";
+		document.querySelectorAll(selector).forEach((el) => {
 			hljs.highlightElement(el as HTMLElement);
 		});
 	},
+};
+
+const codeContainerFS = (code: string) => {
+	return new h.pre(
+		{
+			id: "bs-main-fs-code",
+			display: "block",
+			tabindex: 0,
+			margin: 0,
+			padding: 3,
+			bgColor: "body-tertiary",
+			border: false,
+			rounded: 3,
+		},
+		new h.code(
+			{
+				class: ["", "lang-js"],
+				lang: "js",
+				border: false,
+				overflow: "auto",
+				display: "block",
+				on: {
+					build: () => {
+						PR.prettyPrint("#bs-main-fs-code code");
+					},
+				},
+			},
+			codeBeautify("js", scriptConverter(code))
+		)
+	);
 };
 
 export const setupContentDocument = (
@@ -194,46 +328,91 @@ export const setupContentDocument = (
 		anchorId = tempValue[1];
 	}
 
-	let contentbody = document.getElementById("bs-main") as Element;
-
 	getContent(docId, (docData) => {
-		//keep current page in cookie
-		cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
+		if (docData) {
+			//keep current page in cookie
+			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
-		//remove active popup
-		core.removeAllActivePopup();
+			//remove active popup
+			core.removeAllActivePopup();
 
-		//generate content
-		contentbody = core.replaceWith(contentbody, setupContentContainer(docData))!;
+			//generate content
+			const bsMainRoot = document.getElementById("bs-main-root") as Element;
+			const bsMainFSRoot = document.getElementById("bs-main-fs-root") as Element;
 
-		//setup state value
-		const currentStatePage = document.querySelector(
-			"h1.display-5.page-title-text"
-		)?.textContent;
-		const currentStatePageTitle = currentStatePage
-			? `${currentStatePage} · Bootstrap TS`
-			: "Bootstrap TS";
+			if (docData.fullscreen && docData.item) {
+				const bsMainFS = document.getElementById("bs-main-fs") as Element;
 
-		document.title = currentStatePageTitle;
+				bsMainRoot.classList.add("d-none");
+				bsMainFSRoot.classList.remove("d-none");
 
-		//set history
-		if (addToHistory) {
-			addHistory({
-				action: "push",
-				docId: docId,
-				anchorId: anchorId,
-				pagetitle: currentStatePageTitle,
-			});
-		}
+				core.replaceChild(bsMainFS, docData.item());
 
-		core.requestIdleCallback(() => {
-			focusToAnchor(anchorId);
+				const bsMainFSToggle = document.getElementById("bs-main-fs-toggle") as Element;
 
-			PR.prettyPrint();
+				docData.fullscreencode ??= true;
+				if (docData.fullscreencode) {
+					//title
+					const bsMainFSTitle = document.getElementById("bs-main-fs-title") as Element;
+					bsMainFSTitle.innerHTML = docData.title ? docData.title : "Unknow";
 
-			if (typeof callback === "function") {
-				callback();
+					//menu
+					const bsMainFSMenu = document.getElementById("bs-main-fs-menu") as Element;
+					bsMainFSMenu.querySelector(".active")?.classList.remove("active");
+					bsMainFSMenu
+						.querySelector(`.dropdown-item[data-value='${docId}']`)
+						?.classList.add("active");
+
+					//document
+					const bsMainFSCode = document.getElementById("bs-main-fs-code") as Element;
+					core.replaceWith(bsMainFSCode, codeContainerFS(docData.item.toString()));
+
+					bsMainFSToggle.classList.remove("d-none");
+				} else {
+					bsMainFSToggle.classList.add("d-none");
+				}
+			} else {
+				const bsMain = document.getElementById("bs-main") as Element;
+
+				bsMainFSRoot.classList.add("d-none");
+				bsMainRoot.classList.remove("d-none");
+				core.replaceWith(bsMain, setupContentContainer(docData))!;
+
+				//setup back button for fullscree doc
+				const fsbackbutton = document.getElementById("btn-last-non-fs-page") as Element;
+				fsbackbutton.setAttribute(
+					"data-docId",
+					`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`
+				);
 			}
-		}, 300);
+
+			//setup state value
+			const currentStatePage = docData.title;
+			const currentStatePageTitle = currentStatePage
+				? `${currentStatePage} · Bootstrap TS`
+				: "Bootstrap TS";
+
+			document.title = currentStatePageTitle;
+
+			//set history
+			if (addToHistory) {
+				addHistory({
+					action: "push",
+					docId: docId,
+					anchorId: anchorId,
+					pagetitle: currentStatePageTitle,
+				});
+			}
+
+			core.requestIdleCallback(() => {
+				focusToAnchor(anchorId);
+
+				PR.prettyPrint();
+
+				if (typeof callback === "function") {
+					callback();
+				}
+			}, 300);
+		}
 	});
 };

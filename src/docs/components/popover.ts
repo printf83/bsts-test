@@ -7,7 +7,7 @@ export const popover: IContent = {
 	title: "Popovers",
 	description:
 		"Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

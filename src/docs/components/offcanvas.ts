@@ -6,7 +6,7 @@ export const offcanvas: IContent = {
 	title: "Offcanvas",
 	description:
 		"Build hidden sidebars into your project for navigation, shopping carts, and more with a few classes and Bootstrap JavaScript plugin.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

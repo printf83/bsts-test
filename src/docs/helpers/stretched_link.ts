@@ -6,7 +6,7 @@ export const stretched_link: IContent = {
 	title: "Stretched link",
 	description:
 		"Make any HTML element or Bootstrap component clickable by “stretching” a nested link via CSS.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

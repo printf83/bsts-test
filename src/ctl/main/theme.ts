@@ -41,107 +41,103 @@ export interface ITheme {
 	label: string;
 }
 
-const highlghtTheme = (value: string, icon: I.B.Icon) => {
-	let bsTheme = document.getElementById("bs-theme") as Element;
-	let bsThemeMenu = bsTheme.nextSibling as Element;
+export const highlghtTheme = (value: string, icon: I.B.Icon) => {
+	let bsTheme = document.getElementsByClassName("bs-theme");
+	if (bsTheme && bsTheme.length > 0) {
+		Array.from(bsTheme).forEach((elem) => {
+			let bsThemeMenu = elem.nextSibling as Element;
 
-	let lastActive = bsThemeMenu.querySelectorAll(".dropdown-item.active")[0];
-	if (lastActive) {
-		lastActive.classList.remove("active");
-		lastActive.removeAttribute("aria-current");
+			let lastActive = bsThemeMenu.querySelectorAll(".dropdown-item.active")[0];
+			if (lastActive) {
+				lastActive.classList.remove("active");
+				lastActive.removeAttribute("aria-current");
+			}
+
+			let newActive = bsThemeMenu.querySelectorAll(
+				`.dropdown-item[data-value='${value}']`
+			)[0];
+			if (newActive) {
+				newActive.classList.add("active");
+				newActive.setAttribute("aria-current", "true");
+			}
+
+			const elemIcon = elem.getElementsByTagName("i")[0] as Element;
+			core.replaceWith(elemIcon, new b.icon(icon));
+		});
 	}
 
-	let newActive = bsThemeMenu.querySelectorAll(`.dropdown-item[data-value='${value}']`)[0];
-	if (newActive) {
-		newActive.classList.add("active");
-		newActive.setAttribute("aria-current", "true");
-	}
-
-	core.replaceChild(
-		bsTheme,
-		new b.caption({ icon: icon, labelDisplay: "lg-none" }, "Toggle theme")
-	);
-
+	//raise event
 	onThemeChange(value);
 };
 
-export const setupTheme = (
-	textColor: core.bootstrapType.textColor,
-	navbarItemTheme?: ITheme[],
-	currentTheme?: string
-) => {
+export const setupTheme = (navbarItemTheme?: ITheme[], currentTheme?: string) => {
+	const bsTheme = core.UUID();
+
 	if (navbarItemTheme) {
-		let indexIcon = -1;
+		let currentThemeIcon: I.B.Icon | undefined;
 		navbarItemTheme.forEach((i, ix) => {
 			if (i.value === currentTheme) {
-				indexIcon = ix;
+				currentThemeIcon = navbarItemTheme[ix]?.icon;
 			}
 		});
-		if (indexIcon > -1) {
-			let getCurrentIconIndex = navbarItemTheme[indexIcon];
 
-			if (getCurrentIconIndex) {
-				let currentIcon = getCurrentIconIndex.icon;
-
-				return [
-					new b.navbar.item(
+		return [
+			new b.navbar.item(
+				{
+					paddingY: [2, "lg-1"],
+					col: [12, "lg-auto"],
+				},
+				[
+					new b.verticalrule({
+						display: ["none", "lg-flex"],
+						height: 100,
+						marginX: "lg-2",
+					}),
+					new h.hr({ display: "lg-none", marginY: 2 }),
+				]
+			),
+			new b.navbar.item({ dropdown: true }, [
+				new b.dropdown.button(
+					{
+						navItem: true,
+						id: bsTheme,
+						class: "bs-theme",
+						paddingY: 2,
+						paddingX: [0, "lg-2"],
+						display: "flex",
+						alignItem: "center",
+						label: "Toggle theme",
+					},
+					new b.caption(
 						{
-							paddingY: [2, "lg-1"],
-							col: [12, "lg-auto"],
+							icon: currentThemeIcon,
+							labelDisplay: "lg-none",
 						},
-						[
-							new b.verticalrule({
-								display: ["none", "lg-flex"],
-								height: 100,
-								marginX: "lg-2",
-								textColor: textColor,
-							}),
-							new h.hr({ display: "lg-none", marginY: 2, textColor: "light" }),
-						]
-					),
-					new b.navbar.item({ dropdown: true }, [
-						new b.dropdown.button(
+						"Toggle theme"
+					)
+				),
+				new b.dropdown.menu(
+					{
+						positionView: "end",
+						customStyle: 1,
+					},
+					navbarItemTheme.map((i) => {
+						return new b.dropdown.item(
 							{
-								navItem: true,
-								id: "bs-theme",
-								paddingY: 2,
-								paddingX: [0, "lg-2"],
-								display: "flex",
-								alignItem: "center",
-								textColor: textColor,
-								label: "Toggle theme",
-							},
-							new b.caption(
-								{
-									icon: currentIcon,
-									labelDisplay: "lg-none",
-								},
-								"Toggle theme"
-							)
-						),
-						new b.dropdown.menu(
-							{ positionView: "end", customStyle: 1 },
-							navbarItemTheme.map((i) => {
-								return new b.dropdown.item(
-									{
-										on: {
-											click: (_e) => {
-												highlghtTheme(i.value, i.icon);
-											},
-										},
-										active: i.value === currentTheme,
-										data: { value: i.value },
+								on: {
+									click: (_e) => {
+										highlghtTheme(i.value, i.icon);
 									},
-									new b.caption({ icon: i.icon }, i.label)
-								);
-							})
-						),
-					]),
-				];
-			}
-		} else {
-			return [];
-		}
+								},
+								active: i.value === currentTheme,
+								data: { value: i.value },
+							},
+							new b.caption({ icon: i.icon }, i.label)
+						);
+					})
+				),
+			]),
+		];
 	} else {
 		return [];
 	}

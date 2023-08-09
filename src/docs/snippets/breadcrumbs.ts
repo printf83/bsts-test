@@ -5,7 +5,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 export const breadcrumbs: IContent = {
 	title: "Breadcrumbs",
 	description: "Integrate custom icons and create stepper components.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -5,7 +5,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 export const opacity: IContent = {
 	title: "Opacity",
 	description: "Control the opacity of elements.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -23,12 +23,15 @@ export const isInBookmark = (value: string) => {
 };
 
 const addToBookmark = (value: string) => {
-	let label = document.getElementById("bs-menu")?.querySelector(`a[data-value="${value}"]`)?.textContent;
-	if (label) {
-		bookmarkDB.push({
-			label: label,
-			value: value,
-		});
+	const bsLinks = document.getElementsByClassName("bs-links");
+	if (bsLinks && bsLinks.length > 0) {
+		let label = bsLinks[0]?.querySelector(`a[data-value="${value}"]`)?.textContent;
+		if (label) {
+			bookmarkDB.push({
+				label: label,
+				value: value,
+			});
+		}
 	}
 };
 
@@ -44,7 +47,10 @@ export const onBookmarkChange = (value: string) => {
 	}
 
 	cookie.set("saved_bookmark", JSON.stringify(bookmarkDB));
-	setupMenuContainer(menuWithBookmark(), cookie.get("current_page") || "docs/gettingstarted/introduction");
+	setupMenuContainer(
+		menuWithBookmark(),
+		cookie.get("current_page") || "docs/gettingstarted/introduction"
+	);
 };
 
 export const menuWithBookmark = () => {

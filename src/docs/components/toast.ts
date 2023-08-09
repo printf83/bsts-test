@@ -6,7 +6,7 @@ export const toast: IContent = {
 	title: "Toasts",
 	description:
 		"Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

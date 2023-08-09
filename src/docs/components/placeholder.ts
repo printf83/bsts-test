@@ -6,7 +6,7 @@ export const placeholder: IContent = {
 	title: "Placeholder",
 	description:
 		"Use loading placeholders for your components or pages to indicate something may still be loading.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

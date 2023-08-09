@@ -6,7 +6,7 @@ export const nav: IContent = {
 	title: "Navs and tabs",
 	description:
 		"Documentation and examples for how to use Bootstrap’s included navigation components.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

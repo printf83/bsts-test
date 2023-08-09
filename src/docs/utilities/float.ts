@@ -6,7 +6,7 @@ export const float: IContent = {
 	title: "Float",
 	description:
 		"Toggle floats on any element, across any breakpoint, using Bootstrap responsive float utilities.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

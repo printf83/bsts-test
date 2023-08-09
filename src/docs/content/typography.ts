@@ -6,7 +6,7 @@ export const typography: IContent = {
 	title: "Typography",
 	description:
 		"Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

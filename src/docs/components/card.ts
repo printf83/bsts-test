@@ -6,7 +6,7 @@ export const card: IContent = {
 	title: "Cards",
 	description:
 		"Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [
@@ -574,9 +574,9 @@ export const card: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new b.card.container({ textBgColor: "dark" }, [
+						return new b.card.container({ textBgColor: "dark", overflow: "hidden" }, [
 							new b.card.img({
-								src: "https://picsum.photos/seed/bsts_0/450/200.webp",
+								src: "https://picsum.photos/seed/bsts_0/708/180.webp",
 								alt: "Card image",
 							}),
 							new b.card.imgoverlay([
@@ -599,6 +599,51 @@ export const card: IContent = {
 					{ color: "info", callout: true },
 					"Note that content should not be larger than the height of the image. If content is larger than the image the content will be displayed outside the image."
 				),
+
+				new e.text(
+					"You can use {{nav:docs/content/images#picture::picture source}} to change image base on viewport like this."
+				),
+
+				new e.code({
+					db: getContentCode(db),
+					showViewport: true,
+					output: () => {
+						return new b.card.container({ textBgColor: "dark", overflow: "hidden" }, [
+							new h.picture([
+								new h.source({
+									media: "(min-width:992px)",
+									srcset: "https://picsum.photos/seed/bsts_0/708/180.webp",
+								}),
+								new h.source({
+									media: "(min-width:768px)",
+									srcset: "https://picsum.photos/seed/bsts_0/608/180.webp",
+								}),
+								new h.source({
+									media: "(min-width:576px)",
+									srcset: "https://picsum.photos/seed/bsts_0/508/180.webp",
+								}),
+								new b.card.img({
+									src: "https://picsum.photos/seed/bsts_0/308/180.webp",
+									width: 100,
+									alt: "Card image",
+								}),
+							]),
+
+							new b.card.imgoverlay([
+								new b.card.title("Card title"),
+								new b.card.text(
+									"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+								),
+								new b.card.text(
+									new h.small(
+										{ textColor: "body-secondary" },
+										"Last updated 3 mins ago"
+									)
+								),
+							]),
+						]);
+					},
+				}),
 			]),
 
 			//----------------------
@@ -613,34 +658,84 @@ export const card: IContent = {
 					db: getContentCode(db),
 					showViewport: true,
 					output: () => {
-						return new b.card.container({ style: { maxWidth: "540px" } }, [
-							new h.div({ row: true, gutter: 0 }, [
-								new h.div(
-									{ col: "md-4" },
-									new b.card.img({
-										fluid: true,
-										rounded: "start",
-										src: "https://picsum.photos/seed/bsts_0/180/250.webp",
-										alt: "Image",
-									})
-								),
-								new h.div(
-									{ col: "md-8" },
-									new b.card.body([
-										new b.card.title("Card title"),
-										new b.card.text(
-											"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-										),
-										new b.card.text(
-											new h.small(
-												{ textColor: "body-secondary" },
-												"Last updated 3 mins ago"
-											)
-										),
-									])
-								),
-							]),
-						]);
+						return new b.card.container(
+							{ overflow: "hidden", style: { maxWidth: "540px" } },
+							[
+								new h.div({ row: true, gutter: 0 }, [
+									new h.div(
+										{ col: "md-4" },
+										new b.card.img({
+											fluid: true,
+											src: "https://picsum.photos/seed/bsts_0/180/250.webp",
+											alt: "Image",
+										})
+									),
+									new h.div(
+										{ col: "md-8" },
+										new b.card.body([
+											new b.card.title("Card title"),
+											new b.card.text(
+												"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+											),
+											new b.card.text(
+												new h.small(
+													{ textColor: "body-secondary" },
+													"Last updated 3 mins ago"
+												)
+											),
+										])
+									),
+								]),
+							]
+						);
+					},
+				}),
+
+				new e.text(
+					"You can use {{nav:docs/content/images#picture::picture source}} to change image base on viewport like this."
+				),
+
+				new e.code({
+					db: getContentCode(db),
+					showViewport: true,
+					output: () => {
+						return new b.card.container(
+							{ overflow: "hidden", style: { maxWidth: "540px" } },
+							[
+								new h.div({ row: true, gutter: 0 }, [
+									new h.div(
+										{ col: "md-4" },
+
+										new h.picture([
+											new h.source({
+												media: "(min-width:768px)",
+												srcset: "https://picsum.photos/seed/bsts_0/180/250.webp",
+											}),
+											new b.card.img({
+												src: "https://picsum.photos/seed/bsts_0/308/180.webp",
+												width: 100,
+												alt: "Card image",
+											}),
+										])
+									),
+									new h.div(
+										{ col: "md-8" },
+										new b.card.body([
+											new b.card.title("Card title"),
+											new b.card.text(
+												"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+											),
+											new b.card.text(
+												new h.small(
+													{ textColor: "body-secondary" },
+													"Last updated 3 mins ago"
+												)
+											),
+										])
+									),
+								]),
+							]
+						);
 					},
 				}),
 			]),

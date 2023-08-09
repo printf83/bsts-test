@@ -6,7 +6,7 @@ export const zindex: IContent = {
 	title: "Z-index",
 	description:
 		"Use Bootstrap low-level {{z-index}} utilities to quickly change the stack level of an element or component.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

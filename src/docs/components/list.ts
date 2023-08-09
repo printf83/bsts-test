@@ -6,7 +6,7 @@ export const list: IContent = {
 	title: "List group",
 	description:
 		"List groups are a flexible and powerful component for displaying a series of content. Modify and extend them to support just about any content within.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

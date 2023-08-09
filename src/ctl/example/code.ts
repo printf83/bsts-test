@@ -12,12 +12,13 @@ import {
 	codeBeautifyMinify,
 } from "./_fn.js";
 import hljs from "highlight.js";
+import { CURRENTVERSION } from "../main/_db.js";
 
-const BSTSCDN = "https://cdn.jsdelivr.net/npm/@printf83/bsts@0.3.2/+esm";
-const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"];
+const BSTSCDN = `https://cdn.jsdelivr.net/npm/@printf83/bsts@${CURRENTVERSION}/+esm`;
+const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3/dist/chart.umd.min.js"];
 const BSCDNCSS = [
-	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
-	"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10/font/bootstrap-icons.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css",
 ];
 
 export interface ISourceDB {
@@ -87,7 +88,7 @@ const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	}
 };
 
-function successCopyCode(iconElem?: Element) {
+export function successCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-check2");
@@ -105,7 +106,7 @@ function successCopyCode(iconElem?: Element) {
 	}
 }
 
-function failCopyCode(iconElem?: Element) {
+export function failCopyCode(iconElem?: Element) {
 	if (iconElem) {
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-exclamation-triangle");
@@ -985,6 +986,14 @@ const generateCodePenData = (
 	return result;
 };
 
+export const scriptConverter = (str: string) => {
+	return str
+		.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
+		.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
+		.replace(/_ctl_main_cookie_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
+		.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
+};
+
 const convert = (attr: ICode) => {
 	let id = core.UUID();
 
@@ -994,12 +1003,7 @@ const convert = (attr: ICode) => {
 	attr.showManager ??= true;
 	attr.showCodepen ??= attr.showScript;
 
-	attr.scriptConverter ??= (str: string) => {
-		return str
-			.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
-			.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
-			.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
-	};
+	attr.scriptConverter ??= scriptConverter;
 
 	//setup strCode if db is provided
 	if (attr.db) {

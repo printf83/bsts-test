@@ -6,7 +6,7 @@ export const carousel: IContent = {
 	title: "Carousel",
 	description:
 		"A slideshow component for cycling through elements—images or slides of text—like a carousel.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

@@ -6,7 +6,7 @@ export const check_radio: IContent = {
 	title: "Checks and radios",
 	description:
 		"Create consistent cross-browser and cross-device checkboxes and radios with Bootstrap completely rewritten checks component.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

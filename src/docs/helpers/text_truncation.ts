@@ -5,7 +5,7 @@ import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/cont
 export const text_truncation: IContent = {
 	title: "Text truncation",
 	description: "Truncate long strings of text with an ellipsis.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [

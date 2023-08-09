@@ -6,7 +6,7 @@ export const layout: IContent = {
 	title: "Layout",
 	description:
 		"Give your forms some structure—from inline to horizontal to custom grid implementations—with Bootstrap form layout options.",
-	item: (db?: e.IBsExampleData[]) => {
+	item: (db?: e.ISourceDB[]) => {
 		resetContentIndex();
 
 		return [
