@@ -679,11 +679,6 @@ const startMemoryTest = (arg: {
 										click: (event) => {
 											const target = event.target as Element;
 											b.modal.hide(target);
-
-											// core.requestIdleCallback(() => {
-											// 	setupContentDocument(docId);
-											// 	highlightMenu(docId);
-											// }, 300);
 										},
 									},
 								},

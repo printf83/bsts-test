@@ -17,8 +17,9 @@ export const bootswatch: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
-						const navbarItem = (btnColor: I.B.Button["color"]) => {
-							let id = core.UUID();
+						const navbarItem = () => {
+							const id = core.UUID();
+
 							return new b.navbar.innercontainer({ container: "fluid" }, [
 								new b.navbar.brand({ href: "#" }, "Navbar"),
 								new b.navbar.toggle.collapse({
@@ -28,7 +29,10 @@ export const bootswatch: IContent = {
 								}),
 								new b.navbar.collapse({ id: id }, [
 									new b.navbar.itemcontainer(
-										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										{
+											marginEnd: "auto",
+											marginBottom: [2, "lg-0"],
+										},
 										[
 											new b.navbar.item(
 												new b.navbar.link(
@@ -73,7 +77,10 @@ export const bootswatch: IContent = {
 											label: "Search",
 										}),
 										new b.button(
-											{ type: "submit", color: btnColor, outline: true },
+											{
+												type: "submit",
+												// outline: true
+											},
 											"Search"
 										),
 									]),
@@ -81,19 +88,23 @@ export const bootswatch: IContent = {
 							]);
 						};
 
+						const bsWhiteRGB = core.getCSSVar("--bs-white-rgb");
 						return [
 							new b.navbar.container(
-								{ bgColor: "primary", theme: "dark" },
-								navbarItem("light")
+								{
+									bgColor: "primary",
+									textColorRGB: bsWhiteRGB,
+								},
+								navbarItem()
 							),
 							new b.navbar.container(
-								{ bgColor: "dark", theme: "dark" },
-								navbarItem("light")
+								{
+									bgColor: "dark",
+									textColorRGB: bsWhiteRGB,
+								},
+								navbarItem()
 							),
-							new b.navbar.container(
-								{ bgColor: "light", theme: "light" },
-								navbarItem("dark")
-							),
+							new b.navbar.container({ bgColor: "light" }, navbarItem()),
 						];
 					},
 				}),

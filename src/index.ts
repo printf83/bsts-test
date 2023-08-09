@@ -140,7 +140,7 @@ type colorPalletItem = {
 };
 
 const updateColorPallet = () => {
-	const colorPallet = cookie.get("COLOR_PALLET");
+	const colorPallet = cookie.get("current_color");
 	if (colorPallet) {
 		const value: colorPalletItem = JSON.parse(colorPallet) as colorPalletItem;
 
