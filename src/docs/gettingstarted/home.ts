@@ -384,7 +384,7 @@ const colorPalletChange = (event: Event) => {
 			core.replaceChild(btnPallet, colorPalletItem(value));
 
 			//save into cookies
-			cookie.set("COLOR_PALLET", dataValue);
+			cookie.set("current_color", dataValue);
 		}
 	}
 };
@@ -621,7 +621,6 @@ export const home: IContent = {
 		const header = new b.navbar.containerHeader(
 			{
 				class: "bs-main-navbar",
-				// class: "navbar-primary",
 				expand: "lg",
 				sticky: "top",
 				bgColor: "primary",
@@ -735,7 +734,6 @@ export const home: IContent = {
 							{
 								id: bsNavbar,
 								class: "bs-main-navbar-offcanvas",
-								// class: "offcanvas-primary",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
@@ -747,7 +745,6 @@ export const home: IContent = {
 									{
 										paddingX: 4,
 										paddingBottom: 0,
-										// bgColor: "primary",
 									},
 									[
 										new b.offcanvas.title(
@@ -766,7 +763,6 @@ export const home: IContent = {
 									{
 										padding: [4, "lg-0"],
 										paddingTop: 0,
-										// bgColor: "primary",
 									},
 									[
 										...setupInsideLink(
@@ -852,8 +848,6 @@ export const home: IContent = {
 								justifyContent: "center",
 								bgColor: "primary-subtle",
 								textColor: "primary-emphasis",
-								// textBgColor: "primary",
-								// bgGradient: true,
 								fontDisplay: 4,
 								marginBottom: 3,
 								paddingX: 3,
@@ -884,16 +878,6 @@ export const home: IContent = {
 				textAlign: ["start", "md-center"],
 			},
 			[
-				// {
-				// 	icon: "code",
-				// 	title: "Get started any way you want",
-				// 	description:
-				// 		"Jump right into building with Bootstrap—use the CDN, install it via package manager, or download the source code.",
-				// 	elem: new h.a({ href: "#", iconLink: "hover" }, [
-				// 		"Read installation docs",
-				// 		arrowNextIcon,
-				// 	]),
-				// },
 				{
 					icon: "speedometer",
 					title: "Unleash the Power of Speed!",
@@ -1023,7 +1007,6 @@ export const home: IContent = {
 		const bg = new h.div(
 			{
 				viewWidth: "100",
-				// viewHeight: "100",
 				style: {
 					backgroundImage:
 						"linear-gradient(180deg, rgba(var(--bs-body-bg-rgb), 0.01), rgba(var(--bs-body-bg-rgb), 1) 85%),radial-gradient(ellipse at top left, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at top right, rgba(var(--bs-success-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center right, rgba(var(--bs-primary-rgb), 0.5), transparent 50%),radial-gradient(ellipse at center left, rgba(var(--bs-danger-rgb), 0.5), transparent 50%)",

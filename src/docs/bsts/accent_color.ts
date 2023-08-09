@@ -741,7 +741,7 @@ export const accent_color: IContent = {
 
 												if (value) {
 													//its up to you to handle the color pallet
-													cookie.set("COLOR_PALLET", value);
+													cookie.set("current_color", value);
 
 													b.toast.show(
 														b.toast.create({
@@ -777,7 +777,7 @@ export const accent_color: IContent = {
 												btn.innerText = "Choose color pallet";
 
 												//its up to you to handle the color pallet
-												cookie.set("COLOR_PALLET", "");
+												cookie.set("current_color", "");
 
 												removeAllCustomVar();
 											}
