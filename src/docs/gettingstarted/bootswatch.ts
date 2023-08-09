@@ -17,7 +17,7 @@ export const bootswatch: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
-						const navbarItem = (btnColor: I.B.Button["color"]) => {
+						const navbarItem = () => {
 							let id = core.UUID();
 							return new b.navbar.innercontainer({ container: "fluid" }, [
 								new b.navbar.brand({ href: "#" }, "Navbar"),
@@ -28,7 +28,10 @@ export const bootswatch: IContent = {
 								}),
 								new b.navbar.collapse({ id: id }, [
 									new b.navbar.itemcontainer(
-										{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
+										{
+											marginEnd: "auto",
+											marginBottom: [2, "lg-0"],
+										},
 										[
 											new b.navbar.item(
 												new b.navbar.link(
@@ -72,10 +75,7 @@ export const bootswatch: IContent = {
 											placeholder: "Search",
 											label: "Search",
 										}),
-										new b.button(
-											{ type: "submit", color: btnColor, outline: true },
-											"Search"
-										),
+										new b.button({ type: "submit", outline: true }, "Search"),
 									]),
 								]),
 							]);
@@ -83,17 +83,44 @@ export const bootswatch: IContent = {
 
 						return [
 							new b.navbar.container(
-								{ bgColor: "primary", theme: "dark" },
-								navbarItem("light")
+								{
+									bgColor: "primary",
+									style: {
+										"--bs-navbar-color": "rgba(var(--bs-white-rgb), 0.65)",
+										"--bs-navbar-active-color": "rgba(var(--bs-white-rgb), 1)",
+										"--bs-navbar-brand-color": "rgba(var(--bs-white-rgb), 1)",
+										"--bs-navbar-brand-hover-color":
+											"rgba(var(--bs-white-rgb), 1)",
+										"--bs-navbar-hover-color": "rgba(var(--bs-white-rgb), 0.8)",
+										"--bs-navbar-disabled-color":
+											"rgba(var(--bs-white-rgb), 0.3)",
+										"--bs-navbar-toggler-icon-bg": `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${core.getCSSVar(
+											"--bs-white-rgb"
+										)}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+									},
+								},
+								navbarItem()
 							),
 							new b.navbar.container(
-								{ bgColor: "dark", theme: "dark" },
-								navbarItem("light")
+								{
+									bgColor: "dark",
+									style: {
+										"--bs-navbar-color": "rgba(var(--bs-white-rgb), 0.65)",
+										"--bs-navbar-active-color": "rgba(var(--bs-white-rgb), 1)",
+										"--bs-navbar-brand-color": "rgba(var(--bs-white-rgb), 1)",
+										"--bs-navbar-brand-hover-color":
+											"rgba(var(--bs-white-rgb), 1)",
+										"--bs-navbar-hover-color": "rgba(var(--bs-white-rgb), 0.8)",
+										"--bs-navbar-disabled-color":
+											"rgba(var(--bs-white-rgb), 0.3)",
+										"--bs-navbar-toggler-icon-bg": `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28${core.getCSSVar(
+											"--bs-white-rgb"
+										)}, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+									},
+								},
+								navbarItem()
 							),
-							new b.navbar.container(
-								{ bgColor: "light", theme: "light" },
-								navbarItem("dark")
-							),
+							new b.navbar.container(navbarItem()),
 						];
 					},
 				}),
