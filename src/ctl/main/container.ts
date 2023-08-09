@@ -56,7 +56,6 @@ const convert = (attr: IMainContainer) => {
 		new b.navbar.containerHeader(
 			{
 				class: "bs-main-navbar",
-				// class: "navbar-primary",
 				expand: "lg",
 				sticky: "top",
 				bgGradient: true,
@@ -177,7 +176,6 @@ const convert = (attr: IMainContainer) => {
 							{
 								id: bsNavbar,
 								class: "bs-main-navbar-offcanvas",
-								// class: "offcanvas-primary",
 								placement: "end",
 								show: "lg",
 								flex: "grow-1",
