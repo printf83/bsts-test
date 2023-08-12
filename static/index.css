@@ -914,7 +914,8 @@ strong,
     border-radius: var(--bs-border-radius);
     border-width: var(--bs-border-width);
     border-style: var(--bs-border-style);
-    border-color: var(--bs-border-color);}
+    border-color: var(--bs-border-color);
+}
 
 .color-pallet div:nth-child(1) { z-index: 8; }
 .color-pallet div:nth-child(2) { z-index: 7; }

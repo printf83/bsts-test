@@ -609,7 +609,12 @@ export const accent_color: IContent = {
 				new e.title("Color pallet"),
 				new e.code({
 					db: getContentCode(db),
-					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					outputAttr: {
+						display: "flex",
+						flex: "wrap",
+						gap: 2,
+						class: "color-pallet-box",
+					},
 					extention: [
 						{
 							name: "COLORPALLET",

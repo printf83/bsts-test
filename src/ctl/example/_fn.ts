@@ -264,6 +264,25 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		let result: string[] = [];
 
+		if (attrHasClass(attr, "color-pallet-box")) {
+			result.push(`
+				.color-pallet {
+					display: flex;
+					justify-content: center;
+				}
+
+				.color-pallet div {
+					width: 1.5rem;
+					height: 1.5rem;
+					margin-left: -0.75rem;
+					border-radius: var(--bs-border-radius);
+					border-width: var(--bs-border-width);
+					border-style: var(--bs-border-style);
+					border-color: var(--bs-border-color);
+				}
+			`);
+		}
+
 		if (attrHasClass(attr, "list-group-item-check-2")) {
 			result.push(`
 				.list-group-item-check-2 label.list-group-item{
