@@ -264,6 +264,53 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 	if (attr) {
 		let result: string[] = [];
 
+		if (attrHasClass(attr, "color-pallet-big-box")) {
+			result.push(`
+				.color-pallet-big {
+					display: flex;
+					justify-content: center;
+				}
+
+				.color-pallet-big div {
+					width: 3rem;
+					height: 3rem;
+					margin-left: 0.5rem;
+					border-radius: var(--bs-border-radius-2xl);
+					border-width: var(--bs-border-width);
+					border-style: var(--bs-border-style);
+					border-color: var(--bs-border-color);
+				}
+			`);
+		}
+
+		if (attrHasClass(attr, "color-pallet-box")) {
+			result.push(`
+				.color-pallet {
+					display: flex;
+					justify-content: center;
+				}
+
+				.color-pallet div {
+					width: 1.5rem;
+					height: 1.5rem;
+					margin-left: -0.75rem;
+					border-radius: var(--bs-border-radius);
+					border-width: var(--bs-border-width);
+					border-style: var(--bs-border-style);
+					border-color: var(--bs-border-color);
+				}
+
+				.color-pallet div:nth-child(1) { z-index: 8; }
+				.color-pallet div:nth-child(2) { z-index: 7; }
+				.color-pallet div:nth-child(3) { z-index: 6; }
+				.color-pallet div:nth-child(4) { z-index: 5; }
+				.color-pallet div:nth-child(5) { z-index: 4; }
+				.color-pallet div:nth-child(6) { z-index: 3; }
+				.color-pallet div:nth-child(7) { z-index: 2; }
+				.color-pallet div:nth-child(8) { z-index: 1; }
+			`);
+		}
+
 		if (attrHasClass(attr, "list-group-item-check-2")) {
 			result.push(`
 				.list-group-item-check-2 label.list-group-item{

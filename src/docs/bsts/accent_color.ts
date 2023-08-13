@@ -1,6 +1,6 @@
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
-import { I, b, core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import { cookie } from "../../ctl/main/cookie.js";
 
 interface colorPalletItem {
@@ -309,29 +309,29 @@ export const accent_color: IContent = {
 		resetContentIndex();
 
 		return [
-			new e.section([
-				new e.title("Preview"),
-				new e.text("This is preview of current accent color."),
-				new h.div(
-					{ display: "flex", flex: "wrap", gap: 2 },
-					[
-						"primary",
-						"secondary",
-						"success",
-						"danger",
-						"warning",
-						"info",
-						"light",
-						"dark",
-						"link",
-					].map((i) => {
-						return new b.button(
-							{ color: i as I.B.Button["color"] },
-							core.uppercaseFirst(i)
-						);
-					})
-				),
-			]),
+			// new e.section([
+			// 	new e.title("Preview"),
+			// 	new e.text("This is preview of current accent color."),
+			// 	new h.div(
+			// 		{ display: "flex", flex: "wrap", gap: 2 },
+			// 		[
+			// 			"primary",
+			// 			"secondary",
+			// 			"success",
+			// 			"danger",
+			// 			"warning",
+			// 			"info",
+			// 			"light",
+			// 			"dark",
+			// 			"link",
+			// 		].map((i) => {
+			// 			return new b.button(
+			// 				{ color: i as I.B.Button["color"] },
+			// 				core.uppercaseFirst(i)
+			// 			);
+			// 		})
+			// 	),
+			// ]),
 
 			//----------------------
 
@@ -340,7 +340,12 @@ export const accent_color: IContent = {
 				new e.text("You can create multiple color from one color."),
 				new e.code({
 					db: getContentCode(db),
-					outputAttr: { display: "flex", flex: "wrap", gap: 3 },
+					outputAttr: {
+						display: "flex",
+						flex: "wrap",
+						gap: 3,
+						class: "color-pallet-big-box",
+					},
 					extention: [
 						{
 							name: "REMOVECUSTOMVARCONTAINER",
@@ -355,13 +360,14 @@ export const accent_color: IContent = {
 					],
 					output: () => {
 						return new h.div([
-							"Accent color",
+							"Accent color :",
 							new h.div(
 								{
 									rounded: true,
 									border: true,
 									bgColor: "primary",
 									style: { height: "2.5rem", width: "11rem" },
+									marginBottom: 3,
 								},
 
 								new b.input({
@@ -468,6 +474,18 @@ export const accent_color: IContent = {
 									},
 								})
 							),
+
+							"Color preview :",
+							new h.div({ class: "color-pallet-big", marginBottom: 3 }, [
+								new h.div({ bgColor: "primary", title: "primary" }),
+								new h.div({ bgColor: "secondary", title: "Secondary" }),
+								new h.div({ bgColor: "success", title: "Success" }),
+								new h.div({ bgColor: "danger", title: "Danger" }),
+								new h.div({ bgColor: "warning", title: "Warning" }),
+								new h.div({ bgColor: "info", title: "Info" }),
+								new h.div({ bgColor: "light", title: "Light" }),
+								new h.div({ bgColor: "dark", title: "Dark" }),
+							]),
 						]);
 					},
 				}),
@@ -609,7 +627,12 @@ export const accent_color: IContent = {
 				new e.title("Color pallet"),
 				new e.code({
 					db: getContentCode(db),
-					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
+					outputAttr: {
+						display: "flex",
+						flex: "wrap",
+						gap: 2,
+						class: "color-pallet-box",
+					},
 					extention: [
 						{
 							name: "COLORPALLET",
@@ -628,20 +651,36 @@ export const accent_color: IContent = {
 						},
 					],
 					output: () => {
-						const colorPalletItem = (value: colorPalletItem) => {
-							return new h.div(
-								{ class: "color-pallet", paddingStart: 3, paddingEnd: 1 },
-								[
-									new h.div({ style: { backgroundColor: value.primary } }),
-									new h.div({ style: { backgroundColor: value.secondary } }),
-									new h.div({ style: { backgroundColor: value.success } }),
-									new h.div({ style: { backgroundColor: value.danger } }),
-									new h.div({ style: { backgroundColor: value.warning } }),
-									new h.div({ style: { backgroundColor: value.info } }),
-									new h.div({ style: { backgroundColor: value.light } }),
-									new h.div({ style: { backgroundColor: value.dark } }),
-								]
-							);
+						const colorPalletItem = (value?: colorPalletItem) => {
+							if (value) {
+								return new h.div(
+									{ class: "color-pallet", paddingStart: 3, paddingEnd: 1 },
+									[
+										new h.div({ style: { backgroundColor: value.primary } }),
+										new h.div({ style: { backgroundColor: value.secondary } }),
+										new h.div({ style: { backgroundColor: value.success } }),
+										new h.div({ style: { backgroundColor: value.danger } }),
+										new h.div({ style: { backgroundColor: value.warning } }),
+										new h.div({ style: { backgroundColor: value.info } }),
+										new h.div({ style: { backgroundColor: value.light } }),
+										new h.div({ style: { backgroundColor: value.dark } }),
+									]
+								);
+							} else {
+								return new h.div(
+									{ class: "color-pallet", paddingStart: 3, paddingEnd: 1 },
+									[
+										new h.div({ bgColor: "primary" }),
+										new h.div({ bgColor: "secondary" }),
+										new h.div({ bgColor: "success" }),
+										new h.div({ bgColor: "danger" }),
+										new h.div({ bgColor: "warning" }),
+										new h.div({ bgColor: "info" }),
+										new h.div({ bgColor: "light" }),
+										new h.div({ bgColor: "dark" }),
+									]
+								);
+							}
 						};
 
 						const colorPalletChange = (event: Event) => {
@@ -692,7 +731,7 @@ export const accent_color: IContent = {
 										display: "flex",
 										alignItem: "center",
 									},
-									"Choose color pallet"
+									colorPalletItem()
 								),
 								new b.dropdown.menu(
 									new h.div(
