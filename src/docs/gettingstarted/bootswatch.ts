@@ -104,7 +104,7 @@ export const bootswatch: IContent = {
 								},
 								navbarItem()
 							),
-							new b.navbar.container({ bgColor: "light" }, navbarItem()),
+							new b.navbar.container({ bgColor: "body-tertiary" }, navbarItem()),
 						];
 					},
 				}),

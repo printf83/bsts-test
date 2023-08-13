@@ -380,8 +380,8 @@ const colorPalletChange = (event: Event) => {
 			core.accentColor.apply(css.join("\n"));
 
 			//update dropdown label
-			const btnPallet = target.closest(".dropdown-menu")?.previousSibling as Element;
-			core.replaceChild(btnPallet, colorPalletItem(value));
+			// const btnPallet = target.closest(".dropdown-menu")?.previousSibling as Element;
+			// core.replaceChild(btnPallet, colorPalletItem(value));
 
 			//save into cookies
 			cookie.set("current_color", dataValue);
@@ -909,6 +909,16 @@ export const home: IContent = {
 							justifyContent: "center",
 						},
 						[
+							new h.div({ class: "color-pallet-big", marginBottom: 3 }, [
+								new h.div({ bgColor: "primary", title: "primary" }),
+								new h.div({ bgColor: "secondary", title: "Secondary" }),
+								new h.div({ bgColor: "success", title: "Success" }),
+								new h.div({ bgColor: "danger", title: "Danger" }),
+								new h.div({ bgColor: "warning", title: "Warning" }),
+								new h.div({ bgColor: "info", title: "Info" }),
+								new h.div({ bgColor: "light", title: "Light" }),
+								new h.div({ bgColor: "dark", title: "Dark" }),
+							]),
 							new b.dropdown.container([
 								new b.dropdown.button(
 									{
