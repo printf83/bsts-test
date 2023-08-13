@@ -1,6 +1,6 @@
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
-import { I, b, core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import { cookie } from "../../ctl/main/cookie.js";
 
 interface colorPalletItem {
