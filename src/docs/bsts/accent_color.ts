@@ -359,8 +359,10 @@ export const accent_color: IContent = {
 						},
 					],
 					output: () => {
+						const id = core.UUID();
+
 						return new h.div([
-							"Accent color :",
+							new b.label({ for: id }, "Accent color :"),
 							new h.div(
 								{
 									rounded: true,
@@ -371,6 +373,7 @@ export const accent_color: IContent = {
 								},
 
 								new b.input({
+									id: id,
 									type: "color",
 									width: 100,
 									height: 100,
@@ -475,17 +478,27 @@ export const accent_color: IContent = {
 								})
 							),
 
-							"Color preview :",
-							new h.div({ class: "color-pallet-big", marginBottom: 3 }, [
-								new h.div({ bgColor: "primary", title: "primary" }),
-								new h.div({ bgColor: "secondary", title: "Secondary" }),
-								new h.div({ bgColor: "success", title: "Success" }),
-								new h.div({ bgColor: "danger", title: "Danger" }),
-								new h.div({ bgColor: "warning", title: "Warning" }),
-								new h.div({ bgColor: "info", title: "Info" }),
-								new h.div({ bgColor: "light", title: "Light" }),
-								new h.div({ bgColor: "dark", title: "Dark" }),
-							]),
+							new b.label("Color preview :"),
+							new h.div(
+								{
+									class: "color-pallet-big",
+									marginBottom: 3,
+									display: "flex",
+									flex: "wrap",
+									justifyContent: "center",
+									gap: 1,
+								},
+								[
+									new h.div({ bgColor: "primary", title: "primary" }),
+									new h.div({ bgColor: "secondary", title: "Secondary" }),
+									new h.div({ bgColor: "success", title: "Success" }),
+									new h.div({ bgColor: "danger", title: "Danger" }),
+									new h.div({ bgColor: "warning", title: "Warning" }),
+									new h.div({ bgColor: "info", title: "Info" }),
+									new h.div({ bgColor: "light", title: "Light" }),
+									new h.div({ bgColor: "dark", title: "Dark" }),
+								]
+							),
 						]);
 					},
 				}),
@@ -593,8 +606,9 @@ export const accent_color: IContent = {
 							"dark",
 							"body",
 						].map((i) => {
+							const id = core.UUID();
 							return new h.div([
-								core.uppercaseFirst(`${i} color`),
+								new b.label({ id: id }, core.uppercaseFirst(`${i} color`)),
 								new h.div(
 									{
 										rounded: true,
@@ -604,6 +618,7 @@ export const accent_color: IContent = {
 									},
 
 									new b.input({
+										id: id,
 										type: "color",
 										width: 100,
 										height: 100,
@@ -654,7 +669,14 @@ export const accent_color: IContent = {
 						const colorPalletItem = (value?: colorPalletItem) => {
 							if (value) {
 								return new h.div(
-									{ class: "color-pallet", paddingStart: 3, paddingEnd: 1 },
+									{
+										class: "color-pallet",
+										paddingStart: 3,
+										paddingEnd: 1,
+										display: "flex",
+										flex: value ? undefined : "wrap",
+										justifyContent: "center",
+									},
 									[
 										new h.div({ style: { backgroundColor: value.primary } }),
 										new h.div({ style: { backgroundColor: value.secondary } }),
@@ -668,7 +690,13 @@ export const accent_color: IContent = {
 								);
 							} else {
 								return new h.div(
-									{ class: "color-pallet", paddingStart: 3, paddingEnd: 1 },
+									{
+										class: "color-pallet",
+										paddingStart: 3,
+										paddingEnd: 1,
+										display: "flex",
+										justifyContent: "center",
+									},
 									[
 										new h.div({ bgColor: "primary" }),
 										new h.div({ bgColor: "secondary" }),

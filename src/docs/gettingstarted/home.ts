@@ -341,16 +341,25 @@ const removeAllCustomVar = () => {
 };
 
 const colorPalletItem = (value: colorPalletItem) => {
-	return new h.div({ class: "color-pallet", paddingStart: 3, paddingEnd: 1 }, [
-		new h.div({ style: { backgroundColor: value.primary } }),
-		new h.div({ style: { backgroundColor: value.secondary } }),
-		new h.div({ style: { backgroundColor: value.success } }),
-		new h.div({ style: { backgroundColor: value.danger } }),
-		new h.div({ style: { backgroundColor: value.warning } }),
-		new h.div({ style: { backgroundColor: value.info } }),
-		new h.div({ style: { backgroundColor: value.light } }),
-		new h.div({ style: { backgroundColor: value.dark } }),
-	]);
+	return new h.div(
+		{
+			class: "color-pallet",
+			paddingStart: 3,
+			paddingEnd: 1,
+			display: "flex",
+			justifyContent: "center",
+		},
+		[
+			new h.div({ style: { backgroundColor: value.primary } }),
+			new h.div({ style: { backgroundColor: value.secondary } }),
+			new h.div({ style: { backgroundColor: value.success } }),
+			new h.div({ style: { backgroundColor: value.danger } }),
+			new h.div({ style: { backgroundColor: value.warning } }),
+			new h.div({ style: { backgroundColor: value.info } }),
+			new h.div({ style: { backgroundColor: value.light } }),
+			new h.div({ style: { backgroundColor: value.dark } }),
+		]
+	);
 };
 
 const colorPalletChange = (event: Event) => {
@@ -909,16 +918,26 @@ export const home: IContent = {
 							justifyContent: "center",
 						},
 						[
-							new h.div({ class: "color-pallet-big", marginBottom: 3 }, [
-								new h.div({ bgColor: "primary", title: "primary" }),
-								new h.div({ bgColor: "secondary", title: "Secondary" }),
-								new h.div({ bgColor: "success", title: "Success" }),
-								new h.div({ bgColor: "danger", title: "Danger" }),
-								new h.div({ bgColor: "warning", title: "Warning" }),
-								new h.div({ bgColor: "info", title: "Info" }),
-								new h.div({ bgColor: "light", title: "Light" }),
-								new h.div({ bgColor: "dark", title: "Dark" }),
-							]),
+							new h.div(
+								{
+									class: "color-pallet-big",
+									marginBottom: 3,
+									display: "flex",
+									flex: "wrap",
+									justifyContent: "center",
+									gap: 1,
+								},
+								[
+									new h.div({ bgColor: "primary", title: "primary" }),
+									new h.div({ bgColor: "secondary", title: "Secondary" }),
+									new h.div({ bgColor: "success", title: "Success" }),
+									new h.div({ bgColor: "danger", title: "Danger" }),
+									new h.div({ bgColor: "warning", title: "Warning" }),
+									new h.div({ bgColor: "info", title: "Info" }),
+									new h.div({ bgColor: "light", title: "Light" }),
+									new h.div({ bgColor: "dark", title: "Dark" }),
+								]
+							),
 							new b.dropdown.container([
 								new b.dropdown.button(
 									{
@@ -936,10 +955,11 @@ export const home: IContent = {
 									{ dropdownMenuPositionView: "center" },
 									new h.div(
 										{
+											// rowCol: "2",
+											// row: true,
 											display: "grid",
 											gap: 1,
 											gridTemplateColumns: "1fr 1fr",
-											overflowX: "auto",
 										},
 										COLORPALLETDB().map(
 											(i: {

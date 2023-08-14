@@ -902,11 +902,6 @@ strong,
 }
 
 /* color-pallet */
-.color-pallet,.color-pallet-big {
-    display: flex;
-    justify-content: center;
-}
-
 .color-pallet div {
     width: 1.5rem;
     height: 1.5rem;
@@ -929,7 +924,6 @@ strong,
 .color-pallet-big div {
     width: 3rem;
     height: 3rem;
-    margin-left: 0.5rem;
     border-radius: var(--bs-border-radius-2xl);
     border-width: var(--bs-border-width);
     border-style: var(--bs-border-style);
