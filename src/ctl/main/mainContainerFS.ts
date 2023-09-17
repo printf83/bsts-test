@@ -83,7 +83,6 @@ export const mainContainerFS = () => {
 					shadow: true,
 					weight: "lg",
 					border: true,
-					borderWidth: 2,
 				},
 				new b.icon({ id: "list", fontWeight: "bolder" })
 			)
