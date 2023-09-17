@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "0.3.13",
+	"version": "0.3.13001",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
