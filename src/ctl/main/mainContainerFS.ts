@@ -10,7 +10,7 @@ import { getSavedTheme, highlghtTheme } from "./theme.js";
 const BSTSCDN = `https://cdn.jsdelivr.net/npm/@printf83/bsts@${CURRENTVERSION}/+esm`;
 const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3/dist/chart.umd.min.js"];
 const BSCDNCSS = [
-	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10/font/bootstrap-icons.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11/font/bootstrap-icons.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css",
 ];
 
@@ -83,7 +83,6 @@ export const mainContainerFS = () => {
 					shadow: true,
 					weight: "lg",
 					border: true,
-					borderWidth: 2,
 				},
 				new b.icon({ id: "list", fontWeight: "bolder" })
 			)

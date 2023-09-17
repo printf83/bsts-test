@@ -494,9 +494,12 @@ export const home: IContent = {
 					"Currently ",
 					new h.b(`v${CURRENTVERSION}`),
 					" · ",
-					new h.a({ href: "#" }, "Download"),
+					new h.a(
+						{ href: "https://github.com/printf83/bsts/archive/refs/heads/main.zip" },
+						"Download"
+					),
 					" · ",
-					new h.a({ href: "#" }, "All releases"),
+					new h.a({ href: "https://github.com/printf83/bsts/releases" }, "All releases"),
 				]),
 			])
 		);
