@@ -1,7 +1,7 @@
 import { IMenu, IMenuItem } from "./menu.js";
 
 export const DEFAULTDOCUMENT = "docs/gettingstarted/home";
-export const CURRENTVERSION = "0.3.11";
+export const CURRENTVERSION = "0.3.12";
 
 export const THEMEDB = [
 	{
@@ -58,6 +58,7 @@ export const menuFS = [
 	{ label: "Pricing", value: "docs/example/pricing" },
 	{ label: "Checkout", value: "docs/example/checkout" },
 	{ label: "Product", value: "docs/example/product" },
+	{ label: "Cover", value: "docs/example/cover" },
 ];
 
 export const menu: IMenu[] = [

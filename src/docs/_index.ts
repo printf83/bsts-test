@@ -35,6 +35,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.product);
 			});
 			break;
+		case "docs/example/cover":
+			example.cover().then((res) => {
+				callback(res.cover);
+			});
+			break;
 
 		//--------------------------
 

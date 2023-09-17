@@ -266,11 +266,6 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "color-pallet-big-box")) {
 			result.push(`
-				.color-pallet-big {
-					display: flex;
-					justify-content: center;
-				}
-
 				.color-pallet-big div {
 					width: 3rem;
 					height: 3rem;
@@ -285,11 +280,6 @@ export const getCSSBaseOnSource = (attr?: core.IAttr) => {
 
 		if (attrHasClass(attr, "color-pallet-box")) {
 			result.push(`
-				.color-pallet {
-					display: flex;
-					justify-content: center;
-				}
-
 				.color-pallet div {
 					width: 1.5rem;
 					height: 1.5rem;
