@@ -12,7 +12,8 @@ export const bootswatch: IContent = {
 			new e.section(),
 
 			new e.section([
-				new e.title("Navbars"),
+				new e.title({ moreInfo: "docs/components/navbar#color_schemes" }, "Navbars"),
+
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3 },
@@ -113,7 +114,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Buttons"),
+				new e.title({ moreInfo: "docs/components/button#examples" }, "Buttons"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -141,7 +142,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Disabled"),
+				new e.subtitle({ moreInfo: "docs/components/button#disabled_state" }, "Disabled"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -169,7 +170,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Outline"),
+				new e.subtitle({ moreInfo: "docs/components/button#outline_buttons" }, "Outline"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -197,7 +198,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Sizing"),
+				new e.subtitle({ moreInfo: "docs/components/button#sizes" }, "Sizing"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: {
@@ -219,7 +220,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Block"),
+				new e.subtitle({ moreInfo: "docs/components/button#block_buttons" }, "Block"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -234,7 +235,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Button group"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/button_group#basic_example" },
+					"Button group"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -250,7 +254,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Checkbox"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/button_group#checkbox_and_radio_button_groups" },
+					"Checkbox"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -283,7 +290,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Radio"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/button_group#checkbox_and_radio_button_groups" },
+					"Radio"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -332,7 +342,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Toolbar"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/button_group#button_toolbar" },
+					"Toolbar"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -362,7 +375,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.xsubtitle("Vertical"),
+				new e.xsubtitle(
+					{ moreInfo: "docs/components/button_group#vertical_variation" },
+					"Vertical"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -407,7 +423,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Dropdown"),
+				new e.title({ moreInfo: "docs/components/dropdown#single_button" }, "Dropdown"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -436,7 +452,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Split button"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/dropdown#split_button" },
+					"Split button"
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -469,7 +488,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Typography"),
+				new e.title({ moreInfo: "docs/content/typography#headings" }, "Typography"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -483,7 +502,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("With secondary text"),
+				new e.subtitle(
+					{ moreInfo: "docs/content/typography#customizing_headings" },
+					"With secondary text"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -504,7 +526,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Lead paragraph"),
+				new e.subtitle({ moreInfo: "docs/content/typography#lead" }, "Lead paragraph"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -519,7 +541,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Body text"),
+				new e.subtitle(
+					{ moreInfo: "docs/content/typography#inline_text_elements" },
+					"Body text"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -560,7 +585,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Text color"),
+				new e.subtitle({ moreInfo: "docs/utilities/colors#colors" }, "Text color"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -617,7 +642,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Blockquote"),
+				new e.subtitle({ moreInfo: "docs/content/typography#blockquotes" }, "Blockquote"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -665,7 +690,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Table"),
+				new e.title({ moreInfo: "docs/content/tables#variants" }, "Table"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { overflow: "auto" },
@@ -709,7 +734,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("Forms"),
+				new e.title({ moreInfo: "docs/forms/overview#overview" }, "Forms"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -745,7 +770,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Select"),
+				new e.subtitle({ moreInfo: "docs/forms/select" }, "Select"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -792,7 +817,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Textarea"),
+				new e.subtitle({ moreInfo: "docs/forms/control#example" }, "Textarea"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -806,7 +831,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("File input"),
+				new e.subtitle({ moreInfo: "docs/forms/control#file_input" }, "File input"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -821,7 +846,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Radio buttons"),
+				new e.subtitle({ moreInfo: "docs/forms/check_radio#radios" }, "Radio buttons"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -851,7 +876,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section({ id: "checkbox2" }, [
-				new e.subtitle({ id: "checkbox2" }, "Checkbox"),
+				new e.subtitle(
+					{ id: "checkbox2", moreInfo: "docs/forms/check_radio#checks" },
+					"Checkbox"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -879,7 +907,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Switch"),
+				new e.subtitle({ moreInfo: "docs/forms/check_radio#switches" }, "Switch"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -906,7 +934,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Range"),
+				new e.subtitle({ moreInfo: "docs/forms/range" }, "Range"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -938,7 +966,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Button"),
+				new e.subtitle({ moreInfo: "docs/components/button#button_tags" }, "Button"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -955,7 +983,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Disable & readonly"),
+				new e.subtitle({ moreInfo: "docs/forms/control#disabled" }, "Disable & readonly"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -979,7 +1007,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Validation"),
+				new e.subtitle({ moreInfo: "docs/forms/validation" }, "Validation"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1005,7 +1033,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Weight"),
+				new e.subtitle({ moreInfo: "docs/forms/control#sizing" }, "Weight"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1033,7 +1061,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Input addon"),
+				new e.subtitle({ moreInfo: "docs/forms/input_group" }, "Input addon"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1055,7 +1083,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Floating label"),
+				new e.subtitle({ moreInfo: "docs/forms/floating_label" }, "Floating label"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1081,7 +1109,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Tabs"),
+				new e.subtitle({ moreInfo: "docs/components/nav#tabs" }, "Tabs"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1103,7 +1131,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Pills"),
+				new e.subtitle({ moreInfo: "docs/components/nav#pills" }, "Pills"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1126,7 +1154,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Breadcrumbs"),
+				new e.subtitle({ moreInfo: "docs/components/breadcrumb" }, "Breadcrumbs"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -1151,7 +1179,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Pagination"),
+				new e.subtitle({ moreInfo: "docs/components/pagination" }, "Pagination"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3, overflowX: "auto" },
@@ -1188,7 +1216,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Alerts"),
+				new e.subtitle({ moreInfo: "docs/components/alert#examples" }, "Alerts"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1214,7 +1242,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Callout"),
+				new e.subtitle({ moreInfo: "docs/components/alert#callout" }, "Callout"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1240,7 +1268,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Badges"),
+				new e.subtitle({ moreInfo: "docs/components/badge" }, "Badges"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -1267,7 +1295,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.xsubtitle("Rounded pill"),
+				new e.xsubtitle({ moreInfo: "docs/components/badge#pill_badges" }, "Rounded pill"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -1301,7 +1329,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Basic"),
+				new e.subtitle({ moreInfo: "docs/components/progress" }, "Basic"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1315,7 +1343,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Contextual alternatives"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/progress#backgrounds" },
+					"Contextual alternatives"
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -1342,7 +1373,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Multiple bars"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/progress#multiple_bars" },
+					"Multiple bars"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1378,7 +1412,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Striped"),
+				new e.subtitle({ moreInfo: "docs/components/progress#striped" }, "Striped"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
@@ -1408,7 +1442,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Animated"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/progress#animated_stripes" },
+					"Animated"
+				),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1424,7 +1461,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.title("List groups"),
+				new e.title({ moreInfo: "docs/components/list#basic_example" }, "List groups"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
@@ -1443,7 +1480,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("With badge"),
+				new e.subtitle({ moreInfo: "docs/components/list#with_badges" }, "With badge"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
@@ -1477,7 +1514,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Color"),
+				new e.subtitle({ moreInfo: "docs/components/list#variants" }, "Color"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
@@ -1520,7 +1557,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Active action"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/list#for_links_and_buttons" },
+					"Active action"
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
@@ -1546,7 +1586,10 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Custom content"),
+				new e.subtitle(
+					{ moreInfo: "docs/components/list#custom_content" },
+					"Custom content"
+				),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "list-group-w-400px" },
@@ -1606,7 +1649,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Card"),
+				new e.subtitle({ moreInfo: "docs/components/card#background_and_color" }, "Card"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1644,7 +1687,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.xsubtitle("Card outline"),
+				new e.xsubtitle({ moreInfo: "docs/components/card#border" }, "Card outline"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1682,7 +1725,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.xsubtitle("Kitchen sink"),
+				new e.xsubtitle({ moreInfo: "docs/components/card#kitchen_sink" }, "Kitchen sink"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1738,7 +1781,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Accordion"),
+				new e.subtitle({ moreInfo: "docs/components/accordion" }, "Accordion"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1770,7 +1813,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Modal"),
+				new e.subtitle({ moreInfo: "docs/components/modal" }, "Modal"),
 				new e.code({
 					db: getContentCode(db),
 					previewAttr: { bgColor: "body-tertiary" },
@@ -1791,7 +1834,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Offcanvas"),
+				new e.subtitle({ moreInfo: "docs/components/offcanvas" }, "Offcanvas"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
@@ -1850,7 +1893,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Popovers"),
+				new e.subtitle({ moreInfo: "docs/components/popover" }, "Popovers"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -1871,7 +1914,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Tooltips"),
+				new e.subtitle({ moreInfo: "docs/components/tooltip" }, "Tooltips"),
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
@@ -1892,7 +1935,7 @@ export const bootswatch: IContent = {
 			//----------------------
 
 			new e.section([
-				new e.subtitle("Toasts"),
+				new e.subtitle({ moreInfo: "docs/components/toast" }, "Toasts"),
 				new e.code({
 					db: getContentCode(db),
 					showCodepen: false,

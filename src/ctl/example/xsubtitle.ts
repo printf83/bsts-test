@@ -1,7 +1,11 @@
-import { core, h as html, t, s } from "@printf83/bsts";
+import { core, h as html, t, s, b, h } from "@printf83/bsts";
 import { anchorOnClick } from "./_fn.js";
 
-const genIDFromElem = (attr: core.IAttr) => {
+export interface IXSubTitle extends core.IAttr {
+	moreInfo?: string;
+}
+
+const genIDFromElem = (attr: IXSubTitle) => {
 	if (!attr.id) {
 		if (typeof attr.elem === "string") {
 			attr.id = (attr.elem as string).toLowerCase().replace(/[\W_]+/g, "_");
@@ -13,7 +17,7 @@ const genIDFromElem = (attr: core.IAttr) => {
 	return attr.id;
 };
 
-const convert = (attr: core.IAttr) => {
+const convert = (attr: IXSubTitle) => {
 	attr.id ??= genIDFromElem(attr);
 	attr = core.mergeObject({ class: "example-xsubtitle", marginTop: 5, marginBottom: 3 }, attr);
 
@@ -46,6 +50,37 @@ const convert = (attr: core.IAttr) => {
 			)
 		);
 
+		if (attr.moreInfo) {
+			tElem.push(
+				new h.a(
+					{
+						class: "btn btn-sm",
+						focusRing: true,
+						textColor: "secondary",
+						borderColor: "secondary",
+						textColorHover: "primary",
+						borderColorHover: "primary",
+
+						float: "end",
+						data: { value: attr.moreInfo },
+						aria: { label: `Learn more about this section: ${strElem}` },
+						on: {
+							click: (e: Event) => {
+								const target = e.currentTarget as HTMLElement;
+								const value = target.getAttribute("data-value");
+								document.dispatchEvent(
+									new CustomEvent("bs.navigate", {
+										detail: value,
+									})
+								);
+							},
+						},
+					},
+					new b.label({ icon: "journal-code" }, "Learn more")
+				)
+			);
+		}
+
 		attr.elem = tElem;
 	}
 
@@ -56,9 +91,9 @@ const convert = (attr: core.IAttr) => {
 
 export class xsubtitle extends html.h {
 	constructor();
-	constructor(attr: core.IAttr);
+	constructor(attr: IXSubTitle);
 	constructor(elem: core.IElem);
-	constructor(attr: core.IAttr, elem: core.IElem);
+	constructor(attr: IXSubTitle, elem: core.IElem);
 	constructor(...arg: any[]) {
 		super(4, convert(core.bsConstArg("elem", arg)));
 	}

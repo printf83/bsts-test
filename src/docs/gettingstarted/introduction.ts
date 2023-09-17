@@ -5,7 +5,7 @@ import { CURRENTVERSION } from "../../ctl/main/_db.js";
 
 const BSTSCDN = `https://cdn.jsdelivr.net/npm/@printf83/bsts@${CURRENTVERSION}/+esm`;
 const BSCDNCSS = [
-	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10/font/bootstrap-icons.css",
+	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11/font/bootstrap-icons.css",
 	"https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css",
 ];
 
