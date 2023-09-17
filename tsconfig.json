@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    "target": "ES2022",
+    "target": "ES6",
     "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "NodeNext", 
     "outDir": "./build",
     "esModuleInterop": true,
     "noUnusedLocals": true,
