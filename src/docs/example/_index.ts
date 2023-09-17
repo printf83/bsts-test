@@ -10,3 +10,6 @@ export const checkout = () => {
 export const product = () => {
 	return import("./product.js");
 };
+export const cover = () => {
+	return import("./cover.js");
+};
