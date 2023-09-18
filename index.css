@@ -862,11 +862,13 @@ strong,
         border-right: 0
     }
 
-    .example-code.card>.card-body>ul.list-group {
+    .example-code.card>.card-body>ul.list-group,
+    .example-preview.card {
         border-radius: 0 !important;
     }
 
-    .example-code.card>.card-body>ul.list-group>li.list-group-item {
+    .example-code.card>.card-body>ul.list-group>li.list-group-item,
+    .example-preview.card {
         border-left: 0 !important;
         border-right: 0 !important;
     }
