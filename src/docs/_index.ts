@@ -40,6 +40,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.cover);
 			});
 			break;
+		case "docs/example/carousel":
+			example.carousel().then((res) => {
+				callback(res.carousel);
+			});
+			break;
 
 		//--------------------------
 

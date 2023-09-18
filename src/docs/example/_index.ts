@@ -13,3 +13,6 @@ export const product = () => {
 export const cover = () => {
 	return import("./cover.js");
 };
+export const carousel = () => {
+	return import("./carousel.js");
+};

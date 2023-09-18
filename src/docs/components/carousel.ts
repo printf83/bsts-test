@@ -47,6 +47,7 @@ export const carousel: IContent = {
 								})
 							),
 							new b.carousel.inner.container(
+								{ rounded: true },
 								[0, 1, 2, 3, 4, 5, 6].map((i, ix) => {
 									return new b.carousel.inner.item.container(
 										{ active: ix === 0 ? true : undefined },
@@ -91,6 +92,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							itemControl: true,
 							itemIndicator: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -122,6 +124,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							itemControl: true,
 							itemIndicator: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -145,6 +148,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							itemControl: true,
 							itemIndicator: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -176,6 +180,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							fade: true,
 							itemControl: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -208,6 +213,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							ride: "carousel",
 							itemControl: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -230,6 +236,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							ride: true,
 							itemControl: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -252,6 +259,7 @@ export const carousel: IContent = {
 					output: () => {
 						return new b.carousel.container({
 							itemControl: true,
+							innerAttr: { rounded: true },
 							item: [1000, 2000, 3000, 4000, 5000, 6000, 7000].map((i, ix) => {
 								return {
 									interval: i,
@@ -276,6 +284,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							ride: "carousel",
 							itemControl: false,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -299,6 +308,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							touch: false,
 							itemControl: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -325,6 +335,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							theme: "dark",
 							itemControl: true,
+							innerAttr: { rounded: true },
 							item: ["first", "second", "third", "fourth", "fifth"].map((i, ix) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${ix}/710/400.webp`,
@@ -555,6 +566,7 @@ export const carousel: IContent = {
 										new b.carousel.container({
 											id: "example-carousel",
 											itemIndicator: true,
+											innerAttr: { rounded: true },
 											item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
 												return {
 													src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
@@ -757,6 +769,7 @@ export const carousel: IContent = {
 						return new b.carousel.container({
 							interval: 3000,
 							itemControl: true,
+							innerAttr: { rounded: true },
 							item: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,

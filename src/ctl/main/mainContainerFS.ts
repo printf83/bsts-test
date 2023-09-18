@@ -92,7 +92,7 @@ export const mainContainerFS = () => {
 				id: "bs-main-fs-modal",
 				weight: "lg",
 				scrollable: true,
-				fullscreen: "sm",
+				fullscreen: "md",
 			},
 			[
 				new b.modal.header(

@@ -59,6 +59,7 @@ export const menuFS = [
 	{ label: "Checkout", value: "docs/example/checkout" },
 	{ label: "Product", value: "docs/example/product" },
 	{ label: "Cover", value: "docs/example/cover" },
+	{ label: "Carousel", value: "docs/example/carousel" },
 ];
 
 export const menu: IMenu[] = [
