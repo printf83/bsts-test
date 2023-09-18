@@ -48,23 +48,149 @@ export const carousel: IContent = {
 
 		const slider = () => {
 			return new b.carousel.container({
+				theme: "light",
 				rounded: false,
 				itemControl: true,
 				itemIndicator: true,
-				item: [0, 1, 2, 3, 4, 5, 6].map((i) => {
+				item: [
+					{
+						src: "https://picsum.photos/seed/bsts_0/710/150.webp",
+						title: "Example headline.",
+						description:
+							"Some representative placeholder content for the first slide of the carousel.",
+						button: "Sign up today",
+						href: "#",
+						textAlign: "start",
+					},
+					{
+						src: "https://picsum.photos/seed/bsts_1/710/150.webp",
+						title: "Another example headline.",
+						description:
+							"Some representative placeholder content for the second slide of the carousel.",
+						button: "Learn more",
+						href: "#",
+						textAlign: "center",
+					},
+					{
+						src: "https://picsum.photos/seed/bsts_2/710/150.webp",
+						title: "One more for good measure.",
+						description:
+							"Some representative placeholder content for the third slide of this carousel.",
+						button: "Browse gallery",
+						href: "#",
+						textAlign: "end",
+					},
+				].map((i) => {
 					return {
-						src: `https://picsum.photos/seed/bsts_${i}/710/150.webp`,
-						caption: [
-							new h.h(5, `Slide #${i + 1}`),
-							new h.p(
-								`Some representative placeholder content for the slide #${i + 1}.`
-							),
-						],
+						src: i.src,
+						caption: new h.div(
+							{
+								textColor: "white",
+								textAlign: i.textAlign as core.bootstrapType.textAlign,
+							},
+							[
+								new h.h(1, i.title),
+								new h.p({ lead: true }, i.description),
+								new b.button({ weight: "lg", href: i.href }, i.button),
+							]
+						),
 					};
 				}),
 			});
 		};
 
-		return [header(), slider(), new h.div("content")];
+		const heading_item = (opt: {
+			src: string;
+			title: string;
+			description: string;
+			href: string;
+		}) => {
+			return new h.div({ col: "lg-4", textAlign: "center", marginBottom: 3, padding: 2 }, [
+				new b.img({ rounded: "circle", src: opt.src }),
+				new h.h(2, { fontWeight: "normal" }, opt.title),
+				new h.p(opt.description),
+				new h.p(new b.button({ color: "secondary", href: opt.href }, "View detail")),
+			]);
+		};
+
+		const heading = new h.div(
+			{ container: true, marginY: 5 },
+			new h.div(
+				{ row: true },
+				[
+					{
+						src: "https://picsum.photos/seed/bsts_3/140/140.webp",
+						title: "Heading",
+						description:
+							"Some representative placeholder content for the three columns of text below the carousel. This is the first column.",
+						href: "#",
+					},
+					{
+						src: "https://picsum.photos/seed/bsts_4/140/140.webp",
+						title: "Heading",
+						description:
+							"Another exciting bit of representative placeholder content. This time, we've moved on to the second column.",
+						href: "#",
+					},
+					{
+						src: "https://picsum.photos/seed/bsts_5/140/140.webp",
+						title: "Heading",
+						description:
+							"And lastly this, the third column of representative placeholder content.",
+						href: "#",
+					},
+				].map((i) => heading_item(i))
+			)
+		);
+
+		const heading2_item = (opt: {
+			src: string;
+			title: string;
+			description: string;
+			href: string;
+		}) => {
+			return new h.div({ container: true }, [
+				new h.hr({ marginY: 5 }),
+				new h.div({ row: true }, [new h.div({ col: "md-7" }), new h.div({ col: "md-5" })]),
+				// new h.div({ col: "lg-4", textAlign: "center", marginBottom: 3, padding: 2 }, [
+				// 	new b.img({ rounded: "circle", src: opt.src }),
+				// 	new h.h(2, { fontWeight: "normal" }, opt.title),
+				// 	new h.p(opt.description),
+				// 	new h.p(new b.button({ color: "secondary", href: opt.href }, "View detail")),
+				// ]),
+			]);
+		};
+
+		const heading2 = new h.div(
+			{ container: true, marginY: 5 },
+			new h.div(
+				{ row: true },
+				[
+					{
+						src: "https://picsum.photos/seed/bsts_3/140/140.webp",
+						title: "Heading",
+						description:
+							"Some representative placeholder content for the three columns of text below the carousel. This is the first column.",
+						href: "#",
+					},
+					{
+						src: "https://picsum.photos/seed/bsts_4/140/140.webp",
+						title: "Heading",
+						description:
+							"Another exciting bit of representative placeholder content. This time, we've moved on to the second column.",
+						href: "#",
+					},
+					{
+						src: "https://picsum.photos/seed/bsts_5/140/140.webp",
+						title: "Heading",
+						description:
+							"And lastly this, the third column of representative placeholder content.",
+						href: "#",
+					},
+				].map((i) => heading2_item(i))
+			)
+		);
+
+		return [header(), slider(), heading, heading2, new h.div("content")];
 	},
 };
