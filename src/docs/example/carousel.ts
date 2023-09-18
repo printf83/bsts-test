@@ -8,7 +8,7 @@ export const carousel: IContent = {
 		const header = () => {
 			const id = core.UUID();
 			return new b.navbar.container(
-				{ bgColor: "body-tertiary", expand: "lg" },
+				{ theme: "dark", bgColor: "dark", expand: "lg" },
 				new b.navbar.innercontainer({ container: "fluid" }, [
 					new b.navbar.brand({ href: "#" }, "Navbar"),
 					new b.navbar.toggle.collapse({
