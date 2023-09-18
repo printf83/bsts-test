@@ -154,14 +154,20 @@ export const carousel: IContent = {
 
 		const heading2_item = (opt: heading2_item_option) => {
 			const picture = new h.div({ col: "md-5" }, new b.img({ fluid: true, src: opt.src }));
-			const detail = new h.div({ col: "md-7" }, [
-				new h.h(1, { fontWeight: "normal", lineHeight: 1, marginTop: 5 }, [
-					opt.title,
-					" ",
-					new h.span({ textColor: "body-secondary" }, opt.subtitle),
-				]),
-				new h.p({ lead: true }, opt.description),
-			]);
+			const detail = new h.div(
+				{ col: "md-7" },
+				new h.div(
+					{ display: "flex", alignItem: "center", height: 100 },
+					new h.div({ paddingY: 5 }, [
+						new h.h(1, { fontWeight: "normal", lineHeight: 1, fontDisplay: 5 }, [
+							opt.title,
+							" ",
+							new h.span({ textColor: "body-secondary" }, opt.subtitle),
+						]),
+						new h.p({ lead: true }, opt.description),
+					])
+				)
+			);
 			const container =
 				opt.img_location === "start"
 					? new h.div({ row: true }, [picture, detail])
