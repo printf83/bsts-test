@@ -60,6 +60,7 @@ export const menuFS = [
 	{ label: "Product", value: "docs/example/product" },
 	{ label: "Cover", value: "docs/example/cover" },
 	{ label: "Carousel", value: "docs/example/carousel" },
+	{ label: "Blog", value: "docs/example/blog" },
 ];
 
 export const menu: IMenu[] = [

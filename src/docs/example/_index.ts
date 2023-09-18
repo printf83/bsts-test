@@ -16,3 +16,6 @@ export const cover = () => {
 export const carousel = () => {
 	return import("./carousel.js");
 };
+export const blog = () => {
+	return import("./blog.js");
+};

@@ -45,6 +45,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.carousel);
 			});
 			break;
+		case "docs/example/blog":
+			example.blog().then((res) => {
+				callback(res.blog);
+			});
+			break;
 
 		//--------------------------
 
