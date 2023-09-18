@@ -30,7 +30,7 @@ export const blog: IContent = {
 						},
 						[
 							new h.a(
-								{ linkColor: "secondary", href: "#", label: "Search" },
+								{ linkColor: "secondary", href: "#", label: "Search", marginX: 3 },
 								new b.icon("search")
 							),
 							new b.button(
