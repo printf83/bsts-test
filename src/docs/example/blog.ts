@@ -118,7 +118,7 @@ export const blog: IContent = {
 			return new h.div(
 				{ col: "md-6" },
 				new b.card.container(
-					{ position: "relative", shadow: "sm", overflow: "hidden" },
+					{ position: "relative", overflow: "hidden", shadow: "sm" },
 					new h.div({ row: true }, [
 						new h.div({ col: "md-8" }, [
 							new b.card.body({ padding: 4 }, [
@@ -134,7 +134,7 @@ export const blog: IContent = {
 								new b.card.text({ marginTop: 1, marginBottom: 3 }, opt.description),
 								new b.card.link(
 									{
-										// stretched: true,
+										stretched: true,
 										href: opt.href,
 										display: "inline-block",
 									},
@@ -159,27 +159,30 @@ export const blog: IContent = {
 		};
 
 		const card_section = new h.div(
-			{ row: true, gutter: 5, marginY: 5 },
-			[
-				{
-					img: "https://picsum.photos/seed/bsts_0/200/250.webp",
-					group: "World",
-					title: "Featured post",
-					date: "Nov 12",
-					description:
-						"This is a wider card with supporting text below as a natural lead-in to additional content.",
-					href: "#",
-				},
-				{
-					img: "https://picsum.photos/seed/bsts_1/200/250.webp",
-					group: "Design",
-					title: "Post title",
-					date: "Nov 11",
-					description:
-						"This is a wider card with supporting text below as a natural lead-in to additional content.",
-					href: "#",
-				},
-			].map((i) => card(i))
+			{ overflow: "hidden" },
+			new h.div(
+				{ row: true, gutter: 3, marginY: 3 },
+				[
+					{
+						img: "https://picsum.photos/seed/bsts_0/200/250.webp",
+						group: "World",
+						title: "Featured post",
+						date: "Nov 12",
+						description:
+							"This is a wider card with supporting text below as a natural lead-in to additional content.",
+						href: "#",
+					},
+					{
+						img: "https://picsum.photos/seed/bsts_1/200/250.webp",
+						group: "Design",
+						title: "Post title",
+						date: "Nov 11",
+						description:
+							"This is a wider card with supporting text below as a natural lead-in to additional content.",
+						href: "#",
+					},
+				].map((i) => card(i))
+			)
 		);
 
 		const post = (opt: {
@@ -525,7 +528,10 @@ export const blog: IContent = {
 			])
 		);
 
-		const content_section = new h.div({ row: true, gutter: 5 }, [content_main, content_side]);
+		const content_section = new h.div({ row: true, gutter: 5, marginTop: 0 }, [
+			content_main,
+			content_side,
+		]);
 
 		const footer = new h.footer(
 			{ bgColor: "body-tertiary" },
