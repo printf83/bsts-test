@@ -55,6 +55,7 @@ export const blog: IContent = {
 			new b.nav.header.container({
 				flex: "nowrap",
 				overflowX: "hidden",
+				justifyContent: "between",
 				link: [
 					{
 						active: true,
@@ -197,6 +198,7 @@ export const blog: IContent = {
 						fontDisplay: 5,
 						textColor: "body-emphasis",
 						marginBottom: 1,
+						marginTop: 5,
 					},
 					opt.title
 				),

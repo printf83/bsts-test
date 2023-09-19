@@ -50,6 +50,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.blog);
 			});
 			break;
+		case "docs/example/dashboard":
+			example.dashboard().then((res) => {
+				callback(res.dashboard);
+			});
+			break;
 
 		//--------------------------
 

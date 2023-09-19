@@ -19,3 +19,6 @@ export const carousel = () => {
 export const blog = () => {
 	return import("./blog.js");
 };
+export const dashboard = () => {
+	return import("./dashboard.js");
+};
