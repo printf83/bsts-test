@@ -21,6 +21,10 @@
     --docsearch-muted-color: #7f8497
 } */
 
+.font-serif{
+    font-family: Times, 'Times New Roman', serif !important;
+}
+
 .bs-search {
     position: relative;
     --bs-text-opacity: 1;
