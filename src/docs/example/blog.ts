@@ -56,7 +56,13 @@ export const blog: IContent = {
 				flex: "nowrap",
 				overflowX: "hidden",
 				link: [
-					{ active: true, href: "#", elem: "World" },
+					{
+						active: true,
+						href: "#",
+						textColor: "body-emphasis",
+						fontWeight: "bold",
+						elem: "World",
+					},
 					{ href: "#", textColor: "body-emphasis", elem: "MY" },
 					{ href: "#", textColor: "body-emphasis", elem: "Technology" },
 					{ href: "#", textColor: "body-emphasis", elem: "Design" },
@@ -101,6 +107,7 @@ export const blog: IContent = {
 		);
 
 		const card = (opt: {
+			img: string;
 			group: string;
 			title: string;
 			date: string;
@@ -110,25 +117,40 @@ export const blog: IContent = {
 			return new h.div(
 				{ col: "md-6" },
 				new b.card.container(
-					{ position: "relative", shadow: "sm" },
-					new b.card.body({ padding: 4 }, [
-						new h.strong({ display: "inline-block", marginBottom: 2 }, opt.group),
-						new b.card.title(
-							{ class: "font-serif", h: 3, fontWeight: "bold", margin: 0 },
-							opt.title
-						),
-						new b.card.text({ textColor: "secondary", margin: 0 }, opt.date),
-						new b.card.text({ marginTop: 1, marginBottom: 3 }, opt.description),
-						new b.card.link(
-							{
-								// stretched: true,
-								href: opt.href,
-								display: "inline-block",
-							},
-							new b.label(
-								{ icon: new b.icon("chevron-right"), iconPosition: "end" },
-								"Continue reading"
-							)
+					{ position: "relative", shadow: "sm", overflow: "hidden" },
+					new h.div({ row: true }, [
+						new h.div({ col: "md-8" }, [
+							new b.card.body({ padding: 4 }, [
+								new h.strong(
+									{ display: "inline-block", marginBottom: 2 },
+									opt.group
+								),
+								new b.card.title(
+									{ class: "font-serif", h: 3, fontWeight: "bold", margin: 0 },
+									opt.title
+								),
+								new b.card.text({ textColor: "secondary", margin: 0 }, opt.date),
+								new b.card.text({ marginTop: 1, marginBottom: 3 }, opt.description),
+								new b.card.link(
+									{
+										// stretched: true,
+										href: opt.href,
+										display: "inline-block",
+									},
+									new b.label(
+										{ icon: new b.icon("chevron-right"), iconPosition: "end" },
+										"Continue reading"
+									)
+								),
+							]),
+						]),
+						new h.div(
+							{ col: true, display: ["none", "md-block"] },
+							new b.card.img({
+								fluid: true,
+								src: opt.img,
+								alt: "Image",
+							})
 						),
 					])
 				)
@@ -136,9 +158,10 @@ export const blog: IContent = {
 		};
 
 		const card_section = new h.div(
-			{ row: true, marginY: 5 },
+			{ row: true, gutter: 5, marginY: 5 },
 			[
 				{
+					img: "https://picsum.photos/seed/bsts_0/200/250.webp",
 					group: "World",
 					title: "Featured post",
 					date: "Nov 12",
@@ -147,6 +170,7 @@ export const blog: IContent = {
 					href: "#",
 				},
 				{
+					img: "https://picsum.photos/seed/bsts_1/200/250.webp",
 					group: "Design",
 					title: "Post title",
 					date: "Nov 11",
@@ -288,7 +312,7 @@ export const blog: IContent = {
 						),
 						new h.ul([
 							new h.li("{{s::To bold text}} use {{<strong>}}"),
-							new h.li("{{e::To italicize text}}, use {{<em>}}."),
+							new h.li("{{i::To italicize text}}, use {{<em>}}."),
 							new h.li([
 								"Abbreviations, like ",
 								new h.abbr({ title: "HyperText Markup Language" }, "HTML"),
@@ -431,19 +455,19 @@ export const blog: IContent = {
 						[
 							{
 								url: "#",
-								img: "https://picsum.photos/seed/bsts_0/200/96.webp",
+								img: "https://picsum.photos/seed/bsts_2/200/96.webp",
 								title: "Example blog post title",
 								date: "January 15, 2023",
 							},
 							{
 								url: "#",
-								img: "https://picsum.photos/seed/bsts_1/200/96.webp",
+								img: "https://picsum.photos/seed/bsts_3/200/96.webp",
 								title: "This is another blog post title",
 								date: "January 14, 2023",
 							},
 							{
 								url: "#",
-								img: "https://picsum.photos/seed/bsts_2/200/96.webp",
+								img: "https://picsum.photos/seed/bsts_4/200/96.webp",
 								title: "Longer blog post title: This one has multiple lines!",
 								date: "January 13, 2023",
 							},
