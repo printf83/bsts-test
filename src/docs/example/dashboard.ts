@@ -39,13 +39,12 @@ export const dashboard: IContent = {
 				[
 					new b.offcanvas.header([
 						new b.offcanvas.title({ id: "offcanvasNavbarLabel" }, "Company name"),
-						new b.offcanvas.btnclose(),
+						new b.offcanvas.btnclose({ target: "#offcanvasNavbar" }),
 					]),
 					new b.offcanvas.body(
 						{
 							display: "md-flex",
 							flex: "column",
-							// padding: 0,
 							paddingTop: "lg-3",
 							overflowY: "auto",
 						},
