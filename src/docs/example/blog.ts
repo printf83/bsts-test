@@ -1,6 +1,5 @@
 import { b, core, h } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
-import { container } from "../../ctl/main/container.js";
 
 export const blog: IContent = {
 	fullscreen: true,
