@@ -62,6 +62,7 @@ export const menuFS = [
 	{ label: "Carousel", value: "docs/example/carousel" },
 	{ label: "Blog", value: "docs/example/blog" },
 	{ label: "Dashboard", value: "docs/example/dashboard" },
+	{ label: "Sign in", value: "docs/example/sign_in" },
 ];
 
 export const menu: IMenu[] = [

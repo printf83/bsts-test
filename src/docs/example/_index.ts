@@ -22,3 +22,6 @@ export const blog = () => {
 export const dashboard = () => {
 	return import("./dashboard.js");
 };
+export const sign_in = () => {
+	return import("./sign_in.js");
+};

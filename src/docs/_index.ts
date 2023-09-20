@@ -55,6 +55,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.dashboard);
 			});
 			break;
+		case "docs/example/sign_in":
+			example.sign_in().then((res) => {
+				callback(res.sign_in);
+			});
+			break;
 
 		//--------------------------
 
