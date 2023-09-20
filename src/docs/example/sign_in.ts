@@ -13,12 +13,26 @@ export const sign_in: IContent = {
 					new b.icon({
 						id: "hexagon-fill",
 						marginBottom: 3,
-						textColor: "primary-emphasis",
+						textColor: "primary",
 						style: {
 							fontSize: "6rem",
 						},
 					}),
-					new h.h(1, {}),
+					new h.h(1, { h: 3, marginBottom: 3, fontWeight: "normal" }, "Please sign in"),
+					b.form.floatinglabel.input({
+						type: "email",
+						label: "Email address",
+						roundedNone: "bottom",
+						borderNone: "bottom",
+					}),
+					b.form.floatinglabel.input({
+						type: "password",
+						label: "Password",
+						roundedNone: "top",
+					}),
+					new h.div({ marginY: 3 }, b.form.check({ label: "Remember me" })),
+					new b.button({ width: 100, paddingY: 2, type: "submit" }, "Sign in"),
+					new h.p({ marginTop: 5, marginBottom: 3, textColor: "body" }, "© 2017–2023"),
 				])
 			)
 		);
