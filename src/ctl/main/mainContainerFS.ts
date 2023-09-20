@@ -72,7 +72,7 @@ export const mainContainerFS = () => {
 				bottom: 0,
 				marginEnd: 4,
 				marginBottom: 4,
-				zIndex: 3,
+				style: { zIndex: "5000" },
 			},
 			new b.button(
 				{
@@ -83,6 +83,8 @@ export const mainContainerFS = () => {
 					shadow: true,
 					weight: "lg",
 					border: true,
+					borderWidth: 3,
+					borderColor: "primary-subtle",
 				},
 				new b.icon({ id: "list", fontWeight: "bolder" })
 			)
