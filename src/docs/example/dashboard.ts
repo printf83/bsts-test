@@ -26,6 +26,17 @@ export const dashboard: IContent = {
 			])
 		);
 
+		const sidebar_item = (opt: { href: string; icon: string; label: string }) => {
+			return new b.navbar.item(
+				new b.navbar.link(
+					{ href: opt.href, paddingX: 3 },
+					new b.caption({ icon: new b.icon(opt.icon) }, opt.label)
+				)
+			);
+		};
+
+		const sidebar_heading = new h.h(6, { display: "flex", justifyContent: "between" }, "aaa");
+
 		const sidebar = new h.div(
 			{ border: "end", col: ["md-3", "lg-2"], padding: 0, bgColor: "body-tertiary" },
 			new b.offcanvas.container(
@@ -55,20 +66,16 @@ export const dashboard: IContent = {
 									marginBottom: "auto",
 								},
 								[
-									{ icon: "house", label: "Dashboard", href: "#" },
-									{ icon: "file-earmark", label: "Orders", href: "#" },
-									{ icon: "cart", label: "Products", href: "#" },
-									{ icon: "people", label: "Customers", href: "#" },
-									{ icon: "graph-up", label: "Report", href: "#" },
-									{ icon: "puzzle", label: "Integrations", href: "#" },
-								].map((i) => {
-									return new b.navbar.item(
-										new b.navbar.link(
-											{ href: i.href, paddingX: 3 },
-											new b.caption({ icon: new b.icon(i.icon) }, i.label)
-										)
-									);
-								})
+									...[
+										{ icon: "house", label: "Dashboard", href: "#" },
+										{ icon: "file-earmark", label: "Orders", href: "#" },
+										{ icon: "cart", label: "Products", href: "#" },
+										{ icon: "people", label: "Customers", href: "#" },
+										{ icon: "graph-up", label: "Report", href: "#" },
+										{ icon: "puzzle", label: "Integrations", href: "#" },
+									].map((i) => sidebar_item(i)),
+									sidebar_heading,
+								]
 							),
 						]
 					),
