@@ -30,7 +30,12 @@ export const dashboard: IContent = {
 		const sidebar_item = (opt: { href: string; icon: string; label: string }) => {
 			return new b.navbar.item(
 				new b.navbar.link(
-					{ href: opt.href, paddingX: 3 },
+					{
+						href: opt.href,
+						paddingX: 3,
+						textColorHover: "light",
+						bgColorHover: "primary",
+					},
 					new b.caption({ icon: new b.icon(opt.icon) }, opt.label)
 				)
 			);
@@ -178,57 +183,39 @@ export const dashboard: IContent = {
 			]
 		);
 
-		const RANDOMDATA = (id: string, chart?: Chart<"line", number[], any>) => {
-			var _a, _b;
-			const canvas = document.getElementById(id);
-			if (canvas) {
-				if (
-					chart &&
-					chart.data.datasets &&
-					chart.data.datasets.length >= 0 &&
-					chart.data.datasets[0] &&
-					chart.data.datasets[0].data
-				) {
-					const value = core.rndBetween(0, 100);
-					(_a = chart.data.labels) === null || _a === void 0 ? void 0 : _a.shift();
-					(_b = chart.data.labels) === null || _b === void 0 ? void 0 : _b.push("");
-					chart.data.datasets[0].data.push(value);
-					chart.data.datasets[0].data.shift();
-					chart.update("none");
-					setTimeout(
-						(id, chart) => {
-							RANDOMDATA(id, chart);
-						},
-						1000,
-						id,
-						chart
-					);
-				}
-			}
-		};
 		const chart_id = core.UUID();
 		const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
 		const lineColor = core.getCSSVarRgbColor("--bs-primary");
 		const gridColor = core.getCSSVarRgbColor("--bs-tertiary-bg");
-		const chart_data = Array(10)
+		let last_value = core.rndBetween(100, 1000);
+
+		const chart_data = Array(26)
 			.fill("")
 			.map(() => {
-				return core.rndBetween(0, 100);
+				let current_value = 0;
+				if (core.rndBetween(0, 100) > 50)
+					current_value = last_value + core.rndBetween(1000, 3000);
+				else current_value = last_value - core.rndBetween(100, 1000);
+				last_value = current_value;
+				return current_value;
 			});
 		const main_chart = new h.canvas({
+			marginY: 5,
 			id: chart_id,
 			on: {
 				build: (event) => {
 					const target = event.target as HTMLCanvasElement;
-					const res = new Chart(target, {
+					new Chart(target, {
 						type: "line",
 						data: {
-							labels: Array(chart_data.length).fill(""),
+							labels: Array(chart_data.length)
+								.fill("")
+								.map((_i, ix) => String.fromCharCode(64 + ix + 1)),
 							datasets: [
 								{
 									data: chart_data,
-									borderWidth: 1,
-									pointRadius: 0,
+									borderWidth: 2,
+									pointRadius: 2,
 									tension: 0.5,
 									borderColor: lineColor,
 									fill: {
@@ -243,15 +230,9 @@ export const dashboard: IContent = {
 								legend: {
 									display: false,
 								},
-								tooltip: {
-									enabled: false,
-								},
 							},
 							scales: {
 								x: {
-									ticks: {
-										display: false,
-									},
 									grid: {
 										color: gridColor,
 									},
@@ -265,15 +246,13 @@ export const dashboard: IContent = {
 							},
 						},
 					});
-					RANDOMDATA(chart_id, res);
 				},
 			},
 		});
 
 		const main_section = new h.h(2, "Section title");
 
-		const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum ante eu est semper, et vulputate leo molestie. Cras luctus pretium arcu, 
-		quis rutrum lectus dictum vel. In quis pretium erat. Proin vel placerat velit. Vestibulum vehicula ex sed ultricies ultricies. In vitae erat est. Pellentesque id aliquet justo. Maecenas at mauris`;
+		const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum ante eu est semper, et vulputate leo molestie. Cras luctus pretium arcu, quis rutrum lectus dictum vel. In quis pretium erat. Proin vel placerat velit. Vestibulum vehicula ex sed ultricies ultricies. In vitae erat est. Pellentesque id aliquet justo. Maecenas at mauris in sapien interdum posuere at in velit. In hac habitasse platea dictumst.`;
 
 		const arr_1D = lorem.replace(/[\.|\,]/g, "").split(" ");
 		const num_col = 4;
@@ -295,6 +274,7 @@ export const dashboard: IContent = {
 		}
 
 		const main_table = new b.table.container({
+			striped: "row",
 			item: [["#", "Header", "Header", "Header", "Header"], ...arr_2D],
 		});
 
