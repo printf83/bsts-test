@@ -546,7 +546,7 @@ export const blog: IContent = {
 			)
 		);
 
-		return new h.div([
+		return new h.div({ container: "fluid", padding: 0, overflow: "hidden" }, [
 			new h.div({ container: true }, [header, navbar, banner, card_section, content_section]),
 			footer,
 		]);

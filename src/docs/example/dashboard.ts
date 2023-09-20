@@ -273,10 +273,12 @@ export const dashboard: IContent = {
 			arr_2D.push(row);
 		}
 
-		const main_table = new b.table.container({
-			striped: "row",
-			item: [["#", "Header", "Header", "Header", "Header"], ...arr_2D],
-		});
+		const main_table = new b.table.responsive(
+			new b.table.container({
+				striped: "row",
+				item: [["#", "Header", "Header", "Header", "Header"], ...arr_2D],
+			})
+		);
 
 		const main = new h.main(
 			{ col: ["md-9", "lg-10"], marginStart: "sm-auto", paddingX: "md-4" },
