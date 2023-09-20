@@ -1,0 +1,22 @@
+"use strict";
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(self["webpackChunkbsts_test"] = self["webpackChunkbsts_test"] || []).push([["src_docs_example_sign_in_ts"],{
+
+/***/ "./src/docs/example/sign_in.ts":
+/*!*************************************!*\
+  !*** ./src/docs/example/sign_in.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   sign_in: () => (/* binding */ sign_in)\n/* harmony export */ });\n/* harmony import */ var _printf83_bsts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @printf83/bsts */ \"../bsts/build/esm/index.js\");\n\nconst sign_in = {\n    fullscreen: true,\n    title: \"Sign in\",\n    item: () => {\n        return new _printf83_bsts__WEBPACK_IMPORTED_MODULE_0__.h.div(\"content\");\n    },\n};\n\n\n//# sourceURL=webpack://bsts-test/./src/docs/example/sign_in.ts?");
+
+/***/ })
+
+}]);
