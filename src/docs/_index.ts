@@ -60,6 +60,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.sign_in);
 			});
 			break;
+		case "docs/example/sticky_footer":
+			example.sticky_footer().then((res) => {
+				callback(res.sticky_footer);
+			});
+			break;
 
 		//--------------------------
 

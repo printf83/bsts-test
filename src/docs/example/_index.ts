@@ -25,3 +25,6 @@ export const dashboard = () => {
 export const sign_in = () => {
 	return import("./sign_in.js");
 };
+export const sticky_footer = () => {
+	return import("./sticky_footer.js");
+};
