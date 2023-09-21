@@ -1,5 +1,5 @@
-import * as e from "../../ctl/example/_index.js";
-import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import * as e from "../ctl/example/_index.js";
+import { IContent, getContentCode, resetContentIndex } from "../ctl/main/content.js";
 
 export const _template: IContent = {
 	title: "",

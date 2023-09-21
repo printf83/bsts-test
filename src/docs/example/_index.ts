@@ -13,3 +13,18 @@ export const product = () => {
 export const cover = () => {
 	return import("./cover.js");
 };
+export const carousel = () => {
+	return import("./carousel.js");
+};
+export const blog = () => {
+	return import("./blog.js");
+};
+export const dashboard = () => {
+	return import("./dashboard.js");
+};
+export const sign_in = () => {
+	return import("./sign_in.js");
+};
+export const sticky_footer = () => {
+	return import("./sticky_footer.js");
+};

@@ -143,7 +143,7 @@ export const pricing: IContent = {
 			)
 		);
 
-		const check_icon = new b.icon({ id: "check2", fontSize: 4 });
+		const check_icon = new b.icon({ id: "check2", fontSize: 4, textColor: "primary" });
 		const plan_compare = new h.section({ container: true }, [
 			new h.h(2, { fontDisplay: 6, textAlign: "center", marginBottom: 4 }, "Compare plans"),
 			new b.table.responsive(

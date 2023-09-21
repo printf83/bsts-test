@@ -170,7 +170,7 @@ const updateColorPallet = () => {
 core.documentReady(() => {
 	updateColorPallet();
 	onThemeChange(getSavedTheme());
-	onBootswatchChange(getSavedBootswatch());
+	onBootswatchChange(getSavedBootswatch(), false);
 
 	core.requestIdleCallback(() => {
 		let body = document.getElementById("main") as Element;
