@@ -27,17 +27,17 @@ function itemCodeCopy(e: Event) {
 		if (text) {
 			navigator.clipboard.writeText(text).then(
 				() => {
-					successCopyCode(iconElem);
+					successCopyCode(iconElem, "light");
 				},
 				() => {
-					failCopyCode(iconElem);
+					failCopyCode(iconElem, "warning");
 				}
 			);
 		} else {
-			failCopyCode(iconElem);
+			failCopyCode(iconElem, "warning");
 		}
 	} else {
-		failCopyCode(iconElem);
+		failCopyCode(iconElem, "warning");
 	}
 
 	return false;
@@ -79,9 +79,10 @@ export const mainContainerFS = () => {
 					target: "#bs-main-fs-modal",
 					toggle: "modal",
 					rounded: "circle",
-					style: { width: "4rem", height: "4rem" },
 					shadow: true,
 					weight: "lg",
+					lineHeight: 1,
+					padding: 3,
 					border: true,
 					borderWidth: 3,
 					borderColor: "primary-subtle",
@@ -156,15 +157,22 @@ export const mainContainerFS = () => {
 										),
 										new b.dropdown.menu(
 											{ customStyle: 1, id: "bs-main-fs-menu" },
-											menuFS.map((i) => {
-												return new b.dropdown.item(
-													{
-														data: { value: i.value },
-														on: { click: navigateToDoc },
-													},
-													i.label
-												);
-											})
+											new h.div(
+												{
+													display: "grid",
+													gridTemplateColumns: "1fr 1fr",
+													gap: 1,
+												},
+												menuFS.map((i) => {
+													return new b.dropdown.item(
+														{
+															data: { value: i.value },
+															on: { click: navigateToDoc },
+														},
+														i.label
+													);
+												})
+											)
 										),
 									]),
 								]
