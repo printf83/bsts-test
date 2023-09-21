@@ -6,6 +6,29 @@ export interface IBootswatchItem {
 	label: string;
 }
 
+const removeCustomVarContainer = (name?: string) => {
+	const customVarContainer = document.getElementById(
+		`bsts-custom${name ? "-" + name : ""}-var-container`
+	);
+
+	if (customVarContainer) {
+		core.removeElement(customVarContainer);
+	}
+};
+
+const removeAllCustomVar = () => {
+	removeCustomVarContainer("primary");
+	removeCustomVarContainer("secondary");
+	removeCustomVarContainer("success");
+	removeCustomVarContainer("info");
+	removeCustomVarContainer("warning");
+	removeCustomVarContainer("danger");
+	removeCustomVarContainer("dark");
+	removeCustomVarContainer("light");
+	removeCustomVarContainer("body");
+	removeCustomVarContainer();
+};
+
 export const changeBootswatch = (value: string) => {
 	//change menu
 	let bsBootswatch = document.getElementsByClassName("bs-bootswatch");
@@ -35,6 +58,7 @@ export const changeBootswatch = (value: string) => {
 	}
 
 	//raise event
+
 	onBootswatchChange(value);
 };
 
@@ -47,11 +71,15 @@ export const getSavedBootswatch = () => {
 	}
 };
 
-export const onBootswatchChange = (value: string) => {
+export const onBootswatchChange = (value: string, resetAccentColor?: boolean) => {
+	resetAccentColor ??= true;
+
 	cookie.set("current_bootswatch", value);
 	const bootstrapCssLink = document.getElementById("bootswatchCssLink") as HTMLLinkElement;
 
 	if (bootstrapCssLink) {
+		if (resetAccentColor) removeAllCustomVar();
+
 		if (value === "default") {
 			bootstrapCssLink.disabled = true;
 			bootstrapCssLink.setAttribute("href", "");

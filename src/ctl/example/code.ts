@@ -88,15 +88,17 @@ const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	}
 };
 
-export function successCopyCode(iconElem?: Element) {
+export function successCopyCode(iconElem?: Element, color?: core.bootstrapType.textColor) {
 	if (iconElem) {
+		color ??= "success";
+
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-check2");
-		iconElem.classList.add("text-success");
+		iconElem.classList.add(`text-${color}`);
 
 		setTimeout(
 			(iconElem) => {
-				iconElem.classList.remove("text-success");
+				iconElem.classList.remove(`text-${color}`);
 				iconElem.classList.remove("bi-check2");
 				iconElem.classList.add("bi-clipboard");
 			},
@@ -106,15 +108,17 @@ export function successCopyCode(iconElem?: Element) {
 	}
 }
 
-export function failCopyCode(iconElem?: Element) {
+export function failCopyCode(iconElem?: Element, color?: core.bootstrapType.textColor) {
 	if (iconElem) {
+		color ??= "danger";
+
 		iconElem.classList.remove("bi-clipboard");
 		iconElem.classList.add("bi-exclamation-triangle");
-		iconElem.classList.add("text-danger");
+		iconElem.classList.add(`text-${color}`);
 
 		setTimeout(
 			(iconElem) => {
-				iconElem.classList.remove("text-danger");
+				iconElem.classList.remove(`text-${color}`);
 				iconElem.classList.remove("bi-exclamation-triangle");
 				iconElem.classList.add("bi-clipboard");
 			},

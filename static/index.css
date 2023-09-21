@@ -21,6 +21,10 @@
     --docsearch-muted-color: #7f8497
 } */
 
+.font-serif{
+    font-family: 'Nimbus Roman', 'Tinos','Liberation Serif', Times, 'Times New Roman', serif !important;
+}
+
 .bs-search {
     position: relative;
     --bs-text-opacity: 1;
@@ -862,11 +866,13 @@ strong,
         border-right: 0
     }
 
-    .example-code.card>.card-body>ul.list-group {
+    .example-code.card>.card-body>ul.list-group,
+    .example-preview.card {
         border-radius: 0 !important;
     }
 
-    .example-code.card>.card-body>ul.list-group>li.list-group-item {
+    .example-code.card>.card-body>ul.list-group>li.list-group-item,
+    .example-preview.card {
         border-left: 0 !important;
         border-right: 0 !important;
     }

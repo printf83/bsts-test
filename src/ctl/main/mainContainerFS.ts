@@ -27,17 +27,17 @@ function itemCodeCopy(e: Event) {
 		if (text) {
 			navigator.clipboard.writeText(text).then(
 				() => {
-					successCopyCode(iconElem);
+					successCopyCode(iconElem, "light");
 				},
 				() => {
-					failCopyCode(iconElem);
+					failCopyCode(iconElem, "warning");
 				}
 			);
 		} else {
-			failCopyCode(iconElem);
+			failCopyCode(iconElem, "warning");
 		}
 	} else {
-		failCopyCode(iconElem);
+		failCopyCode(iconElem, "warning");
 	}
 
 	return false;
@@ -72,17 +72,20 @@ export const mainContainerFS = () => {
 				bottom: 0,
 				marginEnd: 4,
 				marginBottom: 4,
-				zIndex: 3,
+				style: { zIndex: "5000" },
 			},
 			new b.button(
 				{
 					target: "#bs-main-fs-modal",
 					toggle: "modal",
 					rounded: "circle",
-					style: { width: "4rem", height: "4rem" },
 					shadow: true,
 					weight: "lg",
+					lineHeight: 1,
+					padding: 3,
 					border: true,
+					borderWidth: 3,
+					borderColor: "primary-subtle",
 				},
 				new b.icon({ id: "list", fontWeight: "bolder" })
 			)
@@ -92,7 +95,7 @@ export const mainContainerFS = () => {
 				id: "bs-main-fs-modal",
 				weight: "lg",
 				scrollable: true,
-				fullscreen: "sm",
+				fullscreen: "md",
 			},
 			[
 				new b.modal.header(
@@ -154,15 +157,22 @@ export const mainContainerFS = () => {
 										),
 										new b.dropdown.menu(
 											{ customStyle: 1, id: "bs-main-fs-menu" },
-											menuFS.map((i) => {
-												return new b.dropdown.item(
-													{
-														data: { value: i.value },
-														on: { click: navigateToDoc },
-													},
-													i.label
-												);
-											})
+											new h.div(
+												{
+													display: "grid",
+													gridTemplateColumns: "1fr 1fr",
+													gap: 1,
+												},
+												menuFS.map((i) => {
+													return new b.dropdown.item(
+														{
+															data: { value: i.value },
+															on: { click: navigateToDoc },
+														},
+														i.label
+													);
+												})
+											)
 										),
 									]),
 								]

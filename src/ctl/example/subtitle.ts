@@ -76,7 +76,10 @@ const convert = (attr: ISubTitle) => {
 							},
 						},
 					},
-					new b.label({ icon: "journal-code" }, "Learn more")
+					new b.label(
+						{ icon: "journal-code", labelDisplay: ["none", "md-inline"] },
+						"Learn more"
+					)
 				)
 			);
 		}

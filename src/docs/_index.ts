@@ -40,6 +40,31 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.cover);
 			});
 			break;
+		case "docs/example/carousel":
+			example.carousel().then((res) => {
+				callback(res.carousel);
+			});
+			break;
+		case "docs/example/blog":
+			example.blog().then((res) => {
+				callback(res.blog);
+			});
+			break;
+		case "docs/example/dashboard":
+			example.dashboard().then((res) => {
+				callback(res.dashboard);
+			});
+			break;
+		case "docs/example/sign_in":
+			example.sign_in().then((res) => {
+				callback(res.sign_in);
+			});
+			break;
+		case "docs/example/sticky_footer":
+			example.sticky_footer().then((res) => {
+				callback(res.sticky_footer);
+			});
+			break;
 
 		//--------------------------
 
