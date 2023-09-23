@@ -1,4 +1,4 @@
-import { b, h, core, I } from "@printf83/bsts";
+import { b, h, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -33,7 +33,7 @@ export const alert: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i as I.B.Alert.Container["color"] },
+								{ color: i as core.bootstrapType.alertColor },
 								`A simple ${i} alert—check it out!`
 							);
 						});
@@ -67,7 +67,7 @@ export const alert: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i as I.B.Alert.Container["color"], callout: true },
+								{ color: i as core.bootstrapType.alertColor, callout: true },
 								`A simple ${i} callout—check it out!`
 							);
 						});
@@ -135,7 +135,7 @@ export const alert: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i as I.B.Alert.Container["color"] },
+								{ color: i as core.bootstrapType.alertColor },
 								[
 									`A simple ${i} alert with `,
 									new b.alert.link({ href: "#" }, "an example link"),
@@ -202,7 +202,7 @@ export const alert: IContent = {
 							{ color: "danger", icon: "x-circle-fill" },
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i.color as I.B.Alert.Container["color"] },
+								{ color: i.color as core.bootstrapType.alertColor },
 								[
 									new b.msg(
 										{ icon: i.icon },

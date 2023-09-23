@@ -1,4 +1,8 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { HLevel } from "../../../node_modules/@printf83/bsts/build/types/html/h.js";
+import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
+import { Popover as IPopover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
+
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -131,7 +135,7 @@ export const bootswatch: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as I.B.Button["color"] },
+								{ color: i as core.bootstrapType.btnColor },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -159,7 +163,7 @@ export const bootswatch: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as I.B.Button["color"], disabled: true },
+								{ color: i as core.bootstrapType.btnColor, disabled: true },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -187,7 +191,7 @@ export const bootswatch: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as I.B.Button["color"], outline: true },
+								{ color: i as core.bootstrapType.btnColor, outline: true },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -432,7 +436,7 @@ export const bootswatch: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.dropdown.button(
-										{ color: i as I.B.Dropdown.Button["color"] },
+										{ color: i as core.bootstrapType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.menu([
@@ -464,11 +468,11 @@ export const bootswatch: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.button(
-										{ color: i as I.B.Dropdown.Button["color"] },
+										{ color: i as core.bootstrapType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.button({
-										color: i as I.B.Dropdown.Button["color"],
+										color: i as core.bootstrapType.btnColor,
 										split: true,
 									}),
 									new b.dropdown.menu([
@@ -493,7 +497,7 @@ export const bootswatch: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map(
-							(i) => new h.h(i as I.H.HLevel, `h${i}. Bootstrap heading`)
+							(i) => new h.h(i as HLevel, `h${i}. Bootstrap heading`)
 						);
 					},
 				}),
@@ -511,7 +515,7 @@ export const bootswatch: IContent = {
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map(
 							(i) =>
-								new h.h(i as I.H.HLevel, [
+								new h.h(i as HLevel, [
 									`h${i}. Heading`,
 									new h.small(
 										{ textColor: "body-secondary" },
@@ -716,7 +720,7 @@ export const bootswatch: IContent = {
 									"dark",
 								].map(
 									(i) =>
-										new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [
+										new b.table.tr({ color: i as core.bootstrapType.color }, [
 											new b.table.th(
 												{ scope: "row" },
 												i ? core.uppercaseFirst(i) : "Default"
@@ -1231,7 +1235,7 @@ export const bootswatch: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ dismissible: true, color: i as I.B.Alert.Container["color"] },
+								{ dismissible: true, color: i as core.bootstrapType.alertColor },
 								`A simple ${i} alert—check it out!`
 							);
 						});
@@ -1257,7 +1261,7 @@ export const bootswatch: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ callout: true, color: i as I.B.Alert.Container["color"] },
+								{ callout: true, color: i as core.bootstrapType.alertColor },
 								`A simple ${i} alert—check it out!`
 							);
 						});
@@ -1361,7 +1365,7 @@ export const bootswatch: IContent = {
 									max: 100,
 								},
 								new b.progress.bar({
-									color: i as I.B.Progress.Bar["color"],
+									color: i as core.bootstrapType.color,
 									style: { width: `${val}%` },
 								})
 							);
@@ -1430,7 +1434,7 @@ export const bootswatch: IContent = {
 								},
 								new b.progress.bar({
 									striped: true,
-									textBgColor: i as I.B.Progress.Bar["textBgColor"],
+									textBgColor: i as core.bootstrapType.textBgColor,
 									style: { width: `${val}%` },
 								})
 							);
@@ -1532,7 +1536,7 @@ export const bootswatch: IContent = {
 							].map((i) => {
 								return new b.list.item(
 									{
-										color: i as I.B.List.Item["color"],
+										color: i as core.bootstrapType.color,
 										display: "flex",
 										justifyContent: "between",
 										alignItem: "center",
@@ -1901,7 +1905,7 @@ export const bootswatch: IContent = {
 						return ["top", "right", "bottom", "left"].map((i) => {
 							return new b.popover(
 								{
-									placement: i as I.B.Popover["placement"],
+									placement: i as IPopover["placement"],
 									content: `${core.uppercaseFirst(i)} popover`,
 								},
 								new b.button({ color: "secondary" }, `Popover on ${i}`)
@@ -1922,7 +1926,7 @@ export const bootswatch: IContent = {
 						return ["top", "right", "bottom", "left"].map((i) => {
 							return new b.tooltip(
 								{
-									placement: i as I.B.Tooltip["placement"],
+									placement: i as ITooltip["placement"],
 									content: `Tooltip on ${i}`,
 								},
 								new b.button({ color: "secondary" }, `Tooltip on ${i}`)

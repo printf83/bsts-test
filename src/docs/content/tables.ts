@@ -1,4 +1,4 @@
-import { core, I, b, h } from "@printf83/bsts";
+import { core, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -186,7 +186,7 @@ export const tables: IContent = {
 									"dark",
 								].map(
 									(i) =>
-										new b.table.tr({ color: i as I.B.Table.Tr["color"] }, [
+										new b.table.tr({ color: i as core.bootstrapType.color }, [
 											new b.table.th(
 												{ scope: "row" },
 												i ? core.uppercaseFirst(i) : "Default"
@@ -229,13 +229,13 @@ export const tables: IContent = {
 											new b.table.th(
 												{
 													scope: "row",
-													color: i as I.B.Table.Th["color"],
+													color: i as core.bootstrapType.color,
 												},
 												i ? core.uppercaseFirst(i) : "Default"
 											),
 											new b.table.td("Cell"),
 											new b.table.td(
-												{ color: i as I.B.Table.Tr["color"] },
+												{ color: i as core.bootstrapType.color },
 												"Cell"
 											),
 										])

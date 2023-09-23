@@ -1,6 +1,8 @@
-import { core, h, I } from "@printf83/bsts";
+import { Ol } from "../../../node_modules/@printf83/bsts/build/types/html/ol.js";
 
-const convert = (attr: I.H.Ol) => {
+import { core, h } from "@printf83/bsts";
+
+const convert = (attr: Ol) => {
 	let tAttr: core.IAttr = {};
 
 	tAttr.class = "example-ol";
@@ -12,10 +14,10 @@ const convert = (attr: I.H.Ol) => {
 
 export class ol extends h.div {
 	constructor();
-	constructor(attr: I.H.Ol);
+	constructor(attr: Ol);
 	constructor(elem: core.IElem);
-	constructor(attr: I.H.Ol, elem: core.IElem);
+	constructor(attr: Ol, elem: core.IElem);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<I.H.Ol>("elem", arg)));
+		super(convert(core.bsConstArg<Ol>("elem", arg)));
 	}
 }

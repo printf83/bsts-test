@@ -1,4 +1,4 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -27,7 +27,7 @@ export const buttons: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as I.B.Button["color"] },
+								{ color: i as core.bootstrapType.btnColor },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -55,7 +55,7 @@ export const buttons: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as I.B.Button["color"], rounded: "pill" },
+								{ color: i as core.bootstrapType.btnColor, rounded: "pill" },
 								core.uppercaseFirst(i)
 							);
 						});

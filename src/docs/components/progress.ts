@@ -1,4 +1,6 @@
-import { I, b, core } from "@printf83/bsts";
+/// <reference types="@printf83/bsts"/>
+
+import { b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -248,7 +250,7 @@ export const progress: IContent = {
 									max: 100,
 								},
 								new b.progress.bar({
-									color: i as I.B.Progress.Bar["color"],
+									color: i as core.bootstrapType.color, 
 									style: { width: `${val}%` },
 								})
 							);
@@ -267,7 +269,7 @@ export const progress: IContent = {
 								value: val,
 								min: 0,
 								max: 100,
-								color: i as I.B.Progress.Bar["color"],
+								color: i as core.bootstrapType.color,
 							});
 						});
 					},
@@ -295,8 +297,8 @@ export const progress: IContent = {
 								},
 								new b.progress.bar(
 									{
-										color: i as I.B.Progress.Bar["color"],
-										textColor: text as I.B.Progress.Bar["textColor"],
+										color: i as core.bootstrapType.color,
+										textColor: text as core.bootstrapType.textColor,
 										style: { width: `${val}%` },
 									},
 									`${val}%`
@@ -318,7 +320,7 @@ export const progress: IContent = {
 								value: val,
 								min: 0,
 								max: 100,
-								color: i as I.B.Progress.Container["color"],
+								color: i as core.bootstrapType.color,
 								text: "percent",
 							});
 						});
@@ -342,7 +344,7 @@ export const progress: IContent = {
 								},
 								new b.progress.bar(
 									{
-										textBgColor: i as I.B.Progress.Bar["textBgColor"],
+										textBgColor: i as core.bootstrapType.textBgColor,
 										style: { width: `${val}%` },
 									},
 									`${val}%`
@@ -454,7 +456,7 @@ export const progress: IContent = {
 								},
 								new b.progress.bar({
 									striped: true,
-									textBgColor: i as I.B.Progress.Bar["textBgColor"],
+									textBgColor: i as core.bootstrapType.textBgColor,
 									style: { width: `${val}%` },
 								})
 							);
@@ -474,7 +476,7 @@ export const progress: IContent = {
 								min: 0,
 								max: 100,
 								striped: true,
-								color: i as I.B.Progress.Container["color"],
+								color: i as core.bootstrapType.color,
 							});
 						});
 					},

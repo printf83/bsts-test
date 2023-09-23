@@ -32,6 +32,7 @@
 		"deploy": "gh-pages -d dist"
 	},
 	"devDependencies": {
+		"@printf83/bsts": "^1.0.0",
 		"@total-typescript/ts-reset": "^0.4.2",
 		"@types/bootstrap": "^5.2.7",
 		"@types/js-beautify": "^1.14.1",

@@ -171,7 +171,6 @@ export const introduction: IContent = {
 					item: [
 						["Library", "Description"],
 						["core", "Core function to build html using {{bsts}}"],
-						["I", "Interface if you like to use {{Typescript}}"],
 						["h", "HTML component. Example {{new h.div()}}."],
 						["b", "Bootstrap component. Example {{new b.button()}}."],
 						[

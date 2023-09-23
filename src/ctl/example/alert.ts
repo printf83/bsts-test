@@ -1,6 +1,8 @@
-import { core, h, b, I } from "@printf83/bsts";
+import { Container as AlertContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/alert/container.js";
 
-const convert = (attr: I.B.Alert.Container) => {
+import { core, h, b } from "@printf83/bsts";
+
+const convert = (attr: AlertContainer) => {
 	let tAttr: core.IAttr = {};
 
 	tAttr.class = "example-alert";
@@ -12,10 +14,10 @@ const convert = (attr: I.B.Alert.Container) => {
 
 export class alert extends h.div {
 	constructor();
-	constructor(attr: I.B.Alert.Container);
+	constructor(attr: AlertContainer);
 	constructor(elem: core.IElem);
-	constructor(attr: I.B.Alert.Container, elem: core.IElem);
+	constructor(attr: AlertContainer, elem: core.IElem);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<I.B.Alert.Container>("elem", arg)));
+		super(convert(core.bsConstArg<AlertContainer>("elem", arg)));
 	}
 }

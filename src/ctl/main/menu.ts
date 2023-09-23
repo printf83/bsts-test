@@ -1,9 +1,11 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+
+import { b, core, h } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
 
 export interface IMenu {
 	label: string;
-	icon: I.B.Icon;
+	icon: Icon;
 	item: IMenuItem[];
 }
 

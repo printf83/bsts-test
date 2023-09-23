@@ -1,4 +1,6 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+
+import { b, core, h } from "@printf83/bsts";
 import { ICodePen, codeBeautify, codePen, getLibBaseOnSource } from "../example/_fn.js";
 import { BOOTSWATCHDB, CURRENTVERSION, DEFAULTDOCUMENT, THEMEDB, menuFS } from "./_db.js";
 import { setupContentDocument } from "./content.js";
@@ -56,7 +58,7 @@ export const mainContainerFS = () => {
 	const currentBootswatch = getSavedBootswatch();
 	const currentTheme = getSavedTheme();
 
-	let currentThemeIcon: I.B.Icon | undefined;
+	let currentThemeIcon: Icon | undefined;
 	THEMEDB.forEach((i, ix) => {
 		if (i.value === currentTheme) {
 			currentThemeIcon = THEMEDB[ix]?.icon;

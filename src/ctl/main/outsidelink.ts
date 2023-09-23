@@ -1,9 +1,11 @@
-import { I, b, h, t } from "@printf83/bsts";
+import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+
+import { b, h, t } from "@printf83/bsts";
 
 export interface IOutsideLink {
 	href: string;
 	label: string;
-	icon: I.B.Icon;
+	icon: Icon;
 	onclick?: EventListener;
 }
 
