@@ -1,4 +1,6 @@
-import { h, b, s, core, I } from "@printf83/bsts";
+import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
+
+import { h, b, s, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
@@ -156,7 +158,7 @@ export const tooltip: IContent = {
 						return ["top", "right", "bottom", "left"].map((i) => {
 							return new b.tooltip(
 								{
-									placement: i as I.B.Tooltip["placement"],
+									placement: i as ITooltip["placement"],
 									content: `Tooltip on ${i}`,
 								},
 								new b.button({ color: "secondary" }, `Tooltip on ${i}`)

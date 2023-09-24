@@ -1,4 +1,7 @@
-import { h, b, core, I } from "@printf83/bsts";
+import { Container as ToastContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/container.js";
+import { Create as ToastCreate } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/_fn.js";
+
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -232,7 +235,7 @@ export const toast: IContent = {
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const fnToast = (
-							color: I.B.Toast.Create["color"],
+							color: ToastCreate["color"],
 							elem: core.IElem,
 							icon?: string
 						) => {
@@ -333,11 +336,11 @@ export const toast: IContent = {
 						].map((i) => {
 							return new b.button(
 								{
-									color: i as I.B.Button["color"],
+									color: i as core.bootstrapType.btnColor,
 									on: {
 										click: (_e) => {
 											fnToast(
-												i as I.B.Toast.Create["color"],
+												i as ToastCreate["color"],
 												`This is {{b::${i} }}toast.`
 											);
 										},
@@ -547,7 +550,7 @@ export const toast: IContent = {
 					db: getContentCode(db),
 					showCodepen: false,
 					output: () => {
-						const container = (placement: I.B.Toast.Container["placement"]) => {
+						const container = (placement: ToastContainer["placement"]) => {
 							return new b.toast.container(
 								{
 									class: "debug",
@@ -599,7 +602,7 @@ export const toast: IContent = {
 												document.getElementById(
 													"toastPlacement"
 												) as Element,
-												container(value as I.B.Toast.Container["placement"])
+												container(value as ToastContainer["placement"])
 											);
 										},
 									},

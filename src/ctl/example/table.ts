@@ -1,6 +1,8 @@
-import { core, b, I } from "@printf83/bsts";
+import { Container as TableContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/table/container.js";
 
-const convert = (attr: I.B.Table.Container) => {
+import { core, b } from "@printf83/bsts";
+
+const convert = (attr: TableContainer) => {
 	let tAttr: core.IAttr = {};
 
 	tAttr.class = "example-table";
@@ -17,10 +19,10 @@ const convert = (attr: I.B.Table.Container) => {
 
 export class table extends b.table.responsive {
 	constructor();
-	constructor(attr: I.B.Table.Container);
+	constructor(attr: TableContainer);
 	constructor(elem: core.IElem);
-	constructor(attr: I.B.Table.Container, elem: core.IElem);
+	constructor(attr: TableContainer, elem: core.IElem);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<I.B.Table.Container>("elem", arg)));
+		super(convert(core.bsConstArg<TableContainer>("elem", arg)));
 	}
 }

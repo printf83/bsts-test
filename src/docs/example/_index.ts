@@ -28,3 +28,6 @@ export const sign_in = () => {
 export const sticky_footer = () => {
 	return import("./sticky_footer.js");
 };
+export const sticky_footer_navbar = () => {
+	return import("./sticky_footer_navbar.js");
+};

@@ -1,4 +1,4 @@
-import { core, I, h } from "@printf83/bsts";
+import { core, h } from "@printf83/bsts";
 
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
@@ -23,7 +23,10 @@ export const link: IContent = {
 							(i) =>
 								new h.p(
 									new h.a(
-										{ href: "#", linkOpacity: i as I.H.A["linkOpacity"] },
+										{
+											href: "#",
+											linkOpacity: i as core.bootstrapType.linkOpacity,
+										},
 										`Link opacity ${i}`
 									)
 								)
@@ -40,7 +43,8 @@ export const link: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkOpacityHover: i as I.H.A["linkOpacityHover"],
+											linkOpacityHover:
+												i as core.bootstrapType.linkOpacityHover,
 										},
 										`Link hover opacity ${i}`
 									)
@@ -74,7 +78,8 @@ export const link: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkUnderlineColor: i as I.H.A["linkUnderlineColor"],
+											linkUnderlineColor:
+												i as core.bootstrapType.linkUnderlineColor,
 										},
 										`${core.uppercaseFirst(i)} underline`
 									)
@@ -98,7 +103,10 @@ export const link: IContent = {
 							(i) =>
 								new h.p(
 									new h.a(
-										{ href: "#", linkOffset: i as I.H.A["linkOffset"] },
+										{
+											href: "#",
+											linkOffset: i as core.bootstrapType.linkOffset,
+										},
 										i ? `Offset ${i} link` : "Default link"
 									)
 								)
@@ -126,7 +134,7 @@ export const link: IContent = {
 											linkOffset: 2,
 											linkUnderline: true,
 											linkUnderlineOpacity:
-												i as I.H.A["linkUnderlineOpacity"],
+												i as core.bootstrapType.linkUnderlineOpacity,
 										},
 										`Underline opacity ${i}`
 									)
@@ -190,7 +198,7 @@ export const link: IContent = {
 											linkOffset: 2,
 											linkUnderlineOpacity: 25,
 											linkUnderlineOpacityHover: 100,
-											linkColor: i as I.H.A["linkColor"],
+											linkColor: i as core.bootstrapType.linkColor,
 										},
 										`${core.uppercaseFirst(i)} link`
 									)

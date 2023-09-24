@@ -1,4 +1,6 @@
-import { b, core, h, I } from "@printf83/bsts";
+import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+
+import { b, core, h } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 
@@ -77,7 +79,7 @@ export const animation: IContent = {
 														icon: new b.icon(
 															{
 																animate:
-																	animateData as I.B.Icon["animate"],
+																	animateData as Icon["animate"],
 																fontSize: 1,
 															},
 															"asterisk"
@@ -92,7 +94,7 @@ export const animation: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												animate: i as I.B.Icon["animate"],
+												animate: i as Icon["animate"],
 												fontSize: 1,
 											},
 											"asterisk"
@@ -152,7 +154,7 @@ export const animation: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												animateDuration: i as I.B.Icon["animateDuration"],
+												animateDuration: i as Icon["animateDuration"],
 												animate: "rotation",
 												animateRepeat: "infinite",
 												fontSize: 1,
@@ -214,7 +216,7 @@ export const animation: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												animateDelay: i as I.B.Icon["animateDelay"],
+												animateDelay: i as Icon["animateDelay"],
 												animate: "rotation",
 												animateRepeat: "infinite",
 												fontSize: 1,
@@ -254,7 +256,7 @@ export const animation: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												animateRepeat: i as I.B.Icon["animateRepeat"],
+												animateRepeat: i as Icon["animateRepeat"],
 												animate: "rotation",
 												fontSize: 1,
 											},
@@ -300,7 +302,7 @@ export const animation: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												animateDirection: i as I.B.Icon["animateDirection"],
+												animateDirection: i as Icon["animateDirection"],
 												animate: "rotation",
 												animateRepeat: "infinite",
 												fontSize: 1,
@@ -347,7 +349,7 @@ export const animation: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												animateDirection: i as I.B.Icon["animateDirection"],
+												animateDirection: i as Icon["animateDirection"],
 												animate: "rotation",
 												animateRepeat: "infinite",
 												fontSize: 1,
@@ -387,7 +389,7 @@ export const animation: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												animateTiming: i as I.B.Icon["animateTiming"],
+												animateTiming: i as Icon["animateTiming"],
 												animate: "rotation",
 												animateRepeat: "infinite",
 												fontSize: 1,

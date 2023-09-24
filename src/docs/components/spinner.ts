@@ -1,4 +1,4 @@
-import { h, b, I } from "@printf83/bsts";
+import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -60,7 +60,7 @@ export const spinner: IContent = {
 						].map((i) => {
 							return new b.spinner({
 								type: "border",
-								color: i as I.B.Spinner["color"],
+								color: i as core.bootstrapType.textColor,
 							});
 						});
 					},
@@ -103,7 +103,7 @@ export const spinner: IContent = {
 						].map((i) => {
 							return new b.spinner({
 								type: "grow",
-								color: i as I.B.Spinner["color"],
+								color: i as core.bootstrapType.textColor,
 							});
 						});
 					},

@@ -147,6 +147,7 @@ export const genBootswatch = (
 							display: "grid",
 							gridTemplateColumns: "1fr 1fr 1fr",
 							gap: 1,
+							style: { minWidth: "320px" },
 						},
 						navbarItemBootswatch.map((i) => {
 							return new b.dropdown.item(

@@ -1,9 +1,11 @@
-import { I, b, h, t } from "@printf83/bsts";
+import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
+
+import { b, h, t } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
-	c1: (arg: { copyright: string; icon: string; link: I.B.Nav.Header.Link[] }) => {
+	c1: (arg: { copyright: string; icon: string; link: HeaderLink[] }) => {
 		return new h.footer(
 			{
 				display: "flex",
@@ -101,7 +103,7 @@ const ex = {
 			]
 		);
 	},
-	c3: (arg: { copyright: string; link: I.B.Nav.Header.Link[] }) => {
+	c3: (arg: { copyright: string; link: HeaderLink[] }) => {
 		return new h.footer(
 			{
 				paddingY: 3,
@@ -120,7 +122,7 @@ const ex = {
 			]
 		);
 	},
-	c4Section: (arg: { title: string; link: I.B.Nav.Header.Link[] }) => {
+	c4Section: (arg: { title: string; link: HeaderLink[] }) => {
 		return [
 			new h.h(5, arg.title),
 			new b.nav.header.container({

@@ -958,8 +958,6 @@ export const home: IContent = {
 									{ dropdownMenuPositionView: "center" },
 									new h.div(
 										{
-											// rowCol: "2",
-											// row: true,
 											display: "grid",
 											gap: 1,
 											gridTemplateColumns: "1fr 1fr",

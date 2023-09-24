@@ -1,4 +1,6 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
+
+import { b, core, h } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
 
 export const product: IContent = {
@@ -202,7 +204,7 @@ export const product: IContent = {
 			)
 		);
 
-		const section = (arg: { title: string; link: I.B.Nav.Header.Link[] }) => {
+		const section = (arg: { title: string; link: HeaderLink[] }) => {
 			return [
 				new h.h(5, arg.title),
 				new b.nav.header.container({

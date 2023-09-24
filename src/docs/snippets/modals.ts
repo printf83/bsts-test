@@ -1,4 +1,4 @@
-import { I, b, h } from "@printf83/bsts";
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -417,7 +417,8 @@ export const modals: IContent = {
 												fontSize: 1,
 												h: 1,
 												fontWeight: "bold",
-												textColor: i.iconColor as I.B.Icon["textColor"],
+												textColor:
+													i.iconColor as core.bootstrapType.textColor,
 											}),
 											new h.div([
 												new h.h(5, { marginBottom: 0 }, i.title),
@@ -491,7 +492,7 @@ export const modals: IContent = {
 																		h: 1,
 																		fontWeight: "bold",
 																		textColor:
-																			i.iconColor as I.B.Icon["textColor"],
+																			i.iconColor as core.bootstrapType.textColor,
 																	}),
 																	new h.div([
 																		new h.h(

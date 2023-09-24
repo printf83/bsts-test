@@ -1,4 +1,6 @@
-import { b, h, core, I } from "@printf83/bsts";
+import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+
+import { b, h, core } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
 
@@ -69,7 +71,7 @@ export const transform: IContent = {
 									new b.caption({
 										icon: new b.icon(
 											{
-												flip: i as I.B.Icon["flip"],
+												flip: i as Icon["flip"],
 												fontSize: 1,
 											},
 											"at"

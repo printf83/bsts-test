@@ -1,4 +1,6 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { HLevel } from "../../../node_modules/@printf83/bsts/build/types/html/h.js";
+
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -49,7 +51,7 @@ export const typography: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map(
-							(i) => new h.h(i as I.H.HLevel, `h${i}. Bootstrap heading`)
+							(i) => new h.h(i as HLevel, `h${i}. Bootstrap heading`)
 						);
 					},
 				}),
