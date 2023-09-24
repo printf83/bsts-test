@@ -1,4 +1,5 @@
-import { core, h, b, I } from "@printf83/bsts";
+import { core, h, b } from "@printf83/bsts";
+import { Drop } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/dropdown/container.js";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -95,7 +96,7 @@ export const dropdown: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.dropdown.button(
-										{ color: i as I.B.Dropdown.Button["color"] },
+										{ color: i as core.bootstrapType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.menu([
@@ -130,11 +131,11 @@ export const dropdown: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.button(
-										{ color: i as I.B.Button["color"] },
+										{ color: i as core.bootstrapType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.button({
-										color: i as I.B.Dropdown.Button["color"],
+										color: i as core.bootstrapType.btnColor,
 										split: true,
 									}),
 									new b.dropdown.menu([
@@ -668,7 +669,8 @@ export const dropdown: IContent = {
 							{ label: "Dropend", drop: "end" },
 							{ label: "Dropup", drop: "up" },
 						].map((i) => {
-							return new b.dropdown.container({ drop: i.drop as I.B.Dropdown.Drop }, [
+							// return new b.dropdown.container({ drop: i.drop as I.B.Dropdown.Drop }, [
+							return new b.dropdown.container({ drop: i.drop as Drop }, [
 								new b.dropdown.button({ color: "secondary" }, i.label),
 								new b.dropdown.menu(
 									{

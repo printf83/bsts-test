@@ -1,4 +1,7 @@
-import { I, b } from "@printf83/bsts";
+import { SelectItem } from "../../../node_modules/@printf83/bsts/build/types/html/select.js";
+
+
+import { b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -359,7 +362,7 @@ export const input_group: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						let selectItem: I.H.SelectItem[] = [
+						let selectItem: SelectItem[] = [
 							{ selected: true, elem: "Choose..." },
 							{ value: "1", elem: "One" },
 							{ value: "2", elem: "Two" },

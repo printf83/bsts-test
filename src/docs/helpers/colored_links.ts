@@ -1,4 +1,4 @@
-import { core, I, h } from "@printf83/bsts";
+import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -35,7 +35,7 @@ export const colored_links: IContent = {
 							(i) =>
 								new h.p(
 									new h.a(
-										{ href: "#", linkColor: i as I.H.A["linkColor"] },
+										{ href: "#", linkColor: i as core.bootstrapType.linkColor },
 										`${core.uppercaseFirst(i)} link`
 									)
 								)
@@ -74,7 +74,7 @@ export const colored_links: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkColor: i as I.H.A["linkColor"],
+											linkColor: i as core.bootstrapType.linkColor,
 											linkOffset: 2,
 											linkUnderlineOpacity: 25,
 											linkUnderlineOpacityHover: 100,

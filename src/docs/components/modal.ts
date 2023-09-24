@@ -1,4 +1,6 @@
-import { core, h, b, I, s } from "@printf83/bsts";
+import { Container as ModalContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/modal/container.js";
+
+import { core, h, b, s } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -1384,7 +1386,7 @@ export const modal: IContent = {
 									{
 										id: `${i.weight}SizeModal`,
 										labelledby: `#${i.weight}SizeModalLabel`,
-										weight: i.weight as I.B.Modal.Container["weight"], //set modal weight
+										weight: i.weight as ModalContainer["weight"], //set modal weight
 									},
 									[
 										new b.modal.header(
@@ -1458,7 +1460,7 @@ export const modal: IContent = {
 
 										//set fullscreen property
 										fullscreen: i.fullscreen
-											? (i.fullscreen as I.B.Modal.Container["fullscreen"])
+											? (i.fullscreen as ModalContainer["fullscreen"])
 											: undefined,
 									},
 									[

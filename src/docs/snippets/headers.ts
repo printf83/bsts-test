@@ -1,4 +1,6 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
+
+import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -6,7 +8,7 @@ const ex = {
 	c1: (arg: {
 		icon: string;
 		title: string;
-		link?: I.B.Nav.Header.Link[];
+		link?: HeaderLink[];
 		onlinkchange?: EventListener;
 	}) => {
 		return new h.div(
@@ -56,7 +58,7 @@ const ex = {
 			)
 		);
 	},
-	c2: (arg: { link?: I.B.Nav.Header.Link[]; onlinkchange?: EventListener }) => {
+	c2: (arg: { link?: HeaderLink[]; onlinkchange?: EventListener }) => {
 		return new h.div(
 			{ container: true },
 			new h.header(
@@ -82,7 +84,7 @@ const ex = {
 	},
 	c3: (arg: {
 		icon: string;
-		link?: I.B.Nav.Header.Link[];
+		link?: HeaderLink[];
 		onlinkchange?: EventListener;
 		onlogin?: EventListener;
 		onsignup?: EventListener;
@@ -144,7 +146,7 @@ const ex = {
 	},
 	c4: (arg: {
 		icon: string;
-		link?: I.B.Nav.Header.Link[];
+		link?: HeaderLink[];
 		onlinkchange?: EventListener;
 		onlogin?: EventListener;
 		onsignup?: EventListener;
@@ -234,7 +236,7 @@ const ex = {
 	c5: (arg: {
 		img: string;
 		icon: string;
-		link?: I.B.Nav.Header.Link[];
+		link?: HeaderLink[];
 		onlinkchange?: EventListener;
 		menu?: core.IElem;
 		onsearch?: EventListener;
@@ -440,8 +442,8 @@ const ex = {
 		return [ex.c6Header(arg), ex.c6Body(arg)];
 	},
 	c7Nav: (arg: {
-		startMenu?: I.B.Nav.Header.Link[];
-		endMenu?: I.B.Nav.Header.Link[];
+		startMenu?: HeaderLink[];
+		endMenu?: HeaderLink[];
 		onstarmenuchange?: EventListener;
 	}) => {
 		return new h.nav(
@@ -555,7 +557,7 @@ const ex = {
 								justifyContent: "center",
 
 								link: arg.link.map((i) => {
-									let result: I.B.Nav.Header.Link = {
+									let result: HeaderLink = {
 										textColor: "body-emphasis",
 										textColorActive: "body-tertiary",
 										textColorHover: "primary-emphasis",
@@ -991,7 +993,7 @@ export const headers: IContent = {
 								endMenu: [
 									{
 										on: {
-											click: (event) => {
+											click: (event: Event) => {
 												//do login
 												const target = event.target as Element;
 												e.console(
@@ -1006,7 +1008,7 @@ export const headers: IContent = {
 									},
 									{
 										on: {
-											click: (event) => {
+											click: (event: Event) => {
 												//do signup
 												const target = event.target as Element;
 												e.console(

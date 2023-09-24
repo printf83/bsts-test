@@ -1,4 +1,6 @@
-import { core, h, b, I } from "@printf83/bsts";
+import { HLevel } from "../../../node_modules/@printf83/bsts/build/types/html/h.js";
+
+import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -25,7 +27,7 @@ export const badge: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map((i) => {
-							return new h.h(i as I.H.HLevel, [
+							return new h.h(i as HLevel, [
 								"Example heading ",
 								new b.badge({ bgColor: "secondary" }, "New"),
 							]);

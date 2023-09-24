@@ -1,4 +1,6 @@
-import { I, b, core, h } from "@printf83/bsts";
+import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+
+import { b, core, h } from "@printf83/bsts";
 import { cookie } from "./cookie.js";
 
 export const getSavedTheme = () => {
@@ -37,11 +39,11 @@ export type availabelTheme = "dark" | "light" | "auto";
 
 export interface ITheme {
 	value: string;
-	icon: I.B.Icon;
+	icon: Icon;
 	label: string;
 }
 
-export const highlghtTheme = (value: string, icon: I.B.Icon) => {
+export const highlghtTheme = (value: string, icon: Icon) => {
 	let bsTheme = document.getElementsByClassName("bs-theme");
 	if (bsTheme && bsTheme.length > 0) {
 		Array.from(bsTheme).forEach((elem) => {
@@ -74,7 +76,7 @@ export const setupTheme = (navbarItemTheme?: ITheme[], currentTheme?: string) =>
 	const bsTheme = core.UUID();
 
 	if (navbarItemTheme) {
-		let currentThemeIcon: I.B.Icon | undefined;
+		let currentThemeIcon: Icon | undefined;
 		navbarItemTheme.forEach((i, ix) => {
 			if (i.value === currentTheme) {
 				currentThemeIcon = navbarItemTheme[ix]?.icon;

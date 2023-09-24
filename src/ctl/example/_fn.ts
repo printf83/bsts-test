@@ -1,4 +1,6 @@
-import { core, b, I, h } from "@printf83/bsts";
+import { Create as ToastCreate } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/_fn.js";
+
+import { core, b, h } from "@printf83/bsts";
 import js_beautify from "js-beautify";
 import { css_beautify, html_beautify } from "js-beautify";
 import { addHistory } from "../main/history.js";
@@ -26,7 +28,7 @@ export const anchorOnClick = (event: Event) => {
 	}
 };
 
-export const toast = (color: I.B.Toast.Create["color"], elem: core.IElem) => {
+export const toast = (color: ToastCreate["color"], elem: core.IElem) => {
 	b.toast.show(
 		b.toast.create({
 			title: document.title,

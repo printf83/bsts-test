@@ -65,6 +65,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.sticky_footer);
 			});
 			break;
+		case "docs/example/sticky_footer_navbar":
+			example.sticky_footer_navbar().then((res) => {
+				callback(res.sticky_footer_navbar);
+			});
+			break;
 
 		//--------------------------
 

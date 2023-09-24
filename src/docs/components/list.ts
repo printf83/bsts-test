@@ -1,4 +1,4 @@
-import { core, b, h, I } from "@printf83/bsts";
+import { core, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
@@ -284,7 +284,7 @@ export const list: IContent = {
 								"dark",
 							].map((i) => {
 								return new b.list.item(
-									{ color: i as I.B.List.Item["color"] },
+									{ color: i as core.bootstrapType.color },
 									`A simple ${i ? i : "default"} list group item`
 								);
 							})
@@ -320,7 +320,7 @@ export const list: IContent = {
 									{
 										href: "#",
 										action: true,
-										color: i as I.B.TabList.Item["color"],
+										color: i as core.bootstrapType.color,
 									},
 									`A simple ${i ? i : "default"} list group item`
 								);
