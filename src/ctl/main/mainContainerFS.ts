@@ -130,7 +130,7 @@ export const mainContainerFS = () => {
 										{
 											id: "btn-last-non-fs-page",
 											data: { docId: "docs/gettingstarted/home" },
-
+											border: false,
 											color: "transparent",
 
 											on: {
@@ -154,6 +154,7 @@ export const mainContainerFS = () => {
 											{
 												color: "transparent",
 												id: "bs-main-fs-title",
+												border: false,
 											},
 											"Button"
 										),
@@ -164,6 +165,7 @@ export const mainContainerFS = () => {
 													display: "grid",
 													gridTemplateColumns: "1fr 1fr",
 													gap: 1,
+													style: { minWidth: "350px" },
 												},
 												menuFS.map((i) => {
 													return new b.dropdown.item(
@@ -190,6 +192,7 @@ export const mainContainerFS = () => {
 												class: "bs-bootswatch",
 												label: "Bootswatch theme",
 												color: "transparent",
+												border: false,
 											},
 											[
 												new h.span(
@@ -220,6 +223,7 @@ export const mainContainerFS = () => {
 													display: "grid",
 													gridTemplateColumns: "1fr 1fr 1fr",
 													gap: 1,
+													style: { minWidth: "320px" },
 												},
 												BOOTSWATCHDB.map((i) => {
 													return new b.dropdown.item(
@@ -242,7 +246,7 @@ export const mainContainerFS = () => {
 										new b.dropdown.button(
 											{
 												color: "transparent",
-
+												border: false,
 												class: "bs-theme",
 												display: "flex",
 												alignItem: "center",
@@ -280,6 +284,7 @@ export const mainContainerFS = () => {
 									new b.button(
 										{
 											color: "transparent",
+											border: false,
 											on: { click: itemCodeCopy },
 										},
 										new b.icon("clipboard")
@@ -287,7 +292,7 @@ export const mainContainerFS = () => {
 									new b.button(
 										{
 											color: "transparent",
-
+											border: false,
 											title: "Edit on CodePen",
 											on: {
 												click: (event) => {
@@ -314,7 +319,7 @@ export const mainContainerFS = () => {
 									new b.button(
 										{
 											color: "transparent",
-
+											border: false,
 											toggle: "modal",
 											target: "#bs-main-fs-modal",
 										},
