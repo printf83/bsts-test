@@ -8,7 +8,7 @@ export const carousel: IContent = {
 		const header = () => {
 			const id = core.UUID();
 			return new b.navbar.container(
-				{ bgColor: "dark", textColor: "light", expand: "lg" },
+				{ bgColor: "dark", theme: "dark", expand: "lg" },
 				new b.navbar.innercontainer({ container: "fluid" }, [
 					new b.navbar.brand({ href: "#" }, "Carousel"),
 					new b.navbar.toggle.collapse({
@@ -17,18 +17,15 @@ export const carousel: IContent = {
 						label: "Toggle navigation",
 					}),
 					new b.navbar.collapse({ id: id }, [
-						new b.navbar.itemcontainer(
-							{ marginEnd: "auto", marginBottom: [2, "lg-0"] },
-							[
-								new b.navbar.item(
-									new b.navbar.link({ href: "#", active: true }, "Home")
-								),
-								new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
-								new b.navbar.item(
-									new b.navbar.link({ href: "#", disabled: true }, "Disabled")
-								),
-							]
-						),
+						new b.navbar.itemcontainer({ marginEnd: "auto" }, [
+							new b.navbar.item(
+								new b.navbar.link({ href: "#", active: true }, "Home")
+							),
+							new b.navbar.item(new b.navbar.link({ href: "#" }, "Link")),
+							new b.navbar.item(
+								new b.navbar.link({ href: "#", disabled: true }, "Disabled")
+							),
+						]),
 						new h.form({ display: "flex", role: "search" }, [
 							new b.input({
 								type: "search",
