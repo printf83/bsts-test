@@ -16,6 +16,8 @@ export interface IMenuItem {
 }
 
 export const highlightMenu = (docId?: string) => {
+	if (docId && docId.indexOf("#") > -1) docId = docId.split("#")[0];
+
 	let bsLinks = document.getElementsByClassName("bs-links");
 
 	if (bsLinks && bsLinks.length > 0) {
@@ -31,6 +33,18 @@ export const highlightMenu = (docId?: string) => {
 				if (newActive) {
 					newActive.classList.add("active");
 					newActive.setAttribute("aria-current", "page");
+
+					let sidebar = newActive.closest(".bs-sidebar") as HTMLElement;
+					if (sidebar) {
+						const sidebarBCR = sidebar.getBoundingClientRect();
+						const newActiveBCR = newActive.getBoundingClientRect();
+
+						let offsetElemPosition =
+							sidebarBCR.top + sidebar.scrollTop + newActiveBCR.top - 200;
+						sidebar.scrollTo({
+							top: offsetElemPosition,
+						});
+					}
 				}
 			}
 		});
