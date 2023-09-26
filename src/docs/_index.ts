@@ -70,6 +70,11 @@ export const doc = (value: string, callback: (result: IContent | null) => void) 
 				callback(res.sticky_footer_navbar);
 			});
 			break;
+		case "docs/example/jumbotron":
+			example.jumbotron().then((res) => {
+				callback(res.jumbotron);
+			});
+			break;
 
 		//--------------------------
 
