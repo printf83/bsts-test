@@ -36,22 +36,33 @@ export const highlightMenu = (docId?: string) => {
 
 					let sidebar = newActive.closest(".bs-sidebar") as HTMLElement;
 					if (sidebar) {
+						const scrollId = core.UUID();
+						sidebar.setAttribute("data-scrollid", scrollId);
+
 						const sidebarBCR = sidebar.getBoundingClientRect();
 						const newActiveBCR = newActive.getBoundingClientRect();
 
 						let offsetElemPosition =
 							sidebarBCR.top + sidebar.scrollTop + newActiveBCR.top - 200;
 
-						// console.log({
-						// 	sidebar_height: sidebarBCR.height,
-						// 	sidebar_st: sidebar.scrollTop,
-						// 	newactive_top: newActiveBCR.top,
-						// });
-
 						if (newActiveBCR.top < 70 || newActiveBCR.top > sidebarBCR.height + 70) {
-							sidebar.scrollTo({
-								top: offsetElemPosition,
-							});
+							setTimeout(
+								(opt) => {
+									if (
+										opt.sidebar.getAttribute("data-scrollid") === opt.scrollId
+									) {
+										opt.sidebar.scrollTo({
+											top: opt.offsetElemPosition,
+										});
+									}
+								},
+								300,
+								{
+									scrollId,
+									sidebar,
+									offsetElemPosition,
+								}
+							);
 						}
 					}
 				}
