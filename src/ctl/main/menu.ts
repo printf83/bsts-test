@@ -41,9 +41,18 @@ export const highlightMenu = (docId?: string) => {
 
 						let offsetElemPosition =
 							sidebarBCR.top + sidebar.scrollTop + newActiveBCR.top - 200;
-						sidebar.scrollTo({
-							top: offsetElemPosition,
-						});
+
+						// console.log({
+						// 	sidebar_height: sidebarBCR.height,
+						// 	sidebar_st: sidebar.scrollTop,
+						// 	newactive_top: newActiveBCR.top,
+						// });
+
+						if (newActiveBCR.top < 70 || newActiveBCR.top > sidebarBCR.height + 70) {
+							sidebar.scrollTo({
+								top: offsetElemPosition,
+							});
+						}
 					}
 				}
 			}
