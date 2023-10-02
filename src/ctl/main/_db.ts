@@ -65,6 +65,7 @@ export const menuFS = [
 	{ label: "Sign in", value: "docs/example/sign_in" },
 	{ label: "Sticky footer", value: "docs/example/sticky_footer" },
 	{ label: "Sticky footer navbar", value: "docs/example/sticky_footer_navbar" },
+	{ label: "Jumbotron", value: "docs/example/jumbotron" },
 ];
 
 export const menu: IMenu[] = [

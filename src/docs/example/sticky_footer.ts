@@ -14,7 +14,7 @@ export const sticky_footer: IContent = {
 					"Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS."
 				),
 				new h.p(
-					"Use {{?d=docs/example/sticky_footer_navbar::the sticky footer with a fixed navbar}} if need be, too."
+					"Use {{nav:docs/example/sticky_footer_navbar::the sticky footer with a fixed navbar}} if need be, too."
 				),
 			])
 		);

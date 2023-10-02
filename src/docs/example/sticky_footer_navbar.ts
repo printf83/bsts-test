@@ -52,7 +52,7 @@ export const sticky_footer_navbar: IContent = {
 					"Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with {{padding-top: 60px;}} on the {{main > .container}}."
 				),
 				new h.p(
-					"Use {{?d=docs/example/sticky_footer::the sticky footer with a fixed navbar}} if need be, too."
+					"Use {{nav:docs/example/sticky_footer::the sticky footer with a fixed navbar}} if need be, too."
 				),
 			])
 		);

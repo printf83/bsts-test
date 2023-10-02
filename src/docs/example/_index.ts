@@ -31,3 +31,6 @@ export const sticky_footer = () => {
 export const sticky_footer_navbar = () => {
 	return import("./sticky_footer_navbar.js");
 };
+export const jumbotron = () => {
+	return import("./jumbotron.js");
+};
