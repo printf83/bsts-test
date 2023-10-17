@@ -8,7 +8,7 @@ export const sticky_footer: IContent = {
 		const main = new h.main(
 			{ flex: "shrink-0" },
 			new h.div({ container: true }, [
-				new h.h(1, { marginTop: 5 }, "Sticky footer"),
+				new h.h1({ marginTop: 5 }, "Sticky footer"),
 				new h.p(
 					{ lead: true },
 					"Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS."

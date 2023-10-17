@@ -402,8 +402,7 @@ export const list: IContent = {
 												justifyContent: "between",
 											},
 											[
-												new h.h(
-													5,
+												new h.h5(
 													{ marginBottom: 1 },
 													"List group item heading"
 												),

@@ -56,7 +56,7 @@ export const carousel: IContent = {
 												src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 											}),
 											new b.carousel.inner.item.caption([
-												new h.h(5, `Slide #${ix + 1}`),
+												new h.h5(`Slide #${ix + 1}`),
 												new h.p(
 													`Some representative placeholder content for the slide #${
 														ix + 1
@@ -97,7 +97,7 @@ export const carousel: IContent = {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 									caption: [
-										new h.h(5, `Slide #${i + 1}`),
+										new h.h5(`Slide #${i + 1}`),
 										new h.p(
 											`Some representative placeholder content for the slide #${
 												i + 1
@@ -153,7 +153,7 @@ export const carousel: IContent = {
 								return {
 									src: `https://picsum.photos/seed/bsts_${i}/710/400.webp`,
 									caption: [
-										new h.h(5, `Slide #${i + 1}`),
+										new h.h5(`Slide #${i + 1}`),
 										new h.p(
 											`Some representative placeholder content for the slide #${
 												i + 1
@@ -340,7 +340,7 @@ export const carousel: IContent = {
 								return {
 									src: `https://picsum.photos/seed/bsts_${ix}/710/400.webp`,
 									caption: [
-										new h.h(5, `${core.uppercaseFirst(i)} slide label`),
+										new h.h5(`${core.uppercaseFirst(i)} slide label`),
 										new h.p(
 											`Some representative placeholder content for the ${i} slide.`
 										),

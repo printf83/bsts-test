@@ -103,7 +103,7 @@ export const product: IContent = {
 					},
 				},
 				[
-					new h.h(1, { marginTop: 4, fontDisplay: 3 }, "Designed for engineers"),
+					new h.h1({ marginTop: 4, fontDisplay: 3 }, "Designed for engineers"),
 					new h.p({ lead: true }, "Build anything you want with Aperture"),
 					new h.div(
 						{
@@ -148,7 +148,7 @@ export const product: IContent = {
 					textColor: arg.textColor,
 				},
 				[
-					new h.h(3, { fontDisplay: 5 }, arg.title),
+					new h.h3({ fontDisplay: 5 }, arg.title),
 					new h.div({ col: "lg-6", marginX: "auto" }, [
 						new h.p({ lead: true, marginBottom: 2 }, arg.description),
 						new h.div(
@@ -206,7 +206,7 @@ export const product: IContent = {
 
 		const section = (arg: { title: string; link: HeaderLink[] }) => {
 			return [
-				new h.h(5, arg.title),
+				new h.h5(arg.title),
 				new b.nav.header.container({
 					flex: "column",
 					elem: arg.link.map((i) => {

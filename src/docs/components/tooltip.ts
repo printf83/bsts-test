@@ -465,7 +465,7 @@ export const tooltip: IContent = {
 					],
 				}),
 				new e.alert({ color: "info", callout: true }, [
-					new b.alert.header(4, "Data attributes for individual tooltips"),
+					new b.alert.header("Data attributes for individual tooltips"),
 					"Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.",
 				]),
 			]),

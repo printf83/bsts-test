@@ -8,7 +8,7 @@ export const checkout: IContent = {
 		const jumbotron = new h.section(
 			new h.div({ container: true, textAlign: "center", paddingX: 5, paddingTop: 4 }, [
 				new b.icon({ id: "hexagon-fill", fontDisplay: 1 }),
-				new h.h(1, { textColor: "body-emphasis", fontDisplay: 5 }, "Checkout form"),
+				new h.h1({ textColor: "body-emphasis", fontDisplay: 5 }, "Checkout form"),
 				new h.p(
 					{ lead: true },
 					"Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it."
@@ -17,7 +17,7 @@ export const checkout: IContent = {
 		);
 
 		const payment = [
-			new h.h(4, { marginBottom: 3 }, "Payment"),
+			new h.h4({ marginBottom: 3 }, "Payment"),
 			new h.div({ marginY: 3 }, [
 				b.form.check({
 					type: "radio",
@@ -42,7 +42,7 @@ export const checkout: IContent = {
 		];
 
 		const billing_address = [
-			new h.h(4, { marginBottom: 3 }, "Billing address"),
+			new h.h4({ marginBottom: 3 }, "Billing address"),
 			new h.form({ novalidate: true, class: "needs-validation" }, [
 				new h.div(
 					{
@@ -142,7 +142,7 @@ export const checkout: IContent = {
 				{ display: "flex", justifyContent: "between", lineHeight: "sm" },
 				[
 					new h.div([
-						new h.h(6, { marginY: 0 }, arg.name),
+						new h.h6({ marginY: 0 }, arg.name),
 						new h.small({ textColor: "body-secondary" }, arg.description),
 					]),
 					new h.span({ textColor: "body-secondary" }, `$${arg.price}`),
@@ -159,7 +159,7 @@ export const checkout: IContent = {
 					textColor: "success",
 				},
 				[
-					new h.div([new h.h(6, { marginY: 0 }, "Promo code"), new h.small(arg.code)]),
+					new h.div([new h.h6({ marginY: 0 }, "Promo code"), new h.small(arg.code)]),
 					new h.span(`-$${arg.price}`),
 				]
 			);
@@ -177,8 +177,7 @@ export const checkout: IContent = {
 		};
 
 		const cart = [
-			new h.h(
-				4,
+			new h.h4(
 				{
 					display: "flex",
 					justifyContent: "between",

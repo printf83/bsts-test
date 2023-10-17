@@ -473,7 +473,7 @@ export const popover: IContent = {
 					],
 				}),
 				new e.alert({ color: "info", callout: true }, [
-					new b.alert.header(4, "Data attributes for individual popovers"),
+					new b.alert.header("Data attributes for individual popovers"),
 					"Options for individual popovers can alternatively be specified through the use of data attributes, as explained above.",
 				]),
 			]),

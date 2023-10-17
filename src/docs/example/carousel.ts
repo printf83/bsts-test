@@ -86,7 +86,7 @@ export const carousel: IContent = {
 								textAlign: i.textAlign as core.bootstrapType.textAlign,
 							},
 							[
-								new h.h(1, i.title),
+								new h.h1(i.title),
 								new h.p({ lead: true }, i.description),
 								new b.button({ weight: "lg", href: i.href }, i.button),
 							]
@@ -104,7 +104,7 @@ export const carousel: IContent = {
 		}) => {
 			return new h.div({ col: "lg-4", textAlign: "center", marginY: 3, padding: 2 }, [
 				new b.img({ rounded: "circle", src: opt.src }),
-				new h.h(2, { fontWeight: "normal", margin: 2 }, opt.title),
+				new h.h2({ fontWeight: "normal", margin: 2 }, opt.title),
 				new h.p(opt.description),
 				new h.p(new b.button({ color: "secondary", href: opt.href }, "View detail")),
 			]);
@@ -156,7 +156,7 @@ export const carousel: IContent = {
 				new h.div(
 					{ display: "flex", alignItem: "center", height: 100 },
 					new h.div({ paddingY: 5 }, [
-						new h.h(1, { fontWeight: "normal", lineHeight: 1, fontDisplay: 5 }, [
+						new h.h1({ fontWeight: "normal", lineHeight: 1, fontDisplay: 5 }, [
 							opt.title,
 							" ",
 							new h.span({ textColor: "body-secondary" }, opt.subtitle),

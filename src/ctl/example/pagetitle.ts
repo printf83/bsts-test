@@ -154,8 +154,7 @@ const convert = (attr: IPageTitle) => {
 
 	if (attr.elem) {
 		tElem.push(
-			new h.h(
-				1,
+			new h.h1(
 				{
 					fontDisplay: 5,
 					fontWeight: "normal",

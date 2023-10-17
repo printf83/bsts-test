@@ -1048,7 +1048,7 @@ export const color: IContent = {
 					"Be sure to monitor contrast ratios as you customize colors. As shown below, Bootstrap added three contrast ratios to each of the main colors—one for the swatch’s current colors, one for against white, and one for against black."
 				),
 				new e.alert({ color: "danger", callout: true }, [
-					new b.alert.header(5, "Unsuppoterd in {{bsts}}"),
+					new b.alert.header("Unsuppoterd in {{bsts}}"),
 					"This feature will supported when Bootstrap make it opt-in by default or available in CDN.",
 				]),
 				new e.text(

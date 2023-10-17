@@ -41,8 +41,7 @@ export const dashboard: IContent = {
 			);
 		};
 
-		const sidebar_heading = new h.h(
-			6,
+		const sidebar_heading = new h.h6(
 			{
 				display: "flex",
 				justifyContent: "between",
@@ -160,7 +159,7 @@ export const dashboard: IContent = {
 				border: "bottom",
 			},
 			[
-				new h.h(1, { h: 2 }, "Dashboard"),
+				new h.h1({ h: 2 }, "Dashboard"),
 				new b.btngroup({ role: "toolbar", marginBottom: [2, "md-0"] }, [
 					new b.btngroup({ marginEnd: 2 }, [
 						new b.button({ weight: "sm", outline: true, color: "secondary" }, "Share"),
@@ -250,7 +249,7 @@ export const dashboard: IContent = {
 			},
 		});
 
-		const main_section = new h.h(2, "Section title");
+		const main_section = new h.h2("Section title");
 
 		const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum ante eu est semper, et vulputate leo molestie. Cras luctus pretium arcu, quis rutrum lectus dictum vel. In quis pretium erat. Proin vel placerat velit. Vestibulum vehicula ex sed ultricies ultricies. In vitae erat est. Pellentesque id aliquet justo. Maecenas at mauris in sapien interdum posuere at in velit. In hac habitasse platea dictumst.`;
 

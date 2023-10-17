@@ -381,7 +381,7 @@ export const modals: IContent = {
 					output: () => {
 						return new b.modal.container({ debug: true, contentAttr: { rounded: 4 } }, [
 							new b.modal.body({ padding: 5 }, [
-								new h.h(2, { fontWeight: "bold", marginBottom: 0 }, "What's new"),
+								new h.h2({ fontWeight: "bold", marginBottom: 0 }, "What's new"),
 								new h.ul(
 									{
 										unstyle: true,
@@ -421,7 +421,7 @@ export const modals: IContent = {
 													i.iconColor as core.bootstrapType.textColor,
 											}),
 											new h.div([
-												new h.h(5, { marginBottom: 0 }, i.title),
+												new h.h5({ marginBottom: 0 }, i.title),
 												i.description,
 											]),
 										]);
@@ -447,8 +447,7 @@ export const modals: IContent = {
 										b.modal.show(
 											new b.modal.container({ contentAttr: { rounded: 4 } }, [
 												new b.modal.body({ padding: 5 }, [
-													new h.h(
-														2,
+													new h.h2(
 														{ fontWeight: "bold", marginBottom: 0 },
 														"What's new"
 													),
@@ -495,8 +494,7 @@ export const modals: IContent = {
 																			i.iconColor as core.bootstrapType.textColor,
 																	}),
 																	new h.div([
-																		new h.h(
-																			5,
+																		new h.h5(
 																			{ marginBottom: 0 },
 																			i.title
 																		),
@@ -569,8 +567,7 @@ export const modals: IContent = {
 											"By clicking Sign up, you agree to the terms of use."
 										),
 										new h.hr({ marginY: 4 }),
-										new h.h(
-											2,
+										new h.h2(
 											{ fontSize: 5, fontWeight: "bold" },
 											"Or use a third-party"
 										),
@@ -673,8 +670,7 @@ export const modals: IContent = {
 																		"By clicking Sign up, you agree to the terms of use."
 																	),
 																	new h.hr({ marginY: 4 }),
-																	new h.h(
-																		2,
+																	new h.h2(
 																		{
 																			fontSize: 5,
 																			fontWeight: "bold",

@@ -88,8 +88,7 @@ export const blog: IContent = {
 				bgColor: "body-secondary",
 			},
 			new h.div({ col: "lg-6", paddingX: 0 }, [
-				new h.h(
-					1,
+				new h.h1(
 					{ class: "font-serif", fontDisplay: 4, fontItalic: true, fontWeight: "bold" },
 					"Title of a longer featured blog post"
 				),
@@ -193,8 +192,7 @@ export const blog: IContent = {
 			elem: core.IElem;
 		}) => {
 			return new h.article([
-				new h.h(
-					2,
+				new h.h2(
 					{
 						class: "font-serif",
 						fontWeight: "bold",
@@ -230,8 +228,7 @@ export const blog: IContent = {
 				[
 					new b.img({ fluid: true, src: opt.img }),
 					new h.div([
-						new h.h(
-							6,
+						new h.h6(
 							{
 								class: "font-serif",
 								fontWeight: "bold",
@@ -247,8 +244,7 @@ export const blog: IContent = {
 		};
 
 		const content_main = new h.div({ col: "md-8" }, [
-			new h.h(
-				3,
+			new h.h3(
 				{
 					class: "font-serif",
 					fontWeight: "bold",
@@ -273,13 +269,13 @@ export const blog: IContent = {
 						new h.p(
 							"This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text."
 						),
-						new h.h(2, { class: "font-serif", fontWeight: "bold" }, "Blockquote"),
+						new h.h2({ class: "font-serif", fontWeight: "bold" }, "Blockquote"),
 						new h.p("This is an example blockquote in action:"),
 						new b.blockquote.container("Quoted text goes here."),
 						new h.p(
 							"This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text."
 						),
-						new h.h(2, { class: "font-serif", fontWeight: "bold" }, "Example lists"),
+						new h.h2({ class: "font-serif", fontWeight: "bold" }, "Example lists"),
 						new h.p(
 							"This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout. This is an example unordered list:"
 						),
@@ -307,8 +303,7 @@ export const blog: IContent = {
 								"The programming language used to build advanced Web sites and applications"
 							),
 						]),
-						new h.h(
-							2,
+						new h.h2(
 							{ class: "font-serif", fontWeight: "bold" },
 							"Inline HTML elements"
 						),
@@ -345,11 +340,11 @@ export const blog: IContent = {
 						new h.p(
 							"Most of these elements are styled by browsers with few modifications on our part."
 						),
-						new h.h(1, { class: "font-serif", fontWeight: "bold" }, "Heading"),
+						new h.h1({ class: "font-serif", fontWeight: "bold" }, "Heading"),
 						new h.p(
 							"This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text."
 						),
-						new h.h(2, { class: "font-serif", fontWeight: "bold" }, "Sub-heading"),
+						new h.h2({ class: "font-serif", fontWeight: "bold" }, "Sub-heading"),
 						new h.p(
 							"This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text."
 						),
@@ -378,7 +373,7 @@ export const blog: IContent = {
 						new h.p(
 							"This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text."
 						),
-						new h.h(2, { class: "font-serif", fontWeight: "bold" }, "Example table"),
+						new h.h2({ class: "font-serif", fontWeight: "bold" }, "Example table"),
 						new h.p("And don't forget about tables in these posts:"),
 						new b.table.container({
 							item: [
@@ -438,8 +433,7 @@ export const blog: IContent = {
 				new h.div(
 					{ padding: 4, marginBottom: 3, bgColor: "body-tertiary", rounded: true },
 					[
-						new h.h(
-							4,
+						new h.h4(
 							{ class: "font-serif", fontWeight: "bold", fontItalic: true },
 							"About"
 						),
@@ -450,8 +444,7 @@ export const blog: IContent = {
 					]
 				),
 				new h.div([
-					new h.h(
-						4,
+					new h.h4(
 						{ class: "font-serif", fontWeight: "bold", fontItalic: true },
 						"Recent post"
 					),
@@ -483,8 +476,7 @@ export const blog: IContent = {
 				]),
 
 				new h.div({ padding: 4 }, [
-					new h.h(
-						4,
+					new h.h4(
 						{ class: "font-serif", fontWeight: "bold", fontItalic: true },
 						"Archives"
 					),
@@ -509,8 +501,7 @@ export const blog: IContent = {
 					),
 				]),
 				new h.div({ padding: 4 }, [
-					new h.h(
-						4,
+					new h.h4(
 						{ class: "font-serif", fontWeight: "bold", fontItalic: true },
 						"Elsewhere"
 					),

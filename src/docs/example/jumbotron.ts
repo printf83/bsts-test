@@ -30,7 +30,7 @@ export const jumbotron: IContent = {
 		const example_1 = new h.div(
 			{ padding: 5, bgColor: "body-tertiary", rounded: 3, marginBottom: 4 },
 			new h.div({ container: "fluid", paddingY: 5 }, [
-				new h.h(1, { fontDisplay: 5, fontWeight: "bold" }, "Custom jumbotron"),
+				new h.h1({ fontDisplay: 5, fontWeight: "bold" }, "Custom jumbotron"),
 				new h.p(
 					{ col: "md-8", fontSize: 4 },
 					"Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking."
@@ -39,7 +39,7 @@ export const jumbotron: IContent = {
 			])
 		);
 		const example_2 = new h.div({ padding: 5, textBgColor: "dark", rounded: 3, height: 100 }, [
-			new h.h(2, "Change the background"),
+			new h.h2("Change the background"),
 			new h.p(
 				"Swap the background-color utility and add a {{.text-*}} color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more."
 			),
@@ -48,7 +48,7 @@ export const jumbotron: IContent = {
 		const example_3 = new h.div(
 			{ padding: 5, bgColor: "body-tertiary", rounded: 3, border: true, height: 100 },
 			[
-				new h.h(2, "Add borders"),
+				new h.h2("Add borders"),
 				new h.p(
 					"Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height."
 				),

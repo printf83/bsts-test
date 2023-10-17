@@ -16,7 +16,7 @@ const ex = {
 				}),
 				new h.div({ display: "flex", gap: 2, width: 100, justifyContent: "between" }, [
 					new h.div([
-						new h.h(6, { marginBottom: 0 }, arg.title),
+						new h.h6({ marginBottom: 0 }, arg.title),
 						new h.p({ marginBottom: 0, opacity: 75 }, arg.details),
 					]),
 					new h.small({ opacity: 50, textWrap: false }, arg.date),

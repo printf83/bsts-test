@@ -41,7 +41,7 @@ export const alert: IContent = {
 				}),
 
 				new e.alert({ color: "info", callout: true }, [
-					new h.h(5, "Conveying meaning to assistive technologies"),
+					new h.h5("Conveying meaning to assistive technologies"),
 					new h.p(
 						"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 					),
@@ -158,7 +158,7 @@ export const alert: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return new b.alert.container({ color: "success" }, [
-							new b.alert.header(4, "Well done!"),
+							new b.alert.header("Well done!"),
 							new h.p(
 								"Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
 							),

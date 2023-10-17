@@ -92,12 +92,12 @@ const convert = (attr: IXSubTitle) => {
 	return attr;
 };
 
-export class xsubtitle extends html.h {
+export class xsubtitle extends html.h4 {
 	constructor();
 	constructor(attr: IXSubTitle);
 	constructor(elem: core.IElem);
 	constructor(attr: IXSubTitle, elem: core.IElem);
 	constructor(...arg: any[]) {
-		super(4, convert(core.bsConstArg("elem", arg)));
+		super(convert(core.bsConstArg("elem", arg)));
 	}
 }

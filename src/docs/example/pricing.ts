@@ -50,7 +50,7 @@ export const pricing: IContent = {
 
 		const jumbotron = new h.section(
 			new h.div({ container: true, textAlign: "center", paddingX: 5 }, [
-				new h.h(1, { textColor: "body-emphasis", marginTop: 4, fontDisplay: 3 }, "Pricing"),
+				new h.h1({ textColor: "body-emphasis", marginTop: 4, fontDisplay: 3 }, "Pricing"),
 				new h.p(
 					{ lead: true },
 					"Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization."
@@ -147,7 +147,7 @@ export const pricing: IContent = {
 
 		const check_icon = new b.icon({ id: "check2", fontSize: 4, textColor: "primary" });
 		const plan_compare = new h.section({ container: true }, [
-			new h.h(2, { fontDisplay: 6, textAlign: "center", marginBottom: 4 }, "Compare plans"),
+			new h.h2({ fontDisplay: 6, textAlign: "center", marginBottom: 4 }, "Compare plans"),
 			new b.table.responsive(
 				new b.table.container(
 					{
@@ -216,7 +216,7 @@ export const pricing: IContent = {
 
 		const section = (arg: { title: string; link: HeaderLink[] }) => {
 			return [
-				new h.h(5, arg.title),
+				new h.h5(arg.title),
 				new b.nav.header.container({
 					flex: "column",
 					elem: arg.link.map((i) => {

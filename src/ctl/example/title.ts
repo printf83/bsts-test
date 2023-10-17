@@ -92,12 +92,12 @@ const convert = (attr: ITitle) => {
 	return attr;
 };
 
-export class title extends html.h {
+export class title extends html.h2 {
 	constructor();
 	constructor(attr: ITitle);
 	constructor(elem: core.IElem);
 	constructor(attr: ITitle, elem: core.IElem);
 	constructor(...arg: any[]) {
-		super(2, convert(core.bsConstArg("elem", arg)));
+		super(convert(core.bsConstArg("elem", arg)));
 	}
 }

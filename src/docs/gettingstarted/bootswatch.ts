@@ -1,4 +1,3 @@
-import { HLevel } from "../../../node_modules/@printf83/bsts/build/types/html/h.js";
 import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
 import { Popover as IPopover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
 
@@ -496,9 +495,14 @@ export const bootswatch: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map(
-							(i) => new h.h(i as HLevel, `h${i}. Bootstrap heading`)
-						);
+						return [
+							new h.h1("h1. Bootstrap heading"),
+							new h.h2("h2. Bootstrap heading"),
+							new h.h3("h3. Bootstrap heading"),
+							new h.h4("h4. Bootstrap heading"),
+							new h.h5("h5. Bootstrap heading"),
+							new h.h6("h6. Bootstrap heading"),
+						];
 					},
 				}),
 			]),
@@ -513,16 +517,50 @@ export const bootswatch: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map(
-							(i) =>
-								new h.h(i as HLevel, [
-									`h${i}. Heading`,
-									new h.small(
-										{ textColor: "body-secondary" },
-										" with faded secondary text"
-									),
-								])
-						);
+						return [
+							new h.h1([
+								"h1. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h2([
+								"h2. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h3([
+								"h3. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h4([
+								"h4. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h5([
+								"h5. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h6([
+								"h6. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+						];
 					},
 				}),
 			]),
@@ -1615,8 +1653,7 @@ export const bootswatch: IContent = {
 												justifyContent: "between",
 											},
 											[
-												new h.h(
-													5,
+												new h.h5(
 													{ marginBottom: 1 },
 													"List group item heading"
 												),

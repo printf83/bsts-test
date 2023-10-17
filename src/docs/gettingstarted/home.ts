@@ -424,8 +424,7 @@ export const home: IContent = {
 					})
 				),
 
-				new h.h(
-					1,
+				new h.h1(
 					{ marginBottom: 3, fontWeight: "semibold", lineHeight: 1, fontDisplay: 3 },
 					"Testing website for Bootstrap TS"
 				),
@@ -869,7 +868,7 @@ export const home: IContent = {
 							new b.icon(arg.icon)
 						)
 					),
-					new h.h(2, { fontDisplay: 5, fontWeight: "semibold", col: "md-6" }, arg.title),
+					new h.h2({ fontDisplay: 5, fontWeight: "semibold", col: "md-6" }, arg.title),
 					new h.p({ lead: true, fontWeight: "normal", col: "md-6" }, arg.description),
 					new h.p(
 						{

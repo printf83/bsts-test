@@ -1,5 +1,3 @@
-import { HLevel } from "../../../node_modules/@printf83/bsts/build/types/html/h.js";
-
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
@@ -39,20 +37,25 @@ export const typography: IContent = {
 				new e.table({
 					item: [
 						["Heading", "Example"],
-						["{{<h1></h1>}}", new h.h(1, "h1.Bootstrap heading")],
-						["{{<h2></h2>}}", new h.h(2, "h2.Bootstrap heading")],
-						["{{<h3></h3>}}", new h.h(3, "h3.Bootstrap heading")],
-						["{{<h4></h4>}}", new h.h(4, "h4.Bootstrap heading")],
-						["{{<h5></h5>}}", new h.h(5, "h5.Bootstrap heading")],
-						["{{<h6></h6>}}", new h.h(6, "h6.Bootstrap heading")],
+						["{{<h1></h1>}}", new h.h1("h1.Bootstrap heading")],
+						["{{<h2></h2>}}", new h.h2("h2.Bootstrap heading")],
+						["{{<h3></h3>}}", new h.h3("h3.Bootstrap heading")],
+						["{{<h4></h4>}}", new h.h4("h4.Bootstrap heading")],
+						["{{<h5></h5>}}", new h.h5("h5.Bootstrap heading")],
+						["{{<h6></h6>}}", new h.h6("h6.Bootstrap heading")],
 					],
 				}),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map(
-							(i) => new h.h(i as HLevel, `h${i}. Bootstrap heading`)
-						);
+						return [
+							new h.h1("h1. Bootstrap heading"),
+							new h.h2("h2. Bootstrap heading"),
+							new h.h3("h3. Bootstrap heading"),
+							new h.h4("h4. Bootstrap heading"),
+							new h.h5("h5. Bootstrap heading"),
+							new h.h6("h6. Bootstrap heading"),
+						];
 					},
 				}),
 				new e.text(
@@ -78,7 +81,7 @@ export const typography: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new h.h(3, [
+						return new h.h3([
 							"Fancy display heading ",
 							new h.small(
 								{ textColor: "body-secondary" },
@@ -101,8 +104,7 @@ export const typography: IContent = {
 					output: () => {
 						return [1, 2, 3, 4, 5, 6]
 							.map((i) => [
-								new h.h(
-									1,
+								new h.h1(
 									{ fontDisplay: i as core.IAttr["fontDisplay"] },
 									`Display ${i}`
 								),

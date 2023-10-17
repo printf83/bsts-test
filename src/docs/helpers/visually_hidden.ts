@@ -18,7 +18,7 @@ export const visually_hidden: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [
-							new h.h(2, { visually: "hidden" }, "Title for screen readers"),
+							new h.h2({ visually: "hidden" }, "Title for screen readers"),
 							new h.a(
 								{ visually: "hidden-focusable", href: "#content" },
 								"Skip to main content"
