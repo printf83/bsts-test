@@ -1,7 +1,8 @@
-import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+// import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import { setupContentDocument } from "./content.js";
+type Icon = I.b.icon;
 
 export interface IMenu {
 	label: string;
@@ -16,6 +17,8 @@ export interface IMenuItem {
 }
 
 export const highlightMenu = (docId?: string) => {
+	if (docId && docId.indexOf("#") > -1) docId = docId.split("#")[0];
+
 	let bsLinks = document.getElementsByClassName("bs-links");
 
 	if (bsLinks && bsLinks.length > 0) {
@@ -31,6 +34,38 @@ export const highlightMenu = (docId?: string) => {
 				if (newActive) {
 					newActive.classList.add("active");
 					newActive.setAttribute("aria-current", "page");
+
+					let sidebar = newActive.closest(".bs-sidebar") as HTMLElement;
+					if (sidebar) {
+						const scrollId = core.UUID();
+						sidebar.setAttribute("data-scrollid", scrollId);
+
+						const sidebarBCR = sidebar.getBoundingClientRect();
+						const newActiveBCR = newActive.getBoundingClientRect();
+
+						let offsetElemPosition =
+							sidebarBCR.top + sidebar.scrollTop + newActiveBCR.top - 200;
+
+						if (newActiveBCR.top < 70 || newActiveBCR.top > sidebarBCR.height + 70) {
+							setTimeout(
+								(opt) => {
+									if (
+										opt.sidebar.getAttribute("data-scrollid") === opt.scrollId
+									) {
+										opt.sidebar.scrollTo({
+											top: opt.offsetElemPosition,
+										});
+									}
+								},
+								300,
+								{
+									scrollId,
+									sidebar,
+									offsetElemPosition,
+								}
+							);
+						}
+					}
 				}
 			}
 		});

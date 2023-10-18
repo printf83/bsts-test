@@ -535,7 +535,7 @@ const startMemoryTest = (arg: {
 			},
 			(docCount: number) => {
 				const endTime = performance.now();
-				let detailReport: core.IElem;
+				let detailReport: core.elem | core.elem[];
 
 				let loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
 				let durationSecond = ~~((endTime - startTime) / 1000);

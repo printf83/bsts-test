@@ -66,14 +66,14 @@ function itemCodeCopy(e: Event) {
 	return false;
 }
 
-export interface ICodePreview extends core.IAttr {
+export interface ICodePreview extends core.attr {
 	code?: string;
 	type?: "js" | "ts" | "css" | "html";
 	title?: string;
 	source?: string;
 }
 
-const convert = (attr: ICodePreview): core.IAttr => {
+const convert = (attr: ICodePreview): core.attr => {
 	if (attr.code) {
 		const copyButton = new h.a(
 			{

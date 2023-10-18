@@ -1,8 +1,8 @@
-import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
-
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+
+type HeaderLink = I.b.nav.header.link;
 
 const ex = {
 	c1: (arg: {
@@ -238,7 +238,7 @@ const ex = {
 		icon: string;
 		link?: HeaderLink[];
 		onlinkchange?: EventListener;
-		menu?: core.IElem;
+		menu?: core.elem | core.elem[];
 		onsearch?: EventListener;
 	}) => {
 		return new h.header(
@@ -333,8 +333,8 @@ const ex = {
 	c6Header: (arg: {
 		img: string;
 		icon: string;
-		link?: core.IElem;
-		menu?: core.IElem;
+		link?: core.elem | core.elem[];
+		menu?: core.elem | core.elem[];
 		onsearch?: EventListener;
 		onlinkchange?: EventListener;
 	}) => {
@@ -414,7 +414,7 @@ const ex = {
 			)
 		);
 	},
-	c6Body: (arg: { side?: core.IElem; main?: core.IElem }) => {
+	c6Body: (arg: { side?: core.elem | core.elem[]; main?: core.elem | core.elem[] }) => {
 		return new h.div(
 			{ container: "fluid", paddingBottom: 3 },
 			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [
@@ -432,12 +432,12 @@ const ex = {
 	c6: (arg: {
 		img: string;
 		icon: string;
-		link?: core.IElem;
-		menu?: core.IElem;
+		link?: core.elem | core.elem[];
+		menu?: core.elem | core.elem[];
 		onsearch?: EventListener;
 		onlinkchange?: EventListener;
-		side?: core.IElem;
-		main?: core.IElem;
+		side?: core.elem | core.elem[];
+		main?: core.elem | core.elem[];
 	}) => {
 		return [ex.c6Header(arg), ex.c6Body(arg)];
 	},

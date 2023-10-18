@@ -186,7 +186,7 @@ export const tables: IContent = {
 									"dark",
 								].map(
 									(i) =>
-										new b.table.tr({ color: i as core.bootstrapType.color }, [
+										new b.table.tr({ color: i as core.bsType.color }, [
 											new b.table.th(
 												{ scope: "row" },
 												i ? core.uppercaseFirst(i) : "Default"
@@ -229,13 +229,13 @@ export const tables: IContent = {
 											new b.table.th(
 												{
 													scope: "row",
-													color: i as core.bootstrapType.color,
+													color: i as core.bsType.color,
 												},
 												i ? core.uppercaseFirst(i) : "Default"
 											),
 											new b.table.td("Cell"),
 											new b.table.td(
-												{ color: i as core.bootstrapType.color },
+												{ color: i as core.bsType.color },
 												"Cell"
 											),
 										])
@@ -860,7 +860,7 @@ export const tables: IContent = {
 					"Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by wrapping a {{.table}} with {{.table-responsive}}. Or, pick a maximum breakpoint with which to have a responsive table up to by using {{.table-responsive{-sm|-md|-lg|-xl|-xxl} }}."
 				),
 				new e.alert({ color: "warning", callout: true }, [
-					new b.alert.header(5, "Vertical clipping/truncation"),
+					new b.alert.header("Vertical clipping/truncation"),
 					"Responsive tables make use of {{overflow-y: hidden}}, which clips off any content that goes beyond the bottom or top edges of the table. In particular, this can clip off dropdown menus and other third-party widgets.",
 				]),
 			]),

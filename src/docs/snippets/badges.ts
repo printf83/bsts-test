@@ -26,7 +26,7 @@ export const badges: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.badge(
-								{ textBgColor: i as core.Class["textBgColor"], rounded: "pill" },
+								{ textBgColor: i as core.bsClass["textBgColor"], rounded: "pill" },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -54,8 +54,8 @@ export const badges: IContent = {
 						].map((i) => {
 							return new b.badge(
 								{
-									bgColor: `${i}-subtle` as core.Class["bgColor"],
-									textColor: `${i}-emphasis` as core.Class["textColor"],
+									bgColor: `${i}-subtle` as core.bsClass["bgColor"],
+									textColor: `${i}-emphasis` as core.bsClass["textColor"],
 									rounded: "pill",
 								},
 								core.uppercaseFirst(i)
@@ -85,10 +85,10 @@ export const badges: IContent = {
 						].map((i) => {
 							return new b.badge(
 								{
-									bgColor: `${i}-subtle` as core.Class["bgColor"],
-									textColor: `${i}-emphasis` as core.Class["textColor"],
+									bgColor: `${i}-subtle` as core.bsClass["bgColor"],
+									textColor: `${i}-emphasis` as core.bsClass["textColor"],
 									border: true,
-									borderColor: `${i}-subtle` as core.Class["borderColor"],
+									borderColor: `${i}-subtle` as core.bsClass["borderColor"],
 									rounded: "pill",
 								},
 								core.uppercaseFirst(i)
@@ -118,10 +118,10 @@ export const badges: IContent = {
 						].map((i, ix) => {
 							return new b.badge(
 								{
-									bgColor: `${i}-subtle` as core.Class["bgColor"],
-									textColor: `${i}-emphasis` as core.Class["textColor"],
+									bgColor: `${i}-subtle` as core.bsClass["bgColor"],
+									textColor: `${i}-emphasis` as core.bsClass["textColor"],
 									border: true,
-									borderColor: `${i}-subtle` as core.Class["borderColor"],
+									borderColor: `${i}-subtle` as core.bsClass["borderColor"],
 									rounded: "pill",
 									display: "flex",
 									alignItem: "center",
@@ -162,10 +162,10 @@ export const badges: IContent = {
 						].map((i) => {
 							return new b.badge(
 								{
-									bgColor: `${i}-subtle` as core.Class["bgColor"],
-									textColor: `${i}-emphasis` as core.Class["textColor"],
+									bgColor: `${i}-subtle` as core.bsClass["bgColor"],
+									textColor: `${i}-emphasis` as core.bsClass["textColor"],
 									border: true,
-									borderColor: `${i}-subtle` as core.Class["borderColor"],
+									borderColor: `${i}-subtle` as core.bsClass["borderColor"],
 									rounded: "pill",
 									display: "flex",
 									alignItem: "center",
@@ -213,10 +213,10 @@ export const badges: IContent = {
 						].map((i, ix) => {
 							return new b.badge(
 								{
-									bgColor: `${i}-subtle` as core.Class["bgColor"],
-									textColor: `${i}-emphasis` as core.Class["textColor"],
+									bgColor: `${i}-subtle` as core.bsClass["bgColor"],
+									textColor: `${i}-emphasis` as core.bsClass["textColor"],
 									border: true,
-									borderColor: `${i}-subtle` as core.Class["borderColor"],
+									borderColor: `${i}-subtle` as core.bsClass["borderColor"],
 									rounded: "pill",
 									display: "flex",
 									alignItem: "center",

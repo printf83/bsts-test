@@ -1,7 +1,7 @@
 import { core, h } from "@printf83/bsts";
 import { codeBeautify, codeBeautifyType } from "./_fn.js";
 
-export interface IPreview extends core.IAttr {
+export interface IPreview extends core.attr {
 	type?: codeBeautifyType;
 }
 
@@ -46,8 +46,8 @@ const convert = (attr: IPreview) => {
 export class preview extends h.pre {
 	constructor();
 	constructor(attr: IPreview);
-	constructor(elem: core.IElem);
-	constructor(attr: IPreview, elem: core.IElem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: IPreview, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<IPreview>("elem", arg)));
 	}

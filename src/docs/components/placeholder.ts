@@ -171,7 +171,7 @@ export const placeholder: IContent = {
 						].map((i) => {
 							return new h.span(
 								{
-									bgColor: i as core.IAttr["bgColor"],
+									bgColor: i as core.attr["bgColor"],
 									col: 12,
 									loadingPlaceholder: true,
 								},
@@ -201,7 +201,7 @@ export const placeholder: IContent = {
 									col: 12,
 									loadingPlaceholder: true,
 									loadingPlaceholderWeight:
-										i as core.IAttr["loadingPlaceholderWeight"],
+										i as core.attr["loadingPlaceholderWeight"],
 								},
 								" "
 							);
@@ -224,7 +224,7 @@ export const placeholder: IContent = {
 							return new h.p(
 								{
 									loadingPlaceholderAnimation:
-										i as core.IAttr["loadingPlaceholderAnimation"],
+										i as core.attr["loadingPlaceholderAnimation"],
 								},
 								new h.span(
 									{

@@ -73,11 +73,7 @@ export const stretched_link: IContent = {
 								alt: "Image cap",
 							}),
 							new h.div([
-								new h.h(
-									5,
-									{ marginTop: 0 },
-									"Custom component with stretched link"
-								),
+								new h.h5({ marginTop: 0 }, "Custom component with stretched link"),
 								new h.p(
 									"This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."
 								),
@@ -123,7 +119,7 @@ export const stretched_link: IContent = {
 									})
 								),
 								new h.div({ col: "md-6", padding: 4, paddingStart: "md-0" }, [
-									new h.h(5, { marginTop: 0 }, "Columns with stretched link"),
+									new h.h5({ marginTop: 0 }, "Columns with stretched link"),
 									new h.p(
 										"Another instance of placeholder content for this other custom component. It is intended to mimic what some real-world content would look like, and Bootstrap're using it here to give the component a bit of body and size."
 									),

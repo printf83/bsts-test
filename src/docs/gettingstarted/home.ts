@@ -424,8 +424,7 @@ export const home: IContent = {
 					})
 				),
 
-				new h.h(
-					1,
+				new h.h1(
 					{ marginBottom: 3, fontWeight: "semibold", lineHeight: 1, fontDisplay: 3 },
 					"Testing website for Bootstrap TS"
 				),
@@ -841,7 +840,7 @@ export const home: IContent = {
 			icon: string;
 			title: string;
 			description: string;
-			elem?: core.IElem;
+			elem?: core.elem | core.elem[];
 		}) => {
 			return new h.div(
 				{
@@ -869,7 +868,7 @@ export const home: IContent = {
 							new b.icon(arg.icon)
 						)
 					),
-					new h.h(2, { fontDisplay: 5, fontWeight: "semibold", col: "md-6" }, arg.title),
+					new h.h2({ fontDisplay: 5, fontWeight: "semibold", col: "md-6" }, arg.title),
 					new h.p({ lead: true, fontWeight: "normal", col: "md-6" }, arg.description),
 					new h.p(
 						{
@@ -1025,14 +1024,21 @@ export const home: IContent = {
 						["Read documentation", arrowNextIcon]
 					),
 				},
-			].map((i: { icon: string; title: string; description: string; elem?: core.IElem }) => {
-				return feature({
-					icon: i.icon,
-					title: i.title,
-					description: i.description,
-					elem: i.elem,
-				});
-			})
+			].map(
+				(i: {
+					icon: string;
+					title: string;
+					description: string;
+					elem?: core.elem | core.elem[];
+				}) => {
+					return feature({
+						icon: i.icon,
+						title: i.title,
+						description: i.description,
+						elem: i.elem,
+					});
+				}
+			)
 		);
 
 		const bg = new h.div(

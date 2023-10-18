@@ -1,7 +1,8 @@
-import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
+// import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
+type HeaderLink = I.b.nav.header.link;
 
 export const product: IContent = {
 	fullscreen: true,
@@ -103,7 +104,7 @@ export const product: IContent = {
 					},
 				},
 				[
-					new h.h(1, { marginTop: 4, fontDisplay: 3 }, "Designed for engineers"),
+					new h.h1({ marginTop: 4, fontDisplay: 3 }, "Designed for engineers"),
 					new h.p({ lead: true }, "Build anything you want with Aperture"),
 					new h.div(
 						{
@@ -134,9 +135,9 @@ export const product: IContent = {
 		const item = (arg: {
 			title: string;
 			description: string;
-			elem?: core.IElem;
-			bgColor?: core.bootstrapType.bgColor;
-			textColor?: core.bootstrapType.textColor;
+			elem?: core.elem | core.elem[];
+			bgColor?: core.bsType.bgColor;
+			textColor?: core.bsType.textColor;
 			img: string;
 		}) => {
 			return new h.div(
@@ -148,7 +149,7 @@ export const product: IContent = {
 					textColor: arg.textColor,
 				},
 				[
-					new h.h(3, { fontDisplay: 5 }, arg.title),
+					new h.h3({ fontDisplay: 5 }, arg.title),
 					new h.div({ col: "lg-6", marginX: "auto" }, [
 						new h.p({ lead: true, marginBottom: 2 }, arg.description),
 						new h.div(
@@ -206,7 +207,7 @@ export const product: IContent = {
 
 		const section = (arg: { title: string; link: HeaderLink[] }) => {
 			return [
-				new h.h(5, arg.title),
+				new h.h5(arg.title),
 				new b.nav.header.container({
 					flex: "column",
 					elem: arg.link.map((i) => {

@@ -22,7 +22,7 @@ export const dispatchCustomEvent = (root: Element | null, eventName: string, val
 	}
 };
 
-export interface IMainContainer extends core.IAttr {
+export interface IMainContainer extends core.attr {
 	icon?: core.tag;
 	name?: string;
 

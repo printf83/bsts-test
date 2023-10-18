@@ -182,12 +182,12 @@ export const reboot: IContent = {
 				new e.table({
 					item: [
 						["Heading", "Example"],
-						["{{<h1></h1>}}", new h.h(1, "h1.Bootstrap heading")],
-						["{{<h2></h2>}}", new h.h(2, "h2.Bootstrap heading")],
-						["{{<h3></h3>}}", new h.h(3, "h3.Bootstrap heading")],
-						["{{<h4></h4>}}", new h.h(4, "h4.Bootstrap heading")],
-						["{{<h5></h5>}}", new h.h(5, "h5.Bootstrap heading")],
-						["{{<h6></h6>}}", new h.h(6, "h6.Bootstrap heading")],
+						["{{<h1></h1>}}", new h.h1( "h1.Bootstrap heading")],
+						["{{<h2></h2>}}", new h.h2( "h2.Bootstrap heading")],
+						["{{<h3></h3>}}", new h.h3( "h3.Bootstrap heading")],
+						["{{<h4></h4>}}", new h.h4( "h4.Bootstrap heading")],
+						["{{<h5></h5>}}", new h.h5( "h5.Bootstrap heading")],
+						["{{<h6></h6>}}", new h.h6( "h6.Bootstrap heading")],
 					],
 				}),
 			]),

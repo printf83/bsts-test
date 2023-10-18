@@ -1,7 +1,7 @@
 import { core, h as html, t, s, b, h } from "@printf83/bsts";
 import { anchorOnClick } from "./_fn.js";
 
-export interface ISubTitle extends core.IAttr {
+export interface ISubTitle extends core.attr {
 	moreInfo?: string;
 }
 
@@ -92,12 +92,12 @@ const convert = (attr: ISubTitle) => {
 	return attr;
 };
 
-export class subtitle extends html.h {
+export class subtitle extends html.h3 {
 	constructor();
 	constructor(attr: ISubTitle);
-	constructor(elem: core.IElem);
-	constructor(attr: ISubTitle, elem: core.IElem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: ISubTitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(3, convert(core.bsConstArg("elem", arg)));
+		super(convert(core.bsConstArg("elem", arg)));
 	}
 }

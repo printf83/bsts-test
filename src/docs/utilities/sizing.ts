@@ -22,7 +22,7 @@ export const sizing: IContent = {
 						return [25, 50, 75, 100, "auto"].map(
 							(i) =>
 								new h.div(
-									{ width: i as core.IAttr["width"], padding: 3 },
+									{ width: i as core.attr["width"], padding: 3 },
 									`Width ${i}${i !== "auto" ? "%" : ""}`
 								)
 						);
@@ -38,7 +38,7 @@ export const sizing: IContent = {
 								(i) =>
 									new h.div(
 										{
-											height: i as core.IAttr["height"],
+											height: i as core.attr["height"],
 											display: "inline-block",
 											marginEnd: 1,
 											style: { width: "120px" },

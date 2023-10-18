@@ -33,7 +33,7 @@ export const alert: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i as core.bootstrapType.alertColor },
+								{ color: i as core.bsType.alertColor },
 								`A simple ${i} alert—check it out!`
 							);
 						});
@@ -41,7 +41,7 @@ export const alert: IContent = {
 				}),
 
 				new e.alert({ color: "info", callout: true }, [
-					new h.h(5, "Conveying meaning to assistive technologies"),
+					new h.h5("Conveying meaning to assistive technologies"),
 					new h.p(
 						"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 					),
@@ -67,7 +67,7 @@ export const alert: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i as core.bootstrapType.alertColor, callout: true },
+								{ color: i as core.bsType.alertColor, callout: true },
 								`A simple ${i} callout—check it out!`
 							);
 						});
@@ -134,14 +134,11 @@ export const alert: IContent = {
 							"light",
 							"dark",
 						].map((i) => {
-							return new b.alert.container(
-								{ color: i as core.bootstrapType.alertColor },
-								[
-									`A simple ${i} alert with `,
-									new b.alert.link({ href: "#" }, "an example link"),
-									".",
-								]
-							);
+							return new b.alert.container({ color: i as core.bsType.alertColor }, [
+								`A simple ${i} alert with `,
+								new b.alert.link({ href: "#" }, "an example link"),
+								".",
+							]);
 						});
 					},
 				}),
@@ -158,7 +155,7 @@ export const alert: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return new b.alert.container({ color: "success" }, [
-							new b.alert.header(4, "Well done!"),
+							new b.alert.header("Well done!"),
 							new h.p(
 								"Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
 							),
@@ -202,7 +199,7 @@ export const alert: IContent = {
 							{ color: "danger", icon: "x-circle-fill" },
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i.color as core.bootstrapType.alertColor },
+								{ color: i.color as core.bsType.alertColor },
 								[
 									new b.msg(
 										{ icon: i.icon },

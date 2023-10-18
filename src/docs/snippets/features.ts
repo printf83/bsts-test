@@ -20,7 +20,7 @@ const ex = {
 				},
 				new b.icon(arg.icon)
 			),
-			new h.h(3, { fontSize: 2 }, arg.title),
+			new h.h3({ fontSize: 2 }, arg.title),
 			new h.p(arg.description),
 			new h.a({ href: arg.href, iconLink: true }, [
 				"Call to action",
@@ -28,7 +28,12 @@ const ex = {
 			]),
 		]);
 	},
-	c2: (arg: { icon: string; title: string; description: string; elem: core.IElem }) => {
+	c2: (arg: {
+		icon: string;
+		title: string;
+		description: string;
+		elem: core.elem | core.elem[];
+	}) => {
 		return new h.div(
 			{
 				col: true,
@@ -53,7 +58,7 @@ const ex = {
 					new b.icon(arg.icon)
 				),
 				new h.div([
-					new h.h(3, { fontSize: 2 }, arg.title),
+					new h.h3({ fontSize: 2 }, arg.title),
 					new h.p(arg.description),
 					new h.div(arg.elem),
 				]),
@@ -145,7 +150,7 @@ const ex = {
 					new b.icon(arg.icon)
 				),
 				new h.div([
-					new h.h(3, { fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title),
+					new h.h3({ fontSize: 4, marginBottom: 0, fontWeight: "bold" }, arg.title),
 					new h.p(arg.description),
 				]),
 			]
@@ -176,12 +181,12 @@ const ex = {
 						new b.icon(arg.icon)
 					)
 				),
-				new h.h(4, { fontWeight: "semibold", marginBottom: 0 }, arg.title),
+				new h.h4({ fontWeight: "semibold", marginBottom: 0 }, arg.title),
 				new h.p({ textColor: "body-secondary" }, arg.description),
 			]
 		);
 	},
-	c5Title: (arg: { title: string; description: string; elem: core.IElem }) => {
+	c5Title: (arg: { title: string; description: string; elem: core.elem | core.elem[] }) => {
 		return new h.div(
 			{
 				col: true,
@@ -191,14 +196,14 @@ const ex = {
 				gap: 2,
 			},
 			[
-				new h.h(3, { fontWeight: "bold" }, arg.title),
+				new h.h3({ fontWeight: "bold" }, arg.title),
 				new h.p({ textColor: "body-secondary" }, arg.description),
 				new h.div(arg.elem),
 			]
 		);
 	},
 	c5: (arg: {
-		main: { title: string; description: string; elem: core.IElem };
+		main: { title: string; description: string; elem: core.elem | core.elem[] };
 		feature: { icon: string; title: string; description: string }[];
 	}) => {
 		return new h.div(

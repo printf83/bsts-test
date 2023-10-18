@@ -1018,8 +1018,7 @@ export const navbar: IContent = {
 							new b.collapse.container(
 								{ id: "navbarToggleExternalContent" },
 								new h.div({ theme: "dark", padding: 4, bgColor: "body-tertiary" }, [
-									new h.h(
-										5,
+									new h.h5(
 										{ textColor: "body-emphasis", h: 4 },
 										"Collapsed content"
 									),

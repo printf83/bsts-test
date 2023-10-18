@@ -15,7 +15,7 @@ const ex = {
 			label: string;
 		}[];
 		onlinkchange?: EventListener;
-		menu?: core.IElem;
+		menu?: core.elem | core.elem[];
 	}) => {
 		return new h.div(
 			{
@@ -94,7 +94,7 @@ const ex = {
 			icon: string;
 			label: string;
 		}[];
-		menu?: core.IElem;
+		menu?: core.elem | core.elem[];
 	}) => {
 		return new h.div(
 			{
@@ -171,7 +171,7 @@ const ex = {
 			icon: string;
 			label: string;
 		}[];
-		menu?: core.IElem;
+		menu?: core.elem | core.elem[];
 	}) => {
 		return new h.div(
 			{

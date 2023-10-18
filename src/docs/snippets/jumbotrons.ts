@@ -26,8 +26,7 @@ export const jumbotrons: IContent = {
 									id: "hexagon-fill",
 									fontDisplay: 1,
 								}),
-								new h.h(
-									1,
+								new h.h1(
 									{ textColor: "body-emphasis", marginTop: 3 },
 									"Jumbotron with icon"
 								),
@@ -113,8 +112,7 @@ export const jumbotrons: IContent = {
 									id: "check2-circle",
 									fontDisplay: 3,
 								}),
-								new h.h(
-									1,
+								new h.h1(
 									{ textColor: "body-emphasis", marginTop: 3 },
 									"Placeholder jumbotron"
 								),
@@ -155,7 +153,7 @@ export const jumbotrons: IContent = {
 								bgColor: "body-tertiary",
 							},
 							new h.div({ container: true, paddingY: 5 }, [
-								new h.h(1, { textColor: "body-emphasis" }, "Full-width jumbotron"),
+								new h.h1({ textColor: "body-emphasis" }, "Full-width jumbotron"),
 								new h.p(
 									{
 										col: "lg-8",
@@ -187,7 +185,7 @@ export const jumbotrons: IContent = {
 									rounded: 3,
 								},
 								[
-									new h.h(1, { textColor: "body-emphasis" }, "Basic jumbotron"),
+									new h.h1({ textColor: "body-emphasis" }, "Basic jumbotron"),
 									new h.p(
 										{
 											lead: true,

@@ -1,8 +1,9 @@
-import { Container as ModalContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/modal/container.js";
+// import { Container as ModalContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/modal/container.js";
 
-import { core, h, b, s } from "@printf83/bsts";
+import { core, h, b, s, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type ModalContainer = I.b.modal.container;
 
 export const modal: IContent = {
 	title: "Modal",
@@ -104,7 +105,7 @@ export const modal: IContent = {
 
 				new e.alert(
 					{ color: "info", callout: true },
-					"In the above static example, Bootstrap use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{nav:docs/utilities/text#font_size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach.{{hr}}{{bsts}} using {{h.h(1)}} because we don't have that issue."
+					"In the above static example, Bootstrap use {{<h5>}}, to avoid issues with the heading hierarchy in the documentation page. Structurally, however, a modal dialog represents its own separate document/context, so the {{.modal-title}} should ideally be an {{<h1>}}. If necessary, you can use the {{nav:docs/utilities/text#font_size::font size utilities}} to control the heading’s appearance. All the following live examples use this approach.{{hr}}{{bsts}} using {{h.h1()}} because we don't have that issue."
 				),
 			]),
 
@@ -544,7 +545,7 @@ export const modal: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let modalContent = (id: string, elem: core.IElem) => {
+						let modalContent = (id: string, elem: core.elem | core.elem[]) => {
 							return [
 								new b.modal.header(
 									{ close: true },
@@ -624,7 +625,7 @@ export const modal: IContent = {
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
 						const modalElem = [
-							new h.h(2, { fontSize: 5 }, "Popover in a modal"),
+							new h.h2({ fontSize: 5 }, "Popover in a modal"),
 							new h.p([
 								"This ",
 								new b.popover(
@@ -637,7 +638,7 @@ export const modal: IContent = {
 								" triggers a popover on click.",
 							]),
 							new h.hr(),
-							new h.h(2, { fontSize: 5 }, "Tooltips in a modal"),
+							new h.h2({ fontSize: 5 }, "Tooltips in a modal"),
 							new h.p([
 								new b.tooltip(
 									{
@@ -739,8 +740,7 @@ export const modal: IContent = {
 														)
 													),
 													new b.modal.body([
-														new h.h(
-															2,
+														new h.h2(
 															{ fontSize: 5 },
 															"Popover in a modal"
 														),
@@ -760,8 +760,7 @@ export const modal: IContent = {
 															" triggers a popover on click.",
 														]),
 														new h.hr(),
-														new h.h(
-															2,
+														new h.h2(
 															{ fontSize: 5 },
 															"Tooltips in a modal"
 														),

@@ -20,7 +20,7 @@ export const cssgrid: IContent = {
 					"{{b::Heads up—Bootstrap CSS Grid system is experimental and opt-in as of v5.1.0!}} Bootstrap included it in Bootstrap documentation’s CSS to demonstrate it for you, but it’s disabled by default. Keep reading to learn how to enable it in your projects."
 				),
 				new e.alert({ color: "danger", callout: true }, [
-					new b.alert.header(5, "Unsuppoterd in {{bsts}}"),
+					new b.alert.header("Unsuppoterd in {{bsts}}"),
 					"This feature will supported when Bootstrap make it opt-in by default or available in CDN.",
 				]),
 				new e.text(

@@ -8,8 +8,7 @@ export const cover: IContent = {
 		const header = new h.header(
 			{ marginBottom: "auto" },
 			new h.div([
-				new h.h(
-					3,
+				new h.h3(
 					{ float: "md-start", marginBottom: 0, textColor: "body-emphasis" },
 					"Cover"
 				),
@@ -28,7 +27,7 @@ export const cover: IContent = {
 		);
 
 		const main = new h.main({ paddingX: 3 }, [
-			new h.h(1, "Cover your page"),
+			new h.h1("Cover your page"),
 			new h.p(
 				{ lead: true },
 				"Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own."
