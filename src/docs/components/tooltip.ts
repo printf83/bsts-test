@@ -1,9 +1,10 @@
-import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
+// import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
 
-import { h, b, s, core } from "@printf83/bsts";
+import { h, b, s, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
+type ITooltip = I.b.tooltip;
 
 export const tooltip: IContent = {
 	title: "Tooltips",
@@ -465,7 +466,7 @@ export const tooltip: IContent = {
 					],
 				}),
 				new e.alert({ color: "info", callout: true }, [
-					new b.alert.header(4, "Data attributes for individual tooltips"),
+					new b.alert.header("Data attributes for individual tooltips"),
 					"Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.",
 				]),
 			]),

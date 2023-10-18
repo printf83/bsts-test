@@ -44,7 +44,7 @@ export const object_fit: IContent = {
 							(i) =>
 								new h.img({
 									src: "https://picsum.photos/seed/bsts_0/110/65.webp",
-									objectFit: i as core.IAttr["objectFit"],
+									objectFit: i as core.attr["objectFit"],
 									border: true,
 									rounded: true,
 									alt: "...",
@@ -77,7 +77,7 @@ export const object_fit: IContent = {
 							(i) =>
 								new h.img({
 									src: "https://picsum.photos/seed/bsts_0/110/65.webp",
-									objectFit: i as core.IAttr["objectFit"],
+									objectFit: i as core.attr["objectFit"],
 									border: true,
 									rounded: true,
 									alt: "...",
@@ -116,7 +116,7 @@ export const object_fit: IContent = {
 								(i) =>
 									new h.video({
 										src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-										objectFit: i as core.IAttr["objectFit"],
+										objectFit: i as core.attr["objectFit"],
 										border: true,
 										rounded: true,
 										controls: true,

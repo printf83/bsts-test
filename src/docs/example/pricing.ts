@@ -1,7 +1,8 @@
-import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
+// import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
+type HeaderLink = I.b.nav.header.link;
 
 export const pricing: IContent = {
 	fullscreen: true,
@@ -50,7 +51,7 @@ export const pricing: IContent = {
 
 		const jumbotron = new h.section(
 			new h.div({ container: true, textAlign: "center", paddingX: 5 }, [
-				new h.h(1, { textColor: "body-emphasis", marginTop: 4, fontDisplay: 3 }, "Pricing"),
+				new h.h1({ textColor: "body-emphasis", marginTop: 4, fontDisplay: 3 }, "Pricing"),
 				new h.p(
 					{ lead: true },
 					"Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization."
@@ -61,10 +62,10 @@ export const pricing: IContent = {
 		const plan = (arg: {
 			name: string;
 			price: number;
-			item: core.IElem;
+			item: core.elem | core.elem[];
 			button: core.tag;
-			borderColor?: core.bootstrapType.borderColor;
-			headerColor?: core.bootstrapType.textBgColor;
+			borderColor?: core.bsType.borderColor;
+			headerColor?: core.bsType.textBgColor;
 		}) => {
 			return new h.div(
 				{ col: true },
@@ -147,7 +148,7 @@ export const pricing: IContent = {
 
 		const check_icon = new b.icon({ id: "check2", fontSize: 4, textColor: "primary" });
 		const plan_compare = new h.section({ container: true }, [
-			new h.h(2, { fontDisplay: 6, textAlign: "center", marginBottom: 4 }, "Compare plans"),
+			new h.h2({ fontDisplay: 6, textAlign: "center", marginBottom: 4 }, "Compare plans"),
 			new b.table.responsive(
 				new b.table.container(
 					{
@@ -216,7 +217,7 @@ export const pricing: IContent = {
 
 		const section = (arg: { title: string; link: HeaderLink[] }) => {
 			return [
-				new h.h(5, arg.title),
+				new h.h5(arg.title),
 				new b.nav.header.container({
 					flex: "column",
 					elem: arg.link.map((i) => {

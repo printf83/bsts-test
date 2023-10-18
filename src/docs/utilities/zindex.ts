@@ -27,7 +27,7 @@ export const zindex: IContent = {
 							(i) =>
 								new h.div(
 									{
-										zIndex: i as core.IAttr["zIndex"],
+										zIndex: i as core.attr["zIndex"],
 										position: "absolute",
 										rounded: 3,
 										padding: 5,

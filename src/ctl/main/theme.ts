@@ -1,7 +1,9 @@
-import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+// import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import { cookie } from "./cookie.js";
+
+type Icon = I.b.icon;
 
 export const getSavedTheme = () => {
 	let themeCookie = cookie.get("current_theme");

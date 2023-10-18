@@ -25,7 +25,7 @@ export const link: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkOpacity: i as core.bootstrapType.linkOpacity,
+											linkOpacity: i as core.bsType.linkOpacity,
 										},
 										`Link opacity ${i}`
 									)
@@ -43,8 +43,7 @@ export const link: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkOpacityHover:
-												i as core.bootstrapType.linkOpacityHover,
+											linkOpacityHover: i as core.bsType.linkOpacityHover,
 										},
 										`Link hover opacity ${i}`
 									)
@@ -78,8 +77,7 @@ export const link: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkUnderlineColor:
-												i as core.bootstrapType.linkUnderlineColor,
+											linkUnderlineColor: i as core.bsType.linkUnderlineColor,
 										},
 										`${core.uppercaseFirst(i)} underline`
 									)
@@ -105,7 +103,7 @@ export const link: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkOffset: i as core.bootstrapType.linkOffset,
+											linkOffset: i as core.bsType.linkOffset,
 										},
 										i ? `Offset ${i} link` : "Default link"
 									)
@@ -134,7 +132,7 @@ export const link: IContent = {
 											linkOffset: 2,
 											linkUnderline: true,
 											linkUnderlineOpacity:
-												i as core.bootstrapType.linkUnderlineOpacity,
+												i as core.bsType.linkUnderlineOpacity,
 										},
 										`Underline opacity ${i}`
 									)
@@ -198,7 +196,7 @@ export const link: IContent = {
 											linkOffset: 2,
 											linkUnderlineOpacity: 25,
 											linkUnderlineOpacityHover: 100,
-											linkColor: i as core.bootstrapType.linkColor,
+											linkColor: i as core.bsType.linkColor,
 										},
 										`${core.uppercaseFirst(i)} link`
 									)

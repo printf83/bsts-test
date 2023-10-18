@@ -60,7 +60,7 @@ export const scrollspy: IContent = {
 						let contentItems: core.tag[] = [];
 						["First", "Second", "Third", "Forth", "Fifth"].forEach((i, ix) => {
 							contentItems.push(
-								new h.h(4, { id: `scrollspyHeading${ix + 1}` }, `${i} heading`)
+								new h.h4({ id: `scrollspyHeading${ix + 1}` }, `${i} heading`)
 							);
 							contentItems.push(
 								new h.p(
@@ -157,7 +157,7 @@ export const scrollspy: IContent = {
 
 						let contentItems = ["1", "1-1", "1-2", "2", "3", "3-1", "3-2"].map((i) => {
 							return new h.div({ id: `item-${i}` }, [
-								new h.h(4, `Item ${i}`),
+								new h.h4(`Item ${i}`),
 								new h.p(
 									"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
 								),
@@ -219,7 +219,7 @@ export const scrollspy: IContent = {
 
 						let contentItems: core.tag[] = [];
 						d.forEach((i) => {
-							contentItems.push(new h.h(4, { id: `list-item-${i}` }, `Item ${i}`));
+							contentItems.push(new h.h4({ id: `list-item-${i}` }, `Item ${i}`));
 							contentItems.push(
 								new h.p(
 									"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
@@ -280,7 +280,7 @@ export const scrollspy: IContent = {
 						let contentItems: core.tag[] = [];
 						d.forEach((i) => {
 							contentItems.push(
-								new h.h(4, { id: `simple-list-item-${i}` }, `Item ${i}`)
+								new h.h4({ id: `simple-list-item-${i}` }, `Item ${i}`)
 							);
 							contentItems.push(
 								new h.p(
@@ -424,7 +424,7 @@ export const scrollspy: IContent = {
 				}),
 
 				new e.alert({ color: "warning", callout: true }, [
-					new b.alert.header(4, "Deprecated Options"),
+					new b.alert.header("Deprecated Options"),
 					"Up until v5.1.3 Bootstrap were using {{offset}} & {{method}} options, which are now deprecated and replaced by {{rootMargin}}. To keep backwards compatibility, Bootstrap will continue to parse a given {{offset}} to {{rootMargin}}, but this feature will be removed in {{b::v6}}.",
 				]),
 			]),

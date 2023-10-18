@@ -34,7 +34,7 @@ export interface IExtention {
 	strOutput?: string;
 }
 
-export interface ICode extends core.IAttr {
+export interface ICode extends core.attr {
 	db?: ISourceDB;
 	strExtention?: string | string[];
 	strOutput?: string;
@@ -56,8 +56,8 @@ export interface ICode extends core.IAttr {
 	showManager?: boolean;
 	showHTML?: boolean;
 
-	previewAttr?: core.IAttr;
-	outputAttr?: core.IAttr;
+	previewAttr?: core.attr;
+	outputAttr?: core.attr;
 	zoom?: 25 | 50 | 75 | 100 | 125 | 150 | 200;
 }
 
@@ -88,7 +88,7 @@ const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	}
 };
 
-export function successCopyCode(iconElem?: Element, color?: core.bootstrapType.textColor) {
+export function successCopyCode(iconElem?: Element, color?: core.bsType.textColor) {
 	if (iconElem) {
 		color ??= "success";
 
@@ -108,7 +108,7 @@ export function successCopyCode(iconElem?: Element, color?: core.bootstrapType.t
 	}
 }
 
-export function failCopyCode(iconElem?: Element, color?: core.bootstrapType.textColor) {
+export function failCopyCode(iconElem?: Element, color?: core.bsType.textColor) {
 	if (iconElem) {
 		color ??= "danger";
 
@@ -241,12 +241,7 @@ function clearConsoleLog(e: Event) {
 	return;
 }
 
-function addConsoleLog(
-	elem: Element,
-	title: string,
-	msg: string,
-	color?: core.bootstrapType.textColor
-) {
+function addConsoleLog(elem: Element, title: string, msg: string, color?: core.bsType.textColor) {
 	const exampleConsole = elem.getElementsByClassName("example-console")[0];
 	if (exampleConsole) {
 		//add log
@@ -310,8 +305,8 @@ function addConsoleLog(
 }
 
 const itemCode = (arg: {
-	title: core.IElem;
-	elem: core.IElem;
+	title: core.elem | core.elem[];
+	elem: core.elem | core.elem[];
 
 	header?: boolean;
 	islast?: boolean;
@@ -640,8 +635,8 @@ const itemCode = (arg: {
 
 const itemOutput = (
 	zoom: 25 | 50 | 75 | 100 | 125 | 150 | 200 | undefined,
-	previewAttr: core.IAttr | undefined,
-	outputAttr: core.IAttr | undefined,
+	previewAttr: core.attr | undefined,
+	outputAttr: core.attr | undefined,
 	str: string
 ) => {
 	if (previewAttr) {
@@ -1248,7 +1243,7 @@ const convert = (attr: ICode) => {
 								const ce = event as CustomEvent<{
 									title: string;
 									msg: string;
-									color?: core.bootstrapType.textColor;
+									color?: core.bsType.textColor;
 								}>;
 								addConsoleLog(
 									ce.target as Element,

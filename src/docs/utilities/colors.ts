@@ -32,9 +32,9 @@ export const colors: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						const data: {
-							textColor: core.IAttr["textColor"];
-							bgColor?: core.IAttr["bgColor"];
-							textOpacity?: core.IAttr["textOpacity"];
+							textColor: core.attr["textColor"];
+							bgColor?: core.attr["bgColor"];
+							textOpacity?: core.attr["textOpacity"];
 						}[] = [
 							{ textColor: "primary" },
 							{ textColor: "primary-emphasis" },
@@ -146,7 +146,7 @@ export const colors: IContent = {
 							return new h.div(
 								{
 									textColor: "primary",
-									textOpacity: i as core.IAttr["textOpacity"],
+									textOpacity: i as core.attr["textOpacity"],
 								},
 								`This is ${i ? i + "% opacity" : "default"} primary text`
 							);

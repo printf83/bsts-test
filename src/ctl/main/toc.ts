@@ -127,8 +127,7 @@ export const setupTOC = (content?: IContent) => {
 								}),
 							]
 						),
-						new h.h(
-							5,
+						new h.h5(
 							{ display: ["none", "md-block"], fontSize: 6, marginY: 2 },
 							"On this page"
 						),

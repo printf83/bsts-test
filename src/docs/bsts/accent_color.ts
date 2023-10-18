@@ -613,7 +613,7 @@ export const accent_color: IContent = {
 									{
 										rounded: true,
 										border: true,
-										bgColor: i as core.bootstrapType.bgColor,
+										bgColor: i as core.bsType.bgColor,
 										style: { height: "2.5rem", width: "11rem" },
 									},
 

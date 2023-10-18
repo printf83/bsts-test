@@ -252,7 +252,7 @@ export const flex: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "grid", gap: 3, class: "flex-box" },
 					output: () => {
-						const item = (i: core.IAttr["alignSelf"]) => {
+						const item = (i: core.attr["alignSelf"]) => {
 							return [
 								new h.div({ padding: 2 }, "Flex item"),
 								new h.div({ padding: 2, alignSelf: i }, "Flex item"),
@@ -264,7 +264,7 @@ export const flex: IContent = {
 							(i) =>
 								new h.div(
 									{ display: "flex", style: { height: "100px" } },
-									item(i as core.IAttr["alignSelf"])
+									item(i as core.attr["alignSelf"])
 								)
 						);
 					},

@@ -33,7 +33,7 @@ export const color_background: IContent = {
 						].map(
 							(i) =>
 								new h.div(
-									{ textBgColor: i as core.IAttr["textBgColor"], padding: 3 },
+									{ textBgColor: i as core.attr["textBgColor"], padding: 3 },
 									`${core.uppercaseFirst(i)} with contrasting color`
 								)
 						);
@@ -67,7 +67,7 @@ export const color_background: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 4 },
 					output: () => {
-						const item = (textBgColor: core.IAttr["textBgColor"]) =>
+						const item = (textBgColor: core.attr["textBgColor"]) =>
 							new b.card.container(
 								{ textBgColor: textBgColor, style: { width: "18rem" } },
 								[

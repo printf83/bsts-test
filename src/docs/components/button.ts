@@ -31,14 +31,14 @@ export const button: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as core.bootstrapType.btnColor },
+								{ color: i as core.bsType.btnColor },
 								core.uppercaseFirst(i)
 							);
 						});
 					},
 				}),
 				new e.alert({ color: "info", callout: true }, [
-					new h.h(5, "Conveying meaning to assistive technologies"),
+					new h.h5("Conveying meaning to assistive technologies"),
 					new h.p(
 						"Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the {{visually:'hidden'}} property."
 					),
@@ -109,7 +109,7 @@ export const button: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as core.bootstrapType.btnColor, outline: true },
+								{ color: i as core.bsType.btnColor, outline: true },
 								core.uppercaseFirst(i)
 							);
 						});

@@ -18,7 +18,7 @@ export const sign_in: IContent = {
 							fontSize: "6rem",
 						},
 					}),
-					new h.h(1, { h: 3, marginBottom: 3, fontWeight: "normal" }, "Please sign in"),
+					new h.h1({ h: 3, marginBottom: 3, fontWeight: "normal" }, "Please sign in"),
 					b.form.floatinglabel.input({
 						type: "email",
 						label: "Email address",

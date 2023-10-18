@@ -2,7 +2,7 @@ import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
-const swatchBg = (bgColor?: core.bootstrapType.bgColor) => {
+const swatchBg = (bgColor?: core.bsType.bgColor) => {
 	return new h.div({
 		class: "swatch",
 		rounded: true,
@@ -11,7 +11,7 @@ const swatchBg = (bgColor?: core.bootstrapType.bgColor) => {
 	});
 };
 
-const swatchBorder = (borderColor?: core.bootstrapType.borderColor) => {
+const swatchBorder = (borderColor?: core.bsType.borderColor) => {
 	return new h.div({
 		class: "swatch",
 		rounded: true,
@@ -21,7 +21,7 @@ const swatchBorder = (borderColor?: core.bootstrapType.borderColor) => {
 	});
 };
 
-const swatchText = (textColor?: core.bootstrapType.textColor) => {
+const swatchText = (textColor?: core.bsType.textColor) => {
 	return new h.div({ class: "swatch", position: "relative", textColor: textColor }, [
 		new h.span(
 			{
@@ -1004,7 +1004,7 @@ export const color: IContent = {
 										new h.div(
 											{
 												padding: 3,
-												textBgColor: i as core.IAttr["textBgColor"],
+												textBgColor: i as core.attr["textBgColor"],
 												rounded: true,
 											},
 											core.uppercaseFirst(i)
@@ -1048,7 +1048,7 @@ export const color: IContent = {
 					"Be sure to monitor contrast ratios as you customize colors. As shown below, Bootstrap added three contrast ratios to each of the main colors—one for the swatch’s current colors, one for against white, and one for against black."
 				),
 				new e.alert({ color: "danger", callout: true }, [
-					new b.alert.header(5, "Unsuppoterd in {{bsts}}"),
+					new b.alert.header("Unsuppoterd in {{bsts}}"),
 					"This feature will supported when Bootstrap make it opt-in by default or available in CDN.",
 				]),
 				new e.text(

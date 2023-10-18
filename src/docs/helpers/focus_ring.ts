@@ -169,7 +169,7 @@ export const focus_ring: IContent = {
 										{
 											href: "#",
 											display: "inline-flex",
-											focusRing: i as core.IAttr["focusRing"],
+											focusRing: i as core.attr["focusRing"],
 											paddingY: 1,
 											paddingX: 2,
 											textDecoration: "none",

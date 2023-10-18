@@ -46,13 +46,13 @@ export const sticky_footer_navbar: IContent = {
 		const main = new h.main(
 			{ flex: "shrink-0" },
 			new h.div({ container: true, style: { paddingTop: "60px" } }, [
-				new h.h(1, { marginTop: 5 }, "Sticky footer with fixed navbar"),
+				new h.h1({ marginTop: 5 }, "Sticky footer with fixed navbar"),
 				new h.p(
 					{ lead: true },
 					"Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with {{padding-top: 60px;}} on the {{main > .container}}."
 				),
 				new h.p(
-					"Use {{?d=docs/example/sticky_footer::the sticky footer with a fixed navbar}} if need be, too."
+					"Use {{nav:docs/example/sticky_footer::the sticky footer with a fixed navbar}} if need be, too."
 				),
 			])
 		);

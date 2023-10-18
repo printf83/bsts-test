@@ -1,9 +1,11 @@
-import { Container as ToastContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/container.js";
-import { Create as ToastCreate } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/_fn.js";
+// import { Container as ToastContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/container.js";
+// import { Create as ToastCreate } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/_fn.js";
 
-import { h, b, core } from "@printf83/bsts";
+import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type ToastContainer = I.b.toast.container;
+type ToastCreate = I.b.toast.create;
 
 export const toast: IContent = {
 	title: "Toasts",
@@ -236,7 +238,7 @@ export const toast: IContent = {
 					output: () => {
 						const fnToast = (
 							color: ToastCreate["color"],
-							elem: core.IElem,
+							elem: core.elem,
 							icon?: string
 						) => {
 							let tElem;
@@ -336,7 +338,7 @@ export const toast: IContent = {
 						].map((i) => {
 							return new b.button(
 								{
-									color: i as core.bootstrapType.btnColor,
+									color: i as core.bsType.btnColor,
 									on: {
 										click: (_e) => {
 											fnToast(

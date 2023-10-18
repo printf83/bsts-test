@@ -1,6 +1,6 @@
 import { core, h, t, b } from "@printf83/bsts";
 
-export interface IPageTitle extends core.IAttr {
+export interface IPageTitle extends core.attr {
 	bookmark?: boolean;
 	docId?: string;
 	loading?: boolean;
@@ -154,8 +154,7 @@ const convert = (attr: IPageTitle) => {
 
 	if (attr.elem) {
 		tElem.push(
-			new h.h(
-				1,
+			new h.h1(
 				{
 					fontDisplay: 5,
 					fontWeight: "normal",
@@ -186,8 +185,8 @@ const convert = (attr: IPageTitle) => {
 export class pagetitle extends h.div {
 	constructor();
 	constructor(attr: IPageTitle);
-	constructor(elem: core.IElem);
-	constructor(attr: IPageTitle, elem: core.IElem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: IPageTitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<IPageTitle>("elem", arg)));
 	}

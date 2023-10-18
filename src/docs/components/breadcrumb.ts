@@ -88,7 +88,7 @@ export const breadcrumb: IContent = {
 					"It’s also possible to use an {{b::embedded SVG icon}}. Apply it via Bootstrap CSS custom property, or use the Sass variable."
 				),
 				new e.alert({ color: "info", callout: true }, [
-					new h.h(5, "Using embedded SVG"),
+					new h.h5("Using embedded SVG"),
 					new h.p(
 						"Inlining SVG as data URI requires to URL escape a few characters, most notably {{<}}, {{>}} and {{#}}. That’s why the {{$breadcrumb-divider}} variable is passed through Bootstrap {{https://getbootstrap.com/docs/5.3/customize/sass/#escape-svg::escape-svg() Sass function}}. When using the CSS custom property, you need to URL escape your SVG on your own. Read {{https://codepen.io/kevinweber/pen/dXWoRw::Kevin Weber’s explanations on CodePen}} for detailed information on what to escape. "
 					),

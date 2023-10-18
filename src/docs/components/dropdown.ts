@@ -1,7 +1,8 @@
-import { core, h, b } from "@printf83/bsts";
-import { Drop } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/dropdown/container.js";
+import { core, h, b, I } from "@printf83/bsts";
+// import { Drop } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/dropdown/container.js";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type Drop = I.b.dropdown.drop;
 
 export const dropdown: IContent = {
 	title: "Dropdowns",
@@ -96,7 +97,7 @@ export const dropdown: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.dropdown.button(
-										{ color: i as core.bootstrapType.btnColor },
+										{ color: i as core.bsType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.menu([
@@ -131,11 +132,11 @@ export const dropdown: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.button(
-										{ color: i as core.bootstrapType.btnColor },
+										{ color: i as core.bsType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.button({
-										color: i as core.bootstrapType.btnColor,
+										color: i as core.bsType.btnColor,
 										split: true,
 									}),
 									new b.dropdown.menu([
@@ -675,8 +676,8 @@ export const dropdown: IContent = {
 								new b.dropdown.menu(
 									{
 										positionView: i.positionView as
-											| core.bootstrapType.dropdownMenuPositionView
-											| core.bootstrapType.dropdownMenuPositionView[],
+											| core.bsType.dropdownMenuPositionView
+											| core.bsType.dropdownMenuPositionView[],
 									},
 									[
 										new b.dropdown.item("Action"),

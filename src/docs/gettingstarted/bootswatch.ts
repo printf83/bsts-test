@@ -1,10 +1,11 @@
-import { HLevel } from "../../../node_modules/@printf83/bsts/build/types/html/h.js";
-import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
-import { Popover as IPopover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
+// import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
+// import { Popover as IPopover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type ITooltip = I.b.tooltip;
+type IPopover = I.b.popover;
 
 export const bootswatch: IContent = {
 	title: "Bootswatch",
@@ -135,7 +136,7 @@ export const bootswatch: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as core.bootstrapType.btnColor },
+								{ color: i as core.bsType.btnColor },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -163,7 +164,7 @@ export const bootswatch: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as core.bootstrapType.btnColor, disabled: true },
+								{ color: i as core.bsType.btnColor, disabled: true },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -191,7 +192,7 @@ export const bootswatch: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as core.bootstrapType.btnColor, outline: true },
+								{ color: i as core.bsType.btnColor, outline: true },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -436,7 +437,7 @@ export const bootswatch: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.dropdown.button(
-										{ color: i as core.bootstrapType.btnColor },
+										{ color: i as core.bsType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.menu([
@@ -468,11 +469,11 @@ export const bootswatch: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.button(
-										{ color: i as core.bootstrapType.btnColor },
+										{ color: i as core.bsType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.button({
-										color: i as core.bootstrapType.btnColor,
+										color: i as core.bsType.btnColor,
 										split: true,
 									}),
 									new b.dropdown.menu([
@@ -496,9 +497,14 @@ export const bootswatch: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map(
-							(i) => new h.h(i as HLevel, `h${i}. Bootstrap heading`)
-						);
+						return [
+							new h.h1("h1. Bootstrap heading"),
+							new h.h2("h2. Bootstrap heading"),
+							new h.h3("h3. Bootstrap heading"),
+							new h.h4("h4. Bootstrap heading"),
+							new h.h5("h5. Bootstrap heading"),
+							new h.h6("h6. Bootstrap heading"),
+						];
 					},
 				}),
 			]),
@@ -513,16 +519,50 @@ export const bootswatch: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [1, 2, 3, 4, 5, 6].map(
-							(i) =>
-								new h.h(i as HLevel, [
-									`h${i}. Heading`,
-									new h.small(
-										{ textColor: "body-secondary" },
-										" with faded secondary text"
-									),
-								])
-						);
+						return [
+							new h.h1([
+								"h1. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h2([
+								"h2. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h3([
+								"h3. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h4([
+								"h4. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h5([
+								"h5. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+							new h.h6([
+								"h6. Heading",
+								new h.small(
+									{ textColor: "body-secondary" },
+									" with faded secondary text"
+								),
+							]),
+						];
 					},
 				}),
 			]),
@@ -594,9 +634,9 @@ export const bootswatch: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						const data: {
-							textColor: core.IAttr["textColor"];
-							bgColor?: core.IAttr["bgColor"];
-							textOpacity?: core.IAttr["textOpacity"];
+							textColor: core.attr["textColor"];
+							bgColor?: core.attr["bgColor"];
+							textOpacity?: core.attr["textOpacity"];
 						}[] = [
 							{ textColor: "primary" },
 							{ textColor: "primary-emphasis" },
@@ -720,7 +760,7 @@ export const bootswatch: IContent = {
 									"dark",
 								].map(
 									(i) =>
-										new b.table.tr({ color: i as core.bootstrapType.color }, [
+										new b.table.tr({ color: i as core.bsType.color }, [
 											new b.table.th(
 												{ scope: "row" },
 												i ? core.uppercaseFirst(i) : "Default"
@@ -1235,7 +1275,7 @@ export const bootswatch: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ dismissible: true, color: i as core.bootstrapType.alertColor },
+								{ dismissible: true, color: i as core.bsType.alertColor },
 								`A simple ${i} alert—check it out!`
 							);
 						});
@@ -1261,7 +1301,7 @@ export const bootswatch: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ callout: true, color: i as core.bootstrapType.alertColor },
+								{ callout: true, color: i as core.bsType.alertColor },
 								`A simple ${i} alert—check it out!`
 							);
 						});
@@ -1288,7 +1328,7 @@ export const bootswatch: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.badge(
-								{ textBgColor: i as core.Class["textBgColor"] },
+								{ textBgColor: i as core.bsClass["textBgColor"] },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -1316,7 +1356,7 @@ export const bootswatch: IContent = {
 						].map((i) => {
 							return new b.badge(
 								{
-									textBgColor: i as core.Class["textBgColor"],
+									textBgColor: i as core.bsClass["textBgColor"],
 									rounded: "pill",
 								},
 								core.uppercaseFirst(i)
@@ -1365,7 +1405,7 @@ export const bootswatch: IContent = {
 									max: 100,
 								},
 								new b.progress.bar({
-									color: i as core.bootstrapType.color,
+									color: i as core.bsType.color,
 									style: { width: `${val}%` },
 								})
 							);
@@ -1434,7 +1474,7 @@ export const bootswatch: IContent = {
 								},
 								new b.progress.bar({
 									striped: true,
-									textBgColor: i as core.bootstrapType.textBgColor,
+									textBgColor: i as core.bsType.textBgColor,
 									style: { width: `${val}%` },
 								})
 							);
@@ -1536,7 +1576,7 @@ export const bootswatch: IContent = {
 							].map((i) => {
 								return new b.list.item(
 									{
-										color: i as core.bootstrapType.color,
+										color: i as core.bsType.color,
 										display: "flex",
 										justifyContent: "between",
 										alignItem: "center",
@@ -1545,7 +1585,7 @@ export const bootswatch: IContent = {
 										core.uppercaseFirst(i),
 										new b.badge(
 											{
-												textBgColor: i as core.Class["textBgColor"],
+												textBgColor: i as core.bsClass["textBgColor"],
 												rounded: "pill",
 											},
 											core.rndBetween(1, 20).toString()
@@ -1615,8 +1655,7 @@ export const bootswatch: IContent = {
 												justifyContent: "between",
 											},
 											[
-												new h.h(
-													5,
+												new h.h5(
 													{ marginBottom: 1 },
 													"List group item heading"
 												),
@@ -1669,7 +1708,7 @@ export const bootswatch: IContent = {
 						].map((i, ix) => {
 							return new b.card.container(
 								{
-									textBgColor: i as core.Class["textBgColor"],
+									textBgColor: i as core.bsClass["textBgColor"],
 									marginTop: ix !== 0 ? 3 : undefined,
 									style: { width: "18rem" },
 								},
@@ -1707,13 +1746,13 @@ export const bootswatch: IContent = {
 						].map((i, ix) => {
 							return new b.card.container(
 								{
-									borderColor: i as core.Class["borderColor"],
+									borderColor: i as core.bsClass["borderColor"],
 									marginTop: ix !== 0 ? 3 : undefined,
 									style: { width: "18rem" },
 								},
 								[
 									new b.card.header("Header"),
-									new b.card.body({ textColor: i as core.Class["textColor"] }, [
+									new b.card.body({ textColor: i as core.bsClass["textColor"] }, [
 										new b.card.title(`${core.uppercaseFirst(i)} card title`),
 										new b.card.text(
 											"Some quick example text to build on the card title and make up the bulk of the card's content."

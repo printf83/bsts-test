@@ -31,8 +31,8 @@ export const background: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						const data: {
-							bgColor: core.IAttr["bgColor"];
-							textColor?: core.IAttr["textColor"];
+							bgColor: core.attr["bgColor"];
+							textColor?: core.attr["textColor"];
 						}[] = [
 							{ bgColor: "primary", textColor: "white" },
 							{ bgColor: "primary-subtle", textColor: "primary-emphasis" },
@@ -87,8 +87,8 @@ export const background: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						const data: {
-							bgColor: core.IAttr["bgColor"];
-							textColor?: core.IAttr["textColor"];
+							bgColor: core.attr["bgColor"];
+							textColor?: core.attr["textColor"];
 						}[] = [
 							{ bgColor: "primary", textColor: "white" },
 							{ bgColor: "primary-subtle", textColor: "primary-emphasis" },
@@ -195,7 +195,7 @@ export const background: IContent = {
 									bgColor: "success",
 									textColor: i && i < 75 ? "body-emphasis" : "white",
 									padding: 2,
-									bgOpacity: i as core.IAttr["bgOpacity"],
+									bgOpacity: i as core.attr["bgOpacity"],
 								},
 								`This is ${i ? i + "% opacity" : "default"} success background`
 							);

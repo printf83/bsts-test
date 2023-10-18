@@ -27,13 +27,7 @@ export const borders: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
-						const data: core.IAttr["border"][] = [
-							true,
-							"top",
-							"end",
-							"bottom",
-							"start",
-						];
+						const data: core.attr["border"][] = [true, "top", "end", "bottom", "start"];
 
 						return data.map((i) => {
 							return new h.span({
@@ -54,7 +48,7 @@ export const borders: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
-						const data: core.IAttr["borderNone"][] = [
+						const data: core.attr["borderNone"][] = [
 							true,
 							"top",
 							"end",
@@ -87,7 +81,7 @@ export const borders: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2, class: "span-box" },
 					output: () => {
-						const data: core.IAttr["borderColor"][] = [
+						const data: core.attr["borderColor"][] = [
 							"primary",
 							"primary-subtle",
 							"secondary",
@@ -230,7 +224,7 @@ export const borders: IContent = {
 								{
 									border: true,
 									borderColor: "success",
-									borderOpacity: i as core.IAttr["borderOpacity"],
+									borderOpacity: i as core.attr["borderOpacity"],
 									padding: 2,
 									marginBottom: ix < 4 ? 2 : undefined,
 								},
@@ -252,7 +246,7 @@ export const borders: IContent = {
 						return [1, 2, 3, 4, 5].map((i) => {
 							return new h.span({
 								border: true,
-								borderWidth: i as core.IAttr["borderWidth"],
+								borderWidth: i as core.attr["borderWidth"],
 							});
 						});
 					},
@@ -275,7 +269,7 @@ export const borders: IContent = {
 										i === "pill" ? "150" : "75"
 									}/75.webp`,
 									alt: "...",
-									rounded: i as core.IAttr["rounded"],
+									rounded: i as core.attr["rounded"],
 								});
 							}
 						);
@@ -298,7 +292,7 @@ export const borders: IContent = {
 							return new h.img({
 								src: `https://picsum.photos/seed/bsts_0/75/75.webp`,
 								alt: "...",
-								roundedSize: i as core.IAttr["roundedSize"],
+								roundedSize: i as core.attr["roundedSize"],
 							});
 						});
 					},

@@ -14,14 +14,14 @@ export const album: IContent = {
 						{ container: true },
 						new h.div({ row: true }, [
 							new h.div({ col: ["sm-8", "md-7"], paddingY: 4 }, [
-								new h.h(4, "About"),
+								new h.h4("About"),
 								new h.p(
 									{ textColor: "body-secondary" },
 									"Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information."
 								),
 							]),
 							new h.div({ col: "sm-4", offset: "md-1", paddingY: 4 }, [
-								new h.h(4, "Contact"),
+								new h.h4("Contact"),
 								new h.ul({
 									unstyle: true,
 									item: [
@@ -62,8 +62,7 @@ export const album: IContent = {
 				bgColor: "body",
 			},
 			new h.div({ container: true, textAlign: "center", paddingX: 5 }, [
-				new h.h(
-					1,
+				new h.h1(
 					{ textColor: "body-emphasis", marginTop: 4, fontDisplay: 3 },
 					"Album example"
 				),
