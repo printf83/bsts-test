@@ -27,7 +27,7 @@ export const buttons: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as core.bootstrapType.btnColor },
+								{ color: i as core.bsType.btnColor },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -55,7 +55,7 @@ export const buttons: IContent = {
 							"link",
 						].map((i) => {
 							return new b.button(
-								{ color: i as core.bootstrapType.btnColor, rounded: "pill" },
+								{ color: i as core.bsType.btnColor, rounded: "pill" },
 								core.uppercaseFirst(i)
 							);
 						});

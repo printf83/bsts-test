@@ -1,7 +1,7 @@
 import { core, h as html, t, s, b, h } from "@printf83/bsts";
 import { anchorOnClick } from "./_fn.js";
 
-export interface IXSubTitle extends core.IAttr {
+export interface IXSubTitle extends core.attr {
 	moreInfo?: string;
 }
 
@@ -95,8 +95,8 @@ const convert = (attr: IXSubTitle) => {
 export class xsubtitle extends html.h4 {
 	constructor();
 	constructor(attr: IXSubTitle);
-	constructor(elem: core.IElem);
-	constructor(attr: IXSubTitle, elem: core.IElem);
+	constructor(elem: core.elem);
+	constructor(attr: IXSubTitle, elem: core.elem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg("elem", arg)));
 	}

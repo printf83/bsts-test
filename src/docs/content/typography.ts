@@ -65,7 +65,7 @@ export const typography: IContent = {
 					db: getContentCode(db),
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map(
-							(i) => new h.p({ h: i as core.IAttr["h"] }, `h${i}. Bootstrap heading`)
+							(i) => new h.p({ h: i as core.attr["h"] }, `h${i}. Bootstrap heading`)
 						);
 					},
 				}),
@@ -105,7 +105,7 @@ export const typography: IContent = {
 						return [1, 2, 3, 4, 5, 6]
 							.map((i) => [
 								new h.h1(
-									{ fontDisplay: i as core.IAttr["fontDisplay"] },
+									{ fontDisplay: i as core.attr["fontDisplay"] },
 									`Display ${i}`
 								),
 								i < 6 ? new h.hr() : "",

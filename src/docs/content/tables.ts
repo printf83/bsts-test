@@ -186,7 +186,7 @@ export const tables: IContent = {
 									"dark",
 								].map(
 									(i) =>
-										new b.table.tr({ color: i as core.bootstrapType.color }, [
+										new b.table.tr({ color: i as core.bsType.color }, [
 											new b.table.th(
 												{ scope: "row" },
 												i ? core.uppercaseFirst(i) : "Default"
@@ -229,13 +229,13 @@ export const tables: IContent = {
 											new b.table.th(
 												{
 													scope: "row",
-													color: i as core.bootstrapType.color,
+													color: i as core.bsType.color,
 												},
 												i ? core.uppercaseFirst(i) : "Default"
 											),
 											new b.table.td("Cell"),
 											new b.table.td(
-												{ color: i as core.bootstrapType.color },
+												{ color: i as core.bsType.color },
 												"Cell"
 											),
 										])

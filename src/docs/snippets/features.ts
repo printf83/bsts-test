@@ -28,7 +28,7 @@ const ex = {
 			]),
 		]);
 	},
-	c2: (arg: { icon: string; title: string; description: string; elem: core.IElem }) => {
+	c2: (arg: { icon: string; title: string; description: string; elem: core.elem }) => {
 		return new h.div(
 			{
 				col: true,
@@ -181,7 +181,7 @@ const ex = {
 			]
 		);
 	},
-	c5Title: (arg: { title: string; description: string; elem: core.IElem }) => {
+	c5Title: (arg: { title: string; description: string; elem: core.elem }) => {
 		return new h.div(
 			{
 				col: true,
@@ -198,7 +198,7 @@ const ex = {
 		);
 	},
 	c5: (arg: {
-		main: { title: string; description: string; elem: core.IElem };
+		main: { title: string; description: string; elem: core.elem };
 		feature: { icon: string; title: string; description: string }[];
 	}) => {
 		return new h.div(

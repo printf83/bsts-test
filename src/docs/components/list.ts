@@ -284,7 +284,7 @@ export const list: IContent = {
 								"dark",
 							].map((i) => {
 								return new b.list.item(
-									{ color: i as core.bootstrapType.color },
+									{ color: i as core.bsType.color },
 									`A simple ${i ? i : "default"} list group item`
 								);
 							})
@@ -320,7 +320,7 @@ export const list: IContent = {
 									{
 										href: "#",
 										action: true,
-										color: i as core.bootstrapType.color,
+										color: i as core.bsType.color,
 									},
 									`A simple ${i ? i : "default"} list group item`
 								);

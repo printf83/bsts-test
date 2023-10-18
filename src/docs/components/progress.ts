@@ -250,7 +250,7 @@ export const progress: IContent = {
 									max: 100,
 								},
 								new b.progress.bar({
-									color: i as core.bootstrapType.color, 
+									color: i as core.bsType.color,
 									style: { width: `${val}%` },
 								})
 							);
@@ -269,7 +269,7 @@ export const progress: IContent = {
 								value: val,
 								min: 0,
 								max: 100,
-								color: i as core.bootstrapType.color,
+								color: i as core.bsType.color,
 							});
 						});
 					},
@@ -297,8 +297,8 @@ export const progress: IContent = {
 								},
 								new b.progress.bar(
 									{
-										color: i as core.bootstrapType.color,
-										textColor: text as core.bootstrapType.textColor,
+										color: i as core.bsType.color,
+										textColor: text as core.bsType.textColor,
 										style: { width: `${val}%` },
 									},
 									`${val}%`
@@ -320,7 +320,7 @@ export const progress: IContent = {
 								value: val,
 								min: 0,
 								max: 100,
-								color: i as core.bootstrapType.color,
+								color: i as core.bsType.color,
 								text: "percent",
 							});
 						});
@@ -344,7 +344,7 @@ export const progress: IContent = {
 								},
 								new b.progress.bar(
 									{
-										textBgColor: i as core.bootstrapType.textBgColor,
+										textBgColor: i as core.bsType.textBgColor,
 										style: { width: `${val}%` },
 									},
 									`${val}%`
@@ -456,7 +456,7 @@ export const progress: IContent = {
 								},
 								new b.progress.bar({
 									striped: true,
-									textBgColor: i as core.bootstrapType.textBgColor,
+									textBgColor: i as core.bsType.textBgColor,
 									style: { width: `${val}%` },
 								})
 							);
@@ -476,7 +476,7 @@ export const progress: IContent = {
 								min: 0,
 								max: 100,
 								striped: true,
-								color: i as core.bootstrapType.color,
+								color: i as core.bsType.color,
 							});
 						});
 					},

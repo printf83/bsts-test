@@ -62,10 +62,10 @@ export const pricing: IContent = {
 		const plan = (arg: {
 			name: string;
 			price: number;
-			item: core.IElem;
+			item: core.elem;
 			button: core.tag;
-			borderColor?: core.bootstrapType.borderColor;
-			headerColor?: core.bootstrapType.textBgColor;
+			borderColor?: core.bsType.borderColor;
+			headerColor?: core.bsType.textBgColor;
 		}) => {
 			return new h.div(
 				{ col: true },

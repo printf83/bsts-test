@@ -840,7 +840,7 @@ export const home: IContent = {
 			icon: string;
 			title: string;
 			description: string;
-			elem?: core.IElem;
+			elem?: core.elem;
 		}) => {
 			return new h.div(
 				{
@@ -1024,7 +1024,7 @@ export const home: IContent = {
 						["Read documentation", arrowNextIcon]
 					),
 				},
-			].map((i: { icon: string; title: string; description: string; elem?: core.IElem }) => {
+			].map((i: { icon: string; title: string; description: string; elem?: core.elem }) => {
 				return feature({
 					icon: i.icon,
 					title: i.title,

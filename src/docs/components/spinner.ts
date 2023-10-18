@@ -60,7 +60,7 @@ export const spinner: IContent = {
 						].map((i) => {
 							return new b.spinner({
 								type: "border",
-								color: i as core.bootstrapType.textColor,
+								color: i as core.bsType.textColor,
 							});
 						});
 					},
@@ -103,7 +103,7 @@ export const spinner: IContent = {
 						].map((i) => {
 							return new b.spinner({
 								type: "grow",
-								color: i as core.bootstrapType.textColor,
+								color: i as core.bsType.textColor,
 							});
 						});
 					},

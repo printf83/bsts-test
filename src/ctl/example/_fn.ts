@@ -28,7 +28,7 @@ export const anchorOnClick = (event: Event) => {
 	}
 };
 
-export const toast = (color: ToastCreate["color"], elem: core.IElem) => {
+export const toast = (color: ToastCreate["color"], elem: core.elem) => {
 	b.toast.show(
 		b.toast.create({
 			title: document.title,
@@ -42,7 +42,7 @@ export const console = (
 	elem: Element,
 	title?: string,
 	msg?: string | object,
-	color?: core.bootstrapType.textColor
+	color?: core.bsType.textColor
 ) => {
 	const exampleCodeContainer = elem.closest(".example-code");
 	if (exampleCodeContainer) {
@@ -211,7 +211,7 @@ export const codePen = (data: ICodePen) => {
 	}
 };
 
-const attrHasClass = (attr: core.IAttr, className: string | string[]) => {
+const attrHasClass = (attr: core.attr, className: string | string[]) => {
 	if (attr.class) {
 		if (Array.isArray(className)) {
 			if (Array.isArray(attr.class)) {
@@ -236,7 +236,7 @@ const attrHasClass = (attr: core.IAttr, className: string | string[]) => {
 	return false;
 };
 
-export const getRootBaseOnSource = (attrPreview?: core.IAttr, attrOutput?: core.IAttr) => {
+export const getRootBaseOnSource = (attrPreview?: core.attr, attrOutput?: core.attr) => {
 	if (attrPreview) {
 		delete attrPreview.overflow;
 		attrPreview.padding ??= 4;
@@ -262,7 +262,7 @@ export const getRootBaseOnSource = (attrPreview?: core.IAttr, attrOutput?: core.
 	}
 };
 
-export const getCSSBaseOnSource = (attr?: core.IAttr) => {
+export const getCSSBaseOnSource = (attr?: core.attr) => {
 	if (attr) {
 		let result: string[] = [];
 

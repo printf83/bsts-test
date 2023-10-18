@@ -151,7 +151,7 @@ export const badge: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.badge(
-								{ textBgColor: i as core.IAttr["textBgColor"] },
+								{ textBgColor: i as core.attr["textBgColor"] },
 								core.uppercaseFirst(i)
 							);
 						});
@@ -187,7 +187,7 @@ export const badge: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.badge(
-								{ textBgColor: i as core.IAttr["textBgColor"], rounded: "pill" },
+								{ textBgColor: i as core.attr["textBgColor"], rounded: "pill" },
 								core.uppercaseFirst(i)
 							);
 						});

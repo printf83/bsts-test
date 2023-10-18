@@ -25,7 +25,7 @@ export const opacity: IContent = {
 							(i) =>
 								new h.div(
 									{
-										opacity: i as core.IAttr["opacity"],
+										opacity: i as core.attr["opacity"],
 										padding: 3,
 										textBgColor: "primary",
 										rounded: true,

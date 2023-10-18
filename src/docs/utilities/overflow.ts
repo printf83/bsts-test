@@ -23,7 +23,7 @@ export const overflow: IContent = {
 						return ["auto", "hidden", "visible", "scroll"].map((i) => {
 							return new h.div(
 								{
-									overflow: i as core.IAttr["overflow"],
+									overflow: i as core.attr["overflow"],
 									padding: 3,
 									bgColor: "body-tertiary",
 									style: { maxHeight: "100px", maxWidth: "260px" },
@@ -55,7 +55,7 @@ export const overflow: IContent = {
 						return ["auto", "hidden", "visible", "scroll"].map((i) => {
 							return new h.div(
 								{
-									overflowX: i as core.IAttr["overflowX"],
+									overflowX: i as core.attr["overflowX"],
 									padding: 3,
 									bgColor: "body-tertiary",
 									style: {
@@ -88,7 +88,7 @@ export const overflow: IContent = {
 						return ["auto", "hidden", "visible", "scroll"].map((i) => {
 							return new h.div(
 								{
-									overflowY: i as core.IAttr["overflowY"],
+									overflowY: i as core.attr["overflowY"],
 									padding: 3,
 									bgColor: "body-tertiary",
 									style: { maxHeight: "100px", maxWidth: "200px" },

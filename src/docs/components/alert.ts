@@ -33,7 +33,7 @@ export const alert: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i as core.bootstrapType.alertColor },
+								{ color: i as core.bsType.alertColor },
 								`A simple ${i} alert—check it out!`
 							);
 						});
@@ -67,7 +67,7 @@ export const alert: IContent = {
 							"dark",
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i as core.bootstrapType.alertColor, callout: true },
+								{ color: i as core.bsType.alertColor, callout: true },
 								`A simple ${i} callout—check it out!`
 							);
 						});
@@ -134,14 +134,11 @@ export const alert: IContent = {
 							"light",
 							"dark",
 						].map((i) => {
-							return new b.alert.container(
-								{ color: i as core.bootstrapType.alertColor },
-								[
-									`A simple ${i} alert with `,
-									new b.alert.link({ href: "#" }, "an example link"),
-									".",
-								]
-							);
+							return new b.alert.container({ color: i as core.bsType.alertColor }, [
+								`A simple ${i} alert with `,
+								new b.alert.link({ href: "#" }, "an example link"),
+								".",
+							]);
 						});
 					},
 				}),
@@ -202,7 +199,7 @@ export const alert: IContent = {
 							{ color: "danger", icon: "x-circle-fill" },
 						].map((i) => {
 							return new b.alert.container(
-								{ color: i.color as core.bootstrapType.alertColor },
+								{ color: i.color as core.bsType.alertColor },
 								[
 									new b.msg(
 										{ icon: i.icon },

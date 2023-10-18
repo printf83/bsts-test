@@ -238,7 +238,7 @@ export const toast: IContent = {
 					output: () => {
 						const fnToast = (
 							color: ToastCreate["color"],
-							elem: core.IElem,
+							elem: core.elem,
 							icon?: string
 						) => {
 							let tElem;
@@ -338,7 +338,7 @@ export const toast: IContent = {
 						].map((i) => {
 							return new b.button(
 								{
-									color: i as core.bootstrapType.btnColor,
+									color: i as core.bsType.btnColor,
 									on: {
 										click: (_e) => {
 											fnToast(

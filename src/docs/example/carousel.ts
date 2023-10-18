@@ -83,7 +83,7 @@ export const carousel: IContent = {
 						caption: new h.div(
 							{
 								textColor: "white",
-								textAlign: i.textAlign as core.bootstrapType.textAlign,
+								textAlign: i.textAlign as core.bsType.textAlign,
 							},
 							[
 								new h.h1(i.title),

@@ -97,7 +97,7 @@ export const dropdown: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.dropdown.button(
-										{ color: i as core.bootstrapType.btnColor },
+										{ color: i as core.bsType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.menu([
@@ -132,11 +132,11 @@ export const dropdown: IContent = {
 							(i) => {
 								return new b.dropdown.container([
 									new b.button(
-										{ color: i as core.bootstrapType.btnColor },
+										{ color: i as core.bsType.btnColor },
 										core.uppercaseFirst(i)
 									),
 									new b.dropdown.button({
-										color: i as core.bootstrapType.btnColor,
+										color: i as core.bsType.btnColor,
 										split: true,
 									}),
 									new b.dropdown.menu([
@@ -676,8 +676,8 @@ export const dropdown: IContent = {
 								new b.dropdown.menu(
 									{
 										positionView: i.positionView as
-											| core.bootstrapType.dropdownMenuPositionView
-											| core.bootstrapType.dropdownMenuPositionView[],
+											| core.bsType.dropdownMenuPositionView
+											| core.bsType.dropdownMenuPositionView[],
 									},
 									[
 										new b.dropdown.item("Action"),

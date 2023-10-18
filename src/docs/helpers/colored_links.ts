@@ -35,7 +35,7 @@ export const colored_links: IContent = {
 							(i) =>
 								new h.p(
 									new h.a(
-										{ href: "#", linkColor: i as core.bootstrapType.linkColor },
+										{ href: "#", linkColor: i as core.bsType.linkColor },
 										`${core.uppercaseFirst(i)} link`
 									)
 								)
@@ -74,7 +74,7 @@ export const colored_links: IContent = {
 									new h.a(
 										{
 											href: "#",
-											linkColor: i as core.bootstrapType.linkColor,
+											linkColor: i as core.bsType.linkColor,
 											linkOffset: 2,
 											linkUnderlineOpacity: 25,
 											linkUnderlineOpacityHover: 100,

@@ -141,7 +141,7 @@ export const text: IContent = {
 					output: () => {
 						return [1, 2, 3, 4, 5, 6].map(
 							(i) =>
-								new h.p({ fontSize: i as core.IAttr["fontSize"] }, `.fs-${i} text`)
+								new h.p({ fontSize: i as core.attr["fontSize"] }, `.fs-${i} text`)
 						);
 					},
 				}),

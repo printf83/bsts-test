@@ -417,8 +417,7 @@ export const modals: IContent = {
 												fontSize: 1,
 												h: 1,
 												fontWeight: "bold",
-												textColor:
-													i.iconColor as core.bootstrapType.textColor,
+												textColor: i.iconColor as core.bsType.textColor,
 											}),
 											new h.div([
 												new h.h5({ marginBottom: 0 }, i.title),
@@ -491,7 +490,7 @@ export const modals: IContent = {
 																		h: 1,
 																		fontWeight: "bold",
 																		textColor:
-																			i.iconColor as core.bootstrapType.textColor,
+																			i.iconColor as core.bsType.textColor,
 																	}),
 																	new h.div([
 																		new h.h5(

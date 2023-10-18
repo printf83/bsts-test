@@ -11,8 +11,8 @@ const convert = (attr: P) => {
 export class text extends h.p {
 	constructor();
 	constructor(attr: P);
-	constructor(elem: core.IElem);
-	constructor(attr: P, elem: core.IElem);
+	constructor(elem: core.elem);
+	constructor(attr: P, elem: core.elem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<P>("elem", arg)));
 	}

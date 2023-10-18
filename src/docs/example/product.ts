@@ -135,9 +135,9 @@ export const product: IContent = {
 		const item = (arg: {
 			title: string;
 			description: string;
-			elem?: core.IElem;
-			bgColor?: core.bootstrapType.bgColor;
-			textColor?: core.bootstrapType.textColor;
+			elem?: core.elem;
+			bgColor?: core.bsType.bgColor;
+			textColor?: core.bsType.textColor;
 			img: string;
 		}) => {
 			return new h.div(

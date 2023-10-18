@@ -11,7 +11,7 @@ const hasClass = (className: string, attrClass: string | undefined | (string | u
 		return false;
 	}
 };
-const convert = (attr: core.IAttr) => {
+const convert = (attr: core.attr) => {
 	let tElem: string | number | t | s | (string | number | t | s)[] | undefined = attr.elem;
 
 	if (tElem) {
@@ -81,9 +81,9 @@ const convert = (attr: core.IAttr) => {
 
 export class section extends h.section {
 	constructor();
-	constructor(attr: core.IAttr);
-	constructor(elem: core.IElem);
-	constructor(attr: core.IAttr, elem: core.IElem);
+	constructor(attr: core.attr);
+	constructor(elem: core.elem);
+	constructor(attr: core.attr, elem: core.elem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg("elem", arg)));
 	}

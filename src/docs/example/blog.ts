@@ -189,7 +189,7 @@ export const blog: IContent = {
 			date: string;
 			writer: string;
 			writer_url: string;
-			elem: core.IElem;
+			elem: core.elem;
 		}) => {
 			return new h.article([
 				new h.h2(

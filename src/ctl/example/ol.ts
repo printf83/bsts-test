@@ -4,7 +4,7 @@ import { core, h, I } from "@printf83/bsts";
 type Ol = I.h.ol;
 
 const convert = (attr: Ol) => {
-	let tAttr: core.IAttr = {};
+	let tAttr: core.attr = {};
 
 	tAttr.class = "example-ol";
 	tAttr.marginBottom ??= 3;
@@ -16,8 +16,8 @@ const convert = (attr: Ol) => {
 export class ol extends h.div {
 	constructor();
 	constructor(attr: Ol);
-	constructor(elem: core.IElem);
-	constructor(attr: Ol, elem: core.IElem);
+	constructor(elem: core.elem);
+	constructor(attr: Ol, elem: core.elem);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<Ol>("elem", arg)));
 	}

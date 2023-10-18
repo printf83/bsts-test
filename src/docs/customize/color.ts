@@ -2,7 +2,7 @@ import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
-const swatchBg = (bgColor?: core.bootstrapType.bgColor) => {
+const swatchBg = (bgColor?: core.bsType.bgColor) => {
 	return new h.div({
 		class: "swatch",
 		rounded: true,
@@ -11,7 +11,7 @@ const swatchBg = (bgColor?: core.bootstrapType.bgColor) => {
 	});
 };
 
-const swatchBorder = (borderColor?: core.bootstrapType.borderColor) => {
+const swatchBorder = (borderColor?: core.bsType.borderColor) => {
 	return new h.div({
 		class: "swatch",
 		rounded: true,
@@ -21,7 +21,7 @@ const swatchBorder = (borderColor?: core.bootstrapType.borderColor) => {
 	});
 };
 
-const swatchText = (textColor?: core.bootstrapType.textColor) => {
+const swatchText = (textColor?: core.bsType.textColor) => {
 	return new h.div({ class: "swatch", position: "relative", textColor: textColor }, [
 		new h.span(
 			{
@@ -1004,7 +1004,7 @@ export const color: IContent = {
 										new h.div(
 											{
 												padding: 3,
-												textBgColor: i as core.IAttr["textBgColor"],
+												textBgColor: i as core.attr["textBgColor"],
 												rounded: true,
 											},
 											core.uppercaseFirst(i)
