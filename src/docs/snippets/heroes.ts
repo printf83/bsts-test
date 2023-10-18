@@ -3,7 +3,12 @@ import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 
 const ex = {
-	c1: (arg: { icon: string; title: string; description: string; elem?: core.elem }) => {
+	c1: (arg: {
+		icon: string;
+		title: string;
+		description: string;
+		elem?: core.elem | core.elem[];
+	}) => {
 		return new h.div({ paddingX: 4, paddingY: 5, marginY: 5, textAlign: "center" }, [
 			new h.h1(new b.icon({ id: arg.icon, fontDisplay: 1 })),
 			new h.h1({ fontDisplay: 5, fontWeight: "bold", textColor: "body-emphasis" }, arg.title),
@@ -16,7 +21,12 @@ const ex = {
 			]),
 		]);
 	},
-	c2: (arg: { title: string; description: string; elem?: core.elem; img: string }) => {
+	c2: (arg: {
+		title: string;
+		description: string;
+		elem?: core.elem | core.elem[];
+		img: string;
+	}) => {
 		return new h.div(
 			{
 				paddingX: 4,
@@ -62,7 +72,12 @@ const ex = {
 			]
 		);
 	},
-	c3: (arg: { title: string; description: string; elem?: core.elem; img: string }) => {
+	c3: (arg: {
+		title: string;
+		description: string;
+		elem?: core.elem | core.elem[];
+		img: string;
+	}) => {
 		return new h.div(
 			{
 				col: "xxl-8",
@@ -184,7 +199,12 @@ const ex = {
 			])
 		);
 	},
-	c5: (arg: { img: string; title: string; description: string; elem: core.elem }) => {
+	c5: (arg: {
+		img: string;
+		title: string;
+		description: string;
+		elem: core.elem | core.elem[];
+	}) => {
 		return new h.div(
 			{
 				container: true,
@@ -243,7 +263,7 @@ const ex = {
 			)
 		);
 	},
-	c6: (arg: { title: string; description: string; elem?: core.elem }) => {
+	c6: (arg: { title: string; description: string; elem?: core.elem | core.elem[] }) => {
 		return new h.div(
 			{
 				paddingX: 4,

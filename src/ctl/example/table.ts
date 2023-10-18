@@ -21,8 +21,8 @@ const convert = (attr: TableContainer) => {
 export class table extends b.table.responsive {
 	constructor();
 	constructor(attr: TableContainer);
-	constructor(elem: core.elem);
-	constructor(attr: TableContainer, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: TableContainer, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<TableContainer>("elem", arg)));
 	}

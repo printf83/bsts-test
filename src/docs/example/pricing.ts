@@ -62,7 +62,7 @@ export const pricing: IContent = {
 		const plan = (arg: {
 			name: string;
 			price: number;
-			item: core.elem;
+			item: core.elem | core.elem[];
 			button: core.tag;
 			borderColor?: core.bsType.borderColor;
 			headerColor?: core.bsType.textBgColor;

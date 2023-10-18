@@ -840,7 +840,7 @@ export const home: IContent = {
 			icon: string;
 			title: string;
 			description: string;
-			elem?: core.elem;
+			elem?: core.elem | core.elem[];
 		}) => {
 			return new h.div(
 				{
@@ -1024,14 +1024,21 @@ export const home: IContent = {
 						["Read documentation", arrowNextIcon]
 					),
 				},
-			].map((i: { icon: string; title: string; description: string; elem?: core.elem }) => {
-				return feature({
-					icon: i.icon,
-					title: i.title,
-					description: i.description,
-					elem: i.elem,
-				});
-			})
+			].map(
+				(i: {
+					icon: string;
+					title: string;
+					description: string;
+					elem?: core.elem | core.elem[];
+				}) => {
+					return feature({
+						icon: i.icon,
+						title: i.title,
+						description: i.description,
+						elem: i.elem,
+					});
+				}
+			)
 		);
 
 		const bg = new h.div(

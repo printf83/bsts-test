@@ -135,7 +135,7 @@ export const product: IContent = {
 		const item = (arg: {
 			title: string;
 			description: string;
-			elem?: core.elem;
+			elem?: core.elem | core.elem[];
 			bgColor?: core.bsType.bgColor;
 			textColor?: core.bsType.textColor;
 			img: string;

@@ -9,8 +9,8 @@ const convert = (attr: core.attr) => {
 export class item extends h.div {
 	constructor();
 	constructor(attr: core.attr);
-	constructor(elem: core.elem);
-	constructor(attr: core.attr, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: core.attr, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg("elem", arg)));
 	}

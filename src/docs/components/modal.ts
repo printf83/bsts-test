@@ -545,7 +545,7 @@ export const modal: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let modalContent = (id: string, elem: core.elem) => {
+						let modalContent = (id: string, elem: core.elem | core.elem[]) => {
 							return [
 								new b.modal.header(
 									{ close: true },

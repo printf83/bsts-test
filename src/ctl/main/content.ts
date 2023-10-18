@@ -33,7 +33,7 @@ export interface IContent {
 	nextDocId?: string;
 	nextTitle?: string;
 
-	item?: (db?: e.ISourceDB[]) => core.elem;
+	item?: (db?: e.ISourceDB[]) => core.elem | core.elem[];
 	db?: e.ISourceDB[];
 }
 

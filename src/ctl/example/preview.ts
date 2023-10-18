@@ -46,8 +46,8 @@ const convert = (attr: IPreview) => {
 export class preview extends h.pre {
 	constructor();
 	constructor(attr: IPreview);
-	constructor(elem: core.elem);
-	constructor(attr: IPreview, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: IPreview, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<IPreview>("elem", arg)));
 	}

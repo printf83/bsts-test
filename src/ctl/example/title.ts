@@ -95,8 +95,8 @@ const convert = (attr: ITitle) => {
 export class title extends html.h2 {
 	constructor();
 	constructor(attr: ITitle);
-	constructor(elem: core.elem);
-	constructor(attr: ITitle, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: ITitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg("elem", arg)));
 	}

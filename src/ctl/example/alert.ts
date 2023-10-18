@@ -16,8 +16,8 @@ const convert = (attr: AlertContainer) => {
 export class alert extends h.div {
 	constructor();
 	constructor(attr: AlertContainer);
-	constructor(elem: core.elem);
-	constructor(attr: AlertContainer, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: AlertContainer, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<AlertContainer>("elem", arg)));
 	}

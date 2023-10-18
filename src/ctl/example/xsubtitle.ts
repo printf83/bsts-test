@@ -95,8 +95,8 @@ const convert = (attr: IXSubTitle) => {
 export class xsubtitle extends html.h4 {
 	constructor();
 	constructor(attr: IXSubTitle);
-	constructor(elem: core.elem);
-	constructor(attr: IXSubTitle, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: IXSubTitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg("elem", arg)));
 	}

@@ -17,8 +17,8 @@ const convert = (attr: Ul) => {
 export class ul extends h.div {
 	constructor();
 	constructor(attr: Ul);
-	constructor(elem: core.elem);
-	constructor(attr: Ul, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: Ul, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<Ul>("elem", arg)));
 	}

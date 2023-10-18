@@ -305,8 +305,8 @@ function addConsoleLog(elem: Element, title: string, msg: string, color?: core.b
 }
 
 const itemCode = (arg: {
-	title: core.elem;
-	elem: core.elem;
+	title: core.elem | core.elem[];
+	elem: core.elem | core.elem[];
 
 	header?: boolean;
 	islast?: boolean;

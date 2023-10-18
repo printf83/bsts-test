@@ -238,7 +238,7 @@ const ex = {
 		icon: string;
 		link?: HeaderLink[];
 		onlinkchange?: EventListener;
-		menu?: core.elem;
+		menu?: core.elem | core.elem[];
 		onsearch?: EventListener;
 	}) => {
 		return new h.header(
@@ -333,8 +333,8 @@ const ex = {
 	c6Header: (arg: {
 		img: string;
 		icon: string;
-		link?: core.elem;
-		menu?: core.elem;
+		link?: core.elem | core.elem[];
+		menu?: core.elem | core.elem[];
 		onsearch?: EventListener;
 		onlinkchange?: EventListener;
 	}) => {
@@ -414,7 +414,7 @@ const ex = {
 			)
 		);
 	},
-	c6Body: (arg: { side?: core.elem; main?: core.elem }) => {
+	c6Body: (arg: { side?: core.elem | core.elem[]; main?: core.elem | core.elem[] }) => {
 		return new h.div(
 			{ container: "fluid", paddingBottom: 3 },
 			new h.div({ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 3 }, [
@@ -432,12 +432,12 @@ const ex = {
 	c6: (arg: {
 		img: string;
 		icon: string;
-		link?: core.elem;
-		menu?: core.elem;
+		link?: core.elem | core.elem[];
+		menu?: core.elem | core.elem[];
 		onsearch?: EventListener;
 		onlinkchange?: EventListener;
-		side?: core.elem;
-		main?: core.elem;
+		side?: core.elem | core.elem[];
+		main?: core.elem | core.elem[];
 	}) => {
 		return [ex.c6Header(arg), ex.c6Body(arg)];
 	},

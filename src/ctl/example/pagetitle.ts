@@ -185,8 +185,8 @@ const convert = (attr: IPageTitle) => {
 export class pagetitle extends h.div {
 	constructor();
 	constructor(attr: IPageTitle);
-	constructor(elem: core.elem);
-	constructor(attr: IPageTitle, elem: core.elem);
+	constructor(elem: core.elem | core.elem[]);
+	constructor(attr: IPageTitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
 		super(convert(core.bsConstArg<IPageTitle>("elem", arg)));
 	}
