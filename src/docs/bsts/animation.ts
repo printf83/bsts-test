@@ -1,8 +1,9 @@
-import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+// import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
+type Icon = I.b.icon;
 
 export const animation: IContent = {
 	title: "Animation",

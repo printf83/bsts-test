@@ -1,9 +1,11 @@
-import { Container as ToastContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/container.js";
-import { Create as ToastCreate } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/_fn.js";
+// import { Container as ToastContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/container.js";
+// import { Create as ToastCreate } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/_fn.js";
 
-import { h, b, core } from "@printf83/bsts";
+import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type ToastContainer = I.b.toast.container;
+type ToastCreate = I.b.toast.create;
 
 export const toast: IContent = {
 	title: "Toasts",

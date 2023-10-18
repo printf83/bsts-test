@@ -1,6 +1,7 @@
-import { P } from "../../../node_modules/@printf83/bsts/build/types/html/p.js";
+// import { P } from "../../../node_modules/@printf83/bsts/build/types/html/p.js";
 
-import { core, h } from "@printf83/bsts";
+import { core, h, I } from "@printf83/bsts";
+type P = I.h.p;
 
 const convert = (attr: P) => {
 	attr = core.mergeObject({ class: "example-description", lead: true }, attr);

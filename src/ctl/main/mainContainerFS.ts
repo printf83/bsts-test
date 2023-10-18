@@ -1,6 +1,6 @@
-import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
+// import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import { ICodePen, codeBeautify, codePen, getLibBaseOnSource } from "../example/_fn.js";
 import { BOOTSWATCHDB, CURRENTVERSION, DEFAULTDOCUMENT, THEMEDB, menuFS } from "./_db.js";
 import { setupContentDocument } from "./content.js";
@@ -8,6 +8,7 @@ import { highlightMenu } from "./menu.js";
 import { failCopyCode, successCopyCode } from "../example/code.js";
 import { changeBootswatch, getSavedBootswatch } from "./bootswatch.js";
 import { getSavedTheme, highlghtTheme } from "./theme.js";
+type Icon = I.b.icon;
 
 const BSTSCDN = `https://cdn.jsdelivr.net/npm/@printf83/bsts@${CURRENTVERSION}/+esm`;
 const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3/dist/chart.umd.min.js"];

@@ -1,9 +1,11 @@
-import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
-import { Popover as IPopover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
+// import { Tooltip as ITooltip } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/tooltip.js";
+// import { Popover as IPopover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
 
-import { b, core, h } from "@printf83/bsts";
+import { b, core, h, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type ITooltip = I.b.tooltip;
+type IPopover = I.b.popover;
 
 export const bootswatch: IContent = {
 	title: "Bootswatch",

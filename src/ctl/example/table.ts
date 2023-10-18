@@ -1,6 +1,7 @@
-import { Container as TableContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/table/container.js";
+// import { Container as TableContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/table/container.js";
 
-import { core, b } from "@printf83/bsts";
+import { core, b, I } from "@printf83/bsts";
+type TableContainer = I.b.table.container;
 
 const convert = (attr: TableContainer) => {
 	let tAttr: core.IAttr = {};

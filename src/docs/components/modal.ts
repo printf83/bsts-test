@@ -1,8 +1,9 @@
-import { Container as ModalContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/modal/container.js";
+// import { Container as ModalContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/modal/container.js";
 
-import { core, h, b, s } from "@printf83/bsts";
+import { core, h, b, s, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type ModalContainer = I.b.modal.container;
 
 export const modal: IContent = {
 	title: "Modal",

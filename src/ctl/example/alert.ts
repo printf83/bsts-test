@@ -1,6 +1,7 @@
-import { Container as AlertContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/alert/container.js";
+// import { Container as AlertContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/alert/container.js";
 
-import { core, h, b } from "@printf83/bsts";
+import { core, h, b, I } from "@printf83/bsts";
+type AlertContainer = I.b.alert.container;
 
 const convert = (attr: AlertContainer) => {
 	let tAttr: core.IAttr = {};

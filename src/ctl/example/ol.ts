@@ -1,6 +1,7 @@
-import { Ol } from "../../../node_modules/@printf83/bsts/build/types/html/ol.js";
+// import { Ol } from "../../../node_modules/@printf83/bsts/build/types/html/ol.js";
 
-import { core, h } from "@printf83/bsts";
+import { core, h, I } from "@printf83/bsts";
+type Ol = I.h.ol;
 
 const convert = (attr: Ol) => {
 	let tAttr: core.IAttr = {};

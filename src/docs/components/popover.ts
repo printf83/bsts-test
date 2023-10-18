@@ -1,9 +1,10 @@
-import { Popover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
+// import { Popover } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/popover.js";
 
-import { h, b, core } from "@printf83/bsts";
+import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
+type Popover = I.b.popover;
 
 export const popover: IContent = {
 	title: "Popovers",

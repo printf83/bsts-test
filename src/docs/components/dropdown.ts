@@ -1,7 +1,8 @@
-import { core, h, b } from "@printf83/bsts";
-import { Drop } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/dropdown/container.js";
+import { core, h, b, I } from "@printf83/bsts";
+// import { Drop } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/dropdown/container.js";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+type Drop = I.b.dropdown.drop;
 
 export const dropdown: IContent = {
 	title: "Dropdowns",
