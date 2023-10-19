@@ -1,5 +1,3 @@
-// import { Ol } from "../../../node_modules/@printf83/bsts/build/types/html/ol.js";
-
 import { core, h, I } from "@printf83/bsts";
 type Ol = I.h.ol;
 

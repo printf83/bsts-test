@@ -1,5 +1,3 @@
-// import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
-
 import { b, core, h, I } from "@printf83/bsts";
 import { ICodePen, codeBeautify, codePen, getLibBaseOnSource } from "../example/_fn.js";
 import { BOOTSWATCHDB, CURRENTVERSION, DEFAULTDOCUMENT, THEMEDB, menuFS } from "./_db.js";

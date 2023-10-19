@@ -266,7 +266,6 @@ export const focusToAnchor = (anchorId?: string) => {
 			let anchorElem = anchorNode[0] as Element;
 			let elemPosition = anchorElem.getBoundingClientRect().top;
 			let offsetElemPosition = elemPosition + window.scrollY - 60;
-			// window.scrollTo(0, offsetElemPosition);
 			window.scrollTo({
 				top: offsetElemPosition,
 				behavior: "smooth",

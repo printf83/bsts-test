@@ -309,32 +309,6 @@ export const accent_color: IContent = {
 		resetContentIndex();
 
 		return [
-			// new e.section([
-			// 	new e.title("Preview"),
-			// 	new e.text("This is preview of current accent color."),
-			// 	new h.div(
-			// 		{ display: "flex", flex: "wrap", gap: 2 },
-			// 		[
-			// 			"primary",
-			// 			"secondary",
-			// 			"success",
-			// 			"danger",
-			// 			"warning",
-			// 			"info",
-			// 			"light",
-			// 			"dark",
-			// 			"link",
-			// 		].map((i) => {
-			// 			return new b.button(
-			// 				{ color: i as I.B.Button["color"] },
-			// 				core.uppercaseFirst(i)
-			// 			);
-			// 		})
-			// 	),
-			// ]),
-
-			//----------------------
-
 			new e.section([
 				new e.title("Base color"),
 				new e.text("You can create multiple color from one color."),

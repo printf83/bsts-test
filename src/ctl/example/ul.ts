@@ -1,5 +1,3 @@
-// import { Ul } from "../../../node_modules/@printf83/bsts/build/types/html/ul.js";
-
 import { core, h, I } from "@printf83/bsts";
 
 type Ul = I.h.ul;

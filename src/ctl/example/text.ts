@@ -1,5 +1,3 @@
-// import { P } from "../../../node_modules/@printf83/bsts/build/types/html/p.js";
-
 import { core, h, I } from "@printf83/bsts";
 type P = I.h.p;
 

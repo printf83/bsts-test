@@ -1,5 +1,3 @@
-// import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
-
 import { b, h, t, I } from "@printf83/bsts";
 
 type Icon = I.b.icon;

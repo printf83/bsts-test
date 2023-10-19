@@ -137,12 +137,9 @@ const convert = (attr: ICodePreview): core.attr => {
 				{
 					class: "example-preview",
 					marginY: 3,
-					// bgColor: !attr.title ? "body-secondary" : "body-tertiary",
 					bgColor: "body-tertiary",
-					// bgOpacity: !attr.title ? 75 : undefined,
 					border: true,
 					borderWidth: 1,
-					// border: !attr.title ? false : undefined,
 				},
 				[cardTitle, cardBody]
 			),

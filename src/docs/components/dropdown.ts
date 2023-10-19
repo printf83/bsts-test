@@ -1,5 +1,4 @@
 import { core, h, b, I } from "@printf83/bsts";
-// import { Drop } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/dropdown/container.js";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 type Drop = I.b.dropdown.drop;
@@ -670,7 +669,6 @@ export const dropdown: IContent = {
 							{ label: "Dropend", drop: "end" },
 							{ label: "Dropup", drop: "up" },
 						].map((i) => {
-							// return new b.dropdown.container({ drop: i.drop as I.B.Dropdown.Drop }, [
 							return new b.dropdown.container({ drop: i.drop as Drop }, [
 								new b.dropdown.button({ color: "secondary" }, i.label),
 								new b.dropdown.menu(
