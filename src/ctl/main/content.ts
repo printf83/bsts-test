@@ -337,7 +337,7 @@ export const setupContentDocument = (
 			cookie.set("current_page", `${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 
 			//remove active popup
-			core.removeAllActivePopup();
+			// core.removeAllActivePopup();
 
 			//generate content
 			const bsMainRoot = document.getElementById("bs-main-root") as Element;

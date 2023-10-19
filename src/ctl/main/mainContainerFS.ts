@@ -131,7 +131,8 @@ export const mainContainerFS = () => {
 											data: { docId: "docs/gettingstarted/home" },
 											border: false,
 											color: "transparent",
-
+											toggle: "modal",
+											target: "#bs-main-fs-modal",
 											on: {
 												click: (event) => {
 													const target = event.currentTarget as Element;
@@ -217,28 +218,48 @@ export const mainContainerFS = () => {
 												customStyle: 1,
 												style: { minWidth: "20rem" },
 											},
-											new h.div(
-												{
-													display: "grid",
-													gridTemplateColumns: "1fr 1fr 1fr",
-													gap: 1,
-													style: { minWidth: "320px" },
-												},
-												BOOTSWATCHDB.map((i) => {
-													return new b.dropdown.item(
-														{
-															on: {
-																click: (_e) => {
-																	changeBootswatch(i.value);
+											[
+												new h.div(
+													{
+														display: "grid",
+														gridTemplateColumns: "1fr 1fr 1fr",
+														gap: 1,
+														style: { minWidth: "320px" },
+													},
+													BOOTSWATCHDB.map((i) => {
+														return new b.dropdown.item(
+															{
+																on: {
+																	click: (_e) => {
+																		changeBootswatch(i.value);
+																	},
 																},
+																active:
+																	i.value === currentBootswatch,
+																data: { value: i.value },
 															},
-															active: i.value === currentBootswatch,
-															data: { value: i.value },
-														},
-														i.label
-													);
-												})
-											)
+															i.label
+														);
+													})
+												),
+												new b.caption(
+													{
+														icon: new b.icon({
+															id: "info-circle-fill",
+															textColor: "primary",
+															fontSize: 5,
+															marginEnd: 2,
+														}),
+														textColor: "secondary-emphasis",
+														lineHeight: 1,
+														padding: 3,
+														small: true,
+														bgColor: "body-tertiary",
+														rounded: true,
+													},
+													"Accent color will be reset to selected theme default accent color. You can choose diffrent accent color after that."
+												),
+											]
 										),
 									]),
 									new b.dropdown.container([
