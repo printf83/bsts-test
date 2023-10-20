@@ -1043,7 +1043,7 @@ export const home: IContent = {
 
 		const bg = new h.div(
 			{
-				viewWidth: "100",
+				width: "100",
 				viewHeight: "100",
 				style: {
 					backgroundImage:
