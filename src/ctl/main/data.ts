@@ -20,7 +20,7 @@ const contentNotFound = (key: string) => {
 					new h.div(
 						{ ratio: "16x9" },
 						new h.iframe({
-							src: "http://printf83.github.io/ts-game?useai=true",
+							src: "https://printf83.github.io/ts-game",
 							allowfullscreen: true,
 						})
 					),
