@@ -17,6 +17,6 @@ export class alert extends h.div {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: AlertContainer, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<AlertContainer>("elem", arg)));
+		super(convert(core.bsConstructor<AlertContainer>("elem", arg)));
 	}
 }

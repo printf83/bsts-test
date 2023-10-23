@@ -158,6 +158,6 @@ export class codepreview extends h.div {
 	constructor();
 	constructor(attr: ICodePreview);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<ICodePreview>(convert, arg));
+		super(core.bsConstructorNoElement<ICodePreview>(convert, arg));
 	}
 }

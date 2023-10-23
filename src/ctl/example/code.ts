@@ -1293,6 +1293,6 @@ export class code extends h.div {
 	constructor();
 	constructor(attr: ICode);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<ICode>(convert, arg));
+		super(core.bsConstructorNoElement<ICode>(convert, arg));
 	}
 }

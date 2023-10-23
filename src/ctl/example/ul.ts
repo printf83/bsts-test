@@ -18,6 +18,6 @@ export class ul extends h.div {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: Ul, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<Ul>("elem", arg)));
+		super(convert(core.bsConstructor<Ul>("elem", arg)));
 	}
 }

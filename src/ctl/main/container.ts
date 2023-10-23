@@ -362,6 +362,6 @@ export class container extends h.div {
 	constructor();
 	constructor(attr: IMainContainer);
 	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<IMainContainer>(convert, arg));
+		super(core.bsConstructorNoElement<IMainContainer>(convert, arg));
 	}
 }

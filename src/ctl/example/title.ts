@@ -98,6 +98,6 @@ export class title extends html.h2 {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: ITitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg("elem", arg)));
+		super(convert(core.bsConstructor("elem", arg)));
 	}
 }
