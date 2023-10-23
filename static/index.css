@@ -34,7 +34,7 @@
 @media (min-width: 992px) {
     .bs-search {
         position: absolute;
-        top: 0.5rem;
+        top: 0.65rem;
         left: 50%;
         width: 200px;
         margin-left: -100px

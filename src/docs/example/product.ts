@@ -1,5 +1,3 @@
-// import { Link as HeaderLink } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/nav/header/link.js";
-
 import { b, core, h, I } from "@printf83/bsts";
 import { IContent } from "../../ctl/main/content.js";
 type HeaderLink = I.b.nav.header.link;

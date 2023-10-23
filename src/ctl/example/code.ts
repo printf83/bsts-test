@@ -993,100 +993,97 @@ export const scriptConverter = (str: string) => {
 		.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
 };
 
-const convert = (attr: ICode) => {
-	let id = core.UUID();
-
-	attr.showOutput ??= true;
-	attr.showScript ??= true;
-	attr.showHTML ??= true;
-	attr.showManager ??= true;
-	attr.showCodepen ??= attr.showScript;
-
-	attr.scriptConverter ??= scriptConverter;
-
-	//setup strCode if db is provided
-	if (attr.db) {
-		if (attr.extention) {
-			if (!Array.isArray(attr.extention)) {
-				attr.extention = [attr.extention];
-			}
-
-			if (attr.db.extention && attr.db.extention.length === attr.extention.length) {
-				attr.extention = attr.extention.map((i, ix) => {
-					i.strOutput = attr.db?.extention ? attr.db?.extention[ix] : undefined;
-					return i;
-				});
-			}
-		}
-		attr.strManager = attr.db.manager;
-		attr.strOutput = attr.db.source;
+export class code extends h.div {
+	constructor();
+	constructor(attr: ICode);
+	constructor(...arg: any[]) {
+		super(core.bsConstructorNoElement<ICode>(arg));
 	}
 
-	//start create element
-	let e: t[] = [];
+	convert(attr: ICode): core.attr {
+		let id = core.UUID();
 
-	if (attr.output && attr.showOutput) {
-		if (attr.manager) {
+		attr.showOutput ??= true;
+		attr.showScript ??= true;
+		attr.showHTML ??= true;
+		attr.showManager ??= true;
+		attr.showCodepen ??= attr.showScript;
+
+		attr.scriptConverter ??= scriptConverter;
+
+		//setup strCode if db is provided
+		if (attr.db) {
+			if (attr.extention) {
+				if (!Array.isArray(attr.extention)) {
+					attr.extention = [attr.extention];
+				}
+
+				if (attr.db.extention && attr.db.extention.length === attr.extention.length) {
+					attr.extention = attr.extention.map((i, ix) => {
+						i.strOutput = attr.db?.extention ? attr.db?.extention[ix] : undefined;
+						return i;
+					});
+				}
+			}
+			attr.strManager = attr.db.manager;
+			attr.strOutput = attr.db.source;
+		}
+
+		//start create element
+		let e: t[] = [];
+
+		if (attr.output && attr.showOutput) {
+			if (attr.manager) {
+				e.push(
+					itemOutput(
+						attr.zoom,
+						attr.previewAttr,
+						attr.outputAttr,
+						attr.manager(attr.output())
+					)
+				);
+			} else {
+				e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, attr.output()));
+			}
+		}
+
+		if (attr.output && attr.zoom) {
+			e.push(itemZoom(attr.zoom));
+		}
+
+		if (attr.output && attr.showOutput && attr.showViewport) {
+			e.push(itemViewport());
+		}
+
+		if (attr.showConsole) {
+			e.push(...itemConsole());
+		}
+
+		if (attr.output && attr.showOutput && attr.showHTML) {
 			e.push(
-				itemOutput(
-					attr.zoom,
-					attr.previewAttr,
-					attr.outputAttr,
-					attr.manager(attr.output())
-				)
+				...itemCode({
+					header: e.length > 0,
+					allowrefresh: true,
+					title: "HTML",
+					elem: new h.div({ marginX: 4, marginY: 3 }, "Loading..."),
+				})
 			);
-		} else {
-			e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, attr.output()));
 		}
-	}
 
-	if (attr.output && attr.zoom) {
-		e.push(itemZoom(attr.zoom));
-	}
+		let strCSS: string | undefined = undefined;
+		if (attr.css) {
+			const generatedCSS = getCSSBaseOnSource(attr.outputAttr);
 
-	if (attr.output && attr.showOutput && attr.showViewport) {
-		e.push(itemViewport());
-	}
-
-	if (attr.showConsole) {
-		e.push(...itemConsole());
-	}
-
-	if (attr.output && attr.showOutput && attr.showHTML) {
-		e.push(
-			...itemCode({
-				header: e.length > 0,
-				allowrefresh: true,
-				title: "HTML",
-				elem: new h.div({ marginX: 4, marginY: 3 }, "Loading..."),
-			})
-		);
-	}
-
-	let strCSS: string | undefined = undefined;
-	if (attr.css) {
-		const generatedCSS = getCSSBaseOnSource(attr.outputAttr);
-
-		if (generatedCSS) {
-			strCSS = `
+			if (generatedCSS) {
+				strCSS = `
 			${attr.css}
 			
 			${generatedCSS}
 			`;
-		} else {
-			strCSS = attr.css;
-		}
+			} else {
+				strCSS = attr.css;
+			}
 
-		e.push(
-			...itemCode({
-				header: e.length > 0,
-				title: "CSS",
-				elem: new preview({ type: "css", marginX: 4, marginY: 3 }, strCSS),
-			})
-		);
-	} else {
-		strCSS = getCSSBaseOnSource(attr.outputAttr);
-		if (strCSS) {
 			e.push(
 				...itemCode({
 					header: e.length > 0,
@@ -1094,205 +1091,207 @@ const convert = (attr: ICode) => {
 					elem: new preview({ type: "css", marginX: 4, marginY: 3 }, strCSS),
 				})
 			);
-		}
-	}
-
-	let renameExtention: { find: string; replace: string }[] = [];
-	if (attr.extention) {
-		let f: IExtention[] = [];
-		if (Array.isArray(attr.extention)) {
-			f = attr.extention;
 		} else {
-			f = [attr.extention];
-		}
-
-		f.forEach((i) => {
-			if (i && i.name && (i.output || i.strOutput)) {
-				if (i.name && i.rename) {
-					renameExtention.push({ find: i.rename, replace: i.name });
-				}
-			}
-		});
-	}
-
-	let strExtention: string[] = [];
-	let strExtentionDB: string[] = [];
-
-	if (attr.extention) {
-		let f: IExtention[] = [];
-		if (Array.isArray(attr.extention)) {
-			f = attr.extention;
-		} else {
-			f = [attr.extention];
-		}
-
-		f.forEach((i) => {
-			if (i && i.name && (i.output || i.strOutput)) {
-				let strCode: string | undefined = undefined;
-
-				if (i.strOutput) {
-					strCode = i.strOutput;
-				} else {
-					strCode = attr.scriptConverter
-						? attr.scriptConverter(i.output!.toString())
-						: i.output!.toString();
-					strCode = replaceExtention(renameExtention, strCode);
-					if (!attr.db && strCode) {
-						strExtentionDB.push(codeBeautifyMinify("js", strCode));
-					}
-				}
-
-				strExtention.push(`
-						const ${i.name} = ${strCode};`);
-
+			strCSS = getCSSBaseOnSource(attr.outputAttr);
+			if (strCSS) {
 				e.push(
 					...itemCode({
 						header: e.length > 0,
-						title: i.name,
-						elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strCode!),
+						title: "CSS",
+						elem: new preview({ type: "css", marginX: 4, marginY: 3 }, strCSS),
 					})
 				);
 			}
-		});
-	}
-
-	let strManager: string | undefined = undefined;
-	if (
-		(attr.output || attr.strOutput) &&
-		attr.showScript &&
-		(attr.manager || attr.strManager) &&
-		attr.showManager
-	) {
-		if (attr.strManager) {
-			strManager = attr.strManager;
-		} else {
-			strManager = attr.scriptConverter
-				? attr.scriptConverter(attr.manager!.toString())
-				: attr.manager!.toString();
-			strManager = replaceExtention(renameExtention, strManager);
 		}
 
-		e.push(
-			...itemCode({
-				header: e.length > 0,
-				title: "MANAGER",
-				elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strManager!),
-			})
-		);
-	}
+		let renameExtention: { find: string; replace: string }[] = [];
+		if (attr.extention) {
+			let f: IExtention[] = [];
+			if (Array.isArray(attr.extention)) {
+				f = attr.extention;
+			} else {
+				f = [attr.extention];
+			}
 
-	let strSource: string | undefined = undefined;
-	let strRoot: string | undefined = undefined;
-
-	if ((attr.output || attr.strOutput) && attr.showScript) {
-		strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
-
-		if (attr.strOutput) {
-			strSource = attr.strOutput;
-		} else {
-			strSource = attr.scriptConverter
-				? attr.scriptConverter(attr.output!.toString())
-				: attr.output!.toString();
-			strSource = replaceExtention(renameExtention, strSource);
+			f.forEach((i) => {
+				if (i && i.name && (i.output || i.strOutput)) {
+					if (i.name && i.rename) {
+						renameExtention.push({ find: i.rename, replace: i.name });
+					}
+				}
+			});
 		}
 
-		if (strSource) {
+		let strExtention: string[] = [];
+		let strExtentionDB: string[] = [];
+
+		if (attr.extention) {
+			let f: IExtention[] = [];
+			if (Array.isArray(attr.extention)) {
+				f = attr.extention;
+			} else {
+				f = [attr.extention];
+			}
+
+			f.forEach((i) => {
+				if (i && i.name && (i.output || i.strOutput)) {
+					let strCode: string | undefined = undefined;
+
+					if (i.strOutput) {
+						strCode = i.strOutput;
+					} else {
+						strCode = attr.scriptConverter
+							? attr.scriptConverter(i.output!.toString())
+							: i.output!.toString();
+						strCode = replaceExtention(renameExtention, strCode);
+						if (!attr.db && strCode) {
+							strExtentionDB.push(codeBeautifyMinify("js", strCode));
+						}
+					}
+
+					strExtention.push(`
+						const ${i.name} = ${strCode};`);
+
+					e.push(
+						...itemCode({
+							header: e.length > 0,
+							title: i.name,
+							elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strCode!),
+						})
+					);
+				}
+			});
+		}
+
+		let strManager: string | undefined = undefined;
+		if (
+			(attr.output || attr.strOutput) &&
+			attr.showScript &&
+			(attr.manager || attr.strManager) &&
+			attr.showManager
+		) {
+			if (attr.strManager) {
+				strManager = attr.strManager;
+			} else {
+				strManager = attr.scriptConverter
+					? attr.scriptConverter(attr.manager!.toString())
+					: attr.manager!.toString();
+				strManager = replaceExtention(renameExtention, strManager);
+			}
+
 			e.push(
 				...itemCode({
-					islast: true,
 					header: e.length > 0,
-					title: "SOURCE",
-					elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strSource),
-					onedit: attr.showCodepen
-						? () => {
-								codePen(
-									generateCodePenData(
-										getLibBaseOnSource(strSource, strManager, strExtention),
-										strSource!,
-										strManager,
-										strExtention,
-										strCSS,
-										strRoot
-									)
-								);
-						  }
-						: undefined,
+					title: "MANAGER",
+					elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strManager!),
 				})
 			);
 		}
-	}
 
-	if (!attr.db) {
-		core.dataManager.set(`code-${id}`, {
-			source: strSource ? codeBeautifyMinify("js", strSource) : undefined,
-			manager: strManager ? codeBeautifyMinify("js", strManager) : undefined,
-			extention: strExtentionDB && strExtentionDB.length > 0 ? strExtentionDB : undefined,
-		} satisfies ISourceDB);
-	}
+		let strSource: string | undefined = undefined;
+		let strRoot: string | undefined = undefined;
 
-	attr.elem = [
-		new b.card.container(
-			{
-				id: id,
-				class: "example-code",
-				marginY: 3,
-				border: false,
-				on: {
-					"bs.console.log": attr.showConsole
-						? (event) => {
-								const ce = event as CustomEvent<{
-									title: string;
-									msg: string;
-									color?: core.bsType.textColor;
-								}>;
-								addConsoleLog(
-									ce.target as Element,
-									ce.detail.title,
-									ce.detail.msg,
-									ce.detail.color
-								);
-						  }
-						: undefined,
-					destroy: (event: Event) => {
-						const target = event.currentTarget as Element;
-						const id = target.id;
-						core.dataManager.remove(`code-${id}`);
+		if ((attr.output || attr.strOutput) && attr.showScript) {
+			strRoot = getRootBaseOnSource(attr.previewAttr, attr.outputAttr);
+
+			if (attr.strOutput) {
+				strSource = attr.strOutput;
+			} else {
+				strSource = attr.scriptConverter
+					? attr.scriptConverter(attr.output!.toString())
+					: attr.output!.toString();
+				strSource = replaceExtention(renameExtention, strSource);
+			}
+
+			if (strSource) {
+				e.push(
+					...itemCode({
+						islast: true,
+						header: e.length > 0,
+						title: "SOURCE",
+						elem: new preview({ type: "js", marginX: 4, marginY: 3 }, strSource),
+						onedit: attr.showCodepen
+							? () => {
+									codePen(
+										generateCodePenData(
+											getLibBaseOnSource(strSource, strManager, strExtention),
+											strSource!,
+											strManager,
+											strExtention,
+											strCSS,
+											strRoot
+										)
+									);
+							  }
+							: undefined,
+					})
+				);
+			}
+		}
+
+		if (!attr.db) {
+			core.dataManager.set(`code-${id}`, {
+				source: strSource ? codeBeautifyMinify("js", strSource) : undefined,
+				manager: strManager ? codeBeautifyMinify("js", strManager) : undefined,
+				extention: strExtentionDB && strExtentionDB.length > 0 ? strExtentionDB : undefined,
+			} satisfies ISourceDB);
+		}
+
+		attr.elem = [
+			new b.card.container(
+				{
+					id: id,
+					class: "example-code",
+					marginY: 3,
+					border: false,
+					on: {
+						"bs.console.log": attr.showConsole
+							? (event) => {
+									const ce = event as CustomEvent<{
+										title: string;
+										msg: string;
+										color?: core.bsType.textColor;
+									}>;
+									addConsoleLog(
+										ce.target as Element,
+										ce.detail.title,
+										ce.detail.msg,
+										ce.detail.color
+									);
+							  }
+							: undefined,
+						destroy: (event: Event) => {
+							const target = event.currentTarget as Element;
+							const id = target.id;
+							core.dataManager.remove(`code-${id}`);
+						},
 					},
 				},
-			},
-			new b.card.body({ padding: 0 }, [new b.list.container(e)])
-		),
-	];
+				new b.card.body({ padding: 0 }, [new b.list.container(e)])
+			),
+		];
 
-	delete attr.db;
+		delete attr.db;
 
-	delete attr.lib;
-	delete attr.css;
-	delete attr.extention;
-	delete attr.output;
-	delete attr.manager;
-	delete attr.strOutput;
-	delete attr.strManager;
-	delete attr.scriptConverter;
+		delete attr.lib;
+		delete attr.css;
+		delete attr.extention;
+		delete attr.output;
+		delete attr.manager;
+		delete attr.strOutput;
+		delete attr.strManager;
+		delete attr.scriptConverter;
 
-	delete attr.showCodepen;
-	delete attr.showConsole;
-	delete attr.showViewport;
-	delete attr.zoom;
-	delete attr.showOutput;
-	delete attr.showScript;
-	delete attr.showManager;
-	delete attr.showHTML;
-	delete attr.previewAttr;
-	delete attr.outputAttr;
-
-	return attr;
-};
-
-export class code extends h.div {
-	constructor();
-	constructor(attr: ICode);
-	constructor(...arg: any[]) {
-		super(core.bsConsNoElemArg<ICode>(convert, arg));
+		delete attr.showCodepen;
+		delete attr.showConsole;
+		delete attr.showViewport;
+		delete attr.zoom;
+		delete attr.showOutput;
+		delete attr.showScript;
+		delete attr.showManager;
+		delete attr.showHTML;
+		delete attr.previewAttr;
+		delete attr.outputAttr;
+		return super.convert(attr);
 	}
 }

@@ -1,4 +1,4 @@
-import { core, t, h as html, s, b, h } from "@printf83/bsts";
+import { core, h as html, b, h, I } from "@printf83/bsts";
 import { anchorOnClick } from "./_fn.js";
 
 export interface ITitle extends core.attr {
@@ -29,7 +29,7 @@ const convert = (attr: ITitle) => {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: (number | string | t | s)[] = [];
+		let tElem: I.c.elem[] = [];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {
@@ -98,6 +98,6 @@ export class title extends html.h2 {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: ITitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg("elem", arg)));
+		super(convert(core.bsConstructor("elem", arg)));
 	}
 }

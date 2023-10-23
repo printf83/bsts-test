@@ -78,7 +78,10 @@ export const onBootswatchChange = (value: string, resetAccentColor?: boolean) =>
 	const bootstrapCssLink = document.getElementById("bootswatchCssLink") as HTMLLinkElement;
 
 	if (bootstrapCssLink) {
-		if (resetAccentColor) removeAllCustomVar();
+		if (resetAccentColor) {
+			removeAllCustomVar();
+			cookie.set("current_color", "");
+		}
 
 		if (value === "default") {
 			bootstrapCssLink.disabled = true;
@@ -142,28 +145,47 @@ export const genBootswatch = (
 						customStyle: 1,
 						style: { minWidth: "20rem" },
 					},
-					new h.div(
-						{
-							display: "grid",
-							gridTemplateColumns: "1fr 1fr 1fr",
-							gap: 1,
-							style: { minWidth: "320px" },
-						},
-						navbarItemBootswatch.map((i) => {
-							return new b.dropdown.item(
-								{
-									on: {
-										click: (_e) => {
-											changeBootswatch(i.value);
+					[
+						new h.div(
+							{
+								display: "grid",
+								gridTemplateColumns: "1fr 1fr 1fr",
+								gap: 1,
+								style: { minWidth: "320px" },
+							},
+							navbarItemBootswatch.map((i) => {
+								return new b.dropdown.item(
+									{
+										on: {
+											click: (_e) => {
+												changeBootswatch(i.value);
+											},
 										},
+										active: i.value === currentBootswatch,
+										data: { value: i.value },
 									},
-									active: i.value === currentBootswatch,
-									data: { value: i.value },
-								},
-								i.label
-							);
-						})
-					)
+									i.label
+								);
+							})
+						),
+						new b.caption(
+							{
+								icon: new b.icon({
+									id: "info-circle-fill",
+									textColor: "primary",
+									fontSize: 5,
+									marginEnd: 2,
+								}),
+								textColor: "secondary-emphasis",
+								lineHeight: 1,
+								padding: 3,
+								small: true,
+								bgColor: "body-tertiary",
+								rounded: true,
+							},
+							"Accent color will be reset to selected theme default accent color. You can choose diffrent accent color after that."
+						),
+					]
 				),
 			]),
 		];

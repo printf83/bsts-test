@@ -1,5 +1,3 @@
-// import { Ul } from "../../../node_modules/@printf83/bsts/build/types/html/ul.js";
-
 import { core, h, I } from "@printf83/bsts";
 
 type Ul = I.h.ul;
@@ -20,6 +18,6 @@ export class ul extends h.div {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: Ul, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<Ul>("elem", arg)));
+		super(convert(core.bsConstructor<Ul>("elem", arg)));
 	}
 }

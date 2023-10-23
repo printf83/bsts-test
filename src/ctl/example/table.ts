@@ -1,5 +1,3 @@
-// import { Container as TableContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/table/container.js";
-
 import { core, b, I } from "@printf83/bsts";
 type TableContainer = I.b.table.container;
 
@@ -24,6 +22,6 @@ export class table extends b.table.responsive {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: TableContainer, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<TableContainer>("elem", arg)));
+		super(convert(core.bsConstructor<TableContainer>("elem", arg)));
 	}
 }

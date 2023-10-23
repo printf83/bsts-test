@@ -1,4 +1,4 @@
-import { core, h as html, t, s, b, h } from "@printf83/bsts";
+import { core, h as html, b, h, I } from "@printf83/bsts";
 import { anchorOnClick } from "./_fn.js";
 
 export interface IXSubTitle extends core.attr {
@@ -29,7 +29,7 @@ const convert = (attr: IXSubTitle) => {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: (number | string | t | s)[] = [];
+		let tElem: I.c.elem[] = [];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {
@@ -98,6 +98,6 @@ export class xsubtitle extends html.h4 {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: IXSubTitle, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg("elem", arg)));
+		super(convert(core.bsConstructor("elem", arg)));
 	}
 }
