@@ -595,7 +595,6 @@ export const showSearchDialog = () => {
 								gap: 2,
 								alignItem: "end",
 							},
-							// ["Indexing ", new b.spinner({ small: true })]
 							new h.div(
 								{
 									display: "flex",

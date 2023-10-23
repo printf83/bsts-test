@@ -49,6 +49,6 @@ export class preview extends h.pre {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: IPreview, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<IPreview>("elem", arg)));
+		super(convert(core.bsConstructor<IPreview>("elem", arg)));
 	}
 }

@@ -1,5 +1,3 @@
-// import { Icon } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/icon.js";
-
 import { b, core, h, I } from "@printf83/bsts";
 import { cookie } from "./cookie.js";
 

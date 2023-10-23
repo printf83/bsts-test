@@ -679,6 +679,10 @@ const startMemoryTest = (arg: {
 										click: (event) => {
 											const target = event.target as Element;
 											b.modal.hide(target);
+
+											//bugfix drowdown fail if dropdown documentation is downloaded faster
+											//reload document
+											location.reload();
 										},
 									},
 								},

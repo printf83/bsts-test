@@ -1,4 +1,4 @@
-import { core, t, h, s } from "@printf83/bsts";
+import { core, t, h, I } from "@printf83/bsts";
 
 const genIDFromText = (text: string) => {
 	return text.toLowerCase().replace(/[\W_]+/g, "_");
@@ -12,7 +12,7 @@ const hasClass = (className: string, attrClass: string | undefined | (string | u
 	}
 };
 const convert = (attr: core.attr) => {
-	let tElem: string | number | t | s | (string | number | t | s)[] | undefined = attr.elem;
+	let tElem: I.c.elem | I.c.elem[] | undefined = attr.elem;
 
 	if (tElem) {
 		if (!Array.isArray(tElem)) {
@@ -85,6 +85,6 @@ export class section extends h.section {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: core.attr, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg("elem", arg)));
+		super(convert(core.bsConstructor("elem", arg)));
 	}
 }

@@ -1,9 +1,8 @@
-import { Create as ToastCreate } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/toast/_fn.js";
-
-import { core, b, h } from "@printf83/bsts";
+import { core, b, h, I } from "@printf83/bsts";
 import js_beautify from "js-beautify";
 import { css_beautify, html_beautify } from "js-beautify";
 import { addHistory } from "../main/history.js";
+type ToastCreate = I.b.toast.create;
 
 export const anchorOnClick = (event: Event) => {
 	event.preventDefault();

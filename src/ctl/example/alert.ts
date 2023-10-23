@@ -1,5 +1,3 @@
-// import { Container as AlertContainer } from "../../../node_modules/@printf83/bsts/build/types/bootstrap/alert/container.js";
-
 import { core, h, b, I } from "@printf83/bsts";
 type AlertContainer = I.b.alert.container;
 
@@ -19,6 +17,6 @@ export class alert extends h.div {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: AlertContainer, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<AlertContainer>("elem", arg)));
+		super(convert(core.bsConstructor<AlertContainer>("elem", arg)));
 	}
 }

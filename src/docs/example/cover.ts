@@ -85,7 +85,6 @@ export const cover: IContent = {
 				minViewHeight: 100,
 				minViewWidth: 100,
 				style: {
-					// textShadow: "0 .05rem .1rem rgba(0, 0, 0, .5)",
 					boxShadow: "inset 0 0 5rem rgba(0, 0, 0, .5)",
 				},
 			},

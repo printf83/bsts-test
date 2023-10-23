@@ -1,5 +1,3 @@
-// import { Ol } from "../../../node_modules/@printf83/bsts/build/types/html/ol.js";
-
 import { core, h, I } from "@printf83/bsts";
 type Ol = I.h.ol;
 
@@ -19,6 +17,6 @@ export class ol extends h.div {
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: Ol, elem: core.elem | core.elem[]);
 	constructor(...arg: any[]) {
-		super(convert(core.bsConstArg<Ol>("elem", arg)));
+		super(convert(core.bsConstructor<Ol>("elem", arg)));
 	}
 }

@@ -1,5 +1,3 @@
-/// <reference types="@printf83/bsts"/>
-
 import { b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
