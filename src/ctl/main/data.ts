@@ -3,6 +3,7 @@ import { isInBookmark } from "./bookmark.js";
 import { IContent } from "./content.js";
 import * as e from "../example/_index.js";
 import { menuItem } from "./_db.js";
+import { h } from "@printf83/bsts";
 
 const contentNotFound = (key: string) => {
 	return {
@@ -15,6 +16,13 @@ const contentNotFound = (key: string) => {
 				new e.section([
 					new e.text(
 						`Content for {{${key}\}} couldn't be located. Perhaps it has been moved, deleted, or never even existed in the first place. We apologize for any inconvenience this may have caused. Head back to our {{nav:docs/gettingstarted/home::homepage}} to explore the site from the beginning.`
+					),
+					new h.div(
+						{ ratio: "16x9" },
+						new h.iframe({
+							src: "http://printf83.github.io/ts-game?useai=true",
+							allowfullscreen: true,
+						})
 					),
 				]),
 			];
