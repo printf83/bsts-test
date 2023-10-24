@@ -170,16 +170,20 @@ export const introduction: IContent = {
 				new e.table({
 					item: [
 						["Library", "Description"],
-						["core", "Core function to build html using {{bsts}}"],
-						["h", "HTML component. Example {{new h.div()}}."],
-						["b", "Bootstrap component. Example {{new b.button()}}."],
+						["{{core}} or {{c}}", "Core function to build html using {{bsts}}"],
+						["{{h}}", "HTML component. Example {{new h.div()}}."],
+						["{{b}}", "Bootstrap component. Example {{new b.button()}}."],
 						[
-							"t",
+							"{{t}}",
 							"Main class that build all HTML and Bootstrap component. Example {{new t()}}.",
 						],
 						[
-							"s",
+							"{{s}}",
 							"Class to allow HTML syntax and process by {{core.build}} as HTML. Example {{new s()}}.",
+						],
+						[
+							"{{I}}",
+							"Interface. Example {{I.core}} or {{I.c}} for core interface, {{I.h}} for html interface and {{I.b}} for bootstrap interface.",
 						],
 					],
 				}),

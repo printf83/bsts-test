@@ -573,6 +573,10 @@ export const getLibBaseOnSource = (
 	let libImported: string[] = ["core"];
 	const libList: { find: string[]; lib: string }[] = [
 		{
+			find: [" c.", "(c.", " core.", "(core."],
+			lib: "core",
+		},
+		{
 			find: [" b.", "(b.", "...b."],
 			lib: "b",
 		},
