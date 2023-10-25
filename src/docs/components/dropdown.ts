@@ -1,7 +1,7 @@
 import { core, h, b, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
-type Drop = I.b.dropdown.drop;
+// type Drop = I.b.dropdown.drop;
 
 export const dropdown: IContent = {
 	title: "Dropdowns",
@@ -669,21 +669,24 @@ export const dropdown: IContent = {
 							{ label: "Dropend", drop: "end" },
 							{ label: "Dropup", drop: "up" },
 						].map((i) => {
-							return new b.dropdown.container({ drop: i.drop as Drop }, [
-								new b.dropdown.button({ color: "secondary" }, i.label),
-								new b.dropdown.menu(
-									{
-										positionView: i.positionView as
-											| core.bsType.dropdownMenuPositionView
-											| core.bsType.dropdownMenuPositionView[],
-									},
-									[
-										new b.dropdown.item("Action"),
-										new b.dropdown.item("Another action"),
-										new b.dropdown.item("Something else here"),
-									]
-								),
-							]);
+							return new b.dropdown.container(
+								{ drop: i.drop as I.b.dropdown.container["drop"] },
+								[
+									new b.dropdown.button({ color: "secondary" }, i.label),
+									new b.dropdown.menu(
+										{
+											positionView: i.positionView as
+												| core.bsType.dropdownMenuPositionView
+												| core.bsType.dropdownMenuPositionView[],
+										},
+										[
+											new b.dropdown.item("Action"),
+											new b.dropdown.item("Another action"),
+											new b.dropdown.item("Something else here"),
+										]
+									),
+								]
+							);
 						});
 					},
 				}),
