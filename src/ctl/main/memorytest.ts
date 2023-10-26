@@ -682,7 +682,7 @@ const startMemoryTest = (arg: {
 
 											//bugfix drowdown fail if dropdown documentation is downloaded faster
 											//reload document
-											location.reload();
+											// location.reload();
 										},
 									},
 								},
@@ -841,6 +841,9 @@ export const showMemoryTestDialog = () => {
 							gap: 2,
 						},
 						[
+							// 37,
+							// 40,
+							// 50,
 							~~(docCounter * 0.1),
 							~~(docCounter * 0.3),
 							~~(docCounter * 0.5),
