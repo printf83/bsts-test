@@ -37,6 +37,7 @@ export const modals: IContent = {
 										gap: 2,
 										paddingBottom: 3,
 										borderNone: "top",
+										rounded: "bottom-4",
 									},
 									[
 										new b.button(
