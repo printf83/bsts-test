@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "1.0.5",
+	"version": "1.1.0",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -33,22 +33,22 @@
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "^0.4.2",
-		"@types/bootstrap": "^5.2.8",
-		"@types/js-beautify": "^1.14.2",
+		"@types/bootstrap": "^5.2.9",
+		"@types/js-beautify": "^1.14.3",
 		"compression-webpack-plugin": "^10.0.0",
 		"gh-pages": "^5.0.0",
 		"terser-webpack-plugin": "^5.3.9",
-		"ts-loader": "^9.5.0",
+		"ts-loader": "^9.5.1",
 		"typescript": "^5.2.2",
 		"webpack": "^5.89.0",
 		"webpack-cli": "^5.1.4"
 	},
 	"dependencies": {
-		"@printf83/bsts": "^1.0.5",
+		"@printf83/bsts": "^1.1.0",
 		"bootstrap": "^5.3.2",
 		"chart.js": "^4.4.0",
 		"chartjs-plugin-datalabels": "^2.2.0",
 		"highlight.js": "^11.9.0",
-		"js-beautify": "^1.14.9"
+		"js-beautify": "^1.14.11"
 	}
 }
