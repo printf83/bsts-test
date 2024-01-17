@@ -224,7 +224,7 @@ export const chart: IContent = {
 					output: () => {
 						const id = core.UUID();
 
-						const fontFamily = core.getCSSVar("--bs-font-sans-serif");
+						// const fontFamily = core.getCSSVar("--bs-font-sans-serif");
 						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
 
@@ -274,13 +274,13 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [
-													drawValuePlugin({
-														fontFamily,
-														lineColor,
-														fonstSizeAdjustment: -0.15,
-													}),
-												],
+												// plugins: [
+												// 	drawValuePlugin({
+												// 		fontFamily,
+												// 		lineColor,
+												// 		fonstSizeAdjustment: -0.15,
+												// 	}),
+												// ],
 												options: {
 													aspectRatio: 2,
 													cutout: "80%",
@@ -396,7 +396,7 @@ export const chart: IContent = {
 					],
 					output: () => {
 						const id = core.UUID();
-						const fontFamily = core.getCSSVar("--bs-font-sans-serif");
+						// const fontFamily = core.getCSSVar("--bs-font-sans-serif");
 						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
 
@@ -449,13 +449,13 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [
-													drawValuePlugin({
-														fontFamily,
-														lineColor,
-														fontSize: 60,
-													}),
-												],
+												// plugins: [
+												// 	drawValuePlugin({
+												// 		fontFamily,
+												// 		lineColor,
+												// 		fontSize: 60,
+												// 	}),
+												// ],
 												options: {
 													aspectRatio: 1.75,
 													cutout: "90%",
@@ -572,7 +572,7 @@ export const chart: IContent = {
 					output: () => {
 						const id = core.UUID();
 
-						const fontFamily = core.getCSSVar("--bs-font-sans-serif");
+						// const fontFamily = core.getCSSVar("--bs-font-sans-serif");
 						const lineColor = core.getCSSVarRgbColor("--bs-primary");
 						const lineColor2 = core.getCSSVarRgbColor("--bs-secondary-bg");
 
@@ -625,9 +625,9 @@ export const chart: IContent = {
 														},
 													],
 												},
-												plugins: [
-													drawValuePlugin({ fontFamily, lineColor }),
-												],
+												// plugins: [
+												// 	drawValuePlugin({ fontFamily, lineColor }),
+												// ],
 												options: {
 													aspectRatio: 2,
 													cutout: "80%",

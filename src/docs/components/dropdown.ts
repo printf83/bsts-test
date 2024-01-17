@@ -1,7 +1,7 @@
-import { core, h, b, I } from "@printf83/bsts";
+import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
-type Drop = I.b.dropdown.drop;
+type Drop = "down" | "down-center" | "up" | "up-center" | "start" | "end";
 
 export const dropdown: IContent = {
 	title: "Dropdowns",
