@@ -644,7 +644,7 @@ const itemOutput = (
 	zoom: 25 | 50 | 75 | 100 | 125 | 150 | 200 | undefined,
 	previewAttr: core.attr | undefined,
 	outputAttr: core.attr | undefined,
-	str: string
+	str: core.elem | core.elem[]
 ) => {
 	if (previewAttr) {
 		if (outputAttr) {
@@ -1041,7 +1041,7 @@ export class code extends h.div {
 
 		if (attr.output && attr.showOutput) {
 			const outputValue = attr.output();
-			const outputString = outputValue == null ? "" : String(outputValue);
+			const outputElem = outputValue == null ? "" : outputValue;
 
 			if (attr.manager) {
 				const managedOutput = attr.manager(outputValue);
@@ -1050,11 +1050,11 @@ export class code extends h.div {
 						attr.zoom,
 						attr.previewAttr,
 						attr.outputAttr,
-						managedOutput == null ? "" : String(managedOutput)
+						managedOutput == null ? "" : managedOutput
 					)
 				);
 			} else {
-				e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, outputString));
+				e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, outputElem));
 			}
 		}
 

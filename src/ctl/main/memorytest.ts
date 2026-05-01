@@ -104,7 +104,7 @@ const updateProgress = (arg: {
 	progress?: number;
 	current?: string | null;
 	speed?: number;
-	memoryLeak?: boolean;
+	memoryLeak?: boolean | string;
 	time?: number;
 }) => {
 	const progressBar = document.getElementById(`${arg.testId}-bar`);
@@ -140,9 +140,13 @@ const updateProgress = (arg: {
 				`${arg.testId}-memory-leak-label`
 			);
 			if (progressMemoryLeakLabel) {
-				progressMemoryLeakLabel.innerText = arg.memoryLeak
-					? "Possible memory leak"
-					: "No memory leak detected";
+				if (typeof arg.memoryLeak === "string") {
+					progressMemoryLeakLabel.innerText = arg.memoryLeak;
+				} else {
+					progressMemoryLeakLabel.innerHTML = arg.memoryLeak
+						? '<span class="text-warning ms-2"><i class="bi bi-exclamation-triangle-fill"></i> Possible memory leak</span>'
+						: '<span class="text-success ms-2"><i class="bi bi-check-circle-fill"></i> No memory leak detected</span>';
+				}
 			}
 		}
 
@@ -465,7 +469,7 @@ const runMemoryTest = (
 			}
 		});
 	} else {
-		callback(arg.max! - arg.count, docId, false);
+		callback(arg.max! - arg.count, docId, arg.memoryLeak);
 	}
 };
 
@@ -500,19 +504,6 @@ const runDownloadResource = (
 				);
 			}
 
-			let memoryLeak: boolean | undefined;
-			// check if speed drop more than 20% from last test, then make label "memory leak possible"
-			if (dataSpeed && speedDB.length > 0) {
-				// need to calculate base on all speed
-				const lastSpeeds = speedDB[speedDB.length - 1]!.data;
-				const lastSpeed = lastSpeeds.reduce((a, b) => a + b, 0) / lastSpeeds.length;
-				if (lastSpeed && dataSpeed < lastSpeed * 0.8) {
-					memoryLeak = true;
-				} else {
-					memoryLeak = false;
-				}
-			}
-
 			if (
 				updateProgress({
 					testId: arg.testId,
@@ -522,7 +513,7 @@ const runDownloadResource = (
 					progress: dataProgress,
 					current: dataCurrent,
 					speed: dataSpeed,
-					memoryLeak: memoryLeak,
+					memoryLeak: "Checking...",
 					time: dataTime,
 				})
 			) {
