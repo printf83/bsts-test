@@ -45,8 +45,8 @@ export interface IMainContainer extends core.attr {
 export class container extends h.div {
 	constructor();
 	constructor(attr: IMainContainer);
-	constructor(...arg: core.BsConstructorNoElementArg<IMainContainer>) {
-		super(core.bsConstructorNoElement<IMainContainer>(arg));
+	constructor(...arg: core.tagConstructorArgs<IMainContainer>) {
+		super(core.tagConstructor<IMainContainer>("elem", arg));
 	}
 
 	convert(attr: IMainContainer): core.attr {

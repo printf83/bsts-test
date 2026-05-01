@@ -97,7 +97,7 @@ export class xsubtitle extends html.h4 {
 	constructor(attr: IXSubTitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: IXSubTitle, elem: core.elem | core.elem[]);
-	constructor(...arg: core.ConstructorArgs<IXSubTitle>) {
-		super(convert(core.bsConstructor("elem", arg)));
+	constructor(...arg: core.tagConstructorArgs<IXSubTitle>) {
+		super(convert(core.tagConstructor<IXSubTitle>("elem", arg)));
 	}
 }

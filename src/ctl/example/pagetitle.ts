@@ -187,7 +187,7 @@ export class pagetitle extends h.div {
 	constructor(attr: IPageTitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: IPageTitle, elem: core.elem | core.elem[]);
-	constructor(...arg: core.ConstructorArgs<IPageTitle>) {
-		super(convert(core.bsConstructor<IPageTitle>("elem", arg)));
+	constructor(...arg: core.tagConstructorArgs<IPageTitle>) {
+		super(convert(core.tagConstructor<IPageTitle>("elem", arg)));
 	}
 }

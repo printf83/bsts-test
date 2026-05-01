@@ -17,7 +17,7 @@ export class ul extends h.div {
 	constructor(attr: Ul);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: Ul, elem: core.elem | core.elem[]);
-	constructor(...arg: core.ConstructorArgs<Ul>) {
-		super(convert(core.bsConstructor<Ul>("elem", arg)));
+	constructor(...arg: core.tagConstructorArgs<Ul>) {
+		super(convert(core.tagConstructor<Ul>("elem", arg)));
 	}
 }

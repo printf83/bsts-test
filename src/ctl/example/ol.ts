@@ -16,7 +16,7 @@ export class ol extends h.div {
 	constructor(attr: Ol);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: Ol, elem: core.elem | core.elem[]);
-	constructor(...arg: core.ConstructorArgs<Ol>) {
-		super(convert(core.bsConstructor<Ol>("elem", arg)));
+	constructor(...arg: core.tagConstructorArgs<Ol>) {
+		super(convert(core.tagConstructor<Ol>("elem", arg)));
 	}
 }

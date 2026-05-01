@@ -11,7 +11,7 @@ export class text extends h.p {
 	constructor(attr: P);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: P, elem: core.elem | core.elem[]);
-	constructor(...arg: core.ConstructorArgs<P>) {
-		super(convert(core.bsConstructor<P>("elem", arg)));
+	constructor(...arg: core.tagConstructorArgs<P>) {
+		super(convert(core.tagConstructor<P>("elem", arg)));
 	}
 }

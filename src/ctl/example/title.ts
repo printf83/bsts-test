@@ -97,7 +97,7 @@ export class title extends html.h2 {
 	constructor(attr: ITitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: ITitle, elem: core.elem | core.elem[]);
-	constructor(...arg: core.ConstructorArgs<ITitle>) {
-		super(convert(core.bsConstructor("elem", arg)));
+	constructor(...arg: core.tagConstructorArgs<ITitle>) {
+		super(convert(core.tagConstructor<ITitle>("elem", arg)));
 	}
 }

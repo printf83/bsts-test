@@ -84,7 +84,7 @@ export class section extends h.section {
 	constructor(attr: core.attr);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: core.attr, elem: core.elem | core.elem[]);
-	constructor(...arg: core.ConstructorArgs<core.attr>) {
-		super(convert(core.bsConstructor("elem", arg)));
+	constructor(...arg: core.tagConstructorArgs<core.attr>) {
+		super(convert(core.tagConstructor<core.attr>("elem", arg)));
 	}
 }
