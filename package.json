@@ -26,10 +26,12 @@
 		"build.ts": "tsc",
 		"build": "webpack && pnpm run copy.static",
 		"lint": "eslint src --ext .ts",
-		"rebuild": "pnpm run clean && pnpm run build",
+		"serve": "pnpm exec http-server dist",
+		"start": "pnpm run serve",
+		"build:clean": "pnpm run clean && pnpm run build",
 		"debug.ts": "tsc -w",
 		"debug": "webpack -w",
-		"predeploy": "pnpm run rebuild",
+		"predeploy": "pnpm run build:clean",
 		"deploy": "gh-pages -d dist"
 	},
 	"devDependencies": {
@@ -48,7 +50,8 @@
 		"typescript": "^5.9.3",
 		"webpack": "^5.106.2",
 		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^5.2.3"
+		"webpack-dev-server": "^5.2.3",
+		"http-server": "^14.1.1"
 	},
 	"pnpm": {
 		"overrides": {
