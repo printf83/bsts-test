@@ -59,7 +59,7 @@ const convert = (attr: IPageTitle) => {
 								pointerEvent: "none",
 							},
 							`Added in v${attr.addedVersion}`
-					  )
+						)
 					: "",
 				attr.sourceUrl
 					? new h.a(
@@ -77,7 +77,7 @@ const convert = (attr: IPageTitle) => {
 								target: "_blank",
 							},
 							`View on ${attr.sourceWeb ? attr.sourceWeb : "Github"}`
-					  )
+						)
 					: "",
 				attr.docId
 					? new h.a(
@@ -146,7 +146,7 @@ const convert = (attr: IPageTitle) => {
 								handleBubble: false,
 								id: attr.bookmark ? "pin-fill" : "pin-angle-fill",
 							})
-					  )
+						)
 					: "",
 			])
 		);
@@ -187,7 +187,7 @@ export class pagetitle extends h.div {
 	constructor(attr: IPageTitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: IPageTitle, elem: core.elem | core.elem[]);
-	constructor(...arg: unknown[]) {
+	constructor(...arg: core.ConstructorArgs<IPageTitle>) {
 		super(convert(core.bsConstructor<IPageTitle>("elem", arg)));
 	}
 }

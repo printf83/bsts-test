@@ -21,7 +21,7 @@ export class table extends b.table.responsive {
 	constructor(attr: TableContainer);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: TableContainer, elem: core.elem | core.elem[]);
-	constructor(...arg: unknown[]) {
+	constructor(...arg: core.ConstructorArgs<TableContainer>) {
 		super(convert(core.bsConstructor<TableContainer>("elem", arg)));
 	}
 }

@@ -76,7 +76,7 @@ export interface ICodePreview extends core.attr {
 export class codepreview extends h.div {
 	constructor();
 	constructor(attr: ICodePreview);
-	constructor(...arg: unknown[]) {
+	constructor(...arg: core.BsConstructorNoElementArg<ICodePreview>) {
 		super(core.bsConstructorNoElement<ICodePreview>(arg));
 	}
 

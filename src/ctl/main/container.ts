@@ -45,7 +45,7 @@ export interface IMainContainer extends core.attr {
 export class container extends h.div {
 	constructor();
 	constructor(attr: IMainContainer);
-	constructor(...arg: unknown[]) {
+	constructor(...arg: core.BsConstructorNoElementArg<IMainContainer>) {
 		super(core.bsConstructorNoElement<IMainContainer>(arg));
 	}
 
@@ -234,7 +234,7 @@ export class container extends h.div {
 															attr.itemTheme,
 															attr.currentTheme
 														)
-												  )
+													)
 												: []),
 										]
 									),

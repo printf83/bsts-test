@@ -97,7 +97,7 @@ export class subtitle extends html.h3 {
 	constructor(attr: ISubTitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: ISubTitle, elem: core.elem | core.elem[]);
-	constructor(...arg: unknown[]) {
+	constructor(...arg: core.ConstructorArgs<ISubTitle>) {
 		super(convert(core.bsConstructor("elem", arg)));
 	}
 }

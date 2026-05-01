@@ -43,15 +43,15 @@
 		"@typescript-eslint/eslint-plugin": "^8.59.1",
 		"@typescript-eslint/parser": "^8.59.1",
 		"compression-webpack-plugin": "^12.0.0",
-		"eslint": "^10.2.1",
+		"eslint": "^10.3.0",
 		"gh-pages": "^6.3.0",
+		"http-server": "^14.1.1",
 		"terser-webpack-plugin": "^5.5.0",
 		"ts-loader": "^9.5.7",
 		"typescript": "^5.9.3",
 		"webpack": "^5.106.2",
 		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^5.2.3",
-		"http-server": "^14.1.1"
+		"webpack-dev-server": "^5.2.3"
 	},
 	"pnpm": {
 		"overrides": {
@@ -59,7 +59,7 @@
 		}
 	},
 	"dependencies": {
-		"@printf83/bsts": "^1.1.2",
+		"@printf83/bsts": "^1.1.4",
 		"bootstrap": "^5.3.8",
 		"chart.js": "^4.5.1",
 		"chartjs-plugin-datalabels": "^2.2.0",

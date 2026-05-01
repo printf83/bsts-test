@@ -1003,7 +1003,7 @@ export const scriptConverter = (str: string) => {
 export class code extends h.div {
 	constructor();
 	constructor(attr: ICode);
-	constructor(...arg: unknown[]) {
+	constructor(...arg: core.BsConstructorNoElementArg<ICode>) {
 		super(core.bsConstructorNoElement<ICode>(arg));
 	}
 
