@@ -9,7 +9,7 @@ const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
 let lastTestTime = 0;
 let lastEstimateTest = 0;
-let lastDataSpeed: number | undefined;
+let highestDataSpeed: number | undefined;
 
 const secondToDurationText = (second: number) => {
 	if (second > 60) {
@@ -382,12 +382,19 @@ const runMemoryTest = (
 				);
 			}
 
-			let memoryLeak: boolean | undefined;
-			// check if speed drops more than 20% from the previous measured speed
-			if (dataSpeed !== undefined && lastDataSpeed !== undefined) {
-				memoryLeak = dataSpeed < lastDataSpeed * 0.8;
+			let memoryLeak: boolean | string | undefined;
+			// check if speed drops more than 20% from the highest recorded speed
+			if (dataSpeed !== undefined && highestDataSpeed !== undefined) {
+				memoryLeak = dataSpeed < highestDataSpeed * 0.8;
+			} else {
+				memoryLeak = "Checking...";
 			}
-			lastDataSpeed = dataSpeed !== undefined ? dataSpeed : lastDataSpeed;
+			if (dataSpeed !== undefined) {
+				highestDataSpeed =
+					highestDataSpeed !== undefined
+						? Math.max(highestDataSpeed, dataSpeed)
+						: dataSpeed;
+			}
 
 			//keep speed result
 			addToSpeedDB(docId, pagetitle ? pagetitle : "...", dataChart);
@@ -566,6 +573,7 @@ const startMemoryTest = (arg: {
 			: undefined;
 
 		speedDB = [];
+		highestDataSpeed = undefined;
 		lastTestTime = performance.now();
 		lastEstimateTest = lastTestTime;
 		const startTime = lastTestTime;
