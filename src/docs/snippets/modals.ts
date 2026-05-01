@@ -72,7 +72,7 @@ export const modals: IContent = {
 								"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
 							),
 							btn: ["savechanges", "close"],
-							btnFn: [(_event) => {}],
+							btnFn: [() => {}],
 						});
 					},
 				}),
@@ -86,7 +86,7 @@ export const modals: IContent = {
 							new b.button(
 								{
 									on: {
-										click: (_event) => {
+										click: () => {
 											b.modal.show(
 												new b.modal.container(
 													{
@@ -146,7 +146,7 @@ export const modals: IContent = {
 							new b.button(
 								{
 									on: {
-										click: (_event) => {
+										click: () => {
 											b.modal.show(
 												b.modal.create({
 													customStyle: 1,
@@ -155,7 +155,7 @@ export const modals: IContent = {
 														"This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS."
 													),
 													btn: ["savechanges", "close"],
-													btnFn: [(_event) => {}],
+													btnFn: [() => {}],
 												})
 											);
 										},
@@ -254,7 +254,7 @@ export const modals: IContent = {
 								"You can always change your mind in your account settings."
 							),
 							btn: ["yesenable", "nothanks"],
-							btnFn: [(_event) => {}],
+							btnFn: [() => {}],
 						});
 					},
 				}),
@@ -268,7 +268,7 @@ export const modals: IContent = {
 							new b.button(
 								{
 									on: {
-										click: (_event) => {
+										click: () => {
 											b.modal.show(
 												new b.modal.container([
 													new b.modal.header(
@@ -347,7 +347,7 @@ export const modals: IContent = {
 							new b.button(
 								{
 									on: {
-										click: (_event) => {
+										click: () => {
 											b.modal.show(
 												b.modal.create({
 													customStyle: 2,
@@ -357,7 +357,7 @@ export const modals: IContent = {
 														"You can always change your mind in your account settings."
 													),
 													btn: ["yesenable", "nothanks"],
-													btnFn: [(_event) => {}],
+													btnFn: [() => {}],
 												})
 											);
 										},
@@ -442,7 +442,7 @@ export const modals: IContent = {
 						return new b.button(
 							{
 								on: {
-									click: (_event) => {
+									click: () => {
 										b.modal.show(
 											new b.modal.container({ contentAttr: { rounded: 4 } }, [
 												new b.modal.body({ padding: 5 }, [
@@ -607,7 +607,7 @@ export const modals: IContent = {
 						return new b.button(
 							{
 								on: {
-									click: (_event) => {
+									click: () => {
 										b.modal.show(
 											new b.modal.container(
 												{

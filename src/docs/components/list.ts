@@ -178,7 +178,7 @@ export const list: IContent = {
 					output: () => {
 						return new b.list.container(
 							{ numbered: true },
-							[1, 2, 3].map((_i) => {
+							[1, 2, 3].map(() => {
 								return new b.list.item(
 									{
 										display: "flex",
@@ -211,7 +211,7 @@ export const list: IContent = {
 					showViewport: true,
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
-						let items = [
+						const items = [
 							new b.list.item("An item"),
 							new b.list.item("A second item"),
 							new b.list.item("A third item"),
@@ -224,7 +224,7 @@ export const list: IContent = {
 							new b.list.container({ horizontal: "lg" }, items),
 							new b.list.container({ horizontal: "xl" }, items),
 							new b.list.container({ horizontal: "xxl" }, items),
-							,
+							
 						];
 					},
 				}),
@@ -236,7 +236,7 @@ export const list: IContent = {
 					showViewport: true,
 					outputAttr: { display: "grid", gap: 3 },
 					output: () => {
-						let items = [
+						const items = [
 							new b.list.item({ flex: "fill" }, "An item"),
 							new b.list.item({ flex: "fill" }, "A second item"),
 							new b.list.item({ flex: "fill" }, "A third item"),
@@ -249,7 +249,7 @@ export const list: IContent = {
 							new b.list.container({ horizontal: "lg" }, items),
 							new b.list.container({ horizontal: "xl" }, items),
 							new b.list.container({ horizontal: "xxl" }, items),
-							,
+							
 						];
 					},
 				}),
@@ -1073,7 +1073,7 @@ export const list: IContent = {
 									click: (event) => {
 										const elem =
 											document.querySelectorAll("#list-method-tab a");
-										let elemInstance: (bootstrap.Tab | null)[] = [];
+										const elemInstance: (bootstrap.Tab | null)[] = [];
 
 										elem.forEach((i) => {
 											elemInstance.push(b.tabList.getInstance(i));
@@ -1102,7 +1102,7 @@ export const list: IContent = {
 									click: (event) => {
 										const elem =
 											document.querySelectorAll("#list-method-tab a");
-										let elemInstance: (bootstrap.Tab | null)[] = [];
+										const elemInstance: (bootstrap.Tab | null)[] = [];
 
 										elem.forEach((i) => {
 											elemInstance.push(b.tabList.getOrCreateInstance(i));
@@ -1131,7 +1131,7 @@ export const list: IContent = {
 										const elem =
 											document.querySelectorAll("#list-method-tab a");
 										if (elem) {
-											let i = elem[core.rndBetween(0, elem.length - 1)];
+											const i = elem[core.rndBetween(0, elem.length - 1)];
 											if (i) {
 												b.tabList.show(i);
 												e.console(

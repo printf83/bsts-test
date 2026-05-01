@@ -45,7 +45,7 @@ export interface IMainContainer extends core.attr {
 export class container extends h.div {
 	constructor();
 	constructor(attr: IMainContainer);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(core.bsConstructorNoElement<IMainContainer>(arg));
 	}
 
@@ -113,7 +113,7 @@ export class container extends h.div {
 									{
 										class: "bs-search",
 										on: {
-											click: (_e) => {
+											click: () => {
 												showSearchDialog();
 											},
 										},

@@ -130,7 +130,7 @@ export const object_fit: IContent = {
 								position: "relative",
 								on: {
 									click: (e) => {
-										let target = e.target;
+										const target = e.target;
 										core.replaceWith(target as Element, videoFn());
 									},
 								},

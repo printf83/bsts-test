@@ -2,7 +2,7 @@ import { core, h, b, I } from "@printf83/bsts";
 type AlertContainer = I.b.alert.container;
 
 const convert = (attr: AlertContainer) => {
-	let tAttr: core.attr = {};
+	const tAttr: core.attr = {};
 
 	tAttr.class = "example-alert";
 	tAttr.marginBottom ??= 3;
@@ -16,7 +16,7 @@ export class alert extends h.div {
 	constructor(attr: AlertContainer);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: AlertContainer, elem: core.elem | core.elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(convert(core.bsConstructor<AlertContainer>("elem", arg)));
 	}
 }

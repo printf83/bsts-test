@@ -17,23 +17,23 @@ export interface IMenuItem {
 export const highlightMenu = (docId?: string) => {
 	if (docId && docId.indexOf("#") > -1) docId = docId.split("#")[0];
 
-	let bsLinks = document.getElementsByClassName("bs-links");
+	const bsLinks = document.getElementsByClassName("bs-links");
 
 	if (bsLinks && bsLinks.length > 0) {
 		Array.from(bsLinks).forEach((elem) => {
-			let lastActive = elem.querySelectorAll(".bs-links-link.active")[0];
+			const lastActive = elem.querySelectorAll(".bs-links-link.active")[0];
 			if (lastActive) {
 				lastActive.classList.remove("active");
 				lastActive.removeAttribute("aria-current");
 			}
 
 			if (docId) {
-				let newActive = elem.querySelectorAll(`.bs-links-link[data-value='${docId}']`)[0];
+				const newActive = elem.querySelectorAll(`.bs-links-link[data-value='${docId}']`)[0];
 				if (newActive) {
 					newActive.classList.add("active");
 					newActive.setAttribute("aria-current", "page");
 
-					let sidebar = newActive.closest(".bs-sidebar") as HTMLElement;
+					const sidebar = newActive.closest(".bs-sidebar") as HTMLElement;
 					if (sidebar) {
 						const scrollId = core.UUID();
 						sidebar.setAttribute("data-scrollid", scrollId);
@@ -41,7 +41,7 @@ export const highlightMenu = (docId?: string) => {
 						const sidebarBCR = sidebar.getBoundingClientRect();
 						const newActiveBCR = newActive.getBoundingClientRect();
 
-						let offsetElemPosition =
+						const offsetElemPosition =
 							sidebarBCR.top + sidebar.scrollTop + newActiveBCR.top - 200;
 
 						if (newActiveBCR.top < 70 || newActiveBCR.top > sidebarBCR.height + 70) {
@@ -92,11 +92,11 @@ export const setupMenu = (itemMenu?: IMenu[], currentMenu?: string) => {
 						small: true,
 					},
 					i.item.map((j) => {
-						let itemValue = j.value;
-						let itemLabel = j.label;
-						let itemFullscreen = j.fullscreen;
+						const itemValue = j.value;
+						const itemLabel = j.label;
+						const itemFullscreen = j.fullscreen;
 
-						let active = itemValue === currentMenu ? true : false;
+						const active = itemValue === currentMenu ? true : false;
 
 						return new h.li(
 							new h.a(

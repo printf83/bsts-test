@@ -2,7 +2,7 @@ import { core, h, I } from "@printf83/bsts";
 type Ol = I.h.ol;
 
 const convert = (attr: Ol) => {
-	let tAttr: core.attr = {};
+	const tAttr: core.attr = {};
 
 	tAttr.class = "example-ol";
 	tAttr.marginBottom ??= 3;
@@ -16,7 +16,7 @@ export class ol extends h.div {
 	constructor(attr: Ol);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: Ol, elem: core.elem | core.elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(convert(core.bsConstructor<Ol>("elem", arg)));
 	}
 }

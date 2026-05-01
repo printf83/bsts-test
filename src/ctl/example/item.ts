@@ -11,7 +11,7 @@ export class item extends h.div {
 	constructor(attr: core.attr);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: core.attr, elem: core.elem | core.elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(convert(core.bsConstructor("elem", arg)));
 	}
 }

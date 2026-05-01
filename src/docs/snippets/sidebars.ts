@@ -325,7 +325,7 @@ const ex = {
 				new h.ul(
 					{ unstyle: true, paddingStart: 0 },
 					arg.link?.map((i) => {
-						let id = core.UUID();
+						const id = core.UUID();
 						return new h.li({ marginBottom: 1 }, [
 							new b.collapse.button(
 								{

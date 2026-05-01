@@ -59,7 +59,7 @@ export const getContentCode = (db?: e.ISourceDB[]) => {
 const setupNavDoc = (content?: IContent) => {
 	if (content) {
 		if ((content.prevDocId && content.prevTitle) || (content.nextDocId && content.nextTitle)) {
-			let prevButton =
+			const prevButton =
 				content.prevDocId && content.prevTitle
 					? new h.a(
 							{
@@ -92,10 +92,10 @@ const setupNavDoc = (content?: IContent) => {
 									new h.small(content.prevTitle),
 								]),
 							})
-					  )
+						)
 					: "";
 
-			let nextButton =
+			const nextButton =
 				content.nextDocId && content.nextTitle
 					? new h.a(
 							{
@@ -129,7 +129,7 @@ const setupNavDoc = (content?: IContent) => {
 									new h.small(content.nextTitle),
 								]),
 							})
-					  )
+						)
 					: "";
 
 			return new h.div(
@@ -184,7 +184,7 @@ const setupIntro = (content?: IContent) => {
 								},
 							},
 							content.title ? content.title : ""
-					  )
+						)
 					: "",
 				content.description ? new e.description(content.description) : "",
 			]);
@@ -221,7 +221,7 @@ export const setupContentContainer = (content?: IContent) => {
 			},
 			tabindex: 0,
 			on: {
-				build: (_event) => {
+				build: () => {
 					const target = document.getElementById("bs-main");
 
 					if (target) {
@@ -261,11 +261,11 @@ export const setupContentContainerItem = (content?: IContent) => {
 
 export const focusToAnchor = (anchorId?: string) => {
 	if (anchorId) {
-		let anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
+		const anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
 		if (anchorNode) {
-			let anchorElem = anchorNode[0] as Element;
-			let elemPosition = anchorElem.getBoundingClientRect().top;
-			let offsetElemPosition = elemPosition + window.scrollY - 60;
+			const anchorElem = anchorNode[0] as Element;
+			const elemPosition = anchorElem.getBoundingClientRect().top;
+			const offsetElemPosition = elemPosition + window.scrollY - 60;
 			window.scrollTo({
 				top: offsetElemPosition,
 				behavior: "smooth",
@@ -318,7 +318,7 @@ const codeContainerFS = (code: string) => {
 export const setupContentDocument = (
 	value: string,
 	addToHistory?: boolean,
-	callback?: Function
+	callback?: () => void
 ) => {
 	addToHistory ??= true;
 
@@ -326,7 +326,7 @@ export const setupContentDocument = (
 	let anchorId: string | undefined;
 
 	if (value.indexOf("#") > -1) {
-		let tempValue = value.split("#");
+		const tempValue = value.split("#");
 		docId = tempValue[0] || DEFAULTDOCUMENT;
 		anchorId = tempValue[1];
 	}

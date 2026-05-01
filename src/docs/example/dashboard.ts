@@ -191,10 +191,12 @@ export const dashboard: IContent = {
 		const chart_data = Array(26)
 			.fill("")
 			.map(() => {
-				let current_value = 0;
-				if (core.rndBetween(0, 100) > 50)
+				let current_value: number;
+				if (core.rndBetween(0, 100) > 50) {
 					current_value = last_value + core.rndBetween(1000, 3000);
-				else current_value = last_value - core.rndBetween(100, 1000);
+				} else {
+					current_value = last_value - core.rndBetween(100, 1000);
+				}
 				last_value = current_value;
 				return current_value;
 			});
@@ -253,7 +255,7 @@ export const dashboard: IContent = {
 
 		const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum ante eu est semper, et vulputate leo molestie. Cras luctus pretium arcu, quis rutrum lectus dictum vel. In quis pretium erat. Proin vel placerat velit. Vestibulum vehicula ex sed ultricies ultricies. In vitae erat est. Pellentesque id aliquet justo. Maecenas at mauris in sapien interdum posuere at in velit. In hac habitasse platea dictumst.`;
 
-		const arr_1D = lorem.replace(/[\.|\,]/g, "").split(" ");
+		const arr_1D = lorem.replace(/[.,]/g, "").split(" ");
 		const num_col = 4;
 		const num_row = Math.ceil(arr_1D.length / num_col);
 		const arr_2D: string[][] = [];

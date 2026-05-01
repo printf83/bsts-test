@@ -22,14 +22,14 @@ const convert = (attr: IXSubTitle) => {
 	attr = core.mergeObject({ class: "example-xsubtitle", marginTop: 5, marginBottom: 3 }, attr);
 
 	if (attr.elem) {
-		let strElem: string = "";
+		let strElem: string;
 		if (typeof attr.elem === "string") {
 			strElem = attr.elem;
 		} else {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: I.c.elem[] = [];
+		let tElem: I.c.elem[];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {
@@ -97,7 +97,7 @@ export class xsubtitle extends html.h4 {
 	constructor(attr: IXSubTitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: IXSubTitle, elem: core.elem | core.elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(convert(core.bsConstructor("elem", arg)));
 	}
 }

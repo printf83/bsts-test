@@ -10,8 +10,8 @@ export const anchorOnClick = (event: Event) => {
 
 	const target = event.target as Element;
 
-	let targetPosition = target.getBoundingClientRect().top;
-	let offsetElemPosition = targetPosition + window.scrollY - 60;
+	const targetPosition = target.getBoundingClientRect().top;
+	const offsetElemPosition = targetPosition + window.scrollY - 60;
 	window.scrollTo(0, offsetElemPosition);
 
 	const href = target.getAttribute("href");
@@ -85,8 +85,7 @@ export type codeBeautifyType = "js" | "ts" | "html" | "css";
 export const codeBeautify = (type: codeBeautifyType | undefined, source_text: string): string => {
 	switch (type) {
 		case "html":
-			source_text = source_text.replace(/\>\</g, ">\n<");
-
+                        source_text = source_text.replace(/></g, ">\n<");
 			return html_beautify(source_text, {
 				preserve_newlines: false,
 				end_with_newline: true,
@@ -216,8 +215,10 @@ const attrHasClass = (attr: core.attr, className: string | string[]) => {
 			if (Array.isArray(attr.class)) {
 				return attr.class.every((r) => {
 					if (r) {
-						className.indexOf(r) >= 0;
-					}
+                                                return className.indexOf(r) >= 0;
+                                        }
+
+                                        return false;
 				});
 			}
 
@@ -263,7 +264,7 @@ export const getRootBaseOnSource = (attrPreview?: core.attr, attrOutput?: core.a
 
 export const getCSSBaseOnSource = (attr?: core.attr) => {
 	if (attr) {
-		let result: string[] = [];
+		const result: string[] = [];
 
 		if (attrHasClass(attr, "color-pallet-big-box")) {
 			result.push(`
@@ -570,7 +571,7 @@ export const getLibBaseOnSource = (
 	strManager?: string,
 	strExtention?: string[]
 ) => {
-	let libImported: string[] = ["core"];
+	const libImported: string[] = ["core"];
 	const libList: { find: string[]; lib: string }[] = [
 		{
 			find: [" b.", "(b.", "...b."],

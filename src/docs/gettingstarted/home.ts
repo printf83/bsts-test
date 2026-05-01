@@ -675,7 +675,7 @@ export const home: IContent = {
 								{
 									class: "bs-search",
 									on: {
-										click: (_e) => {
+										click: () => {
 											showSearchDialog();
 										},
 									},

@@ -230,7 +230,7 @@ export const mainContainerFS = () => {
 														return new b.dropdown.item(
 															{
 																on: {
-																	click: (_e) => {
+																	click: () => {
 																		changeBootswatch(i.value);
 																	},
 																},
@@ -286,7 +286,7 @@ export const mainContainerFS = () => {
 												return new b.dropdown.item(
 													{
 														on: {
-															click: (_e) => {
+															click: () => {
 																highlghtTheme(i.value, i.icon);
 															},
 														},

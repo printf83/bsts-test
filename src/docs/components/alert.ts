@@ -92,8 +92,8 @@ export const alert: IContent = {
 									{
 										color: "primary",
 										on: {
-											click: (_e) => {
-												let container = document.getElementById(
+											click: () => {
+												const container = document.getElementById(
 													"liveAlertPlaceholder"
 												) as Element;
 												core.appendChild(

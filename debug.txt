@@ -65,33 +65,33 @@ const setupCopyDataManager = () => {
 				const codeData = Array.from(listOfCodePreview)
 					.map((i) => {
 						const id = `code-${i.id}`;
-								if (core.dataManager.exists(id)) {
-									const dmCode =
-										core.dataManager.get(id) as e.ISourceDB;
-									if (dmCode) {
-										const source = dmCode.source
-											? `source: \`${escapeBackQuote(dmCode.source)}\`,`
-											: "";
-										const manager = dmCode.manager
-											? `manager: \`${escapeBackQuote(dmCode.manager)}\`,`
-											: "";
-										let extention = "";
-										if (dmCode.extention && dmCode.extention.length > 0) {
-											extention = `extention: [\`${dmCode.extention
-												.map((j) => {
-													return escapeBackQuote(j);
-												})
-												.join("`,`")}\`],`;
-										}
-										return `{
-											${source}
-											${manager}
-											${extention}
-										}
-									`;
-									}
-								}
-								return undefined;
+						if (core.dataManager.exists(id)) {
+							const dmCode = core.dataManager.get(id) as e.ISourceDB;
+							if (dmCode) {
+								const source = dmCode.source
+							? `source: \`${escapeBackQuote(dmCode.source)}\`,`
+							: "";
+						const manager = dmCode.manager
+							? `manager: \`${escapeBackQuote(dmCode.manager)}\`,`
+							: "";
+						let extention = "";
+
+								if (dmCode.extention && dmCode.extention.length > 0) {
+								extention = `extention: [\`${dmCode.extention
+									.map((j) => {
+										return escapeBackQuote(j);
+									})
+									.join("`,`")}\`],\`;
+							}
+
+							return `{
+								${source}
+								${manager}
+								${extention}
+							},
+							`;
+
+						return undefined;
 					})
 					.filter(Boolean)
 					.join("");

@@ -4,7 +4,7 @@ import { IMenu, IMenuItem, setupMenuContainer } from "./menu.js";
 import { menu } from "./_db.js";
 
 const getSavedBookmark = () => {
-	let bookmarkCookie = cookie.get("saved_bookmark");
+	const bookmarkCookie = cookie.get("saved_bookmark");
 	if (bookmarkCookie) {
 		return JSON.parse(bookmarkCookie) as IMenuItem[];
 	} else {
@@ -25,7 +25,7 @@ export const isInBookmark = (value: string) => {
 const addToBookmark = (value: string) => {
 	const bsLinks = document.getElementsByClassName("bs-links");
 	if (bsLinks && bsLinks.length > 0) {
-		let label = bsLinks[0]?.querySelector(`a[data-value="${value}"]`)?.textContent;
+		const label = bsLinks[0]?.querySelector(`a[data-value="${value}"]`)?.textContent;
 		if (label) {
 			bookmarkDB.push({
 				label: label,
@@ -54,7 +54,7 @@ export const onBookmarkChange = (value: string) => {
 };
 
 export const menuWithBookmark = () => {
-	let result: IMenu[] = [];
+	const result: IMenu[] = [];
 
 	if (bookmarkDB && bookmarkDB.length > 0) {
 		result.push({
@@ -65,7 +65,7 @@ export const menuWithBookmark = () => {
 	}
 
 	for (const doc of Object.values(menu)) {
-		let item = doc.item.filter((i) => !isInBookmark(i.value));
+		const item = doc.item.filter((i) => !isInBookmark(i.value));
 		if (item && item.length > 0) {
 			result.push({
 				icon: doc.icon,

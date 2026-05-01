@@ -360,8 +360,8 @@ export const accent_color: IContent = {
 											target.value = bsPrimary ? bsPrimary : "#0d6efd";
 										},
 										input: (e) => {
-											let target = e.target as HTMLInputElement;
-											let value = target.value;
+											const target = e.target as HTMLInputElement;
+											const value = target.value;
 
 											const basePrimary = "#0d6efd";
 											const baseSuccess = "#198754";
@@ -499,9 +499,9 @@ export const accent_color: IContent = {
 						};
 
 						const oninput = (e: Event) => {
-							let target = e.target as HTMLInputElement;
+							const target = e.target as HTMLInputElement;
 							const key = target.getAttribute("data-key");
-							let value = target.value;
+							const value = target.value;
 
 							//remove other custom var
 							const customVarContainer =

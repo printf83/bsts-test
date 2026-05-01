@@ -4,6 +4,8 @@ import { IMenuItem, highlightMenu } from "./menu.js";
 import { setupContentDocument } from "./content.js";
 import { menu } from "./_db.js";
 
+let searchShortcutSetup = false;
+
 interface pageIndex {
 	category: string;
 
@@ -16,7 +18,7 @@ interface pageIndex {
 	text: string | undefined;
 }
 
-let _docIndexDB: pageIndex[] = [];
+const _docIndexDB: pageIndex[] = [];
 
 const isDocItemIndexed = (pageId: string) => {
 	if (_docIndexDB && _docIndexDB.length > 0) {
@@ -46,7 +48,7 @@ const indexDocItem = (index: number, category: string, item: IMenuItem[], callba
 		if (!isDocItemIndexed(item[index]!.value)) {
 			getContent(item[index]!.value, (data) => {
 				if (data && data.item) {
-					let contentItem = data.item();
+					const contentItem = data.item();
 					if (contentItem) {
 						let n = core.getNode(contentItem);
 
@@ -73,13 +75,13 @@ const indexDocItem = (index: number, category: string, item: IMenuItem[], callba
 											/VIEW PORTXSSMMDLGXLXXL/g,
 											""
 										);
-										textContent = textContent.replace(/ZOOM25\%/g, "");
-										textContent = textContent.replace(/ZOOM50\%/g, "");
-										textContent = textContent.replace(/ZOOM75\%/g, "");
-										textContent = textContent.replace(/ZOOM100\%/g, "");
+										textContent = textContent.replace(/ZOOM25%/g, "");
+										textContent = textContent.replace(/ZOOM50%/g, "");
+										textContent = textContent.replace(/ZOOM75%/g, "");
+										textContent = textContent.replace(/ZOOM100%/g, "");
 										textContent = textContent.replace(/CONSOLE/g, "");
 										textContent = textContent.replace(/Loading\.\.\./g, "");
-										textContent = textContent.replace(/  |\r\n|\n|\r/gm, "");
+										textContent = textContent.replace(/ {2}|\r\n|\n|\r/gm, "");
 									}
 
 									_docIndexDB.push({
@@ -127,21 +129,21 @@ interface searchItem {
 
 const searchTitle = (value: string, i: pageIndex) => {
 	if (i.category) {
-		let match = new RegExp(value, "gmi").exec(i.category);
+		const match = new RegExp(value, "gmi").exec(i.category);
 		if (match) {
 			return true;
 		}
 	}
 
 	if (i.page) {
-		let match = new RegExp(value, "gmi").exec(i.page);
+		const match = new RegExp(value, "gmi").exec(i.page);
 		if (match) {
 			return true;
 		}
 	}
 
 	if (i.section) {
-		let match = new RegExp(value, "gmi").exec(i.section);
+		const match = new RegExp(value, "gmi").exec(i.section);
 		if (match) {
 			return true;
 		}
@@ -152,18 +154,17 @@ const searchTitle = (value: string, i: pageIndex) => {
 
 const searchText = (value: string, valueRegEx: string, i: pageIndex) => {
 	if (i.text) {
-		let match = new RegExp(valueRegEx, "gmi").exec(i.text);
+		const match = new RegExp(valueRegEx, "gmi").exec(i.text);
 		if (match) {
 			let text = i.text.substring(match.index - 10, match.index + value.length + 10);
 
-			let st = new RegExp(valueRegEx, "gmi").exec(text);
+			const st = new RegExp(valueRegEx, "gmi").exec(text);
 			if (st) {
-				text = `${text.substring(0, st?.index)}{{m::${text.substring(
-					st?.index,
-					st?.index + value.length
-				)}}}${text.substring(st?.index! + value.length)}`;
-			} else {
-				text = text;
+				const stIndex = st.index;
+				text = `${text.substring(0, stIndex)}{{m::${text.substring(
+					stIndex,
+					stIndex + value.length
+				)}}}${text.substring(stIndex + value.length)}`;
 			}
 
 			return {
@@ -183,9 +184,9 @@ const searchText = (value: string, valueRegEx: string, i: pageIndex) => {
 const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 	if (value) {
 		core.requestIdleCallback(() => {
-			let valRegEx = value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+			const valRegEx = value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 
-			let filtered = _docIndexDB
+			const filtered = _docIndexDB
 				.map((i) => {
 					if (searchTitle(value, i)) {
 						return {
@@ -204,7 +205,7 @@ const doSearch = (value: string, callback: (result: searchGroup[]) => void) => {
 
 			if (filtered) {
 				let lastPageId = "";
-				let result: searchGroup[] = [];
+				const result: searchGroup[] = [];
 				filtered.forEach((i) => {
 					if (lastPageId !== i.pageId) {
 						lastPageId = i.pageId;
@@ -366,8 +367,8 @@ export const showSearchDialog = () => {
 				view: "center",
 				contentAttr: { overflow: "hidden" },
 				on: {
-					"shown.bs.modal": (_event) => {
-						let searchInput = document.getElementById(
+					"shown.bs.modal": () => {
+						const searchInput = document.getElementById(
 							"doc-search-input"
 						) as HTMLInputElement;
 						if (searchInput) {
@@ -377,7 +378,8 @@ export const showSearchDialog = () => {
 								indexDocMenu(0, () => {
 									indexingInProgress = false;
 
-									let searchStatus = document.getElementById("doc-search-status");
+									const searchStatus =
+										document.getElementById("doc-search-status");
 									if (searchStatus) {
 										core.replaceWith(searchStatus, [
 											new h.div(
@@ -474,7 +476,7 @@ export const showSearchDialog = () => {
 												) as Element;
 
 												//active
-												let activeIndex = -1;
+												let activeIndex: number;
 												if (currentActive) {
 													activeIndex =
 														Array.from(docSearchItem).indexOf(
@@ -523,7 +525,6 @@ export const showSearchDialog = () => {
 													currentActive = docSearchResult.querySelector(
 														"a.list-group-item.active"
 													) as Element;
-													activeIndex = 0;
 
 													if (ev.key == "Enter") {
 														currentActive?.dispatchEvent(
@@ -619,6 +620,11 @@ export const showSearchDialog = () => {
 };
 
 export const setupSearchShortcut = () => {
+	if (searchShortcutSetup) {
+		return;
+	}
+	searchShortcutSetup = true;
+
 	document.addEventListener("keydown", (event: KeyboardEvent) => {
 		if (event.ctrlKey && event.key == "k") {
 			event.stopPropagation();

@@ -4,7 +4,7 @@ import { cookie } from "./cookie.js";
 type Icon = I.b.icon;
 
 export const getSavedTheme = () => {
-	let themeCookie = cookie.get("current_theme");
+	const themeCookie = cookie.get("current_theme");
 	if (themeCookie) {
 		return themeCookie;
 	} else {
@@ -43,19 +43,28 @@ export interface ITheme {
 	label: string;
 }
 
+const prefersColorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+let themeChangeSetup = false;
+
+const handlePrefersColorSchemeChange = () => {
+	if (getSavedTheme() === "auto") {
+		onThemeChange("auto");
+	}
+};
+
 export const highlghtTheme = (value: string, icon: Icon) => {
-	let bsTheme = document.getElementsByClassName("bs-theme");
+	const bsTheme = document.getElementsByClassName("bs-theme");
 	if (bsTheme && bsTheme.length > 0) {
 		Array.from(bsTheme).forEach((elem) => {
-			let bsThemeMenu = elem.nextSibling as Element;
+			const bsThemeMenu = elem.nextSibling as Element;
 
-			let lastActive = bsThemeMenu.querySelectorAll(".dropdown-item.active")[0];
+			const lastActive = bsThemeMenu.querySelectorAll(".dropdown-item.active")[0];
 			if (lastActive) {
 				lastActive.classList.remove("active");
 				lastActive.removeAttribute("aria-current");
 			}
 
-			let newActive = bsThemeMenu.querySelectorAll(
+			const newActive = bsThemeMenu.querySelectorAll(
 				`.dropdown-item[data-value='${value}']`
 			)[0];
 			if (newActive) {
@@ -127,7 +136,7 @@ export const setupTheme = (navbarItemTheme?: ITheme[], currentTheme?: string) =>
 						return new b.dropdown.item(
 							{
 								on: {
-									click: (_e) => {
+									click: () => {
 										highlghtTheme(i.value, i.icon);
 									},
 								},
@@ -146,9 +155,9 @@ export const setupTheme = (navbarItemTheme?: ITheme[], currentTheme?: string) =>
 };
 
 export const setupThemeChanges = () => {
-	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-		if (getSavedTheme() === "auto") {
-			onThemeChange("auto");
-		}
-	});
+	if (themeChangeSetup) {
+		return;
+	}
+	themeChangeSetup = true;
+	prefersColorSchemeMediaQuery.addEventListener("change", handlePrefersColorSchemeChange);
 };

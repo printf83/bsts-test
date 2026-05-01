@@ -29,7 +29,7 @@ export const accordion: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						let mainID = core.UUID();
+						const mainID = core.UUID();
 
 						return new b.accordion.container(
 							{ id: mainID },
@@ -48,7 +48,7 @@ export const accordion: IContent = {
 									elem: "{{b::This is the third item's accordion body}}. It is hidden by default, until the collapse plugin adds the appropriate classes that Bootstrap use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding Bootstrap default variables. It's also worth noting that just about any HTML can go within the {{b.accordion.body}}, though the transition does limit overflow.",
 								},
 							].map((i) => {
-								let itemID = core.UUID();
+								const itemID = core.UUID();
 
 								return new b.accordion.item([
 									new b.accordion.header(

@@ -22,14 +22,14 @@ const convert = (attr: ISubTitle) => {
 	attr = core.mergeObject({ class: "example-subtitle", marginTop: 5, marginBottom: 3 }, attr);
 
 	if (attr.elem) {
-		let strElem: string = "";
+		let strElem: string;
 		if (typeof attr.elem === "string") {
 			strElem = attr.elem;
 		} else {
 			strElem = `#${attr.id}`;
 		}
 
-		let tElem: I.c.elem[] = [];
+		let tElem: I.c.elem[];
 		if (Array.isArray(attr.elem)) {
 			tElem = attr.elem;
 		} else {
@@ -97,7 +97,7 @@ export class subtitle extends html.h3 {
 	constructor(attr: ISubTitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: ISubTitle, elem: core.elem | core.elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(convert(core.bsConstructor("elem", arg)));
 	}
 }

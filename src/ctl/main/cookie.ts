@@ -2,7 +2,7 @@ export const cookie = {
 	set: (name: string, value: string, expiredInDays?: number, path?: string) => {
 		expiredInDays ??= 7;
 
-		let date = new Date();
+		const date = new Date();
 		date.setTime(date.getTime() + expiredInDays * 24 * 60 * 60 * 1000);
 		const optExpires = `expires=${date.toUTCString()};`;
 		const optSamesite = `samesite=strict;`;

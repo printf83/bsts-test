@@ -2,7 +2,7 @@ import { core, b, I } from "@printf83/bsts";
 type TableContainer = I.b.table.container;
 
 const convert = (attr: TableContainer) => {
-	let tAttr: core.attr = {};
+	const tAttr: core.attr = {};
 
 	tAttr.class = "example-table";
 	tAttr.marginBottom ??= 3;
@@ -21,7 +21,7 @@ export class table extends b.table.responsive {
 	constructor(attr: TableContainer);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: TableContainer, elem: core.elem | core.elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(convert(core.bsConstructor<TableContainer>("elem", arg)));
 	}
 }

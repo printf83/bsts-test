@@ -33,8 +33,8 @@ const checkDuplicateID = () => {
 		}, {});
 
 	const duplicates = Object.entries(duplicateIds)
-		.filter(([_key, value]: [string, number]) => value > 1)
-		.map(([key, _value]: [string, number]) => key);
+		.filter(([, value]: [string, number]) => value > 1)
+		.map(([key]: [string, number]) => key);
 
 	return duplicates;
 };
@@ -184,7 +184,7 @@ const setupProgressUI = (arg: {
 							"Process speed in milisecond (Less is better)"
 						),
 					])
-			  )
+				)
 			: "",
 
 		new h.div({ textColor: "secondary", lineHeight: "sm" }, [
@@ -241,7 +241,7 @@ const setupProgressUI = (arg: {
 
 let speedDB: { id: string; title: string; data: number[] }[];
 const addToSpeedDB = (id: string, title: string, data: number) => {
-	let index = speedDB.findIndex((i) => i.id === id);
+	const index = speedDB.findIndex((i) => i.id === id);
 	if (index > -1) {
 		speedDB[index]!.data.push(data);
 	} else {
@@ -268,7 +268,7 @@ const docDB = () => {
 
 const getDocId = (random: boolean, max: number, count: number, mDB: string[]): string => {
 	const mDBLength = mDB.length;
-	let result = random ? mDB[core.rndBetween(0, mDBLength - 1)] : mDB[(max - count) % mDBLength];
+	const result = random ? mDB[core.rndBetween(0, mDBLength - 1)] : mDB[(max - count) % mDBLength];
 
 	if (result) {
 		return result;
@@ -299,8 +299,8 @@ const runMemoryTest = (
 	arg.waitonesec ??= false;
 	arg.max ??= arg.count;
 
-	let mDB = docDB();
-	let docId = getDocId(arg.random, arg.max, arg.count, mDB);
+	const mDB = docDB();
+	const docId = getDocId(arg.random, arg.max, arg.count, mDB);
 
 	if (arg.count > 0) {
 		getContent(docId, (docData) => {
@@ -433,9 +433,9 @@ const runDownloadResource = (
 	},
 	callback: () => void
 ) => {
-	let count = arg.item.length - 1;
+	const count = arg.item.length - 1;
 	if (arg.index <= count) {
-		getContent(arg.item[arg.index]!.value, (_data) => {
+		getContent(arg.item[arg.index]!.value, () => {
 			//calculate data
 			const currentTime = performance.now();
 			const dataChart = currentTime - lastTestTime;
@@ -535,14 +535,13 @@ const startMemoryTest = (arg: {
 			},
 			(docCount: number) => {
 				const endTime = performance.now();
-				let detailReport: core.elem | core.elem[];
 
-				let loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
-				let durationSecond = ~~((endTime - startTime) / 1000);
+				const loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
+				const durationSecond = ~~((endTime - startTime) / 1000);
 
 				chart?.destroy();
 
-				detailReport = [
+				const detailReport: core.elem | core.elem[] = [
 					new h.p("{{s::Memory test complete}}"),
 					new b.card.container(
 						{ marginBottom: 2 },
@@ -570,7 +569,7 @@ const startMemoryTest = (arg: {
 															{
 																data: speedDB.map((i) => {
 																	if (i.data.length > 1) {
-																		let sum = i.data.reduce(
+																		const sum = i.data.reduce(
 																			(partialSum, a) =>
 																				partialSum + a,
 																			0
@@ -634,7 +633,7 @@ const startMemoryTest = (arg: {
 									"(",
 									new h.strong(LESSTAG.count),
 									" tag)",
-							  ])
+								])
 							: "",
 						arg.counttag ? new h.br() : "",
 						arg.counttag
@@ -644,7 +643,7 @@ const startMemoryTest = (arg: {
 									"(",
 									new h.strong(MOSTTAG.count),
 									" tag)",
-							  ])
+								])
 							: "",
 					]),
 

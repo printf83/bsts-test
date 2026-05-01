@@ -27,9 +27,9 @@ const tocItemOnClick = (event: Event) => {
 
 export const setupTOC = (content?: IContent) => {
 	if (content && typeof content.item === "function") {
-		let contentItem = content.item();
+		const contentItem = content.item();
 		if (contentItem && Array.isArray(contentItem)) {
-			let t: {
+			const t: {
 				deep: number;
 				item: ITOCItem;
 			}[] = [];
@@ -38,8 +38,8 @@ export const setupTOC = (content?: IContent) => {
 			contentItem.forEach((i) => {
 				if (core.isTag<e.section>(i) && i.tag === "section") {
 					if (i.attr?.id && i.attr?.data?.title) {
-						let item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
-						let deep = i.attr?.data?.deep ? parseInt(i.attr?.data?.deep as string) : 0;
+						const item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
+						const deep = i.attr?.data?.deep ? parseInt(i.attr?.data?.deep as string) : 0;
 						t.push({
 							deep: deep,
 							item: item,
@@ -61,7 +61,7 @@ export const setupTOC = (content?: IContent) => {
 			}
 
 			//arrange title
-			let u: ITOCItem[] = [];
+			const u: ITOCItem[] = [];
 			if (t && t.length > 0) {
 				t.forEach((i) => {
 					if (i.deep === 0) {
@@ -75,10 +75,10 @@ export const setupTOC = (content?: IContent) => {
 							u[u.length - 1]!.item!.push(i.item);
 						}
 					} else if (i.deep === 2) {
-						let y = u.length - 1;
+						const y = u.length - 1;
 
 						if (u[y] !== undefined) {
-							let x = u[y]!.item!.length - 1;
+							const x = u[y]!.item!.length - 1;
 
 							if (u[y]!.item![x] !== undefined) {
 								if (!u[y]!.item![x]!.item) {
@@ -144,7 +144,7 @@ export const setupTOC = (content?: IContent) => {
 										marginStart: [3, "md-0"],
 									},
 									content.loading
-										? u.map((_i) => {
+										? u.map(() => {
 												return new h.li(
 													{ loadingPlaceholderAnimation: "wave" },
 													core.placeholder(1, 3, 1, 3)

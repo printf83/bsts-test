@@ -76,7 +76,7 @@ export interface ICodePreview extends core.attr {
 export class codepreview extends h.div {
 	constructor();
 	constructor(attr: ICodePreview);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(core.bsConstructorNoElement<ICodePreview>(arg));
 	}
 
@@ -119,18 +119,18 @@ export class codepreview extends h.div {
 												monospace: true,
 											},
 											new h.small(attr.title)
-									  )
+										)
 									: new h.small(
 											{ monospace: true, textColor: "body-secondary" },
 											attr.title
-									  )
+										)
 							),
 							new h.div(
 								{ display: "flex" },
 								new h.div({ paddingTop: 2, paddingX: 4 }, copyButton)
 							),
 						]
-				  )
+					)
 				: "";
 			const cardBody = new b.card.body({ padding: 4 }, [
 				!attr.title

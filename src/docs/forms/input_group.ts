@@ -360,7 +360,7 @@ export const input_group: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						let selectItem: SelectItem[] = [
+						const selectItem: SelectItem[] = [
 							{ selected: true, elem: "Choose..." },
 							{ value: "1", elem: "One" },
 							{ value: "2", elem: "Two" },

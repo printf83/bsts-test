@@ -2,8 +2,10 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "target": "ES6",
+    "lib": ["ES2019"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext", 
+    "rootDir": "./src",
     "outDir": "./build",
     "esModuleInterop": true,
     "noUnusedLocals": true, 

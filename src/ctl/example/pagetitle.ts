@@ -24,7 +24,7 @@ const convert = (attr: IPageTitle) => {
 		attr
 	);
 
-	let tElem: t[] = [];
+	const tElem: t[] = [];
 	if (attr.loading) {
 		tElem.push(
 			new h.div({ marginBottom: [3, "md-0"], display: "flex" }, [
@@ -187,7 +187,7 @@ export class pagetitle extends h.div {
 	constructor(attr: IPageTitle);
 	constructor(elem: core.elem | core.elem[]);
 	constructor(attr: IPageTitle, elem: core.elem | core.elem[]);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(convert(core.bsConstructor<IPageTitle>("elem", arg)));
 	}
 }

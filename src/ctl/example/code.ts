@@ -30,7 +30,7 @@ export interface ISourceDB {
 export interface IExtention {
 	name?: string;
 	rename?: string;
-	output?: Function;
+	output?: (...args: unknown[]) => unknown;
 	strOutput?: string;
 }
 
@@ -43,10 +43,10 @@ export interface ICode extends core.attr {
 	lib?: string | string[];
 	css?: string;
 	extention?: IExtention | IExtention[];
-	output?: Function;
-	manager?: Function;
+	output?: (...args: unknown[]) => unknown;
+	manager?: (...args: unknown[]) => unknown;
 
-	scriptConverter?: Function;
+	scriptConverter?: (source: string) => string;
 
 	showCodepen?: boolean;
 	showConsole?: boolean;
@@ -72,7 +72,7 @@ const PR = {
 const getOutputHTML = (target: Element, autoPrettyPrint?: boolean): void => {
 	autoPrettyPrint ??= true;
 
-	let html = target
+	const html = target
 		.closest(".example-code")
 		?.getElementsByClassName("example-output")[0]?.innerHTML;
 
@@ -97,7 +97,7 @@ export function successCopyCode(iconElem?: Element, color?: core.bsType.textColo
 		iconElem.classList.add(`text-${color}`);
 
 		setTimeout(
-			(iconElem) => {
+			(iconElem: Element) => {
 				iconElem.classList.remove(`text-${color}`);
 				iconElem.classList.remove("bi-check2");
 				iconElem.classList.add("bi-clipboard");
@@ -117,7 +117,7 @@ export function failCopyCode(iconElem?: Element, color?: core.bsType.textColor) 
 		iconElem.classList.add(`text-${color}`);
 
 		setTimeout(
-			(iconElem) => {
+			(iconElem: Element) => {
 				iconElem.classList.remove(`text-${color}`);
 				iconElem.classList.remove("bi-exclamation-triangle");
 				iconElem.classList.add("bi-clipboard");
@@ -141,13 +141,17 @@ function itemCodeCopy(e: Event) {
 		if (nextListGroupItem) {
 			try {
 				//check if pre tag exists
-				let preTag = nextListGroupItem.getElementsByTagName("pre");
+				const preTag = nextListGroupItem.getElementsByTagName("pre");
 				if (!preTag || preTag.length === 0) {
 					//try raiseEvent listgroupitem
 					nextListGroupItem.dispatchEvent(new CustomEvent("load.bs.collapse"));
 
 					setTimeout(
-						(iconElem, preTag, nextListGroupItem) => {
+						(
+							iconElem: Element,
+							preTag: HTMLCollectionOf<HTMLPreElement>,
+							nextListGroupItem: Element
+						) => {
 							preTag = nextListGroupItem.getElementsByTagName("pre");
 							const text = preTag[0]?.innerText;
 
@@ -185,7 +189,7 @@ function itemCodeCopy(e: Event) {
 						failCopyCode(iconElem);
 					}
 				}
-			} catch (error) {
+			} catch {
 				failCopyCode(iconElem);
 			}
 		} else {
@@ -205,7 +209,7 @@ function successClearConsoleLog(iconElem?: Element) {
 		iconElem.classList.add("text-success");
 
 		setTimeout(
-			(iconElem) => {
+			(iconElem: Element) => {
 				iconElem.classList.remove("text-success");
 				iconElem.classList.remove("bi-check2");
 				iconElem.classList.add("bi-trash3");
@@ -322,8 +326,8 @@ const itemCode = (arg: {
 	arg.allowrefresh ??= false;
 	arg.islast ??= false;
 
-	let id = core.UUID();
-	let res: b.list.item[] = [];
+	const id = core.UUID();
+	const res: b.list.item[] = [];
 
 	if (arg.header) {
 		res.push(
@@ -375,7 +379,7 @@ const itemCode = (arg: {
 										b.icon.bi("lightning-charge-fill")
 									)
 								)
-						  )
+							)
 						: "",
 
 					arg.allowrefresh
@@ -413,7 +417,7 @@ const itemCode = (arg: {
 														iconElem.classList.add("text-success");
 
 														setTimeout(
-															(iconElem) => {
+															(iconElem: Element) => {
 																iconElem.classList.remove(
 																	"text-success"
 																);
@@ -434,7 +438,7 @@ const itemCode = (arg: {
 										b.icon.bi("arrow-clockwise")
 									)
 								)
-						  )
+							)
 						: "",
 
 					arg.allowcopy
@@ -456,7 +460,7 @@ const itemCode = (arg: {
 										b.icon.bi("clipboard")
 									)
 								)
-						  )
+							)
 						: "",
 				]
 			)
@@ -480,7 +484,7 @@ const itemCode = (arg: {
 									on: { click: arg.onedit },
 								},
 								b.icon.bi("lightning-charge-fill")
-						  )
+							)
 						: "",
 					arg.allowcopy
 						? new h.a(
@@ -492,7 +496,7 @@ const itemCode = (arg: {
 									on: { click: itemCodeCopy },
 								},
 								b.icon.bi("clipboard")
-						  )
+							)
 						: "",
 				])
 			);
@@ -514,27 +518,27 @@ const itemCode = (arg: {
 									core.requestIdleCallback(() => {
 										core.replaceChild(target, arg.elem);
 									}, 300);
-							  }
+								}
 							: !arg.islast && arg.allowrefresh
-							? (e) => {
-									const target = e.target as Element;
-									core.requestIdleCallback(() => {
-										getOutputHTML(target, false);
-									}, 300);
-							  }
-							: arg.islast && arg.allowrefresh
-							? (e) => {
-									const target = e.target as Element;
-									core.requestIdleCallback(() => {
-										getOutputHTML(target, false);
-									}, 300);
-							  }
-							: (e) => {
-									const target = e.target as Element;
-									core.requestIdleCallback(() => {
-										core.replaceChild(target, arg.elem);
-									}, 300);
-							  },
+								? (e) => {
+										const target = e.target as Element;
+										core.requestIdleCallback(() => {
+											getOutputHTML(target, false);
+										}, 300);
+									}
+								: arg.islast && arg.allowrefresh
+									? (e) => {
+											const target = e.target as Element;
+											core.requestIdleCallback(() => {
+												getOutputHTML(target, false);
+											}, 300);
+										}
+									: (e) => {
+											const target = e.target as Element;
+											core.requestIdleCallback(() => {
+												core.replaceChild(target, arg.elem);
+											}, 300);
+										},
 					"show.bs.collapse":
 						arg.islast && !arg.allowrefresh
 							? (e) => {
@@ -548,30 +552,30 @@ const itemCode = (arg: {
 									core.requestIdleCallback(() => {
 										PR.prettyPrint();
 									}, 300);
-							  }
+								}
 							: !arg.islast && arg.allowrefresh
-							? (e) => {
-									const target = e.target as Element;
-									getOutputHTML(target);
-							  }
-							: arg.islast && arg.allowrefresh
-							? (e) => {
-									const target = e.target as Element;
-									(
-										target.closest(".list-group-item")
-											?.previousSibling as Element
-									).classList.remove("rounded-bottom-2");
+								? (e) => {
+										const target = e.target as Element;
+										getOutputHTML(target);
+									}
+								: arg.islast && arg.allowrefresh
+									? (e) => {
+											const target = e.target as Element;
+											(
+												target.closest(".list-group-item")
+													?.previousSibling as Element
+											).classList.remove("rounded-bottom-2");
 
-									getOutputHTML(target);
-							  }
-							: (e) => {
-									const target = e.target as Element;
-									core.replaceChild(target, arg.elem);
+											getOutputHTML(target);
+										}
+									: (e) => {
+											const target = e.target as Element;
+											core.replaceChild(target, arg.elem);
 
-									core.requestIdleCallback(() => {
-										PR.prettyPrint();
-									}, 300);
-							  },
+											core.requestIdleCallback(() => {
+												PR.prettyPrint();
+											}, 300);
+										},
 					"hidden.bs.collapse": arg.islast
 						? (e) => {
 								const target = e.target as Element;
@@ -580,8 +584,8 @@ const itemCode = (arg: {
 								).classList.add("rounded-bottom-2");
 
 								setTimeout(
-									(target) => {
-										let preTag = target.getElementsByTagName("pre");
+									(target: Element) => {
+										const preTag = target.getElementsByTagName("pre");
 										if (preTag && preTag.length > 0) {
 											core.replaceWith(
 												preTag[0] as Element,
@@ -599,13 +603,13 @@ const itemCode = (arg: {
 									300,
 									target
 								);
-						  }
+							}
 						: (e) => {
 								const target = e.target as Element;
 
 								setTimeout(
-									(target) => {
-										let preTag = target.getElementsByTagName("pre");
+									(target: Element) => {
+										const preTag = target.getElementsByTagName("pre");
 										if (preTag && preTag.length > 0) {
 											core.replaceWith(
 												preTag[0] as Element,
@@ -623,7 +627,7 @@ const itemCode = (arg: {
 									300,
 									target
 								);
-						  },
+							},
 				},
 			},
 			new h.div({ class: "example-preview", marginX: 4, marginY: 3 }, "Loading...")
@@ -679,9 +683,9 @@ const itemOutput = (
 };
 
 const itemConsole = () => {
-	let id = core.UUID();
+	const id = core.UUID();
 
-	let res: b.list.item[] = [];
+	const res: b.list.item[] = [];
 
 	res.push(
 		new b.list.item(
@@ -933,7 +937,7 @@ const generateCodePenData = (
 	let strCodeResult = "";
 
 	if (strCode !== "") {
-		let res = replaceEConsole(strCode);
+		const res = replaceEConsole(strCode);
 		strCode = res.strCode;
 
 		let strExt = null;
@@ -990,18 +994,18 @@ export const scriptConverter = (str: string) => {
 		.replace(/_printf83_bsts__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
 		.replace(/_ctl_example_index_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "e.")
 		.replace(/_ctl_main_cookie_js__WEBPACK_IMPORTED_MODULE_\d__\./gm, "")
-		.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\[\"default\"\]\(/gm, "Chart(");
+		.replace(/chart_js_auto__WEBPACK_IMPORTED_MODULE_\d__\["default"\]\(/gm, "Chart(");
 };
 
 export class code extends h.div {
 	constructor();
 	constructor(attr: ICode);
-	constructor(...arg: any[]) {
+	constructor(...arg: unknown[]) {
 		super(core.bsConstructorNoElement<ICode>(arg));
 	}
 
 	convert(attr: ICode): core.attr {
-		let id = core.UUID();
+		const id = core.UUID();
 
 		attr.showOutput ??= true;
 		attr.showScript ??= true;
@@ -1030,20 +1034,23 @@ export class code extends h.div {
 		}
 
 		//start create element
-		let e: t[] = [];
+		const e: t[] = [];
+		const outputValue = attr.output ? attr.output() : undefined;
+		const outputString = outputValue == null ? "" : String(outputValue);
 
 		if (attr.output && attr.showOutput) {
 			if (attr.manager) {
+				const managedOutput = attr.manager(outputValue);
 				e.push(
 					itemOutput(
 						attr.zoom,
 						attr.previewAttr,
 						attr.outputAttr,
-						attr.manager(attr.output())
+						managedOutput == null ? "" : String(managedOutput)
 					)
 				);
 			} else {
-				e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, attr.output()));
+				e.push(itemOutput(attr.zoom, attr.previewAttr, attr.outputAttr, outputString));
 			}
 		}
 
@@ -1104,14 +1111,11 @@ export class code extends h.div {
 			}
 		}
 
-		let renameExtention: { find: string; replace: string }[] = [];
+		const renameExtention: { find: string; replace: string }[] = [];
 		if (attr.extention) {
-			let f: IExtention[] = [];
-			if (Array.isArray(attr.extention)) {
-				f = attr.extention;
-			} else {
-				f = [attr.extention];
-			}
+			const f: IExtention[] = Array.isArray(attr.extention)
+				? attr.extention
+				: [attr.extention];
 
 			f.forEach((i) => {
 				if (i && i.name && (i.output || i.strOutput)) {
@@ -1122,20 +1126,17 @@ export class code extends h.div {
 			});
 		}
 
-		let strExtention: string[] = [];
-		let strExtentionDB: string[] = [];
+		const strExtention: string[] = [];
+		const strExtentionDB: string[] = [];
 
 		if (attr.extention) {
-			let f: IExtention[] = [];
-			if (Array.isArray(attr.extention)) {
-				f = attr.extention;
-			} else {
-				f = [attr.extention];
-			}
+			const f: IExtention[] = Array.isArray(attr.extention)
+				? attr.extention
+				: [attr.extention];
 
 			f.forEach((i) => {
 				if (i && i.name && (i.output || i.strOutput)) {
-					let strCode: string | undefined = undefined;
+					let strCode: string | undefined;
 
 					if (i.strOutput) {
 						strCode = i.strOutput;
@@ -1222,7 +1223,7 @@ export class code extends h.div {
 											strRoot
 										)
 									);
-							  }
+								}
 							: undefined,
 					})
 				);
@@ -1258,7 +1259,7 @@ export class code extends h.div {
 										ce.detail.msg,
 										ce.detail.color
 									);
-							  }
+								}
 							: undefined,
 						destroy: (event: Event) => {
 							const target = event.currentTarget as Element;

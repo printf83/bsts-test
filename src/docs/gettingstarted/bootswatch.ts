@@ -1393,7 +1393,7 @@ export const bootswatch: IContent = {
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return ["success", "info", "warning", "danger"].map((i, ix) => {
-							let val = [25, 50, 75, 100][ix];
+							const val = [25, 50, 75, 100][ix];
 							return new b.progress.container(
 								{
 									label: `${core.uppercaseFirst(i)} example`,
@@ -1459,7 +1459,7 @@ export const bootswatch: IContent = {
 					outputAttr: { display: "flex", flex: "column", gap: 3 },
 					output: () => {
 						return [undefined, "success", "info", "warning", "danger"].map((i, ix) => {
-							let val = [10, 25, 50, 75, 100][ix];
+							const val = [10, 25, 50, 75, 100][ix];
 							return new b.progress.container(
 								{
 									label: `${

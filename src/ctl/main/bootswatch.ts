@@ -31,17 +31,17 @@ const removeAllCustomVar = () => {
 
 export const changeBootswatch = (value: string) => {
 	//change menu
-	let bsBootswatch = document.getElementsByClassName("bs-bootswatch");
+	const bsBootswatch = document.getElementsByClassName("bs-bootswatch");
 	if (bsBootswatch && bsBootswatch.length > 0) {
 		Array.from(bsBootswatch).forEach((elem) => {
-			let bsBootswatchMenu = elem.nextSibling as Element;
-			let lastActive = bsBootswatchMenu.querySelectorAll("a.active")[0];
+			const bsBootswatchMenu = elem.nextSibling as Element;
+			const lastActive = bsBootswatchMenu.querySelectorAll("a.active")[0];
 			if (lastActive) {
 				lastActive.classList.remove("active");
 				lastActive.removeAttribute("aria-current");
 			}
 
-			let newActive = bsBootswatchMenu.querySelectorAll(`a[data-value='${value}']`)[0];
+			const newActive = bsBootswatchMenu.querySelectorAll(`a[data-value='${value}']`)[0];
 			if (newActive) {
 				newActive.classList.add("active");
 				newActive.setAttribute("aria-current", "true");
@@ -50,7 +50,7 @@ export const changeBootswatch = (value: string) => {
 	}
 
 	//change label
-	let bsBootswatchLabel = document.getElementsByClassName("bs-bootswatch-label");
+	const bsBootswatchLabel = document.getElementsByClassName("bs-bootswatch-label");
 	if (bsBootswatchLabel && bsBootswatchLabel.length > 0) {
 		Array.from(bsBootswatchLabel).forEach((elem) => {
 			elem.innerHTML = `${core.uppercaseFirst(value)}`;
@@ -63,7 +63,7 @@ export const changeBootswatch = (value: string) => {
 };
 
 export const getSavedBootswatch = () => {
-	let bootswatchCookie = cookie.get("current_bootswatch");
+	const bootswatchCookie = cookie.get("current_bootswatch");
 	if (bootswatchCookie) {
 		return bootswatchCookie;
 	} else {
@@ -157,7 +157,7 @@ export const genBootswatch = (
 								return new b.dropdown.item(
 									{
 										on: {
-											click: (_e) => {
+											click: () => {
 												changeBootswatch(i.value);
 											},
 										},

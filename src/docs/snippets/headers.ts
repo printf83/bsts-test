@@ -557,7 +557,7 @@ const ex = {
 								justifyContent: "center",
 
 								link: arg.link.map((i) => {
-									let result: HeaderLink = {
+									const result: HeaderLink = {
 										textColor: "body-emphasis",
 										textColorActive: "body-tertiary",
 										textColorHover: "primary-emphasis",

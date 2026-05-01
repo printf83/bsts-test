@@ -71,7 +71,7 @@ export const button: IContent = {
 					db: getContentCode(db),
 					outputAttr: { display: "flex", flex: "wrap", gap: 2 },
 					output: () => {
-						let id = core.UUID();
+						const id = core.UUID();
 
 						return [
 							new b.button({ color: "primary", href: "#" }, "Link"),

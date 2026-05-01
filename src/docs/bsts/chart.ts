@@ -37,7 +37,7 @@ const drawValuePlugin = (arg: {
 	};
 };
 
-const randomDoughnutData = (id: string, chart?: Chart<"doughnut", number[], any>) => {
+const randomDoughnutData = (id: string, chart?: Chart<"doughnut", number[], unknown>) => {
 	const canvas = document.getElementById(id);
 	if (canvas) {
 		if (
@@ -62,7 +62,7 @@ const randomDoughnutData = (id: string, chart?: Chart<"doughnut", number[], any>
 	}
 };
 
-const randomLineData = (id: string, chart?: Chart<"line", number[], any>) => {
+const randomLineData = (id: string, chart?: Chart<"line", number[], unknown>) => {
 	const canvas = document.getElementById(id);
 	if (canvas) {
 		if (
@@ -92,7 +92,7 @@ const randomLineData = (id: string, chart?: Chart<"line", number[], any>) => {
 	}
 };
 
-const randomBarData = (id: string, chart?: Chart<"bar", number[], any>) => {
+const randomBarData = (id: string, chart?: Chart<"bar", number[], unknown>) => {
 	const canvas = document.getElementById(id);
 	if (canvas) {
 		if (

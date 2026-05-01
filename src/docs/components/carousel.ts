@@ -438,7 +438,7 @@ export const carousel: IContent = {
 			new e.section([
 				new e.subtitle("Options"),
 				new e.text(
-					`As options can be passed via data attributes or JavaScript, you can append an option name to {{data:{'bs-*':'{value}'\}\}}, as in {{data:{'bs-animation':'{value}'\}\}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data:{'bs-custom-class':'beautifier'\}\}} instead of {{data:{'bs-customClass':'beautifier'\}\}}.`
+					`As options can be passed via data attributes or JavaScript, you can append an option name to {{data:{'bs-*':'{value}'}}}, as in {{data:{'bs-animation':'{value}'}}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data:{'bs-custom-class':'beautifier'}}} instead of {{data:{'bs-customClass':'beautifier'}}}.`
 				),
 				new e.text(
 					`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data:{'bs-config':'{"delay":0, "title":123}'/}/}} and {{data:{'bs-title':'456'/}/}} property, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data:{'bs-config':''/}/}}. In addition, existing data attributes are able to house JSON values like {{data:{'bs-delay':'{"show":0,"hide":150}'/}/}}.`
@@ -777,7 +777,7 @@ export const carousel: IContent = {
 							}),
 							on: {
 								"slide.bs.carousel": (event) => {
-									let carouselEvent = (<unknown>(
+									const carouselEvent = (<unknown>(
 										event
 									)) as bootstrap.Carousel.Event;
 

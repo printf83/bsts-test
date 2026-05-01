@@ -15,7 +15,7 @@ const contentNotFound = (key: string) => {
 			return [
 				new e.section([
 					new e.text(
-						`Content for {{${key}\}} couldn't be located. Perhaps it has been moved, deleted, or never even existed in the first place. We apologize for any inconvenience this may have caused. Head back to our {{nav:docs/gettingstarted/home::homepage}} to explore the site from the beginning.`
+						`Content for {{${key}}} couldn't be located. Perhaps it has been moved, deleted, or never even existed in the first place. We apologize for any inconvenience this may have caused. Head back to our {{nav:docs/gettingstarted/home::homepage}} to explore the site from the beginning.`
 					),
 					new h.div(
 						{ ratio: "16x9" },
@@ -31,8 +31,8 @@ const contentNotFound = (key: string) => {
 };
 
 const getNextPrevDoc = (docId: string) => {
-	let menu = menuItem();
-	let index = menu.findIndex((i) => {
+	const menu = menuItem();
+	const index = menu.findIndex((i) => {
 		return i.value === docId;
 	});
 
@@ -60,7 +60,7 @@ const getNextPrevDoc = (docId: string) => {
 };
 
 export const getContent = (docId: string, callback: (arg: IContent) => void) => {
-	let tValue = docId.split("/");
+	const tValue = docId.split("/");
 	if (tValue.length === 3 && tValue[0] === "docs") {
 		doc(docId, (c) => {
 			if (c) {

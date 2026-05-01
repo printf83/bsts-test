@@ -39,7 +39,7 @@ export const scrollspy: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						let headerItems = [
+						const headerItems = [
 							new b.nav.header.item(
 								new b.nav.header.link({ href: "#scrollspyHeading1" }, "First")
 							),
@@ -57,7 +57,7 @@ export const scrollspy: IContent = {
 							]),
 						];
 
-						let contentItems: core.tag[] = [];
+						const contentItems: core.tag[] = [];
 						["First", "Second", "Third", "Forth", "Fifth"].forEach((i, ix) => {
 							contentItems.push(
 								new h.h4({ id: `scrollspyHeading${ix + 1}` }, `${i} heading`)
@@ -111,7 +111,7 @@ export const scrollspy: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						let headerItems = new b.nav.header.containerNav(
+						const headerItems = new b.nav.header.containerNav(
 							{
 								type: "pill",
 								flex: "column",
@@ -155,7 +155,7 @@ export const scrollspy: IContent = {
 							]
 						);
 
-						let contentItems = ["1", "1-1", "1-2", "2", "3", "3-1", "3-2"].map((i) => {
+						const contentItems = ["1", "1-1", "1-2", "2", "3", "3-1", "3-2"].map((i) => {
 							return new h.div({ id: `item-${i}` }, [
 								new h.h4(`Item ${i}`),
 								new h.p(
@@ -209,15 +209,15 @@ export const scrollspy: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						let d = ["1", "2", "3", "4"];
-						let headerItems = d.map((i) => {
+						const d = ["1", "2", "3", "4"];
+						const headerItems = d.map((i) => {
 							return new b.tabList.item(
 								{ action: true, href: `#list-item-${i}` },
 								`Item ${i}`
 							);
 						});
 
-						let contentItems: core.tag[] = [];
+						const contentItems: core.tag[] = [];
 						d.forEach((i) => {
 							contentItems.push(new h.h4({ id: `list-item-${i}` }, `Item ${i}`));
 							contentItems.push(
@@ -269,15 +269,15 @@ export const scrollspy: IContent = {
 					}
 					`,
 					output: () => {
-						let d = ["1", "2", "3", "4", "5"];
-						let headerItems = d.map((i) => {
+						const d = ["1", "2", "3", "4", "5"];
+						const headerItems = d.map((i) => {
 							return new h.a(
 								{ href: `#simple-list-item-${i}`, padding: 2, rounded: true },
 								`Item ${i}`
 							);
 						});
 
-						let contentItems: core.tag[] = [];
+						const contentItems: core.tag[] = [];
 						d.forEach((i) => {
 							contentItems.push(
 								new h.h4({ id: `simple-list-item-${i}` }, `Item ${i}`)
@@ -388,7 +388,7 @@ export const scrollspy: IContent = {
 			new e.section([
 				new e.subtitle("Options"),
 				new e.text(
-					`As options can be passed via data attributes or JavaScript, you can append an option name to {{data:{'bs-*':'{value}'\}\}}, as in {{data:{'bs-animation':'{value}'\}\}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data:{'bs-custom-class':'beautifier'\}\}} instead of {{data:{'bs-customClass':'beautifier'\}\}}.`
+					`As options can be passed via data attributes or JavaScript, you can append an option name to {{data:{'bs-*':'{value}'}}}, as in {{data:{'bs-animation':'{value}'}}}. Make sure to change the case type of the option name from {{i::“camelCase”}} to {{i::“kebab-case”}} when passing the options via data attributes. For example, use {{data:{'bs-custom-class':'beautifier'}}} instead of {{data:{'bs-customClass':'beautifier'}}}.`
 				),
 				new e.text(
 					`As of Bootstrap 5.2.0, all components support an experimental reserved data attribute data-bs-config that can house simple component configuration as a JSON string. When an element has {{data:{'bs-config':'{"delay":0, "title":123}'/}/}} and {{data:{'bs-title':'456'/}/}} property, the final {{title}} value will be {{456}} and the separate data attributes will override values given on {{data:{'bs-config':''/}/}}. In addition, existing data attributes are able to house JSON values like {{data:{'bs-delay':'{"show":0,"hide":150}'/}/}}.`

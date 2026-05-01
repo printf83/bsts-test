@@ -43,7 +43,14 @@ export const addHistory = (arg: {
 	}
 };
 
+let historyChangeSetup = false;
+
 export const setupOnHistoryChange = () => {
+	if (historyChangeSetup) {
+		return;
+	}
+	historyChangeSetup = true;
+
 	window.onpopstate = function (e) {
 		if (e.state) {
 			const state: IWindowState = e.state as IWindowState;
