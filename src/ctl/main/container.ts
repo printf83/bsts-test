@@ -7,7 +7,7 @@ import { IMenu, setupMenu } from "./menu.js";
 import { IFooter, setupFooter } from "./footer.js";
 import { IContent, setupContentContainer } from "./content.js";
 import { showSearchDialog } from "./search.js";
-import { AUTHOR, BOOTSTRAP_VERSION, LIB_REPO } from "./env.js";
+import { AUTHOR, BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION, LIB_REPO } from "./env.js";
 
 export const dispatchCustomEvent = (root: Element | null, eventName: string, value?: string) => {
 	if (root) {
@@ -346,7 +346,7 @@ export class container extends h.div {
 								new h.li({ marginBottom: 2 }, [
 									new h.strong({ textColor: "primary" }, "Disclaimer! "),
 									`This is {{s::not a real Bootstrap}} website. This is only a {{s::Bootstrap TS test website}} to test {{https://github.com/${AUTHOR}/${LIB_REPO}::@${AUTHOR}/${LIB_REPO}}} library and make sure it's fully support Bootstrap.`,
-									"Bootsrap is designed and built with all the love in the world by the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::Bootstrap contributors}}.",
+									`Bootsrap is designed and built with all the love in the world by the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::Bootstrap contributors}}.`,
 								]),
 								new h.li(
 									{ marginBottom: 2 },
