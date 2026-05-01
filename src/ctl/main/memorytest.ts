@@ -104,6 +104,7 @@ const updateProgress = (arg: {
 	progress?: number;
 	current?: string | null;
 	speed?: number;
+	speedLabel?: string;
 	time?: number;
 }) => {
 	const progressBar = document.getElementById(`${arg.testId}-bar`);
@@ -131,6 +132,13 @@ const updateProgress = (arg: {
 			const progressSpeed = document.getElementById(`${arg.testId}-speed`);
 			if (progressSpeed) {
 				progressSpeed.innerText = arg.speed.toString();
+			}
+		}
+
+		if (arg.speedLabel) {
+			const progressSpeedLabel = document.getElementById(`${arg.testId}-speed-label`);
+			if (progressSpeedLabel) {
+				progressSpeedLabel.innerText = arg.speedLabel;
 			}
 		}
 
@@ -206,6 +214,7 @@ const setupProgressUI = (arg: {
 			new h.small([
 				`${arg.speedLabel} : ±`,
 				new h.strong({ id: `${arg.testId}-speed` }, "..."),
+				new h.span({ id: `${arg.testId}-speed-label` }, ""),
 				" page/sec",
 			]),
 			new h.br(),
@@ -358,6 +367,17 @@ const runMemoryTest = (
 				);
 			}
 
+			let dataSpeedLabel: string | undefined;
+			// check if speed drop more than 20% from last test, then make label "memory leak possible"
+			if (dataSpeed && speedDB.length > 0) {
+				const lastSpeed = speedDB[speedDB.length - 1]!.data.slice(-1)[0];
+				if (lastSpeed && dataSpeed < lastSpeed * 0.8) {
+					dataSpeedLabel = "Memory leak possible";
+				} else {
+					dataSpeedLabel = "Good!";
+				}
+			}
+
 			//keep speed result
 			addToSpeedDB(docId, pagetitle ? pagetitle : "...", dataChart);
 
@@ -370,6 +390,7 @@ const runMemoryTest = (
 					progress: dataProgress,
 					current: dataCurrent,
 					speed: dataSpeed,
+					speedLabel: dataSpeedLabel,
 					time: dataTime,
 				})
 			) {
@@ -377,7 +398,17 @@ const runMemoryTest = (
 
 				if (arg.waitonesec) {
 					setTimeout(
-						(arg) => {
+						(arg: {
+							startTime: number;
+							chart?: Chart;
+							testId: string;
+							count: number;
+							random?: boolean;
+							checkduplicateid?: boolean;
+							counttag?: boolean;
+							max?: number;
+							waitonesec?: boolean;
+						}) => {
 							runMemoryTest(
 								{
 									startTime: arg.startTime,
@@ -454,6 +485,17 @@ const runDownloadResource = (
 				);
 			}
 
+			let dataSpeedLabel: string | undefined;
+			// check if speed drop more than 20% from last test, then make label "memory leak possible"
+			if (dataSpeed && speedDB.length > 0) {
+				const lastSpeed = speedDB[speedDB.length - 1]!.data.slice(-1)[0];
+				if (lastSpeed && dataSpeed < lastSpeed * 0.8) {
+					dataSpeedLabel = "Memory leak possible";
+				} else {
+					dataSpeedLabel = "Good!";
+				}
+			}
+
 			if (
 				updateProgress({
 					testId: arg.testId,
@@ -463,6 +505,7 @@ const runDownloadResource = (
 					progress: dataProgress,
 					current: dataCurrent,
 					speed: dataSpeed,
+					speedLabel: dataSpeedLabel,
 					time: dataTime,
 				})
 			) {
@@ -555,7 +598,7 @@ const startMemoryTest = (arg: {
 
 										//dialog show after 300 ms
 										setTimeout(
-											(target) => {
+											(target: HTMLCanvasElement) => {
 												const lineColor =
 													core.getCSSVarRgbColor("--bs-primary");
 												const gridColor =
