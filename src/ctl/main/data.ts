@@ -9,7 +9,7 @@ const contentNotFound = (key: string) => {
 	return {
 		title: "404 Not Found",
 		description: `Oops! It seems like you've stumbled upon uncharted territory.`,
-		sourceUrl: `https://github.com/printf83/bsts-test/blob/beta/src/doc/_index.ts`,
+		sourceUrl: `https://github.com/printf83/bsts-test/blob/main/src/doc/_index.ts`,
 		sourceWeb: "Github",
 		item: () => {
 			return [
@@ -75,7 +75,7 @@ export const getContent = (docId: string, callback: (arg: IContent) => void) => 
 				c.usedb = true;
 				c.docId = docId;
 				c.bookmark = isInBookmark(docId);
-				c.sourceUrl = `https://github.com/printf83/bsts-test/blob/beta/src/${docId}.ts`;
+				c.sourceUrl = `https://github.com/printf83/bsts-test/blob/main/src/${docId}.ts`;
 				c.sourceWeb = "Github";
 				callback(c);
 			} else {
