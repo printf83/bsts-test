@@ -27,10 +27,10 @@ export const placeholder: IContent = {
 
 				new e.code({
 					db: getContentCode(db),
-					manager: (item: core.tag[]) => {
+					manager: (item: core.tag | core.tag[]) => {
 						return new h.div(
 							{ row: true },
-							item.map((i) => {
+							(item instanceof Array ? item : [item]).map((i) => {
 								return new h.div({ col: [12, "md-6"], paddingY: 3 }, i);
 							})
 						);
@@ -154,8 +154,11 @@ export const placeholder: IContent = {
 				),
 				new e.code({
 					db: getContentCode(db),
-					manager: (item: core.tag[]) => {
-						return new h.div({ row: true, gutter: 2 }, item);
+					manager: (item: core.tag | core.tag[]) => {
+						return new h.div(
+							{ row: true, gutter: 2 },
+							item instanceof Array ? item : [item]
+						);
 					},
 					output: () => {
 						return [
@@ -191,7 +194,7 @@ export const placeholder: IContent = {
 				),
 				new e.code({
 					db: getContentCode(db),
-					manager: (item: core.tag[]) => {
+					manager: (item: core.tag | core.tag[]) => {
 						return new h.div({ row: true, gutter: 2 }, item);
 					},
 					output: () => {

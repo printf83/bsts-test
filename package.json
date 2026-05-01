@@ -20,41 +20,47 @@
 	"type": "module",
 	"main": "dist/index.html",
 	"scripts": {
-		"link": "npm link @printf83/bsts",
+		"link": "pnpm link @printf83/bsts",
 		"clean": "node scripts/clean.cjs",
 		"copy.static": "node scripts/copy.cjs",
 		"build.ts": "tsc",
-		"build": "webpack && npm run copy.static",
+		"build": "webpack && pnpm run copy.static",
 		"lint": "eslint src --ext .ts",
-		"rebuild": "npm run clean && npm run build",
+		"rebuild": "pnpm run clean && pnpm run build",
 		"debug.ts": "tsc -w",
 		"debug": "webpack -w",
-		"predeploy": "npm run rebuild",
+		"predeploy": "pnpm run rebuild",
 		"deploy": "gh-pages -d dist"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.3.5",
 		"@eslint/js": "^10.0.1",
 		"@total-typescript/ts-reset": "^0.4.2",
-		"@types/bootstrap": "^5.2.8",
-		"@types/js-beautify": "^1.14.2",
+		"@types/bootstrap": "^5.2.10",
+		"@types/js-beautify": "^1.14.3",
 		"@typescript-eslint/eslint-plugin": "^8.59.1",
 		"@typescript-eslint/parser": "^8.59.1",
 		"compression-webpack-plugin": "^12.0.0",
 		"eslint": "^10.2.1",
-		"gh-pages": "^5.0.0",
-		"terser-webpack-plugin": "^5.3.9",
-		"ts-loader": "^9.5.0",
-		"typescript": "^5.4.0",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4"
+		"gh-pages": "^6.3.0",
+		"terser-webpack-plugin": "^5.5.0",
+		"ts-loader": "^9.5.7",
+		"typescript": "^5.9.3",
+		"webpack": "^5.106.2",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^5.2.3"
+	},
+	"pnpm": {
+		"overrides": {
+			"glob": "13.0.6"
+		}
 	},
 	"dependencies": {
-		"@printf83/bsts": "^1.1.1",
-		"bootstrap": "^5.3.3",
-		"chart.js": "^4.4.0",
+		"@printf83/bsts": "^1.1.2",
+		"bootstrap": "^5.3.8",
+		"chart.js": "^4.5.1",
 		"chartjs-plugin-datalabels": "^2.2.0",
-		"highlight.js": "^11.9.0",
-		"js-beautify": "^1.14.9"
+		"highlight.js": "^11.11.1",
+		"js-beautify": "^1.15.4"
 	}
 }

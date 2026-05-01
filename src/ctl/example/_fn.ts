@@ -84,30 +84,33 @@ export type codeBeautifyType = "js" | "ts" | "html" | "css";
 
 export const codeBeautify = (type: codeBeautifyType | undefined, source_text: string): string => {
 	switch (type) {
-		case "html":
-                        source_text = source_text.replace(/></g, ">\n<");
-			return html_beautify(source_text, {
+		case "html": {
+			const tmp_source_text_html = source_text.replace(/></g, ">\n<");
+			return html_beautify(tmp_source_text_html, {
 				preserve_newlines: false,
 				end_with_newline: true,
 				indent_size: 4,
 			}) as string;
+		}
 
-		case "css":
+		case "css": {
 			return css_beautify(source_text, {
 				preserve_newlines: false,
 				end_with_newline: true,
 				indent_size: 4,
 			}) as string;
+		}
 
-		default:
-			source_text = source_text.replace(/\};/g, "};\n");
-			return js_beautify(source_text, {
+		default: {
+			const tmp_source_text_js = source_text.replace(/\};/g, "};\n");
+			return js_beautify(tmp_source_text_js, {
 				preserve_newlines: true,
 				end_with_newline: true,
 				indent_size: 4,
 				brace_style: "preserve-inline",
 				unescape_strings: false,
 			}) as string;
+		}
 	}
 };
 
@@ -215,10 +218,10 @@ const attrHasClass = (attr: core.attr, className: string | string[]) => {
 			if (Array.isArray(attr.class)) {
 				return attr.class.every((r) => {
 					if (r) {
-                                                return className.indexOf(r) >= 0;
-                                        }
+						return className.indexOf(r) >= 0;
+					}
 
-                                        return false;
+					return false;
 				});
 			}
 

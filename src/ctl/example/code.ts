@@ -30,7 +30,8 @@ export interface ISourceDB {
 export interface IExtention {
 	name?: string;
 	rename?: string;
-	output?: (...args: unknown[]) => unknown;
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+	output?: Function;
 	strOutput?: string;
 }
 
@@ -43,8 +44,10 @@ export interface ICode extends core.attr {
 	lib?: string | string[];
 	css?: string;
 	extention?: IExtention | IExtention[];
-	output?: (...args: unknown[]) => unknown;
-	manager?: (...args: unknown[]) => unknown;
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+	output?: Function;
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+	manager?: Function;
 
 	scriptConverter?: (source: string) => string;
 
@@ -1035,10 +1038,11 @@ export class code extends h.div {
 
 		//start create element
 		const e: t[] = [];
-		const outputValue = attr.output ? attr.output() : undefined;
-		const outputString = outputValue == null ? "" : String(outputValue);
 
 		if (attr.output && attr.showOutput) {
+			const outputValue = attr.output();
+			const outputString = outputValue == null ? "" : String(outputValue);
+
 			if (attr.manager) {
 				const managedOutput = attr.manager(outputValue);
 				e.push(

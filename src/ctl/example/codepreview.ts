@@ -8,7 +8,7 @@ function successCopyCode(iconElem?: Element) {
 		iconElem.classList.add("text-success");
 
 		setTimeout(
-			(iconElem) => {
+			(iconElem: Element) => {
 				iconElem.classList.remove("text-success");
 				iconElem.classList.remove("bi-check2");
 				iconElem.classList.add("bi-clipboard");
@@ -26,7 +26,7 @@ function failCopyCode(iconElem?: Element) {
 		iconElem.classList.add("text-danger");
 
 		setTimeout(
-			(iconElem) => {
+			(iconElem: Element) => {
 				iconElem.classList.remove("text-danger");
 				iconElem.classList.remove("bi-exclamation-triangle");
 				iconElem.classList.add("bi-clipboard");

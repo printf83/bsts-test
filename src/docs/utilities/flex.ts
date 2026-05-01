@@ -450,7 +450,14 @@ export const flex: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
-					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
+					extention: [
+						{
+							name: "FLEXITEM",
+							output: () => {
+								return FLEXITEM(5);
+							},
+						},
+					],
 					output: () => {
 						return new h.div(
 							{ display: "flex", flex: "nowrap", style: { width: "8rem" } },
@@ -551,7 +558,7 @@ export const flex: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
-					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
+					extention: [{ name: "FLEXITEM", output: () => FLEXITEM(15) }],
 					output: () => {
 						return new h.div(
 							{
@@ -568,7 +575,7 @@ export const flex: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
-					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
+					extention: [{ name: "FLEXITEM", output: () => FLEXITEM(15) }],
 					output: () => {
 						return new h.div(
 							{
@@ -585,7 +592,7 @@ export const flex: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
-					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
+					extention: [{ name: "FLEXITEM", output: () => FLEXITEM(15) }],
 					output: () => {
 						return new h.div(
 							{
@@ -602,7 +609,7 @@ export const flex: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
-					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
+					extention: [{ name: "FLEXITEM", output: () => FLEXITEM(15) }],
 					output: () => {
 						return new h.div(
 							{
@@ -619,7 +626,7 @@ export const flex: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
-					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
+					extention: [{ name: "FLEXITEM", output: () => FLEXITEM(15) }],
 					output: () => {
 						return new h.div(
 							{
@@ -636,7 +643,7 @@ export const flex: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					outputAttr: { class: "flex-box" },
-					extention: [{ name: "FLEXITEM", output: FLEXITEM }],
+					extention: [{ name: "FLEXITEM", output: () => FLEXITEM(15) }],
 					output: () => {
 						return new h.div(
 							{

@@ -223,9 +223,9 @@ export const list: IContent = {
 							new b.list.container({ horizontal: "md" }, items),
 							new b.list.container({ horizontal: "lg" }, items),
 							new b.list.container({ horizontal: "xl" }, items),
-							new b.list.container({ horizontal: "xxl" }, items),
-							
-						];
+							new b.list.container({ horizontal: "xxl" }, items)
+						
+					];
 					},
 				}),
 				new e.text(
@@ -248,9 +248,9 @@ export const list: IContent = {
 							new b.list.container({ horizontal: "md" }, items),
 							new b.list.container({ horizontal: "lg" }, items),
 							new b.list.container({ horizontal: "xl" }, items),
-							new b.list.container({ horizontal: "xxl" }, items),
-							
-						];
+							new b.list.container({ horizontal: "xxl" }, items)
+						
+					];
 					},
 				}),
 			]),
