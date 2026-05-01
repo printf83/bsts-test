@@ -104,7 +104,7 @@ const updateProgress = (arg: {
 	progress?: number;
 	current?: string | null;
 	speed?: number;
-	speedLabel?: string;
+	memoryLeak?: boolean;
 	time?: number;
 }) => {
 	const progressBar = document.getElementById(`${arg.testId}-bar`);
@@ -135,10 +135,14 @@ const updateProgress = (arg: {
 			}
 		}
 
-		if (arg.speedLabel) {
-			const progressSpeedLabel = document.getElementById(`${arg.testId}-speed-label`);
-			if (progressSpeedLabel) {
-				progressSpeedLabel.innerText = arg.speedLabel;
+		if (arg.memoryLeak !== undefined) {
+			const progressMemoryLeakLabel = document.getElementById(
+				`${arg.testId}-memory-leak-label`
+			);
+			if (progressMemoryLeakLabel) {
+				progressMemoryLeakLabel.innerText = arg.memoryLeak
+					? "Possible memory leak"
+					: "No memory leak detected";
 			}
 		}
 
@@ -171,6 +175,7 @@ const setupProgressUI = (arg: {
 	counterLabel: string;
 	currentLabel: string;
 	speedLabel: string;
+	memoryLeakLabel: string;
 	timeLabel: string;
 	stopLabel: string;
 	total: number;
@@ -214,8 +219,12 @@ const setupProgressUI = (arg: {
 			new h.small([
 				`${arg.speedLabel} : ±`,
 				new h.strong({ id: `${arg.testId}-speed` }, "..."),
-				new h.span({ id: `${arg.testId}-speed-label` }, ""),
 				" page/sec",
+			]),
+			new h.br(),
+			new h.small([
+				`${arg.memoryLeakLabel} :`,
+				new h.strong({ id: `${arg.testId}-memory-leak-label` }, ""),
 			]),
 			new h.br(),
 			new h.small([`${arg.timeLabel} : `, new h.strong({ id: `${arg.testId}-time` }, "...")]),
@@ -300,9 +309,10 @@ const runMemoryTest = (
 		checkduplicateid?: boolean;
 		counttag?: boolean;
 		max?: number;
+		memoryLeak?: boolean;
 		waitonesec?: boolean;
 	},
-	callback: (counter: number, docId: string) => void
+	callback: (counter: number, docId: string, memoryLeak?: boolean) => void
 ) => {
 	arg.random ??= false;
 	arg.waitonesec ??= false;
@@ -367,14 +377,16 @@ const runMemoryTest = (
 				);
 			}
 
-			let dataSpeedLabel: string | undefined;
+			let memoryLeak: boolean | undefined;
 			// check if speed drop more than 20% from last test, then make label "memory leak possible"
 			if (dataSpeed && speedDB.length > 0) {
-				const lastSpeed = speedDB[speedDB.length - 1]!.data.slice(-1)[0];
+				// need to calculate base on all speed
+				const lastSpeeds = speedDB[speedDB.length - 1]!.data;
+				const lastSpeed = lastSpeeds.reduce((a, b) => a + b, 0) / lastSpeeds.length;
 				if (lastSpeed && dataSpeed < lastSpeed * 0.8) {
-					dataSpeedLabel = "Memory leak possible";
+					memoryLeak = true;
 				} else {
-					dataSpeedLabel = "Good!";
+					memoryLeak = false;
 				}
 			}
 
@@ -390,7 +402,7 @@ const runMemoryTest = (
 					progress: dataProgress,
 					current: dataCurrent,
 					speed: dataSpeed,
-					speedLabel: dataSpeedLabel,
+					memoryLeak: memoryLeak,
 					time: dataTime,
 				})
 			) {
@@ -407,6 +419,7 @@ const runMemoryTest = (
 							checkduplicateid?: boolean;
 							counttag?: boolean;
 							max?: number;
+							memoryLeak?: boolean;
 							waitonesec?: boolean;
 						}) => {
 							runMemoryTest(
@@ -419,6 +432,7 @@ const runMemoryTest = (
 									checkduplicateid: arg.checkduplicateid,
 									counttag: arg.counttag,
 									max: arg.max,
+									memoryLeak: arg.memoryLeak,
 									waitonesec: arg.waitonesec,
 								},
 								callback
@@ -439,6 +453,7 @@ const runMemoryTest = (
 								checkduplicateid: arg.checkduplicateid,
 								counttag: arg.counttag,
 								max: arg.max,
+								memoryLeak: arg.memoryLeak,
 								waitonesec: arg.waitonesec,
 							},
 							callback
@@ -446,11 +461,11 @@ const runMemoryTest = (
 					}, 300);
 				}
 			} else {
-				callback(arg.max! - arg.count, docId);
+				callback(arg.max! - arg.count, docId, arg.memoryLeak);
 			}
 		});
 	} else {
-		callback(arg.max! - arg.count, docId);
+		callback(arg.max! - arg.count, docId, false);
 	}
 };
 
@@ -485,14 +500,16 @@ const runDownloadResource = (
 				);
 			}
 
-			let dataSpeedLabel: string | undefined;
+			let memoryLeak: boolean | undefined;
 			// check if speed drop more than 20% from last test, then make label "memory leak possible"
 			if (dataSpeed && speedDB.length > 0) {
-				const lastSpeed = speedDB[speedDB.length - 1]!.data.slice(-1)[0];
+				// need to calculate base on all speed
+				const lastSpeeds = speedDB[speedDB.length - 1]!.data;
+				const lastSpeed = lastSpeeds.reduce((a, b) => a + b, 0) / lastSpeeds.length;
 				if (lastSpeed && dataSpeed < lastSpeed * 0.8) {
-					dataSpeedLabel = "Memory leak possible";
+					memoryLeak = true;
 				} else {
-					dataSpeedLabel = "Good!";
+					memoryLeak = false;
 				}
 			}
 
@@ -505,7 +522,7 @@ const runDownloadResource = (
 					progress: dataProgress,
 					current: dataCurrent,
 					speed: dataSpeed,
-					speedLabel: dataSpeedLabel,
+					memoryLeak: memoryLeak,
 					time: dataTime,
 				})
 			) {
@@ -550,6 +567,7 @@ const startMemoryTest = (arg: {
 				counterLabel: "Counter",
 				currentLabel: "Load page",
 				speedLabel: "Estimate load speed",
+				memoryLeakLabel: "Memory leak",
 				timeLabel: "Estimate time remaining",
 				stopLabel: "Stop",
 				total: arg.count,
@@ -576,7 +594,7 @@ const startMemoryTest = (arg: {
 				counttag: arg.counttag,
 				waitonesec: arg.waitonesec,
 			},
-			(docCount: number) => {
+			(docCount: number, _docId: string, memoryLeak?: boolean) => {
 				const endTime = performance.now();
 
 				const loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
@@ -663,6 +681,11 @@ const startMemoryTest = (arg: {
 						new h.small([`Page count : `, new h.strong(docCount)]),
 						new h.br(),
 						new h.small([`Load speed : `, new h.strong(loadSpeed), " page/sec"]),
+						new h.br(),
+						new h.small([
+							`Memory leak : `,
+							new h.strong(memoryLeak ? "Possible" : "Not detected"),
+						]),
 						new h.br(),
 						new h.small([
 							`Duration : `,
@@ -754,6 +777,7 @@ const startDownloadResource = (testId: string, showchart: boolean, callback: () 
 			counterLabel: "Counter",
 			currentLabel: "Downloading page",
 			speedLabel: "Estimate download speed",
+			memoryLeakLabel: "Memory leak",
 			timeLabel: "Estimate time remaining",
 			stopLabel: "Skip",
 			total: item.length,
