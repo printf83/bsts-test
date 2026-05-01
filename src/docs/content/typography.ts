@@ -1,6 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const typography: IContent = {
 	title: "Typography",
@@ -122,7 +123,7 @@ export const typography: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$display-font-sizes: (
 						1: 5rem,
@@ -449,7 +450,7 @@ export const typography: IContent = {
 			new e.section([
 				new e.title("Responsive font sizes"),
 				new e.text(
-					"In Bootstrap 5, Bootstrap enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the {{https://getbootstrap.com/docs/5.3/getting-started/rfs/::RFS page}} to find out how this works."
+					`In Bootstrap 5, Bootstrap enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/rfs/::RFS page}} to find out how this works.`
 				),
 			]),
 
@@ -465,7 +466,7 @@ export const typography: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$headings-margin-bottom:      $spacer * .5;
 						$headings-font-family:        null;
@@ -481,7 +482,7 @@ export const typography: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$lead-font-size:              $font-size-base * 1.25;
 						$lead-font-weight:            300;
@@ -532,7 +533,7 @@ export const typography: IContent = {
 			new e.section([
 				new e.subtitle("Sass mixins"),
 				new e.text(
-					"There are no dedicated mixins for typography, but Bootstrap does use {{https://getbootstrap.com/docs/5.3/getting-started/rfs/::Responsive Font Sizing (RFS)}}."
+					`There are no dedicated mixins for typography, but Bootstrap does use {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/rfs/::Responsive Font Sizing (RFS)}}.`
 				),
 			]),
 		];

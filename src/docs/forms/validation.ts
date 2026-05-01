@@ -1,6 +1,7 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const validation: IContent = {
 	title: "Validation",
@@ -701,7 +702,7 @@ export const validation: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_root.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_root.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_root.scss`,
 					code: `
 						--#{$prefix}form-valid-color: #{$form-valid-color};
 						--#{$prefix}form-valid-border-color: #{$form-valid-border-color};
@@ -721,7 +722,7 @@ export const validation: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$form-feedback-margin-top:          $form-text-margin-top;
 						$form-feedback-font-size:           $form-text-font-size;
@@ -738,7 +739,7 @@ export const validation: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$form-valid-color:                  $form-feedback-valid-color;
 						$form-valid-border-color:           $form-feedback-valid-color;
@@ -749,7 +750,7 @@ export const validation: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables-dark.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables-dark.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables-dark.scss`,
 					code: `
 						$form-valid-color-dark:             $green-300;
 						$form-valid-border-color-dark:      $green-300;
@@ -769,7 +770,7 @@ export const validation: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_forms.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_forms.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_forms.scss`,
 					code: `
 						@mixin form-validation-state-selector($state) {
 						@if ($state == "valid" or $state == "invalid") {
@@ -933,10 +934,10 @@ export const validation: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$form-validation-states: (
-						"valid": (
+						valid": (
 							"color": var(--#{$prefix}form-valid-color),
 							"icon": $form-feedback-icon-valid,
 							"tooltip-color": #fff,
@@ -970,7 +971,7 @@ export const validation: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/forms/_validation.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/forms/_validation.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/forms/_validation.scss`,
 					code: `
 						@each $state, $data in $form-validation-states {
 							@include form-validation-state($state, $data...);

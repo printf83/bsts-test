@@ -6,10 +6,10 @@ import { getContent } from "./data.js";
 import { cookie } from "./cookie.js";
 import { addHistory } from "./history.js";
 import hljs from "highlight.js";
-import { DEFAULTDOCUMENT } from "./_db.js";
 import { codeBeautify } from "../example/_fn.js";
 import { scriptConverter } from "../example/code.js";
 import { highlightMenu } from "./menu.js";
+import { MAIN_PAGE } from "./env.js";
 
 export interface IContent {
 	fullscreen?: boolean;
@@ -327,7 +327,7 @@ export const setupContentDocument = (
 
 	if (value.indexOf("#") > -1) {
 		const tempValue = value.split("#");
-		docId = tempValue[0] || DEFAULTDOCUMENT;
+		docId = tempValue[0] || MAIN_PAGE;
 		anchorId = tempValue[1];
 	}
 

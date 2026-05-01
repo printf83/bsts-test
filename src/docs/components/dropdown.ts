@@ -1,6 +1,7 @@
 import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION, POPPER_VERSION } from "../../ctl/main/env.js";
 type Drop = "down" | "down-center" | "up" | "up-center" | "start" | "end";
 
 export const dropdown: IContent = {
@@ -17,7 +18,7 @@ export const dropdown: IContent = {
 					"Dropdowns are toggleable ({{b.dropdown.button}}), contextual overlays for displaying lists of links and more using {{b.dropdown.menu}}. They’re made interactive with the included Bootstrap dropdown JavaScript plugin. They’re toggled by clicking, not by hovering; this is {{https://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/::an intentional design decision}}."
 				),
 				new e.text(
-					"Dropdowns are built on a third party library, {{https://popper.js.org/::Popper}}, which provides dynamic positioning and viewport detection. Be sure to include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before Bootstrap’s JavaScript or use {{bootstrap.bundle.min.js}} / {{bootstrap.bundle.js}} which contains Popper. Popper isn’t used to position dropdowns in navbars though as dynamic positioning isn’t required."
+					`Dropdowns are built on a third party library, {{https://popper.js.org/::Popper}}, which provides dynamic positioning and viewport detection. Be sure to include {{https://cdn.jsdelivr.net/npm/@popperjs/core@${POPPER_VERSION}/dist/umd/popper.min.js::popper.min.js}} before Bootstrap’s JavaScript or use {{bootstrap.bundle.min.js}} / {{bootstrap.bundle.js}} which contains Popper. Popper isn’t used to position dropdowns in navbars though as dynamic positioning isn’t required.`
 				),
 			]),
 
@@ -1050,7 +1051,7 @@ export const dropdown: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_dropdown.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_dropdown.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_dropdown.scss`,
 					code: `
 						--#{$prefix}dropdown-zindex: #{$zindex-dropdown};
 						--#{$prefix}dropdown-min-width: #{$dropdown-min-width};
@@ -1093,7 +1094,7 @@ export const dropdown: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_dropdown.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_dropdown.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_dropdown.scss`,
 					code: `
 						--#{$prefix}dropdown-color: #{$dropdown-dark-color};
 						--#{$prefix}dropdown-bg: #{$dropdown-dark-bg};
@@ -1120,7 +1121,7 @@ export const dropdown: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$dropdown-min-width:                10rem;
 						$dropdown-padding-x:                0;
@@ -1165,7 +1166,7 @@ export const dropdown: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$dropdown-dark-color:               $gray-300;
 						$dropdown-dark-bg:                  $gray-800;
@@ -1189,7 +1190,7 @@ export const dropdown: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$caret-width:                 .3em;
 						$caret-vertical-align:        $caret-width * .85;
@@ -1209,7 +1210,7 @@ export const dropdown: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_caret.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_caret.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_caret.scss`,
 					code: `
 						@mixin caret-down($width: $caret-width) {
 						border-top: $width solid;

@@ -1,6 +1,7 @@
 import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const navbar: IContent = {
 	title: "Navbar",
@@ -26,7 +27,7 @@ export const navbar: IContent = {
 				}),
 				new e.alert(
 					{ color: "info", callout: true },
-					" The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
+					` The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}.`
 				),
 			]),
 
@@ -517,7 +518,7 @@ export const navbar: IContent = {
 			new e.section([
 				new e.title("Color schemes"),
 				new e.alert({ color: "warning", callout: true }, [
-					"{{b::New dark navbars in v5.3.0 —}} Bootstrap’ve deprecated {{.navbar-dark}} in favor of the new {{theme:'dark'}} property. Add {{theme:'dark'}} to the {{b.navbar.container}} to enable a component-specific color mode. {{https://getbootstrap.com/docs/5.3/customize/color-modes/::Learn more about Bootstrap color modes}}.",
+					`{{b::New dark navbars in v5.3.0 —}} Bootstrap’ve deprecated {{.navbar-dark}} in favor of the new {{theme:'dark'}} property. Add {{theme:'dark'}} to the {{b.navbar.container}} to enable a component-specific color mode. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/customize/color-modes/::Learn more about Bootstrap color modes}}.`,
 					new h.hr(),
 					"{{b::New in v5.2.0 —}} Navbar theming is now powered by CSS variables and {{.navbar-light}} has been deprecated. CSS variables are applied to {{b.navbar.container}}, defaulting to the “light” appearance, and can be overridden with {{dark:true}}.",
 				]),
@@ -1399,7 +1400,7 @@ export const navbar: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_navbar.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_navbar.scss`,
 					code: `
 						--#{$prefix}navbar-padding-x: #{if($navbar-padding-x == null, 0, $navbar-padding-x)};
 						--#{$prefix}navbar-padding-y: #{$navbar-padding-y};
@@ -1429,7 +1430,7 @@ export const navbar: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_navbar.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_navbar.scss`,
 					code: `
 						--#{$prefix}nav-link-padding-x: 0;
 						--#{$prefix}nav-link-padding-y: #{$nav-link-padding-y};
@@ -1448,7 +1449,7 @@ export const navbar: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_navbar.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_navbar.scss`,
 					code: `
 						--#{$prefix}navbar-color: #{$navbar-dark-color};
 						--#{$prefix}navbar-hover-color: #{$navbar-dark-hover-color};
@@ -1470,7 +1471,7 @@ export const navbar: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$navbar-padding-y:                  $spacer * .5;
 						$navbar-padding-x:                  null;
@@ -1510,7 +1511,7 @@ export const navbar: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$navbar-dark-color:                 rgba($white, .55);
 						$navbar-dark-hover-color:           rgba($white, .75);
@@ -1534,7 +1535,7 @@ export const navbar: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_navbar.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_navbar.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_navbar.scss`,
 					code: `
 					// Generate series of '.navbar-expand-*' responsive classes for configuring
 					// where your navbar collapses.

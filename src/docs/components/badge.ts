@@ -1,6 +1,7 @@
 import { core, h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const badge: IContent = {
 	title: "Badges",
@@ -210,7 +211,7 @@ export const badge: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_badge.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_badge.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_badge.scss`,
 					code: `
 						--#{$prefix}badge-padding-x: #{$badge-padding-x};
 						--#{$prefix}badge-padding-y: #{$badge-padding-y};
@@ -229,7 +230,7 @@ export const badge: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$badge-font-size:                   .75em;
 						$badge-font-weight:                 $font-weight-bold;

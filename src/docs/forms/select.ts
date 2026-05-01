@@ -1,6 +1,7 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const select: IContent = {
 	title: "Select",
@@ -170,7 +171,7 @@ export const select: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$form-select-padding-y:             $input-padding-y;
 						$form-select-padding-x:             $input-padding-x;

@@ -1,6 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { AUTHOR } from "../../ctl/main/env.js";
 
 const ex = {
 	c1: (arg: {
@@ -495,7 +496,7 @@ export const sidebars: IContent = {
 							icon: "hexagon-fill",
 							title: "Sidebar",
 							userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
-							userName: "@printf83",
+							userName: `@${AUTHOR}`,
 							link: [
 								{ active: true, href: "#", icon: "house", label: "Home" },
 								{ href: "#", icon: "speedometer2", label: "Dashboard" },
@@ -543,7 +544,7 @@ export const sidebars: IContent = {
 							icon: "hexagon-fill",
 							title: "Sidebar",
 							userImage: "https://picsum.photos/seed/bsts_0/32/32.webp",
-							userName: "@printf83",
+							userName: `@${AUTHOR}`,
 							link: [
 								{ active: true, href: "#", icon: "house", label: "Home" },
 								{ href: "#", icon: "speedometer2", label: "Dashboard" },

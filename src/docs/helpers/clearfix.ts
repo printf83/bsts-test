@@ -1,6 +1,7 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const clearfix: IContent = {
 	title: "Clearfix",
@@ -23,7 +24,7 @@ export const clearfix: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/clearfix.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/clearfix.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/clearfix.scss`,
 					code: `
 						@mixin clearfix() {
 						&::after {

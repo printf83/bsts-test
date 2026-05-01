@@ -1,6 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const card: IContent = {
 	title: "Cards",
@@ -1128,7 +1129,7 @@ export const card: IContent = {
 			new e.section([
 				new e.subtitle("Masonry"),
 				new e.text(
-					"In v4 Bootstrap used a CSS-only technique to mimic the behavior of {{https://masonry.desandro.com/::Masonry}}-like columns, but this technique came with lots of unpleasant {{https://github.com/twbs/bootstrap/pull/28922::side effects}}. If you want to have this type of layout in v5, you can just make use of Masonry plugin. {{b::Masonry is not included in Bootstrap}}, but Bootstrap made a {{https://getbootstrap.com/docs/5.3/examples/masonry/::demo example}} to help you get started."
+					`In v4 Bootstrap used a CSS-only technique to mimic the behavior of {{https://masonry.desandro.com/::Masonry}}-like columns, but this technique came with lots of unpleasant {{https://github.com/twbs/bootstrap/pull/28922::side effects}}. If you want to have this type of layout in v5, you can just make use of Masonry plugin. {{b::Masonry is not included in Bootstrap}}, but Bootstrap made a {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/examples/masonry/::demo example}} to help you get started.`
 				),
 			]),
 
@@ -1147,7 +1148,7 @@ export const card: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_card.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_card.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_card.scss`,
 					code: `
 						--#{$prefix}card-spacer-y: #{$card-spacer-y};
 						--#{$prefix}card-spacer-x: #{$card-spacer-x};
@@ -1180,7 +1181,7 @@ export const card: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$card-spacer-y:                     $spacer;
 						$card-spacer-x:                     $spacer;

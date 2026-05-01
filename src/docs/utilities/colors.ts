@@ -1,6 +1,7 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const colors: IContent = {
 	title: "Colors",
@@ -169,7 +170,7 @@ export const colors: IContent = {
 			new e.section([
 				new e.title("CSS"),
 				new e.text(
-					"In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
+					`In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more.`
 				),
 			]),
 
@@ -183,7 +184,7 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$blue:    #0d6efd;
 						$indigo:  #6610f2;
@@ -200,7 +201,7 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$primary:       $blue;
 						$secondary:     $gray-600;
@@ -218,7 +219,7 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$white:    #fff;
 						$gray-100: #f8f9fa;
@@ -236,10 +237,10 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
 						$theme-colors-text: (
-						"primary": $primary-text-emphasis,
+						primary": $primary-text-emphasis,
 						"secondary": $secondary-text-emphasis,
 						"success": $success-text-emphasis,
 						"info": $info-text-emphasis,
@@ -257,7 +258,7 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$primary-text-emphasis:   shade-color($primary, 60%);
 						$secondary-text-emphasis: shade-color($secondary, 60%);
@@ -272,7 +273,7 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables-dark.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables-dark.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables-dark.scss`,
 					code: `
 						$primary-text-emphasis-dark:        tint-color($primary, 40%);
 						$secondary-text-emphasis-dark:      tint-color($secondary, 40%);
@@ -296,10 +297,10 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$theme-colors: (
-						"primary":    $primary,
+						primary":    $primary,
 						"secondary":  $secondary,
 						"success":    $success,
 						"info":       $info,
@@ -316,7 +317,7 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$grays: (
 						"100": $gray-100,
@@ -335,9 +336,9 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
-						$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+						$theme-colors-rgb: map-loop($theme-colors, to-rgb, $value");
 					`,
 				}),
 				new e.text(
@@ -346,12 +347,12 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
 						$utilities-text: map-merge(
 						$utilities-colors,
 						(
-							"black": to-rgb($black),
+							black": to-rgb($black),
 							"white": to-rgb($white),
 							"body": to-rgb($body-color)
 						)
@@ -374,10 +375,10 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
 						$theme-colors-text: (
-						"primary": $primary-text-emphasis,
+						primary": $primary-text-emphasis,
 						"secondary": $secondary-text-emphasis,
 						"success": $success-text-emphasis,
 						"info": $info-text-emphasis,
@@ -391,10 +392,10 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
 						$theme-colors-text-dark: (
-						"primary": $primary-text-emphasis-dark,
+						primary": $primary-text-emphasis-dark,
 						"secondary": $secondary-text-emphasis-dark,
 						"success": $success-text-emphasis-dark,
 						"info": $info-text-emphasis-dark,
@@ -417,9 +418,9 @@ export const colors: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_utilities.scss`,
 					code: `
-						"color": (
+						color": (
 						property: color,
 						class: text,
 						local-vars: (

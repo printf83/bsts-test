@@ -1,6 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const borders: IContent = {
 	title: "Borders",
@@ -344,7 +345,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_root.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_root.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_root.scss`,
 					code: `
 						--#{$prefix}border-width: #{$border-width};
 						--#{$prefix}border-style: #{$border-style};
@@ -369,7 +370,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$border-width:                1px;
 						$border-widths: (
@@ -387,7 +388,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$border-radius:               .375rem;
 						$border-radius-sm:            .25rem;
@@ -403,7 +404,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$primary-border-subtle:   tint-color($primary, 60%);
 						$secondary-border-subtle: tint-color($secondary, 60%);
@@ -418,7 +419,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables-dark.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables-dark.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables-dark.scss`,
 					code: `
 						$primary-border-subtle-dark:        shade-color($primary, 40%);
 						$secondary-border-subtle-dark:      shade-color($secondary, 40%);
@@ -441,7 +442,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
 						$theme-colors-border-subtle: (
 						"primary": $primary-border-subtle,
@@ -458,7 +459,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
 						$theme-colors-border-subtle-dark: (
 						"primary": $primary-border-subtle-dark,
@@ -481,7 +482,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_border-radius.scsss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_border-radius.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_border-radius.scss`,
 					code: `
 						@mixin border-radius($radius: $border-radius, $fallback-border-radius: false) {
 						@if $enable-rounded {
@@ -557,7 +558,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_utilities.scss`,
 					code: `
 						"border": (
 						property: border,
@@ -630,7 +631,7 @@ export const borders: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_utilities.scss`,
 					code: `
 						"rounded": (
 						property: border-radius,

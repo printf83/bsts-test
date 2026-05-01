@@ -5,6 +5,7 @@ import { IMainContainer, container } from "./container.js";
 import { showMemoryTestDialog } from "./memorytest.js";
 import { getSavedTheme } from "./theme.js";
 import { BOOTSWATCHDB, THEMEDB } from "./_db.js";
+import { AUTHOR, BOOTSTRAP_MAIN_VERSION, LIB_REPO } from "./env.js";
 
 export const mainContainer = () => {
 	return new container({
@@ -31,8 +32,12 @@ export const mainContainer = () => {
 					showMemoryTestDialog();
 				},
 			},
-			{ href: "https://github.com/printf83/bsts", icon: { id: "github" }, label: "Github" },
-			{ href: "https://twitter.com/printf83", icon: { id: "twitter" }, label: "Twitter" },
+			{
+				href: `https://github.com/${AUTHOR}/${LIB_REPO}`,
+				icon: { id: "github" },
+				label: "Github",
+			},
+			{ href: `https://twitter.com/${AUTHOR}`, icon: { id: "twitter" }, label: "Twitter" },
 			{ href: "https://getbootstrap.com/", icon: { id: "bootstrap" }, label: "Bootstrap" },
 		],
 		itemTheme: THEMEDB,
@@ -45,8 +50,14 @@ export const mainContainer = () => {
 				title: "Links",
 				item: [
 					{ href: "https://getbootstrap.com/", label: "Home" },
-					{ href: "https://getbootstrap.com/docs/5.3/", label: "Docs" },
-					{ href: "https://getbootstrap.com/docs/5.3/examples/", label: "Examples" },
+					{
+						href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/`,
+						label: "Docs",
+					},
+					{
+						href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/examples/`,
+						label: "Examples",
+					},
 					{ href: "https://icons.getbootstrap.com/", label: "Icons" },
 					{ href: "https://themes.getbootstrap.com/", label: "Themes" },
 					{ href: "https://blog.getbootstrap.com/", label: "Blog" },
@@ -57,23 +68,23 @@ export const mainContainer = () => {
 				title: "Guides",
 				item: [
 					{
-						href: "https://getbootstrap.com/docs/5.3/getting-started/",
+						href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/`,
 						label: "Getting started",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/examples/starter-template/",
+						href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/examples/starter-template/`,
 						label: "Starter template",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/getting-started/webpack/",
+						href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/webpack/`,
 						label: "Webpack",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/getting-started/parcel/",
+						href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/parcel/`,
 						label: "Parcel",
 					},
 					{
-						href: "https://getbootstrap.com/docs/5.3/getting-started/vite/",
+						href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/vite/`,
 						label: "Vite",
 					},
 				],

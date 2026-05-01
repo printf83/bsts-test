@@ -1,6 +1,7 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const breadcrumb: IContent = {
 	title: "Breadcrumb",
@@ -90,7 +91,7 @@ export const breadcrumb: IContent = {
 				new e.alert({ color: "info", callout: true }, [
 					new h.h5("Using embedded SVG"),
 					new h.p(
-						"Inlining SVG as data URI requires to URL escape a few characters, most notably {{<}}, {{>}} and {{#}}. That’s why the {{$breadcrumb-divider}} variable is passed through Bootstrap {{https://getbootstrap.com/docs/5.3/customize/sass/#escape-svg::escape-svg() Sass function}}. When using the CSS custom property, you need to URL escape your SVG on your own. Read {{https://codepen.io/kevinweber/pen/dXWoRw::Kevin Weber’s explanations on CodePen}} for detailed information on what to escape. "
+						`Inlining SVG as data URI requires to URL escape a few characters, most notably {{<}}, {{>}} and {{#}}. That’s why the {{$breadcrumb-divider}} variable is passed through Bootstrap {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/customize/sass/#escape-svg::escape-svg() Sass function}}. When using the CSS custom property, you need to URL escape your SVG on your own. Read {{https://codepen.io/kevinweber/pen/dXWoRw::Kevin Weber’s explanations on CodePen}} for detailed information on what to escape.`
 					),
 				]),
 				new e.code({
@@ -165,7 +166,7 @@ export const breadcrumb: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_breadcrumb.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_breadcrumb.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_breadcrumb.scss`,
 					code: `
 						--#{$prefix}breadcrumb-padding-x: #{$breadcrumb-padding-x};
 						--#{$prefix}breadcrumb-padding-y: #{$breadcrumb-padding-y};
@@ -187,7 +188,7 @@ export const breadcrumb: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$breadcrumb-font-size:              null;
 						$breadcrumb-padding-y:              0;

@@ -1,5 +1,6 @@
 import { b, core, h } from "@printf83/bsts";
 import { cookie } from "./cookie.js";
+import { BOOTSWATCH_VERSION } from "./env.js";
 
 export interface IBootswatchItem {
 	value: string;
@@ -90,7 +91,7 @@ export const onBootswatchChange = (value: string, resetAccentColor?: boolean) =>
 			bootstrapCssLink.disabled = false;
 			bootstrapCssLink.setAttribute(
 				"href",
-				`https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/${value}/bootstrap.min.css`
+				`https://cdn.jsdelivr.net/npm/bootswatch@${BOOTSWATCH_VERSION}/dist/${value}/bootstrap.min.css`
 			);
 		}
 	}

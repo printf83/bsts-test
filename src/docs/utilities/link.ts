@@ -2,6 +2,7 @@ import { core, h } from "@printf83/bsts";
 
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const link: IContent = {
 	title: "Link",
@@ -14,7 +15,7 @@ export const link: IContent = {
 			new e.section([
 				new e.title("Link opacity"),
 				new e.text(
-					"Change the alpha opacity of the link {{rgba()}} color value with utilities. Please be aware that changes to a color’s opacity can lead to links with {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#color-contrast::insufficient contrast}}."
+					`Change the alpha opacity of the link {{rgba()}} color value with utilities. Please be aware that changes to a color’s opacity can lead to links with {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/accessibility/#color-contrast::insufficient contrast}}.`
 				),
 				new e.code({
 					db: getContentCode(db),
@@ -215,7 +216,7 @@ export const link: IContent = {
 			new e.section([
 				new e.title("Sass"),
 				new e.text(
-					"In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more."
+					`In addition to the following Sass functionality, consider reading about Bootstrap included {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/customize/css-variables/::CSS custom properties}} (aka CSS variables) for colors and more.`
 				),
 			]),
 
@@ -224,14 +225,14 @@ export const link: IContent = {
 			new e.section([
 				new e.subtitle("Utilities API"),
 				new e.text(
-					"Link utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}."
+					`Link utilities are declared in Bootstrap utilities API in {{scss/_utilities.scss}}. {{nav:docs/utilities/api#using_the_api::Learn how to use the utilities API}}.`
 				),
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_utilities.scss`,
 					code: `
-						"link-opacity": (
+						link-opacity": (
 						css-var: true,
 						class: link-opacity,
 						state: hover,

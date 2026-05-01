@@ -1,13 +1,14 @@
 import { h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent } from "../../ctl/main/content.js";
-import { CURRENTVERSION } from "../../ctl/main/_db.js";
-
-const BSTSCDN = `https://cdn.jsdelivr.net/npm/@printf83/bsts@${CURRENTVERSION}/+esm`;
-const BSCDNCSS = [
-	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11/font/bootstrap-icons.css",
-	"https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css",
-];
+import {
+	AUTHOR,
+	BOOTSTRAP_CDN,
+	BOOTSTRAP_MAIN_VERSION,
+	BOOTSTRAP_VERSION,
+	BSTS_CDN,
+	LIB_REPO,
+} from "../../ctl/main/env.js";
 
 export const introduction: IContent = {
 	title: "Get started with Bootstrap",
@@ -30,11 +31,11 @@ export const introduction: IContent = {
 										title: "Bootstrap TS demo",
 										description: "Create bootstrap using TS/JS",
 										private: false,
-										tags: ["bsts", "Bootstrap TS", "@printf83/bsts"],
+										tags: [LIB_REPO, "Bootstrap TS", `@${AUTHOR}/${LIB_REPO}`],
 										editors: "001",
 										layout: "top",
 
-										css_external: BSCDNCSS,
+										css_external: BOOTSTRAP_CDN,
 										head: e.codeBeautify(
 											"html",
 											`<meta charset="utf-8">
@@ -46,7 +47,7 @@ export const introduction: IContent = {
 										js: e.codeBeautify(
 											"js",
 											`
-											import {core, h, b} from '${BSTSCDN}';
+											import {core, h, b} from '${BSTS_CDN}';
 
 											const Component1 = new h.p("Hello world");
 											const Component2 = new b.button({ color: "primary" }, "Button");
@@ -87,8 +88,8 @@ export const introduction: IContent = {
 									<head>
 										<meta charset="utf-8">
 										<meta name="viewport" content="width=device-width, initial-scale=1">
-										<link rel="stylesheet" href="${BSCDNCSS[0]}">
-										<link rel="stylesheet" href="${BSCDNCSS[1]}">
+										<link rel="stylesheet" href="${BOOTSTRAP_CDN[0]}">
+										<link rel="stylesheet" href="${BOOTSTRAP_CDN[1]}">
 										<title>Bootstrap TS demo</title>
 									</head>
 									<body>
@@ -99,13 +100,13 @@ export const introduction: IContent = {
 							}),
 						]),
 						new h.div([
-							`{{b::Create a new }}{{bc::index.js}}{{b:: file in your project root}}. Import {{bsts}} library {{import {core, h} from "${BSTSCDN}";}} and write some code. Learn more about {{bsts}} {{nav:docs/gettingstarted/introduction#expose_function::Exposed function}}.`,
+							`{{b::Create a new }}{{bc::index.js}}{{b:: file in your project root}}. Import {{bsts}} library {{import {core, h} from "${BSTS_CDN}";}} and write some code. Learn more about {{bsts}} {{nav:docs/gettingstarted/introduction#expose_function::Exposed function}}.`,
 							new e.codepreview({
 								class: "ms-n4",
 								marginStart: "md-0",
 								type: "js",
 								code: `
-									import {core, h, b} from '${BSTSCDN}';
+									import {core, h, b} from '${BSTS_CDN}';
 									
 									const Component1 = new h.p("Hello world");
 									const Component2 = new b.button({ color: "primary" }, "Button");
@@ -137,8 +138,8 @@ export const introduction: IContent = {
 									<head>
 										<meta charset="utf-8">
 										<meta name="viewport" content="width=device-width, initial-scale=1">
-										<link rel="stylesheet" href="${BSCDNCSS[0]}">
-										<link rel="stylesheet" href="${BSCDNCSS[1]}">
+										<link rel="stylesheet" href="${BOOTSTRAP_CDN[0]}">
+										<link rel="stylesheet" href="${BOOTSTRAP_CDN[1]}">
 										<title>Bootstrap TS demo</title>
 									</head>
 									<body>
@@ -152,7 +153,7 @@ export const introduction: IContent = {
 							}),
 						]),
 						new h.div(
-							"{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{nav:docs/layout/grid::layout}}, adding dozens of {{nav:docs/components/button::components}}, and utilizing {{https://getbootstrap.com/docs/5.3/examples/::Bootstrap official examples}}."
+							`{{b::Hello, world!}} Open the page in your browser of choice to see your Bootstrapped page. Now you can start building with Bootstrap by creating your own {{nav:docs/layout/grid::layout}}, adding dozens of {{nav:docs/components/button::components}}, and utilizing {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/examples/::Bootstrap official examples}}.`
 						),
 					],
 				}),
@@ -165,7 +166,7 @@ export const introduction: IContent = {
 				new e.text("As reference, here are {{bsts}} primary CDN links."),
 				new e.codepreview({
 					type: "js",
-					code: `import { core } from "${BSTSCDN}";`,
+					code: `import { core } from "${BSTS_CDN}";`,
 				}),
 				new e.table({
 					item: [
@@ -188,7 +189,7 @@ export const introduction: IContent = {
 				new e.codepreview({
 					type: "js",
 					code: `
-						import {core, h, b} from "${BSTSCDN}";
+						import {core, h, b} from "${BSTS_CDN}";
 
 						const Component1 = new h.p("Hello world");
 						const Component2 = new b.button({ color: "primary" }, "Button");
@@ -214,9 +215,9 @@ export const introduction: IContent = {
 				new e.ul({
 					item: [
 						"Read a bit more about some {{nav:docs/gettingstarted/introduction#important_globals::important global environment settings}} that Bootstrap utilizes.",
-						"Read about what’s included in Bootstrap in Bootstrap {{https://getbootstrap.com/docs/5.3/getting-started/contents/::contents section}} and the list of {{nav:docs/gettingstarted/introduction#js_components::components that require JavaScript}} below.",
-						"Need a little more power? Consider building with Bootstrap by {{https://getbootstrap.com/docs/5.3/getting-started/download/#package-managers::including the source files via package manager}}.",
-						"Looking to use Bootstrap as a module with {{<script type='module'>}}? Please refer to Bootstrap using {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#using-bootstrap-as-a-module::Bootstrap as a module}} section.",
+						`Read about what’s included in Bootstrap in Bootstrap {{https://getbootstrap.com/docs/${BOOTSTRAP_VERSION}/getting-started/contents/::contents section}} and the list of {{nav:docs/gettingstarted/introduction#js_components::components that require JavaScript}} below.`,
+						`Need a little more power? Consider building with Bootstrap by {{https://getbootstrap.com/docs/${BOOTSTRAP_VERSION}/getting-started/download/#package-managers::including the source files via package manager}}.`,
+						`Looking to use Bootstrap as a module with {{<script type='module'>}}? Please refer to Bootstrap using {{https://getbootstrap.com/docs/${BOOTSTRAP_VERSION}/getting-started/javascript/#using-bootstrap-as-a-module::Bootstrap as a module}} section.`,
 					],
 				}),
 			]),

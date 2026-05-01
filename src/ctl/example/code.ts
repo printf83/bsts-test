@@ -12,14 +12,7 @@ import {
 	codeBeautifyMinify,
 } from "./_fn.js";
 import hljs from "highlight.js";
-import { CURRENTVERSION } from "../main/_db.js";
-
-const BSTSCDN = `https://cdn.jsdelivr.net/npm/@printf83/bsts@${CURRENTVERSION}/+esm`;
-const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3/dist/chart.umd.min.js"];
-const BSCDNCSS = [
-	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11/font/bootstrap-icons.css",
-	"https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css",
-];
+import { AUTHOR, BOOTSTRAP_CDN, BSTS_CDN, CHARTJS_CDN, LIB_REPO } from "../main/env.js";
 
 export interface ISourceDB {
 	source?: string;
@@ -952,7 +945,7 @@ const generateCodePenData = (
 			"import { " +
 			strLib +
 			' } from "' +
-			BSTSCDN +
+			BSTS_CDN +
 			'";\n' +
 			(res.consoleFn ? res.consoleFn + "\n" : "") +
 			(strExt ? strExt + "\n" : "") +
@@ -968,12 +961,12 @@ const generateCodePenData = (
 		title: "Bootstrap TS",
 		description: "Create bootstrap using TS/JS",
 		private: false,
-		tags: ["bsts", "Bootstrap TS", "@printf83/bsts"],
+		tags: [LIB_REPO, "Bootstrap TS", `@${AUTHOR}/${LIB_REPO}`],
 		editors: "001",
 		layout: "top",
 
-		js_external: strCodeResult.indexOf("Chart(") > -1 ? BSCDNJS : undefined,
-		css_external: BSCDNCSS,
+		js_external: strCodeResult.indexOf("Chart(") > -1 ? CHARTJS_CDN : undefined,
+		css_external: BOOTSTRAP_CDN,
 		css: strCSS ? codeBeautify("css", strCSS) : undefined,
 		head: codeBeautify(
 			"html",

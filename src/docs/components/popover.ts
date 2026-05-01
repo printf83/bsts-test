@@ -4,6 +4,7 @@ import { h, b, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION, POPPER_VERSION } from "../../ctl/main/env.js";
 type Popover = I.b.popover;
 
 export const popover: IContent = {
@@ -19,7 +20,7 @@ export const popover: IContent = {
 				new e.text("Things to know when using the popover plugin:"),
 				new e.ul({
 					item: [
-						"Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
+						`Popovers rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@${POPPER_VERSION}/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.`,
 						"Popovers require the {{nav:docs/components/popover::popover plugin}} as a dependency.",
 						"Popovers initialize automaticly on {{build}}.",
 						"Zero-length {{title}} and {{content}} values will never show a popover.",
@@ -33,11 +34,11 @@ export const popover: IContent = {
 				}),
 				new e.alert(
 					{ color: "info", callout: true },
-					"By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::sanitizer section in Bootstrap JavaScript documentation}} for more details."
+					`By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#sanitizer::sanitizer section in Bootstrap JavaScript documentation}} for more details.`
 				),
 				new e.alert(
 					{ color: "info", callout: true },
-					"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
+					`The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}.`
 				),
 				new e.text("Keep reading to see how popovers work with some examples."),
 			]),
@@ -254,7 +255,7 @@ export const popover: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_popover.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_popover.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_popover.scss`,
 					code: `
 						--#{$prefix}popover-zindex: #{$zindex-popover};
 						--#{$prefix}popover-max-width: #{$popover-max-width};
@@ -288,7 +289,7 @@ export const popover: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$popover-font-size:                 $font-size-sm;
 						$popover-bg:                        var(--#{$prefix}body-bg);
@@ -358,7 +359,7 @@ export const popover: IContent = {
 						[
 							"{{allowList}}",
 							"object",
-							"{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}",
+							`{{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#sanitizer::Default value}}`,
 							"Object which contains allowed attributes and tags.",
 						],
 						[
@@ -504,7 +505,7 @@ export const popover: IContent = {
 				new e.subtitle("Methods"),
 				new e.alert(
 					{ color: "danger", callout: true },
-					"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
+					`{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}.`
 				),
 				new e.table({
 					item: [
@@ -515,7 +516,7 @@ export const popover: IContent = {
 						],
 						[
 							"{{dispose}}",
-							"Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{nav:docs/components/popovers#options::the selector option}}) cannot be individually destroyed on descendant trigger elements.",
+							`Hides and destroys an element’s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using {{nav:docs/components/popovers#options::the selector option}}) cannot be individually destroyed on descendant trigger elements. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/components/popovers/#methods::Learn more in Bootstrap Popover methods}}.`,
 						],
 						[
 							"{{enable}}",

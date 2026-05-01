@@ -1,6 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const collapse: IContent = {
 	title: "Collapse",
@@ -204,7 +205,7 @@ export const collapse: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$transition-collapse:         height .35s ease;
 						$transition-collapse-width:   width .35s ease;	
@@ -222,7 +223,7 @@ export const collapse: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_transitions.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_transitions.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_transitions.scss`,
 					code: `
 						.collapse {
 						&:not(.show) {
@@ -328,7 +329,7 @@ export const collapse: IContent = {
 				new e.text(
 					new b.alert.container(
 						{ color: "danger", callout: true },
-						"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
+						`{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}.`
 					)
 				),
 				new e.text(

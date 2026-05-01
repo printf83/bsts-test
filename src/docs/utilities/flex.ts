@@ -1,6 +1,7 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 const FLEXITEM = (length: number) => {
 	return Array(length)
@@ -716,7 +717,7 @@ export const flex: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_utilities.scss`,
 					code: `
 						"flex": (
 						responsive: true,

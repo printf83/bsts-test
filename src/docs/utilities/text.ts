@@ -1,6 +1,7 @@
 import { b, core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const text: IContent = {
 	title: "Text",
@@ -274,7 +275,7 @@ export const text: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						// stylelint-disable value-keyword-case
 						$font-family-sans-serif:      system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -324,7 +325,7 @@ export const text: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$font-sizes: (
 						1: $h1-font-size,
@@ -339,7 +340,7 @@ export const text: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_maps.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_maps.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_maps.scss`,
 					code: `
 						$theme-colors-text: (
 						"primary": $primary-text-emphasis,
@@ -365,7 +366,7 @@ export const text: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_utilities.scss`,
 					code: `
 						"font-family": (
 						property: font-family,

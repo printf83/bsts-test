@@ -1,6 +1,7 @@
 import { core, b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 const TABLEITEM = () => {
 	return [
@@ -437,7 +438,7 @@ export const tables: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_table-variants.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_table-variants.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_table-variants.scss`,
 					code: `
 						@mixin table-variant($state, $background) {
 						.table-#{$state} {
@@ -1001,7 +1002,7 @@ export const tables: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$table-cell-padding-y:        .5rem;
 						$table-cell-padding-x:        .5rem;
@@ -1051,10 +1052,10 @@ export const tables: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$table-variants: (
-						"primary":    shift-color($primary, $table-bg-scale),
+						primary":    shift-color($primary, $table-bg-scale),
 						"secondary":  shift-color($secondary, $table-bg-scale),
 						"success":    shift-color($success, $table-bg-scale),
 						"info":       shift-color($info, $table-bg-scale),

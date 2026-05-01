@@ -1,6 +1,7 @@
 import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const spinner: IContent = {
 	title: "Spinner",
@@ -20,7 +21,7 @@ export const spinner: IContent = {
 				),
 				new e.alert(
 					{ color: "info", callout: true },
-					"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
+					`The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}.`
 				),
 			]),
 
@@ -355,7 +356,7 @@ export const spinner: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_spinners.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_spinners.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_spinners.scss`,
 					code: `
 						--#{$prefix}spinner-width: #{$spinner-width};
 						--#{$prefix}spinner-height: #{$spinner-height};
@@ -369,7 +370,7 @@ export const spinner: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_spinners.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_spinners.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_spinners.scss`,
 					code: `
 						--#{$prefix}spinner-width: #{$spinner-width};
 						--#{$prefix}spinner-height: #{$spinner-height};
@@ -384,7 +385,7 @@ export const spinner: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_spinners.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_spinners.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_spinners.scss`,
 					code: `
 						--#{$prefix}spinner-width: #{$spinner-width-sm};
 						--#{$prefix}spinner-height: #{$spinner-height-sm};
@@ -401,7 +402,7 @@ export const spinner: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$spinner-width:           2rem;
 						$spinner-height:          $spinner-width;
@@ -427,7 +428,7 @@ export const spinner: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_spinners.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_spinners.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_spinners.scss`,
 					code: `
 						@keyframes spinner-border {
 						to { transform: rotate(360deg) #{"/* rtl:ignore */"}; }
@@ -437,7 +438,7 @@ export const spinner: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_spinners.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_spinners.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_spinners.scss`,
 					code: `
 						@keyframes spinner-grow {
 							0% {

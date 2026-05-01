@@ -1,6 +1,7 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const close_button: IContent = {
 	title: "Close button",
@@ -71,7 +72,7 @@ export const close_button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_close.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_close.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_close.scss`,
 					code: `
 						--#{$prefix}btn-close-color: #{$btn-close-color};
 						--#{$prefix}btn-close-bg: #{ escape-svg($btn-close-bg) };
@@ -93,7 +94,7 @@ export const close_button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$btn-close-width:            1em;
 						$btn-close-height:           $btn-close-width;

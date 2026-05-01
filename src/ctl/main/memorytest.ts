@@ -2,8 +2,9 @@ import { b, core, h } from "@printf83/bsts";
 import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
-import { DEFAULTDOCUMENT, menu, menuItem } from "./_db.js";
+import { menu, menuItem } from "./_db.js";
 import { setupContentContainerItem } from "./content.js";
+import { MAIN_PAGE } from "./env.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
 const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number.MAX_VALUE };
@@ -299,7 +300,7 @@ const getDocId = (random: boolean, max: number, count: number, mDB: string[]): s
 		if (random) {
 			return getDocId(random, max, count, mDB);
 		} else {
-			return DEFAULTDOCUMENT;
+			return MAIN_PAGE;
 		}
 	}
 };

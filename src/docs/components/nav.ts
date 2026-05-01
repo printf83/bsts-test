@@ -1,6 +1,7 @@
 import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const nav: IContent = {
 	title: "Navs and tabs",
@@ -479,7 +480,7 @@ export const nav: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_nav.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_nav.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_nav.scss`,
 					code: `
 						--#{$prefix}nav-link-padding-x: #{$nav-link-padding-x};
 						--#{$prefix}nav-link-padding-y: #{$nav-link-padding-y};
@@ -494,7 +495,7 @@ export const nav: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_nav.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_nav.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_nav.scss`,
 					code: `
 						--#{$prefix}nav-tabs-border-width: #{$nav-tabs-border-width};
 						--#{$prefix}nav-tabs-border-color: #{$nav-tabs-border-color};
@@ -509,7 +510,7 @@ export const nav: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_nav.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_nav.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_nav.scss`,
 					code: `
 						--#{$prefix}nav-pills-border-radius: #{$nav-pills-border-radius};
 						--#{$prefix}nav-pills-link-active-color: #{$nav-pills-link-active-color};
@@ -520,7 +521,7 @@ export const nav: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_nav.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_nav.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_nav.scss`,
 					code: `
 						--#{$prefix}nav-underline-gap: #{$nav-underline-gap};
 						--#{$prefix}nav-underline-border-width: #{$nav-underline-border-width};
@@ -537,7 +538,7 @@ export const nav: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$nav-link-padding-y:                .5rem;
 						$nav-link-padding-x:                1rem;
@@ -1159,7 +1160,7 @@ export const nav: IContent = {
 				new e.title("Methods"),
 				new e.alert(
 					{ color: "danger", callout: true },
-					"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
+					`{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}.`
 				),
 				new e.text("Activates your content as a tab element."),
 				new e.text("You can create a tab instance with the constructor, for example:"),

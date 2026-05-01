@@ -1,6 +1,7 @@
 import { b, core } from "@printf83/bsts";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import * as e from "../../ctl/example/_index.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const accordion: IContent = {
 	title: "Accordion",
@@ -192,7 +193,7 @@ export const accordion: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_accordion.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_accordion.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_accordion.scss`,
 					code: `
 						--#{$prefix}accordion-color: #{$accordion-color};
 						--#{$prefix}accordion-bg: #{$accordion-bg};
@@ -228,7 +229,7 @@ export const accordion: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$accordion-padding-y:                     1rem;
 						$accordion-padding-x:                     1.25rem;

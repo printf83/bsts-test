@@ -1,6 +1,7 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const focus_ring: IContent = {
 	title: "Focus ring",
@@ -86,7 +87,7 @@ export const focus_ring: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_root.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_root.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_root.scss`,
 					code: `
 						--#{$prefix}focus-ring-width: #{$focus-ring-width};
 						--#{$prefix}focus-ring-opacity: #{$focus-ring-opacity};
@@ -131,7 +132,7 @@ export const focus_ring: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$focus-ring-width:      .25rem;
 						$focus-ring-opacity:    .25;
@@ -147,7 +148,7 @@ export const focus_ring: IContent = {
 			new e.section([
 				new e.subtitle("Utilities"),
 				new e.text(
-					"In addition to {{.focus-ring}}, Bootstrap have several {{.focus-ring-*}} utilities to modify the helper class defaults. Modify the color with any of Bootstrap {{https://getbootstrap.com/docs/5.3/customize/color/#theme-colors::theme colors}}. Note that the light and dark variants may not be visible on all background colors given current color mode support."
+					`In addition to {{.focus-ring}}, Bootstrap have several {{.focus-ring-*}} utilities to modify the helper class defaults. Modify the color with any of Bootstrap {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/customize/color/#theme-colors::theme colors}}. Note that the light and dark variants may not be visible on all background colors given current color mode support.`
 				),
 
 				new e.code({
@@ -188,9 +189,9 @@ export const focus_ring: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
-						"focus-ring": (
+						focus-ring": (
 						css-var: true,
 						css-variable-name: focus-ring-color,
 						class: focus-ring,

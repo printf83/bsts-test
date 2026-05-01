@@ -1,6 +1,7 @@
 import { h, b } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const pagination: IContent = {
 	title: "Pagination",
@@ -188,7 +189,7 @@ export const pagination: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_pagination.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_pagination.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_pagination.scss`,
 					code: `
 						--#{$prefix}pagination-padding-x: #{$pagination-padding-x};
 						--#{$prefix}pagination-padding-y: #{$pagination-padding-y};
@@ -222,7 +223,7 @@ export const pagination: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$pagination-padding-y:              .375rem;
 						$pagination-padding-x:              .75rem;
@@ -274,7 +275,7 @@ export const pagination: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_pagination.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_pagination.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_pagination.scss`,
 					code: `
 						@mixin pagination-size($padding-y, $padding-x, $font-size, $border-radius) {
 						--#{$prefix}pagination-padding-x: #{$padding-x};

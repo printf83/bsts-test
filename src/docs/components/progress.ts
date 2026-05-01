@@ -1,6 +1,7 @@
 import { b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const progress: IContent = {
 	title: "Progress",
@@ -13,7 +14,7 @@ export const progress: IContent = {
 			new e.section([
 				new e.alert(
 					{ color: "info", callout: true },
-					"{{b::New markup in v5.3.0 —}} Bootstrap’ve deprecated the previous HTML structure for progress bars and replaced it with a more accessible one. The previous structure will continue to work until v6. {{https://getbootstrap.com/docs/5.3/migration/#improved-markup-for-progress-bars::See what’s changed in Bootstrap migration guide}}."
+					`{{b::New markup in v5.3.0 —}} Bootstrap’ve deprecated the previous HTML structure for progress bars and replaced it with a more accessible one. The previous structure will continue to work until v6. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/migration/#improved-markup-for-progress-bars::See what’s changed in Bootstrap migration guide}}.`
 				),
 
 				new e.title("How it works"),
@@ -198,7 +199,7 @@ export const progress: IContent = {
 					},
 				}),
 				new e.text(
-					"Note that by default, the content inside the {{b.progress.bar}} is controlled with {{overflow: hidden}}, so it doesn’t bleed out of the bar. If your progress bar is shorter than its label, the content will be capped and may become unreadable. To change this behavior, you can use {{overflow:'visible'}} from the {{nav:docs/utilities/overflow::overflow utilities}}, but make sure to also define an explicit {{nav:docs/utilities/colors#colors::text color}} so the text remains readable. Be aware though that currently this approach does not take into account {{https://getbootstrap.com/docs/5.3/customize/color-modes/::color modes}}."
+					`Note that by default, the content inside the {{b.progress.bar}} is controlled with {{overflow: hidden}}, so it doesn’t bleed out of the bar. If your progress bar is shorter than its label, the content will be capped and may become unreadable. To change this behavior, you can use {{overflow:'visible'}} from the {{nav:docs/utilities/overflow::overflow utilities}}, but make sure to also define an explicit {{nav:docs/utilities/colors#colors::text color}} so the text remains readable. Be aware though that currently this approach does not take into account {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/customize/color-modes/::color modes}}.`
 				),
 				new e.code({
 					db: getContentCode(db),
@@ -537,7 +538,7 @@ export const progress: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_progress.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_progress.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_progress.scss`,
 					code: `
 						--#{$prefix}progress-height: #{$progress-height};
 						@include rfs($progress-font-size, --#{$prefix}progress-font-size);
@@ -561,7 +562,7 @@ export const progress: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$progress-height:                   1rem;
 						$progress-font-size:                $font-size-base * .75;
@@ -586,7 +587,7 @@ export const progress: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_progress.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_progress.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_progress.scss`,
 					code: `
 						@if $enable-transitions {
 						@keyframes progress-bar-stripes {

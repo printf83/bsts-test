@@ -1,6 +1,6 @@
 import { h, b, core, s } from "@printf83/bsts";
 import { IContent, setupContentDocument } from "../../ctl/main/content.js";
-import { BOOTSWATCHDB, CURRENTVERSION, THEMEDB } from "../../ctl/main/_db.js";
+import { BOOTSWATCHDB, THEMEDB } from "../../ctl/main/_db.js";
 import { setupFooter } from "../../ctl/main/footer.js";
 import { setupOutsideLink } from "../../ctl/main/outsidelink.js";
 import { genBootswatch, getSavedBootswatch } from "../../ctl/main/bootswatch.js";
@@ -12,6 +12,13 @@ import { IMainContainer } from "../../ctl/main/container.js";
 import { failCopyCode, successCopyCode } from "../../ctl/example/code.js";
 import { highlightMenu } from "../../ctl/main/menu.js";
 import { cookie } from "../../ctl/main/cookie.js";
+import {
+	AUTHOR,
+	BOOTSTRAP_MAIN_VERSION,
+	BOOTSTRAP_VERSION,
+	LIB_REPO,
+	LIB_VERSION,
+} from "../../ctl/main/env.js";
 
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();
@@ -430,7 +437,7 @@ export const home: IContent = {
 				),
 				new h.p(
 					{ lead: true, marginBottom: 4, fontWeight: "normal" },
-					"{{b::Note:}} This is not a real Bootstrap website. This is only a Bootstrap TS test website to test {{https://github.com/printf83/bsts::@printf83/bsts}} library and make sure it's fully support Bootstrap."
+					`{{b::Note:}} This is not a real Bootstrap website. This is only a Bootstrap TS test website to test {{https://github.com/${AUTHOR}/${LIB_REPO}::@${AUTHOR}/${LIB_REPO}}} library and make sure it's fully support Bootstrap.`
 				),
 				new h.div(
 					{
@@ -456,7 +463,7 @@ export const home: IContent = {
 							},
 							[
 								"$",
-								new h.span(`npm i @printf83/bsts@${CURRENTVERSION}`),
+								new h.span(`npm i @${AUTHOR}/${LIB_REPO}@${LIB_VERSION}`),
 								new h.a(
 									{
 										textDecoration: "none",
@@ -491,14 +498,19 @@ export const home: IContent = {
 				),
 				new h.div({ marginBottom: 3 }, [
 					"Currently ",
-					new h.b(`v${CURRENTVERSION}`),
+					new h.b(`v${LIB_VERSION}`),
 					" · ",
 					new h.a(
-						{ href: "https://github.com/printf83/bsts/archive/refs/heads/main.zip" },
+						{
+							href: `https://github.com/${AUTHOR}/${LIB_REPO}/archive/refs/heads/main.zip`,
+						},
 						"Download"
 					),
 					" · ",
-					new h.a({ href: "https://github.com/printf83/bsts/releases" }, "All releases"),
+					new h.a(
+						{ href: `https://github.com/${AUTHOR}/${LIB_REPO}/releases` },
+						"All releases"
+					),
 				]),
 			])
 		);
@@ -544,14 +556,14 @@ export const home: IContent = {
 						new h.ul({ unstyle: true, class: "small" }, [
 							new h.li({ marginBottom: 2 }, [
 								new h.strong({ textColor: "primary" }, "Disclaimer! "),
-								"This is {{s::not a real Bootstrap}} website. This is only a {{s::Bootstrap TS test website}} to test {{https://github.com/printf83/bsts::@printf83/bsts}} library and make sure it's fully support Bootstrap. ",
-								"Bootsrap is designed and built with all the love in the world by the {{https://getbootstrap.com/docs/5.3/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::Bootstrap contributors}}.",
+								`This is {{s::not a real Bootstrap}} website. This is only a {{s::Bootstrap TS test website}} to test {{https://github.com/${AUTHOR}/${LIB_REPO}::@${AUTHOR}/${LIB_REPO}}} library and make sure it's fully support Bootstrap.`,
+								`Bootsrap is designed and built with all the love in the world by the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/about/team/::Bootstrap team}} with the help of {{https://github.com/twbs/bootstrap/graphs/contributors::Bootstrap contributors}}.`,
 							]),
 							new h.li(
 								{ marginBottom: 2 },
 								"Code licensed {{https://github.com/twbs/bootstrap/blob/main/LICENSE::MIT}}, docs {{https://creativecommons.org/licenses/by/3.0/::CC BY 3.0}}."
 							),
-							new h.li({ marginBottom: 2 }, "Currently v5.3.0."),
+							new h.li({ marginBottom: 2 }, `Currently v${BOOTSTRAP_VERSION}.`),
 						]),
 					]),
 					...setupFooter([
@@ -559,9 +571,12 @@ export const home: IContent = {
 							title: "Links",
 							item: [
 								{ href: "https://getbootstrap.com/", label: "Home" },
-								{ href: "https://getbootstrap.com/docs/5.3/", label: "Docs" },
 								{
-									href: "https://getbootstrap.com/docs/5.3/examples/",
+									href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/`,
+									label: "Docs",
+								},
+								{
+									href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/examples/`,
 									label: "Examples",
 								},
 								{ href: "https://icons.getbootstrap.com/", label: "Icons" },
@@ -577,23 +592,23 @@ export const home: IContent = {
 							title: "Guides",
 							item: [
 								{
-									href: "https://getbootstrap.com/docs/5.3/getting-started/",
+									href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/`,
 									label: "Getting started",
 								},
 								{
-									href: "https://getbootstrap.com/docs/5.3/examples/starter-template/",
+									href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/examples/starter-template/`,
 									label: "Starter template",
 								},
 								{
-									href: "https://getbootstrap.com/docs/5.3/getting-started/webpack/",
+									href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/webpack/`,
 									label: "Webpack",
 								},
 								{
-									href: "https://getbootstrap.com/docs/5.3/getting-started/parcel/",
+									href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/parcel/`,
 									label: "Parcel",
 								},
 								{
-									href: "https://getbootstrap.com/docs/5.3/getting-started/vite/",
+									href: `https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/vite/`,
 									label: "Vite",
 								},
 							],
@@ -806,12 +821,12 @@ export const home: IContent = {
 													},
 												},
 												{
-													href: "https://github.com/printf83/bsts",
+													href: `https://github.com/${AUTHOR}/${LIB_REPO}`,
 													icon: { id: "github" },
 													label: "Github",
 												},
 												{
-													href: "https://twitter.com/printf83",
+													href: `https://twitter.com/${AUTHOR}`,
 													icon: { id: "twitter" },
 													label: "Twitter",
 												},

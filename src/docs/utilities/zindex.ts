@@ -1,6 +1,7 @@
 import { core, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const zindex: IContent = {
 	title: "Z-index",
@@ -59,7 +60,7 @@ export const zindex: IContent = {
 					"On some components, Bootstrap use Bootstrap low-level {{z-index}} values to manage repeating elements that overlap one another (like buttons in a button group or items in a list group)."
 				),
 				new e.text(
-					"Learn about Bootstrap {{https://getbootstrap.com/docs/5.3/extend/approach/#z-index-scales::z-index approach}}."
+					`Learn about Bootstrap {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/extend/approach/#z-index-scales::z-index approach}}.`
 				),
 			]),
 
@@ -77,7 +78,7 @@ export const zindex: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$zindex-levels: (
 						n1: -1,
@@ -100,7 +101,7 @@ export const zindex: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_utilities.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_utilities.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_utilities.scss`,
 					code: `
 						"z-index": (
 						property: z-index,

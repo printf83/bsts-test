@@ -46,7 +46,11 @@ export const highlightMenu = (docId?: string) => {
 
 						if (newActiveBCR.top < 70 || newActiveBCR.top > sidebarBCR.height + 70) {
 							setTimeout(
-								(opt) => {
+								(opt: {
+									scrollId: string;
+									sidebar: HTMLElement;
+									offsetElemPosition: number;
+								}) => {
 									if (
 										opt.sidebar.getAttribute("data-scrollid") === opt.scrollId
 									) {

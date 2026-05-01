@@ -7,9 +7,9 @@ import { highlightMenu } from "./ctl/main/menu.js";
 import { setupSearchShortcut } from "./ctl/main/search.js";
 import { setupContentDocument } from "./ctl/main/content.js";
 import { setupOnHistoryChange } from "./ctl/main/history.js";
-import { DEFAULTDOCUMENT } from "./ctl/main/_db.js";
 import { mainContainerFS } from "./ctl/main/mainContainerFS.js";
 import { mainContainer } from "./ctl/main/mainContainer.js";
+import { MAIN_PAGE } from "./ctl/main/env.js";
 
 const loadDefaultDoc = () => {
 	const { search, hash } = window.location;
@@ -19,7 +19,7 @@ const loadDefaultDoc = () => {
 		setupContentDocument(`${docId}${anchorId ? "#" : ""}${anchorId ? anchorId : ""}`);
 		highlightMenu(docId);
 	} else {
-		const docId = cookie.get("current_page") || DEFAULTDOCUMENT;
+		const docId = cookie.get("current_page") || MAIN_PAGE;
 		setupContentDocument(docId);
 		highlightMenu(docId);
 	}
@@ -65,33 +65,32 @@ const setupCopyDataManager = () => {
 				const codeData = Array.from(listOfCodePreview)
 					.map((i) => {
 						const id = `code-${i.id}`;
-								if (core.dataManager.exists(id)) {
-									const dmCode =
-										core.dataManager.get(id) as e.ISourceDB;
-									if (dmCode) {
-										const source = dmCode.source
-											? `source: \`${escapeBackQuote(dmCode.source)}\`,`
-											: "";
-										const manager = dmCode.manager
-											? `manager: \`${escapeBackQuote(dmCode.manager)}\`,`
-											: "";
-										let extention = "";
-										if (dmCode.extention && dmCode.extention.length > 0) {
-											extention = `extention: [\`${dmCode.extention
-												.map((j) => {
-													return escapeBackQuote(j);
-												})
-												.join("`,`")}\`],`;
-										}
-										return `{
+						if (core.dataManager.exists(id)) {
+							const dmCode = core.dataManager.get(id) as e.ISourceDB;
+							if (dmCode) {
+								const source = dmCode.source
+									? `source: \`${escapeBackQuote(dmCode.source)}\`,`
+									: "";
+								const manager = dmCode.manager
+									? `manager: \`${escapeBackQuote(dmCode.manager)}\`,`
+									: "";
+								let extention = "";
+								if (dmCode.extention && dmCode.extention.length > 0) {
+									extention = `extention: [\`${dmCode.extention
+										.map((j) => {
+											return escapeBackQuote(j);
+										})
+										.join("`,`")}\`],`;
+								}
+								return `{
 											${source}
 											${manager}
 											${extention}
 										}
 									`;
-									}
-								}
-								return undefined;
+							}
+						}
+						return undefined;
 					})
 					.filter(Boolean)
 					.join("");

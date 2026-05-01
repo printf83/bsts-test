@@ -1,19 +1,13 @@
 import { b, core, h, I } from "@printf83/bsts";
 import { ICodePen, codeBeautify, codePen, getLibBaseOnSource } from "../example/_fn.js";
-import { BOOTSWATCHDB, CURRENTVERSION, DEFAULTDOCUMENT, THEMEDB, menuFS } from "./_db.js";
+import { BOOTSWATCHDB, THEMEDB, menuFS } from "./_db.js";
 import { setupContentDocument } from "./content.js";
 import { highlightMenu } from "./menu.js";
 import { failCopyCode, successCopyCode } from "../example/code.js";
 import { changeBootswatch, getSavedBootswatch } from "./bootswatch.js";
 import { getSavedTheme, highlghtTheme } from "./theme.js";
+import { AUTHOR, BOOTSTRAP_CDN, BSTS_CDN, CHARTJS_CDN, LIB_REPO, MAIN_PAGE } from "./env.js";
 type Icon = I.b.icon;
-
-const BSTSCDN = `https://cdn.jsdelivr.net/npm/@printf83/bsts@${CURRENTVERSION}/+esm`;
-const BSCDNJS = ["https://cdn.jsdelivr.net/npm/chart.js@4.3/dist/chart.umd.min.js"];
-const BSCDNCSS = [
-	"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11/font/bootstrap-icons.css",
-	"https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css",
-];
 
 function itemCodeCopy(e: Event) {
 	e.stopPropagation();
@@ -141,8 +135,8 @@ export const mainContainerFS = () => {
 														setupContentDocument(docId);
 														highlightMenu(docId);
 													} else {
-														setupContentDocument(DEFAULTDOCUMENT);
-														highlightMenu(DEFAULTDOCUMENT);
+														setupContentDocument(MAIN_PAGE);
+														highlightMenu(MAIN_PAGE);
 													}
 												},
 											},
@@ -365,7 +359,7 @@ const generateCodePenData = (strLib: string, strCode: string) => {
 			"import { " +
 			strLib +
 			' } from "' +
-			BSTSCDN +
+			BSTS_CDN +
 			'";\n' +
 			"const SOURCE = " +
 			strCode +
@@ -376,12 +370,12 @@ const generateCodePenData = (strLib: string, strCode: string) => {
 		title: "Bootstrap TS",
 		description: "Create bootstrap using TS/JS",
 		private: false,
-		tags: ["bsts", "Bootstrap TS", "@printf83/bsts"],
+		tags: [LIB_REPO, "Bootstrap TS", `@${AUTHOR}/${LIB_REPO}`],
 		editors: "001",
 		layout: "top",
 
-		js_external: strCodeResult.indexOf("Chart(") > -1 ? BSCDNJS : undefined,
-		css_external: BSCDNCSS,
+		js_external: strCodeResult.indexOf("Chart(") > -1 ? CHARTJS_CDN : undefined,
+		css_external: BOOTSTRAP_CDN,
 		head: codeBeautify(
 			"html",
 			`<meta charset="utf-8">

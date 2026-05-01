@@ -1,6 +1,7 @@
 import { b, h, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const button: IContent = {
 	title: "Buttons",
@@ -530,7 +531,7 @@ export const button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_buttons.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_buttons.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_buttons.scss`,
 					code: `
 						--#{$prefix}btn-padding-x: #{$btn-padding-x};
 						--#{$prefix}btn-padding-y: #{$btn-padding-y};
@@ -595,7 +596,7 @@ export const button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$btn-padding-y:               $input-btn-padding-y;
 						$btn-padding-x:               $input-btn-padding-x;
@@ -655,7 +656,7 @@ export const button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_buttons.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_buttons.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_buttons.scss`,
 					code: `
 						@mixin button-variant(
 						$background,
@@ -691,7 +692,7 @@ export const button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_buttons.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_buttons.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_buttons.scss`,
 					code: `
 						@mixin button-outline-variant(
 						$color,
@@ -720,7 +721,7 @@ export const button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/mixins/_buttons.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/mixins/_buttons.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/mixins/_buttons.scss`,
 					code: `
 						@mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
 						--#{$prefix}btn-padding-y: #{$padding-y};
@@ -742,7 +743,7 @@ export const button: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_buttons.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_buttons.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_buttons.scss`,
 					code: `
 						@each $color, $value in $theme-colors {
 							.btn-#{$color} {

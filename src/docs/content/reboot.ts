@@ -1,6 +1,7 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const reboot: IContent = {
 	title: "Reboot",
@@ -33,7 +34,7 @@ export const reboot: IContent = {
 			new e.section([
 				new e.title("CSS variables"),
 				new e.text(
-					"With v5.1.1, Bootstrap standardized Bootstrap required {{@imports}} across all Bootstrap CSS bundles (including {{bootstrap.css}}, {{bootstrap-reboot.css}}, and {{bootstrap-grid.css}}) to include {{_root.scss}}. This adds {{:root}} level CSS variables to all bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see more {{https://getbootstrap.com/docs/5.3/customize/css-variables/::CSS variables}} added over time, in order to provide more real-time customization without the need to always recompile Sass. Bootstrap approach is to take Bootstrap source Sass variables and transform them into CSS variables. That way, even if you don’t use CSS variables, you still have all the power of Sass. {{b::This is still in-progress and will take time to fully implement}}."
+					`With v5.1.1, Bootstrap standardized Bootstrap required {{@imports}} across all Bootstrap CSS bundles (including {{bootstrap.css}}, {{bootstrap-reboot.css}}, and {{bootstrap-grid.css}}) to include {{_root.scss}}. This adds {{:root}} level CSS variables to all bundles, regardless of how many of them are used in that bundle. Ultimately Bootstrap 5 will continue to see more {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/customize/css-variables/::CSS variables}} added over time, in order to provide more real-time customization without the need to always recompile Sass. Bootstrap approach is to take Bootstrap source Sass variables and transform them into CSS variables. That way, even if you don’t use CSS variables, you still have all the power of Sass. {{b::This is still in-progress and will take time to fully implement}}.`
 				),
 				new e.text(
 					"For example, consider these {{:root}} CSS variables for common {{<body>}} styles:"
@@ -43,7 +44,7 @@ export const reboot: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_root.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_root.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_root.scss`,
 					code: `
 						@if $font-size-root != null {
 						--#{$prefix}root-font-size: #{$font-size-root};
@@ -80,7 +81,7 @@ export const reboot: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_reboot.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_reboot.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_reboot.scss`,
 					code: `
 						body {
 						margin: 0; // 1
@@ -182,12 +183,12 @@ export const reboot: IContent = {
 				new e.table({
 					item: [
 						["Heading", "Example"],
-						["{{<h1></h1>}}", new h.h1( "h1.Bootstrap heading")],
-						["{{<h2></h2>}}", new h.h2( "h2.Bootstrap heading")],
-						["{{<h3></h3>}}", new h.h3( "h3.Bootstrap heading")],
-						["{{<h4></h4>}}", new h.h4( "h4.Bootstrap heading")],
-						["{{<h5></h5>}}", new h.h5( "h5.Bootstrap heading")],
-						["{{<h6></h6>}}", new h.h6( "h6.Bootstrap heading")],
+						["{{<h1></h1>}}", new h.h1("h1.Bootstrap heading")],
+						["{{<h2></h2>}}", new h.h2("h2.Bootstrap heading")],
+						["{{<h3></h3>}}", new h.h3("h3.Bootstrap heading")],
+						["{{<h4></h4>}}", new h.h4("h4.Bootstrap heading")],
+						["{{<h5></h5>}}", new h.h5("h5.Bootstrap heading")],
+						["{{<h6></h6>}}", new h.h6("h6.Bootstrap heading")],
 					],
 				}),
 			]),

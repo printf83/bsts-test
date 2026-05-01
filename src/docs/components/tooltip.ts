@@ -2,6 +2,7 @@ import { h, b, s, core, I } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
 import { Tooltip } from "bootstrap";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION, POPPER_VERSION } from "../../ctl/main/env.js";
 type ITooltip = I.b.tooltip;
 
 export const tooltip: IContent = {
@@ -17,7 +18,7 @@ export const tooltip: IContent = {
 				new e.text("Things to know when using the tooltip plugin:"),
 				new e.ul({
 					item: [
-						"Tooltips rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.",
+						`Tooltips rely on the third party library {{https://popper.js.org/::Popper}} for positioning. You must include {{https://cdn.jsdelivr.net/npm/@popperjs/core@${POPPER_VERSION}/dist/umd/popper.min.js::popper.min.js}} before {{bootstrap.js}}, or use one {{bootstrap.bundle.min.js}} which contains Popper.`,
 						"Tooltips initialize automaticly by {{bsts}} on {{build}}.",
 						"Tooltips with zero-length title are never displayed.",
 						"{{b.tooltip}} automaticly specify {{container: 'body'}} to avoid rendering problems in more complex components (like Bootstrap input groups, button groups, etc).",
@@ -31,11 +32,11 @@ export const tooltip: IContent = {
 				new e.text("Got all that? Great, let’s see how they work with some examples."),
 				new e.alert(
 					{ color: "info", callout: true },
-					"By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::sanitizer section in Bootstrap JavaScript documentation}} for more details."
+					`By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#sanitizer::sanitizer section in Bootstrap JavaScript documentation}} for more details.`
 				),
 				new e.alert(
 					{ color: "info", callout: true },
-					"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
+					`The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}.`
 				),
 			]),
 
@@ -212,7 +213,7 @@ export const tooltip: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_tooltip.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_tooltip.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_tooltip.scss`,
 					code: `
 						--#{$prefix}tooltip-zindex: #{$zindex-tooltip};
 						--#{$prefix}tooltip-max-width: #{$tooltip-max-width};
@@ -238,7 +239,7 @@ export const tooltip: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$tooltip-font-size:                 $font-size-sm;
 						$tooltip-max-width:                 200px;
@@ -354,7 +355,7 @@ export const tooltip: IContent = {
 						[
 							"{{allowList}}",
 							"object",
-							"{{https://getbootstrap.com/docs/5.3/getting-started/javascript/#sanitizer::Default value}}",
+							`{{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#sanitizer::Default value}}`,
 							"Object which contains allowed attributes and tags.",
 						],
 						[
@@ -494,7 +495,7 @@ export const tooltip: IContent = {
 				new e.subtitle("Methods"),
 				new e.alert(
 					{ color: "danger", callout: true },
-					"{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
+					`{{b::All API methods are asynchronous and start a transition}}. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}.`
 				),
 				new e.table({
 					item: [

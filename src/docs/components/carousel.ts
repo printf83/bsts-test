@@ -1,6 +1,7 @@
 import { h, b, core } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_MAIN_VERSION, BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const carousel: IContent = {
 	title: "Carousel",
@@ -22,7 +23,7 @@ export const carousel: IContent = {
 				}),
 				new e.alert(
 					{ color: "info", callout: true },
-					"The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/5.3/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}."
+					`The animation effect of this component is dependent on the {{prefers-reduced-motion}} media query. See the {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/accessibility/#reduced-motion::reduced motion section of Bootstrap accessibility documentation}}.`
 				),
 			]),
 
@@ -376,7 +377,7 @@ export const carousel: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/_variables.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/_variables.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/_variables.scss`,
 					code: `
 						$carousel-control-color:             $white;
 						$carousel-control-width:             15%;
@@ -492,7 +493,7 @@ export const carousel: IContent = {
 				new e.subtitle("Methods"),
 				new e.alert(
 					{ color: "danger", callout: true },
-					"{{b::All API methods are asynchronous and start a transition.}} They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/5.3/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}."
+					`{{b::All API methods are asynchronous and start a transition.}} They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. {{https://getbootstrap.com/docs/${BOOTSTRAP_MAIN_VERSION}/getting-started/javascript/#asynchronous-functions-and-transitions::Learn more in Bootstrap JavaScript docs}}.`
 				),
 				new e.text(
 					"You can create a carousel instance with the carousel constructor, and pass on any additional options. For example, to manually initialize an autoplaying carousel (assuming you’re not using the {{ride:'carousel'}} property in the markup itself) with a specific interval and with touch support disabled, you can use:"

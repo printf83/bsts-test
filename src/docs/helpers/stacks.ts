@@ -1,6 +1,7 @@
 import { b, h } from "@printf83/bsts";
 import * as e from "../../ctl/example/_index.js";
 import { IContent, getContentCode, resetContentIndex } from "../../ctl/main/content.js";
+import { BOOTSTRAP_VERSION } from "../../ctl/main/env.js";
 
 export const stacks: IContent = {
 	title: "Stacks",
@@ -124,7 +125,7 @@ export const stacks: IContent = {
 				new e.codepreview({
 					type: "css",
 					title: "scss/helpers/_stacks.scss",
-					source: "https://github.com/twbs/bootstrap/blob/v5.3.0/scss/helpers/_stacks.scss",
+					source: `https://github.com/twbs/bootstrap/blob/v${BOOTSTRAP_VERSION}/scss/helpers/_stacks.scss`,
 					code: `
 						.hstack {
 						display: flex;
