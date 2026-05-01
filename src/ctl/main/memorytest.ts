@@ -386,9 +386,8 @@ const runMemoryTest = (
 			// check if speed drops more than 20% from the highest recorded speed
 			if (dataSpeed !== undefined && highestDataSpeed !== undefined) {
 				memoryLeak = dataSpeed < highestDataSpeed * 0.8;
-			} else {
-				memoryLeak = "Checking...";
 			}
+
 			if (dataSpeed !== undefined) {
 				highestDataSpeed =
 					highestDataSpeed !== undefined
@@ -515,7 +514,7 @@ const runDownloadResource = (
 					progress: dataProgress,
 					current: dataCurrent,
 					speed: dataSpeed,
-					memoryLeak: "Checking...",
+					memoryLeak: "Please wait",
 					time: dataTime,
 				})
 			) {
