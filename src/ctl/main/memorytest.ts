@@ -333,7 +333,7 @@ const runMemoryTest = (
 
 		getContent(docId, (docData) => {
 			//add to page
-			let contentbody: Element | undefined = undefined;
+			let contentbody: Element | undefined;
 
 			if (docData.fullscreen) {
 				contentbody = document.getElementById("bs-main-fs") as Element;
@@ -359,11 +359,21 @@ const runMemoryTest = (
 				const duplicateID = checkDuplicateID();
 				const duplicateIDCount = duplicateID.length;
 				if (duplicateIDCount > 0) {
+					//need to show html
+					const duplicateIDList = duplicateID.map((id) => {
+						const elements = document.querySelectorAll(`[id="${id}"]`);
+
+						return {
+							id: id,
+							elem: Array.from(elements).map((el) => el.outerHTML),
+						};
+					});
+
 					console.warn(
 						`${pagetitle} have ${duplicateIDCount} duplicate key${
 							duplicateIDCount > 1 ? "s" : ""
 						}`,
-						duplicateID
+						duplicateIDList
 					);
 				}
 			}

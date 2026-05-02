@@ -582,7 +582,7 @@ export const accent_color: IContent = {
 						].map((i) => {
 							const id = core.UUID();
 							return new h.div([
-								new b.label({ id: id }, core.uppercaseFirst(`${i} color`)),
+								new b.label({ for: id }, core.uppercaseFirst(`${i} color`)),
 								new h.div(
 									{
 										rounded: true,

@@ -26,7 +26,7 @@
 		"build.ts": "tsc",
 		"build": "webpack && pnpm run copy.static",
 		"lint": "eslint src --ext .ts",
-		"serve": "pnpm exec http-server dist",
+		"serve": "pnpm run build:clean && pnpm exec http-server dist -c-1",
 		"start": "pnpm run serve",
 		"build:clean": "pnpm run clean && pnpm run build",
 		"debug.ts": "tsc -w",
