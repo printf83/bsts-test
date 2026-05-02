@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "1.1.5",
+	"version": "1.1.6",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -56,7 +56,7 @@
 		}
 	},
 	"dependencies": {
-		"@printf83/bsts": "^1.1.5",
+		"@printf83/bsts": "^1.1.6",
 		"bootstrap": "^5.3.8",
 		"chart.js": "^4.5.1",
 		"chartjs-plugin-datalabels": "^2.2.0",
