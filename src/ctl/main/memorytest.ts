@@ -621,6 +621,7 @@ const startMemoryTest = (arg: {
 
 		speedDB = [];
 		highestDataSpeed = undefined;
+		lastDataSpeed = undefined;
 		lastTestTime = performance.now();
 		lastEstimateTest = lastTestTime;
 		const startTime = lastTestTime;
