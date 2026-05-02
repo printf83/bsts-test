@@ -107,7 +107,7 @@ const updateProgress = (arg: {
 	progress?: number;
 	current?: string | null;
 	speed?: number;
-	memoryLeak?: boolean | string;
+	memoryLeak?: number | string;
 	time?: number;
 }) => {
 	const progressBar = document.getElementById(`${arg.testId}-bar`);
@@ -146,9 +146,15 @@ const updateProgress = (arg: {
 				if (typeof arg.memoryLeak === "string") {
 					progressMemoryLeakLabel.innerText = arg.memoryLeak;
 				} else {
-					progressMemoryLeakLabel.innerHTML = arg.memoryLeak
-						? '<span class="text-warning ms-2"><i class="bi bi-exclamation-triangle-fill"></i> Possible memory leak</span>'
-						: '<span class="text-success ms-2"><i class="bi bi-check-circle-fill"></i> No memory leak detected</span>';
+					if (arg.memoryLeak === undefined) {
+						progressMemoryLeakLabel.innerText = "Checking";
+					} else if (arg.memoryLeak < 0.2) {
+						progressMemoryLeakLabel.innerText = `Not detected (${arg.memoryLeak.toFixed(2)})`;
+					} else if (arg.memoryLeak < 0.4) {
+						progressMemoryLeakLabel.innerText = `Possible memory leak (${arg.memoryLeak.toFixed(2)})`;
+					} else {
+						progressMemoryLeakLabel.innerText = `Detected (${arg.memoryLeak.toFixed(2)})`;
+					}
 				}
 			}
 		}
@@ -316,10 +322,10 @@ const runMemoryTest = (
 		checkduplicateid?: boolean;
 		counttag?: boolean;
 		max?: number;
-		memoryLeak?: boolean;
+		memoryLeak?: number;
 		waitonesec?: boolean;
 	},
-	callback: (counter: number, docId: string, memoryLeak?: boolean) => void
+	callback: (counter: number, docId: string, memoryLeak?: number) => void
 ) => {
 	arg.random ??= false;
 	arg.waitonesec ??= false;
@@ -407,9 +413,7 @@ const runMemoryTest = (
 
 			if (currentTime > lastEstimateTest + 1000 || lastDataSpeed === undefined) {
 				lastEstimateTest = currentTime;
-				dataSpeed = Math.round(
-					((arg.max! - arg.count) / (currentTime - arg.startTime)) * 1000
-				);
+				dataSpeed = Math.round((dataCount / (currentTime - arg.startTime)) * 1000);
 				lastDataSpeed = dataSpeed;
 				dataTime = ~~(
 					(((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) /
@@ -419,12 +423,15 @@ const runMemoryTest = (
 				dataSpeed = lastDataSpeed;
 			}
 
-			let memoryLeak: boolean | string | undefined;
-			// check if speed drops more than 20% from the highest recorded speed
+			let memoryLeak: number | string | undefined;
+			// compute leak severity as inverse of speed ratio
 			if (dataSpeed !== undefined && highestDataSpeed !== undefined) {
-				memoryLeak = dataSpeed < highestDataSpeed * 0.8;
+				memoryLeak = Math.round((1 - dataSpeed / highestDataSpeed) * 100) / 100;
+				if (memoryLeak < 0) {
+					memoryLeak = 0;
+				}
 			} else {
-				memoryLeak = false;
+				memoryLeak = undefined;
 			}
 
 			if (dataSpeed !== undefined) {
@@ -463,7 +470,7 @@ const runMemoryTest = (
 							checkduplicateid?: boolean;
 							counttag?: boolean;
 							max?: number;
-							memoryLeak?: boolean;
+							memoryLeak?: number;
 							waitonesec?: boolean;
 						}) => {
 							runMemoryTest(
@@ -626,7 +633,7 @@ const startMemoryTest = (arg: {
 				counttag: arg.counttag,
 				waitonesec: arg.waitonesec,
 			},
-			(docCount: number, _docId: string, memoryLeak?: boolean) => {
+			(docCount: number, _docId: string, memoryLeak?: number) => {
 				const endTime = performance.now();
 
 				const loadSpeed = Math.round((docCount / (endTime - startTime)) * 1000);
@@ -718,14 +725,34 @@ const startMemoryTest = (arg: {
 							`Memory leak : `,
 							new h.strong(
 								{
-									textColor: memoryLeak ? "warning" : "success",
+									textColor:
+										memoryLeak === undefined
+											? "success"
+											: memoryLeak < 0.2
+												? "success"
+												: memoryLeak < 0.4
+													? "warning"
+													: "danger",
 								},
-								memoryLeak
+								memoryLeak === undefined || memoryLeak < 0.2
 									? [
-											new b.icon({ id: "exclamation-triangle-fill" }),
-											" Possible memory leak detected",
+											new b.icon({ id: "check-circle-fill" }),
+											" Not detected (0.00%)",
 										]
-									: [new b.icon({ id: "check-circle-fill" }), " Not detected"]
+									: memoryLeak < 0.2
+										? [
+												new b.icon({ id: "check-circle-fill" }),
+												` Not detected (${(memoryLeak * 100).toFixed(2)}%)`,
+											]
+										: memoryLeak < 0.4
+											? [
+													new b.icon({ id: "exclamation-triangle-fill" }),
+													` Possible memory leak (${(memoryLeak * 100).toFixed(2)}%)`,
+												]
+											: [
+													new b.icon({ id: "exclamation-triangle-fill" }),
+													` Memory leak detected (${(memoryLeak * 100).toFixed(2)}%)`,
+												]
 							),
 						]),
 						new h.br(),
