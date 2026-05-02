@@ -425,9 +425,12 @@ const runMemoryTest = (
 				dataSpeed = lastDataSpeed;
 			}
 
+			const elapsedTime = currentTime - arg.startTime;
 			let memoryLeak: number | string | undefined;
-			// compute leak severity as inverse of speed ratio
-			if (dataSpeed !== undefined && highestDataSpeed !== undefined) {
+			if (elapsedTime < 1000) {
+				memoryLeak = undefined;
+				highestDataSpeed = undefined;
+			} else if (dataSpeed !== undefined && highestDataSpeed !== undefined) {
 				memoryLeak = Math.round((1 - dataSpeed / highestDataSpeed) * 100) / 100;
 				if (memoryLeak < 0) {
 					memoryLeak = 0;
@@ -436,7 +439,7 @@ const runMemoryTest = (
 				memoryLeak = undefined;
 			}
 
-			if (dataSpeed !== undefined) {
+			if (dataSpeed !== undefined && elapsedTime >= 2000) {
 				highestDataSpeed =
 					highestDataSpeed !== undefined
 						? Math.max(highestDataSpeed, dataSpeed)
@@ -527,25 +530,30 @@ const runDownloadResource = (
 		index: number;
 		item: IMenuItem[];
 		startTime: number;
+		lastTestTime?: number;
+		lastEstimateTest?: number;
 		chart?: Chart;
 		testId: string;
 	},
 	callback: () => void
 ) => {
 	const count = arg.item.length - 1;
+	const localLastTestTime = arg.lastTestTime ?? arg.startTime;
+	let localLastEstimateTest = arg.lastEstimateTest ?? arg.startTime;
+
 	if (arg.index <= count) {
 		getContent(arg.item[arg.index]!.value, () => {
 			//calculate data
 			const currentTime = performance.now();
-			const dataChart = currentTime - lastTestTime;
+			const dataChart = currentTime - localLastTestTime;
 			const dataCount = arg.index + 1;
 			const dataProgress = (arg.index / count) * 100;
 			const dataCurrent = arg.item[arg.index]!.label ? arg.item[arg.index]!.label : "...";
 
 			let dataSpeed: number | undefined;
 			let dataTime: number | undefined;
-			if (currentTime > lastEstimateTest + 1000) {
-				lastEstimateTest = currentTime;
+			if (currentTime > localLastEstimateTest + 1000) {
+				localLastEstimateTest = currentTime;
 				dataSpeed = Math.round(((arg.index + 1) / (currentTime - arg.startTime)) * 1000);
 				dataTime = ~~(
 					(((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) /
@@ -566,13 +574,14 @@ const runDownloadResource = (
 					time: dataTime,
 				})
 			) {
-				lastTestTime = currentTime;
 				core.requestIdleCallback(() => {
 					runDownloadResource(
 						{
 							index: arg.index + 1,
 							item: arg.item,
 							startTime: arg.startTime,
+							lastTestTime: currentTime,
+							lastEstimateTest: localLastEstimateTest,
 							chart: arg.chart,
 							testId: arg.testId,
 						},
@@ -861,14 +870,15 @@ const startDownloadResource = (testId: string, showchart: boolean, callback: () 
 		? setupChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement)
 		: undefined;
 
-	lastTestTime = performance.now();
-	lastEstimateTest = lastTestTime;
+	const downloadStartTime = performance.now();
 
 	runDownloadResource(
 		{
 			index: 0,
 			item: item,
-			startTime: lastTestTime,
+			startTime: downloadStartTime,
+			lastTestTime: downloadStartTime,
+			lastEstimateTest: downloadStartTime,
 			chart: chart,
 			testId: testId,
 		},
