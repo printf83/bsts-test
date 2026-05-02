@@ -132,7 +132,11 @@ export const overview: IContent = {
 									{ for: "exampleInputPassword1", class: "form-label" },
 									"Password"
 								),
-								new b.input({ type: "password", id: "exampleInputPassword1" }),
+								new b.input({
+									id: "exampleInputPassword1",
+									type: "password",
+									autocomplete: "off",
+								}),
 							]),
 							new h.div({ marginBottom: 3, class: "form-check" }, [
 								new b.input({ type: "checkbox", id: "exampleCheck1" }),
@@ -172,6 +176,7 @@ export const overview: IContent = {
 								container: { marginBottom: 3 },
 								label: "Password",
 								type: "password",
+								autocomplete: "off",
 							}),
 							b.form.check({
 								id: "easy-check-form",
@@ -199,6 +204,7 @@ export const overview: IContent = {
 								container: { marginBottom: 3 },
 								label: "Password",
 								type: "password",
+								autocomplete: "off",
 							}),
 							b.form.check({
 								container: { marginBottom: 3 },

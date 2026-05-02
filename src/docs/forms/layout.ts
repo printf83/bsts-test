@@ -151,6 +151,7 @@ export const layout: IContent = {
 								container: { col: "md-6" },
 								label: "Password",
 								type: "password",
+								autocomplete: "off",
 							}),
 							b.form.input({
 								container: { col: 12 },
@@ -207,6 +208,7 @@ export const layout: IContent = {
 								container: { marginBottom: 3 },
 								label: "Password",
 								type: "password",
+								autocomplete: "off",
 								col1: 3,
 								col2: 9,
 							}),

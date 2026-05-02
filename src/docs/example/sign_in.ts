@@ -9,7 +9,7 @@ export const sign_in: IContent = {
 			{ display: "flex", alignItem: "center", bgColor: "body-tertiary", viewHeight: 100 },
 			new h.div(
 				{ width: 100, margin: "auto", padding: 3, style: { maxWidth: "330px" } },
-				new h.form({}, [
+				new h.form([
 					new b.icon({
 						id: "hexagon-fill",
 						marginBottom: 3,
@@ -29,6 +29,7 @@ export const sign_in: IContent = {
 						type: "password",
 						label: "Password",
 						roundedNone: "top",
+						autocomplete: "off",
 					}),
 					new h.div({ marginY: 3 }, b.form.check({ label: "Remember me" })),
 					new b.button({ width: 100, paddingY: 2, type: "submit" }, "Sign in"),

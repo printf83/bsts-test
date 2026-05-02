@@ -259,6 +259,10 @@ export const setupContentContainerItem = (content?: IContent) => {
 	return [setupIntro(content), setupTOC(content), setupContent(content)];
 };
 
+export const setupContentContainerItemFS = (content?: IContent) => {
+	return [setupContent(content)];
+};
+
 export const focusToAnchor = (anchorId?: string) => {
 	if (anchorId) {
 		const anchorNode = document.querySelectorAll(`a.anchor-link[href="#${anchorId}"]`);
@@ -278,9 +282,12 @@ export const focusToAnchor = (anchorId?: string) => {
 
 const PR = {
 	prettyPrint: (selector?: string) => {
-		selector ??= "pre.example-preview code";
+		selector ??= "pre.example-preview code:not([data-highlighted])";
 		document.querySelectorAll(selector).forEach((el) => {
-			hljs.highlightElement(el as HTMLElement);
+			const element = el as HTMLElement;
+			const text = element.textContent ?? "";
+			element.textContent = text;
+			hljs.highlightElement(element);
 		});
 	},
 };

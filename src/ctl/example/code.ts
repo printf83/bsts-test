@@ -59,9 +59,14 @@ export interface ICode extends core.attr {
 
 const PR = {
 	prettyPrint: () => {
-		document.querySelectorAll("pre.example-preview code").forEach((el) => {
-			hljs.highlightElement(el as HTMLElement);
-		});
+		document
+			.querySelectorAll("pre.example-preview code:not([data-highlighted])")
+			.forEach((el) => {
+				const element = el as HTMLElement;
+				const text = element.textContent ?? "";
+				element.textContent = text;
+				hljs.highlightElement(element);
+			});
 	},
 };
 

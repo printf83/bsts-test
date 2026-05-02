@@ -18,7 +18,7 @@ export const floating_label: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [
+						return new h.form([
 							new b.formfloating({ marginBottom: 3 }, [
 								new b.input({
 									type: "email",
@@ -32,17 +32,18 @@ export const floating_label: IContent = {
 									type: "password",
 									id: "floatingPassword",
 									placeholder: "Password",
+									autocomplete: "off",
 								}),
 								new b.label({ for: "floatingPassword" }, "Password"),
 							]),
-						];
+						]);
 					},
 				}),
 				new e.text("Using {{b.form.floatinglabel.input}} :"),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [
+						return new h.form([
 							b.form.floatinglabel.input({
 								container: { marginBottom: 3 },
 								type: "email",
@@ -52,8 +53,9 @@ export const floating_label: IContent = {
 							b.form.floatinglabel.input({
 								type: "password",
 								label: "Password",
+								autocomplete: "off",
 							}),
-						];
+						]);
 					},
 				}),
 				new e.text(

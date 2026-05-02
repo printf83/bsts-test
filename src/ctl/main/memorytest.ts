@@ -3,7 +3,7 @@ import { IMenuItem, highlightMenu } from "./menu.js";
 import { getContent } from "./data.js";
 import Chart from "chart.js/auto";
 import { menu, menuItem } from "./_db.js";
-import { setupContentContainerItem } from "./content.js";
+import { setupContentContainerItem, setupContentContainerItemFS } from "./content.js";
 import { MAIN_PAGE } from "./env.js";
 
 const MOSTTAG: { title: string; count: number } = { title: "NONE", count: Number.MIN_VALUE };
@@ -328,10 +328,29 @@ const runMemoryTest = (
 	const docId = getDocId(arg.random, arg.max, arg.count, mDB);
 
 	if (arg.count > 0) {
+		const bsMainRoot = document.getElementById("bs-main-root") as Element;
+		const bsMainFSRoot = document.getElementById("bs-main-fs-root") as Element;
+
 		getContent(docId, (docData) => {
 			//add to page
-			let contentbody = document.getElementById("bs-main") as Element;
-			contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
+			let contentbody: Element | undefined = undefined;
+
+			if (docData.fullscreen) {
+				contentbody = document.getElementById("bs-main-fs") as Element;
+
+				bsMainRoot.classList.add("d-none");
+				bsMainFSRoot.classList.remove("d-none");
+
+				contentbody = core.replaceChild(contentbody, setupContentContainerItemFS(docData));
+			} else {
+				contentbody = document.getElementById("bs-main") as Element;
+
+				bsMainFSRoot.classList.add("d-none");
+				bsMainRoot.classList.remove("d-none");
+
+				contentbody = core.replaceChild(contentbody, setupContentContainerItem(docData));
+			}
+
 			highlightMenu(docId);
 			const pagetitle = docData.title;
 

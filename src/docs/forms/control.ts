@@ -107,12 +107,13 @@ export const control: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new h.div([
+						return new h.form([
 							new b.label({ for: "inputPassword5", class: "form-label" }, "Password"),
 							new b.input({
 								type: "password",
 								id: "inputPassword5",
 								describedby: "passwordHelpBlock",
+								autocomplete: "off",
 							}),
 							new h.div(
 								{ id: "passwordHelpBlock", class: "form-text" },
@@ -125,12 +126,15 @@ export const control: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return b.form.input({
-							label: "Password",
-							type: "password",
-							description:
-								"Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
-						});
+						return new h.form(
+							b.form.input({
+								label: "Password",
+								type: "password",
+								autocomplete: "off",
+								description:
+									"Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.",
+							})
+						);
 					},
 				}),
 
@@ -140,7 +144,7 @@ export const control: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new h.div({ row: true, gutter: 3, alignItem: "center" }, [
+						return new h.form({ row: true, gutter: 3, alignItem: "center" }, [
 							new h.div(
 								{ col: "auto" },
 								new b.label(
@@ -153,6 +157,7 @@ export const control: IContent = {
 								new b.input({
 									type: "password",
 									id: "inputPassword6",
+									autocomplete: "off",
 									describedby: "passwordHelpBlock",
 								})
 							),
@@ -170,15 +175,18 @@ export const control: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return b.form.input({
-							container: { gutter: 3, alignItem: "center" },
-							label: "Password",
-							type: "password",
-							description: " Must be 8-20 characters long. ",
-							col1: "auto",
-							col2: "auto",
-							col3: "auto",
-						});
+						return new h.form(
+							b.form.input({
+								container: { gutter: 3, alignItem: "center" },
+								label: "Password",
+								type: "password",
+								autocomplete: "off",
+								description: " Must be 8-20 characters long. ",
+								col1: "auto",
+								col2: "auto",
+								col3: "auto",
+							})
+						);
 					},
 				}),
 			]),
@@ -242,7 +250,7 @@ export const control: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [
+						return new h.form([
 							b.form.input({
 								container: { marginBottom: 3 },
 								value: "email@example.com",
@@ -254,16 +262,17 @@ export const control: IContent = {
 							b.form.input({
 								label: "Password",
 								type: "password",
+								autocomplete: "off",
 								col1: "sm-2",
 								col2: "sm-10",
 							}),
-						];
+						]);
 					},
 				}),
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return new h.div({ row: true }, [
+						return new h.form({ row: true }, [
 							b.form.input({
 								container: { col: "auto" },
 								value: "email@example.com",
@@ -277,6 +286,7 @@ export const control: IContent = {
 								hideLabel: true,
 								type: "password",
 								placeholder: "Password",
+								autocomplete: "off",
 							}),
 							new h.div(
 								{ col: "auto" },

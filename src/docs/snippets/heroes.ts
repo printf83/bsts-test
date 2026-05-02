@@ -178,6 +178,7 @@ const ex = {
 								label: "Password",
 								name: "password",
 								required: true,
+								autocomplete: "off",
 							}),
 							b.form.check({
 								type: "checkbox",

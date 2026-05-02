@@ -801,6 +801,7 @@ export const bootswatch: IContent = {
 									label: "Password",
 									type: "password",
 									placeholder: "Password",
+									autocomplete: "off",
 								}),
 							])
 						);
@@ -1128,7 +1129,7 @@ export const bootswatch: IContent = {
 				new e.code({
 					db: getContentCode(db),
 					output: () => {
-						return [
+						return new h.form([
 							b.form.floatinglabel.input({
 								container: { marginBottom: 3 },
 								label: "Email address",
@@ -1137,8 +1138,9 @@ export const bootswatch: IContent = {
 							b.form.floatinglabel.input({
 								label: "Password",
 								type: "password",
+								autocomplete: "off",
 							}),
-						];
+						]);
 					},
 				}),
 			]),

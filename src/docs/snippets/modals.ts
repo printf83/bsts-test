@@ -559,6 +559,7 @@ export const modals: IContent = {
 											type: "password",
 											label: "Password",
 											required: true,
+											autocomplete: "off",
 										}),
 										new b.button({ weight: "lg", type: "submit" }, "Sign up"),
 										new h.small(
@@ -653,6 +654,7 @@ export const modals: IContent = {
 																		type: "password",
 																		label: "Password",
 																		required: true,
+																		autocomplete: "off",
 																	}),
 																	new b.button(
 																		{
