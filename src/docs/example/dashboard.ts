@@ -20,8 +20,8 @@ export const dashboard: IContent = {
 			new b.navbar.innercontainer({ container: "fluid" }, [
 				new b.navbar.brand({ href: "#" }, "Company name"),
 				new b.navbar.toggle.offcanvas({
-					target: "#offcanvasNavbar",
-					controlfor: "offcanvasNavbar",
+					target: "#bstsOffcanvasNavbar",
+					controlfor: "bstsOffcanvasNavbar",
 					label: "Toggle navigation",
 				}),
 			])
@@ -70,16 +70,16 @@ export const dashboard: IContent = {
 			{ border: "end", col: ["md-3", "lg-2"], padding: 0, bgColor: "body-tertiary" },
 			new b.offcanvas.container(
 				{
-					id: "offcanvasNavbar",
+					id: "bstsOffcanvasNavbar",
 					placement: "end",
 					show: "md",
 					bgColor: "body-tertiary",
-					labelledby: "offcanvasNavbarLabel",
+					labelledby: "bstsOffcanvasNavbarLabel",
 				},
 				[
 					new b.offcanvas.header([
-						new b.offcanvas.title({ id: "offcanvasNavbarLabel" }, "Company name"),
-						new b.offcanvas.btnclose({ target: "#offcanvasNavbar" }),
+						new b.offcanvas.title({ id: "bstsOffcanvasNavbarLabel" }, "Company name"),
+						new b.offcanvas.btnclose({ target: "#bstsOffcanvasNavbar" }),
 					]),
 					new b.offcanvas.body(
 						{

@@ -1875,7 +1875,7 @@ export const bootswatch: IContent = {
 
 			//----------------------
 
-			new e.section([
+			new e.section({ id: "bootswatch_offcanvas" }, [
 				new e.subtitle({ moreInfo: "docs/components/offcanvas" }, "Offcanvas"),
 				new e.code({
 					db: getContentCode(db),

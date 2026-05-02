@@ -1069,20 +1069,20 @@ export const navbar: IContent = {
 							new b.navbar.innercontainer({ container: "fluid" }, [
 								new b.navbar.brand({ href: "#" }, "Offcanvas navbar"),
 								new b.navbar.toggle.offcanvas({
-									target: "#offcanvasNavbar",
-									controlfor: "offcanvasNavbar",
+									target: "#offcanvasNavbarExample",
+									controlfor: "offcanvasNavbarExample",
 									label: "Toggle navigation",
 								}),
 								new b.offcanvas.container(
 									{
-										id: "offcanvasNavbar",
+										id: "offcanvasNavbarExample",
 										placement: "end",
-										labelledby: "offcanvasNavbarLabel",
+										labelledby: "offcanvasNavbarExampleLabel",
 									},
 									[
 										new b.offcanvas.header([
 											new b.offcanvas.title(
-												{ id: "offcanvasNavbarLabel" },
+												{ id: "offcanvasNavbarExampleLabel" },
 												"Offcanvas"
 											),
 											new b.offcanvas.btnclose(),

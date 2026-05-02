@@ -11,6 +11,7 @@ const LESSTAG: { title: string; count: number } = { title: "NONE", count: Number
 let lastTestTime = 0;
 let lastEstimateTest = 0;
 let highestDataSpeed: number | undefined;
+let lastDataSpeed: number | undefined;
 
 const secondToDurationText = (second: number) => {
 	if (second > 60) {
@@ -130,7 +131,7 @@ const updateProgress = (arg: {
 			}
 		}
 
-		if (arg.speed) {
+		if (arg.speed !== undefined) {
 			const progressSpeed = document.getElementById(`${arg.testId}-speed`);
 			if (progressSpeed) {
 				progressSpeed.innerText = arg.speed.toString();
@@ -396,26 +397,37 @@ const runMemoryTest = (
 			//calculate data
 			const currentTime = performance.now();
 			const dataChart = currentTime - lastTestTime;
-			const dataCount = arg.max! - arg.count;
+			const dataCount = arg.max! - arg.count + 1;
 			const dataProgress = (dataCount / arg.max!) * 100;
 			const dataCurrent = tagCount
 				? `${pagetitle ? pagetitle : "..."} (${tagCount} tag)`
 				: pagetitle;
 			let dataSpeed: number | undefined;
 			let dataTime: number | undefined;
-			if (currentTime > lastEstimateTest + 1000) {
+
+			if (currentTime > lastEstimateTest + 1000 || lastDataSpeed === undefined) {
 				lastEstimateTest = currentTime;
-				dataSpeed = ~~(((arg.max! - arg.count) / (currentTime - arg.startTime)) * 1000);
+				dataSpeed = Math.round(
+					((arg.max! - arg.count) / (currentTime - arg.startTime)) * 1000
+				);
+				lastDataSpeed = dataSpeed;
 				dataTime = ~~(
 					(((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) /
 					1000
 				);
+			} else {
+				dataSpeed = lastDataSpeed;
+				if (dataSpeed !== undefined) {
+					dataTime = ~~((arg.max! - arg.count) / dataSpeed);
+				}
 			}
 
 			let memoryLeak: boolean | string | undefined;
 			// check if speed drops more than 20% from the highest recorded speed
 			if (dataSpeed !== undefined && highestDataSpeed !== undefined) {
 				memoryLeak = dataSpeed < highestDataSpeed * 0.8;
+			} else {
+				memoryLeak = false;
 			}
 
 			if (dataSpeed !== undefined) {
@@ -528,7 +540,7 @@ const runDownloadResource = (
 			let dataTime: number | undefined;
 			if (currentTime > lastEstimateTest + 1000) {
 				lastEstimateTest = currentTime;
-				dataSpeed = ~~(((arg.index + 1) / (currentTime - arg.startTime)) * 1000);
+				dataSpeed = Math.round(((arg.index + 1) / (currentTime - arg.startTime)) * 1000);
 				dataTime = ~~(
 					(((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) /
 					1000
@@ -620,7 +632,7 @@ const startMemoryTest = (arg: {
 			(docCount: number, _docId: string, memoryLeak?: boolean) => {
 				const endTime = performance.now();
 
-				const loadSpeed = ~~((docCount / (endTime - startTime)) * 1000);
+				const loadSpeed = Math.round((docCount / (endTime - startTime)) * 1000);
 				const durationSecond = ~~((endTime - startTime) / 1000);
 
 				chart?.destroy();
@@ -707,7 +719,17 @@ const startMemoryTest = (arg: {
 						new h.br(),
 						new h.small([
 							`Memory leak : `,
-							new h.strong(memoryLeak ? "Possible" : "Not detected"),
+							new h.strong(
+								{
+									textColor: memoryLeak ? "warning" : "success",
+								},
+								memoryLeak
+									? [
+											new b.icon({ id: "exclamation-triangle-fill" }),
+											" Possible memory leak detected",
+										]
+									: [new b.icon({ id: "check-circle-fill" }), " Not detected"]
+							),
 						]),
 						new h.br(),
 						new h.small([
