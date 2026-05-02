@@ -52,11 +52,11 @@ export const offcanvas: IContent = {
 						return new b.offcanvas.container(
 							{
 								debug: true,
-								labelledby: "offcanvasLabel",
+								labelledby: "offcanvasExample1Label",
 							},
 							[
 								new b.offcanvas.header([
-									new b.offcanvas.title({ id: "offcanvasLabel" }, "Offcanvas"),
+									new b.offcanvas.title({ id: "offcanvasExample1Label" }, "Offcanvas"),
 									new b.offcanvas.btnclose(),
 								]),
 								new b.offcanvas.body(
@@ -87,18 +87,18 @@ export const offcanvas: IContent = {
 						return [
 							new b.offcanvas.button(
 								{
-									href: "#offcanvasExample",
-									controlfor: "offcanvasExample",
+									href: "#offcanvasExample2",
+									controlfor: "offcanvasExample2",
 									marginEnd: 2,
 								},
 								"Link with href"
 							),
 							new b.offcanvas.button(
-								{ target: "#offcanvasExample", controlfor: "offcanvasExample" },
+								{ target: "#offcanvasExample2", controlfor: "offcanvasExample2" },
 								"Button with data-bs-target"
 							),
 							new b.offcanvas.container(
-								{ id: "offcanvasExample", labelledby: "offcanvasExampleLabel" },
+								{ id: "offcanvasExample2", labelledby: "offcanvasExample2Label" },
 								[
 									new b.offcanvas.header([
 										new b.offcanvas.title(

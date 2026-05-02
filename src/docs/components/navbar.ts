@@ -1050,7 +1050,7 @@ export const navbar: IContent = {
 
 			//----------------------
 
-			new e.section([
+			new e.section({ id: "navbarOffcanvas" }, [
 				new e.subtitle("Offcanvas"),
 				new e.text(
 					"Transform your expanding and collapsing navbar into an offcanvas drawer with the {{nav:docs/components/offcanvas::offcanvas component}}. Bootstrap extend both the offcanvas default styles and use Bootstrap {{expand}} property to create a dynamic and flexible navigation sidebar."

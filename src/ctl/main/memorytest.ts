@@ -417,9 +417,6 @@ const runMemoryTest = (
 				);
 			} else {
 				dataSpeed = lastDataSpeed;
-				if (dataSpeed !== undefined) {
-					dataTime = ~~((arg.max! - arg.count) / dataSpeed);
-				}
 			}
 
 			let memoryLeak: boolean | string | undefined;
@@ -479,7 +476,7 @@ const runMemoryTest = (
 									checkduplicateid: arg.checkduplicateid,
 									counttag: arg.counttag,
 									max: arg.max,
-									memoryLeak: arg.memoryLeak,
+									memoryLeak: memoryLeak,
 									waitonesec: arg.waitonesec,
 								},
 								callback
@@ -500,7 +497,7 @@ const runMemoryTest = (
 								checkduplicateid: arg.checkduplicateid,
 								counttag: arg.counttag,
 								max: arg.max,
-								memoryLeak: arg.memoryLeak,
+								memoryLeak: memoryLeak,
 								waitonesec: arg.waitonesec,
 							},
 							callback
@@ -508,7 +505,7 @@ const runMemoryTest = (
 					}, 300);
 				}
 			} else {
-				callback(arg.max! - arg.count, docId, arg.memoryLeak);
+				callback(arg.max! - arg.count, docId, memoryLeak);
 			}
 		});
 	} else {
