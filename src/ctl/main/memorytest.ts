@@ -148,12 +148,14 @@ const updateProgress = (arg: {
 				} else {
 					if (arg.memoryLeak === undefined) {
 						progressMemoryLeakLabel.innerText = "Checking";
+					} else if (arg.memoryLeak === 0) {
+						progressMemoryLeakLabel.innerText = `Not detected (0%)`;
 					} else if (arg.memoryLeak < 0.2) {
-						progressMemoryLeakLabel.innerText = `Not detected (${arg.memoryLeak.toFixed(2)})`;
+						progressMemoryLeakLabel.innerText = `Too low (${(arg.memoryLeak * 100).toFixed(0)}%)`;
 					} else if (arg.memoryLeak < 0.4) {
-						progressMemoryLeakLabel.innerText = `Possible memory leak (${arg.memoryLeak.toFixed(2)})`;
+						progressMemoryLeakLabel.innerText = `Possible (${(arg.memoryLeak * 100).toFixed(0)}%)`;
 					} else {
-						progressMemoryLeakLabel.innerText = `Detected (${arg.memoryLeak.toFixed(2)})`;
+						progressMemoryLeakLabel.innerText = `Detected (${(arg.memoryLeak * 100).toFixed(0)}%)`;
 					}
 				}
 			}
@@ -737,21 +739,21 @@ const startMemoryTest = (arg: {
 								memoryLeak === undefined || memoryLeak < 0.2
 									? [
 											new b.icon({ id: "check-circle-fill" }),
-											" Not detected (0.00%)",
+											" Not detected (0%)",
 										]
 									: memoryLeak < 0.2
 										? [
 												new b.icon({ id: "check-circle-fill" }),
-												` Not detected (${(memoryLeak * 100).toFixed(2)}%)`,
+												` Too low (${(memoryLeak * 100).toFixed(0)}%)`,
 											]
 										: memoryLeak < 0.4
 											? [
 													new b.icon({ id: "exclamation-triangle-fill" }),
-													` Possible memory leak (${(memoryLeak * 100).toFixed(2)}%)`,
+													` Possible (${(memoryLeak * 100).toFixed(0)}%)`,
 												]
 											: [
 													new b.icon({ id: "exclamation-triangle-fill" }),
-													` Memory leak detected (${(memoryLeak * 100).toFixed(2)}%)`,
+													` Detected (${(memoryLeak * 100).toFixed(0)}%)`,
 												]
 							),
 						]),
