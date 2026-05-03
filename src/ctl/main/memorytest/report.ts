@@ -168,6 +168,7 @@ export const report = (arg: {
 		new h.div({ display: "grid", gap: 3, gridTemplateColumns: "1fr 1fr", marginTop: 3 }, [
 			new b.button(
 				{
+					id: `${arg.testId}-retry`,
 					color: "secondary",
 					outline: true,
 					weight: "lg",
@@ -190,6 +191,7 @@ export const report = (arg: {
 			),
 			new b.button(
 				{
+					id: `${arg.testId}-close`,
 					weight: "lg",
 					on: {
 						click: (event) => {

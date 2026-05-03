@@ -2,9 +2,7 @@ import { convertMemoryUsageToText } from "./common.js";
 
 export type PerformanceMemoryInfo = {
 	usedJSHeapSize: number;
-
 	totalJSHeapSize: number;
-
 	jsHeapSizeLimit: number;
 };
 
@@ -20,13 +18,11 @@ const isPerformanceMemory = (value: unknown): value is PerformanceMemoryInfo => 
 
 export const supportsPerformanceMemory = (): boolean => {
 	const perf = performance as Performance & { memory?: unknown };
-
 	return isPerformanceMemory(perf.memory);
 };
 
 export const getPerformanceMemory = (): PerformanceMemoryInfo | undefined => {
 	const perf = performance as Performance & { memory?: unknown };
-
 	return isPerformanceMemory(perf.memory) ? perf.memory : undefined;
 };
 
@@ -55,7 +51,6 @@ export const cancelMemoryCheck = (controller: MemoryCheckController) => {
 
 	if (controller.timeoutId !== undefined) {
 		clearTimeout(controller.timeoutId);
-
 		controller.timeoutId = undefined;
 	}
 };
@@ -64,13 +59,9 @@ export const isCanceled = (controller: MemoryCheckController) => controller.canc
 
 const runMemoryCheckLoop = (
 	labelId: string,
-
 	controller: MemoryCheckController,
-
 	tick: (label: Element) => void,
-
 	delay: number,
-
 	retry = 0
 ) => {
 	if (isCanceled(controller)) {
@@ -95,9 +86,7 @@ const runMemoryCheckLoop = (
 const runMemoryCheck = (testId: string, controller: MemoryCheckController) => {
 	runMemoryCheckLoop(
 		`${testId}-memory-usage-label`,
-
 		controller,
-
 		(label) => {
 			// we run memory test only if the element still exists, otherwise it means the test has been stopped
 
@@ -120,18 +109,33 @@ const runMemoryCheck = (testId: string, controller: MemoryCheckController) => {
 	);
 };
 
+const updateBtnPrimary = (testId: string, isHigh: boolean) => {
+	const btnRetry = document.getElementById(`${testId}-retry`);
+	const btnClose = document.getElementById(`${testId}-close`);
+
+	if (btnRetry && btnClose) {
+		if (isHigh) {
+			btnRetry.classList.remove("btn-outline-secondary");
+			btnRetry.classList.add("btn-primary");
+			btnClose.classList.remove("btn-primary");
+			btnClose.classList.add("btn-outline-secondary");
+		} else {
+			btnRetry.classList.remove("btn-primary");
+			btnRetry.classList.add("btn-outline-secondary");
+			btnClose.classList.remove("btn-outline-secondary");
+			btnClose.classList.add("btn-primary");
+		}
+	}
+};
+
 const runMemoryCheckResult = (
 	testId: string,
-
 	beforeTest: number,
-
 	controller: MemoryCheckController
 ) => {
 	runMemoryCheckLoop(
 		`${testId}-memory-result-label`,
-
 		controller,
-
 		(label) => {
 			// we run memory test only if the element still exists, otherwise it means the test has been stopped
 
@@ -154,18 +158,24 @@ const runMemoryCheckResult = (
 
 					if (memoryLeak > HIGH_LEAK || percent >= HIGH_PERCENT) {
 						label.innerHTML = `<span class="text-danger"><i class="bi bi-exclamation-triangle-fill"></i> High (${percent.toFixed(0)}%, ${leakText})</span>`;
+						updateBtnPrimary(testId, true);
 					} else if (memoryLeak > LOW_LEAK || percent >= LOW_PERCENT) {
 						label.innerHTML = `<span class="text-warning"><i class="bi bi-exclamation-triangle-fill"></i> Low (${percent.toFixed(0)}%, ${leakText})</span>`;
+						updateBtnPrimary(testId, false);
 					} else if (memoryLeak > VERY_LOW_LEAK || percent >= VERY_LOW_PERCENT) {
 						label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> Very low (${percent.toFixed(0)}%, ${leakText})</span>`;
+						updateBtnPrimary(testId, false);
 					} else {
 						label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> No memory leak detected</span>`;
+						updateBtnPrimary(testId, false);
 					}
 				} else {
 					label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> No memory leak detected</span>`;
+					updateBtnPrimary(testId, false);
 				}
 			} else {
-				label.textContent = "Checking";
+				label.innerHTML = `<span class="text-secondary"><i class="bi bi-hourglass-split"></i> Checking</span>`;
+				updateBtnPrimary(testId, false);
 			}
 		},
 
@@ -181,9 +191,7 @@ export const initMemoryCheck = (testId: string, controller: MemoryCheckControlle
 
 export const initMemoryCheckReport = (
 	testId: string,
-
 	beforeTest: number,
-
 	controller: MemoryCheckController
 ) => {
 	if (supportsPerformanceMemory()) {
