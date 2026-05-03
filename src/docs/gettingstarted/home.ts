@@ -7,7 +7,7 @@ import { genBootswatch, getSavedBootswatch } from "../../ctl/main/bootswatch.js"
 import { setupInsideLink } from "../../ctl/main/insidelink.js";
 import { showSearchDialog } from "../../ctl/main/search.js";
 import { getSavedTheme, setupTheme } from "../../ctl/main/theme.js";
-import { showMemoryTestDialog } from "../../ctl/main/memorytest.js";
+import { showMemoryTestDialog } from "../../ctl/main/memorytest/_index.js";
 import { IMainContainer } from "../../ctl/main/container.js";
 import { failCopyCode, successCopyCode } from "../../ctl/example/code.js";
 import { highlightMenu } from "../../ctl/main/menu.js";

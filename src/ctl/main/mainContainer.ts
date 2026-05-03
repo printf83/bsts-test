@@ -2,7 +2,7 @@ import { h, b } from "@printf83/bsts";
 import { menuWithBookmark } from "./bookmark.js";
 import { getSavedBootswatch } from "./bootswatch.js";
 import { IMainContainer, container } from "./container.js";
-import { showMemoryTestDialog } from "./memorytest.js";
+import { showMemoryTestDialog } from "./memorytest/_index.js";
 import { getSavedTheme } from "./theme.js";
 import { BOOTSWATCHDB, THEMEDB } from "./_db.js";
 import { AUTHOR, BOOTSTRAP_MAIN_VERSION, LIB_REPO } from "./env.js";
