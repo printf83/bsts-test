@@ -11,7 +11,6 @@ export const updateProgress = (arg: {
 	progress?: number;
 	current?: string | null;
 	speed?: number;
-	memoryLeak?: number | string;
 	time?: number;
 }) => {
 	const progressBar = document.getElementById(`${arg.testId}-bar`);
@@ -39,29 +38,6 @@ export const updateProgress = (arg: {
 			const progressSpeed = document.getElementById(`${arg.testId}-speed`);
 			if (progressSpeed) {
 				progressSpeed.innerText = arg.speed.toString();
-			}
-		}
-
-		if (arg.memoryLeak !== undefined) {
-			const progressMemoryLeakLabel = document.getElementById(
-				`${arg.testId}-memory-leak-label`
-			);
-			if (progressMemoryLeakLabel) {
-				if (typeof arg.memoryLeak === "string") {
-					progressMemoryLeakLabel.innerText = arg.memoryLeak;
-				} else {
-					if (arg.memoryLeak === undefined) {
-						progressMemoryLeakLabel.innerText = "Checking";
-					} else if (arg.memoryLeak === 0) {
-						progressMemoryLeakLabel.innerText = `Not detected (0%)`;
-					} else if (arg.memoryLeak < 0.2) {
-						progressMemoryLeakLabel.innerText = `Too low (${(arg.memoryLeak * 100).toFixed(0)}%)`;
-					} else if (arg.memoryLeak < 0.4) {
-						progressMemoryLeakLabel.innerText = `Possible (${(arg.memoryLeak * 100).toFixed(0)}%)`;
-					} else {
-						progressMemoryLeakLabel.innerText = `Detected (${(arg.memoryLeak * 100).toFixed(0)}%)`;
-					}
-				}
 			}
 		}
 
@@ -93,18 +69,31 @@ export const progressUI = (arg: {
 	counterLabel: string;
 	currentLabel: string;
 	speedLabel: string;
-	memoryLeakLabel: string;
+	memoryUsageLabel: string;
 	timeLabel: string;
 	stopLabel: string;
 	total: number;
 	showchart: boolean;
-	showMemoryLeak: boolean;
+	checkMemoryUsage: boolean;
 }) => {
-	return [
-		new h.p({ marginBottom: 2 }, arg.msg),
+	const memoryUsageReport = () => {
+		if (arg.checkMemoryUsage) {
+			return [
+				new h.br(),
+				new h.small([
+					`${arg.memoryUsageLabel} :`,
+					new h.strong({ id: `${arg.testId}-memory-usage-label` }, ""),
+				]),
+			];
+		} else {
+			return [];
+		}
+	};
 
-		arg.showchart
-			? new b.card.container(
+	const chart = () => {
+		if (arg.showchart) {
+			return [
+				new b.card.container(
 					{ marginBottom: 2 },
 					new b.card.body([
 						new h.canvas({
@@ -116,8 +105,17 @@ export const progressUI = (arg: {
 							"Process speed in milisecond (Less is better)"
 						),
 					])
-				)
-			: "",
+				),
+			];
+		} else {
+			return [];
+		}
+	};
+
+	return [
+		new h.p({ marginBottom: 2 }, arg.msg),
+
+		...chart(),
 
 		new h.div({ textColor: "secondary", lineHeight: "sm" }, [
 			new h.small([
@@ -140,14 +138,8 @@ export const progressUI = (arg: {
 				new h.strong({ id: `${arg.testId}-speed` }, "..."),
 				" page/sec",
 			]),
-			arg.showMemoryLeak ? new h.br() : "",
-			arg.showMemoryLeak
-				? new h.small([
-						`${arg.memoryLeakLabel} :`,
-						new h.strong({ id: `${arg.testId}-memory-leak-label` }, ""),
-					])
-				: "",
-			arg.showMemoryLeak ? new h.br() : "",
+			...memoryUsageReport(),
+			new h.br(),
 			new h.small([`${arg.timeLabel} : `, new h.strong({ id: `${arg.testId}-time` }, "...")]),
 			new h.div(
 				{ marginTop: 2 },

@@ -113,12 +113,12 @@ export const initDownload = ({ testId, showchart, callback }: DownloadArg) => {
 				counterLabel: "Counter",
 				currentLabel: "Downloading page",
 				speedLabel: "Estimate download speed",
-				memoryLeakLabel: "Memory leak",
+				memoryUsageLabel: "Memory leak",
 				timeLabel: "Estimate time remaining",
 				stopLabel: "Skip",
 				total: item.length,
 				showchart: showchart,
-				showMemoryLeak: false,
+				checkMemoryUsage: false,
 			})
 		);
 

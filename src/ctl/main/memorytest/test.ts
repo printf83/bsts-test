@@ -5,7 +5,12 @@ import { getContent } from "../data.js";
 import { highlightMenu } from "../menu.js";
 import { docDB, getDocId } from "./db.js";
 import { checkDuplicateID } from "./duplicate.js";
-import { supportsPerformanceMemory, getPerformanceMemory } from "./memory.js";
+import {
+	supportsPerformanceMemory,
+	getPerformanceMemory,
+	initMemoryCheckReport,
+	initMemoryCheck,
+} from "./memory.js";
 import { progressUI as progressUI, updateProgress } from "./progress.js";
 import { addToSpeedDB, getSpeedDB, resetSpeedDB } from "./speed.js";
 import { setupChart } from "./chart.js";
@@ -16,7 +21,6 @@ let lastTestTime = 0;
 let lastEstimateTest = 0;
 let highestDataSpeed: number | undefined;
 let lastDataSpeed: number | undefined;
-let lastMemoryLeak: number | undefined;
 
 type runArg = {
 	startTime: number;
@@ -27,9 +31,6 @@ type runArg = {
 	checkduplicateid?: boolean;
 	counttag?: boolean;
 	max?: number;
-	memoryBaseline?: number;
-	memoryLeak?: number;
-	memorySupported?: boolean;
 	waitonesec?: boolean;
 	callback: (arg: runCallbackArg) => void;
 };
@@ -37,8 +38,6 @@ type runArg = {
 type runCallbackArg = {
 	counter: number;
 	docId: string;
-	memoryLeak: number;
-	memorySupported: boolean;
 	LESSTAG: { title: string; count: number };
 	MOSTTAG: { title: string; count: number };
 	speedDB: { title: string; data: number[] }[];
@@ -57,7 +56,6 @@ type startArg = {
 const resetRunReport = (defaultLastTestTime?: number) => {
 	highestDataSpeed = undefined;
 	lastDataSpeed = undefined;
-	lastMemoryLeak = undefined;
 	lastEstimateTest = 0;
 	lastTestTime = defaultLastTestTime ?? 0;
 
@@ -66,7 +64,6 @@ const resetRunReport = (defaultLastTestTime?: number) => {
 	return {
 		highestDataSpeed,
 		lastDataSpeed,
-		lastMemoryLeak,
 		lastEstimateTest,
 		lastTestTime,
 	};
@@ -128,7 +125,6 @@ export const runTest = (arg: runArg) => {
 				: pagetitle;
 			let dataSpeed: number | undefined;
 			let dataTime: number | undefined;
-			let memoryLeak: number | undefined;
 
 			if (currentTime > lastEstimateTest + 1000 || lastDataSpeed === undefined) {
 				lastEstimateTest = currentTime;
@@ -142,33 +138,8 @@ export const runTest = (arg: runArg) => {
 					(((currentTime - arg.startTime) / dataProgress) * (100 - dataProgress)) /
 					1000
 				);
-
-				// calculate memory leak if supported
-				const performanceMemory = arg.memorySupported ? getPerformanceMemory() : undefined;
-				const currentHeap = performanceMemory?.usedJSHeapSize;
-
-				if (arg.memorySupported && currentHeap !== undefined) {
-					if (arg.memoryBaseline === undefined) {
-						arg.memoryBaseline = currentHeap;
-						memoryLeak = undefined;
-						lastMemoryLeak = memoryLeak;
-					} else {
-						memoryLeak =
-							Math.round(
-								((currentHeap - arg.memoryBaseline) / arg.memoryBaseline) * 100
-							) / 100;
-						if (memoryLeak < 0) {
-							memoryLeak = 0;
-						}
-						lastMemoryLeak = memoryLeak;
-					}
-				} else {
-					memoryLeak = undefined;
-					lastMemoryLeak = memoryLeak;
-				}
 			} else {
 				dataSpeed = lastDataSpeed;
-				memoryLeak = lastMemoryLeak;
 			}
 
 			const elapsedTime = currentTime - arg.startTime;
@@ -193,7 +164,6 @@ export const runTest = (arg: runArg) => {
 				progress: dataProgress,
 				current: dataCurrent,
 				speed: dataSpeed,
-				memoryLeak: memoryLeak,
 				time: dataTime,
 			});
 
@@ -206,7 +176,6 @@ export const runTest = (arg: runArg) => {
 							runTest({
 								...arg,
 								count: arg.count - 1, //decrease count here to make sure the progress will move at least 1 step after wait
-								memoryLeak,
 							});
 						},
 						1000,
@@ -217,7 +186,6 @@ export const runTest = (arg: runArg) => {
 						runTest({
 							...arg,
 							count: arg.count - 1, //decrease count here to make sure the progress will move at least 1 step after wait
-							memoryLeak,
 						});
 					}, 300);
 				}
@@ -227,8 +195,6 @@ export const runTest = (arg: runArg) => {
 				arg.callback({
 					counter: arg.max! - arg.count,
 					docId: docId,
-					memoryLeak: arg.memoryLeak ?? 0,
-					memorySupported: arg.memorySupported ?? false,
 					LESSTAG,
 					MOSTTAG,
 					speedDB,
@@ -241,8 +207,6 @@ export const runTest = (arg: runArg) => {
 		arg.callback({
 			counter: arg.max! - arg.count,
 			docId: docId,
-			memoryLeak: arg.memoryLeak ?? 0,
-			memorySupported: arg.memorySupported ?? false,
 			LESSTAG,
 			MOSTTAG,
 			speedDB,
@@ -277,14 +241,16 @@ export const initTest = ({
 				counterLabel: "Counter",
 				currentLabel: "Load page",
 				speedLabel: "Estimate load speed",
-				memoryLeakLabel: "Memory leak",
+				memoryUsageLabel: "Memory usage",
 				timeLabel: "Estimate time remaining",
 				stopLabel: "Stop",
 				total: count,
 				showchart: showchart,
-				showMemoryLeak: memorySupported,
+				checkMemoryUsage: memorySupported,
 			})
 		);
+
+		initMemoryCheck(testId);
 
 		const chart = showchart
 			? setupChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement)
@@ -299,8 +265,6 @@ export const initTest = ({
 			checkduplicateid,
 			counttag,
 			waitonesec,
-			memorySupported,
-			memoryBaseline,
 			callback: (result) => {
 				const container = document.getElementById("memory-test-dialog");
 				if (container) {
@@ -313,23 +277,25 @@ export const initTest = ({
 					core.replaceChild(
 						container,
 						report({
-							loadSpeed: loadSpeed,
-							durationSecond: durationSecond,
-							testId: testId,
-							counttag: counttag,
-							showchart: showchart,
-							waitonesec: waitonesec,
-							random: random,
-							checkduplicateid: checkduplicateid,
-							count: count,
+							loadSpeed,
+							durationSecond,
+							testId,
+							counttag,
+							showchart,
+							waitonesec,
+							random,
+							checkduplicateid,
+							count,
+							memorySupported,
+							memoryBaseline,
 							docCount: result.counter,
-							memoryLeak: result.memoryLeak,
-							memorySupported: result.memorySupported,
 							LESSTAG: result.LESSTAG,
 							MOSTTAG: result.MOSTTAG,
 							speedDB: result.speedDB,
 						})
 					);
+
+					if (memoryBaseline) initMemoryCheckReport(testId, memoryBaseline);
 				} else {
 					chart?.destroy();
 				}

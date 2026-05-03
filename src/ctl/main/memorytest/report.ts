@@ -1,6 +1,6 @@
 import { Chart } from "chart.js";
 import { core, b, h } from "@printf83/bsts";
-import { secondToDurationText } from "./common.js";
+import { convertMemoryUsageToText, secondToDurationText } from "./common.js";
 import { initTest } from "./test.js";
 import { speedDB } from "./speed.js";
 
@@ -8,8 +8,8 @@ export const report = (arg: {
 	testId: string;
 	docCount: number;
 	loadSpeed: number;
-	memoryLeak: number | undefined;
 	durationSecond: number;
+	memoryBaseline?: number;
 	memorySupported: boolean;
 	counttag: boolean;
 	LESSTAG: { title: string; count: number };
@@ -21,6 +21,36 @@ export const report = (arg: {
 	count: number;
 	speedDB: { title: string; data: number[] }[];
 }): core.elem | core.elem[] => {
+	const memoryLeakReport = () => {
+		if (arg.memorySupported) {
+			return [
+				new h.div([
+					new h.small([
+						`Memory usage before : `,
+						new h.strong(convertMemoryUsageToText(arg.memoryBaseline ?? 0)),
+					]),
+					new h.br(),
+				]),
+				new h.div([
+					new h.small([
+						`Current memory usage : `,
+						new h.strong({ id: `${arg.testId}-memory-usage-label` }, "Checking"),
+					]),
+					new h.br(),
+				]),
+				new h.div([
+					new h.small([
+						`Memory leak : `,
+						new h.strong({ id: `${arg.testId}-memory-result-label` }, "Checking"),
+					]),
+					new h.br(),
+				]),
+			];
+		} else {
+			return [];
+		}
+	};
+
 	return [
 		new h.p("{{s::Memory test complete}}"),
 		new b.card.container(
@@ -92,55 +122,14 @@ export const report = (arg: {
 				),
 			])
 		),
-
 		new h.div({ textColor: "secondary", lineHeight: "sm" }, [
 			new h.small([`Page count : `, new h.strong(arg.docCount)]),
 			new h.br(),
 			new h.small([`Load speed : `, new h.strong(arg.loadSpeed), " page/sec"]),
 			new h.br(),
-			arg.memorySupported
-				? new h.div([
-						new h.small([
-							`Memory leak : `,
-							new h.strong(
-								{
-									textColor:
-										arg.memoryLeak === undefined
-											? "success"
-											: arg.memoryLeak < 0.2
-												? "success"
-												: arg.memoryLeak < 0.4
-													? "warning"
-													: "danger",
-								},
-								arg.memoryLeak === undefined || arg.memoryLeak < 0.2
-									? [
-											new b.icon({ id: "check-circle-fill" }),
-											" Not detected (0%)",
-										]
-									: arg.memoryLeak < 0.2
-										? [
-												new b.icon({ id: "check-circle-fill" }),
-												` Too low (${(arg.memoryLeak * 100).toFixed(0)}%)`,
-											]
-										: arg.memoryLeak < 0.4
-											? [
-													new b.icon({
-														id: "exclamation-triangle-fill",
-													}),
-													` Possible (${(arg.memoryLeak * 100).toFixed(0)}%)`,
-												]
-											: [
-													new b.icon({
-														id: "exclamation-triangle-fill",
-													}),
-													` Detected (${(arg.memoryLeak * 100).toFixed(0)}%)`,
-												]
-							),
-						]),
-						new h.br(),
-					])
-				: "",
+
+			...memoryLeakReport(),
+
 			new h.small([`Duration : `, new h.strong(secondToDurationText(arg.durationSecond))]),
 			arg.counttag ? new h.br() : "",
 			arg.counttag

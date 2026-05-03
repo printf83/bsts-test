@@ -9,3 +9,15 @@ export const secondToDurationText = (second: number) => {
 		return `${second} second${second > 1 ? "s" : ""}`;
 	}
 };
+
+export const convertMemoryUsageToText = (memoryUsage: number) => {
+	if (memoryUsage > 1024 * 1024 * 1024) {
+		return `${(memoryUsage / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+	} else if (memoryUsage > 1024 * 1024) {
+		return `${(memoryUsage / (1024 * 1024)).toFixed(2)} MB`;
+	} else if (memoryUsage > 1024) {
+		return `${(memoryUsage / 1024).toFixed(2)} KB`;
+	} else {
+		return `${memoryUsage} bytes`;
+	}
+};
