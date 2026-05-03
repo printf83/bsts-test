@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "1.1.7-beta",
+	"version": "1.1.7-beta2",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -24,9 +24,10 @@
 		"clean": "node scripts/clean.cjs",
 		"lint": "eslint src --ext .ts",
 		"copy": "node scripts/copy.cjs",
-		"build": "pnpm run lint && pnpm run clean && webpack && pnpm run copy",
+		"build": "pnpm run lint && webpack && pnpm run copy",
+		"rebuild": "pnpm run clean && pnpm run build",
 		"serve": "pnpm exec http-server dist -c-1",
-		"start": "pnpm run build && pnpm run serve",
+		"start": "pnpm run rebuild && pnpm run serve",
 		"debug.ts": "tsc -w",
 		"debug": "webpack -w",
 		"deploy": "gh-pages -d dist"
@@ -56,7 +57,7 @@
 		}
 	},
 	"dependencies": {
-		"@printf83/bsts": "^1.1.7-beta",
+		"@printf83/bsts": "^1.1.7-beta2",
 		"bootstrap": "^5.3.8",
 		"chart.js": "^4.5.1",
 		"chartjs-plugin-datalabels": "^2.2.0",

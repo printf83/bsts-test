@@ -51,7 +51,7 @@ const randomDoughnutData = (id: string, chart?: Chart<"doughnut", number[], unkn
 			chart.data.datasets[0].data = [value, 100 - value];
 			chart.update();
 			setTimeout(
-				(id, chart) => {
+				(id: string, chart?: Chart<"doughnut", number[], unknown>) => {
 					randomDoughnutData(id, chart);
 				},
 				1000,
@@ -81,7 +81,7 @@ const randomLineData = (id: string, chart?: Chart<"line", number[], unknown>) =>
 			chart.data.datasets[0].data.shift();
 			chart.update("none");
 			setTimeout(
-				(id, chart) => {
+				(id: string, chart?: Chart<"line", number[], unknown>) => {
 					randomLineData(id, chart);
 				},
 				1000,
@@ -116,7 +116,7 @@ const randomBarData = (id: string, chart?: Chart<"bar", number[], unknown>) => {
 
 			chart.update("none");
 			setTimeout(
-				(id, chart) => {
+				(id: string, chart?: Chart<"bar", number[], unknown>) => {
 					randomBarData(id, chart);
 				},
 				1000,
@@ -931,7 +931,7 @@ export const chart: IContent = {
 												const id = target.id;
 												//dialog show after 300 ms
 												setTimeout(
-													(target, id) => {
+													(target: HTMLCanvasElement, id: string) => {
 														const res = new Chart(target, {
 															type: "line",
 															data: {

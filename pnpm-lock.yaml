@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@printf83/bsts':
-        specifier: ^1.1.7-beta
-        version: 1.1.7-beta(@popperjs/core@2.11.8)
+        specifier: ^1.1.7-beta2
+        version: 1.1.7-beta2
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
@@ -352,8 +352,8 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
-  '@printf83/bsts@1.1.7-beta':
-    resolution: {integrity: sha512-CG//uLh+mXHiP1CF5LQOxz+qCb70PIpW5s/TxUeIeMaIvxkUNtvUAgF/5Tr+r+pygZ5pHfXdDDt85OMW6HOntA==}
+  '@printf83/bsts@1.1.7-beta2':
+    resolution: {integrity: sha512-TJg16YEjIsFg0yYSFSWSS3Dlu5IvuaI2x0oOn8qNi09Z7cIQbb4rwCHWWP5rzoMxxJLAU6SnVoqayboCs1nOUQ==}
 
   '@total-typescript/ts-reset@0.4.2':
     resolution: {integrity: sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==}
@@ -2438,11 +2438,10 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@printf83/bsts@1.1.7-beta(@popperjs/core@2.11.8)':
+  '@printf83/bsts@1.1.7-beta2':
     dependencies:
+      '@popperjs/core': 2.11.8
       bootstrap: 5.3.8(@popperjs/core@2.11.8)
-    transitivePeerDependencies:
-      - '@popperjs/core'
 
   '@total-typescript/ts-reset@0.4.2': {}
 
