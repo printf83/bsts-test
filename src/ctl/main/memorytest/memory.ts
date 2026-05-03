@@ -153,16 +153,16 @@ const runMemoryCheckResult = (
 					const VERY_LOW_PERCENT = 0.5; // 0.5%
 
 					if (memoryLeak > HIGH_LEAK || percent >= HIGH_PERCENT) {
-						label.textContent = `High (${percent.toFixed(0)}%, ${leakText})`;
+						label.innerHTML = `<span class="text-danger"><i class="bi bi-exclamation-triangle-fill"></i> High (${percent.toFixed(0)}%, ${leakText})</span>`;
 					} else if (memoryLeak > LOW_LEAK || percent >= LOW_PERCENT) {
-						label.textContent = `Low (${percent.toFixed(0)}%, ${leakText})`;
+						label.innerHTML = `<span class="text-warning"><i class="bi bi-exclamation-triangle-fill"></i> Low (${percent.toFixed(0)}%, ${leakText})</span>`;
 					} else if (memoryLeak > VERY_LOW_LEAK || percent >= VERY_LOW_PERCENT) {
-						label.textContent = `Very low (${percent.toFixed(0)}%, ${leakText})`;
+						label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> Very low (${percent.toFixed(0)}%, ${leakText})</span>`;
 					} else {
-						label.textContent = "No memory leak detected";
+						label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> No memory leak detected</span>`;
 					}
 				} else {
-					label.textContent = "No memory leak detected";
+					label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> No memory leak detected</span>`;
 				}
 			} else {
 				label.textContent = "Checking";
