@@ -1,5 +1,5 @@
-import { Chart } from "chart.js";
-import { core } from "@printf83/bsts";
+import { Chart } from "chart.js/auto";
+import { core, b } from "@printf83/bsts";
 import { getContent } from "../data.js";
 import { IMenuItem } from "../menu.js";
 import { progressUI, updateProgress } from "./progress.js";
@@ -7,8 +7,10 @@ import { menuItem } from "../_db.js";
 import { setupChart } from "./chart.js";
 import { resetSpeedDB } from "./speed.js";
 import { resetTagReport } from "./counttag.js";
+import { CancelToken, createCancelToken, isCancelTokenCanceled } from "./memory.js";
 
 let lastTestTime = 0;
+
 let lastEstimateTest = 0;
 let lastDataSpeed: number | undefined;
 
@@ -18,6 +20,7 @@ type runDownloadArg = {
 	startTime: number;
 	chart?: Chart;
 	testId: string;
+	cancelToken?: CancelToken;
 	callback: () => void;
 };
 
@@ -36,6 +39,10 @@ const resetDownloadReport = (defaultLastTestTime?: number) => {
 };
 
 const runDownload = (arg: runDownloadArg) => {
+	if (isCancelTokenCanceled(arg.cancelToken)) {
+		return;
+	}
+
 	const count = arg.item.length - 1;
 
 	if (arg.index <= count) {
@@ -72,6 +79,10 @@ const runDownload = (arg: runDownloadArg) => {
 				time: dataTime,
 			});
 
+			if (isCancelTokenCanceled(arg.cancelToken)) {
+				return;
+			}
+
 			if (progressUpdated) {
 				lastTestTime = currentTime;
 				core.requestIdleCallback(() => {
@@ -81,10 +92,16 @@ const runDownload = (arg: runDownloadArg) => {
 					});
 				}, 300);
 			} else {
+				if (isCancelTokenCanceled(arg.cancelToken)) {
+					return;
+				}
 				arg.callback();
 			}
 		});
 	} else {
+		if (isCancelTokenCanceled(arg.cancelToken)) {
+			return;
+		}
 		arg.callback();
 	}
 };
@@ -105,20 +122,24 @@ export const initDownload = ({ testId, showchart, callback }: DownloadArg) => {
 		resetTagReport();
 		resetDownloadReport(startTime);
 
+		const cancelToken = createCancelToken();
+
+		const stop = () => {
+			cancelToken.canceled = true;
+			chart?.destroy();
+			b.modal.hide(container as Element);
+		};
+
 		core.replaceChild(
 			container,
 			progressUI({
 				msg: "{{s::Download resource in progress}}",
 				testId,
-				counterLabel: "Counter",
-				currentLabel: "Downloading page",
 				speedLabel: "Estimate download speed",
-				memoryUsageLabel: "Memory leak",
-				timeLabel: "Estimate time remaining",
-				stopLabel: "Skip",
 				total: item.length,
 				showchart: showchart,
 				checkMemoryUsage: false,
+				onStop: stop,
 			})
 		);
 
@@ -132,6 +153,7 @@ export const initDownload = ({ testId, showchart, callback }: DownloadArg) => {
 			chart,
 			testId,
 			item,
+			cancelToken,
 			callback: () => {
 				chart?.destroy();
 				callback();

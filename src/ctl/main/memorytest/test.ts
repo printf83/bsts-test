@@ -1,5 +1,5 @@
-import { Chart } from "chart.js";
-import { core } from "@printf83/bsts";
+import { Chart } from "chart.js/auto";
+import { b, core } from "@printf83/bsts";
 import { setupContentContainerItemFS, setupContentContainerItem } from "../content.js";
 import { getContent } from "../data.js";
 import { highlightMenu } from "../menu.js";
@@ -10,6 +10,11 @@ import {
 	getPerformanceMemory,
 	initMemoryCheckReport,
 	initMemoryCheck,
+	createMemoryCheckController,
+	cancelMemoryCheck,
+	createCancelToken,
+	CancelToken,
+	isCancelTokenCanceled,
 } from "./memory.js";
 import { progressUI as progressUI, updateProgress } from "./progress.js";
 import { addToSpeedDB, getSpeedDB, resetSpeedDB } from "./speed.js";
@@ -32,6 +37,7 @@ type runArg = {
 	counttag?: boolean;
 	max?: number;
 	waitonesec?: boolean;
+	cancelToken?: CancelToken;
 	callback: (arg: runCallbackArg) => void;
 };
 
@@ -74,6 +80,10 @@ export const runTest = (arg: runArg) => {
 	arg.waitonesec ??= false;
 	arg.max ??= arg.count;
 
+	if (isCancelTokenCanceled(arg.cancelToken)) {
+		return;
+	}
+
 	const mDB = docDB();
 	const docId = getDocId(arg.random, arg.max, arg.count, mDB);
 
@@ -82,6 +92,9 @@ export const runTest = (arg: runArg) => {
 		const bsMainFSRoot = document.getElementById("bs-main-fs-root") as Element;
 
 		getContent(docId, (docData) => {
+			if (isCancelTokenCanceled(arg.cancelToken)) {
+				return;
+			}
 			//add to page
 			let contentbody: Element | undefined;
 
@@ -167,6 +180,10 @@ export const runTest = (arg: runArg) => {
 				time: dataTime,
 			});
 
+			if (isCancelTokenCanceled(arg.cancelToken)) {
+				return;
+			}
+
 			if (progressUpdated) {
 				lastTestTime = currentTime;
 
@@ -190,6 +207,9 @@ export const runTest = (arg: runArg) => {
 					}, 300);
 				}
 			} else {
+				if (isCancelTokenCanceled(arg.cancelToken)) {
+					return;
+				}
 				const { LESSTAG, MOSTTAG } = getTagReport();
 				const speedDB = getSpeedDB();
 				arg.callback({
@@ -202,6 +222,9 @@ export const runTest = (arg: runArg) => {
 			}
 		});
 	} else {
+		if (isCancelTokenCanceled(arg.cancelToken)) {
+			return;
+		}
 		const { LESSTAG, MOSTTAG } = getTagReport();
 		const speedDB = getSpeedDB();
 		arg.callback({
@@ -233,24 +256,30 @@ export const initTest = ({
 		resetTagReport();
 		resetRunReport(startTime);
 
+		const cancelToken = createCancelToken();
+		const memoryCheckController = createMemoryCheckController();
+
+		function stop() {
+			cancelToken.canceled = true;
+			cancelMemoryCheck(memoryCheckController);
+			chart?.destroy();
+			b.modal.hide(container as Element);
+		}
+
 		core.replaceChild(
 			container,
 			progressUI({
 				msg: "{{s::Memory test in progress}}",
-				testId: testId,
-				counterLabel: "Counter",
-				currentLabel: "Load page",
+				testId,
 				speedLabel: "Estimate load speed",
-				memoryUsageLabel: "Memory usage",
-				timeLabel: "Estimate time remaining",
-				stopLabel: "Stop",
 				total: count,
 				showchart: showchart,
 				checkMemoryUsage: memorySupported,
+				onStop: stop,
 			})
 		);
 
-		initMemoryCheck(testId);
+		initMemoryCheck(testId, memoryCheckController);
 
 		const chart = showchart
 			? setupChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement)
@@ -265,6 +294,7 @@ export const initTest = ({
 			checkduplicateid,
 			counttag,
 			waitonesec,
+			cancelToken,
 			callback: (result) => {
 				const container = document.getElementById("memory-test-dialog");
 				if (container) {
@@ -295,7 +325,12 @@ export const initTest = ({
 						})
 					);
 
-					if (memoryBaseline) initMemoryCheckReport(testId, memoryBaseline);
+					if (memoryBaseline)
+						initMemoryCheckReport(
+							testId,
+							memoryBaseline,
+							createMemoryCheckController()
+						);
 				} else {
 					chart?.destroy();
 				}

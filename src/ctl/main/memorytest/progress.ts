@@ -66,22 +66,18 @@ export const updateProgress = (arg: {
 export const progressUI = (arg: {
 	msg: string;
 	testId: string;
-	counterLabel: string;
-	currentLabel: string;
 	speedLabel: string;
-	memoryUsageLabel: string;
-	timeLabel: string;
-	stopLabel: string;
 	total: number;
 	showchart: boolean;
 	checkMemoryUsage: boolean;
+	onStop?: () => void;
 }) => {
 	const memoryUsageReport = () => {
 		if (arg.checkMemoryUsage) {
 			return [
 				new h.br(),
 				new h.small([
-					`${arg.memoryUsageLabel} :`,
+					"Memory usage : ",
 					new h.strong({ id: `${arg.testId}-memory-usage-label` }, ""),
 				]),
 			];
@@ -119,7 +115,7 @@ export const progressUI = (arg: {
 
 		new h.div({ textColor: "secondary", lineHeight: "sm" }, [
 			new h.small([
-				`${arg.counterLabel} : `,
+				"Counter : ",
 				new h.strong({ id: `${arg.testId}-count` }, "..."),
 				" / ",
 				new h.strong(
@@ -128,10 +124,7 @@ export const progressUI = (arg: {
 				),
 			]),
 			new h.br(),
-			new h.small([
-				`${arg.currentLabel} : `,
-				new h.strong({ id: `${arg.testId}-current` }, "..."),
-			]),
+			new h.small(["Current page : ", new h.strong({ id: `${arg.testId}-current` }, "...")]),
 			new h.br(),
 			new h.small([
 				`${arg.speedLabel} : ±`,
@@ -140,7 +133,10 @@ export const progressUI = (arg: {
 			]),
 			...memoryUsageReport(),
 			new h.br(),
-			new h.small([`${arg.timeLabel} : `, new h.strong({ id: `${arg.testId}-time` }, "...")]),
+			new h.small([
+				"Estimate time remaining : ",
+				new h.strong({ id: `${arg.testId}-time` }, "..."),
+			]),
 			new h.div(
 				{ marginTop: 2 },
 				new b.progress.container(
@@ -156,14 +152,18 @@ export const progressUI = (arg: {
 						weight: "lg",
 						on: {
 							click: () => {
-								core.replaceChild(
-									document.getElementById("memory-test-dialog") as Element,
-									[]
-								);
+								if (arg.onStop) {
+									arg.onStop();
+								} else {
+									core.replaceChild(
+										document.getElementById("memory-test-dialog") as Element,
+										[]
+									);
+								}
 							},
 						},
 					},
-					arg.stopLabel
+					"Stop"
 				)
 			),
 		]),

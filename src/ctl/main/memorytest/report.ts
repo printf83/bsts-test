@@ -2,7 +2,18 @@ import { Chart } from "chart.js";
 import { core, b, h } from "@printf83/bsts";
 import { convertMemoryUsageToText, secondToDurationText } from "./common.js";
 import { initTest } from "./test.js";
-import { speedDB } from "./speed.js";
+
+let reportChart: Chart<"bar", (number | undefined)[], string> | undefined;
+let reportChartTimeoutId: number | undefined;
+
+const clearReportChart = () => {
+	if (reportChartTimeoutId !== undefined) {
+		clearTimeout(reportChartTimeoutId);
+	}
+	reportChartTimeoutId = undefined;
+	reportChart?.destroy();
+	reportChart = undefined;
+};
 
 export const report = (arg: {
 	testId: string;
@@ -64,18 +75,19 @@ export const report = (arg: {
 							const target = event.target as HTMLCanvasElement;
 
 							//dialog show after 300 ms
-							setTimeout(
+							reportChartTimeoutId = window.setTimeout(
 								(target: HTMLCanvasElement) => {
 									const lineColor = core.getCSSVarRgbColor("--bs-primary");
 									const gridColor = core.getCSSVarRgbColor("--bs-tertiary-bg");
 
-									new Chart(target, {
+									clearReportChart();
+									reportChart = new Chart(target, {
 										type: "bar",
 										data: {
 											labels: arg.speedDB.map((i) => i.title),
 											datasets: [
 												{
-													data: speedDB.map((i) => {
+													data: arg.speedDB.map((i) => {
 														if (i.data.length > 1) {
 															const sum = i.data.reduce(
 																(partialSum, a) => partialSum + a,
@@ -161,6 +173,7 @@ export const report = (arg: {
 					weight: "lg",
 					on: {
 						click: () => {
+							clearReportChart();
 							initTest({
 								testId: core.UUID(),
 								count: arg.count,
@@ -180,6 +193,7 @@ export const report = (arg: {
 					weight: "lg",
 					on: {
 						click: (event) => {
+							clearReportChart();
 							const target = event.target as Element;
 							b.modal.hide(target);
 
