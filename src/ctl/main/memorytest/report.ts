@@ -201,7 +201,7 @@ export const report = (arg: {
 
 							//bugfix drowdown fail if dropdown documentation is downloaded faster
 							//reload document
-							location.reload();
+							// location.reload();
 						},
 					},
 				},
