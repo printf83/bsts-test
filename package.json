@@ -59,7 +59,7 @@
 		}
 	},
 	"dependencies": {
-		"@printf83/bsts": "1.1.8-beta",
+		"@printf83/bsts": "^1.1.8",
 		"bootstrap": "^5.3.8",
 		"chart.js": "^4.5.1",
 		"chartjs-plugin-datalabels": "^2.2.0",
