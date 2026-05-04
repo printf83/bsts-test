@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@printf83/bsts':
-        specifier: ^1.1.7-beta2
-        version: 1.1.7-beta2
+        specifier: ^1.1.7
+        version: 1.1.7
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
@@ -355,8 +355,8 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
-  '@printf83/bsts@1.1.7-beta2':
-    resolution: {integrity: sha512-TJg16YEjIsFg0yYSFSWSS3Dlu5IvuaI2x0oOn8qNi09Z7cIQbb4rwCHWWP5rzoMxxJLAU6SnVoqayboCs1nOUQ==}
+  '@printf83/bsts@1.1.7':
+    resolution: {integrity: sha512-qrc+U7M//bxmHJCg/dJ6SizXaB7YNcUN4Z+iUMA7jNnOtz1tYChiCWdip97ZA7I2MeghCgSgZ3kZNvvqSiK2PQ==}
 
   '@total-typescript/ts-reset@0.4.2':
     resolution: {integrity: sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==}
@@ -654,8 +654,8 @@ packages:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
     engines: {node: 18 || 20 || >=22}
 
-  baseline-browser-mapping@2.10.25:
-    resolution: {integrity: sha512-QO/VHsXCQdnzADMfmkeOPvHdIAkoB7i0/rGjINPJEetLx75hNttVWGQ/jycHUDP9zZ9rupbm60WRxcwViB0MiA==}
+  baseline-browser-mapping@2.10.27:
+    resolution: {integrity: sha512-zEs/ufmZoUd7WftKpKyXaT6RFxpQ5Qm9xytKRHvJfxFV9DFJkZph9RvJ1LcOUi0Z1ZVijMte65JbILeV+8QQEA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -1285,8 +1285,8 @@ packages:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
 
-  ipaddr.js@2.3.0:
-    resolution: {integrity: sha512-Zv/pA+ciVFbCSBBjGfaKUya/CcGmUHzTydLMaTwrUUEM2DIEO3iZvueGxmacvmN50fGpGVKeTXpb2LcYQxeVdg==}
+  ipaddr.js@2.4.0:
+    resolution: {integrity: sha512-9VGk3HGanVE6JoZXHiCpnGy5X0jYDnN4EA4lntFPj+1vIWlFhIylq2CrrCOJH9EAhc5CYhq18F2Av2tgoAPsYQ==}
     engines: {node: '>= 10'}
 
   is-binary-path@2.1.0:
@@ -2446,7 +2446,7 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@printf83/bsts@1.1.7-beta2':
+  '@printf83/bsts@1.1.7':
     dependencies:
       '@popperjs/core': 2.11.8
       bootstrap: 5.3.8(@popperjs/core@2.11.8)
@@ -2809,7 +2809,7 @@ snapshots:
 
   balanced-match@4.0.4: {}
 
-  baseline-browser-mapping@2.10.25: {}
+  baseline-browser-mapping@2.10.27: {}
 
   basic-auth@2.0.1:
     dependencies:
@@ -2864,7 +2864,7 @@ snapshots:
 
   browserslist@4.28.2:
     dependencies:
-      baseline-browser-mapping: 2.10.25
+      baseline-browser-mapping: 2.10.27
       caniuse-lite: 1.0.30001791
       electron-to-chromium: 1.5.349
       node-releases: 2.0.38
@@ -3477,7 +3477,7 @@ snapshots:
 
   ipaddr.js@1.9.1: {}
 
-  ipaddr.js@2.3.0: {}
+  ipaddr.js@2.4.0: {}
 
   is-binary-path@2.1.0:
     dependencies:
@@ -4210,7 +4210,7 @@ snapshots:
       express: 4.22.1
       graceful-fs: 4.2.11
       http-proxy-middleware: 2.0.9(@types/express@4.17.25)
-      ipaddr.js: 2.3.0
+      ipaddr.js: 2.4.0
       launch-editor: 2.13.2
       open: 10.2.0
       p-retry: 6.2.1
