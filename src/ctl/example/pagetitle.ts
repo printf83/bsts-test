@@ -143,7 +143,6 @@ const convert = (attr: IPageTitle) => {
 								},
 							},
 							new b.icon({
-								handleBubble: false,
 								id: attr.bookmark ? "pin-fill" : "pin-angle-fill",
 							})
 						)
