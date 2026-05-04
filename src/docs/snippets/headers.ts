@@ -48,7 +48,7 @@ const ex = {
 							? arg.link.map((i) => {
 									i.handleActive = true;
 									return i;
-							  })
+								})
 							: undefined,
 						on: {
 							"change.bs.nav": arg.onlinkchange,
@@ -73,7 +73,7 @@ const ex = {
 						? arg.link.map((i) => {
 								i.handleActive = true;
 								return i;
-						  })
+							})
 						: undefined,
 					on: {
 						"change.bs.nav": arg.onlinkchange,
@@ -126,7 +126,7 @@ const ex = {
 									i.paddingX = 2;
 									i.handleActive = true;
 									return i;
-							  })
+								})
 							: undefined,
 						on: {
 							"change.bs.nav": arg.onlinkchange,
@@ -193,7 +193,7 @@ const ex = {
 										i.handleActive = true;
 										i.paddingX = 2;
 										return i;
-								  })
+									})
 								: undefined,
 							on: {
 								"change.bs.nav": arg.onlinkchange,
@@ -283,7 +283,7 @@ const ex = {
 										i.handleActive = true;
 										i.paddingX = 2;
 										return i;
-								  })
+									})
 								: undefined,
 							on: {
 								"change.bs.nav": arg.onlinkchange,

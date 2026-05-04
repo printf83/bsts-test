@@ -155,17 +155,19 @@ export const scrollspy: IContent = {
 							]
 						);
 
-						const contentItems = ["1", "1-1", "1-2", "2", "3", "3-1", "3-2"].map((i) => {
-							return new h.div({ id: `item-${i}` }, [
-								new h.h4(`Item ${i}`),
-								new h.p(
-									"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
-								),
-								new h.p(
-									"Keep in mind that the JavaScript plugin tries to pick the right element among all that may be visible. Multiple visible scrollspy targets at the same time may cause some issues."
-								),
-							]);
-						});
+						const contentItems = ["1", "1-1", "1-2", "2", "3", "3-1", "3-2"].map(
+							(i) => {
+								return new h.div({ id: `item-${i}` }, [
+									new h.h4(`Item ${i}`),
+									new h.p(
+										"This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. Bootstrap keep adding some more example copy here to emphasize the scrolling and highlighting."
+									),
+									new h.p(
+										"Keep in mind that the JavaScript plugin tries to pick the right element among all that may be visible. Multiple visible scrollspy targets at the same time may cause some issues."
+									),
+								]);
+							}
+						);
 
 						return new h.div({ row: true }, [
 							new h.div(

@@ -43,7 +43,7 @@ const ex = {
 								i.textColor = "body-tertiary";
 								i.textColorHover = "body-emphasis";
 								return i;
-						  })
+							})
 						: undefined,
 				}),
 			]

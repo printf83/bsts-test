@@ -1053,18 +1053,18 @@ export const dropdowns: IContent = {
 												toggle.innerHTML = `${
 													detail.startDate
 														? detail.startDate.getDate() +
-														  "/" +
-														  detail.startDate.getMonth() +
-														  "/" +
-														  detail.startDate.getFullYear()
+															"/" +
+															detail.startDate.getMonth() +
+															"/" +
+															detail.startDate.getFullYear()
 														: ""
 												}${detail.endDate ? " - " : ""}${
 													detail.endDate
 														? detail.endDate.getDate() +
-														  "/" +
-														  detail.endDate.getMonth() +
-														  "/" +
-														  detail.endDate.getFullYear()
+															"/" +
+															detail.endDate.getMonth() +
+															"/" +
+															detail.endDate.getFullYear()
 														: ""
 												}`;
 											},

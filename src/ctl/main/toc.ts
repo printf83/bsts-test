@@ -38,8 +38,13 @@ export const setupTOC = (content?: IContent) => {
 			contentItem.forEach((i) => {
 				if (core.isTag<e.section>(i) && i.tag === "section") {
 					if (i.attr?.id && i.attr?.data?.title) {
-						const item = { href: `#${i.attr?.id}`, label: i.attr?.data?.title as string };
-						const deep = i.attr?.data?.deep ? parseInt(i.attr?.data?.deep as string) : 0;
+						const item = {
+							href: `#${i.attr?.id}`,
+							label: i.attr?.data?.title as string,
+						};
+						const deep = i.attr?.data?.deep
+							? parseInt(i.attr?.data?.deep as string)
+							: 0;
 						t.push({
 							deep: deep,
 							item: item,
@@ -149,7 +154,7 @@ export const setupTOC = (content?: IContent) => {
 													{ loadingPlaceholderAnimation: "wave" },
 													core.placeholder(1, 3, 1, 3)
 												);
-										  })
+											})
 										: u.map((i) => {
 												return new h.li([
 													new h.a(
@@ -191,14 +196,14 @@ export const setupTOC = (content?: IContent) => {
 																							);
 																						}
 																					)
-																			  )
+																				)
 																			: "",
 																	]);
 																})
-														  )
+															)
 														: "",
 												]);
-										  })
+											})
 								)
 							)
 						),

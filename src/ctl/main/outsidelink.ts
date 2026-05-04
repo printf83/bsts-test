@@ -32,7 +32,7 @@ export const setupOutsideLink = (
 								new b.caption({ icon: i.icon, labelDisplay: "lg-none" }, i.label)
 							),
 						]);
-				  })
+					})
 				: []),
 			...(itemBootswatch ? itemBootswatch : []),
 			...(itemTheme ? itemTheme : []),

@@ -3,12 +3,15 @@ import { IContent } from "../../ctl/main/content.js";
 
 export const utilities: IContent = {
 	title: "Utilities for layout",
-	description: "For faster mobile-friendly and responsive development, Bootstrap includes dozens of utility classes for showing, hiding, aligning, and spacing content.",
+	description:
+		"For faster mobile-friendly and responsive development, Bootstrap includes dozens of utility classes for showing, hiding, aligning, and spacing content.",
 	item: () => {
 		return [
 			new e.section([
 				new e.title("Changing {{display}}"),
-				new e.text("Use Bootstrap {{nav:docs/utilities/display::display utilities}} for responsively toggling common values of the {{display}} property. Mix it with Bootstrap grid system, content, or components to show or hide them across specific viewports."),
+				new e.text(
+					"Use Bootstrap {{nav:docs/utilities/display::display utilities}} for responsively toggling common values of the {{display}} property. Mix it with Bootstrap grid system, content, or components to show or hide them across specific viewports."
+				),
 			]),
 
 			//----------------------
@@ -36,7 +39,9 @@ export const utilities: IContent = {
 
 			new e.section([
 				new e.title("Toggle visibility"),
-				new e.text("When toggling {{display}} isn’t needed, you can toggle the {{visibility}} of an element with Bootstrap {{nav:docs/utilities/visibility::visibility utilities}}. Invisible elements will still affect the layout of the page, but are visually hidden from visitors."),
+				new e.text(
+					"When toggling {{display}} isn’t needed, you can toggle the {{visibility}} of an element with Bootstrap {{nav:docs/utilities/visibility::visibility utilities}}. Invisible elements will still affect the layout of the page, but are visually hidden from visitors."
+				),
 			]),
 		];
 	},

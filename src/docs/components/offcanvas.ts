@@ -56,7 +56,10 @@ export const offcanvas: IContent = {
 							},
 							[
 								new b.offcanvas.header([
-									new b.offcanvas.title({ id: "offcanvasExample1Label" }, "Offcanvas"),
+									new b.offcanvas.title(
+										{ id: "offcanvasExample1Label" },
+										"Offcanvas"
+									),
 									new b.offcanvas.btnclose(),
 								]),
 								new b.offcanvas.body(

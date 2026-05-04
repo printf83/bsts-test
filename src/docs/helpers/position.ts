@@ -8,7 +8,9 @@ export const position: IContent = {
 		return [
 			new e.section([
 				new e.title("Fixed top"),
-				new e.text("Position an element at the top of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."),
+				new e.text(
+					"Position an element at the top of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."
+				),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({fixed: "top"}, "...");`,
@@ -19,7 +21,9 @@ export const position: IContent = {
 
 			new e.section([
 				new e.title("Fixed bottom"),
-				new e.text("Position an element at the bottom of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."),
+				new e.text(
+					"Position an element at the bottom of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS."
+				),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({fixed: "bottom"}, "...");`,
@@ -30,7 +34,9 @@ export const position: IContent = {
 
 			new e.section([
 				new e.title("Sticky top"),
-				new e.text("Position an element at the top of the viewport, from edge to edge, but only after you scroll past it."),
+				new e.text(
+					"Position an element at the top of the viewport, from edge to edge, but only after you scroll past it."
+				),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({sticky: "top"}, "...");`,
@@ -58,7 +64,9 @@ export const position: IContent = {
 
 			new e.section([
 				new e.title("Sticky bottom"),
-				new e.text("Position an element at the bottom of the viewport, from edge to edge, but only after you scroll past it."),
+				new e.text(
+					"Position an element at the bottom of the viewport, from edge to edge, but only after you scroll past it."
+				),
 				new e.codepreview({
 					type: "js",
 					code: `new h.div({sticky: "bottom"}, "...");`,
