@@ -46,7 +46,7 @@ const setupBSNavigate = () => {
 };
 
 const escapeBackQuote = (str: string) => {
-	return str.replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
+	return str.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
 };
 
 const setupCopyDataManager = () => {
