@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "1.1.9",
+	"version": "1.1.10",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -55,11 +55,13 @@
 	},
 	"pnpm": {
 		"overrides": {
-			"glob": "13.0.6"
+			"glob": "13.0.6",
+			"sockjs>uuid": "11.0.0",
+			"http-server>html-encoding-sniffer": "6.0.0"
 		}
 	},
 	"dependencies": {
-		"@printf83/bsts": "^1.1.9",
+		"@printf83/bsts": "^1.1.10",
 		"bootstrap": "^5.3.8",
 		"chart.js": "^4.5.1",
 		"chartjs-plugin-datalabels": "^2.2.0",
