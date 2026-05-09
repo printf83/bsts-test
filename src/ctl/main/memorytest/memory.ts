@@ -1,5 +1,7 @@
 import { convertMemoryUsageToText } from "./common.js";
 
+const WAIT_GCC_MS = 30 * 1000;
+
 export type PerformanceMemoryInfo = {
 	usedJSHeapSize: number;
 	totalJSHeapSize: number;
@@ -133,6 +135,9 @@ const runMemoryCheckResult = (
 	beforeTest: number,
 	controller: MemoryCheckController
 ) => {
+	let lastSeverity: "High" | "Low" | "Very low" | null = null;
+	let severityDetectedAt: number | undefined;
+
 	runMemoryCheckLoop(
 		`${testId}-memory-result-label`,
 		controller,
@@ -148,6 +153,7 @@ const runMemoryCheckResult = (
 					const memoryLeak = currentHeap - beforeTest;
 					const percent = beforeTest > 0 ? (memoryLeak / beforeTest) * 100 : 0;
 					const leakText = convertMemoryUsageToText(memoryLeak);
+					const now = performance.now();
 
 					const HIGH_LEAK = 100 * 1024 * 1024; // 100 MB
 					const LOW_LEAK = 10 * 1024 * 1024; // 10 MB
@@ -156,16 +162,39 @@ const runMemoryCheckResult = (
 					const LOW_PERCENT = 2; // 2%
 					const VERY_LOW_PERCENT = 0.5; // 0.5%
 
-					if (memoryLeak > HIGH_LEAK || percent >= HIGH_PERCENT) {
-						label.innerHTML = `<span class="text-danger"><i class="bi bi-exclamation-triangle-fill"></i> High (${percent.toFixed(0)}%, ${leakText})</span>`;
-						updateBtnPrimary(testId, true);
-					} else if (memoryLeak > LOW_LEAK || percent >= LOW_PERCENT) {
-						label.innerHTML = `<span class="text-warning"><i class="bi bi-exclamation-triangle-fill"></i> Low (${percent.toFixed(0)}%, ${leakText})</span>`;
-						updateBtnPrimary(testId, false);
-					} else if (memoryLeak > VERY_LOW_LEAK || percent >= VERY_LOW_PERCENT) {
-						label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> Very low (${percent.toFixed(0)}%, ${leakText})</span>`;
-						updateBtnPrimary(testId, false);
+					const severity =
+						memoryLeak > HIGH_LEAK || percent >= HIGH_PERCENT
+							? "High"
+							: memoryLeak > LOW_LEAK || percent >= LOW_PERCENT
+								? "Low"
+								: memoryLeak > VERY_LOW_LEAK || percent >= VERY_LOW_PERCENT
+									? "Very low"
+									: null;
+
+					if (severity) {
+						if (severity !== lastSeverity) {
+							lastSeverity = severity;
+							severityDetectedAt = now;
+						}
+
+						const isConfirm =
+							severityDetectedAt !== undefined &&
+							now - severityDetectedAt >= WAIT_GCC_MS;
+						const prefix = isConfirm ? "Confirm " : "Maybe ";
+
+						if (severity === "High") {
+							label.innerHTML = `<span class="text-danger"><i class="bi bi-exclamation-triangle-fill"></i> ${prefix}High (${percent.toFixed(0)}%, ${leakText})</span>`;
+							updateBtnPrimary(testId, true);
+						} else if (severity === "Low") {
+							label.innerHTML = `<span class="text-warning"><i class="bi bi-exclamation-triangle-fill"></i> ${prefix}Low (${percent.toFixed(0)}%, ${leakText})</span>`;
+							updateBtnPrimary(testId, false);
+						} else {
+							label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> ${prefix}Very low (${percent.toFixed(0)}%, ${leakText})</span>`;
+							updateBtnPrimary(testId, false);
+						}
 					} else {
+						lastSeverity = null;
+						severityDetectedAt = undefined;
 						label.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> No memory leak detected</span>`;
 						updateBtnPrimary(testId, false);
 					}

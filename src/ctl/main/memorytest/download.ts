@@ -117,18 +117,18 @@ export const initDownload = ({ testId, showchart, callback }: DownloadArg) => {
 	if (container) {
 		const startTime = performance.now();
 		const item = menuItem();
-
-		resetSpeedDB();
-		resetTagReport();
-		resetDownloadReport(startTime);
-
 		const cancelToken = createCancelToken();
+		let chart: Chart<"line", number[], string> | undefined = undefined;
 
 		const stop = () => {
 			cancelToken.canceled = true;
 			chart?.destroy();
 			b.modal.hide(container as Element);
 		};
+
+		resetSpeedDB();
+		resetTagReport();
+		resetDownloadReport(startTime);
 
 		core.replaceChild(
 			container,
@@ -143,7 +143,7 @@ export const initDownload = ({ testId, showchart, callback }: DownloadArg) => {
 			})
 		);
 
-		const chart = showchart
+		chart = showchart
 			? setupChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement)
 			: undefined;
 

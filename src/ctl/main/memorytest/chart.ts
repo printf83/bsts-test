@@ -1,7 +1,7 @@
 import { Chart } from "chart.js/auto";
 import { core } from "@printf83/bsts";
 
-export const setupChart = (container: HTMLCanvasElement) => {
+export const setupChart = (container: HTMLCanvasElement): Chart<"line", number[], string> => {
 	const fillColor = core.getCSSVarRgbColor("--bs-primary-bg-subtle", 0.5);
 	const lineColor = core.getCSSVarRgbColor("--bs-primary");
 	const gridColor = core.getCSSVarRgbColor("--bs-tertiary-bg");

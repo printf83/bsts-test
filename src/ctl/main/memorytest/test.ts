@@ -251,13 +251,9 @@ export const initTest = ({
 		const startTime = performance.now();
 		const memorySupported = supportsPerformanceMemory();
 		const memoryBaseline = memorySupported ? getPerformanceMemory()?.usedJSHeapSize : undefined;
-
-		resetSpeedDB();
-		resetTagReport();
-		resetRunReport(startTime);
-
 		const cancelToken = createCancelToken();
 		const memoryCheckController = createMemoryCheckController();
+		let chart: Chart<"line", number[], string> | undefined = undefined;
 
 		function stop() {
 			cancelToken.canceled = true;
@@ -265,6 +261,10 @@ export const initTest = ({
 			chart?.destroy();
 			b.modal.hide(container as Element);
 		}
+
+		resetSpeedDB();
+		resetTagReport();
+		resetRunReport(startTime);
 
 		core.replaceChild(
 			container,
@@ -281,7 +281,7 @@ export const initTest = ({
 
 		initMemoryCheck(testId, memoryCheckController);
 
-		const chart = showchart
+		chart = showchart
 			? setupChart(document.getElementById(`${testId}-chart`) as HTMLCanvasElement)
 			: undefined;
 
