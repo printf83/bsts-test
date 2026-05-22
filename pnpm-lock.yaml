@@ -6,7 +6,7 @@ settings:
 
 overrides:
   glob: 13.0.6
-  sockjs>uuid: 11.0.0
+  sockjs>uuid: 14.0.0
   http-server>html-encoding-sniffer: 6.0.0
 
 importers:
@@ -2024,8 +2024,8 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
 
-  uuid@11.0.0:
-    resolution: {integrity: sha512-iE8Fa5fgBY4rN5GvNUJ8TSwO1QG7TzdPfhrJczf6XJ6mZUxh/GX433N70fCiJL9h8EKP5ayEIo0Q6EBQGWHFqA==}
+  uuid@14.0.0:
+    resolution: {integrity: sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==}
     hasBin: true
 
   vary@1.1.2:
@@ -3991,7 +3991,7 @@ snapshots:
   sockjs@0.3.24:
     dependencies:
       faye-websocket: 0.11.4
-      uuid: 11.0.0
+      uuid: 14.0.0
       websocket-driver: 0.7.4
 
   source-map-support@0.5.21:
@@ -4153,7 +4153,7 @@ snapshots:
 
   utils-merge@1.0.1: {}
 
-  uuid@11.0.0: {}
+  uuid@14.0.0: {}
 
   vary@1.1.2: {}
 

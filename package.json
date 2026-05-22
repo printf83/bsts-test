@@ -56,7 +56,7 @@
 	"pnpm": {
 		"overrides": {
 			"glob": "13.0.6",
-			"sockjs>uuid": "11.0.0",
+			"sockjs>uuid": "14.0.0",
 			"http-server>html-encoding-sniffer": "6.0.0"
 		}
 	},
