@@ -1,6 +1,6 @@
 {
 	"name": "bsts-test",
-	"version": "1.2.1.a",
+	"version": "1.2.1.b",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/printf83/bsts-test.git"
@@ -38,10 +38,10 @@
 		"@total-typescript/ts-reset": "^0.4.2",
 		"@types/bootstrap": "^5.2.11",
 		"@types/js-beautify": "^1.14.3",
-		"@typescript-eslint/eslint-plugin": "^8.65.0",
-		"@typescript-eslint/parser": "^8.65.0",
+		"@typescript-eslint/eslint-plugin": "^8.66.0",
+		"@typescript-eslint/parser": "^8.66.0",
 		"compression-webpack-plugin": "^12.0.0",
-		"eslint": "^10.8.0",
+		"eslint": "^10.8.1",
 		"gh-pages": "^6.3.0",
 		"http-server": "^14.1.1",
 		"prettier": "^3.9.6",
@@ -54,7 +54,8 @@
 	},
 	"pnpm": {
 		"overrides": {
-			"brace-expansion": "^5.0.8",
+			"brace-expansion": "^5.0.9",
+			"fast-uri": "^3.1.5",
 			"glob": "13.0.6",
 			"sockjs>uuid": "14.0.0",
 			"http-server>html-encoding-sniffer": "6.0.0"
