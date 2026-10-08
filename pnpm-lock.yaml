@@ -1831,8 +1831,8 @@ packages:
     resolution: {integrity: sha512-VMbMxbDeehAxpOtWJXlcUS5E8iXh6QmN+BkRX1GARS3wRaXEEgzCcB10gTQazO42tpNIya8xIyNx8fll1OFPrg==}
     engines: {node: '>= 0.8.0'}
 
-  serialize-javascript@7.1.1:
-    resolution: {integrity: sha512-k3CMsaIvvdSwm8oLB4MXSl0wH2/cwlH7xGcnRd2DaeRmBkbzYmyT8j0tsX60DwD1eRwHTpNpH8ljKu9oUT1MeQ==}
+  serialize-javascript@7.1.2:
+    resolution: {integrity: sha512-GL2BWwVa6JydKO6l/ljVgjAZF4QJ3S7dWDWi53s5GZT8PJzD2fNxi67HANQGKAqPrwEpL5ba7gUBGi0Ls/sEoQ==}
     engines: {node: '>=20.0.0'}
 
   serve-index@1.9.2:
@@ -3046,7 +3046,7 @@ snapshots:
   compression-webpack-plugin@12.0.0(webpack@5.110.3):
     dependencies:
       schema-utils: 4.4.0
-      serialize-javascript: 7.1.1
+      serialize-javascript: 7.1.2
       webpack: 5.110.3(webpack-cli@5.1.4)
 
   compression@1.8.1(supports-color@8.1.1):
@@ -4025,7 +4025,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  serialize-javascript@7.1.1: {}
+  serialize-javascript@7.1.2: {}
 
   serve-index@1.9.2(supports-color@8.1.1):
     dependencies:
